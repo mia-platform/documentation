@@ -149,7 +149,7 @@ If your medical device can report measurements between a well-defined range, you
 
 :::danger
 
-Prototypes should not be used to monitor the expected vital signs of patients subject to monitorings, but thresholds should be used instead. Check the [*Thresholds* section](10_overview.md#thresholds) for more details.
+Prototypes should not be used to monitor the expected vital signs of patients subject to monitorings, but thresholds should be used instead. Check the [*Thresholds* section][thresholds] for more details.
 
 :::
 
@@ -403,7 +403,7 @@ The integrated validation system is designed under the assumption that the prope
 
 :::
 
-Additional information about the API requirements and the setup of the external validation service are available in the [*Configuration* section](20_configuration.md#thresholds-validation).
+Additional information about the API requirements and the setup of the external validation service are available in the [*Configuration* section][thresholds-validation].
 
 ## Notifications
 
@@ -411,10 +411,16 @@ The TMM allows you to send notifications on various channels to patients and phy
 
 For example, when a patient submits a detection and its value exceeds one or more monitoring thresholds, the TMM can send a notification to the physician.
 
-More details about the configuration of the notification service are available in the [*Configuration* section](20_configuration.md#notifications).
+More details about the configuration of the notification service are available in the [*Configuration* section][notifications].
 
 :::tip
 
 If you are using an external validation system and want that system to be responsible for sending notifications, you can simply implement your custom logic inside it and disable notifications on the TMM side.
 
 :::
+
+
+[thresholds]: #thresholds "Thresholds | Overview"
+
+[notifications]: ./20_configuration.md#notifications "Notifications | Configuration"
+[thresholds-validation]: ./20_configuration.md#thresholds-validation "Thresholds validation | Configuration"

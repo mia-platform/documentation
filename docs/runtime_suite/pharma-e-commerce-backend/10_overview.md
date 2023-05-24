@@ -15,13 +15,10 @@ It allows through its endpoints to:
 - create an order for the logged user from it's current shopping cart;
 - access the orders' history of the currently logged user.
 
-The available functionalities are detailed in the [usage section][usage-link] of the documentation.
+The available functionalities are detailed in the [usage section](./30_usage.md) of the documentation.
 
 :::info
 At the moment, the **Pharma Ecommerce Backend** supports only [PharmaPrime](https://www.pharmaprime.it/) as pharma e-commerce provider. Additional providers may be added in the future.
 :::
 
-If you want to learn how to configure the microservice, follow this [configuration][configuration-link] guide.
-
-[configuration-link]: ./20_configuration.md
-[usage-link]: ./30_usage.md
+If you want to learn how to configure the microservice, follow this [configuration](./20_configuration.md) guide.

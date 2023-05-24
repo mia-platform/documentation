@@ -14,7 +14,7 @@ Whatever your use case, to deploy an instance of the microservice you have to co
 
 This section provides a detailed overview of the microservice configuration and the CRUD collections required.
 
-If you are looking for instructions to configure the service in appointments or full mode, look at the [*Appointments mode*](#appointments-mode) and [*Full mode*](#full-mode) sections at the end of the document.
+If you are looking for instructions to configure the service in appointments or full mode, look at the [*Appointments mode*][appointments-mode] and [*Full mode*][full-mode] sections at the end of the document.
 
 ### Service configuration
 
@@ -43,19 +43,16 @@ Here's an example of a full configuration:
     "doctor": {
       "create": "template_id",
       "delete": "template_id",
-      "reminders": {
-        [
+      "reminders": [
           {
             "template": "template_id",
             "reminderMilliseconds": 86400000   
           }
         ]
-      }
     },
     "patients": {
       "update": "template_id",
-      "reminders": {
-        [
+      "reminders": [
           {
             "template": "template_id_1",
             "reminderMilliseconds": 86400000   
@@ -65,7 +62,6 @@ Here's an example of a full configuration:
             "reminderMilliseconds": 3600000   
           },
         ]
-      }
     }
   },
   "channels": ["email", "push", "sms"],
@@ -93,7 +89,7 @@ A reference presentation of each available field is provided in the following ta
 #### `users`
 
 With this field you can specify for each category of users which template has to be used when sending messages to notify the different
-phases of an appointment lifecycle (see the [service overview](./10_overview.md) for more information).
+phases of an appointment lifecycle (see the [service overview][overview] for more information).
 
 The structure of the map is the following:
 
@@ -269,7 +265,7 @@ A new `isFlagged` field is added to track the appointments whose slots are no lo
 
 The Appointment Manager requires a CRUD containing the appointments. The collection can have any name you want, as long as you specify the correct name in the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
 
-The appointments collection must have the following fields, plus the same custom fields defined in the [availabilities CRUD](20_configuration.md#availabilities-crud-collection):
+The appointments collection must have the following fields, plus the same custom fields defined in the [availabilities CRUD][crud-availabilities]:
 
 | Name                 | Type | Required | Nullable | Description |
 |----------------------|------|----------|----------|-------------|
@@ -299,7 +295,7 @@ If you want to use the Appointment Manager in conjunction with the Calendar comp
 
 :::
 
-As explained in the [service overview](./10_overview.md), the service assumes that the users involved in an appointment are
+As explained in the [service overview][overview], the service assumes that the users involved in an appointment are
 contained in one or more attributes of the appointment itself.
 
 When you create your CRUD you will need to create a new field for each category of users you will need to involve in the
@@ -395,12 +391,12 @@ This section provide instructions on how to configure the Appointment Manager to
 
 - Choose a name for the CRUD field containing the resource ID (e.g. `resourceId`) and assign this value to the `RESOURCE_ID_FIELD_NAME` environment variable.
 
-- Create the [appointments CRUD collection](#appointments-crud-collection) with at least the following custom properties:
+- Create the [appointments CRUD collection][crud-appointments] with at least the following custom properties:
 
-  - one field for each [`users`](#users) category defined in the service configuration;
+  - one field for each [`users`][users] category defined in the service configuration;
   - the field of type `string` containing the resource ID (e.g. `resourceId`).
 
-- Add the name of the [appointments CRUD collection](#appointments-crud-collection) to the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
+- Add the name of the [appointments CRUD collection][crud-appointments] to the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
 
 :::caution
 
@@ -412,19 +408,19 @@ Since the reminder service in turn requires the messaging service to send remind
 
 This section provide instructions on how to configure the Appointment Manager to deploy it in full mode.
 
-- Configure the service performing all the steps described in [**appointments mode**](#appointments-mode)
+- Configure the service performing all the steps described in [**appointments mode**][appointments-mode]
 
-- Create the [availabilities CRUD collection](#availabilities-crud-collection) with at least the following custom properties:
-
-  - a field of type `string` containing the resource ID (e.g. `resourceId`).
-
-- Add the name of the [availabilities CRUD collection](#availabilities-crud-collection) to the `AVAILABILITIES_CRUD_NAME` [environment variable][environment-variables].
-
-- Create the [exceptions CRUD collection](#exceptions-crud-collection) with at least the following custom properties:
+- Create the [availabilities CRUD collection][crud-availabilities] with at least the following custom properties:
 
   - a field of type `string` containing the resource ID (e.g. `resourceId`).
 
-- Add the name of the [exceptions CRUD collection](#exceptions-crud-collection) to the `EXCEPTIONS_CRUD_NAME` [environment variable][environment-variables].
+- Add the name of the [availabilities CRUD collection][crud-availabilities] to the `AVAILABILITIES_CRUD_NAME` [environment variable][environment-variables].
+
+- Create the [exceptions CRUD collection][crud-exceptions] with at least the following custom properties:
+
+  - a field of type `string` containing the resource ID (e.g. `resourceId`).
+
+- Add the name of the [exceptions CRUD collection][crud-exceptions] to the `EXCEPTIONS_CRUD_NAME` [environment variable][environment-variables].
 
 :::caution
 
@@ -432,5 +428,13 @@ Since the reminder service in turn requires the messaging service to send remind
 
 :::
 
-[service-configuration]: #service-configuration "Service configuration"
-[environment-variables]: #environment-variables "Environment variables"
+[overview]: ./10_overview.md "Overview page"
+
+[service-configuration]: #service-configuration "Service configuration | Configuration"
+[environment-variables]: #environment-variables "Environment variables | Configuration"
+[crud-availabilities]: #availabilities-crud-collection "Availabilities CRUD collection | CRUD collections | Configuration"
+[crud-exceptions]: #exceptions-crud-collection "Exceptions CRUD collection | CRUD collections | Configuration"
+[crud-appointments]: #appointments-crud-collection "Appointments CRUD collection | CRUD collections | Configuration"
+[appointments-mode]: #appointments-mode "Appointments mode | Configuration"
+[full-mode]: #full-mode "Full mode | Configuration"
+[users]: #users "Users | Service configuration | Configuration"

@@ -27,7 +27,7 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 | **THERAPIES_CRUD_NAME**                   | No                                    | therapies           | Name of the CRUD collection containing the therapies.                                                                                                        |
 | **DETECTIONS_CRUD_NAME**                  | No                                    | detections          | Name of the CRUD collection containing the detections.                                                                                                       |
 | **DETECTIONS_GRACE_PERIOD**               | No                                    | 30                  | Number of days after the end of a therapy or monitoring during which adherence and compliance are still updated (in case the patient submit detections late) |
-| **DETECTIONS_TIME_ZONE**                  | No                                    | UTC                 | Default detections time zone. Must be a valid [IANA time zone](https://www.iana.org/time-zones).                                                             |
+| **DETECTIONS_TIME_ZONE**                  | No                                    | UTC                 | Default detections time zone. Must be a valid [IANA time zone][iana-time-zones].                                                             |
 | **CRON_SCHEDULE**                         | No                                    | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `DETECTIONS_TIME_ZONE` time zone.                                           |
 | **VALIDATION_SERVICE**                    | No                                    | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                          |
 | **VALIDATION_SERVICE_URL**                | If `VALIDATION_SERVICE` is `external` | -                   | HTTP(S) URL of the external validation service.                                                                                                              |
@@ -41,7 +41,7 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 ## Prototypes definition
 
-As described in the [overview section](./10_overview.md), the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
+As described in the [overview section][overview], the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
 
 You must define the prototypes inside a config map, setting the `PROTOTYPES_CONFIG_FILE_PATH` environment variable with its path. The config map must be a JSON file containing an array of prototypes.
 
@@ -165,7 +165,7 @@ Note that, modifying an identifier in an already running system can lead to inco
 
 * **Name**: the prototype name, as a string or translation object. It has no identification purpose and it is used to better identify the prototype objective.
 
-* **Schema**: the property containing the schema used to validate the detection value or therapy directives. The schema must follow [JSON Schema 7](https://json-schema.org/draft-07/json-schema-release-notes.html).
+* **Schema**: the property containing the schema used to validate the detection value or therapy directives. The schema must follow [JSON Schema 7][json-schema-draft7].
 
 * **Labels**: the labels for the schema fields, each one can be a string or translation object.
 
@@ -178,9 +178,9 @@ In order to make the TMM works properly, a set of collections must be configured
 :::note
 
 You can use the following JSON files in the *MongoDB CRUD* section of the console to import the list of fields when creating the CRUD collections:
-- [detections](detections.json);
-- [monitorings](monitorings.json);
-- [therapies](therapies.json).
+- <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/detections.json">detections</a>;
+- <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/monitorings.json">monitorings</a>;
+- <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/therapies.json">therapies</a>.
 
 :::
 
@@ -327,9 +327,9 @@ If you use the integrated validation service, field names in the `value` object 
 
 By default, the TMM validates an detection against the thresholds using the integrated service. If you want to use an external service to run custom validations, you need to perform the following steps:
 
-- deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below](./20_configuration.md#external-validation-service-api);
-- set the TMM **VALIDATION_SERVICE** [environment variable](./20_configuration.md#environment-variables) to `external`;
-- set the TMM **VALIDATION_SERVICE_URL** [environment variable](./20_configuration.md#environment-variables) to the HTTP(s) address of your service (both public and internal cluster URLs will work).
+- deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below][external-validation-service-api];
+- set the TMM **VALIDATION_SERVICE** [environment variable][environment-variables] to `external`;
+- set the TMM **VALIDATION_SERVICE_URL** [environment variable][environment-variables] to the HTTP(s) address of your service (both public and internal cluster URLs will work).
 
 ### External Validation Service API
 
@@ -341,8 +341,8 @@ The External Validation Service must expose the following endpoints:
 
 The endpoint must accept in the body a JSON object with the following properties:
 
-- `detection`: the detection to validate, an object itself with the same fields available in the [detections CRUD collection](./20_configuration.md#detections);
-- `thresholds`: an array of the monitoring thresholds, each one being an object with the same schema of the `thresholds` field of the [monitorings CRUD collection](./20_configuration.md#monitorings).
+- `detection`: the detection to validate, an object itself with the same fields available in the [detections CRUD collection][crud-detections];
+- `thresholds`: an array of the monitoring thresholds, each one being an object with the same schema of the `thresholds` field of the [monitorings CRUD collection][crud-monitorings].
 
 If the validation is performed without errors, the endpoint must return 200 as status code and a body containing a JSON array, each element representing the result of the validation for a corresponding threshold received in the request (`thresholds`) and the following properties:
 
@@ -370,8 +370,19 @@ This section describes the integration with a future version of the messaging se
 
 :::
 
-To send notifications to patients and physicians you need to set the `MESSAGING_SERVICE_URL` [environment variable](./20_configuration.md#environment-variables) and configure the events, channels, recipients, ... directly in the messaging service (see the component documentation for more details).
+To send notifications to patients and physicians you need to set the `MESSAGING_SERVICE_URL` [environment variable][environment-variables] and configure the events, channels, recipients, ... directly in the messaging service (see the component documentation for more details).
 
 The TMM currently generates the following events you can refer in the configuration of the messaging service:
 
 - `TMM/ThresholdExceeded/v1` is the event generated when a detection exceeds one or more monitoring thresholds.
+
+
+[json-schema-draft7]: https://json-schema.org/draft-07/json-schema-release-notes.html "JSON Schema Draft 7"
+[iana-time-zones]: https://www.iana.org/time-zones "IANA Time Zones"
+
+[overview]: ./10_overview.md "Overview page"
+
+[crud-detections]: #detections "Detections | CRUD collections | Configuration"
+[crud-monitorings]: #monitorings "Monitorings | CRUD collections | Configuration"
+[environment-variables]: #environment-variables "Environment variables | Configuration"
+[external-validation-service-api]: #external-validation-service-api "External Validation Service API | Thresholds validation | Configuration"
