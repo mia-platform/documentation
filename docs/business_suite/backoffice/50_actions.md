@@ -192,6 +192,8 @@ type FileUploadAction = {
     headers?: HeadersInit
     /* "triggeredBy" field to add to eventBusCancel/eventBusSuccess/eventBusError event meta */
     triggeredBy?: string
+    /* restricts the type of files that can be uploaded */
+    accept?: string
   },
   hooks: {
     /* action executed before the before the upload the request has been issued */
@@ -207,7 +209,10 @@ type FileUploadAction = {
   }
 }
 ```
-Actions of type `file-upload` perform an automatic file upload post. The native upload dialog of the browser is used, allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using XMLHTTPRequest facility, and the file is appended to a brand new FormData with the key `file` unless overridden by the `fileFormKey` property.
+
+Actions of type `file-upload` perform a file upload post. The native upload dialog of the browser is used, allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using [XMLHTTPRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) facility, and the file is appended to a brand new FormData using the key "file", unless overridden by the `fileFormKey` property.
+
+Property `accept` can be used to restrict the type of files that the user can select for the upload, following the [syntax](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) that is used by the `input` element.
 
 Field `config.triggeredBy` is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./60_components/70_misc.md#triggering-notifications-from-success-and-error-events), in order to display notification messages upon success/failure of the action.
 
@@ -426,9 +431,9 @@ results in "defaultValue" being copied to clipboard.
 
 ## Dynamic configurations
 
-Actions support dynamic configurations using [handlebars syntax](https://handlebarsjs.com/guide/expressions.html). Data provided as input (`context`) to the actions callbacks is used to resolve dynamic configurations.
+Actions support [dynamic configurations](./40_core_concepts.md#dynamic-configuration) using [handlebars syntax](https://handlebarsjs.com/guide/expressions.html). Data provided as input (`context`)  ato the actions callbacks is used to resolve dynamic configurations. Custom [helpers](./40_core_concepts.md#helpers) are also supported.
 
-Components that expose actions as properties, have the responsibility to provide context upon executing them.
+Components that support actions have the responsibility to provide context upon executing them. For instance, [bk-table](./60_components/60_data_visualization.md#bk-table) supports actions through property [customActions](./60_components/60_data_visualization.md#configuring-actions-via-customactions), adding buttons at the end of each table row, to which provides as `context` the corresponding row in form of an object.
 
 ### Example 1
 
@@ -463,9 +468,9 @@ is provided as context to the action, this results in an event being executed wi
 }
 ```
 
-### Example 2
+### Example 2 - template / configMap
 
-Pair `template`-`configMap` can be used to specify dynamic configurations.
+Pair [template - configMap](./40_core_concepts.md#template---configmap) can be used to specify dynamic configurations.
 
 ```json
 {
@@ -510,7 +515,7 @@ the above action is equivalent to:
 
 `$default` key in `configMap` can be specified, and is used if no other `configMap` key matches `template`.
 
-### Example 3
+### Example 3 - rawObject helpers
 
 It is possible to avoid to stringify dynamic values within a configuration using the custom helper [rawObject](./40_core_concepts.md#rawobject).
 ```json

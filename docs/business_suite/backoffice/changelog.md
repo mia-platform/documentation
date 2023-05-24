@@ -8,6 +8,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.12] - 2023-05-19
+
+### Fixed
+
+- `bk-layout` sets `logo` when `userInfoUrl` is not specified
+
+## [1.3.11] - 2023-05-18
+
+### Added
+
+- `error` events carry response in payload, if present
+- item menu in `bk-layout` can display extra data next to labels using property `badge`
+- `enum` property of `data-schema` support array of objects with `id`, `label` keys, enabling to specify a i18n label for enum values
+- actions fo type `file-upload` support `accept` attribute, restricting accepted files
+- `bk-card` allows to place footer buttons horizontally through key `buttonsLayout` in `cardSchema.footer`
+- `bk-layout` supports logo source being retrieved from user information
+- `bk-antd-theme-manager` supports retrieving theming information from endpoint
+
+### Fixed
+
+- `bk-confirmation-modal` injects `headers` and `credentials` into dynamically mounted buttons
+- `bk-button`s with action of type `http` correctly implement `loadingOnAction` and `disableOnAction` logic
+- actions of type `copy` stop event propagation by default
+
 ## [1.3.10] - 2023-05-04
 
 ### Added

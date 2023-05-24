@@ -314,12 +314,141 @@ Allows data filtering by matching a text string
 
 ![search-bar](../img/bk-search-bar.png)
 
-Search bar allows to filter data against text using a regex. If `searchLookups` is `true`, lookups and multi-lookups that specify `excludeFromSearch` as `false` in the schema are also searched. The text value is compared against the `lookupFields` specified in the `lookupOptions` in the schema.
+Search bar allows to filter data against text using a regex. Special regex characters (`( ) [ ] { } + - ^ * $ \ ? / | .`) are sanitized within the input. Search is case-insensitive.
+
+Upon search, `bk-search-bar` triggers a [change-query](../70_events.md#change-query) event, including the searched text inside `search` key in payload.
+
+For instance,
+```json
+{
+  "label": "change-query",
+  "payload": {
+    "search": "example"
+  }
+}
+```
+A component such as [bk-crud-client](./30_clients.md#bk-crud-client) will listen to such `change-query` event, triggering data fetching with regex filters against all [searchable](../30_page_layout.md#excluding-properties-from-free-search) fields.
+
+For instance, with a configuration such as:
+```json
+{
+  "tag": "bk-search-bar"
+},
+{
+  "tag": "bk-crud-client",
+  "properties": {
+    "dataSchema": {
+      "name": { "type": "string" },
+      "surname": { "type": "string" },
+      "email": { "type": "string", "excludeFromSearch": true }
+    },
+    ...
+  }
+},
+...
+```
+if the user inputs `example` in `bk-search-bar`, the following event is emitted:
+```json
+{
+  "label": "change-query",
+  "payload": {
+    "search": "example"
+  }
+}
+```
+triggering a data fetching call by `bk-crud-client`, with `_q` search param such as:
+```json
+"_q": {
+  "$or": [
+    { "name": { "$regex": ".*example.*", "$options": "i" } },
+    { "surname": { "$regex": ".*example.*", "$options": "i" } }
+  ]
+}
+```
+
+### Lookup fields
+
+If `searchLookups` property is `true`, [lookups and multi-lookups](../30_page_layout.md#lookups) that have [excludeFromSearch](../30_page_layout.md#excluding-properties-from-free-search) as `false` in their schema are also searched. The text value is compared against the `lookupFields` specified in the `lookupOptions` in the schema.
 
 :::warning
 Searching lookup fields could be computationally heavy. The number of searchable lookups should be kept to the needed minimum and search-bar properties such as `liveSearchItemsLimit` and `autoSearchMinInput` should be configured carefully.
 :::
 
+### Tuning automatic search
+
+`bk-search-bar` supports automatic search - that is, search is automatically submitted by typing into the input field of the component.
+
+The following properties can be used to tune automatic search:
+  - `searchDebounce`: milliseconds before the search is automatically submitted after the user has stopped typing
+  - `autoSearchMinInput`: minimum number of characters of the input value before the search is automatically submitted
+
+### Limitations
+
+Some data might be displayed differently from the corresponding value in the database. In such cases, using `bk-search-bar` with [bk-crud-client](./30_clients.md#bk-crud-client) fails to perform searches against the displayed value, that are instead performed against the values stored at backend. This limitation [does not apply to lookup fields](#lookup-fields), which are searchable.
+
+Example with [bk-table](./60_data_visualization.md#bk-table) and fields with [enum key](../30_page_layout.md#formats):
+```json
+{
+  "tag": "bk-search-bar"
+},
+{
+  "tag": "bk-crud-client",
+  "properties": {
+    "dataSchema": {
+      "weekDay": {
+        "type": "string",
+        "enum": [
+          {"id": "0", "label": "Monday"},
+          {"id": "1", "label": "Tuesday"},
+          {"id": "2", "label": "Wednesday"},
+          {"id": "3", "label": "Thursday"},
+          {"id": "4", "label": "Friday"}
+        ]
+      }
+    },
+    ...
+  }
+},
+{
+  "tag": "bk-table",
+  "properties": {
+    "dataSchema": {
+      "weekDay": {
+        "type": "string",
+        "enum": [
+          {"id": "0", "label": "Monday"},
+          {"id": "1", "label": "Tuesday"},
+          {"id": "2", "label": "Wednesday"},
+          {"id": "3", "label": "Thursday"},
+          {"id": "4", "label": "Friday"}
+        ]
+      }
+    }
+  }
+}
+```
+Note that `bk-crud-client` and `bk-table` have the same `dataSchema` property.
+
+`bk-table` renders a table that visualizes `weekDay` property through their `label` key.
+Searching for these labels will fail to find corresponding data in the table, since the search is performed against the the actual stored value (`id` key).
+
+Input data like:
+```json
+[
+  {"weekDay": "0"},
+  {"weekDay": "1"}
+]
+```
+will be rendered as a table with two rows having a `weekDay` column like `["Monday", "Tuesday"]`
+
+Searching for `mon` will fetch data with search param like:
+```json
+"_q": {
+  "$or": [
+    { "weekDay": { "$regex": ".*mon.*", "$options": "i" } }
+}
+```
+which will return no data.
 
 ### Properties & Attributes
 
@@ -329,8 +458,8 @@ Searching lookup fields could be computationally heavy. The number of searchable
 |`autoSearchMinInput`|`auto-search-min-input`|number|2|min length of input string before performing automatic search|
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|100|max items to fetch on regex live search|
 |`placeholder`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|placeholder of the search bar input |
-|`searchDebounce`|`search-debounce`|number|0|time to wait before performing an automatic search. If 0, automatic search is disabled|
-|`searchLookups`|`search-lookups`|boolean|false|whether or not to perform search on lookups. If true, `lookup-crud-client` (or any component listening to `search-lookups` and emitting `search-lookups-found`) should be included in the plugin|
+|`searchDebounce`|`search-debounce`|number|0|milliseconds to wait before performing an automatic search. If 0, automatic search is disabled|
+|`searchLookups`|`search-lookups`|boolean|false|whether or not to perform search on lookups. If true, a component such as [lookup-crud-client](./30_clients.md#bk-crud-lookup-client) should be included in the plugin|
 
 ### Listens to
 
