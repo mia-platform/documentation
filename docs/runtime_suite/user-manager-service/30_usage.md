@@ -101,7 +101,7 @@ If the `expirationDate` field is set, the UMS will automatically schedule a job 
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) to get the user automatically blocked.
 
 :::
 
@@ -178,14 +178,14 @@ This request accepts the following 'standard' fields:
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](#environment-variables) in order to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) in order to get the user automatically blocked.
 
 Furthermore, if you are upgrading to v1.4.0 or later from a previous version and use `expirationDate` as a custom property,
 you need to rename that property before upgrading.
 
 :::
 
-Similarly to the [POST /users/](#POST-/users/), additional fields can also be added to the body
+Similarly to the [POST /users/](./30_usage.md#POST-/users/), additional fields can also be added to the body
 and must be defined in the schema stored in the `ums-config` CRUD collection.
 Validation is also performed against such schema.
 
@@ -215,7 +215,7 @@ If the user is set to expire in a future date/time, the UMS will automatically c
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) to get the user automatically blocked.
 
 :::
 
@@ -260,7 +260,7 @@ including the expiration date, or that only users from certain groups or with ce
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) to get the user automatically blocked.
 
 :::
 
@@ -315,7 +315,7 @@ A user set to `DRAFT` or `TRASH` states is set to `blocked: true` in the authent
 
 A user set to `PUBLIC` state is set to `blocked: false` in the authentication service, in order to 'unblock' a previously blocked user.
 
-A user set to `DELETED` is deleted from the authentication service only if the [AUTH_HARD_DELETE](./20_configuration.md#Environment-variables) is set to `true`,
+A user set to `DELETED` is deleted from the authentication service only if the [AUTH_HARD_DELETE](./20_configuration.md#environment-variables) is set to `true`,
 otherwise its behavior is the same as the `DRAFT` and `TRASH` cases.
 Note that in any case a user set to `DELETED` is never deleted from the CRUD with this endpoint (its state is only set to `DELETED`).
 :::
