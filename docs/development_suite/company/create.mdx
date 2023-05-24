@@ -7,228 +7,543 @@ sidebar_label: Create a Company
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-A company is the resource which has the governance of all the projects inside it. It is possible to connect the infrastructure on which projects can be based, analyze the configuration of all projects inside the company and manage users and permissions inside the company.
+A company is a resource that provides governance on all the projects it contains. 
 
-:::info
-The company creation in Mia-Platform on-premise Console is linked to the license. If you want to create a new company, contact your Mia-Platform referent.
-:::
+Within a company, it is possible to:
+- configure the infrastructure on which new projects will be based; 
+- analyze the configuration of all existing projects;
+- manage users and permissions.
+
+#### Saas
+To create a new company in the Mia-Platform SaaS Console, open a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/79/create/340) and the company will be created for you.
+
+#### On-Premise 
+Before creating a new company in a Mia-platform On-Premise Console installation, contact your Mia-Platform referent.
+Once you made sure to have all the necessary requirements for creating a new company, you can continue with this guide.
 
 :::caution
-To create a company in the Mia-Platform SaaS Console, you must open a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/79/create/340) and the company will be created for you.
+Remember that the possibility of adding new companies may depend on the type of license you have subscribed to. 
+
+Only a limited amount of companies may be available for creation within your license terms.
 :::
 
+<br/>
+
+The next steps will guide you through all the processes to create and correctly configure a new company.
+ 
 ### Requirements
 
-To create a company, you must have access to the Console Backoffice (granted with the group `console_cms`) and permission `console.root.company.create`.
+To create a company, you must have:
 
-### Create a company
+- access to the Console Backoffice (granted by the `console_cms` group)
+- `console.root.company.create` permission
 
-It's possible to create a company from API. The API is visible inside the Console API Portal, under the `Companies` tag.
+## Create a company from API
 
-The API is a POST to `/api/backend/companies`, and it is possible to set the name and description of the company to add. In addition, when you create the company you will be added as [`Company Owner`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console).
+You can create a new company by making a POST request to the `/api/backend/companies` API. 
 
-:::caution
-This API could change in future in a not backwards compatible way
+:::info
+This API is visible inside the Console API Portal, under the `Companies` tag.
 :::
 
-In the company, you could configure:
+You will be asked to set the **name** and the **description** of the company to add (only name is required). 
 
-- git providers which can be used by the project inside the company
-- clusters which can be used by the projects inside the company
-- default configurations to be used during the creation of new projects
+In addition, you will be added as the first Company user with the role of [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console).
 
-Let's now configure the company to prepare itself to the creation of a new project.
+## Create a company from CMS
+
+It is also possible to manually create a company from the Console Backoffice. 
+
+However, you will lose some of the automations provided by the company creation API, such as adding the first user, or providing a company unique identifier.
+
+:::danger
+It is recommended to use the API to create a new company. Use this method only if strictly necessary.
+:::
+
+#### Create the company
+
+Visit the Console Backoffice page and open the `Companies` section.
+
+Click the `Add new` button, you will be asked to provide an **id**, a **name** and a **description** for the company (only id and name are required). 
+
+You will be able to set all the optional fields after the creation of the company.
+For further information regarding other configuration fields, visit the dedicated [section](#default-configuration-for-a-new-project) later in the page.
 
 #### Add the first Company User
 
-:::info
-If you used the API to create the company, you can skip this section.
+Once your company has been created using CMS, you need to associate the first user to be able to access the company from the Console. 
+The first user may either be yourself or another user in the Platform. 
+
+Regardless, head over to the CMS page and click the `Bindings` menu item.
+
+:::caution
+Only a restricted set of users have access to the users management section in CMS, ask your Console Administrator if you need the right permissions to access this functionality.
 :::
 
-If your company has been created by CMS, you have to add the first user to it, who may be yourself or another user in the Platform. Regardless, head over to the CMS page and choose the _Bindings_ menu item (only a restricted set of users have access to this section, ask your Console Administrator if you need access to it).
+In the `Bindings` section, click the `Add new` button and fill in the form:
+- type a custom **Binding ID**
 
-In the _Bindings_ section, click the _Create new_ button and fill in the form, type a custom _Binding ID_, select the proper Role (since it is the first user, usually it should be `Company Owner`) and make sure to select the correct user as _Subject_. Finally, you'll have to assign the correct resource by filling it with an object as follows:
+  :::danger
+  The _Binding ID_ must be unique in the whole collection!  
 
-```json
-{
-  "resourceType": "company",
-  "resourceId": "THE ID YOU PROVIDED UPON CREATION AS tenantId"
-}
-```
-
-:::danger
-The _Binding ID_ must be unique in the whole collection!  
-As a general recommendation we suggest `{tenantId}-{desiredRole}`, but in some cases something more complex may be needed.
-:::
-
-### Create a new Git Provider
-
-To create a new provider, you can follow [the providers guide](/development_suite/set-up-infrastructure/configure-provider.mdx).
-
-### Connect a cluster
-
-To connect a cluster, you can follow [the cluster guide](/development_suite/clusters-management/add-edit-remove-cluster.md).
-
-### Default configuration for a new project
-
-This configuration can be done using the Console Backoffice.
-
-The fields necessary for this collection are:
-
-- `defaultTemplateId`: the default template to be used in the project creation. This information can be changed in the project creation wizard steps;
-
-- `cmsImageName`: CMS Docker image to interpolate in template archive. It should also contain the CMS tag to use (if `cms-site` service is disabled in the project creation, it will not be used);
-
-- `repository` (_required_): object which specifies the information about the repository where the projects of this company have to be created. The object must have the following properties:
-  - **providerId** (_required_): `providerId` existing into the provider's CRUD. It is used to get information about the provider to use. This ID is important because it affects many requests used by the developer Console;
-  - **basePath**: base path where the project will be created. The user needs to have permission for creating projects on this path;
-  - **visibility**: visibility of the project.
-
-:::info
-Here some tips on how to correctly configure the `basePath` property, grouped by Git provider:
-
-<Tabs>
-
-<TabItem value="gitlab" label="GitLab" default>
-
-The `basePath` is the basePath of the group where to create the project.
-
-If the group does not exist, it will be created only if the user has the needed permission to create the group in its parent.
-
-E.g.
-
-- /groupA/groupB -> if groupB does not exist AND user have permission to create groups in groupA, then groupB will be created;
-- /groupA/groupB -> if groupB does not exist AND user have no permission to create groups in A, then groupB will NOT be created;
-- /groupA/groupB -> if groupB does not exist AND groupA does not exist, then it will NOT be created any group.
-
-</TabItem>
-
-<TabItem value="github" label="GitHub">
-
-The `basePath` have to be an existing organization. If it does not exist, it will not be created.
-
-</TabItem>
-
-<TabItem value="azure-devops" label="Azure DevOps">
-
-The `basePath` is the path where your Azure project is reachable: the pattern is `company-name/project-name`.
-
-For example, if you project is reachable at the URL `https://dev.azure.com/mia-platform-devops/Test`, then the `basePath` must be `mia-platform-devops/Test`.
-
-</TabItem>
-
-<TabItem value="bitbucket" label="BitBucket">
-
-The `basePath` is the path where your BitBucket project is reachable: the pattern is `projects/project-code`.
-
-For example, if you project is reachable at the URL `https://bitbucket.mia-platform.eu/projects/TSDB`, then the `basePath` must be `projects/TSDB`.
-
-</TabItem>
-
-</Tabs>
-
-:::
-
-- `environments` (_required_): an array of objects containing the definitions of the environments for the company. The content of this arrays will be interpolated to replace `%projectId%` by inserting the `projectId` field in the project creation. Each object should contain, for example:
-
-  ```js
-    {
-      "label": "Development",
-      "envId": "development",
-      "envPrefix": "development",
-      "hosts": [
-        {
-          "host": "%projectId%.test.mia-platform.eu",
-          "scheme": "https"
-        },
-        {
-          "host": "cms.%projectId%.test.mia-platform.eu",
-          "isBackoffice": true
-        }
-      ],
-      "cluster": {
-        "clusterId": "human-readable-id-of-the-cluster",
-        "namespace": "%projectId%-development",
-        "kubeContextVariables": {
-          "KUBE_URL": "KUBE_DEV_URL",
-          "KUBE_TOKEN": "KUBE_DEV_TOKEN"
-        }
-      }
-    }
-  ```
-
-  :::caution
-  The term _tenantId_ is the new word that refers to the old _companyId_.
+  As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in some cases a more complex structure may be necessary.
   :::
 
-  :::warning
-  Do not set in the `cluster.kubeContextVariables` object the plain values to access the cluster. Write the variable key name for the specified environment (as shown in the example). The values saved here are not encrypted!
-  :::
+- select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console).)
 
-- `pipelines` (_required_): the CI/CD pipelines used by the company, for example:
+- select the correct user as **Subject**
+
+- assign the correct **Resource** by filling it with an object as follows:
 
   ```json
   {
-    "type": "gitlab-ci"
+    "resourceType": "company",
+    "resourceId": "{THE COMPANY ID YOU PROVIDED UPON CREATION}"
+  }
+  ```
+## Company Configuration
+
+Once you create a company, you can configure:
+
+- providers (git providers, secret managers, CI/CD tools)
+- clusters
+- projects default configurations (such as environments, logical layers and accessible namespaces)
+
+
+:::info
+Each of these configurations will be applied as the default configuration to newly created projects within the company.
+:::
+
+Let's now proceed with each step of the configuration:
+
+### Configure Providers
+
+Git providers, Secret Managers and CI/CD tools can be configured from the **Providers** section inside Company Overview area of the Console.
+
+For further details on how to create new providers, you can follow the [providers configuration guide](/docs/development_suite/set-up-infrastructure/configure-provider.mdx).
+
+### Connect a cluster
+
+Clusters can be connected to a company from the **Clusters** section inside Company Overview area of the Console.
+
+To connect a cluster, you can follow the [clusters connection guide](/development_suite/clusters-management/add-edit-remove-cluster.md).
+
+### Projects Default Configurations
+
+By editing the company data model, you will be able to set default configurations for all the projects that will be created within the company.
+
+:::info
+This configuration can be done from the `Companies` section of the Console Backoffice.
+:::
+
+The projects default configurations fields are:
+
+- **defaultTemplateId**:
+  
+  The identifier of the default template to be used for the creation of a project. 
+  This information can be changed for a specific project during the steps of the project creation wizard.
+
+- **cmsImageName**:
+  
+  The name of the Docker image used to generate the CMS of a project. It should also contain the CMS tag to be used.
+  This value will interpolate the template archive of your project.
+  
+  if `cms-site` service is disabled during the project creation, this field will not be used.
+
+- **repository** (_required_):
+  
+  An object that specifies the information regarding the repository where the projects of this company will be created. 
+  
+  :::info
+  Both _providerId_ and _type_ fields can also be set by [selecting a default git provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  :::
+  
+  The object must have the following properties:
+
+  - **providerId** (_required_): unique identifier of the git provider associated with the company 
+  
+    It corresponds to the `providerId` field of the provider's CRUD collection and is used to retrieve information about the used provider. 
+
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
+  
+  - **visibility**: visibility of the project. Either one of the following:
+
+    - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
+    - `internal`: the repository can be accessed and viewed by any authenticated user within the same git provider instance or organization;
+    - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
+  
+  - **basePath**: base path where the project will be created. 
+    
+    :::caution
+    Make sure to have the right permissions for creating projects on the configured path.
+    :::
+
+    Here some tips on how to correctly configure the _basePath_ property, grouped by Git provider:
+
+    <Tabs>
+
+    <TabItem value="gitlab" label="GitLab" default>
+
+      It corresponds to the **basePath of the group** where to create the project.
+
+      If the group does not exist, the project will be created only if the user has the needed permission to create the group in its parent.
+
+      For example, if your group is reachable at the URL **`https://git.tools.mia-platform.eu/mia-platform/projects`**, 
+      then the `basePath` must be **`mia-platform/projects`**.
+      
+      If your group (B) does not exist:
+
+      - /groupA/groupB -> if user have permission to create groups in A, then B will be created;
+      - /groupA/groupB -> if user have no permission to create groups in A, then B will NOT be created;
+      - /groupA/groupB -> if A does not exist, then it will NOT be created any group.
+
+    </TabItem>
+
+    <TabItem value="github" label="GitHub">
+
+      It corresponds to the **path of an existing organization**. 
+      
+      If the path does not exist, the project will not be created.
+
+      For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, then the `basePath` must be **`mia-platform`**
+
+    </TabItem>
+
+    <TabItem value="azure-devops" label="Azure DevOps">
+
+      It corresponds to the **path where your Azure project is reachable**: the pattern is _company-name/project-name_.
+      
+      For example, if you project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, then the `basePath` must be **`mia-platform-devops/Test`**.
+
+    </TabItem>
+
+    <TabItem value="bitbucket" label="BitBucket">
+
+      It corresponds to the **path where your BitBucket project is reachable**: the pattern is _projects/project-code_.
+
+      For example, if you project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, then the `basePath` must be **`projects/Test`**.
+
+    </TabItem>
+
+    </Tabs>
+
+  ##### Example Configuration
+  ```json
+  {
+    "providerId": "my-azure-devops",
+    "type": "azure-devops",
+    "visibility": "private",
+    "basePath": "mia-platform-devops"
   }
   ```
 
-- `environmentVariables`: an object which describes the configuration to enable the Variables section in the Project Settings area of the Console. The only supported type is `gitlab`.
+- **pipelines** (_required_):
+  
+  An object that specifies the information regarding the CI/CD pipelines used by the company. 
 
-  There are three ways to configure a project:
+  :::info
+  This field can also be set by [selecting a default CI/CD tool provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  :::
+  
+  The object must have the following properties:
 
-  1. **empty**: it is not set as default in the project creation, but should be configured manually after the process;
+  - **providerId** (_required_): unique identifier of the CI/CD tool provider associated with the company.
+    
+    It corresponds to the `providerId` field of the provider's CRUD collection and is used to retrieve information about the used provider. 
 
-  2. **only type configuration**, for example:
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
-     ```json
-     {
-       "type": "gitlab"
-     }
-     ```
+  :::note
+  The following properties are supported only when the provider type is **"azure-devops"**:
 
-     The project reads the variables from the first parent group of the Configurations project in GitLab.
+    - **azurePipelineId**: TODO
+  
+  :::
 
-     As an example, with a GitLab project to be saved in `/clients/mia-platform/configurations`, the environment variables are written in the `clients/mia-platform` group;
+  :::note
+  The following properties are supported only when the provider type is **"jenkins"**:
 
-  3. **complete configuration**, for example:
+    - **options**: TODO
+  
+  :::
 
-     ```json
-     {
-       "type": "gitlab",
-       "baseUrl": "https://my-gitlab-host",
-       "storage": {
-         "type": "projects",
-         "path": "clients/mia-platform/configurations"
-       }
-     }
-     ```
+  ##### Example Configuration
+  ```json
+  {
+    "providerId": "my-gitlab",
+    "type": "gitlab-ci"
+  }
+  ```
+    
+- **environmentsVariables**:
+   
+  An object that describes the configuration to enable the Variables section in the Project Settings area of the Console.
 
-     This configuration is saved only within the company, and should be retrieved at runtime in project fetching from company info. So if your company has all environment variables of the projects set in the parent group, this setting might be changed for all projects at the same time.
+  :::info
+  This field can also be set by [selecting a default secret manager provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  :::
 
-- `logicalScopeLayers`: an array of objects identifying the set of logical layers available in the current company. Each object is shaped as follows:
+  :::caution
+  This field is not required. However, by leaving an empty configuration you will need to manually configure a secret manager provider for each project you create.
+  :::
+
+  The object can be configured with the following properties:
+
+  - **providerId** (_required_): unique identifier of the secret manager provider associated with the company. 
+  
+    It corresponds to the `providerId` field of the provider's CRUD collection and is used to retrieve information about the used provider. 
+
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
+
+  :::note
+  The following properties are supported only when the provider type is **"gitlab"**:
+
+  - **baseUrl**: base path where the variables will be read from. 
+
+    If not specified, variables will be read from the first parent group of the Configurations project in GitLab.
+
+    As an example, if your GitLab project is saved in **`https://git.tools.mia-platform.eu/mia-platform/Test/configurations`**, the environment variables will be written in the **`mia-platform/Test`** group.
+
+  - **storage**: additional settings related to the storage of environment variables within the GitLab installation.
+
+    It is composed by the following properties:
+
+    - **id**: TODO
+
+    - **type**: TODO
+
+    - **path**: Either one of the following:
+
+      - `groups`: TODO
+      - `projects`: TODO
+
+    <br/>
+    
+    :::info
+    This configuration is saved only within the company model, and is retrieved by projects at runtime. 
+
+    If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables path for all the projects in the company in one go.
+    :::
+
+  :::
+
+  ##### Example Configuration
+  ```json
+  {
+    "providerId": "my-gitlab",
+    "type": "gitlab",
+    "baseUrl": "https://my-gitlab-host",
+    "storage": {
+      "type": "projects",
+      "path": "clients/mia-platform/configurations"
+    }
+  }
+  ```
+
+- **environments** (_required_):
+  
+  An array of objects containing the definitions of the environments for the company.
+
+  :::note
+  The content of this array will be interpolated during project creation by replacing `%projectId%` strings with the `projectId` field specified in the project.
+  :::
+
+  Each object is shaped as follows:
+
+   - **label**: descriptive and human-readable identifier associated with the environment;  
+   - **envId**: unique identifier associated with the environment;
+   - **envPrefix**: defines a common prefix associated with environment-specific variables;
+   - **description**: short description of the environment;
+   - **isProduction**: boolean value indicating whether it is considered to be a production environment;
+   - **hosts**: TODO
+   - **links**:     TODO
+   - **cluster**:     TODO
+   - **dashboard**:     TODO
+   - **deploy**: An object that describes the configuration of CI/CD pipelines for the environment.
+    
+    :::info
+    This field overrides the configuration provided in the `pipelines` field for a specific environment. 
+    :::
+
+    It can be configured following the configuration of the `pipelines` company field.
+
+    TODO jobId, statusWebhookSecretCredentialsId, paramsMap
+
+   - **environmentsVariables**: An object that describes the configuration of variables for the environment.
+    
+    :::info
+    This field overrides the configuration provided in the `environmentsVariables` field for a specific environment. 
+    :::
+
+    It can be configured following the configuration of the `environmentsVariables` company field.
+
+  <br/>
+
+  ##### Example Configuration
+  ```json
+    [
+      {
+        "label": "Development",
+        "envId": "development",
+        "envPrefix": "development",
+        "isProduction": false,
+        "hosts": [
+          {
+            "host": "%projectId%.test.mia-platform.eu",
+            "scheme": "https"
+          },
+          {
+            "host": "cms.%projectId%.test.mia-platform.eu",
+            "isBackoffice": true
+          }
+        ],
+        "cluster": {
+          "clusterId": "human-readable-id-of-the-cluster",
+          "namespace": "%projectId%-development",
+          "kubeContextVariables": {
+            "KUBE_URL": "KUBE_DEV_URL",
+            "KUBE_TOKEN": "KUBE_DEV_TOKEN"
+          }
+        }
+      }
+    ]
+  ```
+
+  :::danger
+  The values saved here are not encrypted!
+
+  Do not set the `cluster.kubeContextVariables` object with plain values to access the cluster.
+
+  Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponing project variable. 
+  :::
+
+- **logicalScopeLayers**:
+   
+  An array of objects identifying the set of logical layers available in the current company. 
+  
+  Each object is shaped as follows:
 
   - **name**: identifies the name of the logical layer;
-  - **order**: identifies the numerical order of the layer, in order to display it according to the sorting defined by the user.
-    When a project is merged with its company information, the `logicalScopeLayers` will be created in the project model according to its `layerId` value. Please refer to the section [How to create a project on Console] for further details.
+  - **order**: identifies the numerical order of the layer, used to display layers according to the sorting order defined by the user.
 
-- `availableNamespaces`: namespaces internally accessible from your project, using the `cross-projects` endpoint. It is useful when your company is made up of several projects that communicate with each other. The content of this array will be interpolated to replace `%projectId%` with the `projectId` field in the project creation;
+  The `logicalScopeLayers` field will be created in the project model according to the project `layerId` value. Please refer to the [Create a Project](docs/development_suite/set-up-infrastructure/create-project) section for further details.
 
-- `dockerImageNameSuggestion`: object which defines the Docker image name suggestion that will be passed to every project created in your company. This suggestion will appear in the `Docker Image Name` field when you [create a microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+  ##### Example Configuration
+  ```json
+  [
+    { "name": "layer-1", "order": 2}, 
+    { "name": "layer-2", "order": 1}
+  ]
+  ```
+
+- **availableNamespaces**:
+  
+  Namespaces internally accessible from your project, using the `cross-projects` endpoint. 
+  
+  Namesapces are useful when your company is made up of several projects that communicate with each other.
+
+  :::note
+  The content of this array will be interpolated during project creation by replacing `%projectId%` strings with the `projectId` field specified in the project.
+  :::
+
+  Each object is shaped as follows:
+
+    - **value**: the identifier of the namespace;
+    - **label**: an alias for the namespace to be displayed inside the project.
+
+  <br/>
+
+  ##### Example Configuration
+  ```json
+  [
+    { "value": "dev.%projectId%", "label": "Development"}, 
+    { "value": "preprod.%projectId%", "label": "Preproduction"}, 
+  ]
+  ```
+
+- **dockerImageNameSuggestion**:
+  
+  An object defining the Docker image name suggestion that will be passed to every project created in your company. 
+  
+  :::info
+  This suggestion will appear in the `Docker Image Name` field when you [create a microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+  :::
+
   The object should have the following properties:
 
-  - **type** (_required_): string which defines the type of suggestion. Currently, there exist three types:
+  - **type** (_required_): string which defines the format of the suggestion. Currently, there exist three types:
 
-    - `PROJECT_ID` (_default_): the suggestion for the Docker image name will be in the following format: `<project-id>/<your-service-name>`. This is the default behavior, even without setting this property the suggestion will follow this format. You must **not** set the `prefix` property if you have chosen this type;
-    - `REPOSITORY`: the suggestion for the Docker image name will be in the following format: `<your-group-name>/<your-repo-name>`. You must **not** set the `prefix` property if you have chosen this type;
-    - `CONSTANT_PREFIX`: the suggestion for the Docker image name will be in the following format: `<prefix-value>/<your-service-name>`. The `prefix` property is required for this type and will replace `prefix-value`.
+    - `PROJECT_ID` (_default_): **`<project-id>/<your-service-name>`**
 
-  - **prefix**: string that defines the prefix that will appear in the suggestion for the Docker image name. This property must be defined only when **type** property value is set to `CONSTANT_PREFIX`.
+      This is the default behaviour, suggestions will follow this format when this field is not set. Do **not** set the `prefix` property if you choose this type of suggestion.
 
-:::info
-`<your-service-name>`, `<your-group-name>`, `<your-repo-name>`, are field values that you will decide during the [creation of a microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template). Some of these values must be defined in order to receive a suggestion for the Docker image name (depending on the suggestion **type**).
-:::
+    - `REPOSITORY`: **`<your-group-name>/<your-repo-name>`**
 
-- `imagePullSecretNames`: a list of imagePullSecret names that will be inherited in the project during project creation and then used in deployment and cronjob files for pulling docker images
+      Do **not** set the `prefix` property if you choose this type of suggestion.
 
-- `enabledSecurityFeatures`: a set of features to enforce the security of the project. For further details, take a look at [the last section](#configure-security-features) of this page.
+    - `CONSTANT_PREFIX`: **`<prefix-value>/<your-service-name>`**. 
+
+      The `prefix` property is required for this type and will replace `prefix-value`.
+
+  - **prefix**: defines the prefix that will appear in the suggestion for the Docker image name. 
+  
+    This property must be defined only when **type** property value is set to `CONSTANT_PREFIX`.
+
+  ##### Example Configuration
+  ```json
+  {
+    "type": "CONSTANT_PREFIX",
+    "prefix": "my-docker-image"
+  }
+  ```
+
+- **imagePullSecretNames**:
+  
+  A list of imagePullSecret names. 
+  
+  :::note
+  An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
+  :::
+
+  The imagePullSecrets whose name is specified in this field will be inherited in the project during project creation and then used in deployment and cronjob files for pulling Docker images.
+
+  ##### Example Configuration
+  ```json
+  [
+    "my-imagepullsecret"
+  ]
+  ```
+
+- **enabledSecurityFeatures**:
+  
+  A set of features to enforce the security of the project. 
+
+  It defines the security features and settings that will be applied to the Kubernetes environment your project will be deployed on.
+
+  The object can be configured with the following properties:
+
+  - **`seccompProfile`**: indicates whether the Seccomp profile is enabled. 
+    
+    Seccomp (short for secure computing mode) is a Linux kernel feature that restricts the system calls a process can make. Enabling Seccomp profiles helps enhance the security of containers by limiting their access to potentially dangerous system calls.
+
+  - **`appArmor`**: indicates whether AppArmor is enabled. 
+    
+    AppArmor is a Linux security module that provides mandatory access control (MAC) policies. It allows you to define fine-grained restrictions on the actions that a process can perform, helping to prevent unauthorized activities and limit the potential impact of security breaches.
+
+  - **`hostProperties`**: indicates whether the container has access to host properties. 
+    
+    Host properties typically include information about the underlying host system, such as network interfaces, file systems, or hardware details. Disabling access to host properties helps isolate the container from the host environment, reducing the risk of information leakage or unauthorized system access.
+
+  - **`privilegedPod`**: indicates whether the container or pod has privileged access. 
+    
+    Privileged access means that the container or pod has elevated permissions and can perform privileged operations on the host system. Disabling privileged access is generally recommended for improved security, as it helps prevent containers from having unrestricted control over the underlying infrastructure.
+
+  ##### Example Configuration
+  ```json
+  {
+    "seccompProfile": false,
+    "appArmor": false,
+    "hostProperties": true,
+    "privilegedPod": false
+  }
+  ```
