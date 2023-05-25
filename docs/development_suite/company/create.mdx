@@ -405,9 +405,11 @@ The projects default configurations fields are:
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
-  :::note
-  The following properties are supported only when the provider type is **"gitlab"**:
+  In addition, it can include the following properties, supported only by specific providers:
 
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+  
   - **baseUrl**: base path from which the variables will be read. 
 
     If not specified, variables will be read from the first parent group of the Configurations project in GitLab.
@@ -435,7 +437,8 @@ The projects default configurations fields are:
     If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables path for all the projects in the company.
     :::
 
-  :::
+  </TabItem>
+  </Tabs>
 
   ##### Example Configurations
 
@@ -477,7 +480,7 @@ The projects default configurations fields are:
   Each object is shaped as follows:
 
   - **label**: descriptive human-readable identifier for the environment;  
-  - **envId**: unique identifier associated with the environment;
+  - **envId** (_required_): unique identifier associated with the environment;
   - **envPrefix**: defines a common prefix for environment-specific variables;
   - **description**: short description of the environment;
   - **isProduction**: boolean value indicating whether it is considered to be a production environment;
@@ -531,47 +534,36 @@ The projects default configurations fields are:
 
     It can be configured following the configuration of the `pipelines` company field.
 
-    TODO jobId, statusWebhookSecretCredentialsId, paramsMap
+    In addition, it can include the following properties, supported only by specific providers:
+
+    <Tabs>
+    <TabItem value="github" label="Github">
+
+     - **statusWebhookSecretCredentialsId**: TODO add?
+
+    </TabItem>
+    <TabItem value="jenkins" label="Jenkins">
+
+     - **jobId**: TODO
+     - **paramsMap**: TODO
+
+    </TabItem>
+    </Tabs>
   
   - **cluster**: an object identifying the connection parameters of the cluster the enviroment is deployed to.
 
     It contains the following properties: 
 
-      - **clusterId**:        TODO
-      - **namespace**:        TODO
-      - **kubeContextVariables**:        TODO
+      - **clusterId**: unique identifier associated with the Kubernetes cluster;
+      - **namespace**: name of the logical partitioning the cluster refers to;
+      - **kubeContextVariables**: an object containing configuration variables for the Kubernetes context.
+
+        It is composed by the following variables:
+
+          - **KUBE_URL**: URL or endpoint used to access the cluster;
+          - **KUBE_TOKEN**: authentication token required to authenticate and authorize access to the cluster.
 
   <br/>
-
-  ##### Example Configuration
-  ```json
-    [
-      {
-        "label": "Development",
-        "envId": "development",
-        "envPrefix": "development",
-        "isProduction": false,
-        "hosts": [
-          {
-            "host": "%projectId%.test.mia-platform.eu",
-            "scheme": "https"
-          },
-          {
-            "host": "cms.%projectId%.test.mia-platform.eu",
-            "isBackoffice": true
-          }
-        ],
-        "cluster": {
-          "clusterId": "human-readable-id-of-the-cluster",
-          "namespace": "%projectId%-development",
-          "kubeContextVariables": {
-            "KUBE_URL": "KUBE_DEV_URL",
-            "KUBE_TOKEN": "KUBE_DEV_TOKEN"
-          }
-        }
-      }
-    ]
-  ```
 
   :::danger
   The values saved here are not encrypted!
@@ -580,6 +572,37 @@ The projects default configurations fields are:
 
   Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponding project variable. 
   :::
+  
+  ##### Example Configuration
+  
+  ```json
+  [
+    {
+      "label": "Development",
+      "envId": "development",
+      "envPrefix": "development",
+      "isProduction": false,
+      "hosts": [
+        {
+          "host": "%projectId%.test.mia-platform.eu",
+          "scheme": "https"
+        },
+        {
+          "host": "cms.%projectId%.test.mia-platform.eu",
+          "isBackoffice": true
+        }
+      ],
+      "cluster": {
+        "clusterId": "human-readable-id-of-the-cluster",
+        "namespace": "%projectId%-development",
+        "kubeContextVariables": {
+          "KUBE_URL": "KUBE_DEV_URL",
+          "KUBE_TOKEN": "KUBE_DEV_TOKEN"
+        }
+      }
+    }
+  ]
+  ```
 
 - **logicalScopeLayers**:
    
