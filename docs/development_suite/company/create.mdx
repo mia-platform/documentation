@@ -59,7 +59,7 @@ curl
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json'
 ```
-where `CONSOLE_HOST` is the base path of your console installation.
+where `CONSOLE_HOST` is the base path of your Console installation.
 
 ## Create a company from CMS
 
@@ -161,7 +161,7 @@ The projects default configurations fields are:
 
 - **cmsImageName**:
   
-  The name of the Docker image used to generate the CMS of a project. It should also contain the CMS tag to be used.
+  The Docker image configuring the CMS used in your project. It should also contain the CMS tag to be used.
   This value will interpolate the template archive of your project.
   
   If `cms-site` service is disabled during the project creation, this field will not be used.
@@ -185,7 +185,7 @@ The projects default configurations fields are:
   - **basePath**: base path where the project will be created. 
     
     :::caution
-    Make sure to have the right permissions for creating projects on the configured path.
+    Make sure your configured Git Provider has the right permissions for creating projects on the configured path.
     :::
 
     Here some tips on how to correctly configure the _basePath_ property, grouped by Git provider:
@@ -229,9 +229,9 @@ The projects default configurations fields are:
 
     </TabItem>
 
-    <TabItem value="bitbucket" label="BitBucket">
+    <TabItem value="bitbucket" label="Bitbucket">
 
-      It corresponds to the **path where your BitBucket project is reachable**: the pattern is _projects/project-code_.
+      It corresponds to the **path where your Bitbucket project is reachable**: the pattern is _projects/project-code_.
 
       For example, if you project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
       then the `basePath` must be **`projects/Test`**.
@@ -287,7 +287,7 @@ The projects default configurations fields are:
     ```
 
   </TabItem>
-  <TabItem value="bitbucket" label="BitBucket">
+  <TabItem value="bitbucket" label="Bitbucket">
 
     ```json
     {
@@ -306,12 +306,12 @@ The projects default configurations fields are:
   An object that specifies the information regarding the CI/CD pipelines used by the company. 
 
   :::info
-  This field can also be set by [selecting a default CI/CD tool provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default CI/CD tool](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
   :::
   
   The object must have the following properties:
 
-  - **providerId** (_required_): unique identifier of the CI/CD tool provider associated with the company.
+  - **providerId**: unique identifier of the CI/CD tool associated with the company.
     
     It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
@@ -390,16 +390,16 @@ The projects default configurations fields are:
   An object that describes the configuration to enable the Variables section in the Project Settings area of the Console.
 
   :::info
-  This field can also be set by [selecting a default secret manager provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default secret manager](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
   :::
 
   :::caution
-  This field is not required. However, by leaving an empty configuration you will need to manually configure a secret manager provider for each project you create.
+  This field is not required. However, by leaving an empty configuration you will need to manually configure a secret manager for each project you create.
   :::
 
   The object can be configured with the following properties:
 
-  - **providerId** (_required_): unique identifier of the secret manager provider associated with the company. 
+  - **providerId**: unique identifier of the secret manager associated with the company. 
   
     It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
@@ -408,7 +408,7 @@ The projects default configurations fields are:
   :::note
   The following properties are supported only when the provider type is **"gitlab"**:
 
-  - **baseUrl**: base path where the variables will be read from. 
+  - **baseUrl**: base path from which the variables will be read. 
 
     If not specified, variables will be read from the first parent group of the Configurations project in GitLab.
 
@@ -432,7 +432,7 @@ The projects default configurations fields are:
     :::info
     This configuration is saved only within the company model, and is retrieved by projects at runtime. 
 
-    If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables path for all the projects in the company in one go.
+    If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables path for all the projects in the company.
     :::
 
   :::
@@ -505,7 +505,7 @@ The projects default configurations fields are:
 
       - **id** (_required_): unique identifier associated with the dashboard;
       - **label** (_required_): descriptive human-readable identifier for the dashboard;  
-      - **url** (_required_): URL where the metrics are retreived from;
+      - **url** (_required_): URL from which the metrics are retreived;
       - **type** (_required_): defines the integration method of the dashboard in the Console.
   
         Either one of the following: 
@@ -513,9 +513,9 @@ The projects default configurations fields are:
         - **iframe**: the dashboard will be included within the Console UI;
         - **newTab**: the dashboard will open on a new browser tab.
 
-      - **category**: indicates the group in which the dashboard will be presented in the console UI.
+      - **category**: indicates the group in which the dashboard will be presented in the Console UI.
   
-  - **environmentsVariables**: An object that describes the configuration of variables for the environment.
+  - **environmentsVariables**: an object that describes the configuration of variables for the environment.
     
     :::info
     This field overrides the configuration provided in the `environmentsVariables` field for a specific environment. 
@@ -523,7 +523,7 @@ The projects default configurations fields are:
 
     It can be configured following the configuration of the `environmentsVariables` company field.
 
-  - **deploy**: An object that describes the configuration of CI/CD pipelines for the environment.
+  - **deploy**: an object that describes the configuration of CI/CD pipelines for the environment.
     
     :::info
     This field overrides the configuration provided in the `pipelines` field for a specific environment. 
@@ -578,7 +578,7 @@ The projects default configurations fields are:
 
   Do not set the `cluster.kubeContextVariables` object with plain values to access the cluster.
 
-  Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponing project variable. 
+  Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponding project variable. 
   :::
 
 - **logicalScopeLayers**:
@@ -604,7 +604,7 @@ The projects default configurations fields are:
   
   Namespaces internally accessible from your project, using the `cross-projects` endpoint. 
   
-  Namesapces are useful when your company is made up of several projects that communicate with each other.
+  Namespaces are useful when your company is made up of several projects that communicate with each other.
 
   :::note
   The content of this array will be interpolated during project creation by replacing `%projectId%` strings with the `projectId` field specified in the project.
