@@ -18,7 +18,7 @@ Within a company, it is possible to:
 To create a new company in the Mia-Platform SaaS Console, open a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/79/create/340) and the company will be created for you.
 
 #### On-Premise 
-Before creating a new company in a Mia-platform On-Premise Console installation, contact your Mia-Platform referent.
+Before creating a new company in a Mia-Platform On-Premise Console installation, contact your Mia-Platform referent.
 
 :::caution
 Remember that the possibility of adding new companies may depend on the type of license you have subscribed to. 
@@ -36,8 +36,8 @@ The next steps will guide you through all the processes to create and correctly 
 
 To create and configure a company, you must have:
 
-- access to the Console Backoffice (granted by the `console_cms` group)
-- `console.root.company.create` permission
+- access to the Console CMS (granted by the `console_cms` group)
+- `Console Super User` role, or `console.root.company.create` permission
 
 ## Create a company from API
 
@@ -51,9 +51,19 @@ You will be asked to set the **name** and the **description** of the company to 
 
 In addition, you will be added as the first Company user with the role of [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console).
 
+##### Example call
+```bash
+curl 
+  --request POST \ 
+  --url https://{CONSOLE_HOST}/api/backend/companies \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json'
+```
+where `CONSOLE_HOST` is the base path of your console installation.
+
 ## Create a company from CMS
 
-It is also possible to manually create a company from the Console Backoffice. 
+It is also possible to manually create a company from the Console CMS. 
 
 However, you will lose some of the automations provided by the company creation API, such as adding the first user, or providing a company unique identifier.
 
@@ -61,9 +71,12 @@ However, you will lose some of the automations provided by the company creation 
 It is recommended to use the API to create a new company. Use this method only if strictly necessary.
 :::
 
+<details>
+<summary>Detailed guide</summary>
+
 #### Create the company
 
-Visit the Console Backoffice page and open the `Companies` section.
+Visit the Console CMS page and open the `Companies` section.
 
 Click the `Add new` button, you will be asked to provide an **id**, a **name** and a **description** for the company (only id and name are required). 
 
@@ -102,14 +115,16 @@ In the `Bindings` section, click the `Add new` button and fill in the form:
     "resourceId": "{THE COMPANY ID YOU PROVIDED UPON CREATION}"
   }
   ```
+
+</details>
+
 ## Company Configuration
 
 Once you create a company, you can configure:
 
-- providers (git providers, secret managers, CI/CD tools)
-- clusters
+- [clusters](/docs/development_suite/clusters-management/clusters-overview-setup)
+- [providers](/docs/development_suite/set-up-infrastructure/providers-management) (git providers, secret managers, CI/CD tools)
 - projects default configurations (such as environments, logical layers and accessible namespaces)
-
 
 :::info
 Each of these configurations will be applied as the default configuration to newly created projects within the company.
@@ -117,24 +132,24 @@ Each of these configurations will be applied as the default configuration to new
 
 Let's now proceed with each step of the configuration:
 
-### Configure Providers
-
-Git providers, Secret Managers and CI/CD tools can be configured from the **Providers** section inside Company Overview area of the Console.
-
-For further details on how to create new providers, you can follow the [providers configuration guide](/docs/development_suite/set-up-infrastructure/configure-provider.mdx).
-
 ### Connect a cluster
 
-Clusters can be connected to a company from the **Clusters** section inside Company Overview area of the Console.
+Clusters can be connected to a company from the **Clusters** section of the Console, inside the Company Overview area.
 
 To connect a cluster, you can follow the [clusters connection guide](/development_suite/clusters-management/add-edit-remove-cluster.md).
+
+### Configure Providers
+
+Git providers, Secret Managers and CI/CD tools can be configured from the **Providers** section of the Console, inside the Company Overview area.
+
+For further details on how to create new providers, you can follow the [providers configuration guide](/docs/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 ### Projects Default Configurations
 
 By editing the company data model, you will be able to set default configurations for all the projects that will be created within the company.
 
 :::info
-This configuration can be done from the `Companies` section of the Console Backoffice.
+This configuration can be done from the `Companies` section of the Console CMS.
 :::
 
 The projects default configurations fields are:
@@ -165,7 +180,7 @@ The projects default configurations fields are:
   
     It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
-  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
+    Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
   
   - **visibility**: visibility of the project. Either one of the following:
 
@@ -192,11 +207,11 @@ The projects default configurations fields are:
       For example, if your group is reachable at the URL **`https://git.tools.mia-platform.eu/mia-platform/projects`**, 
       then the `basePath` must be **`mia-platform/projects`**.
       
-      If your group (B) does not exist:
+      If your group does not exist (groupB in the example):
 
-      - /groupA/groupB -> if user have permission to create groups in A, then B will be created;
-      - /groupA/groupB -> if user have no permission to create groups in A, then B will NOT be created;
-      - /groupA/groupB -> if A does not exist, then it will NOT be created any group.
+      - /groupA/groupB -> if user have permission to create groups in groupA, then groupB will be created;
+      - /groupA/groupB -> if user have no permission to create groups in groupA, then groupB will NOT be created;
+      - /groupA/groupB -> if groupA does not exist, then it will NOT be created any group.
 
     </TabItem>
 
@@ -228,15 +243,58 @@ The projects default configurations fields are:
 
     </Tabs>
 
-  ##### Example Configuration
-  ```json
-  {
-    "providerId": "my-azure-devops",
-    "type": "azure-devops",
-    "visibility": "private",
-    "basePath": "mia-platform-devops"
-  }
-  ```
+  ##### Example Configurations
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
+    ```json
+    {
+      "providerId": "my-gitlab",
+      "type": "gitlab",
+      "visibility": "public",
+      "basePath": "Mia-Platform/projects"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="github" label="Github">
+
+    ```json
+    {
+      "providerId": "my-github",
+      "type": "github",
+      "visibility": "internal",
+      "basePath": "Mia-Platform"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="azure-devops" label="Azure DevOps">
+
+    ```json
+    {
+      "providerId": "my-azure-devops",
+      "type": "azure-devops",
+      "visibility": "private",
+      "basePath": "Mia-Platform-devops/Test"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="bitbucket" label="BitBucket">
+
+    ```json
+    {
+      "providerId": "my-bitbucket",
+      "type": "bitbucket",
+      "visibility": "internal",
+      "basePath": "projects/Test"
+    }
+    ```
+
+  </TabItem>
+  </Tabs>
 
 - **pipelines** (_required_):
   
@@ -257,8 +315,9 @@ The projects default configurations fields are:
   :::note
   The following properties are supported only when the provider type is **"azure-devops"**:
 
-    - **azurePipelineId**: TODO
-  
+    - **azurePipelineId**: unique identifier that can be used to reference and identify a pipeline.
+
+    Learn more on how to retrieve the ID of a pipeline on the Azure DevOps [pipelines documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines).
   :::
 
   :::note
@@ -269,13 +328,50 @@ The projects default configurations fields are:
   :::
 
   ##### Example Configuration
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
   ```json
   {
     "providerId": "my-gitlab",
     "type": "gitlab-ci"
   }
   ```
-    
+  </TabItem>
+  <TabItem value="github" label="Github">
+  
+  ```json
+  {
+    "providerId": "my-github",
+    "type": "github-actions"
+  }
+  ```
+  </TabItem>
+  <TabItem value="azure-devops" label="Azure DevOps">
+  
+  ```json
+  {
+    "providerId": "my-azure",
+    "type": "azure-pipelines",
+    "azurePipelineId": "{PIPELINE_ID}"
+  }
+  ```
+  </TabItem>
+    <TabItem value="jenkins" label="Jenkins">
+  
+  ```json
+  {
+    "providerId": "my-jenkins",
+    "type": "jenkins",
+    "options": {
+      "view": { "name": "my-view" }
+    }
+  }
+  ```
+  </TabItem>
+  </Tabs>
+
 - **environmentsVariables**:
    
   An object that describes the configuration to enable the Variables section in the Project Settings area of the Console.
@@ -309,11 +405,11 @@ The projects default configurations fields are:
 
     It is composed by the following properties:
 
-    - **id**: TODO
+    - **path**: TODO
 
     - **type**: TODO
 
-    - **path**: Either one of the following:
+      Either one of the following:
 
       - `groups`: TODO
       - `projects`: TODO
@@ -361,7 +457,7 @@ The projects default configurations fields are:
     Each host is shaped as follows:
 
     - **host**: URL identifying where the host is located;
-    - **isBackoffice**: boolean value indicating whether the host is a backoffice instance;
+    - **isBackoffice**: boolean value indicating whether the host is a CMS instance;
     - **scheme**: the URL schema, typically either _http_ of _https_.
 
     This object can be used to specify where a specific environment should be hosted,
@@ -412,14 +508,9 @@ The projects default configurations fields are:
 
     It contains the following properties: 
 
-      - **hostname**:        TODO
-      - **port**:        TODO
-      - **namespace**:        TODO
       - **clusterId**:        TODO
-      - **accessToken**:        TODO
-      - **base64CA**:        TODO
-      - **proxy**:        TODO
-      - **serviceAccount**:        TODO
+      - **namespace**:        TODO
+      - **kubeContextVariables**:        TODO
 
   <br/>
 
