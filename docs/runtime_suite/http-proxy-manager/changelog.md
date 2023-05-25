@@ -8,7 +8,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.0.0 - 2023-05-24
+
+### BREAKING CHANGES
+
+- `SERVICE_PREFIX` must match the following regex `^/[a-zA-Z0-9_-]+$`
+- remove entire `basePath` from request path and not only the first segment. Using the following configuration and calling the path `/mia/docs/fast-data` the proxy-manager will call `https://docs.mia-platform.eu/fast-data` and no more `../../fast-data`:
+```javascript
+{
+  "targetBaseUrl": "https://docs.mia-platform.eu/",
+  "basePath": "/mia/docs"
+}
+```
+
+## 1.6.2 - 2023-05-23
+
+### Fixed
+
+- remove configuration `targetBaseUrl` wrong update
+
+## 1.6.1 - 2023-05-19
+
+### Fixed
+
+- `retrieveUrl` correctly interpolates path parameters in case of `SERVICE_PREFIX`
+
+## 1.6.0 - 2023-05-18
+
+### Added
+
+- add `additionalHeaders` to configuration to handle headers that will be proxied to target url
+
+### Changed
+
+- `targetBaseUrl` and `basePath` can contain path parameters
+
 ## 1.5.1 - 29-09-2022
+
+### Changed
 
 - update AccessToken.ExpiresIn type from int to json.RawMessage
 

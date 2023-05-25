@@ -42,78 +42,94 @@ The configuration must follow this schema:
 
 ```json
 {
-  "type": "object",
-  "properties": {
-    "proxies": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "targetBaseUrl",
-          "basePath"
-        ],
-        "properties": {
-          "authentication": {
-            "type": "string",
-            "enum": ["none","oauth2"],
-            "default": "none"
-          },
-          "username": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "clientId": {
-            "type": "string"
-          },
-          "clientSecret": {
-            "type": "string"
-          },
-          "tokenIssuerUrl": {
-            "type": "string"
-          },
-          "tokenIssuerValidationUrl": {
-            "type": "string"
-          },
-          "targetBaseUrl": {
-            "type": "string",
-            "pattern": "^(https?:\/\/)"
-          },
-          "basePath": {
-            "type": "string",
-            "pattern": "^\/"
-          },
-          "grantType": {
-            "type": "string",
-            "enum": ["client_credentials", "password"],
-            "default": "client_credentials"
-          },
-          "authType": {
-            "type": "string",
-            "enum": ["client_secret_basic"],
-            "default": "client_secret_basic"
-          },
-          "additionalAuthFields": {
-            "type": "object"
-          },
-          "headersToProxy": {
+    "type": "object",
+    "properties": {
+        "proxies": {
             "type": "array",
             "items": {
-              "type": "string"
+                "type": "object",
+                "required": ["targetBaseUrl","basePath"],
+                "properties": {
+                    "authentication": {
+                        "type": "string",
+                        "enum": ["none","oauth2"],
+                        "default": "none"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "clientSecret": {
+                        "type": "string"
+                    },
+                    "tokenIssuerUrl": {
+                        "type": "string"
+                    },
+                    "tokenIssuerValidationPath": {
+                        "type": "string"
+                    },
+                    "targetBaseUrl": {
+                        "type": "string",
+                        "pattern": "^https?:\\/\\/[a-zA-Z0-9.:_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
+                    },
+                    "basePath": {
+                        "type": "string",
+                        "pattern": "^\\/[a-zA-Z0-9_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
+                    },
+                    "grantType": {
+                        "type": "string",
+                        "enum": ["client_credentials","password"],
+                        "default": "client_credentials"
+                    },
+                    "authType": {
+                        "type": "string",
+                        "enum": ["client_secret_basic"],
+                        "default": "client_secret_basic"
+                    },
+                    "additionalAuthFields": {
+                        "type": "object",
+                        "default": null
+                    },
+                    "headersToProxy": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "default": []
+                    },
+                    "additionalHeaders": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["name","value"]
+                        },
+                        "default": []
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 ```
 
 The **proxies** array contains one item for each external service that has to by proxied.
 A proxy can have the following fields:
-- **targetBaseUrl**: the url of the external service. This is a required field and has to start with an *http* or *https* scheme.
+- **targetBaseUrl**: the url of the external service. This is a required field and has to start with an *http* or *https* scheme. Possible path parameters from the base path can be referenced and added to the url with the `{param-name}` syntax (**only for static configuration**).
 - **basePath**: the name of the related endpoint exposed by the _Proxy Manager_. This is a required field and has to start with a `/`.
+Path parameter can be specified with the `{param-name}` syntax and eventually forwarded to the external service in the _targetBaseUrl_ using the same name (**only for static configuration**).
 - **authentication**: the type of authentication done by the proxy, which can either be `oauth2` or `none`.
 - **username**: the user identifier for the OAuth2 authentication (only [Password Grant](https://oauth.net/2/grant-types/password/) flow).
 - **password**: the user password used in case of OAuth2 authentication (only [Password Grant](https://oauth.net/2/grant-types/password/) flow).
@@ -127,9 +143,15 @@ A proxy can have the following fields:
 - **authType**: the method used to stuff the client credentials in the request when asking for a new access token. This is required only for the Client Credential Grant flow. At the moment, the service only supports the *client_secret_basic* type.
 - **additionalAuthFields**: an object containing additional fields to be used in the authentication request. These fields are added in the request body performed to acquire the access token. Both object keys and values must be of type string.
 - **headersToProxy**: a list of headers that must be forwarded when calling the external service. The default behavior, triggered when this field is not provided, is to forward all the headers of original request. In case the list is empty, no header from original request is proxied.
+- **additionalHeaders**: a list of headers the must be added to the request when calling the external service, after authentication is successful.
+A use case of additionalHeaders is api keys management (e.g. x-api-key header).
 
 :::caution
 **tokenIssuerValidationUrl** and **tokenIssuerUrl** will be dismissed with the next major release.
+:::
+
+:::caution
+Path parameters inside **targetBaseUrl** and **basePath** are only allowed for the static configuration.
 :::
 
 ## Dynamic configuration
@@ -137,12 +159,12 @@ A proxy can have the following fields:
 The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema defined before.
 
 :::caution
-The *dynamic configuration* has the technical limitation of using just the first path component as **basePath**. This limitation comes from the inability to determine the CRUD's search query.
+The *dynamic configuration* has the technical limitation of using just the first path component as **basePath**. This limitation comes from the inability to determine the CRUD's search query. Due to this limitation path parameters are not allowed inside **targetBaseUrl** and **basePath**.
 
 **E.g.**: given a request with path `/one/two/three`, the **basePath** searched on CRUD is `/one`.
 :::
 
-In order to configure correctly the CRUD collection, you can **import the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
+In order to configure correctly the CRUD collection, you can **import** the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
 
 ### Recommendations
 
@@ -156,8 +178,8 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
 - The first one is located at `external-service.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/external-service` endpoint.
 - The second one is located at `mia-client-credentials.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/mia-service` endpoint. It employs additional fields that are added in the request to retrieve an access token.
 - The third one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
-- The forth service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
-- The latter service is located at `another-service.com`, requires no authentication, can be reached with a call to the `/another-service` endpoint and only selected headers are forwarded to it.
+- The forth service is located at `other-service.com/{id}`, requires no authentication and can be reached with a call to the `/other-service/{id}` endpoint. For example, with a call to the `/other-service/page-id/additional-path` endpoint will be called the target service `other-service.com/page-id/additional-path`. Path parameters can be used only with static configuration.
+- The latter service is located at `another-service.com`, requires no authentication, can be reached with a call to the `/another-service` endpoint, only selected headers are forwarded to it and the additional header `x-api-key` with `header-value` is sent.
 
 ```json
 {
@@ -196,8 +218,8 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
       "grantType": "password"
     },
     {
-      "targetBaseUrl": "http://other-service.com",
-      "basePath": "/other-service"
+      "targetBaseUrl": "http://other-service.com/{id}",
+      "basePath": "/other-service/{id}"
     },
     {
       "targetBaseUrl": "http://another-service.com",
@@ -205,6 +227,12 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
       "headersToProxy": [
         "Accept",
         "Content-Type"
+      ],
+      "additionalHeaders": [
+        {
+          "name": "x-api-key", 
+          "value": "header-value"
+        }
       ]
     }
   ]
