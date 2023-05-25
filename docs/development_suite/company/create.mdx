@@ -68,7 +68,7 @@ Visit the Console Backoffice page and open the `Companies` section.
 Click the `Add new` button, you will be asked to provide an **id**, a **name** and a **description** for the company (only id and name are required). 
 
 You will be able to set all the optional fields after the creation of the company.
-For further information regarding other configuration fields, visit the dedicated [section](#default-configuration-for-a-new-project) later in the page.
+For further information regarding other configuration fields, visit the dedicated [section](#default-configuration-for-a-new-project) later in this page.
 
 #### Add the first Company User
 
@@ -163,7 +163,7 @@ The projects default configurations fields are:
 
   - **providerId** (_required_): unique identifier of the git provider associated with the company 
   
-    It corresponds to the `providerId` field of the provider's CRUD collection and is used to retrieve information about the used provider. 
+    It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
   
@@ -250,7 +250,7 @@ The projects default configurations fields are:
 
   - **providerId** (_required_): unique identifier of the CI/CD tool provider associated with the company.
     
-    It corresponds to the `providerId` field of the provider's CRUD collection and is used to retrieve information about the used provider. 
+    It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
@@ -292,7 +292,7 @@ The projects default configurations fields are:
 
   - **providerId** (_required_): unique identifier of the secret manager provider associated with the company. 
   
-    It corresponds to the `providerId` field of the provider's CRUD collection and is used to retrieve information about the used provider. 
+    It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
@@ -351,16 +351,40 @@ The projects default configurations fields are:
 
   Each object is shaped as follows:
 
-   - **label**: descriptive and human-readable identifier associated with the environment;  
-   - **envId**: unique identifier associated with the environment;
-   - **envPrefix**: defines a common prefix associated with environment-specific variables;
-   - **description**: short description of the environment;
-   - **isProduction**: boolean value indicating whether it is considered to be a production environment;
-   - **hosts**: TODO
-   - **links**:     TODO
-   - **cluster**:     TODO
-   - **dashboard**:     TODO
-   - **deploy**: An object that describes the configuration of CI/CD pipelines for the environment.
+  - **label**: descriptive human-readable identifier for the environment;  
+  - **envId**: unique identifier associated with the environment;
+  - **envPrefix**: defines a common prefix for environment-specific variables;
+  - **description**: short description of the environment;
+  - **isProduction**: boolean value indicating whether it is considered to be a production environment;
+  - **hosts**: an array of objects identifying the hosts used by the environment.
+  
+    Each host is shaped as follows:
+
+    - **host**: URL identifying where the host is located;
+    - **isBackoffice**: boolean value indicating whether the host is a backoffice instance;
+    - **scheme**: the URL schema, typically either _http_ of _https_.
+
+    This object can be used to specify where a specific environment should be hosted,
+    where it should expose its documentation or where to access its CMS.
+
+  - **links**: an array of objects containing a series of useful links.
+
+    Each link is shaped as follows:
+
+    - **id**: unique identifier associated with the link;
+    - **url** (_required_): link redirection URL.
+
+  - **cluster**:     TODO
+  - **dashboard**:     TODO
+  - **environmentsVariables**: An object that describes the configuration of variables for the environment.
+    
+    :::info
+    This field overrides the configuration provided in the `environmentsVariables` field for a specific environment. 
+    :::
+
+    It can be configured following the configuration of the `environmentsVariables` company field.
+
+  - **deploy**: An object that describes the configuration of CI/CD pipelines for the environment.
     
     :::info
     This field overrides the configuration provided in the `pipelines` field for a specific environment. 
@@ -369,14 +393,6 @@ The projects default configurations fields are:
     It can be configured following the configuration of the `pipelines` company field.
 
     TODO jobId, statusWebhookSecretCredentialsId, paramsMap
-
-   - **environmentsVariables**: An object that describes the configuration of variables for the environment.
-    
-    :::info
-    This field overrides the configuration provided in the `environmentsVariables` field for a specific environment. 
-    :::
-
-    It can be configured following the configuration of the `environmentsVariables` company field.
 
   <br/>
 
@@ -519,7 +535,7 @@ The projects default configurations fields are:
   
   A set of features to enforce the security of the project. 
 
-  It defines the security features and settings that will be applied to the Kubernetes environment your project will be deployed on.
+  It defines the security features and settings that will be applied to the Kubernetes environment that your project will be deployed on.
 
   The object can be configured with the following properties:
 
