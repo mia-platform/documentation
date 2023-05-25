@@ -561,14 +561,17 @@ The projects default configurations fields are:
         It is composed by the following variables:
 
           - **KUBE_URL**: URL or endpoint used to access the cluster;
-          - **KUBE_TOKEN**: authentication token required to authenticate and authorize access to the cluster.
 
-  <br/>
+          - **KUBE_TOKEN**: authentication token required to authenticate and authorize access to the cluster.
+          
+          - **KUBE_CA_PEM**: PEM-encoded certificate authority. 
+            
+            It is used to verify the authenticity of the cluster's TLS certificate during secure communication.
 
   :::danger
   The values saved here are not encrypted!
 
-  Do not set the `cluster.kubeContextVariables` object with plain values to access the cluster.
+  Do not set the `cluster.kubeContextVariables` with plain values to access the cluster.
 
   Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponding project variable. 
   :::
@@ -597,7 +600,8 @@ The projects default configurations fields are:
         "namespace": "%projectId%-development",
         "kubeContextVariables": {
           "KUBE_URL": "KUBE_DEV_URL",
-          "KUBE_TOKEN": "KUBE_DEV_TOKEN"
+          "KUBE_TOKEN": "KUBE_DEV_TOKEN",
+          "KUBE_CA_PEM": "KUBE_DEV_CA_PEM",
         }
       }
     }
