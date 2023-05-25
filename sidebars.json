@@ -1182,6 +1182,10 @@
       },
       "items": [
         {
+          "id": "release-notes/v11.1.0",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v11.0.2",
           "type": "doc"
         },
