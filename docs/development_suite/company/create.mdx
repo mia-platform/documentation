@@ -97,11 +97,11 @@ Only a restricted set of users have access to the users management section in CM
 In the `Bindings` section, click the `Add new` button and fill in the form:
 - type a custom **Binding ID**
 
-  :::danger
-  The _Binding ID_ must be unique in the whole collection!  
+:::danger
+The _Binding ID_ must be unique in the whole collection!  
 
-  As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in some cases a more complex structure may be necessary.
-  :::
+As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in some cases a more complex structure may be necessary.
+:::
 
 - select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console).)
 
@@ -109,12 +109,12 @@ In the `Bindings` section, click the `Add new` button and fill in the form:
 
 - assign the correct **Resource** by filling it with an object as follows:
 
-  ```json
-  {
-    "resourceType": "company",
-    "resourceId": "{THE COMPANY ID YOU PROVIDED UPON CREATION}"
-  }
-  ```
+```json
+{
+  "resourceType": "company",
+  "resourceId": "{THE COMPANY ID YOU PROVIDED UPON CREATION}"
+}
+```
 
 </details>
 
@@ -164,14 +164,14 @@ The projects default configurations fields are:
   The name of the Docker image used to generate the CMS of a project. It should also contain the CMS tag to be used.
   This value will interpolate the template archive of your project.
   
-  if `cms-site` service is disabled during the project creation, this field will not be used.
+  If `cms-site` service is disabled during the project creation, this field will not be used.
 
 - **repository** (_required_):
   
   An object that specifies the information regarding the repository where the projects of this company will be created. 
-  
+
   :::info
-  Both _providerId_ and _type_ fields can also be set by [selecting a default git provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default git provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
   :::
   
   The object must have the following properties:
@@ -181,12 +181,6 @@ The projects default configurations fields are:
     It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
 
     Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
-  
-  - **visibility**: visibility of the project. Either one of the following:
-
-    - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
-    - `internal`: the repository can be accessed and viewed by any authenticated user within the same git provider instance or organization;
-    - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
   
   - **basePath**: base path where the project will be created. 
     
@@ -204,7 +198,7 @@ The projects default configurations fields are:
 
       If the group does not exist, the project will be created only if the user has the needed permission to create the group in its parent.
 
-      For example, if your group is reachable at the URL **`https://git.tools.mia-platform.eu/mia-platform/projects`**, 
+      For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
       then the `basePath` must be **`mia-platform/projects`**.
       
       If your group does not exist (groupB in the example):
@@ -221,7 +215,8 @@ The projects default configurations fields are:
       
       If the path does not exist, the project will not be created.
 
-      For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, then the `basePath` must be **`mia-platform`**
+      For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, <br/>
+      then the `basePath` must be **`mia-platform`**
 
     </TabItem>
 
@@ -229,7 +224,8 @@ The projects default configurations fields are:
 
       It corresponds to the **path where your Azure project is reachable**: the pattern is _company-name/project-name_.
       
-      For example, if you project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, then the `basePath` must be **`mia-platform-devops/Test`**.
+      For example, if you project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
+      then the `basePath` must be **`mia-platform-devops/Test`**.
 
     </TabItem>
 
@@ -237,11 +233,20 @@ The projects default configurations fields are:
 
       It corresponds to the **path where your BitBucket project is reachable**: the pattern is _projects/project-code_.
 
-      For example, if you project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, then the `basePath` must be **`projects/Test`**.
+      For example, if you project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
+      then the `basePath` must be **`projects/Test`**.
 
     </TabItem>
 
     </Tabs>
+      
+  - **visibility**: visibility of the project. Either one of the following:
+
+    - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
+    - `internal`: the repository can be accessed and viewed by any authenticated user within the same git provider instance or organization;
+    - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
+
+  <br/>
 
   ##### Example Configurations
 
@@ -312,20 +317,28 @@ The projects default configurations fields are:
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
-  :::note
-  The following properties are supported only when the provider type is **"azure-devops"**:
+  In addition, it can include the following properties, supported only by specific providers:
+
+  <Tabs>
+  <TabItem value="azure-devops" label="Azure DevOps">
 
     - **azurePipelineId**: unique identifier that can be used to reference and identify a pipeline.
 
     Learn more on how to retrieve the ID of a pipeline on the Azure DevOps [pipelines documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines).
-  :::
 
-  :::note
-  The following properties are supported only when the provider type is **"jenkins"**:
+  </TabItem>
+  <TabItem value="jenkins" label="Jenkins">
 
-    - **options**: TODO
+    - **options**: an object containing the view configuration property.
+
+      In Jenkins, pipeline views allow you to visualize and monitor your pipelines and their status in a more organized and user-friendly way, making it easier to track their progress and health.
+
+      The **view** configuration includes the following fields: 
+
+      - **name**: name of the visualization step where Jenkins pipelines are shown.
   
-  :::
+  </TabItem>
+  </Tabs>
 
   ##### Example Configuration
 
@@ -424,7 +437,11 @@ The projects default configurations fields are:
 
   :::
 
-  ##### Example Configuration
+  ##### Example Configurations
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
   ```json
   {
     "providerId": "my-gitlab",
@@ -436,6 +453,18 @@ The projects default configurations fields are:
     }
   }
   ```
+
+  </TabItem>
+  <TabItem value="vault" label="Vault">
+
+  ```json
+  {
+    "providerId": "my-vault",
+    "type": "vault"
+  }
+  ```
+  </TabItem>
+  </Tabs>
 
 - **environments** (_required_):
   
@@ -463,12 +492,12 @@ The projects default configurations fields are:
     This object can be used to specify where a specific environment should be hosted,
     where it should expose its documentation or where to access its CMS.
 
-  - **links**: an array of objects containing a series of useful links.
+  <!-- - **links**: an array of objects containing a series of useful links.
 
     Each link is shaped as follows:
 
     - **id**: unique identifier associated with the link;
-    - **url** (_required_): link redirection URL.
+    - **url** (_required_): link redirection URL. -->
 
   - **dashboards**: an array of objects identifying environments metrics and performance indicators.
 
