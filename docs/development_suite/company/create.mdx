@@ -374,8 +374,22 @@ The projects default configurations fields are:
     - **id**: unique identifier associated with the link;
     - **url** (_required_): link redirection URL.
 
-  - **cluster**:     TODO
-  - **dashboard**:     TODO
+  - **dashboards**: an array of objects identifying environments metrics and performance indicators.
+
+    Each dashboard is shaped as follows:
+
+      - **id** (_required_): unique identifier associated with the dashboard;
+      - **label** (_required_): descriptive human-readable identifier for the dashboard;  
+      - **url** (_required_): URL where the metrics are retreived from;
+      - **type** (_required_): defines the integration method of the dashboard in the Console.
+  
+        Either one of the following: 
+        
+        - **iframe**: the dashboard will be included within the Console UI;
+        - **newTab**: the dashboard will open on a new browser tab.
+
+      - **category**: indicates the group in which the dashboard will be presented in the console UI.
+  
   - **environmentsVariables**: An object that describes the configuration of variables for the environment.
     
     :::info
@@ -393,6 +407,19 @@ The projects default configurations fields are:
     It can be configured following the configuration of the `pipelines` company field.
 
     TODO jobId, statusWebhookSecretCredentialsId, paramsMap
+  
+  - **cluster**: an object identifying the connection parameters of the cluster the enviroment is deployed to.
+
+    It contains the following properties: 
+
+      - **hostname**:        TODO
+      - **port**:        TODO
+      - **namespace**:        TODO
+      - **clusterId**:        TODO
+      - **accessToken**:        TODO
+      - **base64CA**:        TODO
+      - **proxy**:        TODO
+      - **serviceAccount**:        TODO
 
   <br/>
 
