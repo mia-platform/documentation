@@ -127,9 +127,9 @@ The configuration must follow this schema:
 
 The **proxies** array contains one item for each external service that has to by proxied.
 A proxy can have the following fields:
-- **targetBaseUrl**: the url of the external service. This is a required field and has to start with an *http* or *https* scheme. Possible path parameters from the base path can be referenced and added to the url with the `{param-name}` syntax.
+- **targetBaseUrl**: the url of the external service. This is a required field and has to start with an *http* or *https* scheme. Possible path parameters from the base path can be referenced and added to the url with the `{param-name}` syntax (**only for static configuration**).
 - **basePath**: the name of the related endpoint exposed by the _Proxy Manager_. This is a required field and has to start with a `/`.
-Path parameter can be specified with the `{param-name}` syntax and eventually forwarded to the external service in the _targetBaseUrl_ using the same name.
+Path parameter can be specified with the `{param-name}` syntax and eventually forwarded to the external service in the _targetBaseUrl_ using the same name (**only for static configuration**).
 - **authentication**: the type of authentication done by the proxy, which can either be `oauth2` or `none`.
 - **username**: the user identifier for the OAuth2 authentication (only [Password Grant](https://oauth.net/2/grant-types/password/) flow).
 - **password**: the user password used in case of OAuth2 authentication (only [Password Grant](https://oauth.net/2/grant-types/password/) flow).
@@ -178,8 +178,8 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
 - The first one is located at `external-service.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/external-service` endpoint.
 - The second one is located at `mia-client-credentials.com`, requires OAuth2 authentication (*client_credentials* grant type) and can be reached through the proxy with a call to the `/mia-service` endpoint. It employs additional fields that are added in the request to retrieve an access token.
 - The third one is located at `legacy-service.com`, requires OAuth2 authentication (*password* grant type) and can be reached through the proxy with a call to the `/legacy-service` endpoint.
-- The forth service is located at `other-service.com`, requires no authentication and can be reached with a call to the `/other-service` endpoint.
-- The latter service is located at `another-service.com`, requires no authentication, can be reached with a call to the `/another-service` endpoint and only selected headers are forwarded to it.
+- The forth service is located at `other-service.com/{id}`, requires no authentication and can be reached with a call to the `/other-service/{id}` endpoint. For example, with a call to the `/other-service/page-id/additional-path` endpoint will be called the target service `other-service.com/page-id/additional-path`. Path parameters can be used only with static configuration.
+- The latter service is located at `another-service.com`, requires no authentication, can be reached with a call to the `/another-service` endpoint, only selected headers are forwarded to it and the additional header `x-api-key` with `header-value` is sent.
 
 ```json
 {
@@ -231,7 +231,7 @@ In this example, the _Proxy Manager_ is configured to proxy requests to three ex
       "additionalHeaders": [
         {
           "name": "x-api-key", 
-          "value": "value"
+          "value": "header-value"
         }
       ]
     }
