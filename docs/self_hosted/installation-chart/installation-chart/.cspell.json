@@ -1,0 +1,23 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "dictionaries": [
+      "softwareTerms",
+      "companies",
+      "misc"
+    ],
+    "words": [
+      "multitinenant",
+      "Traefik"
+    ],
+    "flagWords": [],
+    "ignorePaths": [],
+    "allowCompoundWords": true,
+    "ignoreRegExpList": [
+      "\".*\": \".*\"",
+      "`.*`",
+      "'.*'",
+      "# .*",
+      "<.*>"
+    ] 
+}
