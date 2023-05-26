@@ -49,7 +49,7 @@ This API is visible inside the Console API Portal, under the `Companies` tag.
 
 You will be asked to set the **name** and the **description** of the company to add (only name is required). 
 
-In addition, you will be added as the first Company user with the role of [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console).
+In addition, you will be added as the first Company user with the role of [`Company Owner`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console).
 
 ##### Example call
 ```bash
@@ -103,7 +103,7 @@ The _Binding ID_ must be unique in the whole collection!
 As a general recommendation, we suggest `{companyId}-{desiredRole}`, however in some cases, a more complex structure may be necessary.
 :::
 
-- select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console))
+- select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console))
 
 - select the correct user as **Subject**
 
@@ -122,8 +122,8 @@ As a general recommendation, we suggest `{companyId}-{desiredRole}`, however in 
 
 Once you create a company, you can configure:
 
-- [clusters](/docs/development_suite/clusters-management/clusters-overview-setup)
-- [providers](/docs/development_suite/set-up-infrastructure/providers-management) (Git Providers, Secret Managers, CI/CD Tools)
+- [clusters](/development_suite/clusters-management/clusters-overview-setup.md)
+- [providers](/development_suite/set-up-infrastructure/configure-provider.mdx) (Git Providers, Secret Managers, CI/CD Tools)
 - projects default configurations (such as environments, logical layers, and accessible namespaces)
 
 :::info
@@ -142,7 +142,7 @@ To connect a cluster, you can follow the [clusters connection guide](/developmen
 
 Git Providers, Secret Managers, and CI/CD tools can be configured from the **Providers** section of the Console, inside the Company Overview area.
 
-For further details on how to create new providers, you can follow the [providers configuration guide](/docs/development_suite/set-up-infrastructure/configure-provider.mdx).
+For further details on how to create new providers, you can follow the [providers configuration guide](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 ### Projects Default Configurations
 
@@ -171,7 +171,7 @@ The projects default configurations fields are:
   An object that specifies the information regarding the repository where the projects of this company will be created. 
 
   :::info
-  This field can also be set by [selecting a default Git Provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default Git Provider](/development_suite/set-up-infrastructure/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
   :::
   
   The object must have the following properties:
@@ -180,7 +180,7 @@ The projects default configurations fields are:
   
     It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
 
-    Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
+    Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
   
   - **basePath**: the base path where the project will be created. 
     
@@ -308,7 +308,7 @@ The projects default configurations fields are:
   An object that specifies the information regarding the CI/CD pipelines used by the company. 
 
   :::info
-  This field can also be set by [selecting a default CI/CD Tool](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default CI/CD Tool](/development_suite/set-up-infrastructure/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
   :::
   
   The object must have the following properties:
@@ -317,7 +317,7 @@ The projects default configurations fields are:
     
     It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
 
-  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
 
   In addition, it can include the following properties, supported only by specific providers:
 
@@ -392,7 +392,7 @@ The projects default configurations fields are:
   An object that describes the configuration to enable the Variables section in the Project Settings area of the Console.
 
   :::info
-  This field can also be set by [selecting a default Secret Manager](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default Secret Manager](/development_suite/set-up-infrastructure/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
   :::
 
   :::caution
@@ -405,7 +405,7 @@ The projects default configurations fields are:
   
     It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
 
-  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
 
   In addition, it can include the following properties, supported only by specific providers:
 
@@ -605,7 +605,7 @@ The projects default configurations fields are:
   - **name**: identifies the name of the logical layer;
   - **order**: identifies the numerical order of the layer, used to display layers according to the sorting order defined by the user.
 
-  The `logicalScopeLayers` field will be created in the project model according to the project `layerId` value. Please refer to the [Create a Project](docs/development_suite/set-up-infrastructure/create-project) section for further details.
+  The `logicalScopeLayers` field will be created in the project model according to the project `layerId` value. Please refer to the [Create a Project](/development_suite/set-up-infrastructure/create-project.mdx) section for further details.
 
   ##### Example Configuration
   ```json
