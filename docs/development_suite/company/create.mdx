@@ -65,7 +65,7 @@ where `CONSOLE_HOST` is the base path of your Console installation.
 
 It is also possible to manually create a company from the Console CMS. 
 
-However, you will lose some of the automations provided by the company creation API, such as adding the first user, or providing a company unique identifier.
+However, you will lose some of the automation provided by the company creation API, such as adding the first user or providing a company unique identifier.
 
 :::danger
 It is recommended to use the API to create a new company. Use this method only if strictly necessary.
@@ -78,20 +78,20 @@ It is recommended to use the API to create a new company. Use this method only i
 
 Visit the Console CMS page and open the `Companies` section.
 
-Click the `Add new` button, you will be asked to provide an **id**, a **name** and a **description** for the company (only id and name are required). 
+Click the `Add new` button, you will be asked to provide an **id**, a **name**, and a **description** for the company (only id and name are required). 
 
 You will be able to set all the optional fields after the creation of the company.
-For further information regarding other configuration fields, visit the dedicated [section](#default-configuration-for-a-new-project) later in this page.
+For further information regarding other configuration fields, visit the dedicated [section](#default-configuration-for-a-new-project) later on this page.
 
 #### Add the first Company User
 
 Once your company has been created using CMS, you need to associate the first user to be able to access the company from the Console. 
-The first user may either be yourself or another user in the Platform. 
+The first user may either be yourself or another user on the Platform. 
 
 Regardless, head over to the CMS page and click the `Bindings` menu item.
 
 :::caution
-Only a restricted set of users have access to the users management section in CMS, contact your Console Administrator to obtain the right permissions to access this functionality.
+Only a restricted set of users have access to the users' management section in CMS, contact your Console Administrator to obtain the right permissions to access this functionality.
 :::
 
 In the `Bindings` section, click the `Add new` button and fill in the form:
@@ -100,7 +100,7 @@ In the `Bindings` section, click the `Add new` button and fill in the form:
 :::danger
 The _Binding ID_ must be unique in the whole collection!  
 
-As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in some cases a more complex structure may be necessary.
+As a general recommendation, we suggest `{companyId}-{desiredRole}`, however in some cases, a more complex structure may be necessary.
 :::
 
 - select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console))
@@ -123,8 +123,8 @@ As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in 
 Once you create a company, you can configure:
 
 - [clusters](/docs/development_suite/clusters-management/clusters-overview-setup)
-- [providers](/docs/development_suite/set-up-infrastructure/providers-management) (Git Providers, Secret Managers, CI/CD tools)
-- projects default configurations (such as environments, logical layers and accessible namespaces)
+- [providers](/docs/development_suite/set-up-infrastructure/providers-management) (Git Providers, Secret Managers, CI/CD Tools)
+- projects default configurations (such as environments, logical layers, and accessible namespaces)
 
 :::info
 Each of these configurations will be applied as the default configuration to newly created projects within the company.
@@ -140,7 +140,7 @@ To connect a cluster, you can follow the [clusters connection guide](/developmen
 
 ### Configure Providers
 
-Git Providers, Secret Managers and CI/CD tools can be configured from the **Providers** section of the Console, inside the Company Overview area.
+Git Providers, Secret Managers, and CI/CD tools can be configured from the **Providers** section of the Console, inside the Company Overview area.
 
 For further details on how to create new providers, you can follow the [providers configuration guide](/docs/development_suite/set-up-infrastructure/configure-provider.mdx).
 
@@ -176,13 +176,13 @@ The projects default configurations fields are:
   
   The object must have the following properties:
 
-  - **providerId** (_required_): unique identifier of the Git Provider associated with the company 
+  - **providerId** (_required_): the unique identifier of the Git Provider associated with the company 
   
-    It corresponds to the `providerId` field of the providers CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
 
     Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
   
-  - **basePath**: base path where the project will be created. 
+  - **basePath**: the base path where the project will be created. 
     
     :::caution
     Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
@@ -201,10 +201,10 @@ The projects default configurations fields are:
       For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
       then the `basePath` must be **`mia-platform/projects`**.
       
-      If your group does not exist (groupB in the example):
+      If your group does not exist (in the example groupB):
 
-      - /groupA/groupB -> if user have permission to create groups in groupA, then groupB will be created;
-      - /groupA/groupB -> if user have no permission to create groups in groupA, then groupB will NOT be created;
+      - /groupA/groupB -> if the user has permission to create groups in groupA, then groupB will be created;
+      - /groupA/groupB -> if the user has no permission to create groups in groupA, then groupB will NOT be created;
       - /groupA/groupB -> if groupA does not exist, then it will NOT be created any group.
 
     </TabItem>
@@ -224,7 +224,7 @@ The projects default configurations fields are:
 
       It corresponds to the **path where your Azure project is reachable**: the pattern is _company-name/project-name_.
       
-      For example, if you project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
+      For example, if your project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
       then the `basePath` must be **`mia-platform-devops/Test`**.
 
     </TabItem>
@@ -233,18 +233,20 @@ The projects default configurations fields are:
 
       It corresponds to the **path where your Bitbucket project is reachable**: the pattern is _projects/project-code_.
 
-      For example, if you project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
+      For example, if your project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
       then the `basePath` must be **`projects/Test`**.
 
     </TabItem>
 
     </Tabs>
       
-  - **visibility**: visibility of the project. Either one of the following:
+  - **visibility**: the visibility of the project. 
 
-    - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
-    - `internal`: the repository can be accessed and viewed by any authenticated user within the same Git Provider instance or organization;
-    - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
+    Either one of the following:
+
+      - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
+      - `internal`: the repository can be accessed and viewed by any authenticated user within the same Git Provider instance or organization;
+      - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
 
   <br/>
 
@@ -306,14 +308,14 @@ The projects default configurations fields are:
   An object that specifies the information regarding the CI/CD pipelines used by the company. 
 
   :::info
-  This field can also be set by [selecting a default CI/CD tool](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default CI/CD Tool](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
   :::
   
   The object must have the following properties:
 
-  - **providerId**: unique identifier of the CI/CD tool associated with the company.
+  - **providerId**: the unique identifier of the CI/CD Tool associated with the company.
     
-    It corresponds to the `providerId` field of the providers CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
@@ -322,7 +324,7 @@ The projects default configurations fields are:
   <Tabs>
   <TabItem value="azure-devops" label="Azure DevOps">
 
-    - **azurePipelineId**: unique identifier that can be used to reference and identify a pipeline.
+    - **azurePipelineId**: a unique identifier that can be used to reference and identify a pipeline.
 
     Learn more on how to retrieve the ID of a pipeline on the Azure DevOps [pipelines documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines).
 
@@ -335,7 +337,7 @@ The projects default configurations fields are:
 
       The view configuration includes the following fields: 
 
-      - **name**: name of the visualization step where Jenkins pipelines are shown.
+      - **name**: the name of the visualization step where Jenkins pipelines are shown.
   
   </TabItem>
   </Tabs>
@@ -390,18 +392,18 @@ The projects default configurations fields are:
   An object that describes the configuration to enable the Variables section in the Project Settings area of the Console.
 
   :::info
-  This field can also be set by [selecting a default secret manager](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default Secret Manager](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
   :::
 
   :::caution
-  This field is not required. However, by leaving an empty configuration you will need to manually configure a secret manager for each project you create.
+  This field is not required. However, by leaving an empty configuration you will need to manually configure a Secret Manager for each project you create.
   :::
 
   The object can be configured with the following properties:
 
-  - **providerId**: unique identifier of the secret manager associated with the company. 
+  - **providerId**: the unique identifier of the Secret Manager associated with the company. 
   
-    It corresponds to the `providerId` field of the providers CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
@@ -410,7 +412,7 @@ The projects default configurations fields are:
   <Tabs>
   <TabItem value="gitlab" label="GitLab">
   
-  - **baseUrl**: base path from which the variables will be read. 
+  - **baseUrl**: the base path from which the variables will be read. 
 
     If not specified, variables will be read from the first parent group of the Configurations project in GitLab.
 
@@ -418,7 +420,7 @@ The projects default configurations fields are:
 
   - **storage**: additional settings related to the storage of environment variables within the GitLab installation.
 
-    It is composed by the following properties:
+    It is composed of the following properties:
 
     - **path**: specifies the exact location for reading variables, starting from the _basePath_.
 
@@ -434,9 +436,9 @@ The projects default configurations fields are:
     <br/>
     
   :::info
-  This configuration is saved only within the company model, and is retrieved by projects at runtime. 
+  This configuration is saved only within the company model and is retrieved by projects at runtime. 
 
-  If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables path for all the projects in the company.
+  If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables' path for all the projects in the company.
   :::
 
   </TabItem>
@@ -481,18 +483,18 @@ The projects default configurations fields are:
 
   Each object is shaped as follows:
 
-  - **label**: descriptive, human-readable identifier for the environment;  
-  - **envId** (_required_): unique identifier associated with the environment;
+  - **label**: a descriptive, human-readable identifier for the environment;  
+  - **envId** (_required_): a unique identifier associated with the environment;
   - **envPrefix**: defines a common prefix for environment-specific variables;
-  - **description**: short description of the environment;
-  - **isProduction**: boolean value indicating whether it is considered to be a production environment;
+  - **description**: a short description of the environment;
+  - **isProduction**: a boolean value indicating whether it is considered to be a production environment;
   - **hosts**: an array of objects identifying the hosts used by the environment.
   
     Each host is shaped as follows:
 
-    - **host**: URL identifying where the host is located;
-    - **isBackoffice**: boolean value indicating whether the host is a CMS instance;
-    - **scheme**: the URL schema, typically either _http_ of _https_.
+    - **host**: the URL identifying where the host is located;
+    - **isBackoffice**: a boolean value indicating whether the host is a CMS instance;
+    - **scheme**: an URL schema, typically either _http_ of _https_.
 
     This object can be used to specify where a specific environment should be hosted,
     where it should expose its documentation or where to access its CMS.
@@ -515,18 +517,14 @@ The projects default configurations fields are:
 
     In addition, it can include the following properties, supported only by specific providers:
 
-    <Tabs>
-    
-    <!-- 
+    <Tabs>    
     <TabItem value="github" label="Github">
 
-     - **statusWebhookSecretCredentialsId**: identifier of a secret credential that is used to authenticate and authorize access to a status webhook.
+     - **statusWebhookSecretCredentialsId**: the identifier of a secret credential that is used to authenticate and authorize access to a status webhook.
 
      A status webhook is a mechanism that allows external services or systems to receive notifications about the status of GitHub Actions workflows or specific events within a repository.
 
     </TabItem> 
-    -->
-
     <TabItem value="jenkins" label="Jenkins">
 
      - **jobId**: identifier of the Jenkins job associated with the pipeline.
@@ -540,21 +538,21 @@ The projects default configurations fields are:
     </TabItem>
     </Tabs>
   
-  - **cluster**: an object identifying the connection parameters of the cluster the enviroment is deployed to.
+  - **cluster**: an object identifying the connection parameters of the cluster the environment is deployed to.
 
     It contains the following properties: 
 
-      - **clusterId**: unique identifier associated with the Kubernetes cluster;
-      - **namespace**: name of the logical partitioning the cluster refers to;
+      - **clusterId**: a unique identifier associated with the Kubernetes cluster;
+      - **namespace**: the name of the logical partitioning the cluster refers to;
       - **kubeContextVariables**: an object containing configuration variables for the Kubernetes context.
 
-        It is composed by the following variables:
+        It is composed of the following variables:
 
-          - **KUBE_URL**: URL or endpoint used to access the cluster;
+          - **KUBE_URL**: the URL or endpoint used to access the cluster;
 
-          - **KUBE_TOKEN**: authentication token required to authenticate and authorize access to the cluster.
+          - **KUBE_TOKEN**: an authentication token required to authenticate and authorize access to the cluster.
           
-          - **KUBE_CA_PEM**: PEM-encoded certificate authority. 
+          - **KUBE_CA_PEM**: a PEM-encoded certificate authority. 
             
             It is used to verify the authenticity of the cluster's TLS certificate during secure communication.
 
@@ -600,7 +598,7 @@ The projects default configurations fields are:
 
 - **logicalScopeLayers**:
    
-  An array of objects identifying the set of logical layers available in the current company. 
+  An array of objects that identifies the set of logical layers available in the current company. 
   
   Each object is shaped as follows:
 
@@ -619,7 +617,7 @@ The projects default configurations fields are:
 
 - **availableNamespaces**:
   
-  Namespaces internally accessible from your project, using the `cross-projects` endpoint. 
+  Namespaces which are internally accessible from your project, using the `cross-projects` endpoint. 
   
   Namespaces are useful when your company is made up of several projects that communicate with each other.
 
@@ -652,19 +650,21 @@ The projects default configurations fields are:
 
   The object should have the following properties:
 
-  - **type** (_required_): string which defines the format of the suggestion. Currently, there exist three types:
+  - **type** (_required_): defines the format of the suggestion. 
+    
+    Currently, three types are present:
 
-    - `PROJECT_ID` (_default_): **`<project-id>/<your-service-name>`**
+      - `PROJECT_ID` (_default_): **`<project-id>/<your-service-name>`**
 
-      This is the default behaviour, suggestions will follow this format when this field is not set. Do **not** set the _prefix_ property if you choose this type of suggestion.
+        This is the default behavior, suggestions will follow this format when this field is not set. Do **not** set the _prefix_ property if you choose this type of suggestion.
 
-    - `REPOSITORY`: **`<your-group-name>/<your-repo-name>`**
+      - `REPOSITORY`: **`<your-group-name>/<your-repo-name>`**
 
-      Do **not** set the _prefix_ property if you choose this type of suggestion.
+        Do **not** set the _prefix_ property if you choose this type of suggestion.
 
-    - `CONSTANT_PREFIX`: **`<prefix-value>/<your-service-name>`**. 
+      - `CONSTANT_PREFIX`: **`<prefix-value>/<your-service-name>`**. 
 
-      The _prefix_ property is required for this type and will replace _prefix-value_.
+        The _prefix_ property is required for this type and will replace _prefix-value_.
 
   - **prefix**: defines the prefix that will appear in the suggestion for the Docker image name. 
   
