@@ -20,6 +20,7 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_libraries/*",
   "runtime_suite_tools/*",
   "business_suite/*",
+  "self_hosted/installation-chart/*",
 
   "tutorial/demo_project/overview", // TODO:
 ]
