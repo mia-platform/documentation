@@ -973,6 +973,10 @@
           "collapsed": true,
           "items": [
             {
+              "id": "paas/docker-registry",
+              "type": "doc"
+            },
+            {
               "id": "paas/kube-green",
               "type": "doc"
             },
