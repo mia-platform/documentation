@@ -576,6 +576,14 @@ The projects default configurations fields are:
           "isBackoffice": true
         }
       ],
+      "environmentsVariables": {
+        "providerId": "my-vault",
+        "type": "vault"
+      },
+      "deploy": {
+        "providerId": "my-jenkins",
+        "type": "jenkins",
+      },
       "cluster": {
         "clusterId": "human-readable-id-of-the-cluster",
         "namespace": "%projectId%-development",
