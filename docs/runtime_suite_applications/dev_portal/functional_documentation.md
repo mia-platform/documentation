@@ -4,15 +4,9 @@ title: Functional Documentation
 sidebar_label: Functional Documentation
 ---
 
-Once you successfully followed the [steps](/runtime_suite_applications/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/runtime_suite_applications/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all information characterizing your organization at the endpoint `/dev-portal-backoffice/`. 
 
 Through the **Backoffice** section of the Dev Portal, you can easily access the documentation repository that will be shown in the Dev Portal Documentation.
-
-:::note
-Please make sure your **Documentation** link is correctly configured once you create the Dev Portal application. 
-
-You can change this link by editing the `backoffice-micro-lc-backend` configuration. Move to the `configuration.json` file and update the `externalLink` field of the documentation plugin.
-:::
 
 ## Edit Documentation with Docusaurus
 
@@ -22,13 +16,9 @@ The Dev Portal Documentation section allows users to deeply understand each part
 [Docusaurus](https://docusaurus.io) is a documentation template that allows you to quickly structure your documentation through the usage of markdown files. It also provides a wide range of additional [markdown features](https://docusaurus.io/docs/markdown-features). 
 :::
 
-### The Documentation Repository
+### Overview
 
 When you create a Dev Portal application, you are also generating a Docusaurus template with a dedicated repository that will help you manage your documentation.
-
-From the Backoffice, you can easily reach this repository by clicking the **Documentation** link inside the **Static files** section, displayed right after the [marketplace](/runtime_suite_applications/dev_portal/marketplace_management.md) and [requests](/runtime_suite_applications/dev_portal/requests_management.md) management sections.
-
-### Overview
 
 Once you successfully land on the Docusaurus template repository, you can start editing the content that will be shown in the Dev Portal Documentation.
 

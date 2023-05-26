@@ -4,7 +4,7 @@ title: Marketplace Management
 sidebar_label: Marketplace Management
 ---
 
-Once you successfully followed the [steps](/runtime_suite_applications/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all the information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/runtime_suite_applications/dev_portal/application_creation.md) to create the Dev Portal application, you can start adding all the information characterizing your organization at the endpoint `/dev-portal-backoffice/`. 
 
 Through the **Backoffice** section of the Dev Portal, you can edit and manage all the data that will be shown in the Dev Portal Marketplace.
 
@@ -129,16 +129,16 @@ The following is the default template provided by the dev portal application. Yo
 <p><br></p>
 ```
 
-If you wish to set your own custom description template, go to the microservices section of your project and search for the `backoffice-micro-lc-backend` microservice. 
+If you wish to set your own custom description template, go to the microservices section of your project and search for the `dev-portal-backoffice` microservice. 
 
-Among its configurations, you will find a file named `marketplace.json`. This file is generally used to configure the structure of the [Marketplace page](#the-marketplace-page). However, you will also have the possibility to insert a default template by editing the `initialValues.description` field.
+Among its configurations, you will find a file named `marketplace.confg.json`. This file is generally used to configure the structure of the [Marketplace page](#the-marketplace-page). However, you will also have the possibility to insert a default template by editing the `initialValues.description` field.
 
 The description field can contain a mix of text and HTML tags structure, as shown below:
 
 ![marketplace-template](./img/marketplace-template.png)
 
 :::info
-Please make sure to stringify your template before inserting it into the `backoffice-micro-lc-backend` configuration.
+Please make sure to stringify your template before inserting it into the `dev-portal-backoffice` configuration.
 :::
 
 ## The Categories Page
