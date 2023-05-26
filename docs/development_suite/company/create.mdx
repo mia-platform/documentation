@@ -14,7 +14,7 @@ Within a company, it is possible to:
 - analyze the configuration of all existing projects;
 - manage users and permissions.
 
-#### Saas
+#### SaaS
 To create a new company in the Mia-Platform SaaS Console, open a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/79/create/340) and the company will be created for you.
 
 #### On-Premise 
@@ -123,7 +123,7 @@ As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in 
 Once you create a company, you can configure:
 
 - [clusters](/docs/development_suite/clusters-management/clusters-overview-setup)
-- [providers](/docs/development_suite/set-up-infrastructure/providers-management) (git providers, secret managers, CI/CD tools)
+- [providers](/docs/development_suite/set-up-infrastructure/providers-management) (Git Providers, Secret Managers, CI/CD tools)
 - projects default configurations (such as environments, logical layers and accessible namespaces)
 
 :::info
@@ -140,7 +140,7 @@ To connect a cluster, you can follow the [clusters connection guide](/developmen
 
 ### Configure Providers
 
-Git providers, Secret Managers and CI/CD tools can be configured from the **Providers** section of the Console, inside the Company Overview area.
+Git Providers, Secret Managers and CI/CD tools can be configured from the **Providers** section of the Console, inside the Company Overview area.
 
 For further details on how to create new providers, you can follow the [providers configuration guide](/docs/development_suite/set-up-infrastructure/configure-provider.mdx).
 
@@ -171,14 +171,14 @@ The projects default configurations fields are:
   An object that specifies the information regarding the repository where the projects of this company will be created. 
 
   :::info
-  This field can also be set by [selecting a default git provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
+  This field can also be set by [selecting a default Git Provider](/docs/development_suite/set-up-infrastructure/providers-management#set-a-default-provider) in the **Providers** section of the Console.
   :::
   
   The object must have the following properties:
 
-  - **providerId** (_required_): unique identifier of the git provider associated with the company 
+  - **providerId** (_required_): unique identifier of the Git Provider associated with the company 
   
-    It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the providers CRUD collection, and it is used to retrieve information about the provider. 
 
     Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
   
@@ -188,7 +188,7 @@ The projects default configurations fields are:
     Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
     :::
 
-    Here are some tips on how to correctly configure the _basePath_ property, grouped by Git provider:
+    Here are some tips on how to correctly configure the _basePath_ property, grouped by Git Provider:
 
     <Tabs>
 
@@ -243,7 +243,7 @@ The projects default configurations fields are:
   - **visibility**: visibility of the project. Either one of the following:
 
     - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
-    - `internal`: the repository can be accessed and viewed by any authenticated user within the same git provider instance or organization;
+    - `internal`: the repository can be accessed and viewed by any authenticated user within the same Git Provider instance or organization;
     - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
 
   <br/>
@@ -313,7 +313,7 @@ The projects default configurations fields are:
 
   - **providerId**: unique identifier of the CI/CD tool associated with the company.
     
-    It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the providers CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
@@ -401,7 +401,7 @@ The projects default configurations fields are:
 
   - **providerId**: unique identifier of the secret manager associated with the company. 
   
-    It corresponds to the `providerId` field of the provider's CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the providers CRUD collection, and it is used to retrieve information about the provider. 
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/docs/development_suite/set-up-infrastructure/providers-management);
 
@@ -496,22 +496,6 @@ The projects default configurations fields are:
 
     This object can be used to specify where a specific environment should be hosted,
     where it should expose its documentation or where to access its CMS.
-
-  - **dashboards**: an array of objects identifying environments metrics and performance indicators.
-
-    Each dashboard is shaped as follows:
-
-      - **id** (_required_): unique identifier associated with the dashboard;
-      - **label** (_required_): descriptive human-readable identifier for the dashboard;  
-      - **url** (_required_): URL from which the metrics are retreived;
-      - **type** (_required_): defines the integration method of the dashboard in the Console.
-  
-        Either one of the following: 
-        
-        - `iframe`: the dashboard will be included within the Console UI;
-        - `newTab`: the dashboard will open on a new browser tab.
-
-      - **category**: indicates the group in which the dashboard will be presented in the Console UI.
   
   - **environmentsVariables**: an object that describes the configuration of variables for the environment.
     
@@ -532,15 +516,26 @@ The projects default configurations fields are:
     In addition, it can include the following properties, supported only by specific providers:
 
     <Tabs>
+    
+    <!-- 
     <TabItem value="github" label="Github">
 
-     - **statusWebhookSecretCredentialsId**: TODO add?
+     - **statusWebhookSecretCredentialsId**: identifier of a secret credential that is used to authenticate and authorize access to a status webhook.
 
-    </TabItem>
+     A status webhook is a mechanism that allows external services or systems to receive notifications about the status of GitHub Actions workflows or specific events within a repository.
+
+    </TabItem> 
+    -->
+
     <TabItem value="jenkins" label="Jenkins">
 
-     - **jobId**: TODO
-     - **paramsMap**: TODO
+     - **jobId**: identifier of the Jenkins job associated with the pipeline.
+      
+      It uniquely identifies the job within the Jenkins instance. 
+
+     - **paramsMap**: a map or dictionary of parameters that can be passed to a Jenkins pipeline. 
+  
+      Parameters allow you to provide inputs or configuration values to the pipeline, enabling dynamic behavior and customization. 
 
     </TabItem>
     </Tabs>
