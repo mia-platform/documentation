@@ -91,7 +91,7 @@ The first user may either be yourself or another user in the Platform.
 Regardless, head over to the CMS page and click the `Bindings` menu item.
 
 :::caution
-Only a restricted set of users have access to the users management section in CMS, ask your Console Administrator if you need the right permissions to access this functionality.
+Only a restricted set of users have access to the users management section in CMS, contact your Console Administrator to obtain the right permissions to access this functionality.
 :::
 
 In the `Bindings` section, click the `Add new` button and fill in the form:
@@ -103,7 +103,7 @@ The _Binding ID_ must be unique in the whole collection!
 As a general recommendation we suggest `{companyId}-{desiredRole}`, however, in some cases a more complex structure may be necessary.
 :::
 
-- select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console).)
+- select the proper **Role** (since it is the first user, it is recommended to set the role [`Company Owner`](/docs/development_suite/identity-and-access-management/console-levels-and-permission-management#users-capabilities-inside-console))
 
 - select the correct user as **Subject**
 
@@ -185,10 +185,10 @@ The projects default configurations fields are:
   - **basePath**: base path where the project will be created. 
     
     :::caution
-    Make sure your configured Git Provider has the right permissions for creating projects on the configured path.
+    Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
     :::
 
-    Here some tips on how to correctly configure the _basePath_ property, grouped by Git provider:
+    Here are some tips on how to correctly configure the _basePath_ property, grouped by Git provider:
 
     <Tabs>
 
@@ -329,11 +329,11 @@ The projects default configurations fields are:
   </TabItem>
   <TabItem value="jenkins" label="Jenkins">
 
-    - **options**: an object containing the view configuration property.
+    - **options**: an object containing the **view** property.
 
       In Jenkins, pipeline views allow you to visualize and monitor your pipelines and their status in a more organized and user-friendly way, making it easier to track their progress and health.
 
-      The **view** configuration includes the following fields: 
+      The view configuration includes the following fields: 
 
       - **name**: name of the visualization step where Jenkins pipelines are shown.
   
@@ -420,14 +420,16 @@ The projects default configurations fields are:
 
     It is composed by the following properties:
 
-    - **path**: TODO
+    - **path**: specifies the exact location for reading variables, starting from the _basePath_.
 
-    - **type**: TODO
+    - **type**: the level of granularity variables are managed in the GitLab installation.
+
+      It determines the scope within which variables will be available to the pipelines.
 
       Either one of the following:
 
-      - `groups`: TODO
-      - `projects`: TODO
+      - `groups`: variables will be managed at the group level;
+      - `projects`: variables will be managed at the project level.
 
     <br/>
     
@@ -479,7 +481,7 @@ The projects default configurations fields are:
 
   Each object is shaped as follows:
 
-  - **label**: descriptive human-readable identifier for the environment;  
+  - **label**: descriptive, human-readable identifier for the environment;  
   - **envId** (_required_): unique identifier associated with the environment;
   - **envPrefix**: defines a common prefix for environment-specific variables;
   - **description**: short description of the environment;
@@ -494,13 +496,6 @@ The projects default configurations fields are:
 
     This object can be used to specify where a specific environment should be hosted,
     where it should expose its documentation or where to access its CMS.
-
-  <!-- - **links**: an array of objects containing a series of useful links.
-
-    Each link is shaped as follows:
-
-    - **id**: unique identifier associated with the link;
-    - **url** (_required_): link redirection URL. -->
 
   - **dashboards**: an array of objects identifying environments metrics and performance indicators.
 
