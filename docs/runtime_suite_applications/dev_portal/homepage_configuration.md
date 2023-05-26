@@ -14,7 +14,7 @@ However, if this user experience we provided with the homepage does not correctl
 
 When you create a Dev Portal application, you are also generating a Docusaurus template with a dedicated repository that will help you manage your Dev Portal documentation content.
 
-In this repository, a dedicated sub-package will allow you to access the content rendered on the homepage and modify it according to your requisites.
+In this repository, a dedicated sub-package will allow you to access the content rendered on the homepage and modify it according to your needs.
 
 :::info
 You can easily access the homepage code inside the repository at `packages/home/src`.
