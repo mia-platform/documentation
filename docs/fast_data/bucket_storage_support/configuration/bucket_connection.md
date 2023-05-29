@@ -23,6 +23,12 @@ bss:
     endpoint: {{S3_ENDPOINT}}
 ```
 
+:::caution
+When setting the bucket endpoint, it is important to specify the URI scheme (e.g. `https://`) before the address. Otherwise the service may fail to start with the following error:
+
+> FD_ARC_E0003: provided S3 Cloud Storage configuration is invalid: The URI scheme of endpointOverride must not be null.
+:::
+
 ## Connect with Google bucket
 
 In order to connect to a Google bucket, after setting the environment variable `BUCKET_TYPE` to `google`, a [secret will have to be created](/development_suite/api-console/api-design/services.md#secrets),
