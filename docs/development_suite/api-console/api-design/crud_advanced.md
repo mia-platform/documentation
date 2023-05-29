@@ -104,7 +104,7 @@ When configuring the JSON schema of a field of type `Object` you can also add th
             "type": "array"
         },
         "name": {
-            "example": "Jane",
+            "examples": ["Jane"],
             "title": "The user name",
             "type": "string"
         },
