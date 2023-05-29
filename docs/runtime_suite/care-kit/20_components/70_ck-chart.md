@@ -20,11 +20,13 @@ The response of the endpoint is used to populate the `series` property of the hi
 :::
 
 
-It is possible to filter the data shown in the chart, since the `ck-chart` web-component listens to the [change-query](../../../business_suite/backoffice/events#change-query) event. The `filters` property of every `change-query` event is stringified and attached to the data endpoint as the `filters` query parameter. It is up to the backend service to parse the filters and return the filtered data.
+It is possible to filter the data shown in the chart, since the `ck-chart` web-component listens to the [change-query](../../../business_suite/backoffice/events#change-query) event. The `filters` property of every `change-query` event and `chart-filters` event is stringified and attached to the data endpoint as the `filters` query parameter. It is up to the backend service to parse the filters and return the filtered data.
 
-Properties `urlMask` and `idKey` are used to retrieve an `id` from the url: `idKey` is the dynamic value key mapped in the `urlMask`. For example, if the url is `/dashboard/14alGw?pageSize=25` where `14alGw` is the `id`, the `urlMask` will be `/dashboard/:<yourKey>` and `idKey` will be `<yourKey>`.
+Properties `urlMask` and `idKeys` are used to retrieve paramters from the URL. `idKeys` is the array of dynamic value keys mapped in the `urlMask`. For example, if the URL is `/dashboard/14alGw/example/JJ09nr` where `14alGw` and `JJ09nr` are the paramters to be extracted for the URL, the `urlMask` will be `/dashboard/:<key1>/example/:<key2>` and `idKeys` will be `[<key1>, <key2>]`. The parameters extracted from the URL are added to the query parameters with the associated key. 
 
-If an `id` is retrived it will be combined with the `dataEndpoint` and the chart data will be fetched from the path `dataEndpoint`/`<id>`.
+:::info
+If the URL as multiple dynamic parameters, but only a subset is needed inside the query parameters, you have to associate to each URL dynamic part a key in the `urlMask` and put inside the `idKeys` array only the useful one.
+:::
 
 An example configuration follows: 
 
@@ -34,8 +36,8 @@ An example configuration follows:
   "tag": "ck-chart",
   "properties": {
     "dataEndpoint": "api/v1/chartdata",
-    "urlMask": "/dashboard/:userId",
-    "idKey" : "userId",
+    "urlMask": "/dashboard/:userId/",
+    "idKeys" : ["userId"],
     "options": {
       "chart": {
         "type": "line"
@@ -52,7 +54,7 @@ An example configuration follows:
 |`dataEndpoint`| string | true | '/' | Endpoint used to retrieve the data displayed on the chart. |
 |`options`| object | true | {} | Object that contains the Highchart chart options. |
 |`urlMask`| string | false |`/:id` | url mask to apply to the current path to extract id dynamically. |
-|`idKey`| string | false |`id` | id key in urlMask. | 
+|`idKeys`| string[] | false |`['id']` | id keys in urlMask. | 
 
 
 ## Listens to
@@ -60,6 +62,7 @@ An example configuration follows:
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |`change-query`| Triggers the fetching of the data with filters applied. | - | - |
+|`chart-filters`| Triggers the fetching of the data with filters applied. | - | - |
 
 ## Emits
 

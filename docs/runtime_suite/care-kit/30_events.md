@@ -76,3 +76,15 @@ The event to open an [ck-add-plan-modal](20_components/60_ck-add-plan-modal.md) 
 ```typescript
 {}
 ```
+
+## ChartFilters
+
+The event to open contains filters used by the ck-chart component.
+
+- Label: `add-plan-modal`
+
+- Payload:
+
+```typescript
+Filters[]
+```
