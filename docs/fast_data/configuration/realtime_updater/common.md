@@ -96,7 +96,7 @@ It's the default one, it is based on the [IBM InfoSphere Data Replication engine
 The message should include the following properties:
 - `timestamp`: a stringified integer greater than zero. This integer has to be a valid timestamp.
 - `key`: it has to be a stringified object containing the primary key of the projection, if `value` also contains the primary key of the projection this field can be an empty string.
-- `value`: it is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
+- `value`: it is **null** if it's a *delete* operation, otherwise it contains the data of the projection (in this case, remember to **always** specify the object's key in the `value` field as well).
 - `offset`: it is the offset of the Kafka message.
 
 These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
