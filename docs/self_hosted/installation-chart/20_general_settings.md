@@ -55,7 +55,7 @@ Mia-Platform Console allows user to create custom Service Accounts to perform m2
 | `clientIdSalt` | string | salt for client id | | ❌ |
 | `jwtExpiresIn` | string | seconds defining the service account jwt expiration time | `3600` | ✅ |
 
-### How to generate secret values
+### How to generate secret values
 
 For any doubt check out the [Client Credentials guide](../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
 
