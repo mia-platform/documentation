@@ -296,7 +296,8 @@
     "Roboto",
     "Neue",
     "Noto",
-    "Segoe"
+    "Segoe",
+    "kotlinx"
   ],
   "dictionaries": [
     "softwareTerms",
