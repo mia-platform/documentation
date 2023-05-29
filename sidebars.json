@@ -12,6 +12,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/company/configuration",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",
