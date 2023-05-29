@@ -37,9 +37,28 @@ The second tab is equivalent to the first in terms of functionalities. However, 
 
 ![Compose page connectors & adapters tab](img/compose-page_connectors.png)
 
+## Shared Properties
+
+The third tab allows the user to define custom reusable properties and assign their value to different properties of components on the page. This is
+useful to centralize important values that can be shared across components and editing them in one place.
+
+![Compose page shared properties tab](img/compose-page_shared-properties.png)
+
+### Create and assign Shared Property
+
+In order to create a new Shared Property, it is necessary to click on the "Create property" button and fill out the form by assigning a name and a type 
+to the property (if no type is available in the dropdown, it means that no component in the page expects a shared property).
+
+Once that the property has been created, it will be visible in the left side menu. It is possible to assign it to a property of a component 
+in page by selecting it and flagging the checkbox of the relative property.
+
+Alternatively, it is possible to assign a Shared Property to a component property directly in the [Component properties editor](./20_structure.md###components-properties-editor)
+
+![Compose page shared properties tab](img/compose-page_shared-properties-checkbox.png)
+
 ## Advanced
 
-The third and last tab works like the advanced tab of the [structure section](./20_structure.md#advanced-configuration):
+The fourth and last tab works like the advanced tab of the [structure section](./20_structure.md#advanced-configuration):
 the **whole configuration** of the page can be edited from a code editor with a live preview on the right.
 
 ![Compose page advanced tab](img/compose-page_advanced.png)

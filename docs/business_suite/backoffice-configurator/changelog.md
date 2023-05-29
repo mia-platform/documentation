@@ -3,12 +3,6 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
-## [1.0.2] - 2023-05-23
-
-### Fixed
-
-- fixed bug causing properties with `oneOf` schemas to be incorrectly valued in editing modals
-
 ## [1.0.1] - 2023-05-02
 
 ### Added
