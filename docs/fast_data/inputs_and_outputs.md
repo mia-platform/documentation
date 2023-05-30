@@ -68,6 +68,8 @@ Upsert operation:
     "FISCAL_CODE": "ABCDEF12B02M100O"
   },
   "value": {
+    "USER_ID": 123,
+    "FISCAL_CODE": "ABCDEF12B02M100O",
     "NAME": 456
   },
   "timestamp": "1234556789",
