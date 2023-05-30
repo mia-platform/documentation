@@ -99,7 +99,9 @@ The message should include the following properties:
 - `value`: it is **null** if it's a *delete* operation, otherwise it contains the data of the projection.
 - `offset`: it is the offset of the Kafka message.
 
+:::info
 It is important to note that whenever the ingestion message is not a *delete* operation the `value` of the message must contain all the fields of the projection, including the primary keys also present in the `key`, so the Real Time Updater can process the message properly.
+:::
 
 These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
 
