@@ -57,6 +57,12 @@ A rule is considered verified if all the keys defined in the object `rules` are 
 
 More detail about the schema of the configuration file are available on the [dedicated section](./20_configuration.md).
 
+## Main Flow Data
+The router is in charge to update the data on the main flow and every time an event is sent to the `Sub Flow Manager` the `mainFlowData` object is updated with the following rules:
+- `evidences`: new items are appended to the array. Each item should have a unique pair of `type` and `side` values and duplicated one are substituted with the newer items.
+- `scores`: new items are appended to the array. Each item should have a unique value for `key` field and duplicated one are substituted with the newer items.
+- every other field are updated with the input value
+
 ## Retry on http requests failure
 This service will make call to CRUD service and a generic external service, if defined.
 Through environment variables MAX_RETRIES and RETRIES_DELAY_MS, a retry system can be defined in case of network or connection failure.

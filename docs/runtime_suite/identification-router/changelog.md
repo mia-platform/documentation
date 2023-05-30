@@ -8,6 +8,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.4.3 - 29/05/2023
+
+### Changed
+
+- remove duplicated items on `evidences` array based on pair `side` and `type`
+- remove duplicated items on `scores` array based on pair `key`
+- update always `subject.person.identityDocument` object
+
 ## 0.4.2 - 24/05/2023
 
 ### Changed
