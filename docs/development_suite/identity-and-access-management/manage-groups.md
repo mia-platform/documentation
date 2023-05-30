@@ -1,5 +1,5 @@
 ---
-id: group-management
+id: manage-groups
 title: Manage Groups
 sidebar_label: Manage Groups
 ---
@@ -20,7 +20,7 @@ To find out more about roles management, check out the available [capabilities](
 
 Each Company can have its own groups. These types of identities are configurable and manageable exclusively by a Company Owner from the dedicated Groups section within the Company Overview. 
 
-![Group table](./img/group-management/group_table.png)
+![Group table](./img/manage-groups/group_table.png)
 
 At Company level, for each group, it is possible to manage:
 
@@ -30,7 +30,7 @@ At Company level, for each group, it is possible to manage:
 
 Existing groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
 
-Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/user-management.md).
+Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/manage-identities.md).
 
 :::caution
 Please note that some permissions granted by the assigned Company role may be inherited on the Projects and Runtime Environments of the Company itself.  
@@ -49,7 +49,7 @@ During the creation process, the group can be also created without members added
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Add group](./img/group-management/add_group.png)
+![Add group](./img/manage-groups/add_group.png)
 
   </div>
 </div>
@@ -81,7 +81,7 @@ In the case that a user has access to more Company Groups, or has a specific ind
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit group](./img/group-management/edit_group.png)
+![Edit group](./img/manage-groups/edit_group.png)
 
   </div>
 </div>
@@ -95,7 +95,7 @@ As a result, the Company role of a group can be modified not only from the Group
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit group role at Company level](./img/group-management/edit-group-role-at-company-level.png)
+![Edit group role at Company level](./img/manage-groups/edit-group-role-at-company-level.png)
 
   </div>
 </div>
@@ -109,7 +109,7 @@ You can change the role of the group in the Project or in any Project Runtime En
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit group role at Project level](./img/group-management/edit-group-role-at-project-level.png)
+![Edit group role at Project level](./img/manage-groups/edit-group-role-at-project-level.png)
 
   </div>
 </div>
@@ -136,7 +136,7 @@ In the case that a user has access to more Company groups, or has a specific ind
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Delete group](./img/group-management/delete_group.png)
+![Delete group](./img/manage-groups/delete_group.png)
 
   </div>
 </div>

@@ -1,7 +1,7 @@
 ---
-id: user-management
-title: Manage Users
-sidebar_label: Manage Users
+id: manage-identities
+title: Manage Identities
+sidebar_label: Manage Identities
 ---
 
 Mia-Platform Console enables certain users to control the access privileges to Company resources of other users. 
@@ -19,7 +19,7 @@ To find out more about roles check out the available [capabilities](/development
 
 At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the Identities portal, a Company Owner can add new users to the Company, manage their accesses, and remove them.
 
-![Identities portal filtered by User](./img/user-management/identities_portal_filtered_by_user.png)
+![Identities portal filtered by User](./img/manage-identities/identities_portal_filtered_by_user.png)
 
 :::caution
 Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -28,7 +28,7 @@ Always pay attention when assigning roles in order to avoid providing undesired 
 
 In the following paragraphs, we will describe how to manage your users access privileges to the company resources through individual role assignment.
 
-Alternatively, you may consider also to manage your users through groups. If you want to discover more about, [go to the groups documentation](/development_suite/identity-and-access-management/group-management.md#managing-company-groups).
+Alternatively, you may consider also to manage your users through groups. If you want to discover more about, [go to the groups documentation](/development_suite/identity-and-access-management/manage-groups.md#managing-company-groups).
 
 If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.
 
@@ -39,7 +39,7 @@ From the Identities portal, a Company Owner can add a new user by pressing the *
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Add Company User](./img/user-management/add_company_user.png)
+![Add Company User](./img/manage-identities/add_company_user.png)
 
   </div>
 </div>
@@ -57,7 +57,7 @@ A User role in the Company can be modified: to do so, simply click on the edit b
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Company User](./img/user-management/edit_company_user.png)
+![Edit Company User](./img/manage-identities/edit_company_user.png)
 
   </div>
 </div>
@@ -65,13 +65,13 @@ A User role in the Company can be modified: to do so, simply click on the edit b
 ### Removing access to the Company
 
 Removing a user from the Identity table results in removing the role assignment to that user.
-Without permission granted, user access to the Company is always removed **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/group-management.md).  
+Without permission granted, user access to the Company is always removed **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/manage-groups.md).  
 In that specific case, the user does not lose their access to the Company, and their permissions on it are defined solely by the privileges given to the group/groups to which the user belongs.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Remove User Direct Access](./img/user-management/remove_user_direct_access.png)
+![Remove User Direct Access](./img/manage-identities/remove_user_direct_access.png)
 
   </div>
 </div>
@@ -85,7 +85,7 @@ While the user may be invited back in the Company, all their previously existing
 
 A user with enough administrative permission on a specific Project will be able to view all the existing identities in the Company and assign them the desired role on the specific Project (and, optionally, on each existing Runtime Environment).
 
-![Project identities](./img/user-management/project_identities.png)
+![Project identities](./img/manage-identities/project_identities.png)
 
 :::note
 Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
@@ -100,7 +100,7 @@ The Company Owner can add a new user to a Company by pressing the *Add user* but
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Add Project User](./img/user-management/add_project_user.png)
+![Add Project User](./img/manage-identities/add_project_user.png)
 
   </div>
 </div>
@@ -119,7 +119,7 @@ A user role in the Project or any of the Project Runtime Environments can be mod
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Project User](./img/user-management/edit_at_project_level.png)
+![Edit Project User](./img/manage-identities/edit_at_project_level.png)
 
   </div>
 </div>

@@ -1,5 +1,5 @@
 ---
-id: service-account-management
+id: manage-service-accounts
 title: Manage Service Accounts
 sidebar_label: Manage Service Accounts
 ---
@@ -27,7 +27,7 @@ In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-secur
 
 A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and change their Roles.
 
-![Identities table filtered by Service Account](./img/service-account-management/identities_table_filtered_by_sa.png)
+![Identities table filtered by Service Account](./img/manage-service-accounts/identities_table_filtered_by_sa.png)
 
 :::caution
 Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -38,7 +38,7 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 
 The Company Owner can add a new Service Account by clicking on the *Add Service Account* option from the *Add User* dropdown, on the top-right corner of the Identities page. 
 
-![Add Company Service Account from dropdown](./img/service-account-management/add_company_sa_dropdown.png)
+![Add Company Service Account from dropdown](./img/manage-service-accounts/add_company_sa_dropdown.png)
 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
@@ -49,7 +49,7 @@ The Service Account creation process will require the following information:
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
 
-    ![Add Company Service Account with client secret basic auth](./img/service-account-management/add_company_sa_client_secret.png)
+    ![Add Company Service Account with client secret basic auth](./img/manage-service-accounts/add_company_sa_client_secret.png)
 
       </div>
     </div>
@@ -61,13 +61,13 @@ The Service Account creation process will require the following information:
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
     
-    ![Add Company Service Account with private key jwt auth](./img/service-account-management/add_company_sa_private_key_jwt.png)
+    ![Add Company Service Account with private key jwt auth](./img/manage-service-accounts/add_company_sa_private_key_jwt.png)
 
       </div>
     </div>
 
 :::info
-Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/service-account-management.md#service-account-authentication) paragraph.
+Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication) paragraph.
 :::
 
 ### Editing a Service Account Role
@@ -77,7 +77,7 @@ A Service Account Role in the Company can be modified: to do so, simply click on
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Company Service Account](./img/service-account-management/edit_company_sa.png)
+![Edit Company Service Account](./img/manage-service-accounts/edit_company_sa.png)
 
   </div>
 </div>
@@ -89,7 +89,7 @@ A Service Account can be removed from the Company by clicking the delete icon on
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Delete Company Service Account](./img/service-account-management/delete_company_sa.png)
+![Delete Company Service Account](./img/manage-service-accounts/delete_company_sa.png)
 
   </div>
 </div>
@@ -102,7 +102,7 @@ Removing a Service Account from the Company will permanently delete the account 
 
 A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts in the Company and edit their Role on the specific Project (and, optionally, on each existing Runtime Environment).
 
-![Project identities page](./img/service-account-management/project_identities.png)
+![Project identities page](./img/manage-service-accounts/project_identities.png)
 
 :::note
 Although the Project Identities administration portal shows all the Company's Identities, this does not mean that all of the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
@@ -114,7 +114,7 @@ For further information about permissions and Role inheritance check out the [Co
 
 The Company Owner can add a new Service Account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
 
-The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/service-account-management.md#adding-a-new-service-account) paragraph.
+The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-new-service-account) paragraph.
 
 :::note
 New Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
@@ -124,7 +124,7 @@ With the Client Secret Basic method:
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Add Project Service Account with client secret basic auth](./img/service-account-management/add_project_sa_client_secret.png)
+![Add Project Service Account with client secret basic auth](./img/manage-service-accounts/add_project_sa_client_secret.png)
 
   </div>
 </div>
@@ -133,7 +133,7 @@ With the Private Key JWT method:
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Add Project Service Account with private key jwt auth](./img/service-account-management/add_project_sa_private_key_jwt.png)
+![Add Project Service Account with private key jwt auth](./img/manage-service-accounts/add_project_sa_private_key_jwt.png)
 
   </div>
 </div>
@@ -145,7 +145,7 @@ A Service Account Role in the Project or any of the Project's Runtime Environmen
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Project Service Account](./img/service-account-management/edit_project_sa.png)
+![Edit Project Service Account](./img/manage-service-accounts/edit_project_sa.png)
 
   </div>
 </div>

@@ -1,9 +1,9 @@
 # Identity and Access Management
 
 The Console allows access to Company resources with specific authorization levels to three types of identities:
-- User: an actual individual whose account is configured for human-to-machine communication. Find out how to manage users in the [User Management](/development_suite/identity-and-access-management/user-management.md) page. 
-- Service Account: a non-human client which is used for automated processes and machine-to-machine communication. Learn all about service accounts in the [Service Account Management](/development_suite/identity-and-access-management/service-account-management.md) page. 
-- Group: a group of users who are assigned the same privileges on a set of resources. Learn all about groups in the [Groups Management](/development_suite/identity-and-access-management/group-management.md) page. 
+- User: an actual individual whose account is configured for human-to-machine communication. Find out how to manage users in the [User Management](/development_suite/identity-and-access-management/manage-users.md) page. 
+- Service Account: a non-human client which is used for automated processes and machine-to-machine communication. Learn all about service accounts in the [Service Account Management](/development_suite/identity-and-access-management/manage-service-accounts.md) page. 
+- Group: a group of users who are assigned the same privileges on a set of resources. Learn all about groups in the [Groups Management](/development_suite/identity-and-access-management/manage-groups.md) page. 
 
 The Console is based on hierarchical resources: assigning specific roles and permissions to the above mentioned identity types is important for defining responsibilities and privileges within your Companies and Projects. Discover more about it in the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) documentation.
 
