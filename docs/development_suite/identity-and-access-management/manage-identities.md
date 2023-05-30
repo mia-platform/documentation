@@ -21,30 +21,80 @@ In order to manage privileges at Project level, the Identities table is also sho
 
 ![Project Identities table](./img/identities_project.png)
 
-:::note
+:::info
 To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
 :::
 
-## Managing Company Users
+## Managing Company Identities
 
-At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the Identities portal, a Company Owner can add new users to the Company, manage their accesses, and remove them.
-
-![Identities portal filtered by User](./img/manage-identities/identities_portal_filtered_by_user.png)
+At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the Identities portal, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
 
 :::caution
 Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
 Always pay attention when assigning roles in order to avoid providing undesired access to resources!
 :::
 
-In the following paragraphs, we will describe how to manage your users access privileges to the company resources through individual role assignment.
+### Editing roles at Company level
 
-Alternatively, you may consider also to manage your users through groups. If you want to discover more about, [go to the groups documentation](/development_suite/identity-and-access-management/manage-groups.md#managing-company-groups).
+In the following paragraphs, we will describe how to manage identity roles that grant access privileges to Company resources.
 
-If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.
+#### User role management
 
-### Adding a new User at Company Level
+![Identities portal filtered by User](./img/manage-identities/identities_portal_filtered_by_user.png)
 
-From the Identities portal, a Company Owner can add a new user by pressing the *Add user* button. The User invitation process will require the invited user email to be provided.
+The Identities section allows user account management through individual role assignment. This means that the users with an assigned Company role have been directly granted a binding on the Company.
+
+A user role in the Company can be modified: to do so, simply click on the edit button for the desired user row and select the new role.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Company User](./img/manage-identities/edit_company_user.png)
+
+  </div>
+</div>
+
+If you want to discover more about users, [go to the users documentation](/development_suite/identity-and-access-management/manage-users.md#managing-company-users).  
+
+#### Group role management
+
+Alternatively, you may consider to manage user permissions through groups. Groups facilitate the governance of a large number of users who need to be granted the same set of privileges (e.g. a work team).
+
+A group role in the Company can be modified: to do so, simply click on the edit button for the desired group row and select the new role.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- ![Edit Company Group] TODO: Add screenshot -->
+
+  </div>
+</div>
+
+If you want to discover more about groups, [go to the groups documentation](/development_suite/identity-and-access-management/manage-groups.md#managing-company-groups).  
+
+::: info  
+If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.  
+:::
+
+#### Service account role management
+
+The Identities section is designed also to manage service account roles at Company level. In order to update the role of an existing service account, click on the edit button on the corresponding row and select the new role.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- ![Edit Company Service Account] TODO: Add screenshot -->
+
+  </div>
+</div>
+
+### Adding a new Identity at Company Level
+
+From the Identities portal, both user accounts and service accounts can be added to the Company.
+
+#### Adding a user
+
+A Company Owner can add a new user by pressing the *Add user* button. The User invitation process will require the invited user email to be provided.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -60,23 +110,27 @@ The provided email will be searched throughout existing users and, if a match is
 If the user does not exist in the Platform, please open a Service Request for it to be created.
 :::
 
-### Editing User Company Role
+#### Adding a service account
 
-A User role in the Company can be modified: to do so, simply click on the edit button for the desired user row and select the new role.
+It is also possible to add new service accounts by selecting the *Add Service Account* option in the *Add user* dropdown. The creation process will require the name, role and desired authentication method of the service account.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Company User](./img/manage-identities/edit_company_user.png)
+<!-- ![Add Company Service Account] TODO: Add screenshot -->
 
   </div>
 </div>
 
 ### Removing access to the Company
 
-Removing a user from the Identity table results in removing the role assignment to that user.
-Without permission granted, user access to the Company is always removed **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/manage-groups.md).  
-In that specific case, the user does not lose their access to the Company, and their permissions on it are defined solely by the privileges given to the group/groups to which the user belongs.
+The Identities section can be also used to remove user and service account access to a Company.
+
+#### Removing a user
+
+Removing a user from the Identities table results in removing the role assigned to that user.
+Without permissions granted, the user loses access to the Company, **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/manage-groups.md).  
+In that specific case, the user does not lose access to the Company, and their permissions on it are defined solely by the privileges given to the group/groups to which the user belongs.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -91,7 +145,11 @@ Removing a user from the Identities portal will remove permissions specifically 
 While the user may be invited back in the Company, all their previously existing roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
 :::
 
-## Managing User Roles at Project and Environment levels
+#### Removing a service account
+
+From the Identities portal it is also possible to remove service accounts from the Company. In this case, the service account is permanently deleted from the Company, so you will need to create a brand new one if you need it again.
+
+## Managing Identity Roles at Project and Environment levels
 
 A user with enough administrative permission on a specific Project will be able to view all the existing identities in the Company and assign them the desired role on the specific Project (and, optionally, on each existing Runtime Environment).
 
@@ -103,7 +161,45 @@ Even though the Project Identities administration portal shows all the Company i
 For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
-### Adding a new User at Project level
+### Editing Identity roles at Project level
+
+An identity role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper role for the Project itself or for each Runtime Environment.
+
+For users:  
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Project User](./img/manage-identities/edit_at_project_level.png)
+
+  </div>
+</div>
+
+For Service accounts:  
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- ![Edit Project Service Account] TODO: Add screenshot -->
+
+  </div>
+</div>
+
+For Groups:  
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- ![Edit Project Group] TODO: Add screenshot -->
+
+  </div>
+</div>
+
+### Adding a new Identity at Project level
+
+Users and service accounts can be added to a Company with specific Project and Environment roles from the Project settings Area.
+
+#### Adding a user
 
 The Company Owner can add a new user to a Company by pressing the *Add user* button in the Identities section of the Project settings Area. Here, the user can be assigned a Company role and additional roles on the specific Project and its Runtime Environments. The user invitation process will also require the invited user email to be provided.
 
@@ -121,20 +217,19 @@ The provided email will be searched throughout existing users and, if a match is
 If the user does not exist in the Platform, please open a Service Request.
 :::
 
+#### Adding a service account
 
-### Editing a User Role at Project level
-
-A user role in the Project or any of the Project Runtime Environments can be modified. To do so, just open the editing dialog and select the proper role for the Project itself or for each Runtime Environment.
+It is also possible to add new service accounts to a Company from the Project settings Area, by selecting the *Add Service Account* option in the *Add user* dropdown. The creation process will allow you to assign a Company role to the service account, as well as the roles on the specific Project and its Runtime Environments.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Project User](./img/manage-identities/edit_at_project_level.png)
+<!-- ![Add Service Account from project] TODO: Add screenshot -->
 
   </div>
 </div>
 
-## How to best manage your users
+## How to best manage your Identities
 
 Are you wondering whether organizing your users through individual role assignments is the smartest and most effective way to manage the user access to your Company? Or whether the best solution would be to organize them into groups instead?
 There is no right or wrong answer to this question: it depends on your organizational needs.  
