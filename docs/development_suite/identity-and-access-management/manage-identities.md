@@ -4,12 +4,22 @@ title: Manage Identities
 sidebar_label: Manage Identities
 ---
 
-Mia-Platform Console enables certain users to control the access privileges to Company resources of other users. 
-Granting accesses and permissions to Company resources can be performed through the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) section, which allows roles assignment on the following Console resources:
+Mia-Platform Console enables certain users to manage the privileges of other identities. 
+Granting accesses and permissions to Company resources can be performed through the **Identities** section, which allows roles assignment on the following Console resources:
 
 * Company
 * Project
 * Runtime Environment
+
+Users with enough administrative permission can manage roles and permissions given to users, service accounts and groups and perform actions on them at both Company and Project levels. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
+
+Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section from the Company Overview, where it is possible to manage the role assigned at Company level:  
+
+![Company Identities table](./img/identities_company.png)
+
+In order to manage privileges at Project level, the Identities table is also shown in the Project Settings Area, where it is possible to manage roles assigned to the specific Project and its Environments.
+
+![Project Identities table](./img/identities_project.png)
 
 :::note
 To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
