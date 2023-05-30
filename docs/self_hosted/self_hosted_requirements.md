@@ -53,6 +53,12 @@ The following software and hardware recommendations are for installing Mia-Platf
          <td>N/A</td>
       </tr>
       <tr>
+         <td><img src="/img/microsoft.ico" width="15" height="15"/> Azure AD B2C</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> BitBucket Server</td>
          <td>&gt; 8.x</td>
          <td>2 cores</td>
