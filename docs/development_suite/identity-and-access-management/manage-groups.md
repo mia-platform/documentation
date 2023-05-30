@@ -30,7 +30,7 @@ At Company level, for each group, it is possible to manage:
 
 Existing groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
 
-Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/manage-identities.md).
+Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md).
 
 :::caution
 Please note that some permissions granted by the assigned Company role may be inherited on the Projects and Runtime Environments of the Company itself.  
@@ -88,7 +88,7 @@ In the case that a user has access to more Company Groups, or has a specific ind
 
 ### Managing Group Company role
 
-Groups are shown into the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Company Overview.
+Groups are shown into the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md) inside the Company Overview.
 As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal: to do so, simply click on the edit button for the desired group row and select the new role.
 
 
