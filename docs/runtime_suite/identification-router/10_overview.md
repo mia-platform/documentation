@@ -30,7 +30,8 @@ The plugin exposes the following endpoints:
   }
 }
 ```
-- `/notify`: used by sub flow managers to send an event to the main flow manager and an optional external service. Only the object `mainFlowData` inside `Sub Flow Manager` is included inside the message payload of the event sent to `Main Flow Manager` and the external service
+- `/notify`: used by sub flow managers to send an event to the main flow manager and an optional external service. Only the object `mainFlowData` inside `Sub Flow Manager` is included inside the message payload of the event sent to `Main Flow Manager` and the external service.
+The router service send to the `Sub Flow Manager` an event with `routerNotifyCompleted` label.
 - `/sub-flow/saga`: retrieve the sub flow saga from the ID of the main saga
 
 ## Architecture
