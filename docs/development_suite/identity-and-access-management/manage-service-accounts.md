@@ -108,7 +108,7 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 
 A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
-![Project identities page](./img/manage-service-accounts/project_identities.png)
+![Project identities page](./img/manage-identities/identities-project.png)
 
 <!-- TODO: add screenshot of modal -->
 
