@@ -29,7 +29,7 @@ A User with enough administrative permission on a specific Company will be able 
 
 <!-- TODO: Add screeenshot of the section -->
 
-### Adding a new Service Account
+### Adding a Service Account
 
 The Company Owner can add a new Service Account by clicking on the *Add Service Account* button.
 
@@ -65,7 +65,7 @@ The Service Account creation process will require the following information:
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication) paragraph.
 :::
 
-### Removing a Service Account from the Company
+### Removing a Service Account
 
 A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
