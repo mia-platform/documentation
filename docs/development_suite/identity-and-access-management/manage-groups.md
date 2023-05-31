@@ -49,7 +49,7 @@ During the creation process, the group can be also created without members added
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Add group](./img/manage-groups/add_group.png)
+![Add group](./img/manage-groups/create-group.png)
 
   </div>
 </div>
@@ -64,12 +64,45 @@ If the user does not exist on the Platform, please open a Service Request to inv
 ### Editing a Group
 
 After a group has been created, it is possible to view its detail page.
+
+![Group detail](./img/manage-groups/group-detail.png)
+
 From this page, a Company Owner can perform the following actions:
 
 * Change group name
 * Edit group Company role
 * Add new members to the group
 * Remove members from the group
+
+When clicking on the *Edit* button in the section header, the edit group modal will show up, where you can change the group name and Company role:
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit group](./img/manage-groups/edit-group.png)
+
+  </div>
+</div>
+
+To add new members to the group, simply click the *Add members* button to open this dialog:
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Add group members](./img/manage-groups/add-members.png)
+
+  </div>
+</div>
+
+To remove a member from the group, click on the delete button on the corresponding row and confirm your decision:
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Remove member](./img/manage-groups/remove-member.png)
+
+  </div>
+</div>
 
 :::info
 In the case that a user has access to the Company solely from its membership of that group, the removal from that group will result in loss of access to the Company for that user.  
@@ -78,15 +111,6 @@ In case a user has access to more Company Groups, or has a specific individual C
 
 You can completely remove user access to a Company from the [Users section](/development_suite/identity-and-access-management/manage-users.md#removing-a-user).
 :::
-
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Edit group](./img/manage-groups/edit_group.png)
-
-  </div>
-</div>
 
 ### Managing Group Company role
 
@@ -98,7 +122,7 @@ As a result, the Company role of a group can be modified not only from the Group
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit group role at Company level](./img/manage-groups/edit-group-role-at-company-level.png)
+![Edit group role at Company level](./img/manage-identities/edit-group-role.png)
 
   </div>
 </div>
@@ -112,7 +136,7 @@ You can change the role of the group in the Project or in any Project Runtime En
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit group role at Project level](./img/manage-groups/edit-group-role-at-project-level.png)
+![Edit Project Group](./img/manage-identities/edit-group-role-at-project-level.png)
 
   </div>
 </div>
@@ -139,7 +163,7 @@ In the case that a user has access to more Company groups, or has a specific ind
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Delete group](./img/manage-groups/delete_group.png)
+![Delete group](./img/manage-groups/delete-group.png)
 
   </div>
 </div>
