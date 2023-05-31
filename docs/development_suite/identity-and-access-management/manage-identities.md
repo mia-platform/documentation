@@ -4,7 +4,7 @@ title: Manage Identities
 sidebar_label: Manage Identities
 ---
 
-Mia-Platform Console enables certain users to manage the privileges of other identities. 
+Mia-Platform Console enables certain users to manage the privileges of other identities, which can be other users, but also groups and service accounts.  
 Granting accesses and permissions to Company resources can be performed through the **Identities** section, which allows roles assignment on the following Console resources:
 
 * Company
@@ -13,7 +13,7 @@ Granting accesses and permissions to Company resources can be performed through 
 
 Users with enough administrative permission can manage roles and permissions given to users, service accounts and groups and perform actions on them at both Company and Project levels. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
 
-Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section from the Company Overview, where it is possible to manage the role assigned at Company level:  
+Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section in the Company Overview, where it is possible to manage the roles assigned at Company level:  
 
 ![Company Identities table](./img/identities_company.png)
 
@@ -34,7 +34,7 @@ Please note that some permissions defined by the Company role may be inherited o
 Always pay attention when assigning roles in order to avoid providing undesired access to resources!
 :::
 
-### Editing roles at Company level
+### Editing Identity roles at Company level
 
 In the following paragraphs, we will describe how to manage identity roles that grant access privileges to Company resources.
 
@@ -42,7 +42,7 @@ In the following paragraphs, we will describe how to manage identity roles that 
 
 ![Identities portal filtered by User](./img/manage-identities/identities_portal_filtered_by_user.png)
 
-The Identities section allows user account management through individual role assignment. This means that the users with an assigned Company role have been directly granted a binding on the Company.
+The Identities section allows user account management through individual role assignment. This means that the users with an assigned Company role have been directly granted access to the Company.
 
 A user role in the Company can be modified: to do so, simply click on the edit button for the desired user row and select the new role.
 
@@ -72,8 +72,8 @@ A group role in the Company can be modified: to do so, simply click on the edit 
 
 If you want to discover more about groups, [go to the groups documentation](/development_suite/identity-and-access-management/manage-groups.md#managing-company-groups).  
 
-::: info  
-If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](#how-to-best-manage-your-users) where we show you both individual and group access management.  
+:::info  
+If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users) where we show you both individual and group access management.  
 :::
 
 #### Service account role management
@@ -88,7 +88,7 @@ The Identities section is designed also to manage service account roles at Compa
   </div>
 </div>
 
-### Adding a new Identity at Company Level
+### Adding a new Identity at Company level
 
 From the Identities portal, both user accounts and service accounts can be added to the Company.
 
@@ -149,7 +149,7 @@ While the user may be invited back in the Company, all their previously existing
 
 From the Identities portal it is also possible to remove service accounts from the Company. In this case, the service account is permanently deleted from the Company, so you will need to create a brand new one if you need it again.
 
-## Managing Identity Roles at Project and Environment levels
+## Managing Identity roles at Project and Environment levels
 
 A user with enough administrative permission on a specific Project will be able to view all the existing identities in the Company and assign them the desired role on the specific Project (and, optionally, on each existing Runtime Environment).
 
@@ -175,7 +175,7 @@ For users:
   </div>
 </div>
 
-For Service accounts:  
+For service accounts:  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -185,7 +185,7 @@ For Service accounts:
   </div>
 </div>
 
-For Groups:  
+For groups:  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -228,38 +228,3 @@ It is also possible to add new service accounts to a Company from the Project se
 
   </div>
 </div>
-
-## How to best manage your Identities
-
-Are you wondering whether organizing your users through individual role assignments is the smartest and most effective way to manage the user access to your Company? Or whether the best solution would be to organize them into groups instead?
-There is no right or wrong answer to this question: it depends on your organizational needs.  
-Here below you can find some helpful hints that can help you find an answer that better suits your own requirements.
-
-For example, if you need to provide the same access privileges to multiple users in your Company, for sure the simplest and most efficient way is to manage them through groups.  
-
-On this purpose, imagine that you have to manage a team composed by a large number of developers. You can create a group (e.g., "My Company Developers"), add them all as group members, and assign the most appropriate role (e.g., `Developer` role) to the group. This will result in all your users becoming users of the Company with `Developer` role by virtue of being part of that group of developers.  
-In this use case, the choice of managing your users through groups allows you to avoid having to manually assign the same role to each user, which may be a time-consuming and tedious activity, especially when you have to deal with a large number of users.  
-
-Furthermore, having all of your users grouped within such a group allows you to have a quick comprehensive view of who the members of the group are (in our example, the developers) and what access permissions to the Company are assigned to them (`Developer` role in this case).
-
-Alternatively, if the composition of your Company team is small and heterogeneous (e.g., there is a Project Manager, a Senior Developer, a Junior Developer, and a Designer), it might still be functional to manage those users through individual role assignment.  
-For example, at Company level, you may assign the `Company Owner` role to the Project Manager, the `Project Administrator` role to the Senior Developer, the `Developer` role to the Junior Developer, and the `Reporter` role to the Designer. 
-
-However, keep in mind that these different user management methods are not mutually exclusive! You can decide to apply them both, in order to find your specific needs. 
-
-For instance – going on with the aforementioned example – imagine that your team has now expanded by welcoming new Junior Developers. At this point, it may be particularly useful to create an ad-hoc group of users (e.g., "My Company Developers") in which to include all the Junior Developers of your Company (the new ones plus the initial one).  
-Now let us remember, however, that one of those Developers (the first one) was initially assigned the `Developer` role at individual level. This means that one Developer will have both an individual role and a role conferred by the group membership. You don’t have to worry about this, as roles in Console always add up and therefore it does not represent a problem of any kind.
-
-The dual management of users – through a combination of individual roles and group roles – also allows for more personalized governance of access to the resources of your Company: imagine, for example, that the initial Junior Developer (who has both an individual role and the role attributed by group membership) has now become a Developer Expert, having increased the responsibilities within some of the Projects of your Company. At that point, you might want to give that user additional privileges only on those specific Projects.  
-You can do it by assigning, to that user, a role at Project level that expands the capabilities currently enabled by the `Developer` role assignment at Company level (e.g., being able to deploy on a specific Projects by assigning the `Maintainer` role to that user).
-
-Nevertheless, once again, managing users through groups can be useful even in this case, especially when the number of users to which to assign roles on specific resources increases. As a matter of fact, thanks to groups, you can actually increase the capabilities on specific resources for a batch of users in your Company in an easier way.
-
-More practically speaking, if you want – for instance – to extend privileges to all your Junior developers on a specific Project/Runtime Environment (e.g., by elevating that group's role to `Maintainer` on a specific Project, in order to provide them with Deploy trigger permission on that), thanks to groups you can extend with just one action that privilege to all of your Junior developers: you only have to assign to the "My Company Developers" group the `Maintainer` role specifically on the desired Project/Runtime Environment.
-
-Otherwise, if they were not managed through groups, this action of assigning `Maintainer` role on that Project (or Project Runtime Environment) would have to be repeated for each of the members, which is – again – a time-consuming (and even error-prone) activity.  
-Moreover, if you wanted to grant this privilege only for a limited period of time, then restoring the initial role setting would again have to be done manually for each of these members, highlighting this bottleneck even more.
-
-By contrast, through groups, for instance, the `Maintainer` role disassignment from that specific Project (or Project Runtime Environment) – to restore the initial `Developer` role assigned at Company level – would have been a more effective and circumscribed activity, keeping access governance on that Project more organized and flexible.
-
-To sum up, user management use cases are many, as well as the different organizational needs, and – in this landscape – Mia-Platform Console allows you to better structure access to resources as you prefer, giving you freedom in governing access levels of your Company users.
