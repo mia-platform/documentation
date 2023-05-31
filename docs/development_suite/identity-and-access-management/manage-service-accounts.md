@@ -36,9 +36,9 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 
 ### Adding a new Service Account
 
-The Company Owner can add a new Service Account by clicking on the *Add Service Account* option from the *Add User* dropdown, on the top-right corner of the Identities page. 
+The Company Owner can add a new Service Account from the **Service accounts section** by clicking on the *Add Service Account* button.
 
-![Add Company Service Account from dropdown](./img/manage-service-accounts/add_company_sa_dropdown.png)
+<!--  TODO: Add screenshot -->
 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
@@ -49,6 +49,7 @@ The Service Account creation process will require the following information:
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
 
+    <!-- TODO: take these screenshots from the service accounts section -->
     ![Add Company Service Account with client secret basic auth](./img/manage-service-accounts/add_company_sa_client_secret.png)
 
       </div>
@@ -61,6 +62,7 @@ The Service Account creation process will require the following information:
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
     
+    <!-- TODO: take these screenshots from the service accounts section -->
     ![Add Company Service Account with private key jwt auth](./img/manage-service-accounts/add_company_sa_private_key_jwt.png)
 
       </div>
@@ -77,30 +79,17 @@ A Service Account Role in the Company can be modified: to do so, simply click on
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
+<!-- TODO: take these screenshots from the service accounts section -->
 ![Edit Company Service Account](./img/manage-service-accounts/edit_company_sa.png)
 
   </div>
 </div>
 
-### Removing a Service Account from the Company
+Service account roles can also be managed from the Identities portal, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a service account's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level)
 
-A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
+### Managing Service Accounts at Project level
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Delete Company Service Account](./img/manage-service-accounts/delete_company_sa.png)
-
-  </div>
-</div>
-
-:::warning
-Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
-:::
-
-## Managing Project and Environment Service Accounts
-
-A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts in the Company and edit their Role on the specific Project (and, optionally, on each existing Runtime Environment).
+A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
 ![Project identities page](./img/manage-service-accounts/project_identities.png)
 
@@ -110,45 +99,22 @@ Although the Project Identities administration portal shows all the Company's Id
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
-### Adding a new Service Account at Project level
+### Removing a Service Account from the Company
 
-The Company Owner can add a new Service Account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
+A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
-The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-new-service-account) paragraph.
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
 
-:::note
-New Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
+<!-- TODO: take these screenshots from the service accounts section -->
+![Delete Company Service Account](./img/manage-service-accounts/delete_company_sa.png)
+
+  </div>
+</div>
+
+:::warning
+Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
 :::
-
-With the Client Secret Basic method: 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Add Project Service Account with client secret basic auth](./img/manage-service-accounts/add_project_sa_client_secret.png)
-
-  </div>
-</div>
-
-With the Private Key JWT method: 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Add Project Service Account with private key jwt auth](./img/manage-service-accounts/add_project_sa_private_key_jwt.png)
-
-  </div>
-</div>
-
-### Editing a Service Account Role at Project level
-
-A Service Account Role in the Project or any of the Project's Runtime Environments can be modified. To do so, just open the editing dialog and select the proper Role for the Project itself or for each Runtime Environment.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Edit Project Service Account](./img/manage-service-accounts/edit_project_sa.png)
-
-  </div>
-</div>
 
 ## Managing Company-independent Service Accounts
 

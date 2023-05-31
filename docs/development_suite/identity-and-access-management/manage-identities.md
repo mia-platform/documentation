@@ -117,7 +117,7 @@ It is also possible to add new service accounts by selecting the *Add Service Ac
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- ![Add Company Service Account] TODO: Add screenshot -->
+![Add Company Service Account from dropdown](./img/manage-service-accounts/add_company_sa_dropdown.png)
 
   </div>
 </div>
@@ -175,12 +175,10 @@ For users:
   </div>
 </div>
 
-For service accounts:  
-
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- ![Edit Project Service Account] TODO: Add screenshot -->
+![Edit Project Service Account](./img/manage-service-accounts/edit_project_sa.png)
 
   </div>
 </div>
@@ -219,12 +217,28 @@ If the user does not exist in the Platform, please open a Service Request.
 
 #### Adding a service account
 
-It is also possible to add new service accounts to a Company from the Project settings Area, by selecting the *Add Service Account* option in the *Add user* dropdown. The creation process will allow you to assign a Company role to the service account, as well as the roles on the specific Project and its Runtime Environments.
+The Company Owner can add a new Service Account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
 
+The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-new-service-account) paragraph.
+
+:::note
+New Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
+:::
+
+With the Client Secret Basic method: 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- ![Add Service Account from project] TODO: Add screenshot -->
+![Add Project Service Account with client secret basic auth](./img/manage-service-accounts/add_project_sa_client_secret.png)
+
+  </div>
+</div>
+
+With the Private Key JWT method: 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Add Project Service Account with private key jwt auth](./img/manage-service-accounts/add_project_sa_private_key_jwt.png)
 
   </div>
 </div>
