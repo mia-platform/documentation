@@ -30,7 +30,7 @@ Find out more about managing your Company identities in the [Identities Manageme
 
 Besides the Identities section, there are three other specific management portals, one for each type of identity: these pages provide specific governance tools based on the nature of the identity, be it a user, a group or a service account. From each portal you will be able to add and delete those identities, and to perform different actions based on the characteristics of each type of identity.
 
-The **Users** section is designed to view all user accounts of the Company, providing a way to add new ones or to completely remove access to the Company for exisiting ones.
+The **Users** section is designed to view all user accounts of the Company, providing a way to add new ones or to completely remove access to the Company for existing ones.
 
 ![Users portal](./img/manage-users/users-portal.png)
 

@@ -21,8 +21,9 @@ This allows teams to implement a CI/CD workflow that can improve the speed, reli
 
 A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
 
+:::info  
 In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-security-in-mind), you can have an in-depth look at some best practices for effectively managing Service Accounts.
-
+:::
 ## Managing Company Service Accounts
 
 A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and delete existing ones from the **Service accounts section**.
@@ -86,7 +87,7 @@ Removing a Service Account from the Company will permanently delete the account 
 
 Service account roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.
 
-### Managing Service Account Company role
+### Managing Service Account role at Company level
 
 To modify a service account role in the Company, simply click on the edit button for the desired Service Account row and select the new Role.
 
@@ -108,6 +109,8 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
 ![Project identities page](./img/manage-service-accounts/project_identities.png)
+
+<!-- TODO: add screenshot of modal -->
 
 :::note
 Although the Project Identities administration portal shows all the Company's Identities, this does not mean that all of the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.

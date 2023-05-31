@@ -139,7 +139,7 @@ All identity roles are managed from the [Identities portal](/development_suite/i
 
 As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal.
 
-### Managing Group Company role
+### Managing Group role at Company level
 
 To edit a group's role from the Identities portal, simply click on the edit button for the desired group row and select the new role.
 

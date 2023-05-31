@@ -5,7 +5,7 @@ sidebar_label: Manage Identities
 ---
 
 Mia-Platform Console enables certain users to manage the privileges of other identities, which can be other users, but also groups and service accounts.  
-Granting accesses and permissions to Company resources can be performed through the **Identities** section, which allows roles assignment on the following Console resources:
+Granting accesses and permissions to Company resources can be performed through the **Identities section**, which allows roles assignment on the following Console resources:
 
 * Company
 * Project
@@ -13,21 +13,15 @@ Granting accesses and permissions to Company resources can be performed through 
 
 Users with enough administrative permission can manage roles and permissions given to users, service accounts and groups and perform actions on them at both Company and Project levels. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
 
-Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section in the Company Overview, where it is possible to manage the roles assigned at Company level:  
-
-![Company Identities table](./img/manage-identities/identities-portal.png)
-
-In order to manage privileges at Project level, the Identities table is also shown in the Project Settings Area, where it is possible to manage roles assigned to the specific Project and its Environments.
-
-![Project Identities table](./img/identities_project.png)
-
 :::info
 To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
 :::
 
 ## Managing Company Identities
 
-At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the Identities portal, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
+At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the **Identities portal**, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
+
+![Company Identities table](./img/manage-identities/identities-portal.png)
 
 :::caution
 Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -88,7 +82,11 @@ The Identities section is designed also to manage service account roles at Compa
 
 ### Adding a new Identity at Company level
 
-From the Identities portal, both user accounts and service accounts can be added to the Company.
+From the Identities portal, both user accounts and service accounts can be added to the Company.  
+
+:::note
+Even though this portal is intended to manage identity roles, this is a useful shortcut for Company Owners to quickly add new users or service accounts to their Company without having to navigate to the respective portals
+:::
 
 #### Adding a user
 
@@ -111,6 +109,8 @@ If the user does not exist in the Platform, please open a Service Request for it
 #### Adding a service account
 
 It is also possible to add new service accounts by selecting the *Add Service Account* option in the *Add user* dropdown. The creation process will require the name, role and desired authentication method of the service account.
+
+To learn more details about how to add a service account to your Company, visit the [Service accounts management](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-service-account) page
 
 ![Add Company Service Account from dropdown](./img/manage-service-accounts/add_company_sa_dropdown.png)
 
@@ -141,11 +141,19 @@ While the user may be invited back in the Company, all their previously existing
 
 From the Identities portal it is also possible to remove service accounts from the Company. In this case, the service account is permanently deleted from the Company, so you will need to create a brand new one if you need it again.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Remove service account](./img/manage-identities/remove-service-account.png)
+
+  </div>
+</div>
+
 ## Managing Identity roles at Project and Environment levels
 
 A user with enough administrative permission on a specific Project will be able to view all the existing identities in the Company and assign them the desired role on the specific Project (and, optionally, on each existing Runtime Environment).
 
-![Project identities](./img/manage-identities/project_identities.png)
+![Project identities](./img/manage-identities/identities-project.png)
 
 :::note
 Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
@@ -190,6 +198,10 @@ For groups:
 ### Adding a new Identity at Project level
 
 Users and service accounts can be added to a Company with specific Project and Environment roles from the Project settings Area.
+
+:::note
+This is a useful shortcut for Company Owners that want to directly add users and service accounts to their Company with specific permissions on a particular Project, without having to navigate to the respective portals
+:::
 
 #### Adding a user
 
