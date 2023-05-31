@@ -12,7 +12,7 @@ User accounts can be assigned roles at Console, Company, Project or Runtime Envi
 
 Users inside the Console can be part of one or more Companies. From the **Users section** within the Company Overview, a Company Owner can view and manage all user accounts of a Company. From this section, new users can be added to the Company and existing ones can be removed from it completely.
 
-<!-- TODO: Add screenshot -->
+![Users portal](./img/manage-users/users-portal.png)
 
 ### Adding a User
 
@@ -21,7 +21,7 @@ A Company Owner can add a new user by pressing the *Add user* button in the User
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- TODO: ![Add Company User](./img/manage-users/add_company_user.png) -->
+![Add Company User](./img/manage-users/add-user.png)
 
   </div>
 </div>
@@ -36,14 +36,27 @@ If the user does not exist in the Platform, please open a Service Request for it
 
 User roles are managed from the Identities portal, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level)
 
-<!-- TODO: add screenshot -->
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Company User](./img/manage-identities/edit_company_user.png)
+
+  </div>
+</div>
+
 
 ### Managing User role at Project level
 
 Users with access to a Company are shown in the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
 You can change the role of a user in the Project or in any Project Runtime Environment. To do so, just open the editing dialog on the desired row and select the new role of the user for the Project itself and/or for Project Runtime Environments.
 
-<!-- TODO: add screenshot -->
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Project User](./img/manage-identities/edit_at_project_level.png)
+
+  </div>
+</div>
 
 ### Removing a User
 
@@ -56,7 +69,7 @@ The user will be revoked personal access to the Company and will also be kicked 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- TODO: ![Remove Company User](./img/manage-users/remove_company_user.png) -->
+![Remove Company User](./img/manage-users/remove-user.png)
 
   </div>
 </div>
