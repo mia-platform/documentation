@@ -112,41 +112,6 @@ In case a user has access to more Company Groups, or has a specific individual C
 You can completely remove user access to a Company from the [Users section](/development_suite/identity-and-access-management/manage-users.md#removing-a-user).
 :::
 
-### Managing Group Company role
-
-All identity roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
-
-As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal: to do so, simply click on the edit button for the desired group row and select the new role.
-
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Edit group role at Company level](./img/manage-identities/edit-group-role.png)
-
-  </div>
-</div>
-
-### Managing Group role at Project level
-
-Groups which have access to a Company are shown in the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
-You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
-
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Edit Project Group](./img/manage-identities/edit-group-role-at-project-level.png)
-
-  </div>
-</div>
-
-:::note
-Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have also access to the Projects, as this depends on their assigned role in the Company and how the permissions are inherited.
-
-For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
-:::
-
 ### Deleting a Group
 
 A group can be deleted by accessing its detail page and clicking on the *Delete* button at the end of the page and then confirming the action.
@@ -167,3 +132,42 @@ In the case that a user has access to more Company groups, or has a specific ind
 
   </div>
 </div>
+
+## Managing Group roles
+
+All identity roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
+
+As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal.
+
+### Managing Group Company role
+
+To edit a group's role from the Identities portal, simply click on the edit button for the desired group row and select the new role.
+
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit group role at Company level](./img/manage-identities/edit-group-role.png)
+
+  </div>
+</div>
+
+### Managing Group role at Project level
+
+Groups which have access to a Company are shown in the Identities portal inside the Project Settings Area of a Project belonging to that specific Company.
+You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
+
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Project Group](./img/manage-identities/edit-group-role-at-project-level.png)
+
+  </div>
+</div>
+
+:::note
+Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have also access to the Projects, as this depends on their assigned role in the Company and how the permissions are inherited.
+
+For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
+:::

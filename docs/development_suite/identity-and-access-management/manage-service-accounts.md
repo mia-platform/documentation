@@ -65,9 +65,28 @@ The Service Account creation process will require the following information:
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication) paragraph.
 :::
 
-### Managing Service Account Company role
+### Removing a Service Account from the Company
 
-Service account roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.
+A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- TODO: take these screenshots from the service accounts section -->
+![Delete Company Service Account](./img/manage-service-accounts/delete_company_sa.png)
+
+  </div>
+</div>
+
+:::warning
+Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
+:::
+
+## Managing Service account roles
+
+Service account roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.
+
+### Managing Service Account Company role
 
 To modify a service account role in the Company, simply click on the edit button for the desired Service Account row and select the new Role.
 
@@ -94,23 +113,6 @@ A User with enough administrative permission on a specific Project will be able 
 Although the Project Identities administration portal shows all the Company's Identities, this does not mean that all of the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
 
 For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
-:::
-
-### Removing a Service Account from the Company
-
-A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-<!-- TODO: take these screenshots from the service accounts section -->
-![Delete Company Service Account](./img/manage-service-accounts/delete_company_sa.png)
-
-  </div>
-</div>
-
-:::warning
-Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
 :::
 
 ## Managing Company-independent Service Accounts

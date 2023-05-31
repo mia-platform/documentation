@@ -32,32 +32,6 @@ The provided email will be searched throughout existing users and, if a match is
 If the user does not exist in the Platform, please open a Service Request for it to be created.
 :::
 
-### Managing User Company role
-
-User roles are managed from the Identities portal, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level)
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Edit Company User](./img/manage-identities/edit_company_user.png)
-
-  </div>
-</div>
-
-
-### Managing User role at Project level
-
-Users with access to a Company are shown in the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
-You can change the role of a user in the Project or in any Project Runtime Environment. To do so, just open the editing dialog on the desired row and select the new role of the user for the Project itself and/or for Project Runtime Environments.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
-![Edit Project User](./img/manage-identities/edit_at_project_level.png)
-
-  </div>
-</div>
-
 ### Removing a User
 
 A Company Owner can remove a user from the Company by pressing the delete user button of the desired row in the Users section. 
@@ -70,6 +44,35 @@ The user will be revoked personal access to the Company and will also be kicked 
   <div style={{display: 'flex', width: '600px'}}>
 
 ![Remove Company User](./img/manage-users/remove-user.png)
+
+  </div>
+</div>
+
+## Managing User roles
+
+User roles are managed from the **Identities portal**, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md)
+
+### Managing User Company role
+
+From the Identities portal, a user's role in the Company can be edited by clicking on the edit button on the corresponding row:
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Company User](./img/manage-identities/edit_company_user.png)
+
+  </div>
+</div>
+
+### Managing User role at Project level
+
+Users with access to a Company are also shown in the Identities portal inside the Project Settings Area of a Project belonging to that specific Company.
+You can change the role of a user in the Project or in any Project Runtime Environment. To do so, just open the editing dialog on the desired row and select the new role of the user for the Project itself and/or for Project Runtime Environments.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+![Edit Project User](./img/manage-identities/edit_at_project_level.png)
 
   </div>
 </div>
