@@ -22,7 +22,9 @@ The **Identities** page in the IAM section is designed to help you manage all ki
 
 This page also provides a useful shortcut for Company Owners to quickly add new users and service accounts to the Company.
 
-<!-- TODO: Add screenshot -->
+![Identities portal](./img/manage-identities/identities-portal.png)
+
+Find out more about managing your Company identities in the [Identities Management](/development_suite/identity-and-access-management/manage-identities.md) page. 
 
 ## Managing Users, Groups and Service Accounts
 
@@ -30,14 +32,14 @@ Besides the Identities section, there are three other specific management portal
 
 The **Users** section is designed to view all user accounts of the Company, providing a way to add new ones or to completely remove access to the Company for exisiting ones.
 
-<!-- TODO: Add screenshot -->
+![Users portal](./img/manage-users/users-portal.png)
 
 The **Groups** section displays all the groups of the Company with the assigned role and number of members, and allows you to create new groups. Each existing group is associated with a detail page where:
 - members can be viewed, added and removed
 - the group title and role can be modified
 - the group can be deleted
 
-<!-- TODO: Add screenshot -->
+![Groups portal](./img/manage-groups/groups-portal.png)
 
 The **Service Accounts** section shows all the service accounts of the Company, allowing the user to create new ones or permanently delete existing ones
 

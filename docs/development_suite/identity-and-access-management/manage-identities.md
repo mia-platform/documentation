@@ -15,7 +15,7 @@ Users with enough administrative permission can manage roles and permissions giv
 
 Here is an example of the Identities portal of a Company, which can be found in the IAM (Identity and Access Management) section in the Company Overview, where it is possible to manage the roles assigned at Company level:  
 
-![Company Identities table](./img/identities_company.png)
+![Company Identities table](./img/manage-identities/identities-portal.png)
 
 In order to manage privileges at Project level, the Identities table is also shown in the Project Settings Area, where it is possible to manage roles assigned to the specific Project and its Environments.
 
@@ -40,8 +40,6 @@ In the following paragraphs, we will describe how to manage identity roles that 
 
 #### User role management
 
-![Identities portal filtered by User](./img/manage-identities/identities_portal_filtered_by_user.png)
-
 The Identities section allows user account management through individual role assignment. This means that the users with an assigned Company role have been directly granted access to the Company.
 
 A user role in the Company can be modified: to do so, simply click on the edit button for the desired user row and select the new role.
@@ -65,7 +63,7 @@ A group role in the Company can be modified: to do so, simply click on the edit 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- ![Edit Company Group] TODO: Add screenshot -->
+![Edit group role](./img/manage-identities/edit-group-role.png)
 
   </div>
 </div>
@@ -83,7 +81,7 @@ The Identities section is designed also to manage service account roles at Compa
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- ![Edit Company Service Account] TODO: Add screenshot -->
+![Edit Service account role](./img/manage-identities/edit-sa-role.png)
 
   </div>
 </div>
@@ -114,13 +112,7 @@ If the user does not exist in the Platform, please open a Service Request for it
 
 It is also possible to add new service accounts by selecting the *Add Service Account* option in the *Add user* dropdown. The creation process will require the name, role and desired authentication method of the service account.
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}>
-
 ![Add Company Service Account from dropdown](./img/manage-service-accounts/add_company_sa_dropdown.png)
-
-  </div>
-</div>
 
 ### Removing access to the Company
 
@@ -175,10 +167,12 @@ For users:
   </div>
 </div>
 
+For service accounts:
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Project Service Account](./img/manage-service-accounts/edit_project_sa.png)
+![Edit Project Service Account](./img/manage-identities/edit_project_sa.png)
 
   </div>
 </div>
@@ -188,7 +182,7 @@ For groups:
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- ![Edit Project Group] TODO: Add screenshot -->
+![Edit Project Group](./img/manage-identities/edit-group-role-at-project-level.png)
 
   </div>
 </div>
