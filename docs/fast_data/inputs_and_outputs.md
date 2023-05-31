@@ -6,14 +6,12 @@ sidebar_label: Inputs and Outputs
 
 The fast-data has an Event Driven Architecture, as such there are many events that make everything work. In this page we will explore these events in detail to understand better the whole fast-data lifecycle.
 
-Mind that the events can come from different sources like Mongo or Kafka, so each of them will have different requirements or specifications
-
 <!-- TODO: before e after non sono required, anzi neanche null, o ci sono o non ci sono -->
 <!-- TODO: put the required property in async api objects -->
 
 ## Projection
 
-Here, we will discuss the inputs and outputs related to the projection management.
+Here, we will discuss the inputs and outputs related to the Projection management.
 
 ### Ingestion Message
 
@@ -505,79 +503,86 @@ Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 ## Single View
 
-This section covers the outputs concerning the Single View's aggregation.
+This section covers the inputs and outputs concerning the Single View's aggregation.
 
 ### Projection Changes
 
-The Projection Changes or `pc` is an event that informs the listener that a Single View should be updated.
-It is stored on MongoDB and is very similar to the [`sv-trigger`](#sv-trigger).
+**System**: MongoDB
 
-Its value has the following fields:
+<!-- TODO: Add the SVTG when ready -->
+**Producer**: Real Time Updater
 
-* `type`: either `aggregation` or `patch`. The former triggers a specific Single View to be generated from scratch, the latter is used to only update one field of all Single View documents.
-* `singleViewIdentifier`: only present if type is `aggregation`. It is the ID of the Single View to update.
-* `change`: all the information needed to start the update process:
-  * `projection`: the name of the Projection that generated the change
-  * `data`: the content of the Projection document that generated the name
-* `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update. Its fields are:
-  * topic
-  * partition
-  * offset
-  * key
-  * timestamp
+The Projection Changes or `pc` informs the listener that a Single View should be updated.
+This event is created as a result of a strategy execution.
+It is stored on MongoDB and is very similar to the [Single View Trigger Message](#single-view-trigger-message) on Kafka.
 
-**Kafka Message Example**:
+Here you can see the jsonSchema definition of the DB record:
 
-```yaml
-key: | 
-  {
-    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: |
-  {
-    "type":"aggregation",
-    "singleViewIdentifier":{
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+```json
+{
+  "type": "object",
+  "required": [
+    "identifier",
+    "changes",
+    "createdAt"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "TODO: define"
     },
-    "change":{
-      "projection":"pr_registry",
-      "data":{
-          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-          "TAX_CODE":"tax_code",
-          "NAME":"MARIO",
-          "SURNAME":"ROSSI",
-          "EMAIL":"email_mario",
-          "ADDRESS":"address_1",
-          "PHONE":"phone_number_1653041524454",
-          "PROFESSION":"profession 1",
-          "timestamp":"2022-05-20T10:12:06.019Z",
-          "updatedAt":"2022-05-20T10:12:06.027Z",
-          "__STATE__":"PUBLIC",
-          "__internal__counter":463,
-          "__internal__kafkaInfo":{
-            "offset":"463",
-            "partition":0,
-            "timestamp":"2022-05-20T10:12:06.019Z",
-            "topic":"kafka-topic-here",
-            "key":{
-                "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-            }
+    "identifier": {
+      "type": "object",
+      "description": "Identifier of the Projection Changes that should match with the Single View Keys fields or the identifierQueryMapping ones from the aggregation.json",
+      "additionalProperties": true
+    },
+    "changes": {
+      "type": "array",
+      "description": "Array that keeps track of the changes requested for the Single View related to the identifier",
+      "items": {
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "properties": {
+          // TODO: define other kafka info fields
+          "state": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "IN_PROGRESS"
+            ],
+            "description": "State of the change. State NEW means that the single view needs to be re-aggregated, state IN_PROGRESS means that the Single View Creator is already doing it."
+          },
+          "inProgressAt": {
+            "type": "object",
+            "description": "MongoDB date object of the time the Single View Creator has started processing the change",
+            "additionalProperties": true
           }
+        },
+        "additionalProperties": true
       }
     },
-    "__internal__kafkaInfo":{
-      "offset":"463",
-      "partition":0,
-      "timestamp":"2022-05-20T10:12:06.019Z",
-      "topic":"kafka-topic-here",
-      "key":{
-          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-      }
+    "createdAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been created",
+      "additionalProperties": true
+    },
+    "updatedAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been updates, most of the times it means the moment when a change has been registered.",
+      "additionalProperties": true
+    },
+    "doneAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time that the last change was processed by the Single View Creator",
+      "additionalProperties": true
     }
   }
+}
 ```
 
-**MongoDB Record Example**:
+Example:
 
 ```json
 {
@@ -589,19 +594,26 @@ value: |
   "changes": [
     {
       "state": "NEW",
-      "updatedAt": "2022-05-20T10:25:35.567Z",
-      "offset": "402",
-      "partition": 0,
-      "timestamp": "2022-04-28T12:22:12.994Z",
-      "topic": "kafka-topic-here",
-      "key": {
-        "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-      }
+      // TODO: define other kafka info fields
     }
   ],
+  "createdAt": "2022-05-20T10:25:35.656Z",
+  "updatedAt": "2022-05-20T10:25:35.656Z",
   "doneAt": "2022-05-20T10:25:35.656Z"
 }
 ```
+
+<!-- TODO: should we add something else??? -->
+
+### Single View Trigger Message
+
+<!-- TODO: do it -->
+
+**System**: Apache Kafka
+
+**Producer**: Single View Trigger Generator
+
+**Definition**: The Single View Trigger Message or `sv-trigger` ...
 
 **AsyncApi specification**:
 
@@ -654,24 +666,10 @@ channels:
             required: ["singleViewIdentifier"]
 ```
 
-<!-- TODO: put in sv-trigger -->
 #### Topic naming convention
-
-**Producer**: Single View Trigger Generator
-
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
 
-An example:
-
-```sh
-test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger
-```
-
-### Single View Trigger Message
-
-The Single View Trigger Message or `sv-trigger` ...
-
-<!-- TODO: do it -->
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 ### Single View Update Message
 
