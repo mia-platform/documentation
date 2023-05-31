@@ -51,7 +51,11 @@ channels:
         name: DB2 data change message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
           properties:
             key:
               type: object
@@ -72,11 +76,7 @@ channels:
             offset:
               type: integer
               description: Kafka message offset
-          required:
-            - key
-            - value
-            - timestamp
-            - offset
+          additionalProperties: false
 ```
 
 Upsert operation:
@@ -125,7 +125,11 @@ channels:
         name: Golden Gate data change message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
           properties:
             key: 
               type: string
@@ -135,6 +139,9 @@ channels:
             value:
               type: object
               additionalProperties: false
+              required:
+                - op_type
+                - pos
               properties:
                 op_type:
                   type: string
@@ -144,19 +151,13 @@ channels:
                     - U
                     - D
                 before:
-                  oneOf:
-                    - type: object
-                      description: Whole record **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
-                      additionalProperties: true
-                    - type: "null"
-                      description: null in case of insert operation
+                  type: object
+                  description: Whole record **before** the changes were applied (including the primary and foreign keys). This field is not defined with insert operation
+                  additionalProperties: true
                 after:
-                  oneOf:
-                    - type: object
-                      description: Whole record **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
-                      additionalProperties: true
-                    - type: "null"
-                      description: null in case of delete operation
+                  type: object
+                  description: Whole record **after** the changes were applied (including the primary and foreign keys). This field is not defined with delete operation
+                  additionalProperties: true
                 pos:
                   type: integer
                   description: Position of the message, similar to the kafka message's offset
@@ -166,11 +167,7 @@ channels:
             offset:
               type: integer
               description: Kafka message offset
-          required:
-            - key
-            - value
-            - timestamp
-            - offset
+          additionalProperties: false
 ```
 
 Insert operation:
@@ -225,7 +222,11 @@ channels:
         name: Debezium data change message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
           properties:
             key: 
               type: object
@@ -233,7 +234,9 @@ channels:
               additionalProperties: true
             value:
               type: object
-              additionalProperties: false
+              required:
+                - op
+                - source
               properties:
                 op:
                   type: string
@@ -244,32 +247,23 @@ channels:
                     - u
                     - d
                 before:
-                  oneOf:
-                    - type: object
-                      description: Whole record **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
-                      additionalProperties: true
-                    - type: "null"
-                      description: null in case of insert operation
+                  type: object
+                  description: Whole record **before** the changes were applied (including the primary and foreign keys). This field is not defined with insert operation
+                  additionalProperties: true
                 after:
-                  oneOf:
-                    - type: object
-                      description: Whole record **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
-                      additionalProperties: true
-                    - type: "null"
-                      description: null in case of delete operation
+                  type: object
+                  description: Whole record **after** the changes were applied (including the primary and foreign keys). This field is not defined with delete operation
+                  additionalProperties: true
                 source:
                   type: object
                   description: Metadata about the origin of the message (db, table, query...)
                   additionalProperties: true
+              additionalProperties: false
             timestamp:
               type: string
             offset:
               type: integer
-          required:
-            - key
-            - value
-            - timestamp
-            - offset
+          additionalProperties: false
 ```
 
 Insert operation:
@@ -343,15 +337,25 @@ channels:
         name: Projection update message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
           properties:
             key:
               type: object
-              additionalProperties: true
               description: Record's primary keys
+              additionalProperties: true
             value:
               type: object
-              additionalProperties: false
+              required:
+                - operationType
+                - operationTimestamp
+                - documentId
+                - projectionName
+                - source
+                - primaryKeys
               properties:
                 operationType:
                   type: string
@@ -372,6 +376,7 @@ channels:
                 primaryKeys:
                   description: Array of the primary key field names
                   type: array
+                # TODO: remove probably
                 # before:
                 #   type: object
                 #   description: Value of the MongoDB record **before** the changes were applied. In case of an insert operation this field is not defined
@@ -383,32 +388,36 @@ channels:
                 __internal__kafkaInfo:
                   type: object
                   description: Metadata about the ingestion message that triggered the whole fast-data flow
-                  additionalProperties: false
+                  required:
+                   - topic
+                   - partition
+                   - offset
+                   - key
+                   - timestamp
                   properties:
                     topic:
                       type: string
                       description: Ingestion topic's name
                     partition:
                       type: integer
-                      description: Topics partition
+                      description: Topic's partition
                     offset:
                       description: Message's offset
                       type: integer
                     key:
                       description: Message's key. The structure could be from any of the ingestion message key's formats
                     timestamp:
+                      description: Unix timestamp of the ingestion Message
                       type: string
+                  additionalProperties: false
+              additionalProperties: false
             timestamp:
               type: string
               description: Kafka message Unix timestamp
             offset:
               type: integer
               description: Kafka message offset
-          required:
-            - key
-            - value
-            - timestamp
-            - offset
+          additionalProperties: false
 ```
 
 Reinsertion operation:
@@ -427,6 +436,7 @@ Reinsertion operation:
     "primaryKeys":[
       "ID_USER"
     ],
+    // TODO: remove probably
     // "before":{
     //   "_id":"62876cb2adb982a6195d26f9",
     //   "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
@@ -495,7 +505,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 ## Single View
 
-This section covers the outputs concerning the Single View.
+This section covers the outputs concerning the Single View's aggregation.
 
 ### Projection Changes
 
