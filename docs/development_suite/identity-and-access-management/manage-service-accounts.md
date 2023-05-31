@@ -25,20 +25,13 @@ In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-secur
 
 ## Managing Company Service Accounts
 
-A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and change their Roles.
+A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and delete existing ones from the **Service accounts section**.
 
-![Identities table filtered by Service Account](./img/manage-service-accounts/identities_table_filtered_by_sa.png)
-
-:::caution
-Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
-Always pay attention when assigning Roles, in order to avoid providing undesired access to resources!
-:::
+<!-- TODO: Add screeenshot of the section -->
 
 ### Adding a new Service Account
 
-The Company Owner can add a new Service Account from the **Service accounts section** by clicking on the *Add Service Account* button.
-
-<!--  TODO: Add screenshot -->
+The Company Owner can add a new Service Account by clicking on the *Add Service Account* button.
 
 The Service Account creation process will require the following information:
 - Name: a human-readable name to identify the Service Account
@@ -72,20 +65,24 @@ The Service Account creation process will require the following information:
 Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication) paragraph.
 :::
 
-### Editing a Service Account Role
+### Managing Service Account Company role
 
-A Service Account Role in the Company can be modified: to do so, simply click on the edit button for the desired Service Account row and select the new Role.
+Service account roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.
+
+To modify a service account role in the Company, simply click on the edit button for the desired Service Account row and select the new Role.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- TODO: take these screenshots from the service accounts section -->
 ![Edit Company Service Account](./img/manage-service-accounts/edit_company_sa.png)
 
   </div>
 </div>
 
-Service account roles can also be managed from the Identities portal, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a service account's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level)
+:::caution
+Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
+Always pay attention when assigning Roles, in order to avoid providing undesired access to resources!
+:::
 
 ### Managing Service Accounts at Project level
 
