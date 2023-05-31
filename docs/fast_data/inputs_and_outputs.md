@@ -35,28 +35,43 @@ Here's the AsyncApi specification and some examples of the different formats.
 #### IBM InfoSphere Data Replication for DB2
 
 ```yaml
-asyncapi: 2.4.0
+asyncapi: 2.6.0
 info:
-  title: Basic Data Change Producer
-  version: "1.0.0"
+  title: Data Change API
+  version: 1.0.0
 channels:
-  BasicDataChangeChannel:
+  DB2:
     publish:
       message:
-        name: basic data change
+        name: DB2 data change message
         payload:
           type: object
           additionalProperties: false
           properties:
-            key: {}
+            key:
+              type: object
+              additionalProperties: true
+              description: Projection document's primary keys
             value:
               type: object
               additionalProperties: true
+              oneOf:
+                - type: object
+                  additionalProperties: true
+                  description: Whole projection document (including primary and foreign keys) in case of *insert/update* operation
+                - type: "null"
+                  description: null in case of delete operation
             timestamp:
               type: string
+              description: Kafka message Unix timestamp
             offset:
               type: integer
-          required: ["key", "value", "timestamp", offset]
+              description: Kafka message offset
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
 ```
 
 Upsert operation:
@@ -73,7 +88,7 @@ Upsert operation:
     "NAME": 456
   },
   "timestamp": "1234556789",
-  "offset": "100"
+  "offset": 100
 }
 ```
 
@@ -87,61 +102,79 @@ Delete operation:
   },
   "value": null,
   "timestamp": "1234556789",
-  "offset": "100"
+  "offset": 100
 }
 ```
 
 #### Oracle Golden Gate
 
 ```yaml
-asyncapi: 2.4.0
+asyncapi: 2.6.0
 info:
-  title: Golden Gate Data Change Producer
+  title: Data Change API
   version: "1.0.0"
 channels:
-  GoldenGateDataChangeChannel:
+  GoldenGate:
     publish:
       message:
-        name: golden gate data change
+        name: Golden Gate data change message
         payload:
           type: object
           additionalProperties: false
           properties:
-            key: {}
+            key: 
+              type: string
+              description: String of the primary keys values joined by underscores
+              examples:
+                - pkValue1_pkValue2
             value:
               type: object
               additionalProperties: false
               properties:
                 op_type:
                   type: string
-                  enum: ["I", "D", "U"]
+                  description: Operation type. Can be *insert*, *update* or *delete*
+                  enum:
+                    - I
+                    - U
+                    - D
                 before:
-                  type: object
-                  additionalProperties: true
+                  oneOf:
+                    - type: object
+                      description: Whole projection document **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
+                      additionalProperties: true
+                    - type: "null"
+                      description: null in case of insert operation
                 after:
-                  type: object
-                  additionalProperties: true
+                  oneOf:
+                    - type: object
+                      description: Whole projection document **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
+                      additionalProperties: true
+                    - type: "null"
+                      description: null in case of delete operation
+                pos:
+                  type: integer
+                  description: Position of the message, similar to the kafka message's offset
             timestamp:
               type: string
+              description: Kafka message Unix timestamp
             offset:
               type: integer
-          required: ["key", "value", "timestamp", offset]
+              description: Kafka message offset
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
 ```
 
 Insert operation:
 
 ```json
 {
-  "key": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
-  },
+  "key": "123",
   "value": {
-    "table": "MY_TABLE",
     "op_type": "I",
-    "op_ts": "2021-02-19 16:03:27.000000",
-    "current_ts": "2021-02-19T17:03:32.818003",
-    "pos": "00000000650028162190",
     "before": null,
     "after": {
       "USER_ID": 123,
@@ -150,7 +183,7 @@ Insert operation:
     }
   },
   "timestamp": "1234556789",
-  "offset": "100"
+  "offset": 100
 }
 ```
 
@@ -158,16 +191,9 @@ Delete operation:
 
 ```json
 {
-  "key": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
-  },
+  "key": "123",
   "value": {
-    "table": "MY_TABLE",
     "op_type": "D",
-    "op_ts": "2021-02-19 16:03:27.000000",
-    "current_ts": "2021-02-19T17:03:32.818003",
-    "pos": "00000000650028162190",
     "before": {
       "USER_ID": 123,
       "FISCAL_CODE": "the-fiscal-code-123",
@@ -176,7 +202,7 @@ Delete operation:
     "after": null
   },
   "timestamp": "1234556789",
-  "offset": "100"
+  "offset": 100
 }
 ```
 
@@ -185,36 +211,50 @@ Delete operation:
 ```yaml
 asyncapi: 2.6.0
 info:
-  title: Debezium Data Change Producer
+  title: Data Change API
   version: 1.0.0
 channels:
-  DebeziumDataChangeChannel:
+  Debezium:
     publish:
       message:
-        name: debezium data change
+        name: Debezium data change message
         payload:
           type: object
           additionalProperties: false
           properties:
-            key: {}
+            key: 
+              type: object
+              description: Projection document's primary keys
+              additionalProperties: true
             value:
               type: object
               additionalProperties: false
               properties:
                 op:
                   type: string
+                  description: Operation type. Can be *create/snapshot(r)*, *update* or *delete*
                   enum:
                     - c
+                    - r
                     - u
                     - d
                 before:
-                  type: object
-                  additionalProperties: true
+                  oneOf:
+                    - type: object
+                      description: Whole projection document **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
+                      additionalProperties: true
+                    - type: "null"
+                      description: null in case of insert operation
                 after:
-                  type: object
-                  additionalProperties: true
+                  oneOf:
+                    - type: object
+                      description: Whole projection document **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
+                      additionalProperties: true
+                    - type: "null"
+                      description: null in case of delete operation
                 source:
                   type: object
+                  description: Metadata about the origin of the message (db, table, query...)
                   additionalProperties: true
             timestamp:
               type: string
@@ -245,7 +285,7 @@ Insert operation:
     }
   },
   "timestamp": "1234556789",
-  "offset": "100"
+  "offset": 100
 }
 ```
 
@@ -267,7 +307,7 @@ Delete operation:
     "after": null
   },
   "timestamp": "1234556789",
-  "offset": "100"
+  "offset": 100
 }
 ```
 
@@ -294,12 +334,12 @@ The fields of each Projection document are the ones defined in the Console. On t
 A `Projection Update` is a Kafka event that informs the listener that a Projection has been changed.
 Its value field contains the following fields:
 
-| Field | Required | Description |
+| Field                   | Required | Description                                                                                                                                             |
 | ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `__internal__kafkaInfo` | &check; | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
-| `before` | - | It contains the value of the Projection before its change. |
-| `after` | - | It contains the value of the Projection after the operation execution. |
-| `key` | &check; | The key of the Projection that has been updated. |
+| `__internal__kafkaInfo` | &check;  | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
+| `before`                | -        | It contains the value of the Projection before its change.                                                                                              |
+| `after`                 | -        | It contains the value of the Projection after the operation execution.                                                                                  |
+| `key`                   | &check;  | The key of the Projection that has been updated.                                                                                                        |
 
 **Message Example**:
 
