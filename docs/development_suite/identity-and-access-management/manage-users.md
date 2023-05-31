@@ -4,19 +4,54 @@ title: Manage Users
 sidebar_label: Manage Users
 ---
 
-Intro
+Mia-Platform Console allows the creation of user accounts, which are typically used as digital identities for human users who need to access resources with certain privileges and permissions.
+
+User accounts can be assigned roles at Console, Company, Project or Runtime Environment levels, according to which they can perform different types of actions.
 
 ## Managing Company Users
 
+Users inside the Console can be part of one or more Companies. From the **Users section** within the Company Overview, a Company Owner can view and manage all user accounts of a Company. From this section, new users can be added to the Company and existing ones can be removed from it completely.
+
+<!-- TODO: Add screenshot -->
+
 ### Adding a User
 
-### Editing a User
+A Company Owner can add a new user by pressing the *Add user* button in the Users section. The User invitation process will require the invited user email to be provided.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- TODO: ![Add Company User](./img/manage-users/add_company_user.png) -->
+
+  </div>
+</div>
+
+The provided email will be searched throughout existing users and, if a match is found, the user will be invited to the Company with the specified role.
+
+:::info
+If the user does not exist in the Platform, please open a Service Request for it to be created.
+:::
 
 ### Managing User Company role
 
+User roles are managed from the Identities portal, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md#editing-identity-roles-at-company-level)
+
 ### Managing User role at Project level
 
+Users with access to a Company are shown in the [Identities portal](/development_suite/identity-and-access-management/overview.md#identities-portal) inside the Project Settings Area of a Project belonging to that specific Company.
+You can change the role of a user in the Project or in any Project Runtime Environment. To do so, just open the editing dialog on the desired row and select the new role of the user for the Project itself and/or for Project Runtime Environments.
+
 ### Deleting a User
+
+A Company Owner can remove a user from the Company by pressing the delete user button of the desired row in the Users section. The user will be revoked personal access to the Company and will also be kicked out of all groups they are part of.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
+<!-- TODO: ![Remove Company User](./img/manage-users/remove_company_user.png) -->
+
+  </div>
+</div>
 
 ## How to best manage your Users
 
@@ -26,7 +61,7 @@ Here below you can find some helpful hints that can help you find an answer that
 
 ### Team composition
 
-For example, if you need to provide the same access privileges to multiple users in your Company, for sure the simplest and most efficient way is to manage them through groups.  
+For example, if you need to provide the same access privileges to multiple users in your Company, for sure the simplest and most efficient way is to manage them through [groups](/development_suite/identity-and-access-management/manage-groups.md).  
 
 On this purpose, imagine that you have to manage a team composed by a large number of developers. You can create a group (e.g., "My Company Developers"), add them all as group members, and assign the most appropriate role (e.g., `Developer` role) to the group. This will result in all your users becoming users of the Company with `Developer` role by virtue of being part of that group of developers.  
 In this use case, the choice of managing your users through groups allows you to avoid having to manually assign the same role to each user, which may be a time-consuming and tedious activity, especially when you have to deal with a large number of users.  
