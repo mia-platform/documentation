@@ -4,24 +4,29 @@ title: Inputs and Outputs
 sidebar_label: Inputs and Outputs
 ---
 
-This page presents all the different inputs and outputs that revolve around the Fast Data ecosystem, including both the core user data in Projections and Single Views, and the events concerning errors, successful data generation, and so on.
+The fast-data has an Event Driven Architecture, as such there are many events that make everything work. In this page we will explore these events in detail to understand better the whole fast-data lifecycle.
 
-Throughout the document we will describe the messages providing a natural language description, an **example**, and for Kafka messages an [AsyncApi](https://www.asyncapi.com/) specification.
+Mind that the events can come from different sources like Mongo or Kafka, so each of them will have different requirements or specifications
 
-In order to work properly, the Fast Data infrastructure will need multiple Kafka topics, hence any time we will discuss a Kafka Topic, a naming convention will be suggested.
+<!-- TODO: before e after non sono required, anzi neanche null, o ci sono o non ci sono -->
+<!-- TODO: put the required property in async api objects -->
 
-For MongoDB based architectures, please check the Mongo paragraph on the entries, while for Kafka based ones, check the message structure and the topic naming convention.
+## Projection
 
-## Data Ingestion
+Here, we will discuss the inputs and outputs related to the projection management.
 
-Here, we will discuss the inputs and outputs related to data ingestion.
+### Ingestion Message
 
-### Data Change Message
+**System**: Apache Kafka
 
-This is a type of Kafka message that is going to be sent when a System of Records is updated.
-This message is then read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
+**Producer**: The CDC Connectors of the source databases
 
-Based on how the syncing system is set up, the format can be one of three possible types:
+**Definition**:
+The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
+
+When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
+
+Based on how the ingestion system is set up, the format can be one of three possible types:
 
 * [IBM InfoSphere Data Replication for DB2](#ibm-infosphere-data-replication-for-db2)
 * [Oracle Golden Gate](#oracle-golden-gate)
@@ -30,7 +35,7 @@ Based on how the syncing system is set up, the format can be one of three possib
 You can also specify a [custom adapter](/fast_data/configuration/realtime_updater/common.md#custom) to handle any other message formats you need.
 This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
 
-Here's the AsyncApi specification and some examples of the different formats.
+Here's the AsyncApi specification of the message and some examples of the different formats.
 
 #### IBM InfoSphere Data Replication for DB2
 
@@ -51,14 +56,14 @@ channels:
             key:
               type: object
               additionalProperties: true
-              description: Projection document's primary keys
+              description: Record's primary keys
             value:
               type: object
               additionalProperties: true
               oneOf:
                 - type: object
                   additionalProperties: true
-                  description: Whole projection document (including primary and foreign keys) in case of *insert/update* operation
+                  description: Whole record (including primary and foreign keys) in case of *insert/update* operation
                 - type: "null"
                   description: null in case of delete operation
             timestamp:
@@ -80,11 +85,11 @@ Upsert operation:
 {
   "key": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
+    "TAX_CODE": "ABCDEF12B02M100O"
   },
   "value": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O",
+    "TAX_CODE": "ABCDEF12B02M100O",
     "NAME": 456
   },
   "timestamp": "1234556789",
@@ -98,7 +103,7 @@ Delete operation:
 {
   "key": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
+    "TAX_CODE": "ABCDEF12B02M100O"
   },
   "value": null,
   "timestamp": "1234556789",
@@ -141,14 +146,14 @@ channels:
                 before:
                   oneOf:
                     - type: object
-                      description: Whole projection document **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
+                      description: Whole record **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
                       additionalProperties: true
                     - type: "null"
                       description: null in case of insert operation
                 after:
                   oneOf:
                     - type: object
-                      description: Whole projection document **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
+                      description: Whole record **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
                       additionalProperties: true
                     - type: "null"
                       description: null in case of delete operation
@@ -178,7 +183,7 @@ Insert operation:
     "before": null,
     "after": {
       "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
+      "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     }
   },
@@ -196,7 +201,7 @@ Delete operation:
     "op_type": "D",
     "before": {
       "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
+      "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     },
     "after": null
@@ -224,7 +229,7 @@ channels:
           properties:
             key: 
               type: object
-              description: Projection document's primary keys
+              description: Record's primary keys
               additionalProperties: true
             value:
               type: object
@@ -241,14 +246,14 @@ channels:
                 before:
                   oneOf:
                     - type: object
-                      description: Whole projection document **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
+                      description: Whole record **before** the changes were applied (including the primary and foreign keys) in case of *update/delete* operation
                       additionalProperties: true
                     - type: "null"
                       description: null in case of insert operation
                 after:
                   oneOf:
                     - type: object
-                      description: Whole projection document **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
+                      description: Whole record **after** the changes were applied (including the primary and foreign keys) in case of *insert/update* operation
                       additionalProperties: true
                     - type: "null"
                       description: null in case of delete operation
@@ -273,14 +278,14 @@ Insert operation:
 {
   "key": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
+    "TAX_CODE": "ABCDEF12B02M100O"
   },
   "value": {
     "op": "c",
     "before": null,
     "after": {
       "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
+      "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     }
   },
@@ -295,13 +300,13 @@ Delete operation:
 {
   "key": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
+    "TAX_CODE": "ABCDEF12B02M100O"
   },
   "value": {
     "op": "d",
     "before": {
       "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
+      "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     },
     "after": null
@@ -312,79 +317,140 @@ Delete operation:
 ```
 
 #### Topic naming convention
-
-**producer**: the system producing its own events
-
 `<tenant>.<environment>.<source-system>.<projection>.ingestion`
 
-An example:
+Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
-```sh
-test-tenant.PROD.system-name.test-projection.ingestion
-```
+### Projection Update Message
 
-### Projection
+**System**: Apache Kafka
 
-A Projection is an updated and **standardized** copy of the data coming from the System of Records.
-Projections are always stored on MongoDB.
-The fields of each Projection document are the ones defined in the Console. On top of user-defined properties, you will also find the default CRUD fields: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `__STATE__`.
+**Producer**: Real Time Updater
 
-### Projection Update
+**Definition**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
-A `Projection Update` is a Kafka event that informs the listener that a Projection has been changed.
-Its value field contains the following fields:
-
-| Field                   | Required | Description                                                                                                                                             |
-| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `__internal__kafkaInfo` | &check;  | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
-| `before`                | -        | It contains the value of the Projection before its change.                                                                                              |
-| `after`                 | -        | It contains the value of the Projection after the operation execution.                                                                                  |
-| `key`                   | &check;  | The key of the Projection that has been updated.                                                                                                        |
-
-**Message Example**:
-
-<details><summary>Click here to show/hide the long message example</summary>
-<p>
+Here's the AsyncApi specification with an example.
 
 ```yaml
-key: | 
-  {
+asyncapi: 2.6.0
+info:
+  title: Projection Update API
+  version: 1.0.0
+channels:
+  pr-update:
+    publish:
+      message:
+        name: Projection update message
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key:
+              type: object
+              additionalProperties: true
+              description: Record's primary keys
+            value:
+              type: object
+              additionalProperties: false
+              properties:
+                operationType:
+                  type: string
+                  enum: ["INSERT", "UPDATE", "DELETE", "UPSERT"]
+                  description: Type of operation applied on the Projection's record
+                operationTimestamp:
+                  type: number
+                  description: Unix timestamp of the time at which the MongoDB operation on the projection's record has been carried out
+                documentId:
+                  description: Equals to the _id of the Projection's record on MongoDB
+                  type: string
+                projectionName:
+                  description: Projection's name
+                  type: string
+                source:
+                  description: Name of the System of Records
+                  type: string
+                primaryKeys:
+                  description: Array of the primary key field names
+                  type: array
+                # before:
+                #   type: object
+                #   description: Value of the MongoDB record **before** the changes were applied. In case of an insert operation this field is not defined
+                #   additionalProperties: true
+                after:
+                  type: object
+                  description: Value of the MongoDB record **after** the changes have been applied. In case of a delete operation this field is not defined
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  additionalProperties: false
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topics partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      type: string
+            timestamp:
+              type: string
+              description: Kafka message Unix timestamp
+            offset:
+              type: integer
+              description: Kafka message offset
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
+```
+
+Reinsertion operation:
+
+```json
+{
+  "key": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: |
-  {
+  },
+  "value": {
     "operationType":"INSERT",
     "operationTimestamp": "2022-05-20T10:25:56.401Z",
-    "documentId": null,
+    "documentId": "62876cb2adb982a6195d26f9",
     "projectionName": "pr_registry",
     "source": "food-delivery",
     "primaryKeys":[
-      "$or"
+      "ID_USER"
     ],
-    "before":{
-      "_id":"62876cb2adb982a6195d26f9",
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-      "TAX_CODE":"tax_code",
-      "NAME":"MARIO",
-      "SURNAME":"ROSSI",
-      "EMAIL":"email_mario",
-      "ADDRESS":"address_1",
-      "PHONE":"phone_number_1653042354472",
-      "PROFESSION":"profession 1",
-      "__STATE__":"DELETED",
-      "__internal__counter":466,
-      "__internal__kafkaInfo":{
-        "offset":"466",
-        "partition":0,
-        "timestamp":"2022-05-20T10:25:55.751Z",
-        "topic":"kafka-topic-here",
-        "key":{
-          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-        }
-      },
-      "timestamp":"2022-05-20T10:25:55.751Z",
-      "updatedAt":"2022-05-20T10:25:55.760Z"
-    },
+    // "before":{
+    //   "_id":"62876cb2adb982a6195d26f9",
+    //   "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
+    //   "TAX_CODE":"tax_code",
+    //   "NAME":"MARIO",
+    //   "SURNAME":"ROSSI",
+    //   "EMAIL":"email_mario",
+    //   "ADDRESS":"address_1",
+    //   "PHONE":"phone_number_1653042354472",
+    //   "PROFESSION":"profession 1",
+    //   "__STATE__":"DELETED",
+    //   "__internal__counter":466,
+    //   "__internal__kafkaInfo":{
+    //     "offset":"466",
+    //     "partition":0,
+    //     "timestamp":"2022-05-20T10:25:55.751Z",
+    //     "topic":"kafka-topic-here",
+    //     "key":{
+    //       "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+    //     }
+    //   },
+    //   "timestamp":"2022-05-20T10:25:55.751Z",
+    //   "updatedAt":"2022-05-20T10:25:55.760Z"
+    // },
     "after":{
       "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
       "TAX_CODE":"tax_code",
@@ -408,9 +474,9 @@ value: |
         }
       },
       "createdAt":"2022-05-20T10:25:56.380Z"
-    }
-    "__internal__kafkaInfo":{
-      "offset":"467",
+    },
+    "__internal__kafkaInfo": {
+      "offset": 467,
       "partition":0,
       "timestamp":"2022-05-20T10:25:56.323Z",
       "topic":"kafka-topic-here",
@@ -419,84 +485,22 @@ value: |
       }
     }
   }
-```
-
-</p>
-</details>
-
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Projection Update Producer
-  version: "1.0.0"
-channels:
-  projectionUpdateChannel:
-    subscribe:
-      message:
-        name: Projection Update
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key:
-              type: object
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                operationType:
-                  type: string
-                  enum: ["INSERT", "UPDATE", "DELETE", "UPSERT"]
-                operationTimestamp:
-                  type: number
-                documentId:
-                  type: string
-                projectionName:
-                  type: string
-                primaryKeys:
-                  type: Array
-                source:
-                  type: string
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-          required: ["key", "value"]
+}
 ```
 
 #### Topic naming convention
-
-**producer** Real Time Updater
-
 `<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
 
-An example:
+Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
-```sh
-test-tenant.PROD.restaurants-db.reviews-collection.pr-update
-```
+## Single View
 
-### Projection Change
+This section covers the outputs concerning the Single View.
 
-A `Projection Change` is an event that informs the listener that a Single View should be updated.
-It can be stored on either MongoDB or Kafka, depending on your architecture.
+### Projection Changes
+
+The Projection Changes or `pc` is an event that informs the listener that a Single View should be updated.
+It is stored on MongoDB and is very similar to the [`sv-trigger`](#sv-trigger).
 
 Its value has the following fields:
 
@@ -640,9 +644,10 @@ channels:
             required: ["singleViewIdentifier"]
 ```
 
+<!-- TODO: put in sv-trigger -->
 #### Topic naming convention
 
-**producer**: Single View Trigger Generator
+**Producer**: Single View Trigger Generator
 
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
 
@@ -652,17 +657,136 @@ An example:
 test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger
 ```
 
-## Aggregation
+### Single View Trigger Message
 
-This section covers the outputs concerning the aggregation.
+The Single View Trigger Message or `sv-trigger` ...
 
-### Single View
+<!-- TODO: do it -->
 
-A Single View is an aggregated MongoDB Collection that keeps all the data necessary for your business in a ready-to-use format. On top of user-defined properties, you will also find the default CRUD fields: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `__STATE__`.
+### Single View Update Message
+
+The Single View Update or `sv-update` is an event which contains both the previous and the current state of the Single View once it has been updated.
+
+Its fields are:
+
+* `key`: the Single View ID
+* `value`:
+  * `operationType`: one of
+    * `INSERT`
+    * `UPDATE`
+    * `DELETE`
+  * `operationTimestamp`: timestamp of the operation
+  * `documentId`: id of the document taken from after
+  * `singleViewName`: name of the Single View
+  * `source`: the portfolio the Single View was originated from
+  * `before`: the value of the Single View before the change occurred
+  * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
+  * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
+
+**Message Example**:
+
+<details><summary>Click here to show/hide the long message example</summary>
+<p>
+
+```yaml
+key: | 
+  { 
+    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" 
+  }
+value: |
+  {
+    "operationType": "UPDATE",
+    "operationTimestamp": 1234567,
+    "documentId": null,
+    "singleViewName": "sv_customers",
+    "source": "food-delivery",
+    "before": { "COD_FISCALE": "cod1", "NAME": "Gandalf" },
+    "after": { "COD_FISCALE": "cod1", "NAME": "Mithrandir" },
+    "__internal__kafkaInfo":
+      {
+        "topic": "original-topic-1",
+        "partition": 0,
+        "timestamp": 1234567,
+        "offset": 0,
+        "key": { "originalKey1": "123" },
+      },
+  }
+```
+
+</p>
+</details>
+
+**AsyncApi specification**:
+
+```yaml
+asyncapi: 2.4.0
+info:
+  title: Single View Update Producer
+  version: "1.0.0"
+channels:
+  SingleViewUpdateChannel:
+    subscribe:
+      message:
+        name: single view Update
+        payload:
+          type: object
+          additionalProperties: false
+          properties:
+            key:
+              type: object
+            value:
+              type: object
+              additionalProperties: false
+              properties:
+                operationType:
+                  type: string
+                  enum: ["INSERT", "UPDATE", "DELETE"]
+                operationTimestamp:
+                  type: number
+                documentId:
+                  type: string
+                singleViewName:
+                  type: string
+                source:
+                  type: string
+                before:
+                  type: object
+                  additionalProperties: true
+                after:
+                  type: object
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    topic:
+                      type: string
+                    partition:
+                      type: integer
+                    offset:
+                      type: string
+                    key: {}
+                    timestamp:
+                      type: string
+          required: ["key", "value"]
+```
+
+#### Topic naming convention
+
+**Producer**: Single View Creator
+
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
+
+An example:
+
+```sh
+test-tenant.PROD.restaurants-db.reviews-sv.sv-update
+```
+
 
 ### Single View Error
 
-A `Single View Error` is an error message that warns us that something went wrong with the Single View update, and a Single View has not been changed.
+A Single View Error is an error event that warns us that something went wrong with the Single View update, and a Single View has not been changed.
 It is stored on MongoDB.
 
 Its fields are the default CRUD fields, and:
@@ -701,9 +825,11 @@ Its fields are the default CRUD fields, and:
 }
 ```
 
-### Single View Event
+### Others
 
-A `Single View Event` event is a Kafka message that informs the listener that a single view has been successfully updated.
+#### Single View Events Message
+
+A Single View Events or `svc-events` is a Kafka message that informs the listener that a single view has been successfully updated.
 
 Its fields are:
 
@@ -796,13 +922,13 @@ channels:
           required: ["key", "headers", "value"]
 ```
 
-### Single View Before After
+#### Single View Before After Message
 
 :::note
 This event is deprecated. Please, use the Single View Update event to get these information.
 :::
 
-An additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
+The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
 Its fields are:
 
@@ -1032,124 +1158,4 @@ channels:
               type: string
               enum: ["NON_EXISTING_SV", "INSERT_SV", "DELETE_SV", "UPDATE_SV"]
           required: ["key", "value", "opType"]
-```
-
-### Single View Update
-
-An event which contains both the previous and the current state of the Single View once it has been updated.
-
-Its fields are:
-
-* `key`: the Single View ID
-* `value`:
-  * `operationType`: one of
-    * `INSERT`
-    * `UPDATE`
-    * `DELETE`
-  * `operationTimestamp`: timestamp of the operation
-  * `documentId`: id of the document taken from after
-  * `singleViewName`: name of the Single View
-  * `source`: the portfolio the Single View was originated from
-  * `before`: the value of the Single View before the change occurred
-  * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
-  * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
-
-**Message Example**:
-
-<details><summary>Click here to show/hide the long message example</summary>
-<p>
-
-```yaml
-key: | 
-  { 
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" 
-  }
-value: |
-  {
-    "operationType": "UPDATE",
-    "operationTimestamp": 1234567,
-    "documentId": null,
-    "singleViewName": "sv_customers",
-    "source": "food-delivery",
-    "before": { "COD_FISCALE": "cod1", "NAME": "Gandalf" },
-    "after": { "COD_FISCALE": "cod1", "NAME": "Mithrandir" },
-    "__internal__kafkaInfo":
-      {
-        "topic": "original-topic-1",
-        "partition": 0,
-        "timestamp": 1234567,
-        "offset": 0,
-        "key": { "originalKey1": "123" },
-      },
-  }
-```
-
-</p>
-</details>
-
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Single View Update Producer
-  version: "1.0.0"
-channels:
-  SingleViewUpdateChannel:
-    subscribe:
-      message:
-        name: single view Update
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key:
-              type: object
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                operationType:
-                  type: string
-                  enum: ["INSERT", "UPDATE", "DELETE"]
-                operationTimestamp:
-                  type: number
-                documentId:
-                  type: string
-                singleViewName:
-                  type: string
-                source:
-                  type: string
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-          required: ["key", "value"]
-```
-
-#### Topic naming convention
-
-**producer**: Single View Creator
-
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
-
-An example:
-
-```sh
-test-tenant.PROD.restaurants-db.reviews-sv.sv-update
 ```
