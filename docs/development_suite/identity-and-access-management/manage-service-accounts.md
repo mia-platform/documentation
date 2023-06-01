@@ -28,7 +28,7 @@ In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-secur
 
 A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and delete existing ones from the **Service accounts section**.
 
-<!-- TODO: Add screeenshot of the section -->
+![Service accounts portal](./img/manage-service-accounts/service-accounts-portal.png)
 
 ### Adding a Service Account
 
@@ -43,7 +43,6 @@ The Service Account creation process will require the following information:
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
 
-    <!-- TODO: take these screenshots from the service accounts section -->
     ![Add Company Service Account with client secret basic auth](./img/manage-service-accounts/add_company_sa_client_secret.png)
 
       </div>
@@ -56,7 +55,6 @@ The Service Account creation process will require the following information:
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
     
-    <!-- TODO: take these screenshots from the service accounts section -->
     ![Add Company Service Account with private key jwt auth](./img/manage-service-accounts/add_company_sa_private_key_jwt.png)
 
       </div>
@@ -73,7 +71,6 @@ A Service Account can be removed from the Company by clicking the delete icon on
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-<!-- TODO: take these screenshots from the service accounts section -->
 ![Delete Company Service Account](./img/manage-service-accounts/delete_company_sa.png)
 
   </div>
@@ -108,9 +105,13 @@ Always pay attention when assigning Roles, in order to avoid providing undesired
 
 A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
-![Project identities page](./img/manage-identities/identities-project.png)
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
 
-<!-- TODO: add screenshot of modal -->
+![Edit project service account](./img/manage-identities/edit-project-sa.png)
+
+  </div>
+</div>
 
 :::note
 Although the Project Identities administration portal shows all the Company's Identities, this does not mean that all of the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.

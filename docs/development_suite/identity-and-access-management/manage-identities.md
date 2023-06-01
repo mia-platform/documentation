@@ -180,7 +180,7 @@ For service accounts:
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
 
-![Edit Project Service Account](./img/manage-identities/edit_project_sa.png)
+![Edit Project Service Account](./img/manage-identities/edit-project-sa.png)
 
   </div>
 </div>
