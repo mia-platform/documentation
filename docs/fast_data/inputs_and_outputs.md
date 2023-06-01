@@ -891,17 +891,6 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Definition**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
 
-<!-- Its fields are the default CRUD fields, and:
-
-* `portfolioOrigin`: information on which Single View Creator "group" generated the error. Each Single View Creator service has an environment variable in which this value is specified.
-* `type`: the name of the Single View that needed to be generated when the error occurred.
-* `identifier`: the ID of the Single View
-* `errorType`: the type of error. Can be one of:
-  * `NO_SV_GENERATED`: if the Single View was not generated
-  * `VALIDATION_ERROR`: if the Single View that was generated does not conform to the declared fields
-  * `MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE`: if the Projection Change caused more than one Single View to be generated
-  * `ERROR_SEND_SVC_EVENT` if the Single View was correctly generated, but the creation event could not be generated -->
-
 **JsonSchema specification**:
 ```json
 {
@@ -976,138 +965,221 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 }
 ```
 
-### Others
+### Single View Events Message
 
-#### Single View Events Message
+**System**: Apache Kafka
 
-A Single View Events or `svc-events` is a Kafka message that informs the listener that a single view has been successfully updated.
+**Producer**: Single View Creator
 
-Its fields are:
-
-* `key`: the Single View ID
-* `headers`:
-  * `type`: always set to `event`. New values might be added in the future.
-  * `name`: the type of operation that was successful. Can be one of:
-    * `singleViewCreated`
-    * `singleViewUpdated`
-    * `singleViewDeleted`
-* `value`:
-  * `type`: the name of the Single View collection
-  * `portfolioOrigin`: the portfolio the Single View was originated from
-
-**Message Example**:
-
-```yaml
-key: | 
-  {
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: |
-  {
-    "type": "sv_customers",
-    "portfolioOrigin": "food-delivery",
-    "__internal__kafkaInfo":
-      {
-        "topic": "kafka-topic-here",
-        "partition": 0,
-        "key": "Amatriciana_id",
-        "offset": "466",
-        "timestamp": "1653039238727",
-      },
-  }
-```
+**Definition**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
 
 **AsyncApi specification**:
-
 ```yaml
-asyncapi: 2.4.0
+asyncapi: 2.6.0
 info:
-  title: Single View Event Producer
-  version: "1.0.0"
+  title: Single View Events API
+  version: 1.0.0
 channels:
-  SingleViewUpdatesChannel:
+  svc-events:
     subscribe:
       message:
-        name: single view event
+        name: Single View Events message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - headers
+            - value
           properties:
-            key: {}
+            key:
+              type: object
+              description: Primary keys of the updated Single View
+              additionalProperties: true
             headers:
               type: object
-              additionalProperties: false
+              required:
+                - type
+                - name
               properties:
                 type:
-                  type: string
-                  enum: ["event"]
-                name:
                   type: string
                   enum:
-                    [
-                      "singleViewCreated",
-                      "singleViewUpdated",
-                      "singleViewDeleted",
-                    ]
+                    - event
+                name:
+                  type: string
+                  description: Operation type or outcome
+                  enum:
+                    - singleViewCreated
+                    - singleViewUpdated
+                    - singleViewDeleted
+              additionalProperties: false
             value:
               type: object
-              additionalProperties: false
+              required:
+                - type
+                - portfolioOrigin
+                - __internal__kafkaInfo
               properties:
                 type:
                   type: string
+                  description: The name of the Single View
                 portfolioOrigin:
                   type: string
+                  description: Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the message
                 __internal__kafkaInfo:
                   type: object
-                  additionalProperties: false
+                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
                   properties:
                     topic:
                       type: string
+                      description: Ingestion topic's name
                     partition:
                       type: integer
+                      description: Topic's partition
                     offset:
-                      type: string
-                    key: {}
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
                     timestamp:
+                      description: ISO 8601 date string of the kafka message timestamp
                       type: string
-          required: ["key", "headers", "value"]
+                  additionalProperties: false
+              additionalProperties: false
+          additionalProperties: false
 ```
 
-#### Single View Before After Message
+**Example**:
+```json
+{
+  "key": {
+    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  },
+  "value": {
+    "type": "sv_customers",
+    "portfolioOrigin": "food-delivery",
+    "__internal__kafkaInfo": {
+      "topic": "kafka-topic-here",
+      "partition": 0,
+      "key": "Amatriciana_id",
+      "offset": "466",
+      "timestamp": "1653039238727",
+    },
+  }
+}
+```
 
-:::note
+#### Topic naming convention
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.svc-events`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
+
+### Single View Before After Message
+
+:::caution
 This event is deprecated. Please, use the Single View Update event to get these information.
 :::
 
-The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
+**System**: Apache Kafka
 
-Its fields are:
+**Producer**: Single View Creator
 
-* `key`: the Single View ID
-* `value`:
-  * `key`: the Single View ID
-  * `before`: the value of the Single View before the change occurred
-  * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
-  * `type`: the name of the Single View collection
-  * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
-  * `opType`: one of the following
-    * `NON_EXISTING_SV`
-    * `INSERT_SV`
-    * `DELETE_SV`
-    * `UPDATE_SV`
+**Definition**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
-**Message Example**:
-
-<details><summary>Click here to show/hide the long message example</summary>
-<p>
-
+**AsyncApi specification**:
 ```yaml
-key: | 
-  { 
+asyncapi: 2.6.0
+info:
+  title: Single View Before After API
+  version: 1.0.0
+channels:
+  sv-before-after:
+    subscribe:
+      message:
+        name: Single View Before After message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          additionalProperties: false
+          properties:
+            key:
+              type: object
+              description: Primary keys of the updated Single View
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - key
+                - type
+                - opType
+                - __internal__kafkaInfo
+              properties:
+                key:
+                  type: object
+                  description: Primary keys of the updated Single View
+                  additionalProperties: true
+                type:
+                  type: string
+                  description: Name of the Single View collection
+                opType:
+                  type: string
+                  description: Operation performed by the Single View Creator
+                  enum:
+                    - NON_EXISTING_SV
+                    - INSERT_SV
+                    - DELETE_SV
+                    - UPDATE_SV
+                before:
+                  type: object
+                  description: The value of the Single View before the change occurred. Mind that in case of an insert this field won't be defined.
+                  additionalProperties: true
+                after:
+                  type: object
+                  description: The value of the Single View before the change occurred. Mind that in case of a delete this field won't be defined.
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the kafka message timestamp
+                      type: string
+                  additionalProperties: false
+              additionalProperties: false
+```
+
+**Example**:
+```json
+{
+  "key": { 
     "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: | 
-  {
+  },
+  "value": {
     "key": {
       "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
     },
@@ -1120,53 +1192,6 @@ value: |
       "email": "email_mario",
       "address": "address_1",
       "telephone": "phone_number_1653057355131_last",
-      "orders": [
-        {
-          "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
-          "orderDate": "2007-12-03T02:55:44.000Z",
-          "totalPrice": "52.54",
-          "paymentType": "Cash",
-          "orderStatus": "In shipping",
-          "dishes": [
-            {
-              "id": "Cotoletta_id",
-              "description": "a splendid dish",
-              "price": "12"
-            }
-          ]
-        }
-      ],
-      "allergens": [
-        {
-          "id": "eggs",
-          "comments": "this is another comment change",
-          "description": "it works!"
-        }
-      ],
-      "foodPreferences": [
-        {
-          "id": "preference_1",
-          "comments": "this is a comment",
-          "description": "this is the preference_1"
-        },
-        {
-          "id": "preference_2",
-          "comments": "i really love this",
-          "description": "this is the preference_2"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review_1",
-          "text": "Spectacular!",
-          "stars": "5"
-        },
-        {
-          "id": "review_2",
-          "text": "Tasteless!",
-          "stars": "1"
-        }
-      ],
       "updatedAt": "2022-05-20T14:35:58.943Z",
       "__STATE__": "PUBLIC",
       "__internal__kafkaInfo": {
@@ -1185,58 +1210,6 @@ value: |
       "email": "email_mario",
       "address": "address_1",
       "telephone": "phone_number_1653057355131_last",
-      "orders": [
-        {
-          "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
-          "orderDate": "2007-12-03T02:55:44.000Z",
-          "totalPrice": "52.54",
-          "paymentType": "Cash",
-          "orderStatus": "In shipping",
-          "dishes": [
-            {
-              "id": "Amatriciana_id",
-              "description": "a delicious dish",
-              "price": "12"
-            },
-            {
-              "id": "Cotoletta_id",
-              "description": "a splendid dish",
-              "price": "12"
-            }
-          ]
-        }
-      ],
-      "allergens": [
-        {
-          "id": "eggs",
-          "comments": "this is another comment change",
-          "description": "it works!"
-        }
-      ],
-      "foodPreferences": [
-        {
-          "id": "preference_1",
-          "comments": "this is a comment",
-          "description": "this is the preference_1"
-        },
-        {
-          "id": "preference_2",
-          "comments": "i really love this",
-          "description": "this is the preference_2"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review_1",
-          "text": "Spectacular!",
-          "stars": "5"
-        },
-        {
-          "id": "review_2",
-          "text": "Tasteless!",
-          "stars": "1"
-        }
-      ],
       "updatedAt": "2022-05-20T14:35:59.488Z",
       "__STATE__": "PUBLIC",
       "__internal__kafkaInfo": {
@@ -1257,56 +1230,10 @@ value: |
     },
     "opType": "UPDATE_SV"
   }
+}
 ```
 
-</p>
-</details>
+#### Topic naming convention
+`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-before-after`
 
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Single View Before After Producer
-  version: "1.0.0"
-channels:
-  SingleViewBeforeAfterChannel:
-    subscribe:
-      message:
-        name: single view before after
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                key: {}
-                type:
-                  type: string
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-            opType:
-              type: string
-              enum: ["NON_EXISTING_SV", "INSERT_SV", "DELETE_SV", "UPDATE_SV"]
-          required: ["key", "value", "opType"]
-```
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-before-after`
