@@ -560,7 +560,7 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
     },
     "updatedAt": {
       "type": "object",
-      "description": "MongoDB date object of the time the record has been updates, most of the times it means the moment when a change has been registered.",
+      "description": "MongoDB date object of the time the record has been updated, most of the times it means the moment when a change has been registered.",
       "additionalProperties": true
     },
     "doneAt": {
@@ -885,10 +885,13 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 ### Single View Error
 
-A Single View Error is an error event that warns us that something went wrong with the Single View update, and a Single View has not been changed.
-It is stored on MongoDB.
+**System**: MongoDB
 
-Its fields are the default CRUD fields, and:
+**Producer**: Single View Creator
+
+**Definition**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
+
+<!-- Its fields are the default CRUD fields, and:
 
 * `portfolioOrigin`: information on which Single View Creator "group" generated the error. Each Single View Creator service has an environment variable in which this value is specified.
 * `type`: the name of the Single View that needed to be generated when the error occurred.
@@ -897,30 +900,79 @@ Its fields are the default CRUD fields, and:
   * `NO_SV_GENERATED`: if the Single View was not generated
   * `VALIDATION_ERROR`: if the Single View that was generated does not conform to the declared fields
   * `MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE`: if the Projection Change caused more than one Single View to be generated
-  * `ERROR_SEND_SVC_EVENT` if the Single View was correctly generated, but the creation event could not be generated
+  * `ERROR_SEND_SVC_EVENT` if the Single View was correctly generated, but the creation event could not be generated -->
 
-**MongoDB Record Example**:
+**JsonSchema specification**:
+```json
+{
+  "type": "object",
+  "required": [
+    "portfolioOrigin",
+    "type",
+    "identifier",
+    "errorType",
+    "resolutionMethod"
+  ],
+  "properties": {
+    "portfolioOrigin": {
+      "type": "string",
+      "description": "Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the error"
+    },
+    "type": {
+      "type": "string",
+      "description": "Name of the Single View"
+    },
+    "identifier": {
+      "type": "object",
+      "description": "Identifier of the Projection Changes that should match with the Single View Keys fields or the identifierQueryMapping ones from the aggregation.json"
+    },
+    "errorType": {
+      "type": "string",
+      "enum": [
+        "NO_SV_GENERATED",
+        "VALIDATION_ERROR",
+        "MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE",
+        "ERROR_SEND_SVC_EVENT"
+      ],
+      "description": "String describing the cause of the error"
+    },
+    "resolutionMethod": {
+      "type": "string",
+      "enum": [
+        "AGGREGATION",
+        "PATCH"
+      ],
+      "description": "System that the Single View Creator was using to update the Single Views"
+    },
+    "createdAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been created",
+      "additionalProperties": true
+    },
+    "updatedAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been updated",
+      "additionalProperties": true
+    },
+  },
+  "additionalProperties": false
+}
+```
+
+**Record Example**:
 
 ```json
 {
-  "_id": {
-    "$oid": "619790cbc17eea00122a0796"
-  },
-  "portfolioOrigin": "users",
+  "_id": "64426177a879bbfec4eaed0f",
+  "portfolioOrigin": "food-delivery",
   "type": "sv_customers",
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
   "errorType": "NO_SV_GENERATED",
-  "createdAt": {
-    "$date": "2021-11-19T11:55:55.337Z"
-  },
-  "creatorId": "single-view-creator",
-  "__STATE__": "PUBLIC",
-  "updaterId": "single-view-creator",
-  "updatedAt": {
-    "$date": "2021-11-19T11:55:55.337Z"
-  }
+  "createdAt": "2022-05-20T10:25:35.656Z",
+  "updatedAt": "2022-05-20T10:25:35.656Z",
+  "resolutionMethod": "AGGREGATION"
 }
 ```
 
