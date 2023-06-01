@@ -82,7 +82,7 @@ You can change the role of a user in the Project or in any Project Runtime Envir
   </div>
 </div>
 
-## How to best manage your Users
+## How to best manage your users
 
 Are you wondering whether **organizing your users through individual role assignments** is the smartest and most effective way to manage the user access to your Company? Or whether the best solution would be to **organize them into groups** instead?
 There is no right or wrong answer to this question: it depends on your organizational needs.  
