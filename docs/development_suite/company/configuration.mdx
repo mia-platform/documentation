@@ -164,7 +164,7 @@ The projects default configurations fields are:
     ```
 
   </TabItem>
-  <TabItem value="github" label="Github">
+  <TabItem value="github" label="GitHub">
 
     ```json
     {
@@ -230,18 +230,18 @@ The projects default configurations fields are:
   </TabItem>
   <TabItem value="jenkins" label="Jenkins">
 
-    - **options**: an object containing the **view** property.
+    - **options**: an object containing the `view` property.
 
       In Jenkins, pipeline views allow you to visualize and monitor your pipelines and their status in a more organized and user-friendly way, making it easier to track their progress and health.
 
-      The view configuration includes the following fields: 
+      The `view` configuration includes the following fields: 
 
       - **name**: the name of the visualization step where Jenkins pipelines are shown.
   
   </TabItem>
   </Tabs>
 
-  ##### Example Configuration
+  ##### Example Configurations
 
   <Tabs>
   <TabItem value="gitlab" label="GitLab">
@@ -253,7 +253,7 @@ The projects default configurations fields are:
   }
   ```
   </TabItem>
-  <TabItem value="github" label="Github">
+  <TabItem value="github" label="GitHub">
   
   ```json
   {
@@ -321,9 +321,9 @@ The projects default configurations fields are:
 
     It is composed of the following properties:
 
-    - **path**: specifies the exact location for reading variables, starting from the _basePath_.
+    - **path**: specifies the exact location for reading variables, starting from the _baseUrl_.
 
-    - **type**: the level of granularity variables are managed in the GitLab installation.
+    - **type**: the level of granularity with which variables are managed within the GitLab installation.
 
       It determines the scope within which variables will be available to the pipelines.
 
@@ -369,6 +369,7 @@ The projects default configurations fields are:
     "type": "vault"
   }
   ```
+
   </TabItem>
   </Tabs>
 
@@ -401,7 +402,7 @@ The projects default configurations fields are:
   - **environmentsVariables**: an object that describes the configuration of variables for the environment.
     
     :::info
-    This field overrides the configuration provided in the `environmentsVariables` field for a specific environment. 
+    This field can be overriden by the configuration provided in the `environmentsVariables` field for a specific environment. 
     :::
 
     It can be configured following the configuration of the `environmentsVariables` company field.
@@ -409,7 +410,7 @@ The projects default configurations fields are:
   - **deploy**: an object that describes the configuration of CI/CD pipelines for the environment.
     
     :::info
-    This field overrides the configuration provided in the `pipelines` field for a specific environment. 
+    This field can be overriden by the configuration provided in the `pipelines` field for a specific environment. 
     :::
 
     It can be configured following the configuration of the `pipelines` company field.
