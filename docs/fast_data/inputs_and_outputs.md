@@ -409,7 +409,7 @@ channels:
           additionalProperties: false
 ```
 
-**Reinsertion operation example**:
+**Example**:
 
 ```json
 {
@@ -572,7 +572,7 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
 }
 ```
 
-**Record example**:
+**Example**:
 
 ```json
 {
