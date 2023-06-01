@@ -232,6 +232,10 @@ In this case there is no difference in configuration depending on the provider t
 
 ### Edit Secret Manager
 
+:::warning
+Data migration from the old to the new provider is not managed. If you want to replace the Secret Manager you will have to manually migrate your secret variables.
+:::
+
 To change the Secret Manager of a project, you need to edit the `Environments variables` object by replacing the values of the following fields:
 
 * **providerId**: the unique identifier of the provider (obtainable from the providers' CRUD collection);
