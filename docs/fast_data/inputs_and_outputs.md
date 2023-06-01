@@ -6,9 +6,6 @@ sidebar_label: Inputs and Outputs
 
 The fast-data has an Event Driven Architecture, as such there are many events that make everything work. In this page we will explore these events in detail to understand better the whole fast-data lifecycle.
 
-<!-- TODO: before e after non sono required, anzi neanche null, o ci sono o non ci sono -->
-<!-- TODO: put the required property in async api objects -->
-
 ## Projection
 
 Here, we will discuss the inputs and outputs related to the Projection management.
@@ -512,7 +509,7 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 <!-- TODO: Add the SVTG when ready -->
 **Producer**: Real Time Updater
 
-The Projection Changes or `pc` informs the listener that a Single View should be updated.
+The Projection Changes or `pc` informs the listener (generally the Single View Creator) that a Single View should be updated.
 This event is created as a result of a strategy execution.
 It is stored on MongoDB and is very similar to the [Single View Trigger Message](#single-view-trigger-message) on Kafka.
 
@@ -529,7 +526,7 @@ Here you can see the jsonSchema definition of the DB record:
   "properties": {
     "type": {
       "type": "string",
-      "description": "TODO: define"
+      "description": "Identifier of for the Single View Creator service that should take care of the changes"
     },
     "identifier": {
       "type": "object",
@@ -545,7 +542,6 @@ Here you can see the jsonSchema definition of the DB record:
           "state"
         ],
         "properties": {
-          // TODO: define other kafka info fields
           "state": {
             "type": "string",
             "enum": [
@@ -553,6 +549,32 @@ Here you can see the jsonSchema definition of the DB record:
               "IN_PROGRESS"
             ],
             "description": "State of the change. State NEW means that the single view needs to be re-aggregated, state IN_PROGRESS means that the Single View Creator is already doing it."
+          },
+          "topic": {
+            "type": "string",
+            "description": "Ingestion topic that started the cycle"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp of the ingestion kafka message"
+          },
+          "partition": {
+            "type": "integer",
+            "description": "Partition number of the ingestion kafka message"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset of the ingestion kafka message"
+          },
+          "key": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Key of the ingestion kafka message"
+          },
+          "updatedAt": {
+            "type": "object",
+            "description": "MongoDB date object of the time the change has been updated",
+            "additionalProperties": true
           },
           "inProgressAt": {
             "type": "object",
@@ -594,7 +616,13 @@ Example:
   "changes": [
     {
       "state": "NEW",
-      // TODO: define other kafka info fields
+      "topic": "original-topic-2",
+      "timestamp": 1234567,
+      "partition": 0,
+      "offset": 2,
+      "key": {
+        "originalKey2": "123",
+      }
     }
   ],
   "createdAt": "2022-05-20T10:25:35.656Z",
@@ -603,67 +631,103 @@ Example:
 }
 ```
 
-<!-- TODO: should we add something else??? -->
-
 ### Single View Trigger Message
-
-<!-- TODO: do it -->
 
 **System**: Apache Kafka
 
 **Producer**: Single View Trigger Generator
 
-**Definition**: The Single View Trigger Message or `sv-trigger` ...
+**Definition**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your fast-data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
 
 **AsyncApi specification**:
 
 ```yaml
-asyncapi: 2.4.0
+asyncapi: 2.6.0
 info:
-  title: Projection Change Producer
-  version: "1.0.0"
+  title: Single View Trigger API
+  version: 1.0.0
 channels:
-  projectionChangesChannel:
+  sv-trigger:
     subscribe:
       message:
-        name: projection change
+        name: Single View Trigger message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - value
+            - timestamp
+            - offset
           properties:
-            __internal__kafkaInfo:
+            key:
               type: object
-              additionalProperties: false
-              properties:
-                topic:
-                  type: string
-                partition:
-                  type: integer
-                offset:
-                  type: string
-                key: {}
-                timestamp:
-                  type: string
-            type:
-              type: string
-              enum: ["aggregation", "patch"]
-            singleViewIdentifier: {}
-            change:
+              description: Identifier of the Single View or the Projection (depending on the value.type)
+              additionalProperties: true
+            value:
               type: object
-              additionalProperties: false
+              required:
+                - type
+                - __internal__kafkaInfo
+                - change
               properties:
-                projection:
+                type:
                   type: string
-                data:
+                  description: Type of change requested. Aggregation means the Single View must be regenerated, patch means an update must be done among all Single Views matching a certain query
+                  enum:
+                    - aggregation
+                    - patch
+                singleViewIdentifier:
                   type: object
+                  description: Identifier of the Single View just like the Projection Changes Identifier. Mind that this field will be set only in case of type aggregation and not patch
                   additionalProperties: true
-          required: ["type", "__internal__kafkaInfo", "change"]
-          if:
-            properties:
-              type:
-                const: "aggregation"
-          then:
-            required: ["singleViewIdentifier"]
+                change:
+                  type: object
+                  description: Contains information about the projection record that triggered the strategy
+                  additionalProperties: false
+                  properties:
+                    projectionName:
+                      description: Name of the projection
+                      type: string
+                    projectionIdentifier:
+                      type: object
+                      description: Primary keys of the projection record
+                      additionalProperties: true
+                    data:
+                      type: object
+                      description: Data of the projection record after the changes were applied
+                      additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: Unix timestamp of the ingestion Message
+                      type: string
+                  additionalProperties: false
+            timestamp:
+              type: string
+              description: Kafka message Unix timestamp
+            offset:
+              type: integer
+              description: Kafka message offset
+          additionalProperties: false
 ```
 
 #### Topic naming convention
