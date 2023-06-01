@@ -15,11 +15,11 @@ Providers can be generically defined as a means of storing information about ext
 
 The following table shows the providers currently supported by the Console, grouped by capability:
 
-| Capability     | Providers                                                           |
-|----------------|---------------------------------------------------------------------|
-| Git Provider   | GitLab, GitHub, Bitbucket, Azure DevOps                             |
-| Secret Manager | GitLab, Vault                                                       |
-| CI/CD Tool     | GitLab (Git Runner), GitHub (GitHub Actions), Jenkins, Azure DevOps |
+| Capability     | Providers                                                           | `type` in data model                                |
+|----------------|---------------------------------------------------------------------|-----------------------------------------------------|
+| Git Provider   | GitLab, GitHub, Bitbucket, Azure DevOps                             | gitlab, github, bitbucket, azure-devops             |
+| Secret Manager | GitLab, Vault                                                       | gitlab, vault                                       |
+| CI/CD Tool     | GitLab (Git Runner), GitHub (GitHub Actions), Jenkins, Azure DevOps | gitlab-ci, github-actions, jenkins, azure-pipelines |
 
 ## Providers Overview
 
@@ -214,6 +214,10 @@ To do this, you can use the CMS: navigate through the `Projects` section, select
 
 ### Edit Git Provider
 
+:::warning
+Data migration from the old to the new provider is not managed. If you want to replace the Git Provider you will have to manually migrate your repository.
+:::
+
 To change the Git Provider of a project, simply edit the `providerId` field within the `Repository` object by entering the `providerId` (obtainable from the providers' CRUD collection) you want to use instead of the previous one.
 
 In this case there is no difference in configuration depending on the provider type, so for each of the supported providers an example configuration of the `Repository` object could be as follows.
@@ -231,7 +235,7 @@ In this case there is no difference in configuration depending on the provider t
 To change the Secret Manager of a project, you need to edit the `Environments variables` object by replacing the values of the following fields:
 
 * **providerId**: the unique identifier of the provider (obtainable from the providers' CRUD collection);
-* **type** (*required*): one of the supported provider types (`gitlab` or `vault`).
+* **type** (*required*): one of the supported provider types. Refer to the table at the top of this page for the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 In addition, you may need to include the following information, depending on the provider type:
 
@@ -301,7 +305,7 @@ To do this, you need to modify the `environmentsVariables` object within the ref
 To change the CI/CD Tool of a project, you need to edit the `Pipelines` object by replacing the values of the following fields:
 
 * **providerId**: the unique identifier of the provider (obtainable from the providers' CRUD collection);
-* **type** (*required*): one of the supported provider types (`gitlab-ci`, `azure-pipelines`, or `jenkins`).
+* **type** (*required*): one of the supported provider types. Refer to the table at the top of this page for the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 In addition, you may need to include the following information, depending on the provider type:
 
