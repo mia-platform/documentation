@@ -218,7 +218,7 @@ To do this, you can use the CMS: navigate through the `Projects` section, select
 Data migration from the old to the new provider is not managed. If you want to replace the Git Provider you will have to manually migrate your repository.
 :::
 
-To change the Git Provider of a project, simply edit the `providerId` field within the `Repository` object by entering the `providerId` (obtainable from the providers' CRUD collection) you want to use instead of the previous one.
+To change the Git Provider of a project, simply edit the `providerId` field within the `Repository` object by entering the `providerId` you want to use instead of the previous one (obtainable by moving to the `Providers` section of the CMS and taking the `providerId` of the referenced document).
 
 In this case there is no difference in configuration depending on the provider type, so for each of the supported providers an example configuration of the `Repository` object could be as follows.
 
@@ -238,7 +238,7 @@ Data migration from the old to the new provider is not managed. If you want to r
 
 To change the Secret Manager of a project, you need to edit the `Environments variables` object by replacing the values of the following fields:
 
-* **providerId**: the unique identifier of the provider (obtainable from the providers' CRUD collection);
+* **providerId**: the unique identifier of the provider (obtainable by moving to the `Providers` section of the CMS and taking the `providerId` of the referenced document);
 * **type** (*required*): one of the supported provider types. Refer to the table at the top of this page for the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 In addition, you may need to include the following information, depending on the provider type:
@@ -308,7 +308,7 @@ To do this, you need to modify the `environmentsVariables` object within the ref
 
 To change the CI/CD Tool of a project, you need to edit the `Pipelines` object by replacing the values of the following fields:
 
-* **providerId**: the unique identifier of the provider (obtainable from the providers' CRUD collection);
+* **providerId**: the unique identifier of the provider (obtainable by moving to the `Providers` section of the CMS and taking the `providerId` of the referenced document);
 * **type** (*required*): one of the supported provider types. Refer to the table at the top of this page for the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 In addition, you may need to include the following information, depending on the provider type:
