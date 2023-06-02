@@ -1550,6 +1550,85 @@ With this configuration, the first two columns from left and the first column fr
   }
 ```
 
+### Highlighted rows
+
+It is possible to use property `highlightedRows` to map a color (expressed as a CSS-valid color string) to a
+[mongo-like query](../40_core_concepts.md#inline-queries).
+The background of rows that match any of these queries is set to the corresponding color.
+
+`highlightedRows` should be expressed as an array of 2-element tuples, with first value being the color and the second one representing the query.
+
+```typescript
+type QueryStyleRule = {
+  color: ColorInput
+  query: Query
+}
+```
+Where:
+  - `ColorInput` can be expressed as the CSS valid string representation of a color (for instance, `#f2e8e2` or `rgb(230, 155, 114)`), or an object such as `{r: 230, g: 155, b: 114}`.
+  Broadly speaking, `color` key supports all types supported as input by [TinyColor](https://github.com/bgrins/TinyColor) library
+  - `Query` is the object representation of a mongo-like query
+
+Rows are highlighted with the color of the first matching query, thus rows that match multiple queries will be highlighted with the first color.
+
+Queries support [dynamic values](../40_core_concepts.md#dynamic-configuration) through [handlebars notation](https://handlebarsjs.com/guide/expressions.html).
+`bk-table` provides inline queries with context:
+  - `args`: an array with row arguments:
+    - first element: an object containing the row content
+    - second element: an object containing the row content
+  - third element: a number with the cell index into the table
+  - `currentUser`: an object with the logged user's data
+  - `headers`: an object containing the headers
+
+:::info
+Context key `args` stores the same data in its first two arguments. This is to maintain consistency with the context that `bk-table` provides to [components mounted inside cells](#dynamic-properties-interpolation) and to [customActions](#configuring-actions-via-customactions).
+:::
+
+:::info
+Input colors are converted to their RGB representation. If an alpha channel is present, a white background is assumed.
+For instance, color `rgba(255, 0, 0, 0.5)` is converted to `rgb(255, 128, 128)`.
+:::
+
+#### Example
+
+```json
+{
+  "highlightedRows": [
+    {
+      "color": "#ff0000",
+      "query": {"severity": "High"}
+    },
+    {
+      "color": "blue",
+      "query": {"pets.0": {"$exists": true}}
+    }
+  ]
+}
+```
+
+Table rows with field `severity` equal to "High" will have a red background color,
+while rows with array field `pets` having at least one element will have their background color set to blue.
+
+#### Example - dynamic queries
+
+```json
+{
+  "highlightedRows": {
+    {
+      "color": "yellow",
+      "query": {"email": "{{currentUser.email}}"}
+    },
+    {
+      "color": "green",
+      "query": {"payed": {"$gte": "{{rawObject args.[1].owed}}"}}
+    }
+  }
+}
+```
+
+Table rows with field `email` equal to the homonymous field in `currentUser` will be highlighted with a yellow color,
+while rows with field `payed` larger than field `owed`, will be set to green color.
+
 ### Actions
 
 It is possible to include an actions columns in the table, through the properties `rowActions`, `customActions`, `navigationRowActions`. Configurable buttons or generic components will be rendered inside the actions columns.
@@ -1806,10 +1885,10 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`allowNavigation`|`allow-navigation`|boolean|true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
-|`browseOnRowSelect`| - |ClickPayload| - |if set, a click on a row will navigate you to another location |
-|`customActions`| - |CustomAction[]| - |list of custom components, rendered in the action column |
+|`browseOnRowSelect`| - |[ClickPayload](#browse-on-row-click)| - |if set, a click on a row will navigate you to another location |
+|`customActions`| - |[CustomAction](#configuring-actions-via-customactions)[]| - |list of custom components, rendered in the action column |
 |`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to display |
+|`dataSchema`| - |[ExtendedJSONSchema7Definition](../30_page_layout.md#data-schema)| - |[data schema](../page_layout#data-schema) describing the fields of the collection to display |
 |`disableRowClick`|`disable-row-click`|boolean|false|when `true`, a click on a row does not trigger an event|
 |`disableRowSelection`|`disable-row-selection`|boolean|false|when `true`, checkbox in the first column will not be displayed|
 |`disableRowSelectionChange`|`disable-row-selection-change`|boolean|false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
@@ -1817,13 +1896,14 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 |`initialSortProperty`|`initial-sort-property`|string| - |Initial property to sort on when component bootstraps |
 |`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
 |`maxLines`|`max-lines`|number| - |force lines that will be displayed together |
-|`navigationRowActions`| - |NavigationDataActions| {"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]} |actions in nested objects.|
+|`navigationRowActions`| - |[NavigationDataActions](#configuring-actions-via-navigationrowactions)| {"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]} |actions in nested objects.|
 |`openFileInViewerRegex`| - |string \| string[] \| {[regex: string]: "view" \| "download"}| - |regex expressions, matched against file values. If one matches, the corresponding cell is clickable and the file opens inside a viewer (default) or is downloaded. |
 |`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
-|`rowActions`| - |DataActions| - |list of actions to render per row |
+|`rowActions`| - |[DataActions](#configuring-actions-via-rowactions)| - |list of actions to render per row |
 |`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
 |`fixedColumns`| - | number \| {'left': number; 'right': number} | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
-|`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data
+|`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data |
+|`highlightedRows`| - | [QueryStyleRule](#highlighted-rows) \| [QueryStyleRule](#highlighted-rows)[] | - | highlights rows matched by a mongo-like queries |
 
 ### Listens to
 

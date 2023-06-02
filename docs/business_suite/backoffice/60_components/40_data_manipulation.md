@@ -116,7 +116,7 @@ Generic form to edit or create items described by the `dataSchema`
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table |
+|`allowObjectAsTable`|`allow-object-as-table`|boolean|false| allows to visualize objects and arrays without specific format as a read-only table |
 |`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
@@ -346,6 +346,84 @@ which is the only way to enable the confirmation dialog on save.
 Both `onSave` and `onClose` must be passed in the configuration and both of them accept a `boolean` or a `RequireConfirmOpts` type with the same rules written above in points 1 and 2 of this section. 
 
 
+### Custom labels
+
+Custom labels can be specified as [LocalizedText](../core_concepts#localization-and-i18n) as modal title, CTA button label, require confirm message.
+Such labels can be scoped based on whether the form is in [edit](#edit-1) or [create](#insert-1) mode.
+
+
+
+```json
+{
+  "tag": "bk-form-modal",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        },
+        "ctaLabel": {
+          "en": "Submit",
+          "it": "Submit Order"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderà l'ordine non salvate, procedere?",
+          "en": "Closing now will discard new order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        },
+        "ctaLabel": {
+          "en": "Update Order",
+          "it": "Salva Ordine"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderanno tutte le modifiche non salvate all'ordine, procedere?",
+          "en": "Closing now will discard changes to the order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      }
+    }
+  }
+}
+```
+
+Not all keys need to be specified, as `customLabels` is merged with default labels. For instance, the following is a valid configuration of `customLabels`:
+```json
+{
+  "tag": "bk-form-modal",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        }
+      }
+    }
+  }
+}
+```
+
 ### Properties & Attributes
 
 
@@ -354,7 +432,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
+|`customLabels`| - |[LocalizedLabels](#custom-labels)| - |custom localized texts shown as title and CTA button label|
 |`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataCustomActions`| - |DrawerDataActionConfig[]|[]|list of actions to render per row|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
@@ -362,7 +440,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
+|`requireConfirm`| - |boolean \| [RequireConfirmOpts](#2-object-of-type-requireconfirmopts) \| [RequireConfirmForm](#3-object-of-type-requireconfirmform) |false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`| - |string \| number|500|with of the drawer |
 |`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
@@ -632,7 +710,7 @@ By default, objects and arrays are displayed in `bk-form-modal` as JSONs inside 
 This is not true for objects and arrays of specific [formats](../page_layout#data-schema) such as `file` or `multilookup`, and for objects / arrays for which a data-schema is defined.
 
 In particular, properties `allowObjectAsTable` and `allowNavigation` control how object and array fields with a provided data-schema (and no specific `format`) are rendered inside the modal.
-- `allowObjectAsTable` controls whether or not the nested fields should be rendered in both an editor and a read-only table.
+- `allowObjectAsTable` controls whether or not the nested fields should be rendered as an editor, a read-only table, or both.
 - `allowNavigation` allows to emit a [nested-navigation-state/push](../events#nested-navigation-state---push) event by clicking on the field label. Refer to [this](../page_layout#nested-dataschemas) for further details on nested objects navigation.
 
 By default, setting `allowNavigation` to true disables editor visualization for nested fields. The following table explains how the two properties interact:
@@ -646,12 +724,93 @@ By default, setting `allowNavigation` to true disables editor visualization for 
 | false | "show-editor" | Editor visualization only, label can be clicked |
 | false | false | Editor visualization only, label cannot be clicked |
 
+By default, `allowObjectAsTable` is false, `allowNavigation` is true.
+
 :::info
-When `allowObjectAsTable` is true, the resulting table supports a subset of the features supported by `bk-table`. Some of the limitations with respect to `bk-table` include:
+When `allowObjectAsTable` is true, the resulting table supports a subset of the features supported by [bk-table](./60_data_visualization.md#bk-table).
+Some of the limitations with respect to `bk-table` include:
   - lookups are not resolved
   - row selection is disabled
   - row click is disabled
 :::
+
+### Custom labels
+
+Custom labels can be specified as [LocalizedText](../core_concepts#localization-and-i18n) as modal title, CTA button label, require confirm message.
+Such labels can be scoped based on whether the form is in [edit](#edit-1) or [create](#insert-1) mode.
+
+
+
+```json
+{
+  "tag": "bk-form-modal",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        },
+        "ctaLabel": {
+          "en": "Submit",
+          "it": "Submit Order"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderà l'ordine non salvate, procedere?",
+          "en": "Closing now will discard new order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        },
+        "ctaLabel": {
+          "en": "Update Order",
+          "it": "Salva Ordine"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderanno tutte le modifiche non salvate all'ordine, procedere?",
+          "en": "Closing now will discard changes to the order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      }
+    }
+  }
+}
+```
+
+Not all keys need to be specified, as `customLabels` is merged with default labels. For instance, the following is a valid configuration of `customLabels`:
+```json
+{
+  "tag": "bk-form-modal",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        }
+      }
+    }
+  }
+}
+```
 
 ### Properties & Attributes
 
@@ -662,18 +821,18 @@ When `allowObjectAsTable` is true, the resulting table supports a subset of the 
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format and a dataschema in both a editor and read-only table|
-|`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
+|`customLabels`| - |[LocalizedLabels](#custom-labels-1)| - |custom localized texts shown as title and CTA button label|
 |`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |[ExtendedJSONSchema7Definition](../30_page_layout.md#data-schema)| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`height`|`height`|string|'60vh'|height of the modal |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
+|`requireConfirm`| - |boolean \| [RequireConfirmOpts](#2-object-of-type-requireconfirmopts-1) \| [RequireConfirmForm](#3-object-of-type-requireconfirmform-1) |false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string|'#microlc-element-composer'|root element to append the modal to |
 |`width`|`width`|string|'90vw'|with of the modal |
-|`wizard`| - |boolean \| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
+|`wizard`| - |boolean \| [WizardStepSchema](#wizard)[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
 |`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
 
 ### Listens to

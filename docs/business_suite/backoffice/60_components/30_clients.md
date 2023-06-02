@@ -11,7 +11,19 @@ Clients manage interactions between the current page and other services. Typical
 data retrieval facilities from any given resource, CRUD services, and state stores. Clients components ensure isolation between
 logical/business features and allow services encapsulation and adaption
 
-## Configuration edge cases
+## bk-crud-client
+
+Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
+
+:::info
+This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../runtime_suite/crud-service/overview_and_usage).
+:::
+
+```html
+<bk-crud-client></bk-crud-client>
+```
+
+### \__STATE__ life-cycle
 
 In case `__STATE__` must be finely controlled upon creation/duplication/patching, some care must be taken while configuring.
 As per `CRUD-Service` interface, `__STATE__` cannot be patched and requires a reserved endpoint call. Hence, no BO configuration
@@ -20,7 +32,7 @@ leads to patch with `__STATE__` included as part of the `$set` body.
 `__STATE__` though can be tuned upon creation and duplication. The default behavior is
 
 - on creation if not specified, `__STATE__` defaults to its CRUD collection default, i.e. no param is passed along with the HTTP request
-- on duplication, to ensure, backward compatibility, HTTP post is performed without `__STATE__` param defaulting again according with CRUD collections default
+- on duplication, to ensure backward compatibility, HTTP post is performed without `__STATE__` param defaulting again according with CRUD collections default
 
 This behavior can be overridden using the `bk-crud-client` props `keepStateWhileDuplicating`.
 If set to `true` it will carry along the `__STATE__` of the original item duplicating it as well.
@@ -60,17 +72,152 @@ A good configuration could be (in case `__STATE__` must be tunable by the user a
 }
 ```
 
-## bk-crud-client
+### Data Deletion
 
-Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
+By default, data deletion follows the [`__STATE__` pattern](../../runtime_suite/crud-service/overview_and_usage#state-transitions) of `Mia-Platform CRUD Service`.
 
-:::info
-This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../../runtime_suite/crud-service/overview_and_usage).
-:::
+When `bk-crud-client` receives the [delete-data](../70_events.md#delete-data) event, it processes the payload to determine the appropriate action for the `__STATE__` field of the elements being deleted.
+If the current `__STATE__` is PUBLIC or DRAFT, the `__STATE__` field is updated to TRASH; if the current `__STATE__` is TRASH it is updated to DELETED.
 
-```html
-<bk-crud-client></bk-crud-client>
-```
+This behavior can be partially overridden using property `enableDefinitiveDelete`: it this is set to true, the elements in `__STATE__` TRASH will be irreversibly deleted from the collection.
+
+Additionally, the bk-crud-client listens to the [http-delete](../70_events.md#http-delete) event. This event deletes the elements specified in the payload, regardless of their starting value of `__STATE__`.
+
+The following table summarizes the outcomes based on different scenarios:
+
+| Event           | Starting `__STATE__`     | `enableDefinitiveDelete` | Outcome                             |
+|-----------------|--------------------------|--------------------------|-------------------------------------|
+| `delete-data`   | `PUBLIC`/`DRAFT`         | false                    | `__STATE__` is updated to `TRASH`   |
+| `delete-data`   | `TRASH`                  | false                    | `__STATE__` is updated to `DELETED` |
+| `delete-data`   | `PUBLIC`/`DRAFT`         | true                     | `__STATE__` is updated to `TRASH`   |
+| `delete-data`   | `TRASH`                  | true                     | element is permanently deleted      |
+| `http-delete`   | `PUBLIC`/`DRAFT`/`TRASH` | -                        | element is permanently deleted      |
+
+
+Both `delete-data` and `http-delete` also support bulk actions, in case payload is an array.
+
+#### Example
+
+- **delete-data**
+
+  Assuming a [delete-data](../70_events.md#delete-data) event to be received with payload:
+  ```json
+  {
+    "_id": "id-1",
+    "__STATE__": "PUBLIC"
+  }
+  ```
+  then the default behavior of `bk-crud-client` is to request the `__STATE__` field to be updated to TRASH for element with `id` "id-1".
+  
+  This consists in a POST call to `/state` of CRUD Service with payload:
+  ```json
+  {
+    "filter": {"_id": "id-1"},
+    "stateTo": "TRASH"
+  }
+  ```
+
+
+- **delete-data (bulk)**
+
+  Assuming a [delete-data](../70_events.md#delete-data) event to be received with payload:
+  ```json
+  [
+    {
+      "_id": "id-1",
+      "__STATE__": "PUBLIC"
+    },
+    {
+      "_id": "id-2",
+      "__STATE__": "TRASH"
+    }
+  ]
+  ```
+  then the default behavior of `bk-crud-client` is to request the `__STATE__` field to be updated to TRASH for element with `id` "id-1" and to DELETED for element with `_id` "id-2".
+  
+  This consists in a POST call to `/state` of CRUD Service with payload:
+  ```json
+  [
+    {
+      "filter": {"_id": "id-1"},
+      "stateTo": "TRASH"
+    },
+    {
+      "filter": {"_id": "id-2"},
+      "stateTo": "DELETED"
+    }
+  ]
+  ```
+- **enableDefinitiveDelete**
+
+  Assuming a [delete-data](../70_events.md#delete-data) event to be received with payload:
+  ```json
+  [
+    {
+      "_id": "id-1",
+      "__STATE__": "PUBLIC"
+    },
+    {
+      "_id": "id-2",
+      "__STATE__": "TRASH"
+    }
+  ]
+  ```
+  and `bk-crud-client` to configured like:
+  ```json
+  {
+    "tag": "bk-crud-client",
+    "payload": {
+      "enableDefinitiveDelete": true
+    }
+  }
+  ```
+  then `bk-crud-client` requests the `__STATE__` field to be updated to TRASH for element with `id` "id-1" and to request permanent deletion of element with `_id` "id-2".
+  
+  This results in two http calls:
+    - one POST to `/state` endpoint with payload
+      ```json
+      [
+        {
+          "filter": {"_id": "id-1"},
+          "stateTo": "TRASH"
+        }
+      ]
+      ```
+    - one DELETE to `/id-2`
+
+- **http-delete**
+
+  Assuming an [http-delete](../70_events.md#http-delete) event to be received with payload:
+  ```json
+  [
+    {
+      "_id": "id-1",
+      "__STATE__": "PUBLIC"
+    },
+    {
+      "_id": "id-2",
+      "__STATE__": "TRASH"
+    }
+  ]
+  ```
+  then `bk-crud-client` requests permanent deletion of elements with `_id` "id-1" and "id-2".
+  
+  This consists in a DELETE call to `/` with request:
+  ```json
+  {
+    "_q": {
+      "_id": {
+        "$in":[
+          "id-1",
+          "id-2"
+        ]
+      }
+    },
+    "_st": "PUBLIC,TRASH"
+  }
+  ```
+
 
 ### Properties & Attributes
 
