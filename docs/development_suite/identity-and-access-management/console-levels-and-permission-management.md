@@ -3,7 +3,7 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different roles and permissions to each [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to your resources is a key action for defining responsibilities within your Platform ecosystem.
+Assigning different role s and permissions to each [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to your resources is a key action for defining responsibilities within your Platform ecosystem.
 Mia-Platform Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
 
 Let's see how they are configured.
@@ -112,7 +112,7 @@ The following table describes the manageable privileges at Console root level th
 | Edit any Project                                | `console.root.project.details.update` |
 | Delete any Project                              | `console.root.project delete`         |
 | View all Console resources                      | `console.root.view`                   |
-| Manage identity Roles, Groups and Bindings      | `console.root.user.bind`              |
+| Manage identity roles, Groups and Bindings      | `console.root.user.bind`              |
 | Create and delete any user                      | `console.root.user.manage`            |
 | Create and delete root service account          | `console.root.serviceaccount.manage`  |
 | Manage all private and public Project Templates | `console.root.templates.manage`       |
@@ -127,16 +127,16 @@ This team works on a single Project with two environments:
  1. Production, on which only the _Project Manager_, the _Technical Leader_ and _Senior Developer_ can perform actions, and
  1. Staging on which the 2 _Junior Developers_ can perform actions, too.
 
-What you might want could be a similar Role Binding organization:
+What you might want could be a similar role Binding organization:
 
-* The _Project Manager_ and the _Technical Leader_ may want to have full access to the Project so they can be assigned the _Project Administrator_ Role on the Project resource
-* The _Designers_ should be able to access the Project but they cannot perform any editing action on it, so they can be assigned the _Reporter_ Role on the Project resource
-* The _Senior Developers_ can be assigned the _Maintainer_ Role on the Project
-* The _Junior Developers_ can be assigned the _Developer_ Role on the Project resource and then can be assigned the _Maintainer_ Role only on the Staging environment
+* The _Project Manager_ and the _Technical Leader_ may want to have full access to the Project so they can be assigned the _Project Administrator_ role on the Project resource
+* The _Designers_ should be able to access the Project but they cannot perform any editing action on it, so they can be assigned the _Reporter_ role on the Project resource
+* The _Senior Developers_ can be assigned the _Maintainer_ role on the Project
+* The _Junior Developers_ can be assigned the _Developer_ role on the Project resource and then can be assigned the _Maintainer_ role only on the Staging environment
 
-#### Assigning Roles on Resources
+#### Assigning roles on resources
 
-When you wish to assign a Role on a specific resource what you have to do is create a binding with a properly configured resource object.
+When you wish to assign a role on a specific resource what you have to do is create a binding with a properly configured resource object.
 
 :::info
 For more information regarding how a binding is defined and how to configure the resources check out the [following documentation page](/development_suite/api-console/api-design/authorization.md#rbac-storage).

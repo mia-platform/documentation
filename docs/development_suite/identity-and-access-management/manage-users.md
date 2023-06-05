@@ -14,14 +14,14 @@ Users inside the Console can be part of one or more Companies. From the **Users 
 
 :::info  
 The Users section is especially intended to help Company Owners have an immediate view of all users with access to their Company and how they have acquired it: if a user has an assigned Company role, it means they have direct access to the Company thanks to an individual binding.  
-This table, however, also shows the groups each user is a member of, meaning that even if no Company role is assigned, the user has access to the Company thanks to the role assigned to those groups.  
+This table, however, also shows the groups each user is a member of, meaning that even if no Company role is assigned, the user has access to the Company thanks to those groups membership.  
 :::
 
 ![Users portal](./img/manage-users/users-portal.png)
 
 ### Adding a User
 
-A Company Owner can add a new user by pressing the *Add user* button in the Users section. The User invitation process will require the invited user email to be provided.
+A Company Owner can add a new user by pressing the *Add user* button in the Users section. The user invitation process will require the invited user email to be provided.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -55,7 +55,7 @@ The user will be revoked personal access to the Company and will also be kicked 
 
 ## Managing User roles
 
-User roles are managed from the **IAM portal**, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities Access Management documentation page](/development_suite/identity-and-access-management/manage-identities.md)
+User roles are managed from the **IAM portal**, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in the [Identities Access Management documentation page](/development_suite/identity-and-access-management/manage-identities.md).
 
 ### Managing User role at Company level
 

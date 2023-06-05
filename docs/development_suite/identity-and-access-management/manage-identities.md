@@ -5,7 +5,7 @@ sidebar_label: Manage Identities
 ---
 
 Mia-Platform Console enables certain users to manage the privileges of other identities, which can be other users, but also groups and service accounts.  
-Granting accesses and permissions to Company resources can be performed through the **IAM section**, which allows role assignment on the following Console resources:
+Granting accesses and permissions to Company resources can be performed through the **IAM (Identity and Access Management) section**, which allows role assignment on the following Console resources:
 
 * Company
 * Project
@@ -85,12 +85,12 @@ The IAM section is also designed to manage service account roles at Company leve
 From the IAM portal, both user accounts and service accounts can be added to the Company.  
 
 :::note
-Even though this portal is intended to manage identity roles, this is a useful shortcut for Company Owners to quickly add new users or service accounts to their Company without having to navigate to the respective portals
+Even though this portal is intended to manage identity roles, this is a useful shortcut for Company Owners to quickly add new users or service accounts to their Company without having to navigate to the respective portals.
 :::
 
 #### Adding a user
 
-A Company Owner can add a new user by pressing the *Add user* button. The User invitation process will require the invited user email to be provided.
+A Company Owner can add a new user by pressing the *Add user* button. The user invitation process will require the invited user email to be provided.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -134,7 +134,7 @@ In that specific case, the user does not lose access to the Company, and their p
 
 :::warning
 Removing a user from the IAM portal will remove permissions specifically assigned to that user on every Project and Runtime Environment of the Company.  
-While the user may be invited back in the Company, all their previously existing roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
+While the user may be invited back in the Company, all their previously existing roles - on the contrary - will be lost and cannot be recovered, meaning they must be reassigned from scratch.
 :::
 
 #### Removing a service account

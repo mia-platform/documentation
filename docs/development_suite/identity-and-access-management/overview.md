@@ -18,7 +18,7 @@ Therefore, by giving permissions on resources to users, it is strongly suggested
 
 ## The IAM Portal
 
-The **IAM** page in the Access Management section is designed to help you manage the level of access you want to grant to all kinds of identities inside your Company. The purpose of this page is to provide a **centralized role management system**: here, you will be able to view and manage roles directly assigned to identities that grant them specific permissions. 
+The **IAM (Identity and Access Management)** page in the Access Management section is designed to help you manage the level of access you want to grant to all kinds of identities inside your Company. The purpose of this page is to provide a **centralized role management system**: here, you will be able to view and manage roles directly assigned to identities that grant them specific permissions. 
 
 This page also provides a useful shortcut for Company Owners to quickly add new users and service accounts to the Company.
 
@@ -41,6 +41,6 @@ The **Groups** section displays all the groups of the Company with the assigned 
 
 ![Groups portal](./img/manage-groups/groups-portal.png)
 
-The **Service Accounts** section shows all the service accounts of the Company, allowing the user to create new ones or permanently delete existing ones
+The **Service Accounts** section shows all the service accounts of the Company, allowing the user to create new ones or permanently delete existing ones.
 
 ![Service accounts portal](./img/manage-service-accounts/service-accounts-portal.png)
