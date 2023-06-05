@@ -13,7 +13,7 @@ User accounts can be assigned roles at Console, Company, Project or Runtime Envi
 Users inside the Console can be part of one or more Companies. From the **Users section** within the Company Overview, a Company Owner can view and manage all user accounts of a Company. From this section, new users can be added to the Company and existing ones can be removed from it completely.
 
 :::info  
-The Users section is especially intended to help Company Owners have an immediate view of all users that have access to their Company and how they have acquired it: if a user has an assigned Company role, it means they have direct access to the Company thanks to an individual binding.  
+The Users section is especially intended to help Company Owners have an immediate view of all users with access to their Company and how they have acquired it: if a user has an assigned Company role, it means they have direct access to the Company thanks to an individual binding.  
 This table, however, also shows the groups each user is a member of, meaning that even if no Company role is assigned, the user has access to the Company thanks to the role assigned to those groups.  
 :::
 

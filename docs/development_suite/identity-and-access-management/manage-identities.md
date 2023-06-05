@@ -5,7 +5,7 @@ sidebar_label: Manage Identities
 ---
 
 Mia-Platform Console enables certain users to manage the privileges of other identities, which can be other users, but also groups and service accounts.  
-Granting accesses and permissions to Company resources can be performed through the **IAM section**, which allows roles assignment on the following Console resources:
+Granting accesses and permissions to Company resources can be performed through the **IAM section**, which allows role assignment on the following Console resources:
 
 * Company
 * Project
@@ -65,12 +65,12 @@ A group role in the Company can be modified: to do so, simply click on the edit 
 If you want to discover more about groups, [go to the groups documentation](/development_suite/identity-and-access-management/manage-groups.md#managing-company-groups).  
 
 :::info  
-If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users) where we show you both individual and group access management.  
+If you want to find out how to best manage your users according to your business needs, you can have a look at these [use cases](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users) where we discuss both individual and group access management scenarios.  
 :::
 
 #### Service account role management
 
-The IAM section is designed also to manage service account roles at Company level. In order to update the role of an existing service account, click on the edit button on the corresponding row and select the new role.
+The IAM section is also designed to manage service account roles at Company level. In order to update the role of an existing service account, click on the edit button on the corresponding row and select the new role.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -116,7 +116,7 @@ To learn more details about how to add a service account to your Company, visit 
 
 ### Removing access to the Company
 
-The IAM section can be also used to remove user and service account access from a Company.
+The IAM section can also be used to remove user and service account access from a Company.
 
 #### Removing a user
 

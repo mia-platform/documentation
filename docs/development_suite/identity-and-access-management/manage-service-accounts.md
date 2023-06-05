@@ -67,7 +67,7 @@ Find out more about how these authentication methods work in the Console in the 
 
 ### Removing a Service Account
 
-A service account can be removed from the Company by clicking the delete icon on the table and confirming the action.
+A service account can be removed from the Company by clicking the delete icon on the corresponding table row and confirming the action.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
