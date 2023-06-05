@@ -12,9 +12,11 @@ Here, we will discuss the inputs and outputs related to the Projection managemen
 
 ### Ingestion Message
 
-**System**: Apache Kafka
+**Channel**: Apache Kafka
 
 **Producer**: The CDC Connectors of the source databases
+
+**Consumer**: Real Time Updater
 
 **Definition**:
 The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
@@ -312,9 +314,11 @@ Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
 ### Projection Update Message
 
-**System**: Apache Kafka
+**Channel**: Apache Kafka
 
 **Producer**: Real Time Updater
+
+**Consumer**: Single View Trigger Generator or Single View Creator (sv-patch)
 
 **Definition**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
@@ -473,10 +477,12 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 
 ### Projection Changes
 
-**System**: MongoDB
+**Channel**: MongoDB
 
 <!-- TODO: Add the SVTG when ready -->
 **Producer**: Real Time Updater
+
+**Consumer**: Single View Creator
 
 **Definition**: The Projection Changes or `pc` informs the listener (generally the Single View Creator) that a Single View should be updated.
 This event is created as a result of a strategy execution.
@@ -601,9 +607,11 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
 
 ### Single View Trigger Message
 
-**System**: Apache Kafka
+**Channel**: Apache Kafka
 
 **Producer**: Single View Trigger Generator
+
+**Consumer**: Single View Creator
 
 **Definition**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your fast-data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
 
@@ -754,9 +762,11 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 ### Single View Update Message
 
-**System**: Apache Kafka
+**Channel**: Apache Kafka
 
 **Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
 
 **Definition**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
 
@@ -885,9 +895,11 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 ### Single View Error
 
-**System**: MongoDB
+**Channel**: MongoDB
 
 **Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
 
 **Definition**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
 
@@ -967,9 +979,11 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 ### Single View Events Message
 
-**System**: Apache Kafka
+**Channel**: Apache Kafka
 
 **Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
 
 **Definition**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
 
@@ -1086,9 +1100,11 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
 This event is deprecated. Please, use the Single View Update event to get these information.
 :::
 
-**System**: Apache Kafka
+**Channel**: Apache Kafka
 
 **Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
 
 **Definition**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
