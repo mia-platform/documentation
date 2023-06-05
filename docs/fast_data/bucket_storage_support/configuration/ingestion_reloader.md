@@ -220,7 +220,40 @@ This route can stop only the reingestion of a topic, not the one of a single fil
 Please refer to the [Custom Selector Feature section](#customer-selectors) for more details on how to use the custom selector feature for precise and targeted filtering of messages to be reingested.
 ## Customer Selectors
 
-The customSelector feature is a powerful addition to the Ingestion Reloader service that allows users to apply custom filtering logic to select specific messages from the bucket for re-ingestion into the Kafka topic.
+The customSelector feature of the Ingestion Reloader service is a tool that provides additional flexibility when re-ingesting messages from a bucket into a Kafka topic. This feature allows you to implement your own custom filtering logic to select specific messages for re-ingestion.
+
+Let's consider a case where an organization has a Kafka topic that contains messages from different departments, each identified by a `department_id` in the message payload. Suppose there's a requirement to re-ingest only the messages that pertain to a specific department, say the `Marketing` department, into a new topic.
+
+The custom selector feature would be ideal for this. The organization can create a custom selector script that checks if the `department_id` in the message payload is equal to the id of the `Marketing` department. This script will return true for all messages from the "Marketing" department and false for messages from other departments. When the re-ingestion request is made, only the messages from the `Marketing` department would be selected for re-ingestion into the new Kafka topic.
+
+The following is an example of a `.kts` custom selector script for this scenario:
+
+```kotlin
+import kotlinx.serialization.json.JsonElement
+
+class MarketingSelector {
+    fun check(payload: JsonElement): Boolean {
+        return payload.jsonObject["department_id"]?.jsonPrimitive?.content == "marketing"
+    }
+}
+
+MarketingSelector()
+You can trigger the re-ingestion with a cURL command:
+```
+
+
+Here's an example of a `cURL` command to trigger the re-ingestion process using the custom selector script:
+
+```bash
+curl -X POST "http://localhost:3000/reingestion/topic" \
+  -H "accept: */*" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"topic\":\"source_topic\",
+    \"reIngestionTopic\":\"destination_topic\",
+    \"customSelectorName\":\"CustomSelector\"
+  }"
+```
 
 ### How to Use the Custom Selector Feature
 
