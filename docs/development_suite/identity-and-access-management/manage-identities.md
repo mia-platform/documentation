@@ -5,7 +5,7 @@ sidebar_label: Manage Identities
 ---
 
 Mia-Platform Console enables certain users to manage the privileges of other identities, which can be other users, but also groups and service accounts.  
-Granting accesses and permissions to Company resources can be performed through the **Identities section**, which allows roles assignment on the following Console resources:
+Granting accesses and permissions to Company resources can be performed through the **IAM section**, which allows roles assignment on the following Console resources:
 
 * Company
 * Project
@@ -19,7 +19,7 @@ To find out more about roles check out the available [capabilities](/development
 
 ## Managing Company Identities
 
-At Company level, inside the Company Overview, a Company Owner has visibility of the Identity and Access Management (IAM) section. In particular, from the **Identities portal**, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
+At Company level, inside the Company Overview, a Company Owner has visibility of the Access Management section. In particular, from the **IAM portal**, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
 
 ![Company Identities table](./img/manage-identities/identities-portal.png)
 
@@ -34,7 +34,7 @@ In the following paragraphs, we will describe how to manage identity roles that 
 
 #### User role management
 
-The Identities section allows user account management through individual role assignment. This means that the users with an assigned Company role have been directly granted access to the Company.
+The IAM section allows user account management through individual role assignment. This means that the users with an assigned Company role have been directly granted access to the Company.
 
 A user role in the Company can be modified: to do so, simply click on the edit button for the desired user row and select the new role.
 
@@ -70,7 +70,7 @@ If you want to find out how to best manage your users according to your business
 
 #### Service account role management
 
-The Identities section is designed also to manage service account roles at Company level. In order to update the role of an existing service account, click on the edit button on the corresponding row and select the new role.
+The IAM section is designed also to manage service account roles at Company level. In order to update the role of an existing service account, click on the edit button on the corresponding row and select the new role.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -82,7 +82,7 @@ The Identities section is designed also to manage service account roles at Compa
 
 ### Adding a new Identity at Company level
 
-From the Identities portal, both user accounts and service accounts can be added to the Company.  
+From the IAM portal, both user accounts and service accounts can be added to the Company.  
 
 :::note
 Even though this portal is intended to manage identity roles, this is a useful shortcut for Company Owners to quickly add new users or service accounts to their Company without having to navigate to the respective portals
@@ -110,17 +110,17 @@ If the user does not exist in the Platform, please open a Service Request for it
 
 It is also possible to add new service accounts by selecting the *Add Service Account* option in the *Add user* dropdown. The creation process will require the name, role and desired authentication method of the service account.
 
-To learn more details about how to add a service account to your Company, visit the [Service accounts management](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-service-account) page
+To learn more details about how to add a service account to your Company, visit the [Service accounts management](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-service-account) page.
 
 ![Add Company Service Account from dropdown](./img/manage-service-accounts/add_company_sa_dropdown.png)
 
 ### Removing access to the Company
 
-The Identities section can be also used to remove user and service account access to a Company.
+The IAM section can be also used to remove user and service account access from a Company.
 
 #### Removing a user
 
-Removing a user from the Identities table results in removing the role assigned to that user.
+Removing a user from the IAM table results in removing the role assigned to that user.
 Without permissions granted, the user loses access to the Company, **with the exception** of when that user also belongs to at least one [Company group](/development_suite/identity-and-access-management/manage-groups.md).  
 In that specific case, the user does not lose access to the Company, and their permissions on it are defined solely by the privileges given to the group/groups to which the user belongs.
 
@@ -133,13 +133,13 @@ In that specific case, the user does not lose access to the Company, and their p
 </div>
 
 :::warning
-Removing a user from the Identities portal will remove permissions specifically assigned to that user on every Project and Runtime Environment of the Company.  
+Removing a user from the IAM portal will remove permissions specifically assigned to that user on every Project and Runtime Environment of the Company.  
 While the user may be invited back in the Company, all their previously existing roles will be lost and cannot be recovered, meaning they must be reassigned from scratch.
 :::
 
 #### Removing a service account
 
-From the Identities portal it is also possible to remove service accounts from the Company. In this case, the service account is permanently deleted from the Company, so you will need to create a brand new one if you need it again.
+From the IAM portal it is also possible to remove service accounts from the Company. In this case, the service account is permanently deleted from the Company, so you will need to create a brand new one if you need it again.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -156,7 +156,7 @@ A user with enough administrative permission on a specific Project will be able 
 ![Project identities](./img/manage-identities/identities-project.png)
 
 :::note
-Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
+Even though the Project IAM portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
 
 For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
@@ -200,12 +200,12 @@ For groups:
 Users and service accounts can be added to a Company with specific Project and Environment roles from the Project settings Area.
 
 :::note
-This is a useful shortcut for Company Owners that want to directly add users and service accounts to their Company with specific permissions on a particular Project, without having to navigate to the respective portals
+This is a useful shortcut for Company Owners that want to directly add users and service accounts to their Company with specific permissions on a particular Project, without having to navigate to the respective portals.
 :::
 
 #### Adding a user
 
-The Company Owner can add a new user to a Company by pressing the *Add user* button in the Identities section of the Project settings Area. Here, the user can be assigned a Company role and additional roles on the specific Project and its Runtime Environments. The user invitation process will also require the invited user email to be provided.
+The Company Owner can add a new user to a Company by pressing the *Add user* button in the IAM portal inside the Project settings Area. Here, the user can be assigned a Company role and additional roles on the specific Project and its Runtime Environments. The user invitation process will also require the invited user email to be provided.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -223,12 +223,12 @@ If the user does not exist in the Platform, please open a Service Request.
 
 #### Adding a service account
 
-The Company Owner can add a new Service Account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the Identities section of the Project settings area. Here, the Service Account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
+The Company Owner can add a new service account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the IAM portal inside the Project settings Area. Here, the service account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
 
-The Service Account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-new-service-account) paragraph.
+The service account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-new-service-account) paragraph.
 
 :::note
-New Service Accounts are always instantiated at Company level: you can create a Service Account from the Project Settings page, but it will still be shared with the whole Company.
+New service accounts are always instantiated at Company level: you can create a service account from the Project settings Area, but it will still be shared with the whole Company.
 :::
 
 With the Client Secret Basic method: 

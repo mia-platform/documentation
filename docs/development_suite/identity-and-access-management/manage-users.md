@@ -14,7 +14,7 @@ Users inside the Console can be part of one or more Companies. From the **Users 
 
 :::info  
 The Users section is especially intended to help Company Owners have an immediate view of all users that have access to their Company and how they have acquired it: if a user has an assigned Company role, it means they have direct access to the Company thanks to an individual binding.  
-This table, however, also shows the groups each user is a member of, meaning that even if no Company role is assigned, the user has access to the Company thanks to the role of those groups.  
+This table, however, also shows the groups each user is a member of, meaning that even if no Company role is assigned, the user has access to the Company thanks to the role assigned to those groups.  
 :::
 
 ![Users portal](./img/manage-users/users-portal.png)
@@ -55,11 +55,11 @@ The user will be revoked personal access to the Company and will also be kicked 
 
 ## Managing User roles
 
-User roles are managed from the **Identities portal**, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities documentation page](/development_suite/identity-and-access-management/manage-identities.md)
+User roles are managed from the **IAM portal**, which is specifically dedicated to the governance of roles and accesses to the resources of the Company. Find out how to edit a user's role in [the Identities Access Management documentation page](/development_suite/identity-and-access-management/manage-identities.md)
 
 ### Managing User role at Company level
 
-From the Identities portal, a user's role in the Company can be edited by clicking on the edit button on the corresponding row:
+From the IAM portal, the Company role assigned to the user can be edited by clicking on the edit button on the corresponding row:
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -71,7 +71,7 @@ From the Identities portal, a user's role in the Company can be edited by clicki
 
 ### Managing User role at Project level
 
-Users with access to a Company are also shown in the Identities portal inside the Project Settings Area of a Project belonging to that specific Company.
+Users with access to a Company are also shown in the IAM portal inside the Project Settings Area of a Project belonging to that specific Company.
 You can change the role of a user in the Project or in any Project Runtime Environment. To do so, just open the editing dialog on the desired row and select the new role of the user for the Project itself and/or for Project Runtime Environments.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>

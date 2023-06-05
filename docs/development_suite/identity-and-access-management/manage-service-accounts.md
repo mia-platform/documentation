@@ -4,69 +4,70 @@ title: Manage Service Accounts
 sidebar_label: Manage Service Accounts
 ---
 
-Mia-Platform Console allows the creation of Service Accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple Users.  
+Mia-Platform Console allows the creation of service accounts, which are typically used for automated processes or to allow a service to access resources on behalf of multiple users.  
 
-Just like human Users, Service Accounts can be assigned roles at Console, Company, Project or Runtime Environment levels, according to which they can perform different types of actions.
+Just like human users, service accounts can be assigned roles at Console, Company, Project or Runtime Environment levels, according to which they can perform different types of actions.
 
 :::note
-To find out more about Roles check out the available [Capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
+To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
 :::
 
 ### What can you do with a Service Account?
 
-Potentially, every action a User can perform in the Console can be entrusted to a dedicated Service Account, which will execute it automatically.
+Potentially, every action a user can perform in the Console can be entrusted to a dedicated service account, which will execute it automatically.
 
-For instance, you can grant a Service Account the permissions to make automatic deploys: this can significantly streamline the whole process of deploying code changes to an application. The Service Account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application as soon as new code is pushed to the source code repository.  
+For instance, you can grant a service account the permissions to make automatic deploys: this can significantly streamline the whole process of deploying code changes to an application. The service account could use its credentials to access the appropriate deployment resources and automatically deploy new versions of the application as soon as new code is pushed to the source code repository.  
 This allows teams to implement a CI/CD workflow that can improve the speed, reliability and scalability of their software development processes. 
 
-A Service Account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the Service Account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
+A service account can also be used to monitor and log Kubernetes resources, such as Pods, Deployments and Services. Once authorized, the service account can use logging and monitoring tools to collect and analyze data on resource usage, performance metrics and other important indicators.
 
 :::info  
-In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-security-in-mind), you can have an in-depth look at some best practices for effectively managing Service Accounts.
+In this [article](https://blog.mia-platform.eu/en/service-account-m2m-with-security-in-mind), you can have an in-depth look at some best practices for effectively managing service accounts.
 :::
 ## Managing Company Service Accounts
 
-A User with enough administrative permission on a specific Company will be able to view the existing Service Accounts in the Company, add new ones and delete existing ones from the **Service accounts section**.
+A user with enough administrative permission on a specific Company will be able to view the existing service accounts in the Company, add new ones and delete existing ones from the **Service accounts section**.
 
 ![Service accounts portal](./img/manage-service-accounts/service-accounts-portal.png)
 
 ### Adding a Service Account
 
-The Company Owner can add a new Service Account by clicking on the *Add Service Account* button.
+The Company Owner can add a new service account by clicking on the *Add Service Account* button.
 
-The Service Account creation process will require the following information:
-- Name: a human-readable name to identify the Service Account
-- Role: the Company Role to be assigned to the Service Account
-- Authentication method: the method used to verify the Identity of the Service Account can be of two types
-    - **Client Secret Basic**: the Service Account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client. 
+The service account creation process will require the following information:
+- Name: a human-readable name to identify the service account
+- Role: the Company role to be assigned to the service account
+- Authentication method: the method used to verify the identity of the service account can be of two types
+    - **Client Secret Basic**: the service account authenticates by presenting its `client_id` and `client_secret` in the Authorization header of the request, in the format `Authorization: Basic <base64 encoded client_id:client_secret>`. The Console then decodes the header and validates the credentials against its records to authenticate the client. 
     
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
 
-    ![Add Company Service Account with client secret basic auth](./img/manage-service-accounts/add_company_sa_client_secret.png)
+    ![Add Company service account with client secret basic auth](./img/manage-service-accounts/add_company_sa_client_secret.png)
 
       </div>
     </div>
 
-    - **Private Key JWT**: the Service Account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the authentication request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key provided during Service Account creation, and checking that the claims are valid and match its records.  
+    - **Private Key JWT**: the service account authenticates by signing a JWT (JSON Web Token) using its private key. The client includes a JWT in the authentication request, with specific claims set to appropriate values. The Console then verifies the JWT by validating the signature using the client public key provided during service account creation, and checking that the claims are valid and match its records.  
     
       This authentication method provides better security than `client_secret_basic`, because the private key is never transmitted over the network neither shared with the server. However, it requires more setup and configuration on the client side to generate and manage the private and public keys.  
-      We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the Service Account is using.
+      We highly suggest to use this method whenever it is required not to share the credentials with the server or you cannot trust the network the service account is using.
+
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}>
     
-    ![Add Company Service Account with private key jwt auth](./img/manage-service-accounts/add_company_sa_private_key_jwt.png)
+    ![Add Company service account with private key jwt auth](./img/manage-service-accounts/add_company_sa_private_key_jwt.png)
 
       </div>
     </div>
 
 :::info
-Find out more about how these authentication methods work in the Console in the [Service Account authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication) paragraph.
+Find out more about how these authentication methods work in the Console in the [service account authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication) paragraph.
 :::
 
 ### Removing a Service Account
 
-A Service Account can be removed from the Company by clicking the delete icon on the table and confirming the action.
+A service account can be removed from the Company by clicking the delete icon on the table and confirming the action.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -77,16 +78,16 @@ A Service Account can be removed from the Company by clicking the delete icon on
 </div>
 
 :::warning
-Removing a Service Account from the Company will permanently delete the account and all its existing Roles, which will be lost and cannot be recovered.
+Removing a service account from the Company will permanently delete the account and all its existing roles, which will be lost and cannot be recovered.
 :::
 
-## Managing Service account roles
+## Managing service account roles
 
-Service account roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.
+Service account roles are managed from the [IAM portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.
 
 ### Managing Service Account role at Company level
 
-To modify a service account role in the Company, simply click on the edit button for the desired Service Account row and select the new Role.
+To modify a service account role in the Company, simply click on the edit button for the desired service account row and select the new role.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -97,13 +98,13 @@ To modify a service account role in the Company, simply click on the edit button
 </div>
 
 :::caution
-Please note that some permissions defined by the Company Role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
-Always pay attention when assigning Roles, in order to avoid providing undesired access to resources!
+Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
+Always pay attention when assigning roles, in order to avoid providing undesired access to resources!
 :::
 
 ### Managing Service Accounts at Project level
 
-A User with enough administrative permission on a specific Project will be able to view all the existing Service Accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
+A user with enough administrative permission on a specific Project will be able to view all the existing service accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -114,33 +115,33 @@ A User with enough administrative permission on a specific Project will be able 
 </div>
 
 :::note
-Although the Project Identities administration portal shows all the Company's Identities, this does not mean that all of the Identities have access to the Project, since this depends on the Role they are assigned in the Company and how the permissions are inherited.
+Although the Project IAM portal shows all the Company's identities, this does not mean that all of the identities have access to the Project, since this depends on the role they are assigned in the Company and how the permissions are inherited.
 
-For further information about permissions and Role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
+For further information about permissions and role inheritance check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
 
 ## Managing Company-independent Service Accounts
 
-Root Service Accounts are a special kind of Company-independent Service Accounts that can be assigned permissions to perform [root-level operations](//development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
+Root service accounts are a special kind of Company-independent service accounts that can be assigned permissions to perform [root-level operations](//development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
 
 :::info
-Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company Identities portal.
+Only Console Super Users with administrative capabilities can add or delete service accounts independent from the Company, since they are the only ones who can assign root-level permissions to identities. Note that Company-independent service accounts with assigned root-level permissions are only visible and manageable at back-office level, and they will never be visible from a Company IAM portal.
 :::
 
 ### Creating Root Service Accounts
 
-In order to create a new Root Service Account, you need to contact the `/api/service-accounts` endpoint.
+In order to create a new Root service account, you need to contact the `/api/service-accounts` endpoint.
 
 You will need to provide the following parameters in the body:
 
 - `tokenEndpointAuthMethod`: `client_secret_basic` or `private_key_jwt`.
 - `publicKey` (optional): only necessary if you choose `private_key_jwt` as an authentication method. Read [Adding a new Service Account](#adding-a-new-service-account) for further information.
-- `name`: the Root Service Account name.
-- `permissions`: a list of permissions to assign to the Service Account, separated by a comma. See [Console levels and permission management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) for a reference of the available permissions.
+- `name`: the Root service account name.
+- `permissions`: a list of permissions to assign to the service account, separated by a comma. See [Console levels and permission management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) for a reference of the available permissions.
 
 To authenticate your request, you will need to provide your access token and the Console client key.
 
-Here is an example of cURL request for creating a Root Service Account with the `client_secret_basic` authentication method:
+Here is an example of cURL request for creating a Root service account with the `client_secret_basic` authentication method:
 
 ```shell
 curl --location --request POST 'http://[my-console-url]/api/service-accounts' \
@@ -165,16 +166,16 @@ Example response:
 ```
 
 :::warning
-Remember to store in a secure place both the `clientId` and `clientSecret` as those will be needed to authenticate requests from the Service Account.
+Remember to store in a secure place both the `clientId` and `clientSecret` as those will be needed to authenticate requests from the service account.
 :::
 
 ### Deleting Root Service Accounts
 
-To delete a Root Service Account, you need to contact the `/api/service-accounts/{clientId}` endpoint, providing the `clientId` obtained from the creation response.
+To delete a Root service account, you need to contact the `/api/service-accounts/{clientId}` endpoint, providing the `clientId` obtained from the creation response.
 
 To authenticate your request, you will need to provide your access token and the Console client key.
 
-Here is an example of cURL request for deleting a Root Service Account:
+Here is an example of cURL request for deleting a Root service account:
 
 ```shell
 curl --location --request DELETE 'http://[my-console-url]/api/service-accounts/[clientId]' \
@@ -185,13 +186,13 @@ curl --location --request DELETE 'http://[my-console-url]/api/service-accounts/[
 
 ## Service Account authentication
 
-In order to authenticate to the Console, a Service Account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
+In order to authenticate to the Console, a service account needs to contact the `/api/m2m/oauth/token` endpoint, providing the correct authentication information based on the chosen authentication method.
 
 :::note
 The access token you obtain in this process has an expiration date, after which you will necessarily need to contact the endpoint again to get a new one.
 :::
 
-Here is an example of cURL request for Service Account authentication with the `client_secret_basic` method:
+Here is an example of cURL request for service account authentication with the `client_secret_basic` method:
 
 ```shell
 curl --location \
@@ -230,11 +231,11 @@ curl --location \
 - **Header**: The header of a JWT contains metadata about the token, such as the algorithm used to sign the token. The header is a JSON object that should be encoded in Base64Url format and has the following fields:
   - `alg`: `RS256`
   - `typ`: `JWT`
-  - `kid`: the Key ID (`kid`) that the is returned during Service Account creation
+  - `kid`: the Key ID (`kid`) that the is returned during service account creation
 
 - **Payload**: The payload of a JWT contains the claims that are being made about the identity of the client. The payload is also a JSON object that is encoded in Base64Url format and has the following fields:
-  - `iss` (issuer): the Client ID that the is returned during Service Account creation
-  - `sub` (subject): the Client ID that the is returned during Service Account creation
+  - `iss` (issuer): the Client ID that the is returned during service account creation
+  - `sub` (subject): the Client ID that the is returned during service account creation
   - `aud` (audience): `console-client-credentials`
   - `jti` (JWT ID): a custom string that will be used against replay attacks
   - `iad` (issued at): timestamp when this JWT is being issued

@@ -28,7 +28,7 @@ At Company level, for each group, it is possible to manage:
 * Role: the group Company role
 * Members: adding and/or removing users from the group
 
-Existing groups can also be found within the Identities portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
+Existing groups can also be found within the IAM portal at both Company and Project level, where it is possible to manage roles assigned to them as well as for the other identity types. 
 
 Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users).
 
@@ -135,13 +135,13 @@ In the case that a user has access to more Company groups, or has a specific ind
 
 ## Managing Group roles
 
-All identity roles are managed from the [Identities portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
+All identity roles are managed from the [IAM portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
 
-As a result, the Company role of a group can be modified not only from the Groups section, but also from the Identities portal.
+As a result, the Company role of a group can be modified not only from the Groups section, but also from the IAM portal.
 
 ### Managing Group role at Company level
 
-To edit a group's role from the Identities portal, simply click on the edit button for the desired group row and select the new role.
+To edit a group's role from the IAM portal, simply click on the edit button for the desired group row and select the new role.
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -154,7 +154,7 @@ To edit a group's role from the Identities portal, simply click on the edit butt
 
 ### Managing Group role at Project level
 
-Groups which have access to a Company are shown in the Identities portal inside the Project Settings Area of a Project belonging to that specific Company.
+Groups which have access to a Company are shown in the IAM portal inside the Project Settings Area of a Project belonging to that specific Company.
 You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
 
 
@@ -167,7 +167,7 @@ You can change the role of the group in the Project or in any Project Runtime En
 </div>
 
 :::note
-Even though the Project Identities administration portal shows all the Company identities, this does not mean that all the identities have also access to the Projects, as this depends on their assigned role in the Company and how the permissions are inherited.
+Even though the Project IAM portal shows all the Company identities, this does not mean that all the identities have also access to the Projects, as this depends on their assigned role in the Company and how the permissions are inherited.
 
 For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
