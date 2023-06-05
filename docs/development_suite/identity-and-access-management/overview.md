@@ -22,7 +22,7 @@ The **IAM** page in the Access Management section is designed to help you manage
 
 This page also provides a useful shortcut for Company Owners to quickly add new users and service accounts to the Company.
 
-![Identities portal](./img/manage-identities/identities-portal.png)
+![IAM portal](./img/manage-identities/company-identities.png)
 
 Find out more about managing your Company identities in the [Identities Management](/development_suite/identity-and-access-management/manage-identities.md) page. 
 

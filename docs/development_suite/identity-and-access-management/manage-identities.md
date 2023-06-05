@@ -21,7 +21,7 @@ To find out more about roles check out the available [capabilities](/development
 
 At Company level, inside the Company Overview, a Company Owner has visibility of the Access Management section. In particular, from the **IAM portal**, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
 
-![Company Identities table](./img/manage-identities/identities-portal.png)
+![Company Identities table](./img/manage-identities/company-identities.png)
 
 :::caution
 Please note that some permissions defined by the Company role may be inherited on the Projects and Runtime Environment owned by the Company itself.  
@@ -153,7 +153,7 @@ From the IAM portal it is also possible to remove service accounts from the Comp
 
 A user with enough administrative permission on a specific Project will be able to view all the existing identities in the Company and assign them the desired role on the specific Project (and, optionally, on each existing Runtime Environment).
 
-![Project identities](./img/manage-identities/identities-project.png)
+![Project identities](./img/manage-identities/project-identities.png)
 
 :::note
 Even though the Project IAM portal shows all the Company identities, this does not mean that all the identities have access to the Project, as this depends on their assigned role in the Company and how the permissions are inherited.
