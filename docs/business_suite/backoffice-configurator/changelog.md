@@ -3,6 +3,21 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.0.3] - 2023-06-05
+
+### Fixed
+
+- Color picker is correctly mounted in property form inside modal
+- Editing test variables values in variables modal will no longer result in the input losing focus
+- Components fetch mocks now correctly reflects edits in data schema
+- Sources are now correctly encoded before being sent to preview
+
+## [1.0.2] - 2023-05-23
+
+### Fixed
+
+- fixed bug causing properties with `oneOf` schemas to be incorrectly valued in editing modals
+
 ## [1.0.1] - 2023-05-02
 
 ### Added
