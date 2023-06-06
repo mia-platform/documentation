@@ -468,6 +468,18 @@
   "/docs/development_suite/api-console/api-design/design-overview": {
     "destination": "/docs/development_suite/api-console/api-design/overview",
     "addedOn": "2023-05-23"
+  },
+  "/docs/development_suite/identity-and-access-management/user-management": {
+    "destination": "/docs/development_suite/identity-and-access-management/manage-identities",
+    "addedOn": "2023-05-30"
+  },
+  "/docs/development_suite/identity-and-access-management/group-management": {
+    "destination": "/docs/development_suite/identity-and-access-management/manage-groups",
+    "addedOn": "2023-05-30"
+  },
+  "/docs/development_suite/identity-and-access-management/service-account-management": {
+    "destination": "/docs/development_suite/identity-and-access-management/manage-service-accounts",
+    "addedOn": "2023-05-30"
   }
 }
 
