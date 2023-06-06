@@ -361,6 +361,7 @@ channels:
                   description: Type of operation applied on the Projection's record
                 operationTimestamp:
                   type: integer
+                  # TODO: ISO string!
                   description: Unix timestamp of the time at which the MongoDB operation on the projection's record has been carried out
                 documentId:
                   description: Equals to the _id of the Projection's record on MongoDB
