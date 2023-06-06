@@ -304,6 +304,11 @@ In addition, it is also possible to change the Secret Manager of a specific envi
 To do this, you need to modify the `environmentsVariables` object within the referenced environment in the `Environments` object
 (from the CMS: `Environments` > *environment object* > `environmentsVariables`). The fields to be edited are the same as described above.
 
+:::caution
+You can change the Secret Manager within individual environments, but the provider type used must be the same
+(for example, if you use Vault as a Secret Manager on all environments, you can go and replace the Secret Manager of one of them with another instance of Vault, but not with an instance of GitLab).
+:::
+
 ### Edit CI/CD Tool
 
 To change the CI/CD Tool of a project, you need to edit the `Pipelines` object by replacing the values of the following fields:
