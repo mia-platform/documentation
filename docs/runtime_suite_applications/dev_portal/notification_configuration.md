@@ -188,7 +188,7 @@ Move to the decorators section, open the PRE section and create a new decorator 
 
 Finally, you need to link the decorator invoking the function-service to the Marketplace backend.
 
-Move to the endpoints section and move to the **`/bff`** endpoint.
+Move to the endpoints section and move to the **`/dev-portal-marketplace-bff`** endpoint.
 
 First, makes sure the checkbox **`Forces the endpoint to pass through the Microservice Gateway`** is checked and the **`Manage response format`** is disabled: 
 

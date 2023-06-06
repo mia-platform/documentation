@@ -61,24 +61,21 @@ Here is a preview on how this type of form will look like:
 
 As mentioned before, the client credentials form will be considered as the default implementation in the dev portal application. 
 
-In case you need to change this default behavior, you can disable the use of the public key by editing the `dev-portal-micro-lc-backend` configuration. Move to the `configuration.json` file and search for the **marketplace** plugin:
+In case you need to change this default behavior, you can disable the use of the public key by editing the `dev-portal-frontend` configuration. Move to the `config.json` file and search for the **marketplace** application:
 
 ```json
- {
-  "id": "marketplace-dev-portal",
-  "label": "Marketplace",
-  "icon": "fas fa-search-dollar",
-  "order": 2,
-  "integrationMode": "qiankun",
-  "pluginRoute": "/marketplace/",
-  "pluginUrl": "/dev-portal-marketplace/",
-  "props": {
+{
+  "integrationMode": "parcel",
+  "route": "/dev-portal/marketplace/",
+  "entry": "/dev-portal-marketplace/",
+  "injectBase": true,
+  "properties": {
     "formKind": "clientCredentials"
   }
 }
 ```
 
-Inside the `props` object update the `formKind` field with one of these options: 
+Inside the `properties` object update the `formKind` field with one of these options: 
 
 - **base**;
 - **clientCredentials**.
