@@ -401,15 +401,19 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/user-management",
+          "id": "development_suite/identity-and-access-management/manage-identities",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/service-account-management",
+          "id": "development_suite/identity-and-access-management/manage-users",
           "type": "doc"
         },
         {
-          "id": "development_suite/identity-and-access-management/group-management",
+          "id": "development_suite/identity-and-access-management/manage-groups",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/identity-and-access-management/manage-service-accounts",
           "type": "doc"
         }
       ],

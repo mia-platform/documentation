@@ -6,7 +6,7 @@ sidebar_label: Backoffice Section
 
 In order to test a specific API or event, the Marketplace allows users to request a unique **token** from a component detail page. Token requests need to be properly processed to eventually grant users permissions to use a certain API or event.
 
-Once you successfully followed the [steps](/runtime_suite_applications/dev_portal/application_creation.md) to create the Dev Portal application, you can start managing all the information characterizing your organization at the endpoint `/back-office/`. 
+Once you successfully followed the [steps](/runtime_suite_applications/dev_portal/application_creation.md) to create the Dev Portal application, you can start managing all the information characterizing your organization at the endpoint `/dev-portal-backoffice/`. 
 
 ## Requests Page
 
@@ -52,27 +52,29 @@ This link, which can be configured from the design area of the console, aims at 
 The Manage Permissions link helps the user manage the requests moving to the **API token generation page** faster.
 :::
 
-In order to edit this link, move to the design area of the console and go to `backoffice-micro-lc-backend` microservice.
-Move to the `requests.json` file and search for the `managePermissions` field inside the `dataSchema`.
+In order to edit this link, move to the design area of the console and go to `dev-portal-backoffice` microservice.
+Move to the `requests.config.json` file and search for the `managePermissions` field inside the `dataSchema`.
 
 The default field configuration should look like this:
 
 ```json
-"managePermissions": {
-  "type": "form-addon",
-  "format": "link",
-  "excludeFromSearch": true,
-  "formOptions": {
-    "readOnly": true
-  },
-  "label": {
-    "en": "Manage Permissions",
-    "it": "Gestione Permessi"
-  },
-  "formLinkOptions": {
-    "href": "https://www.mia-platform.eu/",
-    "target": "_blank",
-    "icon": "fas fa-key"
+{
+  "managePermissions": {
+    "type": "form-addon",
+    "format": "link",
+    "excludeFromSearch": true,
+    "formOptions": {
+      "readOnly": true
+    },
+    "label": {
+      "en": "Manage Permissions",
+      "it": "Gestione Permessi"
+    },
+    "formLinkOptions": {
+      "href": "https://www.mia-platform.eu/",
+      "target": "_blank",
+      "icon": "fas fa-key"
+    }
   }
 }
 ```

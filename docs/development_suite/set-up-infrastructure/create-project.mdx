@@ -8,7 +8,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 The project creation process allows you to configure a project,
-which lifecycle can then be entirely managed and developed through Console areas.
+whose lifecycle can then be entirely managed and developed through Console areas.
 
 ## Prerequisites
 
@@ -17,59 +17,64 @@ In particular, to create a project, you need to have already set up your Console
 
 - **Company**: A company is the resource which has the governance of all the projects inside it.
   Each created project starts with the default information (providers, environments, CI/CD integration and cluster information) of its company.
-  To create a company, refers to the [create company guide](/development_suite/company/create.md);
-- **Provider**: This will be used by the Console to correctly retrieve the third party service providers needed by your projects.
-  You can create a Git provider by setting up a specific document following the procedure described [here](/development_suite/set-up-infrastructure/configure-provider.mdx).
-  This document will be used by services to correctly retrieve the information about the provider that you use for your projects.
+  To create a company, refers to the [create company guide](/development_suite/company/create.md).
+- **Git Provider**: The Git Provider will be used by the Console to correctly retrieve the third party service configurations needed by your projects.
+  You can create a Git Provider for your company by following the procedure described [here](/development_suite/set-up-infrastructure/configure-provider.mdx).
 - **Template**: Repository with pre-filled configurations. Each company could have one or more template.
   The template allows you to pre-fill resources in your project and start all the similar projects with the same configuration.
-  In short, it constitutes a base on which to create your project. [This link to a guide on how to handle project template](/development_suite/company/project-templates.md).
+  In short, it constitutes a base on which to create your project. [Here](/development_suite/company/project-templates.md) you can find a guide on how to handle project templates.
 
 :::tip
-If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [Setup PaaS Templates](/development_suite/set-up-infrastructure/create-project.mdx#setup-paas-templates).
+If you are using the PaaS Mia-Platform Console, two main templates are available: one with all core services and the CMS, the other with only the core services. More information about how to use them at [Setup PaaS Templates](/development_suite/set-up-infrastructure/create-project.mdx#setup-paas-templates).
 :::
 
 Once you have provider, company, and template correctly configured, you are able to create a new project.
 
-More information about the creation process can be found in the [Project handbook section](/tutorial/console/project_handbook.md)
+More information about the creation process can be found in the [Project handbook section](/tutorial/console/project_handbook.md).
 To create a new project, you must have the permission `console.company.project.create`.
 
 ## Creation process
 
 The project creation process is divided into three phases:
-1. **General information**: in this phase, you will be asked to insert general information about your project:
+1. **General**: in this phase, you will be asked to insert general information about your project:
    * **Company** (_required_): you are required to select, from a list of pre-configured companies, your company, which enables you to keep the same configuration for different projects;
    * **Project name** (_required_): the name of your project, which will be shown in the project card in the Home section of the Console;
    * **Description**: the description of your project, which will be shown in the project card in the Home section of the Console.
 
-2. **Repository configuration**: in this phase, you need to choose the project template, and an overview is also presented on the default Git provider configured for the company, which will be inherited by the project:
-   * **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git provider. It specifies the location of your project on the Git provider website;
-   * **Visibility**: the visibility states the status of your project once it will be saved on the Git provider. If it is `internal`, all the internal users of the Git provider instance can see the project. If it is `private`, only who has access to the repository can see the project;
+![create-project-1](img/create-project-1.png)
+
+2. **Repository**: in this phase, you need to choose the project template, and an overview is also presented on the default Git Provider configured for the company, which will be inherited by the project:
+   * **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git Provider. It specifies the location of your project on the Git Provider website;
+   * **Visibility**: the visibility states the status of your project once it will be saved on the Git Provider. If it is `internal`, all the internal users of the Git Provider instance can see the project. If it is `private`, only who has access to the repository can see the project;
    * **Template** (_required_): you have to select, from a list of pre-configured templates, your template, which enables you to use pre-filled configurations for your project.
 
-:::caution
-At least one Git provider must be configured at the company level in order to create the project.
+![create-project-2](img/create-project-2.png)
 
-If there are no configured Git providers for the company, an informative modal is displayed upon clicking the "Next" button in step 1, and you will not be able to continue.
+:::caution
+At least one Git Provider must be configured at the company level in order to create the project.
+
+If there are no configured Git Providers for the company, an informative modal is displayed upon clicking the "Next" button in step 1, and you will not be able to continue.
 :::
 
-3. ** Environment configuration**: in this phase, you will be asked to insert information about the environments you want to create for your project:
+3. ** Environments**: in this phase, information about the environments that will be created for the project is shown:
    * **Environment name**: the name given to your environment;
    * **Environment ID**: the human-readable ID set to your environment;
-   * **Host**: the host which exposes documentation and APIs;
+   * **Project Host**: the host which exposes documentation and APIs;
    * **Backoffice Host**: the host which exposes CMS and backoffice APIs;
    * **Cluster Host**: the IP of the Kubernetes cluster where the project will be deployed;
    * **Namespace**: the namespace taken from Kubernetes;
    * **Description**: the description of your environment;
-   * **Secret Manager**: the provider configured as a secret manager for the environment;
-   * **CI/CD Tool**: the provider configured as a CI/CD tool for the environment.
+   * **Secret Manager**: the provider configured as a Secret Manager for the environment;
+   * **CI/CD Tool**: the provider configured as a CI/CD Tool for the environment.
+
+![create-project-3](img/create-project-3.png)
 
 Once your project has been created, you will be redirected on the Project Settings area of your new project, where you can see your environments and a list of environment variables:
 
 - Some variables are pre-filled from project or company information (like _CMS_IMAGE_NAME_, _CRUD_LIMIT_CONSTRAINT_ENABLED_, and _LOG_LEVEL_). Other variables are not pre-filled (such as _NOTIFICATIONS_COLLECTION_ROUTES_ and _NOTIFICATIONS_SERVICE_PATH_);
 - All variables are mandatory, except _CRUD_LIMIT_CONSTRAINT_ENABLED_, _NOTIFICATIONS_SERVICE_PATH_, and _NOTIFICATIONS_COLLECTION_ROUTES_: you have to manually configure all the variables that are mandatory and not pre-filled like _MONGODB_SHORT_URL_, _MONGODB_URL_, and _REDIS_HOSTS_.
 
-These environment variables are saved on the Git provider.
+These environment variables are saved on the Git Provider.
 
 The Console automatically tries to create the namespace for each environment in the project, and if the creation is successful it also sets the following labels in the namespace:
 
@@ -80,6 +85,11 @@ The Console automatically tries to create the namespace for each environment in 
 | `mia-platform.eu/project`     | `projectId` |
 
 After the project creation phase, you have to commit and deploy your new project to effectively conclude the process.
+
+:::info
+It is possible, through CMS, to go and change the providers (Git Provider, Secret Manager, CI/CD Tool) set for the project or its environments at a later time.
+To do so, please refer to [these](/development_suite/set-up-infrastructure/configure-provider.mdx#associate-providers-to-projects) guidelines.
+:::
 
 #### A note about Project Metrics
 

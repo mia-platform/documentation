@@ -3,14 +3,14 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different Roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your Platform ecosystem.
-The Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
+Assigning different roles and permissions to each [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to your resources is a key action for defining responsibilities within your Platform ecosystem.
+Mia-Platform Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
 
 Let's see how they are configured.
 
 ## Console Levels
 
-The Console resources are organized in a hierarchical structure on three levels:
+Console resources are organized in a hierarchical structure on three levels:
 
 1. **Console level** is the root level regarding the general configuration of your Console. 
 At this level you can configure resources such as Companies, Project Templates and Marketplace.
@@ -23,9 +23,9 @@ At this level you can configure resources such as Companies, Project Templates a
 
 ## Identity Capabilities inside Console
 
-Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped for each specific role. A brief presentation of the default roles that can be assigned to each Identity is provided here below:
+Identities can perform a set of predetermined actions along Console levels, in accordance with a set of permissions grouped for each specific role. A brief presentation of the default roles that can be assigned to each identity is provided here below:
 
-* `Company Owner`: A Company Owner has the ability to manage Company Users and Service Accounts, and has full administrative capabilities on all the Projects (and Runtime Environments) within the Company
+* `Company Owner`: A Company Owner has the ability to manage Company users and service accounts, and has full administrative capabilities on all the Projects (and Runtime Environments) within the Company
 * `Project Administrator`: A Project Administrator is able to manage identities and all other aspects of a Project, thus being able to perform any actions on all the Runtime Environments of the Project as well
 * `Maintainer`: A Maintainer can edit both Project configuration and Runtime Environments
 * `Developer`: A Developer can edit Project configuration and view Runtime Environments
@@ -38,7 +38,7 @@ Roles can be assigned at three types of Console resources:
 * Project
 * Runtime Environments
 
-Roles can be assigned at Company level from the Identities portal of the Company Overview section.
+Roles can be assigned at Company level from the IAM portal of the Company Overview section.
   
 The following table describes the capabilities and how they are mapped on the default roles.
 
@@ -71,7 +71,7 @@ The following table describes the capabilities and how they are mapped on the de
 User roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 
 :::info
-Please note that, inside Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.  
+Please note that, inside Project IAM portal, only those identities on which a Company role has previously been assigned are shown.  
 For each of them, therefore, the permissions inherited from the Company role assignment at the Company level will be visible. In this way, it will be possible to identify which additional permissions among those mentioned in the following table can be assigned at Project and Runtime Environments levels. 
 :::
 
@@ -99,7 +99,7 @@ For each of them, therefore, the permissions inherited from the Company role ass
 User roles and permissions are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to perform actions at Console root level.
 
 :::info
-Note that Console Super User is NOT included as a default role. Consequently, it can not be assigned from the Identities portal, as it performs actions exclusively at Console root level. 
+Note that Console Super User is NOT included as a default role. Consequently, it can not be assigned from the IAM portal, as it performs actions exclusively at Console root level. 
 :::
 
 The following table describes the manageable privileges at Console root level that are granted to Console Administrators:
@@ -112,12 +112,13 @@ The following table describes the manageable privileges at Console root level th
 | Edit any Project                                | `console.root.project.details.update` |
 | Delete any Project                              | `console.root.project delete`         |
 | View all Console resources                      | `console.root.view`                   |
-| Manage identity Roles, Groups and Bindings      | `console.root.user.bind`              |
+| Manage identity roles, Groups and Bindings      | `console.root.user.bind`              |
 | Create and delete any user                      | `console.root.user.manage`            |
 | Create and delete root service account          | `console.root.serviceaccount.manage`  |
 | Manage all private and public Project Templates | `console.root.templates.manage`       |
 | Manage available features                       | `console.root.features.manage`        |
 | Manage all Marketplace resources                | `console.root.marketplace.manage`     |
+
 ### Role binding example
 
 Suppose you have a feature team composed by: 1 _Project Manager_ and 1 _Technical Leader_, 1 _Senior Developer_ and 2 _Junior Developers_ and 2 _Designers_.
@@ -126,16 +127,16 @@ This team works on a single Project with two environments:
  1. Production, on which only the _Project Manager_, the _Technical Leader_ and _Senior Developer_ can perform actions, and
  1. Staging on which the 2 _Junior Developers_ can perform actions, too.
 
-What you might want could be a similar Role Binding organization:
+What you might want could be a similar role Binding organization:
 
-* The _Project Manager_ and the _Technical Leader_ may want to have full access to the Project so they can be assigned the _Project Administrator_ Role on the Project resource
-* The _Designers_ should be able to access the Project but they cannot perform any editing action on it, so they can be assigned the _Reporter_ Role on the Project resource
-* The _Senior Developers_ can be assigned the _Maintainer_ Role on the Project
-* The _Junior Developers_ can be assigned the _Developer_ Role on the Project resource and then can be assigned the _Maintainer_ Role only on the Staging environment
+* The _Project Manager_ and the _Technical Leader_ may want to have full access to the Project so they can be assigned the _Project Administrator_ role on the Project resource
+* The _Designers_ should be able to access the Project but they cannot perform any editing action on it, so they can be assigned the _Reporter_ role on the Project resource
+* The _Senior Developers_ can be assigned the _Maintainer_ role on the Project
+* The _Junior Developers_ can be assigned the _Developer_ role on the Project resource and then can be assigned the _Maintainer_ role only on the Staging environment
 
-#### Assigning Roles on Resources
+#### Assigning roles on resources
 
-When you wish to assign a Role on a specific resource what you have to do is create a binding with a properly configured resource object.
+When you wish to assign a role on a specific resource what you have to do is create a binding with a properly configured resource object.
 
 :::info
 For more information regarding how a binding is defined and how to configure the resources check out the [following documentation page](/development_suite/api-console/api-design/authorization.md#rbac-storage).

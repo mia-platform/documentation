@@ -28,7 +28,7 @@ The following software and hardware recommendations are for installing Mia-Platf
    </thead>
    <tbody>
       <tr>
-         <td rowspan="6"><strong>Auth Provider</strong></td>
+         <td rowspan="7"><strong>Auth Provider</strong></td>
          <td><img src="/img/okta.ico" width="15" height="15"/> Okta</td>
          <td>N/A</td>
          <td>N/A</td>
@@ -59,7 +59,7 @@ The following software and hardware recommendations are for installing Mia-Platf
          <td>N/A</td>
       </tr>
       <tr>
-         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> BitBucket Server</td>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
          <td>&gt; 8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
@@ -71,7 +71,7 @@ The following software and hardware recommendations are for installing Mia-Platf
          <td>N/A</td>
       </tr>
       <tr>
-         <td rowspan="4"><strong>Git provider</strong></td>
+         <td rowspan="4"><strong>Git Provider</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>&gt; 14.x</td>
          <td>4 cores</td>
@@ -90,17 +90,36 @@ The following software and hardware recommendations are for installing Mia-Platf
          <td>N/A</td>
       </tr>
       <tr>
-         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> BitBucket Server</td>
+         <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
          <td>&gt; 8.x</td>
          <td>2 cores</td>
          <td>3 GB</td>
       </tr>
       <tr>
-         <td rowspan="3"><strong>CI/CD</strong></td>
+         <td rowspan="2"><strong>Secret Manager</strong></td>
+         <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td><img src="/img/vault.png" width="15" height="15"/> Vault</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
+      </tr>
+      <tr>
+         <td rowspan="4"><strong>CI/CD Tool</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
          <td>&gt; 14.x</td>
          <td>1 core</td>
          <td>2 GB</td>
+      </tr>
+      <tr>
+         <td><img src="/img/github.png" width="15" height="15"/> GitHub Actions</td>
+         <td>N/A</td>
+         <td>N/A</td>
+         <td>N/A</td>
       </tr>
       <tr>
          <td><img src="/img/azure-pipelines.png" width="15" height="15"/> Azure Pipelines</td>

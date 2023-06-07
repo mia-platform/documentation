@@ -12,7 +12,7 @@ In this guide, we show how to configure the Dev Portal with [Auth0](https://auth
 
 The first thing you want to do is to enable authentication on the Dev Portal entrypoints you want to protect. This step will inform the [Api Gateway](/runtime_suite/api-gateway/10_overview.md) to redirect any request to an authentication process.
 
-Move to the design area of the console, go to the endpoints page, and select a Dev Portal entrypoint you want to protect. By default, the main entrypoint selected when creating a new Dev Portal Application will be the `/` endpoint.
+Move to the design area of the console, go to the endpoints page, and select a Dev Portal entrypoint you want to protect. By default, the main entrypoint selected when creating a new Dev Portal Application will be the `/dev-portal` endpoint.
 
 Move to the **Security Management** card and check the `Authentication Required` checkbox.
 
@@ -250,31 +250,15 @@ After users have logged in, it may be useful to show them their personal informa
 
 ![userinfo and logout](./img/dev-portal-userinfo-logout.png)
 
+To show the user info and the logout button you just need to edit a couple of properties of micro-lc.
 
-To show the user info and the logout button you just need to edit a couple of properties of the backend.
+During the creation of the **Dev Portal** application two instances of micro-lc were created:
 
-During the creation of the **Dev Portal** application were created two backend microservices:
+- `dev-portal-frontend`
+- `dev-portal-backoffice`
 
-- Backoffice Micro-lc Backend
-- Dev Portal Micro-lc Backend
-
-Inside them you can find the `authentication.json` config-map file, with the authentication properties.
-
-As reported into the [official micro-lc documentation](https://micro-lc.io/documentation/docs/micro-lc/authentication#userinfourl), to add the userinfo and logout button, you just need to set the following properties:
-
-- isAuthNecessary
-- userInfoUrl
-- userLogoutUrl
-
-like the following example (example of the _Dev Portal Micro-lc Backend_ service):
-
-```json
-{
-  "isAuthNecessary": true,
-  "userInfoUrl": "/userinfo",
-  "userLogoutUrl": "/logout?redirect=/web-login?redirect=/dev-portal/"
-}
-```
+Inside them you can find the `config.json` config-map file, where you can configure the page layout to show a user menu. Namely, you have to add the `userMenu` property
+to the `bk-layout` component inside of `layout` following the [official documentation](http://localhost:3000/docs/business_suite/backoffice/components/misc#user-menu).
 
 Moreover, you possibly need to expose the `userinfo` and `logout` on the API Gateway, based on the authentication you used.
 
@@ -289,8 +273,9 @@ In this guide we use [Auth0](https://auth0.com/) and the `auth0-client` microser
    - Microservice: **auth0-client**
    - Rewrite Base Path: **/logout**
 
-!!! Warning
+:::warning
 Remember to configure the _Allowed logout URLs_ on Auth0, otherwise the logout flow will not work.
+:::
 
 ## Troubleshooting
 

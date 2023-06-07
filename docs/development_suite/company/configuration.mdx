@@ -65,7 +65,7 @@ The projects default configurations fields are:
 
   - **providerId** (_required_): the unique identifier of the Git Provider associated with the company 
   
-    It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
 
     Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
   
@@ -164,7 +164,7 @@ The projects default configurations fields are:
     ```
 
   </TabItem>
-  <TabItem value="github" label="Github">
+  <TabItem value="github" label="GitHub">
 
     ```json
     {
@@ -214,9 +214,9 @@ The projects default configurations fields are:
 
   - **providerId**: the unique identifier of the CI/CD Tool associated with the company.
     
-    It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
 
-  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
   In addition, it can include the following properties, supported only by specific providers:
 
@@ -230,18 +230,18 @@ The projects default configurations fields are:
   </TabItem>
   <TabItem value="jenkins" label="Jenkins">
 
-    - **options**: an object containing the **view** property.
+    - **options**: an object containing the `view` property.
 
       In Jenkins, pipeline views allow you to visualize and monitor your pipelines and their status in a more organized and user-friendly way, making it easier to track their progress and health.
 
-      The view configuration includes the following fields: 
+      The `view` configuration includes the following fields: 
 
       - **name**: the name of the visualization step where Jenkins pipelines are shown.
   
   </TabItem>
   </Tabs>
 
-  ##### Example Configuration
+  ##### Example Configurations
 
   <Tabs>
   <TabItem value="gitlab" label="GitLab">
@@ -253,7 +253,7 @@ The projects default configurations fields are:
   }
   ```
   </TabItem>
-  <TabItem value="github" label="Github">
+  <TabItem value="github" label="GitHub">
   
   ```json
   {
@@ -302,9 +302,9 @@ The projects default configurations fields are:
 
   - **providerId**: the unique identifier of the Secret Manager associated with the company. 
   
-    It corresponds to the `providerId` field of the providers' CRUD collection, and it is used to retrieve information about the provider. 
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
 
-  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
   In addition, it can include the following properties, supported only by specific providers:
 
@@ -321,9 +321,9 @@ The projects default configurations fields are:
 
     It is composed of the following properties:
 
-    - **path**: specifies the exact location for reading variables, starting from the _basePath_.
+    - **path**: specifies the exact location for reading variables, starting from the _baseUrl_.
 
-    - **type**: the level of granularity variables are managed in the GitLab installation.
+    - **type**: the level of granularity with which variables are managed within the GitLab installation.
 
       It determines the scope within which variables will be available to the pipelines.
 
@@ -369,6 +369,7 @@ The projects default configurations fields are:
     "type": "vault"
   }
   ```
+
   </TabItem>
   </Tabs>
 
@@ -401,7 +402,7 @@ The projects default configurations fields are:
   - **environmentsVariables**: an object that describes the configuration of variables for the environment.
     
     :::info
-    This field overrides the configuration provided in the `environmentsVariables` field for a specific environment. 
+    This field can be overwritten by the configuration provided in the `environmentsVariables` field for a specific environment. 
     :::
 
     It can be configured following the configuration of the `environmentsVariables` company field.
@@ -409,7 +410,7 @@ The projects default configurations fields are:
   - **deploy**: an object that describes the configuration of CI/CD pipelines for the environment.
     
     :::info
-    This field overrides the configuration provided in the `pipelines` field for a specific environment. 
+    This field can be overwritten by the configuration provided in the `pipelines` field for a specific environment. 
     :::
 
     It can be configured following the configuration of the `pipelines` company field.
