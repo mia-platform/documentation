@@ -4,7 +4,7 @@ title: Inputs and Outputs
 sidebar_label: Inputs and Outputs
 ---
 
-The fast-data has an Event Driven Architecture, as such there are many events that make everything work. In this page we will explore these events in detail to understand better the whole fast-data lifecycle.
+The Fast Data has an Event Driven Architecture, as such there are many events that make everything work. In this page we will explore these events in detail to understand better the whole Fast Data lifecycle.
 
 ## Projection
 
@@ -405,7 +405,7 @@ channels:
                   additionalProperties: true
                 __internal__kafkaInfo:
                   type: object
-                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
                   required:
                    - topic
                    - partition
@@ -647,7 +647,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 **Consumer**: Single View Creator
 
-**Description**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your fast-data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
+**Description**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your Fast Data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -709,7 +709,7 @@ channels:
                       additionalProperties: true
                 __internal__kafkaInfo:
                   type: object
-                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
                   required:
                     - topic
                     - partition
@@ -875,7 +875,7 @@ channels:
                   additionalProperties: true
                 __internal__kafkaInfo:
                   type: object
-                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
                   required:
                     - topic
                     - partition
@@ -1098,7 +1098,7 @@ channels:
                   description: Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the message
                 __internal__kafkaInfo:
                   type: object
-                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
                   required:
                     - topic
                     - partition
@@ -1228,7 +1228,7 @@ channels:
                   additionalProperties: true
                 __internal__kafkaInfo:
                   type: object
-                  description: Metadata about the ingestion message that triggered the whole fast-data flow
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
                   required:
                     - topic
                     - partition
