@@ -22,8 +22,7 @@ Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
 **Consumer**: Real Time Updater
 
-**Definition**:
-The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
+**Description**: The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
 
 When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
 
@@ -58,8 +57,6 @@ channels:
           required:
             - key
             - value
-            - timestamp
-            - offset
           properties:
             key:
               type: object
@@ -74,12 +71,6 @@ channels:
                   description: Whole record (including primary and foreign keys) in case of *insert/update* operation
                 - type: "null"
                   description: null in case of delete operation
-            timestamp:
-              type: integer
-              description: Kafka message Unix timestamp
-            offset:
-              type: integer
-              description: Kafka message offset
           additionalProperties: false
 ```
 </p>
@@ -100,9 +91,7 @@ Examples:
     "USER_ID": 123,
     "TAX_CODE": "ABCDEF12B02M100O",
     "NAME": 456
-  },
-  "timestamp": "1234556789",
-  "offset": 100
+  }
 }
 ```
 </p>
@@ -117,9 +106,7 @@ Examples:
     "USER_ID": 123,
     "TAX_CODE": "ABCDEF12B02M100O"
   },
-  "value": null,
-  "timestamp": "1234556789",
-  "offset": 100
+  "value": null
 }
 ```
 </p>
@@ -145,8 +132,6 @@ channels:
           required:
             - key
             - value
-            - timestamp
-            - offset
           properties:
             key: 
               type: string
@@ -178,12 +163,6 @@ channels:
                 pos:
                   type: integer
                   description: Position of the message, similar to the kafka message's offset
-            timestamp:
-              type: integer
-              description: Kafka message Unix timestamp
-            offset:
-              type: integer
-              description: Kafka message offset
           additionalProperties: false
 ```
 </p>
@@ -205,9 +184,7 @@ Examples:
       "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     }
-  },
-  "timestamp": "1234556789",
-  "offset": 100
+  }
 }
 ```
 </p>
@@ -227,9 +204,7 @@ Examples:
       "COINS": 300000000
     },
     "after": null
-  },
-  "timestamp": "1234556789",
-  "offset": 100
+  }
 }
 ```
 </p>
@@ -255,8 +230,6 @@ channels:
           required:
             - key
             - value
-            - timestamp
-            - offset
           properties:
             key: 
               type: object
@@ -289,10 +262,6 @@ channels:
                   description: Metadata about the origin of the message (db, table, query...)
                   additionalProperties: true
               additionalProperties: false
-            timestamp:
-              type: string
-            offset:
-              type: integer
           additionalProperties: false
 ```
 </p>
@@ -317,9 +286,7 @@ Examples:
       "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     }
-  },
-  "timestamp": "1234556789",
-  "offset": 100
+  }
 }
 ```
 </p>
@@ -342,9 +309,7 @@ Examples:
       "COINS": 300000000
     },
     "after": null
-  },
-  "timestamp": "1234556789",
-  "offset": 100
+  }
 }
 ```
 </p>
@@ -362,7 +327,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 **Consumer**: Single View Trigger Generator or Single View Creator (sv-patch)
 
-**Definition**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
+**Description**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -382,8 +347,6 @@ channels:
           required:
             - key
             - value
-            - timestamp
-            - offset
 
             # TODO: insert header check out the svc-lib
   #             headers: {
@@ -458,12 +421,6 @@ channels:
                       type: string
                   additionalProperties: false
               additionalProperties: false
-            timestamp:
-              type: integer
-              description: Kafka message Unix timestamp
-            offset:
-              type: integer
-              description: Kafka message offset
           additionalProperties: false
 ```
 </p>
@@ -540,7 +497,7 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 
 **Consumer**: Single View Creator
 
-**Definition**: The Projection Changes or `pc` informs the listener (generally the Single View Creator) that a Single View should be updated.
+**Description**: The Projection Changes or `pc` informs the listener (generally the Single View Creator) that a Single View should be updated.
 This event is created as a result of a strategy execution.
 It is stored on MongoDB and is very similar to the [Single View Trigger Message](#single-view-trigger-message) on Kafka.
 
@@ -682,7 +639,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 **Consumer**: Single View Creator
 
-**Definition**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your fast-data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
+**Description**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your fast-data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -847,7 +804,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Consumer**: Custom (whoever needs it)
 
-**Definition**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
+**Description**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -867,8 +824,6 @@ channels:
           required:
             - key
             - value
-            - timestamp
-            - offset
           properties:
             key:
               type: object
@@ -935,13 +890,7 @@ channels:
                       description: ISO 8601 date string of the ingestion Message
                       type: string
                   additionalProperties: false
-              additionalProperties: false  
-            timestamp:
-              type: integer
-              description: Kafka message Unix timestamp
-            offset:
-              type: integer
-              description: Kafka message offset        
+              additionalProperties: false   
           additionalProperties: false
 ```
 </p>
@@ -985,7 +934,7 @@ Example:
 
 **Consumer**: Custom (whoever needs it)
 
-**Definition**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
+**Description**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
 
 <details><summary>JsonSchema specification</summary>
 <p>
@@ -1082,7 +1031,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
 
 **Consumer**: Custom (whoever needs it)
 
-**Definition**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
+**Description**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -1212,7 +1161,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-before-after`
 
 **Consumer**: Custom (whoever needs it)
 
-**Definition**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
+**Description**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
 <details><summary>AsyncApi specification</summary>
 <p>
