@@ -543,9 +543,10 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
             "type": "string",
             "enum": [
               "NEW",
-              "IN_PROGRESS"
+              "IN_PROGRESS",
+              "ERROR"
             ],
-            "description": "State of the change. State NEW means that the single view needs to be re-aggregated, state IN_PROGRESS means that the Single View Creator is already doing it."
+            "description": "State of the change. State NEW means that the single view needs to be re-aggregated, state IN_PROGRESS means that the Single View Creator is already doing it, and ERROR means the Single View Creator encountered an error while trying to aggregate the Single Views"
           },
           "topic": {
             "type": "string",
@@ -576,6 +577,11 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
           "inProgressAt": {
             "type": "object",
             "description": "MongoDB date object of the time the Single View Creator has started processing the change",
+            "additionalProperties": true
+          },
+          "inErrorAt": {
+            "type": "object",
+            "description": "MongoDB date object of the time the Single View Creator encountered an error while aggregating",
             "additionalProperties": true
           }
         },
