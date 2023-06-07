@@ -48,11 +48,11 @@ echo $(htpasswd -nb username password)
 
 The output of the above command is the value of the secret to create.
 
-The secret needs to be created through one of the [supported environments variable provider](https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/env-var).
+The secret needs to be created through one of the [supported environments variable provider](/development_suite/set-up-infrastructure/env-var-intro.md).
 In this hands-on we will refer to the secret as `BASIC_AUTH_USERS`.
 
 #### Generate the secret with mlp
-We also need to edit the [mlp](https://docs.mia-platform.eu/docs/runtime_suite_tools/mlp/generate) configuration to interpolate the secret created in the previous section.
+We also need to edit the [mlp](/runtime_suite_tools/mlp/40_generate.md) configuration to interpolate the secret created in the previous section.
 
 In the `mlp.yml` file add this configuration:
 ```
@@ -80,7 +80,7 @@ routes:
 ```
 ### Deploy
 
-At this step you only need to [deploy](https://docs.mia-platform.eu/docs/development_suite/deploy/overview#introduction) and you will have the basic auth at the basepath `my-hostname.eu`.
+At this step you only need to [deploy](/development_suite/deploy/overview.md#introduction) and you will have the basic auth at the basepath `my-hostname.eu`.
 
 
 
