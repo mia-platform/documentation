@@ -6,6 +6,12 @@ sidebar_label: Traefik Handbook
 
 import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
 
+This Handbook helps you with some useful tips on how to configure Traefik in order to enable features on your Console projects.
+
+:::note
+You will find this Handbook useful only if your infrastructure includes Traefik as Ingress, that is for example the case of Console offered as PaaS.
+:::
+
 ## Add Basic Authorization
 
 :::caution
@@ -17,7 +23,7 @@ The basic auth must be always replaced with safer authentication methods also in
 To add basic authentication on some host there are few steps to follow:
 
 ### Create the Middleware
-First of all you need to create a new Middleware. This is a yaml configuration.
+First of all you need to create a new Middleware. This is a `yaml` configuration.
 
 Based on the Console configuration there are two options where to put the new file:
 1. `configuration/{{ENV}}/`
@@ -48,7 +54,7 @@ echo $(htpasswd -nb username password)
 
 The output of the above command is the value of the secret to create.
 
-The secret needs to be created through one of the [supported environments variable provider](/development_suite/set-up-infrastructure/env-var-intro.md).
+The secret needs to be created in the [Environments Variable section](/development_suite/set-up-infrastructure/runtime-environments.md#add-an-environment).
 In this hands-on we will refer to the secret as `BASIC_AUTH_USERS`.
 
 #### Generate the secret with mlp
@@ -78,6 +84,3 @@ routes:
         ...
         - name: "default-basicauth"
 ```
-### Deploy
-
-At this step you only need to [deploy](/development_suite/deploy/overview.md#introduction) and you will have the basic auth at the basepath `my-hostname.eu`.
