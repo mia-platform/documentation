@@ -36,6 +36,9 @@ Here's the AsyncApi specification of the message and some examples of the differ
 
 #### IBM InfoSphere Data Replication for DB2
 
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```yaml
 asyncapi: 2.6.0
 info:
@@ -75,8 +78,13 @@ channels:
               description: Kafka message offset
           additionalProperties: false
 ```
+</p>
+</details>
 
-Upsert operation:
+Examples:
+
+<details><summary>Upsert operation</summary>
+<p>
 
 ```json
 {
@@ -93,8 +101,11 @@ Upsert operation:
   "offset": 100
 }
 ```
+</p>
+</details>
 
-Delete operation:
+<details><summary>Delete operation</summary>
+<p>
 
 ```json
 {
@@ -107,8 +118,13 @@ Delete operation:
   "offset": 100
 }
 ```
+</p>
+</details>
 
 #### Oracle Golden Gate
+
+<details><summary>AsyncApi specification</summary>
+<p>
 
 ```yaml
 asyncapi: 2.6.0
@@ -166,8 +182,13 @@ channels:
               description: Kafka message offset
           additionalProperties: false
 ```
+</p>
+</details>
 
-Insert operation:
+Examples:
+
+<details><summary>Insert operation</summary>
+<p>
 
 ```json
 {
@@ -185,8 +206,11 @@ Insert operation:
   "offset": 100
 }
 ```
+</p>
+</details>
 
-Delete operation:
+<details><summary>Delete operation</summary>
+<p>
 
 ```json
 {
@@ -204,8 +228,13 @@ Delete operation:
   "offset": 100
 }
 ```
+</p>
+</details>
 
 #### Debezium
+
+<details><summary>AsyncApi specification</summary>
+<p>
 
 ```yaml
 asyncapi: 2.6.0
@@ -262,8 +291,13 @@ channels:
               type: integer
           additionalProperties: false
 ```
+</p>
+</details>
 
-Insert operation:
+Examples:
+
+<details><summary>Insert operation</summary>
+<p>
 
 ```json
 {
@@ -284,8 +318,11 @@ Insert operation:
   "offset": 100
 }
 ```
+</p>
+</details>
 
-Delete operation:
+<details><summary>Delete operation</summary>
+<p>
 
 ```json
 {
@@ -306,6 +343,8 @@ Delete operation:
   "offset": 100
 }
 ```
+</p>
+</details>
 
 #### Topic naming convention
 `<tenant>.<environment>.<source-system>.<projection>.ingestion`
@@ -322,7 +361,9 @@ Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
 **Definition**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
-**AsyncApi specification**:
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```yaml
 asyncapi: 2.6.0
 info:
@@ -340,6 +381,16 @@ channels:
             - value
             - timestamp
             - offset
+
+            # TODO: insert header check out the svc-lib
+  #             headers: {
+  #       messageSchema: {
+  #         type: 'pr-update',
+  #         version: 'v1.0.0',
+  #       },
+  #     }
+
+            - header
           properties:
             key:
               type: object
@@ -361,8 +412,7 @@ channels:
                   description: Type of operation applied on the Projection's record
                 operationTimestamp:
                   type: integer
-                  # TODO: ISO string!
-                  description: Unix timestamp of the time at which the MongoDB operation on the projection's record has been carried out
+                  description: ISO String of the time at which the MongoDB operation on the projection's record has been carried out
                 documentId:
                   description: Equals to the _id of the Projection's record on MongoDB
                   type: string
@@ -413,8 +463,13 @@ channels:
               description: Kafka message offset
           additionalProperties: false
 ```
+</p>
+</details>
 
-**Example**:
+Example:
+
+<details><summary>Insert operation</summary>
+<p>
 
 ```json
 {
@@ -466,6 +521,8 @@ channels:
   }
 }
 ```
+</p>
+</details>
 
 #### Topic naming convention
 `<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
@@ -489,7 +546,9 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 This event is created as a result of a strategy execution.
 It is stored on MongoDB and is very similar to the [Single View Trigger Message](#single-view-trigger-message) on Kafka.
 
-**JsonSchema specification**:
+<details><summary>JsonSchema specification</summary>
+<p>
+
 ```json
 {
   "type": "object",
@@ -578,8 +637,13 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
   }
 }
 ```
+</p>
+</details>
 
-**Example**:
+Example:
+
+<details><summary>MongoDB record</summary>
+<p>
 
 ```json
 {
@@ -605,6 +669,8 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
   "doneAt": "2022-05-20T10:25:35.656Z"
 }
 ```
+</p>
+</details>
 
 ### Single View Trigger Message
 
@@ -616,7 +682,9 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
 
 **Definition**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your fast-data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
 
-**AsyncApi specification**:
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```yaml
 asyncapi: 2.6.0
 info:
@@ -705,8 +773,14 @@ channels:
               description: Kafka message offset
           additionalProperties: false
 ```
+</p>
+</details>
 
-**Example**:
+Example:
+
+<details><summary>Trigger message</summary>
+<p>
+
 ```json
 {
   "key": {
@@ -755,6 +829,8 @@ channels:
   }
 }
 ```
+</p>
+</details>
 
 #### Topic naming convention
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
@@ -771,7 +847,9 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 **Definition**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
 
-**AsyncApi specification**:
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```yaml
 asyncapi: 2.6.0
 info:
@@ -864,8 +942,14 @@ channels:
               description: Kafka message offset        
           additionalProperties: false
 ```
+</p>
+</details>
 
-**Example**:
+Example:
+
+<details><summary>Update message</summary>
+<p>
+
 ```json
 {
   "key": {
@@ -888,6 +972,8 @@ channels:
   }
 }
 ```
+</p>
+</details>
 
 #### Topic naming convention
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
@@ -904,7 +990,9 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Definition**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
 
-**JsonSchema specification**:
+<details><summary>JsonSchema specification</summary>
+<p>
+
 ```json
 {
   "type": "object",
@@ -960,8 +1048,13 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
   "additionalProperties": false
 }
 ```
+</p>
+</details>
 
-**Record Example**:
+Example:
+
+<details><summary>MongoDB record</summary>
+<p>
 
 ```json
 {
@@ -977,6 +1070,8 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
   "resolutionMethod": "AGGREGATION"
 }
 ```
+</p>
+</details>
 
 ### Single View Events Message
 
@@ -988,7 +1083,9 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Definition**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
 
-**AsyncApi specification**:
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```yaml
 asyncapi: 2.6.0
 info:
@@ -1069,8 +1166,14 @@ channels:
               additionalProperties: false
           additionalProperties: false
 ```
+</p>
+</details>
 
-**Example**:
+Example:
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```json
 {
   "key": {
@@ -1089,6 +1192,8 @@ channels:
   }
 }
 ```
+</p>
+</details>
 
 #### Topic naming convention
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.svc-events`
@@ -1109,7 +1214,9 @@ This event is deprecated. Please, use the Single View Update event to get these 
 
 **Definition**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
-**AsyncApi specification**:
+<details><summary>AsyncApi specification</summary>
+<p>
+
 ```yaml
 asyncapi: 2.6.0
 info:
@@ -1189,8 +1296,14 @@ channels:
                   additionalProperties: false
               additionalProperties: false
 ```
+</p>
+</details>
 
-**Example**:
+Example:
+
+<details><summary>Update operation</summary>
+<p>
+
 ```json
 {
   "key": { 
@@ -1249,6 +1362,8 @@ channels:
   }
 }
 ```
+</p>
+</details>
 
 #### Topic naming convention
 `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-before-after`
