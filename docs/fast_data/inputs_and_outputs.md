@@ -500,7 +500,6 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 
 **Channel**: MongoDB
 
-<!-- TODO: Add the SVTG when it will be able to generate projection changes too -->
 **Producer**: Real Time Updater
 
 **Consumer**: Single View Creator
@@ -641,8 +640,115 @@ Example:
 </p>
 </details>
 
+### Kafka Projection Changes
+
+**Channel**: Apache Kafka
+
+**Producer**: Real Time Updater
+
+**Consumer**: Single View Creator
+
+**Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real Time Updater.
+
+:::caution
+This method is not recommended since it has some performance downsides and it still needs to save the projection changes on MongoDB. It is being mantained for backwards compatibility reasons but will be deprecated when possible.
+:::
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Kafka Projection Changes API
+  version: 1.0.0
+channels:
+  projectionChanges:
+    subscribe:
+      message:
+        name: Kafka Projection Changes message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          properties:
+            key:
+              type: object
+              description: Identifier of the Single View or the Projection
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - identifier
+                - __internal__kafkaInfo
+              properties:
+                identifier:
+                  type: object
+                  description: Identifier of the Single View or the Projection
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the ingestion Message
+                      type: string
+                  additionalProperties: false
+          additionalProperties: false
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Kafka PC message</summary>
+<p>
+
+```json
+{
+  "key": {
+    "codiceSocieta":1,
+    "idSoggetto":1540624
+  },
+  "value": {
+    "identifier": {
+      "codiceSocieta": 1,
+      "idSoggetto": 1540624
+    },
+    "__internal__kafkaInfo": {
+      "topic": "unicoop-firenze-fast-data.gps.PREPROD.TA011-SOG-json",
+      "partition": 1,
+      "offset": "5939",
+      "key": "1_1540624",
+      "timestamp": "1684290004852"
+    }
+  }
+}
+```
+</p>
+</details>
+
 ### Single View Trigger Message
 
+<!-- TODO: Add MongoDB too when the SVTG will be able to produce sv-trigger messages to mongo -->
 **Channel**: Apache Kafka
 
 **Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
@@ -673,8 +779,6 @@ channels:
           required:
             - key
             - value
-            - timestamp
-            - offset
           properties:
             key:
               type: object
@@ -738,12 +842,6 @@ channels:
                       description: ISO 8601 date string of the ingestion Message
                       type: string
                   additionalProperties: false
-            timestamp:
-              type: integer
-              description: Kafka message Unix timestamp
-            offset:
-              type: integer
-              description: Kafka message offset
           additionalProperties: false
 ```
 </p>
@@ -1162,7 +1260,7 @@ Example:
 ### Single View Before After Message
 
 :::caution
-This event is deprecated. Please, use the Single View Update event to get these information.
+This event is deprecated. Please, use the Single View Update event to get the same information.
 :::
 
 **Channel**: Apache Kafka
