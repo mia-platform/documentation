@@ -345,19 +345,27 @@ channels:
         payload:
           type: object
           required:
+            - header
             - key
             - value
-
-            # TODO: insert header check out the svc-lib
-  #             headers: {
-  #       messageSchema: {
-  #         type: 'pr-update',
-  #         version: 'v1.0.0',
-  #       },
-  #     }
-
-            - header
           properties:
+            headers:
+              type: object
+              required:
+                - messageSchema
+              properties:
+                messageSchema:
+                  type: object
+                  required:
+                    - type
+                    - version
+                  properties:
+                    type:
+                      type: string
+                      description: Type of messsage (`pr-update`, `sv-update`, `sv-trigger`...)
+                    version:
+                      type: string
+                      description: Version of the message format (v1.0.0)
             key:
               type: object
               description: Record's primary keys
