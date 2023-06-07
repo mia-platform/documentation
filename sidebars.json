@@ -898,6 +898,10 @@
           "type": "doc"
         },
         {
+          "id": "how_to/traefik/traefik_handbook",
+          "type": "doc"
+        },
+        {
           "id": "how_to/crud_service/crud_oss_usage",
           "type": "doc"
         }
