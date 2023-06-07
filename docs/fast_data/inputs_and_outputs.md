@@ -500,7 +500,7 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 
 **Channel**: MongoDB
 
-<!-- TODO: Add the SVTG when ready -->
+<!-- TODO: Add the SVTG when it will be able to generate projection changes too -->
 **Producer**: Real Time Updater
 
 **Consumer**: Single View Creator
