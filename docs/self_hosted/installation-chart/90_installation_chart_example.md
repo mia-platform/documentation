@@ -73,7 +73,6 @@ mia-console:
     filesStorageType: "mongodb"
     filesBucketName: "<GRIDFS_COLLECTION_NAME>" # gridFS collection name
     multitinenantNamespace: ""
-    enableTenantOverview: false
     customServicesImagePullSecrets:
       - "<SERVICE_PULL_SECRET>" # array of image pull secret to pull your custom services
     defaultCoreResources:
