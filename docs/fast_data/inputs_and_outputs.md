@@ -14,6 +14,10 @@ Here, we will discuss the inputs and outputs related to the Projection managemen
 
 **Channel**: Apache Kafka
 
+**Topic naming convention**: `<tenant>.<environment>.<source-system>.<projection>.ingestion`
+
+Example: `test-tenant.PROD.system-name.test-projection.ingestion`
+
 **Producer**: The CDC Connectors of the source databases
 
 **Consumer**: Real Time Updater
@@ -346,14 +350,13 @@ Examples:
 </p>
 </details>
 
-#### Topic naming convention
-`<tenant>.<environment>.<source-system>.<projection>.ingestion`
-
-Example: `test-tenant.PROD.system-name.test-projection.ingestion`
-
 ### Projection Update Message
 
 **Channel**: Apache Kafka
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 **Producer**: Real Time Updater
 
@@ -524,11 +527,6 @@ Example:
 </p>
 </details>
 
-#### Topic naming convention
-`<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
-
-Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
-
 ## Single View
 
 This section covers the inputs and outputs concerning the Single View's aggregation.
@@ -675,6 +673,10 @@ Example:
 ### Single View Trigger Message
 
 **Channel**: Apache Kafka
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 **Producer**: Single View Trigger Generator
 
@@ -832,14 +834,14 @@ Example:
 </p>
 </details>
 
-#### Topic naming convention
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
-
-Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
-
 ### Single View Update Message
 
 **Channel**: Apache Kafka
+
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Producer**: Single View Creator
 
@@ -975,11 +977,6 @@ Example:
 </p>
 </details>
 
-#### Topic naming convention
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
-
-Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
-
 ### Single View Error
 
 **Channel**: MongoDB
@@ -1077,6 +1074,10 @@ Example:
 
 **Channel**: Apache Kafka
 
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.svc-events`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
+
 **Producer**: Single View Creator
 
 **Consumer**: Custom (whoever needs it)
@@ -1171,7 +1172,7 @@ channels:
 
 Example:
 
-<details><summary>AsyncApi specification</summary>
+<details><summary>Events example</summary>
 <p>
 
 ```json
@@ -1195,11 +1196,6 @@ Example:
 </p>
 </details>
 
-#### Topic naming convention
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.svc-events`
-
-Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
-
 ### Single View Before After Message
 
 :::caution
@@ -1207,6 +1203,10 @@ This event is deprecated. Please, use the Single View Update event to get these 
 :::
 
 **Channel**: Apache Kafka
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-before-after`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-before-after`
 
 **Producer**: Single View Creator
 
@@ -1364,8 +1364,3 @@ Example:
 ```
 </p>
 </details>
-
-#### Topic naming convention
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-before-after`
-
-Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-before-after`
