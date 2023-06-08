@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 ## Introduction
 
-The `Identification Manager` application allows you to set up all the steps needed to implement and manage different identification processes with a single flow. 
+The Identification Manager application allows you to build your customized identification process and connect multiple identity providers (IDP). The application enables to set up all the steps needed to implement and manage different identification processes with a single flow.
 
 In particular, the main functionalities delivered by this application are the following:
 1. define and add new custom identification processes
