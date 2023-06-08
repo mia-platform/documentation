@@ -8,6 +8,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.13] - 2023-06-01
+
+### Fixed
+
+- fixed bug on `selectedParents` property of `bk-button` when used inside `bk-layout-container`
+- fixed bug on `selectedParents` property of `bk-button` not correctly updating
+- `bk-table`, form components, `bk-breadcrumbs` support `items` keyword in data-schema for arrays of objects fields
+
+### Added
+
+- query parameters of http calls are url-encoded
+- new event `http-delete` is listened to by `bk-crud-client`, allowing to send DELETE requests to `CRUD Service`
+- `bk-table` allows to highlight rows that match mongo-like queries through property `highlightedRows`
+
 ## [1.3.12] - 2023-05-19
 
 ### Fixed
