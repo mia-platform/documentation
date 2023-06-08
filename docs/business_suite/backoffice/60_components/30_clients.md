@@ -16,7 +16,7 @@ logical/business features and allow services encapsulation and adaption
 Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
 
 :::info
-This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../runtime_suite/crud-service/overview_and_usage).
+This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md).
 :::
 
 ```html
@@ -74,7 +74,7 @@ A good configuration could be (in case `__STATE__` must be tunable by the user a
 
 ### Data Deletion
 
-By default, data deletion follows the [`__STATE__` pattern](../../runtime_suite/crud-service/overview_and_usage#state-transitions) of `Mia-Platform CRUD Service`.
+By default, data deletion follows the [`__STATE__` pattern](../../../runtime_suite/crud-service/overview_and_usage#state-transitions) of `Mia-Platform CRUD Service`.
 
 When `bk-crud-client` receives the [delete-data](../70_events.md#delete-data) event, it processes the payload to determine the appropriate action for the `__STATE__` field of the elements being deleted.
 If the current `__STATE__` is PUBLIC or DRAFT, the `__STATE__` field is updated to TRASH; if the current `__STATE__` is TRASH it is updated to DELETED.
