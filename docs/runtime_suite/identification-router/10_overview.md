@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Flow Manager Router
+title: Identification Router
 sidebar_label: Overview
 ---
 The `Flow Manager Router` behaves as a proxy of events for the flow manager: based on the `Main Flow Manager` saga ID, the service send the request to the correct `Sub Flow Manager`.
