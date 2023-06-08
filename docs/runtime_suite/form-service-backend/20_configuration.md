@@ -195,7 +195,7 @@ The user of the Form Builder will see a dropdown menu with the specified options
 
 :::caution
 
-The *submit urls* can be either provided with the [CRUD Service](../crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
+The *submit urls* can be either provided with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
 
 - `GET /{id}`: to return the submitted data of a form by ID;
 - `GET /export`: to return all the submitted forms data as newline-delimited JSON;
@@ -203,7 +203,7 @@ The *submit urls* can be either provided with the [CRUD Service](../crud-service
 - `PATCH /{id}`: to update a submitted form by ID;
 - `DELETE /{id}`: to delete a submitted form, it is required to allow rollback when inserts in the *formSchemaMapCrud* fail;
 
-More details on the submit URLs APIs can be found at [this page](submit_urls).
+More details on the submit URLs APIs can be found at [this page](./40_submit_urls.md).
 
 :::
 
@@ -269,7 +269,7 @@ When you export form data by calling the `GET /visualizer/forms/export` endpoint
 To configure the lookup you must assign to the `exportLookups` field an object value, whose properties correspond to the names of the CSV columns you want to perform the lookup on (`formSchemaId` in the example above). Remember, you must use the colum name exactly as it appears on the CSV, so for nested fields you should use the `outerField.innerField` notation.
 
 Each lookup must have the following properties:
-- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](../crud-service/overview_and_usage);
+- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage);
 - **lookupKey**: the data source field to perform the lookup on, searching for the record matching the column value;
 - **lookupValue**: the value to replace the column value with, must be a string with placeholders enclosed between double curly braces; each placeholder must refer a data source field and will be evaluated at runtime and replaced with the corresponding value.
 
@@ -310,7 +310,7 @@ If, for any reason, a lookup on a form field fails, the service ignores the erro
 
 :::
 
-If you are exporting form data associated to a schema with a `submitUrl` pointing to an external service which does not expose a `GET /export` but acts as a proxy towards a CRUD or service with a [compliant API](40_submit_urls.md), you can configure a redirect, specifying the following properties:
+If you are exporting form data associated to a schema with a `submitUrl` pointing to an external service which does not expose a `GET /export` but acts as a proxy towards a CRUD or service with a [compliant API](./40_submit_urls.md), you can configure a redirect, specifying the following properties:
 
 - **submitUrl**: the original submit URL, must match exactly a lookup `lookupDataSource`;
 - **exportUrl**: the redirect URL, that is going to be used in place of the `submitUrl` to call the `GET /export` endpoint (the `/export` path is appended at runtime, must not be included in the `exportUrl`).
@@ -534,7 +534,7 @@ The required properties (specified in the [form drafts CRUD endpoint parameter](
 
 If you want to use the default value of the *formDraftsCrud* you need to expose this CRUD with the `/form-drafts` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
-Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../form-service-frontend/configuration).
+Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../../runtime_suite/form-service-frontend/configuration).
 
 ## Other configurations
 

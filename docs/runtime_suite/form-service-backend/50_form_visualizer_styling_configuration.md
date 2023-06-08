@@ -3,11 +3,11 @@ id: form_visualizer_styling_configuration
 title: Form visualizer styling
 sidebar_label: Form visualizer styling configuration
 ---
-The [Form visualizer styling](../form-service-frontend/form_assignments) feature of the **Form Service Frontend** let you add custom *stylesheets* and *fonts* to form templates. It requires version `1.3.0` (or above) of the **Form Service Backend** because `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes have been updated to return the graphical assets associated to a form template alongside to its configuration.
+The [Form visualizer styling](../../runtime_suite/form-service-frontend/form_assignments) feature of the **Form Service Frontend** let you add custom *stylesheets* and *fonts* to form templates. It requires version `1.3.0` (or above) of the **Form Service Backend** because `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes have been updated to return the graphical assets associated to a form template alongside to its configuration.
 
 ## Form Service Backend Configuration
 
-The [Form Service Configuration](configuration) JSON object now has the following additional property:
+The [Form Service Configuration](./20_configuration.md) JSON object now has the following additional property:
 
 - **1. formStyleAssetsCrud**
   - *type*: string;
@@ -29,9 +29,9 @@ Here's an example:
 
 ## Form style assets CRUD
 
-This section defines the details of the CRUD that stores the style assets that can be associated to one or more form templates. The form service supports only `.css` and `fonts` files. Depending on the kind of resource `.css` or `.fonts`, a resource can be provided with an `url` or a `file` stored using the [Files Service](../files-service/configuration).
+This section defines the details of the CRUD that stores the style assets that can be associated to one or more form templates. The form service supports only `.css` and `fonts` files. Depending on the kind of resource `.css` or `.fonts`, a resource can be provided with an `url` or a `file` stored using the [Files Service](../../runtime_suite/files-service/configuration).
 
-The properties of this [CRUD](../crud-service/overview_and_usage) (in addition to the default ones) are:
+The properties of this [CRUD](../../runtime_suite/crud-service/overview_and_usage) (in addition to the default ones) are:
 
 - **name**
   - *type*: string;
@@ -67,7 +67,7 @@ Resources with higher priority than others will be loaded first in the form visu
 - **file**
   - *type*: object;
   - *required*: `true` with `inputType` equal to `file`, `false` otherwise;
-  - *description*: contains the [information of a file](../files-service/configuration) uploaded using the `File Service`. The form visualizer will use the url contained in the `location` property of this object to load the required asset when needed.
+  - *description*: contains the [information of a file](../../runtime_suite/files-service/configuration) uploaded using the `File Service`. The form visualizer will use the url contained in the `location` property of this object to load the required asset when needed.
 
 - **url**
   - *type*: string;
@@ -117,7 +117,7 @@ You also need to expose a new endpoint using the same name defined in the config
 
 :::info
 
-The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../files-service/configuration) instance in your project and update the Mia-Backoffice configuration to use it's [File Manager](../../business_suite/backoffice/Components/clients#file-manager) client.  
+The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../../runtime_suite/files-service/configuration) instance in your project and update the Mia-Backoffice configuration to use it's [File Manager](../../business_suite/backoffice/components/clients#file-manager) client.
 
 :::
 
