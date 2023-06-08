@@ -166,7 +166,7 @@ to customize the dialog texts. They can also be localized, passing an object con
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`requireConfirm`| - |boolean \| `RequireConfirmOpts`|false|whether or not the button should ask for confirmation before updating all the selected data with the chosen value|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection |
 
 ### Listens to
 

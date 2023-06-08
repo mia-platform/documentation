@@ -35,7 +35,7 @@ Example of configuration
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
 |`mask`|`mask`|boolean|true|whether to mask or not the drawer |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`|`width`|number|500|width occupied by the component |
@@ -117,8 +117,8 @@ Generic form to edit or create items described by the `dataSchema`
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false| allows to visualize objects and arrays without specific format as a read-only table |
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`formId`|`form-id`|string| - |id of the form. This property should only be set programmatically. |
 |`formKindIfDisplayData`| - |"add" \| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default). |
@@ -176,8 +176,8 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
-|`customLabels`| - |Partial\<FormCardLocale\>| - |custom localized texts shown as CTA buttons labels|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`customLabels`| - |[FormCardLocale](#custom-labels)| - |custom localized texts shown as CTA buttons labels. Analogous to `bk-form-modal` and `bk-form-drawer`.|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`formKind`| - |"add" \| "edit"|"edit"|data management strategy when setting initial values from displayData: add or edit (default) |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
@@ -348,7 +348,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 
 ### Custom labels
 
-Custom labels can be specified as [LocalizedText](../core_concepts#localization-and-i18n) as modal title, CTA button label, require confirm message.
+Custom labels can be specified as [LocalizedText](../40_core_concepts.md#localization-and-i18n) as modal title, CTA button label, require confirm message.
 Such labels can be scoped based on whether the form is in [edit](#edit-1) or [create](#insert-1) mode.
 
 
@@ -433,9 +433,9 @@ Not all keys need to be specified, as `customLabels` is merged with default labe
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`customLabels`| - |[LocalizedLabels](#custom-labels)| - |custom localized texts shown as title and CTA button label|
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataCustomActions`| - |DrawerDataActionConfig[]|[]|list of actions to render per row|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
@@ -707,7 +707,7 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 ### Nested objects
 
 By default, objects and arrays are displayed in `bk-form-modal` as JSONs inside an [editor](https://microsoft.github.io/monaco-editor/).
-This is not true for objects and arrays of specific [formats](../page_layout#data-schema) such as `file` or `multilookup`, and for objects / arrays for which a data-schema is defined.
+This is not true for objects and arrays of specific [formats](../30_page_layout.md#data-schema) such as `file` or `multilookup`, and for objects / arrays for which a data-schema is defined.
 
 In particular, properties `allowObjectAsTable` and `allowNavigation` control how object and array fields with a provided data-schema (and no specific `format`) are rendered inside the modal.
 - `allowObjectAsTable` controls whether or not the nested fields should be rendered as an editor, a read-only table, or both.
@@ -736,7 +736,7 @@ Some of the limitations with respect to `bk-table` include:
 
 ### Custom labels
 
-Custom labels can be specified as [LocalizedText](../core_concepts#localization-and-i18n) as modal title, CTA button label, require confirm message.
+Custom labels can be specified as [LocalizedText](../40_core_concepts.md#localization-and-i18n) as modal title, CTA button label, require confirm message.
 Such labels can be scoped based on whether the form is in [edit](#edit-1) or [create](#insert-1) mode.
 
 
@@ -822,7 +822,7 @@ Not all keys need to be specified, as `customLabels` is merged with default labe
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format and a dataschema in both a editor and read-only table|
 |`customLabels`| - |[LocalizedLabels](#custom-labels-1)| - |custom localized texts shown as title and CTA button label|
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataSchema`| - |[ExtendedJSONSchema7Definition](../30_page_layout.md#data-schema)| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`height`|`height`|string|'60vh'|height of the modal |

@@ -225,7 +225,7 @@ Both `delete-data` and `http-delete` also support bulk actions, in case payload 
 |----------|-----------|------|---------|-------------|
 |`appendTrailingSlash`|`append-trailing-slash`|boolean|true|should append a trailingSlash to URLs |
 |`bootstrapTimeout`|`bootstrap-timeout`|number|TIMEOUT|value in ms before default bootstrap starts and no `change-query` was received |
-|`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
+|`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../30_page_layout.md#data-schema) describing which field to retrieve from CRUD collection |
 |`enableDefinitiveDelete`|`enable-definitive-delete`|boolean|false|when `true`, http DELETE cannot be rolled back |
 |`initialEvent`| - |ChangeQueryPayload|INITIAL_EVENT|in case of no `change-query` received, an initial event with this payload will be thrown |
 |`keepStateWhileDuplicating`|`keep-state-while-duplicating`|boolean|false|if `true` duplicate will keep the original record __STATE__ |
@@ -357,8 +357,8 @@ such structure can be compared with the original datum, which is not modified.
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`allowLiveSearchCache`|`allow-live-search-cache`|boolean|false|allows to cache results of live-search queries. Cache lasts as long as the component lives |
-|`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
-|`extraLookupKeys`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing which extra field (not included in dataschema) to retrieve from CRUD collection |
+|`dataSchema`| - |ExtendedJSONSchema7Definition|...|[data schema](../30_page_layout.md#data-schema) describing which field to retrieve from CRUD collection |
+|`extraLookupKeys`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing which extra field (not included in dataschema) to retrieve from CRUD collection |
 |`lookupDataLimit`|`lookup-data-limit`|number|25|limit data to require in a single lookup chunk |
 |`lookupDefaultState`| - |string \| string[] |["PUBLIC","DRAFT","TRASH"]|default states to append on lookup queries. Lookup queries will overwrite this setting when required by the data schema. Can be set to one or multiple of: ["PUBLIC","DRAFT","TRASH"] |
 |`maxQueryURLLength`|`max-query-urllength`|number|1500|external lookups might require a long query parameter. According with your base path trim it to a maximum using this prop |
@@ -425,14 +425,14 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 
 `bk-export` emits [success](../events#success) or [error](../events#error) events after the export is triggered. The events are emitted after the export is over (or on failure) if `nativeDownload` is set to `false`, or after the download request has been issued otherwise.
 
-[CRUD-service]: ../../../runtime_suite/crud-service/overview_and_usage
+[CRUD-service]: ../../runtime_suite/crud-service/overview_and_usage
 [resource]: https://jimmywarting.github.io/StreamSaver.js/mitm.html?version=2.0.0
 
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing which field to retrieve from CRUD collection |
 |`nativeDownload`|`native-download`|boolean| - |when `true` it skips frontend blob parsing and uses browser native download API |
 |`shouldIncludeProjections`|`should-include-projections`|boolean|false|should append projection when exporting from CRUD service |
 |`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |
@@ -529,7 +529,7 @@ Add to `bk-notifications` the following error trigger
 |`primaryKey`|`primary-key`|string|'_id'|primary key to filter selected data when `selected only export` option is enabled
 |
 |`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |
-|`dataSchema`| - |void| - |[data schema](../page_layout#data-schema) describing which field to retrieve from CRUD collection |
+|`dataSchema`| - |void| - |[data schema](../30_page_layout.md#data-schema) describing which field to retrieve from CRUD collection |
 
 ### Listens to
 

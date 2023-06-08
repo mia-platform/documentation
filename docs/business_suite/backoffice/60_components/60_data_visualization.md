@@ -118,7 +118,7 @@ For `bk-calendar` to correctly display appointments, these must have the followi
 |`date`| - |Date| - | - |new Date()|current date of the calendar|
 |`height`|`height`|string| - | - | - |css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height]|
 |`view`| - |"agenda" \| "day" \| "month" \| "week" \| "work_week"| - | - |'month'|current view of the calendar. Possible values are `month`, `week`, or `day`|
-|`filtersName`| - |{start: [LocalizedString](../core_concepts#localization-and-i18n), end: [LocalizedString](../core_concepts#localization-and-i18n)}| - | - | {start: "bk-calendar-start-date-filter", end: "bk-calendar-end-date-filter"} |names of default date filters|
+|`filtersName`| - |{start: [LocalizedString](../40_core_concepts.md#localization-and-i18n), end: [LocalizedString](../40_core_concepts.md#localization-and-i18n)}| - | - | {start: "bk-calendar-start-date-filter", end: "bk-calendar-end-date-filter"} |names of default date filters|
 ### Listens to
 
 | event | action | emits | on error |
@@ -283,7 +283,7 @@ Each one of them is optional and the layout is left-float icon + title + badge a
 
 ![header-example](../img/card-header.png)
 
-Title, subtitle and badge can be internationalized using [LocalizedText](../core_concepts#localization-and-i18n) which is either a string or an object with language support:
+Title, subtitle and badge can be internationalized using [LocalizedText](../40_core_concepts.md#localization-and-i18n) which is either a string or an object with language support:
 
 ```json
 {
@@ -769,8 +769,8 @@ Helper [rawObject](../40_core_concepts.md#rawobject) is also available, analogou
 |`arraySource`| - | { [x: string]: { [y: string]: string \| TaggableCustom }[] } |{}|property to inject the array-like source from an external source not linked with the `eventBus`. This is overridden by the `display-data` event |
 |`cardSchema`| - |CardSchema|{}|schema that describes the card layout, role and type/style |
 |`containerStyle`| - |CSSProperties| - |React-like CSS properties to decorate card container |
-|`customMessageOnAbsentDatum`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |when datum reaches the card but it doesn't have value but some was expected, the displayed string can be overridden with a custom message |
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |when using a CRUD-client-like source, it helps displaying a custom message on lookup that couldn't be resolved |
+|`customMessageOnAbsentDatum`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |when datum reaches the card but it doesn't have value but some was expected, the displayed string can be overridden with a custom message |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |when using a CRUD-client-like source, it helps displaying a custom message on lookup that couldn't be resolved |
 |`objectSource`| - | { [y: string]: string \| TaggableCustom } |{}|property to inject the object-like source from an external source not linked with the `eventBus` This is overridden by the `display-data` event |
 |`role`| - |CardRoles|'default'|card role to select color schema |
 
@@ -825,14 +825,14 @@ Example of configuration:
 ```
 
 With this configuration, if the value is `Value1` the label `Label1` will be used and the Chip component will be shown in red (#F00).  
-The `label` field can be a string or a [LocalizedText](../core_concepts#localization-and-i18n) object. If no label is specified for a value, the value will be displayed as a label.  
+The `label` field can be a string or a [LocalizedText](../40_core_concepts.md#localization-and-i18n) object. If no label is specified for a value, the value will be displayed as a label.  
 Field `color` can be specified using an Hex color code. If the specified color is not a valid Hex color code, the primary color will be used.
 
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`value`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|status value. |
+|`value`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)|{}|status value. |
 |`valueMap`| - |Record\<string, any\>|{}|map of possible values. |
 
 ### Listens to
@@ -1887,8 +1887,8 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 |`allowNavigation`|`allow-navigation`|boolean|true|when `true`, it is possible to navigate to nested objects and arrays if a dataSchema is specified|
 |`browseOnRowSelect`| - |[ClickPayload](#browse-on-row-click)| - |if set, a click on a row will navigate you to another location |
 |`customActions`| - |[CustomAction](#configuring-actions-via-customactions)[]| - |list of custom components, rendered in the action column |
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |[ExtendedJSONSchema7Definition](../30_page_layout.md#data-schema)| - |[data schema](../page_layout#data-schema) describing the fields of the collection to display |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`dataSchema`| - |[ExtendedJSONSchema7Definition](../30_page_layout.md#data-schema)| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to display |
 |`disableRowClick`|`disable-row-click`|boolean|false|when `true`, a click on a row does not trigger an event|
 |`disableRowSelection`|`disable-row-selection`|boolean|false|when `true`, checkbox in the first column will not be displayed|
 |`disableRowSelectionChange`|`disable-row-selection-change`|boolean|false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
