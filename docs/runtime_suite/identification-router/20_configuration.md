@@ -3,7 +3,7 @@ id: configuration
 title: Configuration
 sidebar_label: Configuration
 ---
-The `Flow Manager Router` needs the following environment variables to work propertly:
+The `Identification Router` needs the following environment variables to work propertly:
 - SUB_FLOW_CONFIGURATION_FILE_PATH path to configuration file with sub flow rules
 - MAIN_FLOW_MANAGER_URL url to the `Main Flow Manager` service
 - MAIN_SAGA_CRUD_URL url to the `CRUD Service` with the related subflow collection

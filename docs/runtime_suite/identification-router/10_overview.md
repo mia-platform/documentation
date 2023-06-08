@@ -3,7 +3,7 @@ id: overview
 title: Identification Router
 sidebar_label: Overview
 ---
-The `Flow Manager Router` behaves as a proxy of events for the flow manager: based on the `Main Flow Manager` saga ID, the service send the request to the correct `Sub Flow Manager`.
+The `Identification Router` behaves as a proxy of events for the flow manager: based on the `Main Flow Manager` saga ID, the service send the request to the correct `Sub Flow Manager`.
 
 The body of the request is the same event body expected by flow manager service.
 
@@ -35,13 +35,13 @@ The router service send to the `Sub Flow Manager` an event with `routerNotifyCom
 - `/sub-flow/saga`: retrieve the sub flow saga from the ID of the main saga
 
 ## Architecture
-The `Flow Manager Router` plugin allow you to manage different flow managers and used them as a unique flow, in particular you can define:
+The `Identification Router` plugin allow you to manage different flow managers and used them as a unique flow, in particular you can define:
 - `Main Flow Manager`
 - a set of `Sub Flow Manager`
 
-Based only on the `Main Flow Manager` saga ID, the  `Flow Manager Router` sends the events to the correct `Sub Flow Manager`.
+Based only on the `Main Flow Manager` saga ID, the  `Identification Router` sends the events to the correct `Sub Flow Manager`.
 
-The `Sub Flow Manager` can send an event to the `Flow Manager Router` that will be sent to the `Main Flow Manager` and an optional external service. 
+The `Sub Flow Manager` can send an event to the `Identification Router` that will be sent to the `Main Flow Manager` and an optional external service. 
 Only data inside the `MainFlowData` object on the `Sub Flow Manager` metadata are included in the message payload of the event sent to both the `Main Flow Manager` and an optional external service.
 
 ## Sub Flow matching rules
