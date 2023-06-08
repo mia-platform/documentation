@@ -16,7 +16,7 @@ logical/business features and allow services encapsulation and adaption
 Manages http requests to a `MongoDB CRUD` service. Also it handles query mapping to conform to Mia's `CRUD` specifications.
 
 :::info
-This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../../runtime_suite/crud-service/overview_and_usage.md).
+This web component is designed to handle `CRUD` operations towards [Mia-Platform CRUD Service](../../../runtime_suite/crud-service/overview_and_usage).
 :::
 
 ```html
