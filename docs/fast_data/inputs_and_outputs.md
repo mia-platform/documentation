@@ -725,19 +725,19 @@ Example:
 ```json
 {
   "key": {
-    "codiceSocieta":1,
-    "idSoggetto":1540624
+    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
   "value": {
     "identifier": {
-      "codiceSocieta": 1,
-      "idSoggetto": 1540624
+      "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
     },
     "__internal__kafkaInfo": {
-      "topic": "unicoop-firenze-fast-data.gps.PREPROD.TA011-SOG-json",
+      "topic": "original-topic-2",
       "partition": 1,
-      "offset": "5939",
-      "key": "1_1540624",
+      "offset": 2,
+      "key": {
+        "originalKey2": "123",
+      },
       "timestamp": "1684290004852"
     }
   }
@@ -1026,7 +1026,7 @@ Example:
       "offset": 123,
       "partition": 0,
       "timestamp": "2023-06-01T10:05:51.442Z",
-      "topic": "gt.fd-tests.DEV.libraries.ingestion"
+      "topic": "topic.libraries.ingestion"
     },
     "operationTimestamp": "2023-06-01T10:05:51.442Z",
     "operationType": "UPDATE",
