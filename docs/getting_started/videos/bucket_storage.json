@@ -1,0 +1,150 @@
+{
+  "videoId": "MOsm-DZDR8I",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:05,005",
+      "endTimeString": "00:00:07,240",
+      "text": "Hi, and welcome to Mia-Platform Video Pills."
+    },
+    {
+      "startTimeString": "00:00:07,674",
+      "endTimeString": "00:00:10,610",
+      "text": "In this video, we will show you Mia-Platform Bucket Storage."
+    },
+    {
+      "startTimeString": "00:00:11,111",
+      "endTimeString": "00:00:16,649",
+      "text": "Bucket Storage extends the functionality of Mia-Platform Fast Data and provides storage of raw data."
+    },
+    {
+      "startTimeString": "00:00:16,649",
+      "endTimeString": "00:00:27,827",
+      "text": "This data is ready to be re-injected when needed or can be served to business intelligence, relieving DB administration. To better understand how it works, we will only show you the microservices to be installed in a use case."
+    },
+    {
+      "startTimeString": "00:00:29,229",
+      "endTimeString": "00:00:36,202",
+      "text": "As you can see, we have already set up the Mia-Platform Fast Data projections with a ER Schema with these entries: customer, order, and product."
+    },
+    {
+      "startTimeString": "00:00:37,103",
+      "endTimeString": "00:00:40,807",
+      "text": "In addition, we already have a Single View called Order History."
+    },
+    {
+      "startTimeString": "00:00:42,442",
+      "endTimeString": "00:00:45,145",
+      "text": "Let's install the first microservice."
+    },
+    {
+      "startTimeString": "00:00:45,145",
+      "endTimeString": "00:00:48,782",
+      "text": "Go to the microservices section and search for the Ingestion Storage Service."
+    },
+    {
+      "startTimeString": "00:00:52,619",
+      "endTimeString": "00:00:58,024",
+      "text": "During installation, remember to set the correct environment variables, configuration maps and Secret Keys."
+    },
+    {
+      "startTimeString": "00:01:11,905",
+      "endTimeString": "00:01:28,054",
+      "text": "Let’s deploy it We can now see that we have our empty bucket."
+    },
+    {
+      "startTimeString": "00:01:34,661",
+      "endTimeString": "00:01:39,399",
+      "text": "With Postman, we populate our bucket with the customer."
+    },
+    {
+      "startTimeString": "00:01:41,000",
+      "endTimeString": "00:01:43,369",
+      "text": "Now we can see that we have generated a new customer."
+    },
+    {
+      "startTimeString": "00:01:44,304",
+      "endTimeString": "00:01:48,141",
+      "text": "We now install the second microservice we need: Ingestion Reloader."
+    },
+    {
+      "startTimeString": "00:01:51,211",
+      "endTimeString": "00:01:56,649",
+      "text": "Find it on Mia-Platform marketplace and install it with all the configurations and secrets as we did before."
+    },
+    {
+      "startTimeString": "00:02:03,590",
+      "endTimeString": "00:02:06,893",
+      "text": "Expose the API and deploy it."
+    },
+    {
+      "startTimeString": "00:02:17,971",
+      "endTimeString": "00:02:20,940",
+      "text": "Now we can take a look at our use case."
+    },
+    {
+      "startTimeString": "00:02:20,940",
+      "endTimeString": "00:02:25,979",
+      "text": "In MongoDB, we already have some pre-filled data, topics already mentioned at the beginning of this video."
+    },
+    {
+      "startTimeString": "00:02:26,779",
+      "endTimeString": "00:02:35,622",
+      "text": "As you can see, we have a customer, some orders, a single view that aggregates the orders, a number of products and returning to the single view, within the orders we can see the products."
+    },
+    {
+      "startTimeString": "00:02:38,892",
+      "endTimeString": "00:02:42,162",
+      "text": "Let us switch to our bucket and see that we have folders for each topic."
+    },
+    {
+      "startTimeString": "00:02:45,565",
+      "endTimeString": "00:02:47,600",
+      "text": "For example, we can see the orders here."
+    },
+    {
+      "startTimeString": "00:02:48,001",
+      "endTimeString": "00:02:51,504",
+      "text": "Now we delete our orders and show how to reinject the same data from the bucket."
+    },
+    {
+      "startTimeString": "00:02:53,173",
+      "endTimeString": "00:02:56,342",
+      "text": "The order collection is now empty."
+    },
+    {
+      "startTimeString": "00:02:56,342",
+      "endTimeString": "00:02:58,378",
+      "text": "We also have no data in the Single View."
+    },
+    {
+      "startTimeString": "00:03:00,213",
+      "endTimeString": "00:03:03,082",
+      "text": "To reingest the data, we go to Postman."
+    },
+    {
+      "startTimeString": "00:03:03,082",
+      "endTimeString": "00:03:05,084",
+      "text": "We declare that we want to input order data."
+    },
+    {
+      "startTimeString": "00:03:06,953",
+      "endTimeString": "00:03:09,155",
+      "text": "Let's click on Send."
+    },
+    {
+      "startTimeString": "00:03:12,292",
+      "endTimeString": "00:03:16,996",
+      "text": "Now, going back to MongoDB, you can see again orders both in the topic and in the single view."
+    },
+    {
+      "startTimeString": "00:03:19,999",
+      "endTimeString": "00:03:32,312",
+      "text": "The main benefits of Bucket Storage include: providing large storage space at a reduced cost, becoming an easily accessible repository for backup and compliance reasons, enabling easy exposure of data to business intelligence tools."
+    },
+    {
+      "startTimeString": "00:03:33,379",
+      "endTimeString": "00:03:35,148",
+      "text": "Try it with Mia-Platform v11."
+    }
+  ]
+}
