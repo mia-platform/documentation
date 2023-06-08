@@ -10,9 +10,11 @@ It allows you to view, manage, and deploy the projects belonging to your compani
 
 The `miactl` CLI functionalities can be summarized within its main subcommands:
 
+- `company`: view and manage the companies that you can access
 - `context`: manage your `miactl` contexts
-- `project`: view and manage the projects of a specific company
 - `deploy`: deploy resources to a project
+- `project`: view and manage the projects of a specific company
+- `serviceaccount`: create new service accounts for your company
 
 ## Guides
 
