@@ -425,7 +425,7 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint
 
 `bk-export` emits [success](../events#success) or [error](../events#error) events after the export is triggered. The events are emitted after the export is over (or on failure) if `nativeDownload` is set to `false`, or after the download request has been issued otherwise.
 
-[CRUD-service]: ../../runtime_suite/crud-service/overview_and_usage
+[CRUD-service]: ../../../runtime_suite/crud-service/overview_and_usage
 [resource]: https://jimmywarting.github.io/StreamSaver.js/mitm.html?version=2.0.0
 
 ### Properties & Attributes
