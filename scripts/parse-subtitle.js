@@ -25,7 +25,7 @@ const finalize = (data) => {
     let currentText = '';
     let currentStart = '';
 
-    data.forEach((item, i) => {
+    data.forEach((item) => {
         //currentText += item.text..replace('\n', ' ');
         currentText += ` ${item.text.replace(/(\r\n|\n|\r)/gm, " ")}`;
         if (!currentStart) {
