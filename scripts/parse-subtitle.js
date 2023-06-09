@@ -75,5 +75,3 @@ fs.readdirSync(process.argv[2]).forEach(file => {
         fs.writeFileSync(outputPath + name + '.json', JSON.stringify(output, null, 2));
     }
 });
-
-
