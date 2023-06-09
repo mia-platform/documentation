@@ -8,7 +8,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.5.0 2022-05-10
+## [0.6.0] - 2023-06-08
+
+### Changed
+
+- reworked the http connection to the remote servers to allow support for custom installations
+- **breaking** new configuration file structure
+
+### Added
+
+- creation of service account for your company
+
+### Fixed
+
+- if you use a url that ends with `/` as endpoint, the remote calls are not broken anymore
+
+## [0.5.0] - 2023-05-10
 
 ### Changed
 
@@ -18,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - new command for listing the user companies
 
-## 0.4.0 2022-03-07
+## [0.4.0] - 2023-04-07
 
 ### Changed
 
@@ -28,13 +43,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - new project list command
 - the user now can create contexts for multiple scenarios and consoles
 
-## 0.3.1 2022-01-21
+## [0.3.1] - 2022-01-21
 
 ### Fixed
 
 - fix warning installing with brew (issue 55)
 
-## 0.3.0
+## [0.3.0] - 2021-06-22
 
 ### Added
 
@@ -53,12 +68,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - drop support to go v1.13 and v.14
 
-## 0.2.0
+## [0.2.0] - 2020-04-27
 
 - get history of deployments for a specific project environment
 - add get projects command
 
-## 0.1.0
+## [0.1.0] - 2020-04-14
 
 - create cli sdk
 - create cli renderer
+
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/mia-platform/miactl/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/mia-platform/miactl/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/mia-platform/miactl/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/mia-platform/miactl/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/mia-platform/miactl/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/mia-platform/miactl/releases/tag/v0.1.0

@@ -898,6 +898,10 @@
           "type": "doc"
         },
         {
+          "id": "how_to/traefik/traefik_handbook",
+          "type": "doc"
+        },
+        {
           "id": "how_to/crud_service/crud_oss_usage",
           "type": "doc"
         }
@@ -1237,6 +1241,10 @@
         "id": "release-notes/versions"
       },
       "items": [
+        {
+          "id": "release-notes/v11.2.0",
+          "type": "doc"
+        },
         {
           "id": "release-notes/v11.1.2",
           "type": "doc"

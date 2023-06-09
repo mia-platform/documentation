@@ -23,5 +23,6 @@ This components are designed to be used inside a [Backoffice](../../business_sui
 
 ### Data visualization Web Components
   - [ck-chart](20_components/70_ck-chart.md)
+  - [ck-layout-select](20_components/80_ck-layout-select.md)
 
 Some of the components work using custom events. For info on the custom events see [here](30_events.md)

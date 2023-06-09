@@ -239,8 +239,8 @@ most commonly either an href renders into the same window with `_self` or it ope
 The `icon` properties allow to attach a [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free)
 when the link is rendered by a component which support this interface.
 
-A web component that contains state or data might implement [dynamic queries](#queries). In this case the `href` can be
-enriched with query parameters that are bound to the internal state of the component that the user is interacting with.
+A web component that contains state or data might implement [dynamic configurations](#dynamic-configuration). In this case the `href` can be
+enriched with query parameters that are bound to the internal state of the component with which the user is interacting.
 Suppose the user with email `my-mail@mail.com` is in session, then the following link
 
 ```json
@@ -255,11 +255,6 @@ Suppose the user with email `my-mail@mail.com` is in session, then the following
 
 renders the dynamic link `./ingredients?name=John&createdBy=admin%7Cmy-mail%40mail.com`.
 
-## Shared Properties
-
-Back-kit web components always retain an `eventBus` property. For this reason it is not listed on components. Moreover,
-configuration **should** never interact with this property directly, since it is injected by the **element-composer** on
-configuration parsing. Anyway components mark this property as *immutable* and JavaScript should not be able to tamper with it.
 
 ## Filters
 
@@ -298,6 +293,82 @@ type FilterOperator = |
   'hasLengthEqual' |
   'hasLengthGreaterEqual' |
   'hasLengthLessEqual'
+```
+
+## Inline queries
+
+Some components allow to filter data based on inline queries - that is, queries that are directly applied to the data in the state
+of the component, no call to the backend is performed.
+
+The supported syntax for inline queries is [mongo-like](https://www.mongodb.com/docs/manual/reference/operator/query/), and their implementation is based on the [SiftJS](https://github.com/crcn/sift.js) library.
+
+Supported operators are:
+  - [$in](https://www.mongodb.com/docs/manual/reference/operator/query/in/#mongodb-query-op.-in)
+  - [$nin](https://www.mongodb.com/docs/manual/reference/operator/query/nin/#mongodb-query-op.-nin)
+  - [$exists](https://www.mongodb.com/docs/manual/reference/operator/query/exists/#mongodb-query-op.-exists)
+  - [$gte](https://www.mongodb.com/docs/manual/reference/operator/query/gte/#mongodb-query-op.-gte)
+  - [$gt](https://www.mongodb.com/docs/manual/reference/operator/query/gt/#mongodb-query-op.-gt)
+  - [$lte](https://www.mongodb.com/docs/manual/reference/operator/query/lte/#mongodb-query-op.-lte)
+  - [$lt](https://www.mongodb.com/docs/manual/reference/operator/query/lt/#mongodb-query-op.-lt)
+  - [$eq](https://www.mongodb.com/docs/manual/reference/operator/query/eq/#mongodb-query-op.-eq)
+  - [$ne](https://www.mongodb.com/docs/manual/reference/operator/query/ne/#mongodb-query-op.-ne)
+  - [$mod](https://www.mongodb.com/docs/manual/reference/operator/query/mod/#mongodb-query-op.-mod)
+  - [$all](https://www.mongodb.com/docs/manual/reference/operator/query/all/#mongodb-query-op.-all)
+  - [$and](https://www.mongodb.com/docs/manual/reference/operator/query/and/#mongodb-query-op.-and)
+  - [$or](https://www.mongodb.com/docs/manual/reference/operator/query/or/#mongodb-query-op.-or)
+  - [$nor](https://www.mongodb.com/docs/manual/reference/operator/query/nor/#mongodb-query-op.-nor)
+  - [$not](https://www.mongodb.com/docs/manual/reference/operator/query/not/#mongodb-query-op.-not)
+  - [$size](https://www.mongodb.com/docs/manual/reference/operator/query/size/#mongodb-query-op.-size)
+  - [$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/#mongodb-query-op.-type)
+  - [$regex](https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex)
+  - [$elemMatch](https://www.mongodb.com/docs/manual/reference/operator/query/elemMatch/#mongodb-query-op.-elemMatch)
+
+Most components allow queries to include [dynamic values](#dynamic-configuration).
+If that is the case, it is the components responsibility to ensure that sufficient context is provided to resolve the query.
+
+For instance, the following query
+```json
+{
+  "$or": [
+    {"$name": "{{searchedName}}"},
+    {"age": {"$gte": 25}}
+  ]
+}
+```
+
+provided with context:
+```json
+{
+  "searchedName": "Foo"
+}
+```
+
+is equivalent to:
+```json
+{
+  "$or": [
+    {"$name": "Foo"},
+    {"age": {"$gte": 25}}
+  ]
+}
+```
+
+Just like a regular mongo query, applying such it to data:
+```json
+[
+  {"name": "Foo", "age": 15},
+  {"name": "Bar", "age": 27},
+  {"name": "Que", "age": 18},
+  {"name": "Asd", "age": 10}
+]
+```
+
+matches:
+```json
+[
+  {"name": "Foo", "age": 15},
+  {"name": "Bar", "age": 27}
+]
 ```
 
 ## File Management

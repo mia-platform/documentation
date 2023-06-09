@@ -457,7 +457,7 @@ which will return no data.
 |----------|-----------|------|---------|-------------|
 |`autoSearchMinInput`|`auto-search-min-input`|number|2|min length of input string before performing automatic search|
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|100|max items to fetch on regex live search|
-|`placeholder`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|placeholder of the search bar input |
+|`placeholder`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)|{}|placeholder of the search bar input |
 |`searchDebounce`|`search-debounce`|number|0|milliseconds to wait before performing an automatic search. If 0, automatic search is disabled|
 |`searchLookups`|`search-lookups`|boolean|false|whether or not to perform search on lookups. If true, a component such as [lookup-crud-client](./30_clients.md#bk-crud-lookup-client) should be included in the plugin|
 

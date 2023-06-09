@@ -347,14 +347,14 @@ Generic drawer container for custom content and custom footer
 |`content`| - |Taggable \| Taggable[]| - |configurable content of the drawer. Supports both object or array, as: {tag: string; properties?: Object; children?: string} |
 |`dataCustomActions`| - |DataCustomAction[]| - |list of actions|
 |`drawerId`|`drawer-id`|string| - |identifier associated to the drawer |
-|`drawerTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |title of the drawer |
+|`drawerTitle`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |title of the drawer |
 |`footerCallToAction`| - |CallToAction| - |alternative way to specify the footer of the drawer. This property is to be set programmatically only |
 |`footerComponent`| - |null \| Taggable \| Taggable[]| - |configurable footer of the drawer. Supports both object or array, as: {tag: string; properties?: Object; children?: string} |
 |`loading`|`loading`|boolean|false|whether or not the drawer is loading |
 |`mask`|`mask`|boolean|true|whether to mask or not the drawer|
 |`requireConfirm`| - |boolean \| RequireConfirmOpts|false|whether or not the drawer requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
-|`subTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |sub-title of the drawer |
+|`subTitle`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |sub-title of the drawer |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
 |`width`| - |string \| number| - |width of the drawer |
 |`zIndex`|`z-index`|number| - |zIndex of the drawer |
@@ -510,7 +510,7 @@ Items in the menu. These can be of two types, `href` or `application`. `href` me
 
 Multiple menu items can be grouped into recursive structures, `categories` (collapsible) and `groups` (non-collapsible).
 
-All types of menu item have internationalized labels [LocalizedText](../core_concepts#localization-and-i18n).
+All types of menu item have internationalized labels [LocalizedText](../40_core_concepts.md#localization-and-i18n).
 
 ```typescript
 type MenuItem = HrefMenuItem | ApplicationMenuItem | CategoryMenuItem | GroupMenuItem
@@ -1134,10 +1134,10 @@ Generic modal container for custom content and custom footer
 |`height`|`height`|string| - |height of the modal |
 |`loading`|`loading`|boolean|false|whether or not the modal is loading |
 |`modalId`|`modal-id`|string| - |identifier associated to the modal |
-|`modalTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |title of the modal |
+|`modalTitle`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |title of the modal |
 |`requireConfirm`| - |boolean \| RequireConfirmOpts|false|whether or not the modal requires confirmation to close with unsaved data |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
-|`subTitle`| - |[LocalizedText](../core_concepts#localization-and-i18n) \| Taggable \| Taggable[]| - |sub-title of the modal |
+|`subTitle`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n) \| Taggable \| Taggable[]| - |sub-title of the modal |
 |`titleIcon`|`title-icon`|string| - |icon to place next to to the title |
 |`width`|`width`|string| - |width of the modal |
 |`zIndex`|`z-index`|number| - |zIndex of the modal |
