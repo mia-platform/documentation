@@ -244,5 +244,3 @@ YouTubeVideoPlayer.propTypes = {
 };
 
 export default YouTubeVideoPlayer;
-
-
