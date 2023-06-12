@@ -245,7 +245,7 @@ You can trigger the re-ingestion with a cURL command:
 Here's an example of a `cURL` command to trigger the re-ingestion process using the custom selector script:
 
 ```bash
-curl -X POST "http://localhost:3000/reingestion/topic" \
+curl -X POST "http://<your_address>:<your_port>/reingestion/topic" \
   -H "accept: */*" \
   -H "Content-Type: application/json" \
   -d "{
