@@ -16,7 +16,8 @@
     "check-content": "npm run validate-links && node ./check-content.js",
     "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
-    "check-redirects": "node ./scripts/check-permanent-redirects.js"
+    "check-redirects": "node ./scripts/check-permanent-redirects.js",
+    "build-subtitle": "node ./scripts/parse-subtitle.js"
   },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
@@ -31,6 +32,7 @@
     "mermaid": "^10.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-youtube": "^10.1.0",
     "swc-loader": "^0.2.3"
   },
   "browserslist": {
