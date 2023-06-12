@@ -651,7 +651,7 @@ Example:
 **Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real Time Updater.
 
 :::caution
-This method is not recommended since it has some performance downsides and it still needs to save the projection changes on MongoDB. It is being mantained for backwards compatibility reasons but will be deprecated when possible.
+This method is not recommended since it has some performance downsides and needs to save the projection changes on MongoDB. It is being maintained for backward compatibility but will be deprecated in future releases.
 :::
 
 <details><summary>AsyncApi specification</summary>
