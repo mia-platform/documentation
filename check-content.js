@@ -21,7 +21,7 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_tools/*",
   "business_suite/*",
   "self_hosted/installation-chart/*",
-
+  "getting_started/videos/subtitle/*",
   "tutorial/demo_project/overview", // TODO:
 ]
 
@@ -35,7 +35,7 @@ async function checkSidebar(folder, sidebarFilePath, sidebarBasePath, removeImag
 
   const sidebarFiles = getSidebarLinkedFiles(sidebarFilePath, sidebarBasePath)
   const footerFiles = await getFooterLinkedFiles()
-  
+
   const images = []
   for await (const file of klaw(folder)) {
     if (file.stats.isDirectory()) {
