@@ -21,6 +21,7 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_tools/*",
   "business_suite/*",
   "self_hosted/installation-chart/*",
+  "getting_started/videos/*",
   "getting_started/videos/subtitle/*",
   "tutorial/demo_project/overview", // TODO:
 ]

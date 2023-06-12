@@ -910,47 +910,8 @@
       "type": "category"
     },
     {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "getting_started/videos/backoffice",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/bucket_storage",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/connecting_cluster",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/fast_data_no_code",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/feature_preview",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/m2m_auth",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/providers",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/runtime_area",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/video_pills/video_pills",
-          "type": "doc"
-        }
-      ],
-      "label": "Video",
-      "type": "category"
+      "id": "getting_started/video_pills/video_pills",
+      "type": "doc"
     },
     {
       "id": "getting_started/faqs",
