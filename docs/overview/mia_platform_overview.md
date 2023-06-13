@@ -64,17 +64,17 @@ The products can be divided into two main categories: **core products** and **ad
 
 These products are the backbone of Mia-Platform, and constitute the main solutions that our customers use on a daily basis. The core products are:
 
-- [Mia-Platform Console](/development_suite/overview-dev-suite): industrialize and govern cloud-native development and operations, optimizing DevX and accelerating product teams’ delivery
-- [Mia-Platform Marketplace](/marketplace/overview_marketplace): speed up the creation of new applications with reuse and composition.
-- [Mia-Platform Fast Data](/fast_data/what_is_fast_data): adopt a Digital Integration Hub architecture and create your DIH-enabled API code Platform.
+- [Mia-Platform Console](/development_suite/overview-dev-suite.md): industrialize and govern cloud-native development and operations, optimizing DevX and accelerating product teams’ delivery
+- [Mia-Platform Marketplace](/marketplace/overview_marketplace.md): speed up the creation of new applications with reuse and composition.
+- [Mia-Platform Fast Data](/fast_data/what_is_fast_data.md): adopt a Digital Integration Hub architecture and create your DIH-enabled API code Platform.
 
 ### Additional components
 
 These components contribute to the realization of some specific tasks within your products. They are available through Mia-Platform Marketplace, and they are:
 
-- [Mia-Platform Backoffice](/business_suite/backoffice/overview): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
-- [Mia-Platform External Developer Portal](/runtime_suite/api-portal/overview): a complete access point to your companies’ APIs for your partners and providers, containing live and testable API documentation and allowing standardization in the methods of use.
-- [Mia-Platform Flow Manager](/runtime_suite/flow-manager-service/overview): a saga orchestrator, capable to manage flows structured by using the architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach.
+- [Mia-Platform Backoffice](/business_suite/backoffice/10_overview.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
+- [Mia-Platform External Developer Portal](/runtime_suite/api-portal/10_overview.md): a complete access point to your companies’ APIs for your partners and providers, containing live and testable API documentation and allowing standardization in the methods of use.
+- [Mia-Platform Flow Manager](/runtime_suite/flow-manager-service/10_overview.md): a saga orchestrator, capable to manage flows structured by using the architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach.
 
 Along with the components above, you can also find Mia-Platform’s **open-source projects**:
 
@@ -85,7 +85,7 @@ Along with the components above, you can also find Mia-Platform’s **open-sourc
 
 ## More Resources
 
-To stay always up-to-date with the **latest product news**, please visit the [Release Note](/release-notes/versions) section. Also, feel free to jump into **our community**: explore the [open discussions on GitHub](https://github.com/mia-platform/community/discussions) and ask any questions you may have about our products.
+To stay always up-to-date with the **latest product news**, please visit the [Release Note](/release-notes/versions.md) section. Also, feel free to jump into **our community**: explore the [open discussions on GitHub](https://github.com/mia-platform/community/discussions) and ask any questions you may have about our products.
 
 If you are curious about **what you can do with Mia-Platform**, take a look at what we already built with our customers and [explore all the success cases](https://mia-platform.eu/resources/case-history/).
 
