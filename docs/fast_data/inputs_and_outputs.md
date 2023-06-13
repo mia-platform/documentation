@@ -4,24 +4,29 @@ title: Inputs and Outputs
 sidebar_label: Inputs and Outputs
 ---
 
-This page presents all the different inputs and outputs that revolve around the Fast Data ecosystem, including both the core user data in Projections and Single Views, and the events concerning errors, successful data generation, and so on.
+The Fast Data has an Event Driven Architecture, as such there are many events that make everything work. In this page we will explore these events in detail to understand better the whole Fast Data lifecycle.
 
-Throughout the document we will describe the messages providing a natural language description, an **example**, and for Kafka messages an [AsyncApi](https://www.asyncapi.com/) specification.
+## Projection
 
-In order to work properly, the Fast Data infrastructure will need multiple Kafka topics, hence any time we will discuss a Kafka Topic, a naming convention will be suggested.
+Here, we will discuss the inputs and outputs related to the Projection management.
 
-For MongoDB based architectures, please check the Mongo paragraph on the entries, while for Kafka based ones, check the message structure and the topic naming convention.
+### Ingestion Message
 
-## Data Ingestion
+**Channel**: Apache Kafka
 
-Here, we will discuss the inputs and outputs related to data ingestion.
+**Topic naming convention**: `<tenant>.<environment>.<source-system>.<projection>.ingestion`
 
-### Data Change Message
+Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
-This is a type of Kafka message that is going to be sent when a System of Records is updated.
-This message is then read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
+**Producer**: The CDC Connectors of the source databases
 
-Based on how the syncing system is set up, the format can be one of three possible types:
+**Consumer**: Real Time Updater
+
+**Description**: The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
+
+When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
+
+Based on how the ingestion system is set up, the format can be one of three possible types:
 
 * [IBM InfoSphere Data Replication for DB2](#ibm-infosphere-data-replication-for-db2)
 * [Oracle Golden Gate](#oracle-golden-gate)
@@ -30,321 +35,424 @@ Based on how the syncing system is set up, the format can be one of three possib
 You can also specify a [custom adapter](/fast_data/configuration/realtime_updater/common.md#custom) to handle any other message formats you need.
 This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
 
-Here's the AsyncApi specification and some examples of the different formats.
+Here's the AsyncApi specification of the message and some examples of the different formats.
 
 #### IBM InfoSphere Data Replication for DB2
 
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Basic Data Change Producer
-  version: "1.0.0"
-channels:
-  BasicDataChangeChannel:
-    publish:
-      message:
-        name: basic data change
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: true
-            timestamp:
-              type: string
-            offset:
-              type: integer
-          required: ["key", "value", "timestamp", offset]
-```
-
-Upsert operation:
-
-```json
-{
-  "key": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
-  },
-  "value": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O",
-    "NAME": 456
-  },
-  "timestamp": "1234556789",
-  "offset": "100"
-}
-```
-
-Delete operation:
-
-```json
-{
-  "key": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
-  },
-  "value": null,
-  "timestamp": "1234556789",
-  "offset": "100"
-}
-```
-
-#### Oracle Golden Gate
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Golden Gate Data Change Producer
-  version: "1.0.0"
-channels:
-  GoldenGateDataChangeChannel:
-    publish:
-      message:
-        name: golden gate data change
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                op_type:
-                  type: string
-                  enum: ["I", "D", "U"]
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-            timestamp:
-              type: string
-            offset:
-              type: integer
-          required: ["key", "value", "timestamp", offset]
-```
-
-Insert operation:
-
-```json
-{
-  "key": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
-  },
-  "value": {
-    "table": "MY_TABLE",
-    "op_type": "I",
-    "op_ts": "2021-02-19 16:03:27.000000",
-    "current_ts": "2021-02-19T17:03:32.818003",
-    "pos": "00000000650028162190",
-    "before": null,
-    "after": {
-      "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
-      "COINS": 300000000
-    }
-  },
-  "timestamp": "1234556789",
-  "offset": "100"
-}
-```
-
-Delete operation:
-
-```json
-{
-  "key": {
-    "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
-  },
-  "value": {
-    "table": "MY_TABLE",
-    "op_type": "D",
-    "op_ts": "2021-02-19 16:03:27.000000",
-    "current_ts": "2021-02-19T17:03:32.818003",
-    "pos": "00000000650028162190",
-    "before": {
-      "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
-      "COINS": 300000000
-    },
-    "after": null
-  },
-  "timestamp": "1234556789",
-  "offset": "100"
-}
-```
-
-#### Debezium
+<details><summary>AsyncApi specification</summary>
+<p>
 
 ```yaml
 asyncapi: 2.6.0
 info:
-  title: Debezium Data Change Producer
+  title: Data Change API
   version: 1.0.0
 channels:
-  DebeziumDataChangeChannel:
+  DB2:
     publish:
       message:
-        name: debezium data change
+        name: DB2 data change message
         payload:
           type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                op:
-                  type: string
-                  enum:
-                    - c
-                    - u
-                    - d
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                source:
-                  type: object
-                  additionalProperties: true
-            timestamp:
-              type: string
-            offset:
-              type: integer
           required:
             - key
             - value
-            - timestamp
-            - offset
+          properties:
+            key:
+              type: object
+              additionalProperties: true
+              description: Record's primary keys
+            value:
+              type: object
+              additionalProperties: true
+              oneOf:
+                - type: object
+                  additionalProperties: true
+                  description: Whole record (including primary and foreign keys) in case of *insert/update* operation
+                - type: "null"
+                  description: null in case of delete operation
+          additionalProperties: false
 ```
+</p>
+</details>
 
-Insert operation:
+Examples:
+
+<details><summary>Upsert operation</summary>
+<p>
 
 ```json
 {
   "key": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
+    "TAX_CODE": "ABCDEF12B02M100O"
+  },
+  "value": {
+    "USER_ID": 123,
+    "TAX_CODE": "ABCDEF12B02M100O",
+    "NAME": 456
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Delete operation</summary>
+<p>
+
+```json
+{
+  "key": {
+    "USER_ID": 123,
+    "TAX_CODE": "ABCDEF12B02M100O"
+  },
+  "value": null
+}
+```
+</p>
+</details>
+
+#### Oracle Golden Gate
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Data Change API
+  version: "1.0.0"
+channels:
+  GoldenGate:
+    publish:
+      message:
+        name: Golden Gate data change message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          properties:
+            key: 
+              type: string
+              description: String of the primary keys values joined by underscores
+              examples:
+                - pkValue1_pkValue2
+            value:
+              type: object
+              additionalProperties: false
+              required:
+                - op_type
+                - pos
+              properties:
+                op_type:
+                  type: string
+                  description: Operation type. Can be *insert*, *update* or *delete*
+                  enum:
+                    - I
+                    - U
+                    - D
+                before:
+                  type: object
+                  description: Whole record **before** the changes were applied (including the primary and foreign keys). This field is not defined with insert operation
+                  additionalProperties: true
+                after:
+                  type: object
+                  description: Whole record **after** the changes were applied (including the primary and foreign keys). This field is not defined with delete operation
+                  additionalProperties: true
+                pos:
+                  type: integer
+                  description: Position of the message, similar to the kafka message's offset
+          additionalProperties: false
+```
+</p>
+</details>
+
+Examples:
+
+<details><summary>Insert operation</summary>
+<p>
+
+```json
+{
+  "key": "123",
+  "value": {
+    "op_type": "I",
+    "before": null,
+    "after": {
+      "USER_ID": 123,
+      "TAX_CODE": "the-fiscal-code-123",
+      "COINS": 300000000
+    }
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Delete operation</summary>
+<p>
+
+```json
+{
+  "key": "123",
+  "value": {
+    "op_type": "D",
+    "before": {
+      "USER_ID": 123,
+      "TAX_CODE": "the-fiscal-code-123",
+      "COINS": 300000000
+    },
+    "after": null
+  }
+}
+```
+</p>
+</details>
+
+#### Debezium
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Data Change API
+  version: 1.0.0
+channels:
+  Debezium:
+    publish:
+      message:
+        name: Debezium data change message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          properties:
+            key: 
+              type: object
+              description: Record's primary keys
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - op
+                - source
+              properties:
+                op:
+                  type: string
+                  description: Operation type. Can be *create/snapshot(r)*, *update* or *delete*
+                  enum:
+                    - c
+                    - r
+                    - u
+                    - d
+                before:
+                  type: object
+                  description: Whole record **before** the changes were applied (including the primary and foreign keys). This field is not defined with insert operation
+                  additionalProperties: true
+                after:
+                  type: object
+                  description: Whole record **after** the changes were applied (including the primary and foreign keys). This field is not defined with delete operation
+                  additionalProperties: true
+                source:
+                  type: object
+                  description: Metadata about the origin of the message (db, table, query...)
+                  additionalProperties: true
+              additionalProperties: false
+          additionalProperties: false
+```
+</p>
+</details>
+
+Examples:
+
+<details><summary>Insert operation</summary>
+<p>
+
+```json
+{
+  "key": {
+    "USER_ID": 123,
+    "TAX_CODE": "ABCDEF12B02M100O"
   },
   "value": {
     "op": "c",
     "before": null,
     "after": {
       "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
+      "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     }
-  },
-  "timestamp": "1234556789",
-  "offset": "100"
+  }
 }
 ```
+</p>
+</details>
 
-Delete operation:
+<details><summary>Delete operation</summary>
+<p>
 
 ```json
 {
   "key": {
     "USER_ID": 123,
-    "FISCAL_CODE": "ABCDEF12B02M100O"
+    "TAX_CODE": "ABCDEF12B02M100O"
   },
   "value": {
     "op": "d",
     "before": {
       "USER_ID": 123,
-      "FISCAL_CODE": "the-fiscal-code-123",
+      "TAX_CODE": "the-fiscal-code-123",
       "COINS": 300000000
     },
     "after": null
-  },
-  "timestamp": "1234556789",
-  "offset": "100"
+  }
 }
 ```
+</p>
+</details>
 
-#### Topic naming convention
+### Projection Update Message
 
-**producer**: the system producing its own events
+**Channel**: Apache Kafka
 
-`<tenant>.<environment>.<source-system>.<projection>.ingestion`
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
 
-An example:
+Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
-```sh
-test-tenant.PROD.system-name.test-projection.ingestion
-```
+**Producer**: Real Time Updater
 
-### Projection
+**Consumer**: Single View Trigger Generator or Single View Creator ([sv-patch](/fast_data/configuration/single_views.md#single-view-patch))
 
-A Projection is an updated and **standardized** copy of the data coming from the System of Records.
-Projections are always stored on MongoDB.
-The fields of each Projection document are the ones defined in the Console. On top of user-defined properties, you will also find the default CRUD fields: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `__STATE__`.
+**Description**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
-### Projection Update
-
-A `Projection Update` is a Kafka event that informs the listener that a Projection has been changed.
-Its value field contains the following fields:
-
-| Field | Required | Description |
-| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `__internal__kafkaInfo` | &check; | The Kafka information of the initial Data Change message that caused the Projection to update. Its fields are: topic, partition, offset, key, timestamp |
-| `before` | - | It contains the value of the Projection before its change. |
-| `after` | - | It contains the value of the Projection after the operation execution. |
-| `key` | &check; | The key of the Projection that has been updated. |
-
-**Message Example**:
-
-<details><summary>Click here to show/hide the long message example</summary>
+<details><summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
-key: | 
-  {
+asyncapi: 2.6.0
+info:
+  title: Projection Update API
+  version: 1.0.0
+channels:
+  pr-update:
+    publish:
+      message:
+        name: Projection update message
+        payload:
+          type: object
+          required:
+            - header
+            - key
+            - value
+          properties:
+            headers:
+              type: object
+              required:
+                - messageSchema
+              properties:
+                messageSchema:
+                  type: object
+                  required:
+                    - type
+                    - version
+                  properties:
+                    type:
+                      type: string
+                      description: Type of messsage (`pr-update`, `sv-update`, `sv-trigger`...)
+                    version:
+                      type: string
+                      description: Version of the message format (v1.0.0)
+            key:
+              type: object
+              description: Record's primary keys
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - operationType
+                - operationTimestamp
+                - documentId
+                - projectionName
+                - source
+                - primaryKeys
+              properties:
+                operationType:
+                  type: string
+                  enum: ["INSERT", "UPDATE", "DELETE", "UPSERT"]
+                  description: Type of operation applied on the Projection's record
+                operationTimestamp:
+                  type: integer
+                  description: ISO String of the time at which the MongoDB operation on the projection's record has been carried out
+                documentId:
+                  description: Equals to the _id of the Projection's record on MongoDB
+                  type: string
+                projectionName:
+                  description: Projection's name
+                  type: string
+                source:
+                  description: Name of the System of Records
+                  type: string
+                primaryKeys:
+                  description: Array of the primary key field names
+                  type: array
+                after:
+                  type: object
+                  description: Value of the MongoDB record **after** the changes have been applied. In case of a delete operation this field is not defined
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                   - topic
+                   - partition
+                   - offset
+                   - key
+                   - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the kafka message timestamp
+                      type: string
+                  additionalProperties: false
+              additionalProperties: false
+          additionalProperties: false
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Insert operation</summary>
+<p>
+
+```json
+{
+  "key": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: |
-  {
+  },
+  "value": {
     "operationType":"INSERT",
     "operationTimestamp": "2022-05-20T10:25:56.401Z",
-    "documentId": null,
+    "documentId": "62876cb2adb982a6195d26f9",
     "projectionName": "pr_registry",
     "source": "food-delivery",
     "primaryKeys":[
-      "$or"
+      "ID_USER"
     ],
-    "before":{
-      "_id":"62876cb2adb982a6195d26f9",
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-      "TAX_CODE":"tax_code",
-      "NAME":"MARIO",
-      "SURNAME":"ROSSI",
-      "EMAIL":"email_mario",
-      "ADDRESS":"address_1",
-      "PHONE":"phone_number_1653042354472",
-      "PROFESSION":"profession 1",
-      "__STATE__":"DELETED",
-      "__internal__counter":466,
-      "__internal__kafkaInfo":{
-        "offset":"466",
-        "partition":0,
-        "timestamp":"2022-05-20T10:25:55.751Z",
-        "topic":"kafka-topic-here",
-        "key":{
-          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-        }
-      },
-      "timestamp":"2022-05-20T10:25:55.751Z",
-      "updatedAt":"2022-05-20T10:25:55.760Z"
-    },
     "after":{
       "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
       "TAX_CODE":"tax_code",
@@ -368,9 +476,9 @@ value: |
         }
       },
       "createdAt":"2022-05-20T10:25:56.380Z"
-    }
-    "__internal__kafkaInfo":{
-      "offset":"467",
+    },
+    "__internal__kafkaInfo": {
+      "offset": 467,
       "partition":0,
       "timestamp":"2022-05-20T10:25:56.323Z",
       "topic":"kafka-topic-here",
@@ -379,151 +487,131 @@ value: |
       }
     }
   }
+}
 ```
-
 </p>
 </details>
 
-**AsyncApi specification**:
+## Single View
 
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Projection Update Producer
-  version: "1.0.0"
-channels:
-  projectionUpdateChannel:
-    subscribe:
-      message:
-        name: Projection Update
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key:
-              type: object
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                operationType:
-                  type: string
-                  enum: ["INSERT", "UPDATE", "DELETE", "UPSERT"]
-                operationTimestamp:
-                  type: number
-                documentId:
-                  type: string
-                projectionName:
-                  type: string
-                primaryKeys:
-                  type: Array
-                source:
-                  type: string
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-          required: ["key", "value"]
-```
+This section covers the inputs and outputs concerning the Single View's aggregation.
 
-#### Topic naming convention
+### Projection Changes
 
-**producer** Real Time Updater
+**Channel**: MongoDB
 
-`<tenant>.<environment>.<mongo-database>.<collection>.pr-update`
+**Producer**: Real Time Updater
 
-An example:
+**Consumer**: Single View Creator
 
-```sh
-test-tenant.PROD.restaurants-db.reviews-collection.pr-update
-```
+**Description**: The Projection Changes or `pc` informs the listener (generally the Single View Creator) that a Single View should be updated.
+This event is created as a result of a strategy execution.
+It is stored on MongoDB and is very similar to the [Single View Trigger Message](#single-view-trigger-message) on Kafka.
 
-### Projection Change
+<details><summary>JsonSchema specification</summary>
+<p>
 
-A `Projection Change` is an event that informs the listener that a Single View should be updated.
-It can be stored on either MongoDB or Kafka, depending on your architecture.
-
-Its value has the following fields:
-
-* `type`: either `aggregation` or `patch`. The former triggers a specific Single View to be generated from scratch, the latter is used to only update one field of all Single View documents.
-* `singleViewIdentifier`: only present if type is `aggregation`. It is the ID of the Single View to update.
-* `change`: all the information needed to start the update process:
-  * `projection`: the name of the Projection that generated the change
-  * `data`: the content of the Projection document that generated the name
-* `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update. Its fields are:
-  * topic
-  * partition
-  * offset
-  * key
-  * timestamp
-
-**Kafka Message Example**:
-
-```yaml
-key: | 
-  {
-    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: |
-  {
-    "type":"aggregation",
-    "singleViewIdentifier":{
-      "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
+```json
+{
+  "type": "object",
+  "required": [
+    "identifier",
+    "changes",
+    "createdAt"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Identifier of for the Single View Creator service that should take care of the changes"
     },
-    "change":{
-      "projection":"pr_registry",
-      "data":{
-          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487",
-          "TAX_CODE":"tax_code",
-          "NAME":"MARIO",
-          "SURNAME":"ROSSI",
-          "EMAIL":"email_mario",
-          "ADDRESS":"address_1",
-          "PHONE":"phone_number_1653041524454",
-          "PROFESSION":"profession 1",
-          "timestamp":"2022-05-20T10:12:06.019Z",
-          "updatedAt":"2022-05-20T10:12:06.027Z",
-          "__STATE__":"PUBLIC",
-          "__internal__counter":463,
-          "__internal__kafkaInfo":{
-            "offset":"463",
-            "partition":0,
-            "timestamp":"2022-05-20T10:12:06.019Z",
-            "topic":"kafka-topic-here",
-            "key":{
-                "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-            }
+    "identifier": {
+      "type": "object",
+      "description": "Identifier of the Projection Changes that should match with the Single View Keys fields or the identifierQueryMapping ones from the aggregation.json",
+      "additionalProperties": true
+    },
+    "changes": {
+      "type": "array",
+      "description": "Array that keeps track of the changes requested for the Single View related to the identifier",
+      "items": {
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "IN_PROGRESS",
+              "ERROR"
+            ],
+            "description": "State of the change. State NEW means that the single view needs to be re-aggregated, state IN_PROGRESS means that the Single View Creator is already doing it, and ERROR means the Single View Creator encountered an error while trying to aggregate the Single Views"
+          },
+          "topic": {
+            "type": "string",
+            "description": "Ingestion topic that started the cycle"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp of the ingestion kafka message"
+          },
+          "partition": {
+            "type": "integer",
+            "description": "Partition number of the ingestion kafka message"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset of the ingestion kafka message"
+          },
+          "key": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Key of the ingestion kafka message"
+          },
+          "updatedAt": {
+            "type": "object",
+            "description": "MongoDB date object of the time the change has been updated",
+            "additionalProperties": true
+          },
+          "inProgressAt": {
+            "type": "object",
+            "description": "MongoDB date object of the time the Single View Creator has started processing the change",
+            "additionalProperties": true
+          },
+          "inErrorAt": {
+            "type": "object",
+            "description": "MongoDB date object of the time the Single View Creator encountered an error while aggregating",
+            "additionalProperties": true
           }
+        },
+        "additionalProperties": true
       }
     },
-    "__internal__kafkaInfo":{
-      "offset":"463",
-      "partition":0,
-      "timestamp":"2022-05-20T10:12:06.019Z",
-      "topic":"kafka-topic-here",
-      "key":{
-          "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
-      }
+    "createdAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been created",
+      "additionalProperties": true
+    },
+    "updatedAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been updated, most of the times it means the moment when a change has been registered.",
+      "additionalProperties": true
+    },
+    "doneAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time that the last change was processed by the Single View Creator",
+      "additionalProperties": true
     }
   }
+}
 ```
+</p>
+</details>
 
-**MongoDB Record Example**:
+Example:
+
+<details><summary>MongoDB record</summary>
+<p>
 
 ```json
 {
@@ -535,262 +623,754 @@ value: |
   "changes": [
     {
       "state": "NEW",
-      "updatedAt": "2022-05-20T10:25:35.567Z",
-      "offset": "402",
+      "topic": "original-topic-2",
+      "timestamp": 1234567,
       "partition": 0,
-      "timestamp": "2022-04-28T12:22:12.994Z",
-      "topic": "kafka-topic-here",
+      "offset": 2,
       "key": {
-        "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+        "originalKey2": "123",
       }
     }
   ],
+  "createdAt": "2022-05-20T10:25:35.656Z",
+  "updatedAt": "2022-05-20T10:25:35.656Z",
   "doneAt": "2022-05-20T10:25:35.656Z"
 }
 ```
+</p>
+</details>
 
-**AsyncApi specification**:
+### Kafka Projection Changes
+
+**Channel**: Apache Kafka
+
+**Producer**: Real Time Updater
+
+**Consumer**: Single View Creator
+
+**Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real Time Updater.
+
+:::caution
+This method is not recommended since it has some performance downsides and needs to save the projection changes on MongoDB. It is being maintained for backward compatibility but will be deprecated in future releases.
+:::
+
+<details><summary>AsyncApi specification</summary>
+<p>
 
 ```yaml
-asyncapi: 2.4.0
+asyncapi: 2.6.0
 info:
-  title: Projection Change Producer
-  version: "1.0.0"
+  title: Kafka Projection Changes API
+  version: 1.0.0
 channels:
-  projectionChangesChannel:
+  projectionChanges:
     subscribe:
       message:
-        name: projection change
+        name: Kafka Projection Changes message
         payload:
           type: object
-          additionalProperties: false
+          required:
+            - key
+            - value
           properties:
-            __internal__kafkaInfo:
+            key:
               type: object
-              additionalProperties: false
-              properties:
-                topic:
-                  type: string
-                partition:
-                  type: integer
-                offset:
-                  type: string
-                key: {}
-                timestamp:
-                  type: string
-            type:
-              type: string
-              enum: ["aggregation", "patch"]
-            singleViewIdentifier: {}
-            change:
+              description: Identifier of the Single View or the Projection
+              additionalProperties: true
+            value:
               type: object
-              additionalProperties: false
+              required:
+                - identifier
+                - __internal__kafkaInfo
               properties:
-                projection:
-                  type: string
-                data:
+                identifier:
                   type: object
+                  description: Identifier of the Single View or the Projection
                   additionalProperties: true
-          required: ["type", "__internal__kafkaInfo", "change"]
-          if:
-            properties:
-              type:
-                const: "aggregation"
-          then:
-            required: ["singleViewIdentifier"]
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the ingestion Message
+                      type: string
+                  additionalProperties: false
+          additionalProperties: false
 ```
+</p>
+</details>
 
-#### Topic naming convention
+Example:
 
-**producer**: Single View Trigger Generator
-
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
-
-An example:
-
-```sh
-test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger
-```
-
-## Aggregation
-
-This section covers the outputs concerning the aggregation.
-
-### Single View
-
-A Single View is an aggregated MongoDB Collection that keeps all the data necessary for your business in a ready-to-use format. On top of user-defined properties, you will also find the default CRUD fields: `_id`, `creatorId`, `createdAt`, `updaterId`, `updatedAt`, `__STATE__`.
-
-### Single View Error
-
-A `Single View Error` is an error message that warns us that something went wrong with the Single View update, and a Single View has not been changed.
-It is stored on MongoDB.
-
-Its fields are the default CRUD fields, and:
-
-* `portfolioOrigin`: information on which Single View Creator "group" generated the error. Each Single View Creator service has an environment variable in which this value is specified.
-* `type`: the name of the Single View that needed to be generated when the error occurred.
-* `identifier`: the ID of the Single View
-* `errorType`: the type of error. Can be one of:
-  * `NO_SV_GENERATED`: if the Single View was not generated
-  * `VALIDATION_ERROR`: if the Single View that was generated does not conform to the declared fields
-  * `MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE`: if the Projection Change caused more than one Single View to be generated
-  * `ERROR_SEND_SVC_EVENT` if the Single View was correctly generated, but the creation event could not be generated
-
-**MongoDB Record Example**:
+<details><summary>Kafka PC message</summary>
+<p>
 
 ```json
 {
-  "_id": {
-    "$oid": "619790cbc17eea00122a0796"
+  "key": {
+    "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "portfolioOrigin": "users",
+  "value": {
+    "identifier": {
+      "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+    },
+    "__internal__kafkaInfo": {
+      "topic": "original-topic-2",
+      "partition": 1,
+      "offset": 2,
+      "key": {
+        "originalKey2": "123",
+      },
+      "timestamp": "1684290004852"
+    }
+  }
+}
+```
+</p>
+</details>
+
+### Single View Trigger Message
+
+<!-- TODO: Add MongoDB too when the SVTG will be able to produce sv-trigger messages to mongo -->
+**Channel**: Apache Kafka
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
+
+**Producer**: Single View Trigger Generator
+
+**Consumer**: Single View Creator
+
+**Description**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your Fast Data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Single View Trigger API
+  version: 1.0.0
+channels:
+  sv-trigger:
+    subscribe:
+      message:
+        name: Single View Trigger message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          properties:
+            key:
+              type: object
+              description: Identifier of the Single View or the Projection (depending on the value.type)
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - type
+                - __internal__kafkaInfo
+                - change
+              properties:
+                type:
+                  type: string
+                  description: Type of change requested. Aggregation means the Single View must be regenerated, patch means an update must be done among all Single Views matching a certain query
+                  enum:
+                    - aggregation
+                    - patch
+                singleViewIdentifier:
+                  type: object
+                  description: Identifier of the Single View just like the Projection Changes Identifier. Mind that this field will be set only in case of type aggregation and not patch
+                  additionalProperties: true
+                change:
+                  type: object
+                  description: Contains information about the projection record that triggered the strategy
+                  additionalProperties: false
+                  properties:
+                    projectionName:
+                      description: Name of the projection
+                      type: string
+                    projectionIdentifier:
+                      type: object
+                      description: Primary keys of the projection record
+                      additionalProperties: true
+                    data:
+                      type: object
+                      description: Data of the projection record after the changes were applied
+                      additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the ingestion Message
+                      type: string
+                  additionalProperties: false
+          additionalProperties: false
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Trigger message</summary>
+<p>
+
+```json
+{
+  "key": {
+    "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+  },
+  "value": {
+    "type": "aggregation",
+    "singleViewIdentifier": {
+      "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "change": {
+      "data": {
+        "__STATE__": "PUBLIC",
+        "__internal__counter": 1685118744745,
+        "__internal__counterType": "timestamp",
+        "__internal__kafkaInfo": {
+          "key": {
+            "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+          },
+          "offset": "151",
+          "partition": 0,
+          "timestamp": "2023-05-26T16:32:24.745Z",
+          "topic": "some.ingestion.topic"
+        },
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H",
+        "bio": "episode lover, designer",
+        "name": "Caitlyn",
+        "surname": "Hettinger",
+        "timestamp": "2023-05-26T16:32:24.745Z",
+        "updatedAt": "2023-05-26T16:32:24.845Z"
+      },
+      "projectionIdentifier": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "projectionName": "authors"
+    },
+    "__internal__kafkaInfo": {
+      "key": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "offset": "151",
+      "partition": 0,
+      "timestamp": "2023-05-26T16:32:24.745Z",
+      "topic": "some.ingestion.topic"
+    }
+  }
+}
+```
+</p>
+</details>
+
+### Single View Update Message
+
+**Channel**: Apache Kafka
+
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
+
+**Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
+
+**Description**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Single View Update API
+  version: 1.0.0
+channels:
+  sv-update:
+    subscribe:
+      message:
+        name: Single View Update message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          properties:
+            key:
+              type: object
+              description: Primary keys of the updated Single View
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - operationType
+                - operationTimestamp
+                - singleViewName
+                - source
+                - __internal__kafkaInfo
+              properties:
+                operationType:
+                  type: string
+                  description: Type of operation applied to the Single View record
+                  enum:
+                    - INSERT
+                    - UPDATE
+                    - DELETE
+                operationTimestamp:
+                  type: string
+                  description: ISO 8601 date string of the ingestion Message
+                documentId:
+                  type: string
+                  description: MongoDB _id of the Single View document
+                singleViewName:
+                  type: string
+                  description: Single View name of the record
+                source:
+                  type: string
+                  description: Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that took care of the Single View aggregation
+                before:
+                  type: object
+                  description: Value of the Single View record **before** it was updated/deleted. In case of an insert the field won't be defined. Mind that both before and after values won't be defined by default so you need to configure the Single View Creator if you wish to include them
+                  additionalProperties: true
+                after:
+                  type: object
+                  description: Value of the Single View record **after** it was updated/inserted. In case of a delete the field won't be defined. Mind that both before and after values won't be defined by default so you need to configure the Single View Creator if you wish to include them
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the ingestion Message
+                      type: string
+                  additionalProperties: false
+              additionalProperties: false   
+          additionalProperties: false
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Update message</summary>
+<p>
+
+```json
+{
+  "key": {
+    "bookId": "9GQ4btTZk9L3bOKybn973Ph2"
+  },
+  "value": {
+    "__internal__kafkaInfo": {
+      "key": {
+        "libraryId": "roG7Hrmobde8PImFo3KCIRBp"
+      },
+      "offset": 123,
+      "partition": 0,
+      "timestamp": "2023-06-01T10:05:51.442Z",
+      "topic": "topic.libraries.ingestion"
+    },
+    "operationTimestamp": "2023-06-01T10:05:51.442Z",
+    "operationType": "UPDATE",
+    "singleViewName": "sv_books",
+    "source": "library"
+  }
+}
+```
+</p>
+</details>
+
+### Single View Error
+
+**Channel**: MongoDB
+
+**Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
+
+**Description**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
+
+<details><summary>JsonSchema specification</summary>
+<p>
+
+```json
+{
+  "type": "object",
+  "required": [
+    "portfolioOrigin",
+    "type",
+    "identifier",
+    "errorType",
+    "resolutionMethod"
+  ],
+  "properties": {
+    "portfolioOrigin": {
+      "type": "string",
+      "description": "Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the error"
+    },
+    "type": {
+      "type": "string",
+      "description": "Name of the Single View"
+    },
+    "identifier": {
+      "type": "object",
+      "description": "Identifier of the Projection Changes that should match with the Single View Keys fields or the identifierQueryMapping ones from the aggregation.json"
+    },
+    "errorType": {
+      "type": "string",
+      "enum": [
+        "NO_SV_GENERATED",
+        "VALIDATION_ERROR",
+        "MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE",
+        "ERROR_SEND_SVC_EVENT"
+      ],
+      "description": "String describing the cause of the error"
+    },
+    "resolutionMethod": {
+      "type": "string",
+      "enum": [
+        "AGGREGATION",
+        "PATCH"
+      ],
+      "description": "System that the Single View Creator was using to update the Single Views"
+    },
+    "createdAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been created",
+      "additionalProperties": true
+    },
+    "updatedAt": {
+      "type": "object",
+      "description": "MongoDB date object of the time the record has been updated",
+      "additionalProperties": true
+    },
+  },
+  "additionalProperties": false
+}
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>MongoDB record</summary>
+<p>
+
+```json
+{
+  "_id": "64426177a879bbfec4eaed0f",
+  "portfolioOrigin": "food-delivery",
   "type": "sv_customers",
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
   "errorType": "NO_SV_GENERATED",
-  "createdAt": {
-    "$date": "2021-11-19T11:55:55.337Z"
-  },
-  "creatorId": "single-view-creator",
-  "__STATE__": "PUBLIC",
-  "updaterId": "single-view-creator",
-  "updatedAt": {
-    "$date": "2021-11-19T11:55:55.337Z"
-  }
+  "createdAt": "2022-05-20T10:25:35.656Z",
+  "updatedAt": "2022-05-20T10:25:35.656Z",
+  "resolutionMethod": "AGGREGATION"
 }
 ```
+</p>
+</details>
 
-### Single View Event
+### Single View Events Message
 
-A `Single View Event` event is a Kafka message that informs the listener that a single view has been successfully updated.
+**Channel**: Apache Kafka
 
-Its fields are:
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.svc-events`
 
-* `key`: the Single View ID
-* `headers`:
-  * `type`: always set to `event`. New values might be added in the future.
-  * `name`: the type of operation that was successful. Can be one of:
-    * `singleViewCreated`
-    * `singleViewUpdated`
-    * `singleViewDeleted`
-* `value`:
-  * `type`: the name of the Single View collection
-  * `portfolioOrigin`: the portfolio the Single View was originated from
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
 
-**Message Example**:
+**Producer**: Single View Creator
 
-```yaml
-key: | 
-  {
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
-  }
-value: |
-  {
-    "type": "sv_customers",
-    "portfolioOrigin": "food-delivery",
-    "__internal__kafkaInfo":
-      {
-        "topic": "kafka-topic-here",
-        "partition": 0,
-        "key": "Amatriciana_id",
-        "offset": "466",
-        "timestamp": "1653039238727",
-      },
-  }
-```
+**Consumer**: Custom (whoever needs it)
 
-**AsyncApi specification**:
+**Description**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
 
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Single View Event Producer
-  version: "1.0.0"
-channels:
-  SingleViewUpdatesChannel:
-    subscribe:
-      message:
-        name: single view event
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            headers:
-              type: object
-              additionalProperties: false
-              properties:
-                type:
-                  type: string
-                  enum: ["event"]
-                name:
-                  type: string
-                  enum:
-                    [
-                      "singleViewCreated",
-                      "singleViewUpdated",
-                      "singleViewDeleted",
-                    ]
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                type:
-                  type: string
-                portfolioOrigin:
-                  type: string
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-          required: ["key", "headers", "value"]
-```
-
-### Single View Before After
-
-:::note
-This event is deprecated. Please, use the Single View Update event to get these information.
-:::
-
-An additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
-
-Its fields are:
-
-* `key`: the Single View ID
-* `value`:
-  * `key`: the Single View ID
-  * `before`: the value of the Single View before the change occurred
-  * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
-  * `type`: the name of the Single View collection
-  * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
-  * `opType`: one of the following
-    * `NON_EXISTING_SV`
-    * `INSERT_SV`
-    * `DELETE_SV`
-    * `UPDATE_SV`
-
-**Message Example**:
-
-<details><summary>Click here to show/hide the long message example</summary>
+<details><summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
-key: | 
-  { 
+asyncapi: 2.6.0
+info:
+  title: Single View Events API
+  version: 1.0.0
+channels:
+  svc-events:
+    subscribe:
+      message:
+        name: Single View Events message
+        payload:
+          type: object
+          required:
+            - key
+            - headers
+            - value
+          properties:
+            key:
+              type: object
+              description: Primary keys of the updated Single View
+              additionalProperties: true
+            headers:
+              type: object
+              required:
+                - type
+                - name
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - event
+                name:
+                  type: string
+                  description: Operation type or outcome
+                  enum:
+                    - singleViewCreated
+                    - singleViewUpdated
+                    - singleViewDeleted
+              additionalProperties: false
+            value:
+              type: object
+              required:
+                - type
+                - portfolioOrigin
+                - __internal__kafkaInfo
+              properties:
+                type:
+                  type: string
+                  description: The name of the Single View
+                portfolioOrigin:
+                  type: string
+                  description: Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the message
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the kafka message timestamp
+                      type: string
+                  additionalProperties: false
+              additionalProperties: false
+          additionalProperties: false
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Events example</summary>
+<p>
+
+```json
+{
+  "key": {
     "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  },
+  "value": {
+    "type": "sv_customers",
+    "portfolioOrigin": "food-delivery",
+    "__internal__kafkaInfo": {
+      "topic": "kafka-topic-here",
+      "partition": 0,
+      "key": "Amatriciana_id",
+      "offset": "466",
+      "timestamp": "1653039238727",
+    },
   }
-value: | 
-  {
+}
+```
+</p>
+</details>
+
+### Single View Before After Message
+
+:::caution
+This event is deprecated. Please, use the Single View Update event to get the same information.
+:::
+
+**Channel**: Apache Kafka
+
+**Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-before-after`
+
+Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-before-after`
+
+**Producer**: Single View Creator
+
+**Consumer**: Custom (whoever needs it)
+
+**Description**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Single View Before After API
+  version: 1.0.0
+channels:
+  sv-before-after:
+    subscribe:
+      message:
+        name: Single View Before After message
+        payload:
+          type: object
+          required:
+            - key
+            - value
+          additionalProperties: false
+          properties:
+            key:
+              type: object
+              description: Primary keys of the updated Single View
+              additionalProperties: true
+            value:
+              type: object
+              required:
+                - key
+                - type
+                - opType
+                - __internal__kafkaInfo
+              properties:
+                key:
+                  type: object
+                  description: Primary keys of the updated Single View
+                  additionalProperties: true
+                type:
+                  type: string
+                  description: Name of the Single View collection
+                opType:
+                  type: string
+                  description: Operation performed by the Single View Creator
+                  enum:
+                    - NON_EXISTING_SV
+                    - INSERT_SV
+                    - DELETE_SV
+                    - UPDATE_SV
+                before:
+                  type: object
+                  description: The value of the Single View before the change occurred. Mind that in case of an insert this field won't be defined.
+                  additionalProperties: true
+                after:
+                  type: object
+                  description: The value of the Single View before the change occurred. Mind that in case of a delete this field won't be defined.
+                  additionalProperties: true
+                __internal__kafkaInfo:
+                  type: object
+                  description: Metadata about the ingestion message that triggered the whole Fast Data flow
+                  required:
+                    - topic
+                    - partition
+                    - offset
+                    - key
+                    - timestamp
+                  properties:
+                    topic:
+                      type: string
+                      description: Ingestion topic's name
+                    partition:
+                      type: integer
+                      description: Topic's partition
+                    offset:
+                      description: Message's offset
+                      type: integer
+                    key:
+                      description: Message's key. The structure could be from any of the ingestion message key's formats
+                    timestamp:
+                      description: ISO 8601 date string of the kafka message timestamp
+                      type: string
+                  additionalProperties: false
+              additionalProperties: false
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Update operation</summary>
+<p>
+
+```json
+{
+  "key": { 
+    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
+  },
+  "value": {
     "key": {
       "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
     },
@@ -803,53 +1383,6 @@ value: |
       "email": "email_mario",
       "address": "address_1",
       "telephone": "phone_number_1653057355131_last",
-      "orders": [
-        {
-          "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
-          "orderDate": "2007-12-03T02:55:44.000Z",
-          "totalPrice": "52.54",
-          "paymentType": "Cash",
-          "orderStatus": "In shipping",
-          "dishes": [
-            {
-              "id": "Cotoletta_id",
-              "description": "a splendid dish",
-              "price": "12"
-            }
-          ]
-        }
-      ],
-      "allergens": [
-        {
-          "id": "eggs",
-          "comments": "this is another comment change",
-          "description": "it works!"
-        }
-      ],
-      "foodPreferences": [
-        {
-          "id": "preference_1",
-          "comments": "this is a comment",
-          "description": "this is the preference_1"
-        },
-        {
-          "id": "preference_2",
-          "comments": "i really love this",
-          "description": "this is the preference_2"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review_1",
-          "text": "Spectacular!",
-          "stars": "5"
-        },
-        {
-          "id": "review_2",
-          "text": "Tasteless!",
-          "stars": "1"
-        }
-      ],
       "updatedAt": "2022-05-20T14:35:58.943Z",
       "__STATE__": "PUBLIC",
       "__internal__kafkaInfo": {
@@ -868,58 +1401,6 @@ value: |
       "email": "email_mario",
       "address": "address_1",
       "telephone": "phone_number_1653057355131_last",
-      "orders": [
-        {
-          "id": "d2829a1d-80ca-4eff-a93a-e97c83a5550f",
-          "orderDate": "2007-12-03T02:55:44.000Z",
-          "totalPrice": "52.54",
-          "paymentType": "Cash",
-          "orderStatus": "In shipping",
-          "dishes": [
-            {
-              "id": "Amatriciana_id",
-              "description": "a delicious dish",
-              "price": "12"
-            },
-            {
-              "id": "Cotoletta_id",
-              "description": "a splendid dish",
-              "price": "12"
-            }
-          ]
-        }
-      ],
-      "allergens": [
-        {
-          "id": "eggs",
-          "comments": "this is another comment change",
-          "description": "it works!"
-        }
-      ],
-      "foodPreferences": [
-        {
-          "id": "preference_1",
-          "comments": "this is a comment",
-          "description": "this is the preference_1"
-        },
-        {
-          "id": "preference_2",
-          "comments": "i really love this",
-          "description": "this is the preference_2"
-        }
-      ],
-      "reviews": [
-        {
-          "id": "review_1",
-          "text": "Spectacular!",
-          "stars": "5"
-        },
-        {
-          "id": "review_2",
-          "text": "Tasteless!",
-          "stars": "1"
-        }
-      ],
       "updatedAt": "2022-05-20T14:35:59.488Z",
       "__STATE__": "PUBLIC",
       "__internal__kafkaInfo": {
@@ -940,176 +1421,7 @@ value: |
     },
     "opType": "UPDATE_SV"
   }
+}
 ```
-
 </p>
 </details>
-
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Single View Before After Producer
-  version: "1.0.0"
-channels:
-  SingleViewBeforeAfterChannel:
-    subscribe:
-      message:
-        name: single view before after
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key: {}
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                key: {}
-                type:
-                  type: string
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-            opType:
-              type: string
-              enum: ["NON_EXISTING_SV", "INSERT_SV", "DELETE_SV", "UPDATE_SV"]
-          required: ["key", "value", "opType"]
-```
-
-### Single View Update
-
-An event which contains both the previous and the current state of the Single View once it has been updated.
-
-Its fields are:
-
-* `key`: the Single View ID
-* `value`:
-  * `operationType`: one of
-    * `INSERT`
-    * `UPDATE`
-    * `DELETE`
-  * `operationTimestamp`: timestamp of the operation
-  * `documentId`: id of the document taken from after
-  * `singleViewName`: name of the Single View
-  * `source`: the portfolio the Single View was originated from
-  * `before`: the value of the Single View before the change occurred
-  * `after`: the value of the Single View after the change occurred (which is the state at the time the message is sent)
-  * `__internal__kafkaInfo`: the Kafka information of the initial Data Change message that caused the Projection to update
-
-**Message Example**:
-
-<details><summary>Click here to show/hide the long message example</summary>
-<p>
-
-```yaml
-key: | 
-  { 
-    "idCustomer": "ebc12dc8-939b-447e-88ef-6ef0b802a487" 
-  }
-value: |
-  {
-    "operationType": "UPDATE",
-    "operationTimestamp": 1234567,
-    "documentId": null,
-    "singleViewName": "sv_customers",
-    "source": "food-delivery",
-    "before": { "COD_FISCALE": "cod1", "NAME": "Gandalf" },
-    "after": { "COD_FISCALE": "cod1", "NAME": "Mithrandir" },
-    "__internal__kafkaInfo":
-      {
-        "topic": "original-topic-1",
-        "partition": 0,
-        "timestamp": 1234567,
-        "offset": 0,
-        "key": { "originalKey1": "123" },
-      },
-  }
-```
-
-</p>
-</details>
-
-**AsyncApi specification**:
-
-```yaml
-asyncapi: 2.4.0
-info:
-  title: Single View Update Producer
-  version: "1.0.0"
-channels:
-  SingleViewUpdateChannel:
-    subscribe:
-      message:
-        name: single view Update
-        payload:
-          type: object
-          additionalProperties: false
-          properties:
-            key:
-              type: object
-            value:
-              type: object
-              additionalProperties: false
-              properties:
-                operationType:
-                  type: string
-                  enum: ["INSERT", "UPDATE", "DELETE"]
-                operationTimestamp:
-                  type: number
-                documentId:
-                  type: string
-                singleViewName:
-                  type: string
-                source:
-                  type: string
-                before:
-                  type: object
-                  additionalProperties: true
-                after:
-                  type: object
-                  additionalProperties: true
-                __internal__kafkaInfo:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    topic:
-                      type: string
-                    partition:
-                      type: integer
-                    offset:
-                      type: string
-                    key: {}
-                    timestamp:
-                      type: string
-          required: ["key", "value"]
-```
-
-#### Topic naming convention
-
-**producer**: Single View Creator
-
-`<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
-
-An example:
-
-```sh
-test-tenant.PROD.restaurants-db.reviews-sv.sv-update
-```
