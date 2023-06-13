@@ -325,7 +325,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 **Producer**: Real Time Updater
 
-**Consumer**: Single View Trigger Generator or Single View Creator (sv-patch)
+**Consumer**: Single View Trigger Generator or Single View Creator ([sv-patch](/fast_data/configuration/single_views#single-view-patch))
 
 **Description**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
