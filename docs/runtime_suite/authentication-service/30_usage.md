@@ -134,17 +134,19 @@ The endpoint will return a JSON object with *accessToken*, *refreshToken* and *e
 
 #### Web site cookie configuration
 
-If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return a session cookie named *sid*.
+If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return two session cookies: 
+- a cookie named *sid*, that contains the access token as value
+- a cookie named *refresh_token*, that contains the refresh token as value
 
-The *sid* cookie has the following default configuration:
+The cookies have the following default configuration:
 
     * HttpOnly: `true`
     * Secure: `true`
     * Path: `/`
     * SameSite: `Lax`
 
-You can further customize the cookie response by adding the `sidCookieCustomAttributes` to the service configuration, at application level.
-In particular, you can change the `SameSite` attribute to `Strict`, and add a `Domain` attribute with a value of your choice.
+You can further customize the cookie response by adding the `sidCookieCustomAttributes` and/or the `refreshTokenCookieCustomAttributes` to the service configuration, at application level.
+In particular, you can change the `SameSite` attribute to `Strict`, and set the `Domain` and the `Path` attributes to a value of your choice.
 
 Here is an example snippet of the configuration:
 ```json
@@ -153,6 +155,11 @@ Here is an example snippet of the configuration:
     "sidCookieCustomAttributes": {
         "sameSite": "Strict",
         "domain": "example.com"
+    },
+    "refreshTokenCookieCustomAttributes": {
+        "sameSite": "Strict",
+        "domain": "example.com"
+        "path": "/auth"
     }
 ...
 ```
@@ -235,6 +242,21 @@ The response is the same as the `/oauth/token`:
     "expireAt": 1234567890
 }
 ```
+
+In case the `isWebsiteApp` application flag is `true`, the `/refreshtoken` also sets the *sid* and *refresh_token* cookies with the new values.
+
+### Logout
+
+API Signature: `GET /logout`
+
+This API takes charge of logging out the user, clearing the access token and the refresh token on both server side and, in case of webapps, on the frontend side.
+
+On server side, the tokens are deleted from Redis.
+
+The request should contain the access token in the `Authorization` header and/or the *sid* and *refresh_token* cookies. 
+It also accepts a request with only the *refresh_token* set: in this case it only deletes the session associated to the given refresh token from Redis, since the access token is already expired.
+
+When `isWebsiteApp` flag is set to true, both the *sid* and *refresh_token* cookies are unset, by means of a `Set-Cookie` response header with expiration dates set in the past.
 
 #### Skip provider refresh token
 

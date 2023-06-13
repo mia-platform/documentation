@@ -74,8 +74,13 @@ The app configuration contains:
 - **issuer** (_required_): The value of the `iss` claim, it will be inserted in the issued tokens.
 - **sidCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./30_usage.md#website-cookie-configuration)
   - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
+  - **path** (default: `/`): sets the `Path` attribute to the cookie to a value of your choice. By default, the value is set to `/`.
   - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.
-
+- **refreshTokenCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./30_usage.md#website-cookie-configuration)
+  - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
+  - **path** (default: `/`): sets the `Path` attribute to the cookie to a value of your choice. By default, the value is set to `/`.
+  - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.  
+  
 Here an example of the service configuration:
 
 ```json
