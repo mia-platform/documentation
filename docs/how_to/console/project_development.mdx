@@ -1,10 +1,31 @@
 ---
-id: project_dev_tools_setup
-title: Project Development Tools Setup
-sidebar_label: Project Development Tools Setup
+id: project_development
+title: Project Development
+sidebar_label: Project Development
 ---
 
-In this guide you will see how to configure a list of development tools in order to use them in the Mia-Platform Console.
+In this guide you will see how to configure:
+- services inside the Mia-Platform Console
+- development tools in order to use them in the Mia-Platform Console.
+
+## Microservice communication intra-namespace
+
+In this guide you will see how microservices can interact and communicate inside the same namespace.
+
+The Mia-Platform Console offers an overview for all microservices created in which is visible a section [Container ports](/development_suite/api-console/api-design/microservice-container-ports.md) where you can view and manage container ports.
+
+![Environment variable section](img/container_ports.png)
+
+Suppose you have two microservices in the same namespace; `service-A` that needs to call `service-B` on the `GET /my-api` endpoint.
+To do so `service-A` has to make a request equivalent to the following cURL:
+
+```curl
+curl --request GET 'http://service-B:80/my-api'
+```
+
+- `service-B` is the hostname. It is the name of the microservice.
+- `80` is the default port for http. Given the "Container Ports" overview it is the value in the `Port` column.
+- `/my-api` is the endpoint exposed by `service-B`.
 
 ## MongoDB database
 
@@ -32,7 +53,7 @@ Here you can find an introduction about [environment variables](/development_sui
 
 To perform this action you must be in the _Project Settings_ section of the Console:
 
-1. On the left-side column select the _Variables_ tab to access the **Environment Variable** section. 
+1. On the left-side column select the _Variables_ tab to access the **Environment Variable** section.
 
 ![Environment variable section](img/env_vars_section.png)
 
@@ -45,7 +66,7 @@ To perform this action you must be in the _Project Settings_ section of the Cons
 - **Value** set the connection string to the mongo database.
 
 :::info
-Here is how to [get the connection string](https://www.mongodb.com/docs/guides/atlas/connection-string/) on MongoDB Atlas. 
+Here is how to [get the connection string](https://www.mongodb.com/docs/guides/atlas/connection-string/) on MongoDB Atlas.
 :::
 
 The connection string must be of this format:
