@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 0.4.4 - 13/06/2023
+
+### Added
+
+- send routerNotifyCompleted event to Sub Flow Router after notify
+
 ## 0.4.3 - 29/05/2023
 
 ### Changed
