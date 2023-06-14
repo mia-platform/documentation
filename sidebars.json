@@ -656,6 +656,14 @@
               "type": "doc"
             },
             {
+              "id": "fast_data/configuration/config_maps/aggregation",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/config_maps/singleViewKey",
+              "type": "doc"
+            },
+            {
               "id": "fast_data/configuration/config_maps/projection_changes_schema",
               "type": "doc"
             },
