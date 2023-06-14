@@ -8,6 +8,8 @@ Single View Creator can be configured as manual through a few Javascript files, 
 
 ## Single View Key
 
+<!-- TODO: Since it has been included in the ConfigMaps section, this section can be deleted -->
+
 It takes as input the identifier of the Projection change and returns the key object used to select the document of the Single View collection that needs to be updated. This key corresponds to the query object fed to MongoDB, therefore you can return any legal Mongo query.
 
 In the example below, we expect to have the field `myId` as primary key of the Single View collection.

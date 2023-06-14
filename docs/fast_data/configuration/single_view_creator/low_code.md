@@ -15,6 +15,8 @@ Here you can see a visual representation of the ER schema.
 
 ## Single View Key
 
+<!-- TODO: Since it has been included in the ConfigMaps section, this section can be deleted -->
+
 The configuration contains the `singleViewKey.json` file. This file creates a mapping between the Single View primary field, which is its unique id, and the identifier field of the Projection. 
 
 An example:
