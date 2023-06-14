@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+}
+
+.leftDiv {
+
+}
+
+.rightDiv {
+    height: 320px;
+    padding: 10px;
+    overflow: auto;
+}
+
+html[data-theme=dark] .rightDiv {
+    height: 320px;
+    padding: 10px;
+    overflow: auto;
+    color: white;
+}
+
+.link {
+    cursor: pointer;
+    fontWeight: normal;
+    fontSize: 1em;
+    padding: 2px;
+}
+
+html[data-theme=dark] .link {
+    cursor: pointer;
+    fontWeight: normal;
+    fontSize: 1em;
+    padding: 2px;
+}
+
+.underline {
+    textDecoration: underline;
+    color: blue;
+}
+
+html[data-theme=dark] .underline {
+    textDecoration: underline;
+    color: blue;
+}
+
+.linkSelected {
+    cursor: pointer;
+    fontWeight: normal;
+    fontSize: 1em;
+    background-color: #e6e6e6;
+    borderRadius: 8px;
+    padding: 2px;
+}
+
+html[data-theme=dark] .linkSelected {
+    cursor: pointer;
+    fontWeight: normal;
+    fontSize: 1em;
+    background-color: red;
+    color: #00d600;
+    borderRadius: 8px;
+    padding: 2px;
+}
