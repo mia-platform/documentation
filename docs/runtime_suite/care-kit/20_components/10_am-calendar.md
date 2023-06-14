@@ -58,7 +58,7 @@ A resource is the entity which time is managed through the calendar.
 
 The resources are displayed in the top row of the calendar. The components accept the property [resourceConfig](#resourceconfig) the contains the main configuration options regarding the resources. In particular, `resourceConfig` contains the property resourcesEndpoint which is where you must configure the endpoint from which the resources are fetched.
 It is possible to set the calendar to work with only one resource by setting the property `singleResource` of `resourceConfig` true.
-When `singleResource` is set to true the resource header will not be shown. To let the calendar to properly fetch the inforamation regarding the single resource selected its `resourceId` must be in the page href. Ex. http://host/pluginName/`resourceId`
+When `singleResource` is set to true the resource header will not be shown. To let the calendar to properly fetch the inforamation regarding the single resource selected its `resourceId` must be in the page href. Ex. http://host/pluginName/`resourceId`. If the `resourceConfig` property `currentuser` is also set to true the `resourceId` used will be the one of the logged user.
 
 The resources and the events in the calendar must share a common property used by the calendar to display the events in the correct resource sections. If a event is not associated to any resource it is not displayed in the calendar.
 
@@ -183,6 +183,7 @@ In the same dropdown menu is present the time zoom option that allows the user t
 ResourceConfig = {
   resourcesEndpoint: string
   singleResource: boolean
+  currentUser: boolean
   details: ResourceDetails[]
   delimiter: string
 }
@@ -196,9 +197,11 @@ ResourceDetails = {
 | property | type | description |
 |----------|------|-------------|
 | `resourcesEndpoint` | string | The endpoint from which the resources are fetched. |
-| `singleResource` | boolean | If true the calendar in appointment mode handles only one resource. The `resourceId` of the resource must be in the href path. Ex http://host/pluginName/`resourceId`|
-| `details` | List of the property inside each resource to be shown in the header and popover. Each detail can be the chian of multiple property divided by a specific delimiter. |
-| `delimiter` | Character used between details in the popover. |
+| `singleResource` | boolean | If true the calendar in appointment mode handles only one resource. The `resourceId` of the resource is recovered from the URL through the `urlMask`|
+| `currentUser` | boolean | if true and `singleResource` is also true filters event for the `resourceId` of the current logged user |
+| `details` |  |List of the property inside each resource to be shown in the header and popover. Each detail can be the chian of multiple property divided by a specific delimiter. |
+| `delimiter` | string |  Character used between details in the popover. |
+| `urlMask` | string | Mask used to recover the `resourceId` from the URL in case `singleResource` is `true`. The key must be the same in the `resourceId` property of the calendar |
 
 **Example**
 
