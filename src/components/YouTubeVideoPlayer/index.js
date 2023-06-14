@@ -223,7 +223,7 @@ const YouTubeVideoPlayer = (props) => {
                     <YouTube onReady={onReady} onStateChange={onStateChange} opts={opts} videoId={videoId}/>
                 </div>
                 <div>
-                    <div className={Classes.rightSessionTitle}>In this video:</div>
+                    <div className={Classes.rightSessionTitle}>{"In this video:"}</div>
                     <div className={Classes.rightDiv} ref={containerRef}>
 
                         {parsedSubtitle.map((item) => {
