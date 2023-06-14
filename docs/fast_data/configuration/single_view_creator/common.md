@@ -4,6 +4,9 @@ title: Single View Creator Common Configuration
 sidebar_label: Common
 ---
 
+<!-- TODO: Merge low-code and manual information inside here, remove duplicates to be delegated to the config-maps pages -->
+<!-- TODO: This should become a stand-alone page, not included in a sub-menu -->
+
 # Single View Creator concepts
 
 The Single View Creator is the service that keeps the Single View updated with data retrieved from Projections. 
@@ -14,8 +17,8 @@ This service is available as a plugin or as a template:
 We strongly recommend using the plugin. The template is supposed to be used only for advanced use cases where the plugin cannot be used. 
 
 Single View Creator plugin can be used in two modes:
-- [Low Code](/fast_data/configuration/single_view_creator/low_code.md): it allows you to perform aggregation through JSON files without writing any Javascript code. If you need a custom behavior on a piece of aggregation you can still write your own code.
-- [Manual](/fast_data/configuration/single_view_creator/manual.md): it allows you to perform aggregation by writing your own Javascript code.
+- **Low Code**: it allows you to perform aggregation through JSON files without writing any Javascript code. If you need a custom behavior on a piece of aggregation you can still write your own code.
+- **Manual**: it allows you to perform aggregation by writing your own Javascript code.
 
 We recommend using the Low Code mode since it allows you to be faster and safer when aggregating your data. You will just need to think about the data and not the code for doing so.    
 The Manual mode is supposed to be used only for cases where Low Code cannot be used, but this should rarely happen, since it is possible to write custom Javascript functions for specific pieces of aggregation also when using Low Code.
@@ -150,17 +153,18 @@ service.addHook('onClose', async() => {
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* `v9.1.0` or higher)
 
+<!-- TODO: Should we remove this completely? -->
 ## Single View Key
 
 The Single View Key is the Single View Creator part which identifies the Single View document that needs to be updated as consequence of the event that the service has consumed. 
 
-If you are using Low Code, please visit [this section](/fast_data/configuration/single_view_creator/low_code.md#single-view-key), otherwise you can check to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#single-view-key)
+To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/singleViewKey).
 
 ## Aggregation
 
 The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
 
-If you are using Low Code, please visit [this section](/fast_data/configuration/single_view_creator/low_code.md#aggregation), otherwise you can check to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#aggregation)
+To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/aggregation).
 
 :::note
 Since version `v5.0.0` of the Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a Single View with the `__STATE__` field set from the aggregation will update the Single View to that state (among the other changes).   

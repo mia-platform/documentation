@@ -91,10 +91,6 @@
     "destination": "/docs/fast_data/configuration/single_view_creator/low_code",
     "addedOn": "2022-10-01"
   },
-  "/docs/fast_data/single_view_creator/manual-configuration": {
-    "destination": "/docs/fast_data/configuration/single_view_creator/manual",
-    "addedOn": "2022-10-01"
-  },
   "/docs/fast_data/real_time_updater/overview":  {
     "destination": "/docs/fast_data/realtime_updater",
     "addedOn": "2022-10-01"

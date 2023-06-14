@@ -23,5 +23,5 @@ To know more about Single View Creator service Configurations you can go [here](
 When a Single View Creator consumes events regarding a Single View to update, it needs to perform an aggregation to be able to upsert the Single View correctly. 
 
 This aggregation can be implemented in two modes:
-- [Manual](/fast_data/configuration/single_view_creator/manual.md): recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
-- [Low Code](/fast_data/configuration/single_view_creator/low_code.md): recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.
+- **Manual**: recommended for tailored configurations. It uses custom environment variables and custom JavaScript configuration files to work
+- **Low Code**: recommended for quicker configurations. It uses json files and the environment variables are already set with correct default values.
