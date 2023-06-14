@@ -585,16 +585,16 @@ From version `11.3.0` of the Console, your project might have enabled the possib
 
 <!-- TODO: Screenshot of the Complete View of the Aggregation -->
 
-The new page allows to create an Aggregation from scratch with a clear visual of the Single View Data Model and with simplified selection of fields based on the projection. It also includes a simpler way to add and manage dependencies and Join Dependencies, simplifying the configuration of the Single View Creator.
+The new page allows creating an Aggregation from scratch with a clear visual of the Single View Data Model and with a simplified selection of fields based on the projection. It also includes a simpler way to add and manage dependencies and Join Dependencies, simplifying the configuration of the Single View Creator.
 
 :::info
 <!-- TODO: Add link to the ER Schema page? Low Code or Config Map? -->
-Before to start to configure the Aggregation with the No Code, a valid ER Schema must be selected for the current Single View Creator.
+Before starting to configure the Aggregation with the No Code, a valid ER Schema must be selected for the current Single View Creator.
 :::
 
 ### Selection of the Base Projection
 
-If you don't have an _aggregation_ configuration file yet, or in case it has not been modified after creating the Single View Creator, opening the `Aggregation` tab will show a placeholder that inform that a _Base Projection_ must be selected before to start configuring the aggregation.
+If you don't have an _aggregation_ configuration file yet, or in case it has not been modified after creating the Single View Creator, opening the `Aggregation` tab will show a placeholder that informs that a _Base Projection_ must be selected before starting configuring the aggregation.
 
 <!-- TODO: Screenshot of the Base Projection -->
 
@@ -604,39 +604,38 @@ The select field will show all the projections set in the selected ER Schema. Th
 
 The page will now show the list of fields, as defined in the Single View Data Model page. You can even navigate in the nested structure of fields between fields of type `object` or `array of objects` to see the child fields and manage them as well.
 
-Clicking on a field will open a drawer to the right side of the panel that allow you to map this field, by allowing the selection of an existing dependency and a field.
+Clicking on a field will open a drawer to the right side of the panel that allows you to map this field, by allowing the selection of an existing dependency and a field.
 
 <!-- TODO: Screenshot of a non mapped field, close up -->
 
 The _Dependency_ select field will include a list of existing dependencies (on top) and all the other dependencies that can be connected (based on the conditions included inside the ER Schema). 
 
-Selecting a dependency will update the state of the _Set Path_ button and its label: if the dependency already exist, the label will inform the user that a "Path is set", indicating that the Aggregation already includes all the necessary dependencies (from the base projection - thus that dependency linked to the Projection Changes document via the `_identifier` condition) and it's already possible to select the field to complete the mapping: the _Field_  select field will now be available and the list will contain all the fields that can be used for the mapping.
+Selecting a dependency will update the state of the _Set Path_ button and its label: if the dependency already exists, the label will inform the user that a "Path is set", indicating that the Aggregation already includes all the necessary dependencies (from the base projection - thus that dependency linked to the Projection Changes document via the `_identifier` condition) and it's already possible to select the field to complete the mapping: the _Field_  select field will now be available and the list will contain all the fields that can be used for the mapping.
 
 The selection will automatically create the mapping. This can be noted also by the fact that all the warnings next to the name of the field will disappear.
 
 ### Automatic generation of dependencies via Path
 
-In case the value selected in the _Dependency_ select field is a dependency that does not exist yet, the "Path not set" text will still be there, and the `Set Path` button can be clicked and to open a modal that will introduce the user to a new way to create dependencies.
+In case the value selected in the _Dependency_ select field is a dependency that does not exist yet, the "Path not set" text will still be there, and the `Set Path` button can be clicked to open a modal that will introduce the user to a new way to create dependencies.
 
 <!-- TODO: Screenshot of Set Path modal, first step -->
 
-The modal will include all the different paths to create all the needed dependencies to proceed with the mapping. Each path will represent a steps composed by different projections connected via ER Schema `one-on-one` conditions. 
+The modal will include all the different paths to create all the needed dependencies to proceed with the mapping. Each path will represent a step composed of different projections connected via ER Schema `one-on-one` conditions. 
 
-In the example above, there are more ways to reach from <!-- TODO: Projection A --> Projection A to <!-- TODO: Projection B --> Projection B, and it will be possible to select the path needed for the mapping. The modal also include a canvas to the left side, similar to the ER Schema canvas, that shows the currently selected modal to help the user to visualize the path and make the correct choice.
+In the example above, there are more ways to reach from <!-- TODO: Projection A --> Projection A to <!-- TODO: Projection B --> Projection B, and it will be possible to select the path needed for the mapping. The modal also includes a canvas to the left side, similar to the ER Schema canvas, that shows the currently selected modal to help the user to visualize the path and make the correct choice.
 
 Click on `Next` will move to the next step of the modal where the user will be prompted to select the condition for each step of the path.
 
 <!-- TODO: Screenshot of Set Path modal, second step -->
 
-After selecting a condition for each step, a click on the `Save` butotn will automatically create a dependency for each step of the selected path. The mapping can continue, since the _Field_ select will be enabled and the value can be selected.
+After selecting a condition for each step, a click on the `Save` button will automatically create a dependency for each step of the selected path. The mapping can continue since the _Field_ select will be enabled and the value can be selected.
 
 ### Manage the existing dependencies
 
 The _Set Path_ modal is not the only way to add new dependencies. These can be included manually via the `Edit dependencies` button at the bottom of the page, followed by the number of dependencies already set. This button will open a different modal that will show all the existing dependencies, giving the possibility to add or delete some.
 
 <!-- TODO: Screenshot of the Dependency Editor, list of dependencies -->
-
-A click to the button `+ Add dependency` will change the content of the modal to a form that will allow the user to select the starting projection, the target projection, the condition that connects said projection and - finally - a name to give to said dependency, in case you want to create [an alias](#using-the-same-projection-as-a-dependency-multiple-times-under-different-conditions).
+A click on the button `+ Add dependency` will change the content of the modal to a form that will allow the user to select the starting projection, the target projection, the condition that connects said projection and - finally - a name to give to said dependency, in case you want to create [an alias](#using-the-same-projection-as-a-dependency-multiple-times-under-different-conditions).
 
 <!-- TODO: Screenshot of the Dependency Editor, form to add a new dependency -->
 
@@ -644,12 +643,12 @@ A click to the button `+ Add dependency` will change the content of the modal to
 All those fields might be automatically populated in case there's only one option available.
 :::
 
-After selecting all the fields, a click to save will add the dependency. On the other side, a click to the trash button next to each dependency will remove that dependency.
+After selecting all the fields, a click to save will add the dependency. On the other side, a click on the trash button next to each dependency will remove that dependency.
 
-A click to the `Save` button is required to confirm the modifications, adding the created dependencies and removing the deleted ones.
+A click on the `Save`` button is required to confirm the modifications, adding the created dependencies and removing the deleted ones.
 
 :::warning
-Removing a dependency will remove also its references in the mapping, if there are
+Removing a dependency will remove also its references in the mapping (if there are any)
 :::
 
 ### Create a Join Dependency with the No Code
@@ -660,29 +659,27 @@ When clicking the button, the already mentioned modal will appear but with a pla
 
 <!-- TODO: Screenshot of the Dependency Editor, placeholder -->
 
-A click to the button `Add dependency` will open the same form used to create regular dependencies, but with the important difference to have only starting projections included in the configuration of the parent field and to have only _One To Many_ conditions, necessary to map array of objects.
+A click on the button `Add dependency` will open the same form used to create regular dependencies, but with the important difference to have only starting projections included in the configuration of the parent field and to have only _One To Many_ conditions, necessary to map the array of objects.
 
 Once the selection is completed, the modal will remain open to allow the user to add more dependencies that might be used to map the fields inside the array of objects.
 
 ### Advanced Mode
 
-On the bottom of the page, there's a switch that will change the `Aggregation` view to its _Advanced Mode_. This is will show the `aggregation.json` file and additional custom function files that the user might want to include in order to use the advanced configuration of the Aggregation.
+On the bottom of the page, there's a switch that will change the `Aggregation` view to its _Advanced Mode_. This is will show the `aggregation.json` file and additional custom function files that the user might want to include to use the advanced configuration of the Aggregation.
 
 In fact, with the No Code Aggregation, it will not be possible to include the [advanced options](#advanced-options) aforementioned: this has to be included in the Advanced Mode.
 
 <!-- TODO: Screenshot of the advanced mode active -->
+In this area, you can review the aggregation in its code format, and it's possible even to update the content inside, and to add or delete some part of the configuration. Any update via Advanced Mode will be instantly reflected when switching back to the No Code.
 
-In this area you can review the aggregation in its code format, and it's possible even to update the content inside, and to add or delete some part of the configuration. Any update via Advanced Mode will be instantly reflected when switching back to the No Code.
-
-Despite this, it is possible to use the No Code Aggregation even if one or more fields have been mapped with one of the possible advanced options (such as: the usage of a custom function from an external file, or a conditional value). In this case, the user can open the drawer related to the field, but it will be informed that an advanced configuration exists and the only way to make any change or review it is via the advanced mode.
+Despite this, it is possible to use the No Code Aggregation even if one or more fields have been mapped with one of the possible advanced options (such as the usage of a custom function from an external file, or a conditional value). In this case, the user can open the drawer related to the field, but it will be informed that an advanced configuration exists and the only way to make any change or review it is via the advanced mode.
 
 <!-- TODO: Screenshot of the advanced mode for the Mapping Drawer -->
-
-Also the list of dependencies, available via the `Edit dependencies` button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expression](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
+Also, the list of dependencies available via the `Edit dependencies` button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expressions](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
 
 ### Error and Warning management
 
-The No Code Aggregation will try to catch any error existing, especially on pre-existing `aggregation.json` which might have an invalid structure, or the JSON file is invalid.
+The No Code Aggregation will try to catch any error existing, especially on pre-existing `aggregation.json` which might have an invalid structure or the JSON file is invalid.
 
 In this case, the Advanced Mode will automatically be active, and it will not be possible to move to the No Code before to address these errors.
 
