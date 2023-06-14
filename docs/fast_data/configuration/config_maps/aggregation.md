@@ -4,13 +4,92 @@ title: Aggregation Configuration
 sidebar_label: Aggregation
 ---
 
-The aggregation (`aggregation.json`) is a configuration file used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) in a low-code situation that defines the value of each field of the Single View document to be generated or updated.
+<!-- TODO: Explain that a js file might be used -->
+
+The Aggregation configuration is used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](../single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
+
+The aggregation is mounted as a config map of the Single View Creator Service and might be composed by:
+- a manual configuration, composed of `pipeline.js` and `mapper.js` files inside the _configuration_ config map (automatically created adding the `Single View Creator` plugin from the Mia Marketplace)
+- a low-code configuration, composed of the `aggregation.json` file inside the _aggregation_ config map (automatically created adding the `Single View Creator - Low Code` plugin from the Mia Marketplace).
 
 :::tip
-If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx)
+We strongly recommend to use the `Single View Creator - Low Code` to simplify your experience building the aggregation configuration. We also have a a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx) that you can refer to.
 :::
 
-## Overview
+## Manual configuration of aggregation 
+
+We advice to use the manual aggregation for particular cases that might not be achieved with the `Single View Creator - Low Code` which include a better support and takes care of performances and edge cases.
+
+But in case is needed to build the aggregation logic, you'll need two files: the `pipeline.js` and the `mapper.js`. The user can review and update these files from the _Microservices_ section, selecting the Single View Creator, in the _ConfigMaps & Secrets_ section.
+
+:::info
+When selecting the `Single View Creator` plugin from the Mia Marketplace, these two files will automatically be created and already included in the service Config Map with a default content which should be changed for having a functional service.
+:::
+
+### Pipeline
+
+It takes as input a MongoDB instance and returns a function. This function takes as input the Projection change identifier and returns an array.
+
+If it is empty, a delete operation will be executed on the Single View identified by the `singleViewKeyGenerator` result.
+If it is not empty, an upsert operation will be executed on the Single View identified by the `singleViewKeyGenerator` result.
+
+:::note
+If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
+:::
+
+```js title="pipeline.js"
+module.exports = (mongoDb) => {
+  return async(logger, projectionChangeIdentifier) => {
+
+    const uniqueId = projectionChangeIdentifier.UNIQUE_ID
+    const MY_PROJECTION = 'projection-name'
+
+    // retrieve data from all projections you need for your single view
+    const projectionCollection = mongoDb.collection(MY_PROJECTION)
+    const projectionDataById = await projectionCollection.findOne({
+        UNIQUE_ID: uniqueId,
+        __STATE__: 'PUBLIC'
+    })
+
+    if (!projectionDataById) {
+      // it's expected to be a delete
+      logger.debug({ UNIQUE_ID: uniqueId }, 'single view public data not found')
+      return []
+    }
+    const singleViewData = projectionDataById
+    logger.debug({ singleViewData }, 'single view retrieved data')
+
+    return [
+      singleViewData,
+    ]
+  }
+}
+```
+
+### Mapper
+
+It is a function that takes as argument the first element (if defined) of the result of the pipeline, and returns an object containing the value updated for the Single View. The object returned should match the schema of the Single View.
+
+```js title="mapper.js"
+module.exports = (logger, singleViewData) => {
+  const { UNIQUE_ID, NAME } = singleViewData
+
+  return {
+    myId: UNIQUE_ID,
+    name: NAME,
+  }
+}
+```
+
+Renaming and repositioning of the fields can be applied inside the mapper.
+
+:::note
+We suggest implementing all the aggregation logic that can be reused for all the clients that will read the Single Views inside the mapper, they should be as generic as possible.
+It is a good practice to have some calculation and aggregation logic inside the Single View Creator as far as it is reusable.
+If you have to apply some custom logic try to do it inside an API Adapter specific for the client.
+:::
+
+## Configuration with JSON file
 
 An example of a minimal configuration is as follows:
 
@@ -73,7 +152,6 @@ The following parameters will be passed to each function:
 Let's see an example of custom function.
 
 ```js
-
 async function myOwnCustomLogic (value) {
   // some custom logic
 }
@@ -106,8 +184,6 @@ Write access to the `dependenciesMap` are **not** officially supported and could
 ### Join Dependency
 
 When you want to map a Single View field to an array of values, as it usually happens in 1:N relations, you can use a config dependency with a `joinDependency` field. This means that when the config will be calculated, the `joinDependency` will be computed first, retrieving a list of all matching documents, then for each of those elements the configuration mapping will be applied, resulting in an array of elements, each having the same layout as the one specified in the config mapping.
-
-
 
 ### Advanced options
 
