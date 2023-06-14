@@ -21,7 +21,7 @@
   --ifm-color-warning: var(--ifm-color-warning-lightest);
   --ifm-alert-color: black;
   --searchbar-placeholder: 'Search for terms, features and more...';
-  --ifm-font-family-Inter: "Inter";
+  --ifm-font-family-base: 'Inter';
   --ifm-navbar-item-padding-horizontal: .7rem;
 }
 

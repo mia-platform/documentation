@@ -2,6 +2,13 @@
     display: flex;
 }
 
+.rightSessionTitle {
+    height: 40px;
+    font-weight: bolder;
+    padding-left: 10px;
+    font-size: 1.5em;
+}
+
 .leftDiv {
 
 }
@@ -24,6 +31,7 @@ html[data-theme=dark] .rightDiv {
     fontWeight: normal;
     fontSize: 1em;
     padding: 2px;
+    color: #414748;
 }
 
 html[data-theme=dark] .link {
@@ -31,23 +39,25 @@ html[data-theme=dark] .link {
     fontWeight: normal;
     fontSize: 1em;
     padding: 2px;
+    color: #F1F3F3;
 }
 
 .underline {
-    textDecoration: underline;
-    color: blue;
+    text-decoration: underline;
+    color: #1890FF;
 }
 
 html[data-theme=dark] .underline {
-    textDecoration: underline;
-    color: blue;
+    text-decoration: underline;
+    color: #5FB1FF;
 }
 
 .linkSelected {
     cursor: pointer;
     fontWeight: normal;
     fontSize: 1em;
-    background-color: #e6e6e6;
+    color: #414748;
+    background-color: #F1F3F3;
     borderRadius: 8px;
     padding: 2px;
 }
@@ -56,8 +66,8 @@ html[data-theme=dark] .linkSelected {
     cursor: pointer;
     fontWeight: normal;
     fontSize: 1em;
-    background-color: red;
-    color: #00d600;
+    background-color: #444444;
+    color: #F1F3F3;
     borderRadius: 8px;
     padding: 2px;
 }

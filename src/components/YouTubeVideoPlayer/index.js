@@ -172,8 +172,8 @@ const YouTubeVideoPlayer = (props) => {
     Options for the YouTube player based on the YouTube API and the react-youtube library
      */
     const opts = {
-        height: '320',
-        width: '480',
+        height: '360',
+        width: '510',
         playerVars: {
             autoplay: 0,
         },
@@ -217,24 +217,30 @@ const YouTubeVideoPlayer = (props) => {
     Render the component with the YouTube player and the subtitles
      */
     return (
-        <div className={Classes.container}>
-            <div className={Classes.leftDiv}>
-                <YouTube onReady={onReady} onStateChange={onStateChange} opts={opts} videoId={videoId}/>
-            </div>
-            <div className={Classes.rightDiv} ref={containerRef}>
-                {parsedSubtitle.map((item) => {
-                    // return a string with the format time: text inside a span
-                    return (
-                        <div
-                            className={pastSecond === item.seconds ? Classes.linkSelected : Classes.link}
-                            key={item.seconds}
-                            onClick={() => onPlayVideo(item.seconds)}
-                            ref={el => elementRefs.current[item.seconds] = el}
-                        >
-                            <span className={Classes.underline}>{secondsToTimestamp(item.seconds)}</span> {item.text} <br/>
-                        </div>
-                    )
-                })}
+        <div>
+            <div className={Classes.container}>
+                <div className={Classes.leftDiv}>
+                    <YouTube onReady={onReady} onStateChange={onStateChange} opts={opts} videoId={videoId}/>
+                </div>
+                <div>
+                    <div className={Classes.rightSessionTitle}>In this video:</div>
+                    <div className={Classes.rightDiv} ref={containerRef}>
+
+                        {parsedSubtitle.map((item) => {
+                            // return a string with the format time: text inside a span
+                            return (
+                                <div
+                                    className={pastSecond === item.seconds ? Classes.linkSelected : Classes.link}
+                                    key={item.seconds}
+                                    onClick={() => onPlayVideo(item.seconds)}
+                                    ref={el => elementRefs.current[item.seconds] = el}
+                                >
+                                    <span className={Classes.underline}>{secondsToTimestamp(item.seconds)}</span> {item.text} <br/>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
         </div>
     );
