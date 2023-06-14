@@ -674,19 +674,8 @@
           ]
         },
         {
-          "type": "category",
-          "label": "Real-Time Updater",
-          "collapsed": true,
-          "items": [
-            {
-              "id": "fast_data/configuration/realtime_updater/common",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/configuration/realtime_updater/low_code",
-              "type": "doc"
-            }
-          ]
+          "id": "fast_data/configuration/realtime_updater",
+          "type": "doc"
         },
         {
           "type": "category",

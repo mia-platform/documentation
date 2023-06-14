@@ -1,7 +1,7 @@
 ---
-id: common
-title: Real-Time Updater Common Configuration
-sidebar_label: Common
+id: real_time_updater
+title: Real-Time Updater Configuration
+sidebar_label: Real Time Updater
 ---
 
 <!-- TODO: Merge low-code information inside here, remove duplicates to be delegated to the config-maps pages -->
@@ -34,6 +34,7 @@ Here below, instead, all the configurations the service accepts are explained.
 | CAST_FUNCTIONS_FOLDER | - | defines the path to the cast-functions folder | - |
 | MAP_TABLE_FOLDER | - | defines the path to the map table folder | - |
 | STRATEGIES_FOLDER | - | defines the path to the strategies' folder | - |
+| USE_AUTOMATIC_STRATEGIES | &check; | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Records to automatically update in the service | false | 
 | KAFKA_SASL_MECHANISM | - | defines the authentication mechanism. It can be one of: ```plain```, ```scram-sha-256```, ```scram-sha-512```, ```oauthbearer```. | plain |
 | KAFKA_SASL_OAUTH_BASE_URL | - | In case of ```oauthbearer``` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_PATH | - | In case of ```oauthbearer``` mechanism, it defines the path of the endpoint for fetching the OAuth2 token. | - |
@@ -57,6 +58,20 @@ Here below, instead, all the configurations the service accepts are explained.
 | SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real Time Updater | - |
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
 | USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
+
+### Usage of the Low Code
+
+The Low Code features of the Real Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service Config Maps .
+
+Also, it allows the possibility to fully configure the service with the usage of JSON files, as example for the [ER Schema](#er-schema-configuration) and the [Projection Changes Schema](#projection-changes-schema) 
+
+:::info
+You can quickly convert a System of Records from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up your Fast Data Low Code project properly.
+:::
+
+:::warning
+When you create a new configmap, remember to use the same Mount Path of your environment variables `STRATEGIES_FOLDER`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_FOLDER`
+:::
 
 ## How data is managed on MongoDB
 
@@ -351,6 +366,34 @@ To know more on how to configure the `kafkaProjectionUpdates.json` please refer 
 Notice that you can either set the topics for all the projections, or for a subset of them.
 So, for example, if you need to setup a [Single View Patch](#single-view-patch) operation, you may want to configure only the projections needed in such Single View.
 :::
+
+### ER schema configuration
+
+The `erSchema.json` configmap defines the relationship between tables and projections. [In the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md) you can find a deep explanation of how ER Schema configuration works.
+
+:::caution
+When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
+```json
+{ 
+  "version": "1.0.0", 
+  "config": { } 
+}
+```
+This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated to this microservice to work properly.
+:::  
+
+When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema. But if you need a different `er-schema` (e.g. you have created a new real time updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new configmap with its own unique identifier and create a new `erSchema.json` file in it.
+
+### Projection Changes Schema
+
+The `projectionChangesSchema.json` configmap defines the paths for the strategy to generate the projection changes identifier. Differently from the Manual Configuration, the projection changes configurations are described with a json file aimed to reduce the developing effort.
+
+:::caution
+When a new Real-Time Updater is generated, a base `projectionChangesSchema.json` file is generated with the same content of the `erSchema.json` file. Despite this configuration will not throw any error during the deploy, the file must be customized according to the related projections.
+:::
+
+
+For more information please refer to the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) dedicated page.
 
 ## Advanced topics
 
