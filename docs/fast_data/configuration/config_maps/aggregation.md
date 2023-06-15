@@ -4,8 +4,6 @@ title: Aggregation Configuration
 sidebar_label: Aggregation
 ---
 
-<!-- TODO: Explain that a js file might be used -->
-
 The Aggregation configuration is used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](../single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
 
 The aggregation is mounted as a config map of the Single View Creator Service and might be composed by:
@@ -674,7 +672,7 @@ If you don't have an _aggregation_ configuration file yet, or in case it has not
 
 <!-- TODO: Screenshot of the Base Projection -->
 
-The select field will show all the projections set in the selected ER Schema. The selection will represent the first dependency created in the aggregation that will be linked with <!-- TODO: Link to the Projection Changes after Input and Output refactor --> the `identifier` object of the Projection Changes.
+The select field will show all the projections set in the selected ER Schema. The selection will represent the first dependency created in the aggregation that will be linked with the `identifier` object of the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change).
 
 ### How to map fields
 

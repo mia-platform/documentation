@@ -153,7 +153,6 @@ service.addHook('onClose', async() => {
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* `v9.1.0` or higher)
 
-<!-- TODO: Should we remove this completely? -->
 ## Single View Key
 
 The Single View Key is the Single View Creator part which identifies the Single View document that needs to be updated as consequence of the event that the service has consumed. 

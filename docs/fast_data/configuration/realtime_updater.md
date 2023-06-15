@@ -1,5 +1,5 @@
 ---
-id: real_time_updater
+id: realtime_updater
 title: Real-Time Updater Configuration
 sidebar_label: Real Time Updater
 ---

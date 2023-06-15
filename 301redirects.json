@@ -96,11 +96,11 @@
     "addedOn": "2022-10-01"
   },
   "/docs/fast_data/real_time_updater/low-code-configuration": {
-    "destination": "/docs/fast_data/configuration/realtime_updater/low_code",
+    "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-10-01"
   },
   "/docs/fast_data/real_time_updater/manual-configuration":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater/common",
+    "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-11-10"
   },
   "/docs/fast_data/single_view_trigger": {
@@ -125,7 +125,7 @@
     "tocheck": true
   },
   "/docs/fast_data/configuration/realtime_updater/manual": {
-    "destination": "/docs/fast_data/configuration/realtime_updater/common",
+    "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-11-10"
   },
   "/docs/fast_data/configuration/single_view_trigger": {

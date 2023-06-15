@@ -8,8 +8,7 @@ The Single View Key is a configuration file used by the Single View Creator part
 
 ## Overview 
 
-<!-- TODO: Fix link -->
-The Single View Creator updates Single View documents every time a [Projection Changes document](../realtime_updater/common.md) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
+The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime_updater) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
 
 In case the following Projection Changes document has been received:
 ```json
@@ -78,10 +77,8 @@ An example of a defined JSON file is the following:
 
 where:
 
-<!-- TODO: Fix link -->
-- `sv_id` is the name of the Single View field (ideally the primary key defined in the [Single View Data model page](../single_views.md#single-view-data-model)) 
-<!-- TODO: Fix link -->
-- `ID_USER` is the field name expected inside the Projection Changes document that triggers the update of the Single View. Most of the time this field will be the same name as the field inside the projection from which will start the aggregation of the Single View, but it might differ in case a [Projection Changes Schema](./projection_changes_schema.md) with customized names has been created.
+- `sv_id` is the name of the Single View field (ideally the primary key defined in the [Single View Data model page](/fast_data/configuration/single_views.md#single-view-data-model)) 
+- `ID_USER` is the field name expected inside the Projection Changes document that triggers the update of the Single View. Most of the time this field will be the same name as the field inside the projection from which will start the aggregation of the Single View, but it might differ in case a [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) with customized names has been created.
 
 :::info
 It is possible to include more relationships between fields
@@ -105,10 +102,9 @@ The feature is included in the _Single View_ section. After selecting the Single
 
 <!-- TODO: Screenshot of the Single View Key card -->
 
-<!-- TODO: Fix link -->
 A click on the `Edit` button will open a modal that allows the user to add more relationships with the help of two fields:
 - the first field, to the left, can be populated with one of the available fields defined in the Single View data model.
-- the second field, to the right, can be populated with one of the available fields defined in the data model of the projection [defined as "Base Projection" in the Aggregation](./aggregation.md#selection-of-the-base-projection) or a custom value (in case the Projection Changes Schema includes customized names).
+- the second field, to the right, can be populated with one of the available fields defined in the data model of the projection [defined as "Base Projection" in the Aggregation](/fast_data/configuration/config_maps/aggregation.md#selection-of-the-base-projection) or a custom value (in case the Projection Changes Schema includes customized names).
 
 :::info
 In case there's no Single View Key configured, a placeholder will inform the user that a new Single View Key must be created. A click on the attached button will automatically create an empty `singleViewKey.json` that will be automatically attached to the config maps of your Single View Creator.
