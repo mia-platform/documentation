@@ -12,29 +12,6 @@ Here you can see a visual representation of the ER schema.
 
 ![visual representation of the ER schema](../../img/food_delivery_ER_schema.png)
 
-
-## Single View Key
-
-<!-- TODO: Since it has been included in the ConfigMaps section, this section can be deleted -->
-
-The configuration contains the `singleViewKey.json` file. This file creates a mapping between the Single View primary field, which is its unique id, and the identifier field of the Projection. 
-
-An example:
-
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "sv_id": "ID_USER"
-  }
-}
-```
-
-where:
-
-- `sv_id` is the name of the Single View primary key 
-- `ID_USER` is the identifier field name of the Projection
-
 ## ER Schema
 
 For the general rules and guidelines of the ER Schema, check the [dedicated page](/fast_data/configuration/config_maps/erSchema.md).
