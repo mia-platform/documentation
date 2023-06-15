@@ -100,7 +100,7 @@ From version `11.3.0` of the console, your project might be enabled to configure
 
 The feature is included in the _Single View_ section. After selecting the Single View and then the Single View Creator attached, the _Settings_ tab will contain a card that recaps the information regarding the current Single View Key configured.
 
-<!-- TODO: Screenshot of the Single View Key card -->
+![Recap of the configured Single View Key](../../img/no_code_single_view_key/single_view_key_card.png)
 
 A click on the `Edit` button will open a modal that allows the user to add more relationships with the help of two fields:
 - the first field, to the left, can be populated with one of the available fields defined in the Single View data model.
@@ -112,7 +112,7 @@ In case there's no Single View Key configured, a placeholder will inform the use
 
 In this modal there's a toggle button, at the bottom left, that moves to the _Advanced Mode_ of the Single View Key. Here it is possible to manually modify the JSON of the Single View Key in case the user wants to review the content of the config map.
 
-<!-- TODO: Screenshot of the Single View Key Advanced Mode -->
+![Advanced Mode](../../img/no_code_single_view_key/single_view_key_advanced_mode.png)
 
 ### Review the JavaScript Single View Key with the No Code
 
