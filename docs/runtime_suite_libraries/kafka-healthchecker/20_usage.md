@@ -10,7 +10,7 @@ Example:
 
 ```javascript
 const { Kafka } = require('kafkajs')
-const { KafkaHealthChecker } = require('@mia-platform/kafka-healthchecker')
+const { KafkaJSHealthChecker } = require('@mia-platform/kafka-healthchecker')
 
 const kafka = new Kafka({
     clientId: 'my-app',
@@ -34,7 +34,7 @@ Example:
 
 ```javascript
 const { Kafka, logLevel } = require('kafkajs')
-const { KafkaHealthChecker } = require('@mia-platform/kafka-healthchecker')
+const { KafkaJSHealthChecker } = require('@mia-platform/kafka-healthchecker')
 
 const kafka = new Kafka({
     clientId: 'my-app',
