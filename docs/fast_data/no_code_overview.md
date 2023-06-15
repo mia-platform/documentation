@@ -54,7 +54,7 @@ If this feature is enabled, you will be able to build an ER Schema using an inte
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data//configuration/single_view_creator/low_code.md).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data//configuration/single_view_creator).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 
