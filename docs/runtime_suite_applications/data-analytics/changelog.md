@@ -8,6 +8,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] 2023-06-14
+
+### Breaking
+The field `date` of the `active-users` collection was of type string. Now it is of type Date.
+
+### Changed
+- Treating the field `date` of the `active-users` collection as a Date and not as a string.
+
 ## [0.1.1] 2022-10-12
 
 ### Fixed
