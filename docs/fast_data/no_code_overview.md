@@ -35,7 +35,7 @@ The Fast Data Low Code experience is basically composed by some steps with No Co
 
 ### Creating a System of Records (No Code)
 
-The creation of the System of Records is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Records that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](/fast_data/configuration/realtime_updater) microservice.
+The creation of the System of Records is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Records that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](/fast_data/configuration/realtime_updater.md) microservice.
 
 ### ER Schema definition and other Configmaps (Low Code/ No Code)
 
@@ -44,7 +44,7 @@ The creation of the System of Records is one of the No Code steps of the Fast Da
 The Real Time Updater Low Code needs some configurations:
 
 - [erSchema.json](/fast_data/configuration/config_maps/erSchema.md) configuration: useful to define the interconnection between projections
-- The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater#projection-changes): useful to the system to know which single view needs to be updated
+- The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
 
@@ -54,7 +54,7 @@ If this feature is enabled, you will be able to build an ER Schema using an inte
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data//configuration/single_view_creator).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator.md).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 

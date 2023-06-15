@@ -110,7 +110,7 @@ An example of a minimal configuration is as follows:
 }
 ```
 
-The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View. It includes the needed information to map fields of the Single View (included the `mapping` object) and which [projections](/fast_data/configuration/projections) will be used to retrieve those values (included the `dependencies` object).
+The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View. It includes the needed information to map fields of the Single View (included the `mapping` object) and which [projections](/fast_data/configuration/projections.md) will be used to retrieve those values (included the `dependencies` object).
 
 ### Dependencies
 

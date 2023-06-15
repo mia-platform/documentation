@@ -143,7 +143,7 @@ Now we need to configure all the parameters of the microservice. Here is an exam
 - **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers 
 - **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
 
-There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater).
+There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater.md).
 
 #### Microservice Variables
 After the basic configuration of the microservice, we need to configure two configMaps: one is the ER Schema, and the other is the Projection Changes Schema.
@@ -387,7 +387,7 @@ Now we need to configure all the parameters of the microservice, here an example
 - **SINGLE_VIEWS_PORTFOLIO_ORIGIN**: should be equals to the SYSTEM_ID you have set in PROJECTIONS_CHANGES_COLLECTION
 - **TYPE**: identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update.
 
-There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Single View Creator](/fast_data/configuration/single_view_creator#environment-variables).
+There are other parameters that we can configure. If you need to know more about the parameters of the microservice, you can [read the documentation of the Single View Creator](/fast_data/configuration/single_view_creator.md#environment-variables).
 
 After the basic configuration of the microservice we need to configure three configMap:
   * **Single View Key**: this is the key that will be used to store the Single View

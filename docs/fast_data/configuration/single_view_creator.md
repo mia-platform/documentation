@@ -193,7 +193,7 @@ Previously, the `__STATE__` field you returned was ignored, and the Single View 
 
  The Aggregation Configuration can be automatically generated started from an already existing ER Schema. This feature is accessible inside the page of the Single View Creator attached to your Single View (from the _Single View_ section select the Single View and, from the _Single View Creators_ tab select the service attached with the Aggregation to edit), by clicking on the dedicated button as you can see in the picture below. 
 
-![automatic generation of Aggregation](../../img/aggregation-automatic-generation.png)
+![automatic generation of Aggregation](../img/aggregation-automatic-generation.png)
 
 It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is a projection that contains the fields that are going to be used as the identifiers for the Single View.
 
