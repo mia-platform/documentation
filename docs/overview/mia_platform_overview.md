@@ -87,7 +87,7 @@ Along with the components above, you can also find Mia-Platform’s **open-sourc
 
 Mia-Platform is available for purchase in three different ways: SaaS, PaaS, and On-Premises.
 
-For further details on the distribution model, please refer to [this page](/docs/infrastructure/overview.md).
+For further details on the distribution model, please refer to [this page](/infrastructure/overview.md).
 
 ## More Resources
 

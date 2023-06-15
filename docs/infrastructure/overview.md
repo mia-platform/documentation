@@ -12,4 +12,4 @@ Mia-Platform can be adopted in three different ways, according to your needs:
 
 The SaaS distribution is the most widely adopted by our customers. Our team will assist and guide you during the onboarding process.
 
-Please refer to the [PaaS section](docs/paas/overview.md) and [On-Premises section](/docs/self_hosted/self_hosted_requirements.md) to get all the information about these distribution models.
+Please refer to the [PaaS section](/paas/overview.md) and [On-Premises section](/self_hosted/self_hosted_requirements.md) to get all the information about these distribution models.
