@@ -14,7 +14,7 @@ The Kafka Projection Updates is made of the following fields:
 
 - `PROJECTION_NAME`: Name of the collection of the projection
 - `updatesTopic`: The topic where the Projection Updates messages are sent, if you haven't created a topic for the projection yet take a look to our [naming conventions for the Projection Updates topics](/fast_data/inputs_and_outputs.md#topic-naming-convention-1).
-- `strategy`: Strategy you want to use onto this projection. You can choose between `__automatic__`, `__lookup__` and `__fromFile__`
+- `strategy`: Strategy you want to use onto this projection. You can choose between `__automatic__` and `__fromFile__`
 
 
 <details><summary>Projection Updates Configuration</summary>
@@ -35,7 +35,6 @@ The Kafka Projection Updates is made of the following fields:
 
 There will be different behaviors based on the strategy value:
 - `__automatic__`: The automatic strategy handles the generation of the projection changes identifier automatically. This is the preferred method and in most cases it will be enough for your Strategy executions.
-- `__lookup__`: The lookup Strategy means the Projection Updates will be handled by the [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) method. So before using this value make sure you have correctly configured all the parts for the Single View Patch architecture in your project.
 - `__fromFile__`: This lets you specify a Javascript file path which will execute the a custom Strategy on the Projection Updates message and return an array of projection change identifiers. This is the most customizable option and should only be used when the `__automatic__` Strategy is not enough for your case. This strategy expects a path to a Javascript file, like so `__fromFile__[CUSTOM_STRATEGY.js]`. 
 
   This Javascript file should export a default async generator function with the following parameters:
