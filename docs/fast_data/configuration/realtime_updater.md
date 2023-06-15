@@ -7,7 +7,7 @@ sidebar_label: Real Time Updater
 <!-- TODO: Merge low-code information inside here, remove duplicates to be delegated to the config-maps pages -->
 <!-- TODO: This should become a stand-alone page, not included in a sub-menu -->
 
-Real-Time Updater is the service in charge of keeping up to date the projections with the data sent by the connected system.   
+Real-Time Updater is the service in charge of keeping up-to-date the projections with the data sent by the connected system.   
 Optionally, the service can generate several events so that your services can consume these events and react when projections are updated. 
 
 For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/realtime_updater.md).   
@@ -158,7 +158,7 @@ To see the message's structure specification and some examples go to the [Inputs
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages. 
 
-To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
+To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
 
 - **offset**: the offset of the Kafka message
 - **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
@@ -207,6 +207,38 @@ The `kafkaMessage` argument is the Kafka message as received from the `real-time
 The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are of type *string*.
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
+
+### ER schema configuration
+
+The ER Schema, defined with a `erSchema.json` file, defines the relationship between tables and projections. [On the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md), you can find a deep explanation of how ER Schema configuration works.
+
+You can update the ER Schema in the page of the Real-Time Updater, in the _ConfigMaps & Secrets_ page.
+
+:::info
+When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
+```json
+{ 
+  "version": "1.0.0", 
+  "config": { } 
+}
+```
+This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated with this microservice to work properly.
+:::  
+
+::: caution
+When creating a low code System of Records, its service will have a link to the `er-schema` config map. If other microservices already had this config map they will share it with the new Real-Time Updater. If you do not make changes to the default config maps of the Real-Time Updater services you will have all of them sharing the same ER Schema. But if you need a different `er-schema` (e.g. you have created a new Real-Time Updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new config map with its unique identifier and create a new `erSchema.json` file in it.
+:::
+
+### Projection Changes Schema
+
+The `projectionChangesSchema.json` config map defines the paths for the strategy to generate the projection changes identifier. Differently from the Manual Configuration, the projection changes configurations are described with a JSON file aimed to reduce the developing effort.
+
+:::caution
+When a new Real-Time Updater is generated, a base `projectionChangesSchema.json` file is generated with the same content of the `erSchema.json` file. Despite this configuration will not throw any error during the deployment, the file must be customized according to the related projections.
+:::
+
+
+For more information please refer to the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) dedicated page.
 
 ### CAST_FUNCTION configurations
 
@@ -340,7 +372,7 @@ To allow the Single View Creator to read from the Projection Changes, the collec
 
 ### Kafka Projection Updates configuration
 
-Whenever the real-time updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
+Whenever the Real-Time Updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
 
 :::info
 This feature has been introduced since version v3.5.0 of the real time updater
@@ -348,7 +380,7 @@ This feature has been introduced since version v3.5.0 of the real time updater
 
 To activate this feature you need to set the following environment variables:
 - `KAFKA_PROJECTION_UPDATES_FOLDER`: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
-- `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the real-time updater should send a message of update every time it writes the projection to Mongo. Default is `false`
+- `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. Default is `false`
 
 :::info
 From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
@@ -367,39 +399,11 @@ Notice that you can either set the topics for all the projections, or for a subs
 So, for example, if you need to setup a [Single View Patch](#single-view-patch) operation, you may want to configure only the projections needed in such Single View.
 :::
 
-### ER schema configuration
-
-The `erSchema.json` configmap defines the relationship between tables and projections. [In the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md) you can find a deep explanation of how ER Schema configuration works.
-
-:::caution
-When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
-```json
-{ 
-  "version": "1.0.0", 
-  "config": { } 
-}
-```
-This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated to this microservice to work properly.
-:::  
-
-When creating a low code system, its service will have a link to the `er-schema` configmap. If other microservices already had this configmap they will share it with the new real time updater. If you do not make changes to the default configmaps of low code real time updaters you will have all of them sharing the same Er schema. But if you need a different `er-schema` (e.g. you have created a new real time updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new configmap with its own unique identifier and create a new `erSchema.json` file in it.
-
-### Projection Changes Schema
-
-The `projectionChangesSchema.json` configmap defines the paths for the strategy to generate the projection changes identifier. Differently from the Manual Configuration, the projection changes configurations are described with a json file aimed to reduce the developing effort.
-
-:::caution
-When a new Real-Time Updater is generated, a base `projectionChangesSchema.json` file is generated with the same content of the `erSchema.json` file. Despite this configuration will not throw any error during the deploy, the file must be customized according to the related projections.
-:::
-
-
-For more information please refer to the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) dedicated page.
-
 ## Advanced topics
 
 ### Primary Key update
 
-Starting from `v7.1.0`, the Real-Time Updater supports the update of a Primary Key. In particular, it detects if received ingestion messages contain an updated Primary Key. In that case, the Real-Time updater automatically handles updating events on the existing records without requiring additional messages.
+Starting from `v7.1.0`, the Real-Time Updater supports the update of a Primary Key. In particular, it detects if received ingestion messages contain an updated Primary Key. In that case, the Real-Time Updater automatically handles updating events on the existing records without requiring additional messages.
 
 When the Real-Time Updater receives a Primary Key update, it triggers two different actions:
 1. the deletion of the old record with the old Primary Key
