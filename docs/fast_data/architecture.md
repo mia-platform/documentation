@@ -28,7 +28,7 @@ It is up to you to decide whether to make it execute any of these, based on the 
 
 ### Single View Trigger Generator (SVTG)
 
-The Single View Trigger Generator listens to `Projection Update` events, performing the logic needed to get the identifiers of all the Single Views that need to be updated, and emits the relevant `Projection Change`(sv-trigger) events.
+The Single View Trigger Generator listens to `Projection Update` events, performing the logic needed to get the identifiers of all the Single Views that need to be updated, and emits the relevant `Projection Change` or `sv-trigger` events.
 This activity can be performed by the RTU as well. Using the SVTG is recommended for a faster update of Projections, and a greater fault tolerance for the RTU.
 
 ### Single View Creator (SVC)
