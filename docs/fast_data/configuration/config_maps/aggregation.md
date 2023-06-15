@@ -766,3 +766,11 @@ One of those warnings will be shown next to the field name, in case the field is
 <!-- TODO: Screenshot of the field not mapped warning, close up -->
 
 <!-- TODO: Include more warning descriptions -->
+
+### Reset the Aggregation
+
+It is possible to reset the Aggregation and configure it from scratch from the _Settings_ tab, in case of mistakes in selecting the base Projection or using the ER Schema. In this tab, several general options regarding the Single View Creator are included and the first card, named _General_ shows the selected ER Schema and the selected Aggregation.
+
+<!-- TODO: Screenshot of the Settings tab, focus on General card -->
+
+A click on the `Edit` button will open a modal that informs the user of the risks of losing the configured Aggregation, before to allow the selection of a new ER Schema and/or a new base Projection. A change on one of the two values will reset the Aggregation.
