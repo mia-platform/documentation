@@ -77,9 +77,9 @@ async function createConfig() {
           {
             label: "Infrastructure",
             position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
+            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
             type: "doc",
-            docId: "paas/overview"
+            docId: "infrastructure/infrastructure_overview"
           },
           {
             type: 'doc',
