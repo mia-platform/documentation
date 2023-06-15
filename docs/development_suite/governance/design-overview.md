@@ -11,7 +11,7 @@ The Design Overview is a rich set of visualization tools accessible from the Com
 In the URL, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
-In the Design Overview you can aggregate Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and CRUDs collections, and save custom views for easy access and sharing.
+In the Design Overview you can aggregate Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and Data Models, and save custom views for easy access and sharing.
 
 ![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
@@ -21,7 +21,7 @@ The Homepage tab contains the list of resource views. They can be of two types:
 * *Public Views* - A set of user-defined editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
 
 An example is in the following picture.
-
+<!-- TODO: Change picture to update CRUD into Data Model -->
 ![Homepage](img/homepage.png)
 
 #### Default Views
@@ -37,18 +37,23 @@ An example is in the following picture.
 
 ![Public Views](img/public-views.png)
 
-### CRUD
+### Data Models
 
-The CRUD Overview provides the user with a graphical cross-project overview of all the CRUDs collections.
+The Data Models Overview provides the user with a graphical cross-project overview of all the Data Models, including:
+* CRUD collections;
+* MongoDB Views;
+* Projections;
+* Single Views;
 
-CRUD Overview collects data on the project configuration and creates a table presenting information on all the CRUD, where each row shows:
-* *Name*: Name of the CRUD collection.
-* *Project*: Project of the CRUD collection.
-* *Type*: Type of the CRUD collection.
-* *Description*: Description of the CRUD collection.
+Data Models Overview collects data on the project configuration and creates a table presenting information on all the collections, where each row shows:
+* *Name*: Name of the collection.
+* *Project*: Project of the collection.
+* *Type*: Type of the collection.
+* *System of Record*: System of record of the collection (populated only for Projections).
+* *Description*: Description of the collection.
 
 An example is in the following picture.
-
+<!-- TODO: Change picture to update CRUD into Data Model and add System of record column -->
 ![CRUDS](img/all-crud.png)
 
 ### Endpoints
@@ -88,7 +93,7 @@ The Microservices Overview collects data on the project configuration and create
 * *Advanced Configuration*: Advanced Configuration flag of the Microservice.
 
 An example is in the following picture.
-
+<!-- TODO: Change picture to remove Advanced Configuration and add Docker Image -->
 ![Microservices](img/microservices.png)
 
 ## Main functionalities
@@ -136,17 +141,17 @@ Public Views can be saved together with active filters and visible columns throu
 ![Save current view button](img/save-current-view-button.png)
 
 Here it is possible to choose the view name that will be displayed in the Homepage section for all the users belonging to the Company.
-
+<!-- TODO: Change picture to update title label -->
 ![Save current view popup](img/save-current-view-popup.png)
 
 #### Editing
 
 Public Views can be edited from Homepage section through the specific section:
-
+<!-- TODO: Change picture to update CRUD into Data Model -->
 ![Edit current view](img/edit-view.png)
 
 The View name can be overridden by inserting new 'View name' through the specific popup:
-
+<!-- TODO: Change picture to update title label -->
 ![Edit current view popup](img/edit-view-popup.png)
 :::info
 Editing feature is currently limited only to view name.
@@ -155,6 +160,6 @@ Editing feature is currently limited only to view name.
 #### Deleting
 
 Public Views can be deleted from Homepage section through the specific section:
-
+<!-- TODO: Change picture to update CRUD into Data Model -->
 ![Delete current view](img/delete-view.png)
 
