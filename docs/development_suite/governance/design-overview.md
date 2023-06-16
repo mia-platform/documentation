@@ -21,7 +21,7 @@ The Homepage tab contains the list of resource views. They can be of two types:
 * *Public Views* - A set of user-defined editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
 
 An example is in the following picture.
-<!-- TODO: Change picture to update CRUD into Data Model -->
+
 ![Homepage](img/homepage.png)
 
 #### Default Views
@@ -53,7 +53,7 @@ Data Models Overview collects data on the project configuration and creates a ta
 * *Description*: Description of the collection.
 
 An example is in the following picture.
-<!-- TODO: Change picture to update CRUD into Data Model and add System of record column -->
+
 ![CRUDS](img/all-crud.png)
 
 ### Endpoints
@@ -93,7 +93,7 @@ The Microservices Overview collects data on the project configuration and create
 * *Advanced Configuration*: Advanced Configuration flag of the Microservice.
 
 An example is in the following picture.
-<!-- TODO: Change picture to remove Advanced Configuration and add Docker Image -->
+
 ![Microservices](img/microservices.png)
 
 ## Main functionalities
@@ -141,17 +141,17 @@ Public Views can be saved together with active filters and visible columns throu
 ![Save current view button](img/save-current-view-button.png)
 
 Here it is possible to choose the view name that will be displayed in the Homepage section for all the users belonging to the Company.
-<!-- TODO: Change picture to update title label -->
+
 ![Save current view popup](img/save-current-view-popup.png)
 
 #### Editing
 
 Public Views can be edited from Homepage section through the specific section:
-<!-- TODO: Change picture to update CRUD into Data Model -->
+
 ![Edit current view](img/edit-view.png)
 
 The View name can be overridden by inserting new 'View name' through the specific popup:
-<!-- TODO: Change picture to update title label -->
+
 ![Edit current view popup](img/edit-view-popup.png)
 :::info
 Editing feature is currently limited only to view name.
@@ -160,6 +160,6 @@ Editing feature is currently limited only to view name.
 #### Deleting
 
 Public Views can be deleted from Homepage section through the specific section:
-<!-- TODO: Change picture to update CRUD into Data Model -->
+
 ![Delete current view](img/delete-view.png)
 
