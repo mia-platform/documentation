@@ -298,7 +298,8 @@
     "Neue",
     "Noto",
     "Segoe",
-    "kotlinx"
+    "kotlinx",
+    "reauthentication"
   ],
   "dictionaries": [
     "softwareTerms",
