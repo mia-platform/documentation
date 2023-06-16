@@ -43,7 +43,7 @@ export const GlossaryTable = ({entries}) => (
   {name: "Strategy", description: "Strategies are functions that retrieve the unique identifiers of the Single View that needs to be updated or created as consequence of the changes on the Projections", link: "./the_basics#strategies"},
   {name: "Single View Creator", description: "The service responsible for the creation, update and deletion of Single Views", link: "./architecture#single-view-creator-svc"},
   {name: "Real Time Updater", description: "The service responsible for the creation, update and deletion of the Projections", link: "./architecture#real-time-updater-rtu"},
-  {name: "Single View Trigger", description: "The service responsible for generating events that trigger the update of Single Views", link: "./architecture#single-view-trigger-svt"},
+  {name: "Single View Trigger Generator", description: "The service responsible for generating events that trigger the update of Single Views", link: "./architecture#single-view-trigger-generator-svtg"},
   {name: "Projection Update", description: "Kafka event that informs the listener that a Projection has been changed", link: "./inputs_and_outputs#projection-update"},
   {name: "Projection Changes", description: "MongoDB or Kafka event that informs the listener that a Single View needs to be updated", link: "./inputs_and_outputs#projection-change"},
   {name: "Single View Event", description: "Kafka message that informs the listener that a Single View has been successfully updated", link: "./inputs_and_outputs#single-view-event"},

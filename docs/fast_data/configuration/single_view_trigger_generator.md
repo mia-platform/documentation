@@ -29,12 +29,12 @@ When creating the service from the marketplace the following environment variabl
 | LOG_LEVEL                        | &check;  | Level to use for logging; to choose from: error, fatal, warn, info, debug, trace, silent                                                                                                                | silent        |
 | MONGODB_URL                      | &check;  | MongoDB URL where the projections are stored                                                                                                                                                            | -             |
 | MONGODB_NAME                     | &check;  | MongoDB Database name where the projections are stored                                                                                                                                                  | -             |
-| ESP_CONFIG_PATH                  | &check;  | Path to the [ESP Config](#esp-config) file                                                                                                                                                              | -             |
-| ESP_TARGET                       | &check;  | Kafka topic to send the `sv-trigger` messages or MongoDB collection to save the `pc` records                                                                                                            | -             |
+| EVENT_STORE_CONFIG_PATH          | &check;  | Path to the [Event Store Config](#event-store-config) file                                                                                                                                              | -             |
+| EVENT_STORE_TARGET               | &check;  | Kafka topic to send the `sv-trigger` messages or MongoDB collection to save the `pc` records                                                                                                            | -             |
 | CA_CERT_PATH                     | -        | The path to the CA certificate, which should include the file name as well, e.g. /home/my-ca.pem                                                                                                        | -             |
 | READ_TOPIC_FROM_BEGINNING        | -        | If true the consumer will start reading messages from topics from the beginning, instead of the message with the latest committed offset. This will happen only the first time connecting to the topic. | false         |
 | SINGLE_VIEW_NAME                 | &check;  | The name of the Single View                                                                                                                                                                             | -             |
-| KAFKA_PROJECTION_UPDATES_FOLDER  | &check;  | Path to the [Kafka Projection Updates](#kafka-projection-updates) folder                                                                                                                               | -             |
+| KAFKA_PROJECTION_UPDATES_FOLDER  | &check;  | Path to the [Kafka Projection Updates](#kafka-projection-updates) folder                                                                                                                                | -             |
 | ER_SCHEMA_FOLDER                 | &check;  | Path to the [ER Schema](#er-schema) folder                                                                                                                                                              | -             |
 | PROJECTION_CHANGES_SCHEMA_FOLDER | &check;  | Path to the [Projection Changes Schema](#projection-changes-schema) folder                                                                                                                              | -             |
 | MANUAL_STRATEGIES_FOLDER         | -        | Path to the custom strategies folder where the custom strategies scripts are stored                                                                                                                     | -             |
@@ -69,9 +69,9 @@ The Kafka Projection Updates config map contains the `kafkaProjectionUpdates.jso
 Remember to copy/paste the mount path into the `KAFKA_PROJECTION_UPDATES_FOLDER` environment variable so the service can read the file.
 If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
 
-### ESP Config
+### EVENT_STORE Config
 
-The `ESP Config` is a JSON file containing the configuration of the consumer and producer of the service itself and it has the following format:
+The `EVENT_STORE Config` is a JSON file containing the configuration of the consumer and producer of the service itself and it has the following format:
 
 ```json
 {

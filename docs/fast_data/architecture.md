@@ -33,7 +33,7 @@ This activity can be performed by the RTU as well. Using the SVTG is recommended
 
 ### Single View Creator (SVC)
 
-The Single View Creator reacts to Projection Change events, updating the Single Views by aggregating the relevant data. It can optionally emit `Single View Event` and `Single View Before After` events.
+The Single View Creator reacts to Projection Change or `sv-trigger` events, updating the Single Views by aggregating the relevant data. It can optionally emit `Single View Event` and `Single View Before After` events.
 If the service is configured to read the `Projection Change` events on Kafka, then it will use the usual publish/subscribe pattern, granting support to horizontal scalability and fault tolerance with ease.
 If the service is configured to read the `Projection Change` events on MongoDB, then it will poll MongoDB to check if there are any events that need to be handled. To avoid concurrency problems, it reads atomically and marks the `Projection Change`, so that other SVCs won't start processing the same data.
 
@@ -81,8 +81,8 @@ Fast Data architecture is rather streamlined, with just a couple of pivoting poi
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and make them adhere to a standard of interest, and then stores the Projections on MongoDB;
    1. The RTU emits a `Projection Update` event, if it is configured to do so;
-3. The RTU or the SVT (depending on which one you chose for your architecture) compute and emit a `Projection Change` event, saving it either on Kafka or on MongoDB
-4. The SVC reads the `Projection Change` message, either polling MongoDB or reacting to the Kafka message. Then, it aggregates the Single View using the new data, and stores it to MongoDB;
+3. The RTU or the SVTG (depending on which one you chose for your architecture) compute and emit a `Projection Change` or `sv-trigger` event, saving it either on MongoDB or Kafka
+4. The SVC reads the `Projection Change` or `sv-trigger` message, either polling MongoDB or reacting to the Kafka message. Then, it aggregates the Single View using the new data, and stores it to MongoDB;
    1. The SVC emits a `Single View Event` and/or a `Single View Before After` event, if it is configured to do so.
 
 ![Fast data architecture](img/fastdata-architecture-new.png)
