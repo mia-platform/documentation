@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.6.1 - 2023-06-15
+
+### Fixed
+
+- #88 dot (`.`) notation with operator `$set` is now correctly supported
+- #89 operators `$addToSet` and `$pull` are now supported on properties added via `additionalProperties` JSON schema definition
+- collection definition validation is now carried out only once per collection
+
+### Changed
+
+- update minor and patch dependencies
+
 ## 6.6.0 - 2023-06-09
 
 ### Added
