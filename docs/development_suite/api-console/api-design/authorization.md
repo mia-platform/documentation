@@ -114,6 +114,8 @@ Normally Rönd will configure by itself consuming the API documentation of its t
 When adding a new manual route to the configuration for a microservice, the self-configuration feature will turn off. Thus you are required to register all the routes that your service exposes.
 :::
 
+From this section you can also set the value of some **route-specific options**, such as the `ignoreTrailingSlash` flag. Discover more about configuration options in the official [Rönd documentation](https://rond-authz.io/docs/configuration#route-specific-options).
+
 ### Routes Priority
 
 When there are more manual routes that match a specific URL path, the **priority rules** help to resolve the conflict:
