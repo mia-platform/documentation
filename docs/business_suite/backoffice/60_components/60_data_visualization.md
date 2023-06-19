@@ -1149,9 +1149,9 @@ it is recommend to limit the usage of this component to the visualization of PDF
 
 ### Listens to
 
-| event | action               | emits | on error |
-|-------|----------------------|-------|----------|
-|[show-in-viewer](../events#show-in-viewer)| opens PDF in browser | - | - |
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[show-in-viewer](../events#show-in-viewer)|opens PDF in browser| - | - |
 
 ### Emits
 
