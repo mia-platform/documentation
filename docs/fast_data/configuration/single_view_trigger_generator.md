@@ -69,9 +69,9 @@ The Kafka Projection Updates config map contains the `kafkaProjectionUpdates.jso
 Remember to copy/paste the mount path into the `KAFKA_PROJECTION_UPDATES_FOLDER` environment variable so the service can read the file.
 If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
 
-### EVENT_STORE Config
+### Event Store Config
 
-The `EVENT_STORE Config` is a JSON file containing the configuration of the consumer and producer of the service itself and it has the following format:
+The `Event Store Config` is a JSON file containing the configuration of the consumer and producer of the service itself and it has the following format:
 
 ```json
 {

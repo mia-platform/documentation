@@ -44,7 +44,7 @@ Additional details on how to configure the Real-Time Updater to produce Projecti
 #### Single View Creator
 
 :::note
-The following steps are only required if you choose to generate `sv-trigger` messages over Projection changes
+The following steps are only required if you choose to [generate `sv-trigger` messages](/fast_data/configuration/single_view_trigger_generator.md#event-store-config) over Projection changes
 :::
 
 - configure the Single View Creator service to get triggered from `sv-trigger` events setting the environment variable `PROJECTIONS_CHANGES_SOURCE` to `KAFKA`
