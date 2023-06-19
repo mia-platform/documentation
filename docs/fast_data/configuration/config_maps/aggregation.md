@@ -4,7 +4,7 @@ title: Aggregation Configuration
 sidebar_label: Aggregation
 ---
 
-The Aggregation configuration is used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](fast_data/configuration/single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
+The Aggregation configuration is used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](/fast_data/configuration/single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
 
 The aggregation is mounted as a config map of the Single View Creator Service and might be composed by:
 - a manual configuration, composed of `pipeline.js` and `mapper.js` files inside the _configuration_ config map (automatically created adding the `Single View Creator` plugin from the Mia Marketplace)
