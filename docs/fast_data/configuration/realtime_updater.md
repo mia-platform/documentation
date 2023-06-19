@@ -226,7 +226,7 @@ This is an empty configuration: the Real-Time Updater Microservice could be depl
 :::  
 
 ::: caution
-When creating a low code System of Records, its service will have a link to the `er-schema` config map. If other microservices already had this config map they will share it with the new Real-Time Updater. If you do not make changes to the default config maps of the Real-Time Updater services you will have all of them sharing the same ER Schema. But if you need a different `er-schema` (e.g. you have created a new Real-Time Updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new config map with its unique identifier and create a new `erSchema.json` file in it.
+When creating a Low Code System of Records, its service will have a link to the `er-schema` config map. If other microservices already had this config map they will share it with the new Real-Time Updater. If you do not make changes to the default config maps of the Real-Time Updater services you will have all of them sharing the same ER Schema. But if you need a different `er-schema` (e.g. you have created a new Real-Time Updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new config map with its unique identifier and create a new `erSchema.json` file in it.
 :::
 
 ### Projection Changes Schema
