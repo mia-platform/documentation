@@ -91,15 +91,15 @@
     "destination": "/docs/fast_data/configuration/single_view_creator",
     "addedOn": "2022-10-01"
   },
-  "/docs/fast_data/single_view_creator/common.md": {
+  "/docs/fast_data/configuration/single_view_creator/common.md": {
     "destination": "/docs/fast_data/single_view_creator",
     "addedOn": "2023-06-15"
   },
-  "/docs/fast_data/single_view_creator/low_code": {
+  "/docs/fast_data/configuration/single_view_creator/low_code": {
     "destination": "/docs/fast_data/single_view_creator",
     "addedOn": "2023-06-15"
   },
-  "/docs/fast_data/single_view_creator/manual": {
+  "/docs/fast_data/configuration/single_view_creator/manual": {
     "destination": "/docs/fast_data/single_view_creator",
     "addedOn": "2023-06-15"
   },
@@ -111,11 +111,11 @@
     "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-10-01"
   },
-  "/docs/fast_data/real_time_updater/manual":  {
+  "/docs/fast_data/configuration/real_time_updater/manual":  {
     "destination": "/docs/fast_data/realtime_updater",
     "addedOn": "2023-06-15"
   },
-  "/docs/fast_data/real_time_updater/low_code":  {
+  "/docs/fast_data/configuration/real_time_updater/low_code":  {
     "destination": "/docs/fast_data/realtime_updater",
     "addedOn": "2023-06-15"
   },
