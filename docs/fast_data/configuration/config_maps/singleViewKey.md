@@ -34,7 +34,7 @@ The Service understands that a projection with the identifier `ID_USER` with the
 The Single View Key can be a JavaScript file, which must be named `singleViewKey.js` that will perform customized logic to retrieve the document to update, or a JSON file named `singleViewKey.json` with a predefined structure to simplify the relationship between the fields of the Projection Changes and the Single View.
 
 :::info
-When a Single View Creator is created from Mia Marketplace will automatically include a `singleViewKey.json` file. If you prefer to use a JavaScript function, that file should be deleted and a `singleViewKey.js` file must be created in its place.
+When a Single View Creator is created from Mia Marketplace it will automatically include a `singleViewKey.json` file. If you prefer to use a JavaScript function, that file should be deleted and a `singleViewKey.js` file must be created in its place.
 :::
 
 ## Using a JavaScript function
