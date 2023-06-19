@@ -529,9 +529,9 @@ module.exports = async function(logger, clientMongo) {
 
 The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
 
-For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object  with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
+For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
 
-#### Null value inside conditional expression
+#### `null` values inside conditional expressions
 
 From version `3.10.0` of the Single View Creator, logic expressions now accept `null` as a value:
 
@@ -707,7 +707,7 @@ After selecting a condition for each step, a click on the `Save` button will aut
 
 ### Manage the existing dependencies
 
-The _Set Path_ modal is not the only way to add new dependencies. These can be included manually via the `Edit dependencies` button at the bottom of the page, followed by the number of dependencies already set. This button will open a different modal that will show all the existing dependencies, giving the possibility to add or delete some.
+The _Set Path_ modal is not the only way to add new dependencies. These can be included manually via the _Edit dependencies_ button at the bottom of the page, followed by the number of dependencies already set. This button will open a different modal that will show all the existing dependencies, giving the possibility to add or delete some.
 
 ![Dependency Editor](../../img/no_code_aggregation/dependency_editor.png)
 
@@ -729,7 +729,7 @@ Removing a dependency will remove also its references in the mapping (if there a
 
 ### Create a Join Dependency with the No Code
 
-In case it's necessary to map fields inside an array of objects, a new configuration object inside the `aggregation.json` must be created, with new dependencies starting from a [Join Dependency](#join-dependency). In the No Code Aggregation, if you open an array of objects, another `Edit dependencies` button will show up at the bottom of the section including the fields of said array of objects. In case the Join Dependency has not been set yet, the button will include a _(0)_ to signal that there are no dependencies set.
+In case it's necessary to map fields inside an array of objects, a new configuration object inside the `aggregation.json` must be created, with new dependencies starting from a [Join Dependency](#join-dependency). In the No Code Aggregation, if you open an array of objects, another _Edit dependencies_ button will show up at the bottom of the section including the fields of said array of objects. In case the Join Dependency has not been set yet, the button will include a _(0)_ to signal that there are no dependencies set.
 
 When clicking the button, the already mentioned modal will appear but with a placeholder to invite the user to create the Join Dependency.
 
@@ -747,13 +747,13 @@ In fact, with the No Code Aggregation, it will not be possible to include the [a
 
 ![Advanced Mode of the No Code Aggregation](../../img/no_code_aggregation/advanced_mode.png)
 
-In this area, you can review the aggregation in its code format, and it's possible even to update the content inside, and to add or delete some part of the configuration. Any update via Advanced Mode will be instantly reflected when switching back to the No Code.
+In this area, you can review the aggregation in its code format, and it's possible even to update the content inside, and to add or delete some parts of the configuration. Any update via Advanced Mode will be instantly reflected when switching back to the No Code.
 
 Despite this, it is possible to use the No Code Aggregation even if one or more fields have been mapped with one of the possible advanced options (such as the usage of a custom function from an external file, or a conditional value). In this case, the user can open the drawer related to the field, but it will be informed that an advanced configuration exists and the only way to make any change or review it is via the advanced mode.
 
 ![Advanced Mode with errors](../../img/no_code_aggregation/advanced_mode_with_errors.png)
 
-Also, the list of dependencies available via the `Edit dependencies` button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expressions](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
+Also, the list of dependencies available via the _Edit dependencies_ button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expressions](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
 
 ### Error and Warning management
 
@@ -761,15 +761,23 @@ The No Code Aggregation will try to catch any error existing, especially on pre-
 
 In this case, the Advanced Mode will automatically be active, and it will not be possible to move to the No Code before to address these errors.
 
-<!-- TODO: Screenshot of the advanced mode with some errors -->
+![Wrong version in the Advanced Mode](../../img/no_code_aggregation/advanced-more-with-errors.png)
 
 Moreover, the No Code Aggregation includes some warnings related to configurations that might not work correctly when running the Microservices and/or might lead to unexpected results.
 
-One of those warnings will be shown next to the field name, in case the field is not mapped.
+One of those warnings will be shown next to the field name, in case the field is not mapped, or an error icon in case the mapping is not valid.
 
-<!-- TODO: Screenshot of the field not mapped warning, close up -->
+![A field with a wrong mapping](../../img/no_code_aggregation/field_with_wrong_mapping.png)
 
-<!-- TODO: Include more warning descriptions -->
+Also, the drawer to the right side will inform you if the dependency or the field is not valid. Anyway, clicking on the field allows the selection of a valid value and proceed with the configuration.
+
+![Field mapping configuration with an non-existing field selected](../../img/no_code_aggregation/mapping_drawer_with_errors.png)
+
+Errors in configured dependencies are visible inside the modal accessible via the _Edit dependencies_ button: in this case, the user will be informed if there are dependencies related to missing projections, or dependencies that are not reachable because the path is incomplete.
+
+![Non valid dependencies](../../img/no_code_aggregation/dependency_editor_with_errors.png)
+
+In this case, it is highly suggested to remove the non-valid projections and re-add them (manually with the [Set Path feature](#automatic-generation-of-dependencies-via-path)).
 
 ### Reset the Aggregation
 
@@ -777,4 +785,4 @@ It is possible to reset the Aggregation and configure it from scratch from the _
 
 ![General card that includes information on the selected ER Schema and Base Projection](../../img/no_code_aggregation/general_card.png)
 
-A click on the `Edit` button will open a modal that informs the user of the risks of losing the configured Aggregation, before to allow the selection of a new ER Schema and/or a new base Projection. A change on one of the two values will reset the Aggregation.
+A click on the `Edit` button will open a modal that informs the user of the risks of losing the configured Aggregation before allowing the selection of a new ER Schema and/or a new base Projection. A change in one of the two values will reset the Aggregation.
