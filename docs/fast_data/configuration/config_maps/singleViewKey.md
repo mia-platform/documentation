@@ -31,7 +31,7 @@ In case the following Projection Changes document has been received:
 ```
 The Service understands that a projection with the identifier `ID_USER` with the value `123` must be updated by performing an aggregation because one or more values inside the Single View have been updated. However the Single View might have fields with different names, therefore a configuration to understand which field of the Single View should be compared with the `123` value to understand the document to update. This configuration is the Config Map named _Single View Key_.
 
-The Single View Key can be a JavaScript file, which must be named `singleViewKey.js` that will perform customized logic to retrieve the document to update, or a JSON file named `singleViewKey.json` with a predefined structure to simplify the relationship between the fields of the Projection Changes and the Single View.
+The Single View Key can be a JavaScript file, which must be named `singleViewKey.js` and will perform customized logic to retrieve the document to update, or a JSON file named `singleViewKey.json` with a predefined structure to simplify the relationship between the fields of the Projection Changes and the Single View.
 
 :::info
 When a Single View Creator is created from Mia Marketplace it will automatically include a `singleViewKey.json` file. If you prefer to use a JavaScript function, that file should be deleted and a `singleViewKey.js` file must be created in its place.
