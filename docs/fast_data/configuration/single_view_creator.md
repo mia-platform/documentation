@@ -157,7 +157,7 @@ If you do not want to use Kafka in the Single View Creator, you can just not set
 
 The Single View Key is the Single View Creator part which identifies the Single View document that needs to be updated as consequence of the event that the service has consumed. 
 
-To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/singleViewKey).
+To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/singleViewKey.md).
 
 ## ER Schema
 
@@ -174,14 +174,14 @@ After selecting an ER Schema, the next configuration save will generate the Conf
 :::info
 Starting from version `11.3.0`, it is also possible to select the ER Schema from the _Settings_ tab, inside the _Generals_ card.
 
-Please remember that changing the ER Schema will cause the reset of the [Aggregation configuration](/fast_data/configuration/config_maps/aggregation).
+Please remember that changing the ER Schema will cause the reset of the [Aggregation configuration](/fast_data/configuration/config_maps/aggregation.md).
 :::
 
 ## Aggregation
 
 The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
 
-To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/aggregation).
+To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/aggregation.md).
 
 :::note
 Since version `v5.0.0` of the Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a Single View with the `__STATE__` field set from the aggregation will update the Single View to that state (among the other changes).   
