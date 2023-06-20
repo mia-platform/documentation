@@ -44,8 +44,83 @@ The project creation process is divided into three phases:
 ![create-project-1](img/create-project-1.png)
 
 2. **Repository**: in this phase, you need to choose the project template, and an overview is also presented on the default Git Provider configured for the company, which will be inherited by the project:
+   
    * **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git Provider. It specifies the location of your project on the Git Provider website;
-   * **Visibility**: the visibility states the status of your project once it will be saved on the Git Provider. If it is `internal`, all the internal users of the Git Provider instance can see the project. If it is `private`, only who has access to the repository can see the project;
+  
+    :::caution
+    Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
+    :::
+
+    Here are some tips on how to correctly configure the _basePath_ property, grouped by Git Provider:
+
+    <Tabs>
+
+    <TabItem value="gitlab" label="GitLab" default>
+
+      It corresponds to the **basePath of the group** where to create the project.
+
+      If the group does not exist, the project will be created only if the user has the needed permission to create the group in its parent.
+
+      For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
+      then the `basePath` must be **`mia-platform/projects`**.
+      
+      If your group does not exist (in the example groupB):
+
+      - /groupA/groupB -> if the user has permission to create groups in groupA, then groupB will be created;
+      - /groupA/groupB -> if the user has no permission to create groups in groupA, then groupB will NOT be created;
+      - /groupA/groupB -> if groupA does not exist, then it will NOT be created any group.
+
+    </TabItem>
+
+    <TabItem value="github" label="GitHub">
+
+      It corresponds to the **path of an existing organization**. 
+      
+      If the path does not exist, the project will not be created.
+
+      For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, <br/>
+      then the `basePath` must be **`mia-platform`**
+
+    </TabItem>
+
+    <TabItem value="azure-devops" label="Azure DevOps">
+
+      There are two different possibilities: use an already existent Azure DevOps project with multiple
+      Console project inside it or create an Azure DevOps project for each Console project.
+
+      #### A single Azure DevOps project with multiple configurations repository
+
+      It corresponds to the **path where your Azure project is reachable**: the pattern is _organization-name/project-name_.
+      
+      For example, if your project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
+      then the `basePath` must be **`mia-platform-devops/Test`**.
+
+      #### An Azure DevOps project for each Console project
+
+      It corresponds to the **organization where to create the project**: the pattern is organization-name_.
+      
+      For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
+      then the `basePath` must be **`mia-platform-devops`**. 
+
+    </TabItem>
+
+    <TabItem value="bitbucket" label="Bitbucket">
+
+      It corresponds to the **path where your Bitbucket project is reachable**: the pattern is _projects/project-code_.
+
+      For example, if your project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
+      then the `basePath` must be **`projects/Test`**.
+
+    </TabItem>
+
+    </Tabs>
+      
+   * **Visibility**: the visibility states the status of your project once it will be saved on the Git Provider. Either one of the following:
+
+      - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
+      - `internal`: the repository can be accessed and viewed by any authenticated user within the same Git Provider instance or organization;
+      - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
+  
    * **Template** (_required_): you have to select, from a list of pre-configured templates, your template, which enables you to use pre-filled configurations for your project.
 
 ![create-project-2](img/create-project-2.png)
