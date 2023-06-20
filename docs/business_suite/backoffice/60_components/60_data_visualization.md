@@ -19,7 +19,7 @@ To embed an authenticated dashboard it's mandatory to use a custom microservice 
 `apiKey` and `authEndpoint` properties enable you to expose an endpoint to that service.
 :::
 
-## Known Issues
+### Known Issues
 
 It could happen that the component keeps resizing. This is due to some scaling problem of the embedded Mongo Atlas `<iframe>`.
 This is a known issue of Mongo Atlas, which can beb temporarily fixed adding some padding to the component:
@@ -1151,7 +1151,7 @@ it is recommend to limit the usage of this component to the visualization of PDF
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[show-in-viewer](../events#show-in-viewer)|opens PDF in brawser| - | - |
+|[show-in-viewer](../events#show-in-viewer)|opens PDF in browser| - | - |
 
 ### Emits
 
