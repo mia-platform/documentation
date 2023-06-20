@@ -7,117 +7,46 @@ The Payment Integration Hub application builds a single interface to connect mul
 
 It is also available a white label front-end with **adaptive checkout** and a ready to use [backoffice](../../business_suite/backoffice/overview) to perform **actions** on the transactions and customizable **dashboards** for monitoring all payments KPI. 
 
-## Backoffice Sections
+## Application Architecture
 
-### Transactions Page
-On the **Transactions page** is shown a table with all the transactions stored on the database. For each transaction the following information are available:
-- **Status**: current status of the payment (e.g. **Created**, **Paid**, **Partially Refunded**, **Totally Refunded**)
-- **Date**: creation date of the payment
-- **Transaction ID**: unique ID of the payment set by the merchant
-- **Amount**: amount of the payment
-- **Method**: method of the payment
-- **Channel**: channel used for the payment
+### Microservices
 
-The list of transactions can be filtered by status, date and/or amount. Moreover a search bar allows to find a transaction via its ID.
+The Payment Integration Hub is componsed by:
+1. [Payment Gateway Manager](../../runtime_suite/payment-gateway-manager/how_it_works) exposes an unique interface for all the payment methods enabled by different providers and implements all the payment related functionalities.
+2. A set of microservices that implement some functionality to support the payment process:
+    - the [Invoice Service](../../runtime_suite/invoice-service/overview) generates an invoice of a payment in pdf format;
+    - the [Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage) used to notify the user about the outcome of payment;
+    - the **Frullino Service** handle payment pending by periodically checking their status of through the provider and updates the payment state accordingly;
+    - the **payment front end** provides a UI to accompany the end user to complete the payment with the chosen method with the related **back end for front end**;
+    - the [Backoffice](../../business_suite/backoffice/overview) allows to perform actions on payments.
+3. The **payment saga** is used to orchestrate the above services; it is implemented with the [Flow Manager Service](../../runtime_suite/flow-manager-service/overview) and it is fully customizable. 
 
-For each transaction the following actions are available:
-- **refund** the payment (partially or totally)
-- **download** invoice of the payment
-- **send notification** about the payment to the customer (at the moment only emails are supported)
+Other platform plugins are included in order to enable some side functionalities.
 
-:::note
-The **refund** and **download** actions are available also as bulk actions
-:::
+### Endpoints
 
-In addition it is possible to export payments information in CSV or Excel format.
+The following endpoints are exposed by default:
+- **/payment** exposes the frontend
+- **/pgm-bff** exposes the backend for frontend functionalities
 
-It is available a dedicated view for each payment by clicking the dedicated button that redirects the user to a page with the following information:
-- **Overview section**
-    - Transaction ID
-    - Transaction date
-    - Current status
-- **User section**
-    - User ID
-    - User name
-    - User email
-- **Payment section**
-    - Amount
-    - Payment provider
-    - Payment method
-    - Channel used for payment
-    - Total refunded amount
-- **History section**
-    - Date
-    - Status
-    - Event
-    - Refunded amount (optional)
+## Payment Saga
 
-### Analytics Page
-On **Analytics page** are shown the following plots and KPIs:
-- **Daily payments**: stock chart that shows the amount of the payments over days; the plot can be filtered both with temporal filters (e.g. YTD, MTD or custom time frame).
-- **Percentage** of payments on each status (e.g. _Payment Created_, _Payment Paid_, _Payment Partially Refunded_, _Payment Totally Refunded_, _Payment Failed_).
-- **Payments Amount by Method**: stock chart that shows the amount of payments grouped by payment method; the plot can be filtered with temporal filters.
-- **Payments Amount by Channel**: stock chart that shows the amount of payments grouped by payment channel; the plot can be filtered with temporal filters.
+The main actor in the saga is the [Payment Gateway Manager](../../runtime_suite/payment-gateway-manager/how_it_works), which is responsible for sending the events necessary for the saga to continue. 
+Other microservices can interact with the saga, namely: 
+1. the [Frullino Service](../../runtime_suite/ses-mail-notification-service/usage) triggers the events of `paymentExecutedByTheSystem` and `paymentFailedByTheSystem`
+2. the mail service can be activated directly by any state of the saga to send the notification automatically.
+3. the **back end for front end** send the `scheduleRequested` event.
 
-For more details on how to configure the pages you can refer to [dedicated section](./20_configuration.md) or [Backoffice documentation](../../business_suite/backoffice/overview).
+Other services can be integrated and the saga itself can be modified to implement a new payment flow or adapt to specific needs.
 
-## Microservices
+The default defined payment saga consists of the following states:
 
-The following microservices will be included:
-- **crud-service** in order to retrieve and update data from tha database
-- **microlc-frontend** provides the frontend functionalities of backoffice powered by [micro-lc](https://github.com/micro-lc/micro-lc)
-- **microlc-backend** provides the backend functionalities of backoffice powered by [micro-lc](https://github.com/micro-lc/micro-lc); here is possible to define the configuration for each page of the application
-- **element-composer** enables orchestration of multiple micro-frontend
-- **back-kit** provides ready-to-use frontend components that can be included into backoffice
-- **data-visualization-frontend** enables the visualization of [dashboards and plots](../../business_suite/data-visualization) into the backoffice
-- **data-visualization-backend** enables the configuration of [dashboards and plots](../../business_suite/data-visualization) that will be shown by __data-visualization-frontend__ microservice
-- **analytics-transactions** provides the aggregations data that will be shown on dashboards; these microservices is a ready-to-use version of [MongoDB Reader Plugin](../../runtime_suite/mongodb-reader/configuration) available in the [Marketplace](../../marketplace/overview_marketplace)
-- **export-service** enables [the export](../../runtime_suite/export-service/overview) of the transactions as csv/excel format
-- **payment-gateway-manager** enables the actual execution of the [transaction-related features](../../runtime_suite/payment-gateway-manager/how_it_works)
-- **flow-manager-service** orchestrates all the flow of a payment by using [events and commands](../../runtime_suite/flow-manager-service/overview)
-- **invoice-service** [generates an invoice](../../runtime_suite/invoice-service/overview) of a payment in pdf format
-- **pgm-bff** a backend for frontend that manages the communication between frontends and backend
-- **files-service** allows you to [upload and download](../../runtime_suite/files-service/configuration) the generated invoices to a MongoDB
-- **payment-integration-service** sends an email notification for some payment states as payment paid, payment failed, payment refunded etc
-- **smtp-mail-notification-service** sends [emails](../../runtime_suite/ses-mail-notification-service/usage)
-- **frullino-service** periodically checks the status of pending payments through the provider and updates the payment state accordingly
-- **payment-front-end** a frontend that provides a UI for the payment flow
-
-## Endpoints
-
-The following endpoints will be included:
-- **/** : backoffice home page application
-- **/api** : microlc-backend APIs needed to expose backoffice configurations
-- **/element-composer** : element-composer APIs needed to manage multiple microfrontend
-- **/back-kit** : back-kit service
-- **/data-visualization** : expose data visualization APIs needed to show dashboards and plots
-- **/api/charts/dashboards** : expose defined dashboards
-- **/analytics** : expose KPIs and aggregated data
-- **/payment-gateway-manager** : payment-gateway-manager service
-- **/fm** : flow-manager-service
-- **/pgm-bff** : backend for frontend service of the payment gateway manager
-- **/export** : expose export-service for CSV/Excel exports
-- **/payment** : expose payment-front-end service to perform new transactions
-
-## Public Variables
-
-The following public variables will be included for managing microservices versions:
-- **BACK_KIT_VERSION**
-- **MICROLC_FRONTEND_VERSION**
-- **MICROLC_BACKEND_VERSION**
-- **MICROLC_ELEMENT_COMPOSER_VERSION**
-- **DATA_VIZ_FE_VERSION**
-- **DATA_VIZ_BE_VERSION**
-- **ANALYTICS_TRANSACTIONS_VERSION**
-- **EMAIL_SENDER**
-- **CRUD_SERVICE_VERSION**
-- **PGM_VERSION**
-- **PROJECT_HOST**
+![Payment Saga](img/saga.png)
 
 ## CRUD Collection
 
 A *transactions_saga* collection will be included in the project and by default is used as database reference use to retrieve payments information.
-The application can use any MongoDB collection to retrieve payments information: for further details on how to configure the application refer to the dedicated [section](./20_configuration.md)
+The application can use any MongoDB collection to retrieve payments information: for further details on how to configure the application refer to the dedicated [section](./20_Configuration.md)
 The following schema is used in the collection, designed to be compatible with [payment gateway manager](../../runtime_suite/payment-gateway-manager/overview):
 - **sagaId**: the unique saga id of payment flow
 - **isFinal**: boolean to indicate if a state is final or not
@@ -151,18 +80,3 @@ The following schema is used in the collection, designed to be compatible with [
 - **size**:  size in bytes of the invoice
 - **location**: the URL that can be used to download the invoice
 - **sagaId**: the transaction saga id related to the invoice
-
-## Supported Payment Combinations
-
-The following table represents the payment combinations supported by the application
-
-| Provider \ Method | credit-cards       | applepay | googlepay | pay-pal            | satispay           | scalapay           | safecharge | soisy              | stripe             |
-|-------------------|--------------------|----------|-----------|--------------------|--------------------|--------------------|------------|--------------------|--------------------|
-| gestpay           | :white_check_mark: | :x:      | :x:       | :white_check_mark: | :white_check_mark: |                    |            |                    |                    |
-| satispay          |                    |          |           |                    | :white_check_mark: |                    |            |                    |                    |
-| unicredit         | :x:                |          |           |                    |                    |                    |            |                    |                    |
-| braintree         |                    |          |           | :white_check_mark: |                    |                    |            |                    |                    |
-| scalapay          |                    |          |           |                    |                    | :white_check_mark: |            |                    |                    |
-| safecharge        |                    |          |           |                    |                    |                    | :x:        |                    |                    |
-| soisy             |                    |          |           |                    |                    |                    |            | :white_check_mark: |                    |
-| stripe            |                    |          |           |                    |                    |                    |            |                    | :white_check_mark: |

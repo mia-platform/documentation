@@ -5,6 +5,91 @@ sidebar_label: Configuration
 ---
 In order to properly add this application in your project you have to complete its configuration as described in the following sections.
 
+## Payment Gateway Manager
+
+In order to complete the configuration of the `Payment Gateway Manager` you have to:
+1. set the `ENABLED_PROVIDERS` environment variable
+2. add the **required environment variables** depending on the chosen payment provider
+3. on `Public Variables` section set the **PROJECT_HOST** variable as host of the current project
+
+For further details on refer to the service's [configuration documentation](../../runtime_suite/payment-gateway-manager/configuration).
+
+:::warning
+Put a valid URL in the *PAYMENT_CALLBACK_URL* environment variable.
+:::
+
+## Payment Front End
+
+In order to complete the configuration of the `Payment Front End` you have to set the following environment variables:
+- `CSP_HEADER`: list of content security policy to include
+- `PROJECT_HOST`: host of the current project
+- `VITE_POLLING_INTERVAL`: interval in ms between two calls during polling
+
+Based on the payments method enabled you have to set other variables:
+
+- Axerve
+  - `VITE_AXERVE_API_KEY`
+  - `VITE_AXERVE_SHOPLOGIN`
+- Adyen
+  - `VITE_ADYEN_KEY`
+- Braintree
+  - `VITE_BRAINTREE_KEY`
+  - `BRAINTREE_TOKENIZATION_KEY`
+- Google Pay
+  - `VITE_GOOGLE_MERCHANT_ID`
+  - `VITE_GOOGLE_MERCHANT_NAME`
+- Apple Pay
+  - add the right certificate on `/usr/static/.well-known/apple-developer-merchantid-domain-association.txt`.
+
+Further personalization is available modifying its config-map.
+
+## Backend for Frontend
+
+In order to complete the configuration of the `Back End for Front End` you have to set the following environment variables:
+- `PAYMENT_OK_REDIRECT_URL`: url to which to redirect the user following a successfully completed payment
+- `PAYMENT_KO_REDIRECT_URL`: url to which to redirect the user following a failed payment
+- `FLOW_MANAGER_URL`: flow manager service url
+- `PGM_URL`: payment gateway manager url
+- `INVOICE_SERVICE_URL`: invoice service url
+- `FILES_SERVICE_URL`: file service url
+- `SAGA_CRUD_URL`: saga collection url
+- `INVOICE_CRUD_URL`: invoice collection url
+
+- `CRUD_POLLING_INTERVAL_MS`: interval in ms between two calls during polling
+- `CRUD_POLLING_ATTEMPTS_LIMIT`: maximum number of attempts during polling
+
+- `APPLEPAY_CERTIFICATE_PASSWORD`
+- `APPLEPAY_CERTIFICATE_FILE`
+
+
+## Frullino
+
+This service periodically retrieves from the crud the payments that are in the pending state,
+checks the actual status through the provider and updates the payment state accordingly (failed or executed).
+
+The following environment variables are customizable:
+- `PGM_URL`: payment gateway manager url
+- `FLOW_MANAGER_URL`: flow manager service url
+- `CRUD_SERVICE_URL`: crud service url
+- `MIN_DATE_OFFSET_MS` and `MAX_DATE_OFFSET_MS`: define the interval between payments have to be checked as: `NOW - MAX_DATE_OFFSET_MS` < payment last update < `NOW - MIN_DATE_OFFSET_MS`
+- `ENABLED_PROVIDERS`: the list of providers whose payments to check
+- `REDIS_HOST`: Redis installation URL
+- `THREAD_NUMBER`: the number of payments the service can check in parallel
+- `FRULLINO_RUNNING_INTERVAL_CRON`: how often the service performs the check
+
+
+### Others
+
+For further configuration of the microservices you can refer to the dedicated documentation:
+- [Invoice-Service](../../runtime_suite/invoice-service/overview)
+- [Flow-Manager-Service](../../runtime_suite/flow-manager-service/overview)
+- [Files-Service](../../runtime_suite/files-service/configuration)
+- [SMTP Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage)
+- [Data-Visualization](../../business_suite/data-visualization)
+- [Analytics](../../runtime_suite/mongodb-reader/configuration)
+
+## View
+
 :::warning Workaround
 The user should perform the additional steps reported in this admonition.
 - Setup aggregation of `transactions_saga_view` as follows.
@@ -456,99 +541,4 @@ The user should perform the additional steps reported in this admonition.
   - Choose mongoDB view as type
   - Choose Mongo view base path as `/transactions-saga-view`
 
-:::
-
-## Advanced Configuration
-
-### API Gateway
-
-From the design area of the console go to **Advanced** and select the `api-gateway` microservice.
-
-Open the file **maps-proxyUrl.before.map** and write the following configuration:
-
-```
-# DataVisualization Backoffice Analytics
-# Rewrite application calls from /api/charts/dashboards/:dashboardId endpoint
-# to the Backend
-"~^GET-/api/charts/dashboards(?<path>/.*|$)$" "/charts/dashboards$path";
-"~^GET-/api/charts(?<path>/.*|$)$" "$path";
-"~^GET-/data-visualization(?<path>/.*|$)$" "$path";
-
-# Notification Center
-"~^(GET|POST|PATCH|DELETE)-/api/v1/micro-lc-notification-center(?<path>/.*|$)$" "$path";
-
-# micro-lc
-"~^\w+-/.+/api/v1/microlc(?<path>[/\?].*|$)$" "/v1/microlc$path";
-```
-
-## Backoffice Sections
-
-Each section of backoffice application is customizable by editing configuration files on **microlc-backend** microservices. For further details on how to customize your backoffice you can refer to the [official documentation](../../business_suite/backoffice/overview).
-
-In order to customize dashboards and KPIs shown on analytics page you can change the configuration file that define the available dashboards on [data-visualization-backend microservice](../../business_suite/data-visualization). The KPIs and aggregated data used in the dashboards are provided by the [analytics-transactions microservice](../../runtime_suite/mongodb-reader/configuration)
-
-## Microservices
-
-### Payment Gateway Manager
-
-In order to complete the configuration of this service you have to set the `ENABLED_PROVIDERS` environment variable. Moreover, you should add the **required environment variables** depending on the chosen payment provider. Refer to the service's [configuration documentation](../../runtime_suite/payment-gateway-manager/configuration).
-
-:::warning
-Put a valid URL in the *PAYMENT_CALLBACK_URL* environment variable.
-:::
-
-### PGM Backend for Frontend
-
-You can change the configuration of this service to customize different features: First of all you can change the polling interval and attempts to the crud for the new state of the payment even though it is recommended that it doesn't exceed the two minutes. Furthermore, you can customize the `PAYMENT_OK_REDIRECT_URL` and `PAYMENT_KO_REDIRECT_URL` which are the url where the user will be redirected after a successful or failed payment.
-
-### Frullino
-
-This service periodically retrieves from the crud the payments that are in the pending state,
-checks the actual status through the provider and updates the payment state accordingly (failed or executed).
-
-The following environment variables are customizable:
-- `MIN_DATE_OFFSET_MS` and `MAX_DATE_OFFSET_MS`: define the interval between payments have to be checked as: `NOW - MAX_DATE_OFFSET_MS` < payment last update < `NOW - MIN_DATE_OFFSET_MS`
-- `ENABLED_PROVIDERS`: the list of providers whose payments to check
-- `REDIS_HOST`: Redis installation URL
-- `THREAD_NUMBER`: the number of payments the service can check in parallel
-- `FRULLINO_RUNNING_INTERVAL_CRON`: how often the service performs the check
-
-### SMTP Mail Notification Service
-
-This service is used to actually send payment-related mail notification to customers. Its configuration must be completed setting the following environment variables:
-- `HOST`: the host of the SMTP server to use,
-- `PORT`: the port of the SMTP server to use,
-- `AUTH_USER`: the email used to log in on the SMTP server,
-- `AUTH_PASS`: the password related to the email used to log in on the SMTP server.
-
-:::tip
-Use secrets to store the password used in `AUTH_PASS`.
-:::
-
-### Payment Front End
-
-This front-end service allows the user to perform new payments. Its configuration must be completed setting the `BRAINTREE_TOKENIZATION_KEY` in the envs section. Further personalization is available modifying its config-map.
-
-### Others
-
-For further configuration of the microservices you can refer to the dedicated documentation:
-- [Backoffice](../../business_suite/backoffice/overview)
-- [Data-Visualization](../../business_suite/data-visualization)
-- [Analytics](../../runtime_suite/mongodb-reader/configuration)
-- [Flow-Manager-Service](../../runtime_suite/flow-manager-service/overview)
-- [Invoice-Service](../../runtime_suite/invoice-service/overview)
-- [Files-Service](../../runtime_suite/files-service/configuration)
-- [Export-Service](../../runtime_suite/export-service/overview)
-
-## Public Variables
-
-- **PROJECT_HOST** : set the value of your project host
-- **EMAIL_SENDER** : set the email address that will be used to send email notifications
-
-## Database
-
-By default, a new collection is created and used by the application as references to retrieve payments information, but the application can use any MongoDB collection/view with any schema.
-
-:::warning 
-If you want to use your own collection/view or change the default schema keep in mind to **update also the data schema** on the backoffice configuration and update CRUD's saga related envs in other microservices.
 :::
