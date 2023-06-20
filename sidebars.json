@@ -656,6 +656,14 @@
               "type": "doc"
             },
             {
+              "id": "fast_data/configuration/config_maps/aggregation",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/config_maps/singleViewKey",
+              "type": "doc"
+            },
+            {
               "id": "fast_data/configuration/config_maps/projection_changes_schema",
               "type": "doc"
             },
@@ -666,38 +674,12 @@
           ]
         },
         {
-          "type": "category",
-          "label": "Real-Time Updater",
-          "collapsed": true,
-          "items": [
-            {
-              "id": "fast_data/configuration/realtime_updater/common",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/configuration/realtime_updater/low_code",
-              "type": "doc"
-            }
-          ]
+          "id": "fast_data/configuration/realtime_updater",
+          "type": "doc"
         },
         {
-          "type": "category",
-          "label": "Single View Creator",
-          "collapsed": true,
-          "items": [
-            {
-              "id": "fast_data/configuration/single_view_creator/common",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/configuration/single_view_creator/low_code",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/configuration/single_view_creator/manual",
-              "type": "doc"
-            }
-          ]
+          "id": "fast_data/configuration/single_view_creator",
+          "type": "doc"
         },
         {
           "id": "fast_data/configuration/single_view_trigger_generator",

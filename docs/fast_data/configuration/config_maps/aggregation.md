@@ -1,86 +1,93 @@
 ---
-id: low_code
-title: Single View Creator Low Code configuration
-sidebar_label: Low Code
+id: aggregation
+title: Aggregation Configuration
+sidebar_label: Aggregation
 ---
 
-Low Code Single View Creator is available since version `3.3.0`
+The Aggregation configuration is used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](/fast_data/configuration/single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
 
-Throughout this section, we will make examples based on the `food-delivery` use case and the `sv_customer` Single View. A complete ER schema can be found in the dedicated [section](/fast_data/configuration/config_maps/erSchema.md#real-use-case-example).
+The aggregation is mounted as a config map of the Single View Creator Service and might be composed by:
+- a manual configuration, composed of `pipeline.js` and `mapper.js` files inside the _configuration_ config map (automatically created adding the `Single View Creator` plugin from the Mia Marketplace)
+- a low-code configuration, composed of the `aggregation.json` file inside the _aggregation_ config map (automatically created adding the `Single View Creator - Low Code` plugin from the Mia Marketplace).
 
-Here you can see a visual representation of the ER schema.
+:::tip
+We strongly recommend to use the `Single View Creator - Low Code` to simplify your experience building the aggregation configuration. We also have a a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx) that you can refer to.
+:::
 
-![visual representation of the ER schema](../../img/food_delivery_ER_schema.png)
+## Manual configuration of aggregation 
 
+We advice to use the manual aggregation for particular cases that might not be achieved with the `Single View Creator - Low Code` which include a better support and takes care of performances and edge cases.
 
-## Single View Key
+But in case is needed to build the aggregation logic, you'll need two files: the `pipeline.js` and the `mapper.js`. The user can review and update these files from the _Microservices_ section, selecting the Single View Creator, in the _ConfigMaps & Secrets_ section.
 
-The configuration contains the `singleViewKey.json` file. This file creates a mapping between the Single View primary field, which is its unique id, and the identifier field of the Projection. 
+:::info
+When selecting the `Single View Creator` plugin from the Mia Marketplace, these two files will automatically be created and already included in the service Config Map with a default content which should be changed for having a functional service.
+:::
 
-An example:
+### Pipeline
 
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "sv_id": "ID_USER"
+It takes as input a MongoDB instance and returns a function. This function takes as input the Projection change identifier and returns an array.
+
+If it is empty, a delete operation will be executed on the Single View identified by the `singleViewKeyGenerator` result.
+If it is not empty, an upsert operation will be executed on the Single View identified by the `singleViewKeyGenerator` result.
+
+:::note
+If the pipeline returns an array with more than one element, only the first element will be used for the upsert.
+:::
+
+```js title="pipeline.js"
+module.exports = (mongoDb) => {
+  return async(logger, projectionChangeIdentifier) => {
+
+    const uniqueId = projectionChangeIdentifier.UNIQUE_ID
+    const MY_PROJECTION = 'projection-name'
+
+    // retrieve data from all projections you need for your single view
+    const projectionCollection = mongoDb.collection(MY_PROJECTION)
+    const projectionDataById = await projectionCollection.findOne({
+        UNIQUE_ID: uniqueId,
+        __STATE__: 'PUBLIC'
+    })
+
+    if (!projectionDataById) {
+      // it's expected to be a delete
+      logger.debug({ UNIQUE_ID: uniqueId }, 'single view public data not found')
+      return []
+    }
+    const singleViewData = projectionDataById
+    logger.debug({ singleViewData }, 'single view retrieved data')
+
+    return [
+      singleViewData,
+    ]
   }
 }
 ```
 
-where:
+### Mapper
 
-- `sv_id` is the name of the Single View primary key 
-- `ID_USER` is the identifier field name of the Projection
+It is a function that takes as argument the first element (if defined) of the result of the pipeline, and returns an object containing the value updated for the Single View. The object returned should match the schema of the Single View.
 
-## ER Schema
+```js title="mapper.js"
+module.exports = (logger, singleViewData) => {
+  const { UNIQUE_ID, NAME } = singleViewData
 
-For the general rules and guidelines of the ER Schema, check the [dedicated page](/fast_data/configuration/config_maps/erSchema.md).
-Let's take an example from the `food-delivery` use case.
-
-```json
-{
-  ....,
-  "pr_reviews": {
-    "outgoing": {
-      "pr_registry": {
-        "conditions": {
-          "rev_to_reg": {
-            "condition": {
-              "ID_USER": "ID_USER"
-            }
-          }
-        }
-      },
-      "pr_dishes": {
-        "conditions": {
-          "rev_to_dish": {
-            "condition": {
-              "id_dish": "ID_DISH"
-            }
-          }
-        }
-      }
-    }
+  return {
+    myId: UNIQUE_ID,
+    name: NAME,
   }
+}
 ```
 
-This means the `pr_reviews` Projection is connected to:
+Renaming and repositioning of the fields can be applied inside the mapper.
 
-* `pr_registry` through the `rev_to_reg` condition, which means the documents are linked if the registry `ID_USER` field is the same as the reviews `ID_USER` field;
-* `pr_dishes` through the `rev_to_dish` condition, which means the documents are linked if the dish `id_dish` field is the same as the reviews `ID_DISH` field;
+:::note
+We suggest implementing all the aggregation logic that can be reused for all the clients that will read the Single Views inside the mapper, they should be as generic as possible.
+It is a good practice to have some calculation and aggregation logic inside the Single View Creator as far as it is reusable.
+If you have to apply some custom logic try to do it inside an API Adapter specific for the client.
+:::
 
-### Selecting an ER Schema (version `10.6.0` and above)
-
-From version `10.6.0` of the Console, your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop down menu where you can select one of the ER Schemas already configured in the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
-
-![ER Schema selection with No Code](../../img/single-view-detail-selection-er-schema.png)
-
-After selecting an ER Schema, the next configuration save will generate the Config Map of the ER Schema JSON taken from the one configured in the canvas. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
-
-## Aggregation
-
-This configuration indicates what are the dependencies of the Single View and how to map them to its fields.
+## Configuration with JSON file
 
 An example of a minimal configuration is as follows:
 
@@ -103,15 +110,7 @@ An example of a minimal configuration is as follows:
 }
 ```
 
-The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View.
-
-The Aggregation Configuration can be automatically generated started from an already existing ER Schema, clicking on the dedicated button as you can see in the picture below. It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is the Projection that contains the identifier that is used as identifier for the Single View.
-
-![automatic generation of Aggregation](../../img/aggregation-automatic-generation.png)
-
-:::warning
-The generated file will have a basic structure but it may not contain all the relationships needed or the desired structure, so please modify it to match the desired needs before using it.
-:::
+The `SV_CONFIG` field is mandatory, as it is the starting point of the configuration of the Single View. It includes the needed information to map fields of the Single View (included the `mapping` object) and which [projections](/fast_data/configuration/projections.md) will be used to retrieve those values (included the `dependencies` object).
 
 ### Dependencies
 
@@ -151,7 +150,6 @@ The following parameters will be passed to each function:
 Let's see an example of custom function.
 
 ```js
-
 async function myOwnCustomLogic (value) {
   // some custom logic
 }
@@ -531,9 +529,9 @@ module.exports = async function(logger, clientMongo) {
 
 The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
 
-For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object  with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
+For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
 
-#### Null value inside conditional expression
+#### `null` values inside conditional expressions
 
 From version `3.10.0` of the Single View Creator, logic expressions now accept `null` as a value:
 
@@ -655,202 +653,136 @@ Here's a working example:
 }
 ```
 
-## Example
+## Use the No Code
 
-Let's take a look at a simplified version of the `sv_customer` configuration in the `food-delivery` use case:
+From version `11.3.0` of the Console, your project might have enabled the possibility to configure ER Schemas with the No Code feature. The new feature will be accessible in the `Single Views` section. Selecting the Single View and the _Single View Creator_ associated, the configuration page with the list of config maps will include the No Code Aggregation by selecting the `Aggregation` tab.
 
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "SV_CONFIG": {
-      "dependencies": {
-        "pr_registry": {
-          "type": "projection",
-          "on": "_identifier"
-        },
-        "ALLERGENS": {
-          "type": "config"
-        },
-        ...
-      },
-      "mapping": {
-        "idCustomer": "pr_registry.ID_USER",
-        "taxCode": "pr_registry.TAX_CODE",
-        "name": "pr_registry.NAME",
-        "surname": "pr_registry.SURNAME",
-        "email": "pr_registry.EMAIL",
-        "allergens": "ALLERGENS",
-        ...
-      }
-    },
-    "ALLERGENS": {
-      "joinDependency": "pr_allergens_registry",
-      "dependencies": {
-        "pr_allergens_registry": {
-          "type": "projection",
-          "on": "reg_to_aller_reg"
-        },
-        "pr_allergens": {
-          "type": "projection",
-          "on": "aller_reg_to_aller"
-        }
-      },
-      "mapping": {
-        "id": "pr_allergens_registry.ID_ALLERGEN",
-        "comments": "pr_allergens_registry.COMMENTS",
-        "description": "pr_allergens.description"
-      }
-    },
-    ...
-  }
-}
-```
+![Example of an Aggregation configured with the No Code](../../img/no_code_aggregation/aggregation_example.png)
 
-In this configuration, the user is matched with its allergies. To do so, two dependencies are used:
+The new page allows creating an Aggregation from scratch with a clear visual of the Single View Data Model and with a simplified selection of fields based on the projection. It also includes a simpler way to add and manage dependencies and Join Dependencies, simplifying the configuration of the Single View Creator.
 
-* `pr_registry` of type `projection`
-* `ALLERGENS` of type `CONFIG`
+:::info
+Before starting to configure the Aggregation with the No Code, [a valid ER Schema must be selected](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code) for the current Single View Creator.
 
-The `pr_registry` dependency is used in the mapping to retrieve the relevant user information for the user with the matching identifier.
+Otherwise, a placeholder will remind you the need of an ER Schema, blocking the access to the Aggregation configuration page.
+:::
 
-The `ALLERGENS` dependency is mapped to an `allergens` field, and its value is defined in the `ALLERGENS` configuration, right below the `SV_CONFIG` object. Inside this configuration, we find some `projection` dependencies based on configurations described in the ER schema.
-To understand how the mapping happens, it is important to take a look at the `joinDependency` property of the configuration, which tells us that the `pr_allergens_registry` table is the one used as base for finding the other documents.
+### Selection of the Base Projection
 
-In this particular case, it means that the Single View Creator will first find all the documents in `pr_allergens_registry` (the `joinDependency`) which match the `reg_to_aller_reg` condition. Here, it means that we are finding the allergen registry entries which are related to a specific user, and we expect to possibly find more than one of these.
-Afterwards, for each of the retrieved entries, the mapping will be performed. This means that the mappings that have a config as right-side value will be mapped to an **array** of the resolved dependencies, if the dependency `joinDependency` field is set.
+If you don't have an _aggregation_ configuration file yet, or in case it has not been modified after creating the Single View Creator, opening the `Aggregation` tab will show a placeholder that informs that a _Base Projection_ must be selected before starting configuring the aggregation.
 
-To make things more practical, let's say we have this data:
+![Placeholder to inform the user that a Base Projection must be selected](../../img/no_code_aggregation/base_projection.png)
 
-### pr_registry
+The select field will show all the projections set in the selected ER Schema. The selection will represent the first dependency created in the aggregation that will be linked with the `identifier` object of the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change).
 
-```json
-{
-  "ID_USER": "1",
-  "TAX_CODE": "123",
-  "NAME": "John",
-  "SURNAME": "Doe",
-  "EMAIL": "john.doe@mail.com",
-},
-{
-  "ID_USER": "2",
-  "TAX_CODE": "123",
-  "NAME": "Jane",
-  "SURNAME": "Doe",
-  "EMAIL": "jane.doe@mail.com",
-},
-...
-```
+### How to map fields
 
-### pr_allergens_registry
+The page will now show the list of fields, as defined in the Single View Data Model page. You can even navigate in the nested structure of fields between fields of type `object` or `array of objects` to see the child fields and manage them as well.
 
-```json
-{
-    "ID_ALLERGEN": "eggs",
-    "ID_USER": "1",
-    "COMMENTS": "only allergic to raw eggs"
-},
-{
-    "ID_ALLERGEN": "fish",
-    "ID_USER": "1",
-    "COMMENTS": "allergic to all fish"
-},
-...
-```
+Clicking on a field will open a drawer to the right side of the panel that allows you to map this field, by allowing the selection of an existing dependency and a field.
 
-### pr_allergens
+![Detail of a field not mapped](../../img/no_code_aggregation/field_not_mapped.png)
 
-```json
-{
-    "id_allergen": "eggs",
-    "description": "insert description"
-},
-{
-    "id_allergen": "fish",
-    "description": "insert description"
-},
-...
-```
+The _Dependency_ select field will include a list of existing dependencies (on top) and all the other dependencies that can be connected (based on the conditions included inside the ER Schema). 
 
-### Update logic
+Selecting a dependency will update the state of the _Set Path_ button and its label: if the dependency already exists, the label will inform the user that a "Path is set", indicating that the Aggregation already includes all the necessary dependencies (from the base projection - thus that dependency linked to the Projection Changes document via the `_identifier` condition) and it's already possible to select the field to complete the mapping: the _Field_  select field will now be available and the list will contain all the fields that can be used for the mapping.
 
-Now, if the eggs description changes, we want the Single View to update.
-When the Single View Creator is notified of the change, it will be provided the `USER_ID` of the user that needs changes, in this case `1`.
-With that data, it will resolve the `pr_registry` dependency and map all the relative fields.
-After that, it will need to resolve the `ALLERGENS` dependency. To do that, it will read the `joinDependency`, and it being `pr_allergens_registry` it will look at the `on` property of the dependency named `pr_allergens_registry`, which is `reg_to_aller_reg`.
-It will then get all the `allergens_registry` entries matching the condition (which is the one with `ID_USER` equal to `1`, the id of the Single View to update).
-At this point, we have two documents: eggs, and fish. For each of those documents, the mapping will be applied, and the resulting Single View will have its `allergens` field mapped to an array containing those two values.
+The selection will automatically create the mapping. This can be noted also by the fact that all the warnings next to the name of the field will disappear.
 
+### Automatic generation of dependencies via Path
 
-## Read from multiple database server
+In case the value selected in the _Dependency_ select field is a dependency that does not exist yet, the "Path not set" text will still be there, and the `Set Path` button can be clicked to open a modal that will introduce the user to a new way to create dependencies.
 
-In order to read data from multiple databases you need to leverage on custom function from the mapping configuration.  
-First of all you need to create a config map and we suggest to create at least two files: one for the database connection and the others for custom functions.  
+![Selection of the path](../../img/no_code_aggregation/path_selection.png)
 
-The connection file could be like the following:
+The modal will include all the different paths to create all the needed dependencies to proceed with the mapping. Each path will represent a step composed of different projections connected via ER Schema `one-on-one` conditions. 
 
-```javascript
-// secondDB.js
-const { MongoClient } = require('mongodb');
+In the example above, there are more ways to reach from _pr_registry_ to _pr_dishes_, and it will be possible to select the path needed for the mapping. The modal also includes a canvas to the left side, similar to the ER Schema canvas, that shows the currently selected modal to help the user to visualize the path and make the correct choice.
 
-const url = '{{MONGODB_URL_2}}';
-const client = new MongoClient(url);
+Click on `Next` will move to the next step of the modal where the user will be prompted to select the condition for each step of the path.
 
-let connected = false
+![Condition choices in selected path](../../img/no_code_aggregation/condition_selection_in_path.png)
 
-module.exports = async function (){
-    if (!connected) {
-        await client.connect();
-        connected = true
-    }
-    return client
-}
-```
+After selecting a condition for each step, a click on the `Save` button will automatically create a dependency for each step of the selected path. The mapping can continue since the _Field_ select will be enabled and the value can be selected.
 
-The above code uses the database driver and exports a function to retrieve the connected client.  
-This module works like a singleton, indeed the client is created once and the state, e.g. the `connected` variable, lives for the entire duration of the Node.js process (remember that `require` a module is always evaluated once by Node.js).  
-Because this is a config map, the `{{MONGODB_URL_2}}` will be interpolated at deploy time. Remember to set it up in the environment variables section.
+### Manage the existing dependencies
 
+The _Set Path_ modal is not the only way to add new dependencies. These can be included manually via the _Edit dependencies_ button at the bottom of the page, followed by the number of dependencies already set. This button will open a different modal that will show all the existing dependencies, giving the possibility to add or delete some.
 
-Then in a custom function file you can retrieve the connected client and use it for reading data:
+![Dependency Editor](../../img/no_code_aggregation/dependency_editor.png)
 
-```javascript
-// fieldFromSecondDB.js
-const getClient = require('./secondDB.js')
+A click on the button `+ Add dependency` will change the content of the modal to a form that will allow the user to select the starting projection, the target projection, the condition that connects said projection and - finally - a name to give to said dependency, in case you want to create [an alias](#using-the-same-projection-as-a-dependency-multiple-times-under-different-conditions).
 
-module.exports = async function (logger, db, dependenciesMap){
-    const client = await getClient()
-    return client.db().collection('collection').findOne();
-}
-```
+![Form to add a new dependency](../../img/no_code_aggregation/dependency_editor_form.png)
 
-Finally you can use the custom function in the mapping configuration:
+:::info
+All those fields might be automatically populated in case there's only one option available.
+:::
 
-```json
-{
-   "version":"1.1.0",
-   "config":{
-      "SV_CONFIG":{
-         "dependencies":{
-            "PEOPLE":{
-               "type":"projection",
-               "on":"_identifier"
-            },
-            "MARRIAGE":{
-               "type":"projection",
-               "on":"PEOPLE_TO_MARRIAGE"
-            },
-            "PEOPLE":{
-               "type":"projection",
-               "on":"MARRIAGE_b_TO_PEOPLE"
-            }
-         },
-         "mapping":{
-            "name":"PEOPLE.name",
-            "marriedWith":"PEOPLE.name",
-            "fieldFromSecondDB":"__fromFile__[fieldFromSecondDB]"
-         }
-      }
-   }
-}
-```
+After selecting all the fields, a click to save will add the dependency. On the other side, a click on the trash button next to each dependency will remove that dependency.
+
+A click on the `Save`` button is required to confirm the modifications, adding the created dependencies and removing the deleted ones.
+
+:::warning
+Removing a dependency will remove also its references in the mapping (if there are any)
+:::
+
+### Create a Join Dependency with the No Code
+
+In case it's necessary to map fields inside an array of objects, a new configuration object inside the `aggregation.json` must be created, with new dependencies starting from a [Join Dependency](#join-dependency). In the No Code Aggregation, if you open an array of objects, another _Edit dependencies_ button will show up at the bottom of the section including the fields of said array of objects. In case the Join Dependency has not been set yet, the button will include a _(0)_ to signal that there are no dependencies set.
+
+When clicking the button, the already mentioned modal will appear but with a placeholder to invite the user to create the Join Dependency.
+
+![A placeholder is shown in case a join Dependency must be created](../../img/no_code_aggregation/join_dependency_placeholder.png)
+
+A click on the button `Add dependency` will open the same form used to create regular dependencies, but with the important difference to have only starting projections included in the configuration of the parent field and to have only _One To Many_ conditions, necessary to map the array of objects.
+
+Once the selection is completed, the modal will remain open to allow the user to add more dependencies that might be used to map the fields inside the array of objects.
+
+### Advanced Mode
+
+On the bottom of the page, there's a switch that will change the `Aggregation` view to its _Advanced Mode_. This is will show the `aggregation.json` file and additional custom function files that the user might want to include to use the advanced configuration of the Aggregation.
+
+In fact, with the No Code Aggregation, it will not be possible to include the [advanced options](#advanced-options) aforementioned: this has to be included in the Advanced Mode.
+
+![Advanced Mode of the No Code Aggregation](../../img/no_code_aggregation/advanced_mode.png)
+
+In this area, you can review the aggregation in its code format, and it's possible even to update the content inside, and to add or delete some parts of the configuration. Any update via Advanced Mode will be instantly reflected when switching back to the No Code.
+
+Despite this, it is possible to use the No Code Aggregation even if one or more fields have been mapped with one of the possible advanced options (such as the usage of a custom function from an external file, or a conditional value). In this case, the user can open the drawer related to the field, but it will be informed that an advanced configuration exists and the only way to make any change or review it is via the advanced mode.
+
+![Advanced Mode with errors](../../img/no_code_aggregation/advanced_mode_with_errors.png)
+
+Also, the list of dependencies available via the _Edit dependencies_ button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expressions](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
+
+### Error and Warning management
+
+The No Code Aggregation will try to catch any error existing, especially on pre-existing `aggregation.json` which might have an invalid structure or the JSON file is invalid.
+
+In this case, the Advanced Mode will automatically be active, and it will not be possible to move to the No Code before to address these errors.
+
+![Wrong version in the Advanced Mode](../../img/no_code_aggregation/advanced-more-with-errors.png)
+
+Moreover, the No Code Aggregation includes some warnings related to configurations that might not work correctly when running the Microservices and/or might lead to unexpected results.
+
+One of those warnings will be shown next to the field name, in case the field is not mapped, or an error icon in case the mapping is not valid.
+
+![A field with a wrong mapping](../../img/no_code_aggregation/field_with_wrong_mapping.png)
+
+Also, the drawer to the right side will inform you if the dependency or the field is not valid. Anyway, clicking on the field allows the selection of a valid value and proceed with the configuration.
+
+![Field mapping configuration with an non-existing field selected](../../img/no_code_aggregation/mapping_drawer_with_errors.png)
+
+Errors in configured dependencies are visible inside the modal accessible via the _Edit dependencies_ button: in this case, the user will be informed if there are dependencies related to missing projections, or dependencies that are not reachable because the path is incomplete.
+
+![Non valid dependencies](../../img/no_code_aggregation/dependency_editor_with_errors.png)
+
+In this case, it is highly suggested to remove the non-valid projections and re-add them (manually with the [Set Path feature](#automatic-generation-of-dependencies-via-path)).
+
+### Reset the Aggregation
+
+It is possible to reset the Aggregation and configure it from scratch from the _Settings_ tab, in case of mistakes in selecting the base Projection or using the ER Schema. In this tab, several general options regarding the Single View Creator are included and the first card, named _General_ shows the selected ER Schema and the selected Aggregation.
+
+![General card that includes information on the selected ER Schema and Base Projection](../../img/no_code_aggregation/general_card.png)
+
+A click on the `Edit` button will open a modal that informs the user of the risks of losing the configured Aggregation before allowing the selection of a new ER Schema and/or a new base Projection. A change in one of the two values will reset the Aggregation.
