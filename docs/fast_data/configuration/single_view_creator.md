@@ -4,9 +4,6 @@ title: Single View Creator Configuration
 sidebar_label: Single View Creator
 ---
 
-<!-- TODO: Merge low-code and manual information inside here, remove duplicates to be delegated to the config-maps pages -->
-<!-- TODO: This should become a stand-alone page, not included in a sub-menu -->
-
 # Single View Creator concepts
 
 The Single View Creator is the service that keeps the Single View updated with data retrieved from Projections. 

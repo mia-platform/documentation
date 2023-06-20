@@ -4,9 +4,6 @@ title: Real-Time Updater Configuration
 sidebar_label: Real Time Updater
 ---
 
-<!-- TODO: Merge low-code information inside here, remove duplicates to be delegated to the config-maps pages -->
-<!-- TODO: This should become a stand-alone page, not included in a sub-menu -->
-
 Real-Time Updater is the service in charge of keeping up-to-date the projections with the data sent by the connected system.   
 Optionally, the service can generate several events so that your services can consume these events and react when projections are updated. 
 
