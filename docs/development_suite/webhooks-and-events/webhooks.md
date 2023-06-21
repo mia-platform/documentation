@@ -1,8 +1,7 @@
 ---
-id: overview
+id: webhooks
 title: Manage Webhooks
 sidebar_label: Overview
-slug: "/development_suite/webhooks/overview"
 ---
 
 Webhooks allow you to build or set up integrations that subscribe to certain Console events. 
@@ -22,7 +21,7 @@ More specifically, a user can add, edit, and delete a webhook for a company. To 
 By clicking on "Webhooks" you will be redirected to the related section, in which (assuming you already have added some webhooks) you can see a table containing some information about the webhooks:
 
 * **Target URL**: the HTTP URL that will be called when the event is triggered;
-* **Events**: the name of the events the webhook should listen to. Check them out [here](/development_suite/webhooks/events.mdx).
+* **Events**: the name of the events the webhook should listen to. Check them out [here](/development_suite/webhooks-and-events/events.mdx).
 
 You can filter table data by events, add a webhook, or edit/delete a specific webhook using the related button associated with its table row.
 
