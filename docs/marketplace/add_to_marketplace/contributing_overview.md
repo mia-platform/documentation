@@ -10,7 +10,7 @@ In this section, we dive into the process of creating a new component for the Ma
 Marketplace items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to add your Marketplace items for you.
 :::
 
-## Public and private Marketplace
+## Public and Private Marketplace
 
 Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
