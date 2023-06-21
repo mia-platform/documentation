@@ -450,14 +450,14 @@
     {
       "collapsed": true,
       "type": "category",
-      "label": "Webhooks and Events",
+      "label": "Manage Webhooks",
+      "link": {
+        "type": "doc",
+        "id": "development_suite/webhooks/overview"
+      },
       "items": [
         {
-          "id": "development_suite/webhooks-and-events/webhooks",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/webhooks-and-events/events",
+          "id": "development_suite/webhooks/events",
           "type": "doc"
         }
       ]
