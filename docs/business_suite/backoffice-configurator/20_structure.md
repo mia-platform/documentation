@@ -60,7 +60,7 @@ For **compose pages**, available fields are:
 - _configurations manager endpoint_ (only if input mode is _external_): endpoint from which the configuration file can
   be fetched;
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
-- _template_ (only if input mode is _external_): a configuration template carrying a pre-defined, pre-arranged set of components.
+- _template_ (only if input mode is _external_): a [configuration template](./30_compose-pages.md#templates) carrying a pre-defined, pre-arranged set of components.
 
 ![Page compose options](img/structure_page-compose-options.png)
 

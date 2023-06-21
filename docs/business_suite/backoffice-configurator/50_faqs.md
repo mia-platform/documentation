@@ -150,3 +150,35 @@ This can be done in the _Headers_ section of the _Webserver Configuration_ tab o
 the [full documentation](https://micro-lc.io/add-ons/backend/middleware/#headers)). When starting from an application,
 some useful links are already in place, but you can always add more to cover the specific static resources used by your
 Backoffice implementation.
+
+### How can I use my own web-components?
+
+The first step is to properly build, bundle, and serve your own web-components library. You can read the section dedicated
+to [external components](./60_external-components/10_overview.md) to cover the ins and outs of the process with
+particular attention to the [bundling section](./60_external-components/30_bundling.md).
+
+Runtime-wise, micro-lc has no limitations regarding web-components sources, as long as they can be correctly loaded by the
+application (read more about the different types of [sourcing](./60_external-components/10_overview.md#sourcing)). To use
+a web-components library in the layout or in a compose page you just need to declare it in the configuration
+[sources](https://micro-lc.io/docs/guides/applications/compose#plugin-configuration):
+
+```json
+{
+  "content": {
+    "tag": "my-button"
+  },
+  "sources": [
+    "https://my-domain/my-library/my-entrypoint.js"
+  ]
+}
+```
+
+:::tip
+In the Configurator you can edit sources from the _Advanced_ tabs.
+:::
+
+The Configurator, on the other hand, may have some troubles showing your custom components in the preview. For example,
+there may be CORS issues or authentication issues. To fix them you may need to adjust how your components are
+[served](./60_external-components/10_overview.md#sourcing), or you can rely on the Configurator
+[Service Worker](./40_configurator-settings.md#source-maps) to reverse proxy your sources to something that can be loaded
+by the preview.
