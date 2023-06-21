@@ -93,7 +93,7 @@ Each property described in the following paragraphs regarding the microservices 
 }
 ```
 
-Here below are listed all the properties that must be provided for each microservice component:
+Here below are listed all the properties that you can provide for each microservice component:
   
 - **componentId**: a unique component id that can be used to identify the component and all the services generated from it. Each service created using this component will have the identifier value in the **sourceComponentId** property.
 - **defaultEnvironmentVariables**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
@@ -118,6 +118,8 @@ Here below are listed all the properties that must be provided for each microser
   - `mia-plain`: collects logs but does not parse them
   - `mia-json`: parses JSON logs based on the documented format
   - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
+- **defaultAnnotations**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation).
+- **defaultLabels**: the service labels, which can be used to categorize, group, and select your service.
 - **defaultDocumentationPath**: the APIs documentation path.
 - **defaultResources**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
 
