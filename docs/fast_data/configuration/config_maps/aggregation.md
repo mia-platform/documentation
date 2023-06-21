@@ -751,7 +751,7 @@ In this area, you can review the aggregation in its code format, and it's possib
 
 Despite this, it is possible to use the No Code Aggregation even if one or more fields have been mapped with one of the possible advanced options (such as the usage of a custom function from an external file, or a conditional value). In this case, the user can open the drawer related to the field, but it will be informed that an advanced configuration exists and the only way to make any change or review it is via the advanced mode.
 
-![Advanced Mode with errors](../../img/no_code_aggregation/advanced_mode_with_errors.png)
+![Advanced mapping](../../img/no_code_aggregation/advanced_mapping.png)
 
 Also, the list of dependencies available via the _Edit dependencies_ button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expressions](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
 
