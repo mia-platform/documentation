@@ -8,6 +8,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.15] - 2023-06-19
+
+### Added
+
+- Manifest of component `bk-expanded-filters` includes property `readFromUrl`
+- Manifest of component `bk-file-picker-modal` is available
+
+## [1.3.14] - 2023-06-15
+
+### Added
+
+- `bk-expanded-filters` optionally performs bootstrap, applying filters read from URL
+- new component `bk-file-picker-modal` is available, analogous to `bk-file-picker-drawer`
+- file fields support `dataSchema` and `items` properties, allowing to specify meta-data. Form components interact with `bk-file-picker-drawer` and `bk-file-picker-modal` to edit files with metadata.
+
+### Fixed
+
+- `nginx:1.24.0-alpine` vulnerability fixes in `.docker/Dockerfile`
+- Nested objects/arrays are correctly updated when editing form is spawned through `customActions` property of `bk-table`
+- `disbaleOnAction` property of `bk-button` correctly interacts with `bk-file-client`
+
 ## [1.3.13] - 2023-06-01
 
 ### Fixed
@@ -74,6 +95,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `bk-card` component applies `visualizationOptions` to nested objects
 - `bk-search-bar` and `bk-breadcrumb` correctly update their nesting state on layout change inside `bk-layout-container`
 
+### Added
+
+- new component `bk-file-picker-modal`. `bk-file-picker-modal` and `bk-file-picker-drawer` components allows to attach meta-data to files.
+- form components allows upload files using to open `bk-file-picker-modal` / `bk-file-picker-drawer` component
+
 ## [1.3.7] - 2023-03-23
 
 ### Added
@@ -100,7 +126,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `headers` property is forwarded from `bk-layout-container` into its content
 - `bk-layout` adds injected headers in http-calls
 - locales are correctly loaded on first plugin render
-- actions of type `file-upload` correctly calls error event if http-call fails
+- actions of type `file-upload` call error event if http-call fails
 - actions of type `href` correctly resolve dynamic configurations
 - using `bk-layout-container` does not trigger extra http calls
 - fields are correctly put on focus on `bk-form-modal` wizard mode

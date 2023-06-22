@@ -5,30 +5,124 @@ sidebar_label: Data Manipulation
 ---
 ## bk-file-picker-drawer
 
-drawer containing a drag-and-drop area to handle file uploads/downloads
+drawer containing a drag-and-drop area to handle file uploads/downloads.
 
 ```html
 <bk-file-picker-drawer></bk-file-picker-drawer>
 ```
 
-### Configuration for an array of files
+`bk-file-picker-drawer` listens for the [link-file-to-record](../70_events.md#link-file-to-record) event, which enables the editing of a file object/array within the payload using the specified property name in the event's meta.
 
-To use the `bk-fie-picker-drawer` with an array of file, it is necessary to pass the dataschema as a property in the configuration, otherwise the component will handle only one file at a time.
+When a new file is uploaded, the [standard file management](../40_core_concepts.md#file-management) is initiated through an [upload-file](../70_events.md#upload-file) event.
 
-Example of configuration
+Files are expected to respect [Mia Files Service](../../../runtime_suite/files-service/configuration) interface, that is:
 ```json
-  ...
-  {
-    "type": "element",
-    "tag": "bk-file-picker-drawer",
-    "properties": {
-      "dataSchema": {
-        "$ref": "dataSchema"
+{
+  "_id": {
+    "type": "string"
+  },
+  "name": {
+    "type": "string"
+  },
+  "file": {
+    "type": "string"
+  },
+  "size": {
+    "type": "number"
+  },
+  "location": {
+    "type": "string"
+  }
+}
+```
+
+For instance, a `link-file-to-record` event with the following payload and meta: 
+
+```json
+{
+  "payload": {
+    "name": "Joe",
+    "surename": "Smith",
+    "image": {
+      "_id": "file-id",
+      "name": "fileName.jpg",
+      "file": "file.jpg",
+      "size": 3992,
+      "location": "/v2/files/download/file.jpg"
+    },
+    ...
+  },
+  "meta": {
+    "property": "image"
+  }
+}
+```
+
+will spawn the `bk-file-picker-drawer` component which will allow to interact with the file in the "image" field.
+
+
+### Array of files
+
+To utilize `bk-file-picker-drawer` with an array of files, it is necessary to include the `dataSchema` property in the configuration. Otherwise, the component will only handle one file at a time.
+
+```json
+...
+{
+  "tag": "bk-file-picker-drawer",
+  "properties": {
+    "dataSchema": {
+      "documents": {
+        "type": "array",
+        "format": "file"
+      },
+      ...
+    }
+  }
+},
+...
+```
+
+### Metadata
+
+File fields may themselves have a `dataSchema` or `items` property.
+
+In the case of an edited file field having such properties, the `bk-file-picker-drawer` not only includes the drag-and-drop area but also provides an area to edit the metadata associated with the file field: for file fields of type object, a form is displayed, while for file fields of type array, an accordion of forms is presented.
+
+Only fields of type string are supported for metadata.
+
+```json
+{
+  "image": {
+    "type": "object",
+    "format": "file",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
       }
     }
-  },
-  ...
+  }
+}
 ```
+```json
+{
+  "images": {
+    "type": "array",
+    "format": "file",
+    "items": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+
 
 ### Properties & Attributes
 
@@ -60,6 +154,160 @@ Example of configuration
 ### Bootstrap
 
 None
+
+
+## bk-file-picker-modal
+
+modal containing a drag-and-drop area to handle file uploads/downloads.
+
+```html
+<bk-file-picker-modal></bk-file-picker-modal>
+```
+
+`bk-file-picker-modal` listens for the [link-file-to-record](../70_events.md#link-file-to-record) event, which enables the editing of a file object/array within the payload using the specified property name in the event's meta.
+
+When a new file is uploaded, the [standard file management](../40_core_concepts.md#file-management) is initiated through an [upload-file](../70_events.md#upload-file) event.
+
+Files are expected to respect [Mia Files Service](../../../runtime_suite/files-service/configuration) interface, that is:
+```json
+{
+  "_id": {
+    "type": "string"
+  },
+  "name": {
+    "type": "string"
+  },
+  "file": {
+    "type": "string"
+  },
+  "size": {
+    "type": "number"
+  },
+  "location": {
+    "type": "string"
+  }
+}
+```
+
+For instance, a `link-file-to-record` event with the following payload and meta: 
+
+```json
+{
+  "payload": {
+    "name": "Joe",
+    "surename": "Smith",
+    "image": {
+      "_id": "file-id",
+      "name": "fileName.jpg",
+      "file": "file.jpg",
+      "size": 3992,
+      "location": "/v2/files/download/file.jpg"
+    },
+    ...
+  },
+  "meta": {
+    "property": "image"
+  }
+}
+```
+
+will spawn the `bk-file-picker-modal` component which will allow to interact with the file in the "image" field.
+
+
+### Array of files
+
+To utilize `bk-file-picker-modal` with an array of files, it is necessary to include the `dataSchema` property in the configuration. Otherwise, the component will only handle one file at a time.
+
+```json
+...
+{
+  "tag": "bk-file-picker-modal",
+  "properties": {
+    "dataSchema": {
+      "documents": {
+        "type": "array",
+        "format": "file"
+      },
+      ...
+    }
+  }
+},
+...
+```
+
+### Metadata
+
+File fields may themselves have a `dataSchema` or `items` property.
+
+In the case of an edited file field having such properties, the `bk-file-picker-modal` not only includes the drag-and-drop area but also provides an area to edit the metadata associated with the file field: for file fields of type object, a form is displayed, while for file fields of type array, an accordion of forms is presented.
+
+Only fields of type string are supported for metadata.
+
+```json
+{
+  "image": {
+    "type": "object",
+    "format": "file",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+```json
+{
+  "images": {
+    "type": "array",
+    "format": "file",
+    "items": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
+|`mask`|`mask`|boolean|true|whether to mask or not the modal |
+|`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
+|`width`|`width`|number|500|width occupied by the component |
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[using-form-container](../events#using-form-container)|toggles the modal into `visible` mode only if the id payload property matches this modal| - | - |
+|[loading-data](../events#loading-data)|allows disabling callToAction| - | - |
+|[link-file-to-record](../events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|[update-data-with-file](../events#update-data-with-file)|updates data by uploading a new file and patching the dataset with its storage location metadata|
+|[update-data](../events#update-data)|unlinks file on file delete|
+
+### Bootstrap
+
+None
+
+
 
 ## bk-footer
 
@@ -105,8 +353,6 @@ Generic form to edit or create items described by the `dataSchema`
 ```html
 <bk-form></bk-form>
 ```
-
-
 
 ### Properties & Attributes
 
@@ -167,7 +413,7 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 ```html
 <bk-form-card></bk-form-card>
 ```
-![form-drawer](../img/bk-form-card.png)
+![form-card](../img/bk-form-card.png)
 
 ### Properties & Attributes
 
@@ -234,7 +480,6 @@ Example of configuration for form-drawer component in insert/edit mode:
 
 ```json
 {
-  "type": "element",
   "tag": "bk-form-drawer",
   "properties": {
     "dataSchema": {
@@ -355,7 +600,7 @@ Such labels can be scoped based on whether the form is in [edit](#edit-1) or [cr
 
 ```json
 {
-  "tag": "bk-form-modal",
+  "tag": "bk-form-drawer",
   "properties": {
     ...
     "customLabels": {
@@ -403,7 +648,7 @@ Such labels can be scoped based on whether the form is in [edit](#edit-1) or [cr
 Not all keys need to be specified, as `customLabels` is merged with default labels. For instance, the following is a valid configuration of `customLabels`:
 ```json
 {
-  "tag": "bk-form-modal",
+  "tag": "bk-form-drawer",
   "properties": {
     ...
     "customLabels": {
@@ -423,6 +668,13 @@ Not all keys need to be specified, as `customLabels` is merged with default labe
   }
 }
 ```
+
+### File fields with meta-data
+
+Fields that are of type `object` or `array`, have the format `file`, and include a `dataSchema` or `items` property are displayed within the form.
+In this scenario, `dataSchema` and `items` properties are used to determine the shape of the metadata associated with the file.
+
+These fields are rendered with a link plus a button that triggers components [bk-file-picker-modal](#bk-file-picker-modal) or [bk-file-picker-drawer](#bk-file-picker-drawer) to spawn, if included in the plugin configuration. Clicking on these buttons opens up the respective components, enabling interaction with the uploaded files and allowing for the modification of their metadata.
 
 ### Properties & Attributes
 
@@ -495,7 +747,6 @@ Example of configuration for form-modal component in insert/edit mode:
 
 ```json
 {
-  "type": "element",
   "tag": "bk-form-modal",
   "properties": {
     "dataSchema": {
@@ -524,7 +775,6 @@ Example of configuration for form-modal component in external mode:
 
 ```json
 {
-  "type": "element",
   "tag": "bk-form-modal",
   "properties": {
     "dataSchema": {
@@ -811,6 +1061,14 @@ Not all keys need to be specified, as `customLabels` is merged with default labe
   }
 }
 ```
+
+### File fields with meta-data
+
+Fields that are of type `object` or `array`, have the format `file`, and include a `dataSchema` or `items` property are displayed within the form.
+In this scenario, `dataSchema` and `items` properties are used to determine the shape of the metadata associated with the file.
+
+These fields are rendered with a link plus a button that triggers components [bk-file-picker-modal](#bk-file-picker-modal) or [bk-file-picker-drawer](#bk-file-picker-drawer) to spawn, if included in the plugin configuration. Clicking on these buttons opens up the respective components, enabling interaction with the uploaded files and allowing for the modification of their metadata.
+
 
 ### Properties & Attributes
 
