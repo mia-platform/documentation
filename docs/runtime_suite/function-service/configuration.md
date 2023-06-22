@@ -109,7 +109,7 @@ async function handler(req, res) {
 }
 
 module.exports = {
-    method: 'POST',
+    method: 'GET',
     path: '/hello-world',
     name: 'Hello World',
     handler,
