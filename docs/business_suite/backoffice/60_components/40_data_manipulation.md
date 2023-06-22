@@ -15,7 +15,7 @@ drawer containing a drag-and-drop area to handle file uploads/downloads.
 
 When a new file is uploaded, the [standard file management](../40_core_concepts.md#file-management) is initiated through an [upload-file](../70_events.md#upload-file) event.
 
-Files are expected to respect [Mia Files Service](../../runtime_suite/files-service/configuration) interface, that is:
+Files are expected to respect [Mia Files Service](../../../runtime_suite/files-service/configuration) interface, that is:
 ```json
 {
   "_id": {
@@ -168,7 +168,7 @@ modal containing a drag-and-drop area to handle file uploads/downloads.
 
 When a new file is uploaded, the [standard file management](../40_core_concepts.md#file-management) is initiated through an [upload-file](../70_events.md#upload-file) event.
 
-Files are expected to respect [Mia Files Service](../../runtime_suite/files-service/configuration) interface, that is:
+Files are expected to respect [Mia Files Service](../../../runtime_suite/files-service/configuration) interface, that is:
 ```json
 {
   "_id": {
