@@ -7,8 +7,8 @@ sidebar_label: Overview
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
 :::
 
-The Configurator layout/advanced sections provide tools to visualize [composable pages](./30_compose-pages.md) which are made of webcomponents.
-For instance, the Configurator [main layout](./20_structure.md#layout) is a web page build with webcomponents.
+The Configurator layout/advanced sections provide tools to visualize [composable pages](../30_compose-pages.md) which are made of webcomponents.
+For instance, the Configurator [main layout](../20_structure.md#layout) is a web page build with webcomponents.
 
 Components usually are provided by JavaScript libraries like:
 
@@ -186,7 +186,7 @@ There are different layers of integration for custom webcomponents with the `no-
 section:
 
 1. editing properties using forms and modals
-2. open/show when selected on the [left components list](./20_structure#layout)
+2. open/show when selected on the [left components list](../20_structure#layout)
 3. share properties with other components to avoid code/configuration replication
 
 ### No-Code Properties Editing: `__manifest`
