@@ -189,9 +189,8 @@ The `__mia_configuration` object targets the following use cases:
 7. `priority` ▶️ groups properties in 3 levels inside the Configurator layout section form. Helpful when multiple personas
    are interacting with the configuration by highlighting those properties which are most likely to be tuned.
 8. `attribute` ▶️ instructs the Configurator layout section that the property is mirrored by an HTML attribute (**NOT USED ATM**).
-9.  `schema-hint` ▶️ Configurator layout section knows some often used property schemas and provides [labels](#the-schema-hint-key)
-    to select them instead of writing the whole property JSON schema.
-10. `shared-key` ▶️ Configurator allows to share JSON schema definitions by resolving in-place their [references]().
+9. `schema-hint` ▶️ Configurator layout section knows some often used property schemas and provides [labels](#the-schema-hint-key)
+10. `shared-key` ▶️ Configurator allows to share JSON schema definitions by resolving in-place their [references](#the-shared-key-key).
 11. `enumLabels` ▶️ provides the capability to i18n-ify string enums
 
 Summarizing the `__mia_configuration` property must comply with the following type:
