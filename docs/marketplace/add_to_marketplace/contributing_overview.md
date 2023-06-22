@@ -10,13 +10,13 @@ In this section, we dive into the process of creating a new component for the Ma
 Marketplace items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to add your Marketplace items for you.
 :::
 
-## Public and private Marketplace
+## Public and Internal Company Marketplace
 
-Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
+Mia-Platform public Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
-However, a Company might want to have its own private Marketplace, with private components that must not be shared with everyone else on the Console. 
+However, a Company might want to have its own internal Marketplace, fulfilled also with components that must not be shared with everyone else outside the Company. 
 
-To achieve this, a Company Owner or a Project Administrator can create new private components **from the CMS** by specifying their Company's identifier in the `tenantId` field.
+To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visible only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
 
 Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
