@@ -186,7 +186,7 @@ There are different layers of integration for custom webcomponents with the `no-
 section:
 
 1. editing properties using forms and modals
-2. open/show when selected on the [left components list](../20_structure#layout)
+2. open/show when selected on the [left components list](../20_structure.md#layout)
 3. share properties with other components to avoid code/configuration replication
 
 ### No-Code Properties Editing: `__manifest`
