@@ -30,7 +30,7 @@ The only limitation, left to the user to check, is not to define the same webcom
 This might happen when different composable pages have different versions of the same library. The Configurator will not complain
 but errors might arise when the final website is deployed.
 
-The default configuration of the Configurator section, once the [application](../../runtime_suite_applications/backoffice/overview) is
+The default configuration of the Configurator section, once the [application](../../../runtime_suite_applications/backoffice/overview) is
 added to your Console project, on the branch you're currently working on, is preset to use the components library 
 [@micro-lc/bk-web-components](https://www.jsdelivr.com/package/npm/@micro-lc/bk-web-components), which is well-suited to
 visualize data through tables, cards and galleries.
@@ -95,7 +95,7 @@ not expose endpoints without authentication.
 An API key authentication can be provided by:
 
 1. known headers, like [`Authorization`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)
-2. custom headers, like [`Secret`](../../development_suite/api-console/api-design/api-key#how-to-use-an-api-key) on **Mia-Platform Console**
+2. custom headers, like [`Secret`](../../../development_suite/api-console/api-design/api-key#how-to-use-an-api-key) on **Mia-Platform Console**
 
 The custom headers approach requires special handling since browser issue a preflight call to the
 requested endpoint to validate acceptance of custom headers and the HTTP method (which is `GET` to fetch a resource).
@@ -136,7 +136,7 @@ The authorization service must be instructed to serve resources by including an 
 
 The following actions need to be addressed:
 
-1. from the [design section](../../development_suite/overview-dev-suite#design) or your project,
+1. from the [design section](../../../development_suite/overview-dev-suite#design) or your project,
    issue an API key, by navigating to `API key` → `Add new` → `Generate Random API Key`, create a specific `ClientType`
    for your resource like `custom_components`, then click on `Active` and then `Create`
 
