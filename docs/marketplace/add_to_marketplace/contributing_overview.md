@@ -16,7 +16,7 @@ Mia-Platform public Marketplace is the place where every Company can find most o
 
 However, a Company might want to have its own internal Marketplace, fulfilled also with components that must not be shared with everyone else outside the Company. 
 
-To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visibile only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
+To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visible only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
 
 Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
