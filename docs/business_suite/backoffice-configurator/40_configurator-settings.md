@@ -1,7 +1,7 @@
 ---
 id: configurator-settings
 title: Configurator settings
-sidebar_label: Configurator-settings
+sidebar_label: Configurator settings
 ---
 :::caution
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
