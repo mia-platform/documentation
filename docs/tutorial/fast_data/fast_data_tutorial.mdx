@@ -142,7 +142,7 @@ These are the topics defined in Kafka where we expect to receive messages relate
 
 ### Microservice Realtime Updater Configuration
 
-Now that we have one System of Records with two Projections, we [save the configuration](/tutorial/console/console_handbook.md#save-changes) until now. 
+Now that we have one System of Records with two Projections, we [save the configuration](/tutorial/console/console_handbook.md#save-changes).
 During the save, the Mia-Platform Console will create a new microservice, called _Real-Time Updater_ that will consume the data from the source systems, and that will update the configured Projections. 
 This service will automatically be named _fast-data-delivery-realtime-updater_ and it can be found in the "Microservices" section.
 
@@ -256,7 +256,7 @@ a modal will prompt you to choose a name for your ER Schema (we suggest: _delive
 
 The configuration of the ER Schema with the "No Code" is explained in detail in the [dedicated section](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code), 
 but we include here a quick guide on how to create the ER Schema with the needed relationships:
-- In the right side panel you can see the list of Projections inside the System of Record _delivery_: darg the collections _registry_ and _order_ to the canvas in the middle of the screen.
+- In the right side panel you can see the list of Projections inside the System of Record _delivery_: drag the collections _registry_ and _order_ to the canvas in the middle of the screen.
 - Inside the canvas, draw a line from the dot at the right of the _registry_ Projection to the _order_ Projection: you'll see that the line remains visible with a small "!" icon in the middle, 
 which means that the relationship has been created but the condition inside is empty.
 - the right side panel should show the details of the relationship. From here you'll need to:
@@ -277,7 +277,7 @@ go to the "ConfigMaps & Secret" and select the "er-schema" tab).
 
 #### Projection Changes Schema
 
-The _Projection Changes Schema_ is a ConfigMap that represents the path that goes from one entity to another entity, and it is used to find the Single View key. 
+The _Projection Changes Schema_ is a ConfigMap that represents the path that goes from one entity to another, and it is used to find the Single View key. 
 We will talk about the Single View key in the next section, but remember that the Single View key is the primary key of our Single View, and we need to obtain the Single View key from the updated Projection (or that follows the ER Schema until we reach a projection that contains the Single View key).
 
 The reason why we need to configure this ConfigMap is that, when we will update each Projection, we need to know the Single View keys to update.
@@ -392,7 +392,7 @@ Now we need to configure all the parameters of the microservice, here is an exam
 - **TYPE**: identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update (also here we are going to call it _order-history_).
 
 :::info
-Also the Single View Creator includes more optional parameters that migth be included via Environment Variables. If you need to know more about them, you can [refer to the related documentation section](/fast_data/configuration/single_view_creator.md#environment-variables).
+The Single View Creator includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [refer to the related documentation section](/fast_data/configuration/single_view_creator.md#environment-variables).
 :::
 
 The microservice also needs the following ConfigMaps to work properly:
@@ -404,7 +404,7 @@ But we are going to update these later, inside the Single View page.
 
 ### Single View "order-history"
 
-Inside our Single View, each document is an object that contains the registry information about the user, and the information about the orders associated with the user.
+Inside our Single View, each document is an object that contains the registry information about the user and the information about the orders associated with the user.
 
 We need to open the Single Views page in the Fast Data section of our left menu, then click on the **Create new Single View** button, and we can create a new Single View called "order-history".
 ![Single View](img/19-single-view.png)
