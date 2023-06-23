@@ -1,7 +1,7 @@
 ---
 id: compose-pages
 title: Compose pages
-sidebar_label: Compose pages
+sidebar_label: Compose-pages
 ---
 :::caution
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.

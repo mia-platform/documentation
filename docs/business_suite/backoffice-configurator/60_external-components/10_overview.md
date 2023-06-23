@@ -1,7 +1,7 @@
 ---
 id: overview
-title: External components
-sidebar_label: External components
+title: External Components
+sidebar_label: Overview
 ---
 :::caution
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
