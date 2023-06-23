@@ -486,6 +486,10 @@
           "type": "doc"
         }
       ]
+    },
+    {
+      "id": "development_suite/user-feedback/give-feedback",
+      "type": "doc"
     }
   ],
   "cms": [
