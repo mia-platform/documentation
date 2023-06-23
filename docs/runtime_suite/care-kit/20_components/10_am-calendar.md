@@ -70,6 +70,8 @@ All the action buttons present in the appointment detail modal are performed usi
 
 This mode is compatible with version 2.x  of the appointment manager backend.
 
+It is possible to filter the resource and the events shown by the calendar. The component in "appointment mode" listen to [change-query events](../../../business_suite/backoffice/events#change-query) and applies the filters inside tge change-query event payload to the events and resources displayed by the calendar. Only on the events' properties declared in the `filterProperties` property the filering is applied. The same `filterProperties` property is present inside the `resourceConfig` object and used to declare the resource properties eligible for filtering. 
+
 Here can be found an example <a download target="_blank" href="/docs_files_to_download/care-kit/appointments.json">configuration</a>.
 
 ## Extra features
@@ -90,6 +92,7 @@ In the same dropdown menu is present the time zoom option that allows the user t
 |`calendarEndpoint`| string | false | - | The endpoint used to fetched the events in appointment mode |
 |`date`| string | false | new Date() | The date on which the calendar is on load |
 |`height`| string | false | '75vh' | css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height] |
+|`filterProperties`| string[] | false | [] | List of availabilities' properties on which filters can be applied |
 |`popoverConfig`| [EventBoxPopoverConfig](#eventboxpopoverconfig) | false | - | Object that contains the name of the properties used to populate the popover that appears when an event is hovered |
 |`resourceConfig`| [ResourceConfig](#resourceconfig) | false | - | Object that contains the name of the resource properties used to populate the header containing the resource information and the endpoint from which the resources are fetched|
 |`resourceId`| string | false | resourceId | Provides a unique identifier for each resource in the resources array. Each event should have the same property to be shown in its calendar resource column |
@@ -184,6 +187,7 @@ ResourceConfig = {
   resourcesEndpoint: string
   singleResource: boolean
   currentUser: boolean
+  filterProperties`: string[]
   details: ResourceDetails[]
   delimiter: string
 }
@@ -198,8 +202,9 @@ ResourceDetails = {
 |----------|------|-------------|
 | `resourcesEndpoint` | string | The endpoint from which the resources are fetched. |
 | `singleResource` | boolean | If true the calendar in appointment mode handles only one resource. The `resourceId` of the resource is recovered from the URL through the `urlMask`|
+|`filterProperties`| string[] | List of availabilities' properties on which filters can be applied |
 | `currentUser` | boolean | if true and `singleResource` is also true filters event for the `resourceId` of the current logged user |
-| `details` |  |List of the property inside each resource to be shown in the header and popover. Each detail can be the chian of multiple property divided by a specific delimiter. |
+| `details` |  ResourceDetails[] |List of the property inside each resource to be shown in the header and popover. Each detail can be the chian of multiple property divided by a specific delimiter. |
 | `delimiter` | string |  Character used between details in the popover. |
 | `urlMask` | string | Mask used to recover the `resourceId` from the URL in case `singleResource` is `true`. The key must be the same in the `resourceId` property of the calendar |
 
