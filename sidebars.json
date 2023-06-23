@@ -968,9 +968,13 @@
   ],
   "governance": [
     {
+      "id": "infrastructure/infrastructure_overview",
+      "type": "doc"
+    },
+    {
       "type": "category",
       "collapsed": true,
-      "label": "Paas",
+      "label": "PaaS",
       "items": [
         {
           "id": "paas/overview",
