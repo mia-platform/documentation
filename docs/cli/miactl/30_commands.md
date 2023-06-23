@@ -148,4 +148,4 @@ Available flags for the command:
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired company
-- `--service-account-role`, the company role for the service account
+- `--role`, the company role for the service account
