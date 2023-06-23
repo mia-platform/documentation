@@ -73,6 +73,12 @@ mia-console:
     filesStorageType: "mongodb"
     filesBucketName: "<GRIDFS_COLLECTION_NAME>" # gridFS collection name
     multitinenantNamespace: ""
+    serviceAccountAuthProvider:
+      rsaPrivateKeyId: "PRIVATE KEY ID"
+      rsaPrivateKeyPass: "PRIVATE KEY PASSPHRASE"
+      clientIdSalt: "CLIENT SALT"
+      rsaPrivateKeyBase64: |
+        "BASE64_PrivateKey"
     customServicesImagePullSecrets:
       - "<SERVICE_PULL_SECRET>" # array of image pull secret to pull your custom services
     defaultCoreResources:
@@ -103,13 +109,6 @@ mia-console:
         keyRing: "<KMS_GCP_KEY_RING>"
         keyName: "<KMS_GCP_KEY_NAME>"
         privateKey: "<CRUD_ENCRYPTION_KEY>"
-    clusters: # array with the mandatory parameters for the k8s clusters API connections
-      - name: "<K8S_CLUSTER_NAME_1>" # example1: K8S_NOPROD
-        endpoint: "<K8S_CLUSTER_NAME_ENDPOINT_1>"
-        token: "<K8S_CLUSTER_NAME_TOKEN_1>"
-      - name: "<K8S_CLUSTER_NAME_2>" # example2: K8S_PRODUCTION
-        endpoint: "<K8S_CLUSTER_NAME_ENDPOINT_2>"
-        token: "<K8S_CLUSTER_NAME_TOKEN_2>"
 
   apiGateway:
     deploy:
