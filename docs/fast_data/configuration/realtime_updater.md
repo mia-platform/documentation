@@ -1,10 +1,10 @@
 ---
-id: common
-title: Real-Time Updater Common Configuration
-sidebar_label: Common
+id: realtime_updater
+title: Real-Time Updater Configuration
+sidebar_label: Real Time Updater
 ---
 
-Real-Time Updater is the service in charge of keeping up to date the projections with the data sent by the connected system.   
+Real-Time Updater is the service in charge of keeping up-to-date the projections with the data sent by the connected system.   
 Optionally, the service can generate several events so that your services can consume these events and react when projections are updated. 
 
 For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/realtime_updater.md).   
@@ -31,6 +31,7 @@ Here below, instead, all the configurations the service accepts are explained.
 | CAST_FUNCTIONS_FOLDER | - | defines the path to the cast-functions folder | - |
 | MAP_TABLE_FOLDER | - | defines the path to the map table folder | - |
 | STRATEGIES_FOLDER | - | defines the path to the strategies' folder | - |
+| USE_AUTOMATIC_STRATEGIES | &check; | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Records to automatically update in the service | false | 
 | KAFKA_SASL_MECHANISM | - | defines the authentication mechanism. It can be one of: ```plain```, ```scram-sha-256```, ```scram-sha-512```, ```oauthbearer```. | plain |
 | KAFKA_SASL_OAUTH_BASE_URL | - | In case of ```oauthbearer``` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_PATH | - | In case of ```oauthbearer``` mechanism, it defines the path of the endpoint for fetching the OAuth2 token. | - |
@@ -54,6 +55,20 @@ Here below, instead, all the configurations the service accepts are explained.
 | SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real Time Updater | - |
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
 | USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
+
+### Usage of the Low Code
+
+The Low Code features of the Real Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service Config Maps .
+
+Also, it allows the possibility to fully configure the service with the usage of JSON files, as example for the [ER Schema](#er-schema-configuration) and the [Projection Changes Schema](#projection-changes-schema) 
+
+:::info
+You can quickly convert a System of Records from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up your Fast Data Low Code project properly.
+:::
+
+:::warning
+When you create a new configmap, remember to use the same Mount Path of your environment variables `STRATEGIES_FOLDER`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_FOLDER`
+:::
 
 ## How data is managed on MongoDB
 
@@ -140,7 +155,7 @@ To see the message's structure specification and some examples go to the [Inputs
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages. 
 
-To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the real-time updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
+To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
 
 - **offset**: the offset of the Kafka message
 - **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
@@ -189,6 +204,38 @@ The `kafkaMessage` argument is the Kafka message as received from the `real-time
 The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are of type *string*.
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
+
+### ER schema configuration
+
+The ER Schema, defined with a `erSchema.json` file, defines the relationship between tables and projections. [On the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md), you can find a deep explanation of how ER Schema configuration works.
+
+You can update the ER Schema in the page of the Real-Time Updater, in the _ConfigMaps & Secrets_ page.
+
+:::info
+When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
+```json
+{ 
+  "version": "1.0.0", 
+  "config": { } 
+}
+```
+This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated with this microservice to work properly.
+:::  
+
+::: caution
+When creating a Low Code System of Records, its service will have a link to the `er-schema` config map. If other microservices already had this config map they will share it with the new Real-Time Updater. If you do not make changes to the default config maps of the Real-Time Updater services you will have all of them sharing the same ER Schema. But if you need a different `er-schema` (e.g. you have created a new Real-Time Updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new config map with its unique identifier and create a new `erSchema.json` file in it.
+:::
+
+### Projection Changes Schema
+
+The `projectionChangesSchema.json` config map defines the paths for the strategy to generate the projection changes identifier. Differently from the Manual Configuration, the projection changes configurations are described with a JSON file aimed to reduce the developing effort.
+
+:::caution
+When a new Real-Time Updater is generated, a base `projectionChangesSchema.json` file is generated with the same content of the `erSchema.json` file. Despite this configuration will not throw any error during the deployment, the file must be customized according to the related projections.
+:::
+
+
+For more information please refer to the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) dedicated page.
 
 ### CAST_FUNCTION configurations
 
@@ -322,7 +369,7 @@ To allow the Single View Creator to read from the Projection Changes, the collec
 
 ### Kafka Projection Updates configuration
 
-Whenever the real-time updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
+Whenever the Real-Time Updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
 
 :::info
 This feature has been introduced since version v3.5.0 of the real time updater
@@ -330,7 +377,7 @@ This feature has been introduced since version v3.5.0 of the real time updater
 
 To activate this feature you need to set the following environment variables:
 - `KAFKA_PROJECTION_UPDATES_FOLDER`: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
-- `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the real-time updater should send a message of update every time it writes the projection to Mongo. Default is `false`
+- `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. Default is `false`
 
 :::info
 From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
@@ -353,7 +400,7 @@ So, for example, if you need to setup a [Single View Patch](#single-view-patch) 
 
 ### Primary Key update
 
-Starting from `v7.1.0`, the Real-Time Updater supports the update of a Primary Key. In particular, it detects if received ingestion messages contain an updated Primary Key. In that case, the Real-Time updater automatically handles updating events on the existing records without requiring additional messages.
+Starting from `v7.1.0`, the Real-Time Updater supports the update of a Primary Key. In particular, it detects if received ingestion messages contain an updated Primary Key. In that case, the Real-Time Updater automatically handles updating events on the existing records without requiring additional messages.
 
 When the Real-Time Updater receives a Primary Key update, it triggers two different actions:
 1. the deletion of the old record with the old Primary Key

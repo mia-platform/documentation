@@ -1,7 +1,7 @@
 ---
-id: common
-title: Single View Creator Common Configuration
-sidebar_label: Common
+id: single_view_creator
+title: Single View Creator Configuration
+sidebar_label: Single View Creator
 ---
 
 # Single View Creator concepts
@@ -14,8 +14,8 @@ This service is available as a plugin or as a template:
 We strongly recommend using the plugin. The template is supposed to be used only for advanced use cases where the plugin cannot be used. 
 
 Single View Creator plugin can be used in two modes:
-- [Low Code](/fast_data/configuration/single_view_creator/low_code.md): it allows you to perform aggregation through JSON files without writing any Javascript code. If you need a custom behavior on a piece of aggregation you can still write your own code.
-- [Manual](/fast_data/configuration/single_view_creator/manual.md): it allows you to perform aggregation by writing your own Javascript code.
+- **Low Code**: it allows you to perform aggregation through JSON files without writing any Javascript code. If you need a custom behavior on a piece of aggregation you can still write your own code.
+- **Manual**: it allows you to perform aggregation by writing your own Javascript code.
 
 We recommend using the Low Code mode since it allows you to be faster and safer when aggregating your data. You will just need to think about the data and not the code for doing so.    
 The Manual mode is supposed to be used only for cases where Low Code cannot be used, but this should rarely happen, since it is possible to write custom Javascript functions for specific pieces of aggregation also when using Low Code.
@@ -154,18 +154,52 @@ If you do not want to use Kafka in the Single View Creator, you can just not set
 
 The Single View Key is the Single View Creator part which identifies the Single View document that needs to be updated as consequence of the event that the service has consumed. 
 
-If you are using Low Code, please visit [this section](/fast_data/configuration/single_view_creator/low_code.md#single-view-key), otherwise you can check to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#single-view-key)
+To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/singleViewKey.md).
+
+## ER Schema
+
+The ER Schema defines the relationship between projections. [On the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md), you can find a deep explanation of how ER Schema configuration works and how to configure it.
+
+### Selecting an ER Schema with the No Code
+
+Your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop-down menu where you can select one of the ER Schemas already configured on the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
+
+![ER Schema selection with No Code](../img/single-view-detail-selection-er-schema.png)
+
+After selecting an ER Schema, the next configuration save will generate the Config Map of the ER Schema JSON taken from the one configured in the canvas. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
+
+:::info
+Starting from version `11.3.0`, it is also possible to select the ER Schema from the _Settings_ tab, inside the _General_ card.
+
+Please remember that changing the ER Schema will cause the reset of the [Aggregation configuration](/fast_data/configuration/config_maps/aggregation.md).
+:::
 
 ## Aggregation
 
 The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
 
-If you are using Low Code, please visit [this section](/fast_data/configuration/single_view_creator/low_code.md#aggregation), otherwise you can check to the [manual documentation](/fast_data/configuration/single_view_creator/manual.md#aggregation)
+To have more information on how to configure the Aggregation, please visit the [related section](/fast_data/configuration/config_maps/aggregation.md).
 
 :::note
 Since version `v5.0.0` of the Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a Single View with the `__STATE__` field set from the aggregation will update the Single View to that state (among the other changes).   
 This means, for instance, that if you set the `__STATE__` value to `DRAFT` in the `aggregation.json` in Low Code mode (or in the `pipeline.js` in Manual mode), the Single View updated will have the `__STATE__` field set to `DRAFT`.
 Previously, the `__STATE__` field you returned was ignored, and the Single View would always have the `__STATE__` value set to `PUBLIC`.
+:::
+
+ ### Automatic generation of the Aggregation
+
+ The Aggregation Configuration can be automatically generated started from an already existing ER Schema. This feature is accessible inside the page of the Single View Creator attached to your Single View (from the _Single View_ section select the Single View and, from the _Single View Creators_ tab select the service attached with the Aggregation to edit), by clicking on the dedicated button as you can see in the picture below. 
+
+![automatic generation of Aggregation](../img/aggregation-automatic-generation.png)
+
+It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is a projection that contains the fields that are going to be used as the identifiers for the Single View.
+
+:::info
+From version `11.3.0` of the console, your project might have enabled the No Code Aggregation: in this case the Automatic generation feature is included in the _Settings_ tab of the Single View Creator page.
+:::
+
+:::warning
+The generated file will have a basic structure but it may not contain all the relationships needed or the desired structure, so please modify it to match the desired needs before using it.
 :::
 
 ## Validator
@@ -291,8 +325,6 @@ Add a config map to your service and put the Javascript files into it. These fil
 
 For instance:
 
-
-
 ```js title="myDeleteFunction.js"
 module.exports = async function myDeleteFunction(
   logger,
@@ -341,7 +373,7 @@ const resolvedOnStop = singleViewCreator.startCustom({
 })
 ```
 
-### Error handling
+## Error handling
 
 When generating a Single View, every error that occurs is saved in MongoDB, with a format that satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
 
@@ -358,11 +390,11 @@ When generating a Single View, every error that occurs is saved in MongoDB, with
 
 It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](/development_suite/api-console/api-design/crud_advanced.md#indexes).
 
-### CA certs
+## CA certs
 
 Since service version `3.9.0`, you can set your CA certs by providing a path to the certification file in the environment variable `CA_CERT_PATH`.
 
-### Single View Patch
+## Single View Patch
 
 :::info
 This feature is supported from version `5.6.1` of the Single View Creator
@@ -412,7 +444,7 @@ module.exports = (logger, projection) => {
 
 Basically we can define any update operation we want. This operation will be performed on all the Single Views matching the filter.
 
-#### Filtering which elements to update inside arrays
+### Filtering which elements to update inside arrays
 
 If the update must happen inside an array, you'll probably need to filter which elements need to be updated. To do that you can use the `arrayFilters` option inside the `patchAction` Javascript file, which behaves exactly like the [`arrayFilters`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-filtered/#---identifier--) option in a MongoDB operation.
 
@@ -434,5 +466,78 @@ module.exports = (logger, projection) => {
       "item-name.array-item-field-id": projection['projection-A-field-id']
     }]
   }
+}
+```
+
+## Read from multiple databases
+
+To read data from multiple databases you need to leverage on custom function from the mapping configuration.  
+First of all, you need to create a config map and we suggest creating at least two files: one for the database connection and the other for custom functions.
+
+The connection file could be like the following:
+
+```javascript
+// secondDB.js
+const { MongoClient } = require('mongodb');
+
+const url = '{{MONGODB_URL_2}}';
+const client = new MongoClient(url);
+
+let connected = false
+
+module.exports = async function (){
+    if (!connected) {
+        await client.connect();
+        connected = true
+    }
+    return client
+}
+```
+
+The above code uses the database driver and exports a function to retrieve the connected client.  
+This module works like a singleton, indeed the client is created once and the state, e.g. the `connected` variable, lives for the entire duration of the Node.js process (remember that `require` a module is always evaluated once by Node.js).  
+Because this is a config map, the `{{MONGODB_URL_2}}` will be interpolated at deploy time. Remember to set it up in the environment variables section.
+
+
+Then in a custom function file, you can retrieve the connected client and use it for reading data:
+
+```javascript
+// fieldFromSecondDB.js
+const getClient = require('./secondDB.js')
+
+module.exports = async function (logger, db, dependenciesMap){
+    const client = await getClient()
+    return client.db().collection('collection').findOne();
+}
+```
+
+Finally, you can use the custom function in the mapping configuration:
+
+```json
+{
+   "version":"1.1.0",
+   "config":{
+      "SV_CONFIG":{
+         "dependencies":{
+            "PEOPLE":{
+               "type":"projection",
+               "on":"_identifier"
+            },
+            "MARRIAGE":{
+               "type":"projection",
+               "on":"PEOPLE_TO_MARRIAGE"
+            },
+            "PEOPLE":{
+               "type":"projection",
+               "on":"MARRIAGE_b_TO_PEOPLE"
+            }
+         },
+         "mapping":{
+            "name":"PEOPLE.name",
+            "marriedWith":"PEOPLE.name",
+            "fieldFromSecondDB":"__fromFile__[fieldFromSecondDB]"
+         }
+      }
+   }
 }
 ```

@@ -1,7 +1,7 @@
 ---
 id: webhooks
-title: Configure your webhooks
-sidebar_label: Configure your webhooks
+title: Manage Webhooks
+sidebar_label: Overview
 ---
 
 Webhooks allow you to build or set up integrations that subscribe to certain Console events. 
@@ -10,28 +10,72 @@ When one of those events is triggered, the Console will send an HTTP POST payloa
 Webhooks can be installed on a Console instance, a specific company, or a specific project. 
 Once installed, the webhook will be sent when one or more subscribed events occur.
 
-## Events subscription
+## Webhooks Overview
 
-You can subscribe to events on the Console using the CMS.<br/>
-The collection will be found below the new label inside the menu.
+Mia-Platform Console allows authorized users to manage webhooks. 
 
-![webhooks section](./img/console-events.png)
+More specifically, a user can add, edit, and delete a webhook for a company. To access these features, head to the Company Overview area of the Console by clicking the related button on the home page, next to your company name.
 
-From the `Events` category, click on the `Webhooks` section and then on `Add new` to create a new webhook subscription.
+![Go to Company Overview](img/go-to-company-overview.png)
 
-![add webhook](./img/add-new-webhook.png)
+By clicking on "Webhooks" you will be redirected to the related section, in which (assuming you already have added some webhooks) you can see a table containing some information about the webhooks:
 
-You will be asked to provide the following parameters:
+* **Target URL**: the HTTP URL that will be called when the event is triggered;
+* **Events**: the name of the events the webhook should listen to. Check them out [here](/development_suite/webhooks-and-events/events.mdx).
 
-| Parameter   | Value    | required | Description                                                                                                                         |
-|-------------|----------|----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `tenantId`  | `string` |          | If specified, only events triggered inside the specified company will be delivered to the target URL. Must be a company identifier. |
-| `projectId` | `string` |          | If specified, only events triggered inside the specified project will be delivered to the target URL. Must be a project identifier. |
-| `eventName` | `string` | ✅        | The name of the event to listen to. See the [event types page](/development_suite/webhooks-and-events/events.mdx).                  |
-| `target`    | `string` | ✅        | The HTTP URL that will be called when the event is triggered (e.g., https://service-name/api-that-receives-the-event/).                   |
-| `base64CA`  | `string` |          | The Certificate Authority exposed by the target URL encoded in base64.                                                              |
-| `secret`    | `string` | ✅        | The shared secret used to authenticate the events payload.                                                                          |
-| `proxy.url` | `string` |          | The URL of the proxy.                                                                                                               |
+You can filter table data by events, add a webhook, or edit/delete a specific webhook using the related button associated with its table row.
+
+![Webhooks overview](img/webhooks-overview.png)
+
+## Add a Webhook
+
+You can add a webhook by clicking on the "Add webhook" button, located in the page's top right corner. A modal will show up, and, through a few steps, you will be asked to enter some information related to the webhook.
+
+### Step 1: Webhook Details
+
+![Add webhook 1](img/add-webhook-1.png)
+
+In this step, you can insert some general details about your webhook:
+
+* **Target URL** (*required*): the HTTP URL that will be called when the event is triggered;
+* **Secret** (*required*): the shared secret used to authenticate the events payload;
+* **Events** (*required*): the events the webhook should listen to.
+
+:::caution
+The secret entered at this stage, for security reasons, will never again be shown to the user, who will be able to replace it with a new one but not visualize it again.
+:::
+
+### Step 2: Advanced
+
+![Add webhook 2](img/add-webhook-2.png)
+
+In this step, you can enter some optional advanced information through two expandable forms:
+
+#### Certificate Authority
+
+If you have set up verification of a CA for the connection to your webhook, here you can enter it through the homonymous field:
+
+* **Certificate authority**: base64 decoded CA certificate for the TLS connection with the webhook, exposed by the target URL.
+
+#### Proxy
+
+If the Console needs to use a proxy to forward calls to the webhooks, here you can enter the information needed for the connection:
+
+* **URL**: the URL used to connect to the proxy, which indicates where the proxy is exposed.
+
+By clicking on "Add webhook", the connection to the webhook will be set, and it will appear as a new entry in the table.
+
+## Edit a Webhook
+
+As mentioned in the previous section, you can edit a specific webhook using the related button associated with its table row.
+A click on the button will open the webhook edit modal, very similar to the one used for the add flow, with the only difference being that the secret, having already been set, is no longer a required piece of information.
+
+## Delete a Webhook
+
+As mentioned in the previous section, you can delete a specific webhook using the related button associated with its table row.
+A click on the button will open the webhook delete modal, the operation will be confirmed upon clicking the "Delete webhook" button within the modal, which will initiate the deletion process.
+
+![delete webhook](./img/delete-webhook.png)
 
 ## Payload authentication
 

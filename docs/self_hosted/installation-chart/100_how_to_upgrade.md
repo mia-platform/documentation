@@ -30,6 +30,6 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## v11 - version upgrades
 
-### Upgrade from v10.9.0 to v11.1.0
+### Upgrade from v10.9.0 to v11.3.0
 
-Between v10.9.0 (Chart version `v9.0.15`) and v11.1.0 (Chart version `v9.1.4`) the are no notable changes to take care of.
+Between v10.9.0 (Chart version `v9.0.15`) and v11.3.0 (Chart version `v9.3.0`) the are no notable changes to take care of.

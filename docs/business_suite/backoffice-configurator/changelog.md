@@ -3,11 +3,66 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.1.0] - 2023-06-19
+
+### Versioning
+
+- `@mia-platform-internal/reactord` to version `^9.4.1`
+- `monaco-editor` to version `^0.39.0`
+- `react-router-dom` to version `^6.11.0`
+- `rxjs` to version `^7.8.1`
+- `rc-virtual-list` to `^3.5.2`
+- `react-router-dom` to `^6.13.2`
+- Dev dependencies updated
+
+### Added
+
+- Shared Property page
+- Possibility of creating shared properties starting from existing non-shared definitions
+- No-code editor for Shared Properties of type Data Schema 
+- Advanced modal to edit Shared Properties
+- Support for `dynamic-icon` manifest schema hint
+- Added support for `mia/endpoints/data-source` schema hint
+- Support for `oneOf` properties with possible types string or string:enum
+- Support for sorting of array properties
+- Field `entry` of Micro Frontend pages can be created through no-code interface
+- Confirm modal to avoid losing modifications when switching from Advanced tab to a different one
+- Templates carrying variables/shared-properties can instruct configurator on how to integrate current configuration
+- Components with the same label will be shown with a progressive number in components list menu
+- Support for external assets via configuration of a service worker which acts as a reverse proxy
+- No-code modal to configure service worker
+
+### Changed
+
+- Select input in components props editing menu can now be cleared
+- Preview Status bar filters out info notifications from count total
+- Primary color is chosen for superscripts of badges (Variables and SW buttons)
+- Preview external dependencies are now hardcoded to the patch
+- Configuration parsing errors are now notified and no longer breaks the editor
+- Test variables are trimmed on creation
+
+### Fixed
+
+- Removing components with a shared property in the Advanced tab does not result in an error when moving to Shared Properties page
+- Editing the selected shared property in the Advanced tab correctly updates its value in the Shared Property page
+- Values of properties with the same name in different components are no longer bound
+- Fixed references resolution in preview
+- When compose application is removed, its meta data are deleted
+
+## [1.0.3] - 2023-06-05
+
+### Fixed
+
+- Color picker is correctly mounted in property form inside modal
+- Editing test variables values in variables modal will no longer result in the input losing focus
+- Components fetch mocks now correctly reflects edits in data schema
+- Sources are now correctly encoded before being sent to preview
+
 ## [1.0.2] - 2023-05-23
 
 ### Fixed
 
-- fixed bug causing properties with `oneOf` schemas to be incorrectly valued in editing modals
+- Fixed bug causing properties with `oneOf` schemas to be incorrectly valued in editing modals
 
 ## [1.0.1] - 2023-05-02
 

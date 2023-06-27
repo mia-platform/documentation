@@ -24,10 +24,10 @@ When a projection is updated, Real-Time Updater will generate an event telling t
 
 ### Real Time Updater Configurations
 
-To know more about Real-Time Updater service Configurations you can go [here](/fast_data/configuration/realtime_updater/common.md)
+To know more about Real-Time Updater service Configurations you can go [here](/fast_data/configuration/realtime_updater.md)
 
 As previously stated, when a projection is updated, Real-Time Updater will generate an event telling that a specific Single View needs to be updated. This event contains a reference to the identifier of the Single View document that have to be updated. 
 
 To obtain the identifier of the Single View, the Real-Time Updater executes an algorithm called `strategy` that follows a path connecting projections, starting from the updated one and ending at the one containing the desired identifier.
 
-This algorithm can be implemented using the [Real Time Updater Low Code](/fast_data/configuration/realtime_updater/low_code.md). It uses json files for configuration and the environment variables are already set with correct default values.
+This algorithm can be implemented using the [Real Time Updater Low Code](/fast_data/configuration/realtime_updater.md). It uses json files for configuration and the environment variables are already set with correct default values.

@@ -145,7 +145,7 @@ The cookies have the following default configuration:
     * Path: `/`
     * SameSite: `Lax`
 
-You can further customize the cookie response by adding the `sidCookieCustomAttributes` and/or the `refreshTokenCookieCustomAttributes` to the service configuration, at application level.
+You can further customize the cookie response by adding the `sidCookieCustomAttributes` and/or the `refreshCookieCustomAttributes` to the service configuration, at application level.
 In particular, you can change the `SameSite` attribute to `Strict`, and set the `Domain` and the `Path` attributes to a value of your choice.
 
 Here is an example snippet of the configuration:
@@ -156,7 +156,7 @@ Here is an example snippet of the configuration:
         "sameSite": "Strict",
         "domain": "example.com"
     },
-    "refreshTokenCookieCustomAttributes": {
+    "refreshCookieCustomAttributes": {
         "sameSite": "Strict",
         "domain": "example.com"
         "path": "/auth"
