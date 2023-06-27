@@ -219,6 +219,6 @@ You can start from a:
 ### What's new
 
 The **What's new section** is a valuable resource to stay updated with the latest developments and news about the Console. Whenever a new feature is introduced or there is relevant information to share, it will be displayed in this section.  
-You can access it by clicking on the question mark icon located in the top bar of the Console's interface. To ensure you never miss any important updates, a notification symbol will alert you whenever there are new unread items.
+You can access it by clicking on the question mark icon located in the top bar of the Console interface. To ensure you never miss any important updates, a notification symbol will alert you whenever there are new unread items.
 
-The primary purpose of this section is to keep you informed about the significant enhancements and announcements accompanying each version upgrade of the Console. By regularly checking this section, you can stay up to date with the latest improvements, new features, and other useful updates that can enhance your experience and maximize the benefits of using the product.
+The primary purpose of this section is to keep you informed about significant enhancements and announcements accompanying each version upgrade of the Console. By regularly checking this section, you can stay up to date with the latest improvements, new features, and other useful updates that can enhance your experience and maximize the benefits of using the product.
