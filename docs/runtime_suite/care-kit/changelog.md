@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [v2.5.0]
+- `am-calendar` listens to `change-query` events in `appointment mode` and applays filters to events and resources on the properties specified in the configuration.
+
+## [v2.4.2]
+- Added possibility to filter events by current user in `am-calendar`
+- Added possibility to indicate the Highcharts constructore type in the `ck-chart` proper
 ## [v2.4.1]
 - Fix problem that prevented `ck-chart` to resize correctly
 
