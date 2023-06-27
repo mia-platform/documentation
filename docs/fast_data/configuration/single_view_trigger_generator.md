@@ -105,10 +105,7 @@ At the moment you can only configure your consumer with kafka which will read `p
   "required": ["brokers", "consumerGroupId"],
   "properties": {
     "brokers": {
-      "type": "array",
-      "items": {
-        "type": "string",
-      },
+      "type": "string",
     },
     "consumerGroupId": {
       "type": "string",
@@ -217,10 +214,7 @@ With MongoDB you will save Projection Changes on the DB just like the Real Time 
   "required": ["brokers"],
   "properties": {
     "brokers": {
-      "type": "array",
-      "items": {
-        "type": "string",
-      },
+      "type": "string",
     },
     "ssl": {
       "type": "boolean",
@@ -304,7 +298,7 @@ An example of a complete configuration would be:
 {
   "consumer": {
     "kafka": {
-      "brokers": ["localhost:9092"],
+      "brokers": "localhost:9092,localhost:9093",
       "clientId": "client-id",
       "consumerGroupId": "group-id",
       "consumeFromBeginning": true,
