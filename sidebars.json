@@ -1054,6 +1054,10 @@
           "type": "doc"
         },
         {
+          "id": "self_hosted/optional_features",
+          "type": "doc"
+        },
+        {
           "id": "self_hosted/troubleshooting",
           "type": "doc"
         },
