@@ -53,11 +53,11 @@ In case the topic does not already exist, we recommend adopting our [naming conv
 
 ### `sv-trigger` vs. `pc`
 
-From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real Time Updater](/fast_data/configuration/realtime_updater/common.md#projection-changes).
+From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real Time Updater](/fast_data/configuration/realtime_updater.md#projection-changes).
 
 `sv-trigger` messages are sent and consumed on Event Streaming Platforms making the full cycle of Fast Data completely event driven. This offers a greater separation of concers since it means that business data like Projections and Single Views will be on your DB, while all the events that make Fast Data work will be on your Event Streaming Platform.
 
-While `sv-trigger` messages sound like the better option so far, `pc` records usually offer a better performance of the aggregation process. This is because `pc` records are unique by their Single View Identifier, so if a Projection record gets updated twice in a very short period of time the Single View Creator will most likely process the aggregation of the Single Views related to that Projection record only once. This is a broad generalization and it depends also on the size and frequency of the incoming flow of data you may have, if you choose to generate `pc` records make sure you have the [recommended indexes](/fast_data/configuration/realtime_updater/common.md#custom-projection-changes-collection) set up.
+While `sv-trigger` messages sound like the better option so far, `pc` records usually offer a better performance of the aggregation process. This is because `pc` records are unique by their Single View Identifier, so if a Projection record gets updated twice in a very short period of time the Single View Creator will most likely process the aggregation of the Single Views related to that Projection record only once. This is a broad generalization and it depends also on the size and frequency of the incoming flow of data you may have, if you choose to generate `pc` records make sure you have the [recommended indexes](/fast_data/configuration/realtime_updater.md#custom-projection-changes-collection) set up.
 
 ### Configuration
 
