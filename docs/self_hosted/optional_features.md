@@ -28,4 +28,4 @@ Hence, this feature is activated on a per-user basis.
 
 Once a user expresses his preference, the banner will be hidden, but he will be able to change his preference from the [User Preferences section](../development_suite/user-settings/user-preferences).
 
-Google Analytics help Mia-Platform improving the Console through future updates.
+Google Analytics helps Mia-Platform improving the Console, by understanding how users interact with the platform.
