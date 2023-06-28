@@ -295,7 +295,7 @@ Example:
         "projectionChanges": {
             "sv_pointofsale": {
                 "strategy": "__automatic__",
-                "topic": "my-tenant.development.my-database.sv-pointofsale.sv-trigger",
+                "topic": "my-tenant.development.my-database.sv-pointofsale.projection-change",
             }
         }
     },
@@ -303,14 +303,14 @@ Example:
         "projectionChanges": {
             "sv_customer": {
                 "strategy": "__fromFile__[myStrategy]",
-                "topic": "my-tenant.development.my-database.sv-customer.sv-trigger"
+                "topic": "my-tenant.development.my-database.sv-customer.projection-change"
             }
         }
     }
 }
 ```
 
-When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.sv-trigger` as well.
+When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.projection-change` as well.
 
 ## Custom Projection Changes Collection
 

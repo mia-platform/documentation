@@ -60,7 +60,7 @@ For **compose pages**, available fields are:
 - _configurations manager endpoint_ (only if input mode is _external_): endpoint from which the configuration file can
   be fetched;
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
-- _template_ (only if input mode is _external_): a configuration template carrying a pre-defined, pre-arranged set of components.
+- _template_ (only if input mode is _external_): a [configuration template](./30_compose-pages.md#templates) carrying a pre-defined, pre-arranged set of components.
 
 ![Page compose options](img/structure_page-compose-options.png)
 
@@ -169,6 +169,11 @@ they can be divided into **primitive** properties, which can be edited directly 
 for which a modal will be spawned.
 
 ![Right menu modal](img/structure_layout-right-menu-modal.png)
+
+Some properties will be marked as **Shared**. This means that it is possible to assign them a common reusable property of the same type. In order
+to do so, create a Shared Property in the [Shared Properties](30_compose-pages.md#shared-properties) section.
+
+![Shared Property](img/structure_layout-shared-property.png)
 
 :::tip
 Modals have the option to turn on an **Advanced mode** that will make available a code editor to edit the property.

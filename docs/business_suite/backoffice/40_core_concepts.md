@@ -375,27 +375,95 @@ matches:
 
 Upload and management of files related to a record is handled by 3 components that interact together:
 
-- `bk-file-client`
-- `bk-file-manager`
-- `bk-form-drawer`
+- [bk-file-client](./60_components/30_clients.md#bk-file-client)
+- [bk-file-manager](./60_components/30_clients.md#bk-file-manager)
+- a data manipulation component that allows to interact with file fields, for instance:
+  - [bk-form-drawer](./60_components/40_data_manipulation.md#bk-form-drawer)
+  - [bk-form-modal](./60_components/40_data_manipulation.md#bk-form-modal)
+  - [bk-file-picker-drawer](./60_components/40_data_manipulation.md#bk-file-picker-drawer)
+  - [bk-file-picker-modal](./60_components/40_data_manipulation.md#bk-file-picker-modal)
+  
+
+Components are designed to interact with [Mia Files Service](../../runtime_suite/files-service/configuration), thus files are saved to DB with the following interface:
+```json
+{
+  "_id": {
+    "type": "string"
+  },
+  "name": {
+    "type": "string"
+  },
+  "file": {
+    "type": "string"
+  },
+  "size": {
+    "type": "number"
+  },
+  "location": {
+    "type": "string"
+  }
+}
+```
 
 Any file property can be specified in the [data schema](page_layout#data-schema) as:
->
-> ``` yaml
-> type: 'object'
-> format: 'file'
-> ```
 
-:::info Currently only "single-file" properties are supported :::
+``` json
+{
+  "type": "object",
+  "format": "file"
+}
+```
+or, in case of a files array
+``` json
+{
+  "type": "array",
+  "format": "file"
+}
+```
 
-Once a file property is specified in the [data schema](page_layout#data-schema) and its form field is touched the routine will be as follows:
+Once a file property is specified in the [data schema](./30_page_layout.md#data-schema) and its form field is touched (for instance using a `bk-form-drawer`) the routine will be as follows:
 
- 1. `bk-form-drawer` fires a `create-data-with-file`/`update-data-with-file` event containing the full payload and list of all the `file` properties that have to be uploaded
- 2. The above event is handled by the `file-manager` which will proceed to fire an `upload-file` event for each file in the list
- 3. The `file-client` handles the `upload-file` event by taking its payload (the file object) and upload it to the file service, upon success will fire an `uploaded-file` event, containing the fileId to be linked to the record
- 4. The `file-manager` listens for `uploaded-file` events and links each file to the proper record key, replacing it in the payload that was provided by the `bk-form-drawer`
- 5. Once all the files have been uploaded, the `file-manager` fires a `create-data`/`update-data` event with the full payload as the `bk-form-drawer` would have, with the file objects correctly linked
+  1. `bk-form-drawer` fires a [create-data-with-file](./70_events.md#create-data-with-file)/[update-data-with-file](./70_events.md#update-data-with-file) event containing the full payload and list of all the `file` properties that have to be uploaded
+  2. The above event is handled by the `file-manager` which will proceed to fire an `upload-file` event for each file in the list
+  3. The `file-client` handles the [upload-file](./70_events.md#upload-file) event by taking its payload (the file object) and upload it to the file service, upon success will fire an [uploaded-file](./70_events.md#uploaded-file) event, containing the fileId to be linked to the record
+  4. The `file-manager` listens for `uploaded-file` events and links each file to the proper record key, replacing it in the payload that was provided by the `bk-form-drawer`
+  5. Once all the files have been uploaded, the `file-manager` fires a [create-data](./70_events.md#create-data)/[update-data](./70_events.md#update-data) event with the full payload as the `bk-form-drawer` would have, with the file objects correctly linked
 
-:::caution Upon failure while uploading one file, any new file that was being uploaded in the same transaction (i.e. creating a new record that contained multiple file properties), will be deleted, even if already uploaded, because the final create/update of the record will not be performed :::
+:::caution
+Upon failure while uploading one file, any new file that was being uploaded in the same transaction (i.e. creating a new record that contained multiple file properties), will be deleted, even if already uploaded, because the final create/update of the record will not be performed
+:::
 
-:::caution By design, any file that is unlinked from the record when updating an entry, isn't deleted from the file-service :::
+:::caution
+By design, any file that is unlinked from the record when updating an entry, isn't deleted from the file-service
+:::
+
+File fields may present `dataSchema` and `items` properties. When that is the case, these are interpreted as representing the shape of their metadata. Components `bk-form-drawer`, `bk-form-modal`, `bk-file-picker-drawer`, `bk-file-picker-modal` allow to visualize and edit metadata fields of type string.
+
+``` json
+{
+  "type": "object",
+  "format": "file",
+  "dataSchema": {
+    "type": "object",
+    "properties": {
+      "ownerId": {
+        "type": "string"
+      }
+    }
+  }
+}
+```
+``` json
+{
+  "type": "array",
+  "format": "file",
+  "items": {
+    "type": "object",
+    "properties": {
+      "ownerId": {
+        "type": "string"
+      }
+    }
+  }
+}
+```

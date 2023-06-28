@@ -500,7 +500,7 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 
 **Channel**: MongoDB
 
-**Producer**: Real Time Updater
+**Producer**: Real Time Updater or Single View Trigger Generator
 
 **Consumer**: Single View Creator
 
@@ -748,7 +748,6 @@ Example:
 
 ### Single View Trigger Message
 
-<!-- TODO: Add MongoDB too when the SVTG will be able to produce sv-trigger messages to mongo -->
 **Channel**: Apache Kafka
 
 **Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-trigger`
@@ -787,16 +786,9 @@ channels:
             value:
               type: object
               required:
-                - type
                 - __internal__kafkaInfo
                 - change
               properties:
-                type:
-                  type: string
-                  description: Type of change requested. Aggregation means the Single View must be regenerated, patch means an update must be done among all Single Views matching a certain query
-                  enum:
-                    - aggregation
-                    - patch
                 singleViewIdentifier:
                   type: object
                   description: Identifier of the Single View just like the Projection Changes Identifier. Mind that this field will be set only in case of type aggregation and not patch

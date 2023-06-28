@@ -83,6 +83,12 @@ Along with the components above, you can also find Mia-Platform’s **open-sourc
 - [micro-lc](https://github.com/micro-lc): the micro-frontend orchestrator for building flexible, multi-tenant frontend applications.
 - [MongoDB CRUD Service](https://github.com/mia-platform/crud-service): a CRUD Service specifically designed for interacting with MongoDB collections.
 
+## How can I get Mia-Platform?
+
+Mia-Platform is available for purchase in three different ways: SaaS, PaaS, and On-Premises.
+
+For further details on the distribution model, please refer to [this page](/infrastructure/overview.md).
+
 ## More Resources
 
 To stay always up-to-date with the **latest product news**, please visit the [Release Note](/release-notes/versions.md) section. Also, feel free to jump into **our community**: explore the [open discussions on GitHub](https://github.com/mia-platform/community/discussions) and ask any questions you may have about our products.

@@ -1,7 +1,7 @@
 ---
 id: webhooks
 title: Manage Webhooks
-sidebar_label: Manage Webhooks
+sidebar_label: Overview
 ---
 
 Webhooks allow you to build or set up integrations that subscribe to certain Console events. 

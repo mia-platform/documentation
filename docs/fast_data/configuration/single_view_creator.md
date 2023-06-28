@@ -178,7 +178,7 @@ Please remember that changing the ER Schema will cause the reset of the [Aggrega
 
 The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
 
-To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/aggregation.md).
+To have more information on how to configure the Aggregation, please visit the [related section](/fast_data/configuration/config_maps/aggregation.md).
 
 :::note
 Since version `v5.0.0` of the Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a Single View with the `__STATE__` field set from the aggregation will update the Single View to that state (among the other changes).   

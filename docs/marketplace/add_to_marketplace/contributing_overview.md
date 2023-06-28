@@ -10,13 +10,13 @@ In this section, we dive into the process of creating a new component for the Ma
 Marketplace items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to add your Marketplace items for you.
 :::
 
-## Public and private Marketplace
+## Public and Internal Company Marketplace
 
-Mia-Platform Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
+Mia-Platform public Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
-However, a Company might want to have its own private Marketplace, with private components that must not be shared with everyone else on the Console. 
+However, a Company might want to have its own internal Marketplace, fulfilled also with components that must not be shared with everyone else outside the Company. 
 
-To achieve this, a Company Owner or a Project Administrator can create new private components **from the CMS** by specifying their Company's identifier in the `tenantId` field.
+To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visible only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
 
 Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
@@ -93,7 +93,7 @@ Each property described in the following paragraphs regarding the microservices 
 }
 ```
 
-Here below are listed all the properties that must be provided for each microservice component:
+Here below are listed all the properties that you can provide for each microservice component:
   
 - **componentId**: a unique component id that can be used to identify the component and all the services generated from it. Each service created using this component will have the identifier value in the **sourceComponentId** property.
 - **defaultEnvironmentVariables**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
@@ -118,6 +118,8 @@ Here below are listed all the properties that must be provided for each microser
   - `mia-plain`: collects logs but does not parse them
   - `mia-json`: parses JSON logs based on the documented format
   - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
+- **defaultAnnotations**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation). The annotations that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
+- **defaultLabels**: the service labels, which can be used to categorize, group, and select your service. The labels that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
 - **defaultDocumentationPath**: the APIs documentation path.
 - **defaultResources**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
 
