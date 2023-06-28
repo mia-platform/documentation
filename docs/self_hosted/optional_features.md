@@ -22,7 +22,7 @@ Click "Add new" and enter the feature ID, the scope type, and the scope ID (leav
 
 Google Analytics Tracking can be enabled activating the feature toggle `ENABLE_GOOGLE_TAG_MANAGER`, with *Console* scope.
 
-When the feature is enabled in the Console, the users will see a banner asking to express a preference either they would like to enable Google Analytics Tracking or not. By default, tracking stays disbaled.
+When the feature is enabled in the Console, the users will be presented a banner asking to express a preference either they would like to enable Google Analytics Tracking or not. By default, tracking stays disabled.
 
 Hence, this feature is activated on a per-user basis.
 
