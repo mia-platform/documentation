@@ -111,7 +111,6 @@ mia-console:
 
 | Name | Type | Description | Default | Optional |
 |:----:|:----:|:-----------:|:-------:|:--------:|
-|`configurations.enableTelemetry`| boolean | Enable console telemetry to send usage info | `false` | ✅
 |`configurations.enableClustersAndEnvironmentsManagement`| boolean | Enables Clusters and Environments management | `true` | ✅ |
 |`configurations.projectTemplateArchiveUrl`| string | New project template url |  | ✅ |
 |`configurations.enablePrometheusMetrics`| boolean | enable prometheus to collect metrics. This is a beta feature and could have breaking changes. | `false` | ✅ |

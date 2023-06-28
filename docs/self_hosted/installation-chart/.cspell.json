@@ -12,7 +12,8 @@
       "rond",
       "rönd",
       "upgrader",
-      "Traefik"
+      "Traefik",
+      "OIDC"
     ],
     "flagWords": [],
     "ignorePaths": [],

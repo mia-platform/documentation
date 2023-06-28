@@ -45,6 +45,8 @@ Please bear in mind that the `authProviders` field is a required field, you can
 | `userInfoPath` | string | The path for retrieving the user data |  | ✅ |
 | `userInfoUrl` | string | The full url for retrieving the user data | value of `apiBaseUrl/userInfoPath` | ✅ |
 | `userSettingsURL` | string | The full url to the API endpoint for requesting the user data | empty string | ✅ |
+| `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
+| `logoutUrlPath` | string | The path to to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
 | `skipRefreshProviderTokenOnMiaTokenRefresh`| boolean | Skip refresh the provider token when the console one is expired | `true` | ✅ |
 | `cmsClientId` | string | The client Id for CMS authentication | value of `clientId` | ✅ |
 | `cmsClientSecret` | string | The client secret for CMS authentication | value of `clientSecret` | ✅ |
