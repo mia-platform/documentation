@@ -8,7 +8,7 @@ Mia-Platform Console offers some optional features which are disabled by default
 
 Optional features can be enabled using **feature toggles** by a Console Super User.
 
-Features have one or multiple scopes, which are indicative of the area of the Conosole or the user interested by that feature. Available scope types are: Console, Company, Project, Environment, and User.
+Features have one or multiple scopes, which are indicative of the area of the Console or the user interested by that feature. Available scope types are: Console, Company, Project, Environment, and User.
 
 *Console* scope means that a feature is valid for the whole Console; all the other scopes require to provide a scope ID.
 
@@ -16,7 +16,7 @@ Available features are visible from the *Features* section of the CMS.
 
 To enable a feature, navigate to the *Feature Activations* section of the CMS, which shows a table. Each entry in the table in *published* state represents an active feature.
 
-Click "Add new" and enter the feature ID, the scope type, and the scope ID (leave empty for the Console scope type). The just added feature activation will be in *published* state by default and immediatly enabled.
+Click "Add new" and enter the feature ID, the scope type, and the scope ID (leave empty for the Console scope type). The just added feature activation will be in *published* state by default and immediately enabled.
 
 ### Google Analytics Tracking
 
