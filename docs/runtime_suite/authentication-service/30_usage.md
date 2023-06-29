@@ -245,6 +245,11 @@ The response is the same as the `/oauth/token`:
 
 In case the `isWebsiteApp` application flag is `true`, the `/refreshtoken` also sets the *sid* and *refresh_token* cookies with the new values.
 
+#### Skip provider refresh token
+
+If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request. 
+The refresh token on the provider will only be issued if the validation fails.
+
 ### Logout
 
 API Signature: `GET /logout`
@@ -258,10 +263,41 @@ It also accepts a request with only the *refresh_token* set: in this case it onl
 
 When `isWebsiteApp` flag is set to true, both the *sid* and *refresh_token* cookies are unset, by means of a `Set-Cookie` response header with expiration dates set in the past.
 
-#### Skip provider refresh token
+#### Redirect parameter
 
-If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request. 
-The refresh token on the provider will only be issued if the validation fails.
+Depending on whether you added the `logoutUrl` parameter in the service configuration, at provider level, the `/logout` endpoint will behave differently, as explained below.
+
+##### No `logoutUrl` parameter
+
+If you did not add the `logoutUrl` parameter to the provider configuration, the endpoint will redirect the user to the specified 
+`redirect` query parameter. You can configure the frontend of your web application to redirect to the `/logout` endpoint of the provider.
+
+As a result, the user will be signed out from both the provider and the application.
+
+##### With `logoutUrl` parameter
+
+:::info
+
+This behavior works only with the OIDC compliant providers. Please refer to your specific provider documentation to check if it is supported.
+
+The following providers have no support for this feature: 
+- Bitbucket Server
+- Github
+- Gitlab
+
+The `logoutUrl` parameter will be ignored in case of non-OIDC compliant providers, and a warning log will be raised.
+
+For OIDC compliant providers, you may need to add the `openid` scope in the provider configuration.
+
+If you use a generic provider you have the responsibility to check for the OIDC compliance, and in case it is not compliant, the endpoint will likely not work as expected.
+
+:::
+
+When called with the `logoutUrl` parameter set in the service configuration, the endpoint will append to it a query string, with the following parameters:
+- `post_logout_redirect_uri`: it is set to the `redirect` query parameter, if present. Otherwise, it is not set.
+- `id_token_hint`: it is set to the `id_token`, retrieved from the provider during login, and stored in the backend session along with the access token.
+
+The endpoint will then redirect the user to the `logoutUrl` with the appended query string, causing the user to be signed out from both the provider and the application.
 
 ## User Info
 
