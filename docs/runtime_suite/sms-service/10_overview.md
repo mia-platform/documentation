@@ -20,7 +20,7 @@ SMS Geo-Permissions can be configured in the Twilio project console, on the [Mes
 :::info
 **Disable account balance automatic recharge**
 
-Automatic recharge of the account balance can be disabled in the Twilio project console, in the Billing Information section. Disabling this feature the Twilio's account is not recharged automatically from the connected payment method when it goes to zero. In this way potential losses due to a fraud attack can be minimised.
+Automatic recharge of the account balance can be disabled in the Twilio project console, in the Billing Information section. Disabling this feature the Twilio's account is not recharged automatically from the connected payment method when it goes to zero. In this way potential losses due to a fraud attack can be minimized.
 
 :::
 
