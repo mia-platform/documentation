@@ -79,12 +79,18 @@ bss:
   topics-config:
     data-topics-mapping:
       - ingestion: <input-topic-name-1>
+        bucket-folder: <optional-custom-folder> # this field can be omitted entirely and the service would use the ingestion topic as folder name
         post-ingestion:
           - <output-topic-name-1>
       - ingestion: <input-topic-name-2>
+        bucket-folder: <optional-custom-folder> # this field can be omitted entirely and the service would use the ingestion topic as folder name
         post-ingestion:
           - <output-topic-name-2>
 ```
+
+:::info
+Associating a custom bucket folder name to an ingestion topic, via the `bucket-folder` property, allows to override the default folder where ingestion messages are stored, that corresponds to the ingestion topic name.
+:::
 
 ## File format
 
