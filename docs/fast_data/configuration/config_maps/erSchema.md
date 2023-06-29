@@ -12,7 +12,7 @@ If you want to try the Fast Data Low Code with a simple example, here's a step-b
 
 ## Overview
 
-The ER Schema, or Entity-Relation Schema, defines the relationships between Fast Data collections, which include [Projections](/fast_data/the_basics.md#projection), [Single Views](/fast_data/the_basics.md#single-view-sv) and [CRUD Collections](/development_suite/api-console/api-design/crud_advanced#what-is-a-crud).
+The ER Schema, or Entity-Relation Schema, defines the relationships between Fast Data collections, which include [Projections](/fast_data/the_basics.md#projection), [Single Views](/fast_data/the_basics.md#single-view-sv) and [CRUD Collections](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
 
 :::caution
 Don't forget to [declare your relationships both ways](#direction-of-the-relationships)!
