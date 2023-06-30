@@ -14,8 +14,8 @@ Click <a download target="_blank" href="/docs_files_to_download/single-view-crea
 
 ### Single View Trigger Generator Service
 
-The Single View Trigger Generator Service is one of the core services of the Fast Data which replaces the Real Time Updater on the strategy execution side of things. 
-Among many advantages it also provides some metrics to help you monitor the strategy execution times.
+The Single View Trigger Generator Service is one of the core services of the Fast Data which is in charge of executing the strategies, offloading the job from the Real Time Updater.
+Using the SVTG to execute the strategies instead ot the RTU provides many advantages that you can find [here](/fast_data/single_view_trigger_generator.md#advantages-of-adopting-the-single-view-trigger-generator). Among these advantages it also provides some metrics to help you monitor the strategy execution times.
 
 The metrics exposed by the Single View Trigger Generator Service are:
 
