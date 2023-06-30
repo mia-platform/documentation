@@ -171,8 +171,8 @@ At the moment you can only configure your consumer with kafka which will read `p
       },
     },
     "logLevel": {
-      "type": "number",
-      "enum": [0, 1, 2, 4, 5],
+      "type": "string",
+      "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"],
     },
   },
 }
@@ -273,24 +273,14 @@ With MongoDB you will save Projection Changes on the DB just like the Real Time 
       },
     },
     "logLevel": {
-      "type": "number",
-      "enum": [0, 1, 2, 4, 5],
+      "type": "string",
+      "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"],
     },
   },
 }
 ```
 </p>
 </details>
-
-Note that Kafka log level works like the kafkajs enum object, so:
-
-```js
-NOTHING = 0,
-ERROR = 1,
-WARN = 2,
-INFO = 4,
-DEBUG = 5,
-```
 
 An example of a complete configuration would be:
 
@@ -302,7 +292,7 @@ An example of a complete configuration would be:
       "clientId": "client-id",
       "consumerGroupId": "group-id",
       "consumeFromBeginning": true,
-      "logLevel": 0
+      "logLevel": "NOTHING"
     }
   },
   "producer": {
