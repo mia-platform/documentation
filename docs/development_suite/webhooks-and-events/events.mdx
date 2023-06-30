@@ -92,365 +92,6 @@ This event will be triggered when a project is created successfully.
   "type": "object",
   "properties": {
     "_id": { "type": "string" },
-    "name": { "type": "string" },
-    "description": { "type": "string" },
-    "configurationGitPath": { "type": "string" },
-    "repositoryUrl": { "type": "string" },
-    "defaultBranch": { "type": "string" },
-    "branches": {
-      "type": "array",
-      "items": { "type": "string" },
-    },
-    "tags": {
-      "type": "array",
-      "items": { "type": "string" },
-    },
-    "projectId": { "type": "string" },
-    "hostnames": {
-      "type": "object",
-      "additionalProperties": { "type": "string" },
-    },
-    "environments": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "label": { "type": "string" },
-          "envId": { "type": "string" },
-          "envPrefix": { "type": "string" },
-          "hosts": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "host": { "type": "string" },
-                "isBackoffice": { "type": "boolean" },
-                "scheme": { "type": "string", "description": "an url schema, usually one of 'http' or 'https'" },
-              },
-            },
-          },
-          "description": { "type": "string" },
-          "isProduction": { "type": "boolean", "default": false },
-          "cluster": {
-            "type": "object",
-            "properties": {
-              "hostname": { "type": "string" },
-              "port": { "type": "number" },
-              "namespace": { "type": "string" },
-              "clusterId": { "type": "string" },
-              "_id": { "type": "string" },
-              "accessToken": { "type": "string" },
-              "base64CA": { "type": "string" },
-              "proxy": {
-                "type": "object",
-                "properties": {
-                  "url": { "type": "string" },
-                },
-              },
-              "serviceAccount": {
-                "type": "object",
-                "properties": {
-                  "name": { "type": "string" },
-                  "clusterRoleName": { "type": "string" },
-                },
-                "required": ["name", "clusterRoleName"],
-              },
-            },
-          },
-          "dashboards": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": { "type": "string" },
-                "label": { "type": "string" },
-                "url": { "type": "string" },
-                "type": { "type": "string", "enum": ["iframe", "newTab"], "default": "iframe" },
-                "category": {
-                  "type": "object",
-                  "properties": {
-                    "label": { "type": "string" },
-                  },
-                  "required": ["label"],
-                  "additionalProperties": false,
-                },
-              },
-              "required": ["id", "label", "url", "type"],
-            },
-          },
-          "deploy": {
-            "type": "object",
-            "required": ["type"],
-            "properties": {
-              "type": { "type": "string" },
-              "providerId": { "type": "string" },
-              "jobId": { "type": "string" },
-              "statusWebhookSecretCredentialsId": { "type": "string" },
-              "paramsMap": {
-                "type": "object",
-                "properties": {
-                  "revision": { "type": "string" },
-                  "environment": { "type": "string" },
-                },
-              },
-            },
-          },
-          "links": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "url": { "type": "string" },
-                "id": { "type": "string" },
-              },
-              "required": ["url"],
-              "additionalProperties": false,
-            },
-          },
-          "environmentsVariables": {
-            "type": "object",
-            "properties": {
-              "type": { "type": "string", "enum": ["gitlab", "vault"] },
-              "providerId": { "type": "string" },
-              "baseUrl": { "type": "string" },
-              "storage": {
-                "type": "object",
-                "properties": {
-                  "type": { "type": "string", "enum": ["groups", "projects"] },
-                  "path": { "type": "string" },
-                  "id": { "type": "string" },
-                },
-                "oneOf": [{ "required": ["path"] }, { "required": ["id"] }],
-                "required": ["type"],
-                "additionalProperties": false,
-              },
-            },
-            "required": ["type"],
-            "additionalProperties": false,
-          },
-        },
-        "required": ["envId"],
-      }
-    },
-    "links": {
-      "type": "object",
-      "additionalProperties": {
-        "oneOf": [
-          {
-            "type": "object",
-            "properties": {
-              "url": { "type": "string" },
-              "name": { "type": "string" },
-            },
-            "required": ["url", "name"],
-            "additionalProperties": false,
-          },
-          {
-            "type": "object",
-            "properties": {
-              "path": { "type": "string" },
-              "isBackoffice": { "type": "boolean" },
-              "isEnvironmentLink": { "type": "boolean" },
-            },
-            "required": ["path"],
-            "additionalProperties": false,
-          },
-        ],
-      },
-    },
-    "environmentsVariables": {
-      "type": "object",
-      "properties": {
-        "type": { "type": "string", "enum": ["gitlab", "vault"] },
-        "providerId": { "type": "string" },
-        "baseUrl": { "type": "string" },
-        "storage": {
-          "type": "object",
-          "properties": {
-            "type": { "type": "string", "enum": ["groups", "projects"] },
-            "path": { "type": "string" },
-            "id": { "type": "string" },
-          },
-          "oneOf": [{ "required": ["path"] }, { "required": ["id"] }],
-          "required": ["type"],
-          "additionalProperties": false,
-        },
-      },
-      "required": ["type"],
-      "additionalProperties": false,
-    },
-    "projectNamespaceVariable": { "type": "string" },
-    "availableNamespaces": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "value": { "type": "string" },
-          "label": { "type": "string" },
-        },
-        "required": ["value"],
-      },
-    },
-    "enabledServices": {
-      "type": "object",
-      "additionalProperties": true,
-    },
-    "dockerImageNameSuggestion": {
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "type": { "type": "string", "enum": ["REPOSITORY", "PROJECT_ID"] },
-          },
-          "required": ["type"],
-          "additionalProperties": false,
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": { "type": "string", "enum": ["CONSTANT_PREFIX"] },
-            "prefix": { "type": "string" },
-          },
-          "required": ["type", "prefix"],
-          "additionalProperties": false,
-        },
-      ],
-      "default": { "type": "PROJECT_ID" },
-    },
-    "repository": {
-      "type": "object",
-      "properties": {
-        "providerId": { "type": "string" },
-        "provider": {
-          "type": "object",
-          "properties": {
-            "providerId": { "type": "string" },
-            "type": {
-              "type": "string",
-              "enum": ["bitbucket", "github", "gitlab", "azure-devops"],
-            },
-            "apiBaseUrl": { "type": "string" },
-            "baseUrl": { "type": "string" },
-            "accessToken": { "type": "string" },
-            "base64CA": { "type": "string" },
-            "proxy": {
-              "type": "object",
-              "properties": {
-                "url": { "type": "string" },
-                "username": { "type": "string" },
-                "password": { "type": "string" },
-              },
-              "required": ["url"],
-            },
-          },
-          "additionalProperties": false,
-        },
-      },
-    },
-    "pipelines": {
-      "oneOf": [
-        {
-          "type": "object",
-          "properties": {
-            "providerId": { "type": "string" },
-            "type": {
-              "type": "string",
-              "not": {
-                "enum": ["azure-pipelines", "jenkins"],
-              },
-            },
-          },
-        },
-        {
-          "type": "object",
-          "properties": {
-            "providerId": { "type": "string" },
-            "type": { "type": "string", "enum": ["azure-pipelines"] },
-            "azurePipelineId": { "type": "number" },
-          },
-          "required": ["type"],
-        },
-        {
-          "type": "object",
-          "properties": {
-            "type": { "type": "string", "enum": ["jenkins"] },
-            "providerId": { "type": "string" },
-            "options": {
-              "type": "object",
-              "properties": {
-                "view": {
-                  "type": "object",
-                  "properties": {
-                    "name": { "type": "string" },
-                  },
-                },
-              },
-            },
-          },
-          "required": ["type"],
-        },
-      ],
-    },
-    "tenantId": { "type": "string" },
-    "color": { "type": "string" },
-    "info": {
-      "type": "object",
-      "properties": {
-        "projectOwner": { "type": "string" },
-        "teamContact": { "type": "string" },
-        "technologies": {
-          "type": "array",
-          "items": { "type": "string" },
-        },
-      },
-    },
-    "deploy": {
-      "type": "object",
-      "properties": {
-        "runnerTool": { "type": "string" },
-        "useMiaPrefixEnvs": { "type": "boolean" },
-      },
-    },
-    "enabledFeaturesPreview": {
-      "type": "object",
-      "additionalProperties": false,
-    },
-    "enabledSecurityFeatures": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "seccompProfile": { "type": "boolean" },
-        "appArmor": { "type": "boolean" },
-        "hostProperties": { "type": "boolean" },
-        "privilegedPod": { "type": "boolean" },
-      },
-    },
-    "layerId": { "type": "string" },
-    "logicalScopeLayers": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "order": { "type": "number" },
-        },
-      },
-    },
-    "tenantName": { "type": "string" },
-    "featureToggles": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "viewBasicHomepage": { "type": "boolean" },
-      },
-    },
-    "imagePullSecretNames": {
-      "type": "array",
-      "items": { type: "string" },
-    },
-    "isRepositoryCreated": { "type": "boolean" },
     "areNamespacesCreated": {
       "type": "array",
       "items": {
@@ -482,6 +123,82 @@ This event will be triggered when a project is created successfully.
         },
       },
     },
+    "availableNamespaces": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string" },
+          "label": { "type": "string" },
+        },
+        "required": ["value"],
+      },
+    },
+    "configurationGitPath": { "type": "string" },
+    "defaultBranch": { "type": "string" },
+    "description": { "type": "string" },
+    "enabledServices": {
+      "type": "object",
+      "additionalProperties": true,
+    }
+    "environments": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "envId": { "type": "string" },
+          "envPrefix": { "type": "string" },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "host": { "type": "string" },
+                "isBackoffice": { "type": "boolean" },
+                "scheme": { "type": "string", "description": "an url schema, usually one of 'http' or 'https'" },
+              },
+            },
+          },
+          "description": { "type": "string" },
+          "isProduction": { "type": "boolean", "default": false },
+          "cluster": {
+            "type": "object",
+            "properties": {
+              "namespace": { "type": "string" },
+              "clusterId": { "type": "string" }
+            },
+          },
+          "deploy": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": { "type": "string" }
+            },
+          },
+        },
+        "required": ["envId"],
+      }
+    },
+    "hostnames": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+    },
+    "isRepositoryCreated": { "type": "boolean" },
+    "name": { "type": "string" },
+    "projectId": { "type": "string" },
+    "projectNamespaceVariable": { "type": "string" },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "providerId": { "type": "string" },
+      },
+    },
+    "repositoryUrl": { "type": "string" },
+    "tenantId": { "type": "string" },
+    "tenantName": { "type": "string" },
   },
   "required": ["_id", "name", "configurationGitPath", "projectId", "environments", "repository"],
   "additionalProperties": false
