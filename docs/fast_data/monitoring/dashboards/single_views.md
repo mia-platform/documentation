@@ -12,17 +12,6 @@ Make sure the services you need the metrics from have the "Enable metric gatheri
 
 Click <a download target="_blank" href="/docs_files_to_download/single-view-creator.json">**here**</a> to download the dashboard.
 
-### Single View Trigger Generator Service
-
-The Single View Trigger Generator Service is one of the core services of the Fast Data which is in charge of executing the strategies, offloading the job from the Real Time Updater.
-Using the SVTG to execute the strategies instead ot the RTU provides many advantages that you can find [here](/fast_data/single_view_trigger_generator.md#advantages-of-adopting-the-single-view-trigger-generator). Among these advantages it also provides some metrics to help you monitor the strategy execution times.
-
-The metrics exposed by the Single View Trigger Generator Service are:
-
-| Metric Name                  | Description                                                                       | Buckets (ms) | Available since version |
-| ---------------------------- | --------------------------------------------------------------------------------- | ------------ | ----------------------- |
-| svtg_strategy_execution_time | creates a histogram tracking the amount of time spent for each strategy execution |              | 0.1.0                   |
-
 ### Single View Creator Service
 
 When working with Fast Data, you should already have one or more Single View Creator services, which will expose the relevant metrics. No additional configuration is needed.
@@ -37,6 +26,17 @@ The metrics exposed by the Single View Creator Service are:
 | svc_creation_time                  | creates a histogram tracking creation time of the single views'                                   | 0.1, 30, 150, 500, 1000, 2000, 5000, 15000, 30000                | 3.0.0                   |
 | svc_projection_to_single_view_time | creates a histogram tracking the amount of time spent from projection to single view              | 0.1, 30, 150, 500, 1000, 2000, 5000, 15000, 30000, 60000, 120000 | 3.7.2                   |
 | svc_pc_total_handle_time           | creates a histogram tracking projection changes handle time plus creation time of the single view | 0.1, 30, 150, 500, 1000, 2000, 5000, 15000, 30000                | 3.0.0                   |
+
+### Single View Trigger Generator Service
+
+The Single View Trigger Generator Service is one of the core services of the Fast Data which is in charge of executing the strategies, offloading the job from the Real Time Updater.
+Using the SVTG to execute the strategies instead ot the RTU provides many advantages that you can find [here](/fast_data/single_view_trigger_generator.md#advantages-of-adopting-the-single-view-trigger-generator). Among these advantages it also provides some metrics to help you monitor the strategy execution times.
+
+The metrics exposed by the Single View Trigger Generator Service are:
+
+| Metric Name                  | Description                                                                       | Buckets (ms) | Available since version |
+| ---------------------------- | --------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| svtg_strategy_execution_time | creates a histogram tracking the amount of time spent for each strategy execution |              | 0.1.0                   |
 
 ## Panels
 
