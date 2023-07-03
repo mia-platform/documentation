@@ -17,6 +17,11 @@ coupled by reflecting changes: a change on the former is mirrored on the latter,
 The Configurator layout section queries the webcomponents to discover their properties/attributes using a static getter
 promise called a _Manifest_.
 
+:::tip
+You can use the [JSON schema](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/manifest.schema.json)
+to check your components manifests.
+:::
+
 The `__manifest` static getter must return a JavaScript object that has a key `type` which must be `object` (to be JSON schema compatible) and a
 map of `properties`.
 
@@ -289,10 +294,10 @@ Configurator provides some types that are well known and often used in order to 
    1. a `label` which must be a `string`
    2. and a `payload` which must be an `object`
 6. A `mia/endpoints` spawns a selection with a fixed list of options which are **Mia Platform's Console** currently available http endpoints.
-7. A `mia/endpoints/crud` are `mia/endpoints` coming from a `CRUD Service` microservice.
-8. A `mia/endpoints/data-source` are `mia/endpoints` coming from a `CRUD Service` microservice, a Mongo View, a Fast Data
+7. A `mia/endpoints/crud` is the list of `mia/endpoints` coming from a `CRUD Service` microservice.
+9. A `mia/endpoints/data-source` is the list of `mia/endpoints` coming from a `CRUD Service` microservice, a Mongo View, a Fast Data
    projection, or a Fast Data Single View.
-9. A `micro-lc/applications` is the list of currently configured applications in the Configurator initial section.
+10. A `micro-lc/applications` is the list of currently configured applications in the Configurator initial section.
 
 ### The `shared-key` key
 

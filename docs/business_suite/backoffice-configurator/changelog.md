@@ -19,7 +19,7 @@ sidebar_label: CHANGELOG
 
 - Shared Property page
 - Possibility of creating shared properties starting from existing non-shared definitions
-- No-code editor for Shared Properties of type Data Schema 
+- No-code editor for Shared Properties of type Data Schema
 - Advanced modal to edit Shared Properties
 - Support for `dynamic-icon` manifest schema hint
 - Added support for `mia/endpoints/data-source` schema hint
