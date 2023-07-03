@@ -45,13 +45,31 @@ Please bear in mind that the `authProviders` field is a required field, you can
 | `userInfoPath` | string | The path for retrieving the user data |  | ✅ |
 | `userInfoUrl` | string | The full url for retrieving the user data | value of `apiBaseUrl/userInfoPath` | ✅ |
 | `userSettingsURL` | string | The full url to the API endpoint for requesting the user data | empty string | ✅ |
-| `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
-| `logoutUrlPath` | string | The path to to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
 | `skipRefreshProviderTokenOnMiaTokenRefresh`| boolean | Skip refresh the provider token when the console one is expired | `true` | ✅ |
 | `cmsClientId` | string | The client Id for CMS authentication | value of `clientId` | ✅ |
 | `cmsClientSecret` | string | The client secret for CMS authentication | value of `clientSecret` | ✅ |
 | `additionalScopes` | string[] | The additional scope for the provider | [] | ✅ |
 | `genericProviderOidcKeys` | object | The keys that must be extracted from the provider response, only available for `generic` auth provider type |  | ✅ |
+
+## Logout flow
+
+You can configure the Console to logout the user from the Identity Provider when the user logs out from the Console itself. In oder to do so, you have to set one of the following properties:
+| `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
+| `logoutUrlPath` | string | The path to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
+
+In case you set the `logoutUrlPath`, it will be appended to the Identity Provider base URL.
+
+:::info
+
+Please note that you may need to allow the redirect URL to the homepage of the Console and to the homepage of the CMS login site inside the Identity Provider configuration.
+
+The urls are the following:
+- `<CONSOLE-BASE-URL>/`
+- `<CONSOLE-CMS-BASE-URL>/web-login`
+
+Consult the documentation of your Identity Provider to know how to configure the redirect URLs.
+
+:::
 
 ## Session signing
 

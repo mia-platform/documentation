@@ -5,9 +5,9 @@ sidebar_label: File Storage
 ---
 Mia-Platform Console requires a connection to a bucket where files can be stored, supported buckets are:
 
-  * MongoDB GridFS
-  * AWS S3 (and S3 compatible storages)
-  * Google Cloud Storage
+* MongoDB GridFS
+* AWS S3 (and S3 compatible storages)
+* Google Cloud Storage
 
 You can configure the desired file storage with the `fileStorageType` configuration key with one of `mongodb`, `s3` or `googleStorage` (the default value is `mongodb`).
 
@@ -46,3 +46,15 @@ mia-console:
     filesBucketName: "mia-console-files-bucket"
     filesCredentials: "{{GOOGLE_STORAGE_CREDENTIALS}}"
 ```
+
+## Workload Identity
+
+If you are using a cloud provided bucket storage from AWS or Google you can also use the Workload Identity authorization method.
+You can use the `serviceAccount.annotations` property to setup the correct annotation for your cloud provider and follow their
+guides for setting up the provider correctly.
+
+* [GCP Workload Identity documentation]
+* [AWS IAM roles for service accounts]
+
+[GCP Workload Identity documentation]: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+[AWS IAM roles for service accounts]: https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
