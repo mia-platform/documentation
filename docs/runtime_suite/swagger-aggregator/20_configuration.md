@@ -18,6 +18,7 @@ It is also possible to expose your Swagger Aggregator microservice with multiple
 - `MERGE_STRATEGY`: defines the strategy to merge: `THROWS` or `FIRST` (default: `THROWS`)
 - `TIMEOUT_CHECKUP_PROBE_DEPENDENCIES_IN_SECOND`: defines the timeout to check the probe dependencies (default 10s)
 - `CONCURRENT_REQUEST_LIMIT`: lets you define the number of allowed concurrent requests that should be done by the service to fetch the documentations
+- `PREVENT_REQUEST_BODY_CONFLICTS`: disables the requestBodies aggregation when converting swaggers to openApi V3; the default value is a boolean set to `false`
 
 ## Configuration file
 
