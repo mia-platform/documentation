@@ -137,10 +137,6 @@ This event will be triggered when a project is created successfully.
     "configurationGitPath": { "type": "string" },
     "defaultBranch": { "type": "string" },
     "description": { "type": "string" },
-    "enabledServices": {
-      "type": "object",
-      "additionalProperties": true,
-    },
     "environments": {
       "type": "array",
       "default": [],
@@ -200,7 +196,6 @@ This event will be triggered when a project is created successfully.
     "tenantName": { "type": "string" },
   },
   "required": ["_id", "name", "configurationGitPath", "projectId", "environments", "repository"],
-  "additionalProperties": false
 }
 ```
 
@@ -349,13 +344,9 @@ hence there is no guarantee that the service will be found in the project config
               "managedBy": { "type": "string" },
               "secretName": {
                 "type": "string",
-                "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-                "x-validation-error-id": "resourceName.patternError",
               },
               "secretKey": {
                 "type": "string",
-                "pattern": "^[a-zA-Z0-9-_.]*$",
-                "x-validation-error-id": "serviceSecretKey.patternError",
               },
               "valueType": { "type": "string", "const": "secret" },
               "description": { "type": "string" },
