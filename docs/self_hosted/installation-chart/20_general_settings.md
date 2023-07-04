@@ -63,7 +63,7 @@ For any doubt check out the [Client Credentials guide](../../runtime_suite/clien
     * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`
     * digit your passphrase (it is required for `rsaPrivateKeyPass`)
       * to generate the password we recommend using `openssl rand -hex 128`
-    * encode the private key in base64
+    * encode the private key in base64 (`cat <PRIVATE_KEY> | base64`)
   * `rsaPrivateKeyId`: `openssl rand -hex 24`
   * `rsaPrivateKeyPass`: the passphrase you used during private key generation
   * `clientIdSalt`: `openssl rand -hex 256`
@@ -111,7 +111,6 @@ mia-console:
 
 | Name | Type | Description | Default | Optional |
 |:----:|:----:|:-----------:|:-------:|:--------:|
-|`configurations.enableTelemetry`| boolean | Enable console telemetry to send usage info | `false` | ✅
 |`configurations.enableClustersAndEnvironmentsManagement`| boolean | Enables Clusters and Environments management | `true` | ✅ |
 |`configurations.projectTemplateArchiveUrl`| string | New project template url |  | ✅ |
 |`configurations.enablePrometheusMetrics`| boolean | enable prometheus to collect metrics. This is a beta feature and could have breaking changes. | `false` | ✅ |

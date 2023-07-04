@@ -54,17 +54,19 @@ mia-console:
         tokenPath: "/oauth2/v1/token"
         userInfoPath: "/oauth2/v1/userinfo"
         userSettingsURL: "<BASE_URL>/enduser/settings"
+        logoutUrlPath: "/oauth2/v1/logout"
         skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
-      # this is the placeholder to use if your auth provider is github
+      # this is the placeholder to use if your auth provider is microsoft
       - name: "<AUTH_PROVIDER_ID>" # name of the provider
         type: "microsoft"
-        baseUrl: "<OAUTH_BASE_URL>" # base url of the github instance
+        baseUrl: "<OAUTH_BASE_URL>" # base url of microsoft instance
         clientId: "<OAUTH_APP_ID>"
         clientSecret: "<OAUTH_SECRET>"
         authPath: "/authorize"
         tokenPath: "/token"
         userInfoUrl: "https://graph.microsoft.com/oidc/userinfo"
         userSettingsURL: "https://account.microsoft.com/profile/"
+        logoutUrlPath: "/logout"
         skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
     redisHost: "<REDIS_HOST>" # optional: default is "redis.default.svc.cluster.local:6379". If installed with this chart, set it to "redis:6379"
     jwtTokenSignKey: "<JWT_TOKEN_SIGN_KEY>" # A JWT signing key, HMAC of 512 bytes
@@ -73,6 +75,12 @@ mia-console:
     filesStorageType: "mongodb"
     filesBucketName: "<GRIDFS_COLLECTION_NAME>" # gridFS collection name
     multitinenantNamespace: ""
+    serviceAccountAuthProvider:
+      rsaPrivateKeyId: "PRIVATE KEY ID"
+      rsaPrivateKeyPass: "PRIVATE KEY PASSPHRASE"
+      clientIdSalt: "CLIENT SALT"
+      rsaPrivateKeyBase64: |
+        "BASE64_PrivateKey"
     customServicesImagePullSecrets:
       - "<SERVICE_PULL_SECRET>" # array of image pull secret to pull your custom services
     defaultCoreResources:
@@ -88,7 +96,6 @@ mia-console:
       authorizationService:
         memoryLimitMin: "20Mi"
         memoryLimitMax: "80Mi"
-    enableTelemetry: false # set to true if it's possible to collect telemetry for your console usage
     crudEncryption: # ../../runtime_suite/crud-service/encryption_configuration
       keyVaultNamespace: "<dbname.collectionname>" # set to the collection you wish to use as encryption key vault.
       kmsProvider: "gcp|local" # set to gcp or local based on your desired KMS
@@ -103,13 +110,6 @@ mia-console:
         keyRing: "<KMS_GCP_KEY_RING>"
         keyName: "<KMS_GCP_KEY_NAME>"
         privateKey: "<CRUD_ENCRYPTION_KEY>"
-    clusters: # array with the mandatory parameters for the k8s clusters API connections
-      - name: "<K8S_CLUSTER_NAME_1>" # example1: K8S_NOPROD
-        endpoint: "<K8S_CLUSTER_NAME_ENDPOINT_1>"
-        token: "<K8S_CLUSTER_NAME_TOKEN_1>"
-      - name: "<K8S_CLUSTER_NAME_2>" # example2: K8S_PRODUCTION
-        endpoint: "<K8S_CLUSTER_NAME_ENDPOINT_2>"
-        token: "<K8S_CLUSTER_NAME_TOKEN_2>"
 
   apiGateway:
     deploy:
