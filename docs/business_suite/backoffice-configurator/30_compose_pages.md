@@ -1,7 +1,7 @@
 ---
-id: compose-pages
+id: compose_pages
 title: Compose pages
-sidebar_label: Compose-pages
+sidebar_label: Compose Pages
 ---
 :::caution
 This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
@@ -23,7 +23,7 @@ Compose pages can be created starting from a template, which is a pre-defined co
 
 <!-- 
 :::tip
-To learn how to use your own custom templates, read the [dedicated documentation](./40_configurator-settings.md#template-sources).
+To learn how to use your own custom templates, read the [dedicated documentation](./40_configurator_settings.md#template-sources).
 ::: 
 -->
 
