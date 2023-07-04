@@ -40,7 +40,8 @@ This event will be triggered when a project is created successfully.
   "eventTimestamp": 123456,
   "payload": {
     "tenantId": "my-company-id",
-    "projectId": "0000000000000001"
+    "projectId": "0000000000000001",
+    "project": {...}
   }
 }
 ```
@@ -184,7 +185,6 @@ This event will be triggered when a project is created successfully.
     "isRepositoryCreated": { "type": "boolean" },
     "name": { "type": "string" },
     "projectId": { "type": "string" },
-    "projectNamespaceVariable": { "type": "string" },
     "repository": {
       "type": "object",
       "properties": {
@@ -234,7 +234,8 @@ hence there is no guarantee that the service will be found in the project config
     "projectId": "0000000000000001",
     "repositoryURL": "http://gihub.com/my-repository",
     "serviceName": "my-service",
-    "templateId": "0000000000000002"
+    "templateId": "0000000000000002",
+    "service": {...}
   }
 }
 ```
