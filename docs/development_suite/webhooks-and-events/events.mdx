@@ -366,11 +366,9 @@ hence there is no guarantee that the service will be found in the project config
           "properties": {
             "max": {
               "type": "string",
-              "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
             },
             "min": {
               "type": "string",
-              "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))m$)|^$",
             },
           },
         },
@@ -379,11 +377,9 @@ hence there is no guarantee that the service will be found in the project config
           "properties": {
             "max": {
               "type": "string",
-              "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
             },
             "min": {
               "type": "string",
-              "pattern": "(^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|(\\d+))Mi$)|^$",
             },
           },
         },
@@ -397,8 +393,6 @@ hence there is no guarantee that the service will be found in the project config
           "properties": {
             "path": {
               "type": "string",
-              "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
-              "x-validation-error-id": "probesPath.patternError",
             },
             "port": {
               "type": "integer",
@@ -418,8 +412,6 @@ hence there is no guarantee that the service will be found in the project config
           "properties": {
             "path": {
               "type": "string",
-              "pattern": "^\\/(([\\w\\-:.\\{\\}])\\/?)*$|^$",
-              "x-validation-error-id": "probesPath.patternError",
             },
             "port": {
               "type": "integer",
@@ -449,8 +441,6 @@ hence there is no guarantee that the service will be found in the project config
         "properties": {
           "name": {
             "type": "string",
-            "pattern": "^[a-z][-a-z0-9]*([a-z0-9])?$",
-            "x-validation-error-id": "resourceName.patternError",
           },
           "from": {
             "if": { "type": "number" },
@@ -461,7 +451,6 @@ hence there is no guarantee that the service will be found in the project config
             },
             "else": {
               "type": "string",
-              "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
             },
           },
           "to": {
@@ -473,7 +462,6 @@ hence there is no guarantee that the service will be found in the project config
             },
             "else": {
               "type": "string",
-              "pattern": "^$|^((\\{\\{([A-Z])([A-Z0-9_]*)\\}\\})|([1-9]\\d*|0))$",
             },
           },
           "protocol": { "type": "string" },
@@ -500,8 +488,6 @@ hence there is no guarantee that the service will be found in the project config
     },
     "defaultDocumentationPath": {
       "type": "string",
-      "pattern": "^$|^(\\/$|(\\/([\\w\\-\\.]|(:[a-zA-Z]))[\\w\\-\\.]*)+)$",
-      "x-validation-error-id": "swaggerPath.patternError",
     },
     "defaultConfigMaps": {
       "type": "array",
@@ -510,13 +496,9 @@ hence there is no guarantee that the service will be found in the project config
         "properties": {
           "name": {
             "type": "string",
-            "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-            "x-validation-error-id": "resourceName.patternError",
           },
           "mountPath": {
             "type": "string",
-            "pattern": "^[a-zA-Z0-9-/_\\s.|\\\\!\"£$%&()=?^\"{}[\\]*+@]+$",
-            "x-validation-error-id": "configMountPath.patternError",
           },
           "subPaths": {
             "type": "array",
