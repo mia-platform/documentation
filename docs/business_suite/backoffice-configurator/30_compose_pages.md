@@ -27,72 +27,6 @@ To learn how to use your own custom templates, read the [dedicated documentation
 ::: 
 -->
 
-### Page with table
-
-A page built to display an array of data with a tabular view. It provides filtering, exporting, pagination, creation,
-and editing functionalities.
-
-![Page with table template](img/compose-page_templates_page-with-table.png)
-
-The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
-interface configuring the _base path_ property of _CURD client_ and _CRUD export_ components in _Connectors & Adapters_
-section.
-
-Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
-[dedicated section](#shared-properties). 
-
-### Table with file field
-
-A page built to display an array of data carring file fields with a tabular view. Besides filtering, exporting,
-pagination, creation, and editing functionalities, it provides a way to upload and download files.
-
-![Table with file field template](img/compose-page_templates_table-with-file-field.png)
-
-The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
-interface configuring the _base path_ property of _CURD client_ and _CRUD export_ components in _Connectors & Adapters_
-section. Moreover, page should be linked to a [files service](../../runtime_suite/files-service/configuration)
-instance thought the _base path_ property of _File service client_ component in _Connectors & Adapters_ section.
-
-Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
-[dedicated section](#shared-properties).
-
-### Master table
-
-A table page built to be connected with another page that provides further details on the data.
-
-![Master table template](img/compose-page_templates_master-table.png)
-
-The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details
-page configuring the table [`customActions` property](../../business_suite/backoffice/components/data_visualization#configuring-actions-via-customactions).
-
-### Details page
-
-A page built to display a detailed view of data (e.g., a single row of a table) through [card components](../../business_suite/backoffice/components/data_visualization#bk-card).
-
-![Details page template](img/compose-page_templates_details-page.png)
-
-The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
-interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_
-section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be
-[properly configured](../../business_suite/backoffice/components/adapters#bk-url-parameters) to
-query data correctly.
-
-Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
-[dedicated section](#shared-properties).
-
-### Single view visualization
-
-A page built to visualize a [Fast Data Single View](../../fast_data/the_basics#single-view-sv).
-It offers a readonly interaction with the data and is equipped for nested data visualization.
-
-![Single view template](img/compose-page_templates_single-view.png)
-
-The template should be linked to an exposed Single View configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_
-section.
-
-Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
-[dedicated section](#shared-properties).
-
 ### Calendar view
 
 A page built to visualize data on a calendar. It provides filtering, exporting, pagination, creation, and editing functionalities.
@@ -122,6 +56,70 @@ instance thought the _base path_ property of _File service client_ component in 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
 [dedicated section](#shared-properties).
 
+### Show info/details page
+
+A page built to display a detailed view of data like a single row of a table..
+
+![Details page template](img/compose-page_templates_details-page.png)
+
+The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
+interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_
+section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be
+[properly configured](../../business_suite/backoffice/components/adapters#bk-url-parameters) to
+query data correctly.
+
+Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
+[dedicated section](#shared-properties).
+
+### Table: base table
+
+A page built to display data with a tabular view. It provides filtering, exporting, pagination, creation, and editing functionalities.
+
+![Page with table template](img/compose-page_templates_page-with-table.png)
+
+The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
+interface configuring the _base path_ property of _CURD client_ and _CRUD export_ components in _Connectors & Adapters_
+section.
+
+Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
+[dedicated section](#shared-properties). 
+
+### Table: base table with navigation button
+
+A table page built to be connected with another page that provides further details on the data (this template does not create the details page).
+
+![Master table template](img/compose-page_templates_master-table.png)
+
+The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details
+page configuring the table [`customActions` property](../../business_suite/backoffice/components/data_visualization#configuring-actions-via-customactions).
+
+### Table: read-only table with nested fields
+
+A page built to visualize data in a tabular view. It offers a readonly interaction with the data and is equipped for nested
+data visualization. It is well suited to show a [Fast Data Single View](../../fast_data/the_basics#single-view-sv).
+
+![Single view template](img/compose-page_templates_single-view.png)
+
+The template should be linked to an exposed Single View configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_
+section.
+
+Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
+[dedicated section](#shared-properties).
+
+### Table: table with file field
+
+A page built to display data carrying file fields with a tabular view. Besides filtering, exporting, pagination, creation,
+and editing functionalities, it provides a way to upload and download files.
+
+![Table with file field template](img/compose-page_templates_table-with-file-field.png)
+
+The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
+interface configuring the _base path_ property of _CURD client_ and _CRUD export_ components in _Connectors & Adapters_
+section. Moreover, page should be linked to a [files service](../../runtime_suite/files-service/configuration)
+instance thought the _base path_ property of _File service client_ component in _Connectors & Adapters_ section.
+
+Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
+[dedicated section](#shared-properties).
 
 ## Layout
 
