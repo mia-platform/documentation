@@ -42,16 +42,15 @@ This card presents an overview of which Git Provider, Secret Manager, and CI/CD 
 
 ## Workload & Runtime
 
-The "Workload & Runtime" tab shows information about the project workload and runtime through 4 cards: "Microservice Settings", "Image Pull Secret", "Runtime Settings", and "Security Features".
+The "Workload & Runtime" tab shows information about the project workload and runtime through 4 cards: "Microservices", "Image Pull Secret", "Runtime Settings", and "Security Features".
 
-### Microservice Settings
+### Microservices
 
-![microservice settings](img/settings-microservice-settings.png)
+![microservices](img/settings-microservices.png)
 
 This card shows and gives the user the ability to change some settings related to the creation of microservices within the project. Specifically:
-- *Suggestion for Docker Image*
-  * **Type**: defines the format of the Docker image name suggestion. It is one of `REPOSITORY`, `PROJECT_ID`, `CONSTANT_PREFIX` (the default is `PROJECT_ID`);
-  * **Prefix** (only if type is `CONSTANT_PREFIX`): defines the prefix that will appear in the suggestion for the Docker image name.
+- **Suggestion for Docker image**: defines the format of the Docker image name suggestion. It is one of `REPOSITORY`, `PROJECT_ID`, `CONSTANT_PREFIX` (the default is `PROJECT_ID`);
+- **Prefix** (only if type is `CONSTANT_PREFIX`): defines the prefix that will appear in the suggestion for the Docker image name.
 
 The above information can be edited by clicking on the "Edit" button, which will open a modal very similar to that seen for project information. Upon clicking "Save changes", the information will be updated.
 
