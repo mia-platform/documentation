@@ -11,7 +11,7 @@ It is also available a white label front-end with **adaptive checkout** and a re
 
 ### Microservices
 
-The Payment Integration Hub is componsed by:
+The Payment Integration Hub is composed by:
 1. [Payment Gateway Manager](../../runtime_suite/payment-gateway-manager/how_it_works) exposes an unique interface for all the payment methods enabled by different providers and implements all the payment related functionalities.
 2. A set of microservices that implement some functionality to support the payment process:
     - the [Invoice Service](../../runtime_suite/invoice-service/overview) generates an invoice of a payment in pdf format;
