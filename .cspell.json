@@ -182,7 +182,8 @@
     "debezium",
     "decoderbufs",
     "pgoutput",
-    "servlet"
+    "servlet",
+    "Adyen"
   ],
   "ignoreWords": [
     "asncdctools",
