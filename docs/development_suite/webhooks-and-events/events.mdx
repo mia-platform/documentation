@@ -19,6 +19,7 @@ All the events triggered by the Console share some common properties:
 | `eventTimestamp` | `number` | The timestamp of the event emission                            |
 | `payload`        | `object` | Contains the event-specific payload                            |
 
+
 ### Project Created
 
 This event will be triggered when a project is created successfully.
@@ -41,7 +42,132 @@ This event will be triggered when a project is created successfully.
   "payload": {
     "tenantId": "my-company-id",
     "projectId": "0000000000000001",
-    "project": {...}
+    "project": {
+      "tenantId": "my-company-id",
+      "projectId": "project-id",
+      "name": "project name",
+      "isRepositoryCreated": true,
+      "configurationGitPath": "the/configuration/git/path/configurations",
+      "repositoryUrl": "https://api.git.baseurl/the/configuration/git/path/configurations",
+      "dockerImageNameSuggestion": {"type": "PROJECT_ID"},
+      "repository": {"providerId": "git-provider-id"},
+      "environments": [
+        {
+          "label": "Development",
+          "envId": "DEV",
+          "envPrefix": "DEV",
+          "hosts": [{
+            "host": "your.host.development.eu",
+            "isBackoffice": false
+          }],
+          "isProduction": false,
+          "cluster": {
+            "namespace": "project-development",
+            "clusterId": "mongoObjectId",
+          },
+          "deploy": {
+            "type": "gitlab-ci",
+            "providerId": "git-provider-id"
+          }
+        },
+        {
+          "label": "Preproduction",
+          "envId": "PREPROD",
+          "envPrefix": "PREPROD",
+          "hosts": [
+            {
+              "host": "your.host.preprod.eu",
+              "isBackoffice": false
+            },
+            {
+              "host": "cms.host.preprod.eu",
+              "isBackoffice": true
+            }
+          ],
+          "isProduction": false,
+          "cluster": {
+            "namespace": "project-preprod",
+            "clusterId": "mongoObjectId",
+          },
+          "deploy": {
+            "type": "gitlab-ci",
+            "providerId": "git-provider-id"
+          }
+        },
+        {
+          "label": "Production",
+          "envId": "PROD",
+          "envPrefix": "PROD",
+          "hosts": [
+            {
+              "host": "your.host.prod.eu",
+              "isBackoffice": false
+            },
+            {
+              "host": "cms.host.prod.eu",
+              "isBackoffice": true
+            }
+          ],
+          "isProduction": true,
+          "cluster": {
+            "namespace": "console-e2e-test-production",
+            "clusterId": "mongoObjectId",
+          },
+          "deploy": {
+            "type": "gitlab-ci",
+            "providerId": "gitlab-bot-targa"
+          }
+        }
+      ],
+      "pipelines": {"providerId": "pipelines-provider-id", "type": "gitlab-ci"},
+      "enabledSecurityFeatures": {
+        "seccompProfile": false,
+        "appArmor": true,
+        "hostProperties": true,
+        "privilegedPod": false
+      },
+      "areNamespacesCreated": [
+        {
+          "namespace": "project-development",
+          "envId": "DEV",
+          "labels": {
+            "mia-platform.eu/company": "company-id",
+            "mia-platform.eu/environment": "DEV",
+            "mia-platform.eu/project": "project name",
+            "kubernetes.io/metadata.name": "your.host.development.eu",
+            "app.kubernetes.io/managed-by": "mia-platform"
+          }
+        },
+        {
+          "namespace": "project-preprod",
+          "envId": "PREPROD",
+          "error": {
+            "message": "namespaces \"project-preprod\" already exists",
+            "errorCode": "FNC",
+            "statusCode": "409"
+          },
+          "message": "failed namespace creation",
+          "labels": {
+            "mia-platform.eu/company": "company-id",
+            "mia-platform.eu/environment": "PREPROD",
+            "mia-platform.eu/project": "project name",
+            "kubernetes.io/metadata.name": "your.host.preprod.eu",
+            "app.kubernetes.io/managed-by": "mia-platform"
+          }
+        },
+        {
+          "namespace": "project-production",
+          "envId": "PROD",
+          "labels": {
+            "mia-platform.eu/company": "company-id",
+            "mia-platform.eu/environment": "PROD",
+            "mia-platform.eu/project": "project name",
+            "kubernetes.io/metadata.name": "your.host.prod.eu",
+            "app.kubernetes.io/managed-by": "mia-platform"
+          }
+        }
+      ]
+    }
   }
 }
 ```
@@ -72,8 +198,109 @@ This event will be triggered when a project is created successfully.
           "description": "The identifier of the Company the Project belongs to"
         },
         "project": {
+          "description": "The project metadata (ideally, the whole project resource)",
           "type": "object",
-          "description": "The project metadata (ideally, the whole project resource)"
+          "properties": {
+            "_id": { "type": "string" },
+            "areNamespacesCreated": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "namespace": { "type": "string" },
+                  "envId": { "type": "string" },
+                  "error": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "errorCode": { "type": "string" },
+                      "statusCode": { "type": "string" },
+                    },
+                  },
+                  "message": { "type": "string" },
+                  "labels": {
+                    "type": "object",
+                    "additionalProperties": true,
+                  },
+                  "deployServiceAccount": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "base64CA": { "type": "string" },
+                    },
+                  },
+                },
+              },
+            },
+            "availableNamespaces": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": { "type": "string" },
+                  "label": { "type": "string" },
+                },
+                "required": ["value"],
+              },
+            },
+            "configurationGitPath": { "type": "string" },
+            "defaultBranch": { "type": "string" },
+            "description": { "type": "string" },
+            "environments": {
+              "type": "array",
+              "default": [],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string" },
+                  "envId": { "type": "string" },
+                  "envPrefix": { "type": "string" },
+                  "hosts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "host": { "type": "string" },
+                        "isBackoffice": { "type": "boolean" },
+                        "scheme": { "type": "string", "description": "an url schema, usually one of 'http' or 'https'" },
+                      },
+                    },
+                  },
+                  "description": { "type": "string" },
+                  "isProduction": { "type": "boolean", "default": false },
+                  "cluster": {
+                    "type": "object",
+                    "properties": {
+                      "namespace": { "type": "string" },
+                      "clusterId": { "type": "string" }
+                    },
+                  },
+                  "deploy": {
+                    "type": "object",
+                    "required": ["type"],
+                    "properties": {
+                      "type": { "type": "string" }
+                    },
+                  },
+                },
+                "required": ["envId"],
+              },
+            },
+            "hostnames": {"type": "object"},
+            "isRepositoryCreated": { "type": "boolean" },
+            "name": { "type": "string" },
+            "projectId": { "type": "string" },
+            "repository": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string" },
+                "providerId": { "type": "string" },
+              },
+            },
+            "repositoryUrl": { "type": "string" },
+            "tenantId": { "type": "string" },
+          }
         }
       },
       "required": ["tenantId", "projectId"],
@@ -86,121 +313,8 @@ This event will be triggered when a project is created successfully.
 ```
 
 </TabItem>
-<TabItem value="project-json-schema" label="project JSON Schema">
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "_id": { "type": "string" },
-    "areNamespacesCreated": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "namespace": { "type": "string" },
-          "envId": { "type": "string" },
-          "error": {
-            "type": "object",
-            "properties": {
-              "message": { "type": "string" },
-              "errorCode": { "type": "string" },
-              "statusCode": { "type": "string" },
-            },
-          },
-          "message": { "type": "string" },
-          "labels": {
-            "type": "object",
-            "additionalProperties": true,
-          },
-          "deployServiceAccount": {
-            "type": "object",
-            "properties": {
-              "name": { "type": "string" },
-              "base64CA": { "type": "string" },
-            },
-          },
-        },
-      },
-    },
-    "availableNamespaces": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "value": { "type": "string" },
-          "label": { "type": "string" },
-        },
-        "required": ["value"],
-      },
-    },
-    "configurationGitPath": { "type": "string" },
-    "defaultBranch": { "type": "string" },
-    "description": { "type": "string" },
-    "environments": {
-      "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "label": { "type": "string" },
-          "envId": { "type": "string" },
-          "envPrefix": { "type": "string" },
-          "hosts": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "host": { "type": "string" },
-                "isBackoffice": { "type": "boolean" },
-                "scheme": { "type": "string", "description": "an url schema, usually one of 'http' or 'https'" },
-              },
-            },
-          },
-          "description": { "type": "string" },
-          "isProduction": { "type": "boolean", "default": false },
-          "cluster": {
-            "type": "object",
-            "properties": {
-              "namespace": { "type": "string" },
-              "clusterId": { "type": "string" }
-            },
-          },
-          "deploy": {
-            "type": "object",
-            "required": ["type"],
-            "properties": {
-              "type": { "type": "string" }
-            },
-          },
-        },
-        "required": ["envId"],
-      },
-    },
-    "hostnames": {
-      "type": "object",
-      "additionalProperties": { "type": "string" },
-    },
-    "isRepositoryCreated": { "type": "boolean" },
-    "name": { "type": "string" },
-    "projectId": { "type": "string" },
-    "repository": {
-      "type": "object",
-      "properties": {
-        "providerId": { "type": "string" },
-      },
-    },
-    "repositoryUrl": { "type": "string" },
-    "tenantId": { "type": "string" },
-    "tenantName": { "type": "string" },
-  },
-  "required": ["_id", "name", "configurationGitPath", "projectId", "environments", "repository"],
-}
-```
-
-</TabItem>
 </Tabs>
+
 
 ### Service Created
 
@@ -235,7 +349,87 @@ hence there is no guarantee that the service will be found in the project config
     "repositoryURL": "http://gihub.com/my-repository",
     "serviceName": "my-service",
     "templateId": "0000000000000002",
-    "service": {...}
+    "service": {
+      "serviceName": "my-template",
+      "dockerImage": "docker-hub/my-template",
+      "repoId": 12345,
+      "webUrl": "https://git.host/folder/company/project/services/my-template",
+      "sshUrl": "git@git.eu:folder/company/project/services/my-template.git",
+      "resourceName": "my-template",
+      "defaultEnvironmentVariables": [
+          {
+              "name": "HTTP_PORT",
+              "value": "3000",
+              "valueType": "plain"
+          },
+          {
+              "name": "LOG_LEVEL",
+              "value": "INFO",
+              "valueType": "plain",
+              "description": "JVM Level to use for logging - e.g. INFO"
+          }
+      ],
+      "defaultResources": {
+          "cpuLimits": {
+              "max": "500m",
+              "min": "100m"
+          },
+          "memoryLimits": {
+              "max": "900Mi",
+              "min": "400Mi"
+          }
+      },
+      "defaultProbes": {
+          "liveness": {
+              "path": "/_/health",
+              "initialDelaySeconds": 15,
+              "periodSeconds": 20,
+              "timeoutSeconds": 3,
+              "successThreshold": 1,
+              "failureThreshold": 2
+          },
+          "readiness": {
+              "path": "/_/ready",
+              "initialDelaySeconds": 20,
+              "periodSeconds": 10,
+              "timeoutSeconds": 3,
+              "successThreshold": 1,
+              "failureThreshold": 3
+          }
+      },
+      "defaultLogParser": "mia-plain",
+      "containerPorts": [
+          {
+              "name": "http",
+              "from": 80,
+              "to": 3000
+          },
+          {
+              "name": "metrics",
+              "from": 8080,
+              "to": 3001
+          }
+      ],
+      "defaultMonitoring": {
+          "endpoints": [
+              {
+                  "path": "/metrics",
+                  "port": "metrics",
+                  "interval": "60s"
+              }
+          ]
+      },
+      "defaultConfigMaps": [
+        {
+          "name": "my-template-conf",
+          "mountPath": "/conf/",
+          "files": [{
+            "name": "template",
+            "content": "content of config map"
+          }]
+        }
+      ]
+    }
   }
 }
 ```
@@ -278,8 +472,254 @@ hence there is no guarantee that the service will be found in the project config
           "description": "The identifier of the template in the Console marketplace from which the service was created"
         },
         "service": {
+          "description": "The service metadata (ideally, the whole service resource)",
           "type": "object",
-          "description": "The service metadata (ideally, the whole service resource)"
+          "properties": {
+            "serviceName": { "type": "string" },
+            "dockerImage": { "type": "string" },
+            "repoId": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
+            "webUrl": { "type": "string" },
+            "sshUrl": { "type": "string" },
+            "resourceName": { "type": "string" },
+            "defaultEnvironmentVariables": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "if": {
+                  "type": "object",
+                  "properties": {
+                    "valueType": { "type": "string", "const": "plain" },
+                  },
+                },
+                "then": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string", "minLength": 1 },
+                    "value": { "type": "string" },
+                    "valueType": { "type": "string", "const": "plain" },
+                    "readOnly": { "type": "boolean" },
+                    "managedBy": { "type": "string" },
+                    "description": { "type": "string" },
+                  },
+                  "additionalProperties": false,
+                  "required": ["name", "value", "valueType"],
+                },
+                "else": {
+                  "if": {
+                    "type": "object",
+                    "properties": {
+                      "valueType": {
+                        "type": "string",
+                        "const": "secret"
+                      },
+                    },
+                  },
+                  "then": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string", "minLength": 1 },
+                      "readOnly": { "type": "boolean" },
+                      "managedBy": { "type": "string" },
+                      "secretName": {
+                        "type": "string",
+                      },
+                      "secretKey": {
+                        "type": "string",
+                      },
+                      "valueType": { "type": "string", "const": "secret" },
+                      "description": { "type": "string" },
+                    },
+                    "additionalProperties": false,
+                    "required": ["name", "secretName", "secretKey", "valueType"],
+                  },
+                  "else": false,
+                },
+              },
+            },
+            "defaultResources": {
+              "type": "object",
+              "properties": {
+                "cpuLimits": {
+                  "type": "object",
+                  "properties": {
+                    "max": {
+                      "type": "string",
+                    },
+                    "min": {
+                      "type": "string",
+                    },
+                  },
+                },
+                "memoryLimits": {
+                  "type": "object",
+                  "properties": {
+                    "max": {
+                      "type": "string",
+                    },
+                    "min": {
+                      "type": "string",
+                    },
+                  },
+                },
+              },
+            },
+            "defaultProbes": {
+              "type": "object",
+              "properties": {
+                "liveness": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                    },
+                    "port": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535,
+                    },
+                    "cmd": { "type": "array", "items": { "type": "string" } },
+                    "initialDelaySeconds": { "type": "number" },
+                    "periodSeconds": { "type": "number" },
+                    "timeoutSeconds": { "type": "number" },
+                    "successThreshold": { "type": "number" },
+                    "failureThreshold": { "type": "number" },
+                  },
+                },
+                "readiness": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                    },
+                    "port": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535,
+                    },
+                    "cmd": { "type": "array", "items": { "type": "string" } },
+                    "initialDelaySeconds": { "type": "number" },
+                    "periodSeconds": { "type": "number" },
+                    "timeoutSeconds": { "type": "number" },
+                    "successThreshold": { "type": "number" },
+                    "failureThreshold": { "type": "number" },
+                  },
+                },
+              },
+            },
+            "defaultTerminationGracePeriodSeconds": { "type": "number" },
+            "defaultLogParser": { "type": "string" },
+            "defaultArgs": {
+              "type": "array",
+              "items": { "type": "string" },
+            },
+            "containerPorts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                  },
+                  "from": {
+                    "if": { "type": "number" },
+                    "then": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535,
+                    },
+                    "else": {
+                      "type": "string",
+                    },
+                  },
+                  "to": {
+                    "if": { "type": "number" },
+                    "then": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 65535,
+                    },
+                    "else": {
+                      "type": "string",
+                    },
+                  },
+                  "protocol": { "type": "string" },
+                },
+                "required": ["name", "from"],
+              },
+            },
+            "defaultMonitoring": {
+              "type": "object",
+              "properties": {
+                "endpoints": {
+                  "type": "array",
+                  "nullable": true,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": { "type": "string" },
+                      "port": { "type": "string" },
+                      "interval": { "type": "string" },
+                    },
+                  },
+                },
+              },
+            },
+            "defaultDocumentationPath": {
+              "type": "string",
+            },
+            "defaultConfigMaps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                  },
+                  "mountPath": {
+                    "type": "string",
+                  },
+                  "subPaths": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                  },
+                  "viewAsReadOnly": { "type": "boolean" },
+                  "link": {
+                    "type": "object",
+                    "properties": {
+                      "targetSection": { "type": "string" },
+                    },
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string" },
+                        "content": { "type": "string" },
+                      },
+                    },
+                  },
+                },
+                "additionalProperties": true,
+              },
+            },
+            "defaultSecrets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                  },
+                  "mountPath": {
+                    "type": "string",
+                  },
+                },
+                "additionalProperties": false,
+              },
+            },
+          },
+          "additionalProperties": false
         }
       },
       "required": ["projectId", "serviceName", "repositoryURL", "templateId"],
@@ -288,261 +728,6 @@ hence there is no guarantee that the service will be found in the project config
   },
   "required": ["eventName", "eventTimestamp", "payload"],
   "type": "object"
-}
-```
-
-</TabItem>
-<TabItem value="service-json-schema" label="service JSON Schema">
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "serviceName": { "type": "string" },
-    "dockerImage": { "type": "string" },
-    "repoId": { "oneOf": [{ "type": "integer" }, { "type": "string" }] },
-    "webUrl": { "type": "string" },
-    "sshUrl": { "type": "string" },
-    "resourceName": { "type": "string" },
-    "defaultEnvironmentVariables": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "if": {
-          "type": "object",
-          "properties": {
-            "valueType": { "type": "string", "const": "plain" },
-          },
-        },
-        "then": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string", "minLength": 1 },
-            "value": { "type": "string" },
-            "valueType": { "type": "string", "const": "plain" },
-            "readOnly": { "type": "boolean" },
-            "managedBy": { "type": "string" },
-            "description": { "type": "string" },
-          },
-          "additionalProperties": false,
-          "required": ["name", "value", "valueType"],
-        },
-        "else": {
-          "if": {
-            "type": "object",
-            "properties": {
-              "valueType": {
-                "type": "string",
-                "const": "secret"
-              },
-            },
-          },
-          "then": {
-            "type": "object",
-            "properties": {
-              "name": { "type": "string", "minLength": 1 },
-              "readOnly": { "type": "boolean" },
-              "managedBy": { "type": "string" },
-              "secretName": {
-                "type": "string",
-              },
-              "secretKey": {
-                "type": "string",
-              },
-              "valueType": { "type": "string", "const": "secret" },
-              "description": { "type": "string" },
-            },
-            "additionalProperties": false,
-            "required": ["name", "secretName", "secretKey", "valueType"],
-          },
-          "else": false,
-        },
-      },
-    },
-    "defaultResources": {
-      "type": "object",
-      "properties": {
-        "cpuLimits": {
-          "type": "object",
-          "properties": {
-            "max": {
-              "type": "string",
-            },
-            "min": {
-              "type": "string",
-            },
-          },
-        },
-        "memoryLimits": {
-          "type": "object",
-          "properties": {
-            "max": {
-              "type": "string",
-            },
-            "min": {
-              "type": "string",
-            },
-          },
-        },
-      },
-    },
-    "defaultProbes": {
-      "type": "object",
-      "properties": {
-        "liveness": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-            },
-            "port": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 65535,
-            },
-            "cmd": { "type": "array", "items": { "type": "string" } },
-            "initialDelaySeconds": { "type": "number" },
-            "periodSeconds": { "type": "number" },
-            "timeoutSeconds": { "type": "number" },
-            "successThreshold": { "type": "number" },
-            "failureThreshold": { "type": "number" },
-          },
-        },
-        "readiness": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string",
-            },
-            "port": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 65535,
-            },
-            "cmd": { "type": "array", "items": { "type": "string" } },
-            "initialDelaySeconds": { "type": "number" },
-            "periodSeconds": { "type": "number" },
-            "timeoutSeconds": { "type": "number" },
-            "successThreshold": { "type": "number" },
-            "failureThreshold": { "type": "number" },
-          },
-        },
-      },
-    },
-    "defaultTerminationGracePeriodSeconds": { "type": "number" },
-    "defaultLogParser": { "type": "string" },
-    "defaultArgs": {
-      "type": "array",
-      "items": { "type": "string" },
-    },
-    "containerPorts": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-          },
-          "from": {
-            "if": { "type": "number" },
-            "then": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 65535,
-            },
-            "else": {
-              "type": "string",
-            },
-          },
-          "to": {
-            "if": { "type": "number" },
-            "then": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 65535,
-            },
-            "else": {
-              "type": "string",
-            },
-          },
-          "protocol": { "type": "string" },
-        },
-        "required": ["name", "from"],
-      },
-    },
-    "defaultMonitoring": {
-      "type": "object",
-      "properties": {
-        "endpoints": {
-          "type": "array",
-          "nullable": true,
-          "items": {
-            "type": "object",
-            "properties": {
-              "path": { "type": "string" },
-              "port": { "type": "string" },
-              "interval": { "type": "string" },
-            },
-          },
-        },
-      },
-    },
-    "defaultDocumentationPath": {
-      "type": "string",
-    },
-    "defaultConfigMaps": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-          },
-          "mountPath": {
-            "type": "string",
-          },
-          "subPaths": {
-            "type": "array",
-            "items": { "type": "string" },
-          },
-          "viewAsReadOnly": { "type": "boolean" },
-          "link": {
-            "type": "object",
-            "properties": {
-              "targetSection": { "type": "string" },
-            },
-          },
-          "files": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": { "type": "string" },
-                "content": { "type": "string" },
-              },
-            },
-          },
-        },
-        "additionalProperties": true,
-      },
-    },
-    "defaultSecrets": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-          },
-          "mountPath": {
-            "type": "string",
-          },
-        },
-        "additionalProperties": false,
-      },
-    },
-  },
-  "additionalProperties": false
 }
 ```
 
