@@ -155,8 +155,6 @@ include:
 %/project.environments%
 ```
 
-In this example, we write the variable `MIA_CMS_IMAGE_NAME` only if `cmsImageName` is set in the company.
-
 All sections between `%#project.environments%` and `%/project.environments%` will be written for `n` times, where `n` is the number of environments. So, inside the environment, you can use the environment specific fields.
 For other possibilities, please check [mustache.js](https://github.com/janl/mustache.js) documentation.
 
