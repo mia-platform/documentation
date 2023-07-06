@@ -139,7 +139,6 @@ Only fields of type string are supported for metadata.
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-form-container](../events#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
 |[loading-data](../events#loading-data)|allows disabling callToAction| - | - |
 |[link-file-to-record](../events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
 
@@ -276,6 +275,21 @@ Only fields of type string are supported for metadata.
 }
 ```
 
+### Reusing Uploaded Files
+
+To enable the reusability of already uploaded files, follow these steps:
+  
+  - Set the `previewUploadedFiles` property to true in the configuration of the `bk-file-picker-modal` component.
+    Note: This feature requires [Mia Files Service](../../../runtime_suite/files-service/configuration) version 2.7.0 or higher.
+  
+  - When the modal is opened, the files from the bucket will be loaded.
+    These files will be displayed to the user as a preview inside the modal and can be selected using checkboxes.
+  
+  - If [metadata](#metadata-1) is available for the files, it can be accessed through a drawer within the modal.
+    The metadata will be presented based on the `data-schema` specified for the corresponding file field being updated. Keep in mind that some data may not be visible depending on the data-schema.
+
+
+
 ### Properties & Attributes
 
 
@@ -283,17 +297,19 @@ Only fields of type string are supported for metadata.
 |----------|-----------|------|---------|-------------|
 |`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
 |`mask`|`mask`|boolean|true|whether to mask or not the modal |
-|`rootElementSelector`|`root-element-selector`|string| - |root element to append the modal to |
-|`width`|`width`|number|500|width occupied by the component |
+|`rootElementSelector`|`root-element-selector`|string| - | root element to append the modal to |
+|`width`|`width`|number\|string|70vw|width occupied by the component |
+|`height`|`height`|number\|string|60vh|height occupied by the component |
+|`previewUploadedFiles`|`preview-uploaded-files`|boolean|false| allows to preview and select previously uploaded files |
 
 ### Listens to
 
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-form-container](../events#using-form-container)|toggles the modal into `visible` mode only if the id payload property matches this modal| - | - |
 |[loading-data](../events#loading-data)|allows disabling callToAction| - | - |
 |[link-file-to-record](../events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
+|[fetched-files](../events#fetched-files)|receives files to display as preview|-|-|
 
 ### Emits
 
@@ -302,6 +318,7 @@ Only fields of type string are supported for metadata.
 |-------|-------------|
 |[update-data-with-file](../events#update-data-with-file)|updates data by uploading a new file and patching the dataset with its storage location metadata|
 |[update-data](../events#update-data)|unlinks file on file delete|
+|[fetch-files](../events#fetch-files)|requests files to be fetched for preview|-|-|
 
 ### Bootstrap
 

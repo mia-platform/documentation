@@ -241,6 +241,7 @@ Both `delete-data` and `http-delete` also support bulk actions, in case payload 
 |[update-data](../events#update-data)|sends a `PATCH` to the `CRUD` service base path|[success](../events#success)|[error](../events#error)|
 |[delete-data](../events#delete-data)|sends a `PATCH` to the `CRUD` service base path on `state` endpoint, if `enableDefinitiveDelete` is `true` it sends a `DELETE`|[success](../events#success)|[error](../events#error)|
 |[change-query](../events#change-query)|sends `GET`s with endpoints `/` and `/count` to the `CRUD` service base path|[success](../events#success), [count-data](../events#count-data), [display-data](../events#display-data), [selected-data-bulk](../events#selected-data-bulk)|[error](../events#error)|
+|[http-delete](../70_events.md#http-delete)|sends a `DELETE` to the `CRUD` service base path |[success](../events#success)|[error](../events#error)|
 
 ### Emits
 
@@ -572,6 +573,8 @@ manages http requests towards an instance of [Mia Files Service](../../../runtim
 |[upload-file](../events#upload-file)|sends a `POST` request to upload a file|[uploaded-file](../events#uploaded-file)|[error](../events#error)|
 |[download-file](../events#download-file)|sends a `GET` request to download/visualize a file|[downloaded-file](../events#downloaded-file)|[error](../events#error)|
 |[delete-file](../events#delete-file)|sends a `DELETE` request to remova a file from storage|[deleted-file](../events#deleted-file)|[error](../events#error)|
+|[fetch-files](../70_events.md#fetch-files)|sends a `GET` request to fetch uploaded files from storage|[fetched-file](../70_events.md#fetched-files)|[error](../events#error)|
+
 
 ### Emits
 

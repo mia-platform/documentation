@@ -19,7 +19,7 @@ To embed an authenticated dashboard it's mandatory to use a custom microservice 
 `apiKey` and `authEndpoint` properties enable you to expose an endpoint to that service.
 :::
 
-### Known Issues
+## Known Issues
 
 It could happen that the component keeps resizing. This is due to some scaling problem of the embedded Mongo Atlas `<iframe>`.
 This is a known issue of Mongo Atlas, which can beb temporarily fixed adding some padding to the component:
@@ -1151,7 +1151,7 @@ it is recommend to limit the usage of this component to the visualization of PDF
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[show-in-viewer](../events#show-in-viewer)|opens PDF in browser| - | - |
+|[show-in-viewer](../events#show-in-viewer)|opens PDF in brawser| - | - |
 
 ### Emits
 
@@ -1656,10 +1656,12 @@ Accepts an object such as
 
 Each `rowAction` is rendered as a button inside the action cell of each row of the table. Clicking such button can either emit an event or perform an POST call, in which the payload/body is set to an object representation of the corresponding row.
 
+
 | property | type | values | description |
-|-----------------------|------|---------|-------------|
-| `kind` | string | `icons`, `cta` | how to display the action triggerers |
+|----------|------|---------|------------|
+| `kind` | string | `icons`, `cta` | how to display the action triggers |
 | `actions` | array | - | list of available actions |
+
 
 ##### DataActions
 
