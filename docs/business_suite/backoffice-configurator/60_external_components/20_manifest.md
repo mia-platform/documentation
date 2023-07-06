@@ -17,6 +17,11 @@ coupled by reflecting changes: a change on the former is mirrored on the latter,
 The Configurator layout section queries the webcomponents to discover their properties/attributes using a static getter
 promise called a _Manifest_.
 
+:::tip
+You can use the [JSON schema](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/manifest.schema.json)
+to check your components manifests.
+:::
+
 The `__manifest` static getter must return a JavaScript object that has a key `type` which must be `object` (to be JSON schema compatible) and a
 map of `properties`.
 
@@ -190,6 +195,7 @@ The `__mia_configuration` object targets the following use cases:
    are interacting with the configuration by highlighting those properties which are most likely to be tuned.
 8. `attribute` ▶️ instructs the Configurator layout section that the property is mirrored by an HTML attribute (**NOT USED ATM**).
 9. `schema-hint` ▶️ Configurator layout section knows some often used property schemas and provides [labels](#the-schema-hint-key)
+    to select them instead of writing the whole property JSON schema.
 10. `shared-key` ▶️ Configurator allows to share JSON schema definitions by resolving in-place their [references](#the-shared-key-key).
 11. `enumLabels` ▶️ provides the capability to i18n-ify string enums
 
@@ -288,10 +294,10 @@ Configurator provides some types that are well known and often used in order to 
    1. a `label` which must be a `string`
    2. and a `payload` which must be an `object`
 6. A `mia/endpoints` spawns a selection with a fixed list of options which are **Mia Platform's Console** currently available http endpoints.
-7. A `mia/endpoints/crud` are `mia/endpoints` coming from a `CRUD Service` microservice.
-8. A `mia/endpoints/data-source` are `mia/endpoints` coming from a `CRUD Service` microservice, a Mongo View, a Fast Data
+7. A `mia/endpoints/crud` is the list of `mia/endpoints` coming from a `CRUD Service` microservice.
+9. A `mia/endpoints/data-source` is the list of `mia/endpoints` coming from a `CRUD Service` microservice, a Mongo View, a Fast Data
    projection, or a Fast Data Single View.
-9. A `micro-lc/applications` is the list of currently configured applications in the Configurator initial section.
+10. A `micro-lc/applications` is the list of currently configured applications in the Configurator initial section.
 
 ### The `shared-key` key
 
@@ -321,4 +327,4 @@ The following example shows how it works:
 ```
 
 The `shared-key` property suggests to the Configurator how to group properties using JSON `definitions` (refer to the
-[dedicated documentation](../30_compose-pages.md#shared-properties) for more information).
+[dedicated documentation](../30_compose_pages.md#shared-properties) for more information).

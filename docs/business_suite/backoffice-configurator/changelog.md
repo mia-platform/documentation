@@ -3,6 +3,36 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.2.0] - 2023-07-03
+
+### Versioning
+
+- `@mia-platform-internal/reactord` to version `^9.5.0`
+- `@micro-lc/iconic` to version `^1.2.0`
+- Dev dependencies updated
+
+### Changed
+
+- "Add field" top button is no longer visible in dataSchema fields editor when there are no fields
+- default templates are fetched from `cdn.mia-platform.eu`
+- loading animation is fetched from `cdn.mia-platform.eu`
+- updates to internal CSP rules
+
+### Added
+
+- `back-kit` data schema can be automatically generated starting from a CRUD collection
+- support for mia cdn: static files for the default configuration are downloaded from `https://cdn.mia-platform.eu`
+
+### Fixed
+
+- Improved DataSchema editor rendering performances in Shared Properties section
+- Edit shared property modal form is correctly reset to the default value when closed
+- Fixed UI inconsistencies in Shared Property page
+- `oneOf` with a primitive type and object shows an in-form monaco-editor in the latter case
+- object `oneOf` multiple choices shows an in-form monaco-editor
+- `noService` mode helper section pushes to a URL that must be URL-encoded
+- `mia-preview-button` takes communication channel from proxyWindow
+
 ## [1.1.0] - 2023-06-19
 
 ### Versioning
@@ -19,7 +49,7 @@ sidebar_label: CHANGELOG
 
 - Shared Property page
 - Possibility of creating shared properties starting from existing non-shared definitions
-- No-code editor for Shared Properties of type Data Schema 
+- No-code editor for Shared Properties of type Data Schema
 - Advanced modal to edit Shared Properties
 - Support for `dynamic-icon` manifest schema hint
 - Added support for `mia/endpoints/data-source` schema hint
