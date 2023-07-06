@@ -131,9 +131,9 @@ Available flags for the command:
 
 ## serviceaccount
 
-### create
+### create basic
 
-The `serviceaccount create` subcommand allows you to create a new service account for your company.
+The `serviceaccount create basic` subcommand allows you to create a new service account for your company.
 
 Usage:
 
@@ -148,4 +148,25 @@ Available flags for the command:
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired company
+- `--role`, the company role for the service account
+
+### create jwt
+
+The `serviceaccount create jwt` subcommand allows you to create a new service account for your company that will
+use the jwt authorization method.
+
+Usage:
+
+```sh
+miactl serviceaccount create jwt NAME [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired company
+- `--output`, optional flag to save the service account json description in a file at the provided path
 - `--role`, the company role for the service account
