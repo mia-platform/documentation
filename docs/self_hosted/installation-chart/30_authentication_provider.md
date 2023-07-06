@@ -54,6 +54,9 @@ Please bear in mind that the `authProviders` field is a required field, you can
 ## Logout flow
 
 You can configure the Console to logout the user from the Identity Provider when the user logs out from the Console itself. In oder to do so, you have to set one of the following properties:
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
 | `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
 | `logoutUrlPath` | string | The path to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
 
