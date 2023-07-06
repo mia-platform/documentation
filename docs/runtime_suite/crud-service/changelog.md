@@ -8,6 +8,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.7.0 - 2023-06-19
+
+### Added
+
+- #92 abstraction for view writing support with the "enableLookup" flag in views configuration.
+
+## 6.6.1 - 2023-06-15
+
+### Fixed
+
+- #88 dot (`.`) notation with operator `$set` is now correctly supported
+- #89 operators `$addToSet` and `$pull` are now supported on properties added via `additionalProperties` JSON schema definition
+- collection definition validation is now carried out only once per collection
+
+### Changed
+
+- update minor and patch dependencies
+
+## 6.6.0 - 2023-06-09
+
+### Added
+
+- add option to enable tracing
+
+### Changed
+
+- upgrade lc39 to v7, which upgrade fastify to v4
+- updated documentation regarding service configuration to clarify the database name in the connection string
+- call to configure MongoDB are now concurrent
+- JSON Schema Generator refactoring to reduce duplicated operations
+
+### Fixed
+
+- updated broken links in documentation
+- wrong swagger configuration
+
 ## 6.5.2 - 2023-05-08
 
 ### Changed
