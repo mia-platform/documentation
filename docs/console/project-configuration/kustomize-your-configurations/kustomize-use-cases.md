@@ -143,4 +143,4 @@ patches:
     annotationSelector: myAnnotation=annotationValue,otherAnnotation=otherValue
 ```
 
-With the example above, the `istio-proxy` container will be add to deployments with **all the specified label and annotation** instead of all deployment files.
+With the example above, the `istio-proxy` container will be add to deployments with **all the specified labels and annotations**.
