@@ -113,7 +113,7 @@ Then, to apply the patch to all your Deployments, you have to manually edit the 
 ```yaml
 # file: ./overlays/development/kustomization.yaml
 resources:
-- deployments.yaml
+- ../../configuration
 
 patches:
 - path: sidecar.patch.yaml
