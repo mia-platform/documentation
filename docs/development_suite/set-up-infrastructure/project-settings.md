@@ -5,13 +5,13 @@ sidebar_label: Project Settings
 ---
 
 Once you have created your project, you can visualize and change its settings within the "Settings" area of the Console.
-The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", and "Early Access Features". 
+The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", and "Feature Preview".
 
 ## General
 
 The "General" tab shows some general information about the project, through a single card called "Project Information".
 
-### Project Information
+### Project information
 
 ![project information](img/settings-project-information.png)
 
@@ -28,8 +28,6 @@ The above information can be edited by clicking on the "Edit" button, which will
 ## Providers
 
 The "Providers" tab shows information pertaining to the providers (Git Provider, Secret Manager, and CI/CD Tool) configured for the project, through a single homonymous card.
-
-### Providers
 
 ![providers](img/settings-providers.png)
 
@@ -54,7 +52,7 @@ This card shows and gives the user the ability to change some settings related t
 
 The above information can be edited by clicking on the "Edit" button, which will open a modal very similar to that seen for project information. Upon clicking "Save changes", the information will be updated.
 
-### Image Pull Secrets
+### Image pull secrets
 
 ![image pull secret](img/settings-image-pull-secret.png)
 
@@ -64,7 +62,7 @@ An imagePullSecret is a Kubernetes entity used to authenticate and authorize acc
 
 This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add image pull secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
 
-### Runtime Settings
+### Runtime settings
 
 ![runtime settings](img/settings-runtime-settings.png)
 
@@ -82,7 +80,7 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 ![edit runtime settings](img/settings-edit-runtime-settings.png)
 
-### Security Features
+### Security features
 
 ![security features](img/settings-security-features.png)
 
@@ -105,12 +103,10 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 ![edit security features](img/settings-edit-security-features.png)
 
-## Early Access Features
+## Feature Preview
 
-The "Early access features" tab allows the user to visualize and activate features in early access, through a single homonymous card.
+The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific project, through a single homonymous card.
 
-### Early Access Features
-
-![early access features](img/settings-early-access-features.png)
+![feature preview](img/settings-feature-preview.png)
 
 This card presents an overview of the features in early access that can be activated for the project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.
