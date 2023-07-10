@@ -512,5 +512,13 @@
   "/docs/business_suite/backoffice-configurator/external-components/overview": {
     "destination": "/docs/business_suite/backoffice-configurator/external_components/summary",
     "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/manifest": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/manifest",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/bundling": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/bundling",
+    "addedOn": "2023-07-10"
   }
 }
