@@ -31,7 +31,7 @@ The Bucket Storage Support can be either configured for GCP Bucket or S3 Bucket,
 * _Ingestion Storer_, to configure with ingestion-topics that will be stored in the corresponding bucket folder
 * _Ingestion Reloader_, a REST microservice that will use bucket's SDK to produce message into a topic, usually referred to as **re-ingestion topic**, specified by the incoming request.
 
-You can create this microservices as plugins starting directly from the Console Marketplace, or either create an [Application](/docs/marketplace/applications/mia_applications), choosing between S3-like bucket or GCP bucket.
+You can create this microservices as plugins starting directly from the Console Marketplace, or either create an [Application](/marketplace/applications/mia_applications.md), choosing between S3-like bucket or GCP bucket.
 
 ![Create Bucket Storage Support microservices from Application](img/bss-application.png) 
 
@@ -40,7 +40,7 @@ The configuration steps will let you create, besides the two microservices with 
 * `status-service`: a CRUD collection used by the _Ingestion Reloader_ to keep track of the requests to perform re-ingestion of the data
 * _API Gateway_ endpoints to:
   * expose with the _CRUD Service_ the aforementioned collection;
-  * expose the endpoints of the _IngestionRreloader_.
+  * expose the endpoints of the _Ingestion Reloader_.
 * public variables such as:
   * **BUCKET_NAME**: the name of the bucket that will be used by Bucket Storage Support applications;
   * **INGESTION_RELOADER_CLIENT_ID**: the Kafka client id used by the _Ingestion Reloader_;
@@ -56,11 +56,11 @@ Public variables must be changed according to the environment you're releasing t
 
 ### Setup the Bucket connection 
 
-If you choose the Application, you will still have to do some manual operations to setup the connection to the bucket. For more details about the bucket connections, visit the [related section](/docs/fast_data/bucket_storage_support/configuration/bucket_connection_configuration) in the Bucket Storage Support page.
+If you choose the Application, you will still have to do some manual operations to setup the connection to the bucket. For more details about the bucket connections, visit the [related section](/fast_data/bucket_storage_support/configuration/bucket_connection.md) in the Bucket Storage Support page.
 
 ### Setup the Kafka Connection
 
-You need also to setup the parameters to let the new microservices connect to your Kafka Cluster. For more details about kafka connections, visit [the related section]((/docs/fast_data/bucket_storage_support/configuration/kafka_connection_configuration)) in the Bucket Storage Support page. For basic connections, you'll just need to define the following variables:
+You need also to setup the parameters to let the new microservices connect to your Kafka Cluster. For more details about kafka connections, visit [the related section](/fast_data/bucket_storage_support/configuration/kafka_connection.md) in the Bucket Storage Support page. For basic connections, you'll just need to define the following variables:
 
 - **KAFKA_BROKERS**: the list of the kafka brokers that will host both ingestion and re-ingestion topics;
 - **KAFKA_SASL_USERNAME**: the username that will be used to login to the kafka brokers;
@@ -87,7 +87,7 @@ bss:
 In this way, you are telling the _Ingestion Storer_ to register its consumer group to the topic `demo.<environment>.delivery.registry.ingestion`, where `<environment>` should be replaced with the environment you need to deploy the Bucket Storage Support solution.
 
 :::info
-Please note that the post-ingestion array is set to empty: this is to make the bucket storage support indipendent from other possible data flows that are using ingestion topics, such as the Fast Data.
+Please note that the post-ingestion array is set to empty: this is to make the bucket storage support independent from other possible data flows that are using ingestion topics, such as the Fast Data.
 
 If you set a list of _post ingestion topics_, then the _Ingestion Storer_ will also replicate the messages to the topics defined in the `post-ingestion` field.  
 :::
@@ -108,7 +108,7 @@ Let's consider a basic case where the following registries are published to the 
 </details>
 
 :::caution
-Ingestion messages generally has a specific format, as defined in the [Inputs and Outputs section of the Fast Data](docs/fast_data/inputs_and_outputs#ingestion-message).
+Ingestion messages generally has a specific format, as defined in the [Inputs and Outputs section of the Fast Data](/fast_data/inputs_and_outputs.md#ingestion-message).
 
 For the sake of simplicity, in this tutorial the ingestion messages contains only the payload of a projection. It's worth noting that the _Ingestion Storer_ does not perform any validation on the input message, which can be of any JSON format.
 :::
@@ -130,7 +130,7 @@ If you check the incoming messages from the topic defined inside the variable **
     "filePath": "demo.<environment>.delivery.registry.ingestion/2023-06-23T09:10:00.702Z_demo.<environment>.delivery.registry.ingestion_0_5_<timestamp>.txt"
   }
   ```
-  Let's see in details the different informations of the JSON mesagge:
+  Let's see in details the different information of the JSON message:
 
   * `batchSize` tells the number of messages that have been stored into the file
   * `batchOffsetStart` and `batchOffsetEnd`are respectively the beginning and the end of offsets representing the offset's boundaries of message in the partition written to the file; 
@@ -140,7 +140,7 @@ Before starting to create projections, we need to create the System of Records (
 
 ## Data Re-Ingestion
 
-Once the data is stored in the bucket, it can be processed later again to manage different use cases, as explained [in this section](/docs/fast_data/bucket_storage_support/use_cases_bucket_storage_support). This process is referred to as **re-ingestion**. 
+Once the data is stored in the bucket, it can be processed later again to manage different use cases, as explained [in this section](/fast_data/bucket_storage_support/use_cases.md). This process is referred to as **re-ingestion**. 
 
 Based on the different needs where Bucket Storage is deployed, two types of re-ingestions procedures can be applied using the _Ingestion Reloader_. You can see its APIs available in the [API Documentations](/development_suite/api-portal/api-documentations.md)
 
@@ -170,7 +170,7 @@ curl -X POST 'https://<your-project-domain>/reingestion/file' \
 	"reIngestionTopic": "demo.<environment>.delivery.registry.reingestion"
   }'
 ```
-For more information on the usage of the file re-ingestion endpoint, please refer [to this section](docs/fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration#reingestion-of-a-file).
+For more information on the usage of the file re-ingestion endpoint, please refer [to this section](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md#reingestion-of-a-file).
 </TabItem>
 <TabItem value="topic">
 You can re-ingest all the messages from all files contained inside a whole folder related to an ingestion topic. 
@@ -187,11 +187,11 @@ curl -X POST 'https://<your-project-domain>/reingestion/file' \
 '
 ```
 
-The response is the same as the [re-ingest file request](#perform-the-re-ingestion-of-a-specific-file). For more information on the usage of the folder re-ingestion endpoint, please refer [to this section](docs/fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration#reingestion-of-a-topic).
+The response is the same as the [re-ingest file request](#perform-the-re-ingestion-of-a-specific-file). For more information on the usage of the folder re-ingestion endpoint, please refer [to this section](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md#reingestion-of-a-topic).
 </TabItem>
 </Tabs>
 
-### Testin Re-Ingestion
+### Testing Re-Ingestion
 
 The _Ingestion Reloader_ will answer with a status code 202 response containing the following JSON body:
 
