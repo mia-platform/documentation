@@ -25,7 +25,8 @@ All the events triggered by the Console share some common properties:
 
 This event will be triggered when a project is created successfully.
 
-#### Event `payload`
+<Tabs>
+<TabItem value="project-created-table" label="Event Payload" default>
 
 |  Property   |  Value   |                              Description                               |
 | ----------- | -------- | ---------------------------------------------------------------------- |
@@ -33,7 +34,7 @@ This event will be triggered when a project is created successfully.
 | `projectId` | `string` | The identifier of the newly created Project                            |
 | `project`   | `object` | [The project metadata](#project) (ideally, the whole project resource) |
 
-<Tabs>
+</TabItem>
 <TabItem value="example" label="Example" default>
 
 ```json
@@ -96,7 +97,9 @@ The event is triggered as soon as the service's repository is successfully creat
 hence there is no guarantee that the service will be found in the project configuration, yet.
 :::
 
-#### Event `payload`
+<Tabs>
+<TabItem value="service-created-table" label="Event Payload" default>
+
 
 |    Property     |  Value   |                                         Description                                          |
 | --------------- | -------- | -------------------------------------------------------------------------------------------- |
@@ -107,7 +110,7 @@ hence there is no guarantee that the service will be found in the project config
 | `templateId`    | `string` | The identifier of the template in the Console marketplace from which the service was created |
 | `service`       | `object` | [The service metadata](#service) (ideally, the whole service resource)                                   |
 
-<Tabs>
+</TabItem>
 <TabItem value="example" label="Example" default>
 
 ```json
@@ -196,7 +199,7 @@ hence there is no guarantee that the service will be found in the project config
 | `repositoryURL`        | `string`  | The URL of the repository that hosts the service code                                         |
 | `tenantId`             | `string`  | The human readable identifier of the Company the service belongs to                           |
 
-#### Only in `project_created`event
+#### Only in `project_created` event
 
 |        Property        |   Type    |                                          Description                                          |
 | ---------------------- | --------- | --------------------------------------------------------------------------------------------- |
@@ -303,7 +306,7 @@ hence there is no guarantee that the service will be found in the project config
 
 </TabItem>
 
-<TabItem value="project-schema" label="Schema">
+<TabItem value="project-schema" label="JSON Schema">
 
 ```json 
 {
@@ -531,7 +534,7 @@ hence there is no guarantee that the service will be found in the project config
 
 </TabItem>
 
-<TabItem value="service-schema" label="Schema">
+<TabItem value="service-schema" label="JSON Schema">
 
 ```json
 {
