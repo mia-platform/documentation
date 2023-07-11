@@ -192,7 +192,6 @@ hence there is no guarantee that the service will be found in the project config
 | `defaultBranch`        | `string` | The default branch of git repository                                                         |
 | `description`          | `string` | The project description                                                                      |
 | `environments`         | `array`  | The project environments, where project can be released                                      |
-| `hostnames`            | `object` |                                                                                              |
 | `name`                 | `string` | The identifier of the template in the Console marketplace from which the service was created |
 | `projectId`            | `string` | The human readable identifier of the Project that was created                                |
 | `repository`           | `object` | The git repository information                                                               |
@@ -399,7 +398,6 @@ hence there is no guarantee that the service will be found in the project config
         "required": ["envId"],
       },
     },
-    "hostnames": {"type": "object"},
     "isRepositoryCreated": { "type": "boolean" },
     "name": { "type": "string" },
     "projectId": { "type": "string" },
@@ -429,7 +427,7 @@ hence there is no guarantee that the service will be found in the project config
 | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `containerPorts`                       | `array`  | The container port                                                                                                                                      |
 | `defaultArgs`                          | `array`  | The default container args                                                                                                                              |
-| `defaultConfigMaps`                    | `array`  | The default config maps configured by marketplace item                                                                                                  |
+| `defaultConfigMaps`                    | `array`  | The default config maps that will be mounted inside the container of the microservice                                                                                                  |
 | `defaultDocumentationPath`             | `string` | The name of the service inside the project configuration                                                                                                |
 | `dockerImage`                          | `string` | The service url of docker image                                                                                                                         |
 | `defaultLogParser`                     | `string` | The [Log parser](./../../getting_started/monitoring-dashboard/dev_ops_guide/log.md#log-parsers)                                                         |
@@ -437,7 +435,7 @@ hence there is no guarantee that the service will be found in the project config
 | `defaultEnvironmentVariables`          | `array`  | The environment variables configured by marketplace item                                                                                                |
 | `defaultProbes`                        | `object` | The default [probes](./../../development_suite/api-console/api-design/microservice-runtime-resources.md#probes) used by containers                      |
 | `defaultResources`                     | `object` | The default resources configured by marketplace item                                                                                                    |
-| `defaultSecrets`                       | `array`  | The default secrets configured by marketplace item                                                                                                      |
+| `defaultSecrets`                       | `array`  | The default secrets that will be mounted inside the container of the microservice                                                                                                      |
 | `defaultTerminationGracePeriodSeconds` | `number` | The default graceful shutdown configured by marketplace item                                                                                            |
 | `description`                          | `string` | The service description                                                                                                                                 |
 | `repoId`                               | `number` | The git repository id                                                                                                                                   |
@@ -527,6 +525,12 @@ hence there is no guarantee that the service will be found in the project config
         "name": "template",
         "content": "content of config map"
       }]
+    }
+  ],
+  "defaultSecrets": [
+    {
+      "name": "my-secret-conf",
+      "mountPath": "/secrets/"
     }
   ]
 }
