@@ -62,7 +62,9 @@ You can connect a provider by clicking on the "Add provider connection" button, 
 
 In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").  
 
-If you select a "Git Provider", you can also select its purpose of use, by choosing between "Project" (by default) or "Marketplace" functionalities. If you preserve the default choice of "Project" functionality, the Git Provider will be specifically used for your Projects workspaces. By selecting "Marketplace", instead, you will be able to make any resources related to that Git Provider available to other Companies as well. Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will be not available for that specific Git Provider. 
+If you select a "Git Provider", you can also select its purpose of use, by choosing between "Project" (by default) or "Marketplace" functionalities.  
+If you preserve the default choice of "Project" functionality, the Git Provider will be specifically used for your Projects workspaces. By selecting "Marketplace", instead, you will be able to make any resources related to that Git Provider available to other Companies as well.  
+Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will be not available for that specific Git Provider. 
 
 :::info
 If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default. However, if the provider is a Git Provider, you will equally remain in step 1 since you will still be able to choose the functionality of usage for that Git Provider, which can be "Project" (by default) or "Marketplace".
@@ -81,7 +83,7 @@ In this step, you can insert some general details about your provider:
 
 #### Provider Details of a Git Provider for Marketplace
 
-Only if the provider you have chosen is a Git Provider, and you have selected the "Marketplace" functionality, in the Step 2 you will also see a toggle – enabled by default – to manage the access to the resources connected to that Git Provider. When enabled, this toggle allows other Companies to access those resources. 
+Only if the provider you have chosen is a Git Provider and you have selected the "Marketplace" functionality, in the Step 2 you will also see a toggle – enabled by default – to manage the access to the resources connected to that Git Provider. When enabled, this toggle allows other Companies to access those resources. 
 
 ### Step 3: Credentials
 
@@ -252,7 +254,7 @@ If you haven't specified a default provider on a certain capability, or you wish
 
 To do this, you can use the CMS: navigate through the `Projects` section, select the desired Project, and edit the document by following the guidelines below, which specify what information to include depending on the provider type and capability.
 
-### Edit Git Provider
+### Edit a Git Provider
 
 :::warning
 Data migration from the old to the new provider is not managed. If you want to replace the Git Provider you will have to manually migrate your repository.
@@ -270,7 +272,7 @@ In this case there is no difference in configuration depending on the provider t
   }
   ```
 
-#### Edit Git Provider for Marketplace accessibility
+#### Edit a Git Provider for Marketplace accessibility
 
 If you have a Git Provider with selected the "Marketplace" functionality, you are going to make available to the other Companies all the resources connected to that specific Git Provider. This action is reversible: you can manage the accessibility to that Git Provider at any time, by simply switching off the accessibility toggle. 
 
