@@ -31,9 +31,9 @@ More specifically, a user can:
 
 * Add a new connection to a provider;
 * Edit the connection to a provider;
-* Set a default provider for a company.
+* Set a default provider for a Company.
 
-To access these features, head to the Company Overview Area of the Console by clicking the related button on the home page, next to your company name.
+To access these features, head to the Company Overview Area of the Console by clicking the related button on the homepage, next to your Company name.
 
 ![Go to Company Overview](img/go-to-company-overview.png)
 
@@ -56,10 +56,12 @@ You can connect a provider by clicking on the "Add provider connection" button, 
 ![Add provider 1a](img/add-provider-1a.png)
 ![Add provider 1b](img/add-provider-1b.png)
 
-In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").
+In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").  
+
+If you select a "Git Provider", you can also select its purpose of use, by choosing between "Project" (by default) or "Marketplace" functionalities. If you preserve the default choice of "Project" functionality, the Git Provider will be specifically used for your Projects. By selecting "Marketplace", instead, you will be able to make any resources related to that provider available to other companies as well. Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will be not available for that specific Git Provider. 
 
 :::info
-If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default.
+If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default. However, if the provider is a Git Provider, you will equally remain in step 1 since you will still be able to choose the functionality of usage for that Git Provider, which can be "Project" (by default) or "Marketplace".
 :::
 
 ### Step 2: Provider Details
