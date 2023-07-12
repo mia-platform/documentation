@@ -33,6 +33,10 @@ More specifically, a user can:
 * Edit the connection to a provider;
 * Set a default provider for a Company.
 
+Moreover, only for Git Providers, a user can:
+
+* Edit the accessibility to the Git Provider and its related resources;
+
 To access these features, head to the Company Overview Area of the Console by clicking the related button on the homepage, next to your Company name.
 
 ![Go to Company Overview](img/go-to-company-overview.png)
@@ -58,7 +62,7 @@ You can connect a provider by clicking on the "Add provider connection" button, 
 
 In this step, you are required to choose the specific provider you want to use among the ones supported by the Console and, for the chosen provider, the capabilities you want to use it for ("Git Provider", "Secret Manager", "CI/CD Tool").  
 
-If you select a "Git Provider", you can also select its purpose of use, by choosing between "Project" (by default) or "Marketplace" functionalities. If you preserve the default choice of "Project" functionality, the Git Provider will be specifically used for your Projects. By selecting "Marketplace", instead, you will be able to make any resources related to that provider available to other companies as well. Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will be not available for that specific Git Provider. 
+If you select a "Git Provider", you can also select its purpose of use, by choosing between "Project" (by default) or "Marketplace" functionalities. If you preserve the default choice of "Project" functionality, the Git Provider will be specifically used for your Projects workspaces. By selecting "Marketplace", instead, you will be able to make any resources related to that Git Provider available to other Companies as well. Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will be not available for that specific Git Provider. 
 
 :::info
 If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default. However, if the provider is a Git Provider, you will equally remain in step 1 since you will still be able to choose the functionality of usage for that Git Provider, which can be "Project" (by default) or "Marketplace".
@@ -75,6 +79,10 @@ In this step, you can insert some general details about your provider:
 * **Base URL** (*required*): the reference endpoint URL for the provider;
 * **Description**: a brief description of the provider.
 
+#### Provider Details of a Git Provider for Marketplace
+
+Only if the provider you have chosen is a Git Provider, and you have selected the "Marketplace" functonality, in the Step 2 you will also see a toggle – enabled by default – to manage the access to the resources connected to that Git Provider. When enabled, this toggle allows other Companies to access those resources. 
+
 ### Step 3: Credentials
 
 ![Add provider 3](img/add-provider-3.png)
@@ -85,12 +93,12 @@ In this step, you are required to insert information about the authentication me
 
 Depending on the credentials type, the other information to be entered will be:
 
-* For credentials of the type "Token":
+* For credentials of type "Token":
   - **Access token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (temporary credentials).
-* For credentials of the type "M2M":
+* For credentials of type "M2M":
   - **Token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (long-lived credentials);
   - **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include the authentication token, responds by generating temporary credentials.
-* For credentials of the type "OAuth2":
+* For credentials of type "OAuth2":
   - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
   - **Client ID** (*required*): OAuth2 public client identifier;
   - **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server.
@@ -250,7 +258,7 @@ To do this, you can use the CMS: navigate through the `Projects` section, select
 Data migration from the old to the new provider is not managed. If you want to replace the Git Provider you will have to manually migrate your repository.
 :::
 
-To change the Git Provider of a project, simply edit the `providerId` field within the `Repository` object by entering the `providerId` you want to use instead of the previous one (obtainable by moving to the `Providers` section of the CMS and taking the `providerId` of the referenced document).
+To change the Git Provider of a Project, simply edit the `providerId` field within the `Repository` object by entering the `providerId` you want to use instead of the previous one (obtainable by moving to the `Providers` section of the CMS and taking the `providerId` of the referenced document).
 
 In this case there is no difference in configuration depending on the provider type, so for each of the supported providers an example configuration of the `Repository` object could be as follows.
 
@@ -261,6 +269,14 @@ In this case there is no difference in configuration depending on the provider t
     "providerId": "my-provider"
   }
   ```
+
+#### Edit Git Provider for Marketplace accessibility
+
+If you have a Git Provider with selected the "Marketplace" functionality, you are going to make available to the other Companies all the resources connected to that specific Git Provider. This action is reversible: you can manage the accessibility to that Git Provider at any time, by simply switching off the accessibility toggle. 
+
+:::caution
+By removing the accessibility of a Git Provider for Marketplace (by switching off the accessibility toggle), all the resources associated with that Git Provider will cease to function for other Companies.
+:::
 
 ### Edit Secret Manager
 
@@ -419,6 +435,13 @@ Learn more on how to retrieve the ID of a pipeline on the Azure DevOps [pipeline
 In addition, it is also possible to change the CI/CD Tool of a specific environment within the project.
 To do this, you need to modify the `deploy` object within the referenced environment in the `Environments` object
 (from the CMS: `Environments` > *environment object* > `deploy`). The fields to be edited are the same as described above.
+
+## Associate Git Providers for Marketplace
+
+When adding a new Git Provider connection, you can change the utilization scope of that specific Git Provider, by leveraging its "Marketplace" functionality. This represents an alternative of usage which is available alongside the default "Project" functionality.  
+Once the "Marketplace" functionality for a Git Provider is selected, it allows the accessibility of any resources associated with that Git Provider (e.g., Marketplace items and/or Project templates) to other Companies.
+
+
 
 ## Provider APIs
 For versions prior to 10.8, the above information is not valid, as providers were managed directly through APIs. Therefore, for the sake of backward compatibility, we report in this section the APIs used to create and modify providers, along with examples of request bodies:
