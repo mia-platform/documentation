@@ -522,7 +522,7 @@
     "addedOn": "2023-07-10"
   },
   "docs/how_to/console/project_dev_tools_setup": {
-    "destination": "docs/how_to/console/project_development",
+    "destination": "/docs/how_to/console/project_development",
     "addedOn": "2023-07-13"
   }
 }
