@@ -27,15 +27,16 @@ The following table shows the providers currently supported by the Console, grou
 
 Mia-Platform Console allows authorized users to manage providers. 
 
-More specifically, a user can:
+More specifically, authorized users can:
 
 * Add a new connection to a provider;
 * Edit the connection to a provider;
 * Set a default provider for a Company.
 
-Moreover, only for Git Providers, a user can:
+Moreover, only for Git Providers, auhtorized users can:
 
-* Edit the accessibility to the Git Provider and its related resources;
+* Choose the Git Provider usage destination between "Project" and "Marketplace".  
+* Edit the accessibility to the Git Provider for Marketplace and its related resources;
 
 To access these features, head to the Company Overview Area of the Console by clicking the related button on the homepage, next to your Company name.
 
@@ -64,7 +65,7 @@ In this step, you are required to choose the specific provider you want to use a
 
 If you select a "Git Provider", you can also select its purpose of use, by choosing between "Project" (by default) or "Marketplace" functionalities.  
 If you preserve the default choice of "Project" functionality, the Git Provider will be specifically used for your Projects workspaces. By selecting "Marketplace", instead, you will be able to make any resources related to that Git Provider available to other Companies as well.  
-Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will be not available for that specific Git Provider. 
+Please note that, in order to select the "Marketplace" functionality for a Git Provider, "Secret Manager" and "CI/CD tool" capabilities will not be available for that specific Git Provider. 
 
 :::info
 If the provider offers only one capability, clicking on it will lead directly to step 2 and the capability will be selected by default. However, if the provider is a Git Provider, you will equally remain in step 1 since you will still be able to choose the functionality of usage for that Git Provider, which can be "Project" (by default) or "Marketplace".
@@ -83,7 +84,7 @@ In this step, you can insert some general details about your provider:
 
 #### Provider Details of a Git Provider for Marketplace
 
-Only if the provider you have chosen is a Git Provider and you have selected the "Marketplace" functionality, in the Step 2 you will also see a toggle – enabled by default – to manage the access to the resources connected to that Git Provider. When enabled, this toggle allows other Companies to access those resources. 
+Only if the provider you have chosen is a Git Provider and you have selected the "Marketplace" functionality, in the Step 2 you will also see a toggle – enabled by default – to manage the access to the Git Provider and the resources connected to it. When enabled, this toggle allows other Companies to access those resources. 
 
 ### Step 3: Credentials
 
@@ -274,7 +275,7 @@ In this case there is no difference in configuration depending on the provider t
 
 #### Edit a Git Provider for Marketplace accessibility
 
-If you have a Git Provider with selected the "Marketplace" functionality, you are going to make available to the other Companies all the resources connected to that specific Git Provider. This action is reversible: you can manage the accessibility to that Git Provider at any time, by simply switching off the accessibility toggle. 
+If you have a Git Provider with the "Marketplace" functionality selected, you are going to make available to the other Companies all the resources connected to that specific Git Provider. This action is reversible: you can manage the accessibility to that Git Provider at any time, by simply switching off the accessibility toggle. 
 
 :::caution
 By removing the accessibility of a Git Provider for Marketplace (by switching off the accessibility toggle), all the resources associated with that Git Provider will cease to function for other Companies.
@@ -442,8 +443,6 @@ To do this, you need to modify the `deploy` object within the referenced environ
 
 When adding a new Git Provider connection, you can change the utilization scope of that specific Git Provider, by leveraging its "Marketplace" functionality. This represents an alternative of usage which is available alongside the default "Project" functionality.  
 Once the "Marketplace" functionality for a Git Provider is selected, it allows the accessibility of any resources associated with that Git Provider (e.g., Marketplace items and/or Project templates) to other Companies.
-
-
 
 ## Provider APIs
 For versions prior to 10.8, the above information is not valid, as providers were managed directly through APIs. Therefore, for the sake of backward compatibility, we report in this section the APIs used to create and modify providers, along with examples of request bodies:
