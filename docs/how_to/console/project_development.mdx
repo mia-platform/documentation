@@ -12,18 +12,24 @@ In this guide you will see how to configure:
 
 In this guide you will see how microservices can interact and communicate inside the same namespace.
 
-The Mia-Platform Console offers an overview for all microservices created in which is visible a section [Container ports](/development_suite/api-console/api-design/microservice-container-ports.md) where you can view and manage container ports.
+If you want to call a microservice from within its namespace, you need to use:
+
+-  as hostname, the target microservice's name;
+-  as port, the "Port" of the container exposing the endpoint you want to call.
+
+The value set for such port can be find the in the "Port" column of [Container ports](/development_suite/api-console/api-design/microservice-container-ports.md) section of the micorservice detail .
 
 ![Environment variable section](img/container_ports.png)
 
-Suppose you have two microservices in the same namespace; `service-A` that needs to call `service-B` on the `GET /my-api` endpoint.
+Suppose you have two microservices in the same namespace; `service-a` that needs to call `service-b` on the `GET /my-api` endpoint.
 To do so `service-A` has to make a request equivalent to the following cURL:
 
-```curl
-curl --request GET 'http://service-B:80/my-api'
+```
+GET /my-api HTTP/1.1
+Host: service-b:80
 ```
 
-- `service-B` is the hostname. It is the name of the microservice.
+- `service-b` is the hostname. It is the name of the microservice.
 - `80` is the default port for http. Given the "Container Ports" overview it is the value in the `Port` column.
 - `/my-api` is the endpoint exposed by `service-B`.
 
