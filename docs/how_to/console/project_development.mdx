@@ -22,7 +22,7 @@ The value set for such port can be find the in the "Port" column of [Container p
 ![Environment variable section](img/container_ports.png)
 
 Suppose you have two microservices in the same namespace; `service-a` that needs to call `service-b` on the `GET /my-api` endpoint.
-To do so `service-a` has to make a request equivalent to the following cURL:
+To do so `service-a` has to make the following request:
 
 ```
 GET /my-api HTTP/1.1
