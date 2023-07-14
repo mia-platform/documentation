@@ -22,7 +22,7 @@ The value set for such port can be find the in the "Port" column of [Container p
 ![Environment variable section](img/container_ports.png)
 
 Suppose you have two microservices in the same namespace; `service-a` that needs to call `service-b` on the `GET /my-api` endpoint.
-To do so `service-A` has to make a request equivalent to the following cURL:
+To do so `service-a` has to make a request equivalent to the following cURL:
 
 ```
 GET /my-api HTTP/1.1
@@ -31,7 +31,7 @@ Host: service-b:80
 
 - `service-b` is the hostname. It is the name of the microservice.
 - `80` is the default port for http. Given the "Container Ports" overview it is the value in the `Port` column.
-- `/my-api` is the endpoint exposed by `service-B`.
+- `/my-api` is the endpoint exposed by `service-b`.
 
 ## MongoDB database
 
