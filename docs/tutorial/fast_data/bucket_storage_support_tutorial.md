@@ -178,7 +178,7 @@ You can re-ingest all the messages from all files contained inside a whole folde
 To achieve this, you can perform the following POST request to the `/reingestion/topic` endpoint:
 
 ```bash
-curl -X POST 'https://<your-project-domain>/reingestion/file' \ 
+curl -X POST 'https://<your-project-domain>/reingestion/topic' \ 
   -H 'Content-Type: application/json'  \
   -d '{
     "topic": "demo.<environment>.delivery.registry.ingestion/2023-06-23T09:10:00.702Z_demo.<environment>.delivery.registry.ingestion_0_5_<timestamp>.txt",
