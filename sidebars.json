@@ -981,6 +981,10 @@
           "type": "doc"
         },
         {
+          "id": "paas/maintenance",
+          "type": "doc"
+        },
+        {
           "id": "paas/alerting_rules",
           "type": "doc"
         },
