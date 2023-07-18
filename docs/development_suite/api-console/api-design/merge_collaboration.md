@@ -93,9 +93,9 @@ In every section, navigate from one change to the following/previous one thanks 
 
 In case you want to accept all incoming or current changes inside a specific section of the merge modal, to speed-up your merge process you can leverage on two different buttons:
 
-* 'Keep current changes' button (above the right-hand editor) allows to accept the entire content on your current configuration
+* `Keep current changes` button (above the right-hand editor) allows to accept the entire content on your current configuration
 
-* 'Accept incoming changes' button (above the left-hand editor) allows to accept all the changes from the incoming configuration
+* `Accept incoming changes` button (above the left-hand editor) allows to accept all the changes from the incoming configuration
 
 ![Keep current changes](img/merge-collaboration/keep-current-changes.png)
 
