@@ -3,10 +3,6 @@ id: configurator_settings
 title: Configurator settings
 sidebar_label: Configurator Settings
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 These settings are only related to the Console plugin itself and will not affect your runtime environment. 
 
 ## Environment variables
@@ -72,7 +68,6 @@ On top of that, for each pair you can specify any **query** or **header** to be 
 
 ![Source map fetch options](img/configurator-settings_source-map-fetch-options.png)
 
-<!-- 
 ## Template sources
 
 Whenever you [create](./20_structure.md#create-new-page) a compose page you can choose to start from a pre-configured
@@ -100,5 +95,4 @@ should be provided in the `exports` field (you can take a look at the
 }
 ```
 
-Templates should be JSON files following [this schema](https://raw.githubusercontent.com/micro-lc/back-kit/main/packages/engine/schemas/template.schema.json). 
--->
+Templates should be JSON files following [this schema](https://raw.githubusercontent.com/micro-lc/back-kit/main/packages/engine/schemas/template.schema.json).
