@@ -1135,6 +1135,10 @@
             {
               "id": "paas/mtls",
               "type": "doc"
+            },
+            {
+              "id": "paas/deployment-tools",
+              "type": "doc"
             }
           ]
         }
