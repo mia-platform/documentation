@@ -91,11 +91,11 @@ Entering one of them, to resolve a diff, you can:
 
 In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section, the navigation buttons will be disabled.
 
-In case you want to accept all incoming or current changes inside a specific section of the merge modal, to speed-up your merge process you can leverage on two different buttons:
+In case you want to accept all incoming or current changes inside a specific section of the merge modal, to speed up your merge process you can leverage two different buttons:
 
-* `Keep current changes` button (above the right-hand editor) allows to accept the entire content on your current configuration
+* The `Keep current changes` button (above the right-hand editor) allows you to accept the entire content of your current configuration
 
-* `Accept incoming changes` button (above the left-hand editor) allows to accept all the changes from the incoming configuration
+* The `Accept incoming changes` button (above the left-hand editor) allows you to accept all changes from the incoming configuration
 
 ![Keep current changes](img/merge-collaboration/keep-current-changes.png)
 
