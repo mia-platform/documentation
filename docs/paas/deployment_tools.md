@@ -102,6 +102,79 @@ Despite that, is still possible to pause the deploy lifecycle in different point
 
 ![Flagger hooks types](./img/flagger_hooks_types.png)
 
-## Argo - Argo-rollouts
+:::info
+Flagger exposes Prometheus metrics to show statistics about releases. There are ready to use Grafana dashboards too.
+:::
 
-TODO
+#### Examples
+
+Following an example of `Canary` file that allows to deploy, in the `traibning-development` namespace, the `api-gateway` service using the Blue/Green strategy and send notification to a Google Chat channel:
+
+```yaml
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: api-gateway
+  namespace: training-development
+spec:
+  provider: kubernetes
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-gateway
+  progressDeadlineSeconds: 60
+  service:
+    port: 8080
+    portDiscovery: true
+  analysis:
+    interval: 5s
+    threshold: 2
+    iterations: 10
+    analysis:
+    webhooks:
+      - name: "ask for confirmation"
+        type: confirm-rollout
+        url: http://flagger-loadtester.training-development/gate/check
+      - name: "notify"
+        type: event
+        url: <GOOGLE_CHAT_URL>
+        metadata:
+          text: "Ready for promotion"
+      - name: "promote"
+        type: confirm-promotion
+        url: http://flagger-loadtester.training-development/gate/halt
+      - name: "rollback"
+        type: rollback
+        url: http://flagger-loadtester.training-development/rollback/check
+```
+
+## [Argo - Argo-rollouts](https://argo-rollouts.readthedocs.io/)
+
+Argo rollouts is a tool included into the [Argo project](https://argoproj.github.io/) that allows to use other deployment strategies:
+* canary &rarr; the traffic is partially routed to the new version of the service, partially to the old one;
+* blue/green &rarr; the new version is deployed (green) but the traffic still goes to the old version (blue), until the new version is "approved" for promotion. Once approved, the traffic is switched to new version of the service and the old one is shutted down.
+
+Argo rollouts allows to implement one of the strategies above using:
+* the kubernetes standard resources (deployment, services and so on);
+* a *Custom Resource Definition* called `Rollout`.
+
+:::warning
+The default behaviour of Argo rollouts is to **replace the existing deployments** manifests with the `Rollouts` manifest directly, that will handle the related pods; despite that, Argo rollouts allows to refer an existing deployment.
+:::
+
+### [Rollout CRD](https://argo-rollouts.readthedocs.io/en/stable/features/specification/)
+
+The `Rollout` CRD allows the user to handle the lifecycle of a service using one of the following approaches:
+* handle the pods lifecycle by replacing the kubernetes `Deployment`;
+* refer an existing kubernetes`Deployment` without replacing it.
+
+An Argo rollouts `Rollout` CRD is very similar to a kubernetes `Deployment` to:
+* specify replicas and pod template;
+* specify deployment strategies different from the default ones:
+  * Canary;
+  * Blue/Green.
+
+### Blue/Green strategy
+
+#### Lifecycle through the Mia-Platform Console
+
