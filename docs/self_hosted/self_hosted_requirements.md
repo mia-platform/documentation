@@ -136,7 +136,7 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td><strong>NoSQL database</strong></td>
          <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB Enterprise</td>
-         <td>&gt; 4.2</td>
+         <td>&gt; 5.0</td>
          <td>2 cores</td>
          <td>2 GB</td>
       </tr>
