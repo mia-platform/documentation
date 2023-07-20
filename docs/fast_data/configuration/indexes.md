@@ -41,3 +41,8 @@ To manage the indexes of Projection Changes collections you need to go to your M
 
 ## Single Views
 
+Aggregating Single Views is the main goal of the Fast Data and as such their collections must be properly indexed to update the records as quick as possible. The following indexes must be configured.
+
+- **Upsert index**: Unique index on the Single View's primary key fields defined in the Single View Key file. As you can imagine, this index is used to find and update each Single View record when aggregation is done.
+
+To manage the indexes of you Single Views you just need to go to your Single View's detail page and edit the `Indexes` section.
