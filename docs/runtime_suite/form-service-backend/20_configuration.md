@@ -102,7 +102,8 @@ The mandatory properties of the CRUD are:
 - **name**, of type *string*;
 - **formSubmitUrl**, of type *string*, which specifies the url that will be used for Form submission;
 - **formSchema**, of type *object*, which is the property where the configured Form `JSON` will be saved;
-- **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved.
+- **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved;
+- **formExpirationDate** (optional), of type *string*, which is the expiration date of the form.
 
 :::note
 
@@ -216,6 +217,7 @@ Here you can find an example of a *formVisualizerOptions* object:
 ```json
 {
   "autosaveIntervalValueMs": 5000,
+  "messageToBeShownOnExpiredForm": "This form is expired!",
   "exportFields": [
     "_id",
     "__STATE__",
@@ -245,6 +247,12 @@ Here you can find an example of a *formVisualizerOptions* object:
   ]
 }
 ```
+
+:::note
+
+There is a default value for `messageToBeShownOnExpiredForm` which is `This form is expired!`.
+
+:::
 
 #### Export fields (`exportFields`)
 
