@@ -32,7 +32,7 @@ Flagger allows the user to implement two other deployment strategies:
 * blue/green &rarr; the new version is deployed (green) but the traffic still goes to the old version (blue), until the new version is "approved" for promotion. Once approved, the traffic is switched to new version of the service and the old one is shutted down.
 
 :::warning
-The blue/green strategy provided by Flagger is not a real blue/green because Flagger does not switch the traffic from the blue to the green version; once "approved" for promotion, Flagger updated the blue version and terminates the green one &rarr; the blue version is always **the only stable one**. 
+The blue/green strategy provided by Flagger is not a real blue/green **on Kubernetes** because Flagger does not switch the traffic from the blue to the green version; once "approved" for promotion, Flagger updated the blue version and terminates the green one &rarr; the blue version is always **the only stable one**. 
 :::
 
 Flagger allows to implement one or both (simultaneously too) the strategies above using:
@@ -47,7 +47,7 @@ Deleting a `Canary` resource will cause the kubernetes resources deletion too.
 
 ### Blue/Green strategy
 
-#### Lifecycle
+#### Lifecycle through the Mia-Platform Console
 
 Creating, on the Mia-Platform Console, a service called `my-hello-world`, the console will automatically generate:
 * a k8s Deployment manifest for `my-hello-world`;
@@ -66,8 +66,41 @@ and Flagger will automatically:
 * create a new k8s service `my-hello-world-primary` that will be used for the blue/green release;
 * scale down the `my-hello-world` deployment, because is replaced by the `-primary` one, handled by Flagger.
 
-Updating the `my-hello-world` deployment will cause a new Blue/Green deployment start, so that the user can still edit the service lifecycle through the Mia-Platform Console.
+Updating the `my-hello-world` deployment will cause a new Blue/Green deployment start, so that the user can still handle the service lifecycle through the Mia-Platform Console.
 
+#### Blue/Green deployment lifecycle
+
+During a blue/green deployment, flagger will perform some operation, as reported in the following image:
+
+![Flagger blue/green deployment lifecycle](img/flagger_bg_lifecycle.png)
+
+1. The v1 of `my-hello-world` is up and running;
+2. The user deploys the v2 of `my-hello-world` through the console:
+  * flagger deploys the v2 with the `-canary` suffix;
+  * the v1 is still up and running and serves the traffic to the users;
+  * the conformance test step starts;
+3. Flagger runs the load tests, if specified &rarr; if the failure treshold is reached, the release is aborted;
+4. Flagger check metrics, if specified &rarr; if the failure treshold is reached, the release is aborted;
+5. Flagger validates the SLOs;
+6. Flagger promotes the new v2 version and terminates the old v1.
+
+:::info
+Blue/Green and Canary strategies can be mixed to allow some user to start using the new v2 version before the promotion (progressive traffic shifting).
+:::
+
+#### Tests automation
+
+Flagger executes a precise tests lifecycle, as shown in the previous paragraph, and provides diffent ways to automate tests.
+
+The main types are:
+* [**metrics analysis**](https://docs.flagger.app/usage/metrics): allows to specify one or more metrics to be analyzed to promote/rollback the release. Flagger supports different metrics providers (prometheus, dynatrace, datadog and so on);
+* [**webhooks**](https://docs.flagger.app/usage/webhooks): hooks of different types executed during the deploy, with different purposes.
+
+Using the tools above Flagger allows the users to completely automate the promotion of a release, without the need of manual actions.
+
+Despite that, is still possible to pause the deploy lifecycle in different points for manual actions using the right hooks types, as reported in the following image:
+
+![Flagger hooks types](./img/flagger_hooks_types.png)
 
 ## Argo - Argo-rollouts
 
