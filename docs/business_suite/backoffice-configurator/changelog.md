@@ -3,6 +3,43 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.3.0] - 2023-07-17
+
+### Versioning
+
+- `BACKOFFICE_TEMPLATE_VERSION` to `0.5.1`
+- `BACK_KIT_VERSION` to `1.3.17`
+- `@mia-platform-internal/reactord` to version `v9.6.0`
+- `@micro-lc/iconic` to version `^1.3.0`
+- `monaco-editor` to version `^0.40.0`
+- `rc-util` to version `^5.34.1`
+- `rc-virtual-list` to version `^3.5.3`
+- `react-router-dom` to version `^6.14.1`
+- `strip-json-comments` to version `^5.0.1`
+- Dev dependencies updated
+
+### Added
+
+- Added switch to set fields as required in data schema fields editor
+- During compose page creation, templates shows a description and a doc link
+- During compose page creation, input mode field shows an explanation of the different options
+- Added `dynamic-icon` format support for `fontawesome` brand library and `phosphor` libraries
+- Added web worker to fetch compose page templates from custom sources
+
+### Changed
+
+- When a shared property is deleted, the first of the remaining ones (if present) will be selected
+- "Edit property" button label changed to "Add property" when property value is not set
+- Generate Data Schema button is always visible and disabled if conditions are missing
+- Data schema from CRUD generation disclaimer badge better highlights that generating the schema will overwrite any existing value
+- Data schema from CRUD generation now handles "base" CRUD properties and properties of type ObjectId and Geopoint
+
+### Fixed
+
+- Fixed `dynamic-icon` form field CSP error in previewing icons switching to locally bundled libraries
+- Fixed `dynamic-icon` form field bug where after searching an item it could not be selected
+- Fixed Advanced tab blue dot appearing when other tabs are selected
+
 ## [1.2.0] - 2023-07-03
 
 ### Versioning

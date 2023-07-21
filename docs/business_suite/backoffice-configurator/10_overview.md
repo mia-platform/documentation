@@ -3,10 +3,6 @@ id: overview
 title: Overview
 sidebar_label: Overview
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 The _Backoffice Configurations_ section of the Mia-Platform Console is intended to provide a graphical interface to allow
 technical and non-technical users alike to configure a Backoffice instance in a no-code way.
 

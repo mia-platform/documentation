@@ -276,23 +276,33 @@ Filter operators can be selected from the following list:
 
 ```typescript
 type FilterOperator = |
-  'equal' |
-  'exists' |
-  'notEqual' |
-  'greater' |
-  'greaterEqual' |
-  'less' |
-  'lessEqual' |
-  'regex' |
-  'includeSome' |
-  'includeAll' |
-  'includeExactly' |
-  'notIncludeAny' |
+  'equals' |
+  'doesNotEqual' |
+  'contains' |
+  'startsWith' |
+  'endsWith' |
   'between' |
-  'notBetween' |
+  'before' |
+  'beforeOrEqual' |
+  'on' |
+  'notOn' |
+  'after' |
+  'afterOrEqual' |
+  'is' |
+  'isNot' |
+  'greater' |
+  'greaterOrEqual' |
+  'less' |
+  'lessOrEqual' |
+  'includesAll' |
+  'includesSome' |
+  'includesExactly' |
+  'doesNotInclude' |
   'hasLengthEqual' |
   'hasLengthGreaterEqual' |
-  'hasLengthLessEqual'
+  'hasLengthLessEqual' |
+  'exists' |
+  'notBetween'
 ```
 
 ## Inline queries

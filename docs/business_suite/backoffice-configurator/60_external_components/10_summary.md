@@ -3,10 +3,6 @@ id: summary
 title: External Components
 sidebar_label: Summary
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 The Configurator layout/advanced sections provide tools to visualize [composable pages](../30_compose_pages.md) which are made of webcomponents.
 For instance, the Configurator [main layout](../20_structure.md#layout) is a web page build with webcomponents.
 

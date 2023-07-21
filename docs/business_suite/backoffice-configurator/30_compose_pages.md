@@ -3,10 +3,6 @@ id: compose_pages
 title: Compose pages
 sidebar_label: Compose Pages
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 The pages of type [_compose_](./20_structure.md#page-type) can be configured in a **dedicated section**
 accessible via _edit page_ option in pages [context menu](./20_structure.md#edit-page).
 
@@ -21,11 +17,9 @@ configure a compose page.
 
 Compose pages can be created starting from a template, which is a pre-defined configuration carring a set of components.
 
-<!-- 
 :::tip
 To learn how to use your own custom templates, read the [dedicated documentation](./40_configurator_settings.md#template-sources).
 ::: 
--->
 
 ### Page with table
 
