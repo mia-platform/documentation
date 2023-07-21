@@ -849,6 +849,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/fast_data/bucket_storage_support_tutorial",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/design_overview/design_overview",
           "type": "doc"
         },
