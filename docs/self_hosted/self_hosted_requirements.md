@@ -16,6 +16,10 @@ The following software and hardware recommendations are for installing Mia-Platf
 
 ### Software and Hardware prerequisites  
 
+:::note
+Blanks cell in the following table are for tools that do not require a specific version or a minimum of RAM and CPU.  
+:::
+
 <table>
    <thead>
       <tr>
@@ -47,8 +51,8 @@ The following software and hardware recommendations are for installing Mia-Platf
          <td></td>
       </tr>
       <tr>
-         <td>SaaS<img src="/img/microsoft.ico" width="15" height="15"/> Microsoft</td>
-         <td></td>
+         <td><img src="/img/microsoft.ico" width="15" height="15"/> Microsoft</td>
+         <td>SaaS</td>
          <td></td>
          <td></td>
       </tr>
