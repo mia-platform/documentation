@@ -3,10 +3,6 @@ id: structure
 title: Backoffice structure
 sidebar_label: Structure
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 The first section of the configurator targets the general structure of the Backoffice. It is divided into five tabs:
 
 1. [pages](#pages), where you can overview the Backoffice structure and quickly adding or removing pages,

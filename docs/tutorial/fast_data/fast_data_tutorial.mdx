@@ -180,14 +180,46 @@ In our example, the ER Schema ConfigMap will define a relationship where one Cus
 
 ![ER Schema of Registry and Order](img/ER-visual-schema.png)
 
+You can configure the ER Schema in no code or low code mode:
+
 <Tabs
-  defaultValue="low-code"
+  defaultValue="no-code"
   groupId="real-time-updater-er-schema"
   values={[
-      { label: 'Low Code', value: "low-code", },
       { label: 'No Code', value: "no-code", },
+      { label: 'Low Code', value: "low-code", },
   ]}
 >
+
+<TabItem value="no-code">
+
+:::info
+The following explains how to configure an ER Schema using the "No Code" feature. To do so, please make sure that this feature is enabled in your project. You might need to ask your Project Administrator for it.
+:::
+
+To configure the ER Schema with the No Code, you need to return to the "Projection" section, and then select the "ER Schemas" tab. From there, you can create a new ER Schema, by clicking the "Create new ER Schema" button:
+a modal will prompt you to choose a name for your ER Schema (we suggest: _delivery-er-schema_). After that, you will be redirected to the ER Schema canvas.
+
+![Create new ER Schema](img/11-create-er-schema-no-code.png)
+
+The configuration of the ER Schema with the "No Code" is explained in detail in the [dedicated section](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code), 
+but we include here a quick guide on how to create the ER Schema with the needed relationships:
+- In the right side panel you can see the list of Projections inside the System of Record _delivery_: drag the collections _registry_ and _order_ to the canvas in the middle of the screen.
+- Inside the canvas, draw a line from the dot at the right of the _registry_ Projection to the _order_ Projection: you'll see that the line remains visible with a small "!" icon in the middle, 
+which means that the relationship has been created but the condition inside is empty.
+- the right side panel should show the details of the relationship. From here you'll need to:
+  - change the "Condition Type" value of "A -> B" to _One to many_.
+  - click on the "Edit Rules" button to open the Rules Modal: click on "+ Rule" and then fill the input fields with "registry_id" both for the _registry_ and the _order_ Projection. Finally, click the "Save" button.
+
+The final result should resemble the following image:
+
+![The ER Schema configuration is completed](img/12-completed-er-schema-no-code.png)
+
+After that, the ER Schema is already completely configured. To be used in the Real-Time Updater microservice, however, you need to copy the JSON code (visible by clicking on the "\<\/\>" button at the top-left side of the canvas)
+and paste it in the ER Schema ConfigMap of the microservice (from the "Microservices" section, select the Real-Time Updater named _fast-data-delivery-realtime-updater_, 
+go to the "ConfigMaps & Secret" and select the "er-schema" tab).
+
+</TabItem>
 
 <TabItem value="low-code">
 To change the ER Schema Config Map, move to the page of the Real-Time Updater and click on the _ConfigMaps & Secrets_ tab. After that, select the _er-schema_ ConfigMap.
@@ -244,34 +276,6 @@ the _registry_ Projections that shares the same _registry_id_. If so, that docum
 But in the example above, we decided to configure the relationship both ways to be able to use the same JSON also in the service that aggregates the Single View (the _Single View Creator_).
 </TabItem>
 
-<TabItem value="no-code">
-:::info
-The following explains how to configure an ER Schema using the "No Code" feature. To do so, please make sure that this feature is enabled in your project. You might need to ask your Project Administrator for it.
-:::
-
-To configure the ER Schema with the No Code, you need to return to the "Projection" section, and then select the "ER Schemas" tab. From there, you can create a new ER Schema, by clicking the "Create new ER Schema" button:
-a modal will prompt you to choose a name for your ER Schema (we suggest: _delivery-er-schema_). After that, you will be redirected to the ER Schema canvas.
-
-![Create new ER Schema](img/11-create-er-schema-no-code.png)
-
-The configuration of the ER Schema with the "No Code" is explained in detail in the [dedicated section](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code), 
-but we include here a quick guide on how to create the ER Schema with the needed relationships:
-- In the right side panel you can see the list of Projections inside the System of Record _delivery_: drag the collections _registry_ and _order_ to the canvas in the middle of the screen.
-- Inside the canvas, draw a line from the dot at the right of the _registry_ Projection to the _order_ Projection: you'll see that the line remains visible with a small "!" icon in the middle, 
-which means that the relationship has been created but the condition inside is empty.
-- the right side panel should show the details of the relationship. From here you'll need to:
-  - change the "Condition Type" value of "A -> B" to _One to many_.
-  - click on the "Edit Rules" button to open the Rules Modal: click on "+ Rule" and then fill the input fields with "registry_id" both for the _registry_ and the _order_ Projection. Finally, click the "Save" button.
-
-The final result should resemble the following image:
-
-![The ER Schema configuration is completed](img/12-completed-er-schema-no-code.png)
-
-After that, the ER Schema is already completely configured. To be used in the Real-Time Updater microservice, however, you need to copy the JSON code (visible by clicking on the "\<\/\>" button at the top-left side of the canvas)
-and paste it in the ER Schema ConfigMap of the microservice (from the "Microservices" section, select the Real-Time Updater named _fast-data-delivery-realtime-updater_, 
-go to the "ConfigMaps & Secret" and select the "er-schema" tab).
-
-</TabItem>
 
 </Tabs>
 
@@ -489,13 +493,26 @@ show up on the page, and the "->" button at the right side of the table will ope
 The ER-Schema is the same one we used in the Projection Microservice. We can duplicate the configMap, or we can use a [Shared ConfigMap](/development_suite/api-console/api-design/services.md#shared-configmaps).
 
 <Tabs
-  defaultValue="low-code"
+  defaultValue="no-code"
   groupId="single-view-creator-er-schema"
   values={[
-      { label: 'Low Code', value: "low-code", },
       { label: 'No Code', value: "no-code", },
+      { label: 'Low Code', value: "low-code", },
   ]}
 >
+
+<TabItem value="no-code">
+
+:::info
+The following explains how to configure an ER Schema for the Single View Creator microservice using the "No Code" feature. 
+Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
+:::
+
+If we've used the "No Code" feature before, the ER Schema will be already saved as _delivery-er-schema_. 
+Inside the _ER Schema_ tab, there will be a dropdown field from which we can select the _delivery-er-schema_.
+By doing that, the ConfigMap will already be completely configured.
+
+</TabItem>
 
 <TabItem value="low-code">
 
@@ -542,19 +559,6 @@ _order_ accessed via the condition _registry_to_order_.
 
 </TabItem>
 
-<TabItem value="no-code">
-
-:::info
-The following explains how to configure an ER Schema for the Single View Creator microservice using the "No Code" feature. 
-Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
-:::
-
-If we've used the "No Code" feature before, the ER Schema will be already saved as _delivery-er-schema_. 
-Inside the _ER Schema_ tab, there will be a dropdown field from which we can select the _delivery-er-schema_.
-By doing that, the ConfigMap will already be completely configured.
-
-</TabItem>
-
 </Tabs>
 
 #### Aggregation
@@ -565,13 +569,47 @@ In this configuration, we will get our dependencies from the projection and the 
 In our case, we will map _registry_id_, _name_, _city_ and _state_ from the Projection _registry_, and the order list from the Projection _order_.
 
 <Tabs
-  defaultValue="low-code"
+  defaultValue="no-code"
   groupId="single-view-creator-aggregation"
   values={[
-      { label: 'Low Code', value: "low-code", },
       { label: 'No Code', value: "no-code", },
+      { label: 'Low Code', value: "low-code", },
   ]}
 >
+
+<TabItem value="no-code">
+
+:::info
+The following explains how to configure an Aggregation using the "No Code" feature, available from version `11.3.0` of the Mia-Platform Console. 
+Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
+:::
+
+To have an exhaustive explanation of how to configure an Aggregation with the "No Code" feature, you can refer to the [specific documentation page](/fast_data/configuration/config_maps/aggregation.md#use-the-no-code).
+
+Assuming that the ER Schema has already been selected (see previous paragraph), here is a list of steps to be executed to configure the Aggregation:
+* Selecting the "Aggregation" tab, you'll be required to select a Base Projection which is the Projection from where the mapping will begin: 
+in our tutorial, we select the Projection _registry_ and click on "Set base projection". After this, the Single View Data Model will show up to the left, ready for the configuration.
+* Select the field _registry_id_: a panel will open to the right where we can select the dependency _registry_ and the field _registry_id_.
+* Select the field _name_: a panel will open to the right where we can select the dependency _registry_ and the field _name_.
+* Select the field _city_: a panel will open to the right where we can select the dependency _registry_ and the field _city_.
+* Select the field _state_: a panel will open to the right where we can select the dependency _registry_ and the field _state_.
+* Select the field _orders_: it will open a panel with the list of fields inside the Array of Objects _orders_ defined in the Data Model.
+* Click on the "Edit dependencies (0)" to create the dependency between _registry_ and _order_ in the Aggregation: inside the modal click first on the "Add dependency" button to start configuring the dependency.
+* Select the Source Projection _registry_: the rest of the form should fill automatically and a click on the "Add dependency" button will generate the dependency.
+* Click on "Save" to update the Aggregation with the new dependency.
+* Select the field _id_: a panel will open to the right where we can select the dependency _order_ and the field _order_id_.
+* Select the field _price_: a panel will open to the right where we can select the dependency _order_ and the field _price_.
+* Select the field _name_: a panel will open to the right where we can select the dependency _order_ and the field _name_.
+* Select the field _date_: a panel will open to the right where we can select the dependency _order_ and the field _date_.
+
+After the following steps, the Aggregation is completely configured and applied to the ConfigMap. 
+You can click on the toggle "Advanced Mode" at the bottom-left of the page to review your configuration in a JSON format.
+
+:::info
+in case you want to reset the aggregation by changing the Base Projection, you have to go to the _Settings_ tab and click the "Edit" button inside the "General" card.
+:::
+
+</TabItem>
 
 <TabItem value="low-code">
 
@@ -638,40 +676,6 @@ In our case, we will map _registry_id_, _name_, _city_ and _state_ from the Proj
 
 </TabItem>
 
-<TabItem value="no-code">
-
-:::info
-The following explains how to configure an Aggregation using the "No Code" feature, available from version `11.3.0` of the Mia-Platform Console. 
-Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
-:::
-
-To have an exhaustive explanation of how to configure an Aggregation with the "No Code" feature, you can refer to the [specific documentation page](/fast_data/configuration/config_maps/aggregation.md#use-the-no-code).
-
-Assuming that the ER Schema has already been selected (see previous paragraph), here is a list of steps to be executed to configure the Aggregation:
-* Selecting the "Aggregation" tab, you'll be required to select a Base Projection which is the Projection from where the mapping will begin: 
-in our tutorial, we select the Projection _registry_ and click on "Set base projection". After this, the Single View Data Model will show up to the left, ready for the configuration.
-* Select the field _registry_id_: a panel will open to the right where we can select the dependency _registry_ and the field _registry_id_.
-* Select the field _name_: a panel will open to the right where we can select the dependency _registry_ and the field _name_.
-* Select the field _city_: a panel will open to the right where we can select the dependency _registry_ and the field _city_.
-* Select the field _state_: a panel will open to the right where we can select the dependency _registry_ and the field _state_.
-* Select the field _orders_: it will open a panel with the list of fields inside the Array of Objects _orders_ defined in the Data Model.
-* Click on the "Edit dependencies (0)" to create the dependency between _registry_ and _order_ in the Aggregation: inside the modal click first on the "Add dependency" button to start configuring the dependency.
-* Select the Source Projection _registry_: the rest of the form should fill automatically and a click on the "Add dependency" button will generate the dependency.
-* Click on "Save" to update the Aggregation with the new dependency.
-* Select the field _id_: a panel will open to the right where we can select the dependency _order_ and the field _order_id_.
-* Select the field _price_: a panel will open to the right where we can select the dependency _order_ and the field _price_.
-* Select the field _name_: a panel will open to the right where we can select the dependency _order_ and the field _name_.
-* Select the field _date_: a panel will open to the right where we can select the dependency _order_ and the field _date_.
-
-After the following steps, the Aggregation is completely configured and applied to the ConfigMap. 
-You can click on the toggle "Advanced Mode" at the bottom-left of the page to review your configuration in a JSON format.
-
-:::info
-in case you want to reset the aggregation by changing the Base Projection, you have to go to the _Settings_ tab and click the "Edit" button inside the "General" card.
-:::
-
-</TabItem>
-
 </Tabs>
 
 #### Single View Key
@@ -680,29 +684,14 @@ The Single View Key is a ConfigMap in JSON format to create a relationship betwe
 to get a query that, executed in the Single View collection, retrieves the Single View document to be updated.
 
 <Tabs
-  defaultValue="low-code"
+  defaultValue="no-code"
   groupId="single-view-creator-single-view-key"
   values={[
-      { label: 'Low Code', value: "low-code", },
       { label: 'No Code', value: "no-code", },
+      { label: 'Low Code', value: "low-code", },
   ]}
 >
 
-<TabItem value="low-code">
-
-In the Low Code Single View Creator we need to set the following JSON in the Code Editor inside the "Single View Key" tab:
-```json
-{
-  "version": "1.0.0",
-  "config": {
-    "registry_id": "registry_id"
-  }
-}
-```
-The condition inside the _config` object is represented by:
-  * registry_id (from the Single View document): registry_id (obtained from the Projection Change document)
-
-</TabItem>
 
 <TabItem value="no-code">
 
@@ -723,6 +712,22 @@ select _registry_id_ (which is, for our example, the same name of the Base Proje
 * you can review the updates by clicking the toggle "Advanced Mode" and, when you are sure everything is fine, click on "Save".
 
 Now also the Single View Key ConfigMap is completely configured.
+
+</TabItem>
+
+<TabItem value="low-code">
+
+In the Low Code Single View Creator we need to set the following JSON in the Code Editor inside the "Single View Key" tab:
+```json
+{
+  "version": "1.0.0",
+  "config": {
+    "registry_id": "registry_id"
+  }
+}
+```
+The condition inside the _config` object is represented by:
+  * registry_id (from the Single View document): registry_id (obtained from the Projection Change document)
 
 </TabItem>
 

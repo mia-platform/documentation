@@ -3,10 +3,6 @@ id: faqs
 title: FAQs
 sidebar_label: Faqs
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 ## Components
 
 ## How can I add a new page to and show it in the navigation menu?
@@ -183,11 +179,9 @@ there may be CORS issues or authentication issues. To fix them you may need to a
 [Service Worker](./40_configurator_settings.md#source-maps) to reverse proxy your sources to something that can be loaded
 by the preview.
 
-<!-- 
 ### How can I use my own compose page templates?
 
 Templates available when creating a compose page are fetched from remote sources, which can be controlled in the
 _Template sources_ tab of the _Configurator Settings_ modal.
 
 Refer to the [dedicated documentation](./40_configurator_settings.md#template-sources) for more information.
--->

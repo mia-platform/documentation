@@ -27,7 +27,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- internal fixes
+- Solved a bug that caused the `/download` route in single-bucket mode to fail due to improper scope management.
+This bug was introduced in `v2.7.0`.
 
 ## 2.7.0 - 03-15-2023
 
