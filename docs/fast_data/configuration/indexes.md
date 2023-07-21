@@ -22,13 +22,11 @@ If you use manual strategies don't forget to declare the fields you use inside t
 
 To add an index to your projection you only need to go in the card `Indexes` on your Projection's detail page.
 
-### Automatic indexes
+![Projection index](../img/fastdata-projection-index.png)
 
-<!-- TODO: add to the index automation the other indexes (Aggregation index missing) -->
-
-An automation of the indexes based on the primary key fields is available in the console. If enabled, the console will create and update all the indexes needed for that projection.
-
-![Automatic indexes toggle](../img/fastdata-automatic-indexes.png)
+:::tip
+An automation of the indexes based on the primary key fields is available in the console. If enabled, the console will create and update **all the indexes needed** for that projection.
+:::
 
 ## Projection Changes
 
@@ -39,6 +37,8 @@ An automation of the indexes based on the primary key fields is available in the
 
 To manage the indexes of Projection Changes collections you need to go to your MongoDB CRUD section in console and use the `Indexes` card like with any other collection.
 
+![Projection Changes index](../img/fastdata-projection-changes-index.png)
+
 ## Single Views
 
 Aggregating Single Views is the main goal of the Fast Data and as such their collections must be properly indexed to update the records as quick as possible. The following indexes must be configured.
@@ -46,3 +46,5 @@ Aggregating Single Views is the main goal of the Fast Data and as such their col
 - **Upsert index**: Unique index on the Single View's primary key fields defined in the Single View Key file. As you can imagine, this index is used to find and update each Single View record when aggregation is done.
 
 To manage the indexes of you Single Views you just need to go to your Single View's detail page and edit the `Indexes` section.
+
+![Single View index](../img/fastdata-single-view-index.png)
