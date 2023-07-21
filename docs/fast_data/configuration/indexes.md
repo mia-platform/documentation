@@ -12,9 +12,9 @@ Collection indexes are crucial for the Fast Data to work at it's maximum efficie
 
 [Projections](/fast_data/the_basics.md#projection) are used by almost all of the services of the Fast Data. The following indexes must be configured for every projection so DB interaction is as quick as possible.
 
-- **Primary key index**: Compound unique index of all the fields marked as primary key. This index will be used in the strategies execution.
-- **Ingestion indexes**: Same as the "Primary key fields index" but with the addition of two fields, `__internal__counter` and `__internal__counterType`. These two fields are added to the projection's record in the database when the record is created by the [Real Time Updater](/fast_data/realtime_updater.md) so there's no need to declare them as normal fields. Make sure you declare **two indexes**, one with both fields and the other one with just the `__internal__counterType` field. As the name indicates, this indexes will be used to update the Projection's record during the ingestion process
-- **Aggregation index**: Again, same as the "Primary key fields index" but adding the field `__STATE__`. As the name suggests, it will be used to query the documents for the aggregation.
+- **Primary key index**: Compound unique index of all the fields marked as primary key. This index will be used in the strategies execution. When using index autogeneration this index will be called `mia_primary_key_index`.
+- **Ingestion indexes**: Same as the "Primary key fields index" but with the addition of two fields, `__internal__counter` and `__internal__counterType`. These two fields are added to the projection's record in the database when the record is created by the [Real Time Updater](/fast_data/realtime_updater.md) so there's no need to declare them as normal fields. Make sure you declare **two indexes**, one with both fields and the other one with just the `__internal__counterType` field. As the name indicates, this indexes will be used to update the Projection's record during the ingestion process. When using index autogeneration these indexes will be called `mia_internal_counter_index` and `mia_internal_counter_type_index`.
+- **Aggregation index**: Again, same as the "Primary key fields index" but adding the field `__STATE__`. As the name suggests, it will be used to query the documents for the aggregation. When using index autogeneration this index will be called `mia_state_index`.
 
 :::caution
 If you use manual strategies don't forget to declare the fields you use inside the Javascript files as indexes
