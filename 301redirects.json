@@ -524,5 +524,9 @@
   "/docs/how_to/console/project_dev_tools_setup": {
     "destination": "/docs/how_to/console/project_development",
     "addedOn": "2023-07-13"
+  },
+  "/docs/development_suite/monitoring/configuration": {
+    "destination": "/docs/development_suite/clusters-management/add-edit-remove-cluster",
+    "addedOn": "2023-07-21"
   }
 }
