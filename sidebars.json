@@ -1240,6 +1240,10 @@
       },
       "items": [
         {
+          "id": "release-notes/v11.4.2",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v11.4.1",
           "type": "doc"
         },
