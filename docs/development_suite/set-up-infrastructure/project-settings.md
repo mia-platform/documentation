@@ -4,7 +4,7 @@ title:  Project Settings
 sidebar_label: Project Settings
 ---
 
-Once you have created your project, you can visualize and change its settings within the "Settings" area of the Console.
+Once you have created your project, you can visualize and change its settings through the "Settings" section of the Console, within the "Project Overview" area.
 The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", and "Feature Preview".
 
 ## General
