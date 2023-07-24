@@ -779,6 +779,10 @@ Errors in configured dependencies are visible inside the modal accessible via th
 
 In this case, it is highly suggested to remove the non-valid projections and re-add them (manually with the [Set Path feature](#automatic-generation-of-dependencies-via-path)).
 
+:::warning
+The `oneOf`, `anyOf`, `allOf`, `if` and `$ref` JSON Schema operators would not make the Aggregation JSON validation fail, but are not handled in the No Code and could generate errors. Please try avoiding them when defining your Aggregation.
+:::
+
 ### Reset the Aggregation
 
 It is possible to reset the Aggregation and configure it from scratch from the _Settings_ tab, in case of mistakes in selecting the base Projection or using the ER Schema. In this tab, several general options regarding the Single View Creator are included and the first card, named _General_ shows the selected ER Schema and the selected Aggregation.
