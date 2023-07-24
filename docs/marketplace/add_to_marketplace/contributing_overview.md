@@ -22,7 +22,7 @@ Company Owners and Project Administrators can create, delete and update those Ma
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
 :::info
-Instead, if you want to contribute to the **public Mia-Platform Marketplace** with a new component, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+Instead, if you want to contribute to the **Mia-Platform Marketplace** by making your marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
 :::
 
 ## Marketplace components
