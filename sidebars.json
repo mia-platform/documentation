@@ -639,6 +639,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/configuration/indexes",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/configuration/strategies",
           "type": "doc"
         },
