@@ -8,6 +8,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] 2023-07-24
+
+### Added
+
+- Configuration file accepts the field `messageToBeShownOnExpiredForm` in the `formVisualizerOptions` object
+- Api GET /visualizer/config returns also the new field `messageToBeShownOnExpiredForm`
+- POST /builder/schemas endpoints accepts `formExpirationDate` field to set form expiration date
+- GET /builder/schemas/:id endpoint returns also the `formExpirationDate` field
+- PUT /builder/schemas/:id is possible to $set and $unset the `formExpirationDate` field
+
+### Fixed 
+
+- Fix documentation links
+
 ## [1.7.1] 2023-03-31
 
 - Add Excel compatibility flag to CSV form export
