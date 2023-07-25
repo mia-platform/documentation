@@ -154,7 +154,7 @@ To edit a group's role from the IAM portal, simply click on the edit button for 
 
 ### Managing Group role at Project level
 
-Groups which have access to a Company are shown in the IAM portal inside the Project Settings Area of a Project belonging to that specific Company.
+Groups which have access to a Company are shown in the IAM portal inside the Project Overview area of a Project belonging to that specific Company.
 You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
 
 

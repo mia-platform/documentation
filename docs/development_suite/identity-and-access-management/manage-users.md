@@ -71,7 +71,7 @@ From the IAM portal, the Company role assigned to the user can be edited by clic
 
 ### Managing User role at Project level
 
-Users with access to a Company are also shown in the IAM portal inside the Project Settings Area of a Project belonging to that specific Company.
+Users with access to a Company are also shown in the IAM portal inside the Project Overview area of a Project belonging to that specific Company.
 You can change the role of a user in the Project or in any Project Runtime Environment. To do so, just open the editing dialog on the desired row and select the new role of the user for the Project itself and/or for Project Runtime Environments.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
