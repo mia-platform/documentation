@@ -108,7 +108,7 @@ Flagger exposes Prometheus metrics to show statistics about releases. There are 
 
 #### Examples
 
-Following an example of `Canary` file that allows to deploy, in the `traibning-development` namespace, the `api-gateway` service using the Blue/Green strategy and send notification to a Google Chat channel:
+Following an example of `Canary` file that allows to deploy, in the `training-development` namespace, the `api-gateway` service using the Blue/Green strategy and send notification to a Google Chat channel:
 
 ```yaml
 apiVersion: flagger.app/v1beta1
@@ -253,3 +253,28 @@ The interactive dashboard can be exposed through the kubectl plugin, executing `
 
 * promote or rollback a specific rollout:
 ![argo-rollouts_dashboard_rollouts_list](./img/argo-rollouts_dashboard_rollout_interaction.png)
+
+#### Examples
+
+Following an example of `Rollout` file that allows to deploy, in the `training-development` namespace, the `rollouts-demo` existing deployment service using the Blue/Green strategy with the **automatic promotion disabled**:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollouts-demo-rollout
+spec:
+  replicas: 5
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: rollouts-demo
+  workloadRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rollouts-demo
+  strategy:
+    blueGreen:
+      activeService: rollouts-demo
+      autoPromotionEnabled: false
+```
