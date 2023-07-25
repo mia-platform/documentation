@@ -1,12 +1,8 @@
 ---
-id: compose-pages
+id: compose_pages
 title: Compose pages
-sidebar_label: Compose pages
+sidebar_label: Compose Pages
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 The pages of type [_compose_](./20_structure.md#page-type) can be configured in a **dedicated section**
 accessible via _edit page_ option in pages [context menu](./20_structure.md#edit-page).
 
@@ -20,6 +16,10 @@ configure a compose page.
 ## Templates
 
 Compose pages can be created starting from a template, which is a pre-defined configuration carring a set of components.
+
+:::tip
+To learn how to use your own custom templates, read the [dedicated documentation](./40_configurator_settings.md#template-sources).
+::: 
 
 ### Page with table
 
@@ -179,6 +179,23 @@ and can be configured through a graphical interface.
 You can add new fields to the schema, choose and edit their name, and set some relevant properties for each of them.
 
 ![New shared property](img/compose-page_shared-properties-bk-data-schema.png)
+
+Moreover, data schemas can be **automatically generated** from CRUD collections. This can be done in specific components
+that are responsible for CRUD communication
+(e.g., [Curd Client](../../business_suite/backoffice/components/clients#bk-crud-client) component),
+with the _Generate Schema_ button.
+
+![Generate schema button](img/compose-page_crud-generation-button.png)
+
+If the component does not have a value for its data schema property, the automatic generation process will create a 
+**new shared property**, and will assign it to the component. If the component already references a shared property in
+its data schema property, the shared will be updated.
+
+:::warning
+If the component already references a shared, the generation process will **completely overwrite** the value of the
+shared property (this includes any additional field you may have added to the previous data schema).
+:::
+
 
 ## Advanced
 

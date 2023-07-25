@@ -30,6 +30,64 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## v11 - version upgrades
 
-### Upgrade from v10.9.0 to v11.3.0
+### Upgrade from v11.3.0 to v11.4.0
 
-Between v10.9.0 (Chart version `v9.0.15`) and v11.3.0 (Chart version `v9.3.0`) the are no notable changes to take care of.
+With version v11.4.0 (Chart version v9.4.0) a new service has been added, make sure to configure resource requirements and HPA according to your installation for `exportService`
+
+```yaml
+exportService:
+  deploy:
+    resources:
+      requests:
+        memory: "200Mi"
+        cpu: "50m"
+      limits:
+        memory: "500Mi"
+        cpu: "350m"
+    hpa:
+      annotations: {}
+      minReplicas: 2
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+```
+
+Furthermore, `configurations.exportServiceHostname` value is removed. So, you can remove it from your values file.
+
+### Upgrade from v11.2.1 to v11.3.0
+
+With version v11.3.0 (Chart version v9.3.0) a new service has been added, make sure to configure resource requirements and HPA according to your installation for `eventsManager`
+
+```yaml
+eventsManager:
+  deploy:
+    resources:
+      requests:
+        memory: "50Mi"
+        cpu: "50m"
+      limits:
+        memory: "250Mi"
+        cpu: "350m"
+    hpa:
+      annotations: {}
+      minReplicas: 2
+      maxReplicas: 4
+      targetCPUUtilizationPercentage: 70
+  rbacSidecar:
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "300Mi"
+        cpu: "300m"
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+```
+
+### Upgrade from v10.9.0 to v11.2.1
+
+Between v10.9.0 (Chart version `v9.0.15`) and v11.2.1 (Chart version `v9.2.1`) the are no notable changes to take care of.

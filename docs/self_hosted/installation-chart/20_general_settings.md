@@ -59,14 +59,14 @@ Mia-Platform Console allows user to create custom Service Accounts to perform m2
 
 For any doubt check out the [Client Credentials guide](../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
 
-  * `rsaPrivateKeyBase64`:
-    * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`
-    * digit your passphrase (it is required for `rsaPrivateKeyPass`)
-      * to generate the password we recommend using `openssl rand -hex 128`
-    * encode the private key in base64
-  * `rsaPrivateKeyId`: `openssl rand -hex 24`
-  * `rsaPrivateKeyPass`: the passphrase you used during private key generation
-  * `clientIdSalt`: `openssl rand -hex 256`
+* `rsaPrivateKeyBase64`:
+  * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`
+  * digit your passphrase (it is required for `rsaPrivateKeyPass`)
+    * to generate the password we recommend using `openssl rand -hex 128`
+  * encode the private key in base64 (`cat <PRIVATE_KEY> | base64`)
+* `rsaPrivateKeyId`: `openssl rand -hex 24`
+* `rsaPrivateKeyPass`: the passphrase you used during private key generation
+* `clientIdSalt`: `openssl rand -hex 256`
 
 ## Generated Service specific resource configuration
 
@@ -101,7 +101,6 @@ mia-console:
 | `logLevel` | string | The log level to setup | `info` | ✅ |
 | `registryHost`| string | The host of the registry where to pull the images, useful when you want to download images from a proxy registry | `nexus.mia-platform.eu` | ✅ |
 |`configurations.multitinenantNamespace`| string | The multitenant partial hostname | `multitenant.svc.cluster.local` | ✅ |
-|`configurations.exportServiceHostname`| string | The hostname of the export-service to use for the console CMS |  | ✅ |
 |`configurations.customServicesImagePullSecret`| string | The name of the `imagePullSecret` containing the credentials to the private docker repository (_deprecated_, we reccomend to use `configurations.servicesImagePullSecrets`) |  | ✅ |
 |`configurations.servicesImagePullSecrets`| array | The names of `imagePullSecret` containing the credentials to the private docker repositories that will be used to pull the images of all services of the projects, this key take precendence over `configurations.customServicesImagePullSecret`. You have to specify the secrets for both your own services and the ones handled by Console (e.g. cms-backend, crud-service, ecc...). | `["nexus-gcloud"]` | ✅ |
 |`configurations.publicVariablesFolderName`| string | The name of the folder in which all public variables will be stored | | ✅ |
@@ -111,7 +110,6 @@ mia-console:
 
 | Name | Type | Description | Default | Optional |
 |:----:|:----:|:-----------:|:-------:|:--------:|
-|`configurations.enableTelemetry`| boolean | Enable console telemetry to send usage info | `false` | ✅
 |`configurations.enableClustersAndEnvironmentsManagement`| boolean | Enables Clusters and Environments management | `true` | ✅ |
 |`configurations.projectTemplateArchiveUrl`| string | New project template url |  | ✅ |
 |`configurations.enablePrometheusMetrics`| boolean | enable prometheus to collect metrics. This is a beta feature and could have breaking changes. | `false` | ✅ |

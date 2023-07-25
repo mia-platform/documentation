@@ -1,13 +1,9 @@
 ---
-id: overview
-title: External components
-sidebar_label: External components
+id: summary
+title: External Components
+sidebar_label: Summary
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
-The Configurator layout/advanced sections provide tools to visualize [composable pages](../30_compose-pages.md) which are made of webcomponents.
+The Configurator layout/advanced sections provide tools to visualize [composable pages](../30_compose_pages.md) which are made of webcomponents.
 For instance, the Configurator [main layout](../20_structure.md#layout) is a web page build with webcomponents.
 
 Components usually are provided by JavaScript libraries like:
@@ -160,7 +156,7 @@ The following actions need to be addressed:
 ## No/Low-code Components Configuration
 
 ```tip
-To view your external components, you may need to [configure](../40_configurator-settings.md#source-maps) the correct
+To view your external components, you may need to [configure](../40_configurator_settings.md#source-maps) the correct
 reverse proxying in the Configurator Service Worker .
 ```
 

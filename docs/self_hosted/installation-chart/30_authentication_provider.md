@@ -51,6 +51,29 @@ Please bear in mind that the `authProviders` field is a required field, you can
 | `additionalScopes` | string[] | The additional scope for the provider | [] | ✅ |
 | `genericProviderOidcKeys` | object | The keys that must be extracted from the provider response, only available for `generic` auth provider type |  | ✅ |
 
+## Logout flow
+
+You can configure the Console to logout the user from the Identity Provider when the user logs out from the Console itself. In oder to do so, you have to set one of the following properties:
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
+| `logoutUrlPath` | string | The path to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
+
+In case you set the `logoutUrlPath`, it will be appended to the Identity Provider base URL.
+
+:::info
+
+Please note that you may need to allow the redirect URL to the homepage of the Console and to the homepage of the CMS login site inside the Identity Provider configuration.
+
+The urls are the following:
+- `<CONSOLE-BASE-URL>/`
+- `<CONSOLE-CMS-BASE-URL>/web-login`
+
+Consult the documentation of your Identity Provider to know how to configure the redirect URLs.
+
+:::
+
 ## Session signing
 
 Even though the authentication is resolved by a third party, the sessions provided by Mia-Platform Console to its users are signed by the console itself, to be able to properly sign the Console requires a few additional configurations:

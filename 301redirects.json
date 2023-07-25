@@ -500,5 +500,29 @@
   "/docs/business_suite/backoffice-configurator/environment": {
     "destination": "/docs/business_suite/backoffice-configurator/configurator-settings",
     "addedOn": "2023-06-23"
+  },
+  "/docs/business_suite/backoffice-configurator/compose-pages": {
+    "destination": "/docs/business_suite/backoffice-configurator/compose_pages",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/configurator-settings": {
+    "destination": "/docs/business_suite/backoffice-configurator/configurator_settings",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/overview": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/summary",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/manifest": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/manifest",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/bundling": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/bundling",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/how_to/console/project_dev_tools_setup": {
+    "destination": "/docs/how_to/console/project_development",
+    "addedOn": "2023-07-13"
   }
 }

@@ -490,10 +490,6 @@
           "type": "doc"
         }
       ]
-    },
-    {
-      "id": "development_suite/user-feedback/give-feedback",
-      "type": "doc"
     }
   ],
   "cms": [
@@ -644,6 +640,10 @@
         },
         {
           "id": "fast_data/configuration/single_views",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/indexes",
           "type": "doc"
         },
         {
@@ -857,6 +857,10 @@
           "type": "doc"
         },
         {
+          "id": "tutorial/fast_data/bucket_storage_support_tutorial",
+          "type": "doc"
+        },
+        {
           "id": "tutorial/design_overview/design_overview",
           "type": "doc"
         },
@@ -884,7 +888,7 @@
           "type": "doc"
         },
         {
-          "id": "how_to/console/project_dev_tools_setup",
+          "id": "how_to/console/project_development",
           "type": "doc"
         },
         {
@@ -1239,6 +1243,18 @@
         "id": "release-notes/versions"
       },
       "items": [
+        {
+          "id": "release-notes/v11.4.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.4.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.4.0",
+          "type": "doc"
+        },
         {
           "id": "release-notes/v11.3.0",
           "type": "doc"

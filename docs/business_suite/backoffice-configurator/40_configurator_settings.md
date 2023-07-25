@@ -1,12 +1,8 @@
 ---
-id: configurator-settings
+id: configurator_settings
 title: Configurator settings
-sidebar_label: Configurator settings
+sidebar_label: Configurator Settings
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 These settings are only related to the Console plugin itself and will not affect your runtime environment. 
 
 ## Environment variables
@@ -16,7 +12,7 @@ A common use-case when configuring a Backoffice instance is to use **interpolate
 the project and uses them to correctly interpret configurations with interpolated sections.
 
 To manage the variables used by the configurator, a dedicated modal can be opened with the *Variables* button on the top
-right corner of both the [structure](./20_structure.md) and the [compose configuration](./30_compose-pages.md) pages.
+right corner of both the [structure](./20_structure.md) and the [compose configuration](./30_compose_pages.md) pages.
 
 The modal is divided into two section. The *Public* section lists the project unsecreted variables divided for environment
 (the variables are **readonly**). The environment can be switched to try the configuration with the different variables
@@ -40,7 +36,7 @@ you leave the page and return, your will lose your environment.
 The Configurator preview can only load resources that are publicly available on the net and with the right
 [CORS headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). 
 
-This poses an issue if you would like to view [external components](./60_external-components/10_overview.md), 
+This poses an issue if you would like to view [external components](./60_external_components/10_summary.md), 
 images, or assets deployed in a production environment, CDN, or authenticated route.
 
 Let's consider, for example, the following compose page configuration, where web-components are sourced from the
@@ -71,3 +67,32 @@ Here you can specify pairs of locations in a _from-to_ fashion: the Service Work
 On top of that, for each pair you can specify any **query** or **header** to be attached to the request made to the `to` URL.
 
 ![Source map fetch options](img/configurator-settings_source-map-fetch-options.png)
+
+## Template sources
+
+Whenever you [create](./20_structure.md#create-new-page) a compose page you can choose to start from a pre-configured
+[template](./30_compose_pages.md#templates). Templates are fetched from remote sources, and these sources can be
+configured in the _Template sources_ tab of the _Configurator Settings_ modal.
+
+![Template sources](img/configurator-settings_template-sources.png)
+
+Here, you can list URLs that are called to retrieve the available templates. For each URL you can specify any 
+**query** or **header** to be attached to the request.
+
+The URL called should be one of a valid NPM package containing a `package.json` file in root (the call is made to
+`<template_source>/package.json?<optionally_specified_query>`). Inside the `package.json`, the location of the templates
+should be provided in the `exports` field (you can take a look at the 
+[official templates repository](https://github.com/micro-lc/back-kit/tree/main/packages/templates) for an example).
+
+```json
+{
+  "name": "my-templates-repo",
+  "exports": {
+    "./my-template.json": {
+      "default": "./my-template.json"
+    }
+  }
+}
+```
+
+Templates should be JSON files following [this schema](https://raw.githubusercontent.com/micro-lc/back-kit/main/packages/engine/schemas/template.schema.json).
