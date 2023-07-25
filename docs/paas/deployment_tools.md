@@ -178,3 +178,78 @@ An Argo rollouts `Rollout` CRD is very similar to a kubernetes `Deployment` to:
 
 #### Lifecycle through the Mia-Platform Console
 
+As previously reported, argo-rollouts has two use approaches:
+* using standard kubernetes resources;
+* using the `Rollout` CRD referencing existing deployments.
+
+:::warning
+Using `argo-rollouts` with the Mia-Platform Console only supports the second method, referencing existing deployments.
+In this way, the services lifecycle can still be handled through the console.
+:::
+
+Creating, on the Mia-Platform Console, a service called `my-hello-world`, the console will automatically generate:
+* a k8s Deployment manifest for `my-hello-world`;
+* a k8s Service manifest for `my-hello-world`.
+
+The `Rollout` file is to be manually created inside the project configuration repository, the location is based on you [project structure](https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/create-project).
+
+Once the `Rollout` CRD is created, deploying the project will cause:
+* the creation of the k8s resources **created automatically by the console**;
+* the creation of the Rollout resource **created manually by the user**;
+
+and argo-rollouts will wait for deployment updates.
+
+Once the deployment has been updated through the console, e.g. we update the `my-hello-world` service to v2, argo-rollouts will:
+* start a new `Rollout` process, deploying N replicas of the `my-hello-world` service v2;
+* keep `my-hello-world` service v1 up and running, to serve the traffic;
+* wait for the promotion result:
+  * **OK &rarr;** argo-rollouts switches the traffic from the v1 service (blue version) to the v2 service (green version) and terminates the v1 version;
+  * **KO &rarr;** argo-rollouts shuts down the v2 service and the v1 will remain the used version.
+
+:::info
+Argo-rollouts provides a real blue/green deployment, because the green version will replace the blue one.
+:::
+
+#### Rollout promotion and manifest
+
+With argo-rollouts the promotion can be automatically or manually done but, contrary to Flagger, it is most lacking in the automatic promotion but it is still possible to configure some automatism:
+
+![argo-rollouts_automatic_tests_yml](./img/argo-rollouts_automatic_tests_yml.png)
+
+The blue/green strategy has the following properties:
+```yaml
+spec:
+  strategy:
+    blueGreen:
+      autoPromotionEnabled: boolean
+      autoPromotionSeconds: *int32
+      antiAffinity: object
+      activeService: string
+      previewService: string
+      prePromotionAnalysis: object
+      postPromotionAnalysis: object
+      previewReplicaCount: *int32
+      scaleDownDelaySeconds: *int32
+      scaleDownDelayRevisionLimit: *int32
+```
+
+The main ones are:
+* **autoPromotionEnabled** &rarr; to let argo-rollouts automatically promote the green version or not;
+* **activeService** &rarr; the k8s service related to the deployment;
+* **previewService** &rarr; the optional k8s service to expose the green version during the rollout.
+
+#### Argo dashboard and kubectl plugin - The game changers
+
+Argo-rollouts provides out of the box two very useful features:
+* **[interactive dashboard](https://argo-rollouts.readthedocs.io/en/stable/dashboard/)** &rarr; useful dashboard that allows the user to see rollouts, promote or rollback and so on;
+* **[kubectl plugin](https://argo-rollouts.readthedocs.io/en/stable/features/kubectl-plugin/)** &rarr; allows to run specific operations on rollouts (e.g. promote, rollback and so on); it can be very useful to be used in automatic pipelines.
+
+The interactive dashboard can be exposed through the kubectl plugin, executing `kubectl argo rollouts dashboard` and allows to:
+* show the rollouts of on or more namespaces of the cluster:
+![argo-rollouts_dashboard_rollouts_list](./img/argo-rollouts_dashboard_rollouts_list.png)
+
+* show the details of a specific rollout, during a rollout too:
+![argo-rollouts_dashboard_rollouts_list](./img/argo-rollouts_dashboard_rollout_details.png)
+
+* promote or rollback a specific rollout:
+![argo-rollouts_dashboard_rollouts_list](./img/argo-rollouts_dashboard_rollout_interaction.png)
