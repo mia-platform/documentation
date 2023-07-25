@@ -315,7 +315,9 @@
     "Noto",
     "Segoe",
     "kotlinx",
-    "reauthentication"
+    "reauthentication",
+    "argoproj",
+    "dynatrace"
   ],
   "dictionaries": [
     "softwareTerms",

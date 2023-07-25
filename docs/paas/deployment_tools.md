@@ -90,7 +90,7 @@ Blue/Green and Canary strategies can be mixed to allow some user to start using 
 
 #### Tests automation
 
-Flagger executes a precise tests lifecycle, as shown in the previous paragraph, and provides diffent ways to automate tests.
+Flagger executes a precise tests lifecycle, as shown in the previous paragraph, and provides different ways to automate tests.
 
 The main types are:
 * [**metrics analysis**](https://docs.flagger.app/usage/metrics): allows to specify one or more metrics to be analyzed to promote/rollback the release. Flagger supports different metrics providers (prometheus, dynatrace, datadog and so on);
@@ -159,7 +159,7 @@ Argo rollouts allows to implement one of the strategies above using:
 * a *Custom Resource Definition* called `Rollout`.
 
 :::warning
-The default behaviour of Argo rollouts is to **replace the existing deployments** manifests with the `Rollouts` manifest directly, that will handle the related pods; despite that, Argo rollouts allows to refer an existing deployment.
+The default behavior of Argo rollouts is to **replace the existing deployments** manifests with the `Rollouts` manifest directly, that will handle the related pods; despite that, Argo rollouts allows to refer an existing deployment.
 :::
 
 ### [Rollout CRD](https://argo-rollouts.readthedocs.io/en/stable/features/specification/)
