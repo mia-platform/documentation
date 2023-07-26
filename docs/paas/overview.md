@@ -22,6 +22,6 @@ The consequence is a revolution of organizations' approach to hardware and softw
 
 - **Security and Compliance**: Mia-Platform PaaS prioritizes security and compliance to safeguard applications and data by employing a comprehensive set of security measures, including but not limited to, secure authentication mechanisms, robust access controls, and data encryption in transit and at rest.
 
-- **24/7 Incident support**: Mia-Platform PaaS offers highly syapecialized support to address incidents and fast fixes activities.
+- **24/7 Incident support**: Mia-Platform PaaS offers highly specialized support to address incidents and fast fixes activities.
 
 - **Disaster Recovery**: Mia-Platform PaaS ensures the resilience and continuity of applications and data in case of unexpected critical event. The platform employs a structured approach to disaster recovery, incorporating measures and protocols to mitigate the impact of the disaster.
