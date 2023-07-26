@@ -4,17 +4,17 @@ title: Mia-Platform Bring Your Own Infrastructure
 sidebar_label: BYOI 
 ---
 
-Bring Your Own Infrastructure (BYOI) is a revolutionary **cloud computing model** that allows organizations to utilize their existing hardware, software, and networking resources while integrating them into a third-party service or platform. This innovative approach empowers companies to retain control over their infrastructure while benefiting from the services and capabilities offered by an external provider. BYOI has gained popularity as a flexible and cost-efficient solution, enabling seamless integration with a wide range of services and applications.
+Bring Your Own Infrastructure (BYOI) allows customers to utilize their own runtime, CI/CD tools and Git-provider and to connect them into Mia-Platform managed Console. This approach let customers retain control over their infrastructure while benefiting from the services and capabilities offered by Mia-Platform. BYOI has gained popularity as a flexible and cost-efficient solution, enabling seamless integration with a wide range of services and applications.
 
 ![byoi-schema](img/architecture-byoi.png)
 
-The above schema, shows the tipical infrastructure architecture and the main elements that are involved in the Mia-Platform BYOI configuration.
+The above schema, shows the typical infrastructure architecture and the main elements that are involved in the Mia-Platform BYOI configuration.
 
-- **Mia-Platform Console**: Mia-Platform console is the first element completely managed by Mia-Platform. It is [connected to the Runtime](../development_suite/clusters-management/add-edit-remove-cluster#step-1-runtime-service) in order to retrieve information about the runtime status.
+- **Mia-Platform Console**: Mia-Platform console is completely managed by Mia-Platform. It is [connected to the Runtime](../development_suite/clusters-management/add-edit-remove-cluster#step-1-runtime-service) in order to retrieve information about the runtime status.
 Mia-Platform is [integrated with a CI/CD tool](../development_suite/set-up-infrastructure/providers-management) to streamline the software development process, automate the build and deployment procedures.
-Each modification in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](../development_suite/set-up-infrastructure/add-environment#setup-git-provider).
+Every change in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](../development_suite/set-up-infrastructure/add-environment#setup-git-provider).
 
-- **Mia-Platform Nexus**: Mia-Platform Nexus is the second tool completely managed by Mia-Platform. It is fundamental to exploit Mia-Platform Marketplace. Indeed, it gives the access to the customer to a broad set of ready-to-use microservice that can be configured inside the console. To connect your runtime with Mia-Platform Nexus please ask to your Mia-Platform contact person.
+- **Mia-Platform Nexus**: Mia-Platform Nexus is a docker registry services where all the Mia-Platform marketplace' services images are stored. It is a necessary dependency in order to utilize Mia-Platform Marketplace.
   
 - **CI/CD**: The customers can use any [supported tool](../development_suite/set-up-infrastructure/providers-management#edit-cicd-tool) by Mia-Platform Console.
   
@@ -22,17 +22,17 @@ Each modification in the microservices architecture undergoes versioning and is 
   
 - **Runtime**: A k8s [runtime](../development_suite/clusters-management/vendors-runtime-services).
   
-- **MongoDB**: Useful in case of [Fast Data](../fast_data/what_is_fast_data) application and [CRUD service](../development_suite/api-console/api-design/crud_advanced#what-is-a-crud).
+- **MongoDB**: It is a necessary dependency for [Fast Data](../fast_data/what_is_fast_data) and [CRUD service](../development_suite/api-console/api-design/crud_advanced#what-is-a-crud).
   
 - **Git Repository**: One of the Git repository provided by  Gitlab, Github, Bitbucket, Azure Repos. [Click here](../development_suite/set-up-infrastructure/add-environment#setup-git-provider) to see how to configure it
 
-## Mia-Platform BYOI key Features
+## Mia-Platform BYOI key features
 
 - **Flexibility and Customization**: Mia-Platform BYOI is the choice to suit specific business needs and requirements. Users have greater control over their resources, allowing them to tailor configurations according to their preferences.
 
 - **Standardization**: Mia-Platform BYOI enables customers to establish standardized approaches and practices across their infrastructure, ensuring a coherent and harmonized operational environment. This alignment fosters enhanced efficiency, promotes uniformity, and diminishes the potential for discrepancies or inefficiencies that may arise from disparate infrastructure setups.
 
-- **Updated Mia-Platform Console and tools**: Mia-Platform BYOI gives the customer the possibility to have [Mia-Platform Console](../development_suite/overview-dev-suite.md) always up to date exploiting the new offering provided by Mia-Platform R&D team.
+- **Updated Mia-Platform Console and tools**: Mia-Platform BYOI gives the customer the possibility to have [Mia-Platform Console](../development_suite/overview-dev-suite.md) always up to date and leveraging the new features provided by Mia-Platform R&D team.
 
 - **24/7 Incident Support**: Mia-Platform BYOI provide 24/7 incident support on Mia-Platform Console.
 
