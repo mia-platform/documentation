@@ -1083,18 +1083,13 @@
           }]
         }
       ]
-    },
-    
+    },  
+
     {
       "label": "Bring Your Own Infrastructure",
-      "type": "category",
-      "collapsed": true,
-      "items":[
-        {
-          "id": "bring_your_own_infrastructure/overview",
-          "type": "doc"
-        }
-      ]
+      "id": "byoi/byoi_overview",
+      "type": "doc"
+        
     }
   ],
   "marketplace": [
