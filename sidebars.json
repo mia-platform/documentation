@@ -77,6 +77,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/set-up-infrastructure/project-settings",
+          "type": "doc"
+        },
+        {
           "label": "Kustomize your configurations",
           "type": "category",
           "collapsed": true,

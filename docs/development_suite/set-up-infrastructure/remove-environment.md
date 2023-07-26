@@ -50,4 +50,4 @@ In a Kustomize project, all files are located inside `overlays/<environment-id>/
 
 The cleanup of *public environment variables* is already done for **each** branch the moment you go to delete the `variables.env` file from the project repository.
 
-Since *secreted environment variables* are set at the project level, you must instead go to the "Variables" section of the "Settings" area and manually delete the ones related to the deleted environment (they are easily recognizable because they adopt the environment variables prefix specified at the time of creation).
+Since *secreted environment variables* are set at the project level, you must instead go to the "Variables" section of the "Overview" area and manually delete the ones related to the deleted environment (they are easily recognizable because they adopt the environment variables prefix specified at the time of creation).

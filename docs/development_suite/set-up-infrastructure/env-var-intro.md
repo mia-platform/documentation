@@ -3,6 +3,7 @@ id: env-var
 title:  Environment Variables Introduction
 sidebar_label: Environment Variables Introduction
 ---
+
 An environment variable is a variable whose value is set outside the program, typically through a functionality built into the operating system or microservice.
 An environment variable is made up of a name/value pair, and any number may be created and available for reference at a point in time.
 

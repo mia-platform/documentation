@@ -59,7 +59,7 @@ For more detailed configuration options you can go to the cert-manager documenta
 ## Use cert-manager on the PaaS
 
 The first step to use a custom DNS, is to register it creating a *CNAME* record that points to your project's endpoint.
-You can find the project endpoint in the project settings, under *Runtime Environments*.
+You can find the project endpoint in the "Project Overview" area, under *Runtime Environments*.
 
 After registering the DNS, there are two methods to start generating your certificate:
 - Define your Issuer and Certificates
