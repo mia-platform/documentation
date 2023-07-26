@@ -14,7 +14,7 @@ The above schema, shows the tipical infrastructure architecture and the main ele
 Mia-Platform is [integrated with a CI/CD tool](../development_suite/set-up-infrastructure/providers-management) to streamline the software development process, automate the build and deployment procedures.
 Each modification in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](../development_suite/set-up-infrastructure/add-environment#setup-git-provider).
 
-- **Mia-Platorm Nexus**: Mia-Platform Nexus is the second tool completely managed by Mia-Platform. It is fundamental to exploit Mia-Platform Marketplace. Indeed, it gives the access to the customer to a broad set of ready-to-use microservice that can be configured inside the console. To connect your runtime with Mia-Platform Nexus please ask to your Mia-Platform contact person.
+- **Mia-Platform Nexus**: Mia-Platform Nexus is the second tool completely managed by Mia-Platform. It is fundamental to exploit Mia-Platform Marketplace. Indeed, it gives the access to the customer to a broad set of ready-to-use microservice that can be configured inside the console. To connect your runtime with Mia-Platform Nexus please ask to your Mia-Platform contact person.
   
 - **CI/CD**: The customers can use any [supported tool](../development_suite/set-up-infrastructure/providers-management#edit-cicd-tool) by Mia-Platform Console.
   
