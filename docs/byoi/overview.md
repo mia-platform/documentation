@@ -32,5 +32,7 @@ Each modification in the microservices architecture undergoes versioning and is 
 
 - **Standardization**: Mia-Platform BYOI enables customers to establish standardized approaches and practices across their infrastructure, ensuring a coherent and harmonized operational environment. This alignment fosters enhanced efficiency, promotes uniformity, and diminishes the potential for discrepancies or inefficiencies that may arise from disparate infrastructure setups.
 
-- **24/7 Support**: Mia-Platform BYOI provide 24/7 support on Mia-Platform Console.
+- **Updated Mia-Platform Console and tools**: Mia-Platform BYOI gives the customer the possibility to have [Mia-Platform Console](../development_suite/overview-dev-suite.md) always up to date exploiting the new offering provided by Mia-Platform R&D team.
+
+- **24/7 Incident Support**: Mia-Platform BYOI provide 24/7 incident support on Mia-Platform Console.
 
