@@ -36,3 +36,9 @@ Every change in the microservices architecture undergoes versioning and is subse
 
 - **24/7 Incident Support**: Mia-Platform BYOI provide 24/7 incident support on Mia-Platform Console.
 
+## Mia-Platform BYOI prerequisites
+
+There are few prerequisites to accomplish in order to connect Mia-Platform console to your infrastructure:
+
+- K8s, git-providers and CI/CD must be reachable directly from Mia-Platform Console (Console’s NAT is `34.76.112.223/32`)
+- If the customer has pre-existent network policies, these must not impact our namespaces
