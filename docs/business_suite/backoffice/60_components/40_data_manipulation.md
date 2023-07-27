@@ -1134,3 +1134,32 @@ These fields are rendered with a link plus a button that triggers components [bk
 ### Bootstrap
 
 None
+
+## bk-import-modal
+
+Modal to allow user configuration of a data import task.
+
+```html
+<bk-import-modal></bk-import-modal>
+```
+
+### Properties & Attributes
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+
+### Listens to
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[import-data](../70_events.md#import-data)|prompts modal opening| - | - |
+
+### Emits
+
+| event | description |
+|-------|-------------|
+|[import-data/user-config](../70_events.md#import-data---user-config)|notifies the bus of user config for next import data task|
+
+### Bootstrap
+
+None
