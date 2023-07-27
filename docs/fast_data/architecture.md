@@ -41,9 +41,9 @@ If the service is configured to read the `Projection Change` events on MongoDB, 
 
 ### Connectors
 
-The Connectors are the components responsible of transmitting the changes that occur within your systems (e.g. create, update or delete operations) to the event streaming platform in near real-time.
+The Connectors are the components responsible for transmitting the changes that occur within your systems (e.g. create, update, or delete operations) to the event streaming platform in near real-time.
 
-Depending on how changes are produced, where your source data is stored and how they can be accessed there can be different ways to produce the corresponding change event on the Fast Data ingestion topics. When data is stored on a database and the changes to be monitored are the action on the database itself, exploiting a Change Data Capture (CDC) system is usually recommended. This system works by detecting changes in the database and emitting the corresponding events in near real-time on the configured event streaming platform so that subsequent components can process the events.
+Depending on how changes are produced, where your source data is stored, and how they can be accessed there can be different ways to produce the corresponding change event on the Fast Data ingestion topics. When data is stored on a database and the changes to be monitored are the action on the database itself, exploiting a Change Data Capture (CDC) system is usually recommended. This system works by detecting changes in the database and emitting the corresponding events in near real-time on the configured event streaming platform so that subsequent components can process the events.
 
 ### Bucket Storage Support
 
@@ -52,7 +52,7 @@ The Bucket Storage Support is a feature that enables the storing of messages flo
 ## Technologies
 
 Fast Data revolves around three major technologies: Kubernetes, Kafka, and MongoDB.
-The Kubernetes part is pretty much standard, and thanks to the Console you won't need to directly deal with it, but will still enjoy all the advantages it has to offer.
+The Kubernetes part is pretty much standard, and thanks to the Console, you won't need to directly deal with it, but will still enjoy all its advantages.
 
 On the other hand, Kafka and MongoDB can be used in different steps of the process, and are thus discussed in the following subsections.
 
@@ -61,31 +61,58 @@ On the other hand, Kafka and MongoDB can be used in different steps of the proce
 Kafka is a distributed event streaming platform, and it is used for most Fast Data events, starting from the ones produced by the CDC, up to the ones produced by the SVC.
 For some intermediate data, however, it is possible to choose whether you want it on Kafka or MongoDB, that is the case for `Projection Change` events.
 
-Kafka is very reliable, and has a great support for topic partitioning. This enables horizontal scalability, since it is possible to have multiple replicas of the same service: each replica will read from its own partition, granting all the required properties and speeding up the process. This way, it is as close to being real-time as possible.
+Kafka is very reliable and has great support for topic partitioning. This enables horizontal scalability since it is possible to have multiple replicas of the same service: each replica will read from its own partition, granting all the required properties and speeding up the process. This way, it is as close to being real-time as possible.
 
 ### MongoDB
 
 MongoDB is a non-relational data store, used for storing Projections, Single Views, and some intermediate data, namely `Projection Change` and `Single View Error` collections.
-In the case of Fast Data, the Projection and Single View collections are saved in a format that is compatible with the CRUD service, which opens a ton of possibilities for exposing new services and consuming data in innovative ways.
+In the case of Fast Data, the Projection, and Single View collections are saved in a format that is compatible with the CRUD service, which opens a ton of possibilities for exposing new services and consuming data in innovative ways.
 
 MongoDB is great for horizontal scalability.
 
 #### CRUD Service
 
-Since the MongoDB collections are compatible with the CRUD Service and are automatically registered by the Console, they are ready to be exposed as APIs and are easily customizable (e.g. adding indexes just requires a few clicks in the Console). This allows you to easily connect them to the CMS, your applications, analytics, and third party software.
+Since the MongoDB collections are compatible with the CRUD Service and are automatically registered by the Console, they are ready to be exposed as APIs and are easily customizable (e.g. adding indexes just requires a few clicks in the Console). This allows you to easily connect them to the CMS, your applications, analytics, and third-party software.
 
 ## Putting it all together
 
-Fast Data architecture is rather streamlined, with just a couple of pivoting points. A regular flow of information follows this path:
+The Fast Data architecture can be configured in various ways depending on your needs. 
 
+### Standard Architecture
+
+The standard architecture is rather streamlined, with just a couple of pivot points. A regular flow of information follows this path:
+1. The CDC emits an event stating that some data in the SoR has changed;
+2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
+3. The RTU computes and emits a `Projection Change` and saves it on MongoDB;
+4. The SVC reads the `Projection Change`by polling MongoDB. Then, it aggregates the Single View using the new data and stores it in MongoDB.
+
+_**ADD STANDARD ARCHITECTURE PHOTO**_
+
+### Standard Architecture with a SV-Patch
+
+The Aggregation is not the only way possible to update Single Views, there is also an alternative called SV Patch. This kind of operation is strongly recommended when a field of a Projection that is in common with a vast portion of Single Views, is updated. With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection, without regenerating the whole Single View. For an SV-Patch, the flow of information is as follows:
+1. The CDC emits an event stating that some data in the SoR has changed;
+2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
+  1. The RTU emits a `Projection Update` event (only for lookup/ constants);
+4. The RTU computes and emits a `Projection Change`  (only for non-lookup/ constants)and saves it on MongoDB;
+5. A second SVC (for SV-Patch operations) consumes the `Projection Update` messages from the RTU then uses them to aggregate the Single View and stores it on MongoDB.
+
+
+_**ADD STANDARD ARCHITECTURE with a SV-Patch PHOTO**_
+
+Click on this _**link**_ for more details on SV-Patch configurations
+
+----------
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and make them adhere to a standard of interest, and then stores the Projections on MongoDB;
    1. The RTU emits a `Projection Update` event, if it is configured to do so;
 3. The RTU or the SVTG (depending on which one you chose for your architecture) compute and emit a `Projection Change` or `sv-trigger` event, saving it either on MongoDB or Kafka
 4. The SVC reads the `Projection Change` or `sv-trigger` message, either polling MongoDB or reacting to the Kafka message. Then, it aggregates the Single View using the new data, and stores it to MongoDB;
    1. The SVC emits a `Single View Event` and/or a `Single View Before After` event, if it is configured to do so.
+  
 
-![Fast data architecture](img/fastdata-architecture-new.png)
+---------------------------------
+
 
 There are no hard constraints, but generally all the services belong to the same Kubernetes namespace, while the MongoDB and Kafka instances can be on managed hosts, on the same cluster, on premise, etc.
 
