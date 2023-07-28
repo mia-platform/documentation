@@ -1030,6 +1030,10 @@
               "type": "doc"
             },
             {
+              "id": "paas/message-broker",
+              "type": "doc"
+            },
+            {
               "id": "paas/kube-green",
               "type": "doc"
             },
