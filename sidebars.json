@@ -1046,6 +1046,10 @@
               "type": "doc"
             },
             {
+              "id": "paas/grafana",
+              "type": "doc"
+            },
+            {
               "id": "paas/alarms",
               "type": "doc"
             }
