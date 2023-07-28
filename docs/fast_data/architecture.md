@@ -88,7 +88,7 @@ The standard architecture is rather streamlined, with just a couple of pivot poi
 3. The RTU computes and emits a `Projection Change` and saves it on MongoDB;
 4. The SVC reads the `Projection Change`by polling MongoDB. Then, it aggregates the Single View using the new data and stores it in MongoDB.
 
-![Fast Data Standard Architecture](img/fastdata-architecture-standard.png)
+![Fast Data Standard Architecture](img/fastdata-architecture-standard.svg)
 
 ### Standard Architecture with an SV-Patch
 
@@ -100,7 +100,7 @@ The Aggregation is not the only way possible to update Single Views, there is al
 5. A second SVC (for SV-Patch operations) consumes the `Projection Update` messages from the RTU then uses them to aggregate the Single View and stores it in MongoDB.
 
 
-![Fast Data Standard Architecture with an SV-Patch](img/fastdata-architecture-standard-svpatch.png)
+![Fast Data Standard Architecture with an SV-Patch](img/fastdata-architecture-standard-svpatch.svg)
 
 Click on this link for more details on [SV-Patch configurations](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views#single-view-patch).
 
@@ -113,16 +113,16 @@ As mentioned previously, you can use the SVTG service to keep your projections u
 3. The SVTG computes and emits an `sv-trigger` event, saving it either on Kafka;
 4. The SVC reads the `sv-trigger` message by reacting to the Kafka message. Then, it aggregates the Single View using the new data and stores it in MongoDB.
 
-![Fast Data Event-Driven Architecture with RTU](img/fastdata-architecture-event-driven.png)
+![Fast Data Event-Driven Architecture with RTU](img/fastdata-architecture-event-driven.svg)
 
 For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it either on MongoDB. Then the SVC will use that `Projection Change` message to aggregate the Single View. Such an architecture will look like this:
 
-![Fast Data Event-Driven Architecture with RTU - Retrocompatible](img/fastdata-architecture-event-driven-retrocompatible.png)
+![Fast Data Event-Driven Architecture with RTU - Retrocompatible](img/fastdata-architecture-event-driven-retrocompatible.svg)
 
 ### Architecture with Bucket Storage Support
 
 Bucket Storage Support can be seamlessly integrated into any Fast Data architecture by attaching it to the same projection ingestion topics coming from the CDC. The flow of information will look similar to this:
 
-![Fast Data Architecture with Bucket Storage Support](img/fastdata-architecture-bss.png)
+![Fast Data Architecture with Bucket Storage Support](img/fastdata-architecture-bucketstoragesupport.svg)
 
 Click on this link for more details on [Bucket Storage Support](https://docs.mia-platform.eu/docs/fast_data/bucket_storage_support/overview_bucket_storage_support).
