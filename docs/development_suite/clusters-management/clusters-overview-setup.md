@@ -93,6 +93,15 @@ rules:
       - "get"
       - "list"
   - apiGroups:
+      - "batch"
+    resources:
+      - "jobs"
+    verbs:
+      - "get"
+      - "list"
+      - "create"
+      - "delete"
+  - apiGroups:
       - ""
     resources:
       - "secrets"
