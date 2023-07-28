@@ -4,7 +4,7 @@ title: Architecture
 sidebar_label: Architecture
 ---
 
-In this page, you will find:
+On this page, you will find:
 * An overview of the services and technologies used in a Fast Data system; 
 * A discussion over the architecture.
 
@@ -17,9 +17,9 @@ This architectural setup allows for **great horizontal scalability**.
 
 ## Services
 
-### Real Time Updater (RTU)
+### Real-Time Updater (RTU)
 
-The Real Time Updater is responsible for listening to the events concerning changes to the SoR and updating the Projections accordingly. Optionally, the RTU can perform other activities:
+The Real-Time Updater is responsible for listening to the events concerning changes to the SoR and updating the Projections accordingly. Optionally, the RTU can perform other activities:
 
 * Emit `Projection Update` events, notifying the listener that a certain Projection has been updated;
 * Check which Single Views should be updated, and emit the relevant `Projection Change` event.
@@ -76,7 +76,9 @@ Since the MongoDB collections are compatible with the CRUD Service and are autom
 
 ## Putting it all together
 
-The Fast Data architecture can be configured in various ways depending on your needs. 
+The Fast Data architecture can be configured in various ways depending on your needs. There are no hard constraints, but generally, all the services belong to the same Kubernetes namespace, while the MongoDB and Kafka instances can be on managed hosts, on the same cluster, on-premise, etc.
+
+The SoRs usually belong to a different network portion, far from all the processing logic, since they must be kept independent of all the Fast Data flow, with the only exception of the CDC being connected to them. 
 
 ### Standard Architecture
 
@@ -86,34 +88,41 @@ The standard architecture is rather streamlined, with just a couple of pivot poi
 3. The RTU computes and emits a `Projection Change` and saves it on MongoDB;
 4. The SVC reads the `Projection Change`by polling MongoDB. Then, it aggregates the Single View using the new data and stores it in MongoDB.
 
-_**ADD STANDARD ARCHITECTURE PHOTO**_
+_**ADD STANDARD ARCHITECTURE diagram**_
 
-### Standard Architecture with a SV-Patch
+### Standard Architecture with an SV-Patch
 
 The Aggregation is not the only way possible to update Single Views, there is also an alternative called SV Patch. This kind of operation is strongly recommended when a field of a Projection that is in common with a vast portion of Single Views, is updated. With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection, without regenerating the whole Single View. For an SV-Patch, the flow of information is as follows:
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
   1. The RTU emits a `Projection Update` event (only for lookup/ constants);
 4. The RTU computes and emits a `Projection Change`  (only for non-lookup/ constants)and saves it on MongoDB;
-5. A second SVC (for SV-Patch operations) consumes the `Projection Update` messages from the RTU then uses them to aggregate the Single View and stores it on MongoDB.
+5. A second SVC (for SV-Patch operations) consumes the `Projection Update` messages from the RTU then uses them to aggregate the Single View and stores it in MongoDB.
 
 
-_**ADD STANDARD ARCHITECTURE with a SV-Patch PHOTO**_
+_**ADD STANDARD ARCHITECTURE with an SV-Patch diagram**_
 
-Click on this _**link**_ for more details on SV-Patch configurations
+Click on this link for more details on [SV-Patch configurations](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views#single-view-patch).
 
-----------
+### Event-Driven Architecture with RTU
+
+As mentioned previously, you can use the SVTG service to keep your projections updated as quickly as possible. The SVTG will unload the RTU by taking up some of its responsibilities. For such an architecture, the information will flow as follows:
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and make them adhere to a standard of interest, and then stores the Projections on MongoDB;
-   1. The RTU emits a `Projection Update` event, if it is configured to do so;
-3. The RTU or the SVTG (depending on which one you chose for your architecture) compute and emit a `Projection Change` or `sv-trigger` event, saving it either on MongoDB or Kafka
-4. The SVC reads the `Projection Change` or `sv-trigger` message, either polling MongoDB or reacting to the Kafka message. Then, it aggregates the Single View using the new data, and stores it to MongoDB;
-   1. The SVC emits a `Single View Event` and/or a `Single View Before After` event, if it is configured to do so.
-  
+   1. The RTU emits a `Projection Update` event;
+3. The SVTG computes and emits an `sv-trigger` event, saving it either on Kafka;
+4. The SVC reads the `sv-trigger` message by reacting to the Kafka message. Then, it aggregates the Single View using the new data and stores it in MongoDB.
 
----------------------------------
+_**ADD EVENT-DRIVEN ARCHITECTURE with RTU diagram**_
 
+For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it either on MongoDB. Then the SVC will use that `Projection Change` message to aggregate the Single View. Such an architecture will look like this:
 
-There are no hard constraints, but generally all the services belong to the same Kubernetes namespace, while the MongoDB and Kafka instances can be on managed hosts, on the same cluster, on premise, etc.
+_**ADD EVENT-DRIVEN ARCHITECTURE with RTU diagram with projection changes**_
 
-The SoRs usually belong to a different network portion, far from all the processing logics, since they must be kept independent of all the Fast Data flow, with the only exception of the CDC being connected to them.
+### Architecture with Bucket Storage Support
+
+Bucket Storage Support can be seamlessly integrated into any Fast Data architecture by attaching it to the same projection ingestion topics coming from the CDC. The flow of information will look similar to this:
+
+_**ADD BSS Archi**_
+
+Click on this link for more details on [Bucket Storage Support](https://docs.mia-platform.eu/docs/fast_data/bucket_storage_support/overview_bucket_storage_support).
