@@ -87,24 +87,33 @@ The standard architecture is rather streamlined, with just a couple of pivot poi
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
 3. The RTU computes and emits a `Projection Change` and saves it on MongoDB;
 4. The SVC reads the `Projection Change`by polling MongoDB. Then, it aggregates the Single View using the new data and stores it in MongoDB.
+   1. The SVC emits a `Single View Event` if it is configured to do so. 
 
 ![Fast Data Standard Architecture](img/fastdata-architecture-standard.svg)
 
 ### Standard Architecture with an SV-Patch
 
-The Aggregation is not the only way possible to update Single Views, there is also an alternative called SV Patch. This kind of operation is strongly recommended when a field of a Projection that is in common with a vast portion of Single Views, is updated. With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection, without regenerating the whole Single View. For an SV-Patch, the flow of information is as follows:
+:::info
+Everything related to the Standard Architecture is also valid with an SV-Patch.
+:::
+
+Aggregation is not the only way possible to update Single Views, there is also an alternative called SV-Patch. This kind of operation is strongly recommended when a field of a Projection that is in common with a vast portion of Single Views, is updated. With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection, without regenerating the whole Single View. For an SV-Patch, the flow of information is as follows:
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
   1. The RTU emits a `Projection Update` event (only for lookup/ constants);
 4. The RTU computes and emits a `Projection Change`  (only for non-lookup/ constants)and saves it on MongoDB;
 5. A second SVC (for SV-Patch operations) consumes the `Projection Update` messages from the RTU then uses them to aggregate the Single View and stores it in MongoDB.
-
+   1. The SVC emits a `Single View Event` if it is configured to do so. 
 
 ![Fast Data Standard Architecture with an SV-Patch](img/fastdata-architecture-standard-svpatch.svg)
 
-Click on this link for more details on [SV-Patch configurations](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views#single-view-patch).
+Click on this [link](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views#single-view-patch) for more details on SV-Patch configurations.
 
-### Event-Driven Architecture with RTU
+### Event-Driven Architecture
+
+:::caution
+The Single View Trigger Generator (SVTG) is still a BETA Plugin and is under active development. Pay attention to using the following Event-Driven Architecture.
+:::
 
 As mentioned previously, you can use the SVTG service to keep your projections updated as quickly as possible. The SVTG will unload the RTU by taking up some of its responsibilities. For such an architecture, the information will flow as follows:
 1. The CDC emits an event stating that some data in the SoR has changed;
@@ -112,17 +121,24 @@ As mentioned previously, you can use the SVTG service to keep your projections u
    1. The RTU emits a `Projection Update` event;
 3. The SVTG computes and emits an `sv-trigger` event, saving it either on Kafka;
 4. The SVC reads the `sv-trigger` message by reacting to the Kafka message. Then, it aggregates the Single View using the new data and stores it in MongoDB.
+   1. The SVC emits a `Single View Event` if it is configured to do so. 
 
 ![Fast Data Event-Driven Architecture with RTU](img/fastdata-architecture-event-driven.svg)
 
-For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it either on MongoDB. Then the SVC will use that `Projection Change` message to aggregate the Single View. Such an architecture will look like this:
+### Alternative Event-Driven Architecture
+
+:::caution
+The Single View Trigger Generator (SVTG) is still a BETA Plugin and is under active development. Pay attention to using the following Alternative Event-Driven Architecture.
+:::
+
+For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it on MongoDB. Then the SVC will use that `Projection Change` message to aggregate the Single View. Such an architecture will look like this:
 
 ![Fast Data Event-Driven Architecture with RTU - Retrocompatible](img/fastdata-architecture-event-driven-retrocompatible.svg)
 
 ### Architecture with Bucket Storage Support
 
-Bucket Storage Support can be seamlessly integrated into any Fast Data architecture by attaching it to the same projection ingestion topics coming from the CDC. The flow of information will look similar to this:
+Bucket Storage Support can be seamlessly integrated into any Fast Data architecture by attaching it to the same projection ingestion topics coming from the CDC. Paired with a Standard Architecture, the flow of information will look similar to this:
 
 ![Fast Data Architecture with Bucket Storage Support](img/fastdata-architecture-bucketstoragesupport.svg)
 
-Click on this link for more details on [Bucket Storage Support](https://docs.mia-platform.eu/docs/fast_data/bucket_storage_support/overview_bucket_storage_support).
+Click on this [link](https://docs.mia-platform.eu/docs/fast_data/bucket_storage_support/overview_bucket_storage_support) for more details on Bucket Storage Support.
