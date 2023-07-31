@@ -55,7 +55,8 @@ The Form Service Configuration is a JSON object with the following root properti
 | **formMetadata**          | `Object[]` | No       | -                  | [form metadata](#form-metadata-parameters-formmetadata)                                | The additional metadata shown in the Form Builder and required by the CRUD to save the Forms created with the Form Builder.                                                                                                                                                         |
 | **formSubmitUrls**        | `Object[]` | No       | -                  | [form submit urls](#form-submit-urls-parameters-formsubmiturls)                          | Contains the list of URLs that can be used to perform Form submission. The Form Builder will show the available URLs if the array is provided, otherwise a text field will be shown to allow user to provide the URL.                                                               |
 | **formVisualizerOptions** | `Object`   | No       | -                  | [form visualizer](#form-visualizer-options-parameters-formvisualizeroptions)                    | This object contains the Form Visualizer options. In particular it defines the interval between autosaves and the lookups to perform when exporting form data. If the autosave interval is not defined, it is set to a default value (10 seconds) by the **Form Service Frontend**. |
-| **formBuilderOptions**    | `Object`   | No       | -                  | [form builder](#form-builder-options-parameters-formbuilderoptions)                          | this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.                                                                                                          |
+| **formBuilderOptions**    | `Object`   | No       | -                  | [form builder](#form-builder-options-parameters-formbuilderoptions)                          | this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.       
+| **formBuilderCustomProperties**    | `Object`   | No       | -                  | [form builder](#form-builder-custom-properties-parameters-formBuilderCustomProperties)                          | this object contains customization properties for the fields in the builder that are not strictly related to the form.io builder.                                                                                                  |
 | **defaultClientType**     | `string`   | No       | -                  |                                                                           | Contains (from version `1.2.0`) the default client type that will be forwarded to other platform services when the client type header is not provided from the frontend service (defaults to `formService`).                                                                        |
 
 The `JSON` file is structured like the following example:
@@ -502,6 +503,11 @@ Here you can find an example of a *formBuilderOptions* object that can be used i
   }
  }
 ```
+
+### Form Builder Custom Properties parameters (`formBuilderCustomProperties`)
+From version `1.9.0` it is possible to add other properties for customizing the form builder. The properties that can be set are the following:
+
+* **formExpirationDateFormat**: the date format shown in the expiration datepicker. Default is `YYYY-MM-DD`.
 
 ### Default client type parameter (`defaultClientType`)
 
