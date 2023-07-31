@@ -1022,6 +1022,10 @@
           "collapsed": true,
           "items": [
             {
+              "id": "paas/runtime",
+              "type": "doc"
+            },
+            {
               "id": "paas/message-broker",
               "type": "doc"
             },
