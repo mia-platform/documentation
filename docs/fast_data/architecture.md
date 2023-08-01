@@ -133,7 +133,7 @@ The Single View Trigger Generator (SVTG) is still a BETA Plugin and is under act
 
 For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it on MongoDB. Then the SVC will use that `Projection Change` message to aggregate the Single View. Such an architecture will look like this:
 
-![Fast Data Event-Driven Architecture with RTU - Retrocompatible](img/fastdata-architecture-event-driven-retrocompatible.svg)
+![Fast Data Event-Driven Architecture with RTU - Retrocompatible](img/fastdata-architecture-alternative-event-driven.svg)
 
 ### Architecture with Bucket Storage Support
 
