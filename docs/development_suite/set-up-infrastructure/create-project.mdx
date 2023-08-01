@@ -7,12 +7,12 @@ sidebar_label: Create a Project
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-During project creation, you will be able to configure a project in its entirety.
-Once created, the project lifecycle will be then entirely managed and developed through the areas of the Console.
+A project is a resource composed of a set of APIs, microservices, and applications whose lifecycle can be entirely managed and developed through the areas of the Console.
+When you create a new project, you will be able to configure it from scratch.
 
 ## Requirements
 
-The first section of this guide informs you about the requirements needed to create a project.
+This section informs you about the requirements needed to create a new project.
 In particular, you need to have already set up your Console and configured these three resources:
 
 - **Company**: a company is a resource that has governance on all the projects it contains.
@@ -23,17 +23,15 @@ In particular, you need to have already set up your Console and configured these
   You can create a Git Provider for your company by following the procedure described [here](/development_suite/set-up-infrastructure/configure-provider.mdx).
 
 - **Template**: a template is a repository with pre-filled configurations. Each company can have one or more templates.
-  The template allows you to pre-fill resources in your project and start similar projects with the same configuration.
+  The template allows you to pre-fill resources in your project and start similar projects with the same configurations.
   In short, it constitutes a base from which your project will be created. [Here](/development_suite/company/project-templates.md) you can find a guide on how to handle project templates.
 
 
-Once you have both the provider, the company, and the template correctly configured, you will be able to create a new project.
+Once you have at least a provider, a company, and a template correctly configured, you will be able to create a new project.
 
 :::info
 To create a new project, you must have the permission `console.company.project.create`.
 :::
-
-More information about the creation process can be found in the [Project handbook section](/tutorial/console/project_handbook.md).
 
 ## Creation process
 
@@ -48,7 +46,7 @@ The project creation process is divided into three phases:
 
 <br/>
 
-2. **Repository**: in this phase, you will be asked to choose the repository basic configuration and the project template. You also will be asked to select a Git Provider, starting from the default Git Provider configured for the company:
+2. **Repository**: in this phase, you will be asked to choose the basic configurations of the repository associated with your project and the template to start the project from. You also will be asked to select a Git Provider, starting from the default one configured for the company:
 
   ![create-project-2](img/create-project-2.png)
 
@@ -162,7 +160,9 @@ Here you will be able to see the [project basic settings](/development_suite/set
 
 ### Environment Variables
 
-Once you create a new project, your project will already include variables. Some variables will be already pre-filled from the project or the company default settings, such as `_CMS_IMAGE_NAME_`, `_LOG_LEVEL_`, and `_CRUD_LIMIT_CONSTRAINT_ENABLED_`, while others will not be pre-filled (such as `_NOTIFICATIONS_COLLECTION_ROUTES_` and `_NOTIFICATIONS_SERVICE_PATH_`).
+Once you create a new project, your project will already include variables. 
+
+Some variables will be already pre-filled from the project or the company default settings, such as `_CMS_IMAGE_NAME_`, `_LOG_LEVEL_`, and `_CRUD_LIMIT_CONSTRAINT_ENABLED_`, while others will not be pre-filled, such as `_NOTIFICATIONS_COLLECTION_ROUTES_` and `_NOTIFICATIONS_SERVICE_PATH_`.
 
 :::info
 All variables are **mandatory**, except for:
