@@ -22,7 +22,7 @@ Every change in the microservices architecture undergoes versioning and is subse
   
 - **Runtime**: A k8s [runtime](/development_suite/clusters-management/vendors-runtime-services.md).
   
-- **MongoDB**: It is a necessary dependency for [Fast Data](/fast_data/what_is_fast_data) and [CRUD service](/development_suite/api-console/api-design/crud_advanced#what-is-a-crud).
+- **MongoDB**: It is a necessary dependency for [Fast Data](/fast_data/what_is_fast_data.md) and [CRUD service](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
   
 - **Git Repository**: One of the Git repository provided by  Gitlab, Github, Bitbucket, Azure Repos. [Click here](/development_suite/set-up-infrastructure/add-environment.mdx#setup-git-provider) to see how to configure it
 
