@@ -18,7 +18,6 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **FLOW_MANAGER_URL**: url of the Flow Manager service. If set, Flow Manager related features are enabled
 * **SAGA_CRUD_URL** (required if FLOW_MANAGER_URL is set): url of the saga CRUD collection
 * **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH**: path to config map defining available payment methods based on rules
-* **EXTERNAL_PROVIDERS_CONFIG**: path to config map defining external services for payments
 
 The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply with the following schema
 <details>
@@ -112,41 +111,11 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
 ```
 </details>
 
-
-The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the following schema
-<details>
-    <summary>Config schema</summary>
-
-```json
-{
-  "type": "object",
-  "required": ["externalServices"],
-  "properties": {
-    "externalServices": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["externalService, baseUrl"],
-        "properties": {
-          "externalService": {
-            "type": "string"
-          },
-          "baseUrl": {
-            "type": "string"
-          }
-        }
-      }
-    }
-  }
-}
-```
-</details>
-
 ## GestPay (Axerve) Specific Environment Variables
 
-* **AXERVE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Axerve Sandbox or Production environment.
-* **AXERVE_API_KEY** (required)
-* **AXERVE_SHOP_LOGIN** (required)
+* **GESTPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Axerve Sandbox or Production environment.
+* **GESTPAY_API_KEY** (required)
+* **GESTPAY_SHOP_LOGIN** (required)
 
 ## Satispay Specific Environment Variables
 
@@ -157,7 +126,6 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 * **SATISPAY_AFTER_BUY_WEB_REDIRECT_URL** (required): URL to which the user will be redirected after completing a payment via web page. (Overridable via request body)
 * **SATISPAY_AFTER_BUY_MOBILE_REDIRECT_URL** (required): url-scheme that will be used by iOS/Android to redirect the 
 user after completing a payment via the Satispay mobile app
-* **SATISPAY_CALLBACK_URL** (required): URL for transaction status verification of satispay
 
 ## Unicredit Specific Environment Variables
 
@@ -173,6 +141,7 @@ user after completing a payment via the Satispay mobile app
 
 ## Braintree Specific Environment Variables
 
+* **BRAINTREE_SUBMIT_FOR_SETTLEMENT** (required): flag that determines whether transactions are immediately submitted for settlement or not.
 * **BRAINTREE_MERCHANT_ID** (required): string that identifies the used merchant id.
 * **BRAINTREE_MERCHANT_ACCOUNT_ID** (required): string that identifies the used merchant account id.
 * **BRAINTREE_PUBLIC_KEY** (required): Braintree API public key.
@@ -203,15 +172,3 @@ user after completing a payment via the Satispay mobile app
 
 * **STRIPE_BASE_URL** (required): Base URL of the Stripe provider.
 * **STRIPE_PRIVATE_KEY** (required): Stripe API private key.
-
-## Adyen Specific Environment Variables
-
-* **ADYEN_IS_TEST** (required): can be "true" or "false". Specifies whether the PGM should point to Adyen Test or Live environment.
-* **ADYEN_PRIVATE_KEY** (required): [API Key](https://docs.adyen.com/development-resources/api-credentials) header for authentication on Adyen.
-* **ADYEN_LIVE_URL** (required conditionally): [Live URL prefix](https://docs.adyen.com/development-resources/api-credentials) for Adyen requests, used only in the Live environment. 
-* **ADYEN_MERCHANT_ACCOUNT** (required): the Adyen merchant account to point to.
-* **ADYEN_HMAC_KEY** (required): [HMAC signature](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures) to verify the notification authenticity.
-
-## External service for payments Environment Variables
-
-To enable an external service to process a payment the **EXTERNAL_PROVIDERS_CONFIG** variable must be set with its config map.

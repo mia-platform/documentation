@@ -15,46 +15,8 @@ The PGM can both send events to Flow Manager and also process commands using the
 
 Moreover, the PGM has **read** access to the CRUD collection containing the payment sagas.
 
-### Pay
-Below an example of request for the `/saga/pay` API
-```json
-{
-    "key":"{{sagaId}}",
-    "value":{
-        "messageLabel":"eventName",
-        "messagePayload": {
-            "payRequestData": {
-              "successRedirect": "http://success/redirect/url",
-              "failureRedirect": "http://failure/redirect/url",
-              "redirectToUrl": "http://redirect/response/url",
-              "redirectToUrlMobile": "http://redirect/response/mobile/url",
-              "providerData": {
-                "providerKey": "providerValue"
-              }
-            }
-        }
-    }
-}
-```
-
-### Refund
-Below an example of request for the `/saga/refund` API
-```json
-{
-    "key":"{{sagaId}}",
-    "value":{
-        "messageLabel":"eventName",
-        "messagePayload": {
-            "refundRequestData": {
-              "amount": 10000
-            }
-        }
-    }
-}
-```
-
 ## Flow Manager's Machine Definition
 
 In order to work properly, the machine definition provided to the Flow Manager has to comply with the following image.
 
-![Machine Definition](img/machine-definition-v3.png)
+![Machine Definition](img/machine-definition.png)

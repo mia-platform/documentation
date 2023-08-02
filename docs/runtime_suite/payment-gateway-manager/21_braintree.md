@@ -3,59 +3,79 @@ id: braintree
 title: Braintree
 sidebar_label: Braintree
 ---
-## Starting a payment
+In this page you will find the required information to perform REST calls related to the Braintree payment provider.
 
-BrainTree requires an additional object for the `/pay` request body, named `brainTreeDataRequest`:
+## Supported payment methods
 
-```json lines
-{
-    "nonce": "7rh47h83789gt892347f", // optional
-    "deviceData": "{...}", // optional 
-    "customerId": "the_customer_id",
-    "storeInVault": true,
-    "vaulted": false
-}
-```
+Currently, the only payment method supported by the Braintree provider is `pay-pal`.
 
-- _nonce_: token used by BrainTree APIs to authenticate various operations. Usually retrieved using frontend SDKs.
-  Not needed if the user is making a vaulted payment, i.e. he has already been registered into BrainTree vault.
-- _deviceData_: object generated with BrainTree frontend SDKs. This field is optional, but recommended in order to
-  reduce decline rates. To collect your device data, follow [this guide](https://developer.paypal.com/braintree/docs/guides/premium-fraud-management-tools/client-side).
-- _customerId_: id of the customer. Vaulted payment uses this field to identify the customer, thus make sure to give
+## Endpoints
+
+Every Braintree endpoint has this prefix path `/v3/braintree`
+
+### POST - /{payment-method}/pay
+
+This endpoint allows to execute payments via the Braintree payment provider.
+
+The request body requires the `providerData` field which requires the following data:
+- `customerId`: id of the customer. Vaulted payment uses this field to identify the customer, thus make sure to give
   the same id that you saved in the vault.
-- _storeInVault_: boolean that specifies whether to store the customer inside the vault. Set it to `true` if performing
+- `storeInVault`: boolean that specifies whether to store the customer inside the vault. Set it to `true` if performing
   Checkout + Vault.
-- _vaulted_: boolean that specifies whether the customer is already vaulted or not.
+- `vaulted`: boolean that specifies whether the customer is already vaulted or not.
+
+The payment response can have the following result codes:
+- **OK**: the payment was successfully submitted for settlement
+- **KO**: the payment failed
 
 For more information, please read BrainTree's [documentation](https://developer.paypal.com/braintree/docs/guides/paypal/overview),
 paying particular attention to the Vault, Checkout and Checkout with Vault sections.
 
-:::warning 
-Checkout + Vault is only supported on JS frontends; iOS and Android apps must perform Vaulting and Checkout separately. 
+:::warning
+Checkout + Vault is only supported on JS frontends; iOS and Android apps must perform Vaulting and Checkout separately.
 :::
 
-## Using our utility APIs
+### POST - /refund
 
-This section describes some braintree specific endpoints that handle interactions with customers and tokens.
+This endpoint allows to refund an already executed payment via the Braintree provider.
 
-The utilities the PGM offers are:
-- `GET /braintree/token?customer_id=someId`
-- `POST /braintree/submit`
-- `POST /braintree/delete`
-- `POST /braintree/customer`
+The request body does not require any provider-specific data.
 
-### Retrieving a customer token
+The refund response can have the following result codes:
+- **OK**: the refund was successful
+- **KO**: the refund failed
 
-BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the 
-billing agreement terms and conditions or the PayPal checkout page. This token can be retrieved using the
-`GET /braintree/token?customer_id=someId` endpoint.
+### GET - /status
 
-The endpoint behaves differently whether the customer is vaulted or not:
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
+
+The response can have the following codes:
+- **PENDING**
+- **ACCEPTED**
+- **FAILED**
+
+### GET - /check
+
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
+
+The response can have the following codes:
+- **PENDING**
+- **ACCEPTED**
+- **FAILED**
+
+## Utility
+
+### GET - /token
+
+BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the
+billing agreement terms and conditions or the PayPal checkout page. This endpoint allows to retrieve the customer token
+given the **required** query parameter `customer_id`.
+
+The response contains the token and a boolean which informs whether the token is vaulted or not:
 - if the customer isn't vaulted or his data has been revoked, a new, temporary token is generated and returned
 - if the customer is vaulted, his token is returned
 
-The response body is:
-
+Example:
 ```json
 {
   "client_token": "h89h8934g793ru9by3rbh939fb",
@@ -63,40 +83,38 @@ The response body is:
 }
 ```
 
-It gives access to the token and tells you if the customer is vaulted.
+### POST - /submit
 
-### Submitting a transaction for settlement
+When a new transaction is generated with the option `submitForSettlement` set to false, it needs to be submitted
+for settlement later on, in order to allow braintree to capture money from the customer's account. This endpoint allows
+to submit for settlement the transaction identified by the **required** query parameter `transaction_id`.
 
-When a new transaction is generated with the option `submitForSettlement` set to false, it needs to be submitted 
-for settlement later on, in order to allow braintree to capture money from the customer's account.
-The `POST /braintree/submit` endpoint submits a transaction for settlement. The call has as parameter the id of the 
-transaction that must be submitted for settlement.
-The call returns a message that confirms the correct execution of the operation.
+The response is a message description of the performed action result.
 
-:::info
+:::warning
 The /submit POST call has been implemented, but it's never been tested in production.
 :::
 
-### Retrieving a customer token
+### POST - /customer
 
-BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the 
-billing agreement terms and conditions or the PayPal checkout page. This token can be retrieved using the
-`GET /braintree/token?customer_id=someId` endpoint.
+This endpoint allows to create a new customer on the provider systems.
 
-The endpoint behaves differently whether the customer is vaulted or not:
-- if the customer isn't vaulted or his data has been revoked, a new, temporary token is generated and returned
-- if the customer is vaulted, his token is returned
+The request body requires the following data:
+- `customer_id`
+- `nonce`
 
-The response body is:
+The response is a JSON object with the nullable field `client_token`.
 
+Example:
 ```json
 {
-  "client_token": "h89h8934g793ru9by3rbh939fb",
-  "vaulted": true
+  "client_token": "h89h8934g793ru9by3rbh939fb"
 }
 ```
 
-### Payment Method Revocation Webhook
+### POST - /delete
 
-The `POST /braintree/delete` endpoint is a webhook-ready API to be linked with a BrainTree account, under the API/Webhooks
-section of their portal. It performs necessary cleanup work upon receiving _Payment Method Revoked By Customer_ notifications.
+This endpoint is a webhook-ready API to be linked with a BrainTree account, under the API/Webhooks section of their
+portal. It performs necessary cleanup work upon receiving _Payment Method Revoked By Customer_ notifications.
+
+The response is a message description of the performed action result.

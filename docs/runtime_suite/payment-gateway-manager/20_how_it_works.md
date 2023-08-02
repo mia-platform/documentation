@@ -11,18 +11,23 @@ the PGM and how to interact with it.
 
 The following example is based on the credit card payment method, but it can be applied to any payment.
 
-In order to perform a payment we make an `HTTP POST` on `http://payment-gateway-manager/generic-provider/credit-cards/pay`, for example
+### Request
+In order to perform a payment we make an `HTTP POST` on `http://payment-gateway-manager/generic-provider/generic-method/pay`, for example
 
-```
+```jsonc
 {
-    "amount": "5.00",   // the amount to be paid in Euros
+    "amount": 5,   // the amount to be paid in Euros
+    "currency": "EUR", // currency used for the payment
     "shopTransactionID": "123456789",   // the unique id of your transaction
-    "creditCardToken": "47FKMUVK9PPK2026"  // a string token encoding all the information about the credit card (optional, varies with the provider)
+    "successRedirectUrl": "http://example.com/ok",   // the URL to be redirected to if payment succeeds (optional)
+    "failureRedirectUrl": "http://example.com/ko",   // the URL to be redirected to if payment fails (optional)
+    "providerData": {...}   // the object with provider-specific data (optional, varies with the provider)
 }
 ```
 
-If you are using gestpay(Axerve) as your provider, you can pass the optional fields `buyerName` and `buyerEmail` in the body of the `/pay`.
-In this case, the buyer will receive an email from Axerve with the transaction result, such as merchant name, date of the payment, amount, and other info.
+For more information about the content of the `providerData` object, read the page related to the chosen provider.
+
+### Response
 
 If the payment procedure requires an additional step from the user, via web page or mobile app, the payment reply will 
 return `REDIRECT_TO_URL` as `result`. The actual redirect URLs can be found in `redirectToUrl` and `mobileRedirectToUrl`.
@@ -30,19 +35,19 @@ return `REDIRECT_TO_URL` as `result`. The actual redirect URLs can be found in `
 For instance, a physical user might be required to enter a `3DS` code through the `redirectToUrl` web interface to 
 allow the transaction to progress.
 
-```
+```jsonc
 {
-    "result": "REDIRECT_TO_URL", // transaction result, can be "OK", "KO", "REDIRECT_TO_URL"
-    "resultDescription": "Transaction pending insertion of 3DS code", // human readable transaction result (varies with the provider)
-    "paymentID": "payment-123456789", // payment transaction id as returned by the provider
-    "redirectToUrl": "https://provider-redirect-url.com", // redirect web page
-    "redirectToUrlMobile": "provider-app://redirect?token=example" // redirect iOS url-scheme, used to open the provider's app in iOS devices
+    "result": "REDIRECT_TO_URL",   // transaction result, can be "OK", "KO", "REDIRECT_TO_URL"
+    "resultDescription": "Transaction pending insertion of 3DS code",   // human readable transaction result (varies with the provider)
+    "paymentID": "payment-123456789",   // payment transaction id as returned by the provider
+    "redirectToUrl": "https://provider-redirect-url.com",   // redirect web page
+    "redirectToUrlMobile": "provider-app://redirect?token=example"   // redirect iOS url-scheme, used to open the provider's app in iOS devices
 }
 ```
 
 If the payment doesn't require any additional step, a positive reply will be similar to:
 
-```
+```json
 {
     "result": "OK",
     "resultDescription": "Transaction approved",
@@ -62,17 +67,6 @@ Payments that use Braintree as gateway don't need to call the /check endpoint in
  as their status is automatically confirmed through the Nonce payment method sent by the frontend applications.
 :::
 
-GestPay has the ability to override the default URLs where the user will be redirected in case of success or failure.  
-For this to work, you have to specify the following optional fields in the /pay request body:
-```
-{
-    "successRedirect": "https://example.com/ok",
-    "failureRedirect": "https://example.com/ko",
-    "serverRedirect": "https://example.com/callback"
-}
-```
-Stripe supports overriding `successRedirect` and `failureRedirect` as well.
-
 ## 2) M2M Callback Transaction Verification
 
 When the transaction result is known by the `generic-provider`, the latter may notify the `Payment Gateway Manager` 
@@ -87,28 +81,32 @@ Once the check has been performed, the PGM can notify the result to an external 
 
 Considering the above example, the notification may include a body as follows:
 
-```
+```json
 {
     "providerName": "generic-provider",
-    "paymentType": "CREDITCARD",
-    "isSuccessful": true,
-    "resultDescription": "Transaction completed",
-    "paymentID": "payment-123456789",
-    "shopTransactionID": "123456789"
+    "paymentMethod": "CREDITCARD",
+    "status": "ACCEPTED",
+    "paymentId": "payment-123456789",
+    "shopTransactionId": "123456789"
 }
 ```
 
 ## 3) Payment Confirmation
 
+### Request
+
 If the service is set to use pre-authorization, to confirm the payment and actually deduct the money from the user's wallet,
  you must call the confirmation endpoint `http://payment-gateway-manager/generic-provider/credit-cards/confirm` via `POST` with the following body:
-                           
-```
+
+```json
 {
-   "shopTransactionID": "123456789",
+   "paymentID": "123456789",
    "amount": "5.00"
 }
 ```
+
+### Response
+
 If the response returns `200` as HTTP status code, the order confirmation was successful.
 
 :::warning
@@ -117,82 +115,73 @@ At the moment only `Unicredit` supports payment with pre-authorization.
 
 ## 4) Refund
 
-The transaction can be refund by calling `HTTP POST` on `http://payment-gateway-manager/generic-provider/credit-cards/refund`, using as JSON body:
+### Request
 
+The transaction can be refund by calling `HTTP POST` on `http://payment-gateway-manager/generic-provider/generic-method/refund`,
+using as JSON body:
+
+```jsonc
+{
+    "amount": 5,
+    "paymentID": "123456789",
+    "currency": "EUR",
+    "providerData": {...}   // the object with provider-specific data (optional, varies with the provider)
+}
 ```
-    "shopTransactionID": "123456789",
-    "amount": "5.00"
-```
+
+### Response
 
 If the response result is `OK`, the refund has been performed correctly.
 
 It is also possible to partially refund the same payment more than once, until the original payment amount is reached.
 
-:::note
-The body may require the `paymentID` field instead of the `shopTransactionID` one depending on the used payment method.
-:::
-
 :::warning
-At the moment the `scalapay` and `soisy` providers don't support refunds. 
+At the moment the `soisy` provider does not support refunds. 
 :::
 
-## 5) Async Check Transaction Status
+## 5) Check Transaction Status
 
-You can ask the Payment Gateway Manager to trigger a check on a particular order by calling an `HTTP GET` on `http://payment-gateway-manager/generic-provider/check`.
+### Request
 
-The query parameters for this api depend on the provider:
+You can retrieve the status of a transaction by performing an `HTTP GET` on
+`http://payment-gateway-manager/generic-provider/status?paymentID=my-id`.
 
-| Provider  | Parameters          | Description                                                               |
-|-----------|---------------------|---------------------------------------------------------------------------|
-| gestpay   | `shopTransactionId` | Transaction id defined by the caller of `/pay`                            |
-| satispay  | `paymentId`         | Payment id generated by Satispay and returned in the `/pay` response body |
-| scalapay  | `paymentId`         | Payment id generated by Scalapay and returned in the `/pay` response body |
-| unicredit | `shopTransactionId` | Transaction id defined by the caller of `/pay`                            |
-| braintree |                     | API not supported                                                         |
-| soisy     | `paymentId`         | Payment id generated by Soisy and returned in the `/pay` response         |
-| stripe    | `paymentId`         | Session id generated by Stripe and returned in the `/pay` response        |
+This endpoint accept one query parameters:
+- paymentID is required and defined the transaction's identifier.
+  
+:::warning
+  This endpoint is **NOT** available for `braintree`, `adyen` and `safecharge` providers at the moment.
+  :::
 
-After the check has been performed, the PGM may notify the result to the same external service used by the M2M callback flow, as specified by the `PAYMENT_CALLBACK_URL` environment variable.
 
-The explicit check API can be used whenever M2M verification for a specific payment didn't call the callback url successfully or, more generally,
-if the chosen payment method doesn't support M2M callbacks at all.
-
-The notification may include a body as follows:
-
-```
-{
-    "providerName": "generic-provider",
-    "paymentType": "CREDITCARD",
-    "isSuccessful": true,
-    "resultDescription": "Transaction completed",
-    "paymentID": "payment-123456789",
-    "shopTransactionID": "123456789"
-}
-```
-
-## 6) Sync Check Transaction Status
-
-You can retrieve the status of a transaction by performing an `HTTP GET` on `http://payment-gateway-manager/generic-provider/status?shopTransactionId=my-stid`. This API is a synchronous and dumbed down version of `/check`.
+### Response
 
 The PGM will contact the payment provider and return a body as follows:
 
-```
+```json
 {
-  "status": "ACCEPTED"
+  "providerName": "generic-provider",
+  "paymentMethod": "CREDITCARD",
+  "status": "ACCEPTED",
+  "paymentId": "payment-123456789",
+  "shopTransactionId": "123456789"
 }
 ```
 
 The possible values for `value` are `ACCEPTED`, `FAILED`, and `PENDING`.
 
-:::note 
-This API has been implemented to give sync access to a transaction status, e.g. to poll a status for payment providers that don't let frontends intercept the outcome of a payment (like Satispay).
-:::
 
-:::warning
-This endpoint is only available for `gestpay`, `satispay`, `scalapay`, `soisy`, `unicredit` and `stripe` providers at the moment.
-:::
 
-## 7) Manage a Transaction Session
+
+### Notify
+With the check API the PGM may notify the result to the same external service used by the M2M callback flow, as specified by the `PAYMENT_CALLBACK_URL` environment variable.
+
+The explicit check API can be used whenever M2M verification for a specific payment didn't call the callback url successfully or, more generally,
+if the chosen payment method doesn't support M2M callbacks at all.
+
+The notification include the same body returned by the status endpoint.
+
+## 6) Manage a Transaction Session
 
 You can ask a payment provider to establish a new transaction session in order to perform various operations, such as Pre-Authentication, invalidation or refund of a payment. In this way, the PGM can work as a **validator** (secure actor, possibly endowed with a secret) of the communication between the user and the payment provider.
 A new session can be established by an `HTTP POST` request on the `http://payment-gateway-manager/generic-provider/session/open` API.

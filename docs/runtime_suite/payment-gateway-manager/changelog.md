@@ -8,43 +8,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 2.10.1 - 11/07/2023
+## 3.0.0 - 01/08/2023
 
-### Fixed
+### BREAKING CHANGES
 
-- `/saga/pay` for Google Pay payments
-- date format jackson deserialization of recordedAt capture date for scalapay
-
-## 2.10.0 - 15/02/2023
+- v3 APIs
 
 ### Changed
 
-- Changed `/pay` reply with additional (optional) `metadata` field
+- Changed path parameter from `paymentID` to `paymentId` in endpoint `/status` for stripe payment method
 
 ### Added
 
-- Flow Manager Service (REST) integration
-  - `/saga/payment-methods` API to retrieve available payment methods given a saga (Adaptive checkout)
-  - `/saga/pay`, `/saga/confirm` and `/saga/refund` APIs for Flow Manager communication
-  - Events to be sent to Flow Manager when enabled
-- Status endpoint for Apple Pay payments
-- Status endpoint for Google Pay payments
-- Status endpoint for credit cards payments
-- Status endpoint for PayPal payments
-- Stripe payment provider (quarkus)
+- `/saga/payment-methods` API to retrieve available payment methods given a saga
+- `/saga/pay`, `/saga/confirm` and `/saga/refund` APIs for Flow Manager communication
+- Events to be sent to Flow Manager when enabled
+- Module for b2b payments and its endpoints
 
 ### Fixed
 
 - Scalapay callback supported payment status extended with `pending`, `partially_refunded` and `refunded_not_charged`
-- Float precision issues
-- Log level settings
-- Changed query parameter from `paymentID` to `paymentId` in Stripe's endpoint `/status` (ktor)
 
 ## 2.9.0 - 05/12/2022
 
 ### Added
 
-- Stripe payment provider (ktor)
+- Stripe payment provider
 
 ## 2.8.2 - 14/11/2022
 
@@ -80,7 +69,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Unicredit: Orders with code CO were incorrectly considered as payed.
+- Unicredit: Orders with code CO were incorrectly considered as paid.
 
 ## 2.6.2 - 06/10/2022
 

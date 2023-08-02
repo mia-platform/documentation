@@ -3,137 +3,67 @@ id: stripe
 title: Stripe
 sidebar_label: Stripe
 ---
-## Starting a payment
+In this page you will find the required information to perform REST calls related to the Stripe payment provider.
 
-### One-Time
+## Supported payment methods
 
-Stripe `/pay` request body has two required fields, they define the URLs where the user will be redirected in case of success or failure:
-```json lines
+Currently, the only payment method supported by the Stripe provider is `credit-cards`.
+
+
+## Endpoints
+
+Every Stripe endpoint has this prefix path `/v3/stripe`
+
+
+### POST - /{payment-method}/pay
+
+This endpoint allows to execute payments via the Stripe payment provider.
+The minimum request body to create a payment is the following:
+```jsonc
 {
-  "successRedirect": "https://example.com/ok",
-  "failureRedirect": "https://example.com/ko"
-}
-```
-The previous body can be integrated using two different ways:
-1. A simple Amount
-    ```json lines
-    {
-      "amount": "5.00"
-    }
-    ```
-2. List of Products
-    ```json lines
-    {
-      "products": [...]
-    }
-    ```
-   Three types of products are allowed:
-    * Price
-        ```json lines
-        {
-          "quantity": 1,
-          "priceId": "price-id"  
-        }
-        ```
-      where `priceId` refers to a Stripe [Price](https://stripe.com/docs/api/prices) object id.
-    * ProductId
-        ```json lines
-        {
-          "quantity": 2,
-          "unitAmount": "1.00",
-          "productId": "product-id"  
-        }
-        ```
-      where `productId` refers to a Stripe [Product](https://stripe.com/docs/api/products) object id.
-    * ProductName
-        ```json lines
-        {
-          "quantity": 1,
-          "unitAmount": "2.00",
-          "productName": "product-name"  
-        }
-        ```
-
-### Recurrent
-
-The `/pay/recurrent` request body has one more required field and one more optional field:
-```json lines
-{
-  "interval": "day",  // required
-  "intervalCount": 10  // optional, default = 1
-}
-```
-In the example above, the customer will be invoiced every ten days.
-Possible values for `interval` are: day, week, month or year.
-These two fields must be added in the Amount, ProductId and ProductName objects.  
-By default, subscriptions do not end.
-
-A complete example:
-```json lines
-{
-  "successRedirect": "https://example.com/ok",
-  "failureRedirect": "https://example.com/ko",
-  "products": [
-    {
-      "unitAmount": "7.50",
-      "quantity": 1,
-      "productName": "product-name",
-      "interval": "month",
-      "intervalCount": 1
-    },
-    {
-      "unitAmount": "7.50",
-      "quantity": 1,
-      "productId": "product-id",
-      "interval": "month",
-      "intervalCount": 1
-    }
-  ]
+    "amount": 5,   // the amount to be paid in Euros
+    "shopTransactionId": "123456789",   // the unique id of your transaction
+    "currency": "EUR",  //currency of the amount
+    "successRedirectUrl": "http://example.com/ok",   // the URL to be redirected to if payment succeeds
+    "failureRedirectUrl": "http://example.com/ko",   // the URL to be redirected to if payment fails
 }
 ```
 
-:::warning
-If more than a product is specified in the same request, they must have the same `interval` and `intervalCount`.
-:::
+The request body does **not** require any additional data, thus the `providerData` field can be omitted.
 
-## Refund a payment
+The payment response can have the following result codes:
+- **REDIRECT_TO_URL**: the payment was successfully submitted for settlement
+- **KO**: the payment failed
 
-Stripe supports both full and partial refund. If no amount is specified in the request, a full refund is performed.  
-The request body is:
-```json lines
-{
-  "paymentID": "payment-id",
-  "amount": "1.00" // optional
-}
-```
-Stripe also supports multiple partial refund on the same payment, the sum of all the refunds must be less or equal to the total amount paid.
 
-## Expire a Payment
+### POST - /{payment-method}/refund
 
-### One-Time
+This endpoint allows to refund an already executed payment via the Stripe provider.
 
-Through the endpoint `POST /pay/expire` is possible to mark as invalid a requested payment not already authorized by the customer.  
-The request body is:
-```json lines
-{
-  "paymentID": "payment-id"
-}
-```
+The request body does not require any provider-specific data.
 
-### Recurrent
+The refund response can have the following result codes:
+- **OK**: the refund was successful
+- **KO**: the refund failed
 
-The endpoint `POST /pay/recurrent/expire` sets the date until a subscription remains active.  
-The request body is:
-```json lines
-{
-  "paymentID": "payment-id",
-  "cancelType": "atDay",
-  "cancelTime": "31/12/2022"
-}
-```
-Possible values for `cancelType` are:
-* now: immediately cancel the subscription
-* endOfPeriod: cancel the subscription right before the next renewal
-* atDay: cancel the subscription at the day specified in the `cancelTime` field (format "dd/MM/YYYY")
+### GET - /{payment-method}/status
 
-The `cancelTime` field is required only for `"cancelType": "atDay"` and must be in the format `dd/MM/yyyy`.
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
+
+The response can have the following codes:
+- **PENDING**
+- **ACCEPTED**
+- **FAILED**
+
+### GET - /check
+
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also to send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
+
+The response can have the following codes:
+- **PENDING**
+- **ACCEPTED**
+- **FAILED**
+
+### GET - /callback
+
+This endpoint should only be called by Stripe.
