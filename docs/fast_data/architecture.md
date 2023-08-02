@@ -17,7 +17,7 @@ This architectural setup allows for **great horizontal scalability**.
 
 ## Services
 
-### Real-Time Updater (RTU)
+### Real Time Updater (RTU)
 
 The Real Time Updater is responsible for listening to the events concerning changes to the SoR and updating the Projections accordingly. Optionally, the RTU can perform other activities:
 
