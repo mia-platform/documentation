@@ -107,7 +107,7 @@ Aggregation is not the only way possible to update Single Views, there is also a
 
 ![Fast Data Standard Architecture with an SV-Patch](img/fastdata-architecture-standard-svpatch.svg)
 
-Click on this [link](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views.md#single-view-patch) for more details on SV-Patch configurations.
+Click on this [link](/fast_data/configuration/single_views#single-view-patch) for more details on SV-Patch configurations.
 
 ### Event-Driven Architecture
 
@@ -141,4 +141,4 @@ Bucket Storage Support can be seamlessly integrated into any Fast Data architect
 
 ![Fast Data Architecture with Bucket Storage Support](img/fastdata-architecture-bucketstoragesupport.svg)
 
-Click on this [link](https://docs.mia-platform.eu/docs/fast_data/bucket_storage_support/overview_bucket_storage_support.md) for more details on Bucket Storage Support.
+Click on this [link](/fast_data/bucket_storage_support/overview_bucket_storage_support) for more details on Bucket Storage Support.
