@@ -107,7 +107,7 @@ Aggregation is not the only way possible to update Single Views, there is also a
 
 ![Fast Data Standard Architecture with an SV-Patch](img/fastdata-architecture-standard-svpatch.svg)
 
-Click on this [link](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views#single-view-patch) for more details on SV-Patch configurations.
+Click on this [link](https://docs.mia-platform.eu/docs/fast_data/configuration/single_views.md#single-view-patch) for more details on SV-Patch configurations.
 
 ### Event-Driven Architecture
 
