@@ -19,7 +19,7 @@ This architectural setup allows for **great horizontal scalability**.
 
 ### Real-Time Updater (RTU)
 
-The Real-Time Updater is responsible for listening to the events concerning changes to the SoR and updating the Projections accordingly. Optionally, the RTU can perform other activities:
+The Real Time Updater is responsible for listening to the events concerning changes to the SoR and updating the Projections accordingly. Optionally, the RTU can perform other activities:
 
 * Emit `Projection Update` events, notifying the listener that a certain Projection has been updated;
 * Check which Single Views should be updated, and emit the relevant `Projection Change` event.
