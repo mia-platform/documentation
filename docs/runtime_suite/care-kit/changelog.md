@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [v2.5.2]
+- Added exporting module to `ck-chart` component
+- Fixed `ck-chart` filter handling
+- Fixed `am-calendar` event visualization changes to 'month'
+## [v2.5.1]
+- Updated `ck-therapy-select` label information
 ## [v2.5.0]
 - `am-calendar` listens to `change-query` events in `appointment mode` and applays filters to events and resources on the properties specified in the configuration.
 
