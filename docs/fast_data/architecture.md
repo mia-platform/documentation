@@ -141,4 +141,4 @@ Bucket Storage Support can be seamlessly integrated into any Fast Data architect
 
 ![Fast Data Architecture with Bucket Storage Support](img/fastdata-architecture-bucketstoragesupport.svg)
 
-Click on this [link](https://docs.mia-platform.eu/docs/fast_data/bucket_storage_support/overview_bucket_storage_support) for more details on Bucket Storage Support.
+Click on [this link](/fast_data/bucket_storage_support/overview_bucket_storage_support.md) for more details on Bucket Storage Support.
