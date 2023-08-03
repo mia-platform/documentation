@@ -528,5 +528,13 @@
   "/docs/development_suite/monitoring/configuration": {
     "destination": "/docs/development_suite/clusters-management/add-edit-remove-cluster",
     "addedOn": "2023-07-21"
+  },
+  "/release_notes/support-policy/": {
+    "destination": "/docs/release-notes/support-policy",
+    "addedOn": "2023-07-28"
+  },
+  "/info/version-policy/": {
+    "destination": "/docs/info/version_policy",
+    "addedOn": "2023-08-01"
   }
 }

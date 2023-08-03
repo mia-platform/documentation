@@ -104,7 +104,7 @@ Always pay attention when assigning roles, in order to avoid providing undesired
 
 ### Managing Service Accounts at Project level
 
-A user with enough administrative permission on a specific Project will be able to view all the existing service accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
+A user with enough administrative permission on a specific Project will be able to view all the existing service accounts inside the Project Overview area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
