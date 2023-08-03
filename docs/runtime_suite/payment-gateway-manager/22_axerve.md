@@ -5,37 +5,62 @@ sidebar_label: Axerve
 ---
 In this page you will find the required information to perform REST calls related to the Axerve payment provider.
 
-## Supported payment methods
-
-Currently, the payment methods supported by the Axerve provider are the following:
-- `credit-cards`
-- `applepay`
-- `googlepay`
-- `pay-pal`
-- `satispay`
+| Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
+|----------------|---------|--------|------------------------|---------------------|
+| `credit-cards` | ✓       | ✓      |                        | ✓                   | 
+| `applepay`     | ✓       | ✓      |                        |                     | 
+| `googlepay`    | ✓       | ✓      |                        |                     | 
+| `pay-pal `     | ✓       | ✓      |                        | ✓                   | 
+| `satispay`     | ✓       | ✓      |                        |                     | 
 
 ## Endpoints
 
 Every Axerve endpoint has this prefix path `/v3/axerve`.
 
-### POST - /{payment-method}/pay
+### Pay
+
+`POST /{payment-method}/pay`
 
 This endpoint allows to execute payments via the Axerve payment provider.
 
-The request body requires the `providerData` field **only if** the chosen payment method is `credit-cards`, `applepay` or 
-`googlepay`. In this case `providerData` requires the `token` field to be specified.
-
 You can always define the following optional fields in `providerData`:
-- `buyerName`
-- `buyerEmail`
-- `serverRedirect`
+```jsonc
+{
+  [...]
+  "providerData": {
+    [...]
+    "buyerName": "string",
+    "buyerEmail": "string",
+    "serverRedirect": "string"
+  }
+}
+```
 
-#### Credit Card token
+#### Payment Token
+
+The following payment methods:
+- `credit-cards`
+- `applepay`
+- `googlepay`
+
+requires the `token` field to be specified inside the `providerData` object.
+```jsonc
+{
+  [...]
+  "providerData": {
+    [...]
+    "token": "string"
+  }
+}
+```
+
+
+##### Credit Card token
 
 This token can be obtained performig an HTTP request to the Axerve's Shop API `POST - /shop/token` as described in the 
 [documentation](https://api.axerve.com/#post-shop-token).
 
-#### Apple Pay token
+##### Apple Pay token
 
 This token is a string representation of the JSON below:
 
@@ -126,57 +151,72 @@ This token is a string representation of the JSON below:
 The most simple way to obtain that token data is via the front-end Google Pay libraries. For more information visit 
 [Axerve's documentation](https://docs.axerve.com/en/payments/alternative-payments/google-pay).
 
-#### Response
 
-The payment response result codes depend on the chosen payment method:
-- `credit-cards`
-  - **OK**: the payment was performed successfully
-  - **REDIRECT_TO_URL**: the payment creation was successful (3D-Secure is enabled, therefore the buyer should be redirected to authorize the payment)
-  - **KO**: the payment failed
-- `applepay`
-  - **OK**: the payment was performed successfully
-  - **KO**: the payment failed
-- `googlepay`
-   - **OK**: the payment was performed successfully
-   - **KO**: the payment failed
-- `pay-pal`
-   - **REDIRECT_TO_URL**: the payment creation was successful (the buyer should be redirected to PayPal login to authorize the payment)
-- `satispay`
-   - **REDIRECT_TO_URL**: the payment creation was successful (the buyer should be redirected to Satispay to authorize the payment)
+### Refund
 
-### POST - /refund
+`POST /refund`
 
 This endpoint allows to refund an already executed payment via the Axerve provider.
 
 The request body does not require any provider-specific data.
 
-The refund response can have the following result codes:
-- **OK**: the refund was successful
-- **KO**: the refund failed
+### Subscription
 
-### GET - /status
+#### Start
+
+`POST /subscription/start`
+
+This endpoint allows to create a new subscription and the related first payment via the Axerve provider.
+
+It required the same fields inside `providerData` object as the *pay* request. 
+Another mandatory field is the `authenticationAmount` field that define the maximum amount that can be requested at each payment.
+Below an example of the `providerData` object needed:
+```jsonc
+{
+    [...]
+    "providerData": {
+        "token": "string",
+        "authenticationAmount": Int,
+        "buyerName": "string",
+        "buyerEmail": "string",
+        "serverRedirect": "string"
+    }
+}
+```
+The `subscriptionInfo.interval` field accept the following values:
+- `DAY`
+
+#### Pay
+
+`POST /subscription/pay`
+
+This endpoint allows to create a new payment related to the subscription defined by the `subscriptionToken` via the Axerve provider.
+
+It required the `token` field inside the `subscriptionInfo` object.
+
+### Status
+
+`GET /status?paymentId={paymentId}`
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
-The response can have the following codes:
-- **PENDING**
-- **ACCEPTED**
-- **FAILED**
 
-### GET - /check
+### Check
 
+`GET /check?paymentId={paymentId}`
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also to send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
 
-The response can have the following codes:
-- **PENDING**
-- **ACCEPTED**
-- **FAILED**
 
-### GET - /callback
+### Callback
 
+`POST /callback`
 This endpoint should only be called by Axerve.
 
-### POST - /tokenization
+### Utility
+
+#### Payment Tokenization
+
+`POST /utility/payment/token`
 
 This endpoint allows to tokenize a payment request, it creates in the system of the provider a payment token using the Axerve create endpoint. For more details on Axerve APIs please read the [documentation](https://api.axerve.com/#payment-api)
 

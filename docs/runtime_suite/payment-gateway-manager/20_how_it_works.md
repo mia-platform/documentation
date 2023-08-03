@@ -348,7 +348,7 @@ Below, the interface exposed:
 * M2M Callback Transaction Status Verification: `GET /{external}/callback`
 * On-Demand Transaction Status Verification: `GET /{external}/check`
 
-More details about custom external integrations are available on the [dedicated section](./29_external.md).
+More details about custom external integrations are available on the [dedicated section](./28_external.md).
 
 ## Payment Saga APIs - Flow Manager Integration
 

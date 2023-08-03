@@ -13,7 +13,9 @@ In this page you will find the required information to perform REST calls relate
 
 Every Braintree endpoint has this prefix path `/v3/braintree`
 
-### POST - /{payment-method}/pay
+### Pay
+
+`POST /{payment-method}/pay`
 
 This endpoint allows to execute payments via the Braintree payment provider.
 
@@ -32,13 +34,19 @@ paying particular attention to the Vault, Checkout and Checkout with Vault secti
 Checkout + Vault is only supported on JS frontends; iOS and Android apps must perform Vaulting and Checkout separately.
 :::
 
-### POST - /refund
+### Refund
+
+`POST /refund`
 
 This endpoint allows to refund an already executed payment via the Braintree provider.
 
 The request body does not require any provider-specific data.
 
-### POST - /subscription/schedule
+### Subscription
+
+####  Schedule
+
+`POST /subscription/schedule`
 
 This endpoint allows to start a new subscription via the Braintree provider.
 
@@ -66,28 +74,45 @@ The request body requires the `providerData` object: the following options are a
 The `subscriptionInfo.interval` field accept the following values:
 - `MONTH`
 
-### POST - /subscription/update/{subscriptionToken}
+#### Update
+
+`POST /subscription/update/{subscriptionToken}`
 
 This endpoint allows to update subscription info.
 
-### POST - /subscription/expire/{subscriptionToken}?shopTransactionId={{shopTransactionId}}
+#### Expire
+
+`POST /subscription/expire/{subscriptionToken}?shopTransactionId={{shopTransactionId}}`
 
 This endpoint allows to expire a subscription.
 
 
-### GET - /status
+### Status
+
+`GET /status?paymentId={paymentId}`
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
 
-### GET - /check
+### Check
+
+`GET /check?paymentId={paymentId}`
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
 
 
+### Callback
+
+`POST /callback`
+
+This endpoint should only be called by Braintree.
+
+
 ## Utility
 
-### GET - /utility/customer/token
+### Customer Token
+
+`GET /utility/customer/token`
 
 BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the
 billing agreement terms and conditions or the PayPal checkout page. This endpoint allows to retrieve the customer token
@@ -105,7 +130,9 @@ Example:
 }
 ```
 
-### POST - /utility/payment/submit
+### Payment Submit
+
+`POST /utility/payment/submit`
 
 When a new transaction is generated with the option `submitForSettlement` set to false, it needs to be submitted
 for settlement later on, in order to allow braintree to capture money from the customer's account. This endpoint allows
@@ -117,7 +144,9 @@ The response is a message description of the performed action result.
 The /submit POST call has been implemented, but it's never been tested in production.
 :::
 
-### POST - /utility/customer/create
+### Create Customer
+
+`POST /utility/customer/create`
 
 This endpoint allows to create a new customer on the provider systems.
 

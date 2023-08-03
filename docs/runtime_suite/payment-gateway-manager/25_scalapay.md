@@ -5,71 +5,80 @@ sidebar_label: Scalapay
 ---
 In this page you will find the required information to perform REST calls related to the Scalapay payment provider.
 
-## Supported payment methods
+| Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
+|----------------|---------|--------|------------------------|---------------------|
+| `scalapay `    | ✓       | ✓      |                        |                     | 
 
-Currently, the only payment method supported by the Scalapay provider is `scalapay` itself.
 
 ## Endpoints
 
 Every Scalapay endpoint has this prefix path `/v3/scalapay`
 
-### POST - /{payment-method}/pay
+### Pay
+
+`POST /{payment-method}/pay`
 
 This endpoint allows to execute payments via the Scalapay payment provider.
 
 The request body requires the `providerData` field which requires the following data:
-- `consumer`, which requires
-  - `givenNames`
-  - `surname`
-- `shipping`, which requires
-  - `countryCode`
-  - `name`
-  - `postCode`
-  - `line1`
-- `items` array, each requires
-  - `quantity`
-  - `price`, which requires
-    - `amount`
-    - `currency`
-  - `name`
-  - `category`
-  - `sku`
-- `merchant`, which requires
-  - `redirectConfirmUrl`
-  - `redirectCancelUrl`
+```jsonc
+{
+  {
+        "consumer": {
+            "givenNames": "name",
+            "surname": "surname"
+        },
+        "shipping": {
+            "countryCode": "IT",
+            "name": "shipping name",
+            "postcode": "20800",
+            "line1": "Via Garibaldi, 12"
+        },
+        "merchant": {
+            "redirectConfirmUrl": "https://success-url",
+            "redirectCancelUrl": "https://failure-url"
+        },
+        "items": [{
+            "quantity": 1,
+            "price": {
+                "amount": 100,
+                "currency": "EUR"
+            },
+            "name": "item name",
+            "category": "category name",
+            "sku": "sku value"
+        }]
+    }
+}
+```
 
 The payment response can have the following result codes:
 - **REDIRECT_TO_URL**: the payment creation was successful (the buyer should be redirected to authorize the payment) 
 - **KO**: the payment creation failed
 
-### POST - /refund
+### Refund
 
+`POST /refund`
 This endpoint allows to refund an already executed payment via the Scalapay provider.
 
 The request body does not require any provider-specific data.
 
-The refund response can have the following result codes:
-- **OK**: the refund was successful
-- **KO**: the refund failed
+### Status
 
-### GET - /status
+`GET /status?paymentId={paymentId}`
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
-The response can have the following codes: 
-- **PENDING**
-- **ACCEPTED**
-- **FAILED**
 
-### GET - /check
+### Check
 
-This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also to send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
+`GET /check?paymentId={paymentId}`
 
-The response can have the following codes:
-- **PENDING**
-- **ACCEPTED**
-- **FAILED**
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
 
-### POST - /callback
+
+### Callback
+
+`POST /callback`
 
 This endpoint should only be called by Scalapay.
