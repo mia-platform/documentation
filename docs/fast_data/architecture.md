@@ -87,7 +87,7 @@ The standard architecture is rather streamlined, with just a couple of pivot poi
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the transformed events as Projections Records on MongoDB;
 3. The RTU computes and emits a `Projection Change` and saves it on MongoDB;
 4. The SVC reads the `Projection Change`by polling MongoDB. Then, it aggregates the Single View using the new data and stores it in MongoDB.
-   1. The SVC emits a `Single View Event` if it is configured to do so. 
+   1. The SVC emits a `Single View Update Event` if it is configured to do so. 
 
 ![Fast Data Standard Architecture](img/fastdata-architecture-standard.svg)
 
