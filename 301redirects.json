@@ -525,6 +525,10 @@
     "destination": "/docs/how_to/console/project_development",
     "addedOn": "2023-07-13"
   },
+  "/docs/development_suite/monitoring/configuration": {
+    "destination": "/docs/development_suite/clusters-management/add-edit-remove-cluster",
+    "addedOn": "2023-07-21"
+  },
   "/release_notes/support-policy/": {
     "destination": "/docs/release-notes/support-policy",
     "addedOn": "2023-07-28"

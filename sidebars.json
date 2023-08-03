@@ -390,10 +390,6 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/configuration",
-          "type": "doc"
-        },
-        {
           "id": "development_suite/monitoring/dashboard",
           "type": "doc"
         }
