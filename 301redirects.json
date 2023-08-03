@@ -532,5 +532,17 @@
   "/info/version-policy/": {
     "destination": "/docs/info/version_policy",
     "addedOn": "2023-08-01"
+  },
+  "/docs/paas/alerting_rules": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/alarms": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/K8s_roles_and_permissions": {
+    "destination": "/docs/paas/runtime",
+    "addedOn": "2023-08-03"
   }
 }

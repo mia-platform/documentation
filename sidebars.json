@@ -987,11 +987,11 @@
       "type": "category",
       "collapsed": true,
       "label": "PaaS",
+      "link": {
+        "id": "paas/overview",
+        "type": "doc"
+      },
       "items": [
-        {
-          "id": "paas/overview",
-          "type": "doc"
-        },
         {
           "id": "paas/maintenance",
           "type": "doc"

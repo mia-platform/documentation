@@ -4,7 +4,7 @@ title:  Message Broker
 sidebar_label: Message Broker
 ---
 
-Mia-Platform PaaS offering provides you with a Apache Kafka managed cluster, simplifying real-time data streaming and event handling without the complexities of hosting and managing it yourself. With our Kafka offering, you can integrate Kafka into your applications and focus on building innovative solutions.  
+Mia-Platform PaaS offering provides you with an Apache Kafka managed cluster, simplifying real-time data streaming and event handling without the complexities of hosting and managing it yourself. With our Kafka offering, you can integrate Kafka into your applications and focus on building innovative solutions.  
 
 We handle all the operational overhead of setting up, configuring, and maintaining Kafka infrastructure. From hardware provisioning to software updates and security patches, our team handles every aspect of cluster management, ensuring a reliable and secure Kafka environment.  
 
