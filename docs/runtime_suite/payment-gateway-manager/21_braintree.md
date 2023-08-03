@@ -5,9 +5,9 @@ sidebar_label: Braintree
 ---
 In this page you will find the required information to perform REST calls related to the Braintree payment provider.
 
-## Supported payment methods
-
-Currently, the only payment method supported by the Braintree provider is `pay-pal`.
+| Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
+|----------------|---------|--------|------------------------|---------------------|
+| `pay-pal `     | ✓       | ✓      | ✓                      |                     | 
 
 ## Endpoints
 
@@ -24,9 +24,6 @@ The request body requires the `providerData` field which requires the following 
   Checkout + Vault.
 - `vaulted`: boolean that specifies whether the customer is already vaulted or not.
 
-The payment response can have the following result codes:
-- **OK**: the payment was successfully submitted for settlement
-- **KO**: the payment failed
 
 For more information, please read BrainTree's [documentation](https://developer.paypal.com/braintree/docs/guides/paypal/overview),
 paying particular attention to the Vault, Checkout and Checkout with Vault sections.
@@ -41,31 +38,56 @@ This endpoint allows to refund an already executed payment via the Braintree pro
 
 The request body does not require any provider-specific data.
 
-The refund response can have the following result codes:
-- **OK**: the refund was successful
-- **KO**: the refund failed
+### POST - /subscription/schedule
+
+This endpoint allows to start a new subscription via the Braintree provider.
+
+The request body requires the `providerData` object: the following options are available:
+- `paymentToken`
+```jsonc
+{
+  [...]
+  "providerData": {
+     "paymentToken": "1234567890" // paymentToken related to the payment method saved on Braintree Vault for the user.
+  },
+}
+```
+- `nonce`
+```jsonc
+{
+  [...]
+  "providerData": {
+    "nonce": "1234567890",     // Nonce related to the user's payment method.
+    "customerId": "0000000007" // Braintree customer identifier.
+  },
+}
+```
+
+The `subscriptionInfo.interval` field accept the following values:
+- `MONTH`
+
+### POST - /subscription/update/{subscriptionToken}
+
+This endpoint allows to update subscription info.
+
+### POST - /subscription/expire/{subscriptionToken}?shopTransactionId={{shopTransactionId}}
+
+This endpoint allows to expire a subscription.
+
 
 ### GET - /status
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
-The response can have the following codes:
-- **PENDING**
-- **ACCEPTED**
-- **FAILED**
 
 ### GET - /check
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
 
-The response can have the following codes:
-- **PENDING**
-- **ACCEPTED**
-- **FAILED**
 
 ## Utility
 
-### GET - /token
+### GET - /utility/customer/token
 
 BrainTree frontend SDKs often necessitate a customer token in order to perform operations such as showing the
 billing agreement terms and conditions or the PayPal checkout page. This endpoint allows to retrieve the customer token
@@ -83,7 +105,7 @@ Example:
 }
 ```
 
-### POST - /submit
+### POST - /utility/payment/submit
 
 When a new transaction is generated with the option `submitForSettlement` set to false, it needs to be submitted
 for settlement later on, in order to allow braintree to capture money from the customer's account. This endpoint allows
@@ -95,7 +117,7 @@ The response is a message description of the performed action result.
 The /submit POST call has been implemented, but it's never been tested in production.
 :::
 
-### POST - /customer
+### POST - /utility/customer/create
 
 This endpoint allows to create a new customer on the provider systems.
 
@@ -112,9 +134,11 @@ Example:
 }
 ```
 
-### POST - /delete
-
-This endpoint is a webhook-ready API to be linked with a BrainTree account, under the API/Webhooks section of their
-portal. It performs necessary cleanup work upon receiving _Payment Method Revoked By Customer_ notifications.
-
-The response is a message description of the performed action result.
+## Braintree Dashboard Configuration
+Some configurations are needed on the provider dashboard in order to be able to manage automatic payments related to subscription:
+1. create a new webhook to the **Payment Gateway Manager** `/v3/braintree/callback` endpoint
+2. enable the following notifications:
+   - Subscription Canceled
+   - Subscription Charged Successfully
+   - Subscription Unsuccessfully
+   - Subscription Expired

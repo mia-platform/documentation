@@ -1,7 +1,7 @@
 ---
-id: b2b
-title: B2B payments
-sidebar_label: B2b
+id: external
+title: External Integration
+sidebar_label: External
 ---
 In this page you will find the required information to perform REST calls for B2B payments
 
