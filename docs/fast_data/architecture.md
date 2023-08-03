@@ -97,7 +97,8 @@ The standard architecture is rather streamlined, with just a couple of pivot poi
 Everything related to the Standard Architecture is also valid with an SV-Patch.
 :::
 
-Aggregation is not the only way possible to update Single Views, there is also an alternative called SV-Patch. This kind of operation is strongly recommended when a field of a Projection that is in common with a vast portion of Single Views, is updated. With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection, without regenerating the whole Single View. For an SV-Patch, the flow of information is as follows:
+Aggregation is not the only way possible to update Single Views, there is also an alternative called SV-Patch. This kind of operation is strongly recommended when a field of a Projection record that is in common with a vast portion of Single Views, is updated. Example of this type of fields can be a zip code or an internal product code.  
+With this operation, the Single View Creator performs a Mongo update starting from the update of a single Projection record, without regenerating the whole Single View. For an SV-Patch, the flow of information is as follows:
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
   1. The RTU emits a `Projection Update` event (only for lookup/ constants);
