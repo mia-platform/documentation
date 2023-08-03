@@ -122,7 +122,7 @@ As mentioned previously, you can use the SVTG service to keep your projections u
    1. The RTU emits a `Projection Update` event;
 3. The SVTG computes and emits an `sv-trigger` event, saving it either on Kafka;
 4. The SVC reads the `sv-trigger` message by reacting to the Kafka message. Then, it aggregates the Single View using the new data and stores it in MongoDB.
-   1. The SVC emits a `Single View Event` if it is configured to do so. 
+   1. The SVC emits a `Single View Update Event` if it is configured to do so. 
 
 ![Fast Data Event-Driven Architecture with RTU](img/fastdata-architecture-event-driven.svg)
 
