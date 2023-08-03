@@ -414,3 +414,52 @@ Example Response:
 ```
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service DELETE /:id request.
+
+<br/>
+
+### POST /credentials
+
+:::note
+Available from version 1.4.0
+:::
+
+:::note
+For this endpoint to work, it's necessary for the service to use [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
+:::
+
+Generate an access token and the Bandyer id for the currently logged user accordingly to the [request authentication headers](../../runtime_suite/authorization-service/usage#headers-set-by-auth).
+If no Bandyer user is associated to the logged user, a new Bandyer user is created alongside the corresponding record in the [teleconsultations_users](./20_configuration.md#user-id-map-crud) collection.
+
+This endpoint is mainly used to integrate with the [Kaleyra Video React Native Module](https://github.com/KaleyraVideo/VideoReactNativeModule).
+
+#### Body parameters
+
+##### expiresIn (optional)
+
+**Type**: `integer`
+**Description**: Seconds after that the token expires. Default is 3600.
+
+
+**Example POST Request:**
+```
+curl -X POST "https://my_project_url/credentials" -d '{"expiresIn": 3600}'
+```
+
+#### Response
+
+In case the operation is successful, a 201 status code will be returned alongside with an object containing the following fields: 
+
+Example Response:
+```
+201: {     
+  "accessToken": "valid jwt for the user",
+  "expiresAt": "2022-01-10T11:41:19.000Z",
+  "bandyerUserId": "user_xxx"
+}
+```
+
+In case the service is not able to get user authentication from the request headers, a 401 response will be returned.
+
+```
+401: { "error": "Unauthorized user" } 
+```
