@@ -1,20 +1,20 @@
 ---
-id: byoi_overview
+id: byoi-overview
 title: Mia-Platform Bring Your Own Infrastructure
 sidebar_label: BYOI 
 ---
 
-Bring Your Own Infrastructure (BYOI) allows customers to utilize their own runtime, CI/CD tools and Git-provider and to connect them into Mia-Platform managed Console. This approach let customers retain control over their infrastructure while benefiting from the services and capabilities offered by Mia-Platform. BYOI has gained popularity as a flexible and cost-efficient solution, enabling seamless integration with a wide range of services and applications.
+Bring Your Own Infrastructure (BYOI) allows customers to use their own runtime, CI/CD tools and Git Provider and to connect them into Mia-Platform managed Console. This approach let customers retain control over their infrastructure while benefiting from the services and capabilities offered by Mia-Platform. BYOI has gained popularity as a flexible and cost-efficient solution, enabling seamless integration with a wide range of services and applications.
 
 ![byoi-schema](img/architecture-byoi.png)
 
 The above schema, shows the typical infrastructure architecture and the main elements that are involved in the Mia-Platform BYOI configuration.
 
 - **Mia-Platform Console**: Mia-Platform console is completely managed by Mia-Platform. It is [connected to the Runtime](/development_suite/clusters-management/add-edit-remove-cluster.md#step-1-runtime-service) in order to retrieve information about the runtime status.
-Mia-Platform is [integrated with a CI/CD tool](/development_suite/set-up-infrastructure/configure-provider.mdx) to streamline the software development process, automate the build and deployment procedures.
+Mia-Platform is [integrated with CI/CD tool](/development_suite/set-up-infrastructure/configure-provider.mdx) to streamline the software development process, automate the build and deployment procedures.
 Every change in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](/development_suite/set-up-infrastructure/add-environment.mdx#setup-git-provider).
 
-- **Mia-Platform Nexus**: Mia-Platform Nexus is a docker registry services where all the Mia-Platform marketplace' services images are stored. It is a necessary dependency in order to utilize Mia-Platform Marketplace.
+- **Mia-Platform Nexus**: Mia-Platform Nexus is a docker registry services where all the Mia-Platform marketplace services images are stored. It is a necessary dependency in order to utilize the images supported by Mia-Platform and published on the Mia-Platform Marketplace.
   
 - **CI/CD**: The customers can use any [supported tool](/development_suite/set-up-infrastructure/configure-provider.mdx#edit-cicd-tool) by Mia-Platform Console.
   
@@ -24,7 +24,7 @@ Every change in the microservices architecture undergoes versioning and is subse
   
 - **MongoDB**: It is a necessary dependency for [Fast Data](/fast_data/what_is_fast_data.md) and [CRUD service](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
   
-- **Git Repository**: One of the Git repository provided by  Gitlab, Github, Bitbucket, Azure Repos. [Click here](/development_suite/set-up-infrastructure/add-environment.mdx#setup-git-provider) to see how to configure it
+- **Git Repository**: One of the Git repository provided by  Gitlab, Github, Bitbucket, Azure Repos. [Click here](/development_suite/set-up-infrastructure/add-environment.mdx#setup-git-provider) to see how to configure it.
 
 ## Mia-Platform BYOI key features
 
@@ -40,5 +40,5 @@ Every change in the microservices architecture undergoes versioning and is subse
 
 There are few prerequisites to accomplish in order to connect Mia-Platform console to your infrastructure:
 
-- K8s, git-providers and CI/CD must be reachable directly from Mia-Platform Console (Console’s NAT is `34.76.112.223/32`)
+- K8s, Git Providers and CI/CD tools must be reachable directly from Mia-Platform Console (Console’s NAT is `34.76.112.223/32`)
 - If the customer has pre-existent network policies, these must not impact namespaces managed by Mia-Platform Console.

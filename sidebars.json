@@ -1091,13 +1091,13 @@
           }]
         }
       ]
-    },  
+    },
 
     {
       "label": "Bring Your Own Infrastructure",
-      "id": "byoi/byoi_overview",
+      "id": "byoi/byoi-overview",
       "type": "doc"
-        
+
     }
   ],
   "marketplace": [
