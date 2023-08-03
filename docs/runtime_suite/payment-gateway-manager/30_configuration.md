@@ -20,6 +20,7 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH**: path to config map defining available payment methods based on rules
 * **EXTERNAL_PROVIDERS_CONFIG**: path to config map defining external services for payments
 * **SUBSCRIPTION_HANDLER_URL**: url to the subscription handler service. Required to handle subscription payment within the Payment Integration Hub
+
 The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply with the following schema
 <details>
     <summary>Config schema</summary>
@@ -110,6 +111,7 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
   }
 }
 ```
+
 </details>
 
 
@@ -140,6 +142,7 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
   }
 }
 ```
+
 </details>
 
 ## Provider Specific Environment Variables
