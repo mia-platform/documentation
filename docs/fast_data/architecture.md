@@ -103,7 +103,7 @@ With this operation, the Single View Creator performs a Mongo update starting fr
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and makes them adhere to a standard of interest, and then stores the Projections on MongoDB;
   1. The RTU emits a `Projection Update` event (only for lookup/ constants);
 4. The RTU computes and emits a `Projection Change`  (only for non-lookup/ constants) and saves it on MongoDB;
-5. A second SVC (for SV-Patch operations) consumes the `Projection Update` messages from the RTU then uses them to aggregate the Single View and stores it in MongoDB.
+5. A second SVC, dedicated to SV-Patch operations, that consumes the `Projection Update` messages from the RTU and then uses them to aggregate the Single View and stores it in MongoDB.
    1. The SVC emits a `Single View Event` if it is configured to do so. 
 
 ![Fast Data Standard Architecture with an SV-Patch](img/fastdata-architecture-standard-svpatch.svg)
