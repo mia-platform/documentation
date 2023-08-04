@@ -310,6 +310,10 @@ Now that the `aliasOf` option is clear, we can have a look at the following conf
 
 As you can see, we used the same Projection twice, under different conditions: the first time we matched the record based on its identifier (`PEOPLE` dependency, without alias), the second time we matched the record based on the `MARRIAGE_b_TO_PEOPLE` condition (`PARTNER` dependency, with alias).
 
+:::tip
+`aliasOf` can also be used to rename long Projection names without the need of them being re-used. Instead of using `company_department_prefix_persons_table.name` we can alias the Projection to `persons` and use `persons.name` in the mapping! 
+:::
+
 Now let's imagine we need a `oneToMany` relationship, say, a `PEOPLE` to `CHILDREN` relationship. For that there's two things we need to consider. Let's see an example: 
 
 ```json
