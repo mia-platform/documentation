@@ -120,7 +120,7 @@ As mentioned previously, you can use the SVTG service to keep your projections u
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and make them adhere to a standard of interest, and then stores the Projections on MongoDB;
    1. The RTU emits a `Projection Update` event;
-3. The SVTG computes and emits an `sv-trigger` event, saving it either on Kafka;
+3. The SVTG computes and emits an `sv-trigger` event, sending it to Kafka;
 4. The SVC reads the `sv-trigger` message by reacting to the Kafka message. Then, it aggregates the Single View using the new data and stores it in MongoDB.
    1. The SVC emits a `Single View Update Event` if it is configured to do so. 
 
@@ -132,7 +132,7 @@ As mentioned previously, you can use the SVTG service to keep your projections u
 The Single View Trigger Generator (SVTG) is still a BETA Plugin and is under active development. Pay attention to using the following Alternative Event-Driven Architecture.
 :::
 
-For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it on MongoDB. Then the SVC will use that `Projection Change` message to aggregate the Single View. Such an architecture will look like this:
+For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it on MongoDB. Then the SVC will use the `Projection Change` collection to aggregate the Single View as in the [Standard Architecture](#standard-architecture). Such an architecture will look like this:
 
 ![Fast Data Event-Driven Architecture with RTU - Retrocompatible](img/fastdata-architecture-alternative-event-driven.svg)
 
