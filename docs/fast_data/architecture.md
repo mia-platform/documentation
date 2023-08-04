@@ -19,7 +19,7 @@ This architectural setup allows for **great horizontal scalability**.
 
 ### Real Time Updater (RTU)
 
-The Real Time Updater is responsible for listening to the events concerning changes to the SoR and updating the Projections accordingly. Optionally, the RTU can perform other activities:
+The Real Time Updater is responsible for listening to the events concerning changes to the System of Record (SoR) and updating the Projections accordingly. Optionally, the RTU can perform other activities:
 
 * Emit `Projection Update` events, notifying the listener that a certain Projection has been updated;
 * Check which Single Views should be updated, and emit the relevant `Projection Change` event.
@@ -78,7 +78,7 @@ Since the MongoDB collections are compatible with the CRUD Service and are autom
 
 The Fast Data architecture can be configured in various ways depending on your needs. There are no hard constraints, but generally, all the services belong to the same Kubernetes namespace, while the MongoDB and Kafka instances can be on managed hosts, on the same cluster, on-premise, etc.
 
-The SoRs usually belong to a different network portion, far from all the processing logic, since they must be kept independent of all the Fast Data flow, with the only exception of the CDC being connected to them. 
+The System of Record usually belongs to a different network portion, far from all the processing logic, since they must be kept independent of all the Fast Data flow, with the only exception of the CDC being connected to them. 
 
 ### Standard Architecture
 
