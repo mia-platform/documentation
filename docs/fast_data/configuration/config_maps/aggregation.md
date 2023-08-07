@@ -326,26 +326,26 @@ Now let's imagine we need a `oneToMany` relationship, say, a `PEOPLE` to `CHILDR
                "type": "projection",
                "on": "_identifier",
             },
-            "CHILDREN": {
+            "CHILDREN_CONFIG": {
                "type": "config",
             },
          },
          "mapping": {
             "name":"PEOPLE.name",
-            "children": "CHILDREN",
+            "children": "CHILDREN_CONFIG",
          },
       },
-      "CHILDREN": {
-         "joinDependency": "children",
+      "CHILDREN_CONFIG": {
+         "joinDependency": "CHILDREN",
          "dependencies": {
-            "children": {
+            "CHILDREN": {
                "type": "projection",
                "on": "PEOPLE_TO_CHILDREN",
-               "aliasOf": "people",
+               "aliasOf": "PEOPLE",
             },
          },
          "mapping": {
-            "name": "children.name",
+            "name": "CHILDREN.name",
          },
       },
    },
