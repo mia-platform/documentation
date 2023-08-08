@@ -179,7 +179,8 @@
     "debezium",
     "decoderbufs",
     "pgoutput",
-    "servlet"
+    "servlet",
+    "gantt"
   ],
   "ignoreWords": [
     "asncdctools",
