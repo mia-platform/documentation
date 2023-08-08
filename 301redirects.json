@@ -88,23 +88,31 @@
     "addedOn": "2022-10-01"
   },
   "/docs/fast_data/single_view_creator/low-code-configuration":  {
-    "destination": "/docs/fast_data/configuration/single_view_creator/low_code",
+    "destination": "/docs/fast_data/configuration/single_view_creator",
     "addedOn": "2022-10-01"
   },
-  "/docs/fast_data/single_view_creator/manual-configuration": {
-    "destination": "/docs/fast_data/configuration/single_view_creator/manual",
-    "addedOn": "2022-10-01"
+  "/docs/fast_data/configuration/single_view_creator/common.md": {
+    "destination": "/docs/fast_data/configuration/single_view_creator",
+    "addedOn": "2023-06-15"
+  },
+  "/docs/fast_data/configuration/single_view_creator/low_code": {
+    "destination": "/docs/fast_data/configuration/single_view_creator",
+    "addedOn": "2023-06-15"
+  },
+  "/docs/fast_data/configuration/single_view_creator/manual": {
+    "destination": "/docs/fast_data/configuration/single_view_creator",
+    "addedOn": "2023-06-15"
   },
   "/docs/fast_data/real_time_updater/overview":  {
     "destination": "/docs/fast_data/realtime_updater",
     "addedOn": "2022-10-01"
   },
   "/docs/fast_data/real_time_updater/low-code-configuration": {
-    "destination": "/docs/fast_data/configuration/realtime_updater/low_code",
+    "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-10-01"
   },
   "/docs/fast_data/real_time_updater/manual-configuration":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater/common",
+    "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-11-10"
   },
   "/docs/fast_data/single_view_trigger": {
@@ -129,8 +137,16 @@
     "tocheck": true
   },
   "/docs/fast_data/configuration/realtime_updater/manual": {
-    "destination": "/docs/fast_data/configuration/realtime_updater/common",
+    "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-11-10"
+  },
+  "/docs/fast_data/configuration/realtime_updater/common":  {
+    "destination": "/docs/fast_data/configuration/realtime_updater",
+    "addedOn": "2023-06-15"
+  },
+  "/docs/fast_data/configuration/realtime_updater/low_code":  {
+    "destination": "/docs/fast_data/configuration/realtime_updater",
+    "addedOn": "2023-06-15"
   },
   "/docs/fast_data/configuration/single_view_trigger": {
     "destination": "/docs/fast_data/configuration/single_view_trigger_generator",
@@ -480,6 +496,57 @@
   "/docs/development_suite/identity-and-access-management/service-account-management": {
     "destination": "/docs/development_suite/identity-and-access-management/manage-service-accounts",
     "addedOn": "2023-05-30"
+  },
+  "/docs/business_suite/backoffice-configurator/environment": {
+    "destination": "/docs/business_suite/backoffice-configurator/configurator-settings",
+    "addedOn": "2023-06-23"
+  },
+  "/docs/business_suite/backoffice-configurator/compose-pages": {
+    "destination": "/docs/business_suite/backoffice-configurator/compose_pages",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/configurator-settings": {
+    "destination": "/docs/business_suite/backoffice-configurator/configurator_settings",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/overview": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/summary",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/manifest": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/manifest",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/bundling": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/bundling",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/how_to/console/project_dev_tools_setup": {
+    "destination": "/docs/how_to/console/project_development",
+    "addedOn": "2023-07-13"
+  },
+  "/docs/development_suite/monitoring/configuration": {
+    "destination": "/docs/development_suite/clusters-management/add-edit-remove-cluster",
+    "addedOn": "2023-07-21"
+  },
+  "/release_notes/support-policy/": {
+    "destination": "/docs/release-notes/support-policy",
+    "addedOn": "2023-07-28"
+  },
+  "/info/version-policy/": {
+    "destination": "/docs/info/version_policy",
+    "addedOn": "2023-08-01"
+  },
+  "/docs/paas/alerting_rules": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/alarms": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/K8s_roles_and_permissions": {
+    "destination": "/docs/paas/runtime",
+    "addedOn": "2023-08-03"
   }
 }
-

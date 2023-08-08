@@ -12,7 +12,7 @@ To create a Projection, you should first of all create a System of Records, whic
 
 To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Records` button.
 
-The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/common.md#kafka-adapters-kafka-messages-format). 
+The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format). 
 
 ![Create a System of Records](../img/create_system_of_record.png)
 
@@ -54,10 +54,6 @@ Once you click the `Create field` button, a form is prompted where you should in
 
 It's **mandatory** to set at least one Primary Key for each Projection. Otherwise, you will not be able to save your configuration.
 
-:::note
-Setting the Primary Keys creates automatically the unique indexes as explained [here](#primary-key-index-automation)
-:::
-
 :::info
 When the `Real Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
 :::
@@ -95,35 +91,6 @@ In Case some fields are not in the correct format, they will be ignored.
 
 :::caution
 You cannot import fields with the same name as one of the metadata fields. If this happens, a warning will be displayed and the import won't be successful
-:::
-
-### Indexes
-
-In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
-However, differently from `Indexes` that can be created on a normal CRUD, in this section the `Geo` index type is not available.
-
-An `_id` index is created by default, and it is not deletable.
-
-Both custom fields and metadata can be used as fields for indexes.
-
-#### Primary Key Index Automation
-
-An automation on the primary key index is available in the console. If enabled, the automation will update a primary key index, starting either from an index of your choice, or a newly generated one named `primary_key_index`.
-
-:::info
-A primary key index is an index made up of all the projection fields that are marked as primary keys, and no other field.
-:::
-
-From the Console, you can change your preferences about primary key index automation by selecting a different index to be marked as primary key index, and by turning the functionality on or off.
-When the automation is on, the index will be updated only after you change the fields of the projection.
-
-:::caution
-In order for the Real Time Updater to correctly update its projections two actions are necessary:
-
-* You should define at least one custom field with flags **Primary Key** and **Required** set to true in the `Fields` card.
-* Then, you should create an index using the previously defined custom field and set to true the index **unique** flag.
-
-In this way, the Real Time Updater updates the Projection document with the correct primary key value instead of creating a new document.
 :::
 
 ### Kafka topics

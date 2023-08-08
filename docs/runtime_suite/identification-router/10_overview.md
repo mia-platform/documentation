@@ -1,9 +1,9 @@
 ---
 id: overview
-title: Flow Manager Router
+title: Identification Router
 sidebar_label: Overview
 ---
-The `Flow Manager Router` behaves as a proxy of events for the flow manager: based on the `Main Flow Manager` saga ID, the service send the request to the correct `Sub Flow Manager`.
+The `Identification Router` behaves as a proxy of events for the flow manager: based on the `Main Flow Manager` saga ID, the service send the request to the correct `Sub Flow Manager`.
 
 The body of the request is the same event body expected by flow manager service.
 
@@ -30,17 +30,18 @@ The plugin exposes the following endpoints:
   }
 }
 ```
-- `/notify`: used by sub flow managers to send an event to the main flow manager and an optional external service. Only the object `mainFlowData` inside `Sub Flow Manager` is included inside the message payload of the event sent to `Main Flow Manager` and the external service
+- `/notify`: used by sub flow managers to send an event to the main flow manager and an optional external service. Only the object `mainFlowData` inside `Sub Flow Manager` is included inside the message payload of the event sent to `Main Flow Manager` and the external service.
+The router service send to the `Sub Flow Manager` an event with `routerNotifyCompleted` label.
 - `/sub-flow/saga`: retrieve the sub flow saga from the ID of the main saga
 
 ## Architecture
-The `Flow Manager Router` plugin allow you to manage different flow managers and used them as a unique flow, in particular you can define:
+The `Identification Router` plugin allow you to manage different flow managers and used them as a unique flow, in particular you can define:
 - `Main Flow Manager`
 - a set of `Sub Flow Manager`
 
-Based only on the `Main Flow Manager` saga ID, the  `Flow Manager Router` sends the events to the correct `Sub Flow Manager`.
+Based only on the `Main Flow Manager` saga ID, the  `Identification Router` sends the events to the correct `Sub Flow Manager`.
 
-The `Sub Flow Manager` can send an event to the `Flow Manager Router` that will be sent to the `Main Flow Manager` and an optional external service. 
+The `Sub Flow Manager` can send an event to the `Identification Router` that will be sent to the `Main Flow Manager` and an optional external service. 
 Only data inside the `MainFlowData` object on the `Sub Flow Manager` metadata are included in the message payload of the event sent to both the `Main Flow Manager` and an optional external service.
 
 ## Sub Flow matching rules
@@ -56,6 +57,12 @@ The first valid rule found will be used to retrieve the needed information. The 
 A rule is considered verified if all the keys defined in the object `rules` are present also in the `Main Flow Manager` metadata and the associated values are equals.
 
 More detail about the schema of the configuration file are available on the [dedicated section](./20_configuration.md).
+
+## Main Flow Data
+The router is in charge to update the data on the main flow and every time an event is sent to the `Sub Flow Manager` the `mainFlowData` object is updated with the following rules:
+- `evidences`: new items are appended to the array. Each item should have a unique pair of `type` and `side` values and duplicated one are substituted with the newer items.
+- `scores`: new items are appended to the array. Each item should have a unique value for `key` field and duplicated one are substituted with the newer items.
+- every other field are updated with the input value
 
 ## Retry on http requests failure
 This service will make call to CRUD service and a generic external service, if defined.

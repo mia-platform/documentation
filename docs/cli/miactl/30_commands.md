@@ -33,7 +33,8 @@ miactl context set CONTEXT [flags]
 Available flags for the command:
 
 - `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--ca-cert`, to provide the path to a custom CA certificate
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--company-id`, to set the ID of the desired company
 - `--project-id`, to set the ID of the desired project
 
@@ -48,6 +49,14 @@ miactl context use CONTEXT [flags]
 `CONTEXT` must be the name of an existing context.
 
 This command does not include any additional flags besides the default ones.
+
+### list
+
+The `context list` subcommand allows you see all the context available in the current configuration file selected.
+
+```sh
+miactl context list
+```
 
 ## company
 
@@ -68,10 +77,10 @@ miactl company list [flags]
 
 Available flags for the command:
 
-- `--ca-cert`, to override the path to the custom CA certificate
-- `--context`, to specify a different context from the current one
-- `--endpoint`, to override the Console endpoint
-- `--insecure`, to skip certificate check
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
 
 ## project
 
@@ -92,11 +101,11 @@ miactl project list [flags]
 
 Available flags for the command:
 
-- `--ca-cert`, to override the path to the custom CA certificate
-- `--company-id`, to set the company ID from command line
-- `--context`, to specify a different context from the current one
-- `--endpoint`, to override the Console endpoint
-- `--insecure`, to skip certificate check
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired company
 
 ## deploy
 
@@ -110,12 +119,54 @@ miactl deploy ENVIRONMENT [flags]
 
 Available flags for the command:
 
-- `--ca-cert`, to override the path to the custom CA certificate
-- `--company-id`, to set the company ID from command line
-- `--context`, to specify a different context from the current one
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired company
+- `--project-id`, to set the ID of the desired project
 - `--deploy-type`, to select a deploy type (default is `smart_deploy`)
-- `--endpoint`, to override the Console endpoint
 - `--no-semver`, to force the deploy without `semver`
-- `--insecure`, to skip certificate check
-- `--project-id`, to set the project ID from command line
 - `--revision`, to specify the revision of the commit to deploy
+
+## serviceaccount
+
+### create basic
+
+The `serviceaccount create basic` subcommand allows you to create a new service account for your company.
+
+Usage:
+
+```sh
+miactl serviceaccount create basic NAME [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired company
+- `--role`, the company role for the service account
+
+### create jwt
+
+The `serviceaccount create jwt` subcommand allows you to create a new service account for your company that will
+use the jwt authorization method.
+
+Usage:
+
+```sh
+miactl serviceaccount create jwt NAME [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired company
+- `--output`, optional flag to save the service account json description in a file at the provided path
+- `--role`, the company role for the service account

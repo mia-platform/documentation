@@ -134,17 +134,19 @@ The endpoint will return a JSON object with *accessToken*, *refreshToken* and *e
 
 #### Web site cookie configuration
 
-If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return a session cookie named *sid*.
+If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return two session cookies: 
+- a cookie named *sid*, that contains the access token as value
+- a cookie named *refresh_token*, that contains the refresh token as value
 
-The *sid* cookie has the following default configuration:
+The cookies have the following default configuration:
 
     * HttpOnly: `true`
     * Secure: `true`
     * Path: `/`
     * SameSite: `Lax`
 
-You can further customize the cookie response by adding the `sidCookieCustomAttributes` to the service configuration, at application level.
-In particular, you can change the `SameSite` attribute to `Strict`, and add a `Domain` attribute with a value of your choice.
+You can further customize the cookie response by adding the `sidCookieCustomAttributes` and/or the `refreshCookieCustomAttributes` to the service configuration, at application level.
+In particular, you can change the `SameSite` attribute to `Strict`, and set the `Domain` and the `Path` attributes to a value of your choice.
 
 Here is an example snippet of the configuration:
 ```json
@@ -153,6 +155,11 @@ Here is an example snippet of the configuration:
     "sidCookieCustomAttributes": {
         "sameSite": "Strict",
         "domain": "example.com"
+    },
+    "refreshCookieCustomAttributes": {
+        "sameSite": "Strict",
+        "domain": "example.com"
+        "path": "/auth"
     }
 ...
 ```
@@ -236,10 +243,61 @@ The response is the same as the `/oauth/token`:
 }
 ```
 
+In case the `isWebsiteApp` application flag is `true`, the `/refreshtoken` also sets the *sid* and *refresh_token* cookies with the new values.
+
 #### Skip provider refresh token
 
 If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request. 
 The refresh token on the provider will only be issued if the validation fails.
+
+### Logout
+
+API Signature: `GET /logout`
+
+This API takes charge of logging out the user, clearing the access token and the refresh token on both server side and, in case of webapps, on the frontend side.
+
+On server side, the tokens are deleted from Redis.
+
+The request should contain the access token in the `Authorization` header and/or the *sid* and *refresh_token* cookies. 
+It also accepts a request with only the *refresh_token* set: in this case it only deletes the session associated to the given refresh token from Redis, since the access token is already expired.
+
+When `isWebsiteApp` flag is set to true, both the *sid* and *refresh_token* cookies are unset, by means of a `Set-Cookie` response header with expiration dates set in the past.
+
+#### Redirect parameter
+
+Depending on whether you added the `logoutUrl` parameter in the service configuration, at provider level, the `/logout` endpoint will behave differently, as explained below.
+
+##### No `logoutUrl` parameter
+
+If you did not add the `logoutUrl` parameter to the provider configuration, the endpoint will redirect the user to the specified 
+`redirect` query parameter. You can configure the frontend of your web application to redirect to the `/logout` endpoint of the provider.
+
+As a result, the user will be signed out from both the provider and the application.
+
+##### With `logoutUrl` parameter
+
+:::info
+
+This behavior works only with the OIDC compliant providers. Please refer to your specific provider documentation to check if it is supported.
+
+The following providers have no support for this feature: 
+- Bitbucket Server
+- Github
+- Gitlab
+
+The `logoutUrl` parameter will be ignored in case of non-OIDC compliant providers, and a warning log will be raised.
+
+For OIDC compliant providers, you may need to add the `openid` scope in the provider configuration.
+
+If you use a generic provider you have the responsibility to check for the OIDC compliance, and in case it is not compliant, the endpoint will likely not work as expected.
+
+:::
+
+When called with the `logoutUrl` parameter set in the service configuration, the endpoint will append to it a query string, with the following parameters:
+- `post_logout_redirect_uri`: it is set to the `redirect` query parameter, if present. Otherwise, it is not set.
+- `id_token_hint`: it is set to the `id_token`, retrieved from the provider during login, and stored in the backend session along with the access token.
+
+The endpoint will then redirect the user to the `logoutUrl` with the appended query string, causing the user to be signed out from both the provider and the application.
 
 ## User Info
 

@@ -5,37 +5,131 @@ sidebar_label: Data Manipulation
 ---
 ## bk-file-picker-drawer
 
-drawer containing a drag-and-drop area to handle file uploads/downloads
+drawer containing a drag-and-drop area to handle file uploads/downloads.
 
 ```html
 <bk-file-picker-drawer></bk-file-picker-drawer>
 ```
 
-### Configuration for an array of files
+`bk-file-picker-drawer` listens for the [link-file-to-record](../70_events.md#link-file-to-record) event, which enables the editing of a file object/array within the payload using the specified property name in the event's meta.
 
-To use the `bk-fie-picker-drawer` with an array of file, it is necessary to pass the dataschema as a property in the configuration, otherwise the component will handle only one file at a time.
+When a new file is uploaded, the [standard file management](../40_core_concepts.md#file-management) is initiated through an [upload-file](../70_events.md#upload-file) event.
 
-Example of configuration
+Files are expected to respect [Mia Files Service](../../../runtime_suite/files-service/configuration) interface, that is:
 ```json
-  ...
-  {
-    "type": "element",
-    "tag": "bk-file-picker-drawer",
-    "properties": {
-      "dataSchema": {
-        "$ref": "dataSchema"
+{
+  "_id": {
+    "type": "string"
+  },
+  "name": {
+    "type": "string"
+  },
+  "file": {
+    "type": "string"
+  },
+  "size": {
+    "type": "number"
+  },
+  "location": {
+    "type": "string"
+  }
+}
+```
+
+For instance, a `link-file-to-record` event with the following payload and meta: 
+
+```json
+{
+  "payload": {
+    "name": "Joe",
+    "surename": "Smith",
+    "image": {
+      "_id": "file-id",
+      "name": "fileName.jpg",
+      "file": "file.jpg",
+      "size": 3992,
+      "location": "/v2/files/download/file.jpg"
+    },
+    ...
+  },
+  "meta": {
+    "property": "image"
+  }
+}
+```
+
+will spawn the `bk-file-picker-drawer` component which will allow to interact with the file in the "image" field.
+
+
+### Array of files
+
+To utilize `bk-file-picker-drawer` with an array of files, it is necessary to include the `dataSchema` property in the configuration. Otherwise, the component will only handle one file at a time.
+
+```json
+...
+{
+  "tag": "bk-file-picker-drawer",
+  "properties": {
+    "dataSchema": {
+      "documents": {
+        "type": "array",
+        "format": "file"
+      },
+      ...
+    }
+  }
+},
+...
+```
+
+### Metadata
+
+File fields may themselves have a `dataSchema` or `items` property.
+
+In the case of an edited file field having such properties, the `bk-file-picker-drawer` not only includes the drag-and-drop area but also provides an area to edit the metadata associated with the file field: for file fields of type object, a form is displayed, while for file fields of type array, an accordion of forms is presented.
+
+Only fields of type string are supported for metadata.
+
+```json
+{
+  "image": {
+    "type": "object",
+    "format": "file",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
       }
     }
-  },
-  ...
+  }
+}
 ```
+```json
+{
+  "images": {
+    "type": "array",
+    "format": "file",
+    "items": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+
 
 ### Properties & Attributes
 
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
 |`mask`|`mask`|boolean|true|whether to mask or not the drawer |
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`|`width`|number|500|width occupied by the component |
@@ -45,7 +139,6 @@ Example of configuration
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[using-form-container](../events#using-form-container)|toggles the drawer into `visible` mode only if the id payload property matches this drawer| - | - |
 |[loading-data](../events#loading-data)|allows disabling callToAction| - | - |
 |[link-file-to-record](../events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
 
@@ -60,6 +153,178 @@ Example of configuration
 ### Bootstrap
 
 None
+
+
+## bk-file-picker-modal
+
+modal containing a drag-and-drop area to handle file uploads/downloads.
+
+```html
+<bk-file-picker-modal></bk-file-picker-modal>
+```
+
+`bk-file-picker-modal` listens for the [link-file-to-record](../70_events.md#link-file-to-record) event, which enables the editing of a file object/array within the payload using the specified property name in the event's meta.
+
+When a new file is uploaded, the [standard file management](../40_core_concepts.md#file-management) is initiated through an [upload-file](../70_events.md#upload-file) event.
+
+Files are expected to respect [Mia Files Service](../../../runtime_suite/files-service/configuration) interface, that is:
+```json
+{
+  "_id": {
+    "type": "string"
+  },
+  "name": {
+    "type": "string"
+  },
+  "file": {
+    "type": "string"
+  },
+  "size": {
+    "type": "number"
+  },
+  "location": {
+    "type": "string"
+  }
+}
+```
+
+For instance, a `link-file-to-record` event with the following payload and meta: 
+
+```json
+{
+  "payload": {
+    "name": "Joe",
+    "surename": "Smith",
+    "image": {
+      "_id": "file-id",
+      "name": "fileName.jpg",
+      "file": "file.jpg",
+      "size": 3992,
+      "location": "/v2/files/download/file.jpg"
+    },
+    ...
+  },
+  "meta": {
+    "property": "image"
+  }
+}
+```
+
+will spawn the `bk-file-picker-modal` component which will allow to interact with the file in the "image" field.
+
+
+### Array of files
+
+To utilize `bk-file-picker-modal` with an array of files, it is necessary to include the `dataSchema` property in the configuration. Otherwise, the component will only handle one file at a time.
+
+```json
+...
+{
+  "tag": "bk-file-picker-modal",
+  "properties": {
+    "dataSchema": {
+      "documents": {
+        "type": "array",
+        "format": "file"
+      },
+      ...
+    }
+  }
+},
+...
+```
+
+### Metadata
+
+File fields may themselves have a `dataSchema` or `items` property.
+
+In the case of an edited file field having such properties, the `bk-file-picker-modal` not only includes the drag-and-drop area but also provides an area to edit the metadata associated with the file field: for file fields of type object, a form is displayed, while for file fields of type array, an accordion of forms is presented.
+
+Only fields of type string are supported for metadata.
+
+```json
+{
+  "image": {
+    "type": "object",
+    "format": "file",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+```json
+{
+  "images": {
+    "type": "array",
+    "format": "file",
+    "items": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+
+### Reusing Uploaded Files
+
+To enable the reusability of already uploaded files, follow these steps:
+  
+  - Set the `previewUploadedFiles` property to true in the configuration of the `bk-file-picker-modal` component.
+    Note: This feature requires [Mia Files Service](../../../runtime_suite/files-service/configuration) version 2.7.0 or higher.
+  
+  - When the modal is opened, the files from the bucket will be loaded.
+    These files will be displayed to the user as a preview inside the modal and can be selected using checkboxes.
+  
+  - If [metadata](#metadata-1) is available for the files, it can be accessed through a drawer within the modal.
+    The metadata will be presented based on the `data-schema` specified for the corresponding file field being updated. Keep in mind that some data may not be visible depending on the data-schema.
+
+
+
+### Properties & Attributes
+
+
+| property | attribute | type | default | description |
+|----------|-----------|------|---------|-------------|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
+|`mask`|`mask`|boolean|true|whether to mask or not the modal |
+|`rootElementSelector`|`root-element-selector`|string| - | root element to append the modal to |
+|`width`|`width`|number\|string|70vw|width occupied by the component |
+|`height`|`height`|number\|string|60vh|height occupied by the component |
+|`previewUploadedFiles`|`preview-uploaded-files`|boolean|false| allows to preview and select previously uploaded files |
+
+### Listens to
+
+
+| event | action | emits | on error |
+|-------|--------|-------|----------|
+|[loading-data](../events#loading-data)|allows disabling callToAction| - | - |
+|[link-file-to-record](../events#link-file-to-record)|launches the upload of a file from selected ones| - | - |
+|[fetched-files](../events#fetched-files)|receives files to display as preview|-|-|
+
+### Emits
+
+
+| event | description |
+|-------|-------------|
+|[update-data-with-file](../events#update-data-with-file)|updates data by uploading a new file and patching the dataset with its storage location metadata|
+|[update-data](../events#update-data)|unlinks file on file delete|
+|[fetch-files](../events#fetch-files)|requests files to be fetched for preview|-|-|
+
+### Bootstrap
+
+None
+
+
 
 ## bk-footer
 
@@ -106,8 +371,6 @@ Generic form to edit or create items described by the `dataSchema`
 <bk-form></bk-form>
 ```
 
-
-
 ### Properties & Attributes
 
 
@@ -116,9 +379,9 @@ Generic form to edit or create items described by the `dataSchema`
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format in both a text-area and read-only table |
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to manipulate |
+|`allowObjectAsTable`|`allow-object-as-table`|boolean|false| allows to visualize objects and arrays without specific format as a read-only table |
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to manipulate |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`formId`|`form-id`|string| - |id of the form. This property should only be set programmatically. |
 |`formKindIfDisplayData`| - |"add" \| "edit"| - |data management strategy when setting initial values from displayData: add or edit (default). |
@@ -167,7 +430,7 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 ```html
 <bk-form-card></bk-form-card>
 ```
-![form-drawer](../img/bk-form-card.png)
+![form-card](../img/bk-form-card.png)
 
 ### Properties & Attributes
 
@@ -176,8 +439,8 @@ Card containing a Form to edit or create items described by the `dataSchema`. Th
 |----------|-----------|------|---------|-------------|
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
-|`customLabels`| - |Partial\<FormCardLocale\>| - |custom localized texts shown as CTA buttons labels|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`customLabels`| - |[FormCardLocale](#custom-labels)| - |custom localized texts shown as CTA buttons labels. Analogous to `bk-form-modal` and `bk-form-drawer`.|
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`formKind`| - |"add" \| "edit"|"edit"|data management strategy when setting initial values from displayData: add or edit (default) |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
@@ -234,7 +497,6 @@ Example of configuration for form-drawer component in insert/edit mode:
 
 ```json
 {
-  "type": "element",
   "tag": "bk-form-drawer",
   "properties": {
     "dataSchema": {
@@ -346,6 +608,91 @@ which is the only way to enable the confirmation dialog on save.
 Both `onSave` and `onClose` must be passed in the configuration and both of them accept a `boolean` or a `RequireConfirmOpts` type with the same rules written above in points 1 and 2 of this section. 
 
 
+### Custom labels
+
+Custom labels can be specified as [LocalizedText](../40_core_concepts.md#localization-and-i18n) as modal title, CTA button label, require confirm message.
+Such labels can be scoped based on whether the form is in [edit](#edit-1) or [create](#insert-1) mode.
+
+
+
+```json
+{
+  "tag": "bk-form-drawer",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        },
+        "ctaLabel": {
+          "en": "Submit",
+          "it": "Submit Order"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderà l'ordine non salvate, procedere?",
+          "en": "Closing now will discard new order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        },
+        "ctaLabel": {
+          "en": "Update Order",
+          "it": "Salva Ordine"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderanno tutte le modifiche non salvate all'ordine, procedere?",
+          "en": "Closing now will discard changes to the order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      }
+    }
+  }
+}
+```
+
+Not all keys need to be specified, as `customLabels` is merged with default labels. For instance, the following is a valid configuration of `customLabels`:
+```json
+{
+  "tag": "bk-form-drawer",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        }
+      }
+    }
+  }
+}
+```
+
+### File fields with meta-data
+
+Fields that are of type `object` or `array`, have the format `file`, and include a `dataSchema` or `items` property are displayed within the form.
+In this scenario, `dataSchema` and `items` properties are used to determine the shape of the metadata associated with the file.
+
+These fields are rendered with a link plus a button that triggers components [bk-file-picker-modal](#bk-file-picker-modal) or [bk-file-picker-drawer](#bk-file-picker-drawer) to spawn, if included in the plugin configuration. Clicking on these buttons opens up the respective components, enabling interaction with the uploaded files and allowing for the modification of their metadata.
+
 ### Properties & Attributes
 
 
@@ -354,15 +701,15 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 |`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
-|`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`customLabels`| - |[LocalizedLabels](#custom-labels)| - |custom localized texts shown as title and CTA button label|
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
 |`dataCustomActions`| - |DrawerDataActionConfig[]|[]|list of actions to render per row|
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`enableSubmitOnFormUntouched`|`enable-submit-on-form-untouched`|boolean|false|boolean to enable footer call-to-action even if no field within the form has been touched |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
+|`requireConfirm`| - |boolean \| [RequireConfirmOpts](#2-object-of-type-requireconfirmopts) \| [RequireConfirmForm](#3-object-of-type-requireconfirmform) |false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string| - |root element to append the drawer to |
 |`width`| - |string \| number|500|with of the drawer |
 |`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
@@ -417,7 +764,6 @@ Example of configuration for form-modal component in insert/edit mode:
 
 ```json
 {
-  "type": "element",
   "tag": "bk-form-modal",
   "properties": {
     "dataSchema": {
@@ -446,7 +792,6 @@ Example of configuration for form-modal component in external mode:
 
 ```json
 {
-  "type": "element",
   "tag": "bk-form-modal",
   "properties": {
     "dataSchema": {
@@ -629,10 +974,10 @@ Both `onSave` and `onClose` must be passed in the configuration and both of them
 ### Nested objects
 
 By default, objects and arrays are displayed in `bk-form-modal` as JSONs inside an [editor](https://microsoft.github.io/monaco-editor/).
-This is not true for objects and arrays of specific [formats](../page_layout#data-schema) such as `file` or `multilookup`, and for objects / arrays for which a data-schema is defined.
+This is not true for objects and arrays of specific [formats](../30_page_layout.md#data-schema) such as `file` or `multilookup`, and for objects / arrays for which a data-schema is defined.
 
 In particular, properties `allowObjectAsTable` and `allowNavigation` control how object and array fields with a provided data-schema (and no specific `format`) are rendered inside the modal.
-- `allowObjectAsTable` controls whether or not the nested fields should be rendered in both an editor and a read-only table.
+- `allowObjectAsTable` controls whether or not the nested fields should be rendered as an editor, a read-only table, or both.
 - `allowNavigation` allows to emit a [nested-navigation-state/push](../events#nested-navigation-state---push) event by clicking on the field label. Refer to [this](../page_layout#nested-dataschemas) for further details on nested objects navigation.
 
 By default, setting `allowNavigation` to true disables editor visualization for nested fields. The following table explains how the two properties interact:
@@ -646,12 +991,101 @@ By default, setting `allowNavigation` to true disables editor visualization for 
 | false | "show-editor" | Editor visualization only, label can be clicked |
 | false | false | Editor visualization only, label cannot be clicked |
 
+By default, `allowObjectAsTable` is false, `allowNavigation` is true.
+
 :::info
-When `allowObjectAsTable` is true, the resulting table supports a subset of the features supported by `bk-table`. Some of the limitations with respect to `bk-table` include:
+When `allowObjectAsTable` is true, the resulting table supports a subset of the features supported by [bk-table](./60_data_visualization.md#bk-table).
+Some of the limitations with respect to `bk-table` include:
   - lookups are not resolved
   - row selection is disabled
   - row click is disabled
 :::
+
+### Custom labels
+
+Custom labels can be specified as [LocalizedText](../40_core_concepts.md#localization-and-i18n) as modal title, CTA button label, require confirm message.
+Such labels can be scoped based on whether the form is in [edit](#edit-1) or [create](#insert-1) mode.
+
+
+
+```json
+{
+  "tag": "bk-form-modal",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        },
+        "ctaLabel": {
+          "en": "Submit",
+          "it": "Submit Order"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderà l'ordine non salvate, procedere?",
+          "en": "Closing now will discard new order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        },
+        "ctaLabel": {
+          "en": "Update Order",
+          "it": "Salva Ordine"
+        },
+        "unsavedChangesContent": {
+          "it": "Chiudendo ora si perderanno tutte le modifiche non salvate all'ordine, procedere?",
+          "en": "Closing now will discard changes to the order, do you want to continue?"
+        },
+        "saveChangesContent": {
+          "it": "Verrà creato un nuovo ordine, procedere?",
+          "en": "A new order will be created, continue?"
+        }
+      }
+    }
+  }
+}
+```
+
+Not all keys need to be specified, as `customLabels` is merged with default labels. For instance, the following is a valid configuration of `customLabels`:
+```json
+{
+  "tag": "bk-form-modal",
+  "properties": {
+    ...
+    "customLabels": {
+      "create": {
+        "title": {
+          "en": "Add new order",
+          "it": "Aggiungi nuovo ordine"
+        }
+      },
+      "update": {
+        "title": {
+          "en": "Order detail",
+          "it": "Dettaglio ordine"
+        }
+      }
+    }
+  }
+}
+```
+
+### File fields with meta-data
+
+Fields that are of type `object` or `array`, have the format `file`, and include a `dataSchema` or `items` property are displayed within the form.
+In this scenario, `dataSchema` and `items` properties are used to determine the shape of the metadata associated with the file.
+
+These fields are rendered with a link plus a button that triggers components [bk-file-picker-modal](#bk-file-picker-modal) or [bk-file-picker-drawer](#bk-file-picker-drawer) to spawn, if included in the plugin configuration. Clicking on these buttons opens up the respective components, enabling interaction with the uploaded files and allowing for the modification of their metadata.
+
 
 ### Properties & Attributes
 
@@ -662,18 +1096,18 @@ When `allowObjectAsTable` is true, the resulting table supports a subset of the 
 |`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
 |`allowNavigation`| - |boolean \| "show-editor"|true|when `true`, object and arrays are displayed as a clickable label which allows to navigate to nested objects and arrays, if a dataSchema is specified; when `show-editor`, the navigation is allowed and the object/array fields are displayed in a json editor.; when `false`, the navigation is not allowed, and the object/array fields are displayed in a json editor. |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format and a dataschema in both a editor and read-only table|
-|`customLabels`| - |LocalizedLabels| - |custom localized texts shown as title and CTA button label|
-|`customMessageOnAbsentLookup`| - |[LocalizedText](../core_concepts#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataSchema`| - |ExtendedJSONSchema7Definition| - |[data schema](../page_layout#data-schema) describing the fields of the collection to filter |
+|`customLabels`| - |[LocalizedLabels](#custom-labels-1)| - |custom localized texts shown as title and CTA button label|
+|`customMessageOnAbsentLookup`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)| - |override lookup value in case lookup is not resolved due to lack of data |
+|`dataSchema`| - |[ExtendedJSONSchema7Definition](../30_page_layout.md#data-schema)| - |[data schema](../30_page_layout.md#data-schema) describing the fields of the collection to filter |
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`height`|`height`|string|'60vh'|height of the modal |
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|10|max items to fetch on regex live search|
 |`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
 |`readonlyOnView`|`readonly-on-view`|boolean|false|upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-|`requireConfirm`| - |boolean \| RequireConfirmOpts \| RequireConfirmForm|false|whether or not the drawer should request confirmation before closing and/or before saving.|
+|`requireConfirm`| - |boolean \| [RequireConfirmOpts](#2-object-of-type-requireconfirmopts-1) \| [RequireConfirmForm](#3-object-of-type-requireconfirmform-1) |false|whether or not the drawer should request confirmation before closing and/or before saving.|
 |`rootElementSelector`|`root-element-selector`|string|'#microlc-element-composer'|root element to append the modal to |
 |`width`|`width`|string|'90vw'|with of the modal |
-|`wizard`| - |boolean \| WizardStepSchema[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
+|`wizard`| - |boolean \| [WizardStepSchema](#wizard)[]| - |array of options for setting up a wizard. If true, a default wizard is utilized.|
 |`editorHeight`|`editor-height`|string \| number| - | height of object/array editor |
 
 ### Listens to

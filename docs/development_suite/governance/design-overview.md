@@ -11,7 +11,7 @@ The Design Overview is a rich set of visualization tools accessible from the Com
 In the URL, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
-In the Design Overview you can aggregate Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and CRUDs collections, and save custom views for easy access and sharing.
+In the Design Overview you can aggregate Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and Data Models, and save custom views for easy access and sharing.
 
 ![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
@@ -37,15 +37,20 @@ An example is in the following picture.
 
 ![Public Views](img/public-views.png)
 
-### CRUD
+### Data Models
 
-The CRUD Overview provides the user with a graphical cross-project overview of all the CRUDs collections.
+The Data Models Overview provides the user with a graphical cross-project overview of all the Data Models, including:
+* CRUD collections;
+* MongoDB Views;
+* Projections;
+* Single Views;
 
-CRUD Overview collects data on the project configuration and creates a table presenting information on all the CRUD, where each row shows:
-* *Name*: Name of the CRUD collection.
-* *Project*: Project of the CRUD collection.
-* *Type*: Type of the CRUD collection.
-* *Description*: Description of the CRUD collection.
+Data Models Overview collects data on the project configuration and creates a table presenting information on all the collections, where each row shows:
+* *Name*: Name of the collection.
+* *Project*: Project of the collection.
+* *Type*: Type of the collection.
+* *System of Record*: System of record of the collection (populated only for Projections).
+* *Description*: Description of the collection.
 
 An example is in the following picture.
 

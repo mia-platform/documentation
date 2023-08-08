@@ -148,7 +148,7 @@ A property needs specifications about formatting and viewing
 }
 ```
 
-A `label` is either a `string` or a [LocalizedString](core_concepts#localization-and-i18n) and provides a label for a given property.
+A `label` is either a `string` or a [LocalizedString](./40_core_concepts.md#localization-and-i18n) and provides a label for a given property.
 
 An `order` is number that allow to customize the order in which items are rendered by data visualization components.
 
@@ -278,7 +278,7 @@ Visualization options concern any web component that is going to render a given 
 |`hiddenLabel`|  `boolean` | whether the label of the property is shown within the header of the table component |
 |`sortable`|  `boolean` | whether the property can be sorted within the header of the table component |
 |`iconMap`| `object` | defines a map of basic shaped icons to be shown with the item and where the key is the item value |
-|`template`| [LocalizedText](core_concepts#localization-and-i18n) | template of how to visualize the value in the cell |
+|`template`| [LocalizedText](./40_core_concepts.md#localization-and-i18n) | template of how to visualize the value in the cell |
 |`joinDelimiter`| `string` | delimiter to visualize array items as a single string |
 |`tag`| `string` | tag to use when embedding a custom component |
 |`properties`| { [x: string]: any } | properties for the embedded custom component |
@@ -527,7 +527,7 @@ Here is the full list of lookup options.
 | `lookupValue` | the item used to resolve the lookup onto the destination collection and held on the main collection |
 | `lookupFields` | fields to be retrieved on the destination collection |
 | `lookupDelimiter` | string with a delimiter to join values when multiple `lookupFields` are specified |
-| `lookupQueries` | an array of [filters](core_concepts#filters) on lookup data + `propertyType` specifying the type of the filtered property |
+| `lookupQueries` | an array of [filters](./40_core_concepts.md#filters) on lookup data + `propertyType` specifying the type of the filtered property |
 | `lookupAddTrailingSlash` | whether or not to add a trailing `/` to `lookupDataSource` to generate the url for querying data (`true` if not specified) |
 | `lookupDeps` | array of [dependencies](#dependent-lookups), used to specify dependencies from other fields of the form |
 | `sortOption` | string corresponding to `_s` parameter in call for fetching lookup values |
@@ -565,7 +565,7 @@ Here is the full list of lookup options.
 ```
 
 `lookupQueries` allows to specify an array of filters that are applied to the queries for lookup data.
-Each element of `lookupQueries` is composed as a [filter](core_concepts#filters) plus the key `propertyType`, specifying the type of the property that is being filtered (defaults to "string").
+Each element of `lookupQueries` is composed as a [filter](./40_core_concepts.md#filters) plus the key `propertyType`, specifying the type of the property that is being filtered (defaults to "string").
 
 | `lookupQueries` properties | description |
 |----------------------------|-------------|
@@ -752,7 +752,7 @@ external references or href.
 }
 ```
 
-The `formLinks` key takes an array of objects that represents a [Link](core_concepts#links). The handlebar parser would
+The `formLinks` key takes an array of objects that represents a [Link](./40_core_concepts.md#links). The handlebar parser would
 interpret properties as data schema properties. Referring to the example above, either `name` or `surname` are `properties`
 of the schema or the parser interprets them as empty strings.
 

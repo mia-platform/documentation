@@ -61,6 +61,7 @@ The app configuration contains:
   - **order** (_optional_): a number which define the order to be returned from the get apps endpoint;
   - **userSettingsURL** (_optional_): an URL to send the user to the user settings page on idp provider;
   - **skipRefreshProviderTokenOnMiaTokenRefresh** (_default `false`_): if `true`, the provider's token won't be refreshed when calling the `/refreshtoken` endpoint, unless the provider token has expired;
+  - **logoutUrl** (_optional_) (available since `v3.3.0`): If the provider is OIDC compliant, the url where the user agent is redirected to perform the logout from the provider;
 - **redirectUrl** (_required_): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
 - **authorizeStateRequired** (_default: `false`_): When `true`, the client should generate the `state` parameter, enabling further protection against CSRF attacks. See the [related section](./30_usage.md#client-generated-state);
 - **realm**: (_required_)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId\*);
@@ -74,8 +75,13 @@ The app configuration contains:
 - **issuer** (_required_): The value of the `iss` claim, it will be inserted in the issued tokens.
 - **sidCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./30_usage.md#website-cookie-configuration)
   - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
+  - **path** (default: `/`): sets the `Path` attribute to the cookie to a value of your choice. By default, the value is set to `/`.
   - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.
-
+- **refreshCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./30_usage.md#website-cookie-configuration)
+  - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
+  - **path** (default: `/`): sets the `Path` attribute to the cookie to a value of your choice. By default, the value is set to `/`.
+  - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.  
+  
 Here an example of the service configuration:
 
 ```json

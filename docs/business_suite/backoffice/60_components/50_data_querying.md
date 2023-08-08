@@ -15,7 +15,7 @@ Manages the display, application, and modification of filters.
 `bk-expanded-filters` should not be included in the same configuration as [`bk-filters-drawer`](#bk-filter-drawer)/[`bk-filters-manager`](#bk-filters-manager) since they listen and emit the same events and clashing behavior might occur.
 :::
 
-Displays a grid of [filters](../40_core_concepts.md#filters), with which it is possible to interacted by editing the `value` field.
+Displays a grid of [filters](../40_core_concepts.md#filters), with which it is possible to interact by editing the `value` field.
 The grid has a maximum number of columns of 4, which shrink to 3 or 2 depending on the window width.
 
 Fields `property` and `operator` of each filter will not be editable.
@@ -40,7 +40,6 @@ Given the following configuration,
 ```json
 ...
   {
-    "type": "element",
     "tag": "bk-expanded-filters",
     "properties": {
       "dataSchema": {
@@ -94,6 +93,61 @@ Then the emitted filters will look like:
 
 If a component such as [bk-crud-client](./30_clients.md#bk-crud-client) is included in the page (and provided with the same data-schema), these filters are chained inside an `$and` mongo-like query and used to filter data.
 
+### Bootstrap
+
+If property `readFromUrl` is set to true, `bk-expanded-filters` parses the page URL to retrieve the query parameter `filters`. If found, its content is converted to filters that are used to initialize the form values and are applied accordingly to [filtersConfig](#configuration).
+
+For instance, assuming the following query parameter to be included in the current plugin:
+```json
+"filters": [
+  {"property": "name", "operator": "equal", "value": "test"},
+  {"property": "price", "operator": "less", "value": 10},
+  {"property": "orderedAt", "operator": "less", "value": "2023-03-03T09:00:00.000Z"}
+]
+```
+
+and `bk-expanded-filters` to be configured like:
+```json
+...
+  {
+    "tag": "bk-expanded-filters",
+    "properties": {
+      "dataSchema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "price": {"type": "number"},
+          "orderedAt": {"type": "string", "format": "date-time"}
+        }
+      },
+      "filtersConfig": [
+        "name",
+        {"property": "price", "operator": "less"},
+        {"property": "orderedAt", "operator": "between"}
+      ]
+    }
+  }
+...
+```
+
+then a [change-query](../70_events.md#change-query) event will be emitted with filters:
+
+```json
+{
+  "property": "name",
+  "operator": "equal",
+  "value": "test"
+},
+{
+  "property": "price",
+  "operator": "less",
+  "value": 10
+}
+```
+
+Filter on field `orderedAt` is not emitted since the filter operator `less` does not correspond to the one specified for that property inside `filtersConfig` (`between`).
+
+
 ### Properties & Attributes
 
 | property | attribute | type | default | description |
@@ -103,24 +157,27 @@ If a component such as [bk-crud-client](./30_clients.md#bk-crud-client) is inclu
 | `openByDefault` | `open-by-default` | boolean | false | whether to show the component by default |
 | `liveSearchTimeout` | `live-search-timeout` | number | 5000 | live-search timeout |
 | `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | max items to fetch on regex live search |
+| `readFromUrl` | `read-from-url` | boolean | false | whether filters from URL should be read and applied at bootstrap time |
 
 ### Listens to
 
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[filter](../events#filter)|display/close the expanded filters component| - | - |
+|[filter](../70_events.md#filter)|display/close the expanded filters component| - | - |
+|[display-data](../70_events.md#display-data)|retrieves data to build lookup options| - | - |
+|[lookup-data](../70_events.md#lookup-data)|retrieves data to build lookup options| - | - |
 
 ### Emits
 
 
 | event | description |
 |-------|-------------|
-|[change-query](../events#change-query)| when done filling or clearing the form, applies or clear the filters |
+|[change-query](../70_events.md#change-query)| when done filling or clearing the form, applies or clear the filters |
 
 ### Bootstrap
 
-None
+If property  `readFromUrl` is set to true, at bootstrap time `bk-expanded-filters` reads initial filters from the URL and applies them.
 
 
 ## bk-export-modal
@@ -256,7 +313,7 @@ To avoid data leaking, `localStorageKey` should be unique per plugin.
 
 ### Bootstrap
 
-None
+At bootstrap time, `bk-filters-manager` may retrieve initial filters from the URL and apply them, if `readFromUrl` property is true.
 
 ## bk-pagination
 
@@ -457,7 +514,7 @@ which will return no data.
 |----------|-----------|------|---------|-------------|
 |`autoSearchMinInput`|`auto-search-min-input`|number|2|min length of input string before performing automatic search|
 |`liveSearchItemsLimit`|`live-search-items-limit`|number|100|max items to fetch on regex live search|
-|`placeholder`| - |[LocalizedText](../core_concepts#localization-and-i18n)|{}|placeholder of the search bar input |
+|`placeholder`| - |[LocalizedText](../40_core_concepts.md#localization-and-i18n)|{}|placeholder of the search bar input |
 |`searchDebounce`|`search-debounce`|number|0|milliseconds to wait before performing an automatic search. If 0, automatic search is disabled|
 |`searchLookups`|`search-lookups`|boolean|false|whether or not to perform search on lookups. If true, a component such as [lookup-crud-client](./30_clients.md#bk-crud-lookup-client) should be included in the plugin|
 

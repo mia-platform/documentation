@@ -3,11 +3,133 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.3.0] - 2023-07-17
+
+### Versioning
+
+- `BACKOFFICE_TEMPLATE_VERSION` to `0.5.1`
+- `BACK_KIT_VERSION` to `1.3.17`
+- `@mia-platform-internal/reactord` to version `v9.6.0`
+- `@micro-lc/iconic` to version `^1.3.0`
+- `monaco-editor` to version `^0.40.0`
+- `rc-util` to version `^5.34.1`
+- `rc-virtual-list` to version `^3.5.3`
+- `react-router-dom` to version `^6.14.1`
+- `strip-json-comments` to version `^5.0.1`
+- Dev dependencies updated
+
+### Added
+
+- Added switch to set fields as required in data schema fields editor
+- During compose page creation, templates shows a description and a doc link
+- During compose page creation, input mode field shows an explanation of the different options
+- Added `dynamic-icon` format support for `fontawesome` brand library and `phosphor` libraries
+- Added web worker to fetch compose page templates from custom sources
+
+### Changed
+
+- When a shared property is deleted, the first of the remaining ones (if present) will be selected
+- "Edit property" button label changed to "Add property" when property value is not set
+- Generate Data Schema button is always visible and disabled if conditions are missing
+- Data schema from CRUD generation disclaimer badge better highlights that generating the schema will overwrite any existing value
+- Data schema from CRUD generation now handles "base" CRUD properties and properties of type ObjectId and Geopoint
+
+### Fixed
+
+- Fixed `dynamic-icon` form field CSP error in previewing icons switching to locally bundled libraries
+- Fixed `dynamic-icon` form field bug where after searching an item it could not be selected
+- Fixed Advanced tab blue dot appearing when other tabs are selected
+
+## [1.2.0] - 2023-07-03
+
+### Versioning
+
+- `@mia-platform-internal/reactord` to version `^9.5.0`
+- `@micro-lc/iconic` to version `^1.2.0`
+- Dev dependencies updated
+
+### Changed
+
+- "Add field" top button is no longer visible in dataSchema fields editor when there are no fields
+- default templates are fetched from `cdn.mia-platform.eu`
+- loading animation is fetched from `cdn.mia-platform.eu`
+- updates to internal CSP rules
+
+### Added
+
+- `back-kit` data schema can be automatically generated starting from a CRUD collection
+- support for mia cdn: static files for the default configuration are downloaded from `https://cdn.mia-platform.eu`
+
+### Fixed
+
+- Improved DataSchema editor rendering performances in Shared Properties section
+- Edit shared property modal form is correctly reset to the default value when closed
+- Fixed UI inconsistencies in Shared Property page
+- `oneOf` with a primitive type and object shows an in-form monaco-editor in the latter case
+- object `oneOf` multiple choices shows an in-form monaco-editor
+- `noService` mode helper section pushes to a URL that must be URL-encoded
+- `mia-preview-button` takes communication channel from proxyWindow
+
+## [1.1.0] - 2023-06-19
+
+### Versioning
+
+- `@mia-platform-internal/reactord` to version `^9.4.1`
+- `monaco-editor` to version `^0.39.0`
+- `react-router-dom` to version `^6.11.0`
+- `rxjs` to version `^7.8.1`
+- `rc-virtual-list` to `^3.5.2`
+- `react-router-dom` to `^6.13.2`
+- Dev dependencies updated
+
+### Added
+
+- Shared Property page
+- Possibility of creating shared properties starting from existing non-shared definitions
+- No-code editor for Shared Properties of type Data Schema
+- Advanced modal to edit Shared Properties
+- Support for `dynamic-icon` manifest schema hint
+- Added support for `mia/endpoints/data-source` schema hint
+- Support for `oneOf` properties with possible types string or string:enum
+- Support for sorting of array properties
+- Field `entry` of Micro Frontend pages can be created through no-code interface
+- Confirm modal to avoid losing modifications when switching from Advanced tab to a different one
+- Templates carrying variables/shared-properties can instruct configurator on how to integrate current configuration
+- Components with the same label will be shown with a progressive number in components list menu
+- Support for external assets via configuration of a service worker which acts as a reverse proxy
+- No-code modal to configure service worker
+
+### Changed
+
+- Select input in components props editing menu can now be cleared
+- Preview Status bar filters out info notifications from count total
+- Primary color is chosen for superscripts of badges (Variables and SW buttons)
+- Preview external dependencies are now hardcoded to the patch
+- Configuration parsing errors are now notified and no longer breaks the editor
+- Test variables are trimmed on creation
+
+### Fixed
+
+- Removing components with a shared property in the Advanced tab does not result in an error when moving to Shared Properties page
+- Editing the selected shared property in the Advanced tab correctly updates its value in the Shared Property page
+- Values of properties with the same name in different components are no longer bound
+- Fixed references resolution in preview
+- When compose application is removed, its meta data are deleted
+
+## [1.0.3] - 2023-06-05
+
+### Fixed
+
+- Color picker is correctly mounted in property form inside modal
+- Editing test variables values in variables modal will no longer result in the input losing focus
+- Components fetch mocks now correctly reflects edits in data schema
+- Sources are now correctly encoded before being sent to preview
+
 ## [1.0.2] - 2023-05-23
 
 ### Fixed
 
-- fixed bug causing properties with `oneOf` schemas to be incorrectly valued in editing modals
+- Fixed bug causing properties with `oneOf` schemas to be incorrectly valued in editing modals
 
 ## [1.0.1] - 2023-05-02
 

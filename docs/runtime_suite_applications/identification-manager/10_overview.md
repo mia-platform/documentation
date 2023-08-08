@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 ## Introduction
 
-The `Identification Manager` application allows you to set up all the steps needed to implement and manage different identification processes with a single flow. 
+The Identification Manager application allows you to build your customized identification process and connect multiple identity providers (IDP). The application enables to set up all the steps needed to implement and manage different identification processes with a single flow.
 
 In particular, the main functionalities delivered by this application are the following:
 1. define and add new custom identification processes
@@ -51,8 +51,6 @@ The standard data schema is described below:
             "type": "object",
             "properties": {
                 "language": { "type": "string" },
-                "email": { "type": "string" },
-                "mobileNumber": { "type": "string" },
                 "person": {
                     "type": "object",
                     "properties": {
@@ -92,6 +90,17 @@ The standard data schema is described below:
                             "issuingAuthority": { "type": "string" }
                         }
                     }
+                },
+                "contacts": {
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "type": { "type": "string" },
+                            "value": { "type": "string" },
+                            "verified": { "type": "string" }
+                        }
+                    }
                 }
             }
         },
@@ -104,7 +113,8 @@ The standard data schema is described below:
                     "fileName": { "type": "string" },
                     "mediaType": { "type": "string" },
                     "type": { "type": "string" },
-                    "contentUri": { "type": "string" }
+                    "contentUri": { "type": "string" },
+                    "side": { "type": "string" }
                 }
             }
         },

@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.3.0 - 28-06-2023
+
+### Added
+
+- Support building of logout redirect endpoint of OIDC providers
+
+### Fixed
+
+- Correctly unset `sid` cookie and `refresh_token` cookie at logout, when custom `Domain` and/or `Path` attributes are set.
+
 ## 3.2.0 - 06-06-2023
 
 ### Added

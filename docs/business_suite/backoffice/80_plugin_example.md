@@ -102,7 +102,7 @@ This `schema` contains several information, but not all components use all of th
 
 For instance, the `label` of the field is used by components such as [bk-table](Components/data_visualization#table) or [bk-form-drawer](Components/data_manipulation#form-drawer), if they are included in the plugin and provided with this `schema`, as a print-out text for the field.
 
-On the other hand, `filtersOptions` is ignored by `bk-table` component, but used by [bk-filter-drawer](Components/data_querying#filter-drawer). In particular, `bk-filter-drawer` knows that it should not allow the user to create [filters](core_concepts#filters) based on this field.
+On the other hand, `filtersOptions` is ignored by `bk-table` component, but used by [bk-filter-drawer](Components/data_querying#filter-drawer). In particular, `bk-filter-drawer` knows that it should not allow the user to create [filters](./40_core_concepts.md#filters) based on this field.
 
 The second field is `status`.
 

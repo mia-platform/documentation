@@ -8,6 +8,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.2] 2023-06-30
+
+### Fixed
+
+- Kafka log level is mapped to the kafkajs string, not number
+
+## [3.0.1] 2023-06-27
+
+### Fixed
+
+- Kafka brokers is a comma separated string, not an array of strings
+
+## [3.0.0] 2023-06-27
+
+### Added
+
+- Added support for the generation of MongoDB projection changes instead of `sv-trigger` kafka messages
+
+### Breaking Changes
+
+- kafkaProjectionChanges configMap does not support `__lookup__` strategy type anymore since `pr-updates` events for `PATCH` operations are supported also by the Single View Creator
+- consequently, the service won't emit `sv-trigger` messages of type `patch`, in fact the property `type` has been removed from `sv-trigger` messages altogether 
+- kafka configuration is not passed through environment variables but through its own config map [`Input Output Config`](../../fast_data/configuration/single_view_trigger_generator#input-output-config)
+- `TRIGGER_TOPIC` environment variable has been generalized and renamed to `EVENT_STORE_TARGET` to have meaning also with mongo collections 
+
 ## [2.0.1] 2023-04-14
 
 ### Changed

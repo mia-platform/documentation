@@ -8,6 +8,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.0] 2023-07-18
+
+### BREAKING CHANGE
+
+- The service will crash at startup if the _Aggregation_ configuration file contains at least a condition that does not exist in the _ER Schema_ or it includes an empty query. Before this update, an error was thrown at every Single View aggregation attempt, but the service would stay up. Now it stops, forcing the user to review their configurations.
+
+### Updated
+
+- A clean up operation is performed to remove empty conditions in the _ER Schema_ configuration file and a safety check is performed in the _Aggregation_ configuration file to verify if includes conditions that does not exists (or refer to empty conditions). This feature comes with the library `@mia-platform-internal/fast-data-automation-lib@3.1.0`.
+
+### Fixed
+
+- avoid to re-evaluate `erSchema.json` and `aggregation.json` content every time an aggregation of a Single View is performed, from now on these operation will be executed at service startup.
+
+
+## [5.6.8] 2023-06-26
+
+### Changed 
+
+- Upgraded `@mia-platform-internal/single-view-creator-lib` to `v14.5.5` to fix a bug related to error logging
+
+## [5.6.7] 2023-06-20
+
+### Changed
+
+- Upgraded `@mia-platform-internal/single-view-creator-lib` to `v14.5.4` to fix a bug related to the readiness and healthiness routes. When Kafka fails for a faulty message, the healthiness and readiness routes now return `KO`
+
+
 ## [5.6.6] 2023-04-21
 
 ### Fixed

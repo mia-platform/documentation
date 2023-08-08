@@ -20,7 +20,7 @@ This frontend application aims to be used as a white-label service to be configu
 ## How it works
 
 The Chat service frontend implementation is given as a Single Page Application rendering the [Stream Chat UI](https://getstream.io/chat/demos/messaging/), where authorization credentials, permission rules and custom theming options come from data retrieved through an endpoint configured on an instance
-[Chat Service Backend](https://git.tools.mia-platform.eu/mia-care/platform/plugins/chat-service-backend/-/blob/master/docs/10_overview_and_usage.md).
+[Chat Service Backend](../../runtime_suite/chat-service-backend/overview_and_usage).
 
 The service capabilities are reached through the wrapping of the Stream react components given in the Stream react library and the implementation of custom components, both configurable from the backend side of the application.
 
