@@ -14,10 +14,10 @@ With this API you can send a new SMS.
 The body of the request should have the following shape.
 
 - `sender` (required): the sender of the message. It can be one of the following:
-  - a phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format
-  - an [alphanumeric sender ID](https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id)
+  - a phone number in [E.164][e164] format
+  - an [alphanumeric sender ID][twilio-sender-id]
 
-- `receiver` (required): the destination phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format.
+- `receiver` (required): the destination phone number in [E.164][e164] format.
 
 - `body` (required): the text of the SMS you want to send.
 
@@ -52,7 +52,7 @@ payload:
 ```
 
 A notable status code is **429**, which means that you have reached the REST API concurrency limit of Twilio (more
-information [here](https://support.twilio.com/hc/en-us/articles/115002943027-Understanding-Twilio-Rate-Limits-and-Message-Queues)).
+information [here][twilio-rate-limits]).
 
 #### Success
 
@@ -63,6 +63,11 @@ In case of successful response (status code `200`), the body of the response has
   "dateEvent": "2021-08-13T12:53:52.959Z", // ISO format
   "numSegments": "1", // Number of SMS messages it took to deliver the body of the message
   "sid": "124354", // Unique identifier of the SMS
-  "status": "sent" // Status of the SMS
+  "status": "sent"
 }
 ```
+
+
+[e164]: https://www.twilio.com/docs/glossary/what-e164
+[twilio-sender-id]: https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id
+[twilio-rate-limits]: https://support.twilio.com/hc/en-us/articles/115002943027-Understanding-Twilio-Rate-Limits-and-Message-Queues
