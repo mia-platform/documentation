@@ -16,7 +16,7 @@ At this moment, only the Adyen [Automatic Capture](https://docs.adyen.com/online
 
 ## Endpoints
 
-Every Adyen endpoint has the prefix path `/adyen`.
+Every Adyen endpoint has the prefix path `/v3/adyen`.
 
 ### Pay
 

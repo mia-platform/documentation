@@ -90,13 +90,13 @@ Perform a refund for a transaction on the `provider`.
 }
 ```
 The **result** field can have the following values:
-- **OK**: the transaction has been performed successfully on the `provider`;
-- **KO**: the transaction has been rejected by the `provider`;
-- **PENDING**: the transaction is pending; an asynchronous notification will arrive from the `provider` with the information about the status of the transaction;
+- **OK**: the refund has been performed successfully on the `provider`;
+- **KO**: the refund has been rejected by the `provider`;
+- **PENDING**: the refund is pending; an asynchronous notification will arrive from the `provider` with the information about the status of the transaction;
 
 ## Subscriptions
 
-The **Payment Gateway Manager** can interact with the `provider` in order to manager subscriptions, that are *recurrent payments*.
+The **Payment Gateway Manager** can interact with the `provider` in order to manage subscriptions, that are *recurrent payments*.
 
 A *recurrent payment* is a payment strategy that splits a whole payment across multiple installments,
 whose only the first one requires an interaction with the client (its authorization).
@@ -165,9 +165,9 @@ The `provider` will notify with a callback every change on the subscription.
 {
     "result": "OK",
     "resultDescription": "Payment Authorised",
-    "paymentId": "1234567890",
-    "subscriptionToken": "0987654321",
-    "metadata": {...}                 // object with provider-specific data (optional, varies with the provider)
+    "paymentId": "1234567890",          // the unique id of the transaction for the specific provider
+    "subscriptionToken": "0987654321",  // the unique id of the subscription
+    "metadata": {...}                   // object with provider-specific data (optional, varies with the provider)
 }
 ```
 
@@ -317,7 +317,7 @@ This call will contain information allowing to identify the transaction.
 
 The **Payment Gateway Manager** can use this information to check the transaction status, depending on the provider.
 
-Once the check has been performed, the PGM can notify the result to an external service, as specified by the 
+Once the check has been performed, the Payment Gateway Manager can notify the result to an external service, as specified by the 
 `PAYMENT_CALLBACK_URL` environment variable.
 
 The notification include the payment status as described above.
@@ -333,7 +333,7 @@ Check the provider page in order to find which utility APIs are available.
 
 The **Payment Gateway Manager** supports payment through custom external integrations.
 In this way, new payment methods can be integrated independently and the functionality of the **Payment Gateway Manager** can be extended with custom integrations.
-APIs calls to these endpoints will be redirected to external microservices where payment management logic will be implemented.
+API calls to these endpoints will be redirected to external microservices where payment management logic will be implemented.
 Below, the interface exposed: 
 
 * Payment Request: `POST /{external}/pay`
