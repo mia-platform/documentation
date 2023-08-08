@@ -36,17 +36,17 @@ The following endpoints are exposed by default:
 ## CRUD Collection
 
 ### Transaction Saga
-A *transactions_saga* collection will be included in the project and by default is used as database reference use to retrieve payments information.
+A *transactions_saga* collection will be included in the project and by default is used as database reference to retrieve payments information.
 The application can use any MongoDB collection to retrieve payments information: for further details on how to configure the application refer to the dedicated [section](./50_configuration.md).
 More details about the schema of the collection can be found in the dedicated [section](./20_payment_saga.md).
 
 ### Subscription Saga
-A *subscription_saga* collection will be included in the project and by default is used as database reference use to retrieve subscription information.
+A *subscription_saga* collection will be included in the project and by default is used as database reference to retrieve subscription information.
 The application can use any MongoDB collection to retrieve subscription information: for further details on how to configure the application refer to the dedicated [section](./50_configuration.md).
 More details about the schema of the collection can be found in the dedicated [section](./30_subscription_saga.md).
 
 ### Invoice
-An *invoices* collection will be included in the project and by default is used as database reference use to retrieve and store the invoices generated.
+An *invoices* collection will be included in the project and by default is used as database reference to retrieve and store the invoices generated.
 The following schema is used in the collection, designed to be compatible with [files-service](../../runtime_suite/files-service/configuration):
 - **name**: original file name
 - **file**: unique name of the file that should be used to retrieve it

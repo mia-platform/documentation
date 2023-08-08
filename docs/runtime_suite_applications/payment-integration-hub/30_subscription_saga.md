@@ -12,8 +12,8 @@ The default configuration of the subscription saga is described in the image bel
 
 ![Machine Definition](img/subscription_saga.png)
 
-### Business State
-The business state of the saga describe the overall state of the subscription, ignoring the technical status of the system:
+### Business States
+The business states of the saga describe the overall state of the subscription, ignoring the technical status of the system:
 - **CREATED**: the subscription is created and he system is still collecting information (e.g., the payment method to be used).
 - **ACTIVE**: the subscription is active and recurrent payments are performing periodically
 - **ON_HOLD**: the subscription is on hold because the last payment was failed
@@ -21,8 +21,8 @@ The business state of the saga describe the overall state of the subscription, i
 - **ABORTED**: the subscription was aborted due to recurrent errors
 
 
-### Technical State
-The technical state of the saga describe all the necessary steps to describe the subscription life-cycle:
+### Technical States
+The technical states of the saga describe all the necessary steps to describe the subscription life-cycle:
 - **CREATED**: the subscription is created and he system is still collecting information (e.g., the payment method to be used).
 - **ACTIVE**: the subscription is active and recurrent payments are performing periodically
 - **PAYMENT_FAILED**: the subscription is on hold because the last payment was failed

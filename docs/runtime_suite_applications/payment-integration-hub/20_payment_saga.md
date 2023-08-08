@@ -12,17 +12,17 @@ The default configuration of the payment saga is described in the image below:
 
 ![Machine Definition](img/machine-definition-v3.png)
 
-### Business State
-The business state of the saga describe the overall state of the payment, ignoring the technical status of the system:
-- **PAYMENT_CREATED**: the payment is created and he system is still collecting payment-related information (e.g., the payment method to be used) or is waiting for the provider's response.
+### Business States
+The business states of the saga describe the overall state of the payment, ignoring the technical status of the system:
+- **PAYMENT_CREATED**: the payment is created and the system is still collecting payment-related information (e.g., the payment method to be used) or is waiting for the provider's response.
 - **PAYMENT_PAID**: the payment was paid and was completed by the provider
-- **PAYMENT_FAILED**: the payment failed
+- **PAYMENT_FAILED**: the payment has failed
 - **PAYMENT_PARTIALLY_REFUNDED**: the payment was partially refunded
 - **PAYMENT_TOTALLY_REFUNDED**: the payment was totally refunded
 
 
-### Technical State
-The technical state of the saga describe all the necessary steps to perform payment-related actions:
+### Technical States
+The technical states of the saga describe all the necessary steps to perform payment-related actions:
 - **PAYMENT_CREATED**: the payment was created but some information are missing
 - **AUTHORIZATION_REQUESTED**: some authorization is needed from the user
 - **PAYMENT_SCHEDULED_REQUESTED**: a request was sent to the provider in order to create a new payment
@@ -41,7 +41,7 @@ The technical state of the saga describe all the necessary steps to perform paym
 ### Actors
 The microservices that interact with the payment saga are the following:
 - **Payment Gateway Manager**: receive all the commands needed to perform relevant actions and sent events regarding the outcome of the payment
-- **Subscription Handler**: sent request for the creation of new payment related to a subscription
+- **Subscription Handler**: send request for the creation of new payment related to a subscription
 - **Payment BFF**: create a new payment requested from a frontend application
 - [**Frullino Service**](../../runtime_suite/ses-mail-notification-service/usage) triggers the events of `paymentExecutedByTheSystem` and `paymentFailedByTheSystem` and automatically update payment status
 
