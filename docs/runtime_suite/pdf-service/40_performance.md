@@ -13,8 +13,8 @@ Specifically, the following APIs have been tested to measure CPU and RAM usage:
 - `POST /url`
 - `POST /template`
 
-## Legenda
-- `Replicas`: The number of static (or dynimic) replicas of PDF Service.
+## Legend
+- `Replicas`: The number of static (or dynamic) replicas of PDF Service.
 - `Users`:  The number of users that use the service simultaneously (each user make a new request every second).
 - `RPS`: The number of the requests that the PDF Service can handle per second.
 - `Failures`:  The rate of the requests that fails during the test.

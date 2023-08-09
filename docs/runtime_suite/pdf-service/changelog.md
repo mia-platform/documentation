@@ -24,7 +24,7 @@ Printing a PDF using a template can no longer be achieved through the `POST /gen
 
 - Applied the MR suggestions.
 - In POST /merge is now possible to specify the name of the new merged file via the `filename` field in the multipart body.
-- Refactoring using plugins strategy, fixed docs with correct link to pupppetteer options and clearer explanation of default options.
+- Refactoring using plugins strategy, fixed docs with correct link to Puppeteer options and clearer explanation of default options.
 - Moved Puppeteer config to a file, changed envVarsSchema to accept languages, fixed Puppeteer headless deprecation warning.
 - Updated POST /template endpoint for generating a pdf file.
 - Updated POST /url endpoint for generating a pdf file.
