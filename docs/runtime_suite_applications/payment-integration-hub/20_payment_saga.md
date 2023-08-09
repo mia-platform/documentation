@@ -25,18 +25,20 @@ The business states of the saga describe the overall state of the payment, ignor
 The technical states of the saga describe all the necessary steps to perform payment-related actions:
 - **PAYMENT_CREATED**: the payment was created but some information are missing
 - **AUTHORIZATION_REQUESTED**: some authorization is needed from the user
-- **PAYMENT_SCHEDULED_REQUESTED**: a request was sent to the provider in order to create a new payment
-- **PAYMENT_RECURRENT_SCHEDULED**: a request was sent to the provider in order to create the first payment for a fully managed subscription
-- **PAYMENT_RECURRENT_STARTED**: a request was sent to the provider in order to create the first payment for a subscription
-- **PAYMENT_RECURRENT_REQUESTED**: a request was sent to the provider in order to create a subsequent payment for subscription
+- **AUTHORIZATION_PENDING**: some authorization is being performed
+- **PAYMENT_SCHEDULE_REQUESTED**: a request was sent to the provider in order to create a new payment
+- **SUBSCRIPTION_SCHEDULED_REQUESTED**: a request was sent to the provider in order to create the first payment for a fully managed subscription
+- **SUBSCRIPTION_STARTED**: a request was sent to the provider in order to create the first payment for a subscription
+- **SUBSCRIPTION_PAYMENT_REQUESTED**: a request was sent to the provider in order to create a subsequent payment for subscription
 - **PAYMENT_PENDING**: the payment was created by the provider but some actions are needed from the final user or the system is simply waiting for a callback
 - **PAYMENT_EXECUTED**: the payment was paid successfully
 - **REFUND_REQUESTED**: a refund was requested and no other refunds were performed previously
 - **REFUND_FAILED**: the refund request failed
 - **PARTIALLY_REFUNDED**: a partial refund was performed on the payment
 - **SUBSEQUENT_REFUND_REQUESTED**: a refund was requested
-- **SUBSEQUENT_REFUND_REQUESTED**: the refund request failed
+- **SUBSEQUENT_REFUND_FAILED**: the refund request failed
 - **TOTALLY_REFUNDED**: the payment was totally refunded
+- **PAYMENT_FAILED**: the payment failed
 
 ### Actors
 The microservices that interact with the payment saga are the following:
