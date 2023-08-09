@@ -1244,9 +1244,9 @@ If one ore more slots are successfully found, you will receive a response with a
 [iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
 [teleconsultation-participants]: ../../runtime_suite/teleconsultation-service-backend/usage#participants-required "Required participants | Usage | Teleconsultation Service Backend"
 
-[sending-messages]: ./10_overview#sending-messages "Sending messages | Overview"
-[setting-reminders]: ./10_overview#setting-reminders "Setting reminders | Overview"
-[flexible-duration-slots]: ./10_overview.md#flexible-duration-slots "Flexible duration slots | Availabilities and slots | Overview"
+[sending-messages]: ./10_overview.md#sending-messages "Sending messages | Overview"
+[setting-reminders]: ./10_overview.md#setting-reminders "Setting reminders | Overview"
+[flexible-duration-slots]: ./10_overview.md#flexible-slots "Flexible duration slots | Availabilities and slots | Overview"
 [availabilities-on-create]: ./10_overview.md#on-create "On create | Custom behaviors | Availabilities and slots | Overview"
 [availabilities-on-update]: ./10_overview.md#on-update "On update | Custom behaviors | Availabilities and slots | Overview"
 [availabilities-on-delete]: ./10_overview.md#on-delete "On delete | Custom behaviors | Availabilities and slots | Overview"
