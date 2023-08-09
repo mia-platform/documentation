@@ -20,8 +20,12 @@ If you are looking for instructions to configure the service in appointments or 
 
 :::info
 
-**v2.0.0**
-Since v2.0.0 two new service configuration fields are supported: `isMessagingAvailable` and `isTimerAvailable`. Together with `isTeleconsultationAvailable`, these three configuration fields allow you to enable or disable the integration with the messaging, timer and teleconsultation service respectively. They are set to `false` by default, so you need to set them explicitly to `true` in order to get the Appointment Manager to generate teleconsultation links, send messages and set reminders.
+**v2.2.0**
+Since v2.2.0 two new service configuration fields are supported: `isFlexibleSlotAvailable` and `isParticipantStatusAvailable`.
+
+The `isFlexibleSlotAvailable` configuration field, disabled by default for backward compatibility, enable the creation of availabilities without specifying the slot duration, resulting in flexible slots. For more details about flexible slots, please read the [*Overview* section][flexible-slots].
+
+The `isParticipantStatusAvailable` configuration field, disabled by default for backward compatibility, enable the `participants` field in the [appointments CRUD][crud-appointments] to store status information about the participants. For more details about flexible slots, please read the [*Overview* section][participant-status].
 
 :::
 
@@ -29,6 +33,13 @@ Since v2.0.0 two new service configuration fields are supported: `isMessagingAva
 
 **v2.1.0**
 Since v2.1.0 the service configuration accepts a list of reminders, that you can send at different times using different templates. You need to upgrade your existing configuration before upgrading to v2.1.x, since the older `reminder` property is no longer valid.
+
+:::
+
+:::info
+
+**v2.0.0**
+Since v2.0.0 two new service configuration fields are supported: `isMessagingAvailable` and `isTimerAvailable`. Together with `isTeleconsultationAvailable`, these three configuration fields allow you to enable or disable the integration with the messaging, timer and teleconsultation service respectively. They are set to `false` by default, so you need to set them explicitly to `true` in order to get the Appointment Manager to generate teleconsultation links, send messages and set reminders.
 
 :::
 
@@ -44,24 +55,30 @@ Here's an example of a full configuration:
       "create": "template_id",
       "delete": "template_id",
       "reminders": [
-          {
-            "template": "template_id",
-            "reminderMilliseconds": 86400000   
-          }
-        ]
+        {
+          "template": "template_id",
+          "reminderMilliseconds": 86400000   
+        }
+      ],
+      "status": "accepted",
+      "required": true,
+      "acceptanceRequired": true
     },
     "patients": {
       "update": "template_id",
       "reminders": [
-          {
-            "template": "template_id_1",
-            "reminderMilliseconds": 86400000   
-          },
-                    {
-            "template": "template_id_2",
-            "reminderMilliseconds": 3600000   
-          },
-        ]
+        {
+          "template": "template_id_1",
+          "reminderMilliseconds": 86400000   
+        },
+                  {
+          "template": "template_id_2",
+          "reminderMilliseconds": 3600000   
+        },
+      ],
+      "status": "needs-action",
+      "required": true,
+      "acceptanceRequired": false
     }
   },
   "channels": ["email", "push", "sms"],
@@ -69,6 +86,8 @@ Here's an example of a full configuration:
   "isTeleconsultationAvailable": true,
   "isMessagingAvailable": true,
   "isTimerAvailable": true,
+  "isFlexibleSlotAvailable": true,
+  "isParticipantStatusAvailable": true,
   "defaultLockDurationMs": 60000
 }
 ```
@@ -77,19 +96,20 @@ A reference presentation of each available field is provided in the following ta
 
 | Name | Required | Default | Description |
 |------|----------|---------|-------------|
-| `users` | Yes | - | Templates to use for sending messages (when you `create`, `update` or `delete` an appointment) and `reminders` to appointment participants (e.g. `doctor` and `patients`) |
+| `users` | Yes | - | Templates to use for sending messages (when you `create`, `update` or `delete` an appointment) and `reminders` to appointment participants (e.g. `doctor` and `patients`) and set participant defaults. |
 | `channels` | Yes | - | The list of channels to send messages on (currently supported channels: `email`, `push`, `sms`) |
 | `reminderThresholdMs` | No | 0 | Send reminders only at least as early before the appointment starts. Zero means the reminders, if enabled, are always sent |
 | `isTeleconsultationAvailable` | No | `false` | If the teleconsultation service is available, enable the integration to generate teleconsultation links. |
 | `isMessagingAvailable` | No | `false` | If the messaging service is available, enable the integration to send messages and reminders. |
 | `isTimerAvailable` | No | `false` | If the timer service is available, enable the integration to set reminders. |
 | `isUserAvailable` | No | `false` | If the resources crud path is available, enable to recover resource's information for `POST /searches/first-available-slot/` endpoint. |
+| `isFlexibleSlotAvailable` | No | `false` | If you can create availabilities without setting a fixed slot duration. | 
+| `isParticipantStatusAvailable` | No | `false` | If additional status information about the participants are stored in the [appointments CRUD][crud-appointments]. | 
 | `defaultLockDurationMs` | No | - | The default duration of the temporary slot lock (in milliseconds). |
 
 #### `users`
 
-With this field you can specify for each category of users which template has to be used when sending messages to notify the different
-phases of an appointment lifecycle (see the [service overview][overview] for more information).
+With this field you can specify, for each category of users, which template to use when sending messages on different phases of an appointment lifecycle (see the [service overview][overview] for more information), and the default values for the participation status fields.
 
 The structure of the map is the following:
 
@@ -99,21 +119,24 @@ The structure of the map is the following:
     "create": "template_id",
     "update": "template_id",
     "delete": "template_id",
-    "reminders": {
-      [
-        {
-          "template": "template_id_1",
-          "reminderMilliseconds": 86400000   
-        },
-        {
-          "template": "template_id_2",
-          "reminderMilliseconds": 3600000   
-        },
-      ]
-    }
+    "reminders": [
+      {
+        "template": "template_id_1",
+        "reminderMilliseconds": 86400000   
+      },
+      {
+        "template": "template_id_2",
+        "reminderMilliseconds": 3600000   
+      }
+    ],
+    "status": "accepted|declined|tentative|needs-action",
+    "required": true,
+    "acceptanceRequired": true
   }
 }
 ```
+
+##### Message templates
 
 As you can see, inside each user category you can specify four fields: **create**, **update**, **delete** and **reminders**.
 Each of these fields will allow you to set the template for a specific part of the appointment lifecycle. The **reminders** field allows setting multiple templates and the amount of time before the appointment (expressed in milliseconds) when each of these templates has to be sent. 
@@ -132,6 +155,19 @@ In particular, you will have:
 Every reminder belonging to the same user group must have an unique template id
 
 :::
+
+##### Participant status
+
+:::info
+
+**v2.2.0**
+
+The `status`, `required` and `acceptanceRequired` fields are required only if the [`isParticipantStatusAvailable` configuration field][is-participant-status-available] is set to `true`.
+
+:::
+
+The `status`, `required` and `acceptanceRequired` fields allow you to specify, for a given user category, the default values for the participant status fields of the same name.
+Since these fields are fully managed by the AM and accessible in read only through the API, setting these defaults is the only way to set the corresponding values in the [appointment CRUD fields][crud-appointments].
 
 #### `channels`
 
@@ -213,6 +249,42 @@ If the value is set to **false**, the user can't use search endpoints.
 If the value is set to **true**, the user can call the `POST /searches/first-available-slot/` endpoint.
 The default value is **false**.
 
+#### `isFlexibleSlotAvailable`
+
+:::info
+
+**v2.2.0**
+This configuration field is supported only from v2.2.0
+
+:::
+
+:::info
+
+This configuration option is ignored when the AM is deployed in [*Appointments mode*][appointments-mode].
+
+:::
+
+A `boolean` which determines if you can create availabilities without setting a fixed slot duration.
+
+If the value is set to **false** (*default*), you must always provide a slot duration when creating the availability (see the [POST /availabilities/ endpoint][create-availability]) and you can only change its value later (see the [PATCH /availabilities/:id endpoint][update-availability]).
+
+If the value is set to **true**, you can create availabilities without specifying a slot duration (see the [POST /availabilities/ endpoint][create-availability]) or you can remove a slot duration from an existing availability (see the [PATCH /availabilities/:id endpoint][update-availability]).
+
+#### `isParticipantStatusAvailable`
+
+:::info
+
+**v2.2.0**
+This configuration field is supported only from v2.2.0 and is disabled by default for backward compatibility.
+
+:::
+
+A `boolean` which determines if the `participants` field in the [appointments CRUD][crud-appointments] is required and used to store additional status information about the participants.
+
+If the value is set to **false** (*default*), you don't need the `participants` fields in the CRUD and the appointment only stores the IDs of the participants in the [`users` configuration field][users].
+
+If the value is set to **true**, the AM automatically updates the `participants` field every time a participant is added or removed from the appointment through the [`users` configuration field][users].
+
 #### `defaultLockDurationMs`
 
 This field defines the default duration in milliseconds of the temporary slot lock.
@@ -244,6 +316,7 @@ The Appointment Manager accepts the following environment variables.
 | **TELECONSULTATION_SERVICE_NAME** | If `isTeleconsultationAvailable` is `true` | Name of the teleconsultation service. **Required** if you want to create teleconsultations.
 | **TELECONSULTATION_ENDPOINT_FE** | If `isTeleconsultationAvailable` is `true` | Endpoint associated with the Teleconsultation Service FrontEnd (the root). **Required** if you want to create teleconsultations.
 | **TELECONSULTATION_BASE_PATH** | If `isTeleconsultationAvailable` is `true` | Custom base path for the teleconsultation URL. **Required** if you want to create teleconsultations.
+| **PARTICIPANT_USER_PROPERTIES** | If `isParticipantAvailable` and `isUserAvailable` are set to `true` | Comma-separated list containing the fields in the users crud to insert in the appointment `participants` array.
 
 ### CRUD collections
 
@@ -253,6 +326,14 @@ Availabilities, appointments and exceptions CRUD collections need to have a `str
 The name of the `string` field in the users CRUD collection that identifies a user can be specified in the `USER_ID_FIELD_NAME` [environment variable][environment-variables].
 
 #### Appointments CRUD collection
+
+:::info
+
+**v2.2.0**
+Starting from v2.2.0 the new `participants` field is used to store additional details about the participants status.
+You need to add the field to the CRUD only if you enable the feature by explicitly setting the [`isParticipantStatusAvailable` configuration field][is-participant-status-available] to `true`.
+
+:::
 
 :::info
 
@@ -282,6 +363,17 @@ The appointments collection must have the following fields, plus the same custom
 | isFlagged            | `boolean` | No | No | If an appointment may need to be rescheduled because the associated slot is no longer available. |
 | status               | `string` | Yes | No | The status of the appointment: `AVAILABLE` (reserved but not confirmed) or `BOOKED` (confirmed). |
 | lockExpiration       | `date` | No | Yes | The expiration of the slot's temporary lock (expressed in format **ISO 8601**), set when the slot is locked with the `PATCH /slots/lock/:id`. |
+| participants         | `array of object` | No | No | A list of all the participants with status information. |
+
+Each participant has the following properties:
+
+| Name               | Type     | Required | Description                                                                                                                                     |
+|--------------------|----------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| id                 | `string` | Yes      | The user ID, corresponding to the value in the [custom user field][users].                                                                      |
+| type               | `string` | Yes      | The role or group the user belongs to, corresponding to the name of the [custom user field][users] containing it.                               |
+| status             | `string` | Yes      | If the user (tentatively) accepted or declined the appointment. Admitted values: `accepted`, `declined`, `tentative`, `needs-action`. These values have the same semantic of the [FHIR ParticipationStatus][fhir-participationstatus] value set. |
+| required           | `boolean` | Yes      | If the user is required to attend the appointment.     |
+| acceptanceRequired | `boolean` | Yes      | If the user is expected to explicitly accept or decline the participation to the appointment.   |
 
 :::tip
 
@@ -301,7 +393,20 @@ contained in one or more attributes of the appointment itself.
 When you create your CRUD you will need to create a new field for each category of users you will need to involve in the
 event. These fields have to be of type `string` or `array of string`.
 
+The AM will automatically keep the `participants` field aligned with these fields.
+
 #### Availabilities CRUD collection
+
+:::info
+
+**v2.2.0**
+Starting from v2.2.0 the slot duration (`slotDuration`) is no longer required if [`isFlexibleSlotAvailable` configuration option][service-configuration] is set to `true` (`false` by default), resulting in flexible duration slots.
+For more details about flexible duration slots, take a look at the [*Overview* section][flexible-slots].
+
+The following optional fields have been added: `onCreate`, `onUpdate`, `onDelete` and `onCompute`.
+If you have custom properties with these names, please rename them before upgrading from a version prior to 2.2.0.
+
+:::
 
 :::info
 
@@ -322,12 +427,16 @@ The availabilities collection must have the following fields:
 |------|------|----------|-------------|
 | startDate | `date` | Yes | Start date/time of the first occurrence of the availability, expressed in format **ISO 8601** |
 | endDate | `date` | Yes | End date/time of the first occurrence of the availability, expressed in format **ISO 8601** |
-| slotDuration | `number` | Yes | The duration of the slot (in minutes) |
+| slotDuration | `number` | No | The duration of the slot (in minutes). **Required** before version 2.2.0. |
 | simultaneousSlotsNumber | `number` | Yes | The number of appointments you can book in each slot. |
 | each | `string` | No | The frequency of a recurring availability: daily (`day`), weekly (`week`) or monthly (`month`). |
 | on | `Array of number` | No | The weekdays on which a weekly availability occurs (0 for Sunday, 1 for Monday, 2 for Tuesday, and so on). |
 | untilDate | `date` | No | The expiration date of a recurring availability. If the field is omitted, the availability never expires. |
-| timeZone | `string` | No | The IANA time zone of the availability |
+| timeZone | `string` | No | The IANA time zone of the availability. |
+| onCreate | `Object` | No | The custom behaviors when the availability is created. |
+| onUpdate | `Object` | No | The custom behaviors when the availability is updated. |
+| onDelete | `Object` | No | The custom behaviors when the availability is deleted. |
+| onCompute | `Object` | No | The custom behaviors when the availability occurrences and slots are computed. |
 
 :::tip
 
@@ -367,7 +476,6 @@ The Appointment Manager uses the users CRUD collection to fetch additional infor
 
 - `POST /searches/first-available-slot/`.
 
-
 ## Appointments mode
 
 This section provide instructions on how to configure the Appointment Manager to deploy it in appointments mode.
@@ -394,7 +502,8 @@ This section provide instructions on how to configure the Appointment Manager to
 - Create the [appointments CRUD collection][crud-appointments] with at least the following custom properties:
 
   - one field for each [`users`][users] category defined in the service configuration;
-  - the field of type `string` containing the resource ID (e.g. `resourceId`).
+  - the field of type `string` containing the resource ID (e.g. `resourceId`);
+  - the `participants` field, if you set the [`isParticipantStatusAvailable` configuration field][is-participant-status-available] to `true`.
 
 - Add the name of the [appointments CRUD collection][crud-appointments] to the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
 
@@ -408,7 +517,7 @@ Since the reminder service in turn requires the messaging service to send remind
 
 This section provide instructions on how to configure the Appointment Manager to deploy it in full mode.
 
-- Configure the service performing all the steps described in [**appointments mode**][appointments-mode]
+- Configure the service performing all the steps described in [**Appointments mode**][appointments-mode]
 
 - Create the [availabilities CRUD collection][crud-availabilities] with at least the following custom properties:
 
@@ -428,7 +537,15 @@ Since the reminder service in turn requires the messaging service to send remind
 
 :::
 
+
+[crud-service-doc]: ../../runtime_suite/crud-service/overview_and_usage "CRUD Service official documentation"
+[messaging-service-doc]: ../../runtime_suite/messaging-service/overview "Messaging Service official documentation"
+[timer-service-doc]: ../../runtime_suite/timer-service/overview "Timer Service official documentation"
+[teleconsultation-service-doc]: ../../runtime_suite/teleconsultation-service-backend/overview "Teleconsultation Service official documentation"
+
 [overview]: ./10_overview.md "Overview page"
+[flexible-slots]: ./10_overview.md#flexible-slots "Flexible slots | Availabilities and slots | Overview"
+[participant-status]: ./10_overview.md#participant-status "Participant status | User participants | Appointments | Overview"
 
 [service-configuration]: #service-configuration "Service configuration | Configuration"
 [environment-variables]: #environment-variables "Environment variables | Configuration"
@@ -438,3 +555,9 @@ Since the reminder service in turn requires the messaging service to send remind
 [appointments-mode]: #appointments-mode "Appointments mode | Configuration"
 [full-mode]: #full-mode "Full mode | Configuration"
 [users]: #users "Users | Service configuration | Configuration"
+[is-participant-status-available]: #isparticipantstatusavailable "`isParticipantStatusAvailable` | Service configuration | Configuration"
+
+[create-availability]: ./30_usage.md#post-availabilities "POST /availabilities/ | Availabilities | Usage"
+[update-availability]: ./30_usage.md#patch-availabilitiesid "PATCH /availabilities/:id | Availabilities | Usage"
+
+[fhir-participationstatus]: https://www.hl7.org/fhir/valueset-participationstatus.html "Valueset-participationstatus - FHIR v5.0.0"
