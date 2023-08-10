@@ -852,25 +852,52 @@
           "id": "tutorial/flow_manager/flow_manager_tutorial",
           "type": "doc"
         },
-        {
-          "id": "tutorial/fast_data/fast_data_low_code_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/fast_data/bucket_storage_support_tutorial",
-          "type": "doc"
-        },
+
         {
           "id": "tutorial/design_overview/design_overview",
           "type": "doc"
         },
         {
-          "id": "tutorial/migration/fast_data_migration_tutorial",
+          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
           "type": "doc"
         },
         {
-          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
-          "type": "doc"
+          "label": "Fast Data",
+          "type": "category",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "tutorial/fast_data/fast_data_low_code_tutorial",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/fast_data/bucket_storage_support_tutorial",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/migration/fast_data_migration_tutorial",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "label": "Backoffice",
+          "type": "category",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "tutorial/backoffice/basics",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/backoffice/templates",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/backoffice/microfrontends",
+              "type": "doc"
+            }
+          ]
         }
       ],
       "label": "Tutorials",
