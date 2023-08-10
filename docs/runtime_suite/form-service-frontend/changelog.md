@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.8.0 2023-07-28
+
+### Added
+
+- Update UI to display 'formExpirationDate' property with date picker
+- Update builder page to include 'formExpirationDate' property on form save
+- Update builder page to include 'formExpirationDate' property on form update
+- Update visualizer page to show a modal in case the form is expired
+- The form expiration date format can be set in the backend configuration file
+
 ## 1.7.1 2023-03-09
 
 ### Fixed

@@ -390,10 +390,6 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/monitoring/configuration",
-          "type": "doc"
-        },
-        {
           "id": "development_suite/monitoring/dashboard",
           "type": "doc"
         }
@@ -1014,13 +1010,13 @@
       "type": "category",
       "collapsed": true,
       "label": "PaaS",
+      "link": {
+        "id": "paas/overview",
+        "type": "doc"
+      },
       "items": [
         {
-          "id": "paas/overview",
-          "type": "doc"
-        },
-        {
-          "id": "paas/alerting_rules",
+          "id": "paas/maintenance",
           "type": "doc"
         },
         {
@@ -1040,24 +1036,20 @@
           "type": "doc"
         },
         {
-          "id": "paas/K8s_roles_and_permissions",
-          "type": "doc"
-        },
-        {
           "label": "Tools",
           "type": "category",
           "collapsed": true,
           "items": [
             {
+              "id": "paas/runtime",
+              "type": "doc"
+            },
+            {
+              "id": "paas/message-broker",
+              "type": "doc"
+            },
+            {
               "id": "paas/docker-registry",
-              "type": "doc"
-            },
-            {
-              "id": "paas/kube-green",
-              "type": "doc"
-            },
-            {
-              "id": "paas/cert-manager",
               "type": "doc"
             },
             {
@@ -1065,11 +1057,23 @@
               "type": "doc"
             },
             {
-              "id": "paas/mtls",
+              "id": "paas/cert-manager",
               "type": "doc"
             },
             {
-              "id": "paas/alarms",
+              "id": "paas/grafana",
+              "type": "doc"
+            },
+            {
+              "id": "paas/kube-green",
+              "type": "doc"
+            },
+            {
+              "id": "paas/telepresence",
+              "type": "doc"
+            },
+            {
+              "id": "paas/mtls",
               "type": "doc"
             }
           ]
@@ -1110,6 +1114,13 @@
           }]
         }
       ]
+    },
+
+    {
+      "label": "Bring Your Own Infrastructure",
+      "id": "byoi/byoi-overview",
+      "type": "doc"
+
     }
   ],
   "marketplace": [
