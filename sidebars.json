@@ -8,6 +8,10 @@
       "collapsed": true,
       "items": [
         {
+          "id": "development_suite/company/overview",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/company/create",
           "type": "doc"
         },
