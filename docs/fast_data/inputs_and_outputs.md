@@ -375,7 +375,6 @@ channels:
               required:
                 - operationType
                 - operationTimestamp
-                - documentId
                 - projectionName
                 - source
                 - primaryKeys
@@ -385,8 +384,8 @@ channels:
                   enum: ["INSERT", "UPDATE", "DELETE", "UPSERT"]
                   description: Type of operation applied on the Projection's record
                 operationTimestamp:
-                  type: integer
-                  description: ISO String of the time at which the MongoDB operation on the projection's record has been carried out
+                  type: string
+                  description: ISO 8601 String of the time at which the MongoDB operation on the projection's record has been carried out
                 documentId:
                   description: Equals to the _id of the Projection's record on MongoDB
                   type: string
