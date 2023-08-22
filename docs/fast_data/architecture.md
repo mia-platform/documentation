@@ -120,7 +120,7 @@ As mentioned previously, you can use the SVTG service to keep your projections u
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and make them adhere to a standard of interest, and then stores the Projections on MongoDB;
    1. The RTU emits a `Projection Update` event;
-3. The SVTG computes and emits an `sv-trigger` event, sending it to Kafka;
+3. The SVTG accesses the Projections database in order to compute the identifier of the Single View to be generated, then computes and emits an `sv-trigger` event, sending it to Kafka;
 4. The SVC reads the `sv-trigger` message by reacting to the Kafka message. Then, it aggregates the Single View using the new data and stores it in MongoDB.
    1. The SVC emits a `Single View Update Event` if it is configured to do so. 
 
