@@ -4,7 +4,7 @@ title: User profile picture
 sidebar_label: User profile picture
 ---
 
-Each user in the Console has an avatar image that can be configured on the authentication provider.
+Each user in the Console has an avatar image that can be configured on the authentication provider. This image will be visible from the Console launchbar and right inside the "Profile" section, under the "Personal info" tab. 
 
 ## GitLab
 
