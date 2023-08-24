@@ -14,14 +14,14 @@ There are two main deployment approaches: **pull-based** and **push-based**, whi
 
 ### Pull-Based Deployment
 
-**Pull-based deployment** involves the target environment autonomously fetching updates from a centralized source, typically a version control repository, when it is ready to apply the changes. The target environment "pulls" the updates on its own schedule, ensuring consistency and allowing for controlled, autonomous updates. This approach is often associated with the GitOps philosophy, where the desired state is defined in a Git repository, and automated tools pull and apply these changes to the target environment.
+**Pull-based deployment** involves the target environment autonomously fetching updates from a centralized source, typically a version control repository, when it is ready to apply the changes. The target environment "pulls" the updates on its own schedule, ensuring consistency and allowing for controlled, autonomous updates. This approach is often associated with the **GitOps philosophy**, where the desired state is defined in a Git repository, and automated tools pull and apply these changes to the target environment.
 
 :::info
 Learn more about the **GitOps deployment strategy** at the [dedicated documentation page](/development_suite/deploy/gitops-based/index.md).
 :::
 
 ### Push-Based Deployment
-**Push-Based Deployment** is characterized by changes being directly "pushed" or initiated by an external entity, such as a CI/CD pipeline. In this approach, updates are pushed to the target environment as soon as they are available. While this can provide rapid updates, it requires a more immediate connection between the source and target environments, which might expose the target to higher risk and require careful coordination.
+**Push-Based Deployment** is characterized by changes being directly "pushed" or initiated by an external entity, such as a **CI/CD pipeline**. In this approach, updates are pushed to the target environment as soon as they are available. While this can provide rapid updates, it requires a more immediate connection between the source and target environments, which might expose the target to higher risk and require careful coordination.
 
 :::info
 Learn more about the **Pipeline-based deployment strategy** at the [dedicated documentation page](/development_suite/deploy/pipeline-based/index.md).
