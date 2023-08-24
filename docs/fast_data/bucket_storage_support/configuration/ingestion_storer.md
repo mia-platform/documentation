@@ -352,7 +352,7 @@ On 3 topics with 9 partitions each, we recommend the following request and limit
 - request: 400
 - limit: 600
 
-with 1 topic and 1 partition the service averages a consumption of ~130MB
+With 1 topic and 1 partition, the service consumes ~130MB on average.
 
 :::info
 We recommend file sizes larger than 5MB. The larger the file size is the larger
