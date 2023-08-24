@@ -29,8 +29,8 @@ download larger files and reprocess them by a Kafka producer. This setup
 also requires a larger amount of memory to store caches before actual upload.
 
 The service always attempts to bring the topic `lag` to `0`. Naturally, before `1.5.0`,
-this was happening as a design choice. After `1.5.0`, caches are automatically committed,
-even if the file size is not reached, when a timeout expires. Later, on cache updates files
+this was happening as a design choice. After version `1.5.0`, caches are automatically committed
+when a timeout expires, even if the file size is not reached. Later, on cache updates files
 are updated on the bucket to enforce file size consistency.
 
 ## Service Configuration
