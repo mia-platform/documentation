@@ -23,14 +23,14 @@ read message either from _post-ingestion_ topics fed by the Ingestion Storer (wh
 or directly from _ingestion_ topics alongside Ingestion Storer (when implementing a [parallel architecture](/fast_data/bucket_storage_support/integration.md#parallel-architecture)).
 In the latter case, _post-ingestion_ messages generation may be disabled since no consumer would read those messages.
 
-Starting from version `1.5.0`, messages are grouped into files of a given, configurable,
+Since version `1.5.0` messages are grouped into files of a given, configurable,
 size. This feature allows for a faster reingestion since it takes less time to
 download larger files and reprocess them by a Kafka producer. This setup
 also requires a larger amount of memory to store caches before actual upload.
 
-The service always attempts to bring the topic `lag` to `0`. Before version `1.5.0`,
-this was happening as a design choice. After version `1.5.0`, caches are automatically committed
-when a timeout expires, even if the file size is not reached. Later, on cache updates files
+The service always attempts to bring the topic `lag` to `0`. Naturally, before `1.5.0`,
+this was happening as a design choice. After `1.5.0`, caches are automatically committed,
+even if the file size is not reached, when a timeout expires. Later, on cache updates files
 are updated on the bucket to enforce file size consistency.
 
 ## Service Configuration
@@ -176,7 +176,7 @@ Other features of the service can be tuned by using the following complete list 
    - `KAFKA_USERNAME`: (_mandatory_) username to connect to Kafka cluster
    - `KAFKA_PASSWORD`: (_mandatory_) password to connect to Kafka cluster
 
-### Full Service Customization
+### Full Serice Customization
 
 When the application is built, the main configuration is included within it.
 It is designed so that most configurable values can be customized through environment variables.
@@ -338,21 +338,21 @@ A message payload has the following json schema:
 
 ### Memory
 
-On startup, the service will allocate the equivalent of:
+The service will allocate, on startup the equivalent of
 
 ```shell
 bss.max-cache-size * <number of topics> * <number of partitions> + ~100MB
 ```
 
-This amount depends on the number of replicas of the service you will deploy and
+This amount depends on the number of replicas of the service you'll deploy and
 the partitioning strategies adopted by consumers and brokers.
 
-On 3 topics with 9 partitions each, we recommend the following request and limit:
+Roughly on 3 topics with 9 partitions each we'd recommend:
 
 - request: 400
 - limit: 600
 
-With 1 topic and 1 partition, the service consumes ~130MB on average.
+with 1 topic and 1 partition the service averages a consumption of ~130MB
 
 :::info
 We recommend file sizes larger than 5MB. The larger the file size is the larger

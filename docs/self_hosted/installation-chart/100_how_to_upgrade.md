@@ -32,7 +32,7 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ### Upgrade from v11.4.0 to v11.4.1
 
-Starting from version v11.4.1 (Chart version v9.5.0), the feature toggle service uses Rönd. Hence, you should add `rbacSidecar` configurations like the following:
+With version v11.4.1 (Chart version v9.5.0) the feature toggle service now uses Rönd, therefore `rbacSidecar` configurations should be added:
 
 ```yaml
 
