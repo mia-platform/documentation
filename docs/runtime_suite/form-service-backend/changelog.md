@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 - Configuration file accepts the field `isMessagingAvailable` and `messagingOptions` for managing notifications via messaging service
+- Created API GET /templates for retrieving email templates
 
 ## [1.8.1] 2023-07-28
 

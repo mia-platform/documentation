@@ -22,3 +22,8 @@ This object contains the necessary fields to configure email sending through the
 - **messagingServiceName** (*required*): the name of the messaging service.
 - **templatesCrudName** (*required*): The name of the CRUD collection for message templates.
 - **userIdField** (*required*): The field of the users CRUD collection containing the id used in this service.
+
+## Usage
+
+### Retrieving email templates - GET /templates
+This service exposes an endpoint for retrieving the email templates. Such endpoint should be used by the frontend to allow the admin to set the proper template for each form.
