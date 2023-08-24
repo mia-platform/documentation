@@ -176,7 +176,7 @@ Other features of the service can be tuned by using the following complete list 
    - `KAFKA_USERNAME`: (_mandatory_) username to connect to Kafka cluster
    - `KAFKA_PASSWORD`: (_mandatory_) password to connect to Kafka cluster
 
-### Full Serice Customization
+### Full Service Customization
 
 When the application is built, the main configuration is included within it.
 It is designed so that most configurable values can be customized through environment variables.
