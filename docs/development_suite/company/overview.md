@@ -20,6 +20,6 @@ Through the Company Overview, users gain access to:
 - **Webhooks:** Leverage webhooks to ease the integration and automation between various tools and services. [More details](/development_suite/webhooks-and-events/webhooks.md)
 - **Design Overview:** Obtain a visual overview of resources, filtering, organization, and customization. [More details](/development_suite/governance/design-overview.md)
 
-The architecture of Company Overview is aimed at offering a clear and comprehensive view of business undertakings, with tools readily available to optimize efficiency, governance, and integration. This all-inclusive approach provides a 360° view of resources and operations, streamlining and enhancing project management simultaneously.
+The architecture of Company Overview is aimed at offering a clear and comprehensive view of business undertakings, with tools readily available to optimize efficiency, governance, and integration. This all-inclusive approach provides a 360-degree view of resources and operations, while simultaneously streamlining and enhancing project management.
 
 
