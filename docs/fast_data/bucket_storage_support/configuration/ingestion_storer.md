@@ -347,7 +347,7 @@ bss.max-cache-size * <number of topics> * <number of partitions> + ~100MB
 This amount depends on the number of replicas of the service you will deploy and
 the partitioning strategies adopted by consumers and brokers.
 
-Roughly on 3 topics with 9 partitions each we'd recommend:
+On 3 topics with 9 partitions each, we recommend the following request and limit:
 
 - request: 400
 - limit: 600
