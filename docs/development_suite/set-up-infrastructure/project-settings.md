@@ -54,7 +54,7 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 ### Image pull secrets
 
-![image pull secret](img/settings-image-pull-secret.png)
+![image pull secrets](img/settings-image-pull-secrets.png)
 
 :::note
 An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
@@ -68,12 +68,6 @@ This card shows the user, in the form of a table, the list of names that will be
 
 This card shows and gives the user the ability to change some runtime settings. Specifically:
 - **Runner Tool**: specifies the command line deployment tool used by the project. Either one of "mlp" and "Other tool". In the case of mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
-- **Prefix Env**: if enabled, `MIA_` will be used as a prefix for [Public Variables](/development_suite/api-console/api-design/public_variables.md). If the project uses mlp you don't need to use the `MIA_` prefix;
-
-:::note
-If you switch off `useMiaPrefixEnvs`, you have to remove the `MIA_` prefix by hand. This operation is not performed automatically by the Console.
-:::
-
 - **Monitoring**: tags specifying the different supported monitoring systems.
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
