@@ -34,7 +34,7 @@ In this step, you are required to insert the general information about your new 
 
 In this step, it is indicated the location of your new project and you have to choose its template.  
 By default, the project is saved on the default Git provider, but you can choose to save it to a different one by clicking on the `Change Git provider` button.  
-The git provider can be changed only if the company has been configured with more than one git provider.
+The Git provider can be changed only if the company has been configured with more than one Git provider.
 
 - **Git Provider**: this field represents the provider ID used by your chosen company (e.g. _gitlab_, _github_, _azure-devops_, _bitbucket_);
 - **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git provider. It specifies the location of your project on the Git provider website;
