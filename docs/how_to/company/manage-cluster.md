@@ -1,5 +1,5 @@
 ---
-id: add-edit-remove-cluster
+id: manage-cluster
 title: Connect and Manage a Cluster
 sidebar_label: Connect and Manage a Cluster
 ---
