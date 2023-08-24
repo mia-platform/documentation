@@ -161,7 +161,7 @@ For other possibilities, please check [mustache.js](https://github.com/janl/must
 You may want to write a file or a folder for every environment. To enable that, you can write the file name (or folder) in the template as `%envId%`, which will be interpolated for every environment.
 The interpolation data in those files include the environments fields at the first level (as in `mustache.js` sections), with the project as a key for every environment.
 
-To see an example of Jenkins pipelines definition, take a look at [this](/development_suite/deploy/configure-jenkins.md#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
+To see an example of Jenkins pipelines definition, take a look at [this](/development_suite/deploy/pipeline-based/configure-jenkins.md#how-to-automatically-create-jenkins-job-on-project-creation) page of our doc.
 
 ## Create default services
 
