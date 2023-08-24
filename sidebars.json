@@ -8,6 +8,10 @@
       "collapsed": true,
       "items": [
         {
+          "id": "development_suite/company/overview",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/company/create",
           "type": "doc"
         },
@@ -26,10 +30,6 @@
           "items": [
             {
               "id": "development_suite/clusters-management/vendors-runtime-services",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/clusters-management/add-edit-remove-cluster",
               "type": "doc"
             }
           ]
@@ -893,6 +893,10 @@
         },
         {
           "id": "how_to/crud_service/crud_oss_usage",
+          "type": "doc"
+        },
+        {
+          "id": "how_to/company/manage-cluster",
           "type": "doc"
         }
       ],

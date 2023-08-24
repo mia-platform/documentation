@@ -548,5 +548,9 @@
   "/docs/paas/K8s_roles_and_permissions": {
     "destination": "/docs/paas/runtime",
     "addedOn": "2023-08-03"
+  },
+  "/docs/development_suite/clusters-management/add-edit-remove-cluster": {
+    "destination": "/docs/how_to/company/manage-cluster",
+    "addedOn": "2023-08-11"
   }
 }
