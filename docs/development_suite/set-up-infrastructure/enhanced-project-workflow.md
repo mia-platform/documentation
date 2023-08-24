@@ -28,15 +28,15 @@ Another significant change is the way Console configurations are saved and deplo
 Before deploying the configurations to the cluster, users can **review** which workload changes are going to be deployed by opening the review modal. This operation gives the developer a clear view of what is going to be released on the runtime environment, and it is mandatory if the user is deploying on a production environment. 
 
 Moreover, in the new workflow the user will be able to **export Kubernetes configurations** by clicking on a download button.
-:::caution  
+:::note  
 The review and export features are still in development and will be available in future releases.
 :::
 
-:::note
+:::caution
 When deploying your configurations to the cluster, keep in mind that only the changes pushed to the repository’s default branch will be considered.
 :::
 
-The new deployment workflow also unlocks the possibility to adopt a **pull-based deployment strategy**, in which a GitOps tool is set up to automatically align the cluster’s state to the latest changes pushed to the Git repository. To find out more about pull-based deployment and its advantages, visit the GitOps deployment strategy documentation page.  <!-- TODO: (LINK) -->
+The new deployment workflow also unlocks the possibility to adopt a **pull-based deployment strategy**, in which a GitOps tool is set up to automatically align the cluster’s state to the latest changes pushed to the Git repository. To find out more about pull-based deployment and its advantages, visit the [GitOps deployment strategy documentation page](/development_suite/deploy/gitops-based/index.md).
 
 ## Activating the feature
 
