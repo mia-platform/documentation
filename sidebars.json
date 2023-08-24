@@ -154,7 +154,11 @@
         {
           "id": "console/project-configuration/documentation-portal",
           "type": "doc"
-        }
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+          "type": "doc"
+        }        
       ]
     },
     {
