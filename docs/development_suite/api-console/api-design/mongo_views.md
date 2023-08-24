@@ -25,6 +25,7 @@ The data exposed by the view are the result of a series of step the data of the 
 MongoDB will run an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/) starting from the `source` collection.    
 When you create a new view, the console will set a default pipeline which returns only `PUBLIC` documents. You can edit it through the dedicated editor.   
 
+<!-- TODO: Change screenshot -->
 ![Pipeline view](img/pipeline_card_view.png)
 
 :::note
@@ -34,6 +35,12 @@ If you expect to perform complex aggregation with many collections involved, or 
 
 :::caution
 This feature is available from version `5.2.2` of [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md). Creating a view while using a lower version of CRUD Service would make it crash at boot.
+:::
+
+Moreover, from version 11.5.0 of the Console you can also decide to enable lookups to get [Writable Views](/runtime_suite/crud-service/50_writable_views.md). To do that you have to enable the _Enable Lookup_ toggle included next to the `source` collection input.
+
+:::caution
+To enable lookup, the CRUD Service installed in the project must be of version 6.9.0 or superior in every environment.
 :::
 
 ### Fields
