@@ -28,7 +28,7 @@ size. This feature allows for a faster reingestion since it takes less time to
 download larger files and reprocess them by a Kafka producer. This setup
 also requires a larger amount of memory to store caches before actual upload.
 
-The service always attempts to bring the topic `lag` to `0`. Naturally, before `1.5.0`,
+The service always attempts to bring the topic `lag` to `0`. Before version `1.5.0`,
 this was happening as a design choice. After version `1.5.0`, caches are automatically committed
 when a timeout expires, even if the file size is not reached. Later, on cache updates files
 are updated on the bucket to enforce file size consistency.
