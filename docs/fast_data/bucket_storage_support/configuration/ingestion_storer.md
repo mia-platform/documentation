@@ -23,7 +23,7 @@ read message either from _post-ingestion_ topics fed by the Ingestion Storer (wh
 or directly from _ingestion_ topics alongside Ingestion Storer (when implementing a [parallel architecture](/fast_data/bucket_storage_support/integration.md#parallel-architecture)).
 In the latter case, _post-ingestion_ messages generation may be disabled since no consumer would read those messages.
 
-Since version `1.5.0` messages are grouped into files of a given, configurable,
+Starting from version `1.5.0`, messages are grouped into files of a given, configurable,
 size. This feature allows for a faster reingestion since it takes less time to
 download larger files and reprocess them by a Kafka producer. This setup
 also requires a larger amount of memory to store caches before actual upload.
