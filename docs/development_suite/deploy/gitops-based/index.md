@@ -1,7 +1,7 @@
 ---
 id: gitops-based
-title: GitOps deployment strategy (BETA)
-sidebar_label: GitOps deployment strategy (BETA)
+title: GitOps deployment strategy
+sidebar_label: GitOps deployment strategy
 ---
 
 :::caution

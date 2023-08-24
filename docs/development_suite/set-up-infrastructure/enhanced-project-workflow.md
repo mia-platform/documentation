@@ -1,10 +1,14 @@
 ---
 id: enhanced-project-workflow
-title: Enhanced Project Workflow (BETA)
-sidebar_label: Enhanced Project Workflow (BETA)
+title: Enhanced Project Workflow
+sidebar_label: Enhanced Project Workflow
 ---
 
-The Enhanced Project Workflow is a new feature, currently under development, that aims to improve the developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities.
+:::caution
+This is a **BETA** feature and, as such, is currently under active development. Pay attention using it.
+:::
+
+The **Enhanced Project Workflow** feature aims to improve the developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities.
 
 ## Changes to the Console workflow
 
