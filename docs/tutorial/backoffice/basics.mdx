@@ -142,7 +142,7 @@ Now, the CRUD data can be exposed using an endpoint named `products`.
 
 ### Customize the Table Page
 
-Within the `Pages` tab, located under the `Backoffice` section, you'll find the `Products` page we recently created. Click on the `Compose` button (positioned between the `Edit` and `Delete` buttons) to access the page composer.
+Within the `Pages` tab, located under the `Backoffice` section, you'll find the `Products` page we recently created. Click on the `Compose` button (placed on the left of the "Edit" button) to access the page composer.
 
 #### CRUD connector
 
@@ -199,7 +199,7 @@ If all is ok, we can click on the `Save` button to save the schema and then chec
 
 Now we can edit the insert and update form schema to show only the `name`, `price` and `description` fields.
 
-To modify the form schema in the `Layout` tab on the left panel we can click on the `Main` button and then on the `Form` button.
+To modify the form schema in the `Layout` tab on the left panel we can click on the `Main` button and then on the `Form Modal` button.
 
 ![Backoffice Page Composer](img/basics_12-backoffice-page-composer-form.png)
 
@@ -207,7 +207,7 @@ On the right panel, in the `Basic Properties` section, we can click on the `Edit
 
 ![Backoffice Page Composer Data Schema](img/basics_13-backoffice-page-composer-form-data-schema.png)
 
-In this case, we want to show only the `name`, `price` and `description` fields in the insert and update form so we can remove all the other fields (creatorId, createdAt, updaterId, updatedAt and \_\_STATE\_\_). About the `_id` field, we can remove it from the insert form because it is an auto-generated field, but we can show it in the update form using the `readOnly` property.
+In this case, we want to show only the `name`, `price` and `description` fields in the insert and update form so we can remove all the other fields (creatorId, createdAt, updaterId, updatedAt and \_\_STATE\_\_). About the `_id` field, we can remove it from the insert form (using the `hiddenOnInsert` property in `formOptions` object) because it is an auto-generated field, but we can show it in the update form using the `readOnlyOnUpdate` property in `formOptions` object.
 
 Below the schema that we can use for the insert and update form:
 
@@ -288,11 +288,11 @@ Go to the `Layout` tab on the left panel and click on the `Header` button, follo
 
 ![Backoffice Page Composer](img/basics_16-backoffice-page-composer-title.png)
 
-To update the tab label, click on the `Tab` button located on the left panel under the `Header` button. Then, on the right panel, click `Edit Property` under the `Tabs` label. In the appearing modal, select the `Edit` option.
+To update the tab label, click on the `Tabs` button located on the left panel under the `Header` button. Then, on the right panel, click `Edit Property` under the `Tabs` label. In the appearing modal, select the `Edit` option.
 
 ![Backoffice Page Composer](img/basics_17-backoffice-page-composer-tab-label.png)
 
-Now, you can modify the tab properties. For our example, change the `Label` input to `All`.
+Now, you can modify the tab properties. For our example, change the `Title` input to `All`.
 
 ![Backoffice Page Composer](img/basics_18-backoffice-page-composer-tab-label-edit.png)
 
@@ -306,7 +306,7 @@ You're now ready to link the page to the menu. Go back to the `Layout` tab, clic
 
 To set the new page as the default, go to the `Settings` tab. In the left panel, click on the `URIs` button and then, in the `Default URL`, input the new page path (`./products`).
 
-::: info
+:::info
 All the URLs in the configuration are relative to the page path. So, if you're referencing a page in the same directory, use `./` as a prefix. If it's a page in a subdirectory, the path should be `./subfolder/page`.
 :::
 

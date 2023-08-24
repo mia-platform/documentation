@@ -43,7 +43,7 @@ Provide an `id` for the page. For this example, we will use `angular`, then prov
 
 ![Create a new Backoffice Page using the Angular Microfrontend](img/microfrontends_03-create-angular-page.png)
 
-In the second wizard step, provide an `HTML` entrypoint. Use `{{your_address}}/angular` (the same address created in the endpoint step).
+In the second wizard step, provide an `HTML` entrypoint. Use `{{your_address}}/angular` (the same address created in the endpoint step) and make sure that the `Inject base` field is flagged.
 Click on the `Save` button, and you will be redirected to the Backoffice page.
 
 ![Create a new Backoffice Page using the Angular Microfrontend](img/microfrontends_04-create-angular-page-advanced.png)
@@ -63,7 +63,7 @@ Add the `zone.js` library to the `head` section, after the `<title>` tag in the 
 
 Now we can connect the page to the menu. To do that, return to the `Layout` tab and click on the `Layout` button on the left panel.
 
-In the right panel, click on `Edit Property` under the `Menu Items` section. Then click on the `Add Item` button and provide a `Label` and a `Link` for the menu item.
+In the right panel, click on `Edit Property` under the `Menu Items` section. Then click on the `Add Item` button and provide a `Label` and a `Id` for the menu item.
 
 ![Add a new menu item to the Backoffice Menu](img/microfrontends_06-add-menu-item.png)
 
@@ -96,7 +96,7 @@ Provide an `id` for the page. For this example, we will use `react`, then provid
 
 ![Create a new Backoffice Page using the React Microfrontend](img/microfrontends_10-create-react-page.png)
 
-In the second wizard step, provide an `HTML` entrypoint. Use `{{your_address}}/react` (the same address created in the endpoint step).
+In the second wizard step, provide an `HTML` entrypoint. Use `{{your_address}}/react` (the same address created in the endpoint step) and make sure that the `Inject base` field is flagged.
 Click on the `Save` button and you will be redirected to the Backoffice page.
 
 ![Create a new Backoffice Page using the React Microfrontend](img/microfrontends_11-create-react-page-advanced.png)
@@ -105,7 +105,7 @@ Click on the `Save` button and you will be redirected to the Backoffice page.
 
 Now we can connect the page to the menu. To do that, return to the `Layout` tab and click on the `Layout` button on the left panel.
 
-In the right panel, click on `Edit Property` under the `Menu Items` section. Then click on the `Add Item` button and provide a `Label` and a `Link` for the menu item.
+In the right panel, click on `Edit Property` under the `Menu Items` section. Then click on the `Add Item` button and provide a `Label` and a `Id` for the menu item.
 
 ![Add a new menu item to the Backoffice Menu](img/microfrontends_12-add-menu-item.png)
 
@@ -114,10 +114,6 @@ Now save the configuration and deploy. Check the [Save and Deploy](#save-and-dep
 The output of the React page should look similar to the following:
 
 ![React Microfrontend Output](img/microfrontends_13-react-output.png)
-
-## Save and Deploy
-
-Now we can save the configuration and deploy. Check the [Console Handbook](/tutorial/console/console_handbook.md) for more information about the deploy command.
 
 ## Backoffice Tutorials
 

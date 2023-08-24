@@ -129,8 +129,8 @@ In the second step of the wizard:
 
 In the `Pages` tab within the `Backoffice` section:
 
-- Locate the `Products` page that was previously created.
-- Click on the `Compose` button (between the `Edit` and `Delete` buttons) to open the page composer.
+- Locate the `Calendar` page that was previously created.
+- Click on the `Compose` button (placed on the left of the "Edit" button) to open the page composer.
 
 ![Create New Page](img/templates_08-backoffice-page-list.png)
 
@@ -150,7 +150,7 @@ Now return to the `Layout` tab. Here you can:
 If you wish to remove the `Export` button from the page:
 
 - Click on the `Export` button in the preview (highlighting the button in the left panel).
-- Uncheck the checkbox to remove the export functionality.
+- Uncheck the `Export`checkbox on the left sidebar to remove the export functionality.
 
 ![Create New Page](img/templates_10-backoffice-page-calendar-remove-export.png)
 
@@ -211,7 +211,7 @@ Now, let's expose the CRUD data using an endpoint called `gallery`.
 
 The `File Service` can support various file storage services, such as `AWS S3` and `Google Cloud Storage`. However, in this example, we'll use `MongoDB` as the file storage service.
 
-To achieve this, we need to create a new CRUD collection to store the files. Follow the same procedure outlined in the [Backoffice Tutorial Basics](/tutorial/backoffice/basics.mdx#create-crud-to-read-and-write-table-data) to create this collection. Here's the required data schema:
+To achieve this, we need to create a new CRUD collection called `files` to store the files. Follow the same procedure outlined in the [Backoffice Tutorial Basics](/tutorial/backoffice/basics.mdx#create-crud-to-read-and-write-table-data) to create this collection. Here's the required data schema:
 
 - `name`: Represents a `string` and is `required`.
 - `file`: Represents a `string` and is `required`.
@@ -280,7 +280,9 @@ Configure the following environment variables:
 * `CONFIG_FILE_PATH`: Set this to the path of the configuration file. In this case, use `/configurations/config.json`.
 * `PATH_PREFIX`: Set this to the path prefix of the file service. Here, use `/files/`.
 
-You can remove any other environment variables except for `LOG_LEVEL`, `HTTP_PORT`, `CRUD_URL`, `CONFIG_FILE_PATH`, `PATH_PREFIX`, and `HEADERS_TO_PROXY`. For the already configured environment variables, you can keep the default values.
+:::danger
+To avoid any build error you have to remove any other environment variables except for `LOG_LEVEL`, `HTTP_PORT`, `CRUD_URL`, `CONFIG_FILE_PATH`, `PATH_PREFIX`, and `HEADERS_TO_PROXY`.
+:::
 
 ![Create New Page](img/templates_13-backoffice-file-service-env-variables.png)
 
@@ -425,7 +427,7 @@ To create a new Backoffice page using the Backoffice Show Info/Details Template,
 
 ![Create New Page](img/templates_23-backoffice-detail-new-detail-page.png)
 
-In the `Pages` tab within the `Backoffice` section, you will see the newly created `Detail` page. Click on the `Compose` button to open the page composer.
+In the `Pages` tab within the `Backoffice` section, you will see the newly created `detail` page. Click on the `Compose` button to open the page composer.
 
 Configure the page as follows:
 - Update the `Page Title` to `Detail` using the same steps from the [Backoffice Tutorial Basics](/tutorial/backoffice/basics.mdx#personalize-the-page).
@@ -489,10 +491,6 @@ Now you can navigate to the `Products` page. Here's the output:
 ![Create New Page](img/templates_28-backoffice-table-page-with-detail.png)
 
 Clicking on the `Detail` button in one of the rows of the table will redirect you to the `Detail` page.
-
-## Save and Deploy
-
-To finalize your changes, save the configuration and deploy. Refer to the [Console Handbook](/tutorial/console/console_handbook.md) for more information about the deploy command.
 
 ## Backoffice Tutorials
 
