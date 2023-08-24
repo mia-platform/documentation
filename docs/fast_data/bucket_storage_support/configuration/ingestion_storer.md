@@ -338,7 +338,7 @@ A message payload has the following json schema:
 
 ### Memory
 
-The service will allocate, on startup the equivalent of
+On startup, the service will allocate the equivalent of:
 
 ```shell
 bss.max-cache-size * <number of topics> * <number of partitions> + ~100MB
