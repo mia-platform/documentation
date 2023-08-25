@@ -11,6 +11,10 @@ The pages are fully customizable and they can be modified to implement a new fun
 The Backoffice is not included by default in the Payment Integration Hub Application.
 :::
 
+:::note
+A set of ready to use configuration for Mongo View, that make your data available to the backoffice, are available in the [configuration section](./50_configuration.md).
+:::
+
 ## Transactions
 
 ### Payments Overview
@@ -46,1130 +50,1209 @@ Here is available the configuration for this page.
 
 ```json
 {
-"definitions": {
+  "definitions": {
     "dataSchema": {
-    "type": "object",
-    "properties": {
+      "type": "object",
+      "properties": {
         "_id": {
-        "label": "ID",
-        "type": "string",
-        "visualizationOptions": {
+          "label": "ID",
+          "type": "string",
+          "visualizationOptions": {
             "hidden": true
-        },
-        "formOptions": {
+          },
+          "formOptions": {
             "hidden": true
-        },
-        "filtersOptions": {
+          },
+          "filtersOptions": {
             "hidden": true
-        }
+          }
         },
         "__STATE__": {
-        "label": {
+          "label": {
             "en": "State",
             "it": "Stato"
-        },
-        "type": "string",
-        "enum": [
+          },
+          "type": "string",
+          "enum": [
             "PUBLIC",
             "DRAFT"
-        ],
-        "default": "PUBLIC",
-        "visualizationOptions": {
+          ],
+          "default": "PUBLIC",
+          "visualizationOptions": {
             "iconMap": {
-            "PUBLIC": {
+              "PUBLIC": {
                 "shape": "roundedSquare",
                 "color": "#52C41A"
-            },
-            "DRAFT": {
+              },
+              "DRAFT": {
                 "shape": "roundedSquare",
                 "color": "#CDCDCE"
-            }
+              }
             },
             "hidden": true
-        },
-        "formOptions": {
+          },
+          "formOptions": {
             "hiddenOnUpdate": true
-        },
-        "filtersOptions": {
+          },
+          "filtersOptions": {
             "hidden": true
-        }
+          }
         },
         "currentStatus": {
-        "label": {
+          "label": {
             "en": "Status",
             "it": "Stato"
-        },
-        "type": "string",
-        "filtersOptions": {
+          },
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        },
-        "excludeFromSearch": true,
-        "enum": [
+          },
+          "excludeFromSearch": true,
+          "enum": [
             "Failed",
             "Totally Refunded",
             "Partially Refunded",
             "Paid",
             "Created"
-        ],
-        "visualizationOptions": {
+          ],
+          "visualizationOptions": {
             "tag": "bk-chip",
             "properties": {
-            "value": "{{args.[0]}}",
-            "title": "{{args.[0]}}",
-            "valueMap": {
+              "value": "{{args.[0]}}",
+              "title": "{{args.[0]}}",
+              "valueMap": {
                 "Paid": {
-                "label": {
+                  "label": {
                     "en": "✓",
                     "it": "✓"
-                },
-                "color": "#349E47"
+                  },
+                  "color": "#349E47"
                 },
                 "Failed": {
-                "label": {
+                  "label": {
                     "en": "✘",
                     "it": "✘"
-                },
-                "color": "#F03838"
+                  },
+                  "color": "#F03838"
                 },
                 "Totally Refunded": {
-                "label": {
+                  "label": {
                     "en": "↺",
                     "it": "↺"
-                },
-                "color": "#542C9E"
+                  },
+                  "color": "#542C9E"
                 },
                 "Partially Refunded": {
-                "label": {
+                  "label": {
                     "en": "↺",
                     "it": "↺"
-                },
-                "color": "#D574F2"
+                  },
+                  "color": "#D574F2"
                 },
                 "Created": {
-                "label": {
+                  "label": {
                     "en": "∞",
                     "it": "∞"
-                },
-                "color": "#FA6B02"
+                  },
+                  "color": "#FA6B02"
                 }
+              }
             }
-            }
-        }
+          }
         },
         "date": {
-        "label": {
+          "label": {
             "en": "Date",
             "it": "Data"
-        },
-        "type": "string",
-        "format": "date-time",
-        "dateOptions": {
+          },
+          "type": "string",
+          "format": "date-time",
+          "dateOptions": {
             "displayFormat": "YYYY-MM-DD"
-        }
+          }
         },
-        "shopTransactionID": {
-        "label": {
+        "shopTransactionId": {
+          "label": {
             "en": "Transaction ID",
             "it": "ID Transazione"
-        },
-        "type": "string",
-        "filtersOptions": {
+          },
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        }
+          }
         },
         "amount": {
-        "label": {
+          "label": {
             "en": "Amount",
             "it": "Importo"
-        },
-        "type": "number",
-        "format": "currency",
-        "formOptions": {
+          },
+          "type": "number",
+          "format": "currency",
+          "formOptions": {
             "template": {
-            "en": "€ {{nFormat '2.,' value}}",
-            "it": "{{nFormat '2.,' value}} €"
+              "en": "€ {{nFormat '2.,' value}}",
+              "it": "{{nFormat '2.,' value}} €"
             }
-        },
-        "visualizationOptions": {
+          },
+          "visualizationOptions": {
             "template": {
-            "en": "€ {{nFormat '2.,' args.[0]}}",
-            "it": "{{nFormat '2.,' args.[0]}} €"
+              "en": "€ {{nFormat '2.,' args.[0]}}",
+              "it": "{{nFormat '2.,' args.[0]}} €"
             }
-        }
+          }
         },
         "paymentMethod": {
-        "label": {
+          "label": {
             "en": "Method",
             "it": "Metodo di pagamento"
-        },
-        "type": "string",
-        "filtersOptions": {
+          },
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        }
+          }
         },
         "paymentMethodId": {
-        "label": {
+          "label": {
             "en": "Method",
             "it": "Metodo di pagamento"
-        },
-        "type": "string",
-        "filtersOptions": {
+          },
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        },
-        "visualizationOptions": {
+          },
+          "visualizationOptions": {
             "hidden": true
-        }
+          }
         },
         "providerId": {
-        "label": {
+          "label": {
             "en": "Provider",
             "it": "Provider"
-        },
-        "type": "string",
-        "filtersOptions": {
+          },
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        }
+          },
+          "visualizationOptions": {
+            "tag": "img",
+            "properties": {
+              "src": {
+                "template": "{{args.[0]}}",
+                "configMap": {
+                  "axerve": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abf54d9d4411e5edddaf.png",
+                  "satispay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454acb04d9d4411e5edddb7.png",
+                  "braintree": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac0e4d9d4411e5edddb1.png",
+                  "soisy": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac2a4d9d4411e5edddb3.png",
+                  "stripe": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac404d9d4411e5edddb5.png",
+                  "adyen": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abde4d9d4411e5edddad.png",
+                  "scalapay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abc14d9d4411e5edddab.png",
+                  "$default": ""
+                }
+              },
+              "width": "80"
+            }
+          }
         },
         "channel": {
-        "label": {
+          "label": {
             "en": "Channel",
             "it": "Canale"
-        },
-        "filtersOptions": {
+          },
+          "filtersOptions": {
             "hidden": true
-        },
-        "type": "string"
+          },
+          "type": "string"
         },
         "paymentID": {
-        "type": "string",
-        "filtersOptions": {
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        },
-        "visualizationOptions": {
+          },
+          "visualizationOptions": {
             "hidden": true
-        }
+          }
         },
         "sagaId": {
-        "type": "string",
-        "filtersOptions": {
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
-        },
-        "visualizationOptions": {
+          },
+          "visualizationOptions": {
             "hidden": true
-        }
+          }
         },
         "remainingAmount": {
-        "type": "number",
-        "filtersOptions": {
+          "type": "number",
+          "filtersOptions": {
             "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
         },
-        "visualizationOptions": {
+        "currency": {
+          "type": "string",
+          "filtersOptions": {
             "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "type": {
+          "label": {
+            "en": "Type",
+            "it": "Tipo"
+          },
+          "type": "string",
+          "filtersOptions": {
+            "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": false
+          }
+        },
+        "subscriptionId": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
         }
-        }
+      }
     }
-    }
-},
-"content": {
+  },
+  "content": {
     "content": [
-    {
+      {
         "content": [
-        {
+          {
             "tag": "div",
             "content": [
-            {
+              {
                 "properties": {
-                "content": {
+                  "content": {
                     "en": "Transactions",
                     "it": "Transazioni"
-                }
+                  }
                 },
                 "tag": "bk-title"
-            },
-            {
+              },
+              {
                 "tag": "bk-refresh-button",
                 "attributes": {
-                "style": "margin-left: 14px; align-self: end;"
+                  "style": "margin-left: 14px; align-self: end;"
                 }
-            },
-            {
+              },
+              {
                 "tag": "div",
                 "attributes": {
-                "style": "flex-grow: 1;"
+                  "style": "flex-grow: 1;"
                 }
-            },
-            {
+              },
+              {
                 "properties": {
-                "placeholder": "Search..."
+                  "placeholder": "Search..."
                 },
                 "tag": "bk-search-bar"
-            },
-            {
+              },
+              {
                 "properties": {
-                "iconId": "DownloadOutlined",
-                "content": "Export",
-                "loadingOnAction": true,
-                "action": {
+                  "iconId": "DownloadOutlined",
+                  "content": "Export",
+                  "loadingOnAction": true,
+                  "action": {
                     "type": "event",
                     "config": {
-                    "events": {
+                      "events": {
                         "label": "export-data",
                         "payload": {}
+                      }
                     }
-                    }
-                }
+                  }
                 },
                 "tag": "bk-button"
-            },
-            {
+              },
+              {
                 "properties": {
-                "content": "",
-                "clickConfig": {
+                  "content": "",
+                  "clickConfig": {
                     "type": "event",
                     "actionConfig": {
-                    "label": "filter",
-                    "payload": {}
+                      "label": "filter",
+                      "payload": {}
                     }
-                },
-                "type": "outlined",
-                "iconId": "FunnelPlotOutlined"
+                  },
+                  "type": "outlined",
+                  "iconId": "FunnelPlotOutlined"
                 },
                 "tag": "bk-button"
-            }
+              }
             ],
             "attributes": {
-            "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
+              "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
             }
-        },
-        {
+          },
+          {
             "tag": "div",
             "attributes": {
-            "style": "width: 100%; display: flex; justify-content: space-between;"
+              "style": "width: 100%; display: flex; justify-content: space-between;"
             },
             "content": [
-            {
+              {
                 "attributes": {
-                "style": "flex-grow: 1;"
+                  "style": "flex-grow: 1;"
                 },
                 "properties": {
-                "tabs": [
+                  "tabs": [
                     {
-                    "key": "all",
-                    "title": {
+                      "key": "all",
+                      "title": {
                         "en": "All",
                         "it": "Tutte"
-                    }
+                      }
                     },
                     {
-                    "title": {
+                      "title": {
                         "en": "Paid",
                         "it": "Pagato"
-                    },
-                    "key": "paid",
-                    "filters": [
+                      },
+                      "key": "paid",
+                      "filters": [
                         {
-                        "property": "currentStatus",
-                        "value": "Paid",
-                        "operator": "equal"
+                          "property": "currentStatus",
+                          "value": "Paid",
+                          "operator": "equal"
                         }
-                    ]
+                      ]
                     },
                     {
-                    "title": {
+                      "title": {
                         "en": "Created",
                         "it": "Creato"
-                    },
-                    "key": "created",
-                    "filters": [
+                      },
+                      "key": "created",
+                      "filters": [
                         {
-                        "property": "currentStatus",
-                        "value": "Created",
-                        "operator": "equal"
+                          "property": "currentStatus",
+                          "value": "Created",
+                          "operator": "equal"
                         }
-                    ]
+                      ]
                     },
                     {
-                    "title": {
+                      "title": {
                         "en": "Totally Refunded",
                         "it": "Totalmente Stornato"
-                    },
-                    "key": "totally refunded",
-                    "filters": [
+                      },
+                      "key": "totally refunded",
+                      "filters": [
                         {
-                        "property": "currentStatus",
-                        "value": "Totally Refunded",
-                        "operator": "equal"
+                          "property": "currentStatus",
+                          "value": "Totally Refunded",
+                          "operator": "equal"
                         }
-                    ]
+                      ]
                     },
                     {
-                    "title": {
+                      "title": {
                         "en": "Partially Refunded",
                         "it": "Parzialmente Stornato"
-                    },
-                    "key": "partially refunded",
-                    "filters": [
+                      },
+                      "key": "partially refunded",
+                      "filters": [
                         {
-                        "property": "currentStatus",
-                        "value": "Partially Refunded",
-                        "operator": "equal"
+                          "property": "currentStatus",
+                          "value": "Partially Refunded",
+                          "operator": "equal"
                         }
-                    ]
+                      ]
                     },
                     {
-                    "title": {
+                      "title": {
                         "en": "Failed",
                         "it": "Fallito"
-                    },
-                    "key": "failed",
-                    "filters": [
+                      },
+                      "key": "failed",
+                      "filters": [
                         {
-                        "property": "currentStatus",
-                        "value": "Failed",
-                        "operator": "equal"
+                          "property": "currentStatus",
+                          "value": "Failed",
+                          "operator": "equal"
                         }
-                    ]
+                      ]
                     }
-                ]
+                  ]
                 },
                 "tag": "bk-tabs"
-            },
-            {
+              },
+              {
                 "attributes": {
-                "style": "margin-right: 4px"
+                  "style": "margin-right: 4px"
                 },
                 "properties": {
-                "dataSchema": {
+                  "dataSchema": {
                     "$ref": "#/definitions/dataSchema"
-                },
-                "filters": []
+                  },
+                  "filters": []
                 },
                 "tag": "bk-filters-manager"
-            }
+              }
             ]
-        }
+          }
         ],
         "tag": "header",
         "attributes": {
-        "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
+          "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
         }
-    },
-    {
+      },
+      {
         "content": [
-        {
+          {
             "properties": {
-            "dataSchema": {
+              "dataSchema": {
                 "$ref": "#/definitions/dataSchema"
-            },
-            "maxLines": 10,
-            "rowActions": {
+              },
+              "maxLines": 10,
+              "rowActions": {
                 "kind": "icons",
                 "actions": []
-            },
-            "disableRowClick": true,
-            "initialSortDirection": "descend",
-            "initialSortProperty": "createdAt",
-            "customActions": [
+              },
+              "disableRowClick": true,
+              "initialSortDirection": "descend",
+              "initialSortProperty": "createdAt",
+              "customActions": [
                 {
-                "tag": "bk-button",
-                "properties": {
+                  "tag": "bk-button",
+                  "properties": {
                     "content": "",
                     "type": "secondary",
                     "title": "Refund",
                     "disabled": {
-                    "template": "{{args.[1].currentStatus}}",
-                    "configMap": {
+                      "template": "{{args.[1].currentStatus}}",
+                      "configMap": {
                         "Paid": false,
                         "Partially Refunded": false,
                         "$default": true
-                    }
+                      }
                     },
                     "iconId": "fas fa-reply",
                     "iconPlacement": "right",
                     "action": {
-                    "type": "event",
-                    "config": {
+                      "type": "event",
+                      "config": {
                         "events": {
-                        "label": "add-new-external",
-                        "payload": "{{rawObject args.[1]}}"
+                          "label": "add-new-external",
+                          "payload": "{{rawObject args.[1]}}"
                         }
+                      }
                     }
-                    }
-                }
+                  }
                 },
                 {
-                "tag": "bk-button",
-                "properties": {
+                  "tag": "bk-button",
+                  "properties": {
                     "content": "",
                     "type": "secondary",
                     "title": "Download",
                     "disabled": {
-                    "template": "{{args.[1].currentStatus}}",
-                    "configMap": {
+                      "template": "{{args.[1].currentStatus}}",
+                      "configMap": {
                         "Paid": false,
                         "$default": true
-                    }
+                      }
                     },
                     "iconId": "fas fa-download",
                     "iconPlacement": "right",
                     "loadingOnAction": true,
                     "disableOnAction": true,
                     "action": {
-                    "type": "http",
-                    "config": {
+                      "type": "http",
+                      "config": {
                         "label": "download-file",
                         "url": "/pgm-bff/invoice-download",
                         "method": "GET",
                         "triggeredBy": "download-invoice-button",
                         "config": {
-                        "downloadAsFile": true,
-                        "params": {
+                          "downloadAsFile": true,
+                          "params": {
                             "sagaId": "{{args.[1].sagaId}}"
+                          }
                         }
-                        }
+                      }
                     }
-                    }
-                }
+                  }
                 },
                 {
-                "tag": "bk-button",
-                "properties": {
+                  "tag": "bk-button",
+                  "properties": {
+                    "content": "",
+                    "type": "secondary",
+                    "disabled": {
+                      "template": "{{args.[1].type}}",
+                      "configMap": {
+                        "SUBSCRIPTION": false,
+                        "$default": true
+                      }
+                    },
+                    "title": "Go to Subscription",
+                    "iconId": "fas fa-address-card",
+                    "iconPlacement": "right",
+                    "clickConfig": {
+                      "type": "push",
+                      "actionConfig": {
+                        "url": "./subscription-details/{{args.[1].subscriptionId}}"
+                      }
+                    }
+                  }
+                },
+                {
+                  "tag": "bk-button",
+                  "properties": {
                     "content": "",
                     "title": "Go to Detail",
                     "iconId": "fas fa-arrow-right",
                     "iconPlacement": "right",
                     "clickConfig": {
-                    "type": "push",
-                    "actionConfig": {
+                      "type": "push",
+                      "actionConfig": {
                         "url": "./transaction-detail/{{args.[1]._id}}"
+                      }
                     }
-                    }
+                  }
                 }
-                }
-            ]
+              ]
             },
             "tag": "bk-table"
-        },
-        {
+          },
+          {
             "tag": "bk-form-modal",
             "properties": {
-            "dataSchema": {
+              "dataSchema": {
                 "type": "object",
                 "properties": {
-                "remainingAmount": {
+                  "remainingAmount": {
                     "type": "number",
                     "format": "currency",
                     "minimum": 0,
                     "label": {
-                    "en": "Amount",
-                    "it": "Importo"
+                      "en": "Amount",
+                      "it": "Importo"
                     },
                     "formOptions": {
-                    "template": {
+                      "template": {
                         "en": "€ {{nFormat '2.,' value}}",
                         "it": "{{nFormat '2.,' value}} €"
+                      }
                     }
-                    }
-                },
-                "sagaId": {
+                  },
+                  "sagaId": {
                     "type": "string",
                     "formOptions": {
-                    "hidden": true
+                      "hidden": true
                     }
+                  },
+                  "currency": {
+                    "type": "string",
+                    "formOptions": {
+                      "hidden": true
+                    }
+                  }
                 }
-                }
-            },
-            "extraEndpoint": "/pgm-bff/refund",
-            "customLabels": {
+              },
+              "extraEndpoint": "/pgm-bff/refund",
+              "customLabels": {
                 "create": {
-                "ctaLabel": {
+                  "ctaLabel": {
                     "en": "Refund",
                     "it": "Stornare"
-                },
-                "title": {
+                  },
+                  "title": {
                     "en": "Insert the amount to refund",
                     "it": "Inserisci l'importo da stornare"
+                  }
                 }
-                }
-            },
-            "height": "10vh",
-            "width": "35vw"
+              },
+              "height": "10vh",
+              "width": "35vw"
             }
-        },
-        {
+          },
+          {
             "tag": "bk-confirmation-modal"
-        },
-        {
+          },
+          {
             "properties": {
-            "rootElementSelectors": "main.micro-lc-layout-content",
-            "successEventMap": {
+              "rootElementSelectors": "main.micro-lc-layout-content",
+              "successEventMap": {
                 "create-data": {
-                "title": "Success",
-                "content": "Data successfully created",
-                "type": "success"
+                  "title": "Success",
+                  "content": "Data successfully created",
+                  "type": "success"
                 },
                 "update-data": {
-                "title": "Success",
-                "content": "Data successfully updated",
-                "type": "success"
+                  "title": "Success",
+                  "content": "Data successfully updated",
+                  "type": "success"
                 },
                 "delete-data": {
-                "title": "Success",
-                "content": "Data successfully deleted",
-                "type": "success"
+                  "title": "Success",
+                  "content": "Data successfully deleted",
+                  "type": "success"
                 }
-            },
-            "errorEventMap": {
+              },
+              "errorEventMap": {
                 "create-data": {
-                "title": "Error",
-                "content": "An error occurred during order creation",
-                "type": "error"
+                  "title": "Error",
+                  "content": "An error occurred during order creation",
+                  "type": "error"
                 },
                 "update-data": {
-                "title": "Error",
-                "content": "An error occurred during order updated",
-                "type": "error"
+                  "title": "Error",
+                  "content": "An error occurred during order updated",
+                  "type": "error"
                 },
                 "delete-data": {
-                "title": "Error",
-                "content": "An error occurred during order deletion",
-                "type": "error"
+                  "title": "Error",
+                  "content": "An error occurred during order deletion",
+                  "type": "error"
                 }
-            }
+              }
             },
             "tag": "bk-notifications",
             "attributes": {}
-        }
+          }
         ],
         "tag": "main",
         "attributes": {
-        "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;"
+          "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;"
         }
-    },
-    {
+      },
+      {
         "content": [
-        {
+          {
             "properties": {
-            "dataSchema": {
+              "dataSchema": {
                 "$ref": "#/definitions/dataSchema"
-            },
-            "width": "40vw"
+              },
+              "width": "40vw"
             },
             "tag": "bk-filter-drawer"
-        }
+          }
         ],
         "tag": "aside"
-    },
-    {
+      },
+      {
         "content": [
-        {
+          {
             "tag": "bk-button",
             "attributes": {
-            "style": "margin-right: .5vw;"
+              "style": "margin-right: .5vw;"
             },
             "properties": {
-            "type": "secondary",
-            "content": {
+              "type": "secondary",
+              "content": {
                 "en": "Refund",
                 "it": "Storna"
-            },
-            "bulkButton": true,
-            "loadingOnAction": true,
-            "action": {
+              },
+              "bulkButton": true,
+              "loadingOnAction": true,
+              "action": {
                 "type": "event",
                 "config": {
-                "events": {
+                  "events": {
                     "label": "require-confirm",
                     "payload": {
-                    "title": {
+                      "title": {
                         "en": "Refund transactions?",
                         "it": "Stornare transazioni?"
-                    },
-                    "content": {
+                      },
+                      "content": {
                         "en": "Are you sure you want to totally refund selected transactions?",
                         "it": "Sei sicuro di voler stornare totalmente le transazioni selezionate?"
-                    },
-                    "configCancel": {
+                      },
+                      "configCancel": {
                         "tag": "bk-button",
                         "properties": {
-                        "content": {
+                          "content": {
                             "en": "No",
                             "it": "No"
-                        },
-                        "type": "ghost",
-                        "action": {
+                          },
+                          "type": "ghost",
+                          "action": {
                             "type": "event",
                             "config": {
-                            "events": {
+                              "events": {
                                 "label": "change-query",
                                 "payload": {}
+                              }
                             }
-                            }
+                          }
                         }
-                        }
-                    },
-                    "configOk": {
+                      },
+                      "configOk": {
                         "tag": "bk-button",
                         "properties": {
-                        "content": {
+                          "content": {
                             "en": "Yes",
                             "it": "Sì"
-                        },
-                        "action": {
+                          },
+                          "action": {
                             "type": "http",
                             "config": {
-                            "url": "/pgm-bff/refund/bulk",
-                            "method": "POST",
-                            "triggeredBy": "bk-form-modal-extra-endpoint",
-                            "body": "{{rawObject selectedData}}"
+                              "url": "/pgm-bff/refund/bulk",
+                              "method": "POST",
+                              "triggeredBy": "bk-form-modal-extra-endpoint",
+                              "body": "{{rawObject selectedData}}"
                             },
                             "hooks": {
-                            "onSuccess": {
+                              "onSuccess": {
                                 "type": "event",
                                 "config": {
-                                "events": {
+                                  "events": {
                                     "label": "change-query",
                                     "payload": {}
+                                  }
                                 }
-                                }
-                            },
-                            "onError": {
+                              },
+                              "onError": {
                                 "type": "event",
                                 "config": {
-                                "events": {
+                                  "events": {
                                     "label": "change-query",
                                     "payload": {}
+                                  }
                                 }
-                                }
+                              }
                             }
-                            }
+                          }
                         }
-                        }
+                      }
                     }
-                    }
-                }
+                  }
                 },
                 "hooks": {
-                "onSuccess": {
+                  "onSuccess": {
                     "type": "event",
                     "config": {
-                    "events": {
+                      "events": {
                         "label": "change-query",
                         "payload": {}
+                      }
                     }
-                    }
-                },
-                "onError": {
+                  },
+                  "onError": {
                     "type": "event",
                     "config": {
-                    "events": {
+                      "events": {
                         "label": "change-query",
                         "payload": {}
+                      }
                     }
-                    }
+                  }
                 }
-                }
+              }
             }
-            }
-        },
-        {
+          },
+          {
             "tag": "bk-button",
             "attributes": {
-            "style": "margin-right: .5vw;"
+              "style": "margin-right: .5vw;"
             },
             "properties": {
-            "type": "secondary",
-            "content": {
+              "type": "secondary",
+              "content": {
                 "en": "Download invoices",
                 "it": "Scarica ricevute"
-            },
-            "bulkButton": true,
-            "loadingOnAction": true,
-            "action": {
+              },
+              "bulkButton": true,
+              "loadingOnAction": true,
+              "action": {
                 "type": "http",
                 "config": {
-                "url": "/pgm-bff/invoice-download/bulk",
-                "method": "POST",
-                "triggeredBy": "download-invoice-button",
-                "body": "{{rawObject selectedData}}",
-                "config": {
+                  "url": "/pgm-bff/invoice-download/bulk",
+                  "method": "POST",
+                  "triggeredBy": "download-invoice-button",
+                  "body": "{{rawObject selectedData}}",
+                  "config": {
                     "downloadAsFile": true
-                }
+                  }
                 },
                 "hooks": {
-                "onSuccess": {
+                  "onSuccess": {
                     "type": "event",
                     "config": {
-                    "events": {
+                      "events": {
                         "label": "change-query",
                         "payload": {}
+                      }
                     }
-                    }
-                },
-                "onError": {
+                  },
+                  "onError": {
                     "type": "event",
                     "config": {
-                    "events": {
+                      "events": {
                         "label": "change-query",
                         "payload": {}
+                      }
                     }
-                    }
+                  }
                 }
-                }
+              }
             }
-            }
-        },
-        {
+          },
+          {
             "tag": "div",
             "attributes": {
-            "style": "flex-grow: 1;"
+              "style": "flex-grow: 1;"
             }
-        },
-        {
+          },
+          {
             "tag": "bk-pagination",
             "properties": {
-            "pageSize": 10
+              "pageSize": 10
             }
-        }
+          }
         ],
         "tag": "footer",
         "attributes": {
-        "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
+          "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
         }
-    },
-    {
+      },
+      {
         "properties": {
-        "basePath": "/fm-transactions-view",
-        "dataSchema": {
+          "basePath": "/fm-transactions-view",
+          "dataSchema": {
             "$ref": "#/definitions/dataSchema"
-        }
+          }
         },
         "tag": "bk-crud-client"
-    },
-    {
+      },
+      {
         "tag": "bk-export-modal"
-    },
-    {
+      },
+      {
         "properties": {
-        "basePath": "/v2/file"
+          "basePath": "/v2/file"
         },
         "tag": "bk-file-client"
-    },
-    {
+      },
+      {
         "tag": "bk-file-manager"
-    },
-    {
+      },
+      {
         "tag": "bk-export-client",
         "properties": {
-        "basePath": "/export",
-        "exportInternalUrl": "http://crud-service/fm-transactions-view/export",
-        "dataSchema": {
+          "basePath": "/export",
+          "exportInternalUrl": "http://crud-service/fm-transactions-view/export",
+          "dataSchema": {
             "type": "object",
             "properties": {
-            "_id": {
+              "_id": {
                 "label": "ID",
                 "type": "string",
                 "visualizationOptions": {
-                "hidden": true
+                  "hidden": true
                 },
                 "formOptions": {
-                "hidden": true
+                  "hidden": true
                 },
                 "filtersOptions": {
-                "hidden": true
+                  "hidden": true
                 }
-            },
-            "currentStatus": {
+              },
+              "currentStatus": {
                 "label": {
-                "en": "Status",
-                "it": "Stato"
+                  "en": "Status",
+                  "it": "Stato"
                 },
                 "type": "string"
-            },
-            "date": {
+              },
+              "date": {
                 "label": {
-                "en": "Date",
-                "it": "Data"
+                  "en": "Date",
+                  "it": "Data"
                 },
                 "type": "string"
-            },
-            "shopTransactionID": {
+              },
+              "shopTransactionId": {
                 "label": {
-                "en": "Transaction ID",
-                "it": "ID Transazione"
+                  "en": "Transaction ID",
+                  "it": "ID Transazione"
                 },
                 "type": "string"
-            },
-            "amount": {
+              },
+              "amount": {
                 "label": {
-                "en": "Amount",
-                "it": "Importo"
+                  "en": "Amount",
+                  "it": "Importo"
                 },
                 "type": "number"
-            },
-            "totalRefundedAmount": {
+              },
+              "totalRefundedAmount": {
                 "label": {
-                "en": "Refunded amount",
-                "it": "Importo stornato"
+                  "en": "Refunded amount",
+                  "it": "Importo stornato"
                 },
                 "type": "number"
-            },
-            "paymentMethod": {
+              },
+              "paymentMethod": {
                 "label": {
-                "en": "Method",
-                "it": "Metodo di pagamento"
+                  "en": "Method",
+                  "it": "Metodo di pagamento"
                 },
                 "type": "string"
-            },
-            "provider": {
+              },
+              "provider": {
                 "label": {
-                "en": "Provider",
-                "it": "Provider"
+                  "en": "Provider",
+                  "it": "Provider"
                 },
                 "type": "string"
-            },
-            "channel": {
+              },
+              "channel": {
                 "label": {
-                "en": "Channel",
-                "it": "Canale"
+                  "en": "Channel",
+                  "it": "Canale"
                 },
                 "type": "string"
-            },
-            "buyerName": {
+              },
+              "buyerName": {
                 "label": {
-                "en": "Name",
-                "it": "Nome"
+                  "en": "Name",
+                  "it": "Nome"
                 },
                 "type": "string"
-            },
-            "buyerEmail": {
+              },
+              "buyerEmail": {
                 "label": {
-                "en": "Email",
-                "it": "Email"
+                  "en": "Email",
+                  "it": "Email"
                 },
                 "type": "string"
+              }
             }
-            }
+          }
         }
-        }
-    },
-    {
+      },
+      {
         "tag": "bk-notifications",
         "properties": {
-        "rootElementSelectors": "main.micro-lc-layout-content",
-        "successEventMap": {
+          "rootElementSelectors": "main.micro-lc-layout-content",
+          "successEventMap": {
             "create-data": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Item successfully created",
                 "it": "L'elemento è stato creato correttamente"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "update-data": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Item successfully updated",
                 "it": "L'elemento è stato aggiornato correttamente"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "delete-data": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Item successfully deleted",
                 "it": "L'elemento è stato eliminato correttamente"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "post-http-generic-button": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Requested action executed successfully",
                 "it": "L'azione richiesta è stata eseguita con successo"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "get-http-generic-button": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Requested action executed successfully",
                 "it": "L'azione richiesta è stata eseguita con successo"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "bk-form-modal-extra-endpoint": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
-                "en": "Refund executed successfully",
-                "it": "Storno eseguito con successo"
-            },
-            "type": "success"
+              },
+              "content": {
+                "en": "Payment refund request accepted, it will be processed",
+                "it": "La richiesta di storno è stata presa in carico"
+              },
+              "type": "success"
             },
             "download-invoice-button": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Invoice downloaded successfully",
                 "it": "Ricevuta scaricata con successo"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "export-data": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Export downloaded successfully",
                 "it": "Export scaricato con successo"
-            },
-            "type": "success"
+              },
+              "type": "success"
             },
             "success": {
-            "title": {
+              "title": {
                 "en": "Success",
                 "it": "Successo"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Requested action executed successfully",
                 "it": "L'azione richiesta è stata eseguita con successo"
-            },
-            "type": "success"
+              },
+              "type": "success"
             }
-        },
-        "errorEventMap": {
+          },
+          "errorEventMap": {
             "create-data": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "An error occurred during item creation",
                 "it": "C'è stato un errore durante la creazione dell'elemento"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "update-data": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "An error occurred during item update",
                 "it": "C'è stato un errore durante l'aggiornamento dell'elemento"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "delete-data": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "An error occurred during item deletion",
                 "it": "C'è stato un errore durante l'eliminazione dell'elemento"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "export-data": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "An error occurred while exporting data",
                 "it": "Si è verificato un errore durante l'export dei dati"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "post-http-generic-button": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Requested action failed",
                 "it": "L'azione richiesta è fallita"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "get-http-generic-button": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Requested action failed",
                 "it": "L'azione richiesta è fallita"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "download-invoice-button": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Failed to download invoice",
                 "it": "Download della ricevuta fallito"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "bk-form-modal-extra-endpoint": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Refund failed",
                 "it": "Storno fallita"
-            },
-            "type": "error"
+              },
+              "type": "error"
             },
             "error": {
-            "title": {
+              "title": {
                 "en": "Error",
                 "it": "Errore"
-            },
-            "content": {
+              },
+              "content": {
                 "en": "Requested action failed",
                 "it": "L'azione richiesta è fallita"
-            },
-            "type": "error"
+              },
+              "type": "error"
             }
+          }
         }
-        }
-    }
+      }
     ],
     "tag": "div",
     "attributes": {
-    "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
+      "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
     }
-},
-"sources": [
+  },
+  "sources": [
     "https://cdn.jsdelivr.net/npm/@micro-lc/bk-web-components@latest/dist/bk-web-components.esm.js"
-]
+  ]
 }
             
 ```
@@ -1331,7 +1414,7 @@ Here is available the configuration for this page.
             "displayFormat": "YYYY-MM-DD"
           }
         },
-        "shopTransactionID": {
+        "shopTransactionId": {
           "label": {
             "en": "Transaction ID",
             "it": "ID Transazione"
@@ -1426,6 +1509,16 @@ Here is available the configuration for this page.
           },
           "type": "string"
         },
+        "type": {
+          "label": {
+            "en": "Type",
+            "it": "Tipo"
+          },
+          "filtersOptions": {
+            "hidden": true
+          },
+          "type": "string"
+        },
         "creatorId": {
           "label": {
             "en": "User ID",
@@ -1481,6 +1574,15 @@ Here is available the configuration for this page.
         },
         "remainingAmount": {
           "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
         }
       }
     }
@@ -1540,7 +1642,7 @@ Here is available the configuration for this page.
                   "dataSchema": {
                     "type": "object",
                     "properties": {
-                      "shopTransactionID": {
+                      "shopTransactionId": {
                         "label": {
                           "it": "ID transazione",
                           "en": "Transaction ID"
@@ -1699,7 +1801,26 @@ Here is available the configuration for this page.
                               "it": "Provider di pagamento",
                               "en": "Payment provider"
                             },
-                            "type": "string"
+                            "type": "string",
+                            "visualizationOptions": {
+                              "tag": "img",
+                              "properties": {
+                                "src": {
+                                  "template": "{{args.[0]}}",
+                                  "configMap": {
+                                    "axerve": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abf54d9d4411e5edddaf.png",
+                                    "satispay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454acb04d9d4411e5edddb7.png",
+                                    "braintree": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac0e4d9d4411e5edddb1.png",
+                                    "soisy": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac2a4d9d4411e5edddb3.png",
+                                    "stripe": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac404d9d4411e5edddb5.png",
+                                    "adyen": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abde4d9d4411e5edddad.png",
+                                    "scalapay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abc14d9d4411e5edddab.png",
+                                    "$default": ""
+                                  }
+                                },
+                                "width": "80"
+                              }
+                            }
                           },
                           "amount": {
                             "label": {
@@ -1718,6 +1839,13 @@ Here is available the configuration for this page.
                             "label": {
                               "it": "Metodo di pagamento",
                               "en": "Payment method"
+                            },
+                            "type": "string"
+                          },
+                          "type": {
+                            "label": {
+                              "it": "Tipo",
+                              "en": "Type"
                             },
                             "type": "string"
                           },
@@ -1822,6 +1950,12 @@ Here is available the configuration for this page.
                       "sagaId": {
                         "type": "string",
                         "formOptions": {
+                          "hidden": true
+                        }
+                      },
+                      "currency": {
+                        "type": "string",
+                        "visualizationOptions": {
                           "hidden": true
                         }
                       }
@@ -2042,8 +2176,8 @@ Here is available the configuration for this page.
                 "it": "Successo"
               },
               "content": {
-                "en": "Payment refund successfully",
-                "it": "Storno effettuato con successo"
+                "en": "Payment refund request accepted, it will be processed",
+                "it": "La richiesta di storno è stata presa in carico"
               },
               "type": "success"
             },
@@ -2053,8 +2187,8 @@ Here is available the configuration for this page.
                 "it": "Successo"
               },
               "content": {
-                "en": "Requested action executed successfully",
-                "it": "L'azione richiesta è stata eseguita con successo"
+                "en": "Payment refund request accepted, it will be processed",
+                "it": "La richiesta di storno è stata presa in carico"
               },
               "type": "success"
             },
@@ -3243,6 +3377,15 @@ Here is available the configuration for this page
         },
         "sagaId": {
           "type": "string"
+        },
+        "expireRequested": {
+          "type": "boolean",
+          "filtersOptions": {
+            "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
         }
       }
     }
@@ -3366,22 +3509,68 @@ Here is available the configuration for this page
                 "footer": {
                   "buttons": {
                     "tag": "bk-button",
+                    "loadingOnAction": false,
                     "content": {
                       "en": "Cancel Subscription",
                       "it": "Annulla Abbonamento"
                     },
-                    "loadingOnAction": false,
                     "action": {
-                      "type": "http",
+                      "type": "event",
                       "config": {
-                        "url": "/pgm-bff/expire?sagaId={{data.sagaId}}",
-                        "method": "DELETE"
+                        "events": {
+                          "label": "require-confirm",
+                          "payload": {
+                            "title": {
+                              "en": "Cancel subscription?",
+                              "it": "Annullare abbonamento?"
+                            },
+                            "content": {
+                              "en": "Are you sure you want to cancel this subscription?",
+                              "it": "Sei sicuro di voler annullare l'abbonamento?"
+                            },
+                            "configCancel": {
+                              "tag": "bk-button",
+                              "properties": {
+                                "content": "No",
+                                "type": "ghost"
+                              }
+                            },
+                            "configOk": {
+                              "tag": "bk-button",
+                              "properties": {
+                                "content": {
+                                  "en": "Yes",
+                                  "it": "Sì"
+                                },
+                                "action": {
+                                  "type": "http",
+                                  "config": {
+                                    "url": "/pgm-bff/expire?sagaId={{data.sagaId}}",
+                                    "method": "DELETE"
+                                  },
+                                  "hooks": {
+                                    "onSuccess": {
+                                      "type": "event",
+                                      "config": {
+                                        "events": {
+                                          "label": "change-query",
+                                          "payload": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     },
                     "disabled": {
-                      "template": "{{data.status}}",
+                      "template": "{{data.expireRequested}}",
                       "configMap": {
-                        "active": false,
+                        "true": true,
+                        "false": false,
                         "$default": true
                       }
                     }
@@ -3851,7 +4040,7 @@ Here is available the configuration for this page.
           },
           "minimum": 0
         },
-        "ruleID": {
+        "ruleId": {
           "label": {
             "en": "Rule ID",
             "it": "ID Regola"
@@ -4181,7 +4370,7 @@ Here is available the configuration for this page.
                     "type": "integer",
                     "minimum": 0
                   },
-                  "ruleID": {
+                  "ruleId": {
                     "description": {
                       "en": "Must be unique",
                       "it": "Deve essere un valore unico"
@@ -4294,6 +4483,20 @@ Here is available the configuration for this page.
                               "it": "{{value}} €"
                             }
                           }
+                        },
+                        "currency": {
+                          "description": {
+                            "en": "Currency",
+                            "it": "Valuta"
+                          },
+                          "label": {
+                            "en": "Currency",
+                            "it": "Valuta"
+                          },
+                          "type": "string",
+                          "enum": [
+                            "EUR"
+                          ]
                         }
                       }
                     }
@@ -4355,7 +4558,7 @@ Here is available the configuration for this page.
                 {
                   "keys": [
                     "priority",
-                    "ruleID"
+                    "ruleId"
                   ],
                   "labels": {
                     "stepperTitle": {
@@ -4632,21 +4835,21 @@ Here is available the configuration for this page.
     "https://cdn.jsdelivr.net/npm/@micro-lc/bk-web-components@latest/dist/bk-web-components.esm.js"
   ]
 }
-    
+
 ```
  </details>
 
- <details>
+  <details>
       <summary>Adaptive Checkout Detail Page</summary>
 
 ```json
-    
 {
   "definitions": {
     "dataSchema": {
       "type": "object",
       "properties": {
         "_id": {
+          "label": "ID",
           "type": "string",
           "visualizationOptions": {
             "hidden": true
@@ -4683,83 +4886,79 @@ Here is available the configuration for this page.
             "hidden": true
           },
           "formOptions": {
-            "hidden": true
+            "hiddenOnUpdate": true
           },
           "filtersOptions": {
             "hidden": true
           }
         },
-        "priority": {
+        "status": {
           "label": {
-            "en": "Priority",
-            "it": "Priorità"
-          },
-          "type": "integer",
-          "filtersOptions": {
-            "hidden": true
-          },
-          "minimum": 0
-        },
-        "ruleID": {
-          "label": {
-            "en": "Rule ID",
-            "it": "ID Regola"
+            "en": "Status",
+            "it": "Stato"
           },
           "type": "string",
           "filtersOptions": {
-            "hidden": true
-          }
-        },
-        "enabledMethods": {
-          "label": {
-            "en": "Payment Methods enabled",
-            "it": "Metodi di Pagamento abilitati"
+            "hidden": false
           },
-          "type": "array",
-          "dataSchema": {
-            "type": "object",
+          "excludeFromSearch": true,
+          "enum": [
+            "Active",
+            "Not active"
+          ],
+          "visualizationOptions": {
+            "tag": "bk-chip",
             "properties": {
-              "paymentMethod": {
-                "type": "string",
-                "enum": [
-                  "Apple Pay",
-                  "Credit Card",
-                  "Google Pay",
-                  "PayPal",
-                  "SafeCharge",
-                  "Satispay",
-                  "Scalapay",
-                  "Soisy",
-                  "Stripe"
-                ]
-              },
-              "provider": {
-                "type": "string",
-                "enum": [
-                  "Adyen",
-                  "Axerve",
-                  "Braintree",
-                  "SafeCharge",
-                  "Satispay",
-                  "Scalapay",
-                  "Soisy",
-                  "Stripe",
-                  "Unicredit"
-                ]
-              },
-              "index": {
-                "type": "integer",
-                "visualizationOptions": {
-                  "hidden": true
+              "value": "{{args.[0]}}",
+              "title": "{{args.[0]}}",
+              "valueMap": {
+                "active": {
+                  "label": {
+                    "en": "active",
+                    "it": "attivo"
+                  },
+                  "color": "#349E47"
                 },
-                "formOptions": {
-                  "hidden": true
-                },
-                "filtersOptions": {
-                  "hidden": true
+                "Not active": {
+                  "label": {
+                    "en": "not active",
+                    "it": "non attivo"
+                  },
+                  "color": "#F03838"
                 }
               }
             }
+          }
+        },
+        "createdAt": {
+          "label": {
+            "en": "Date",
+            "it": "Data"
+          },
+          "type": "string",
+          "format": "date-time",
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD"
+          }
+        },
+        "shopSubscriptionId": {
+          "label": {
+            "en": "Subscription ID",
+            "it": "ID Abbonamento"
+          },
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          }
+        },
+        "transactions": {
+          "label": {
+            "en": "Transazioni",
+            "it": "Transactions"
+          },
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
           }
         },
         "amount": {
@@ -4767,75 +4966,115 @@ Here is available the configuration for this page.
             "en": "Amount",
             "it": "Importo"
           },
-          "type": "object",
-          "dataSchema": {
-            "type": "object",
-            "properties": {
-              "min": {
-                "label": {
-                  "en": "Min",
-                  "it": "Min"
-                },
-                "type": "number",
-                "format": "currency",
-                "minimum": 0,
-                "visualizationOptions": {
-                  "template": {
-                    "en": "€ {{nFormat '2.,' value}}",
-                    "it": "{{nFormat '2,.' value}} €"
-                  }
-                }
-              },
-              "max": {
-                "label": {
-                  "en": "Max",
-                  "it": "Max"
-                },
-                "type": "number",
-                "format": "currency",
-                "minimum": 0,
-                "visualizationOptions": {
-                  "template": {
-                    "en": "€ {{nFormat '2.,' value}}",
-                    "it": "{{nFormat '2,.' value}} €"
-                  }
-                }
-              }
+          "type": "number",
+          "format": "currency",
+          "formOptions": {
+            "template": {
+              "en": "€ {{nFormat '2.,' value}}",
+              "it": "{{nFormat '2.,' value}} €"
+            }
+          },
+          "visualizationOptions": {
+            "template": {
+              "en": "€ {{nFormat '2.,' args.[0]}}",
+              "it": "{{nFormat '2.,' args.[0]}} €"
             }
           }
         },
-        "matchInValues": {
+        "paymentMethod": {
           "label": {
-            "en": "Custom rules",
-            "it": "Regole personalizzate"
+            "en": "Method",
+            "it": "Metodo di pagamento"
           },
-          "type": "array",
-          "dataSchema": {
-            "type": "object",
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          }
+        },
+        "providerId": {
+          "label": {
+            "en": "Provider",
+            "it": "Provider"
+          },
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          },
+          "visualizationOptions": {
+            "tag": "img",
             "properties": {
-              "key": {
-                "label": {
-                  "en": "Entity",
-                  "it": "Entità"
-                },
-                "type": "string",
-                "enum": [
-                  "Product Category",
-                  "Channel",
-                  "User Type"
-                ]
-              },
-              "values": {
-                "label": {
-                  "en": "Value",
-                  "it": "Valore"
-                },
-                "type": "string",
-                "formOptions": {
-                  "placeholder": "Multiple values separated by comma: \"x,y,z\""
+              "src": {
+                "template": "{{args.[0]}}",
+                "configMap": {
+                  "axerve": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abf54d9d4411e5edddaf.png",
+                  "satispay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454acb04d9d4411e5edddb7.png",
+                  "braintree": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac0e4d9d4411e5edddb1.png",
+                  "soisy": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac2a4d9d4411e5edddb3.png",
+                  "stripe": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac404d9d4411e5edddb5.png",
+                  "adyen": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abde4d9d4411e5edddad.png",
+                  "scalapay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abc14d9d4411e5edddab.png",
+                  "$default": ""
                 }
-              }
+              },
+              "width": "80"
             }
+          }
+        },
+        "currency": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "intervalCount": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "interval": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "nextPaymentDate": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "expirationDate": {
+          "type": "string",
+          "filtersOptions": {
+            "hidden": false
+          },
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "sagaId": {
+          "type": "string"
+        },
+        "expireRequested": {
+          "type": "boolean",
+          "filtersOptions": {
+            "hidden": true
+          },
+          "visualizationOptions": {
+            "hidden": true
           }
         }
       }
@@ -4859,66 +5098,22 @@ Here is available the configuration for this page.
           {
             "properties": {
               "content": {
-                "en": "Rule Detail",
-                "it": "Dettaglio Regola"
+                "en": "Subscription Detail",
+                "it": "Dettaglio Abbonamento"
               }
             },
             "tag": "bk-title"
           },
           {
-            "tag": "bk-button",
+            "tag": "bk-refresh-button",
             "attributes": {
-              "style": "margin: 0 1vw 0 0; position: absolute; right: 150px;"
-            },
-            "properties": {
-              "content": {
-                "en": "Payment Method",
-                "it": "Metodo di Pagamento"
-              },
-              "iconId": "fas fa-plus",
-              "urlMask": "/backoffice/adaptive-checkout-detail/:id",
-              "action": {
-                "type": "event",
-                "config": {
-                  "events": {
-                    "label": "add-new-external",
-                    "payload": {
-                      "id": "{{pathnameParams.params.id}}"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          {
-            "tag": "bk-button",
-            "attributes": {
-              "style": "margin: 0 1vw 0 0; position: absolute; right: 0;"
-            },
-            "properties": {
-              "content": {
-                "en": "Custom Rule",
-                "it": "Regola Personalizzata"
-              },
-              "iconId": "fas fa-plus",
-              "urlMask": "/backoffice/adaptive-checkout-detail/:id",
-              "action": {
-                "type": "event",
-                "config": {
-                  "events": {
-                    "label": "add-new-external",
-                    "payload": {
-                      "id": "{{pathnameParams.params.id}}"
-                    }
-                  }
-                }
-              }
+              "style": "margin: 0 1vw 0 0;"
             }
           }
         ],
         "tag": "header",
         "attributes": {
-          "style": "display: flex; flex-direction: row; align-items: stretch; gap: 10px; padding: 10px 20px; background-color: white"
+          "style": "display: flex; flex-direction: row; align-items: center; gap: 10px; padding: 10px 20px; background-color: white;"
         }
       },
       {
@@ -4926,699 +5121,304 @@ Here is available the configuration for this page.
           {
             "tag": "bk-card",
             "properties": {
-              "eventBus": "eventBus.pool.card1",
               "customMessageOnAbsentDatum": "-",
               "customMessageOnAbsentLookup": "Not Found",
               "cardSchema": {
                 "header": {
                   "icon": "InfoCircleOutlined",
                   "title": {
-                    "en": "Overview",
-                    "it": "Panoramica"
+                    "it": "Overview",
+                    "en": "Overview"
                   }
                 },
                 "main": {
                   "dataSchema": {
                     "type": "object",
                     "properties": {
-                      "priority": {
+                      "shopSubscriptionId": {
                         "label": {
-                          "en": "Priority",
-                          "it": "Priorità"
+                          "it": "ID abbonamento",
+                          "en": "Subscription ID"
                         },
-                        "type": "integer",
-                        "filtersOptions": {
-                          "hidden": true
-                        },
-                        "minimum": 0
+                        "type": "string"
                       },
-                      "ruleID": {
+                      "createdAt": {
                         "label": {
-                          "en": "Rule ID",
-                          "it": "ID Regola"
+                          "it": "Data inizio abbonamento",
+                          "en": "Subscription date"
                         },
                         "type": "string",
-                        "filtersOptions": {
-                          "hidden": true
+                        "format": "date-time",
+                        "dateOptions": {
+                          "displayFormat": "YYYY-MM-DD"
                         }
                       },
-                      "_id": {
+                      "status": {
+                        "label": {
+                          "it": "Stato attuale",
+                          "en": "Current status"
+                        },
+                        "type": "string"
+                      },
+                      "providerId": {
+                        "label": {
+                          "it": "Provider di pagamento",
+                          "en": "Payment provider"
+                        },
                         "type": "string",
                         "visualizationOptions": {
-                          "hidden": true
-                        },
-                        "formOptions": {
-                          "hidden": true
-                        },
-                        "filtersOptions": {
-                          "hidden": true
+                          "tag": "img",
+                          "properties": {
+                            "src": {
+                              "template": "{{args.[0]}}",
+                              "configMap": {
+                                "axerve": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abf54d9d4411e5edddaf.png",
+                                "satispay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454acb04d9d4411e5edddb7.png",
+                                "braintree": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac0e4d9d4411e5edddb1.png",
+                                "soisy": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac2a4d9d4411e5edddb3.png",
+                                "stripe": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454ac404d9d4411e5edddb5.png",
+                                "adyen": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abde4d9d4411e5edddad.png",
+                                "scalapay": "https://miafintech-demo-fintech.test.azure.mia-fintech.io/logo/download/6454abc14d9d4411e5edddab.png",
+                                "$default": ""
+                              }
+                            },
+                            "width": "80"
+                          }
                         }
+                      },
+                      "paymentMethod": {
+                        "label": {
+                          "it": "Metodo di pagamento",
+                          "en": "Payment method"
+                        },
+                        "type": "number"
                       }
                     }
                   }
                 },
                 "footer": {
-                  "buttons": [
-                    {
-                      "tag": "bk-button",
-                      "content": {
-                        "en": "Edit Data",
-                        "it": "Modifica"
-                      },
-                      "action": {
-                        "type": "event",
-                        "config": {
-                          "events": {
-                            "label": "add-new-external",
-                            "payload": "{{rawObject data}}"
+                  "buttons": {
+                    "tag": "bk-button",
+                    "loadingOnAction": false,
+                    "content": {
+                      "en": "Cancel Subscription",
+                      "it": "Annulla Abbonamento"
+                    },
+                    "action": {
+                      "type": "event",
+                      "config": {
+                        "events": {
+                          "label": "require-confirm",
+                          "payload": {
+                            "title": {
+                              "en": "Cancel subscription?",
+                              "it": "Annullare abbonamento?"
+                            },
+                            "content": {
+                              "en": "Are you sure you want to cancel this subscription?",
+                              "it": "Sei sicuro di voler annullare l'abbonamento?"
+                            },
+                            "configCancel": {
+                              "tag": "bk-button",
+                              "properties": {
+                                "content": "No",
+                                "type": "ghost"
+                              }
+                            },
+                            "configOk": {
+                              "tag": "bk-button",
+                              "properties": {
+                                "content": {
+                                  "en": "Yes",
+                                  "it": "Sì"
+                                },
+                                "action": {
+                                  "type": "http",
+                                  "config": {
+                                    "url": "/pgm-bff/expire?sagaId={{data.sagaId}}",
+                                    "method": "DELETE"
+                                  },
+                                  "hooks": {
+                                    "onSuccess": {
+                                      "type": "event",
+                                      "config": {
+                                        "events": {
+                                          "label": "change-query",
+                                          "payload": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
+                    },
+                    "disabled": {
+                      "template": "{{data.expireRequested}}",
+                      "configMap": {
+                        "true": true,
+                        "false": false,
+                        "$default": true
+                      }
                     }
-                  ]
+                  }
                 }
               }
             },
             "attributes": {
-              "style": "margin: 0 1vw 0 0;"
+              "style": " padding: 2em 4em 0; flex-grow: 1; position:relative; overflow:hidden; width: 100%"
             }
           },
           {
-            "tag": "bk-form-modal",
+            "content": [
+              {
+                "tag": "bk-card",
+                "properties": {
+                  "customMessageOnAbsentDatum": "-",
+                  "customMessageOnAbsentLookup": "Not Found",
+                  "cardSchema": {
+                    "header": {
+                      "icon": "fas fa-address-book",
+                      "title": {
+                        "it": "Informazioni di ricorrenza",
+                        "en": "Recurrence information"
+                      }
+                    },
+                    "main": {
+                      "dataSchema": {
+                        "type": "object",
+                        "properties": {
+                          "amount": {
+                            "label": {
+                              "it": "Importo",
+                              "en": "Amount"
+                            },
+                            "type": "number"
+                          },
+                          "currency": {
+                            "label": {
+                              "it": "Valuta",
+                              "en": "Currency"
+                            },
+                            "type": "string"
+                          },
+                          "intervalCount": {
+                            "label": {
+                              "it": "Periodo di ricorrenza",
+                              "en": "Recurrence period"
+                            },
+                            "type": "string"
+                          },
+                          "interval": {
+                            "label": {
+                              "it": "Intervallo",
+                              "en": "Interval"
+                            },
+                            "type": "string"
+                          },
+                          "nextPaymentDate": {
+                            "label": {
+                              "it": "Prossimo pagamento",
+                              "en": "Next payment"
+                            },
+                            "type": "string",
+                            "format": "date-time",
+                            "dateOptions": {
+                              "displayFormat": "YYYY-MM-DD"
+                            }
+                          },
+                          "expirationDate": {
+                            "label": {
+                              "it": "Scade il",
+                              "en": "Expiration Date"
+                            },
+                            "type": "string",
+                            "format": "date-time",
+                            "dateOptions": {
+                              "displayFormat": "YYYY-MM-DD"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "attributes": {
+                  "style": "background-color: #f0f2f5; padding: 0 1em 0 0; width: 100%"
+                }
+              }
+            ],
+            "tag": "main",
+            "attributes": {
+              "style": "display: flex; flex-direction: row; align-items: start; background-color: #f0f2f5;  flex-grow: 1; position:relative; overflow:hidden;"
+            }
+          },
+          {
+            "tag": "bk-table",
             "properties": {
+              "displayedDataPath": "data.[0].transactions",
+              "disableRowClick": true,
+              "disableRowSelection": true,
               "dataSchema": {
                 "type": "object",
                 "properties": {
-                  "priority": {
-                    "description": {
-                      "en": "Must be an unique integer",
-                      "it": "Deve essere un numero intero unico"
-                    },
+                  "date": {
+                    "type": "string",
                     "label": {
-                      "en": "Priority",
-                      "it": "Priorità"
+                      "en": "Date",
+                      "it": "Data"
                     },
-                    "type": "integer",
-                    "minimum": 0
+                    "format": "date-time",
+                    "dateOptions": {
+                      "displayFormat": "YYYY-MM-DD HH:mm"
+                    },
+                    "visualizationOptions": {
+                      "sortable": false
+                    }
                   },
-                  "ruleID": {
-                    "description": {
-                      "en": "Must be unique",
-                      "it": "Deve essere un valore unico"
-                    },
+                  "shopTransactionId": {
+                    "type": "string",
                     "label": {
-                      "en": "Rule ID",
-                      "it": "ID Regola"
+                      "en": "Transaction Id",
+                      "it": "Id transazione"
                     },
-                    "type": "string"
+                    "visualizationOptions": {
+                      "sortable": false
+                    }
+                  },
+                  "amount": {
+                    "type": "number",
+                    "format": "currency",
+                    "label": {
+                      "en": "Amount",
+                      "it": "Importo"
+                    },
+                    "visualizationOptions": {
+                      "sortable": true,
+                      "template": {
+                        "en": "€ {{nFormat '2.,' args.[0]}}",
+                        "it": "{{nFormat '2.,' args.[0]}} €"
+                      }
+                    }
+                  },
+                  "status": {
+                    "type": "string",
+                    "label": {
+                      "en": "Status",
+                      "it": "Stato"
+                    },
+                    "visualizationOptions": {
+                      "sortable": false
+                    }
                   },
                   "_id": {
                     "type": "string",
                     "visualizationOptions": {
                       "hidden": true
-                    },
-                    "formOptions": {
-                      "hidden": true
-                    },
-                    "filtersOptions": {
-                      "hidden": true
                     }
-                  }
-                }
-              },
-              "eventBus": "eventBus.pool.card1",
-              "customLabels": {
-                "create": {
-                  "title": {
-                    "en": "Update Details",
-                    "it": "Aggiorna dettaglio"
-                  },
-                  "ctaLabel": {
-                    "en": "Save",
-                    "it": "Salva"
-                  }
-                }
-              },
-              "extraEndpoint": "/pgm-bff/adaptive-checkout/rule-details/update",
-              "afterFinishEvents": {
-                "label": "change-query",
-                "payload": {}
-              }
-            }
-          },
-          {
-            "tag": "bk-card",
-            "properties": {
-              "customMessageOnAbsentDatum": "-",
-              "customMessageOnAbsentLookup": "Not Found",
-              "cardSchema": {
-                "header": {
-                  "icon": "InfoCircleOutlined",
-                  "title": {
-                    "en": "Amount Rule",
-                    "it": "Regola sull'Importo"
-                  }
-                },
-                "main": {
-                  "dataSchema": {
-                    "type": "object",
-                    "properties": {
-                      "amount": {
-                        "label": {
-                          "en": "Amount",
-                          "it": "Importo"
-                        },
-                        "type": "object",
-                        "dataSchema": {
-                          "type": "object",
-                          "properties": {
-                            "min": {
-                              "label": {
-                                "en": "Min",
-                                "it": "Min"
-                              },
-                              "type": "number",
-                              "format": "currency",
-                              "minimum": 0,
-                              "visualizationOptions": {
-                                "template": {
-                                  "en": "€ {{nFormat '2.,' args.[0]}}",
-                                  "it": "{{nFormat '2,.' args.[0]}} €"
-                                }
-                              }
-                            },
-                            "max": {
-                              "label": {
-                                "en": "Max",
-                                "it": "Max"
-                              },
-                              "type": "number",
-                              "format": "currency",
-                              "minimum": 0,
-                              "visualizationOptions": {
-                                "template": {
-                                  "en": "€ {{nFormat '2.,' args.[0]}}",
-                                  "it": "{{nFormat '2,.' args.[0]}} €"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "_id": {
-                        "type": "string",
-                        "visualizationOptions": {
-                          "hidden": true
-                        }
-                      }
-                    }
-                  }
-                },
-                "footer": {
-                  "buttons": [
-                    {
-                      "tag": "bk-button",
-                      "content": "",
-                      "type": "secondary",
-                      "title": "Delete Data",
-                      "iconId": "fas fa-trash",
-                      "action": {
-                        "type": "event",
-                        "config": {
-                          "events": {
-                            "label": "require-confirm",
-                            "payload": {
-                              "configOk": {
-                                "tag": "bk-button",
-                                "properties": {
-                                  "content": "Delete Data",
-                                  "action": {
-                                    "type": "http",
-                                    "config": {
-                                      "url": "/pgm-bff/adaptive-checkout/amount-rules/delete",
-                                      "method": "DELETE",
-                                      "body": {
-                                        "min": "{{data.amount.min}}",
-                                        "max": "{{data.amount.max}}",
-                                        "id": "{{data._id}}"
-                                      }
-                                    },
-                                    "hooks": {
-                                      "onSuccess": {
-                                        "type": "event",
-                                        "config": {
-                                          "events": {
-                                            "label": "change-query",
-                                            "payload": {}
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "tag": "bk-button",
-                      "content": {
-                        "en": "Edit Data",
-                        "it": "Modifica"
-                      },
-                      "action": {
-                        "type": "event",
-                        "config": {
-                          "events": {
-                            "label": "add-new-external",
-                            "payload": {
-                              "min": "{{rawObjectOrEmptyStr data.amount.min}}",
-                              "max": "{{rawObjectOrEmptyStr data.amount.max}}",
-                              "id": "{{data._id}}"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "attributes": {
-              "style": "margin: 0 1vw 0 0;"
-            }
-          },
-          {
-            "tag": "bk-form-modal",
-            "properties": {
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "min": {
-                    "description": {
-                      "en": "Must be greater than 0",
-                      "it": "Deve essere maggiore di 0"
-                    },
-                    "label": {
-                      "en": "Min Value",
-                      "it": "Valore Minimo"
-                    },
-                    "type": "number",
-                    "format": "currency",
-                    "minimum": 0,
-                    "formOptions": {
-                      "template": {
-                        "en": "€ {{nFormat '2.,' value}}",
-                        "it": "{{nFormat '2.,' value}} €"
-                      }
-                    }
-                  },
-                  "max": {
-                    "description": {
-                      "en": "Must be greater than the Min value",
-                      "it": "Deve essere maggiore del valore Minimo"
-                    },
-                    "label": {
-                      "en": "Max Value",
-                      "it": "Valore Massimo"
-                    },
-                    "type": "number",
-                    "format": "currency",
-                    "minimum": 0,
-                    "formOptions": {
-                      "template": {
-                        "en": "€ {{nFormat '2.,' value}}",
-                        "it": "{{nFormat '2.,' value}} €"
-                      }
-                    }
-                  },
-                  "id": {
-                    "type": "string",
-                    "visualizationOptions": {
-                      "hidden": true
-                    },
-                    "formOptions": {
-                      "hidden": true
-                    },
-                    "filtersOptions": {
-                      "hidden": true
-                    }
-                  }
-                }
-              },
-              "customLabels": {
-                "create": {
-                  "title": {
-                    "en": "Update Amount Rule",
-                    "it": "Aggiorna Regola sull'Importo"
-                  },
-                  "ctaLabel": {
-                    "en": "Save",
-                    "it": "Salva"
-                  }
-                }
-              },
-              "extraEndpoint": "/pgm-bff/adaptive-checkout/amount-rules/update",
-              "afterFinishEvents": {
-                "label": "change-query",
-                "payload": {}
-              }
-            }
-          },
-          {
-            "tag": "bk-table",
-            "attributes": {
-              "style": "margin: 0 1vw 0 0;"
-            },
-            "properties": {
-              "displayedDataPath": "data.[0].enabledMethods",
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "paymentMethod": {
-                    "type": "string",
-                    "enum": [
-                      "Apple Pay",
-                      "Credit Card",
-                      "Google Pay",
-                      "PayPal",
-                      "SafeCharge",
-                      "Satispay",
-                      "Scalapay",
-                      "Soisy",
-                      "Stripe"
-                    ],
-                    "label": {
-                      "en": "Payment Method",
-                      "it": "Metodo di Pagamento"
-                    }
-                  },
-                  "provider": {
-                    "type": "string",
-                    "enum": [
-                      "Adyen",
-                      "Axerve",
-                      "Braintree",
-                      "SafeCharge",
-                      "Satispay",
-                      "Scalapay",
-                      "Soisy",
-                      "Stripe",
-                      "Unicredit"
-                    ],
-                    "label": {
-                      "en": "Provider",
-                      "it": "Provider"
-                    }
-                  },
-                  "index": {
-                    "type": "integer",
-                    "visualizationOptions": {
-                      "hidden": true
-                    },
-                    "formOptions": {
-                      "hidden": true
-                    },
-                    "filtersOptions": {
-                      "hidden": true
-                    }
-                  }
-                }
-              },
-              "disableRowSelection": true,
-              "customActions": [
-                {
-                  "tag": "bk-button",
-                  "properties": {
-                    "content": "",
-                    "type": "secondary",
-                    "title": "Delete Data",
-                    "iconId": "fas fa-trash",
-                    "urlMask": "/backoffice/adaptive-checkout-detail/:id",
-                    "action": {
-                      "type": "event",
-                      "config": {
-                        "events": {
-                          "label": "require-confirm",
-                          "payload": {
-                            "configOk": {
-                              "tag": "bk-button",
-                              "properties": {
-                                "content": "Delete Data",
-                                "action": {
-                                  "type": "http",
-                                  "config": {
-                                    "url": "/pgm-bff/adaptive-checkout/payment-methods/delete",
-                                    "method": "DELETE",
-                                    "body": {
-                                      "paymentMethod": "{{args.[0].paymentMethod}}",
-                                      "provider": "{{args.[0].paymentMethod}}",
-                                      "index": "{{args.[0].index}}",
-                                      "id": "{{pathnameParams.params.id}}"
-                                    }
-                                  },
-                                  "hooks": {
-                                    "onSuccess": {
-                                      "type": "event",
-                                      "config": {
-                                        "events": {
-                                          "label": "change-query",
-                                          "payload": {}
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "attributes": {
-                    "style": "margin: 0 1vw 0 0;"
-                  }
-                },
-                {
-                  "tag": "bk-button",
-                  "properties": {
-                    "content": "",
-                    "type": "primary",
-                    "title": "Edit Data",
-                    "iconId": "fas fa-pen",
-                    "urlMask": "/backoffice/adaptive-checkout-detail/:id",
-                    "action": {
-                      "type": "event",
-                      "config": {
-                        "events": {
-                          "label": "add-new-external",
-                          "payload": {
-                            "paymentMethod": "{{args.[0].paymentMethod}}",
-                            "provider": "{{args.[0].provider}}",
-                            "index": "{{args.[0].index}}",
-                            "id": "{{pathnameParams.params.id}}"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              ],
-              "maxLines": 10
-            }
-          },
-          {
-            "tag": "bk-form-modal",
-            "properties": {
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "paymentMethod": {
-                    "description": {
-                      "en": "Must be valid for the associated provider",
-                      "it": "Deve essere un valore valido per il provider"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Credit Card",
-                      "Apple Pay",
-                      "Google Pay",
-                      "PayPal",
-                      "Satispay",
-                      "Scalapay",
-                      "SafeCharge",
-                      "Soisy",
-                      "Stripe"
-                    ],
-                    "label": {
-                      "en": "Payment Method",
-                      "it": "Metodo di Pagamento"
-                    }
-                  },
-                  "provider": {
-                    "description": {
-                      "en": "Must be an enabled provider",
-                      "it": "Deve essere un provider abilitato"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Adyen",
-                      "Axerve",
-                      "Braintree",
-                      "SafeCharge",
-                      "Satispay",
-                      "Scalapay",
-                      "Soisy",
-                      "Stripe",
-                      "Unicredit"
-                    ],
-                    "label": {
-                      "en": "Provider",
-                      "it": "Provider"
-                    }
-                  },
-                  "id": {
-                    "type": "string",
-                    "formOptions": {
-                      "hidden": true
-                    }
-                  },
-                  "index": {
-                    "type": "integer",
-                    "formOptions": {
-                      "hidden": true
-                    }
-                  }
-                }
-              },
-              "customLabels": {
-                "create": {
-                  "title": {
-                    "en": "Edit Payment Method",
-                    "it": "Modifica Metodo di Pagamento"
-                  },
-                  "ctaLabel": {
-                    "en": "Save",
-                    "it": "Salva"
-                  }
-                }
-              },
-              "extraEndpoint": "/pgm-bff/adaptive-checkout/payment-methods/update",
-              "afterFinishEvents": {
-                "label": "change-query",
-                "payload": {}
-              }
-            }
-          },
-          {
-            "tag": "bk-form-modal",
-            "properties": {
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "paymentMethod": {
-                    "description": {
-                      "en": "Must be valid for the associated provider",
-                      "it": "Deve essere un valore valido per il provider"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Apple Pay",
-                      "Credit Card",
-                      "Google Pay",
-                      "PayPal",
-                      "SafeCharge",
-                      "Satispay",
-                      "Scalapay",
-                      "Soisy",
-                      "Stripe"
-                    ],
-                    "label": {
-                      "en": "Payment Method",
-                      "it": "Metodo di Pagamento"
-                    }
-                  },
-                  "provider": {
-                    "description": {
-                      "en": "Must be an enabled provider",
-                      "it": "Deve essere un provider abilitato"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Adyen",
-                      "Axerve",
-                      "Braintree",
-                      "SafeCharge",
-                      "Satispay",
-                      "Scalapay",
-                      "Soisy",
-                      "Stripe",
-                      "Unicredit"
-                    ],
-                    "label": {
-                      "en": "Provider",
-                      "it": "Provider"
-                    }
-                  },
-                  "id": {
-                    "type": "string",
-                    "formOptions": {
-                      "hidden": true
-                    }
-                  }
-                }
-              },
-              "customLabels": {
-                "create": {
-                  "title": {
-                    "en": "Add Payment Method",
-                    "it": "Aggiungi Metodo di Pagamento"
-                  },
-                  "ctaLabel": {
-                    "en": "Add",
-                    "it": "Aggiungi"
-                  }
-                }
-              },
-              "extraEndpoint": "/pgm-bff/adaptive-checkout/payment-methods/add",
-              "afterFinishEvents": {
-                "label": "change-query",
-                "payload": {}
-              }
-            }
-          },
-          {
-            "tag": "bk-table",
-            "attributes": {
-              "style": "margin: 0 1vw 0 0;"
-            },
-            "properties": {
-              "displayedDataPath": "data.[0].matchInValues",
-              "disableRowSelection": true,
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "label": {
-                      "en": "Entity",
-                      "it": "Entità"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Product Category",
-                      "Channel",
-                      "User Type"
-                    ]
-                  },
-                  "values": {
-                    "label": {
-                      "en": "Value",
-                      "it": "Valore"
-                    },
-                    "type": "string"
                   }
                 }
               },
@@ -5627,194 +5427,23 @@ Here is available the configuration for this page.
                   "tag": "bk-button",
                   "properties": {
                     "content": "",
-                    "type": "secondary",
-                    "title": "Delete Data",
-                    "iconId": "fas fa-trash",
-                    "urlMask": "/backoffice/adaptive-checkout-detail/:id",
-                    "action": {
-                      "type": "event",
-                      "config": {
-                        "events": {
-                          "label": "require-confirm",
-                          "payload": {
-                            "configOk": {
-                              "tag": "bk-button",
-                              "properties": {
-                                "content": "Delete Data",
-                                "action": {
-                                  "type": "http",
-                                  "config": {
-                                    "url": "/pgm-bff/adaptive-checkout/custom-rules/delete",
-                                    "method": "DELETE",
-                                    "body": {
-                                      "key": "{{args.[0].key}}",
-                                      "values": "{{args.[0].values}}",
-                                      "id": "{{pathnameParams.params.id}}"
-                                    }
-                                  },
-                                  "hooks": {
-                                    "onSuccess": {
-                                      "type": "event",
-                                      "config": {
-                                        "events": {
-                                          "label": "change-query",
-                                          "payload": {}
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "tag": "bk-button",
-                  "properties": {
-                    "content": "",
-                    "type": "primary",
-                    "title": "Edit Data",
-                    "iconId": "fas fa-pen",
-                    "urlMask": "/backoffice/adaptive-checkout-detail/:id",
-                    "action": {
-                      "type": "event",
-                      "config": {
-                        "events": {
-                          "label": "add-new-external",
-                          "payload": {
-                            "key": "{{args.[0].key}}",
-                            "values": "{{args.[0].values}}",
-                            "id": "{{pathnameParams.params.id}}"
-                          }
-                        }
+                    "title": "Go to Detail",
+                    "iconId": "fas fa-arrow-right",
+                    "iconPlacement": "right",
+                    "clickConfig": {
+                      "type": "push",
+                      "actionConfig": {
+                        "url": "./transaction-detail/{{args.[1]._id}}"
                       }
                     }
                   }
                 }
               ],
-              "maxLines": 10
-            }
-          },
-          {
-            "tag": "bk-form-modal",
-            "properties": {
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "label": {
-                      "en": "Entity",
-                      "it": "Entità"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Product Category",
-                      "Channel",
-                      "User Type"
-                    ]
-                  },
-                  "values": {
-                    "description": {
-                      "en": "To define multiple values separate them with a comma, no trailing spaces (e.g. \"x,y,z\")",
-                      "it": "Per definire più valori usare la virgola come separatore, senza spazi (e.g. \"x,y,z\")"
-                    },
-                    "label": {
-                      "en": "Values",
-                      "it": "Valori"
-                    },
-                    "type": "string",
-                    "formOptions": {
-                      "placeholder": "Multiple values separated by comma: \"x,y,z\""
-                    }
-                  },
-                  "id": {
-                    "type": "string",
-                    "formOptions": {
-                      "hidden": true
-                    }
-                  }
-                }
-              },
-              "customLabels": {
-                "create": {
-                  "title": {
-                    "en": "Edit Custom Rule",
-                    "it": "Modifica Regola Personalizzata"
-                  },
-                  "ctaLabel": {
-                    "en": "Save",
-                    "it": "Salva"
-                  }
-                }
-              },
-              "extraEndpoint": "/pgm-bff/adaptive-checkout/custom-rules/update",
-              "afterFinishEvents": {
-                "label": "change-query",
-                "payload": {}
-              }
-            }
-          },
-          {
-            "tag": "bk-form-modal",
-            "properties": {
-              "dataSchema": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "label": {
-                      "en": "Entity",
-                      "it": "Entità"
-                    },
-                    "type": "string",
-                    "enum": [
-                      "Product Category",
-                      "Channel",
-                      "User Type"
-                    ]
-                  },
-                  "values": {
-                    "description": {
-                      "en": "To define multiple values separate them with a comma, no trailing spaces (e.g. \"x,y,z\")",
-                      "it": "Per definire più valori usare la virgola come separatore, senza spazi (e.g. \"x,y,z\")"
-                    },
-                    "label": {
-                      "en": "Values",
-                      "it": "Valori"
-                    },
-                    "type": "string",
-                    "formOptions": {
-                      "placeholder": "Multiple values separated by comma: \"x,y,z\""
-                    }
-                  },
-                  "id": {
-                    "type": "string",
-                    "formOptions": {
-                      "hidden": true
-                    }
-                  }
-                }
-              },
-              "customLabels": {
-                "create": {
-                  "title": {
-                    "en": "Add Custom Rule",
-                    "it": "Aggiungi Regola Personalizzata"
-                  },
-                  "ctaLabel": {
-                    "en": "Add",
-                    "it": "Aggiungi"
-                  }
-                }
-              },
-              "extraEndpoint": "/pgm-bff/adaptive-checkout/custom-rules/add",
-              "afterFinishEvents": {
-                "label": "change-query",
-                "payload": {}
-              }
+              "initialSortDirection": "descend",
+              "initialSortProperty": "amount"
+            },
+            "attributes": {
+              "style": "background-color: #f0f2f5; padding: 0em 4em 0; flex-grow: 1; position:relative; overflow:hidden;"
             }
           }
         ],
@@ -5824,51 +5453,56 @@ Here is available the configuration for this page.
         }
       },
       {
+        "tag": "bk-state-adapter",
+        "attributes": {
+          "style": "display: none;"
+        }
+      },
+      {
         "tag": "bk-url-parameters",
         "properties": {
-          "urlMask": "/backoffice/adaptive-checkout-detail/:_id"
+          "urlMask": "/backoffice/subscription-details/:_id"
         }
       },
       {
         "properties": {
-          "basePath": "/adaptive-checkout-view",
+          "basePath": "/subscriptions-view",
           "dataSchema": {
             "$ref": "#/definitions/dataSchema"
-          },
-          "redirectToUrl": false
+          }
         },
         "tag": "bk-crud-client"
       },
       {
         "properties": {
-          "eventBus": "eventBus.pool.card1",
-          "basePath": "/adaptive-checkout-view",
-          "dataSchema": {
-            "$ref": "#/definitions/dataSchema"
-          },
-          "redirectToUrl": false
+          "basePath": "/v2/file"
         },
-        "tag": "bk-crud-client"
+        "tag": "bk-file-client"
+      },
+      {
+        "tag": "bk-file-manager"
       },
       {
         "tag": "bk-confirmation-modal"
+      },
+      {
+        "properties": {
+          "requireConfirm": {
+            "onClose": true,
+            "onSave": true
+          },
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          },
+          "width": "70vw"
+        },
+        "tag": "bk-form-modal"
       },
       {
         "tag": "bk-notifications",
         "properties": {
           "rootElementSelectors": "main.micro-lc-layout-content",
           "successEventMap": {
-            "bk-form-modal-extra-endpoint": {
-              "title": {
-                "en": "Success",
-                "it": "Successo"
-              },
-              "content": {
-                "en": "Requested action executed successfully",
-                "it": "L'azione richiesta è stata eseguita con successo"
-              },
-              "type": "success"
-            },
             "create-data": {
               "title": {
                 "en": "Success",
@@ -5902,6 +5536,28 @@ Here is available the configuration for this page.
               },
               "type": "success"
             },
+            "post-http-generic-button": {
+              "title": {
+                "en": "Success",
+                "it": "Successo"
+              },
+              "content": {
+                "en": "Requested action executed successfully",
+                "it": "L'azione richiesta è stata eseguita con successo"
+              },
+              "type": "success"
+            },
+            "get-http-generic-button": {
+              "title": {
+                "en": "Success",
+                "it": "Successo"
+              },
+              "content": {
+                "en": "Requested action executed successfully",
+                "it": "L'azione richiesta è stata eseguita con successo"
+              },
+              "type": "success"
+            },
             "success": {
               "title": {
                 "en": "Success",
@@ -5915,17 +5571,6 @@ Here is available the configuration for this page.
             }
           },
           "errorEventMap": {
-            "bk-form-modal-extra-endpoint": {
-              "title": {
-                "en": "Error",
-                "it": "Errore"
-              },
-              "content": {
-                "en": "Requested action failed",
-                "it": "L'azione richiesta è fallita"
-              },
-              "type": "error"
-            },
             "create-data": {
               "title": {
                 "en": "Error",
@@ -5956,6 +5601,28 @@ Here is available the configuration for this page.
               "content": {
                 "en": "An error occurred during item deletion",
                 "it": "C'è stato un errore durante l'eliminazione dell'elemento"
+              },
+              "type": "error"
+            },
+            "post-http-generic-button": {
+              "title": {
+                "en": "Error",
+                "it": "Errore"
+              },
+              "content": {
+                "en": "Requested action failed",
+                "it": "L'azione richiesta è fallita"
+              },
+              "type": "error"
+            },
+            "get-http-generic-button": {
+              "title": {
+                "en": "Error",
+                "it": "Errore"
+              },
+              "content": {
+                "en": "Requested action failed",
+                "it": "L'azione richiesta è fallita"
               },
               "type": "error"
             },

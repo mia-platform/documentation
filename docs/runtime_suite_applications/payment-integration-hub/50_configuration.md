@@ -90,286 +90,364 @@ For further configuration of the microservices you can refer to the dedicated do
 
 ## View
 
-:::warning Workaround
-The user should perform the additional steps reported in this admonition.
-- Setup aggregation of `transactions_saga_view` as follows.
-  - create a new aggregation view on MongoDB Views section called `transactions_saga_view`
-  - choose `transactions_saga` as starting collection
-  - create `transactions_saga_view` schema as the schema below
+The user could perform the additional steps reported below in order to create mongo views that enabled to use the ready to use [backoffice pages related to payments](./40_backoffice_payment.md).
+1. Setup aggregation of `fm_transactions_view` as follows.
+  - create a new aggregation view on MongoDB Views section called `fm_transactions_view`
+  - choose `fm_transactions` as starting collection
+  - create `fm_transactions_view` schema as the schema below
   - paste the following pipeline and fields
     <details>
       <summary>Pipeline</summary>
 
     ```json
     [
-      {
-        "$match": {
-          "__STATE__": "PUBLIC"
-        }
-      },
-      {
-        "$project": {
-          "__STATE__": "$__STATE__",
-          "createdAt": "$createdAt",
-          "updatedAt": "$updatedAt",
-          "creatorId": "$creatorId",
-          "updaterId": "$updaterId",
-          "sagaId": "$sagaId",
-          "amount": "$metadata.amount",
-          "paymentMethodId": "$metadata.paymentMethod",
-          "paymentMethod": {
-            "$switch": {
-              "branches": [
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "applepay"
-                    ]
-                  },
-                  "then": "Apple Pay"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "credit-cards"
-                    ]
-                  },
-                  "then": "Credit Card"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "googlepay"
-                    ]
-                  },
-                  "then": "Google Pay"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "pay-pal"
-                    ]
-                  },
-                  "then": "PayPal"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "safecharge"
-                    ]
-                  },
-                  "then": "SafeCharge"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "satispay"
-                    ]
-                  },
-                  "then": "Satispay"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "scalapay"
-                    ]
-                  },
-                  "then": "Scalapay"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "soisy"
-                    ]
-                  },
-                  "then": "Soisy"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.paymentMethod",
-                      "stripe"
-                    ]
-                  },
-                  "then": "Stripe"
-                }
-              ],
-              "default": "$metadata.paymentMethod"
-            }
-          },
-          "providerId": "$metadata.provider",
-          "provider": {
-            "$switch": {
-              "branches": [
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "braintree"
-                    ]
-                  },
-                  "then": "Braintree"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "gestpay"
-                    ]
-                  },
-                  "then": "Axerve"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "safecharge"
-                    ]
-                  },
-                  "then": "SafeCharge"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "satispay"
-                    ]
-                  },
-                  "then": "Satispay"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "scalapay"
-                    ]
-                  },
-                  "then": "Scalapay"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "soisy"
-                    ]
-                  },
-                  "then": "Soisy"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "unicredit"
-                    ]
-                  },
-                  "then": "Unicredit"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$metadata.provider",
-                      "stripe"
-                    ]
-                  },
-                  "then": "Stripe"
-                }
-              ],
-              "default": "$metadata.provider"
-            }
-          },
-          "currentStatus": {
-            "$switch": {
-              "branches": [
-                {
-                  "case": {
-                    "$eq": [
-                      "$businessStateDescription",
-                      "PAYMENT_PAID"
-                    ]
-                  },
-                  "then": "Paid"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$businessStateDescription",
-                      "PAYMENT_CREATED"
-                    ]
-                  },
-                  "then": "Created"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$businessStateDescription",
-                      "PAYMENT_PARTIALLY_REFUNDED"
-                    ]
-                  },
-                  "then": "Partially Refunded"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$businessStateDescription",
-                      "PAYMENT_TOTALLY_REFUNDED"
-                    ]
-                  },
-                  "then": "Totally Refunded"
-                },
-                {
-                  "case": {
-                    "$eq": [
-                      "$businessStateDescription",
-                      "PAYMENT_FAILED"
-                    ]
-                  },
-                  "then": "Failed"
-                }
-              ],
-              "default": "$businessStateDescription"
-            }
-          },
-          "buyerName": "$metadata.buyer.name",
-          "buyerEmail": "$metadata.buyer.email",
-          "channel": "$metadata.additionalData.channel",
-          "date": "$createdAt",
-          "history": {
-            "$reverseArray": {
-              "$function": {
-                "body": "function(history, refundedAmounts) {  externalIndex = 0;  return history.events.map((event, index) => {    let refundedAmount = undefined;    if (event.event === 'partialRefundExecuted' || event.event === 'totalRefundExecuted') {      if (refundedAmounts !== null && externalIndex < refundedAmounts.length) {        refundedAmount = refundedAmounts[externalIndex];        externalIndex++;      } else {        refundedAmount = 'error';      }    }    let status;    switch (history.states[index].businessStateDescription) {      case 'PAYMENT_CREATED':        status = 'Created';        break;      case 'PAYMENT_PAID':        status = 'Paid';        break;      case 'PAYMENT_PARTIALLY_REFUNDED':        status = 'Partially Refunded';        break;      case 'PAYMENT_TOTALLY_REFUNDED':        status = 'Totally Refunded';        break;      case 'PAYMENT_FAILED':        status = 'Failed';        break;      default:        status = history.states[index].businessStateDescription;    }    let eventName;    switch (event.event) {      case 'paymentCreated':        eventName = 'Payment created';        break;      case 'scheduleRequested':        eventName = 'Payment schedule requested';        break;      case 'paymentRedirected':        eventName = 'Payment redirected';        break;      case 'redirectionCompleted':        eventName = 'Redirection completed';        break;      case 'paymentScheduled':        eventName = 'Payment scheduled';        break;      case 'confirmRequested':        eventName = 'Payment confirmation requested';        break;      case 'confirmReceived':        eventName = 'Payment confirmation received';        break;      case 'paymentScheduleFailed':        eventName = 'Payment schedule failed';        break;      case 'redirectionFailed':        eventName = 'Payment redirection failed';        break;      case 'paymentExecutionFailed':        eventName = 'Payment failed';        break;      case 'paymentExecutionFailedFrullino':        eventName = 'Payment failed by the system';        break;      case 'paymentConfirmFailed':        eventName = 'Payment confirmation failed';        break;      case 'emailNotificationSent':        eventName = 'Email notification sent';        break;      case 'emailNotificationFailed':        eventName = 'Email notification failed';        break;      case 'emailNotificationRequested':        eventName = 'Email notification requested';        break;      case 'paymentExecuted':        eventName = 'Payment executed';        break;      case 'paymentExecutedFrullino':        eventName = 'Payment executed by the system';        break;      case 'refundRequested':        eventName = 'Refund requested';        break;      case 'refundFailed':        eventName = 'Refund failed';        break;      case 'partialRefundExecuted':        eventName = 'Partial refund executed';        break;      case 'totalRefundExecuted':        eventName = 'Total refund executed';        break;      case 'invoiceGenerated':        eventName = 'Invoice generated';        break;      case 'invoiceGenerationFailed':        eventName = 'Invoice generation failed';        break;      default:        eventName = event.event;    }    return {      date: event.timestamp,      event: eventName,      status,      refundedAmount    };  });}",
-                "args": [
-                  "$history",
-                  "$metadata.refundDetails.refundedAmounts"
-                ],
-                "lang": "js"
-              }
-            }
-          },
-          "shopTransactionID": "$metadata.shopTransactionID",
-          "paymentID": "$metadata.paymentID",
-          "totalRefundedAmount": "$metadata.refundDetails.totalRefundedAmount",
-          "remainingAmount": {
-            "$subtract": [
-              "$metadata.amount",
+    {
+      "$match": {
+        "__STATE__": "PUBLIC"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "fm_subscriptions",
+        "localField": "metadata.subscriptionId",
+        "foreignField": "sagaId",
+        "as": "subscriptions"
+      }
+    },
+    {
+      "$project": {
+        "__STATE__": "$__STATE__",
+        "createdAt": "$createdAt",
+        "updatedAt": "$updatedAt",
+        "creatorId": "$creatorId",
+        "updaterId": "$updaterId",
+        "sagaId": "$sagaId",
+        "amount": "$metadata.amount",
+        "currency": "$metadata.currency",
+        "paymentMethodId": "$metadata.paymentMethod",
+        "paymentMethod": {
+          "$switch": {
+            "branches": [
               {
-                "$ifNull": [
-                  "$metadata.refundDetails.totalRefundedAmount",
-                  0
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "applepay"
+                  ]
+                },
+                "then": "Apple Pay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "credit-cards"
+                  ]
+                },
+                "then": "Credit Card"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "googlepay"
+                  ]
+                },
+                "then": "Google Pay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "pay-pal"
+                  ]
+                },
+                "then": "PayPal"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "safecharge"
+                  ]
+                },
+                "then": "SafeCharge"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "satispay"
+                  ]
+                },
+                "then": "Satispay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "scalapay"
+                  ]
+                },
+                "then": "Scalapay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "soisy"
+                  ]
+                },
+                "then": "Soisy"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "stripe"
+                  ]
+                },
+                "then": "Stripe"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "external"
+                  ]
+                },
+                "then": {
+                  "$concat": [
+                    "External - ",
+                    "$metadata.provider"
+                  ]
+                }
+              }
+            ],
+            "default": "$metadata.paymentMethod"
+          }
+        },
+        "providerId": "$metadata.provider",
+        "provider": {
+          "$switch": {
+            "branches": [
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "braintree"
+                  ]
+                },
+                "then": "Braintree"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "axerve"
+                  ]
+                },
+                "then": "Axerve"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "safecharge"
+                  ]
+                },
+                "then": "SafeCharge"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "satispay"
+                  ]
+                },
+                "then": "Satispay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "scalapay"
+                  ]
+                },
+                "then": "Scalapay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "soisy"
+                  ]
+                },
+                "then": "Soisy"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "unicredit"
+                  ]
+                },
+                "then": "Unicredit"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "stripe"
+                  ]
+                },
+                "then": "Stripe"
+              }
+            ],
+            "default": "$metadata.provider"
+          }
+        },
+        "currentStatus": {
+          "$switch": {
+            "branches": [
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "PAYMENT_PAID"
+                  ]
+                },
+                "then": "Paid"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "PAYMENT_CREATED"
+                  ]
+                },
+                "then": "Created"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "PAYMENT_TOTALLY_REFUNDED"
+                  ]
+                },
+                "then": "Totally Refunded"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "PAYMENT_PARTIALLY_REFUNDED"
+                  ]
+                },
+                "then": "Partially Refunded"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "PAYMENT_FAILED"
+                  ]
+                },
+                "then": "Failed"
+              }
+            ],
+            "default": "$businessStateDescription"
+          }
+        },
+        "buyerName": "$metadata.additionalData.buyer.name",
+        "buyerEmail": "$metadata.additionalData.buyer.email",
+        "channel": "$metadata.additionalData.channel",
+        "date": "$createdAt",
+        "history": {
+          "$reverseArray": {
+            "$function": {
+              "body": "function(history, refundedAmounts) {  externalIndex = 0;  return history.events.map((event, index) => {    let refundedAmount = undefined;    if (event.event === 'partialRefundExecuted' || event.event === 'totalRefundExecuted') {      if (refundedAmounts !== null && externalIndex < refundedAmounts.length) {        refundedAmount = refundedAmounts[externalIndex];        externalIndex++;      } else {        refundedAmount = null;      }    }    let status;    switch (history.states[index].businessStateDescription) {      case 'PAYMENT_CREATED':        status = 'Created';        break;      case 'PAYMENT_PAID':        status = 'Paid';        break;      case 'PAYMENT_PARTIALLY_REFUNDED':        status = 'Partially Refunded';        break;      case 'PAYMENT_TOTALLY_REFUNDED':        status = 'Totally Refunded';        break;      case 'PAYMENT_FAILED':        status = 'Failed';        break;      default:        status = history.states[index].businessStateDescription;    }    let eventName;    switch (event.event) {      case 'paymentCreated':        eventName = 'Payment created';        break;      case 'scheduleRequested':        eventName = 'Payment schedule requested';        break;      case 'paymentRedirected':        eventName = 'Payment redirected';        break;      case 'redirectionCompleted':        eventName = 'Redirection completed';        break;      case 'paymentScheduled':        eventName = 'Payment scheduled';        break;      case 'confirmRequested':        eventName = 'Payment confirmation requested';        break;      case 'confirmReceived':        eventName = 'Payment confirmation received';        break;      case 'paymentScheduleFailed':        eventName = 'Payment schedule failed';        break;      case 'redirectionFailed':        eventName = 'Payment redirection failed';        break;      case 'paymentExecutionFailed':        eventName = 'Payment failed';        break;      case 'paymentExecutionFailedFrullino':        eventName = 'Payment failed by the system';        break;      case 'paymentConfirmFailed':        eventName = 'Payment confirmation failed';        break;      case 'emailNotificationSent':        eventName = 'Email notification sent';        break;      case 'emailNotificationFailed':        eventName = 'Email notification failed';        break;      case 'emailNotificationRequested':        eventName = 'Email notification requested';        break;      case 'paymentExecuted':        eventName = 'Payment executed';        break;      case 'paymentExecutedFrullino':        eventName = 'Payment executed by the system';        break;      case 'refundRequested':        eventName = 'Refund requested';        break;      case 'refundFailed':        eventName = 'Refund failed';        break;      case 'partialRefundExecuted':        eventName = 'Partial refund executed';        break;      case 'totalRefundExecuted':        eventName = 'Total refund executed';        break;      case 'invoiceGenerated':        eventName = 'Invoice generated';        break;      case 'invoiceGenerationFailed':        eventName = 'Invoice generation failed';        break;      default:        eventName = event.event;    }    return {      date: event.timestamp,      event: eventName,      status,      refundedAmount    };  });}",
+              "args": [
+                "$history",
+                "$metadata.refundDetails.refundedAmounts"
+              ],
+              "lang": "js"
+            }
+          }
+        },
+        "shopTransactionId": "$metadata.shopTransactionId",
+        "paymentID": "$metadata.paymentID",
+        "totalRefundedAmount": {
+          "$ifNull": [
+            "$metadata.refundDetails.totalRefundedAmount",
+            "0"
+          ]
+        },
+        "remainingAmount": {
+          "$subtract": [
+            "$metadata.amount",
+            {
+              "$ifNull": [
+                "$metadata.refundDetails.totalRefundedAmount",
+                0
+              ]
+            }
+          ]
+        },
+        "type": "$metadata.type",
+        "subscriptionId": {
+          "$first": "$subscriptions"
+        }
+      }
+    },
+    {
+      "$set": {
+        "subscriptionId": "$subscriptionId._id",
+        "amount": {
+          "$divide": [
+            {
+              "$toDouble": "$amount"
+            },
+            100
+          ]
+        },
+        "totalRefundedAmount": {
+          "$divide": [
+            {
+              "$toDouble": "$totalRefundedAmount"
+            },
+            100
+          ]
+        },
+        "remainingAmount": {
+          "$divide": [
+            {
+              "$toDouble": "$remainingAmount"
+            },
+            100
+          ]
+        },
+        "history": {
+          "$map": {
+            "input": "$history",
+            "in": {
+              "date": "$$this.date",
+              "event": "$$this.event",
+              "status": "$$this.status",
+              "refundedAmount": {
+                "$divide": [
+                  {
+                    "$toDouble": "$$this.refundedAmount"
+                  },
+                  100
                 ]
               }
-            ]
+            }
           }
         }
       }
-    ]
+    }
+  ]
     ```
     </details>
 
@@ -531,14 +609,972 @@ The user should perform the additional steps reported in this admonition.
         "required": false,
         "nullable": false,
         "sensitivityValue": 0
+      },
+      {
+        "name": "currency",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0
+      },
+      {
+        "name": "shopTransactionId",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0
+      },
+      {
+        "name": "subscriptionId",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0
       }
     ]
     ```
     </details>
 
-- Create endpoint for the mongoDB view previously created `transactions_saga_view`
+2. Create endpoint for the mongoDB view previously created `transactions_saga_view`
   - Create a new endpoint on the endpoint section `/transactions-saga-view`
   - Choose mongoDB view as type
   - Choose Mongo view base path as `/transactions-saga-view`
 
-:::
+3. Setup aggregation of `subscriptions_view` as follows.
+  - create a new aggregation view on MongoDB Views section called `subscriptions_view`
+  - choose `fm_subscriptions` as starting collection
+  - create `subscriptions_view` schema as the schema below
+  - paste the following pipeline and fields
+  <details>
+      <summary>Pipeline</summary>
+
+    ```json
+    [
+    {
+      "$match": {
+        "__STATE__": "PUBLIC"
+      }
+    },
+    {
+      "$lookup": {
+        "from": "fm_transactions",
+        "localField": "metadata.transactions",
+        "foreignField": "sagaId",
+        "as": "transactionsData"
+      }
+    },
+    {
+      "$project": {
+        "__STATE__": "$__STATE__",
+        "createdAt": "$createdAt",
+        "updatedAt": "$updatedAt",
+        "creatorId": "$creatorId",
+        "updaterId": "$updaterId",
+        "sagaId": "$sagaId",
+        "amount": "$metadata.amount",
+        "currency": "$metadata.currency",
+        "providerId": "$metadata.provider",
+        "paymentMethod": {
+          "$switch": {
+            "branches": [
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "applepay"
+                  ]
+                },
+                "then": "Apple Pay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "credit-cards"
+                  ]
+                },
+                "then": "Credit Card"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "googlepay"
+                  ]
+                },
+                "then": "Google Pay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "pay-pal"
+                  ]
+                },
+                "then": "PayPal"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "safecharge"
+                  ]
+                },
+                "then": "SafeCharge"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "satispay"
+                  ]
+                },
+                "then": "Satispay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "scalapay"
+                  ]
+                },
+                "then": "Scalapay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "soisy"
+                  ]
+                },
+                "then": "Soisy"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "stripe"
+                  ]
+                },
+                "then": "Stripe"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.paymentMethod",
+                    "external"
+                  ]
+                },
+                "then": {
+                  "$concat": [
+                    "External - ",
+                    "$metadata.provider"
+                  ]
+                }
+              }
+            ],
+            "default": "$metadata.paymentMethod"
+          }
+        },
+        "provider": {
+          "$switch": {
+            "branches": [
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "braintree"
+                  ]
+                },
+                "then": "Braintree"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "axerve"
+                  ]
+                },
+                "then": "Axerve"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "safecharge"
+                  ]
+                },
+                "then": "SafeCharge"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "satispay"
+                  ]
+                },
+                "then": "Satispay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "scalapay"
+                  ]
+                },
+                "then": "Scalapay"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "soisy"
+                  ]
+                },
+                "then": "Soisy"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "unicredit"
+                  ]
+                },
+                "then": "Unicredit"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$metadata.provider",
+                    "stripe"
+                  ]
+                },
+                "then": "Stripe"
+              }
+            ],
+            "default": "$metadata.provider"
+          }
+        },
+        "status": {
+          "$switch": {
+            "branches": [
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "CREATED"
+                  ]
+                },
+                "then": "created"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "ACTIVE"
+                  ]
+                },
+                "then": "active"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "EXPIRED"
+                  ]
+                },
+                "then": "not active"
+              },
+              {
+                "case": {
+                  "$eq": [
+                    "$businessStateDescription",
+                    "ABORTED"
+                  ]
+                },
+                "then": "not active"
+              }
+            ],
+            "default": "$businessStateDescription"
+          }
+        },
+        "shopSubscriptionId": "$metadata.shopSubscriptionId",
+        "interval": "$metadata.interval",
+        "intervalCount": "$metadata.intervalCount",
+        "nextPaymentDate": "$metadata.nextPaymentDate",
+        "expirationDate": "$metadata.expirationDate",
+        "additionalData": "$metadata.additionalData",
+        "transactions": "$transactionsData",
+        "expireRequested": "$metadata.expireRequested"
+      }
+    },
+    {
+      "$set": {
+        "amount": {
+          "$divide": [
+            {
+              "$toDouble": "$amount"
+            },
+            100
+          ]
+        },
+        "transactions": {
+          "$map": {
+            "input": "$transactions",
+            "in": {
+              "date": "$$this.createdAt",
+              "_id": "$$this._id",
+              "shopTransactionId": "$$this.metadata.shopTransactionId",
+              "amount": {
+                "$divide": [
+                  {
+                    "$toDouble": "$$this.metadata.amount"
+                  },
+                  100
+                ]
+              },
+              "status": {
+                "$switch": {
+                  "branches": [
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$this.businessStateDescription",
+                          "PAYMENT_PAID"
+                        ]
+                      },
+                      "then": "Paid"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$this.businessStateDescription",
+                          "PAYMENT_CREATED"
+                        ]
+                      },
+                      "then": "Created"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$this.businessStateDescription",
+                          "PAYMENT_TOTALLY_REFUNDED"
+                        ]
+                      },
+                      "then": "Totally Refunded"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$this.businessStateDescription",
+                          "PAYMENT_PARTIALLY_REFUNDED"
+                        ]
+                      },
+                      "then": "Partially Refunded"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$this.businessStateDescription",
+                          "PAYMENT_FAILED"
+                        ]
+                      },
+                      "then": "Failed"
+                    }
+                  ],
+                  "default": "$businessStateDescription"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+    ```
+    </details>
+
+    <details>
+      <summary>Fields</summary>
+
+    ```json
+    [
+    {
+        "name":"_id",
+        "description":"_id",
+        "type":"ObjectId",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"creatorId",
+        "description":"creatorId",
+        "type":"string",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"createdAt",
+        "description":"createdAt",
+        "type":"Date",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"updaterId",
+        "description":"updaterId",
+        "type":"string",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"updatedAt",
+        "description":"updatedAt",
+        "type":"Date",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"__STATE__",
+        "description":"__STATE__",
+        "type":"string",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"shopSubscriptionId",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"transactions",
+        "type":"Array_RawObject",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0,
+        "schema":{
+          "properties":{
+              "transactionId":{
+                "type":"string"
+              },
+              "date":{
+                "type":"string"
+              },
+              "status":{
+                "type":"string"
+              }
+          }
+        }
+    },
+    {
+        "name":"amount",
+        "type":"number",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"currency",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"interval",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"intervalCount",
+        "type":"number",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"nextPaymentDate",
+        "type":"Date",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"status",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"provider",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"paymentMethod",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"sagaId",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"expirationDate",
+        "type":"Date",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"providerId",
+        "type":"string",
+        "required":false,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"expireRequested",
+        "type":"boolean",
+        "required":false,
+        "nullable":true,
+        "sensitivityValue":0
+    }
+  ]
+    ```
+    </details>
+
+4. Create endpoint for the mongoDB view previously created `subscriptions_view`
+  - Create a new endpoint on the endpoint section `/subscriptions-view`
+  - Choose mongoDB view as type
+  - Choose Mongo view base path as `/subscriptions-view`
+
+5. Setup aggregation of `adaptive_checkout_view` as follows.
+  - create a new aggregation view on MongoDB Views section called `adaptive_checkout_view`
+  - choose `adaptive_checkout` as starting collection
+  - create `adaptive_checkout_view` schema as the schema below
+  - paste the following pipeline and fields
+  <details>
+      <summary>Pipeline</summary>
+
+    ```json
+    [
+    {
+      "$match": {
+        "__STATE__": "PUBLIC"
+      }
+    },
+    {
+      "$project": {
+        "__STATE__": "$__STATE__",
+        "createdAt": "$createdAt",
+        "updatedAt": "$updatedAt",
+        "creatorId": "$creatorId",
+        "updaterId": "$updaterId",
+        "priority": "$priority",
+        "ruleId": "$ruleId",
+        "amount": "$amount",
+        "enabledMethods": {
+          "$map": {
+            "input": "$enabledMethods",
+            "as": "m",
+            "in": {
+              "paymentMethod": {
+                "$switch": {
+                  "branches": [
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "applepay"
+                        ]
+                      },
+                      "then": "Apple Pay"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "credit-cards"
+                        ]
+                      },
+                      "then": "Credit Card"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "googlepay"
+                        ]
+                      },
+                      "then": "Google Pay"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "pay-pal"
+                        ]
+                      },
+                      "then": "PayPal"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "safecharge"
+                        ]
+                      },
+                      "then": "SafeCharge"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "satispay"
+                        ]
+                      },
+                      "then": "Satispay"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "scalapay"
+                        ]
+                      },
+                      "then": "Scalapay"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "soisy"
+                        ]
+                      },
+                      "then": "Soisy"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.paymentMethod",
+                          "stripe"
+                        ]
+                      },
+                      "then": "Stripe"
+                    }
+                  ],
+                  "default": "$$m.paymentMethod"
+                }
+              },
+              "provider": {
+                "$switch": {
+                  "branches": [
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "adyen"
+                        ]
+                      },
+                      "then": "Adyen"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "braintree"
+                        ]
+                      },
+                      "then": "Braintree"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "axerve"
+                        ]
+                      },
+                      "then": "Axerve"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "safecharge"
+                        ]
+                      },
+                      "then": "SafeCharge"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "satispay"
+                        ]
+                      },
+                      "then": "Satispay"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "scalapay"
+                        ]
+                      },
+                      "then": "Scalapay"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "soisy"
+                        ]
+                      },
+                      "then": "Soisy"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "unicredit"
+                        ]
+                      },
+                      "then": "Unicredit"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$m.provider",
+                          "stripe"
+                        ]
+                      },
+                      "then": "Stripe"
+                    }
+                  ],
+                  "default": "$$m.provider"
+                }
+              },
+              "index": {
+                "$indexOfArray": [
+                  "$enabledMethods",
+                  "$$m"
+                ]
+              }
+            }
+          }
+        },
+        "matchInValues": {
+          "$map": {
+            "input": "$matchInValues",
+            "as": "miv",
+            "in": {
+              "key": {
+                "$switch": {
+                  "branches": [
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$miv.key",
+                          "metadata.additionalData.productsCategory"
+                        ]
+                      },
+                      "then": "Product Category"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$miv.key",
+                          "metadata.additionalData.channel"
+                        ]
+                      },
+                      "then": "Channel"
+                    },
+                    {
+                      "case": {
+                        "$eq": [
+                          "$$miv.key",
+                          "metadata.buyer.type"
+                        ]
+                      },
+                      "then": "User Type"
+                    }
+                  ],
+                  "default": "$$miv.key"
+                }
+              },
+              "values": {
+                "$reduce": {
+                  "input": "$$miv.values",
+                  "initialValue": "",
+                  "in": {
+                    "$cond": {
+                      "if": {
+                        "$eq": [
+                          "$$value",
+                          ""
+                        ]
+                      },
+                      "then": {
+                        "$concat": [
+                          "$$value",
+                          "$$this"
+                        ]
+                      },
+                      "else": {
+                        "$concat": [
+                          "$$value",
+                          ",",
+                          "$$this"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "index": {
+                "$indexOfArray": [
+                  "$matchInValues",
+                  "$$miv"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "$set": {
+        "amount": {
+          "min": {
+            "$divide": [
+              {
+                "$toDouble": "$amount.min"
+              },
+              100
+            ]
+          },
+          "max": {
+            "$divide": [
+              {
+                "$toDouble": "$amount.max"
+              },
+              100
+            ]
+          }
+        }
+      }
+    }
+  ]
+    ```
+    </details>
+
+    <details>
+      <summary>Fields</summary>
+
+    ```json
+    [
+    {
+        "name":"_id",
+        "description":"_id",
+        "type":"ObjectId",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"creatorId",
+        "description":"creatorId",
+        "type":"string",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"createdAt",
+        "description":"createdAt",
+        "type":"Date",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"updaterId",
+        "description":"updaterId",
+        "type":"string",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"updatedAt",
+        "description":"updatedAt",
+        "type":"Date",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"__STATE__",
+        "description":"__STATE__",
+        "type":"string",
+        "required":true,
+        "nullable":false
+    },
+    {
+        "name":"priority",
+        "type":"number",
+        "required":true,
+        "nullable":false,
+        "sensitivityValue":0
+    },
+    {
+        "name":"amount",
+        "type":"RawObject",
+        "required":false,
+        "nullable":true,
+        "sensitivityValue":0
+    },
+    {
+        "name":"enabledMethods",
+        "type":"Array_RawObject",
+        "required":false,
+        "nullable":true,
+        "sensitivityValue":0
+    },
+    {
+        "name":"matchInValues",
+        "type":"Array_RawObject",
+        "required":false,
+        "nullable":true,
+        "sensitivityValue":0
+    },
+    {
+        "name":"ruleId",
+        "type":"string",
+        "required":true,
+        "nullable":false,
+        "sensitivityValue":0
+    }
+  ]
+    ```
+    </details>
+
+6. Create endpoint for the mongoDB view previously created `adaptive-checkout-view`
+  - Create a new endpoint on the endpoint section `/adaptive-checkout-view`
+  - Choose mongoDB view as type
+  - Choose Mongo view base path as `/adaptive-checkout-view`
