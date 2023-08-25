@@ -40,7 +40,7 @@ This feature is available from version `5.2.2` of [CRUD Service](/runtime_suite/
 Moreover, from version 11.5.0 of the Console you can also decide to enable lookups to get [Writable Views](/runtime_suite/crud-service/50_writable_views.md). To do that you have to enable the _Enable Lookup_ toggle included next to the `source` collection input.
 
 :::caution
-To enable lookup, the CRUD Service installed in the project must be of version 6.9.0 or superior in every environment.
+To enable lookup, the CRUD Service installed in the project must be of version 6.9.0 or superior, as explicitely in the Docker Image of your service. If you're using a public variable to have different versions among environments, make sure every environment have version 6.9.0 or superior.
 :::
 
 ### Fields
