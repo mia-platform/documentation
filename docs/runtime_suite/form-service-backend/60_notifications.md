@@ -23,7 +23,19 @@ This object contains the necessary fields to configure email sending through the
 - **templatesCrudName** (*required*): The name of the CRUD collection for message templates.
 - **userIdField** (*required*): The field of the users CRUD collection containing the id used in this service.
 
+## CRUD
+The CRUD collection of `form-schemas` has to updated with the following fields:
+
+- **emailTemplateId**(optional) , of type *object*, which is the id of the email template;
+- **emailCarbonCopies** (optional), of type *array of strings*, which is the array containing the email addresses to be set as carbon copies (CC).
+
 ## Usage
 
 ### Retrieving email templates - GET /templates
 This service exposes an endpoint for retrieving the email templates. Such endpoint should be used by the frontend to allow the admin to set the proper template for each form.
+
+### Sending emails on form submission - POST /visualizer/forms
+When a user submits a form, an email is sent using the template specified in the `emailTemplateId` field. The recipient of the email is the user, derived from the authentication header specified by the environment variable `USERID_HEADER_KEY`. Additionally, you have the option to include other email addresses as carbon copies (CC). These email addresses should be provided in the `emailCarbonCopies` field.
+
+### Sending emails on form update - PUT /visualizer/forms/:id
+When a user updates a form, an email is sent using the template specified in the `emailTemplateId` field. The recipient of the email is the user, derived from the authentication header specified by the environment variable `USERID_HEADER_KEY`. Additionally, you have the option to include other email addresses as carbon copies (CC). These email addresses should be provided in the `emailCarbonCopies` field.
