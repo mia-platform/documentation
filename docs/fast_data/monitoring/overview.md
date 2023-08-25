@@ -6,38 +6,33 @@ sidebar_label: Overview
 
 A great way of monitoring Fast Data is using Dashboards, which can give you immediate feedback on various aspects of system health. We provide some already configured [Grafana Dashboards](https://grafana.com/grafana/dashboards) to quickly set up a monitoring stack that grants both Dashboards and Alerts.
 
-To do so, there are a couple of steps you need to follow.
-
 ## Console Setup
 
-The Grafana Dashboards make use of [Prometheus](https://prometheus.io/) metrics, which means that you should enable the monitoring of your project (for example, using Prometheus Operator) and export the metrics of interest.  
+The Grafana Dashboards make use of [Prometheus](https://prometheus.io/) metrics, which means that you should enable the monitoring of your project (for example, using [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator)) and export the metrics of interest.
 
-Each Dashboard has a dedicated service for metrics export, and those services can be all added to your project simultaneously with a single application.
+If you are planning to use Prometheus Operator as a monitoring system for your project, you can automatically generate and configure the `servicemonitor.yml` files for all the monitoring services using their [Metrics card](/development_suite/api-console/api-design/microservice-monitoring.md).
 
-## Fast Data Monitoring Application
+## Metrics
 
-You can create and configure all necessary monitoring services in just few clicks. To do so, visit Mia Platform Marketplace and search for `Fast Data Monitoring` Application. By using this application, you generate two completely configured microservices that will allow you to export all the necessary metrics for your dashboards.
-The two services that will be generated with this application use the docker images of the following open source projects:
+Metrics are a set of categorized data generally exposed through a `/-/metrics` http GET route which reveals all the Prometheus metrics exposed by each service.
 
-* [Kafka Exporter](https://github.com/danielqsj/kafka_exporter)
-* [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter)
+### Fast Data services metrics
 
-:::caution
-If you are planning to use [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator) as a monitoring system for your project, you can automatically generate and configure the `servicemonitor.yml` files for all the monitoring services using their [Metrics card](/development_suite/api-console/api-design/microservice-monitoring.md).
-:::
+Each Fast Data service comes with its set of metrics exposed through an http route. To expose them you only need to enable the `Enable metrics gathering` switch that you can find in each microservice's page in the console.
 
-## Grafana Dashboards Setup
+![Enable metrics toggle in microservice page from the console](../img/monitoring-enable-metrics-toggle.png)
 
-We assume you already have Grafana up and running, and you are familiar with its basics.
+### MongoDB and Apache Kafka metrics
 
-There are three Dashboards ready to use:
+For the dashboards related to MongoDB and Apache Kafka metrics you will need to setup the [Kafka Exporter](https://github.com/danielqsj/kafka_exporter) and [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) services. Conveniently, you can create them all at once by going to the Applications section of your console and creating a new `Fast Data Monitoring` Application.
 
-1. [Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md)
-2. [Projection Changes](/fast_data/monitoring/dashboards/projection_changes.md)
-3. [Single Views](/fast_data/monitoring/dashboards/single_views.md)
+## Dashboards
 
-More details on what information they provide in their specific pages.
+You can create any custom dashboards using the metrics provided by the Fast Data services as well as the MongoDB Query Exporter and Kafka Exporter services. But if you're looking for a quicker start, we have a set of pre-configured dashboards designed to make the monitoring setup easier for you.
 
-## Putting It All Together
-
-Once your Dashboards are ready, it can be very handy to view them directly inside the console. To do that, you can visit the `Dashboards` section of your project and add the Dashboards you just created to it, as explained [here](/development_suite/monitoring/dashboard.md#add-a-dashboard).
+- [Debezium CDC Dashboard](/fast_data/monitoring/dashboards/debezium_cdc.md)
+- [Historical Data Dashboard](/fast_data/monitoring/dashboards/historical_data.md)
+- [Kafka Messages Dashboard](/fast_data/monitoring/dashboards/kafka_messages.md)
+- [Projection Changes Dashboard](/fast_data/monitoring/dashboards/projection_changes.md)
+- [Real Time Updater Dashboard](/fast_data/monitoring/dashboards/real_time_updater.md)
+- [Single Views Dashboard](/fast_data/monitoring/dashboards/single_views.md)
