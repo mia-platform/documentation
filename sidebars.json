@@ -769,7 +769,7 @@
           "collapsed": true,
           "items": [
             {
-              "id": "fast_data/monitoring/dashboards/kafka_messages",
+              "id": "fast_data/monitoring/dashboards/bucket_storage_support",
               "type": "doc"
             },
             {
@@ -777,11 +777,7 @@
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/single_views",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/monitoring/dashboards/historical_data",
+              "id": "fast_data/monitoring/dashboards/kafka_messages",
               "type": "doc"
             },
             {
@@ -790,6 +786,10 @@
             },
             {
               "id": "fast_data/monitoring/dashboards/real_time_updater",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/single_views",
               "type": "doc"
             }
           ]

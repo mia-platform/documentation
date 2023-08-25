@@ -26,12 +26,15 @@ Each Fast Data service comes with its set of metrics exposed through an http rou
 
 For the dashboards related to MongoDB and Apache Kafka metrics you will need to setup the [Kafka Exporter](https://github.com/danielqsj/kafka_exporter) and [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) services. Conveniently, you can create them all at once by going to the Applications section of your console and creating a new `Fast Data Monitoring` Application.
 
+<!-- TODO: explain how to configure the kafka exporter (just fill the public vars) -->
+<!-- TODO: explain how to configure the mongo exporter (add metrics on the config.yml) -->
+
 ## Dashboards
 
 You can create any custom dashboards using the metrics provided by the Fast Data services as well as the MongoDB Query Exporter and Kafka Exporter services. But if you're looking for a quicker start, we have a set of pre-configured dashboards designed to make the monitoring setup easier for you.
 
+- [Bucket Storage Support Dashboard](/fast_data/monitoring/dashboards/bucket_storage_support.md)
 - [Debezium CDC Dashboard](/fast_data/monitoring/dashboards/debezium_cdc.md)
-- [Historical Data Dashboard](/fast_data/monitoring/dashboards/historical_data.md)
 - [Kafka Messages Dashboard](/fast_data/monitoring/dashboards/kafka_messages.md)
 - [Projection Changes Dashboard](/fast_data/monitoring/dashboards/projection_changes.md)
 - [Real Time Updater Dashboard](/fast_data/monitoring/dashboards/real_time_updater.md)
