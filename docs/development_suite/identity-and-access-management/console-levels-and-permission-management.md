@@ -3,21 +3,23 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different roles and permissions to each [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to your resources is a key action for defining responsibilities within your Platform ecosystem.
-Mia-Platform Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
+Having the ability to assign specific permissions and roles to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to the system in a detailed way is a key point in defining responsibilities within your platform ecosystem. 
+The Mia-Platform Console allows for assigning specific levels of access to various system resources through a configuration system based on hierarchical levels.  
+Let's see how the different levels are organized.
 
-Let's see how they are configured.
-
-## Console Levels
+## Configuration Levels
 
 Console resources are organized in a hierarchical structure on three levels:
 
-1. **Console level** is the root level regarding the general configuration of your Console. 
-At this level you can configure resources such as Companies, Project Templates and Marketplace.
+1. **Console Level** is the root level regarding the general configuration of your entire Console. At this level you can configure resources such as Companies, Project Templates and Marketplace.
 
-1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users and Service Accounts can be managed. To know more about Company configuration, check out the dedicated [documentation section](/development_suite/company/create.md).
+1. **Company Level** is the second hierarchical level. A Company (aka Tenant) can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users and Service Accounts can be managed. To know more about Company configuration, check out the dedicated [documentation section](/development_suite/company/create.md).
 
 1. **Project Level** is the third level of the Console. Projects are the heart of the Console: in fact, it is at this level that developers engage in creating new features and building their own Platform.
+
+:::info
+The permissions assigned to a user at a higher hierarchical level are inherited by lower levels. For instance, a user with the `Maintainer` role at the console level will have the same role across all the companies they are assigned to and all the projects within those companies. At the individual company and project level, the permissions for that user can be expanded in a detailed manner without affecting the authorization levels at the console level. However, authorizations that exist at the console level cannot be removed at the individual company or project level.
+:::
 
 ![alt text](../img/DevOps_Console_levels.PNG)
 
@@ -32,7 +34,7 @@ Identities can perform a set of predetermined actions along Console levels, in a
 * `Reporter`: A Reporter can view Project configuration and Runtime Environments
 * `Guest`: A Guest has restricted access to data and can only view basic information for a selected subset of resources
 
-Roles can be assigned at three types of Console resources:
+Roles can be assigned at three levels regarding the following Console resources:
 
 * Company
 * Project
@@ -125,14 +127,14 @@ Suppose you have a feature team composed by: 1 _Project Manager_ and 1 _Technica
 This team works on a single Project with two environments:
 
  1. Production, on which only the _Project Manager_, the _Technical Leader_ and _Senior Developer_ can perform actions, and
- 1. Staging on which the 2 _Junior Developers_ can perform actions, too.
+ 1. Development on which the 2 _Junior Developers_ can perform actions, too.
 
 What you might want could be a similar role Binding organization:
 
 * The _Project Manager_ and the _Technical Leader_ may want to have full access to the Project so they can be assigned the _Project Administrator_ role on the Project resource
 * The _Designers_ should be able to access the Project but they cannot perform any editing action on it, so they can be assigned the _Reporter_ role on the Project resource
 * The _Senior Developers_ can be assigned the _Maintainer_ role on the Project
-* The _Junior Developers_ can be assigned the _Developer_ role on the Project resource and then can be assigned the _Maintainer_ role only on the Staging environment
+* The _Junior Developers_ can be assigned the _Developer_ role on the Project resource and then can be assigned the _Maintainer_ role only on the Development environment
 
 #### Assigning roles on resources
 
