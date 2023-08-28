@@ -252,17 +252,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.22.5":
-  version: 7.22.5
-  resolution: "@babel/eslint-parser@npm:7.22.5"
+"@babel/eslint-parser@npm:^7.22.11":
+  version: 7.22.11
+  resolution: "@babel/eslint-parser@npm:7.22.11"
   dependencies:
     "@nicolo-ribaudo/eslint-scope-5-internals": 5.1.1-v1
     eslint-visitor-keys: ^2.1.0
-    semver: ^6.3.0
+    semver: ^6.3.1
   peerDependencies:
-    "@babel/core": ">=7.11.0"
+    "@babel/core": ^7.11.0
     eslint: ^7.5.0 || ^8.0.0
-  checksum: d259a5c6bb11d2b99316a1aafb85be56fd290e2b7076b386a026cd0f8db4b27c0bf0c733bfa2006bb88d38abef323fc2c1352a3521e6e9865f8b205fef6ac845
+  checksum: a7d4406ac021a192c8e2d2dd5a9ebe6352dc4c0c842c0971080e5ac1bcb81eb6dceb72899ec611b82ab4356c658649a0a4f85815f6245ab1674cd329dde06369
   languageName: node
   linkType: hard
 
@@ -9617,7 +9617,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mia-platform-doc@workspace:."
   dependencies:
-    "@babel/eslint-parser": ^7.22.5
+    "@babel/eslint-parser": ^7.22.11
     "@docusaurus/core": 2.4.1
     "@docusaurus/plugin-client-redirects": 2.4.1
     "@docusaurus/preset-classic": 2.4.1
