@@ -27,7 +27,6 @@ Mia-Platform Console allows you to govern all projects in one place, industriali
 
 **Hierarchical Organization of Mia-Platform Console:**
 
-<<<<<<< HEAD
 Mia-Platform Console is organized into hierarchical levels to help users navigate its structure effectively. Starting from the highest level down to the most detailed, this section provides a quick guide for understanding the architecture.
 
 - **Console:** The overarching workspace and management environment, serving as the primary gateway to the platform.
@@ -36,11 +35,3 @@ Mia-Platform Console is organized into hierarchical levels to help users navigat
 - **Project Sections:** Designated areas within a project that delineate and organize functionalities and tasks.
 
 This structure ensures clear and scalable management of resources and activities within Mia-Platform Console.
-=======
-- **Console:** The overarching workspace and management environment, serving as the primary gateway to the platform.
-- **Company:** An organizational entity that acts as a container for projects. It can represent the entire organization or a specific operational unit.
-- **Project:** A structured collection of microservices, configurations, and data. It might represent a full digital system or a specific component.
-- **Project Sections:** Designated areas within a project that delineate and organize functionalities and tasks.
-
-This structure ensures clear and scalable management of resources and activities within Mia-Platform.
->>>>>>> 8a76bb11 (divide project info from company page)
