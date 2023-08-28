@@ -28,7 +28,7 @@ For the dashboards related to MongoDB and Apache Kafka metrics you will need to 
 
 #### MongoDB Query Exporter Configuration
 
-The MongoDB Query Exporter service will expose all metrics we define in the `config.yml` declared in the config maps. To use the Projection Changes Dashboard you need to make sure for every Projection Changes collection you have in the console, the respective metric is defined.
+The MongoDB Query Exporter service will expose all metrics we define in the `config.yml` config map. To use the Projection Changes Dashboard you need to make sure that for every Projection Changes collection you have in the console the respective metric is defined.
 
 Here's an example with `fd-pc-library` and `fd-pc-restaurant` Projection Changes collections:
 
@@ -111,7 +111,7 @@ Mind that the only thing that changes from one metric to another is the `collect
 
 #### Kafka Exporter Configuration
 
-Kafka exporter service configuration is quite easy, the only thing you need to do is to make sure the variables in the `Microservice configuration - Args` section are properly defined.
+Kafka exporter service configuration is quite easy, the only thing you need to do is make sure the variables in the `Microservice configuration - Args` section are properly defined.
 
 Example of what the variables values could look like in the `Public variables` section:
 
