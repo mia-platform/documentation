@@ -26,8 +26,103 @@ Each Fast Data service comes with its set of metrics exposed through an http rou
 
 For the dashboards related to MongoDB and Apache Kafka metrics you will need to setup the [Kafka Exporter](https://github.com/danielqsj/kafka_exporter) and [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) services. Conveniently, you can create them all at once by going to the Applications section of your console and creating a new `Fast Data Monitoring` Application.
 
-<!-- TODO: explain how to configure the kafka exporter (just fill the public vars) -->
-<!-- TODO: explain how to configure the mongo exporter (add metrics on the config.yml) -->
+#### MongoDB Query Exporter Configuration
+
+The MongoDB Query Exporter service will expose all metrics we define in the `config.yml` declared in the config maps. To use the Projection Changes Dashboard you need to make sure for every Projection Changes collection you have in the console, the respective metric is defined.
+
+Here's an example with `fd-pc-library` and `fd-pc-restaurant` Projection Changes collections:
+
+```yml title="config.yml"
+...
+- name: projection_changes_new_info
+  type: counter #Can also be empty, the default is gauge
+  servers: [main] #Can also be empty, if empty the metric will be used for every server defined
+  help: 'Count the number of NEW projection changes'
+  value: total
+  labels: []
+  mode: pull
+  cache: 0
+  constLabels:
+      collection: fd-pc-library
+  database: {{MONGODB_NAME}}
+  collection: fd-pc-library
+  pipeline: |
+    [
+      {
+          "$match": {
+              "changes.state": "NEW"
+          }
+      },
+      {
+          "$count": "total"
+      },
+      {
+          "$facet": {
+              "count": [
+                  { "$project": { "total": 1, "_id": 0 }}
+              ]
+          }
+      },
+      {
+          "$project": {
+              "total": { "$cond": [ { "$gt": [{"$size": "$count"}, 0 ] }, { "$arrayElemAt": ["$count.total", 0]}, 0] }
+          }
+      }
+    ]
+- name: projection_changes_new_info
+  type: counter #Can also be empty, the default is gauge
+  servers: [main] #Can also be empty, if empty the metric will be used for every server defined
+  help: 'Count the number of NEW projection changes'
+  value: total
+  labels: []
+  mode: pull
+  cache: 0
+  constLabels:
+      collection: fd-pc-restaurant
+  database: {{MONGODB_NAME}}
+  collection: fd-pc-restaurant
+  pipeline: |
+    [
+      {
+          "$match": {
+              "changes.state": "NEW"
+          }
+      },
+      {
+          "$count": "total"
+      },
+      {
+          "$facet": {
+              "count": [
+                  { "$project": { "total": 1, "_id": 0 }}
+              ]
+          }
+      },
+      {
+          "$project": {
+              "total": { "$cond": [ { "$gt": [{"$size": "$count"}, 0 ] }, { "$arrayElemAt": ["$count.total", 0]}, 0] }
+          }
+      }
+    ]
+...
+```
+
+Mind that the only thing that changes from one metric to another is the `collection` property and label, the rest should remain the same like in the example for the Projection Changes dashboard to properly work.
+
+#### Kafka Exporter Configuration
+
+Kafka exporter service configuration is quite easy, the only thing you need to do is to make sure the variables in the `Microservice configuration - Args` section are properly defined.
+
+Example of what the variables values could look like in the `Public variables` section:
+
+```bash
+KAFKA_BROKERS="my.broker.hostname:9093,my.second.broker.hostname:9093"
+KAFKA_SASL_USERNAME="username"
+KAFKA_SASL_PASSWORD="password"
+KAFKA_SASL_MECHANISM="scram-sha256" # Mind there's no `-` between `sha` and `256`
+KAFKA_EXPORTER_TOPIC_FILTER="my.topics.prefix.*"
+KAFKA_EXPORTER_GROUP_FILTER="my.consumer.groups.prefix.*"
+```
 
 ## Dashboards
 
