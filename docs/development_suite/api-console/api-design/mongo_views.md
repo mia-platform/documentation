@@ -25,7 +25,6 @@ The data exposed by the view are the result of a series of step the data of the 
 MongoDB will run an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/) starting from the `source` collection.    
 When you create a new view, the console will set a default pipeline which returns only `PUBLIC` documents. You can edit it through the dedicated editor.   
 
-<!-- TODO: Change screenshot -->
 ![Pipeline view](img/pipeline_card_view.png)
 
 :::note
