@@ -45,6 +45,10 @@ Aggregating Single Views is the main goal of the Fast Data and as such their col
 
 - **Upsert index**: Unique index on the Single View's primary key fields defined in the Single View Key file. As you can imagine, this index is used to find and update each Single View record when aggregation is done.
 
-To manage the indexes of you Single Views you just need to go to your Single View's detail page and edit the `Indexes` section.
+To manage the indexes of your Single Views you just need to go to your Single View's detail page and edit the `Indexes` section.
 
 ![Single View index](../img/fastdata-single-view-index.png)
+
+## Single Views Errors
+
+Sometimes, errors in the aggregation/sv-patch process may occur. These errors are logged in the Single View errors collections defined in the `SINGLE_VIEWS_ERRORS_COLLECTION` environment variable of the Single View Creator. The Single View Creator only inserts the new records and does not query the collection in any way. For this reason **no indexes are needed** in Single View errors collections.
