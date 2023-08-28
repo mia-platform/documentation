@@ -20,6 +20,8 @@ To find out more about roles management, check out the available [capabilities](
 
 :::info 
 Each company has the flexibility to establish its own groups, allowing for distinct identities. Company Owners can configure and manage this feature specifically through the designated **Groups** section within the **Company Overview**, providing clear control over group settings.
+
+While groups offer an efficient way to manage user access, they're not the only way to handle permissions within a company. In fact, you still have the option to individually manage user privileges, or even use a combination of both approaches. For a deeper understanding of user management, you can refer to the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users).
 :::
 
 ![Group table](./img/manage-groups/groups-portal.png)
@@ -30,11 +32,8 @@ At Company level, for each group, it is possible to manage:
 * Role: the group Company role
 * Members: adding and/or removing users from the group
 
-You can also locate existing groups in the IAM portal, both at the Company and Project levels. In these sections, you have the ability to handle the roles assigned to these groups, similar to how you manage roles for other types of identities.
+You can also locate existing groups in the IAM section, both at the Company and Project levels. In these sections, you have the ability to handle the roles assigned to these groups, similar to how you manage roles for other types of identities.
 
-:::info
-Groups provide an effective means of managing user access. However, they are not the exclusive method for controlling permissions within a Company. In fact, you can still directly manage user privileges on an individual basis or even utilize a combination of both approaches. To learn more about user management, you can explore the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users).
-:::
 
 :::caution
 Please be aware that certain permissions granted through the assigned Company role might be inherited on the Projects and Runtime Environments within that Company. It's important to be cautious while assigning roles to prevent unintended access to resources. You can verify the specific capabilities granted based on the chosen role by referring to the documentation page on  [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console).
@@ -42,7 +41,7 @@ Please be aware that certain permissions granted through the assigned Company ro
 
 ### Creating a Group
 
-The Company Owner can initiate the group creation process by clicking the `Create group` button within the Groups section in the IAM Portal. During the creation process, it's necessary to specify both the name and the Company role for the group. There's also an option to optionally include members in the group.
+The Company Owner can initiate the group creation process by clicking the `Create group` button within the Groups section in the IAM section. During the creation process, it's necessary to specify both the name and the Company role for the group. There's also an option to optionally include members in the group.
 
 :::info
 During the creation process, the group can be also created without adding members. This action can still be performed later on, after the group has already been created, from the [group detail page](/development_suite/identity-and-access-management/manage-groups.md#editing-a-group).
@@ -138,13 +137,13 @@ However, if a user has access through multiple Company groups or holds a specifi
 
 ## Managing Group roles
 
-All identity roles are managed from the [IAM portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
+All identity roles are managed from the [IAM section](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
 
-As a result, the Company role of a group can be modified not only from the Groups section, but also from the IAM portal.
+As a result, the Company role of a group can be modified not only from the Groups section, but also from the IAM section.
 
 ### Managing Group role at Company level
 
-To edit a group's role from the IAM portal, simply click on the edit button for the desired group row and select the new role.
+To edit a group's role from the IAM section, simply click on the edit button for the desired group row and select the new role.
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -157,7 +156,7 @@ To edit a group's role from the IAM portal, simply click on the edit button for 
 
 ### Managing Group role at Project level
 
-Groups which have access to a Company are shown in the IAM portal inside the Project Overview area of a Project belonging to that specific Company.
+Groups which have access to a Company are shown in the IAM section inside the Project Overview area of a Project belonging to that specific Company.
 You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
 
 
@@ -170,7 +169,7 @@ You can change the role of the group in the Project or in any Project Runtime En
 </div>
 
 :::note
-While the Project IAM portal displays all the identities from the Company, it's important to note that not all these identities necessarily have access to the Projects. Access depends on the roles assigned to them within the Company and how permissions are inherited.
+While the Project IAM section displays all the identities from the Company, it's important to note that not all these identities necessarily have access to the Projects. Access depends on the roles assigned to them within the Company and how permissions are inherited.
 
 For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::
