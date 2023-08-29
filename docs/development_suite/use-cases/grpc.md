@@ -11,7 +11,7 @@ gRPC is a modern and open source high performance Remote Procedure Call (RPC) fr
 
 Prerequisite:
 
-- a Console project with at least one environment (follow [this guide](/development_suite/set-up-infrastructure/create-project.mdx) if you want to create it)
+- a Console project with at least one environment (follow [this guide](/console/project-configuration/create-a-project.mdx) if you want to create it)
 <!-- TODO: change YAGES with our gRPC server -->
 - a service using gRPC. In the following use case we use as example [YAGES](https://github.com/mhausenblas/yages) (yet another gRPC echo server)
 - a Kubernetes cluster with installed Traefik ingress (the default ingress used in Mia-Platform PaaS)

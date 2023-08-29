@@ -1,5 +1,5 @@
 ---
-id: projects
+id: manage-a-kustomize-project
 title: Manage a Kustomize project
 sidebar_label: Manage a Kustomize project
 ---

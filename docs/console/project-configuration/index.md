@@ -1,7 +1,7 @@
 ---
-id: overview
-title: Project Overview
-sidebar_label: Project Overview
+id: project-configuration
+title: Project Configuration
+sidebar_label: Project Configuration
 sidebar_order: 0
 ---
 
@@ -24,12 +24,12 @@ You can switch between the Homepages using the `⌘ + K` (alternatively, `ctrl +
 
 ### Basic Homepage
 
-![Mia-Platform Console Basic Homepage](img/Mia-Platform-basic-homepage.png)  
+![Mia-Platform Console Basic Homepage](/images/docs/console/Mia-Platform-basic-homepage.png)  
 The Basic Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the Console. This visualization is great for Console newcomers who will benefit from always having all the Console Areas displayed at once.
 
 ### Metrics Homepage
 
-![Mia-Platform Console Metrics Homepage](img/Mia-Platform-metrics-homepage.png)  
+![Mia-Platform Console Metrics Homepage](/images/docs/console/Mia-Platform-metrics-homepage.png)  
 The Metrics Homepage is structured in different cards, and each card represents a different environment of your project. You can pin to top one card at a time using the button at the left of the environment name. For each card, the user can see:
 
 * The time of the last deployment;
@@ -69,18 +69,18 @@ Limit and Request are calculated as the sum of all the containers limits and req
 On the right side of each Environment card, you can find links specific to each environment, that can be configured to redirect you to your project Documentation, CMS and Application. In addition, in the Dashboards section - visible on the right side of each environmental card - you can find the names of the first dashboards created in your project. By clicking on one of them, you will be redirected to the corresponding dashboard in the Dashboards Area. You can also click on "View all" to see all of the available dashboards.
 
 :::info
-To learn how to configure the environment links of your project, visit [this page](/development_suite/set-up-infrastructure/runtime-environments.md#environment-links-configuration).
+To learn how to configure the environment links of your project, visit [this page](/console/project-configuration/manage-runtime-environments/index.md#environment-links-configuration).
 :::
 
 Moreover, above the Environment cards, the Project Administrator (or Company Owner) can set up other useful links that make it easy for you to access other tools related to your project. These quick links will appear at the top of the Metrics Homepage as a carousel of small clickable cards.
 
 Since these links will be visible to all the project members, this functionality may facilitate the admin in better structuring workflows and speeding up team processes. In this regard, we suggest setting up - even at an early stage - all those links that should generally be considered necessary by default for every project. For instance, it might be useful to have quick access to shared drives (Google Drive, Office, etc), project documentation pages, an issue tracking board (Jira, Trello, etc), design graphics and so on. To configure the links for the first time, the Project Administrator/Company Owner only needs to click on the "Add Quick Link" button displayed on top of the Metrics Homepage.
 
-![Add Quick Link Button](img/AddQuickLink.png)
+![Add Quick Link Button](/images/docs/console/AddQuickLink.png)
 
 Another way to retrieve the project links is to use the `⌘ + K` (alternatively, `ctrl + K`) interface and click on the "Project Links" section.
 
-![Project Links with CMD + K](img/cmdk-quick-links.gif)
+![Project Links with CMD + K](/images/docs/console/cmdk-quick-links.gif)
 
 ## Console Sections
 
@@ -90,19 +90,19 @@ Mia-Platform Console is divided in many different sections that help you manage 
 
 All the sections can be reached using Mia-Platform Console Homepage or by using the pop-up menu in the left side of the topbar.
 
-![Launcher Menu](img/launcher-menu.gif)
+![Launcher Menu](/images/docs/console/launcher-menu.gif)
 
 If you wish, you can add up to 6 sections to your Favorites sections, you just need to click con the associated star. That will make them always accessible from the top navbar. You can remove a section from the favorites ones by clicking again on its star.
 
-![Favorites](img/favorites.gif)
+![Favorites](/images/docs/console/favorites.gif)
 
 Another option to easily switch among Console sections, or to select a specific project, is to use the `⌘ + K` (alternatively, `ctrl + K`) interface. This interface can also be opened using the menu on the right side of the topbar.
 
-![command k interface](img/interface.gif)
+![command k interface](/images/docs/console/interface.gif)
 
 Once opened the interface, you can also type `>` and a selection of useful commands will be displayed.
 
-![interface commands](img/interface_commands.png)
+![interface commands](/images/docs/console/interface_commands.png)
 
 ### Environments & Private Variables
 
@@ -110,7 +110,7 @@ The Environments & Private Variables section contains all the information about 
 
 You can deploy the same codebase to different runtime environments, obtaining different behaviors based on some environment configuration, like environment variables. Another notable change is the actual hardware on which the runtime environment runs, which is usually more performant for production environments.
 
-[More information about Environments & Private Variables here](/development_suite/set-up-infrastructure/runtime-environments.md)
+[More information about Environments & Private Variables here](/console/project-configuration/manage-runtime-environments/index.md)
 
 ### Design
 
@@ -165,7 +165,7 @@ The Documentation section in the Developer Console area exposes the Open API doc
 
 To test each API, you can access your tags on the right side of the screen, where the APIs are grouped according to their tags: by clicking on one tag, you will visualize all the APIs that belong to that tag.
 
-[More information about Documentation here](/development_suite/api-portal/api-documentations.md)
+[More information about Documentation here](/console/project-configuration/documentation-portal.md)
 
 ### Marketplace
 

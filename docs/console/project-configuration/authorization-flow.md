@@ -31,7 +31,7 @@ Mia-Platform built a secure infrastructure that provides both authentication and
 For each request to any resource, the user identity is verified and its permissions checked. This way, only authorized users will be given access to the requested resource.
 Below you can see an image that shows Mia-Platform authentication and authorization flow:
 
-![Authorization Flow Sequence](img/authorization-flow-sequence.png)
+![Authorization Flow Sequence](/images/docs/console/authorization-flow-sequence.png)
 
 As you can see, different components are involved and each of them has a specific role in this flow.  
 We will now proceed in describing them and explaining how they interact with each other.
