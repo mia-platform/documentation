@@ -642,6 +642,10 @@ Example:
 
 ### Kafka Projection Changes
 
+:::caution
+This method is deprecated in favor of [sv-trigger](#single-view-trigger-message) or [Projection Changes](#projection-changes) and it will be removed in the next major release.
+:::
+
 **Channel**: Apache Kafka
 
 **Producer**: Real Time Updater
@@ -649,10 +653,6 @@ Example:
 **Consumer**: Single View Creator
 
 **Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real Time Updater.
-
-:::caution
-This method is not recommended since it has some performance downsides and needs to save the projection changes on MongoDB. It is being maintained for backward compatibility but will be deprecated in future releases.
-:::
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -1125,6 +1125,10 @@ Example:
 
 ### Single View Events Message
 
+:::caution
+This method is deprecated in favor of [sv-update](#single-view-update-message) and it will be removed in the next major release.
+:::
+
 **Channel**: Apache Kafka
 
 **Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.svc-events`
@@ -1252,7 +1256,7 @@ Example:
 ### Single View Before After Message
 
 :::caution
-This event is deprecated. Please, use the Single View Update event to get the same information.
+This method is deprecated in favor of [sv-update](#single-view-update-message) and it will be removed in the next major release.
 :::
 
 **Channel**: Apache Kafka
