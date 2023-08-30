@@ -5,7 +5,7 @@ sidebar_label: Project Configuration
 sidebar_order: 0
 ---
 
-A "Project" in Mia-Platform is not merely a collection of microservices. Instead, it's a structured aggregation of microservices, configurations, and data. This grouping might represent an entire digital ecosystem or just a specific component within it.  
+In Mia-Platform, a "Project" is not merely a collection of microservices. Instead, it's a structured aggregation of microservices, configurations, and data. This grouping might represent an entire digital ecosystem or just a specific component within it.  
   
 Within the platform's hierarchy, a "Project" sits beneath a "Company", allowing a single business entity to have an overarching view and manage multiple projects simultaneously. Such an arrangement provides organizations with unique flexibility, facilitating the adaptation and scalability of their projects based on specific operational and strategic needs.
 
