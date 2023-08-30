@@ -8,6 +8,8 @@ sidebar_label: User personal info
 
 You can view your personal profile information inside the `Personal info` tab, which is available upon selecting the `Profile` voice from the dropdown menu that appears when hovering over your Console avatar.  
 
+![user personal info](./img/user-personal-info.png)
+
 This tab displays a brief summary of your profile, including your avatar, name, email-address and an external link for managing the profile settings on the identity provider.  
 
 ### User avatar
