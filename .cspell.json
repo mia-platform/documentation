@@ -215,7 +215,8 @@
     "indirizzo",
     "civico",
     "belfiore",
-    "mqragguagliati"
+    "mqragguagliati",
+    "principale"
   ],
   "ignoreWords": [
     "asncdctools",
