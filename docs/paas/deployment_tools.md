@@ -70,13 +70,13 @@ Updating the `my-hello-world` deployment will cause a new Blue/Green deployment 
 
 #### Blue/Green deployment lifecycle
 
-During a blue/green deployment, flagger will perform some operation, as reported in the following image:
+During a blue/green deployment, Flagger will perform some operation, as reported in the following image:
 
 ![Flagger blue/green deployment lifecycle](img/flagger_bg_lifecycle.png)
 
 1. The v1 of `my-hello-world` is up and running;
 2. The user deploys the v2 of `my-hello-world` through the console:
-  * flagger deploys the v2 with the `-canary` suffix;
+  * Flagger deploys the v2 with the `-canary` suffix;
   * the v1 is still up and running and serves the traffic to the users;
   * the conformance test step starts;
 3. Flagger runs the load tests, if specified &rarr; if the failure treshold is reached, the release is aborted;
@@ -93,7 +93,7 @@ Blue/Green and Canary strategies can be mixed to allow some user to start using 
 Flagger executes a precise tests lifecycle, as shown in the previous paragraph, and provides different ways to automate tests.
 
 The main types are:
-* [**metrics analysis**](https://docs.flagger.app/usage/metrics): allows to specify one or more metrics to be analyzed to promote/rollback the release. Flagger supports different metrics providers (prometheus, dynatrace, datadog and so on);
+* [**metrics analysis**](https://docs.flagger.app/usage/metrics): allows to specify one or more metrics to be analyzed to promote/rollback the release. Flagger supports different metrics providers (Prometheus, Dynatrace, Datadog and so on);
 * [**webhooks**](https://docs.flagger.app/usage/webhooks): hooks of different types executed during the deploy, with different purposes.
 
 Using the tools above Flagger allows the users to completely automate the promotion of a release, without the need of manual actions.
