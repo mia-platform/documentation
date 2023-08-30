@@ -24,7 +24,7 @@ When a project is created it is associated to a specific Company.
 As described in the [Company section](/console/project-configuration/create-a-project.mdx#create-a-company) a project associated to a specific company will inherit the environment information. For this reason, a differentiated environment variable must have the prefix associated to the `ID` of the specific environment. 
 It is possible to find it in the table of the Envs area.
 
-![envs-table](/images/docs/console/runtime-table-envs.png)
+![envs-table](../img/runtime-table-envs.png)
 
 
 :::warning
@@ -49,7 +49,7 @@ When a **value** contains some `$` characters it is required to escape it by add
 * **Actual value** to write: `var$$var$$var`.
 :::
 
-![create env var](/images/docs/console/create-env-var.png)
+![create env var](../img/create-env-var.png)
 
 ## Edit a Variable
 
@@ -63,4 +63,4 @@ Once the value has been changed, you just have to press the save button.
 To delete a variable, press the **delete** button corresponding to the desired variable. A modal will open.
 To cancel the variable you will be asked to enter the name of the key. The **name of the key must be identical** otherwise you will not be able to delete it.
 
-![delete env var](/images/docs/console/delete-env-var.png)
+![delete env var](../img/delete-env-var.png)

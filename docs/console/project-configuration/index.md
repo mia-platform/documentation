@@ -24,12 +24,12 @@ You can switch between the Homepages using the `⌘ + K` (alternatively, `ctrl +
 
 ### Basic Homepage
 
-![Mia-Platform Console Basic Homepage](/images/docs/console/Mia-Platform-basic-homepage.png)  
+![Mia-Platform Console Basic Homepage](./img/Mia-Platform-basic-homepage.png)  
 The Basic Homepage allows users to quickly access the relevant information of each project developed on Mia-Platform. Moreover, the user can easily be redirected to the most used Areas in the Console. This visualization is great for Console newcomers who will benefit from always having all the Console Areas displayed at once.
 
 ### Metrics Homepage
 
-![Mia-Platform Console Metrics Homepage](/images/docs/console/Mia-Platform-metrics-homepage.png)  
+![Mia-Platform Console Metrics Homepage](./img/Mia-Platform-metrics-homepage.png)  
 The Metrics Homepage is structured in different cards, and each card represents a different environment of your project. You can pin to top one card at a time using the button at the left of the environment name. For each card, the user can see:
 
 * The time of the last deployment;
@@ -76,11 +76,11 @@ Moreover, above the Environment cards, the Project Administrator (or Company Own
 
 Since these links will be visible to all the project members, this functionality may facilitate the admin in better structuring workflows and speeding up team processes. In this regard, we suggest setting up - even at an early stage - all those links that should generally be considered necessary by default for every project. For instance, it might be useful to have quick access to shared drives (Google Drive, Office, etc), project documentation pages, an issue tracking board (Jira, Trello, etc), design graphics and so on. To configure the links for the first time, the Project Administrator/Company Owner only needs to click on the "Add Quick Link" button displayed on top of the Metrics Homepage.
 
-![Add Quick Link Button](/images/docs/console/AddQuickLink.png)
+![Add Quick Link Button](./img/AddQuickLink.png)
 
 Another way to retrieve the project links is to use the `⌘ + K` (alternatively, `ctrl + K`) interface and click on the "Project Links" section.
 
-![Project Links with CMD + K](/images/docs/console/cmdk-quick-links.gif)
+![Project Links with CMD + K](./img/cmdk-quick-links.gif)
 
 ## Console Sections
 
@@ -90,19 +90,19 @@ Mia-Platform Console is divided in many different sections that help you manage 
 
 All the sections can be reached using Mia-Platform Console Homepage or by using the pop-up menu in the left side of the topbar.
 
-![Launcher Menu](/images/docs/console/launcher-menu.gif)
+![Launcher Menu](./img/launcher-menu.gif)
 
 If you wish, you can add up to 6 sections to your Favorites sections, you just need to click con the associated star. That will make them always accessible from the top navbar. You can remove a section from the favorites ones by clicking again on its star.
 
-![Favorites](/images/docs/console/favorites.gif)
+![Favorites](./img/favorites.gif)
 
 Another option to easily switch among Console sections, or to select a specific project, is to use the `⌘ + K` (alternatively, `ctrl + K`) interface. This interface can also be opened using the menu on the right side of the topbar.
 
-![command k interface](/images/docs/console/interface.gif)
+![command k interface](./img/interface.gif)
 
 Once opened the interface, you can also type `>` and a selection of useful commands will be displayed.
 
-![interface commands](/images/docs/console/interface_commands.png)
+![interface commands](./img/interface_commands.png)
 
 ### Environments & Private Variables
 

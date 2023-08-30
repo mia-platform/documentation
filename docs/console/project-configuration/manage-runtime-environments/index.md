@@ -12,7 +12,7 @@ The Console handles environments in a project-specific manner. When creating a n
 
 In the Overview area, you can have an overview of the runtime environments configured for the project through a Runtime Environments card, which displays a table with a row for each environment, as shown in the picture below.
 
-![environments table](/images/docs/console/environments_table.png)
+![environments table](../img/environments_table.png)
 
 The table displays information in the following columns:
 
@@ -39,7 +39,7 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 * **CMS URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
 * **Description**: a brief description of the runtime environment.
 
-![add environment](/images/docs/console/add_environment.png)
+![add environment](../img/add_environment.png)
 
 By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table.  
 
@@ -65,7 +65,7 @@ When the user requests the creation of a new runtime environment, the following 
 
 If there are no errors, the creation modal will display a successful feedback containing the credentials (Pipeline Token and Certificate Authority) required for deployment. It is possible to manually copy the credentials, or download them in JSON format using the "Download recap" button.
 
-![add environment success](/images/docs/console/add_environment_success.png)
+![add environment success](../img/add_environment_success.png)
 
 :::info
 If the Kubernetes cluster has not been properly prepared (and consequently does not have a reference service account that can be associated with the new namespace), steps 4-7 are skipped, and the successful feedback is shown to the user without credentials. The user will then **not** be able to deploy without further actions on the cluster.
@@ -75,7 +75,7 @@ If the Kubernetes cluster has not been properly prepared (and consequently does 
 
 The action of creating the environment will instead result in an error if problems occur in steps 1-3. In case of issues in steps 4-7, the modal will still show a successful feedback, along with an error warning prompting the user to contact their cluster administrator.
 
-![add environment error](/images/docs/console/add_environment_error.png)
+![add environment error](../img/add_environment_error.png)
 
 ## View Environment Information
 
@@ -85,19 +85,19 @@ By clicking on the arrow button located in the rightmost column of an environmen
 
 * **Cluster connection**: this card simply shows information (ID, URL, namespace) about the Kubernetes cluster the runtime environment runs on. This information is not editable.
 
-![environment detail](/images/docs/console/environment_detail.png)
+![environment detail](../img/environment_detail.png)
 
 ## Edit an Environment
 
 As mentioned in the previous section, through the "Edit" button in the top right corner of the Details card, it is possible to modify some information inserted by the user while creating the runtime environment. A click on the button opens a modal very similar to the one seen when creating the environment, but in which all the fields are read-only except for Name and Description. By clicking on "Save changes", the environment information will be updated.
 
-![edit environment](/images/docs/console/edit_environment.png)
+![edit environment](../img/edit_environment.png)
 
 ## Remove an Environment
 
 In the bottom part of the page, there is a footer which allows to delete the runtime environment from the Console. By clicking on the "Delete" button, a modal will be displayed, asking for confirmation of the deletion.
 
-![delete environment](/images/docs/console/delete_environment.png)
+![delete environment](../img/delete_environment.png)
 
 After entering the name in the input field and clicking "Delete," a loading and finally a feedback of successful removal will be shown. Closing the modal will then redirect you to the environments table. In case of errors, an informative feedback will be shown instead, and the "Close" button will not perform any redirection.
 

@@ -13,7 +13,7 @@ The "General" tab shows some general information about the Project, through a si
 
 ### Project information
 
-![project information](/images/docs/console/settings-project-information.png)
+![project information](./img/settings-project-information.png)
 
 This card presents a summary in which the **name** and **description** given to the Project are displayed, along with the following information:
 - **Project Owner**: Project owner information (typically, name and surname);
@@ -23,13 +23,13 @@ This card presents a summary in which the **name** and **description** given to 
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
-![edit project information](/images/docs/console/settings-edit-project-information.png)
+![edit project information](./img/settings-edit-project-information.png)
 
 ## Providers
 
 The "Providers" tab shows information pertaining to the providers (Git Provider, Secret Manager, and CI/CD Tool) configured for the Project, through a single homonymous card.
 
-![providers](/images/docs/console/settings-providers.png)
+![providers](./img/settings-providers.png)
 
 This card presents an overview of which Git Provider, Secret Manager, and CI/CD Tool are configured for the Project, displaying their icon and name. The following information is also displayed:
 - *Configuration Path Repository*
@@ -44,7 +44,7 @@ The "Workload & Runtime" tab shows information about the Project workload and ru
 
 ### Microservices
 
-![microservices](/images/docs/console/settings-microservices.png)
+![microservices](./img/settings-microservices.png)
 
 This card shows and gives the user the ability to change some settings related to the creation of microservices within the Project. Specifically:
 - **Suggestion for Docker image**: defines the format of the Docker image name suggestion. It is one of `REPOSITORY`, `PROJECT_ID`, `CONSTANT_PREFIX` (the default is `PROJECT_ID`);
@@ -54,7 +54,7 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 ### Image pull secrets
 
-![image pull secrets](/images/docs/console/settings-image-pull-secrets.png)
+![image pull secrets](./img/settings-image-pull-secrets.png)
 
 :::note
 An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
@@ -64,7 +64,7 @@ This card shows the user, in the form of a table, the list of names that will be
 
 ### Runtime settings
 
-![runtime settings](/images/docs/console/settings-runtime-settings.png)
+![runtime settings](./img/settings-runtime-settings.png)
 
 This card shows and gives the user the ability to change some runtime settings. Specifically:
 - **Runner Tool**: specifies the command line deployment tool used by the Project. Either one of "mlp" and "Other tool". In the case of mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
@@ -72,11 +72,11 @@ This card shows and gives the user the ability to change some runtime settings. 
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
-![edit runtime settings](/images/docs/console/settings-edit-runtime-settings.png)
+![edit runtime settings](./img/settings-edit-runtime-settings.png)
 
 ### Security features
 
-![security features](/images/docs/console/settings-security-features.png)
+![security features](./img/settings-security-features.png)
 
 This card shows and gives the user the ability to change some security features, provided as pod annotations, pod specs and Security Context. Specifically:
 - **Seccomp Profile**: if enabled, it enables the `seccompProfile` attribute of the `securityContext` object in order to restrict a Container's syscall. This feature is available as of Kubernetes v1.19 and you can learn more by taking a look at the [official Kubernetes documentation](https://kubernetes.io/docs/tutorials/security/seccomp/).
@@ -95,12 +95,12 @@ This card shows and gives the user the ability to change some security features,
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below, through which you can turn on/off the security features. Upon clicking "Save changes", the information will be updated.
 
-![edit security features](/images/docs/console/settings-edit-security-features.png)
+![edit security features](./img/settings-edit-security-features.png)
 
 ## Feature Preview
 
 The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific Project, through a single homonymous card.
 
-![feature preview](/images/docs/console/settings-feature-preview.png)
+![feature preview](./img/settings-feature-preview.png)
 
 This card presents an overview of the features in early access that can be activated for the Project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.

@@ -18,7 +18,7 @@ In order to test each API, you can access your tags on the right side of the scr
 
 For example, if you have created a CRUD with the "Plates" tag, you will be able to select it:
 
-![Tag Selection](/images/docs/console/listPlates.png)
+![Tag Selection](./img/listPlates.png)
 
 The Console will show you a request example for each request type that you can use to easily test your Api. You just need to copy the request example, paste it in the Json editor and you will be ready to test your Api!
 
@@ -47,22 +47,22 @@ If you want to test the GET endpoint, you need to click the row that will expand
 
 In the Query Params section, you can filter and sort all the request configuration you need by ticking the boxes of the information you are looking for. For instance, we ticked id, name, description, and price. So, only these specific contents will be passed upon the GET request.
 
-![Query parameters](/images/docs/console/queryParams.png)
+![Query parameters](./img/queryParams.png)
 
 You can hide the visibility of the content of an entire section by pushing the button **Collapse**.
 
-![Collapse button](/images/docs/console/expand.png)
+![Collapse button](./img/expand.png)
 
 Then you can expand it again by clicking **Expand**
 
 By opening the **Object Properties** you can hide the properties that you don't want to retrieve just by unchecking the boxes.
 As you can see below, we uncheck creatorId and type, as they don't appear in the list.
 
-![Object Properties](/images/docs/console/object-properties.png)
+![Object Properties](./img/object-properties.png)
 
 Now you have the ability to test the API request by pushing **Try it** - if the APIs are protected, you need to authenticate yourself by filling the Secret in, as shown below.
 
-![Secret Authentication](/images/docs/console/secretPlates.png)
+![Secret Authentication](./img/secretPlates.png)
 
 Once the single API is selected, in this area you can see the structure of the API and the data that are exposed.
 
@@ -71,11 +71,11 @@ In the second box, you can see the response of the body with the list of the pla
 
 You can see all the Parameters Type: query, path, header, and body.
 
-![GET Request](/images/docs/console/GET.png)
+![GET Request](./img/GET.png)
 
 In addition, you can also edit it in JSON as shown below.
 
-![Json Editor](/images/docs/console/editJSON.png)
+![Json Editor](./img/editJSON.png)
 
 ## POST request
 
@@ -87,7 +87,7 @@ Then push **Try it** - if the APIs are protected, you need to authenticate yours
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code, a new ID was created and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
-![Post Request](/images/docs/console/PostOnion.png)
+![Post Request](./img/PostOnion.png)
 
 Visibility. Always remember the status, whether it is private, public, trash or deleted.
 
@@ -96,11 +96,11 @@ Otherwise, you can add a new item to the collection by directly writing the info
 In our example, we successfully added the plate Lasagna, as we can see 200 as OK success status response code.
 Remember to tick all the boxes of the body params you want to add. In the example, you can see in the Json Schema we ticked "name" in the body params.
 
-![Post Request of Lasagna dish](/images/docs/console/postLasagna.png)
+![Post Request of Lasagna dish](./img/postLasagna.png)
 
 You can also see the complete Json Schema and all the type variables both for the request and response.
 
-![Json Schema](/images/docs/console/json.png)
+![Json Schema](./img/json.png)
 
 ## DELETE request
 
@@ -110,14 +110,14 @@ If you want to test the DELETE endpoint, you need to click the row that will ope
 
 Below you can see the screenshot of a successfull request to our running API. You can see 204 as No content status response code and in the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
-![Delete Request](/images/docs/console/deleteOnion.png)
+![Delete Request](./img/deleteOnion.png)
 
 By opening the **Object Properties** you can hide the properties that you don't want to delete just by unchecking the boxes.
 
 For instance, we uncheck all the properties that we want to keep.
 You can also look for a property in the search box and then push **add**
 
-![Hide Properties](/images/docs/console/properties.png)
+![Hide Properties](./img/properties.png)
 
 Visibility. Always remember the status, whether it is private, public, trash or deleted.
 
@@ -133,7 +133,7 @@ Then, push **Try it** - if the APIs are protected, you need to authenticate your
 
 Below you can see the screenshot of a successfull request to our running API, we can see 200 as OK success status response code with the new name. In the black box on the right, you can see the request, that can be seen as a cURL,in Node, in JavaScript, and in Java.
 
-![Patch Request](/images/docs/console/patchPlate.png)
+![Patch Request](./img/patchPlate.png)
 
 ## Field Update Operators
 
