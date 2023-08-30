@@ -191,7 +191,8 @@
     "objs",
     "Krew",
     "krew",
-    "choco"
+    "choco",
+    "FAIREAI"
   ],
   "ignoreWords": [
     "asncdctools",
