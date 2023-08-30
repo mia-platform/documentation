@@ -1,5 +1,5 @@
 ---
-id: env-var
+id: environment-variables-introduction
 title:  Environment Variables Introduction
 sidebar_label: Environment Variables Introduction
 ---

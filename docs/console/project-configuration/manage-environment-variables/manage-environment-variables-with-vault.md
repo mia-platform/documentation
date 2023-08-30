@@ -1,7 +1,7 @@
 ---
-id: env-var-vault
+id: manage-environment-variables-with-vault
 title: Manage Environment Variables With Vault
-sidebar_label: Vault
+sidebar_label: Manage Environment Variables With Vault
 ---
 
 [Hashicorp Vault](https://www.vaultproject.io/) is a product useful to store and manage variables with a state-of-the-art level of secrecy, while maintaining them always available for our deployments and applications.
