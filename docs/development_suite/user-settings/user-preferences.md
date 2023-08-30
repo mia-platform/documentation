@@ -9,7 +9,7 @@ sidebar_label: User Preferences
 After hovering over the user profile picture, from the launchbar dropdown menu, click on the `Profile` option. Once clicked there, you will enter the section where you can view and manage the Profile Settings of the user.  
 If you want to view and manage the "User preferences", you just need to select the `Preferences` tab from the menu on the left. At that point, the screen will display all the preferences that can currently be configured by the user. 
 
-![user preferences dropdown](./img/user-preferences-dropdown.png)
+![user profile dropdown](./img/user-profile-dropdown.png)
 
 The preferences that you can manage are:
 
