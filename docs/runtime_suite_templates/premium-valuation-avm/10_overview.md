@@ -11,7 +11,7 @@ The template comes with a set of APIs already integrated with Prelios systems.
 
 ### POST - /authenticate
 
-This API performs client authentication on Prelios systems. Client information is given by the envirnoment variables `CLIENT_ID` and `CLIENT_SECRET`. The service calls the Prelios API and returns its response. Additionaly stores in memory the authentication token so that it can be used by other APIs.
+This API performs client authentication on Prelios systems. Client information is given by the environment variables `CLIENT_ID` and `CLIENT_SECRET`. The service calls the Prelios API and returns its response and it stores in memory the authentication token so that it can be used by other APIs.
 
 ### POST - /start-evaluation
 
