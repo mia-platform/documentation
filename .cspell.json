@@ -191,7 +191,10 @@
     "objs",
     "Krew",
     "krew",
-    "choco"
+    "choco",
+    "dazn",
+    "deliveroo",
+    "serp"
   ],
   "ignoreWords": [
     "asncdctools",
