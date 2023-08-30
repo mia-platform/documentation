@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 ## Open Banking and financial insights
 
-It provides customers with a comprehensive collection of operations to register persons, accounts and transactions. Through a proprietary multi-layer categorization engine, the platform supports the categorization of bank movements and it recognises the recurrent ones. Customers can also accomplish the account connection through PSD2 taking advantage of Fabrick Pass service that is fully integrated within the platform. Given the registered data, the customers can retrieve KPIs that the platform calculated and have a detailed picture on retail financial behavior.
+It provides customers with a comprehensive collection of operations to register persons, accounts and transactions. Through a proprietary multi-layer categorization engine, the platform supports the categorization of bank movements and it recognizes the recurrent ones. Customers can also accomplish the account connection through PSD2 taking advantage of Fabrick Pass service that is fully integrated within the platform. Given the registered data, the customers can retrieve KPIs that the platform calculated and have a detailed picture on retail financial behavior.
 
 ## AI-powered data analytics and creditworthiness evaluation
 

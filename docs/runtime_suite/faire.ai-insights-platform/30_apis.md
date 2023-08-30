@@ -23,7 +23,7 @@ Operations on account entities:
 - `GET - /accounts`: get accounts of a person
 - `GET - /accounts/{accountId}`: get account
 - `DELETE - /accounts/{accountId}`: delete account
-- `PATCH - /accounts/{accountId}`: update account operativity
+- `PATCH - /accounts/{accountId}`: update account operations
 - `POST - /accounts/{accountId}/transactions`: add transaction to existing account
 - `GET - /accounts/{accountId}/transactions`: get transactions by account
 - `PUT - /accounts/{accountId}/transactions/{transactionId}/recurrence`: update transaction recurrence
