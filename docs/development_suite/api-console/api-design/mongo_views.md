@@ -13,19 +13,29 @@ sidebar_label: Create Views
 
 ![create view form](img/create_mongodb_view.png)
 
-A View requires a `source` collection, projection or single view from which the aggregation starts.   
-The *Internal Endpoints* is the path from which the view is going to be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) inside the namespace. Additional internal endpoints can be defined in the Internal Endpoints card of the View. Only paths with `GET` methods are exposed, since you can perform only `read` operation on a view.
+To create a new MongoDB View, you need to access the **MongoDB Views** menu from the **Data Models** section. From here, to access the creation page, simply click on the **Create new View** button.
+
+A View requires the following fields:
+
+- **Name** : the name by which the view will be referenced.
+- **Internal Endpoint** : the endpoint that will be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) within the namespace. Only paths with the **GET** method will be exposed, as only read operations on the views are allowed.
+- **Starting Collection**: it's the source from which the aggregation of the view starts. This can be a **Collection**, but also a [Projection](/fast_data/configuration/projections.mds) or a [Single View](/fast_data/configuration/single_views.md).
+
+:::info
+Additional internal endpoints can be defined in the Internal Endpoints card of the View.
 
 ![Internal endpoint view](img/internal_endpoint_view.png)
+:::
 
-The data exposed by the view are the result of a series of step the data of the `source` collection are going through. These steps are defined in the `pipeline`, and can filter, group, join, project or transform the data. These steps compose the so-called [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/).
+
+The data exposed by the view are obtained through a sequence of actions that process the data source's data. These actions are outlined in the *pipeline*, which can include filtering, grouping, joining, projecting, or transforming the data. Together, these actions form what is referred to as the [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/).
 
 ### Aggregation
 
 MongoDB will run an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/) starting from the `source` collection.    
 When you create a new view, the console will set a default pipeline which returns only `PUBLIC` documents. You can edit it through the dedicated editor.   
 
-![Pipeline view](img/pipeline_card_view.png)
+![Pipeline view](img/pipeline_card_view_default.png)
 
 :::note
 The whole aggregation pipeline is going to be performed on-demand on each request the view received.   
@@ -47,6 +57,17 @@ Unlike MongoDB CRUD, you cannot set indexes on these views' fields instead, beca
 The [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will handle your data model and expose its API to the services within your project. If you need to make the API consumable from the external of your namespace, you can create an [Endpoint](/development_suite/api-console/api-design/endpoints.md) of type `MongoDB View` connected to one of the `Internal Endpoints` of your view. 
 
 Since the internal endpoint of a MongoDB View can be used only for reading operations, the endpoint will expose only `GET` routes as well.
+
+:::caution
+When exposing data through an endpoint, it's necessary for documents to have a `__STATE__` field to facilitate accurate filtering. If the aggregation process generates objects without this field, the endpoint will consistently return an empty array as its output.
+
+To ensure the proper functioning of endpoint exposure, it's important to carefully manage the aggregation process. This means guaranteeing the inclusion of the  `__STATE__` field. If including the field is challenging, you can ensure its presence by using the [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) object within the aggregation and explicitly setting the `__STATE__` field's value to `PUBLIC`.
+
+![Pipeline view](img/pipeline_card_view.png)
+
+:::
+
+
 
 
 ### CMS
