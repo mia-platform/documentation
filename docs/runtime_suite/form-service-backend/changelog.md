@@ -8,6 +8,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Added
+- Configuration file accepts the field `isMessagingAvailable` and `messagingOptions` for managing notifications via messaging service
+- Updated API PUT /visualizer/forms/:id for sending emails at the submission
+- Created API GET /templates for retrieving email templates
+- Updated API POST /visualizer/forms for sending emails at the submission
+- When sending emails, the form data is also transferred to the messaging service
+- Updated API POST /send for managing blind carbon copies (BCC)
+
 ## [1.8.1] 2023-07-28
 
 ### Added
