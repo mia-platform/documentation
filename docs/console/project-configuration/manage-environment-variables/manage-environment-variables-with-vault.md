@@ -197,7 +197,7 @@ Assuming you have a Vault instance setup and running and a Console project alrea
   In this way, `development` and `staging` environments will inherit their `environmentsVariables` configuration from the project. While the `production` environment will override it.
   :::
 
-# Use Vault variables inside a project
+## Use Vault variables inside a project
 
 Variables stored in a Vault provider cannot be directly interpolated in the project's configuration. However, you could access these variables by creating a new microservice environment variable and setting **value type** to **from secret**, **secret name** to `vault-secret`, and **secret key** to the target secreted environment variable name, take a look at the [microservice configuration section](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
