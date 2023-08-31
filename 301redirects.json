@@ -608,5 +608,9 @@
   "/docs/development_suite/api-portal/api-documentations": {
     "destination": "/docs/console/project-configuration/documentation-portal",
     "addedOn": "2023-08-29"
-  }
+  },
+  "/docs/development_suite/user-settings/user-profile-picture":  {
+    "destination": "/docs/development_suite/user-settings/user-personal-info",
+     "addedOn": "2023-08-29"
+  } 
 }
