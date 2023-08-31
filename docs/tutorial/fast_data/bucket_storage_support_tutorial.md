@@ -142,7 +142,7 @@ Before starting to create projections, we need to create the System of Records (
 
 Once the data is stored in the bucket, it can be processed later again to manage different use cases, as explained [in this section](/fast_data/bucket_storage_support/use_cases.md). This process is referred to as **re-ingestion**. 
 
-Based on the different needs where Bucket Storage is deployed, two types of re-ingestions procedures can be applied using the _Ingestion Reloader_. You can see its APIs available in the [API Documentations](/development_suite/api-portal/api-documentations.md)
+Based on the different needs where Bucket Storage is deployed, two types of re-ingestions procedures can be applied using the _Ingestion Reloader_. You can see its APIs available in the [API Documentations](/console/project-configuration/documentation-portal.md)
 
 :::tip
 Messages loaded in the bucket are sent to a topic specified in the client's request, and is referred to as `reIngestionTopic`. If we consider the Registry Projection, you can use the following topic suggestion **demo.`<environment>`.delivery.registry.reingestion**, where `<environment>` is the name of the environment where you are gonna to deploy the bucket storage support. 

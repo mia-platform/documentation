@@ -12,7 +12,7 @@ In this tutorial, we will see how to create and develop a new microservice start
 
 ## What we will Build
 
-We will develop a simple **microservice that exposes a route** returning the shipping cost depending on whether the user is a new customer or not. Moreover, the values returned by the endpoint will be based on the value of some [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md).
+We will develop a simple **microservice that exposes a route** returning the shipping cost depending on whether the user is a new customer or not. Moreover, the values returned by the endpoint will be based on the value of some [environment variables](/console/project-configuration/manage-environment-variables/index.md).
 
 We will also create a CRUD service to store the data related to customers and orders, and we will see how to communicate between different services, the one we are developing and the _curd-service_.
 
@@ -20,7 +20,7 @@ In the final part, we will go over how to check the logs and status of the servi
 
 ## Prerequisites
 
-Before starting, we will assume that, you already have a clean project in Mia-Platform Console. To know how to create a project on Mia-Platform Console, read [this guide](/development_suite/set-up-infrastructure/create-project.mdx).
+Before starting, we will assume that, you already have a clean project in Mia-Platform Console. To know how to create a project on Mia-Platform Console, read [this guide](/console/project-configuration/create-a-project.mdx).
 
 The project must:
 
@@ -822,7 +822,7 @@ public class MockWebApplicationFactory : WebApplicationFactory<Program>
 
     private void SetupMocks() {
         var CRUD_BASE_URL = "http://crud-service";
-        
+
         var mockedNewCustomer = new Customer("test-id-new", "test-name-new", "test-surname-new", "test-email-new", "test-phone-new");
         var mockedNewCustomerResponse = new List<Customer> { mockedNewCustomer };
         var mockedNewCustomerOrderCountResponse = 0;
@@ -919,7 +919,7 @@ public class MockWebApplicationFactory : WebApplicationFactory<Program>
 
     private void SetupMocks() {
         var CRUD_BASE_URL = "http://crud-service";
-        
+
         var mockedNewCustomer = new Customer("test-id-new", "test-name-new", "test-surname-new", "test-email-new", "test-phone-new");
         var mockedNewCustomerResponse = new List<Customer> { mockedNewCustomer };
         var mockedNewCustomerOrderCountResponse = 0;
@@ -929,7 +929,7 @@ public class MockWebApplicationFactory : WebApplicationFactory<Program>
 
         mockedHandler.SetupRequest(HttpMethod.Get, $"{CRUD_BASE_URL}/orders/count?customerId={mockedNewCustomer._id}")
                 .ReturnsResponse(JsonConvert.SerializeObject(mockedNewCustomerOrderCountResponse), "application/json");
-        
+
 
         mockedHandler.SetupRequest(HttpMethod.Get, $"{CRUD_BASE_URL}/customers/?email=not-existing-email")
                 .ReturnsResponse(System.Net.HttpStatusCode.NotFound, "{}", "application/json");
@@ -945,7 +945,7 @@ public class MockWebApplicationFactory : WebApplicationFactory<Program>
         mockedHandler.SetupRequest(HttpMethod.Get, $"{CRUD_BASE_URL}/orders/count?customerId={mockedOldCustomer._id}")
                 .ReturnsResponse(JsonConvert.SerializeObject(mockedOldCustomerOrderCountResponse), "application/json");
 
-        
+
         var mockedInvalidCustomer = new Customer("test-id-invalid", "test-name-invalid", "test-surname-invalid", "test-email-invalid", "test-phone-invalid");
         var mockedInvalidCustomerResponse = new List<Customer> { mockedInvalidCustomer };
 
@@ -1013,7 +1013,7 @@ public class UnitTest1: IClassFixture<MockWebApplicationFactory>
 
         Assert.Equal(DEFAULT_SHIPPING_COST, serviceResponse?.shippingCost);
     }
-    
+
     [Fact]
     public async void TestNoCustomerFound()
     {
@@ -1412,7 +1412,7 @@ public sealed class ShippingCostModule : IModule
     public int Order => 0;
 
     public IServiceCollection RegisterModule(WebApplicationBuilder builder)
-    {        
+    {
         return builder.Services;
     }
 
@@ -1446,7 +1446,7 @@ public sealed class ShippingCostModule : IModule
             Console.WriteLine(e.Message);
             return Results.NotFound(new ServiceErrorResponse("Error in Customer request"+e.Message));
         }
-        
+
         if(!customerResponse.IsSuccessStatusCode) {
             Console.WriteLine($"request to CRUD received status code=${customerResponse.StatusCode}");
             return Results.NotFound(new ServiceErrorResponse("Customer does not exist"));
@@ -1708,7 +1708,7 @@ Now if you try again the `GET /shipping-cost` route you will see that it will re
 
 ## Environment variable
 
-You should know, as a developer, that writing values directly into the code it isn't a good practice, so we want to extract the `CRUD_BASE_URL`, `DEFAULT_SHIPPING_COST` and `NEW_CUSTOMER_SHIPPING_COST` variables as [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md).
+You should know, as a developer, that writing values directly into the code it isn't a good practice, so we want to extract the `CRUD_BASE_URL`, `DEFAULT_SHIPPING_COST` and `NEW_CUSTOMER_SHIPPING_COST` variables as [environment variables](/console/project-configuration/manage-environment-variables/index.md).
 
 An environment variable is a variable whose value is set outside the microservices made up of a name/value pair. You can set a different value based on the environment (Development, Production, etc.).
 
@@ -1957,7 +1957,7 @@ public class UnitTest1: IClassFixture<MockWebApplicationFactory>
 
 We deploy the project to try the microservice.
 
-After the deploy, open the [Documentation Portal](/development_suite/api-portal/api-documentations.md) and try the `GET /shipping-cost` route, it will return the new values:
+After the deploy, open the [Documentation Portal](/console/project-configuration/documentation-portal.md) and try the `GET /shipping-cost` route, it will return the new values:
 
 ![API Portal try /shipping-cost](img/node-ms-api-portal-final-test.gif)
 

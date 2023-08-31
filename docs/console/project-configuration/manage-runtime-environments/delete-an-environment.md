@@ -1,10 +1,10 @@
 ---
-id: remove-environment
+id: delete-an-environment
 title: Delete an Environment
 sidebar_label: Delete an Environment
 ---
 
-After you have followed the steps needed to [remove an environment](/development_suite/set-up-infrastructure/runtime-environments.md#remove-an-environment) from your Console project, you are tasked with properly cleaning up your project on your Git provider from the resources and pipelines needed for the deployment on that environment.
+After you have followed the steps needed to [remove an environment](/console/project-configuration/manage-runtime-environments/index.md#remove-an-environment) from your Console project, you are tasked with properly cleaning up your project on your Git provider from the resources and pipelines needed for the deployment on that environment.
 
 ## Cleanup the Pipeline
 
