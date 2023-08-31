@@ -19,7 +19,7 @@ A View requires the following fields:
 
 - **Name** : the name by which the view will be referenced.
 - **Internal Endpoint** : the endpoint that will be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) within the namespace. Only paths with the **GET** method will be exposed, as only read operations on the views are allowed.
-- **Starting Collection**: it's the source from which the aggregation of the view starts. This can be a **Collection**, but also a [Projection](/fast_data/configuration/projections.mds) or a [Single View](/fast_data/configuration/single_views.md).
+- **Starting Collection**: it's the source from which the aggregation of the view starts. This can be a **Collection**, but also a [Projection](/fast_data/configuration/projections.md) or a [Single View](/fast_data/configuration/single_views.md).
 
 :::info
 Additional internal endpoints can be defined in the Internal Endpoints card of the View.
