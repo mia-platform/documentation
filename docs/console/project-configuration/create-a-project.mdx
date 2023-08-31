@@ -1,5 +1,5 @@
 ---
-id: create-project
+id: create-a-project
 title: Create a Project
 sidebar_label: Create a Project
 ---
@@ -38,7 +38,7 @@ To create a new project, you must have the permission `console.company.project.c
 The project creation process is divided into three phases:
 1. **General**: in this phase, you will be asked to insert general information about your project:
 
-  ![create-project-1](img/create-project-1.png)
+  ![create-project-1](./img/create-project-1.png)
 
    * **Company** (_required_): the company that you want to create your project into, selected from a list of pre-configured companies. As mentioned before, selecting a specific company allows you to keep the same configuration for different projects;
    * **Project name** (_required_): the name of your project. It will be shown in the project card in the Home section of the Console;
@@ -48,7 +48,7 @@ The project creation process is divided into three phases:
 
 2. **Repository**: in this phase, you will be asked to choose the basic configurations of the repository associated with your project and the template to start the project from. You also will be asked to select a Git Provider, starting from the default one configured for the company:
 
-  ![create-project-2](img/create-project-2.png)
+  ![create-project-2](./img/create-project-2.png)
 
    * **Git provider**: one of the supported Git Provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
 
@@ -57,9 +57,9 @@ The project creation process is divided into three phases:
     :::
 
     If there are no configured Git Providers for the company, an informative modal is displayed, and you will not be able to continue.
-   
+
    * **Git repo path**: the path, calculated from project name and company, where the configuration will be saved on the Git Provider. It specifies the location of your project on the Git Provider website;
-  
+
     :::caution
     Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
     :::
@@ -76,7 +76,7 @@ The project creation process is divided into three phases:
 
       For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
       then the `basePath` must be **`mia-platform/projects`**.
-      
+
       If your group does not exist (in the example groupB):
 
       - /groupA/groupB -> if the user has permission to create groups in groupA, then groupB will be created;
@@ -87,8 +87,8 @@ The project creation process is divided into three phases:
 
     <TabItem value="github" label="GitHub">
 
-      It corresponds to the **path of an existing organization**. 
-      
+      It corresponds to the **path of an existing organization**.
+
       If the path does not exist, the project will not be created.
 
       For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, <br/>
@@ -104,16 +104,16 @@ The project creation process is divided into three phases:
       #### A single Azure DevOps project with multiple configurations repository
 
       It corresponds to the **path where your Azure project is reachable**: the pattern is _organization-name/project-name_.
-      
+
       For example, if your project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
       then the `basePath` must be **`mia-platform-devops/Test`**.
 
       #### An Azure DevOps project for each Console project
 
       It corresponds to the **organization where to create the project**: the pattern is organization-name_.
-      
+
       For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
-      then the `basePath` must be **`mia-platform-devops`**. 
+      then the `basePath` must be **`mia-platform-devops`**.
 
     </TabItem>
 
@@ -127,21 +127,21 @@ The project creation process is divided into three phases:
     </TabItem>
 
     </Tabs>
-      
+
    * **Visibility**: the visibility states the status of your project once it will be saved on the Git Provider. Either one of the following:
 
       - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
       - `internal`: the repository can be accessed and viewed by any authenticated user within the same Git Provider instance or organization;
       - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
-  
+
    * **Template** (_required_): the template used by your project, selected from a list of pre-configured templates. It adds pre-filled configurations to your project.
 
 <br/>
 
 3. ** Environments**: in this phase, you will be asked to review all the details regarding the environments that will be created for the project:
-   
-  ![create-project-3](img/create-project-3.png)
-   
+
+  ![create-project-3](./img/create-project-3.png)
+
    * **Environment name**: the name given to your environment;
    * **Environment ID**: the human-readable ID set to your environment;
    * **Project Host**: the host which exposes documentation and APIs;
@@ -156,11 +156,11 @@ The project creation process is divided into three phases:
 
 Once your project has been created, you will be redirected to the **Project Overview** area.
 
-Here you will be able to see the [project basic settings](/development_suite/set-up-infrastructure/project-settings.md), the [project environments](/development_suite/set-up-infrastructure/runtime-environments.md) and a list of [environment variables](/development_suite/set-up-infrastructure/env-var-intro.md):
+Here you will be able to see the [project basic settings](/console/project-configuration/project-settings.md), the [project environments](/console/project-configuration/manage-runtime-environments/index.md) and a list of [environment variables](/console/project-configuration/manage-environment-variables/index.md):
 
 ### Environment Variables
 
-Once you create a new project, your project will already include variables. 
+Once you create a new project, your project will already include variables.
 
 Some variables will be already pre-filled from the project or the company default settings, such as `_CMS_IMAGE_NAME_`, `_LOG_LEVEL_`, and `_CRUD_LIMIT_CONSTRAINT_ENABLED_`, while others will not be pre-filled, such as `_NOTIFICATIONS_COLLECTION_ROUTES_` and `_NOTIFICATIONS_SERVICE_PATH_`.
 
@@ -169,7 +169,7 @@ All variables are **mandatory**, except for:
 * `_CRUD_LIMIT_CONSTRAINT_ENABLED_`;
 * `_NOTIFICATIONS_SERVICE_PATH_`;
 * `_NOTIFICATIONS_COLLECTION_ROUTES_`.
-:::  
+:::
 
 All mandatory variables that are not pre-filled, such as `_MONGODB_SHORT_URL_`, `_MONGODB_URL_`, and `_REDIS_HOSTS_`, need to be manually configured.
 

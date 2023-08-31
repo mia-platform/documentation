@@ -1,5 +1,5 @@
 ---
-id: add-environment
+id: configure-a-new-environment
 title: Configure a New Environment
 sidebar_label: Configure a New Environment
 ---
@@ -7,7 +7,7 @@ sidebar_label: Configure a New Environment
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you have followed the [steps needed to add a new environment](/development_suite/set-up-infrastructure/runtime-environments.md#add-an-environment)
+After you have followed the [steps needed to add a new environment](/console/project-configuration/manage-runtime-environments/index.md#add-an-environment)
 to your Console project, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task.
 
 ## Enable the Pipeline
@@ -130,7 +130,7 @@ resources:
 ```
 
 :::note
-Within the `kustomization.yaml` file you can declare paths to granularly patch specific files via Kustomize. More information about Kustomize can be found [here](/development_suite/set-up-infrastructure/kustomize/index.md).
+Within the `kustomization.yaml` file you can declare paths to granularly patch specific files via Kustomize. More information about Kustomize can be found [here](/console/project-configuration/kustomize-your-configurations/index.md).
 :::
 
 :::info Configure Ingress Route
@@ -181,21 +181,21 @@ The last step necessary to enable the release on the new environment is the setu
 Regarding *secreted environment variables*, you can set them at the project level in the "Variables" section of the "Overview" area.
 To access the "Variables" section and add environment variables, make sure you have the permissions needed to manage secreted environment variables from the Console.
 
-![add environment | secreted vars](img/add-environment-secreted-vars.png)
+![add environment | secreted vars](../img/add-environment-secreted-vars.png)
 
 :::caution Reminder
 Remember to include the environment variables prefix in the secreted variable key to enable it for the new environment.
 :::
 
 :::info
-More information about secreted environment variables and how to add them can be found [here](/development_suite/set-up-infrastructure/env-var-intro.md).
+More information about secreted environment variables and how to add them can be found [here](/console/project-configuration/manage-environment-variables/index.md).
 :::
 
 Regarding *public environment variables*, you can set them for the specific environment in the "Public Variables" section of the "Design" area.
 When saving the configuration, these variables will populate the `variables.env` file on the project repo.
 As well as for pipeline enablement and Git provider setup, this operation is to be repeated for **each** branch on which you want to enable deployment on the new environment.
 
-![add environment | public vars](img/add-environment-public-vars.png)
+![add environment | public vars](../img/add-environment-public-vars.png)
 
 :::info
 More information about public environment variables and how to add them can be found [here](/development_suite/api-console/api-design/public_variables.md).

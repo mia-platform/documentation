@@ -4,34 +4,34 @@ title:  Project Settings
 sidebar_label: Project Settings
 ---
 
-Once you have created your project, you can visualize and change its settings through the "Settings" section of the Console, within the "Project Overview" area.
+Once you have created your Project, you can visualize and change its settings through the "Settings" section of the Console, within the "Project Overview" area.
 The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", and "Feature Preview".
 
 ## General
 
-The "General" tab shows some general information about the project, through a single card called "Project Information".
+The "General" tab shows some general information about the Project, through a single card called "Project information".
 
 ### Project information
 
-![project information](img/settings-project-information.png)
+![project information](./img/settings-project-information.png)
 
-This card presents a summary in which the **name** and **description** given to the project are displayed, along with the following information:
-- **Project Owner**: project owner information (typically, name and surname);
-- **Team Contact**: contact information associated with the project (typically, the project owner's email);
-- **Color (Hex)**: color of the top bar of the project-related card on the homepage (in hexadecimal format);
-- **Technologies**: tags specifying the different technologies and programming languages used within the project.
+This card presents a summary in which the **name** and **description** given to the Project are displayed, along with the following information:
+- **Project Owner**: Project owner information (typically, name and surname);
+- **Team Contact**: contact information associated with the Project (typically, the Project owner's email);
+- **Color (Hex)**: color of the top bar of the Project-related card on the homepage (in hexadecimal format);
+- **Technologies**: tags specifying the different technologies and programming languages used within the Project.
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
-![edit project information](img/settings-edit-project-information.png)
+![edit project information](./img/settings-edit-project-information.png)
 
 ## Providers
 
-The "Providers" tab shows information pertaining to the providers (Git Provider, Secret Manager, and CI/CD Tool) configured for the project, through a single homonymous card.
+The "Providers" tab shows information pertaining to the providers (Git Provider, Secret Manager, and CI/CD Tool) configured for the Project, through a single homonymous card.
 
-![providers](img/settings-providers.png)
+![providers](./img/settings-providers.png)
 
-This card presents an overview of which Git Provider, Secret Manager, and CI/CD Tool are configured for the project, displaying their icon and name. The following information is also displayed:
+This card presents an overview of which Git Provider, Secret Manager, and CI/CD Tool are configured for the Project, displaying their icon and name. The following information is also displayed:
 - *Configuration Path Repository*
   * **Path**: path to the repository containing the Console configuration information.
 - *Secret Manager Storage* (only if the Secret Manager is GitLab)
@@ -40,21 +40,21 @@ This card presents an overview of which Git Provider, Secret Manager, and CI/CD 
 
 ## Workload & Runtime
 
-The "Workload & Runtime" tab shows information about the project workload and runtime through 4 cards: "Microservices", "Image Pull Secret", "Runtime Settings", and "Security Features".
+The "Workload & Runtime" tab shows information about the Project workload and runtime through 4 cards: "Microservices", "Image Pull Secret", "Runtime Settings", and "Security Features".
 
 ### Microservices
 
-![microservices](img/settings-microservices.png)
+![microservices](./img/settings-microservices.png)
 
-This card shows and gives the user the ability to change some settings related to the creation of microservices within the project. Specifically:
+This card shows and gives the user the ability to change some settings related to the creation of microservices within the Project. Specifically:
 - **Suggestion for Docker image**: defines the format of the Docker image name suggestion. It is one of `REPOSITORY`, `PROJECT_ID`, `CONSTANT_PREFIX` (the default is `PROJECT_ID`);
 - **Prefix** (only if type is `CONSTANT_PREFIX`): defines the prefix that will appear in the suggestion for the Docker image name.
 
-The above information can be edited by clicking on the "Edit" button, which will open a modal very similar to that seen for project information. Upon clicking "Save changes", the information will be updated.
+The above information can be edited by clicking on the "Edit" button, which will open a modal very similar to that seen for Project information. Upon clicking "Save changes", the information will be updated.
 
 ### Image pull secrets
 
-![image pull secrets](img/settings-image-pull-secrets.png)
+![image pull secrets](./img/settings-image-pull-secrets.png)
 
 :::note
 An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
@@ -64,22 +64,22 @@ This card shows the user, in the form of a table, the list of names that will be
 
 ### Runtime settings
 
-![runtime settings](img/settings-runtime-settings.png)
+![runtime settings](./img/settings-runtime-settings.png)
 
 This card shows and gives the user the ability to change some runtime settings. Specifically:
-- **Runner Tool**: specifies the command line deployment tool used by the project. Either one of "mlp" and "Other tool". In the case of mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
+- **Runner Tool**: specifies the command line deployment tool used by the Project. Either one of "mlp" and "Other tool". In the case of mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
 - **Monitoring**: tags specifying the different supported monitoring systems.
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
-![edit runtime settings](img/settings-edit-runtime-settings.png)
+![edit runtime settings](./img/settings-edit-runtime-settings.png)
 
 ### Security features
 
-![security features](img/settings-security-features.png)
+![security features](./img/settings-security-features.png)
 
 This card shows and gives the user the ability to change some security features, provided as pod annotations, pod specs and Security Context. Specifically:
-- **Seccomp Profile**: if enabled, is enables the `seccompProfile` attribute of the `securityContext` object in order to restrict a Container's syscall. This feature is available as of Kubernetes v1.19 and you can learn more by taking a look at the [official Kubernetes documentation](https://kubernetes.io/docs/tutorials/security/seccomp/).
+- **Seccomp Profile**: if enabled, it enables the `seccompProfile` attribute of the `securityContext` object in order to restrict a Container's syscall. This feature is available as of Kubernetes v1.19 and you can learn more by taking a look at the [official Kubernetes documentation](https://kubernetes.io/docs/tutorials/security/seccomp/).
 - **AppArmor**: it is a Linux Security Module that, if enabled, implements Mandatory Access Control since [Kubernetes v1.4](https://kubernetes.io/docs/tutorials/security/apparmor/). AppArmor annotations set up a profile used by containerd to harden containerized applications to contrain exploitation. The template for such profile is available [on GitHub](https://github.com/moby/moby/blob/master/profiles/apparmor/template.go).
 - **Host Properties**: if enabled, it sets to `false` the following parameters, which could be used to allow access to shared information and elevate privileges:
   * `hostPID`: controls whether containers can share host process namespaces;
@@ -95,12 +95,12 @@ This card shows and gives the user the ability to change some security features,
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below, through which you can turn on/off the security features. Upon clicking "Save changes", the information will be updated.
 
-![edit security features](img/settings-edit-security-features.png)
+![edit security features](./img/settings-edit-security-features.png)
 
 ## Feature Preview
 
-The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific project, through a single homonymous card.
+The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific Project, through a single homonymous card.
 
-![feature preview](img/settings-feature-preview.png)
+![feature preview](./img/settings-feature-preview.png)
 
-This card presents an overview of the features in early access that can be activated for the project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.
+This card presents an overview of the features in early access that can be activated for the Project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.

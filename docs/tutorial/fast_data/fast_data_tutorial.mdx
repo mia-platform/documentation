@@ -9,12 +9,12 @@ import TabItem from "@theme/TabItem";
 import VideoBox from './../../../src/components/VideoBox'
 
 **Fast Data** is an event-driven architecture that allows you to collect data, manipulate and aggregate it from your systems in near real-time using a data stream approach.
-  
+
 ## What We Will Build
 
 In this tutorial, we will create a simple example of a Single View dedicated to a history of orders made by a customer. To do that we will expect to receive data from two
-different tables: a table that includes a registry of customer data (like the name, address and so on) and a table for a single order (with date, price and the identifier of 
-the customer included in the registry). 
+different tables: a table that includes a registry of customer data (like the name, address and so on) and a table for a single order (with date, price and the identifier of
+the customer included in the registry).
 
 We are going also to create the microservices that will store the data received in separate collections (we will call them _Projections_) and aggregate the Single View.
 
@@ -25,8 +25,8 @@ To do that, in the console, you will:
   - Create an endpoint that will consume the data from the Single View;
   - Test the Single View.
 
-## Prerequisites  
-  
+## Prerequisites
+
 Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](/fast_data/architecture.md), including [Projections](/fast_data/configuration/projections.md), [Single View](/fast_data/configuration/single_views.md), and Kafka (including producers and consumers).
 For the technical part of this tutorial, an up-and-running Kafka cluster is required.
 
@@ -35,16 +35,16 @@ For the technical part of this tutorial, an up-and-running Kafka cluster is requ
 The Projection is an architectural object that is responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
 We will use this projection to have an easy way to read a 1:1 copy of the data from the source systems, and later it will be used to aggregate the data from the source systems, using the Single View Creator.
 
-The architectural component responsible for creating and updating the projection is the Real Time Updater. 
+The architectural component responsible for creating and updating the projection is the Real Time Updater.
 To simplify, this microservice is a Kafka consumer that will consume the data from the source systems and will update the projection.
 
 In this tutorial, we can imagine a simple delivery platform where the data are the registry and the order of the customers.
-So, we will create two projections: one for the registry and one for the order. 
+So, we will create two projections: one for the registry and one for the order.
 
 Before starting to create projections, we need to create the System of Records (_SoR_) representing the source system we want to connect to.
 
-To create a SoR follow the steps below: 
-1. Open the page Projection in the Fast Data section of our left menu; 
+To create a SoR follow the steps below:
+1. Open the page Projection in the Fast Data section of our left menu;
 2. Click on the button "Create new System of Records":
 ![Page System of Records](img/01-page-system-of-records.png)
 3. In the dialog, choose the name (which will act as an identifier of the System of Record, we will call it _delivery_) and the Kafka message format (choose the format you want to use for the messages sent on the Kafka topics) and then click on "Go to system page":
@@ -57,9 +57,9 @@ To create a SoR follow the steps below:
 The first projection we will create is the registry and it will store the data of the registries.
 
 Inside a System of Records page, we need to click on the "Create new Projection" button. A modal will open allowing the user to choose the Projection name. Click on "Create" to create the Projection.
-![Create System of Records](img/04-create-projection.png) 
+![Create System of Records](img/04-create-projection.png)
 
-Once the projection is created, you will be automatically redirected to the page of the registry projection. On this page, we can see its data schema and other configurations related to it. 
+Once the projection is created, you will be automatically redirected to the page of the registry projection. On this page, we can see its data schema and other configurations related to it.
 ![Create System of Records](img/05-page-overview-projection.png)
 
 #### Fields
@@ -73,7 +73,7 @@ It is mandatory to define at least one custom field. Also, you must define at le
 :::
 
 :::info
-You can leave _defaultIdentity_ as a value for _Cast Function_ when entering the fields for this tutorial. 
+You can leave _defaultIdentity_ as a value for _Cast Function_ when entering the fields for this tutorial.
 In this way, every value inside the payload received from the Source Systems will be saved in the database without further customizations.
 :::
 
@@ -91,10 +91,10 @@ For the scope of this tutorial, we ask you to add the following fields:
 
 #### Ingestion Topics
 
-At the bottom of the same page, we can also see the Kafka topics for each environment. There are two types of topics (_Ingestion topics_ and _PR Update topics_) 
-but within the scope of this tutorial, only the ingestion topics are considered. The Kafka Ingestion topics will be used by the Real Time Updater 
+At the bottom of the same page, we can also see the Kafka topics for each environment. There are two types of topics (_Ingestion topics_ and _PR Update topics_)
+but within the scope of this tutorial, only the ingestion topics are considered. The Kafka Ingestion topics will be used by the Real Time Updater
 to receive the data from the Source Systems so that the Projections will be updated, but we will discuss this later.
-![Create System of Records](img/05b-page-overview-projection-kafka.png) 
+![Create System of Records](img/05b-page-overview-projection-kafka.png)
 
 These are the topics defined in Kafka where we expect to receive messages related to the update of projections. The following are the suggested names for the Ingestion topics:
 
@@ -105,7 +105,7 @@ These are the topics defined in Kafka where we expect to receive messages relate
 The Kafka topic names can be changed in the configuration, but please mind that their name must be unique, and thus cannot be reused in other projections.
 
 :::info
-The application does not create Kafka topics for you. If you decide to use a different Kafka topic name, please be sure the topic already exists and it is fully operational. 
+The application does not create Kafka topics for you. If you decide to use a different Kafka topic name, please be sure the topic already exists and it is fully operational.
 The Real-Time Updater, the service that receives the update from the source System, will crash at startup if there is a topic not defined in Kafka.
 :::
 
@@ -143,7 +143,7 @@ These are the topics defined in Kafka where we expect to receive messages relate
 ### Microservice Realtime Updater Configuration
 
 Now that we have one System of Records with two Projections, we [save the configuration](/tutorial/console/console_handbook.md#save-changes).
-During the save, the Mia-Platform Console will create a new microservice, called _Real-Time Updater_ that will consume the data from the source systems, and that will update the configured Projections. 
+During the save, the Mia-Platform Console will create a new microservice, called _Real-Time Updater_ that will consume the data from the source systems, and that will update the configured Projections.
 This service will automatically be named _fast-data-delivery-realtime-updater_ and it can be found in the "Microservices" section.
 
 ![Real Time Updater Microservice](img/09-real-time-updater-microservice.png)
@@ -155,7 +155,7 @@ Now we need to configure all the parameters of the microservice. Here is an exam
 - **KAFKA_BROKERS**: the list of the kafka brokers that will be used to send the data to the Projections
 - **KAFKA_GROUP_ID**: the group id that will be used to consume the data from the source systems
 - **KAFKA_SASL_USERNAME**: the username that will be used to login to the kafka brokers
-- **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers 
+- **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers
 - **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
 
 :::info
@@ -167,10 +167,10 @@ The Real-Time Updater includes more optional parameters that might be included v
 After the basic configuration of the microservice, we need to configure two ConfigMaps:
 
 - The **ER Schema** is a ConfigMap in JSON format that represents a classic entity-relationship model, so it is used to know how the data of different projections are connected.
-- The **Projection Changes Schema** is a ConfigMap in JSON format that represents the path that goes from one projection to another and will be used to find the Single View key 
-(in this tutorial it will be registry_id) that needs to be updated.  
+- The **Projection Changes Schema** is a ConfigMap in JSON format that represents the path that goes from one projection to another and will be used to find the Single View key
+(in this tutorial it will be registry_id) that needs to be updated.
 
-The goal of these configurations is to create a relationship from the _order_ Projection to the _registry_ Projection. So whenever an Order or a Registry is updated, we will store it in a dedicated 
+The goal of these configurations is to create a relationship from the _order_ Projection to the _registry_ Projection. So whenever an Order or a Registry is updated, we will store it in a dedicated
 collection in MongoDB that a Single View associated with that Registry has to be re-aggregated (so, updated with the latest values of the Projections).
 
 
@@ -202,10 +202,10 @@ a modal will prompt you to choose a name for your ER Schema (we suggest: _delive
 
 ![Create new ER Schema](img/11-create-er-schema-no-code.png)
 
-The configuration of the ER Schema with the "No Code" is explained in detail in the [dedicated section](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code), 
+The configuration of the ER Schema with the "No Code" is explained in detail in the [dedicated section](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code),
 but we include here a quick guide on how to create the ER Schema with the needed relationships:
 - In the right side panel you can see the list of Projections inside the System of Record _delivery_: drag the collections _registry_ and _order_ to the canvas in the middle of the screen.
-- Inside the canvas, draw a line from the dot at the right of the _registry_ Projection to the _order_ Projection: you'll see that the line remains visible with a small "!" icon in the middle, 
+- Inside the canvas, draw a line from the dot at the right of the _registry_ Projection to the _order_ Projection: you'll see that the line remains visible with a small "!" icon in the middle,
 which means that the relationship has been created but the condition inside is empty.
 - the right side panel should show the details of the relationship. From here you'll need to:
   - change the "Condition Type" value of "A -> B" to _One to many_.
@@ -216,7 +216,7 @@ The final result should resemble the following image:
 ![The ER Schema configuration is completed](img/12-completed-er-schema-no-code.png)
 
 After that, the ER Schema is already completely configured. To be used in the Real-Time Updater microservice, however, you need to copy the JSON code (visible by clicking on the "\<\/\>" button at the top-left side of the canvas)
-and paste it in the ER Schema ConfigMap of the microservice (from the "Microservices" section, select the Real-Time Updater named _fast-data-delivery-realtime-updater_, 
+and paste it in the ER Schema ConfigMap of the microservice (from the "Microservices" section, select the Real-Time Updater named _fast-data-delivery-realtime-updater_,
 go to the "ConfigMaps & Secret" and select the "er-schema" tab).
 
 </TabItem>
@@ -267,7 +267,7 @@ The relationship is represented by the following two conditions:
 - _registry_id_ (from order): _registry_id_ (from the updated registry). The condition is _One to One_, meaning that one order is related to one and only one registry item.
 - _registry_id_ (from registry): _registry_id_ (from the updated order). The condition is _One to Many_, meaning that one registry might be related to multiple orders.
 
-The condition is used to generate a `where` condition inside a MongoDB query: in this case, the condition can be translated as 
+The condition is used to generate a `where` condition inside a MongoDB query: in this case, the condition can be translated as
 "where the registry_id inside order projection equals the value of the registry_id field of the registry projection".
 
 In the context of the Real-Time Updater, the only relationship needed is the one going _from order to registry_, because when an order is updated, we want to see if there is already a document inside
@@ -281,11 +281,11 @@ But in the example above, we decided to configure the relationship both ways to 
 
 #### Projection Changes Schema
 
-The _Projection Changes Schema_ is a ConfigMap that represents the path that goes from one entity to another, and it is used to find the Single View key. 
+The _Projection Changes Schema_ is a ConfigMap that represents the path that goes from one entity to another, and it is used to find the Single View key.
 We will talk about the Single View key in the next section, but remember that the Single View key is the primary key of our Single View, and we need to obtain the Single View key from the updated Projection (or that follows the ER Schema until we reach a projection that contains the Single View key).
 
 The reason why we need to configure this ConfigMap is that, when we will update each Projection, we need to know the Single View keys to update.
- 
+
 Inside our example we can see that the Single View key is the registry_id, so we need to configure the Projection Changes Schema to know each path that goes from the projection to each other projection that contains the Single View key.
 In this example, we have the registry_id in both the Registry Projection and in the Order Projection, so we need to configure the Projection Changes Schema to read the registry_id from the updated Projection.
 
@@ -332,7 +332,7 @@ Remember that the endpoint connected to the Fast Data will create just the read 
 Now it's time to [save](/tutorial/console/console_handbook.md#save-changes) and [deploy](/tutorial/console/console_handbook.md#deploy-changes) the new configuration.
 ![Deploy the configuration](img/10-deploy.png)
 
-After that, we can try to send a message to the Kafka Topic created in the previous steps, and we can see the data stored in the Projection using the APIs available in the [API Documentations](/development_suite/api-portal/api-documentations.md).
+After that, we can try to send a message to the Kafka Topic created in the previous steps, and we can see the data stored in the Projection using the APIs available in the [API Documentations](/console/project-configuration/documentation-portal.md).
 
 Following are example responses from the API Documentations for Registry and Order Projections after the Kafka messages have been successfully processed.
 
@@ -384,7 +384,7 @@ In this tutorial, our Single View is called _order-history_ and we will create a
 First of all, we need to create a microservice that we will attach to the Single View that we're going to create. This microservice is called "Single View Creator", and it's available in the microservice Marketplace.
 ![Marketplace and Single View Creator](img/23-marketplace-single-view-low-code.png)
 
-Here we have two different plugins: the first one is for the Single View Creator, and the second one is for the Single View Creator Low Code. 
+Here we have two different plugins: the first one is for the Single View Creator, and the second one is for the Single View Creator Low Code.
 We will go for the latter since we want to leverage the usage of ConfigMaps for a quicker configuration of the microservice. We suggest naming it _single-view-creator-delivery_.
 
 Now we need to configure all the parameters of the microservice, here is an example of the fields that we need to configure:
@@ -418,8 +418,8 @@ Here we can choose the name of the Single View.
 
 #### Fields
 
-Now we need to create the fields of the Single View, inside this tutorial we will create the following fields:  
-  
+Now we need to create the fields of the Single View, inside this tutorial we will create the following fields:
+
 | Field           | Type             | Description                                                       |
 |-----------------|------------------|-------------------------------------------------------------------|
 | **registry_id** | String           | The registry ID. This field must be marked as "Required".         |
@@ -449,7 +449,7 @@ It is important to also define the JSON Schema for the _order_ field of the Sing
   }
 }
 ```
-  
+
 :::info
 We can of course create more fields: here we omitted the email, phone and address fields because we don't need to expose them in our Single View.
 :::
@@ -457,7 +457,7 @@ We can of course create more fields: here we omitted the email, phone and addres
 
 #### Strategies
 
-Now we need to create the strategies of the Single View. Strategies are used to define when the data need to be updated in a Single View. For example, when we update the registry we need to update the Single View information. 
+Now we need to create the strategies of the Single View. Strategies are used to define when the data need to be updated in a Single View. For example, when we update the registry we need to update the Single View information.
 In this tutorial, we will create two strategies: the first one is for the registry's update and the second one is for the order's update.
 
 Inside our Single View "order-history", click on the **Add link to strategy** button.
@@ -473,7 +473,7 @@ Then we can create the strategy also to the Order Projection, following the same
 ![Final Strategy Page](img/31-complete-strategies.png)
 
 :::info
-We need to define one strategy for each Projection because when the projection is affected by a change, we need to calculate which single views are impacted. 
+We need to define one strategy for each Projection because when the projection is affected by a change, we need to calculate which single views are impacted.
 This is made possible by the strategies. With the "Low Code Strategy", the system will automatically calculate the impacted single views.
 :::
 
@@ -504,11 +504,11 @@ The ER-Schema is the same one we used in the Projection Microservice. We can dup
 <TabItem value="no-code">
 
 :::info
-The following explains how to configure an ER Schema for the Single View Creator microservice using the "No Code" feature. 
+The following explains how to configure an ER Schema for the Single View Creator microservice using the "No Code" feature.
 Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
 :::
 
-If we've used the "No Code" feature before, the ER Schema will be already saved as _delivery-er-schema_. 
+If we've used the "No Code" feature before, the ER Schema will be already saved as _delivery-er-schema_.
 Inside the _ER Schema_ tab, there will be a dropdown field from which we can select the _delivery-er-schema_.
 By doing that, the ConfigMap will already be completely configured.
 
@@ -563,7 +563,7 @@ _order_ accessed via the condition _registry_to_order_.
 
 #### Aggregation
 
-The aggregation is the configMap that will be used to define the rules on how the Single View will be calculated. 
+The aggregation is the configMap that will be used to define the rules on how the Single View will be calculated.
 In this configuration, we will get our dependencies from the projection and the description of how we want to map the dependencies to the Single View Data Model.
 
 In our case, we will map _registry_id_, _name_, _city_ and _state_ from the Projection _registry_, and the order list from the Projection _order_.
@@ -580,14 +580,14 @@ In our case, we will map _registry_id_, _name_, _city_ and _state_ from the Proj
 <TabItem value="no-code">
 
 :::info
-The following explains how to configure an Aggregation using the "No Code" feature, available from version `11.3.0` of the Mia-Platform Console. 
+The following explains how to configure an Aggregation using the "No Code" feature, available from version `11.3.0` of the Mia-Platform Console.
 Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
 :::
 
 To have an exhaustive explanation of how to configure an Aggregation with the "No Code" feature, you can refer to the [specific documentation page](/fast_data/configuration/config_maps/aggregation.md#use-the-no-code).
 
 Assuming that the ER Schema has already been selected (see previous paragraph), here is a list of steps to be executed to configure the Aggregation:
-* Selecting the "Aggregation" tab, you'll be required to select a Base Projection which is the Projection from where the mapping will begin: 
+* Selecting the "Aggregation" tab, you'll be required to select a Base Projection which is the Projection from where the mapping will begin:
 in our tutorial, we select the Projection _registry_ and click on "Set base projection". After this, the Single View Data Model will show up to the left, ready for the configuration.
 * Select the field _registry_id_: a panel will open to the right where we can select the dependency _registry_ and the field _registry_id_.
 * Select the field _name_: a panel will open to the right where we can select the dependency _registry_ and the field _name_.
@@ -602,7 +602,7 @@ in our tutorial, we select the Projection _registry_ and click on "Set base proj
 * Select the field _name_: a panel will open to the right where we can select the dependency _order_ and the field _name_.
 * Select the field _date_: a panel will open to the right where we can select the dependency _order_ and the field _date_.
 
-After the following steps, the Aggregation is completely configured and applied to the ConfigMap. 
+After the following steps, the Aggregation is completely configured and applied to the ConfigMap.
 You can click on the toggle "Advanced Mode" at the bottom-left of the page to review your configuration in a JSON format.
 
 :::info
@@ -665,7 +665,7 @@ in case you want to reset the aggregation by changing the Base Projection, you h
     - **The "state"** is the field state from the Registry projection.
     - **The "orders"** is the calculated field that will be used to get the order list from the Order Projection.
 - **"ORDERS"** is the configMap that will be used to explain how the order list will be calculated.
-  - **The "joinDependency"** is used to define that this dependency is a 1:N (1 registry to N orders), and to define that the property returned will be an array of "order" objects 
+  - **The "joinDependency"** is used to define that this dependency is a 1:N (1 registry to N orders), and to define that the property returned will be an array of "order" objects
   - **The "dependencies"** are the dependencies that will be used to calculate the order list.
     - **The "order"**  is the dependency that will be used to get the order information directly from the Projection, with the condition explained in the ER-Schema (registry_to_order) as a search condition to the Projection documents.
   - **The "mapping"** are the fields from the Order Projection that will be used to calculate the order fields in the array of orders returned from the ORDERS config.
@@ -696,7 +696,7 @@ to get a query that, executed in the Single View collection, retrieves the Singl
 <TabItem value="no-code">
 
 :::info
-The following explains how to configure a Single View Key using the "No Code" feature, available from version `11.3.0` of the Mia-Platform Console. 
+The following explains how to configure a Single View Key using the "No Code" feature, available from version `11.3.0` of the Mia-Platform Console.
 Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
 :::
 
@@ -707,7 +707,7 @@ Here is a quick list of operations to execute to configure correctly the Single 
 * click on the "Configure" button to open a modal to start configuring the Single View Key.
 * click the "Add Single View Key": a new line will appear with two input fields.
 * as _Single View Primary Field_, which is a field of the Single View, select _registry_id_.
-* as _Projection Identifier_, which is the projection identifier defined in the [Projection Changes Schema](#projection-changes-schema), 
+* as _Projection Identifier_, which is the projection identifier defined in the [Projection Changes Schema](#projection-changes-schema),
 select _registry_id_ (which is, for our example, the same name of the Base Projection _registry_).
 * you can review the updates by clicking the toggle "Advanced Mode" and, when you are sure everything is fine, click on "Save".
 
@@ -739,7 +739,7 @@ Now we have the Projections, the Single View and each configuration ready to be 
 1. Return to the *Endpoints* menu on the left;
 2. Select **Create new endpoint**;
 3. Choose the Base Path;
-4. Choose **Single View** as Type; 
+4. Choose **Single View** as Type;
 5. Select from the list the name of our Single View, in this case: _/order-history_.
 
 ![Expose Single View](img/32-expose-single-view.png)
@@ -748,7 +748,7 @@ Now we can [commit](/tutorial/console/console_handbook.md#save-changes) our chan
 
 ### Testing Single View
 
-You can now consume the order-history Single View using the APIs available in the [API Documentations](/development_suite/api-portal/api-documentations.md).
+You can now consume the order-history Single View using the APIs available in the [API Documentations](/console/project-configuration/documentation-portal.md).
 
 Here you can see the response for the order-history Single View for the same data we used for [testing the Projections](#testing-projection). We can see that `ord-1` order is exposed in the **orders** array for `reg-1` customer.
 

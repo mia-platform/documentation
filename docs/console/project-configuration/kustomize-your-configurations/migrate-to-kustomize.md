@@ -1,5 +1,5 @@
 ---
-id: migrate
+id: migrate-to-kustomize
 title: Migrate to Kustomize
 sidebar_label: Migrate to Kustomize
 ---
@@ -68,4 +68,4 @@ To migrate from a default project to a Kustomize project you need to follow thes
 
   This command will generate the customized resources for the provided `${ENV_ID}` environment and store them into a single file at `${DESTINATION_FILE}`. The generated file should then be provided as an argument to the `mlp deploy` command later in the pipeline.
 
-Once you have migrated your project successfully, learn how to manage a Kustomize project [here](/development_suite/set-up-infrastructure/kustomize/projects.md).
+Once you have migrated your project successfully, learn how to manage a Kustomize project [here](/console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project.md).

@@ -1,5 +1,5 @@
 ---
-id: examples
+id: kustomize-use-cases
 title: Kustomize Use Cases
 sidebar_label: Kustomize Use Cases
 ---
