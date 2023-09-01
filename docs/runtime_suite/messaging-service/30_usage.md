@@ -44,6 +44,10 @@ If you use a template in which some attachments are listed, they will be merged 
 will be sent.)
 :::
 
+- **emailCarbonCopies** - `array of strings`: list of email addresses that should be included as carbon copies (CC). Any invalid email addresses will be ignored. Available since version 1.4.0.
+
+- **emailBlindCarbonCopies** - `array of strings`: list of email addresses that should be included as blind carbon copies (BCC). Any invalid email addresses will be ignored. Available since version 1.4.0.
+
 ### Response
 
 #### Exceptions
