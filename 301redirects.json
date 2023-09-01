@@ -524,5 +524,93 @@
   "/docs/how_to/console/project_dev_tools_setup": {
     "destination": "/docs/how_to/console/project_development",
     "addedOn": "2023-07-13"
-  }
+  },
+  "/docs/development_suite/monitoring/configuration": {
+    "destination": "/docs/development_suite/clusters-management/add-edit-remove-cluster",
+    "addedOn": "2023-07-21"
+  },
+  "/release_notes/support-policy/": {
+    "destination": "/docs/release-notes/support-policy",
+    "addedOn": "2023-07-28"
+  },
+  "/info/version-policy/": {
+    "destination": "/docs/info/version_policy",
+    "addedOn": "2023-08-01"
+  },
+  "/docs/paas/alerting_rules": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/alarms": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/K8s_roles_and_permissions": {
+    "destination": "/docs/paas/runtime",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/development_suite/clusters-management/add-edit-remove-cluster": {
+    "destination": "/docs/how_to/company/manage-cluster",
+    "addedOn": "2023-08-11"
+  },
+  "/docs/development_suite/set-up-infrastructure/create-project": {
+    "destination": "/docs/console/project-configuration/create-a-project",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/project-settings": {
+    "destination": "/docs/console/project-configuration/project-settings",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/migrate": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/migrate-to-kustomize",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/projects": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/examples": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/kustomize-use-cases",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/runtime-environments": {
+    "destination": "/docs/console/project-configuration/manage-runtime-environments/",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/add-environment": {
+    "destination": "/docs/console/project-configuration/manage-runtime-environments/configure-a-new-environment",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/remove-environment": {
+    "destination": "/docs/console/project-configuration/manage-runtime-environments/delete-an-environment",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/env-var": {
+    "destination": "/docs/console/project-configuration/manage-environment-variables/",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/env-var-gitlab": {
+    "destination": "/docs/console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/env-var-vault": {
+    "destination": "/docs/console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/authorization-flow": {
+    "destination": "/docs/console/project-configuration/authorization-flow",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/api-portal/api-documentations": {
+    "destination": "/docs/console/project-configuration/documentation-portal",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/user-settings/user-profile-picture":  {
+    "destination": "/docs/development_suite/user-settings/user-personal-info",
+     "addedOn": "2023-08-29"
+  } 
 }

@@ -3,16 +3,14 @@ id: console-levels-and-permission-management
 title:  Console levels and permission management
 sidebar_label: Console Levels and Permission Management
 ---
-Assigning different roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem.
-The Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
+Assigning different roles and permissions to each [Identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) that has access to Mia-Platform Console is a key action for defining responsibilities within your platform ecosystem. The Console is based on hierarchical levels and, for each of them, specific permissions and capabilities have been identified and can be assigned.  
 Let's see how they are configured.
 
 ## Console Levels
 
 The Console resources are organized in a hierarchical structure on three levels:
 
-1. **Console level** is the root level regarding the general configuration of your Console. 
-At this level you can configure resources such as Companies, Project Templates and Marketplace.
+1. **Console level** is the root level regarding the general configuration of your Console. At this level you can configure resources such as Companies, Project Templates and Marketplace.
 
 1. **Company level** is the second hierarchical level. A Company can contain several underlying Projects, which can inherit different kinds of information from the Company without needing further configuration. At this level, License, Clusters, Providers, Users and Service Accounts can be managed. To know more about Company configuration, check out the dedicated [documentation section](/development_suite/company/create.mdx).
 
@@ -31,7 +29,7 @@ Identities can perform a set of predetermined actions along Console levels, in a
 * `Reporter`: A Reporter can view Project configuration and Runtime Environments
 * `Guest`: A Guest has restricted access to data and can only view basic information for a selected subset of resources
 
-Roles can be assigned at three types of Console resources:
+Roles can be assigned at three levels regarding the following Console resources:
 
 * Company
 * Project
@@ -68,7 +66,7 @@ The following table describes the capabilities that are granted when assigning a
 Roles can be assigned at both Project and its Runtime Environments levels from the Identities portal of the specific Project Settings Area.
 
 :::info
-Please note that, inside Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.  
+Please note that, inside Project Identities portal, only those Identities on which a Company role has previously been assigned are shown.
 For each of them, therefore, the permissions inherited from the Company role assignment at the Company level will be visible. In this way, it will be possible to identify which additional permissions among those mentioned in the following table can be assigned at Project and Runtime Environments levels. 
 :::
 

@@ -7,9 +7,9 @@ sidebar_label: Project Management Handbook
 Mia-Platform Console allows you to create and manage multiple projects, each one with its own set of APIs, microservices, and applications.  
 There are a different set of permissions based on whether you want to create or edit a project, make sure you have the ones you need.
 
-:::note
+:::warning
 To create a new project you must have the permission `console.company.project.create` and you need to have already set up provider, company, and template.
-More detail about the **prerequisites can be found in [Project Management](/development_suite/set-up-infrastructure/create-project.mdx#Prerequisites)**.
+More detail about the **prerequisites can be found in [Project Management](/console/project-configuration/create-a-project.mdx#Prerequisites)**.
 :::
 
 ## Project creation
@@ -32,7 +32,9 @@ In this step, you are required to insert the general information about your new 
 
 ### Step 2: **Repository**
 
-In this step, it is indicated the location of your new project and you have to choose its template:
+In this step, it is indicated the location of your new project and you have to choose its template.  
+By default, the project is saved on the default Git provider, but you can choose to save it to a different one by clicking on the `Change Git provider` button.  
+The Git provider can be changed only if the company has been configured with more than one Git provider.
 
 - **Git Provider**: this field represents the provider ID used by your chosen company (e.g. _gitlab_, _github_, _azure-devops_, _bitbucket_);
 - **Git repo path**: this is the path, calculated from project name and company, where the configuration will be saved on the Git provider. It specifies the location of your project on the Git provider website;
@@ -40,7 +42,7 @@ In this step, it is indicated the location of your new project and you have to c
 - **Template** (_required_): you have to select, from a list of pre-configured templates, your template, which enables you to use pre-filled configurations for your project.
 
 :::tip
-If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [Create Project](/development_suite/set-up-infrastructure/create-project.mdx#setup-paas-templates).
+If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [Create Project](/console/project-configuration/create-a-project.mdx#setup-paas-templates).
 :::
 
 ![create-project2](img/create-project2.png)

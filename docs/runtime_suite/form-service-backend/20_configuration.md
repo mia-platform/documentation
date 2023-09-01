@@ -55,9 +55,11 @@ The Form Service Configuration is a JSON object with the following root properti
 | **formMetadata**          | `Object[]` | No       | -                  | [form metadata](#form-metadata-parameters-formmetadata)                                | The additional metadata shown in the Form Builder and required by the CRUD to save the Forms created with the Form Builder.                                                                                                                                                         |
 | **formSubmitUrls**        | `Object[]` | No       | -                  | [form submit urls](#form-submit-urls-parameters-formsubmiturls)                          | Contains the list of URLs that can be used to perform Form submission. The Form Builder will show the available URLs if the array is provided, otherwise a text field will be shown to allow user to provide the URL.                                                               |
 | **formVisualizerOptions** | `Object`   | No       | -                  | [form visualizer](#form-visualizer-options-parameters-formvisualizeroptions)                    | This object contains the Form Visualizer options. In particular it defines the interval between autosaves and the lookups to perform when exporting form data. If the autosave interval is not defined, it is set to a default value (10 seconds) by the **Form Service Frontend**. |
-| **formBuilderOptions**    | `Object`   | No       | -                  | [form builder](#form-builder-options-parameters-formbuilderoptions)                          | this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.                                                                                                          |
-| **defaultClientType**     | `string`   | No       | -                  |                                                                           | Contains (from version `1.2.0`) the default client type that will be forwarded to other platform services when the client type header is not provided from the frontend service (defaults to `formService`).                                                                        |
-
+| **formBuilderOptions**    | `Object`   | No       | -                  | [form builder](#form-builder-options-parameters-formbuilderoptions)                          | this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.       
+| **formBuilderCustomProperties**    | `Object`   | No       | -                  | [form builder](#form-builder-custom-properties-parameters-formBuilderCustomProperties)                          | this object contains customization properties for the fields in the builder that are not strictly related to the form.io builder.                                                                                                  |
+| **defaultClientType**     | `string`   | No       | -                  |                                                                           | Contains (from version `1.2.0`) the default client type that will be forwarded to other platform services when the client type header is not provided from the frontend service (defaults to `formService`).
+| **isMessagingAvailable**    | `boolean`   | No       | -                  | [notifications](./60_notifications.md#enabling-notifications-ismessagingavailable)                          | It's a toggle switch to enable notifications via the messaging service as soon as the form is submitted. Available starting from version 1.9.0.
+| **messagingOptions**    | `Object`   | Yes if **isMessagingAvailable** is `true`       | -                  | [notifications](./60_notifications.md#configure-notifications-messagingoptions)                              | This object contains options to configure notifications via the messaging service. Available starting from version 1.9.0.
 The `JSON` file is structured like the following example:
 
 ```json
@@ -102,7 +104,8 @@ The mandatory properties of the CRUD are:
 - **name**, of type *string*;
 - **formSubmitUrl**, of type *string*, which specifies the url that will be used for Form submission;
 - **formSchema**, of type *object*, which is the property where the configured Form `JSON` will be saved;
-- **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved.
+- **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved;
+- **formExpirationDate** (optional), of type *string*, which is the expiration date of the form.
 
 :::note
 
@@ -216,6 +219,7 @@ Here you can find an example of a *formVisualizerOptions* object:
 ```json
 {
   "autosaveIntervalValueMs": 5000,
+  "messageToBeShownOnExpiredForm": "This form is expired!",
   "exportFields": [
     "_id",
     "__STATE__",
@@ -245,6 +249,12 @@ Here you can find an example of a *formVisualizerOptions* object:
   ]
 }
 ```
+
+:::note
+
+There is a default value for `messageToBeShownOnExpiredForm` which is `This form is expired!`.
+
+:::
 
 #### Export fields (`exportFields`)
 
@@ -494,6 +504,11 @@ Here you can find an example of a *formBuilderOptions* object that can be used i
   }
  }
 ```
+
+### Form Builder Custom Properties parameters (`formBuilderCustomProperties`)
+From version `1.9.0` it is possible to add other properties for customizing the form builder. The properties that can be set are the following:
+
+* **formExpirationDateFormat**: the date format shown in the expiration datepicker. Default is `YYYY-MM-DD`.
 
 ### Default client type parameter (`defaultClientType`)
 

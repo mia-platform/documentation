@@ -37,7 +37,7 @@ Mia-Platform uses RBAC in its authorization flow, providing its employees with v
 
 Thus, for instance, some users may be assigned to a role where they can write and edit specific files, whereas other users may be in a role restricted to reading but not editing files. This method is effective because the policies don’t need to be changed every time a person leaves or joins Mia-Platform, so it reduces administrative work and improves compliance.
 
-For more details, visit our page about [Mia-Platform authorization flow](/development_suite/set-up-infrastructure/authorization-flow.md).
+For more details, visit our page about [Mia-Platform authorization flow](/console/project-configuration/authorization-flow.md).
 
 ##  TLS Encryption
 
