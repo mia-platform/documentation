@@ -35,7 +35,7 @@ The data exposed by the view are obtained through a sequence of actions that pro
 MongoDB will run an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/) starting from the `source` collection.    
 When you create a new view, the console will set a default pipeline which returns only `PUBLIC` documents. You can edit it through the dedicated editor.   
 
-![Pipeline view](img/pipeline_card_view_default.png)
+![Pipeline view](img/pipeline_card_view.png)
 
 :::note
 The whole aggregation pipeline is going to be performed on-demand on each request the view received.   
@@ -63,12 +63,23 @@ When exposing data through an endpoint, it's necessary for documents to have a `
 
 To ensure the proper functioning of endpoint exposure, it's important to carefully manage the aggregation process. This means guaranteeing the inclusion of the  `__STATE__` field. If including the field is challenging, you can ensure its presence by using the [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) object within the aggregation and explicitly setting the `__STATE__` field's value to `PUBLIC`.
 
-![Pipeline view](img/pipeline_card_view.png)
-
+```json
+[
+    {
+        "$match": {
+            "__STATE__": "PUBLIC"
+        }
+    },
+    {
+        "$project": {
+            "_id": 1,
+            "total_price": 1,
+            "__STATE__": "PUBLIC"
+        }
+    }
+]
+```
 :::
-
-
-
 
 ### CMS
 
