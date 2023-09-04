@@ -127,7 +127,6 @@ rules:
       - "list"
   - apiGroups:
       - "apps"
-      - "extensions"
     resources:
       - "deployments"
       - "daemonsets"
