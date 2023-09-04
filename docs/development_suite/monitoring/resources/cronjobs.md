@@ -24,7 +24,7 @@ The table presented here shows the following information:
 
 ### CronJob options menu
 
-The _Hamburger Menu_ situated on the last column of the job, allows to perform some actions on a CronJob.
+The _Hamburger Menu_, located on the last column of the job, allows to perform some actions on a CronJob.
 
 ![cronjobs_burger_menu](../img/cronjobs_burger_menu.png)
 
@@ -39,7 +39,7 @@ These details are the ones exposed by the [Kubernetes APIs](https://kubernetes.i
 
 ![describe](../img/cronjobs_describe.png)
 
-By clicking on the _Launch manually_ button on the upper right side of the page you can trigger an immediate execution of the CronJob, as described in the next section.
+By clicking on the _Launch manually_ button on the upper right side of the page you can trigger an immediate manual execution of the CronJob, as described in the next section here below.
 
 ## Manually launching a CronJob
 
@@ -51,13 +51,13 @@ A modal will ask for confirmation for the action to be performed.
 
 :::info
 
-Under the hood, the Console creates a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) with the same `specs` of the CronJob.<br/>
+When manually scheduling a new Job from a CronJob, the Console will create a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) with the same `specs` of the CronJob.<br/>
 It also adds to the Job the following `annotations`:
 
 - `cronjob.kubernetes.io/instantiate:"manual"`
 - `mia-platform.eu/created-by:"console"`
 
-When [inspecting a Job](/development_suite/monitoring/resources/jobs.md#inspecting-a-job), the presence of both the annotations suggests the Job has been manually launched from a CronJob with the Console functionality.
+When [inspecting a Job](/development_suite/monitoring/resources/jobs.md#inspecting-a-job), the presence of both the annotations suggests that the Job has been manually launched from a CronJob with the Console functionality.
 
 :::
 
@@ -72,7 +72,7 @@ Search for the Pod with the name of the Job as prefix.
 
 ### Resource Cleaning
 
-To avoid excessive resource consumption, a Job launched from a CronJob is assigned a TTL (Time To Leave) of **one week**.
+To avoid excessive resource consumption, a Job launched from a CronJob is assigned a Time To Leave (TTL) of **one week**.
 This means that the Job and the related Pod are marked for deletion after a week.
 
 :::caution
