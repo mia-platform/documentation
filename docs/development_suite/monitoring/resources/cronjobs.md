@@ -45,7 +45,7 @@ By clicking on the _Launch manually_ button on the upper right side of the page 
 
 The _Launch manually_ functionality triggers an immediate execution of the CronJob, regardless of its _Schedule_ and _Suspend_ values.
 
-You can launch a CronJob either from the options menu in the [CronJobs Table](#cronjob-options-menu), or with the button in the [CronJob Describe](#cronjob-describe) page.
+You can launch a CronJob either from the options menu in the [CronJobs Table](#cronjob-options-menu), or by clicking the button in the [CronJob Describe](#cronjob-describe) page.
 
 A modal will ask for confirmation for the action to be performed.
 
