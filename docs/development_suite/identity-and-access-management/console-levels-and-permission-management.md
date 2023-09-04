@@ -55,7 +55,9 @@ The following table describes the capabilities and how they are mapped on the de
 | Commit changes on all Project configurations of this Company           | `console.company.project.configuration.update`         |        |          | ✅        | ✅         | ✅                    | ✅            |
 | Manage secreted environment variables for all Projects of this Company | `console.company.project.secreted_variables.manage`    |        |          |           |            | ✅                    | ✅            |
 | Trigger deploy on all Environments of all Projects of this Company     | `console.company.project.environment.deploy.trigger`   |        |          |           | ✅         | ✅                    | ✅            |
-| Restart pods on all Environments of all Projects of this Company       | `console.company.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    | ✅            |
+| Restart Pods on all Environments of all Projects of this Company       | `console.company.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    | ✅            |
+| Delete Jobs on all Environments of all Projects of this Company       | `console.company.project.environment.k8s.job.delete`   |        |          |           | ✅         | ✅                    | ✅            |
+| Create Jobs on all Environments of all Projects of this Company       | `console.company.project.environment.k8s.job.create`   |        |          |           | ✅         | ✅                    | ✅            |
 | Manage dashboards on all Projects of this Company                      | `console.company.project.environment.dashboard.manage` |        |          |           |            | ✅                    | ✅            |
 | Manage Identities of this Company                                      | `console.company.users.manage`                         |        |          |           |            |                       | ✅            |
 | Edit Project information of all Projects of this Company               | `console.company.project.details.update`               |        |          |           |            | ✅                    | ✅            |
@@ -89,6 +91,8 @@ For each of them, therefore, the permissions inherited from the Company role ass
 | Trigger deploy on any Environment of this Project | `console.project.environment.deploy.trigger`   |        |          |           | ✅         | ✅                    |               |
 | Trigger deploy on this specific Environment       | `console.environment.deploy.trigger`           |        |          |           | ✅         |                       |               |
 | Restart pods on any Project Environment           | `console.project.environment.k8s.pod.delete`   |        |          |           | ✅         | ✅                    |               |
+| Delete Jobs on any Project Environment           | `console.project.environment.k8s.job.delete`   |        |          |           | ✅         | ✅                    |               |
+| Create Jobs on any Project Environment           | `console.project.environment.k8s.job.create`   |        |          |           | ✅         | ✅                    |               |
 | Restart pods on this specific Environment         | `console.environment.k8s.pod.delete`           |        |          |           | ✅         |                       |               |
 | Manage dashboards on any Project Environment      | `console.project.environment.dashboard.manage` |        |          |           |            | ✅                    |               |
 | Manage dashboards on this specific Environment    | `console.environment.dashboard.manage`         |        |          |           |            |                       |               |
