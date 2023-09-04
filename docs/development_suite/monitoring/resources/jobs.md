@@ -25,7 +25,7 @@ By clicking on the **Delete button** on the last column of the Job table, the Jo
 
 A modal will ask for confirmation for the action to be performed.
 
-Any related resources, such as Pods, will be marked for deletion, and Kubernetes may delete them at any time.
+Any related resources, such as Pods, will be marked for deletion, and Kubernetes may [cascading delete](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#cascading-deletion) them at any time.
 
 :::warning
 
