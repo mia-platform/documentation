@@ -15,7 +15,7 @@ The table presented here shows the following information:
 
 - **Name**: the name of the CronJob.
 - **Schedule**: the schedule in Cron format.
-- **Suspend**: the value of the [suspend](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) CronJob spec. When `true` the execution is suspended. 
+- **Suspend**: the value of the [suspend](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) CronJob spec. When `true` the scheduled execution is suspended. 
 - **Active**: the number of currently running Jobs.
 - **Last Schedule**: information of when was the last time the Job was successfully scheduled. [Manually launched](#manually-launching-a-cronjob) CronJobs won't update this field.
 - **Age**: the date when the CronJob was lastly deployed.
