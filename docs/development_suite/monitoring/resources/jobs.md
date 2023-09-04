@@ -19,9 +19,22 @@ The table presented here shows the following information:
 
 ![list_of_jobs](../img/jobs_list.png)
 
+## Deleting a Job
+
+By clicking on the **Delete button** on the last column of the Job table, the Job will be permanently deleted.
+
+Any related resources, such as Pods, will be marked for deletion, and Kubernetes may delete them at any time.
+
+:::warning
+
+The deletion is permanent, therefore make sure to save elsewhere any important information before deleting a Job.
+Please note that also the related Pod(s) are marked for deletion, along with their information such as logs.
+
+:::
+
 ## Inspecting a Job
 
-Selecting the Job name you can inspect more detail about that Job.
+By clicking on the Job name you can inspect some details about the Job.
   
 ### Job Describe
 

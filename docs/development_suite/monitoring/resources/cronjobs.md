@@ -54,7 +54,7 @@ It also adds to the Job the following `annotations`:
 - `cronjob.kubernetes.io/instantiate:"manual"`
 - `mia-platform.eu/created-by:"console"`
 
-When [inspecting a Job](./jobs#inspecting-a-job), the presence of both the annotations suggests the Job has been manually launched from a CronJob with the Console functionality.
+When [inspecting a Job](/development_suite/monitoring/resources/jobs.md#inspecting-a-job), the presence of both the annotations suggests the Job has been manually launched from a CronJob with the Console functionality.
 
 :::
 
