@@ -46,6 +46,12 @@ If you expect to perform complex aggregation with many collections involved, or 
 This feature is available from version `5.2.2` of [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md). Creating a view while using a lower version of CRUD Service would make it crash at boot.
 :::
 
+Moreover, from version 11.5.0 of the Console you can also decide to enable lookups to get [Writable Views](/runtime_suite/crud-service/50_writable_views.md). To do that you have to enable the _Enable Lookup_ toggle included next to the `source` collection input.
+
+:::caution
+To enable lookup, the CRUD Service installed in the project must be of version 6.9.0 or higher, as explicitly in the Docker Image of your service. If you are using a public variable to have different versions among environments, make sure every environment have version 6.9.0 or higher.
+:::
+
 ### Fields
 
 Fields you are defining in a View are the fields you expect to have at the end of the aggregation. 
