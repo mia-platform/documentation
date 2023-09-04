@@ -97,10 +97,10 @@ rules:
     resources:
       - "jobs"
     verbs:
-      - "get"
-      - "list"
       - "create"
       - "delete"
+      - "get"
+      - "list"
   - apiGroups:
       - ""
     resources:
@@ -131,7 +131,6 @@ rules:
     resources:
       - "deployments"
       - "daemonsets"
-      - "jobs"
     verbs:
       - "get"
       - "list"
@@ -148,6 +147,7 @@ rules:
       - "namespaces"
     verbs:
       - "create"
+      - "delete"
   - apiGroups:
       - ""
     resources:
