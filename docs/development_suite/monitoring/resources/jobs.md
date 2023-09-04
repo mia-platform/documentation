@@ -23,6 +23,8 @@ The table presented here shows the following information:
 
 By clicking on the **Delete button** on the last column of the Job table, the Job will be permanently deleted.
 
+A modal will ask for confirmation for the action to be performed.
+
 Any related resources, such as Pods, will be marked for deletion, and Kubernetes may delete them at any time.
 
 :::warning

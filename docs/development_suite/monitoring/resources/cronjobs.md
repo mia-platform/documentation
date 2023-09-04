@@ -6,7 +6,8 @@ slug: "/development_suite/monitoring/resources/cronjobs"
 ---
 
 In Kubernetes, a [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) creates Jobs on a predefined time schedule.  
-CronJob is meant for performing regular scheduled actions such as backups, report generation, and so on. One CronJob object is like one line of a crontab (cron table) file on a Unix system. It runs a job periodically on a given schedule, written in Cron format.
+CronJob is meant for performing regular scheduled actions such as backups, report generation, and so on. One CronJob object is like one line of a crontab (cron table) file on a Unix system. 
+It runs a Job periodically on a given schedule, written in Cron format.
 
 ## CronJobs Table
 
@@ -14,9 +15,9 @@ The table presented here shows the following information:
 
 - **Name**: the name of the CronJob.
 - **Schedule**: the schedule in Cron format.
-- **Suspend**: wether or not to suspend subsequent executions.
+- **Suspend**: the value of the [suspend](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) CronJob spec. When `true` the execution is suspended. 
 - **Active**: the number of currently running Jobs.
-- **Last Schedule**: information of when was the last time the Job was successfully scheduled.
+- **Last Schedule**: information of when was the last time the Job was successfully scheduled. [Manually launched](#manually-launching-a-cronjob) CronJobs won't update this field.
 - **Age**: the date when the CronJob was lastly deployed.
 
 ![list_of_cronjobs](../img/cronjobs_list.png)
@@ -45,6 +46,8 @@ By clicking on the _Launch manually_ button on the upper right side of the page 
 The _Launch manually_ functionality triggers an immediate execution of the CronJob, regardless of its _Schedule_ and _Suspend_ values.
 
 You can launch a CronJob either from the options menu in the [CronJobs Table](#cronjob-options-menu), or with the button in the [CronJob Describe](#cronjob-describe) page.
+
+A modal will ask for confirmation for the action to be performed.
 
 :::info
 
