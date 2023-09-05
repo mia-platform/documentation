@@ -78,7 +78,7 @@ After enabling the new workflow on one of your freshly created projects, some es
 
 First of all, the project model **must have set a default revision**: ask your Mia-Platform referent to check it, and in case it is missing, to add it manually. You can choose a custom name for your default revision, e.g. `main`.
 
-If you want the project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/#advantages-of-pull-based-deployment) its configuration must contain the `strategy` property set to `pull` (the value for push-based deployments is `push`). Based on the selected strategy, the `runnerTool` may take different values.
+If you want the project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment) its configuration must contain the `strategy` property set to `pull` (the value for push-based deployments is `push`). Based on the selected strategy, the `runnerTool` may take different values.
 
 Next, the project **Git repository structure** should contain:
 
