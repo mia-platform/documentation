@@ -1,7 +1,7 @@
 ---
 id: deploy
-title: Deploy your projects
-sidebar_label: Deploy your projects
+title: Deploy your workload
+sidebar_label: Deploy your workload
 ---
 
 Deploying a project means transferring its dependencies and configurations to a runtime environment, making it ready to be used by end-users.

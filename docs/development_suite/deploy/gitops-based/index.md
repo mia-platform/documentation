@@ -15,7 +15,7 @@ By enabling the new **Enhanced Project Workflow** on a Console project, it is po
 
 GitOps deployment is based on the principle of using Git repositories as the single source of truth for both application code and deployment configurations.
 
-Popular tools that support the GitOps deployment strategy include ArgoCD, Flux, Jenkins X, and more. Such tools operate by comparing the desired state of your project, as defined in the project’s Git repository, with the actual state of your Runtime resources. If there is a discrepancy, the tool may automatically take corrective actions to bring the cluster's state in line with the desired state.
+Popular tools that support the GitOps deployment strategy include [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), [Flux](https://fluxcd.io/flux/), [Jenkins X](https://jenkins-x.io/), and more. Such tools operate by comparing the desired state of your project, as defined in the project’s Git repository, with the actual state of your Runtime resources. If there is a discrepancy, the tool may automatically take corrective actions to bring the cluster's state in line with the desired state.
 
 **This way, it is guaranteed that the project configurations saved on the Git repository are always consistent with the project’s Runtime configurations.**
 

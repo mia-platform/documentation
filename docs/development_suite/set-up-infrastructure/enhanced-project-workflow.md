@@ -8,7 +8,7 @@ sidebar_label: Enhanced Project Workflow
 This is a **BETA** feature and, as such, is currently under active development. Pay attention using it.
 :::
 
-The **Enhanced Project Workflow** feature aims to improve the developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities.
+The **Enhanced Project Workflow** feature aims to improve the developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
 
 ## Changes to the Console workflow
 
@@ -20,10 +20,18 @@ The most relevant change in the Console’s behavior is that the project’s log
 
 This change also means that the Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**, while still maintaining consistency with the Console’s established workflows.
 
-With the new workflow, branches and tags become **revisions** and **versions**, underscoring that the information associated with them is not stored within a Git repository anymore. The concept of commit is not present anymore and the commit history is replaced by a **version history**: the user can create versions, similar to Git tags, to keep track of the project’s evolution.
+To emphasize that the new workflow configuration is no longer stored in a Git repository:
+- `branches` and `tags` are now **`revisions`** and **`versions`**
+- `commit history` is now **`version history`**
+To keep track of the project’s evolution, user can create `versions` (similar to Git tags) that act as fixed snapshots of the configuration in a particular moment.
 
- Project administrators can manage revisions and versions from the dedicated sections inside the Project Settings area.
-<!-- TODO: screenshot -->
+Project administrators can manage revisions and versions from the dedicated sections inside the Project Settings area. Revisions can be accessed and deleted from the revisions management page:
+
+![Revisions management page](img/revisions-overview.png)
+
+Versions with their description and release note can be managed through the versions management page:
+
+![Versions management page](img/versions-overview.png)
 
 ### New deployment workflow
 Another significant change is the way Console configurations are saved and deployed: Kubernetes **configurations will be generated and committed** to the Git repository only **during the deployment process**.
@@ -53,14 +61,13 @@ In the future, these properties will be managed in the Console, inside the Proje
 
 ## Activating the feature
 
-The Enhanced Project Workflow can be activated in different ways, depending on your needs.
-
 :::info
-In order to access the feature, please request the support of a Mia-Platform referent.
-To create a new Company or to activate feature toggles, please open a Service Request.
+In order to activate the feature on a project or Company, please open a service request and ask for the support of a Mia-Platform referent.
 :::
 
-The `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle can be activated on a new project or Company to enable the enhanced project workflow. The feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment. It can be enabled for a single project or for an entire Company, which means all projects in the Company will adopt the new workflow.
+The Enhanced Project Workflow can be activated by enabling two different feature toggles. This operation can ba performed by your Mia-Platform referent, who will choose the option that most fits your needs. 
+
+The `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle can be activated on a new project or Company to enable the enhanced project workflow. The feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment. It can be enabled for a single project or for an entire Company, which means all projects in the Company, old and new ones, will adopt the new workflow.
 
 If you already have a Company with some projects, and you do not wish to migrate them to the new approach just yet, you can choose the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle, to be activated on the Company. This feature toggle makes sure that all new projects in the Company will be created with the new workflow, while leaving the existing ones untouched. 
 
@@ -68,15 +75,13 @@ If you already have a Company with some projects, and you do not wish to migrate
 If both feature toggles are enabled, `ENABLE_CONF_GENERATION_ON_DEPLOY` will prevail.
 :::
 
-:::info
-In order to set up a new project, follow the [project creation guide](/console/project-configuration/create-a-project.mdx).
-:::
+## Migrating your projects
 
-## Manual adjustments on newly created projects
+Some essential manual adjustments are necessary to make sure your existing projects work correctly with the new workflow.
 
-After enabling the new workflow on one of your freshly created projects, some essential manual adjustments are necessary to make sure the project works correctly.
+### General adjustments
 
-First of all, the project model **must have set a default revision**: ask your Mia-Platform referent to check it, and in case it is missing, to add it manually. You can choose a custom name for your default revision, e.g. `main`.
+First of all, go to the [Project Settings page](/console/project-configuration/project-settings.md) and ensure that the **default revision field** is not empty. You can choose a custom name for your default revision, e.g. `main`.
 
 If you want the project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment) its configuration must contain the `strategy` property set to `pull` (the value for push-based deployments is `push`). Based on the selected strategy, the `runnerTool` may take different values.
 
@@ -98,14 +103,13 @@ It is important to note that these are auto-generated directories, so all their 
 
 - If you are **deploying without Kustomize**, you will find a `configuration` directory containing one directory for each environment, and possibly some custom files.
 You need to create the overlays directory, where you have to move environment directories previously stored inside `configuration`. No actions are required for the custom files in the `configuration` directory. 
-Note: In case a custom file with the same name is present inside both the `configuration` directory and an environment directory, the global custom file will prevail.
 - If you are **using Kustomize**, the `configuration` directory contains a `kustomization.yaml` manifest and possibly your custom files, which are already in the right spot. You can delete every other file inside the directory.
 
     Also, make sure that: 
     - Inside each `environments/<environment>` directory, the `kustomization.yaml` manifest imports the `kustomization.yaml` manifest from the `configuration` directory. <!-- This should be automatically handled by the Console. -->
     - Inside each `overlays/<environment>` directory, the `kustomization.yaml` manifest imports the corresponding manifest from the `environments/<environment>` directory.
 
-## Migrating existing projects
+### Further adjustments
 
 In order to adopt the enhanced workflow on existing projects, a migration process is required.
 

@@ -382,7 +382,7 @@
           "items": []
         }
       ],
-      "label": "Deploy your projects",
+      "label": "Deploy your workload",
       "type": "category",
       "link": {
         "id": "development_suite/deploy/deploy",
