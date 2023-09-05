@@ -9,7 +9,7 @@ The following sections explain the details about the endpoints exposed from the 
 
 This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](../../runtime_suite/auth0-client/overview_and_usage).
 
-In Bandyer there's the concept of _duration_ for a Room.
+In Kaleyra there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
 The **Teleconsultation Service Backend** accepts, as body parameters for some routes, a **start_date** and an **end_date** to calculate the max duration of a teleconsultation.
 
@@ -26,10 +26,10 @@ The following sequence diagram show the usage of the service when:
 
 ### POST /teleconsultation
 
-Adds a new teleconsultation in the CRUD teleconsultations collection, and possibly creates a new room on Bandyer.
+Adds a new teleconsultation in the CRUD teleconsultations collection, and possibly creates a new room on Kaleyra.
 
 :::note
-The service will create a bandyer room only if all participants' data is specified in the request.
+The service will create a kaleyra room only if all participants' data is specified in the request.
 :::
 
 #### Body parameters
@@ -44,7 +44,7 @@ The service will create a bandyer room only if all participants' data is specifi
   - the `fullName` (required if auth0 dependency is enabled, not supported otherwise) to be show by the frontend,
   - the `language` to be used by the frontend.
 
-Bandyer needs to know the list of the users which are going to join the call in order to create a Room. For this reason, if the length of the participant data array is less than expected number of participants (i.e. some participants' data is still unknown), the room on Bandyer is not created, otherwise, if all participants are known, it is created. In order to create a room, **Teleconsultation Service Backend** is going to translate each external user id into a Bandyer's user id. This operation is done as soon as the external user id is provide. If the user is still unknown (i.e. it has never been a participant of previous teleconsultation instances), the service creates a new user on Bandyer.
+Kaleyra needs to know the list of the users which are going to join the call in order to create a Room. For this reason, if the length of the participant data array is less than expected number of participants (i.e. some participants' data is still unknown), the room on Kaleyra is not created, otherwise, if all participants are known, it is created. In order to create a room, **Teleconsultation Service Backend** is going to translate each external user id into a Kaleyra's user id. This operation is done as soon as the external user id is provide. If the user is still unknown (i.e. it has never been a participant of previous teleconsultation instances), the service creates a new user on Kaleyra.
 
 :::note
 If a user has multiple roles, the higher role will be selected automatically.
@@ -179,9 +179,9 @@ Updates a teleconsultation whose id is equal to roomId.
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 :::note
-Bandyer does not support the possibility to make changes existing rooms. 
+Kaleyra does not support the possibility to make changes existing rooms. 
 
-For this reason, the Bandyer room is created only if all participants data is provided. If the Bandyer room has already been created and a change having effects on its features is requested, the existing Bandyer room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service grants that participants cannot access a Bandyer room as long as it could be replaced by a new one. 
+For this reason, the Kaleyra room is created only if all participants data is provided. If the Kaleyra room has already been created and a change having effects on its features is requested, the existing Kaleyra room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service grants that participants cannot access a Kaleyra room as long as it could be replaced by a new one. 
 :::
 
 #### Body parameters
@@ -277,7 +277,7 @@ Pushes a new teleconsultation participant in the `participants.data` array of th
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 :::note
-Bandyer does not support the possibility to make changes existing rooms. For this reason, the Bandyer room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service ensures that participants cannot access a Bandyer room as long as such room can be replaced by a new one.
+Kaleyra does not support the possibility to make changes existing rooms. For this reason, the Kaleyra room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service ensures that participants cannot access a Kaleyra room as long as such room can be replaced by a new one.
 :::
 
 #### Body parameters
@@ -396,7 +396,7 @@ if no errors occur, you will get a response like this:
 
 ### DELETE /teleconsultation/:roomId
 
-Deletes a teleconsultation on Bandyer and set the state of that teleconsultation on CRUD to TRASH.
+Deletes a teleconsultation on Kaleyra and set the state of that teleconsultation on CRUD to TRASH.
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 **Example DELETE Request:**
@@ -427,8 +427,8 @@ Available from version 1.4.0
 For this endpoint to work, it's necessary for the service to use [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
 :::
 
-Generate an access token and the Bandyer id for the currently logged user accordingly to the [request authentication headers](../../runtime_suite/authorization-service/usage#headers-set-by-auth).
-If no Bandyer user is associated to the logged user, a new Bandyer user is created alongside the corresponding record in the [teleconsultations_users](./20_configuration.md#user-id-map-crud) collection.
+Generate an access token and the Kaleyra id for the currently logged user accordingly to the [request authentication headers](../../runtime_suite/authorization-service/usage#headers-set-by-auth).
+If no Kaleyra user is associated to the logged user, a new Kaleyra user is created alongside the corresponding record in the [teleconsultations_users](./20_configuration.md#user-id-map-crud) collection.
 
 This endpoint is mainly used to integrate with the [Kaleyra Video React Native Module](https://github.com/KaleyraVideo/VideoReactNativeModule).
 

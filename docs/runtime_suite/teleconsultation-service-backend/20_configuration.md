@@ -12,7 +12,7 @@ Both are available in the Marketplace.
 
 2. Create the `/api/v1/telecons-be` endpoint for the newly created microservice. The endpoint of this microservice must be exactly this one because the Teleconsultation Service Frontend will use this path as prefix for the API calls to the Teleconsultation Service Backend.
 
-The microservice requires the `BANDYER_API_SECRET_KEY` environment variable in order to communicate with the Bandyer RESTful APIs.
+The microservice requires the `BANDYER_API_SECRET_KEY` environment variable in order to communicate with the Kaleyra RESTful APIs.
 
 The microservice supports two operating modes, having a different handing of user information:
 - if `AUTH_SERVICE` env var is specified, the microservice service will retrieve user information from the service having given hostname.
@@ -92,8 +92,8 @@ Update the `JSON` configuration file in the ConfigMaps section according to your
 
 The Teleconsultation Service Backend accepts the following environment variables.
 
-- **BANDYER_API_SECRET_KEY (required)**: API Secret Key to use in order to communicate with Bandyer's APIs.
-- **BANDYER_BASE_URL (required)**: name of the bandyer API endpoint.
+- **BANDYER_API_SECRET_KEY (required)**: API Secret Key to use in order to communicate with Kaleyra's APIs.
+- **BANDYER_BASE_URL (required)**: name of the kaleyra API endpoint.
 - **TELECONSULTATION_SERVICE_CONFIG_PATH**: full path of the updated file defined in the [previous section](#environment-variables).
 - **TELECONSULTATIONS_CRUD_NAME**: name of the endpoint of the CRUD with all the teleconsultations.
 - **USER_ID_MAP_CRUD_NAME**: name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.
@@ -125,7 +125,7 @@ The Teleconsultation Service Configuration is a JSON object with 5 root properti
 
 -   _type_: string;
 -   _required_:  `true`;
--   _description_: can assumes two values: _sandbox_ or _production_. Specify the Bandyer environment's you want to use.
+-   _description_: can assumes two values: _sandbox_ or _production_. Specify the Kaleyra environment's you want to use.
 
 **3. theme**
 
@@ -296,10 +296,10 @@ The collection can have any name you want, as long as you specify the correct na
 TELECONSULTATIONS_CRUD_NAME environment variable.
 
 A teleconsultation is the equivalent of a Room (the place where the call will have place).
-Look the Overview section for more details about Room in Bandyer.
+Look the Overview section for more details about Room in Kaleyra.
 
 The teleconsultations CRUD needs the following service-specific fields:
-- **bandyerRoomId (required)** - `string`: the id of the Room created on Bandyer for the call;
+- **bandyerRoomId (required)** - `string`: the id of the Room created on Kaleyra for the call;
 - **participantsNumber (required)**: the number of expected participants,
 - **participants** - `array of objects`: the list of participants to the call. For each participant, it contains:
   - `userBandyerId` (_required_),
@@ -327,16 +327,16 @@ The structure of this array is the following:
 }
 ```
 
-- The field **bandyerId** is the bandyer's id of a user.
+- The field **bandyerId** is the kaleyra's id of a user.
 - The field **accessLinkURL** is the link required in order to join the call. During the creation of a teleconsultation, every participant receives a link (valid only for that person for that teleconsultation).
 
 ## User Id Map CRUD
-The Teleconsultation Service requires a CRUD in order to save the Bandyer user id for each user which have used the teleconsultation service at least one time.
+The Teleconsultation Service requires a CRUD in order to save the Kaleyra user id for each user which have used the teleconsultation service at least one time.
 The collection can have any name you want, as long as you specify the correct name in the USER_MAP_ID_CRUD_NAME environment variable.
 
-The user-id-map CRUD, stores for every user their receivedUserId (which is mainly used to authenticate the users), and the relative Bandyer's id.
-This allows the Teleconsultation Service Backend to communicate with Bandyer (a user needs to be registered on Bandyer in order to use their services).
+The user-id-map CRUD, stores for every user their receivedUserId (which is mainly used to authenticate the users), and the relative Kaleyra's id.
+This allows the Teleconsultation Service Backend to communicate with Kaleyra (a user needs to be registered on Kaleyra in order to use their services).
 
 The teleconsultations CRUD needs the following service-specific fields:
-- **bandyerId (required)** - `string`: the id of the user on Bandyer;
+- **bandyerId (required)** - `string`: the id of the user on Kaleyra;
 - **receivedUserId (required)** - `string`: the id of the user on Auth0;

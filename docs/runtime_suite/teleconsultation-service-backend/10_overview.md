@@ -5,20 +5,20 @@ sidebar_label: Overview
 ---
 The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](../../runtime_suite/teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
 
-The teleconsultation service uses the [SaaS Bandyer Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.).
+The teleconsultation service uses the [SaaS Kaleyra Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.).
 
-The **Teleconsultation Service Backend** allows you to handle all the necessary operations (create, update, delete), on the teleconsultations. The Back End uses the [RESTful APIs](https://docs.bandyer.com/Bandyer-RESTAPI/) provided by Bandyer.
+The **Teleconsultation Service Backend** allows you to handle all the necessary operations (create, update, delete), on the teleconsultations. The Back End uses the [RESTful APIs](https://docs.bandyer.com/Bandyer-RESTAPI/) provided by Kaleyra.
 
 :::caution
-In order to use this service, you need first to contact Bandyer to create a Company, for your product and get the BANDYER_API_SECRET_KEY (for the Teleconsultation Service Backend).
+In order to use this service, you need first to contact Kaleyra to create a Company, for your product and get the BANDYER_API_SECRET_KEY (for the Teleconsultation Service Backend).
 :::
 
 ## Concepts you should be familiar with
-Before continue reading the documentation, it's important to understand some basic concepts about Bandyer.
+Before continue reading the documentation, it's important to understand some basic concepts about Kaleyra.
 
 #### Company
-A **Company** is an account created by Bandyer.
-In order to use Bandyer's services, Bandyer has to provide you the BANDYER_API_SECRET_KEY (to communicate with their RESTful APIs).
+A **Company** is an account created by Kaleyra.
+In order to use Kaleyra's services, Kaleyra has to provide you the BANDYER_API_SECRET_KEY (to communicate with their RESTful APIs).
 
 :::note
 A company has several customizable parameters, like theme, languages, virtual background, etc.
@@ -27,7 +27,7 @@ For additional information about company customization, please follow [this link
 :::
 
 #### User
-To access their services, a user must be registered on Bandyer.
+To access their services, a user must be registered on Kaleyra.
 There are two types of users:
  - **Plus User** - the one who can organize and participate to a call
  - **Basic User** - the one who participates to a call
