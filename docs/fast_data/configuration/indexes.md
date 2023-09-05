@@ -52,3 +52,7 @@ To manage the indexes of your Single Views you just need to go to your Single Vi
 ## Single Views Errors
 
 Sometimes, errors in the aggregation/sv-patch process may occur. These errors are logged in the Single View errors collections defined in the `SINGLE_VIEWS_ERRORS_COLLECTION` environment variable of the Single View Creator. The Single View Creator only inserts the new records and does not query the collection in any way. For this reason **no indexes are needed** in Single View errors collections.
+
+On a further note, Single Views Errors provide you with a very useful set of data to monitor your Fast Data application, that's why you may want to collect such information to keep everything under control. 
+
+For example, you may want to have a count widget on Grafana to see how many Single View Error of type `NO_SV_GENERATED` there are. For that you're probably going to configure the [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) to do a query similar to `{"errorType": "NO_SV_GENERATED"}` (for more info on all the fields available check the [Inputs Outputs - Single Views Errors](/fast_data/inputs_and_outputs.md#single-view-error) section). If this is your case remember to also create indexes for all your queries to help MongoDB process all of your requests and not slow down your Fast Data application.
