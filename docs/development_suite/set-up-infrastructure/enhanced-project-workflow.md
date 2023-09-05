@@ -51,7 +51,7 @@ If both feature toggles are enabled, `ENABLE_CONF_GENERATION_ON_DEPLOY` will pre
 :::
 
 :::info
-In order to set up a new project, follow the [project creation guide](/development_suite/set-up-infrastructure/create-project.mdx). To create a new Company or to activate feature toggles, please open a Service Request.
+In order to set up a new project, follow the [project creation guide](/console/project-configuration/create-a-project.mdx). To create a new Company or to activate feature toggles, please open a Service Request.
 :::
 
 ## Manual adjustments on newly created projects
