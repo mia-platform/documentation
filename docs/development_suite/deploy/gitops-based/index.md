@@ -5,17 +5,17 @@ sidebar_label: GitOps deployment strategy
 ---
 
 :::caution
-This is a **BETA** feature and, as such, is currently under active development. Pay attention using it.
+This is a **BETA** feature and, as such, is currently under active development. It requires the activation of the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) in order to be used.
 :::
 
 **GitOps** is a modern approach to managing and automating the deployment of applications and infrastructure in a software development lifecycle. 
-By enabling the new **Enhanced Project Workflow** <!-- TODO: LINK -->on a Console project, it is possible to adopt a GitOps deployment strategy instead of the classic pipeline-based one.
+By enabling the new **Enhanced Project Workflow** on a Console project, it is possible to adopt a GitOps deployment strategy instead of the classic pipeline-based one.
 
 ## Introduction to GitOps
 
 GitOps deployment is based on the principle of using Git repositories as the single source of truth for both application code and deployment configurations.
 
-Popular tools that support the GitOps deployment strategy include ArgoCD, Flux, Jenkins X, and more. Such tools operate by comparing the desired state of your project, as defined in the project’s Git repository, with the actual state of your Runtime resources. If there is a discrepancy, the tool automatically takes corrective actions to bring the cluster's state in line with the desired state.
+Popular tools that support the GitOps deployment strategy include ArgoCD, Flux, Jenkins X, and more. Such tools operate by comparing the desired state of your project, as defined in the project’s Git repository, with the actual state of your Runtime resources. If there is a discrepancy, the tool may automatically take corrective actions to bring the cluster's state in line with the desired state.
 
 **This way, it is guaranteed that the project configurations saved on the Git repository are always consistent with the project’s Runtime configurations.**
 
@@ -32,4 +32,4 @@ With pull-based deployment, you only need to update the Git repository to trigge
 
 Another benefit is that **the cluster does not need to be accessed directly**, reducing its exposure to potential threats. In traditional deployment methods, pipelines often need direct access to the cluster to make changes. This introduces security risks, as any breach or unauthorized access to the pipeline could potentially compromise the entire cluster. In contrast, GitOps relies on the Git repository as the single source of truth. Authorized users make changes in the repository, and the GitOps tool, like ArgoCD, autonomously synchronizes the cluster with the desired state.
 
-Moreover, in push-based deployment models, pipelines often require access to credentials to authenticate with the cluster and make changes. Storing credentials within pipelines increases the risk of inadvertent exposure or misuse. In GitOps, **credentials are typically managed outside of the pipeline**, and are not directly exposed to the pipeline code.
+Moreover, in push-based deployment models, pipelines often require access to credentials to authenticate with the cluster and make changes. Storing credentials within pipelines increases the risk of inadvertent exposure or misuse. In GitOps, **credentials are typically configured within the GitOps tool** which often resides on the cluster itself and has specific authorization rules that are not shared with the pipeline code and context.

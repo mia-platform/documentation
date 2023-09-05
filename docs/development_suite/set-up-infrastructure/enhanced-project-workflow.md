@@ -22,36 +22,49 @@ This change also means that the Console will not rely on the typical Git-based i
 
 With the new workflow, branches and tags become **revisions** and **versions**, underscoring that the information associated with them is not stored within a Git repository anymore. The concept of commit is not present anymore and the commit history is replaced by a **version history**: the user can create versions, similar to Git tags, to keep track of the project’s evolution.
 
+ Project administrators can manage revisions and versions from the dedicated sections inside the Project Settings area.
+<!-- TODO: screenshot -->
+
 ### New deployment workflow
-Another significant change is the way Console configurations are saved and deployed: Kubernetes **configurations will be generated and committed** to the Git repository only **during the deployment process**. 
-
-Before deploying the configurations to the cluster, users can **review** which workload changes are going to be deployed by opening the review modal. This operation gives the developer a clear view of what is going to be released on the runtime environment, and it is mandatory if the user is deploying on a production environment. 
-
-Moreover, in the new workflow the user will be able to **export Kubernetes configurations** by clicking on a download button.
-:::note  
-The review and export features are still in development and will be available in future releases.
-:::
+Another significant change is the way Console configurations are saved and deployed: Kubernetes **configurations will be generated and committed** to the Git repository only **during the deployment process**.
 
 :::caution
 When deploying your configurations to the cluster, keep in mind that only the changes pushed to the repository’s default branch will be considered.
+	
+You can change the repository branch using by changing the `project.repository.configurationBranch` property 
 :::
 
-The new deployment workflow also unlocks the possibility to adopt a **pull-based deployment strategy**, in which a GitOps tool is set up to automatically align the cluster’s state to the latest changes pushed to the Git repository. To find out more about pull-based deployment and its advantages, visit the [GitOps deployment strategy documentation page](/development_suite/deploy/gitops-based/index.md).
+The new deployment workflow also unlocks the possibility to adopt a **pull-based deployment strategy**, in which a GitOps tool can be set up to automatically align the cluster’s state to the latest changes pushed to the Git repository. To find out more about pull-based deployment and its advantages, visit the [GitOps deployment strategy documentation page](/development_suite/deploy/gitops-based/index.md).
+
+#### Roadmap
+
+:::note  
+The following features are still in development and will be available in future releases.
+:::
+
+Before deploying the configurations to the cluster, users will be able to **review** which workload changes are going to be deployed by opening the review modal. This operation gives the developer a clear view of what is going to be released on the runtime environment, and it is especially important if the user is deploying on a production environment. 
+
+Moreover, in the new workflow the user will be able to **export Kubernetes configurations** by clicking on a download button.
 
 ## Activating the feature
 
-The GitOps support feature can be activated in different ways, depending on your needs. In order to access the feature, please request the support of a Mia-Platform referent.
+The Enhanced Project Workflow can be activated in different ways, depending on your needs.
 
-You can activate the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle on a new project or Company to enable the enhanced project workflow. The feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment. You can enable it for a single project or for an entire Company, which means all projects in the Company will adopt the new workflow.
+:::info
+In order to access the feature, please request the support of a Mia-Platform referent.
+To create a new Company or to activate feature toggles, please open a Service Request.
+:::
 
-If you already have a Company with some projects, and you do not wish to migrate them to the new approach just yet, you can activate the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle on the Company. This feature toggle makes sure that all new projects in the Company will be created with the new workflow, while leaving the existing ones untouched. 
+The `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle can be activated on a new project or Company to enable the enhanced project workflow. The feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment. It can be enabled for a single project or for an entire Company, which means all projects in the Company will adopt the new workflow.
+
+If you already have a Company with some projects, and you do not wish to migrate them to the new approach just yet, you can choose the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle, to be activated on the Company. This feature toggle makes sure that all new projects in the Company will be created with the new workflow, while leaving the existing ones untouched. 
 
 :::note
 If both feature toggles are enabled, `ENABLE_CONF_GENERATION_ON_DEPLOY` will prevail.
 :::
 
 :::info
-In order to set up a new project, follow the [project creation guide](/console/project-configuration/create-a-project.mdx). To create a new Company or to activate feature toggles, please open a Service Request.
+In order to set up a new project, follow the [project creation guide](/console/project-configuration/create-a-project.mdx).
 :::
 
 ## Manual adjustments on newly created projects
