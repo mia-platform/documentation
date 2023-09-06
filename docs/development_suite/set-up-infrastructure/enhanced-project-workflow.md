@@ -21,15 +21,16 @@ The most relevant change in the Console’s behavior is that the project’s log
 This change also means that the Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**, while still maintaining consistency with the Console’s established workflows.
 
 To emphasize that the new workflow configuration is no longer stored in a Git repository:
-- `branches` and `tags` are now **`revisions`** and **`versions`**
-- `commit history` is now **`version history`**
+- `branches` and `tags` become **`revisions`** and **`versions`**
+- the `commit history` becomes **`version history`**
+
 To keep track of the project’s evolution, user can create `versions` (similar to Git tags) that act as fixed snapshots of the configuration in a particular moment.
 
 Project administrators can manage revisions and versions from the dedicated sections inside the Project Settings area. Revisions can be accessed and deleted from the revisions management page:
 
 ![Revisions management page](img/revisions-overview.png)
 
-Versions with their description and release note can be managed through the versions management page:
+Versions with their description and release note can be viewed and deleted through the versions management page:
 
 ![Versions management page](img/versions-overview.png)
 
@@ -65,7 +66,7 @@ In the future, these properties will be managed in the Console, inside the Proje
 In order to activate the feature on a Project or Company, please open a service request and ask for the support of a Mia-Platform referent.
 :::
 
-The Enhanced Project Workflow can be activated by enabling two different feature toggles. This operation can ba performed by your Mia-Platform referent, who will choose the option that most fits your needs. 
+The Enhanced Project Workflow can be activated by enabling two different feature toggles. This operation can be performed by your Mia-Platform referent, who will choose the option that most fits your needs. 
 
 The `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment. It can be enabled for a single Project or for an entire Company, which means all projects in the Company, old and new ones, will adopt the new workflow.
 
@@ -127,7 +128,7 @@ Here are some **points of attention** and possible modifications needed to make 
 
 - If there are any configuration files in the repository root (e.g. `api-console-config.json`), you can delete them, since they refer to the old management strategy of configuration files and are no longer needed.
 <!-- TODO: add complete list of files -->
-- The `gitlab-ci.yml` file contains a deploy script, which assumes the repository’s directory structure based on outdated information. The path of the deploy job file needs to be updated with the path of the correct script <!-- (TODO: specify) -->
+- The `gitlab-ci.yml` file contains a deploy script, which assumes the repository’s directory structure based on outdated information. The path of the deploy job file needs to be updated with the path of the correct script. <!-- (TODO: specify) -->
 - The new `environments` directory is automatically created by the Console. Inside it, the generated configurations for each environment are stored in separate directories.
 :::warning
 It is important to note that these are auto-generated directories, so all their contents are regenerated each time a push operation is performed. If you add custom files to the environments directory or its child directories, they will be deleted.
