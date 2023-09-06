@@ -7,6 +7,7 @@ slug: "/release-notes/versions"
 ---
 | Release | Release notes                              |
 |---------|--------------------------------------------|
+| v11.5.2 | [Read the release notes](/release-notes/v11.5.2.md) |
 | v11.5.1 | [Read the release notes](/release-notes/v11.5.1.md) |
 | v11.5.0 | [Read the release notes](/release-notes/v11.5.0.md) |
 | v11.4.2 | [Read the release notes](/release-notes/v11.4.2.md) |
