@@ -6,7 +6,7 @@ slug: "/development_suite/monitoring/resources/cronjobs"
 ---
 
 In Kubernetes, a [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) creates Jobs on a predefined time schedule.  
-CronJob is meant for performing regular scheduled actions such as backups, report generation, and so on. One CronJob object is like one line of a crontab (cron table) file on a Unix system. 
+CronJob is meant for performing regular scheduled actions such as backups, report generation, and so on. One CronJob object is like one line of a crontab (cron table) file on a Unix system.
 It runs a Job periodically on a given schedule, written in Cron format.
 
 ## CronJobs Table
@@ -15,7 +15,7 @@ The table presented here shows the following information:
 
 - **Name**: the name of the CronJob.
 - **Schedule**: the schedule in Cron format.
-- **Suspend**: the value of the [suspend](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) CronJob spec. When `true` the scheduled execution is suspended. 
+- **Suspend**: the value of the [suspend](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) CronJob spec. When `true` the scheduled execution is suspended.
 - **Active**: the number of currently running Jobs.
 - **Last Schedule**: information of when was the last time the Job was successfully scheduled. [Manually launched](#manually-launching-a-cronjob) CronJobs won't update this field.
 - **Age**: the date when the CronJob was lastly deployed.
@@ -25,6 +25,10 @@ The table presented here shows the following information:
 ### CronJob options menu
 
 The _Hamburger Menu_, located on the last column of the job, allows to perform some actions on a CronJob.
+The available options are:
+
+- [Launch manually](#manually-launching-a-cronjob)
+- [View describe](#cronjob-describe)
 
 ![cronjobs_burger_menu](../img/cronjobs_burger_menu.png)
 
@@ -42,6 +46,12 @@ These details are the ones exposed by the [Kubernetes APIs](https://kubernetes.i
 By clicking on the _Launch manually_ button on the upper right side of the page you can trigger an immediate manual execution of the CronJob, as described in the next section here below.
 
 ## Manually launching a CronJob
+
+:::info
+
+This feature is only available to users with sufficient permissions. For more information, consult the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) section of the docs.
+
+:::
 
 The _Launch manually_ functionality triggers an immediate execution of the CronJob, regardless of its _Schedule_ and _Suspend_ values.
 
