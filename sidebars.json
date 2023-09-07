@@ -83,6 +83,10 @@
           "type": "doc"
         },
         {
+          "id": "console/project-configuration/delete-a-project",
+          "type": "doc"
+        },
+        {
           "id": "console/project-configuration/project-settings",
           "type": "doc"
         },

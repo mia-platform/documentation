@@ -23,7 +23,13 @@ This card presents a summary in which the **name** and **description** given to 
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![edit project information](./img/settings-edit-project-information.png)
+
+  </div>
+</div>
 
 ## Providers
 
@@ -72,7 +78,13 @@ This card shows and gives the user the ability to change some runtime settings. 
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![edit runtime settings](./img/settings-edit-runtime-settings.png)
+
+  </div>
+</div>
 
 ### Security features
 
@@ -95,7 +107,13 @@ This card shows and gives the user the ability to change some security features,
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below, through which you can turn on/off the security features. Upon clicking "Save changes", the information will be updated.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![edit security features](./img/settings-edit-security-features.png)
+
+  </div>
+</div>
 
 ## Feature Preview
 
@@ -111,8 +129,4 @@ The "Advanced" tab allows the user to visualize advanced information and perform
 
 ![advanced actions](./img/settings-advanced-actions.png)
 
-The only action that can be taken at the moment is to delete the Project itself, using the 'Delete Project' button. Clicking on the button opens a modal, which warns the user of the consequences of deletion, as shown in the picture below.
-
-![delete project](./img/settings-delete-project.png)
-
-The modal also gives the user the possibility to perform additional actions contextual to the deletion, namely the deletion of namespaces associated with project-related environments and the archiving of the repo on the related Git Provider. Entering the name of the project in the input field will enable the delete button, upon clicking on which the project will be deleted.
+The only action that can be taken at the moment is to delete the Project itself. You can find a detailed description of the deletion flow [here](/console/project-configuration/delete-a-project.md).
