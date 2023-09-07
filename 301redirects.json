@@ -611,6 +611,14 @@
   },
   "/docs/development_suite/user-settings/user-profile-picture":  {
     "destination": "/docs/development_suite/user-settings/user-personal-info",
-     "addedOn": "2023-08-29"
-  } 
+    "addedOn": "2023-08-29"
+  },
+  "/docs/tutorial/demo_project/overview":  {
+    "destination": "/docs/tutorial/demo-project",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/identity-and-access-management/overview":  {
+    "destination": "/docs/development_suite/identity-and-access-management",
+    "addedOn": "2023-08-29"
+  }
 }

@@ -1,3 +1,10 @@
+---
+id: demo-project
+title: Demo Project
+sidebar_label: Demo Project
+sidebar_order: 0
+---
+
 # Create your first Mia-Platform real project
 
 Take a walkthrough that covers creating your first real project. You will:
