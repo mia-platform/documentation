@@ -66,16 +66,12 @@ Before deploying the configurations to the cluster, users will be able to **revi
 
 Users will be able to **export Kubernetes configurations** with a simple click of a button.
 
-### Better deployment pipeline management
-
-TODO
-
 ### Improvements to Project Settings
 
 As of today, some **Project customizations** can be performed only through the backoffice:
 
 - The repository default branch can be changed by updating the `repository.configurationBranch` property.
-- The Project deploy strategy (useful to configure whether your Project is supposed to use a Pipeline-based or GitOps-based deployment approach) can be found in the `deploy.strategy` field for the global configuration that is inherited by all environments; to add environment specific settings you can patch the `environments[_].deploy.strategy`.
+- The Project deploy strategy (useful to configure whether your Project is supposed to use a [Pipeline-based](/development_suite/deploy/pipeline-based/index.md) or [GitOps-based](/development_suite/deploy/gitops-based/index.md) deployment approach) can be found in the `deploy.strategy` field for the global configuration that is inherited by all environments; to add environment specific settings you can patch the `environments[_].deploy.strategy`.
 
 In the future, these properties will be managed in the Console, inside the [Project Settings](/console/project-configuration/project-settings.md) page.
 

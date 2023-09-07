@@ -4,7 +4,7 @@ title: Deploy your workload
 sidebar_label: Deploy your workload
 ---
 
-Deploying a project means transferring its dependencies and configurations to a runtime environment, making it ready to be used by end-users.
+Deploying a Project means transferring its configurations to a specific runtime environment, making it ready to be used by end-users.
 
 :::info
 Learn how to **deploy your Console projects** by reading the [dedicated documentation page](/development_suite/deploy/overview.md)
