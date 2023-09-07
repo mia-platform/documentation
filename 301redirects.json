@@ -550,8 +550,8 @@
     "addedOn": "2023-08-11"
   },
   "/docs/development_suite/deploy/configuration": {
-  "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
-  "addedOn": "2023-08-25"
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
+    "addedOn": "2023-08-25"
   },  
   "/docs/development_suite/set-up-infrastructure/create-project": {
     "destination": "/docs/console/project-configuration/create-a-project",
