@@ -613,6 +613,10 @@
     "destination": "/docs/development_suite/user-settings/user-personal-info",
     "addedOn": "2023-08-29"
   },
+  "/docs/tutorial/demo_project/overview":  {
+    "destination": "/docs/overview/mia_platform_overview",
+    "addedOn": "2023-08-29"
+  },
   "/docs/development_suite/identity-and-access-management/overview":  {
     "destination": "/docs/development_suite/identity-and-access-management",
     "addedOn": "2023-08-29"
