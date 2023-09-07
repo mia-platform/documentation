@@ -5,7 +5,7 @@ sidebar_label: Project Settings
 ---
 
 Once you have created your Project, you can visualize and change its settings through the "Settings" section of the Console, within the "Project Overview" area.
-The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", and "Feature Preview".
+The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", "Feature Preview", and "Advanced".
 
 ## General
 
@@ -99,8 +99,20 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 ## Feature Preview
 
-The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific Project, through a single homonymous card.
+The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific Project, through a single card called "Feature Preview for your Project".
 
 ![feature preview](./img/settings-feature-preview.png)
 
 This card presents an overview of the features in early access that can be activated for the Project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.
+
+## Advanced
+
+The "Advanced" tab allows the user to visualize advanced information and perform sensitive operations, through a single card called "Advanced actions".
+
+![advanced actions](./img/settings-advanced-actions.png)
+
+The only action that can be taken at the moment is to delete the Project itself, using the 'Delete Project' button. Clicking on the button opens a modal, which warns the user of the consequences of deletion, as shown in the picture below.
+
+![delete project](./img/settings-delete-project.png)
+
+The modal also gives the user the possibility to perform additional actions contextual to the deletion, namely the deletion of namespaces associated with project-related environments and the archiving of the repo on the related Git Provider. Entering the name of the project in the input field will enable the delete button, upon clicking on which the project will be deleted.
