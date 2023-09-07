@@ -33,3 +33,7 @@ With pull-based deployment, you only need to update the Git repository to trigge
 Another benefit is that **the cluster does not need to be accessed directly**, reducing its exposure to potential threats. In traditional deployment methods, pipelines often need direct access to the cluster to make changes. This introduces security risks, as any breach or unauthorized access to the pipeline could potentially compromise the entire cluster. In contrast, GitOps relies on the Git repository as the single source of truth. Authorized users make changes in the repository, and the GitOps tool, like ArgoCD, autonomously synchronizes the cluster with the desired state.
 
 Moreover, in push-based deployment models, pipelines often require access to credentials to authenticate with the cluster and make changes. Storing credentials within pipelines increases the risk of inadvertent exposure or misuse. In GitOps, **credentials are typically configured within the GitOps tool** which often resides on the cluster itself and has specific authorization rules that are not shared with the pipeline code and context.
+
+## Example GitOps tool configuration
+
+* [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md)

@@ -379,7 +379,12 @@
             "id": "development_suite/deploy/gitops-based/gitops-based",
             "type": "doc"
           },
-          "items": []
+          "items": [
+            {
+              "id": "development_suite/deploy/gitops-based/configure-argocd",
+              "type": "doc"
+            }
+          ]
         }
       ],
       "label": "Deploy your workload",
