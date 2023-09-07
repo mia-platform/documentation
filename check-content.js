@@ -22,8 +22,7 @@ const filesToExcludeFromSidebarCheck = [
   "business_suite/*",
   "self_hosted/installation-chart/*",
   "getting_started/videos/*",
-  "getting_started/videos/subtitle/*",
-  "tutorial/demo-project/demo-project", // TODO:
+  "getting_started/videos/subtitle/*", // TODO:
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')
