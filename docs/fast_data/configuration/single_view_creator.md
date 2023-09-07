@@ -414,7 +414,7 @@ This feature is supported from version `5.6.1` of the Single View Creator
 To configure a Single View Creator dedicated to [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) operations, some steps have to be followed:
 
 * Set the env var `KAFKA_PROJECTION_UPDATE_TOPICS` with the comma separated list of the `pr-update` topics corresponding to the SV-Patch Projection.
-* Configure the service to consume from Kafka (see the [Consuming from Kafka](#consuming-from-kafka))
+* Configure the service to consume from Kafka (see the [Consuming from Kafka](#consuming-from-kafka) section)
 * Set the env var `SV_TRIGGER_HANDLER_CUSTOM_CONFIG` with the path to the main file defining SV-Patches actions, for example `/home/node/app/svTriggerHandlerCustomConfig/svTriggerHandlerCustomConfig.json`
 * Create a new ConfigMap with this Runtime Mount Path: `/home/node/app/svTriggerHandlerCustomConfig`
 
