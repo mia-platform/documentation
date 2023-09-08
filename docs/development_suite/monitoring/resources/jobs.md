@@ -1,25 +1,32 @@
 ---
 id: jobs
-title:  Monitor your Jobs
+title: Monitor your Jobs
 sidebar_label: Monitor your Jobs
 slug: "/development_suite/monitoring/resources/jobs"
 ---
 
-In Kubernetes, a [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) is the resource that creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate.  
+In Kubernetes, a [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) is the resource that creates one or more Pods and will continue to retry execution of the Pods until a specified number of them successfully terminate.
 
 On this section you can monitor all your Jobs and the relative properties.
 
 ## Jobs Table
+
 The table presented here shows the following information:
 
-* **Name**: the name of the Job.
-* **Finished Pods**: the number of succeeded Pods out of all the Pods that have been created. For more info check the [kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/job-v1/#JobStatus).
-* **Duration**: the time when the Job was completed.
-* **Age**: the date when the Job was lastly deployed.
+- **Name**: the name of the Job.
+- **Finished Pods**: the number of succeeded Pods out of all the Pods that have been created. For more info check the [kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/job-v1/#JobStatus).
+- **Duration**: the time when the Job was completed.
+- **Age**: the date when the Job was lastly deployed.
 
 ![list_of_jobs](../img/jobs_list.png)
 
 ## Deleting a Job
+
+:::info
+
+This feature is only available to users with sufficient permissions. For more information, consult the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) section of the docs.
+
+:::
 
 By clicking on the **Delete button** on the last column of the Job table, the Job will be permanently deleted.
 
@@ -37,7 +44,7 @@ Please note that also the related Pod(s) are marked for deletion, along with the
 ## Inspecting a Job
 
 By clicking on the Job name you can inspect some details about the Job.
-  
+
 ### Job Describe
 
 In the `Describe` view you can find information about the selected Job in JSON format.
