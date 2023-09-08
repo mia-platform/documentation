@@ -232,6 +232,8 @@ The `aggregation.json` files would look like that:
 
 Now we only need to configure one of the Single View Creators to react to changes on the `posts` projection and the other one to the `comments` projection. This is specially useful when one of the computation efforts is much bigger than the other so it makes sense to dedicate a Single View Creator with more resources to deal with the workload and not block the queue for what could be faster aggregations.
 
+So, at the end we will have the first Single View Creator with the first `aggregation.json` above and the `UPSERT_STRATEGY` set to `update`. And the second Single View Creator with the second `aggregation.json` and the `UPSERT_STRATEGY` also set to `update`.
+
 ### Delete
 
 For the delete we offer the `delete` pre-configured strategy which [Hard deletes](https://www.becomebetterprogrammer.com/soft-delete-vs-hard-delete/#Hard_Delete) the Projection record when the Base Projection gets deleted. If you need a more complex deleting strategy we encourage you to take a look to the [Custom functions](#custom-functions) section.
