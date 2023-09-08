@@ -232,7 +232,7 @@ The `aggregation.json` files would look like that:
 
 Now we only need to configure one of the Single View Creators to react to changes on the `posts` projection and the other one to the `comments` projection. This is specially useful when one of the computation efforts is much bigger than the other so it makes sense to dedicate a Single View Creator with more resources to deal with the workload and not block the queue for what could be faster aggregations.
 
-So, at the end we will have the first Single View Creator with the first `aggregation.json` above and the `UPSERT_STRATEGY` set to `update`. And the second Single View Creator with the second `aggregation.json` and the `UPSERT_STRATEGY` also set to `update`.
+So, at the end we will have the first Single View Creator with the first `aggregation.json` ( `svc-1-aggregation.json` ) above and the `UPSERT_STRATEGY` set to `update`. And the second Single View Creator with the second `aggregation.json` ( `svc-2-aggregation.json` ) and the `UPSERT_STRATEGY` also set to `update`.
 
 ### Delete
 
