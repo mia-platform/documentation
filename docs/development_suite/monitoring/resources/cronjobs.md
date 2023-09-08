@@ -82,7 +82,7 @@ Search for the Pod with the name of the Job as prefix.
 
 ### Resource Cleaning
 
-To avoid excessive resource consumption, a Job launched from a CronJob is assigned a Time To Leave (TTL) of **one week**.
+To avoid excessive resource consumption, a Job launched from a CronJob is assigned a Time To Live (TTL) of **one week**.
 This means that the Job and the related Pod are marked for deletion after a week.
 
 :::caution
