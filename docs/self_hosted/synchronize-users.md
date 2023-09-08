@@ -17,7 +17,7 @@ The list of supported providers is:
 
 # How to setup user synchronization
 
-If you want to synchronize users between the Identity Provider and the Console, making it possible to automatically create users in the Console when you create them on your Identity Provider you can use the following webhook
+If you want to synchronize users between the Identity Provider and the Console, making it possible to automatically create or delete users in the Console when you create or delete them on your Identity Provider, you can use the following webhook:
 
 ```sh
 POST /api/webhooks/apps/console/providers/:providerId/user
@@ -30,5 +30,7 @@ Webhooks **are not** exposed by default, to make them available check-out [user 
 :::
 
 :::caution
-User synchronization is officially supported only for Okta OIE
+User synchronization is officially supported only for [Okta OIE](https://developer.okta.com/docs/concepts/oie-intro/).
+
+To find out more about Event Hooks and how to configure them check out the [official documentation page](https://developer.okta.com/docs/concepts/event-hooks/).
 :::
