@@ -24,7 +24,7 @@ Remember that the Access Token configured to your provider needs at least `read-
 In order for GitHub to send webhook payloads, your console instance needs to be accessible from the Internet.
 :::
 :::info
-If you haven't set up an environment yet, check out [here](/development_suite/set-up-infrastructure/add-environment.mdx) how to configure it.
+If you haven't set up an environment yet, check out [here](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx) how to configure it.
 :::
 ## Workflow
 In your GitHub repository, create a new file `<root>/.github/workflows/deploy.yml`.
@@ -88,4 +88,3 @@ These webhooks are important to allow the Console to update the project and see 
 Currently, the events that the Console needs to handle are: 
 * [deployment_status](https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads#deployment_status)
 
-	
