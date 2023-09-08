@@ -620,5 +620,9 @@
   "/docs/development_suite/identity-and-access-management/overview":  {
     "destination": "/docs/development_suite/identity-and-access-management",
     "addedOn": "2023-08-29"
+  },
+  "docs/runtime_suite_applications/payment-integration-hub/30_configuration.md": {
+    "destination": "docs/runtime_suite_applications/payment-integration-hub/50_configuration.md",
+    "addedOn": "2023-09-08"
   }
 }
