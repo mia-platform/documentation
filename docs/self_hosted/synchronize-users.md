@@ -20,8 +20,10 @@ The list of supported providers is:
 If you want to synchronize users between the Identity Provider and the Console, making it possible to automatically create users in theConsole when you create them on your Identity Provider you can use the following webhook
 
 ```sh
-POST /api/webhooks/apps/console/providers/okta/user
+POST /api/webhooks/apps/console/providers/:providerId/user
 ```
+
+Where `providerId` must be set based on the [`authProvider.name` configuration field](/self_hosted/installation-chart/30_authentication_provider.md#configure-your-authentication-provider) set in the installation chart
 
 :::info
 Webhooks **are not** exposed by default, to make them available check-out [user synchronization activation flag](/self_hosted/installation-chart/30_authentication_provider.md#expose-synchronization-webhooks).
