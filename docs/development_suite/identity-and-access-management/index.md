@@ -1,3 +1,9 @@
+---
+id: identity-and-access-management
+title: Identity and Access Management
+sidebar_label: Identity and Access Management
+---
+
 # Identity and Access Management
 
 Mia-Platform Console allows access to Company resources with specific authorization levels to three types of identities:
