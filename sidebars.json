@@ -158,7 +158,11 @@
         {
           "id": "console/project-configuration/documentation-portal",
           "type": "doc"
-        }
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+          "type": "doc"
+        }        
       ]
     },
     {
@@ -355,16 +359,44 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/deploy/configure-jenkins",
-          "type": "doc"
+          "type": "category",
+          "label": "Pipeline-based deployment strategy",
+          "link": {
+            "id": "development_suite/deploy/pipeline-based/pipeline-based",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-jenkins",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "development_suite/deploy/configure-github-actions",
-          "type": "doc"
+          "type": "category",
+          "label": "GitOps deployment strategy (BETA)",
+          "link": {
+            "id": "development_suite/deploy/gitops-based/gitops-based",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/deploy/gitops-based/configure-argocd",
+              "type": "doc"
+            }
+          ]
         }
       ],
-      "label": "Deploy what you have created",
-      "type": "category"
+      "label": "Deploy your workload",
+      "type": "category",
+      "link": {
+        "id": "development_suite/deploy/deploy",
+        "type": "doc"
+      }
     },
     {
       "collapsed": true,
