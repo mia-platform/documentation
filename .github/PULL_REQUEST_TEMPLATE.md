@@ -16,7 +16,7 @@
 
 - [ ] The commit message follows our guidelines included in the [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md#how-to-submit-a-pr)
 - [ ] All tests of Lint, cspell and check-content pass. ([How to launch them?](../blob/main/CONTRIBUTING.md#content-checks))
-- [ ] No sensible content has been committed
+- [ ] No sensitive content has been committed
 
 ## Other information
 
