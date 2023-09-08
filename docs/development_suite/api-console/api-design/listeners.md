@@ -6,18 +6,16 @@ sidebar_label: Create Listeners
 
 ## What is a Listener
 
-A **listener** is a component **associated with a port on your API Gateway**, tasked with routing incoming connections from external clients to a destination in your Project, such as a specific microservice.
+A listener is an **entry point** for external connections directed to your cluster. Listeners are configured on your API Gateway, where they are mapped to a single port, and define rules to route incoming requests from external clients to a resource in your cluster, such as a specific microservice, exposed through endpoints.
 
-:::caution
-You can only use listeners in combination with an **Envoy API Gateway**.
-:::
-
-Listeners play a pivotal role in the orchestration of data and requests within your Project. When a connection is established with the listener, it becomes the **entry point** for data and requests into your system. The listener is equipped with a set of rules and configurations that determine how incoming data should be processed and where it should be directed.
-
-The purpose of this page is to describe all the functionalities that you can find in the **Listeners** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md).
+The purpose of this page is to describe all the functionalities that you can find in the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Mia-Platform Console.
 
 ## Create a Listener
 
-In order to create a listener, you need to activate an Envoy API Gateway on your Project. Then, go to the Listeners section and create your first listener. You can specify its name and port, and write a short description for it as well. You can also choose to:
-- use it as a **default listener**, maning all new endpoints will be exposed on that listener by default
+:::info
+The listeners feature is only supported in combination with an **Envoy API Gateway**, which needs to be instantiated on your Project.
+:::
+
+In order to create a listener, go to the Listeners section and click on the **Create new listener** button. You can specify its name and port, and write a short description for it as well. You can also choose to:
+- use it as a **default listener**, meaning all new endpoints will be exposed on that listener by default
 - expose **all existing endpoints** on the listener
