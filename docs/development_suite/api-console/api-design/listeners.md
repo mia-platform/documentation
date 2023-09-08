@@ -16,6 +16,6 @@ The purpose of this page is to describe all the functionalities that you can fin
 The listeners feature is only supported in combination with an **Envoy API Gateway**, which needs to be instantiated on your Project.
 :::
 
-In order to create a listener, go to the Listeners section and click on the **Create new listener** button. You can specify its name and port, and write a short description for it as well. You can also choose to:
+In order to create a listener, go to the Listeners section and click on the **Create new listener** button. You can specify its name and port, as well as write a short description for it. Optionally, you can choose to:
 - use it as a **default listener**, meaning all new endpoints will be exposed on that listener by default
 - expose **all existing endpoints** on the listener
