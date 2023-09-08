@@ -14,6 +14,6 @@ When creating the new application you need to configure the repository access in
 
 ### GitLab support
 
-On GitLab you can create a project Access Token: head to the repository settings or Access Token management and create a new access token, the **Reporter** role is enough, paired with the `read_repository` permission.
+On GitLab you can create a project Access Token: head to the repository settings or Access Token management and create a new access token. The **Reporter** role is enough, paired with the `read_repository` permission.
 
 Once you have done this, copy the access token and define write the repository URL in argo as: `https://[access-token-name]:[access-token-value]@gitlab-host.com/path/to/the/repo.git`

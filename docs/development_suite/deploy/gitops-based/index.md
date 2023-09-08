@@ -26,7 +26,7 @@ Adopting the GitOps approach facilitates the automated deployment and management
 The GitOps deployment strategy is often associated with a **pull-based approach**. In pull-based deployments, the cluster's state is automatically synchronized with the desired state stored in the Git repository.  
 In fact, once the configurations are pushed to the Git repository, the deployment to the cluster will be handled automatically. This ensures that the deployed application is consistent with the latest version of the source code and configurations.
 
-This approach stands in opposition to the [pipeline-based strategy](/development_suite/deploy/pipeline-based/index.md), in which a pipeline provider must be set up to trigger the deployment and apply the Kubernetes configurations (using tools like `kubectl` or [`mlp`](https://github.com/mia-platform/mlp).
+This approach stands in opposition to the [pipeline-based strategy](/development_suite/deploy/pipeline-based/index.md), in which a pipeline provider must be set up to trigger the deployment and apply the Kubernetes configurations (using tools like `kubectl` or [`mlp`](https://github.com/mia-platform/mlp)).
 
 With pull-based deployment, you only need to update the Git repository to trigger changes. This **lowers the complexity of the deployment process**, since the cluster automatically aligns itself with the repository, reducing the need for explicit deployment commands. It also facilitates the process of rolling back to a previous version, which comes down to simply reverting the changes in the Git repository.
 
