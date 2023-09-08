@@ -17,7 +17,7 @@ The list of supported providers is:
 
 # How to setup user synchronization
 
-If you want to synchronize users between the Identity Provider and the Console, making it possible to automatically create users in theConsole when you create them on your Identity Provider you can use the following webhook
+If you want to synchronize users between the Identity Provider and the Console, making it possible to automatically create users in the Console when you create them on your Identity Provider you can use the following webhook
 
 ```sh
 POST /api/webhooks/apps/console/providers/:providerId/user
