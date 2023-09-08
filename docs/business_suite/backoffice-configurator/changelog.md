@@ -3,6 +3,30 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.3.1] - 2023-08-24
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.3.18`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.0`
+- `@mia-platform-internal/reactord` to version `^9.7.0`
+- `@micro-lc/iconic` to version `^1.3.1`
+- `miaplatform/cdn-publish` to version `0.5.0`
+- `flag-icons` to version `^6.11.0`
+- `monaco-editor` to version `^0.41.0`
+- `rc-util` to version `^5.37.0`
+- `rc-virtual-list` to version `^3.10.5`
+- `react-router-dom` to version `^6.15.0`
+- Dev dependencies updated
+
+### Changed
+
+- Updated internal routing and links to reflect new Console URL pattern with `pathRefType` parameter
+
+### Fixed
+
+- Fixed internal broken navigation when Console branch contains a `/`
+
 ## [1.3.0] - 2023-07-17
 
 ### Versioning

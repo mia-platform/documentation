@@ -948,7 +948,7 @@ Let's see how to use these two kinds of API in order to create a new saga and se
 ### Create a new saga 
 In this section, we will make an HTTP request to the Flow Manager in order to **create a new saga**. The new saga will be created in the state defined as `initialState` in the configuration.
 
-To create the saga, we will use the [API Portal](/development_suite/api-portal/api-documentations.md):
+To create the saga, we will use the [API Portal](/console/project-configuration/documentation-portal.md):
 1. Click on the `POST /flow-manager/saga` request.
 1. Enter `test` for `associatedEntityId` in _Body Params_ section.
 1. Click on _Properties_ in the _metadata_ section.

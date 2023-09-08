@@ -51,4 +51,5 @@ The **Teleconsultation Service Backend** service exposes the following APIs:
 - `PATCH /teleconsultation/:teleconsultationId`: it allows the complete or partial update of a teleconsultation (_participants_, *start_date*, *end_date*);
 - `POST /teleconsultation/:teleconsultationId/participants/data`: it allows adding a new participant to the teleconsultation;
 - `DELETE /teleconsultation/:teleconsultationId`: it allows the deletion of a teleconsultation;
-- `GET /teleconsultation/:teleconsultationId`: it returns all the data needed to instantiate a teleconsultation UI to start the call.
+- `GET /teleconsultation/:teleconsultationId`: it returns all the data needed to instantiate a teleconsultation UI to start the call;
+- `POST /credentials`: it returns a valid accessToken to provide for the clients using SDK authentication (available from version 1.4.0).

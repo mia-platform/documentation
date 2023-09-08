@@ -30,6 +30,25 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## v11 - version upgrades
 
+### Upgrade from v11.4.0 to v11.4.1
+
+With version v11.4.1 (Chart version v9.5.0) the feature toggle service now uses Rönd, therefore `rbacSidecar` configurations should be added:
+
+```yaml
+
+featureToggleService:
+  deploy:
+    # ...
+  rbacSidecar:
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "200Mi"
+        cpu: "200m"
+```
+
 ### Upgrade from v11.3.0 to v11.4.0
 
 With version v11.4.0 (Chart version v9.4.0) a new service has been added, make sure to configure resource requirements and HPA according to your installation for `exportService`
