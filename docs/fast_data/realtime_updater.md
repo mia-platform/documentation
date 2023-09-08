@@ -9,6 +9,10 @@ The Real-Time Updater service consumes [kafka messages](https://kafka.apache.org
 A Real-Time Updater service is automatically created when you create a new System.
 After the new configuration has been saved, this service is visible as one of your services in the `Microservices` section.
 
+## Ingestion
+
+The service is designed to consume messages published by a [Connector](/fast_data/connectors/overview.md), which will separate the messages into different partitions within the topics. This allows the Real-Time Updater to easily scale horizontally, as it will distribute the partitions it consumes among its replicas. For example, if there are 6 partitions in a topic and 2 Real-Time Updater service replicas, each replica will consume from 3 partitions. Since the Connector guarantees that messages with the same primary key will always end up in the same partition, the Real-Time Updater replicas can update every Projection record in parallel without worrying about disrupting the order of updates.
+
 ## Projection Update
 
 Two actions are necessary for the Real-Time Updater in order to correctly update its projections:

@@ -59,9 +59,10 @@ On the other hand, Kafka and MongoDB can be used in different steps of the proce
 ### Kafka
 
 Kafka is a distributed event streaming platform, and it is used for most Fast Data events, starting from the ones produced by the CDC, up to the ones produced by the SVC.
-For some intermediate data, however, it is possible to choose whether you want it on Kafka or MongoDB, that is the case for `Projection Change` events.
 
 Kafka is very reliable and has great support for topic partitioning. This enables horizontal scalability since it is possible to have multiple replicas of the same service: each replica will read from its own partition, granting all the required properties and speeding up the process. This way, it is as close to being real-time as possible.
+
+
 
 ### MongoDB
 
