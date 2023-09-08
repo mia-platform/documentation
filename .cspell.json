@@ -191,6 +191,7 @@
     "objs",
     "Krew",
     "krew",
+    "VULNDB",
     "choco"
   ],
   "ignoreWords": [
