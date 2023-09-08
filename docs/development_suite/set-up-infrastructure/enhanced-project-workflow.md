@@ -149,7 +149,9 @@ All the contents of the `environments` directory are generated from scratch each
 :::
 
 :::caution
-If you are already working on a Project based on Kustomize, make sure that the `overlays/:env/kustomization.yml` file imports the proper resource within the `environments/:env/kustomization.yml` instead of the `configuration/kustomization.yml`. The Console, when generating the `environments/:env/kustomization.yml` will automatically import the `configuration/kustomization.yml` if present.
+If you are working on a Project with Kustomize, ensure that the `overlays/:env/kustomization.yml` file imports the proper resource. 
+To do this, replace the path `../../configuration` with `../../environments/<environment-id>` within the `environments/:env/kustomization.yml` instead of the `configuration/kustomization.yml`.
+When generating the `environments/:env/kustomization.yml`, the Console will automatically import the `configuration/kustomization.yml` if present.
 
 As such the final look of the `kustomization.yaml` within the overlays directory should look like the following example:
 
@@ -157,7 +159,7 @@ As such the final look of the `kustomization.yaml` within the overlays directory
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ../../environments/development
+- ../../environments/dev
 ```
 :::
 
@@ -167,10 +169,11 @@ Follow up what's explained in the [Activating the feature](#activating-the-featu
 
 #### Projet Settings configuration
 
-When you activate the Feature some new [Project Settings](/console/project-configuration/project-settings.md) will be available, specifically you will have to make sure the that the **default revision field** is not empty; if so you can select the revision you want to use; if you are migrating an existing Project that used to have several branches, you will see here the branches you used to work on and select the desired branch as default revision.
+After activating the Feature, ensure to configure the new **default revision** field from the [Project Settings](/console/project-configuration/project-settings.md) selecting one of the already existing branches (namely Revisions).
 
 :::info
-If no default revision is set the Console will suggest you to work with a default revision named `main`, you can find it in the Project Settings and safely use it as default if you don't have anything else to select.
+If no default revision is specified, the Console will use `main` as the default revision.
+This revision will be an empty configuration if no other `main` branch was previously created on the Project.
 :::
 
 If you want the Project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment), its configuration must contain the `strategy` property set to `pull` (the value for push-based deployments is `push`). Based on the selected strategy, the `runnerTool` may take different values. 
