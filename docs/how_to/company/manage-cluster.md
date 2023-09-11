@@ -52,27 +52,6 @@ Depending on the credentials type, the other information to be entered will be:
   - **Certificate thumbprint** (*required*): hash of the certificate, computed over all certificate data and its signature, used as a unique identifier for the certificate itself;
   - **Scope** (*required*): permission set used to grant access to specific resource functionalities. In other words, a scope represents what an application can access on behalf of the user.
 
-:::info Example - Azure AKS
-Azure gives the user the possibility to create new app registrations while defining access to resources. For the purpose of connecting the cluster to the Console it is important to know "Application (client) ID" and "Directory (tenant) ID", displayed at the end of the process.
-After the registration process, the user can add their credentials to Azure, choosing either to set a client secret (in which case the credentials type will be "Client credentials") or to upload a certificate (in which case it will be "Client credentials certificate" instead).
-
-Useful links (Azure documentation):
-- [Register an application](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app?WT.mc_id=addemystify-blog-masoucou&ref=codemilltech.com#register-an-application)
-- [Upload a trusted certificate issued by a certificate authority](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#option-1-recommended-upload-a-trusted-certificate-issued-by-a-certificate-authority)
-
-The values to be entered at creation will then be:
-- **Access Token URL**: `https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token`, where `{tenant}` is the value of "Directory (tenant) ID" (in case you are using the public instance of AKS);
-- **Client ID**: the value of "Application (client) ID";
-- **Scope**: the value of the client ID of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the client ID was `my-client-id`, the scope would be `my-client-id/.default`.
-
-If the credentials type is "Client credentials":
-- **Client secret**: the value of the client secret set.
-
-If the credentials type is "Client credentials certificate":
-- **Private key**: the private key of the certificate uploaded;
-- **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, whose value is displayed at the end of the upload process.
-:::
-
 :::info
 All credentials data are stored in an encrypted MongoDB collection.
 For more information about MongoDB encryption, take a look at the dedicated [documentation page](/runtime_suite/crud-service/30_encryption_configuration.md).
@@ -94,6 +73,27 @@ Depending on the vendor and runtime service selected in step 1, the types of cre
 |                             | EKS Fargate                                  | Token                                                     |
 | Microsoft Azure             | Azure Kubernetes Service (AKS)               | Token, Client credentials, Client credentials certificate |
 | Oracle Cloud                | Oracle Container Engine for Kubernetes (OKE) | Token                                                     |
+
+:::info Example - Azure AKS
+Azure gives the user the possibility to create new app registrations while defining access to resources. For the purpose of connecting the cluster to the Console it is important to know "Application (client) ID" and "Directory (tenant) ID", displayed at the end of the process.
+After the registration process, the user can add their credentials to Azure, choosing either to set a client secret (in which case the credentials type will be "Client credentials") or to upload a certificate (in which case it will be "Client credentials certificate" instead).
+
+Useful links (Azure documentation):
+- [Register an application](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app?WT.mc_id=addemystify-blog-masoucou&ref=codemilltech.com#register-an-application)
+- [Upload a trusted certificate issued by a certificate authority](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#option-1-recommended-upload-a-trusted-certificate-issued-by-a-certificate-authority)
+
+The values to be entered at creation will then be:
+- **Access Token URL**: `https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token`, where `{tenant}` is the value of "Directory (tenant) ID" (in case you are using the public instance of AKS);
+- **Client ID**: the value of "Application (client) ID";
+- **Scope**: the value of the client ID of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the client ID was `my-client-id`, the scope would be `my-client-id/.default`.
+
+If the credentials type is "Client credentials":
+- **Client secret**: the value of the client secret set.
+
+If the credentials type is "Client credentials certificate":
+- **Private key**: the private key of the certificate uploaded;
+- **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, whose value is displayed at the end of the upload process.
+:::
 
 ### Step 4: Advanced
 
