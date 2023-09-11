@@ -248,7 +248,7 @@ In these cases it may be useful to have a single "gateway project" that handles 
 
 Another advantage of such a configuration is that the authorization process can be centralized at the gateway level, freeing all the sub projects from the burden of managing client authentication and authorization.
 
-In [this section](/development_suite/set-up-infrastructure/authorization-flow.md) we described how the authorization flow works for a single project. In few words, in order to activate the authorization flow for a project you need to install the **Authorization Service**.  
+In [this section](/console/project-configuration/authorization-flow.md) we described how the authorization flow works for a single project. In few words, in order to activate the authorization flow for a project you need to install the **Authorization Service**.  
 The Authorization Service is the service that resolves if the caller is authorized to invoke a certain endpoint and defines a set of _platform headers_ to inform the rest of the architecture about the authorization of the client.
 
 For instance, the Authorization Service sets these headers in the response that it returns to the API Gateway:

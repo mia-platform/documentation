@@ -310,6 +310,52 @@ Now that the `aliasOf` option is clear, we can have a look at the following conf
 
 As you can see, we used the same Projection twice, under different conditions: the first time we matched the record based on its identifier (`PEOPLE` dependency, without alias), the second time we matched the record based on the `MARRIAGE_b_TO_PEOPLE` condition (`PARTNER` dependency, with alias).
 
+:::tip
+`aliasOf` can also be used to rename long Projection names without the need of them being re-used. Instead of using `company_department_prefix_people_table.name` we can alias the Projection to `people` and use `people.name` in the mapping! 
+:::
+
+Now let's imagine we need a `oneToMany` relationship, say, a `PEOPLE` to `CHILDREN` relationship. For that there's two things we need to consider. Let's see an example: 
+
+```json
+{
+   "version": "1.3.0",
+   "config": {
+      "SV_CONFIG": {
+         "dependencies": {
+            "PEOPLE": {
+               "type": "projection",
+               "on": "_identifier",
+            },
+            "CHILDREN_CONFIG": {
+               "type": "config",
+            },
+         },
+         "mapping": {
+            "name":"PEOPLE.name",
+            "children": "CHILDREN_CONFIG",
+         },
+      },
+      "CHILDREN_CONFIG": {
+         "joinDependency": "CHILDREN",
+         "dependencies": {
+            "CHILDREN": {
+               "type": "projection",
+               "on": "PEOPLE_TO_CHILDREN",
+               "aliasOf": "PEOPLE",
+            },
+         },
+         "mapping": {
+            "name": "CHILDREN.name",
+         },
+      },
+   },
+}
+```
+
+The first thing is that the `aliasOf` property always goes inside the `type: projection` configuration, as you can see we defined it in the `CHILDREN.dependencies.children` object instead of the `SV_CONFIG.dependencies.CHILDREN` object. The second is that we don't use `people` as a `joinDependency`, but we use the below aliased `children` instead.
+
+#### Referencing an aliased Projection inside a dependency
+
 You can reference a dependency under alias also in another dependency, with the `useAlias` option. Since `CHILD_TO_MOTHER` refers to the ER-Schema, which uses only the Projections name and not the dependencies name, you need to use `useAlias` to specify which is the specific dependency that refers to the Projection of the relation you want to use.
 
 :::info

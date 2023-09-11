@@ -183,7 +183,16 @@
     "decoderbufs",
     "pgoutput",
     "servlet",
-    "Adyen"
+    "gantt",
+    "Adyen",
+    "AKHQ",
+    "NOPROD",
+    "noprod",
+    "objs",
+    "Krew",
+    "krew",
+    "VULNDB",
+    "choco"
   ],
   "ignoreWords": [
     "asncdctools",

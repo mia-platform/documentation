@@ -8,6 +8,10 @@
       "collapsed": true,
       "items": [
         {
+          "id": "development_suite/company/overview",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/company/create",
           "type": "doc"
         },
@@ -26,10 +30,6 @@
           "items": [
             {
               "id": "development_suite/clusters-management/vendors-runtime-services",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/clusters-management/add-edit-remove-cluster",
               "type": "doc"
             }
           ]
@@ -70,14 +70,24 @@
       "type": "category"
     },
     {
+      "label": "Project Configuration",
+      "type": "category",
       "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "console/project-configuration/project-configuration"
+      },
       "items": [
         {
-          "id": "development_suite/set-up-infrastructure/create-project",
+          "id": "console/project-configuration/create-a-project",
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/project-settings",
+          "id": "console/project-configuration/delete-a-project",
+          "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/project-settings",
           "type": "doc"
         },
         {
@@ -85,73 +95,75 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
+            "id": "console/project-configuration/kustomize-your-configurations/kustomize-your-configurations",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
+              "id": "console/project-configuration/kustomize-your-configurations/migrate-to-kustomize",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/kustomize/projects",
+              "id": "console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/kustomize/examples",
+              "id": "console/project-configuration/kustomize-your-configurations/kustomize-use-cases",
               "type": "doc"
             }
           ]
         },
         {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/add-environment",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/remove-environment",
-              "type": "doc"
-            }
-          ],
           "label": "Manage Runtime Environments",
           "type": "category",
-          "link": {
-            "id": "development_suite/set-up-infrastructure/runtime-environments",
-            "type": "doc"
-          }
-        },
-        {
           "collapsed": true,
+          "link": {
+            "id": "console/project-configuration/manage-runtime-environments/manage-runtime-environments",
+            "type": "doc"
+          },
           "items": [
             {
-              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
+              "id": "console/project-configuration/manage-runtime-environments/configure-a-new-environment",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/env-var-vault",
+              "id": "console/project-configuration/manage-runtime-environments/delete-an-environment",
               "type": "doc"
             }
-          ],
+          ]
+        },
+        {
           "label": "Manage Environment Variables",
           "type": "category",
+          "collapsed": true,
           "link": {
-            "id": "development_suite/set-up-infrastructure/env-var",
+            "id": "console/project-configuration/manage-environment-variables/environment-variables-introduction",
             "type": "doc"
-          }
+          },
+          "items": [
+            {
+              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab",
+              "type": "doc"
+            },
+            {
+              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "development_suite/set-up-infrastructure/authorization-flow",
+          "id": "console/project-configuration/authorization-flow",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-portal/api-documentations",
+          "id": "console/project-configuration/documentation-portal",
           "type": "doc"
-        }
-      ],
-      "label": "Project Configuration",
-      "type": "category"
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+          "type": "doc"
+        }        
+      ]
     },
     {
       "collapsed": true,
@@ -347,16 +359,44 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/deploy/configure-jenkins",
-          "type": "doc"
+          "type": "category",
+          "label": "Pipeline-based deployment strategy",
+          "link": {
+            "id": "development_suite/deploy/pipeline-based/pipeline-based",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-jenkins",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "development_suite/deploy/configure-github-actions",
-          "type": "doc"
+          "type": "category",
+          "label": "GitOps deployment strategy (BETA)",
+          "link": {
+            "id": "development_suite/deploy/gitops-based/gitops-based",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/deploy/gitops-based/configure-argocd",
+              "type": "doc"
+            }
+          ]
         }
       ],
-      "label": "Deploy what you have created",
-      "type": "category"
+      "label": "Deploy your workload",
+      "type": "category",
+      "link": {
+        "id": "development_suite/deploy/deploy",
+        "type": "doc"
+      }
     },
     {
       "collapsed": true,
@@ -387,10 +427,6 @@
         },
         {
           "id": "development_suite/monitoring/resources/namespace",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/monitoring/configuration",
           "type": "doc"
         },
         {
@@ -438,7 +474,7 @@
       ],
       "link": {
         "type": "doc",
-        "id": "development_suite/identity-and-access-management/overview"
+        "id": "development_suite/identity-and-access-management/identity-and-access-management"
       },
       "type": "category",
       "label": "Identity and Access Management"
@@ -447,7 +483,7 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/user-settings/user-profile-picture",
+          "id": "development_suite/user-settings/user-personal-info",
           "type": "doc"
         },
         {
@@ -852,25 +888,52 @@
           "id": "tutorial/flow_manager/flow_manager_tutorial",
           "type": "doc"
         },
-        {
-          "id": "tutorial/fast_data/fast_data_low_code_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/fast_data/bucket_storage_support_tutorial",
-          "type": "doc"
-        },
+
         {
           "id": "tutorial/design_overview/design_overview",
           "type": "doc"
         },
         {
-          "id": "tutorial/migration/fast_data_migration_tutorial",
+          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
           "type": "doc"
         },
         {
-          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
-          "type": "doc"
+          "label": "Fast Data",
+          "type": "category",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "tutorial/fast_data/fast_data_low_code_tutorial",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/fast_data/bucket_storage_support_tutorial",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/migration/fast_data_migration_tutorial",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "label": "Backoffice",
+          "type": "category",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "tutorial/backoffice/basics",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/backoffice/templates",
+              "type": "doc"
+            },
+            {
+              "id": "tutorial/backoffice/microfrontends",
+              "type": "doc"
+            }
+          ]
         }
       ],
       "label": "Tutorials",
@@ -897,6 +960,10 @@
         },
         {
           "id": "how_to/crud_service/crud_oss_usage",
+          "type": "doc"
+        },
+        {
+          "id": "how_to/company/manage-cluster",
           "type": "doc"
         }
       ],
@@ -987,13 +1054,13 @@
       "type": "category",
       "collapsed": true,
       "label": "PaaS",
+      "link": {
+        "id": "paas/overview",
+        "type": "doc"
+      },
       "items": [
         {
-          "id": "paas/overview",
-          "type": "doc"
-        },
-        {
-          "id": "paas/alerting_rules",
+          "id": "paas/maintenance",
           "type": "doc"
         },
         {
@@ -1013,24 +1080,20 @@
           "type": "doc"
         },
         {
-          "id": "paas/K8s_roles_and_permissions",
-          "type": "doc"
-        },
-        {
           "label": "Tools",
           "type": "category",
           "collapsed": true,
           "items": [
             {
+              "id": "paas/runtime",
+              "type": "doc"
+            },
+            {
+              "id": "paas/message-broker",
+              "type": "doc"
+            },
+            {
               "id": "paas/docker-registry",
-              "type": "doc"
-            },
-            {
-              "id": "paas/kube-green",
-              "type": "doc"
-            },
-            {
-              "id": "paas/cert-manager",
               "type": "doc"
             },
             {
@@ -1038,11 +1101,23 @@
               "type": "doc"
             },
             {
-              "id": "paas/mtls",
+              "id": "paas/cert-manager",
               "type": "doc"
             },
             {
-              "id": "paas/alarms",
+              "id": "paas/grafana",
+              "type": "doc"
+            },
+            {
+              "id": "paas/kube-green",
+              "type": "doc"
+            },
+            {
+              "id": "paas/telepresence",
+              "type": "doc"
+            },
+            {
+              "id": "paas/mtls",
               "type": "doc"
             }
           ]
@@ -1081,8 +1156,18 @@
             "dirName": "self_hosted/installation-chart",
             "type": "autogenerated"
           }]
+        },
+        {
+          "id": "self_hosted/synchronize-users",
+          "type": "doc"
         }
       ]
+    },
+    {
+      "label": "Bring Your Own Infrastructure",
+      "id": "byoi/byoi-overview",
+      "type": "doc"
+
     }
   ],
   "marketplace": [
@@ -1243,6 +1328,18 @@
         "id": "release-notes/versions"
       },
       "items": [
+        {
+          "id": "release-notes/v11.5.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.0",
+          "type": "doc"
+        },
         {
           "id": "release-notes/v11.4.2",
           "type": "doc"

@@ -31,7 +31,7 @@ Check out the [related section](/development_suite/deploy/overview.md#compare-se
 
 ### When a project is deployed, what is released?
 
-The Deploy of a project will only release the configuration [set as a *Git repo path* during project creation](/development_suite/set-up-infrastructure/create-project.mdx#step-2-repository).
+The Deploy of a project will only release the configuration [set as a *Git repo path* during project creation](/console/project-configuration/create-a-project.mdx#step-2-repository).
 
 :::tip
 From Console, click on Git provider icon, at the top right part of the Console, to open the project configurations repository
@@ -99,7 +99,7 @@ No, you can only use **HTTP**.
 You can change the state (**PUBLIC**, **DRAFT**, **TRASH** or **DELETED**) of a document by making a POST request. Check out the [CRUD Service documentation](/runtime_suite/crud-service/10_overview_and_usage.md#state-transitions) for details.
 
 :::tip
-You can visit the [Documentation Portal](/development_suite/api-portal/api-documentations.md) to see the documentation of your CRUDs APIs.
+You can visit the [Documentation Portal](/console/project-configuration/documentation-portal.md) to see the documentation of your CRUDs APIs.
 :::
 
 ## Endpoints
