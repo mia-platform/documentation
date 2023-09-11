@@ -21,7 +21,7 @@ Any `OAuth2` compliant Identity Provider is supported, however Mia-Platform Cons
 For provider not listed here, you can use the `generic` authentication provider to configure your own.
 :::
 
-## Configure you Authentication Provider
+## Configure your Authentication Provider
 
 To connect Mia-Platform Console with your Authentication Provider you have to setup the `authProviders` configuration.
 
@@ -86,6 +86,14 @@ Even though the authentication is resolved by a third party, the sessions provid
 :::info
 If you are in doubt on how to generate such values, you can use the `openssl rand` command, for instance use `openssl rand -hex 512` for the `jwtTokenSignKey` and `openssl rand -hex 128` for the `tokenPassphrase`.
 :::
+
+## Expose synchronization webhooks
+
+If you want to control user creation and deletion from an external Identity Provider you can use the `enableUserSynchronizationWebhooks` configuration flag
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+|`enableUserSynchronizationWebhooks`| boolean | Activates webhooks for automatic user synchronization with external Identity providers |  | ✅ |
 
 ## Additional Authentication Clients
 
