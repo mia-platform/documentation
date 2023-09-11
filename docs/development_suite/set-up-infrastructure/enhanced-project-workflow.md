@@ -29,7 +29,7 @@ This change also means that the Console will not rely on the typical Git-based i
 
 To keep track of the Project evolution, user can create `versions` (similar to Git tags) that act as fixed snapshots of the configuration in a particular moment.
 
-Developers can manage *revisions* and *versions* from the dedicated sections inside the Project Settings area. Revisions can be accessed and deleted from the revisions management page:
+Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
 ![Revisions management page](img/revisions-overview.png)
 
