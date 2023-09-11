@@ -48,7 +48,7 @@ Depending on the credentials type, the other information to be entered will be:
 * For credentials of the type "Client credentials certificate":
   - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
   - **Client ID** (*required*): OAuth2 public client identifier;
-  - **Private key** (*required*): private key of the client certificate needed during the SSL handshake to prove that the client owns the certificate;
+  - **Private key** (*required*): private key of the client certificate used as an authentication token to sign a JWT assertion;
   - **Certificate thumbprint** (*required*): hash of the certificate, computed over all certificate data and its signature, used as a unique identifier for the certificate itself;
   - **Scope** (*required*): permission set used to grant access to specific resource functionalities. In other words, a scope represents what an application can access on behalf of the user.
 
@@ -85,7 +85,7 @@ Useful links (Azure documentation):
 The values to be entered at creation will then be:
 - **Access Token URL**: `https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token`, where `{tenant}` is the value of "Directory (tenant) ID" (in case you are using the public instance of AKS);
 - **Client ID**: the value of "Application (client) ID";
-- **Scope**: the value of the client ID of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the client ID was `my-client-id`, the scope would be `my-client-id/.default`.
+- **Scope**: the value of the client ID of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the Azure Kubernetes Service AAD Server is `my-client-id`, the scope will be `my-client-id/.default`.
 
 If the credentials type is "Client credentials":
 - **Client secret**: the value of the client secret set.
