@@ -26,8 +26,9 @@ This object contains the necessary fields to configure email sending through the
 ## CRUD
 The CRUD collection of `form-schemas` has to updated with the following fields:
 
+- **emailEnabled** (optional), of type *boolean*, which enables the email notification for a specific form schema. It must be set to `true` for sending the email to the user;
 - **emailTemplateId**(optional) , of type *object*, which is the id of the email template;
-- **emailCarbonCopies** (optional), of type *array of strings*, which is the array containing the email addresses to be set as carbon copies (CC).
+- **emailCarbonCopies** (optional), of type *array of strings*, which is the array containing the email addresses to be set as carbon copies (CC);
 - **emailBlindCarbonCopies** (optional), of type *array of strings*, which is the array containing the email addresses to be set as blind carbon copies (BCC).
 
 ## Usage
