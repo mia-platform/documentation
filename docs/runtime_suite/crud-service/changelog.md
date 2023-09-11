@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.9.1 - 2023-09-08
+
+### Fixed
+
+- [#172](https://github.com/mia-platform/crud-service/issues/172) collection _export_ endpoint can now parse multiple accept header
+values and select the one with the highest weight
+
 ## 6.9.0 - 2023-08-23
 
 ### Added
