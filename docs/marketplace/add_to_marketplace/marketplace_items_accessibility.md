@@ -1,7 +1,7 @@
 ---
 id: marketplace_items_accessibility
-title: Make your Marketplace items available to others
-sidebar_label: Make your Marketplace items available to others
+title: Make your Marketplace items available to other Companies
+sidebar_label: Make your Marketplace items available to other Companies
 ---
 
 You can contribute to the Mia-Platform Marketplace with your own Marketplace items, making them accessible to other Companies. This section will guide you on how to do so, offering two main methods:
@@ -13,7 +13,7 @@ Both methods will be explained in the following paragraphs.
 
 ## Use the CMS to make your Marketplace item accessible to others
 
-To make your marketplace item accessible to other Companies, you first need to create it in the CMS. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so.  
+To make your Marketplace item accessible to other Companies, you first need to create it in the CMS. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so.  
 Once you have created your Marketplace item in the CMS, you can make it accessible to other companies by editing its `visibility` property. Specifically, set the `allTenants` property inside the `visibility` object to "true".  
 After editing, the visibility property should look like this:
 
@@ -23,12 +23,15 @@ After editing, the visibility property should look like this:
 }
 ```
 
-If the repository where your Marketplace item is located is open source, then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
+If the repository where your Marketplace item is located is freely accessibile(open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
 
-Otherwise, in order to grant others access, you should provide them with a provider that has the required permissions to access your Marketplace item repository and make it accessible to other companies.
+Otherwise, in order to grant access to others Companies, you should provide them with a **Provider** that has the required permissions to access your Marketplace item repository and make it accessible to other companies.
 
-Firstly, you need to connect the provider you wish to use for this purpose to your company using the Mia-Platform Console. You can find detailed instructions on how to do so on [this page](/development_suite/set-up-infrastructure/configure-provider.mdx#connect-a-provider).  
-For this specific case, you should select only the "Git Provider" capability with the "Marketplace" functionality in the "Provider Services" step. Then, set the accessibility of the provider to be accessible by other Companies in the "Provider Details" step.
+Firstly, you need to connect the Provider you wish to use for this purpose to your company using the Mia-Platform Console. Detailed instructions on how to connect a Provider for Marketplace purposes can be found on [this page](/development_suite/set-up-infrastructure/configure-provider.mdx#connect-a-provider-for-marketplace).  
+
+:::info
+Remember to set the accessibility of the provider to be accessible by other Companies in the "**Provider Details**" step or by editing the existing Provider.
+:::
 
 After creating and connecting your provider, you can return to the CMS and edit the `providerId` property (using the providerId of the provider you connected in the step before) of the marketplace item that you wish to publish.
 
