@@ -477,10 +477,6 @@
     "destination": "/docs/development_suite/deploy/overview",
     "addedOn": "2023-05-10"
   },
-  "/docs/development_suite/deploy/configuration": {
-    "destination": "/docs/development_suite/deploy/configure-jenkins",
-    "addedOn": "2023-05-10"
-  },
   "/docs/development_suite/api-console/api-design/design-overview": {
     "destination": "/docs/development_suite/api-console/api-design/overview",
     "addedOn": "2023-05-23"
@@ -553,6 +549,10 @@
     "destination": "/docs/how_to/company/manage-cluster",
     "addedOn": "2023-08-11"
   },
+  "/docs/development_suite/deploy/configuration": {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
+    "addedOn": "2023-08-25"
+  },  
   "/docs/development_suite/set-up-infrastructure/create-project": {
     "destination": "/docs/console/project-configuration/create-a-project",
     "addedOn": "2023-08-29"
@@ -611,6 +611,26 @@
   },
   "/docs/development_suite/user-settings/user-profile-picture":  {
     "destination": "/docs/development_suite/user-settings/user-personal-info",
-     "addedOn": "2023-08-29"
-  } 
+    "addedOn": "2023-08-29"
+  },
+  "/docs/tutorial/demo_project/overview":  {
+    "destination": "/docs/overview/mia_platform_overview",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/identity-and-access-management/overview":  {
+    "destination": "/docs/development_suite/identity-and-access-management",
+    "addedOn": "2023-08-29"
+  },
+  "docs/runtime_suite_applications/payment-integration-hub/30_configuration.md": {
+    "destination": "docs/runtime_suite_applications/payment-integration-hub/50_configuration.md",
+    "addedOn": "2023-09-08"
+  },
+  "/docs/development_suite/deploy/configure-github-actions":  {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-github-actions",
+    "addedOn": "2023-09-12"
+  },
+  "/docs/development_suite/deploy/configure-jenkins":  {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
+    "addedOn": "2023-09-12"
+  }
 }
