@@ -3,6 +3,19 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.3.2] - 2023-09-11
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.0`
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.5.2`
+- `@mia-platform-internal/reactord` to version `^9.8.0`
+- Dev dependencies updated
+
+### Changed
+
+- Scoped CSS classes to container id
+
 ## [1.3.1] - 2023-08-24
 
 ### Versioning
