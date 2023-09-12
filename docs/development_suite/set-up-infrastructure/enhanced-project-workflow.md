@@ -214,7 +214,7 @@ Here is a list of the files and directories that can be  deleted:
 
 To activate the feature, follow the instructions in the [dedicated section](#activating-the-feature). If you wish to activate the feature on a single Project, proceed with enabling the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle on the specific Project rather than on the whole Company.
 
-### Projet Settings configuration
+### Project Settings configuration
 
 After activating the Feature, ensure to configure the new **default revision** field from the [Project Settings](/console/project-configuration/project-settings.md) selecting one of the already existing branches (namely Revisions).
 
