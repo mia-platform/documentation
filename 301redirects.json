@@ -625,12 +625,12 @@
     "destination": "docs/runtime_suite_applications/payment-integration-hub/50_configuration.md",
     "addedOn": "2023-09-08"
   },
-  "/docs/development_suite/deploy/pipeline-based/configure-github-actions":  {
-    "destination": "/docs/development_suite/deploy/configure-github-actions",
+  "/docs/development_suite/deploy/configure-github-actions":  {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-github-actions",
     "addedOn": "2023-09-12"
   },
-  "/docs/development_suite/deploy/pipeline-based/configure-jenkins":  {
-    "destination": "/docs/development_suite/deploy/configure-jenkins",
+  "/docs/development_suite/deploy/configure-jenkins":  {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
     "addedOn": "2023-09-12"
   },
   "/docs/development_suite/deploy/configuration#how-to-automatically-create-jenkins-job-on-project-creation":  {
