@@ -5,7 +5,6 @@ sidebar_label: Console Levels and Permission Management
 ---
 
 Having the ability to assign specific permissions and roles to each [Identity](/development_suite/identity-and-access-management/index.md#identity-and-access-management) that has access to the system in a detailed way is a key point in defining responsibilities within your platform ecosystem. 
-
 The Mia-Platform Console allows for assigning specific levels of access to various system resources through a configuration system based on hierarchical levels.  
 Let's see how the different levels are organized.
 
