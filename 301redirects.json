@@ -632,9 +632,6 @@
   "/docs/development_suite/deploy/configure-jenkins":  {
     "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
     "addedOn": "2023-09-12"
-  },
-  "/docs/development_suite/deploy/configuration#how-to-automatically-create-jenkins-job-on-project-creation":  {
-    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins#how-to-automatically-create-jenkins-job-on-project-creation",
-    "addedOn": "2023-09-12"
+  }
   }
 }
