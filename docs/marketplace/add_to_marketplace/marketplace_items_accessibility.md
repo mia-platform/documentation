@@ -23,7 +23,7 @@ After editing, the visibility property should look like this:
 }
 ```
 
-If the repository where your Marketplace item is located is freely accessibile(open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
+If the repository where your Marketplace item is located is freely accessible(open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
 
 Otherwise, in order to grant access to others Companies, you should provide them with a **Provider** that has the required permissions to access your Marketplace item repository and make it accessible to other Companies.
 
