@@ -1,4 +1,47 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.5.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +61,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1410,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -38,7 +81,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -117,11 +160,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(kafka_consumer_fetch_manager_bytes_consumed_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "interval": "2m",
+          "interval": "",
           "legendFormat": "Input",
           "range": true,
           "refId": "A"
@@ -129,24 +172,24 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "-sum by(service)(kafka_producer_outgoing_byte_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
           "hide": false,
-          "interval": "2m",
+          "interval": "",
           "legendFormat": "Output",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "IO Bytes Rate",
+      "title": "IO Bytes Rate [v8+]",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -278,7 +321,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", container=~\"$rtu\", k8sCluster=\"$cluster\"}) by (container)",
@@ -290,7 +333,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"cpu\"}\n)",
@@ -302,7 +345,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"cpu\"}\n)",
@@ -318,7 +361,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -451,19 +494,19 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", image!=\"\"})",
+          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", image!=\"\"}) by (container)",
           "hide": false,
-          "legendFormat": "RAM Usage",
+          "legendFormat": "{{container}}",
           "range": true,
           "refId": "Usage"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"memory\"}\n)",
@@ -475,7 +518,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"memory\"}\n)",
@@ -491,7 +534,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -570,11 +613,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(kafka_consumer_fetch_manager_records_consumed_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "interval": "2m",
+          "interval": "",
           "legendFormat": "Input",
           "range": true,
           "refId": "A"
@@ -582,12 +625,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "-sum by(service)(kafka_producer_record_send_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
           "hide": false,
-          "interval": "2m",
+          "interval": "",
           "legendFormat": "Output",
           "range": true,
           "refId": "B"
@@ -595,24 +638,24 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by(service)(kafka_consumer_fetch_manager_records_consumed_total{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "hide": true,
-          "interval": "2m",
+          "expr": "",
+          "hide": false,
+          "interval": "",
           "legendFormat": "Input",
           "range": true,
           "refId": "C"
         }
       ],
-      "title": "IO Messages Rate",
+      "title": "IO Messages Rate [v8+]",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -691,7 +734,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(deployment)(kube_deployment_status_replicas_available{k8sCluster=\"$cluster\", namespace=~\"$namespace\", deployment=~\"$rtu\"})",
@@ -704,12 +747,108 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "cps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "id": 35,
+      "interval": "1m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum by(service)(rate(kafka_consumer_fetch_manager_records_consumed_total{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{service}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Messages Consumption Rate [v7+]",
+      "type": "timeseries"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 38
       },
       "id": 14,
       "panels": [],
@@ -719,7 +858,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -778,7 +917,7 @@
         "h": 15,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 39
       },
       "id": 13,
       "interval": "1m",
@@ -798,11 +937,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service, topic)(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "legendFormat": "{{topic}}",
+          "legendFormat": "{{service}} - {{topic}}",
           "range": true,
           "refId": "A"
         }
@@ -813,7 +952,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -872,7 +1011,7 @@
         "h": 10,
         "w": 6,
         "x": 0,
-        "y": 43
+        "y": 54
       },
       "id": 7,
       "interval": "1m",
@@ -892,7 +1031,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_consumer_fetch_manager_fetch_size_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -904,7 +1043,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_consumer_fetch_manager_fetch_size_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -920,7 +1059,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -980,7 +1119,7 @@
         "h": 10,
         "w": 6,
         "x": 6,
-        "y": 43
+        "y": 54
       },
       "id": 8,
       "interval": "1m",
@@ -1000,7 +1139,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_consumer_fetch_manager_fetch_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1012,7 +1151,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_consumer_fetch_manager_fetch_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1028,7 +1167,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1088,7 +1227,7 @@
         "h": 10,
         "w": 6,
         "x": 12,
-        "y": 43
+        "y": 54
       },
       "id": 11,
       "interval": "1m",
@@ -1108,7 +1247,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_consumer_coordinator_join_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1120,7 +1259,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_consumer_coordinator_join_time_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1136,7 +1275,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1196,7 +1335,7 @@
         "h": 10,
         "w": 6,
         "x": 18,
-        "y": 43
+        "y": 54
       },
       "id": 12,
       "interval": "1m",
@@ -1216,7 +1355,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_consumer_coordinator_sync_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1228,7 +1367,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_consumer_coordinator_sync_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1244,7 +1383,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1304,7 +1443,7 @@
         "h": 10,
         "w": 6,
         "x": 0,
-        "y": 53
+        "y": 64
       },
       "id": 9,
       "interval": "1m",
@@ -1324,7 +1463,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_consumer_coordinator_commit_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1336,7 +1475,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_consumer_coordinator_commit_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1352,7 +1491,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1412,7 +1551,7 @@
         "h": 10,
         "w": 6,
         "x": 6,
-        "y": 53
+        "y": 64
       },
       "id": 10,
       "interval": "1m",
@@ -1432,7 +1571,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_consumer_coordinator_rebalance_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1444,7 +1583,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_consumer_coordinator_rebalance_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1463,7 +1602,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 74
       },
       "id": 21,
       "panels": [],
@@ -1473,7 +1612,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1533,7 +1672,7 @@
         "h": 10,
         "w": 4,
         "x": 0,
-        "y": 64
+        "y": 75
       },
       "id": 15,
       "interval": "1m",
@@ -1553,7 +1692,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_producer_request_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1565,7 +1704,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_producer_request_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1581,7 +1720,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1641,7 +1780,7 @@
         "h": 10,
         "w": 4,
         "x": 4,
-        "y": 64
+        "y": 75
       },
       "id": 17,
       "interval": "1m",
@@ -1661,7 +1800,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(kafka_producer_request_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1673,7 +1812,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(kafka_producer_response_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1689,7 +1828,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1748,7 +1887,7 @@
         "h": 10,
         "w": 4,
         "x": 8,
-        "y": 64
+        "y": 75
       },
       "id": 18,
       "interval": "1m",
@@ -1768,7 +1907,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_producer_batch_size_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1780,7 +1919,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max(kafka_producer_batch_size_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1796,7 +1935,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1855,7 +1994,7 @@
         "h": 10,
         "w": 4,
         "x": 12,
-        "y": 64
+        "y": 75
       },
       "id": 19,
       "interval": "1m",
@@ -1875,7 +2014,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_producer_compression_rate_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1891,7 +2030,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1951,7 +2090,7 @@
         "h": 10,
         "w": 4,
         "x": 16,
-        "y": 64
+        "y": 75
       },
       "id": 20,
       "interval": "1m",
@@ -1971,7 +2110,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg(kafka_producer_io_wait_time_ns_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
@@ -1990,7 +2129,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 74
+        "y": 85
       },
       "id": 22,
       "panels": [],
@@ -2000,7 +2139,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Commit phase not included",
       "fieldConfig": {
@@ -2030,7 +2169,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 75
+        "y": 86
       },
       "id": 23,
       "interval": "1m",
@@ -2054,7 +2193,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2073,7 +2212,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2103,10 +2242,10 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 75
+        "y": 86
       },
       "id": 32,
-      "interval": "2m",
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2126,11 +2265,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m])))",
+          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2141,11 +2280,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2156,11 +2295,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "0.95",
@@ -2170,11 +2309,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2190,7 +2329,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2219,7 +2358,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 75
+        "y": 86
       },
       "id": 25,
       "interval": "1m",
@@ -2243,7 +2382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2262,7 +2401,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2292,10 +2431,10 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 75
+        "y": 86
       },
       "id": 30,
-      "interval": "2m",
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2315,11 +2454,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m])))",
+          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2330,11 +2469,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2345,11 +2484,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "0.95",
@@ -2359,11 +2498,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2379,7 +2518,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2408,7 +2547,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 83
+        "y": 94
       },
       "id": 24,
       "interval": "1m",
@@ -2432,7 +2571,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2451,7 +2590,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2481,10 +2620,10 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 83
+        "y": 94
       },
       "id": 33,
-      "interval": "2m",
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2504,11 +2643,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m])))",
+          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2519,11 +2658,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2534,11 +2673,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "0.95",
@@ -2548,11 +2687,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2568,7 +2707,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2597,7 +2736,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 83
+        "y": 94
       },
       "id": 26,
       "interval": "1m",
@@ -2621,7 +2760,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2640,7 +2779,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2670,10 +2809,10 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 83
+        "y": 94
       },
       "id": 31,
-      "interval": "2m",
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2693,11 +2832,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m])))",
+          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2708,11 +2847,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2723,11 +2862,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "0.95",
@@ -2737,11 +2876,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2757,7 +2896,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2786,7 +2925,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 91
+        "y": 102
       },
       "id": 27,
       "interval": "1m",
@@ -2810,7 +2949,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -2829,7 +2968,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2859,10 +2998,10 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 91
+        "y": 102
       },
       "id": 34,
-      "interval": "2m",
+      "interval": "1m",
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -2882,11 +3021,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m])))",
+          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2897,11 +3036,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2912,11 +3051,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "0.95",
@@ -2926,11 +3065,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"new-rtu.*\"}[2m])))",
+          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -2944,9 +3083,22 @@
       "type": "stat"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 110
+      },
+      "id": 36,
+      "panels": [],
+      "title": "Others",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -3003,10 +3155,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 91
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 111
       },
       "id": 29,
       "interval": "2m",
@@ -3027,7 +3179,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -3042,108 +3194,9 @@
       "title": "Mongo Driver Commands Execution Time By Collection",
       "transformations": [],
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "momm4o6nk"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 99
-      },
-      "id": 28,
-      "interval": "2m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "momm4o6nk"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg by(service)(rate(rtu_consumer_topic_partition_per_batch_count_count{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m]))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Mean Topic-Partitions per Consumer Batch",
-      "transformations": [],
-      "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "1m",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -3168,14 +3221,10 @@
         "type": "datasource"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "noprod",
-          "value": "noprod"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_pod_info,k8sCluster)",
         "hide": 0,
@@ -3194,14 +3243,10 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": true,
-          "text": "fast-data-tests-development",
-          "value": "fast-data-tests-development"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "momm4o6nk"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_pod_info{k8sCluster=\"$cluster\"},namespace)",
         "hide": 0,
@@ -3220,18 +3265,15 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "fast-data-sv-books-single-view-trigger-generator",
-          "value": "fast-data-sv-books-single-view-trigger-generator"
-        },
+        "allValue": ".*rtu.*|.*realtime.*",
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "momm4o6nk"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\"},service)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "multi": true,
         "name": "rtu",
         "options": [],
@@ -3239,7 +3281,7 @@
           "query": "label_values(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\"},service)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -3253,8 +3295,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Fast Data - Real-Time Updater",
+  "title": "Fast Data Real-Time Updater",
   "uid": "cffd3308-202a-41a2-9c0e-743457536fb8",
-  "version": 33,
+  "version": 44,
   "weekStart": ""
 }

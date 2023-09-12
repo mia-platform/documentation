@@ -1,4 +1,47 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.5.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -24,7 +67,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 881,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -46,7 +89,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Current number of projection changes that are processed per second to generate Single Views (in the current time-frame)",
       "fieldConfig": {
@@ -104,7 +147,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -122,7 +165,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Average number of projection changes that are processed per second to generate Single Views (in the current time-frame)",
       "fieldConfig": {
@@ -180,7 +223,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -197,7 +240,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Maximum number of projection changes that are processed per second to generate Single Views (in the current time-frame)",
       "fieldConfig": {
@@ -255,7 +298,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -272,7 +315,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Total amount of Projection Changes processed current time-frame to generate Single Views (approximated)",
       "fieldConfig": {
@@ -340,7 +383,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -357,7 +400,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Total amount of Projection Changes processed current time-frame to generate Single Views (approximated)",
       "fieldConfig": {
@@ -413,7 +456,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -430,7 +473,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Total amount of Projection Changes processed current time-frame to generate Single Views (approximated)",
       "fieldConfig": {
@@ -486,7 +529,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -516,7 +559,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -576,7 +619,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -589,7 +632,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -603,7 +646,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -617,7 +660,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -631,7 +674,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -645,7 +688,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -659,7 +702,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -677,7 +720,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -739,7 +782,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -752,7 +795,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -766,7 +809,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -780,7 +823,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -794,7 +837,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -812,7 +855,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -895,11 +938,11 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by(pod) (rate(svtg_strategy_execution_time_bucket{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval])) / sum by(pod) (rate(svtg_strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval]))",
+          "expr": "sum by(service) (rate(svtg_strategy_execution_time_bucket{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval])) / sum by(service) (rate(svtg_strategy_execution_time_count{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[$__interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "__auto",
@@ -913,7 +956,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -996,7 +1039,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1027,7 +1070,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1107,7 +1150,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1125,7 +1168,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows the amount of validation errors obtained in the last 2 minutes from generating SV.",
       "fieldConfig": {
@@ -1207,7 +1250,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"VALIDATION_ERROR\"}[$__interval])) by (portfolioOrigin)",
@@ -1222,7 +1265,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows the amount of SV not generated in the last 2 minutes due to missing data or other related reasons.",
       "fieldConfig": {
@@ -1304,7 +1347,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"NO_SV_GENERATED\"}[$__interval])) by (portfolioOrigin)",
@@ -1319,7 +1362,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows the amount of error in the last 2 minutes due to a violation of the 1-to-1 relationship between a PC and the generated SV.",
       "fieldConfig": {
@@ -1401,7 +1444,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE\"}[$__interval])) by (portfolioOrigin)",
@@ -1416,7 +1459,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows the amount of max aggregation time error (exceeded allowed computation time) obtained in the last 2 minutes from generating SV.",
       "fieldConfig": {
@@ -1498,7 +1541,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"SINGLE_VIEW_AGGREGATION_MAX_TIME\"}[$__interval])) by (portfolioOrigin)",
@@ -1513,7 +1556,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows the amount of unknown errors obtained in the last 2 minutes from generating SV.",
       "fieldConfig": {
@@ -1595,7 +1638,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"UNKNOWN_ERROR\"}[$__interval])) by (portfolioOrigin)",
@@ -1610,7 +1653,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows the amount of errors obtained in the last 2 minutes while producing messages to Kafka.",
       "fieldConfig": {
@@ -1692,7 +1735,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_error_gen_total{k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\", errorType=\"ERROR_SEND_SVC_EVENT\"}[$__interval])) by (portfolioOrigin)",
@@ -1707,7 +1750,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows which kind of operation are performed generating Single Views",
       "fieldConfig": {
@@ -1788,7 +1831,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "sum(increase(svc_operation_type_total{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__interval])) by (operationType)",
@@ -1803,7 +1846,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1863,7 +1906,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1876,7 +1919,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1890,7 +1933,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1904,7 +1947,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1918,7 +1961,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1932,7 +1975,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1946,7 +1989,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1960,7 +2003,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1978,7 +2021,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2040,7 +2083,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2053,7 +2096,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2067,7 +2110,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2081,7 +2124,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2095,7 +2138,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2109,7 +2152,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2123,7 +2166,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2137,7 +2180,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2156,7 +2199,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2216,7 +2259,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2227,7 +2270,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2239,7 +2282,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2251,7 +2294,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2263,7 +2306,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2275,7 +2318,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2287,7 +2330,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2299,7 +2342,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2315,7 +2358,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2377,7 +2420,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2388,7 +2431,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2400,7 +2443,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2412,7 +2455,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2424,7 +2467,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"15000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2436,7 +2479,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"30000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))  / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2448,7 +2491,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"60000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2460,7 +2503,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_pc_total_handle_time_bucket{le=\"120000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_pc_total_handle_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2476,7 +2519,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2536,7 +2579,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2547,7 +2590,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2559,7 +2602,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2571,7 +2614,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "round(sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])))",
@@ -2587,7 +2630,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2649,7 +2692,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2660,7 +2703,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"150\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2672,7 +2715,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=~\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"2000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2684,7 +2727,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
           "expr": "(sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range])) - sum(increase(svc_creation_time_bucket{le=\"5000\", k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))) / sum(increase(svc_creation_time_count{k8sCluster=\"$cluster\", namespace=\"$namespace\", portfolioOrigin=~\"$portfolioOrigin\", svType=~\"$svType\"}[$__range]))",
@@ -2713,7 +2756,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how many CPUs (from K8s nodes) Real-Time Updaters services are currently consuming.",
       "fieldConfig": {
@@ -2794,7 +2837,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{k8sCluster=\"$cluster\", namespace=\"$namespace\", pod=~\".+realtime-updater.+\"}) by (pod)",
@@ -2810,7 +2853,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how many CPUs (from K8s nodes) Single View Triegger Generator services are currently consuming.",
       "fieldConfig": {
@@ -2890,7 +2933,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{k8sCluster=\"$cluster\", namespace=\"$namespace\", pod=~\".*single-view-trigger-generator.+\"}) by (pod)",
@@ -2906,7 +2949,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how many CPUs (from K8s nodes) Single View Creator services are currently consuming.",
       "fieldConfig": {
@@ -2987,7 +3030,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{k8sCluster=\"$cluster\", namespace=\"$namespace\", pod=~\".*single-view-creator.+\"}) by (pod)",
@@ -3003,7 +3046,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how much memory (from K8s nodes) Real-Time Updaters services are currently consuming.",
       "fieldConfig": {
@@ -3084,7 +3127,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container!=\"\", image!=\"\", pod=~\".+realtime-updater.+\"}) by (pod)",
@@ -3100,7 +3143,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how much memory (from K8s nodes) Single View Trigger Generator services are currently consuming.",
       "fieldConfig": {
@@ -3179,7 +3222,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container!=\"\", image!=\"\", pod=~\".*single-view-trigger-generator.+\"}) by (pod) / 1024 / 1024",
@@ -3195,7 +3238,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how much memory (from K8s nodes) Single View Creator services are currently consuming.",
       "fieldConfig": {
@@ -3276,7 +3319,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container!=\"\", image!=\"\", pod=~\".*single-view-creator.+\"}) by (pod)",
@@ -3292,7 +3335,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how many pods of Real-Time Updater services are currently deployed in the namespace.",
       "fieldConfig": {
@@ -3374,7 +3417,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\", deployment=~\".*realtime-updater.*\"}) by (deployment)",
@@ -3390,7 +3433,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how many pods of Single View Trigger Generator services are currently deployed in the namespace.",
       "fieldConfig": {
@@ -3471,7 +3514,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\", deployment=~\".*single-view-trigger-generator.*\"}) by (deployment)",
@@ -3487,7 +3530,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Shows how many pods of Single View Creator services are currently deployed in the namespace.",
       "fieldConfig": {
@@ -3569,7 +3612,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\", deployment=~\".*single-view-creator.*\"}) by (deployment)",
@@ -3609,14 +3652,10 @@
         "type": "datasource"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "noprod",
-          "value": "noprod"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_pod_info, k8sCluster)",
         "hide": 0,
@@ -3638,14 +3677,10 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": false,
-          "text": "fast-data-tests-development",
-          "value": "fast-data-tests-development"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_pod_info{k8sCluster=\"$cluster\"}, namespace)",
         "hide": 0,
@@ -3665,18 +3700,10 @@
       },
       {
         "allValue": ".*",
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, portfolioOrigin)",
         "hide": 0,
@@ -3696,14 +3723,10 @@
       },
       {
         "allValue": ".*",
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, svType)",
         "hide": 0,
@@ -3723,14 +3746,10 @@
       },
       {
         "allValue": ".*svc.*",
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "momm4o6nk"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_deployment_status_replicas{k8sCluster=\"$cluster\", namespace=\"$namespace\"}, deployment)",
         "hide": 2,
@@ -3781,18 +3800,10 @@
       },
       {
         "allValue": ".*",
-        "current": {
-          "selected": false,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "momm4o6nk"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(svc_pcs_handled_total{k8sCluster=\"$cluster\",namespace=\"$namespace\"}, resolutionMethod)",
         "hide": 0,
@@ -3813,13 +3824,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Fast Data - Single Views",
-  "uid": "S3k8qMn7zCd",
-  "version": 51,
+  "uid": "9a041f86-6f82-44c0-8416-80e377985015",
+  "version": 2,
   "weekStart": ""
 }

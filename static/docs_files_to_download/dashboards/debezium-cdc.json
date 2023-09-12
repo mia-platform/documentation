@@ -1,4 +1,41 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.5.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -24,14 +61,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1196,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -108,7 +145,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg by(service)(debezium_metrics_AverageBatchProcessingThroughput{k8sCluster=\"$cluster\", namespace=~\"$namespace\"})",
@@ -119,7 +156,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "max by(service)(debezium_metrics_MaxBatchProcessingThroughput{k8sCluster=\"$cluster\", namespace=~\"$namespace\"})",
@@ -135,7 +172,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -213,7 +250,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by (pod)(debezium_metrics_LagFromSourceInMilliseconds{k8sCluster=\"$cluster\", namespace=~\"$namespace\"})",
@@ -228,7 +265,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -305,7 +342,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg by(service)(debezium_metrics_CommitThroughput{k8sCluster=\"$cluster\", namespace=~\"$namespace\"})",
@@ -320,7 +357,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -394,7 +431,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(debezium_metrics_TotalTableCount{k8sCluster=\"$cluster\", namespace=~\"$namespace\"})",
@@ -409,7 +446,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -455,7 +492,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(debezium_metrics_TotalNumberOfEventsSeen{k8sCluster=\"$cluster\", namespace=~\"$namespace\"})",
@@ -470,7 +507,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -545,7 +582,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(rate(debezium_metrics_TotalNumberOfCreateEventsSeen{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[2m]))",
@@ -557,7 +594,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(rate(debezium_metrics_TotalNumberOfUpdateEventsSeen{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[2m]))",
@@ -569,7 +606,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum by(service)(rate(debezium_metrics_TotalNumberOfDeleteEventsSeen{k8sCluster=\"$cluster\", namespace=~\"$namespace\"}[2m]))",
@@ -585,7 +622,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -721,7 +758,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", container=~\"debezium-.*\", k8sCluster=\"$cluster\"}) by (container)",
@@ -732,7 +769,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"debezium-.*\", resource=\"cpu\"}\n)",
@@ -744,7 +781,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"debezium-.*\", resource=\"cpu\"}\n)",
@@ -760,7 +797,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "momm4o6nk"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -882,7 +919,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"debezium-.*\", image!=\"\"})",
@@ -893,7 +930,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"debezium-.*\", resource=\"memory\"}\n)",
@@ -905,7 +942,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "momm4o6nk"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"debezium-.*\", resource=\"memory\"}\n)",
@@ -927,7 +964,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Prometheus",
           "value": "Prometheus"
         },
@@ -937,20 +974,17 @@
         "name": "datasource",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "type": "datasource"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "noprod",
-          "value": "noprod"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "momm4o6nk"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_pod_info, k8sCluster)",
         "hide": 0,
@@ -969,14 +1003,10 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "fast-data-e2e-test-development",
-          "value": "fast-data-e2e-test-development"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "momm4o6nk"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(kube_pod_info{k8sCluster=\"$cluster\"}, namespace)",
         "hide": 0,
@@ -1003,7 +1033,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Debezium CDC",
-  "uid": "VTBuaJxVz",
-  "version": 14,
+  "uid": "63182117-abb5-431b-bff6-9c8ba67864dd",
+  "version": 1,
   "weekStart": ""
 }
