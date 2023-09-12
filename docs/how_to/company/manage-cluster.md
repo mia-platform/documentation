@@ -33,24 +33,9 @@ In this step, you can insert some general details about your cluster:
 
 In this step, you are required to insert some information about the cluster credentials:
 
-* **Credentials Type** (*required*): the type of credentials used to authenticate requests to the cluster. It can be one of "Token," "Client credentials," and "Client credentials certificate".
-
-Depending on the credentials type, the other information to be entered will be:
-
-* For credentials of the type "Token":
-  - **Service account token** (*required*): JWT token needed by the service account to perform operations on the cluster.
-  To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token).
-* For credentials of the type "Client credentials":
-  - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
-  - **Client ID** (*required*): OAuth2 public client identifier;
-  - **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server;
-  - **Scope** (*required*): permission set used to grant access to specific resource functionalities. In other words, a scope represents what an application can access on behalf of the user.
-* For credentials of the type "Client credentials certificate":
-  - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
-  - **Client ID** (*required*): OAuth2 public client identifier;
-  - **Private key** (*required*): private key of the client certificate used as an authentication token to sign a JWT assertion (in PEM format);
-  - **Certificate thumbprint** (*required*): hash of the certificate, computed over all certificate data and its signature, used as a unique identifier for the certificate itself;
-  - **Scope** (*required*): permission set used to grant access to specific resource functionalities. In other words, a scope represents what an application can access on behalf of the user.
+* **Credentials Type** (*required*): the type of credentials used to authenticate requests to the cluster. Only the "Token" type is currently supported;
+* **Service account token** (*required*): JWT token needed by the service account to perform operations on the cluster.
+To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token).
 
 :::info
 All credentials data are stored in an encrypted MongoDB collection.
@@ -59,40 +44,6 @@ For more information about MongoDB encryption, take a look at the dedicated [doc
 
 :::caution
 Credentials entered at this stage, for security reasons, will never again be shown to the user, who will be able to replace them with new ones but not visualize them again.
-:::
-
-#### Supported credential types
-
-Depending on the vendor and runtime service selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each runtime service:
-
-| Vendor                      | Runtime Service                              | Credentials Type                                          |
-|-----------------------------|----------------------------------------------|-----------------------------------------------------------|
-| Google Cloud Platform (GCP) | Google Kubernetes Engine (GKE)               | Token                                                     |
-|                             | GKE Autopilot                                | Token                                                     |
-| Amazon Web Services (AWS)   | Elastic Kubernetes Service (EKS)             | Token                                                     |
-|                             | EKS Fargate                                  | Token                                                     |
-| Microsoft Azure             | Azure Kubernetes Service (AKS)               | Token, Client credentials, Client credentials certificate |
-| Oracle Cloud                | Oracle Container Engine for Kubernetes (OKE) | Token                                                     |
-
-:::info Example - Azure AKS
-Azure gives the user the possibility to create new app registrations while defining access to resources. For the purpose of connecting the cluster to the Console it is important to know "Application (client) ID" and "Directory (tenant) ID", displayed at the end of the process.
-After the registration process, the user can add their credentials to Azure, choosing either to set a client secret (in which case the credentials type will be "Client credentials") or to upload a certificate (in which case it will be "Client credentials certificate" instead).
-
-Useful links (Azure documentation):
-- [Register an application](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app?WT.mc_id=addemystify-blog-masoucou&ref=codemilltech.com#register-an-application)
-- [Upload a trusted certificate issued by a certificate authority](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#option-1-recommended-upload-a-trusted-certificate-issued-by-a-certificate-authority)
-
-The values to be entered at creation will then be:
-- **Access Token URL**: `https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token`, where `{tenant}` is the value of "Directory (tenant) ID" (in case you are using the public instance of AKS);
-- **Client ID**: the value of "Application (client) ID";
-- **Scope**: the value of the client ID of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the Azure Kubernetes Service AAD Server is `my-client-id`, the scope will be `my-client-id/.default`.
-
-If the credentials type is "Client credentials":
-- **Client secret**: the value of the client secret set.
-
-If the credentials type is "Client credentials certificate":
-- **Private key**: the private key of the certificate uploaded;
-- **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, whose value is displayed at the end of the upload process.
 :::
 
 ### Step 4: Advanced
