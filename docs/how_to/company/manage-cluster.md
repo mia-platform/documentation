@@ -48,7 +48,7 @@ Depending on the credentials type, the other information to be entered will be:
 * For credentials of the type "Client credentials certificate":
   - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
   - **Client ID** (*required*): OAuth2 public client identifier;
-  - **Private key** (*required*): private key of the client certificate used as an authentication token to sign a JWT assertion;
+  - **Private key** (*required*): private key of the client certificate used as an authentication token to sign a JWT assertion (in PEM format);
   - **Certificate thumbprint** (*required*): hash of the certificate, computed over all certificate data and its signature, used as a unique identifier for the certificate itself;
   - **Scope** (*required*): permission set used to grant access to specific resource functionalities. In other words, a scope represents what an application can access on behalf of the user.
 
@@ -101,7 +101,7 @@ If the credentials type is "Client credentials certificate":
 
 In this step, you can insert some advanced information about the cluster:
 
-* **Certificate authority**: base64 decoded CA certificate for the TLS connection with the cluster.
+* **Certificate authority**: CA certificate for the TLS connection with the cluster.
   To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token);
 * **Proxy URL**: URL of the proxy used to connect to the cluster, usually needed when the cluster is exposed on a private network.
 
