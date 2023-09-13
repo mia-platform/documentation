@@ -24,7 +24,7 @@
     "@docusaurus/plugin-client-redirects": "2.4.1",
     "@docusaurus/preset-classic": "2.4.1",
     "@staticdeploy/cli": "^0.15.5",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "cspell": "^7.3.5",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
