@@ -23,9 +23,9 @@ After editing, the visibility property should look like this:
 }
 ```
 
-If the repository where your Marketplace item is located is freely accessible(open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
+If the repository where your Marketplace item is located is freely accessible (open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
 
-Otherwise, in order to grant access to others Companies, you should provide them with a **Provider** that has the required permissions to access your Marketplace item repository and make it accessible to other Companies.
+Otherwise, in order to grant access to other Companies, you should provide them with a **Provider** that has the required permissions to access your Marketplace item repository and make it accessible to other Companies.
 
 First, you need to connect to your Company the Provider you want to use for this purpose, by using the Mia-Platform Console. Detailed instructions on how to connect a Provider for Marketplace purposes can be found on [this page](/development_suite/set-up-infrastructure/configure-provider.mdx#connect-a-provider-for-marketplace).  
 
