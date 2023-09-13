@@ -818,47 +818,47 @@
   ],
   "gettingStarted": [
     {
-      "id": "overview/mia_platform_overview",
+      "id": "getting-started/mia-platform-overview",
       "type": "doc"
     },
     {
       "collapsed": true,
       "items": [
         {
-          "id": "tutorial/microservices/microservice_hello_world",
+          "id": "getting-started/tutorials/microservices/microservice-hello-world",
           "type": "doc"
         },
         {
-          "id": "tutorial/api_portal/api_portal_tutorial",
+          "id": "getting-started/tutorials/api-portal/api-portal-tutorial",
           "type": "doc"
         },
         {
-          "id": "tutorial/rest_api/quick_rest_api",
+          "id": "getting-started/tutorials/rest-api/quick-rest-api",
           "type": "doc"
         },
         {
-          "id": "tutorial/node_ms/node_ms_tutorial",
+          "id": "getting-started/tutorials/node-ms/node-ms-tutorial",
           "type": "doc"
         },
         {
-          "id": "tutorial/requests_limits/requests_limits_tutorial",
+          "id": "getting-started/tutorials/requests-limits/requests-limits-tutorial",
           "type": "doc"
         },
         {
-          "id": "tutorial/authorization/authorization_tutorial",
+          "id": "getting-started/tutorials/authorization/authorization-tutorial",
           "type": "doc"
         },
         {
-          "id": "tutorial/flow_manager/flow_manager_tutorial",
+          "id": "getting-started/tutorials/flow-manager/flow-manager-tutorial",
           "type": "doc"
         },
 
         {
-          "id": "tutorial/design_overview/design_overview",
+          "id": "getting-started/tutorials/design-overview/design-overview",
           "type": "doc"
         },
         {
-          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
+          "id": "getting-started/tutorials/create-project-jenkins/project-template-integrated-with-jenkins",
           "type": "doc"
         },
         {
@@ -867,15 +867,15 @@
           "collapsed": true,
           "items": [
             {
-              "id": "tutorial/fast_data/fast_data_low_code_tutorial",
+              "id": "getting-started/tutorials/fast-data/fast-data-low-code-tutorial",
               "type": "doc"
             },
             {
-              "id": "tutorial/fast_data/bucket_storage_support_tutorial",
+              "id": "getting-started/tutorials/fast-data/bucket-storage-support-tutorial",
               "type": "doc"
             },
             {
-              "id": "tutorial/migration/fast_data_migration_tutorial",
+              "id": "getting-started/tutorials/migration/fast-data-migration-tutorial",
               "type": "doc"
             }
           ]
@@ -886,15 +886,15 @@
           "collapsed": true,
           "items": [
             {
-              "id": "tutorial/backoffice/basics",
+              "id": "getting-started/tutorials/backoffice/basics",
               "type": "doc"
             },
             {
-              "id": "tutorial/backoffice/templates",
+              "id": "getting-started/tutorials/backoffice/templates",
               "type": "doc"
             },
             {
-              "id": "tutorial/backoffice/microfrontends",
+              "id": "getting-started/tutorials/backoffice/microfrontends",
               "type": "doc"
             }
           ]
@@ -907,27 +907,27 @@
       "collapsed": true,
       "items": [
         {
-          "id": "tutorial/console/project_handbook",
+          "id": "getting-started/tutorials/console/project-handbook",
           "type": "doc"
         },
         {
-          "id": "tutorial/console/console_handbook",
+          "id": "getting-started/tutorials/console/console-handbook",
           "type": "doc"
         },
         {
-          "id": "how_to/console/project_development",
+          "id": "getting-started/handbooks/console/project-development",
           "type": "doc"
         },
         {
-          "id": "how_to/traefik/traefik_handbook",
+          "id": "getting-started/handbooks/traefik/traefik-handbook",
           "type": "doc"
         },
         {
-          "id": "how_to/crud_service/crud_oss_usage",
+          "id": "getting-started/handbooks/crud-service/crud-oss-usage",
           "type": "doc"
         },
         {
-          "id": "how_to/company/manage-cluster",
+          "id": "getting-started/handbooks/company/connect-and-manage-cluster",
           "type": "doc"
         }
       ],
@@ -938,39 +938,39 @@
       "collapsed": true,
       "items": [
         {
-          "id": "getting_started/videos/backoffice",
+          "id": "getting-started/videos/backoffice",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/bucket_storage",
+          "id": "getting-started/videos/bucket-storage",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/connecting_cluster",
+          "id": "getting-started/videos/connecting-cluster",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/fast_data_no_code",
+          "id": "getting-started/videos/fast-data-no-code",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/feature_preview",
+          "id": "getting-started/videos/feature-preview",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/m2m_auth",
+          "id": "getting-started/videos/m2m-auth",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/providers",
+          "id": "getting-started/videos/providers",
           "type": "doc"
         },
         {
-          "id": "getting_started/videos/runtime_area",
+          "id": "getting-started/videos/runtime-area",
           "type": "doc"
         },
         {
-          "id": "getting_started/video_pills/video_pills",
+          "id": "getting-started/videos/video-pills",
           "type": "doc"
         }
       ],
@@ -978,30 +978,30 @@
       "type": "category"
     },
     {
-      "id": "getting_started/faqs",
+      "id": "getting-started/mia-platform-faqs",
       "type": "doc"
     },
     {
       "collapsed": true,
       "items": [
         {
-          "id": "guidelines/git_vademecum",
+          "id": "getting-started/guidelines/git-vademecum",
           "type": "doc"
         },
         {
-          "id": "guidelines/rest_api_vademecum",
+          "id": "getting-started/guidelines/rest-api-vademecum",
           "type": "doc"
         },
         {
-          "id": "guidelines/microservice_vademecum",
+          "id": "getting-started/guidelines/microservice-vademecum",
           "type": "doc"
         },
         {
-          "id": "guidelines/docker_vademecum",
+          "id": "getting-started/guidelines/docker-vademecum",
           "type": "doc"
         },
         {
-          "id": "getting_started/monitoring-dashboard/dev_ops_guide/log",
+          "id": "getting-started/guidelines/guidelines-for-logs",
           "type": "doc"
         }
       ],
