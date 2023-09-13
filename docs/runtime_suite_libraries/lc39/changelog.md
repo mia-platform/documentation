@@ -7,6 +7,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v7.0.1 - 2023-07-19
+
+### Updates
+
+* remove HEAD method by default on exposed OpenAPI documentation
+* upgrade dependencies
+
 ## v7.0.0 - 2023-05-11
 
 In this version, is added the support for Fastify v4. To upgrade, read the [migration guide](https://www.fastify.io/docs/latest/Guides/Migration-Guide-V4/).
