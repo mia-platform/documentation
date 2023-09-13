@@ -30,3 +30,27 @@ Some providers may require additional fields, in which case they will be wrapped
 | Scalapay   |              |          |           |        |          | ✓        |       |
 | Soisy      |              |          |           |        |          |          | ✓     |
 | Stripe     | ✓            |          |           |        |          |          |       |
+
+## Supported Providers and Subscriptions type
+
+| Provider  | Manual | Automatic | Payment Methods      |
+|-----------|--------|-----------|----------------------|
+| Axerve    | ✓      |           | Credit Cards, PayPal |
+| Adyen     | ✓      |           | Credit Cards         |
+| Braintree |        | ✓         | PayPal               |
+| Satispay  | ✓      |           |                      |
+| Scalapay  |        |           |                      |
+| Soisy     |        |           |                      |
+| Stripe    |        | ✓         | Credit Cards         |
+
+## Supported Providers with Pay By Link
+
+| Provider  | Pay By Link |
+|-----------|-------------|
+| Axerve    | ✓           |
+| Adyen     | ✓           |
+| Braintree |             |
+| Satispay  |             |
+| Scalapay  |             |
+| Soisy     |             |
+| Stripe    | ✓           |

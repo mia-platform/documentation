@@ -13,6 +13,10 @@ In this page you will find the required information to perform REST calls relate
 | `pay-pal `     | ✓       | ✓      |                        | ✓                   | 
 | `satispay`     | ✓       | ✓      |                        |                     | 
 
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✓       |
+
 ## Endpoints
 
 Every Axerve endpoint has this prefix path `/v3/axerve`.
@@ -151,7 +155,6 @@ This token is a string representation of the JSON below:
 The most simple way to obtain that token data is via the front-end Google Pay libraries. For more information visit 
 [Axerve's documentation](https://docs.axerve.com/en/payments/alternative-payments/google-pay).
 
-
 ### Refund
 
 `POST /refund`
@@ -200,12 +203,16 @@ It required the `token` field inside the `subscriptionInfo` object.
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
-
 ### Check
 
 `GET /check?paymentId={paymentId}`
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also to send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
 
+### Pay By Link
+
+`POST /pay-by-link`
+
+The request body does not require any provider-specific data.
 
 ### Callback
 

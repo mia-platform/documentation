@@ -235,7 +235,6 @@ Create a new payment related to a subscription on the `provider`.
 }
 ```
 
-
 ### Update
 `POST /{provider}/subscription/update/{subscriptionToken}`
 
@@ -272,6 +271,39 @@ Update subscription information.
 
 Expire the subscription on the `provider`.
 
+## Pay By Link
+The **Payment Gateway Manager** is also able to handle the Pay By Link scenario, it requests the link to the provider and returns it. 
+The user can simply click on the link and will be redirected to the provider specific payment page, with all the payment methods enabled through the dashboard of that provider. 
+At the end of the process the PGM will receive a callback that notifies about the payment result. 
+
+`POST /{provider}/pay-by-link`
+
+#### Request
+```jsonc
+{
+    "amount": 5,                                     // the amount to be paid
+    "currency": "EUR",                               // currency used for the payment
+    "shopTransactionId": "123456789",                // the unique id of your transaction
+    "successRedirectUrl": "http://example.com/ok",   // the URL to be redirected to if payment succeeds (optional)
+    "failureRedirectUrl": "http://example.com/ko",   // the URL to be redirected to if payment fails (optional)
+    "providerData": {...}                            // the object with provider-specific data (optional, varies with the provider)
+}
+```
+
+#### Response
+
+```jsonc
+{
+    "resultCode": "OK",                              // transaction result
+    "resultDescription": "Transaction Completed",    // human readable transaction result (varies with the provider)
+    "paymentId": "payment-123456789",                // payment transaction id as returned by the provider (optional)
+    "link": "https://provider-redirect-url.com",     // the created link
+}
+```
+
+The **result** field can have the following values:
+- **OK**: the link has been created successfully by the `provider`;
+- **KO**: the link has not been created by the `provider`;
 
 ## Payment Status
 

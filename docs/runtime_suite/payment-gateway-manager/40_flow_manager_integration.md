@@ -15,6 +15,7 @@ The PGM can both send events to Flow Manager and also process commands using the
     * Schedule a new Subscription: `POST /saga/subscription/schedule`
     * Start *manually* a new Subscription: `POST /saga/subscription/start`
     * Perform *manually* a payment related to a Subscription: `POST /saga/subscription/pay`
+* Pay By Link Request: `POST /saga/pay-by-link`
 
 Moreover, the PGM has **read** access to the CRUD collection containing the payment sagas.
 
@@ -30,6 +31,7 @@ The following events are sent by the **Payment Gateway Manager**:
 - refundFailed
 - partialRefundExecuted
 - totalRefundExecuted
+- linkCreated
 
 ### Pay
 `POST /saga/pay`
@@ -195,9 +197,61 @@ Get authorization token in order to start the subscription for some provider.
 Based on the outcome of the transaction the service can sent the following events:
 - authorizationScheduled
 
+### Pay By Link
+`POST /saga/pay-by-link`
+
+#### Request
+```json
+{
+  "key":"{{sagaId}}",
+  "value":{
+    "messageLabel":"eventName",
+    "messagePayload": {
+      "provider": "provider",
+      "amount": 5,
+      "currency": "EUR",
+      "shopTransactionId": "shop-id",
+      "payRequestData": {
+        "successRedirect": "http://success/redirect/url",
+        "failureRedirect": "http://failure/redirect/url",
+        "providerData": {
+          "providerKey": "providerValue"
+        }
+      }
+    }
+  }
+}
+```
+Based on the outcome of the transaction the service can sent the following events:
+- linkCreated
+  ```json
+  {
+    "key": "{{sagaId}}",
+    "value": {
+      "messageLabel": "linkCreated",
+      "messagePayload": {
+        "paymentId": "payment-id",
+        "link": "https://payment-link.com"
+      }
+    } 
+  }
+  ```
+- paymentFailed
+  ```json
+  {
+    "key": "{{sagaId}}",
+    "value": {
+      "messageLabel": "paymentFailed",
+      "messagePayload": {
+        "paymentId": "payment-id",
+        "error": "error description"
+      }
+    } 
+  }
+  ```
 
 ## Flow Manager's Machine Definition
 
 In order to work properly, the machine definition provided to the Flow Manager has to comply with the following image.
 
-![Machine Definition](img/machine-definition-v3.png)
+![Machine Definition](img/machine-definition-v3.1.png)

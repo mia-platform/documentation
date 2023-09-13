@@ -9,11 +9,13 @@ In this page you will find the required information to perform REST calls relate
 |----------------|---------|--------|------------------------|---------------------|
 | `credit-cards` | ✓       | ✓      | ✓                      |                     | 
 
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✓       |
 
 ## Endpoints
 
 Every Stripe endpoint has this prefix path `/v3/stripe`
-
 
 ### Pay
 
@@ -26,7 +28,6 @@ The request body does **not** require any additional data, thus the `providerDat
 The payment response can have the following result codes:
 - **REDIRECT_TO_URL**: the payment was successfully submitted for settlement
 - **KO**: the payment failed
-
 
 ### Refund
 
@@ -42,7 +43,7 @@ The request body does not require any provider-specific data.
 
 `POST /subscription/schedule`
 
-This endpoint allows to start a new subscription via the Braintree provider.
+This endpoint allows to start a new subscription via the Stripe provider.
 
 The request body does **not** require any additional data, thus the `providerData` field can be omitted.
 
@@ -61,12 +62,16 @@ This endpoint allows to expire a subscription.
 `GET /status?paymentId={paymentId}`
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
-
 ### Check
 
 `GET /check?paymentId={paymentId}`
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also to send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
 
+### Pay By Link
+
+`POST /pay-by-link`
+
+The request body does not require any provider-specific data.
 
 ### Callback
 

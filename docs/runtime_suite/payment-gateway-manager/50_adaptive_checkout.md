@@ -34,7 +34,7 @@ The schema of an Adaptive Checkout Rule is the following:
   ],
 }
 ```
-where `priority` and `ruleID` are required and must be unique, the others are optional.
+where `priority` and `ruleId` are required and must be unique, the others are optional.
 
 - `priority` defines in which order the rules must be evaluated, the first one matching is used.
 - `ruleId` is a unique identifier; if it is equal to `default` and no rules match, it is used.
@@ -163,3 +163,5 @@ where `id` is the MongoDB identifier.
 This endpoint is used to add or update the Amount in the Adaptive Checkout Rule.
 
 #### DELETE /delete
+
+This endpoint is used to delete an Adaptive Checkout Rule.

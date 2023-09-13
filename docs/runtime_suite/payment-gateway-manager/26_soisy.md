@@ -7,7 +7,11 @@ In this page you will find the required information to perform REST calls relate
 
 | Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
 |----------------|---------|--------|------------------------|---------------------|
-| `soisy `       | ✓       |        | ✓                      |                     | 
+| `soisy `       | ✓       |        |                        |                     | 
+
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✗       |
 
 ## Endpoints
 

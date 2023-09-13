@@ -9,6 +9,9 @@ In this page you will find the required information to perform REST calls relate
 |----------------|---------|--------|------------------------|---------------------|
 | `scalapay `    | ✓       | ✓      |                        |                     | 
 
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✗       |
 
 ## Endpoints
 

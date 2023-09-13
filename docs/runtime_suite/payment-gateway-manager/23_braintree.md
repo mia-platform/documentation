@@ -9,6 +9,10 @@ In this page you will find the required information to perform REST calls relate
 |----------------|---------|--------|------------------------|---------------------|
 | `pay-pal `     | ✓       | ✓      | ✓                      |                     | 
 
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✗       |
+
 ## Endpoints
 
 Every Braintree endpoint has this prefix path `/v3/braintree`

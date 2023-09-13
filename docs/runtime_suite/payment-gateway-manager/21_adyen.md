@@ -9,6 +9,9 @@ In this page you will find the required information to perform REST calls relate
 |----------------|---------|--------|------------------------|---------------------|
 | `credit-cards` | ✓       | ✓      |                        | ✓                   | 
 
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✓       |
 
 :::warning
 At this moment, only the Adyen [Automatic Capture](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/capture#automatic-capture) mode is supported. Remember to set it in the Adyen Customer Area.
@@ -97,9 +100,15 @@ Below an example of the `providerData` object needed:
 
 This endpoint allows to expire a subscription.
 
+### Pay By Link
+
+`POST /pay-by-link`
+
+The request body does not require any provider-specific data.
+
 ### Callback
 
-`GET /callback`
+`POST /callback`
 
 This endpoint should only be called by Adyen.
 
