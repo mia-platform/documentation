@@ -24,7 +24,7 @@ The table presented here shows the following information:
 
 ### CronJob options menu
 
-The _Hamburger Menu_, located on the last column of the job, allows to perform some actions on a CronJob.
+The _Hamburger Menu_, located on the last column of the table, allows to perform some actions on a CronJob.
 The available options are:
 
 - [Launch manually](#manually-launching-a-cronjob)
