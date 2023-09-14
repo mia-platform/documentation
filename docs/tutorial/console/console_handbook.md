@@ -15,7 +15,7 @@ For a general overview of the Console please see the [dedicated](/development_su
 ## View repository
 
 Mia-Platform Console enables you to manage your project's configuration by leveraging the advantages of a GitOps approach.
-The Console internally uses **git repositories** to persist configuration changes you make and supports many different git repository providers. You can find more information [here](/development_suite/set-up-infrastructure/create-project.mdx#step-2-repository).
+The Console internally uses **git repositories** to persist configuration changes you make and supports many different git repository providers. You can find more information [here](/console/project-configuration/create-a-project.mdx#step-2-repository).
 
 If you want to see directly the **code** of the configurations you made, you can check the _Configuration_ repository of your project.
 
@@ -212,7 +212,7 @@ For more information on merging branches please see the [dedicated](/development
 
 ## Deploy changes
 
-The changes you made on the Console must be deployed in order for you to see them in action. Your project is linked to an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the Console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications. You can find more information about managing environments [here](/development_suite/set-up-infrastructure/runtime-environments.md).
+The changes you made on the Console must be deployed in order for you to see them in action. Your project is linked to an infrastructure managed with **Kubernetes** on which you can deploy everything you configured from the Console without explicitly having to also configure a cluster. Linked with your project you can have multiple environments, such as Development and Production, that can run different configurations of applications or even entirely different applications. You can find more information about managing environments [here](/console/project-configuration/manage-environment-variables/index.md).
 
 This section explains how to deploy any changes you made into an **environment**.
 
@@ -281,5 +281,5 @@ For more information about monitoring CPU and memory using Grafana please see th
 
 You can also set the Console homepage to show environment metrics by using the [Metrics homepage](/development_suite/overview-dev-suite.md#metrics-homepage).
 
-For information on how to directly interact with the Kubernetes infrastructure please see [here](/development_suite/clusters-management/add-edit-remove-cluster.md).
+For information on how to directly interact with the Kubernetes infrastructure please see [here](/how_to/company/manage-cluster.md).
 

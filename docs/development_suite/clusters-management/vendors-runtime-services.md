@@ -4,7 +4,7 @@ title: Vendors & Runtime services
 sidebar_label: Vendors & Runtime services
 ---
 
-When the user [connects a new cluster](/development_suite/clusters-management/add-edit-remove-cluster.md#connect-a-cluster), they are required to enter information about the cluster's vendor and runtime service.
+When the user [connects a new cluster](/how_to/company/manage-cluster.md#connect-a-cluster), they are required to enter information about the cluster's vendor and runtime service.
 To date, the Console only supports runtime services based on Kubernetes, and all vendors can be associated with the following runtime services:
 * Kubernetes (https://kubernetes.io);
 * Red Hat OpenShift (https://www.redhat.com/en/technologies/cloud-computing/openshift).

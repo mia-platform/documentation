@@ -13,7 +13,7 @@ To better account for the differences between container management systems and c
 * **hostProperties**
 * **seccompProfile**
 
-These functions properties can be configured through the **securityFeatures** object in the **CMS** area at company level. They can also be set at project level through the "Settings" section of the Console, as described [here](/development_suite/set-up-infrastructure/project-settings.md#security-features).
+These functions properties can be configured through the **securityFeatures** object in the **CMS** area at company level. They can also be set at project level through the "Settings" section of the Console, as described [here](/console/project-configuration/project-settings.md#security-features).
 
 If the security features are not configured for the projects, the respective attributes are collected at company level. 
 
