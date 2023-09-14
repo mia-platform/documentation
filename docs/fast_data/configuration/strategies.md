@@ -4,13 +4,22 @@ title: Strategies Configuration
 sidebar_label: Strategies
 ---
 
-In this document we guide you through the configuration of [Strategies](/fast_data/the_basics.md#strategies) directly in the Console.
+Fast Data supports multiple types of strategies execution. In this document we guide you through the configuration of [Strategies](/fast_data/the_basics.md#strategies) directly in the Console.
 
-## Write your strategy
+## Automatic Strategies
+
+These type of strategies are automatically inferred by the system given two configurations, which are:
+
+- [projections updates](./config_maps/kafka_projection_updates.md)
+- [projections changes schema](./config_maps/projection_changes_schema.md)
+
+Whenever it is chosen to execute the strategies on the Real-Time Updater, these configuration should be mounted on it. On the contrary, in case it is decided to decouple projection records ingestion from strategy execution, these configuration files should be configured onto a Single View Trigger Generator service.
+ 
+## User Defined Strategies
 
 The strategy functions can be created in the repository of the project configuration.
 
-In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
+In order to write your own strategy function, first clone the repository, in order to do so click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
 Strategy files need to be created below a folder named `fast-data-files`, if your project does not have it, create it.
 In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Records.
