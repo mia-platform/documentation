@@ -143,16 +143,16 @@ async function createConfig() {
           {
             title: "Company",
             items: [{
-                label: "Site",
-                href: "https://www.mia-platform.eu/en/",
+                label: "Website",
+                href: "https://mia-platform.eu",
               },
               {
                 label: "About",
-                href: "https://www.mia-platform.eu/en/company/about",
+                href: "https://mia-platform.eu/en/company/about-us/",
               },
               {
-                label: "Mission",
-                href: "https://www.mia-platform.eu/en/company/mission",
+                label: "Mission & Vision",
+                href: "https://mia-platform.eu/en/company/mission-vision/",
               },
               {
                 label: "Blog",
@@ -160,27 +160,23 @@ async function createConfig() {
               },
               {
                 label: "Privacy Policy",
-                href: "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+                href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
               },
             ],
           },
           {
             title: "Core Platform",
             items: [{
-                label: "Console",
-                href: "https://www.mia-platform.eu/en/products/devops-console",
+                label: "Mia-Platform Console",
+                href: "https://mia-platform.eu/platform/console/",
               },
               {
-                label: "Microservice Ecosystem",
-                href: "https://www.mia-platform.eu/en/products/microservices-ecosystem",
+                label: "Mia-Platform Marketplace",
+                href: "https://mia-platform.eu/platform/mia-platform-marketplace/",
               },
               {
-                label: "Fast Data",
-                href: "https://www.mia-platform.eu/en/products/fast-data",
-              },
-              {
-                label: "Headless CMS",
-                href: "https://www.mia-platform.eu/en/products/api-management-and-headless-cms",
+                label: "Mia-Platform Fast Data",
+                href: "https://mia-platform.eu/platform/console/fast-data",
               },
               {
                 label: "Release Notes",
@@ -217,6 +213,10 @@ async function createConfig() {
             items: [{
                 label: 'Support',
                 href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
+              },
+              {
+                label: "Community",
+                to: "https://github.com/mia-platform/community/discussions",
               },
               {
                 label: 'FAQ',
