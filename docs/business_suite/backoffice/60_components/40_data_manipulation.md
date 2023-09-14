@@ -565,7 +565,7 @@ Note how each entry of array fields is singularly matched against the query. Onl
 | `basePath` | - | string | - | The URL base path to which to send HTTP requests, used when fetching options for lookup field in [views](#working-with-views) |
 | `dataIndex` | `data-index` | number | 0 | The index from which taking the data where 0 is the first element |
 | `submitBehavior` | `submit-behavior` | "add" \| "edit" | "edit" | Data management strategy when submitting |
-| `header` | - | [CardSchema.header]((./60_data_visualization.md#header)) | - | Card header | 
+| `header` | - | [CardSchema.header](./60_data_visualization.md#header) | - | Card header | 
 
 ### Listens to
 
