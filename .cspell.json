@@ -315,9 +315,7 @@
     "Noto",
     "Segoe",
     "kotlinx",
-    "reauthentication",
-    "argoproj",
-    "dynatrace"
+    "Dynatrace"
   ],
   "dictionaries": [
     "softwareTerms",
@@ -347,6 +345,7 @@
   "allowCompoundWords": true,
   "ignoreRegExpList": [
     "\".*\": \".*\"",
-    "`.*`"
+    "`.*`",
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm"
   ]
 }
