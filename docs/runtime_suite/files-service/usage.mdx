@@ -93,9 +93,10 @@ Continuing the example above, once the file is stored, the respective document i
 }
 ``` 
 
-During the upload, you can specify other properties but they will be ignored.
-If you like, using the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`
-you can specify a caster function to add other properties to CRUD.
+:::info
+In the example described above, to be able to upload the additional metadata `key-1`, it is important to add a [caster file](./configuration#caster-file) and to specify its path in the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`.
+Without specifying a caster file, every additional metadata will be ignored.
+:::  
 
 :::caution
 At the moment, the file part must be the last one of the multipart. Any other part that follows the file part won't be considered.

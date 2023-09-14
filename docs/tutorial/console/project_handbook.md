@@ -9,7 +9,7 @@ There are a different set of permissions based on whether you want to create or 
 
 :::warning
 To create a new project you must have the permission `console.company.project.create` and you need to have already set up provider, company, and template.
-More detail about the **prerequisites can be found in [Project Management](/development_suite/set-up-infrastructure/create-project.mdx#Prerequisites)**.
+More detail about the **prerequisites can be found in [Project Management](/console/project-configuration/create-a-project.mdx#Prerequisites)**.
 :::
 
 ## Project creation
@@ -42,7 +42,7 @@ The Git provider can be changed only if the company has been configured with mor
 - **Template** (_required_): you have to select, from a list of pre-configured templates, your template, which enables you to use pre-filled configurations for your project.
 
 :::tip
-If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [Create Project](/development_suite/set-up-infrastructure/create-project.mdx#setup-paas-templates).
+If you are using the PaaS Mia-Platform Console, two main templates are available: one with all the core services, and the other which is similar, but without CMS. More information about how to use them at [Create Project](/console/project-configuration/create-a-project.mdx#setup-paas-templates).
 :::
 
 ![create-project2](img/create-project2.png)

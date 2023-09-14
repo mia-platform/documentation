@@ -17,7 +17,7 @@ The advanced configuration allows managing how the swagger APIs are exposed. Exa
 - Collect and combine swaggers from other services to expose them in a single interface as a whole.
 
 :::note
-This configuration affects the API documentation available in the [Documentation Portal](/development_suite/api-portal/api-documentations.md).
+This configuration affects the API documentation available in the [Documentation Portal](/console/project-configuration/documentation-portal.md).
 :::
 
 :::caution

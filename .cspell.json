@@ -194,7 +194,8 @@
     "choco",
     "dazn",
     "deliveroo",
-    "serp"
+    "serp",
+    "VULNDB"
   ],
   "ignoreWords": [
     "asncdctools",

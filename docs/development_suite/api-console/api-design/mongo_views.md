@@ -13,12 +13,22 @@ sidebar_label: Create Views
 
 ![create view form](img/create_mongodb_view.png)
 
-A View requires a `source` collection, projection or single view from which the aggregation starts.   
-The *Internal Endpoints* is the path from which the view is going to be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) inside the namespace. Additional internal endpoints can be defined in the Internal Endpoints card of the View. Only paths with `GET` methods are exposed, since you can perform only `read` operation on a view.
+To create a new MongoDB View, you need to access the **MongoDB Views** menu from the **Data Models** section. From here, to access the creation page, simply click on the **Create new View** button.
+
+A View requires the following fields:
+
+- **Name** : the name by which the view will be referenced.
+- **Internal Endpoint** : the endpoint that will be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) within the namespace. Only paths with the **GET** method will be exposed, as only read operations on the views are allowed.
+- **Starting Collection**: it's the source from which the aggregation of the view starts. This can be a **Collection**, but also a [Projection](/fast_data/configuration/projections.md) or a [Single View](/fast_data/configuration/single_views.md).
+
+:::info
+Additional internal endpoints can be defined in the Internal Endpoints card of the View.
 
 ![Internal endpoint view](img/internal_endpoint_view.png)
+:::
 
-The data exposed by the view are the result of a series of step the data of the `source` collection are going through. These steps are defined in the `pipeline`, and can filter, group, join, project or transform the data. These steps compose the so-called [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/).
+
+The data exposed by the view are obtained through a sequence of actions that process the data source's data. These actions are outlined in the *pipeline*, which can include filtering, grouping, joining, projecting, or transforming the data. Together, these actions form what is referred to as the [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/).
 
 ### Aggregation
 
@@ -36,6 +46,12 @@ If you expect to perform complex aggregation with many collections involved, or 
 This feature is available from version `5.2.2` of [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md). Creating a view while using a lower version of CRUD Service would make it crash at boot.
 :::
 
+Moreover, from version 11.5.0 of the Console you can also decide to enable lookups to get [Writable Views](/runtime_suite/crud-service/50_writable_views.md). To do that you have to enable the _Enable Lookup_ toggle included next to the `source` collection input.
+
+:::caution
+To enable lookup, the CRUD Service installed in the project must be of version 6.9.0 or higher, as explicitly in the Docker Image of your service. If you are using a public variable to have different versions among environments, make sure every environment have version 6.9.0 or higher.
+:::
+
 ### Fields
 
 Fields you are defining in a View are the fields you expect to have at the end of the aggregation. 
@@ -48,6 +64,28 @@ The [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will ha
 
 Since the internal endpoint of a MongoDB View can be used only for reading operations, the endpoint will expose only `GET` routes as well.
 
+:::caution
+When exposing data through an endpoint, it's necessary for documents to have a `__STATE__` field to facilitate accurate filtering. If the aggregation process generates objects without this field, the endpoint will consistently return an empty array as its output.
+
+To ensure the proper functioning of endpoint exposure, it's important to carefully manage the aggregation process. This means guaranteeing the inclusion of the  `__STATE__` field. If including the field is challenging, you can ensure its presence by using the [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) object within the aggregation and explicitly setting the `__STATE__` field's value to `PUBLIC`.
+
+```json
+[
+    {
+        "$match": {
+            "__STATE__": "PUBLIC"
+        }
+    },
+    {
+        "$project": {
+            "_id": 1,
+            "total_price": 1,
+            "__STATE__": "PUBLIC"
+        }
+    }
+]
+```
+:::
 
 ### CMS
 
