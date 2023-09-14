@@ -134,3 +134,4 @@ You can create any custom dashboards using the metrics provided by the Fast Data
 - [Projection Changes Dashboard](/fast_data/monitoring/dashboards/projection_changes.md)
 - [Real Time Updater Dashboard](/fast_data/monitoring/dashboards/real_time_updater.md)
 - [Single Views Dashboard](/fast_data/monitoring/dashboards/single_views.md)
+- [Unmapped fields Dashboard](/fast_data/monitoring/dashboards/unmapped_fields.md)
