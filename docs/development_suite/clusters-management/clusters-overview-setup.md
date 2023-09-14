@@ -93,6 +93,15 @@ rules:
       - "get"
       - "list"
   - apiGroups:
+      - "batch"
+    resources:
+      - "jobs"
+    verbs:
+      - "create"
+      - "delete"
+      - "get"
+      - "list"
+  - apiGroups:
       - ""
     resources:
       - "secrets"
@@ -118,11 +127,9 @@ rules:
       - "list"
   - apiGroups:
       - "apps"
-      - "extensions"
     resources:
       - "deployments"
       - "daemonsets"
-      - "jobs"
     verbs:
       - "get"
       - "list"
@@ -139,6 +146,7 @@ rules:
       - "namespaces"
     verbs:
       - "create"
+      - "delete"
   - apiGroups:
       - ""
     resources:

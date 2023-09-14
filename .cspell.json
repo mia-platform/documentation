@@ -193,6 +193,7 @@
     "krew",
     "choco",
     "FAIREAI"
+    "VULNDB"
   ],
   "ignoreWords": [
     "asncdctools",

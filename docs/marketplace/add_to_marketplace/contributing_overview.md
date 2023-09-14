@@ -14,16 +14,16 @@ Marketplace items can only be created and managed by people with access to the M
 
 Mia-Platform public Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
-However, a Company might want to have its own internal Marketplace, fulfilled also with components that must not be shared with everyone else outside the Company. 
+However, a Company might want to have its own internal Marketplace, fulfilled also with components that must not be shared with everyone else outside the Company.
 
 To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visible only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
 
 Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
-If you want to contribute to the **public Mia-Platform Marketplace** with a new component instead, and make it available for everyone, you can [open an issue](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+) on GitHub, wherein you will find what information is needed for the request.
-
-A Mia-Platform referent will take over the issue and contact you to plan together the addition of the component to the Marketplace on the basis of our guidelines described on this documentation page.
+:::info
+Instead, if you want to contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+:::
 
 ## Marketplace components
 
@@ -122,6 +122,9 @@ Here below are listed all the properties that you can provide for each microserv
 - **defaultLabels**: the service labels, which can be used to categorize, group, and select your service. The labels that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
 - **defaultDocumentationPath**: the APIs documentation path.
 - **defaultResources**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
+- **visibility**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
+  - **allTenants**: a boolean that indicates whether your service should be visible to all other tenants, making it public if set to `true`.
+- **providerId**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
 
 :::caution
 Please note that in this configuration **`min`** corresponds to the **`request`** value while **`max`** corresponds to the **`limit`** value specified in the Kubernetes documentation.  
