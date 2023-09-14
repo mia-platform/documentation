@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.0.0 - 13/09/2023
+
+### Added
+- Merge metadata
+- Required environment variables: MODE, MAIN_FLOW_ID_KEY, MAIN_FLOW_DATA_KEY, SUB_FLOW_ID_KEY, SUB_FLOW_CREATED_EVENT, ARRAY_MERGE_MODE
+
 ## 0.4.6 - 13/07/2023
 
 ### Added
