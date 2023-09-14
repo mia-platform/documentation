@@ -182,7 +182,7 @@ This scenario brings to a problem: The Single View Creator will have to re-gener
 
 To prevent this problem, a new infrastructure has been designed:
 
-![SV-Patch infrastructure](../img/single-view-patch-infrastructure.png)
+![SV-Patch infrastructure](../img/fastdata-architecture-standard-svpatch.svg)
 
 The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
 This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.

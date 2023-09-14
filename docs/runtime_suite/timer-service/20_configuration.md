@@ -90,7 +90,7 @@ To configure a _Timer Service_ on the Console follow the instructions:
   - set the name and description as you prefer
   - insert the timer Service image name into the _Docker Image Name_ field, or:
 
-      `nexus.mia-platform.eu/helvetia/timer-service:0.1.1`
+      `nexus.mia-platform.eu/core/timer-service:2.1.2`
 
   - click on the _Create_ button
   - add the environment variables by following the [instructions above](#environment-variables); the result should be like the following:

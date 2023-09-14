@@ -8,6 +8,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.0] 2023-09-07
+
+### Added
+
+- Support for `pr-update` version 2.0.0 and message ajv validation for all input message types 
+
+### Updated
+
+- updated @mia-platform-internal/single-view-creator-lib@14.6.0
+
+### Fixed
+
+- Now at the startup, the service will not only check that a configMap exists, but also that it isn't empty and contains a valid function.
+
 ## [6.0.0] 2023-07-18
 
 ### BREAKING CHANGE

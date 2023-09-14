@@ -549,8 +549,8 @@ Pay careful attention when configuring the webhook as the endpoint must be prope
 
 The webhook is made of 2 endpoints:
 
-- **GET** `/webhook/apps/:appId/providers/:providerId/user` used to validate the hook by the OID Provider
-- **POST** `/webhook/apps/:appId/providers/:providerId/user` used to handle the user activation
+- **GET** `/webhooks/apps/:appId/providers/:providerId/user` used to validate the hook by the OID Provider
+- **POST** `/webhooks/apps/:appId/providers/:providerId/user` used to handle the user activation
 
 ### Validate the Webhook (Okta)
 In order to validate the webhook, Okta sends a GET request on the webhook url with a specific header `x-okta-verification-challenge` and expects to receive in response the same value of the header.
