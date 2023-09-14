@@ -119,7 +119,7 @@ async function createConfig() {
                 to: "/docs/info/bug_policy",
               },
               {
-                label: "Supported browser",
+                label: "Supported browsers",
                 to: "/docs/info/supported_browser",
               },
               {
@@ -148,15 +148,19 @@ async function createConfig() {
               },
               {
                 label: "About",
-                href: "https://mia-platform.eu/en/company/about-us/",
+                href: "https://mia-platform.eu/company/about-us/",
               },
               {
                 label: "Mission & Vision",
-                href: "https://mia-platform.eu/en/company/mission-vision/",
+                href: "https://mia-platform.eu/mission-vision/",
               },
               {
                 label: "Blog",
                 href: "https://blog.mia-platform.eu/en",
+              },
+              {
+                label: "Events",
+                href: "https://mia-platform.eu/resources/events/",
               },
               {
                 label: "Privacy Policy",
