@@ -16,14 +16,14 @@ look at the [official documentation](https://kubernetes.io/docs/concepts/workloa
 Sometimes the user needs other deployment strategies, not supported by design using Kubernetes.
 For this reason we analyzed some tool to fulfil this need:
 
-* [Flux - Flagger](https://flagger.app/);
-* [Argo - Argo-rollouts](https://argo-rollouts.readthedocs.io/).
+* [Flagger](https://flagger.app/) from Flux;
+* [Argo-rollouts](https://argo-rollouts.readthedocs.io/) from Argo.
 
 :::warning
 The tools above are not fully integrated into the Mia-Platform Console. The user can handle resources through the console and the projects configurations, but not through the Mia-Platform Console UI with a no-code approach.
 :::
 
-## Flux - Flagger
+## [Flagger](https://docs.flagger.app/) from Flux
 
 Flagger is a OSS tool developed by [Flux](https://fluxcd.io/).
 
@@ -148,7 +148,7 @@ spec:
         url: http://flagger-loadtester.training-development/rollback/check
 ```
 
-## [Argo - Argo-rollouts](https://argo-rollouts.readthedocs.io/)
+## [Argo-rollouts](https://argo-rollouts.readthedocs.io/) from Argo
 
 Argo rollouts is a tool included into the [Argo project](https://argoproj.github.io/) that allows to use other deployment strategies:
 * canary &rarr; the traffic is partially routed to the new version of the service, partially to the old one;
