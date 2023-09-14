@@ -8,7 +8,7 @@ This dashboard will help you to monitor unmapped fields. With unmapped field we 
 
 In order to use this dashboard you'll need to set the environment variable `COLLECTION_NAME_UNMAPPED_FIELDS_STORAGE` in any [Real Time Updater](/fast_data/realtime_updater.md) service you want to keep track of the unmapped fields.
 
-The dashboard relies on the MongoDB Query Exporter service and as such you should check out the [MongoDB Query Exporter Configuration section](/docs/fast_data/monitoring/overview.md#mongodb-query-exporter-configuration). Once you have the service set up you need to add the two metrics displayed in the following example to the main configuration file.
+The dashboard relies on the MongoDB Query Exporter service and as such you should check out the [MongoDB Query Exporter Configuration section](/fast_data/monitoring/overview.md#mongodb-query-exporter-configuration). Once you have the service set up you need to add the two metrics displayed in the following example to the main configuration file.
 
 ```yml
 ...
