@@ -8,6 +8,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2023-08-28
+
+### Fixed
+
+- `bk-layout` shows the user menu when `user` context is defined (when fetch request to api is successful). This fix will show an empty user `name` if not provided
+- `bk-layout` manifest `userInfoUrl` was missing the mock fetch implementation
+- `bk-layout` manifest `userInfoUrl.userPropertiesMapping` fixed key overwrite
+### Added
+
+- Support for `CRUD Service` import functionality is available through components `bk-import-modal` and `bk-crud-client`
+- Support for `CRUD Service` writable views is available in components. Standard lookup fields handling is now deprecated.
+- New components `bk-dynamic-form-modal`, `bk-dynamic-form-drawer`, `bk-dynamic-form-card`, `bk-form-wizard`  are available. These extend the functionalities of `bk-form-modal`, `bk-form-drawer`, `bk-form-card`, which are now deprecated.
+
+## [1.3.18] - 2023-07-24
+
+### Fixed
+
+- `phosphor` icons render tags such as `rect` or `circle` via `@micro-lc/iconic@1.3.1` (<https://github.com/micro-lc/micro-lc/pull/796>)
+
 ## [1.3.17] - 2023-07-14
 
 ### Fixed

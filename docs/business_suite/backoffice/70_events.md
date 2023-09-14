@@ -631,7 +631,34 @@ notifies the request for permanent deletion of an item
 }[]
 ```
 
+## I
 
+### Import Data
+
+notifies the request for an import of data from a file
+
+- Label: `import-data`
+- Payload:
+
+```typescript
+{}
+```
+
+### Import Data - User Config
+
+send the configuration payload to perform an import
+
+- Label: `import-data/user-config`
+- Payload:
+
+```typescript
+{
+  file: File
+  encoding?: 'utf8' | 'ucs2' | 'utf16le' | 'latin1' | 'ascii' | 'base64' | 'hex'
+  delimiter?: string
+  escape?: string
+}
+```
 
 ## L
 
