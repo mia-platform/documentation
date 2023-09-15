@@ -162,7 +162,7 @@
         {
           "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
           "type": "doc"
-        }        
+        }
       ]
     },
     {
@@ -859,6 +859,12 @@
     },
     {
       "collapsed": true,
+      "label": "Tutorials",
+      "type": "category" ,
+      "link": {
+        "type": "doc",
+        "id": "getting-started/tutorials/tutorials"
+      },
       "items": [
         {
           "id": "getting-started/tutorials/microservices/microservice-hello-world",
@@ -888,7 +894,6 @@
           "id": "getting-started/tutorials/flow-manager/flow-manager-tutorial",
           "type": "doc"
         },
-
         {
           "id": "getting-started/tutorials/design-overview/design-overview",
           "type": "doc"
@@ -935,12 +940,16 @@
             }
           ]
         }
-      ],
-      "label": "Tutorials",
-      "type": "category"
+      ]
     },
     {
       "collapsed": true,
+      "label": "Handbooks",
+      "type": "category",
+      "link": {
+        "type": "doc",
+        "id": "getting-started/handbooks/handbooks"
+      },
       "items": [
         {
           "id": "getting-started/tutorials/console/project-handbook",
@@ -966,59 +975,64 @@
           "id": "getting-started/handbooks/company/connect-and-manage-cluster",
           "type": "doc"
         }
-      ],
-      "label": "Handbooks",
-      "type": "category"
+      ]
     },
     {
       "collapsed": true,
-      "items": [
-        {
-          "id": "getting-started/videos/backoffice",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/bucket-storage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/connecting-cluster",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/fast-data-no-code",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/feature-preview",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/m2m-auth",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/providers",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/runtime-area",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/video-pills",
-          "type": "doc"
-        }
-      ],
+
       "label": "Videos",
-      "type": "category"
-    },
-    {
-      "id": "getting-started/mia-platform-faqs",
-      "type": "doc"
+      "type": "category",
+      "link": {
+        "type": "doc",
+        "id": "getting-started/videos/videos"
+      },
+      "items": [
+      {
+        "id": "getting-started/videos/backoffice",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/bucket-storage",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/connecting-cluster",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/fast-data-no-code",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/feature-preview",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/m2m-auth",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/providers",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/runtime-area",
+        "type": "doc"
+      },
+      {
+        "id": "getting-started/videos/video-pills",
+        "type": "doc"
+      }
+    ]
     },
     {
       "collapsed": true,
+      "label": "Guidelines",
+      "type": "category",
+      "link": {
+        "type": "doc",
+        "id": "getting-started/guidelines/guidelines"
+      },
       "items": [
         {
           "id": "getting-started/guidelines/git-vademecum",
@@ -1040,9 +1054,11 @@
           "id": "getting-started/guidelines/guidelines-for-logs",
           "type": "doc"
         }
-      ],
-      "label": "Guidelines",
-      "type": "category"
+      ]
+    },
+    {
+      "id": "getting-started/mia-platform-faqs",
+      "type": "doc"
     }
   ],
   "governance": [

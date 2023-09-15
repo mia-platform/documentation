@@ -2,7 +2,7 @@ const createRedirects = require("./createRedirects");
 
 async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
-  
+
   return {
     title: "Mia-Platform Documentation",
     tagline: "Learn how Mia-Platform can help you to develop your business",
@@ -38,7 +38,7 @@ async function createConfig() {
         },
         items: [{
             type: 'doc',
-            docId: "overview/mia_platform_overview",
+            docId: "getting-started/mia-platform-overview",
             label: "Getting Started",
             position: "left",
             activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
