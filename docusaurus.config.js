@@ -15,7 +15,7 @@ async function createConfig() {
     projectName: "Mia-Platform", // Usually your repo name.
     themeConfig: {
       prism: {
-        additionalLanguages: ['rego', 'java', 'csharp'],
+        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],
       },
       image: "img/documentation-link-preview.png",
       algolia: {

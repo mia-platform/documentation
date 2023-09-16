@@ -8,7 +8,7 @@ sidebar_label: Projection Changes Schema
 
 The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/glossary.mdx)
 to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
-by the [Real-Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
+by the [Real-Time Updater](/fast_data/configuration/realtime_updater/realtime_updater_v7.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
 
 ## Configuration Properties
 
@@ -47,12 +47,17 @@ The Projection Changes Schema is made of the following fields:
 </details>
 
 :::note
-All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
+All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed.
 :::
 
 In some cases you may want a finer control over the creation of the projection changes identifier. Such control can be achieved within service configuration providing a _custom function_,
 which is applied to each document retrieved by the last step of the strategy path (in this case records extracted from `BASE_PROJECTION` collection).
-The custom function file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file
+
+:::caution
+Please note that this feature is not supported by Real-Time Updater.
+:::
+
+The _custom function_ file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file
 each path that requires using a custom function should specify as identifier the `__fromFile__[<filename>]` keyword,
 where within squared brackets is provided the filename containing the custom function.
 
