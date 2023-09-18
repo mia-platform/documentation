@@ -8,36 +8,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 2.10.0 - 15/02/2023
-
-### Changed
-
-- Changed `/pay` reply with additional (optional) `metadata` field
+## 3.1.0 - 12/09/2023
 
 ### Added
 
-- Flow Manager Service (REST) integration
-  - `/saga/payment-methods` API to retrieve available payment methods given a saga (Adaptive checkout)
-  - `/saga/pay`, `/saga/confirm` and `/saga/refund` APIs for Flow Manager communication
-  - Events to be sent to Flow Manager when enabled
-- Status endpoint for Apple Pay payments
-- Status endpoint for Google Pay payments
-- Status endpoint for credit cards payments
-- Status endpoint for PayPal payments
-- Stripe payment provider (quarkus)
+- Feature Pay By Link
+
+## 3.0.1 - 11/08/2023
+
+### Security
+
+- Bumped to Quarkus 3
+
+## 3.0.0 - 01/08/2023
+
+### BREAKING CHANGES
+
+- v3 APIs
+
+### Changed
+
+- Changed path parameter from `paymentID` to `paymentId` in endpoint `/status` for stripe payment method
+
+### Added
+
+- `/saga/payment-methods` API to retrieve available payment methods given a saga
+- `/saga/pay`, `/saga/confirm` and `/saga/refund` APIs for Flow Manager communication
+- Events to be sent to Flow Manager when enabled
+- Module for b2b payments and its endpoints
 
 ### Fixed
 
 - Scalapay callback supported payment status extended with `pending`, `partially_refunded` and `refunded_not_charged`
-- Float precision issues
-- Log level settings
-- Changed query parameter from `paymentID` to `paymentId` in Stripe's endpoint `/status` (ktor)
 
 ## 2.9.0 - 05/12/2022
 
 ### Added
 
-- Stripe payment provider (ktor)
+- Stripe payment provider
 
 ## 2.8.2 - 14/11/2022
 
@@ -73,7 +81,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Unicredit: Orders with code CO were incorrectly considered as payed.
+- Unicredit: Orders with code CO were incorrectly considered as paid.
 
 ## 2.6.2 - 06/10/2022
 
