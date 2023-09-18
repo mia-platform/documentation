@@ -1,10 +1,12 @@
 ---
-id: quick-rest-api
-title: REST API for CRUD operations on a data collection
+id: rest-api-for-crud-on-data
+title: REST API for CRUD on data
 sidebar_label: REST API for CRUD on data
 ---
 
-import SourceCodeBlock from "./../../../../src/components/SourceCodeBlock";
+import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
+
+# REST API for CRUD on data
 
 A **REST API is an application programming interface** that conforms to the constraints of REST architectural style, and allows **for interactions with RESTful web services**.
 REST APIs **allow clients** (like mobile, web and other applications) **to read, write, and edit the data** of a system (like servers, databases, and many others) **hiding the implementation details** of the system itself.
@@ -36,7 +38,7 @@ Better to have:
 - Some familiarity with **API** and **REST** concepts. More information about API is available [here](/getting-started/guidelines/rest-api-vademecum.md).
 
 :::info
-If you have already done the [previous tutorial](/getting-started/tutorials/microservices/hello-world.mdx), you can skip the rest of the section and directly start the tutorial.
+If you have already done the [previous tutorial](/getting-started/tutorials/microservice-hello-world.mdx), you can skip the rest of the section and directly start the tutorial.
 :::
 
 Before starting, we will assume that, you already have a clean project in Mia-Platform Console. In order to know how to create a project on Mia-Platform Console, read [this guide](/console/project-configuration/create-a-project.mdx).
@@ -63,7 +65,7 @@ In order to do it, from the _Design_ area of the project, we must:
 1. Type `CRUD Service` in the search bar;
 1. Select the "_CRUD Service_" card from the list of results;
 1. Click on the _Create_ button applying the default fields;
-1. Save the changes. You don't know how to do it? Take a look at [Mia-Platform handbook](/getting-started/tutorials/console/console-handbook.md#save-changes)!
+1. Save the changes. You don't know how to do it? Take a look at [Mia-Platform handbook](/getting-started/tutorials/project-usage-handbook.md#save-changes)!
 
 ![Create CRUD Service](img/MongoDB-Collection-create-crud-service.png)
 
@@ -176,7 +178,7 @@ In order to import the fields from a file, we must:
 Once you have created all the fields, remember to **save** the changes!
 
 :::tip
-You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the [image](/getting-started/tutorials/rest-api/quick-rest-api.mdx#create-a-new-crud-collection).
+You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the [image](/getting-started/tutorials/rest-api-for-crud-on-data.mdx#create-a-new-crud-collection).
 :::
 
 ## Expose the CRUD using an endpoint
@@ -184,7 +186,7 @@ You can import fields during the creation phase of a new CRUD Collection, by cli
 In order to make CRUD operations on the newly created collection available from outside the project, we will now **add an endpoint**.
 
 :::tip
-If you don't know how to do it take a look at the [first tutorial](/getting-started/tutorials/microservices/hello-world.mdx#expose-the-hello-world-microservice-api)
+If you don't know how to do it take a look at the [first tutorial](/getting-started/tutorials/microservice-hello-world.mdx#expose-the-hello-world-microservice-api)
 :::
 
 The parameters to set for the endpoint are the following ones:
@@ -193,7 +195,7 @@ The parameters to set for the endpoint are the following ones:
 - **Type**: in the dropdown menu select _"CRUD"_
 - **CRUD Base Path**: in the dropdown menu select `/products`
 
-Our configuration is ready. You can **save** and **deploy** it in a runtime environment! You don't know how to do it? Take a look at [Mia-Platform handbook](/getting-started/tutorials/console/console-handbook.md#deploy-changes)!
+Our configuration is ready. You can **save** and **deploy** it in a runtime environment! You don't know how to do it? Take a look at [Mia-Platform handbook](/getting-started/tutorials/project-usage-handbook.md#deploy-changes)!
 
 ## Try CRUD endpoints with API Portal
 

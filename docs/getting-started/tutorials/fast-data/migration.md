@@ -1,7 +1,7 @@
 ---
-id: fast-data-migration-tutorial
+id: migration
 title: Mia-Platform Fast Data Migration
-sidebar_label: How to migrate Mia-Platform Fast Data architecture to other infrastructures
+sidebar_label: Mia-Platform Fast Data Migration
 ---
 
 # Mia-Platform Fast Data migration
@@ -23,7 +23,7 @@ Of course, it would be useful and ideal to test every step in a test environment
 
 Please note that the second and third steps can't be rollbacked: in our context, that would be a mess.
 
-![An example of the architecture](migration-architecture.png)
+![An example of the architecture](./img/migration-architecture.png)
 *An architectural example*
 
 ## Requirements
@@ -57,7 +57,7 @@ You can do every single step indicated above when you prefer (e.g. the DNS switc
 
 ### Switch your DNS
 
-![A snapshot of the procedure required in step 2](migration-services.png)
+![A snapshot of the procedure required in step 2](./img/migration-services.png)
 *A snapshot of step 2 moment*
 
 ## MongoDB migration
@@ -93,7 +93,7 @@ It is possible to set up and run multiple MongoMirror instances at once. This wa
 
 Please refer to [MongoMirror documentation](https://www.mongodb.com/docs/atlas/import/mongomirror/) for a detailed guide about its usage.
 
-![An architectural example of MongoMirror usage](migration-mongomirror.png)
+![An architectural example of MongoMirror usage](./img/migration-mongomirror.png)
 *In this example MongoMirror is installed closer to the destination Database*
 
 ## Kafka migration

@@ -552,7 +552,7 @@
   "/docs/development_suite/deploy/configuration": {
     "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
     "addedOn": "2023-08-25"
-  },  
+  },
   "/docs/development_suite/set-up-infrastructure/create-project": {
     "destination": "/docs/console/project-configuration/create-a-project",
     "addedOn": "2023-08-29"
@@ -632,5 +632,141 @@
   "/docs/development_suite/deploy/configure-jenkins":  {
     "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
     "addedOn": "2023-09-12"
+  },
+  "/docs/getting_started/faqs":  {
+    "destination": "/docs/getting-started/faqs",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/git_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/git-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/microservices/microservice_hello_world":  {
+    "destination": "/docs/getting-started/tutorials/hello-world",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/fast_data/fast_data_low_code_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/low-code",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/requests_limits/requests_limits_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/set-requests-limits-of-a-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/console/project_handbook":  {
+    "destination": "/docs/getting-started/tutorials/project-handbook",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/backoffice":  {
+    "destination": "/docs/getting-started/videos/backoffice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/backoffice/basics":  {
+    "destination": "/docs/getting-started/tutorials/backoffice/basics",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/node_ms/node_ms_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/create-a-custom-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/flow_manager/flow_manager_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/flow-manager",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/rest_api/quick_rest_api":  {
+    "destination": "/docs/getting-started/tutorials/rest-api-for-crud-on-data",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/console/console_handbook":  {
+    "destination": "/docs/getting-started/tutorials/project-usage-handbook",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/api_portal/api_portal_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/api-portal",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/authorization/authorization_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/protect-your-endpoints-with-policies",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/company/manage-cluster":  {
+    "destination": "/docs/getting-started/handbooks/company/connect-and-manage-cluster",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/design_overview/":  {
+    "destination": "/docs/getting-started/tutorials/design-overview",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/crud_service/crud_oss_usage":  {
+    "destination": "/docs/getting-started/handbooks/crud-service/crud-oss-usage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/backoffice/templates":  {
+    "destination": "/docs/getting-started/tutorials/backoffice/templates",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/rest_api_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/rest-api-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/microservice_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/microservice-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/docker_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/docker-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/backoffice/microfrontends":  {
+    "destination": "/docs/getting-started/tutorials/backoffice/microfrontends",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/create_project_jenkins/project_template_jenkins_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/project-template-integrated-with-jenkins",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/migration/":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/migration-tutorial",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/fast_data/bucket_storage_support_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/bucket-storage-support",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/traefik/traefik_handbook":  {
+    "destination": "/docs/getting-started/handbooks/traefik/traefik-handbook",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/console/project_development":  {
+    "destination": "/docs/getting-started/handbooks/console/project-development",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/bucket_storage":  {
+    "destination": "/docs/getting-started/videos/bucket-storage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/connecting_cluster":  {
+    "destination": "/docs/getting-started/videos/connecting-cluster",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/fast_data_no_code":  {
+    "destination": "/docs/getting-started/videos/fast-data-no-code",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/feature_preview":  {
+    "destination": "/docs/getting-started/videos/feature-preview",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/m2m_auth":  {
+    "destination": "/docs/getting-started/videos/m2m-auth",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/providers":  {
+    "destination": "/docs/getting-started/videos/providers",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/runtime_area":  {
+    "destination": "/docs/getting-started/videos/runtime-area",
+    "addedOn": "2023-09-18"
   }
 }
