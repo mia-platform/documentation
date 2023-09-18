@@ -11,8 +11,8 @@ Welcome to the Tutorials page! This page contains a series of tutorials guides d
 ## Tutorials and Guides by Category
 
 ### **Console**
-- **Project Usage Handbook**: Navigating and making the most out of the console. [Go to Project Usage Handbook](/getting-started/tutorials/project-usage-handbook.md).
-- **Project Handbook**: Comprehensive guide for project management. [Go to Project Handbook](/getting-started/tutorials/project-handbook.md).
+- **Project Usage Handbook**: Navigating and making the most out of the console. [Go to Project Usage Handbook](/getting-started/handbooks/project/usage.md).
+- **Project Handbook**: Comprehensive guide for project management. [Go to Project Handbook](/getting-started/handbooks/project/manage.md).
 - **Hello World**: Getting started with microservices. [Go to Hello World](/getting-started/tutorials/microservice-hello-world.mdx).
 - **API Portal Tutorial**: Deep dive into the API portal and its functionalities. [Go to API Portal Tutorial](/getting-started/tutorials/api-portal.mdx).
 - **Quick REST API**: Grasping the principles and best practices of RESTful APIs. [Go to Quick REST API](/getting-started/tutorials/rest-api-for-crud-on-data.mdx).

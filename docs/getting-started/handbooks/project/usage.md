@@ -1,5 +1,5 @@
 ---
-id: project-usage-handbook
+id: usage
 title: Project Usage Handbook
 sidebar_label: Project Usage Handbook
 ---
