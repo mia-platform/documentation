@@ -867,39 +867,39 @@
       },
       "items": [
         {
-          "id": "getting-started/tutorials/microservices/microservice-hello-world",
+          "id": "getting-started/tutorials/microservice-hello-world",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/api-portal/api-portal-tutorial",
+          "id": "getting-started/tutorials/api-portal",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/rest-api/quick-rest-api",
+          "id": "getting-started/tutorials/rest-api-for-crud-on-data",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/node-ms/node-ms-tutorial",
+          "id": "getting-started/tutorials/create-a-custom-microservice",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/requests-limits/requests-limits-tutorial",
+          "id": "getting-started/tutorials/set-requests-limits-of-a-microservice",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/authorization/authorization-tutorial",
+          "id": "getting-started/tutorials/protect-your-endpoints-with-policies",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/flow-manager/flow-manager-tutorial",
+          "id": "getting-started/tutorials/flow-manager",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/design-overview/design-overview",
+          "id": "getting-started/tutorials/design-overview",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/create-project-jenkins/project-template-integrated-with-jenkins",
+          "id": "getting-started/tutorials/project-template-integrated-with-jenkins",
           "type": "doc"
         },
         {
@@ -908,15 +908,15 @@
           "collapsed": true,
           "items": [
             {
-              "id": "getting-started/tutorials/fast-data/fast-data-low-code-tutorial",
+              "id": "getting-started/tutorials/fast-data/low-code",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/fast-data/bucket-storage-support-tutorial",
+              "id": "getting-started/tutorials/fast-data/bucket-storage-support",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/migration/fast-data-migration-tutorial",
+              "id": "getting-started/tutorials/fast-data/migration",
               "type": "doc"
             }
           ]
@@ -952,11 +952,11 @@
       },
       "items": [
         {
-          "id": "getting-started/tutorials/console/project-handbook",
+          "id": "getting-started/tutorials/project-handbook",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/console/console-handbook",
+          "id": "getting-started/tutorials/project-usage-handbook",
           "type": "doc"
         },
         {
