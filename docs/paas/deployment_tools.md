@@ -53,7 +53,7 @@ Creating, on the Mia-Platform Console, a service called `my-hello-world`, the co
 * a k8s Deployment manifest for `my-hello-world`;
 * a k8s Service manifest for `my-hello-world`.
 
-The `Canary` file is to be manually created inside the project configuration repository, the location is based on you [project structure](/development_suite/set-up-infrastructure/create-project.mdx).
+The `Canary` file is to be manually created inside the project configuration repository, the location is based on your project structure.
 
 Once the `Canary` CRD is created, deploying the project will cause:
 * the creation of the k8s resources **created automatically by the console**;
@@ -191,7 +191,7 @@ Creating, on the Mia-Platform Console, a service called `my-hello-world`, the co
 * a k8s Deployment manifest for `my-hello-world`;
 * a k8s Service manifest for `my-hello-world`.
 
-The `Rollout` file is to be manually created inside the project configuration repository, the location is based on you [project structure](/development_suite/set-up-infrastructure/create-project.mdx).
+The `Rollout` file is to be manually created inside the project configuration repository, the location is based on your project structure.
 
 Once the `Rollout` CRD is created, deploying the project will cause:
 * the creation of the k8s resources **created automatically by the console**;
