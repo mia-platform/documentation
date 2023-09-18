@@ -7,10 +7,6 @@
     "destination": "/docs/runtime_suite/swagger-aggregator/overview",
     "addedOn": "2022-10-01"
   },
-  "/docs/development_suite/monitoring-dashboard/dev_ops_guide/log":  {
-    "destination": "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log",
-    "addedOn": "2022-10-01"
-  },
   "/docs/development_suite/api-console/api-design/esponi_api": {
     "destination": "/docs/development_suite/api-console/api-design/endpoints",
     "addedOn": "2022-10-01"
@@ -642,7 +638,7 @@
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/microservices/microservice_hello_world":  {
-    "destination": "/docs/getting-started/tutorials/hello-world",
+    "destination": "/docs/getting-started/tutorials/microservice-hello-world",
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/fast_data/fast_data_low_code_tutorial":  {
@@ -654,7 +650,7 @@
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/console/project_handbook":  {
-    "destination": "/docs/getting-started/handbooks/project-handbook",
+    "destination": "/docs/getting-started/handbooks/project/manage",
     "addedOn": "2023-09-18"
   },
   "/docs/getting_started/videos/backoffice":  {
@@ -678,7 +674,7 @@
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/console/console_handbook":  {
-    "destination": "/docs/getting-started/handbooks/project-usage-handbook",
+    "destination": "/docs/getting-started/handbooks/project/usage",
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/api_portal/api_portal_tutorial":  {
@@ -726,7 +722,7 @@
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/migration/":  {
-    "destination": "/docs/getting-started/tutorials/fast-data/migration-tutorial",
+    "destination": "/docs/getting-started/tutorials/fast-data/migration",
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/fast_data/bucket_storage_support_tutorial":  {
