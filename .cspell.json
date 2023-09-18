@@ -191,8 +191,11 @@
     "objs",
     "Krew",
     "krew",
-    "VULNDB",
-    "choco"
+    "choco",
+    "dazn",
+    "deliveroo",
+    "serp",
+    "VULNDB"
   ],
   "ignoreWords": [
     "asncdctools",
