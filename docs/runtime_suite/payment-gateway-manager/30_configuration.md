@@ -13,11 +13,13 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **HTTP_PORT**
 * **ENABLED_PROVIDERS** (required): comma separated list of payment providers enabled at runtime
 * **PAYMENT_CALLBACK_URL** (required): URL used to notify other services about a payment transaction result
-* **PGM_PUBLIC_URL** (required for satispay, scalapay and soisy): URL where this service is exposed 
+* **PGM_PUBLIC_URL** (required): URL where this service is exposed 
 (e.g. `http://my-domain/payment-gateway-manager`)
 * **FLOW_MANAGER_URL**: url of the Flow Manager service. If set, Flow Manager related features are enabled
 * **SAGA_CRUD_URL** (required if FLOW_MANAGER_URL is set): url of the saga CRUD collection
 * **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH**: path to config map defining available payment methods based on rules
+* **EXTERNAL_PROVIDERS_CONFIG**: path to config map defining external services for payments
+* **SUBSCRIPTION_HANDLER_URL**: url to the subscription handler service. Required to handle subscription payment within the Payment Integration Hub
 
 The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply with the following schema
 <details>
@@ -109,15 +111,49 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
   }
 }
 ```
+
 </details>
 
-## GestPay (Axerve) Specific Environment Variables
 
-* **GESTPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Axerve Sandbox or Production environment.
-* **GESTPAY_API_KEY** (required)
-* **GESTPAY_SHOP_LOGIN** (required)
+The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the following schema
+<details>
+    <summary>Config schema</summary>
 
-## Satispay Specific Environment Variables
+```json
+{
+  "type": "object",
+  "required": ["externalServices"],
+  "properties": {
+    "externalServices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["externalService, baseUrl"],
+        "properties": {
+          "externalService": {
+            "type": "string"
+          },
+          "baseUrl": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</details>
+
+## Provider Specific Environment Variables
+
+### Axerve
+
+* **AXERVE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Axerve Sandbox or Production environment.
+* **AXERVE_API_KEY** (required)
+* **AXERVE_SHOP_LOGIN** (required)
+
+### Satispay
 
 * **SATISPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Satispay Staging or Production environment.
 * **SATISPAY_KEY_ID** (required)
@@ -126,49 +162,42 @@ The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply wit
 * **SATISPAY_AFTER_BUY_WEB_REDIRECT_URL** (required): URL to which the user will be redirected after completing a payment via web page. (Overridable via request body)
 * **SATISPAY_AFTER_BUY_MOBILE_REDIRECT_URL** (required): url-scheme that will be used by iOS/Android to redirect the 
 user after completing a payment via the Satispay mobile app
+* **SATISPAY_CALLBACK_URL** (required): URL for transaction status verification of satispay
 
-## Unicredit Specific Environment Variables
+### Braintree
 
-* **UNICREDIT_NUMERO_COMMERCIANTE** (required): merchant identification code.
-* **UNICREDIT_PASSWORD** (required): password for accessing the payment system.
-* **UNICREDIT_SECRET** (required): secret key used to encrypt communications with the payment gateway.
-* **UNICREDIT_STABILIMENTO** (required): store identification code.
-* **UNICREDIT_USER_ID** (required): username for accessing the payment system.
-* **UNICREDIT_PAYMENT_URL** (required): address of the merchant to which the buyer will be directed.
-* **UNICREDIT_AFTER_BUY_OK_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction. (Overridable via request body)
-* **UNICREDIT_AFTER_BUY_KO_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
-* **UNICREDIT_USE_PRE_AUTHORIZATION** (required): "true" or "false" whether if you want to use pre-authorization for credit card payments or not.
-
-## Braintree Specific Environment Variables
-
-* **BRAINTREE_SUBMIT_FOR_SETTLEMENT** (required): flag that determines whether transactions are immediately submitted for settlement or not.
 * **BRAINTREE_MERCHANT_ID** (required): string that identifies the used merchant id.
 * **BRAINTREE_MERCHANT_ACCOUNT_ID** (required): string that identifies the used merchant account id.
 * **BRAINTREE_PUBLIC_KEY** (required): Braintree API public key.
 * **BRAINTREE_PRIVATE_KEY** (required): Braintree API private key.
 * **BRAINTREE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Braintree Sandbox or Production environment.
 
-## Scalapay Specific Environment Variables
+### Scalapay
 
 * **SCALAPAY_BASE_PATH** (required): Address to Scalapay base path. Scalapay has three different environments, integration, staging and production.
 * **SCALAPAY_API_KEY** (required)
 * **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction. (Overridable via request body)
 * **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
 
-## SafeCharge Specific Environment Variables
-
-* **SAFECHARGE_MERCHANT_ID** (required): Merchant identification code.
-* **SAFECHARGE_MERCHANT_SITE_ID** (required): Merchant site identification code.
-* **SAFECHARGE_MERCHANT_SECRET_KEY** (required): Merchant secret for validating the communication.
-* **SAFECHARGE_URL** (required): Base URL of the SafeCharge provider.
-
-## Soisy Specific Environment Variables
+### Soisy
 
 * **SOISY_SHOP_ID** (required)
 * **SOISY_PARTNER_KEY** (required): X-Auth-Token header for authentication on Soisy.
 * **SOISY_BASE_URL** (required): Base URL of the Soisy provider.
 
-## Stripe Specific Environment Variables
+### Stripe
 
 * **STRIPE_BASE_URL** (required): Base URL of the Stripe provider.
 * **STRIPE_PRIVATE_KEY** (required): Stripe API private key.
+
+### Adyen
+
+* **ADYEN_IS_TEST** (required): can be "true" or "false". Specifies whether the PGM should point to Adyen Test or Live environment.
+* **ADYEN_PRIVATE_KEY** (required): [API Key](https://docs.adyen.com/development-resources/api-credentials) header for authentication on Adyen.
+* **ADYEN_LIVE_URL** (required conditionally): [Live URL prefix](https://docs.adyen.com/development-resources/api-credentials) for Adyen requests, used only in the Live environment. 
+* **ADYEN_MERCHANT_ACCOUNT** (required): the Adyen merchant account to point to.
+* **ADYEN_HMAC_KEY** (required): [HMAC signature](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures) to verify the notification authenticity.
+
+### External service
+
+To enable an external service to process a payment the **EXTERNAL_PROVIDERS_CONFIG** variable must be set with its config map.

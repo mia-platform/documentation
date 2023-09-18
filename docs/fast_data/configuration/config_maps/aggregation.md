@@ -11,7 +11,7 @@ The aggregation is mounted as a config map of the Single View Creator Service an
 - a low-code configuration, composed of the `aggregation.json` file inside the _aggregation_ config map (automatically created adding the `Single View Creator - Low Code` plugin from the Mia Marketplace).
 
 :::tip
-We strongly recommend to use the `Single View Creator - Low Code` to simplify your experience building the aggregation configuration. We also have a a step-by-step [tutorial](/tutorial/fast_data/fast_data_tutorial.mdx) that you can refer to.
+We strongly recommend to use the `Single View Creator - Low Code` to simplify your experience building the aggregation configuration. We also have a a step-by-step [tutorial](/getting-started/tutorials/fast-data/low-code.mdx) that you can refer to.
 :::
 
 ## Manual configuration of aggregation 

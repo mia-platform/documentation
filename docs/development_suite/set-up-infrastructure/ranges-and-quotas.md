@@ -51,7 +51,7 @@ Nevertheless, they may happen to be significantly higher than the resources need
 Thus, it is **highly recommended** to define proper `requests` and `limits` for each Container included in every Pod and tune your `LimitRange` accordingly.
 
 :::info
-You can follow [this tutorial](/tutorial/requests_limits/requests_limits_tutorial.mdx) on how to set `requests` and `limits` of a microservice, and leverage the results to find more suitable defaults for your custom `LimitRange`.
+You can follow [this tutorial](/getting-started/tutorials/set-requests-limits-of-a-microservice.mdx) on how to set `requests` and `limits` of a microservice, and leverage the results to find more suitable defaults for your custom `LimitRange`.
 :::
 
 ### Resource Quotas

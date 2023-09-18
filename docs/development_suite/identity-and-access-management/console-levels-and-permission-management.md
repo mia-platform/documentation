@@ -71,7 +71,9 @@ The following table describes the capabilities and how they are mapped on the de
 | View Company Clusters information                                      | `console.company.cluster.view`                          | ✅    | ✅       | ✅        | ✅         | ✅                    | ✅            |
 | Manage Company Project Templates                                       | `console.company.templates.manage`                      |       |          |           |            |                       | ✅            |
 | Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`            |       |          |           |            | ✅                    | ✅            |
-| Manage Marketplace resources owned exclusively by the Company          | `console.company.marketplace.manage`                    |       |          |           |            | ✅                    | ✅            |
+| View Marketplace resources owned exclusively by the Company            | `marketplace.company.resources.view`                   | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| Manage Marketplace resources owned exclusively by the Company          | `marketplace.company.resources.manage`                 |        |          |           |            | ✅                    | ✅            |
+| Delete the configuration versions of all the Projects of this Company          | `console.company.project.configuration.version.delete`                 |        |          |           |            | ✅                    | ✅            |
 
 User roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 
@@ -88,6 +90,7 @@ For each of them, therefore, the permissions inherited from the Company role ass
 | Create a service repository for this Project      | `console.project.service.repository.create`    |       |          | ✅        | ✅         | ✅                    |               |
 | Commit changes on Project configuration           | `console.project.configuration.update`         |       |          | ✅        | ✅         | ✅                    |               |
 | Edit Project information                          | `console.project.details.update`               |       |          |           |            | ✅                    | ✅            |
+| Delete the configuration versions of a Project                          | `console.project.configuration.version.delete`               |       |          |           |            | ✅                    |             |
 | Manage secreted environment variables             | `console.project.secreted_variables.manage`    |       |          |           |            | ✅                    |               |
 | Trigger deploy on any Environment of this Project | `console.project.environment.deploy.trigger`   |       |          |           | ✅         | ✅                    |               |
 | Trigger deploy on this specific Environment       | `console.environment.deploy.trigger`           |       |          |           | ✅         |                       |               |
@@ -125,7 +128,7 @@ The following table describes the manageable privileges at Console root level th
 | Create and delete root service account          | `console.root.serviceaccount.manage`  |
 | Manage all private and public Project Templates | `console.root.templates.manage`       |
 | Manage available features                       | `console.root.features.manage`        |
-| Manage all Marketplace resources                | `console.root.marketplace.manage`     |
+| Manage all Marketplace resources                | `marketplace.root.manage`             |
 
 ### Role binding example
 
