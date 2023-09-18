@@ -952,11 +952,11 @@
       },
       "items": [
         {
-          "id": "getting-started/tutorials/project-handbook",
+          "id": "getting-started/handbooks/project/manage",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/project-usage-handbook",
+          "id": "getting-started/handbooks/project/usage",
           "type": "doc"
         },
         {

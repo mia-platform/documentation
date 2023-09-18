@@ -1,7 +1,7 @@
 ---
-id: project-handbook
-title: Project Handbook
-sidebar_label: Project Handbook
+id: manage
+title: Project Manage Handbook
+sidebar_label: Project Manage Handbook
 ---
 
 Mia-Platform Console allows you to create and manage multiple projects, each one with its own set of APIs, microservices, and applications.  
