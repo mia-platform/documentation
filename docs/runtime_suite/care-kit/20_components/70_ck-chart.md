@@ -60,9 +60,10 @@ An example configuration follows:
 |----------|------|----------|---------|-------------|
 |`dataEndpoint`| string | true | '/' | Endpoint used to retrieve the data displayed on the chart. |
 |`options`| object | true | {} | Object that contains the Highchart chart options. |
-| `constructorType` | string | false | 'chart' |String for chart constructor method. Valid values are `chart`, `stockChart`, `mapChart`, `ganttChart`|
+|`constructorType`| string | false | 'chart' |String for chart constructor method. Valid values are `chart`, `stockChart`, `mapChart`, `ganttChart`|
 |`urlMask`| string | false |`/:id` | url mask to apply to the current path to extract id dynamically. |
-|`idKeys`| string[] | false |`['id']` | id keys in urlMask. | 
+|`idKeys`| string[] | false |`['id']` | id keys in urlMask. |
+|`interactiveTooltip`| boolean | false | if set to true a point tooltip is shown upon click, insted of the standard hover | 
 
 
 ## Listens to

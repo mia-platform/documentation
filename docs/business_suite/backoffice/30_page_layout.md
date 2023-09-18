@@ -163,11 +163,11 @@ specified by `type`.
 
 | type | formats |
 |------|---------|
-| `string` | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, `lookup`, `editor` |
+| `string` | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, `lookup` (__deprecated__), `editor` |
 | `number` | `date`, `date-time`, `time` , `currency` |
 | `integer` | - |
-| `object` | `file`, `localized-text`, `geopoint` |
-| `array`  | `file`, `multilookup`, `geopoint` |
+| `object` | `file`, `localized-text`, `geopoint`, `lookup` |
+| `array`  | `file`, `multilookup` (__deprecated__), `geopoint`, `lookup` |
 | `boolean` | - |
 | `form-addon` | `link`, `title`, `subtitle` |
 | `null` | - |
@@ -428,7 +428,21 @@ Extra options to be specified for querying the dataset should be configured in `
 
 [Filters](./40_core_concepts.md#filters) with `property` equal to a field with `filtersOptions.hidden` set to true can still be added (for instance, via a[add-filter](./70_events.md#add-filter) event) and effectively query the dataset, but the user will not be able to see or interact with the filter.
 
-### Lookups
+### Lookups - Working with views
+
+(Mia-Platform CRUD Service) [../../runtime_suite/crud-service/overview_and_usage] allows to create (writable views) [../../runtime_suite/crud-service/writable_views]. Views are virtual collections that encapsulate the results derived from aggregation pipelines. Their primary function revolves around presenting data obtained from one collection within the contextual framework of a main collection, which is referred to as the "source". Normally, views are read-only, but since version 6.9.0 of the `CRUD Service`, editing a view will automatically reflect changes to the original collection.
+
+"Lookup fields" are those fields within views that reference data from a collection different to the original one. Components such as [bk-dynamic-form-modal](./60_components/40_data_manipulation.md#bk-dynamic-form-modal) are geared to [work with such fields](./60_components/40_data_manipulation.md#working-with-views-2).
+
+Lookup fields can be configured in the data-schema by defining fields of type `object` or `array` and format `lookup`. These are rendered inside Back-Kit form components as select fields, for which options are fetched using the `/lookup` route provided by `CRUD Service` views. Each option fetched like this should have at least a `label` field, which is used as display value inside the form, and a `value` field which is used as unique identifier for such option.
+
+
+### Lookups (__deprecated__)
+
+:::caution
+The content of this paragraph is deprecated. Support to lookup fields has been integrated within [the support for Views](#lookups---working-with-views).
+In order to aggregate data from multiple collections into one, (CRUD Service Views)[../../runtime_suite/crud-service/writable_views] should be used.
+:::
 
 Often a dataset has external references. A list of dishes might refer to ingredients picked from its own collection or to
 a single recipe from a list of recipes. When looking up to other collection a `lookup` refer to a single value that is used
@@ -517,6 +531,7 @@ Concerning multilookups, you can rather use the configuration below. This will l
   }
   ...
 ```
+
 #### Lookup options
 
 Here is the full list of lookup options.

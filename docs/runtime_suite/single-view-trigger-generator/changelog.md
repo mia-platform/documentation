@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.3] 2023-07-25
+
+### Added
+
+- added new metrics to monitor Kafka consumer that reads from pr-update topics
+- added a docker-compose file and an example of configuration, which allows to automatically configure a demo of the Single View Trigger Generator
+- added a Makefile to simplify the interaction with docker-compose and starting tests using dependencies defined in the docker-compose
+
+### Changed
+
+- updated `fast-data-automation-lib` to `v3.1.1`
+- updated service dependencies
+
 ## [3.0.2] 2023-06-30
 
 ### Fixed
