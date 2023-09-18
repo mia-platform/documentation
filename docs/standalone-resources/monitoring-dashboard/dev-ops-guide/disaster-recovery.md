@@ -1,5 +1,5 @@
 ---
-id: disaster_recovery
+id: disaster-recovery
 title:  Disaster Recovery
 sidebar_label: Disaster Recovery
 ---

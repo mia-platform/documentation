@@ -1,5 +1,5 @@
 ---
-id: business_continuity
+id: business-continuity
 title:  Business Continuity
 sidebar_label: Business Continuity
 ---
