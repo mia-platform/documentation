@@ -196,7 +196,7 @@ async function createConfig() {
               },
               {
                 label: "Guidelines",
-                to: "/docs/guidelines/git_vademecum",
+                to: "/docs/getting-started/guidelines/",
               },
               {
                 label: "Library",
@@ -224,11 +224,11 @@ async function createConfig() {
               },
               {
                 label: 'FAQ',
-                to: '/docs/getting_started/faqs'
+                to: '/docs/getting-started/faqs'
               },
               {
                 label: "Getting Started",
-                to: "/docs/overview/mia_platform_overview",
+                to: "/docs/getting-started/mia-platform-overview",
               },
             ],
           },
