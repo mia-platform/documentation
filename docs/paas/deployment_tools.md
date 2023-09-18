@@ -8,8 +8,8 @@ sidebar_label: Deployment tools
 
 Kubernetes offers, by design, two deployment strategies:
 
-* Recreate &rarr; terminates the pod and, once terminated, scales up the new one;
-* Rolling Update (the default one) &rarr; the new pod is scaled up and, when ready and healthy, the old one is terminated;
+* Recreate: terminates the pod and, once terminated, scales up the new one;
+* Rolling Update (the default one): the new pod is scaled up and, when ready and healthy, the old one is terminated;
 
 look at the [official documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy) for more information.
 
@@ -28,11 +28,11 @@ The tools above are not fully integrated into the Mia-Platform Console. The user
 Flagger is a OSS tool developed by [Flux](https://fluxcd.io/).
 
 Flagger allows the user to implement two other deployment strategies:
-* canary &rarr; the traffic is partially routed to the new version of the service, partially to the old one;
-* blue/green &rarr; the new version is deployed (green) but the traffic still goes to the old version (blue), until the new version is "approved" for promotion. Once approved, the traffic is switched to new version of the service and the old one is shutted down.
+* canary: the traffic is partially routed to the new version of the service, partially to the old one;
+* blue/green: the new version is deployed (green) but the traffic still goes to the old version (blue), until the new version is "approved" for promotion. Once approved, the traffic is switched to new version of the service and the old one is shutted down.
 
 :::warning
-The blue/green strategy provided by Flagger is not a real blue/green **on Kubernetes** because Flagger does not switch the traffic from the blue to the green version; once "approved" for promotion, Flagger updated the blue version and terminates the green one &rarr; the blue version is always **the only stable one**. 
+The blue/green strategy provided by Flagger is not a real blue/green **on Kubernetes** because Flagger does not switch the traffic from the blue to the green version; once "approved" for promotion, Flagger updated the blue version and terminates the green one; the blue version is always **the only stable one**. 
 :::
 
 Flagger allows to implement one or both (simultaneously too) the strategies above using:
@@ -79,8 +79,8 @@ During a blue/green deployment, Flagger will perform some operation, as reported
   * Flagger deploys the v2 with the `-canary` suffix;
   * the v1 is still up and running and serves the traffic to the users;
   * the conformance test step starts;
-3. Flagger runs the load tests, if specified &rarr; if the failure treshold is reached, the release is aborted;
-4. Flagger check metrics, if specified &rarr; if the failure treshold is reached, the release is aborted;
+3. Flagger runs the load tests, if specified: if the failure treshold is reached, the release is aborted;
+4. Flagger check metrics, if specified: if the failure treshold is reached, the release is aborted;
 5. Flagger validates the SLOs;
 6. Flagger promotes the new v2 version and terminates the old v1.
 
@@ -151,8 +151,8 @@ spec:
 ## [Argo-rollouts](https://argo-rollouts.readthedocs.io/) from Argo
 
 Argo rollouts is a tool included into the [Argo project](https://argoproj.github.io/) that allows to use other deployment strategies:
-* canary &rarr; the traffic is partially routed to the new version of the service, partially to the old one;
-* blue/green &rarr; the new version is deployed (green) but the traffic still goes to the old version (blue), until the new version is "approved" for promotion. Once approved, the traffic is switched to new version of the service and the old one is shutted down.
+* canary: the traffic is partially routed to the new version of the service, partially to the old one;
+* blue/green: the new version is deployed (green) but the traffic still goes to the old version (blue), until the new version is "approved" for promotion. Once approved, the traffic is switched to new version of the service and the old one is shutted down.
 
 Argo rollouts allows to implement one of the strategies above using:
 * the kubernetes standard resources (deployment, services and so on);
@@ -203,8 +203,8 @@ Once the deployment has been updated through the console, e.g. we update the `my
 * start a new `Rollout` process, deploying N replicas of the `my-hello-world` service v2;
 * keep `my-hello-world` service v1 up and running, to serve the traffic;
 * wait for the promotion result:
-  * **OK &rarr;** argo-rollouts switches the traffic from the v1 service (blue version) to the v2 service (green version) and terminates the v1 version;
-  * **KO &rarr;** argo-rollouts shuts down the v2 service and the v1 will remain the used version.
+  * **OK:** argo-rollouts switches the traffic from the v1 service (blue version) to the v2 service (green version) and terminates the v1 version;
+  * **KO:** argo-rollouts shuts down the v2 service and the v1 will remain the used version.
 
 :::info
 Argo-rollouts provides a real blue/green deployment, because the green version will replace the blue one.
@@ -234,15 +234,15 @@ spec:
 ```
 
 The main ones are:
-* **autoPromotionEnabled** &rarr; to let argo-rollouts automatically promote the green version or not;
-* **activeService** &rarr; the k8s service related to the deployment;
-* **previewService** &rarr; the optional k8s service to expose the green version during the rollout.
+* **autoPromotionEnabled**: to let argo-rollouts automatically promote the green version or not;
+* **activeService**: the k8s service related to the deployment;
+* **previewService**: the optional k8s service to expose the green version during the rollout.
 
 #### Argo dashboard and kubectl plugin - The game changers
 
 Argo-rollouts provides out of the box two very useful features:
-* **[interactive dashboard](https://argo-rollouts.readthedocs.io/en/stable/dashboard/)** &rarr; useful dashboard that allows the user to see rollouts, promote or rollback and so on;
-* **[kubectl plugin](https://argo-rollouts.readthedocs.io/en/stable/features/kubectl-plugin/)** &rarr; allows to run specific operations on rollouts (e.g. promote, rollback and so on); it can be very useful to be used in automatic pipelines.
+* **[interactive dashboard](https://argo-rollouts.readthedocs.io/en/stable/dashboard/)**: useful dashboard that allows the user to see rollouts, promote or rollback and so on;
+* **[kubectl plugin](https://argo-rollouts.readthedocs.io/en/stable/features/kubectl-plugin/)**: allows to run specific operations on rollouts (e.g. promote, rollback and so on); it can be very useful to be used in automatic pipelines.
 
 The interactive dashboard can be exposed through the kubectl plugin, executing `kubectl argo rollouts dashboard` and allows to:
 * show the rollouts of on or more namespaces of the cluster:
