@@ -398,6 +398,10 @@ channels:
                 primaryKeys:
                   description: Array of the primary key field names
                   type: array
+                before:
+                  type: object
+                  description: Value of the MongoDB record **before** the changes have been applied. In case of a insert operation this field is not defined
+                  additionalProperties: true
                 after:
                   type: object
                   description: Value of the MongoDB record **after** the changes have been applied. In case of a delete operation this field is not defined
