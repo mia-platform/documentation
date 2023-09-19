@@ -65,65 +65,54 @@ message formats employed by some Change Data Capture systems (CDC), which are:
 - `db2`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) CDC
 
     ```json
-    "dataSourceAdapter": { "type":  "db2"}
+    "dataSourceAdapter": { "type":  "db2" }
     ```
 - `golden-gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) CDC
 
     ```json
-    "dataSourceAdapter": { "type":  "golden-gate"}
+    "dataSourceAdapter": { "type":  "golden-gate" }
     ```
 - `debezium`, based on the [Debezium](https://debezium.io/documentation/reference/stable/tutorial.html) CDC
 
     ```json
-    "dataSourceAdapter": { "type":  "debezium"}
+    "dataSourceAdapter": { "type":  "debezium" }
     ```
 
 In addition to the already existing message adapters, it is also possible to provide to the service a _user-defined function_
 that acts as message adapter. This function takes as input the incoming message associated to a projection, the list of
 primary key fields expected for that projection and the service logger. Its goal is to process the message and produce
 an object containing the description of the parsed message in a common format.  
-Here is described the interface of the
-function:
+Thus, besides defining the usage of `custom` message adapter type, in the configuration it is also necessary to provide the location of the file
+containing the custom message adapter function. For example:
 
-**Input**
-
-- `message` → byte array
-
-**Output**
-
-- `operation` →
-- `key`
-- `before`
-- `after`
-
-
-<details><summary>Custom Message Adapter Function (Javascript)</summary>
-<p>
-
-```javascript
-'use strict'
-
-function messageAdapter(kafkaMessage, primaryKeys, logger) {
-  const payload = JSON.parse(kafkaMessage.toString('utf8'))
-  const key = Object.fromEntries(
-      Object.values(primaryKeys).map(keyEntry => [keyEntry, payload[keyEntry]])
-  )
-
-  logger.trace({ key, payload }, 'custom message adapter')
-
-  return {
-    operation: Boolean(payload) ? 'U' : 'D',
-    key,
-    before: undefined,
-    after: payload
-  }
+```json
+"dataSourceAdapter": {
+  "type":  "custom "
+  "filepath": "/app/extensions/messageAdapter.kt"
 }
 ```
 
-</p>
-</details>
+Here is described the interface of the custom message adapter function:
 
-<details><summary>Custom Message Adapter Function (Kotlin)</summary>
+**Input**
+
+- `messageKey` → `ByteArray` (Kotlin) / `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic  
+- `payload` → `Map<String, Any>?` → a map object that contains the payload of the incoming message from the ingestion topic.  
+**Note:** in Javascript it is necessary to use the Kotlin Map methods to access the key / value entries of the object.
+- `primaryKeys` → `List<String>` → the list of fields that compose the primary key identifier for that specific projection
+- `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
+
+**Output**
+
+- `operation` → the identifier of the operation applied on the record, which can be `I` (insertion), `U` (update) or `D` (deletion)
+- `key` → an object/map that contains the primary key fields for the record matching their value
+- `before` → an object/map or `null`, which represents the record before the last change occurred 
+- `after` → an object/map or `null`, which represents the record obtained after applying the change that triggered the ingestion event
+
+Taking into account the above details, it is possible to implement _user-defined functions_ either in Javascript or Kotlin.
+Below is provided an example for each supported programming language.
+
+<details><summary>Custom Message Adapter Function (Kotlin - messageAdapter.kt)</summary>
 <p>
 
 ```kotlin
@@ -131,18 +120,67 @@ package customMessageAdapter
 
 import org.slf4j.Logger
 
-fun messageAdapter (message: ByteArray, primaryKeys: List<String>, logger: Logger): Any {
-    return mapOf(
-        "operation" to "I",
-        "key" to mapOf("INT_KEY" to 123, "STR_KEY" to "id"),
-        "before" to null,
-        "after" to mapOf("INT_KEY" to 123, "STR_KEY" to "id", "STR_FIELD" to "value")
-    )
+// NOTE: the message adapter entry point function must be named `messageAdapter`
+fun messageAdapter(messageKey: ByteArray?, payload: Map<String, Any>?, primaryKeys: List<String>, logger: Logger): Any {
+  val key = primaryKeys
+    .filter { payload?.containsKey(it) ?: false }
+    .associateWith { payload?.get(it) }
+
+  logger.debug("key: $key")
+
+  return mapOf(
+    "operation" to (if (payload.isNullOrEmpty()) { "D" } else "I"),
+    "key" to key,
+    "before" to null,
+    "after" to payload,
+  )
 }
 ```
 
 </p>
 </details>
+
+<details><summary>Custom Message Adapter Function (Javascript - messageAdapter.js)</summary>
+<p>
+
+```javascript
+'use strict'
+
+// NOTE: the message adapter entry point function must be named `messageAdapter`
+function messageAdapter(messageKey, payload, rawPrimaryKeys, logger) {
+  // rawPrimaryKeys arrives as object -> to get a list it is necessary to extract its values
+  const primaryKeys = Object.values(rawPrimaryKeys)
+
+  // use a convenience function to extract the event key
+  // from any nested field (here the whole payload object has been used)
+  const key = extractKey(payload, primaryKeys)
+
+  logger.debug(JSON.stringify(key))
+
+  return {
+    operation: Boolean(payload) ? 'I' : 'D',
+    key,
+    before: undefined,
+    after: payload
+  }
+}
+
+function extractKey(obj, wantedKeys) {
+  return Object.fromEntries(
+      wantedKeys
+        .filter(keyEntry => obj.containsKey(keyEntry))
+        .map(keyEntry => [keyEntry, obj.get(keyEntry)])
+  )
+}
+```
+
+</p>
+</details>
+
+:::caution
+Within the custom message adapter script file it is possible to define multiple functions. However, it is mandatory
+to define a function named `messageAdapter`, which will be treated as entry point for the custom message adapter.
+:::
 
 #### Custom Cast Functions
 
@@ -150,11 +188,53 @@ fun messageAdapter (message: ByteArray, primaryKeys: List<String>, logger: Logge
 |-----------------|----------|----------|---------|
 | `castFunctions` | `object` | -        |         |
 
+```json
+"castFunctions": {
+  "castToTitleCase": "/app/extensions/castToTitleCase.js"
+  "castToPhoneNumber": "/app/extensions/castToPhoneNumber.js"
+}
+```
+
+<details><summary>Custom Cast Function (Javascript - castToTitleCase.js)</summary>
+<p>
+
+```javascript
+'use strict'
+
+// note the name of the file must be the same of the name of the function
+function castToTitleCase(value, fieldName) {
+    logger.info("Executing castToTitleCase")
+
+    const str = value.toString()
+    return str[0].toUpperCase() + str.substr(1).toLowerCase()
+}
+```
+
+</p>
+</details>
+
 ### Consumer
+
+| Property         | Type     | Required | Default |
+|------------------|----------|----------|---------|
+| `type`           | `string` | &check;  | `kafka` |
+| `configurations` | `object` | &check;  |         |
 
 ### Producer
 
+| Property         | Type     | Required | Default |
+|------------------|----------|----------|---------|
+| `type`           | `string` | &check;  | `kafka` |
+| `configurations` | `object` | &check;  |         |
+
+
 ### Storage
+
+| Property         | Type     | Required | Default   |
+|------------------|----------|----------|-----------|
+| `type`           | `string` | &check;  | `mongodb` |
+| `configurations` | `object` | &check;  |           |
+
 
 ### Projections Config
 
