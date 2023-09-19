@@ -768,5 +768,61 @@
   "/docs/getting_started/videos/runtime_area":  {
     "destination": "/docs/getting-started/videos/runtime-area",
     "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/fast-data/fast-data-low-code-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/low-code",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/requests-limits/requests-limits-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/set-requests-limits-of-a-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/node-ms/node-ms-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/create-a-custom-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/flow-manager/flow-manager-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/flow-manager",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/rest-api/quick-rest-api":  {
+    "destination": "/docs/getting-started/tutorials/rest-api-for-crud-on-data",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/console/console-handbook":  {
+    "destination": "/docs/getting-started/handbooks/project/manage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/api-portal/api-portal-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/api-portal",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/microservices/microservice-hello-world":  {
+    "destination": "/docs/getting-started/tutorials/microservice-hello-world",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/authorization/authorization-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/protect-your-endpoints-with-policies",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/create-project-jenkins/project-template-integrated-with-jenkins":  {
+    "destination": "/docs/getting-started/tutorials/project-template-integrated-with-jenkins",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/migration/":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/migration",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/fast-data/bucket-storage-support-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/bucket-storage-support",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/console/project-handbook":  {
+    "destination": "/docs/getting-started/handbooks/project/usage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/recurrent_payments":  {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/how_it_works",
+    "addedOn": "2023-09-18"
   }
 }
