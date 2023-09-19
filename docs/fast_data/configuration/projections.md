@@ -22,7 +22,9 @@ The System of Records is then created.
 
 To delete a System of Records, you have to click the `Delete` button in the bottom-right corner of the System of Records detail page.
 
-:::warning The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it. :::
+:::warning
+The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it. 
+:::
 
 ## Create a Projection
 
@@ -33,7 +35,7 @@ Inside the System of Records page click the `Create new Projection` button on th
 In order to finally create the new Projection, you will need to save the configuration.
 
 :::tip
-Too see more details about your projection you can click on the arrow on the right inside the same section
+To see more details about your projection you can click on the arrow on the right inside the same section
 :::
 
 ### Projection fields
