@@ -62,7 +62,7 @@ async function createConfig() {
               },
               {
                 type: 'doc',
-                docId: "business_suite/backoffice/overview",
+                docId: "business_suite/backoffice/what-is-backoffice",
                 label: "Backoffice",
                 activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
               },

@@ -1,8 +1,10 @@
 ---
 id: bundling
-title: Bundling your webcomponents with `vite`
+title: Bundling your webcomponents with vite
 sidebar_label: Bundling
+sidebar_position: 30
 ---
+
 The aim of this section is to highlight some features we found useful to bundle webcomponents together.
 
 Let's say we have a bunch of webcomponents such as

@@ -1,10 +1,12 @@
 ---
-id: summary
+id: overview
 title: External Components
-sidebar_label: Summary
+sidebar_label: Overview
+sidebar_position: 10
 ---
-The Configurator layout/advanced sections provide tools to visualize [composable pages](../30_compose_pages.md) which are made of webcomponents.
-For instance, the Configurator [main layout](../20_structure.md#layout) is a web page build with webcomponents.
+
+The Configurator layout/advanced sections provide tools to visualize [composable pages](/business_suite/backoffice-configuration/compose_pages) which are made of webcomponents.
+For instance, the Configurator [main layout](/business_suite/backoffice-configuration/structure#layout) is a web page build with webcomponents.
 
 Components usually are provided by JavaScript libraries like:
 
@@ -182,7 +184,7 @@ There are different layers of integration for custom webcomponents with the `no-
 section:
 
 1. editing properties using forms and modals
-2. open/show when selected on the [left components list](../20_structure.md#layout)
+2. open/show when selected on the [left components list](/business_suite/backoffice-configuration/structure#layout)
 3. share properties with other components to avoid code/configuration replication
 
 ### No-Code Properties Editing: `__manifest`
@@ -228,7 +230,7 @@ the configurable properties of the custom webcomponent.
 Any object property has also a _special_ key `__mia_configuration` which allows to customize labels in the Configurator `Layout` section.
 The `__mia_configuration` key is not mandatory and does not affect the no-code configuration features on custom webcomponents.
 
-Check out [the webcomponent manifest](./20_manifest.md) for further details.
+Check out [the webcomponent manifest](/business_suite/backoffice/external-components/manifest) for further details.
 
 ### Open/Show On Select: `__focus_handler`, `__unfocus_handler`
 
@@ -269,7 +271,7 @@ As previously mentioned, webcomponents are served to the Configurator via librar
 <!-- cSpell:disable-next-line -->
 2. a side-effect IIFE
 
-Due to the nature of [manifests](./20_manifest.md) and their retrieval dynamic policy, the ESM option is more than recommended.
+Due to the nature of [manifests](/business_suite/backoffice/external-components/manifest) and their retrieval dynamic policy, the ESM option is more than recommended.
 
 Webcomponents can be build with any library (lit, stencil, and so on...) or going fully native. Examples with `lit` are
 provided [`@micro-lc/layout`](https://github.com/@micro-lc/layout) library while `micro-lc`
@@ -284,4 +286,4 @@ html page. The bundler, which is `rollup` provides the capabilities to:
 2. separate external sources, like manifests;
 3. add external assets like images, fonts and so on...
 
-Check out the [bundling section](./30_bundling.md) for further details.
+Check out the [bundling section](/business_suite/backoffice/external-components/bundling) for further details.

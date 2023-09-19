@@ -10,6 +10,6 @@ public CDN service.
 
 :::caution
 This application is meant to be used with the 
-[Backoffice Configurator](../../business_suite/backoffice-configurator/overview). For this
+[Backoffice Configurator](../../business_suite/backoffice-configuration/overview). For this
 reason, you will find that almost all the default config maps are _readonly_.
 :::

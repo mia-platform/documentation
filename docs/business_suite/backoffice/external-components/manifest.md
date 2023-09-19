@@ -2,7 +2,9 @@
 id: manifest
 title: The Webcomponent Manifest
 sidebar_label: Manifest
+sidebar_position: 20
 ---
+
 Any webcomponent is or aims to be:
 
 1. an HTML tag
@@ -327,4 +329,4 @@ The following example shows how it works:
 ```
 
 The `shared-key` property suggests to the Configurator how to group properties using JSON `definitions` (refer to the
-[dedicated documentation](../30_compose_pages.md#shared-properties) for more information).
+[dedicated documentation](/business_suite/backoffice-configuration/compose_pages#shared-properties) for more information).
