@@ -8,9 +8,10 @@ Real-Time Updater is the service in charge of constantly keeping up-to-date proj
 that are received from the associated System of Records. Once modifications are stored to the database, the service
 triggers downstream components with the proper mechanism, so that Single Views can be regenerated with the latest data. 
 
-For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/configuration/realtime_updater/realtime_updater_v7.md).   
-Below, instead, is explained how to configure the service starting from version `v8`. With this version the service
+In this page it is explained how to configure the service starting from version `v8`. With this version the service
 has been overhauled and polished to offer a more streamlined configuration experience, improved performances and higher reliability.
+
+For an overview Real-Time Updater's features, it is possible to read the introduction documentation [here](/fast_data/realtime_updater.md).
 
 ## Environment variables
 
@@ -27,7 +28,21 @@ will provide the option to configure the service without manually writing the fi
 
 ### Service Settings
 
-Here are described the parameters intrinsic to service that specify its behaviors.
+Here are described the parameters intrinsic to service that specify its behaviors. An example of service configuration
+can be the following one:
+
+```json
+"settings": {
+  "systemOfRecords": "inventory",
+  "enableSoftDelete": true,
+  "dataSourceAdapter": {
+    "type": "debezium"
+  },
+  "castFunctions": {
+    "mapToAddressType": "/app/extensions/mapToAddressType.kts",
+  }
+}
+```
 
 #### System Of Records
 
@@ -56,7 +71,7 @@ This flag determines whether the _soft delete_ policy is enabled, which by defau
 
 | Property            | Type     | Required | Default             |
 |---------------------|----------|----------|---------------------|
-| `dataSourceAdapter` | `object` | &check;  | `{ "type": "db2" }` |
+| `dataSourceAdapter` | `object` | -        | `{ "type": "db2" }` |
 
 When consuming change events from ingestion topics, the Real-Time Updater needs to know how to parse them. For
 this reason it is provided a convenient manner to select the message adapter. Out of the box the service supports
@@ -91,6 +106,11 @@ containing the custom message adapter function. For example:
   "filepath": "/app/extensions/messageAdapter.kt"
 }
 ```
+
+:::note
+It is important to remember to mount the custom message adapter within the plugin instance to the same location that it is defined
+in the `dataSourceAdapter` configuration.
+:::
 
 Here is described the interface of the custom message adapter function:
 
@@ -182,18 +202,86 @@ Within the custom message adapter script file it is possible to define multiple 
 to define a function named `messageAdapter`, which will be treated as entry point for the custom message adapter.
 :::
 
-#### Custom Cast Functions
+#### Cast Functions and Additional Cast Functions
 
 | Property        | Type     | Required | Default |
 |-----------------|----------|----------|---------|
 | `castFunctions` | `object` | -        |         |
 
+Real-Time Updater service allows to perform basic transformation logic on each field of projection records before writing
+them onto the storage system. By default, it offers a set of predefined functions that convert a projection record field from one type
+into another. For example, it allows to convert a string containing a number into an integer. Below it is shown the list of
+existing functions:
+
+- `identity` → applies the identity function (no change occurs)
+- `castToString` → convert the input value into a string
+- `castToInteger` → convert the input value into an integer number
+- `castToFloat` → convert the input value into a decimal number
+- `castUnixTimestampToISOString` → convert the input value from a Unix timestamp (e.g. `1695141357284`) to the same timestamp in ISO 8601 format (e.g. `2023-09-19T16:35:57.284Z`)
+- `castStringToBoolean` → convert the string value `true` and `false` to their corresponding boolean value
+- `castToDate` → convert a string or a number into a Date object
+- `castToObject` → parse a JSON object represented as string into a JSON object 
+- `castToArrayOfObject` → parse a JSON array represented as string into a JSON array
+
+Whenever these functions do not cover a particular use case, it is possible configure additional _user-defined functions_
+as custom cast functions. These cast functions can be implemented either in Kotlin or Javascript, each of them written in
+their own file. When the files containing the _user-defined functions_ are loaded, the service will search within them
+for a function named as the key name in the configuration. The function with such name **must** exist otherwise the service will
+encounter a processing error.   
+
+The `castFunctions` property is then configurable as follows: it should be a mapping between names of custom cast functions
+and the path on the service where to find the file containing its implementation.  
+Here it is shown a possible example of configuring two custom cast functions:
+
 ```json
 "castFunctions": {
+  "mapToAddressType": "/app/extensions/mapToAddressType.kts",
   "castToTitleCase": "/app/extensions/castToTitleCase.js"
-  "castToPhoneNumber": "/app/extensions/castToPhoneNumber.js"
 }
 ```
+
+:::note
+It is important to remember to mount each custom cast function or the folder containing them within the plugin instance.
+Then in the `castFunctions` property they should be properly named and set the correct location to each file containing
+the function's implementation. 
+:::
+
+Considering the implementation of these cast functions, they expect as input two parameters, that are the _value_ the field
+to be transformed and the _field name_ represented as `string`. The output of the cast functions should be a single value
+in the type expected by the data model for that specific field on which the cast function is applied.
+
+Below is provided an example of cast functions implementation, one for each supported programming language.
+
+<details><summary>Custom Cast Function (Kotlin - mapToAddressType.kts)</summary>
+<p>
+
+```kotlin
+package castFunctions
+
+val addressMapping = mapOf(
+  1 to "SHIPPING",
+  2 to "BILLING",
+  3 to "LIVING",
+)
+
+// NOTE: the name of the function must correspond to
+//       the key associated to the file containing it
+fun mapToAddressType(value: Any, fieldName: String): String? {
+  return when (value) {
+    is String -> addressMapping[value.toInt()]
+    is Int, is Long -> addressMapping[value]
+    else -> {
+      // NOTE: a basic logger can be accesses via internal binding
+      logger.debug("not an address type code: $value - fieldName: $fieldName")
+      
+      null
+    }
+  }
+}
+```
+
+</p>
+</details>
 
 <details><summary>Custom Cast Function (Javascript - castToTitleCase.js)</summary>
 <p>
@@ -201,12 +289,12 @@ to define a function named `messageAdapter`, which will be treated as entry poin
 ```javascript
 'use strict'
 
-// note the name of the file must be the same of the name of the function
+// NOTE: the name of the function must correspond to
+//       the key associated to the file containing it
 function castToTitleCase(value, fieldName) {
-    logger.info("Executing castToTitleCase")
-
-    const str = value.toString()
-    return str[0].toUpperCase() + str.substr(1).toLowerCase()
+  const str = value.toString()
+  
+  str[0].toUpperCase() + str.slice(1).toLowerCase()
 }
 ```
 
@@ -215,101 +303,247 @@ function castToTitleCase(value, fieldName) {
 
 ### Consumer
 
-| Property         | Type     | Required | Default |
-|------------------|----------|----------|---------|
-| `type`           | `string` | &check;  | `kafka` |
-| `configurations` | `object` | &check;  |         |
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `type`          | `string` | &check;  | `kafka` |
+| `configuration` | `object` | &check;  |         |
+
+Describe which type of consumer and its configuration properties the service should employ to read ingestion messages
+as input events. Currently only Kafka (and platforms adopting Kafka APIs) is supported as consumer.
+
+#### Kafka Configuration
+
+When Kafka is selected as consumer for the Real-Time Updater service, it is possible to provide most of the Kafka Consumer
+properties that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
+
+This is an example of consumer configuration when `kafka` is selected as type: 
+
+```json
+"consumer": {
+  "type": "kafka",
+  "configuration": {
+    "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-consumer",
+    "bootstrap.servers": "localhost:9092",
+    "group.id": "galaxy.fast-data.DEV.inventory-realtime-updater",
+    "auto.offset.reset": "latest",
+    "max.poll.records": 2000,
+    "max.poll.timeout.ms": 500
+  }
+}
+```
+
+:::info
+The consumer property `max.poll.timeout.ms` is an ad-hoc property, which does not belong to the set of Kafka Consumer properties.
+In fact, it is employed by the service to set the maximum number of milliseconds the consumers waits for a poll operation
+before returning any event (in case `max.poll.records` or `message.max.bytes` are not reached earlier than the configured timeout).
+:::
+
+:::note
+The following Kafka Consumer properties cannot be customized by the user, since are managed by the service:
+- `enable.auto.commit`
+- `allow.auto.create.topics`
+- `key.deserializer`
+- `value.deserializer`
+:::
 
 ### Producer
 
-| Property         | Type     | Required | Default |
-|------------------|----------|----------|---------|
-| `type`           | `string` | &check;  | `kafka` |
-| `configurations` | `object` | &check;  |         |
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `type`          | `string` | &check;  | `kafka` |
+| `configuration` | `object` | &check;  |         |
 
+Describe which type of consumer and its configuration properties the service should employ to trigger change 
+as input events. Currently only Kafka (and platforms adopting Kafka APIs) is supported as consumer.
+
+#### Kafka Configuration
+
+When Kafka is selected as producer for the Real-Time Updater service, it is possible to provide most of the Kafka Producer
+properties that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#producerconfigs).
+
+This is an example of producer configuration when `kafka` is selected as type:
+
+```json
+"producer": {
+  "type": "kafka",
+  "configuration": {
+    "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-producer",
+    "bootstrap.servers": "localhost:9092"
+  }
+}
+```
+
+:::note
+The following Kafka Producer properties cannot be customized by the user, since are managed by the service:
+- `acks`
+- `enable.idempotence`
+- `key.deserializer`
+- `value.deserializer`
+:::
 
 ### Storage
 
-| Property         | Type     | Required | Default   |
-|------------------|----------|----------|-----------|
-| `type`           | `string` | &check;  | `mongodb` |
-| `configurations` | `object` | &check;  |           |
+| Property        | Type     | Required | Default   |
+|-----------------|----------|----------|-----------|
+| `type`          | `string` | &check;  | `mongodb` |
+| `configuration` | `object` | &check;  |           |
 
+Describe which type of storage system is employed by the service for writing the projections records and
+which are its configuration properties. Currently only MongoDB is supported as storage system.
+
+#### MongoDB Configuration
+
+When MongoDB is selected as a storage system for the Real-Time Updater service, it requires the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/)
+and the _name_ of the database the service will connect to. The database name is not necessary in case it is already
+specified in the connection string, although it would be recommended to set it in case the connection string is shared
+among multiple 
+
+This is an example of storage configuration when `mongodb` is selected as type:
+
+```json
+"storage": {
+  "type": "mongodb",
+  "configuration": {
+    "url": "mongodb://localhost:27017/fast-data-inventory-local",
+    "database": "fast-data-inventory-local"
+  }
+}
+```
 
 ### Projections Config
 
+This section of the configuration provides all the details related to each projection associated to an instance of the
+Real-Time Updater service. The content of this property is mapping between projection names and their configuration the input and output specification together with the mapping configuration that
+instructs the service on how to transform each ingestion event into a projection record and where to store it.
 
+#### Topics
 
-## Configuration files
+| Property    | Type     | Required | Default |
+|-------------|----------|----------|---------|
+| `ingestion` | `object` | &check;  |         |
+| `prUpdate`  | `object` | &check;  |         |
 
-The Real-Time Updater accepts the following configurations:
+In this section are specified for each projection their input channel (_ingestion_), from which change events on the source
+system (System Of Records) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
+to trigger Fast Data downstream components.
 
+##### Ingestion
 
-#### Custom
+```json
+{
+  "ingestion": {
+    "name": "galaxy.fast-data.DEV.orders.ingestion"
+  }
+}
+```
 
-If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages. 
+##### Projection Record Update
 
-To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
+```json
+{
+  "prUpdate": {
+    "name": "galaxy.fast-data.DEV.customers.pr-update"
+  }
+}
+```
 
-- **offset**: the offset of the Kafka message
-- **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
-- **keyObject**: an object containing the primary keys of the projection. It is used to know which projection document needs to be updated with the changes set in the value.
-- **value**: the data values of the projection, or null
-- **operation**: optional value that indicates the type of operation (either `I` for insert, `U` for update, or `D` for delete). It is not needed if you are using an upsert on insert logic (the default one), while it is required if you want to differentiate between insert and update messages.
-- **before**: optional value that indicates the data values before the operation execution
-- **after**: optional value that indicates the data values after the operation execution
-- **operationPosition**: optional value that indicates a positive integer, usually a timestamp, which ensures messages are processed in the correct order
+#### Custom Storage Namespace
 
-If the `value` is null, it is a delete operation.
-The `keyObject` **cannot** be null.
+| Property                 | Type     | Required | Default             |
+|--------------------------|----------|----------|---------------------|
+| `customStorageNamespace` | `string` | -        | `<projection-name>` |
 
-To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#custom) .
+Represents the name employed on the storage system for knowing where to store the records of this projection. By default,
+this value corresponds to the name of the projection itself.
 
-:::note
-To support a Primary Key update, the `before`, `after` and `operationPosition` fields should be included in the adapter. (Hint: if not present, a simple `operationPosition` value might be the Kafka message timestamp).
+For example, when using MongoDB as storage system, this field allows to define a custom name for the collection where the
+records of this projection will be saved.
+
+#### Primary Keys
+
+| Property      | Type       | Required | Default |
+|---------------|------------|----------|---------|
+| `primaryKeys` | `string[]` | &check;  |         |
+
+It is the list of fields names that identifies a record for this projection. The names contained in this list are relative
+to the fields of the source record contained in the ingestion event. There should always be at least one name in
+this list, so that it is possible to uniquely connect records of different projections among them.
+
+:::caution
+Primary keys array **must** contain the names of the fields that are found on the ingestion event document. In case
+`targetField` property is employed in the fields mapping section to rename the primary key fields that will be
+stored in the projection record, then the service will properly forward the updated list when it emits the corresponding
+projection-record update events.
 :::
 
-Inside configmap folder create your javascript file named `kafkaMessageAdapter.js`.
+#### Fields Mapping
 
-### CAST_FUNCTION configurations
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `fieldsMapping` | `object` | &check;  |         |
 
-The mount path used for these configurations is: `/home/node/app/configurations/castFunctionsFolder`.  
-In this folder you have all the generated [Cast Functions](/fast_data/configuration/cast_functions.md) definitions. This configuration is read-only since you can configure it from its dedicated section of the Console.
+This projection configuration property describe which fields of in the incoming record are interested. Indeed, not all
+the fields of those documents coming from the System Of Records may be necessary to construct the projection. From this,
+here it is applied a _"projection"_ (filter) operation on the names of the record fields.  
+For each of these fields of interest of this projection it is necessary to configure the following two settings:
 
-### MAP_TABLE configurations
+- `targetField` → the name for this specific field to be employed when storing the projection record on the storage system.
+It can potentially be different from the original name, although by default the system tend to match the name from the
+incoming document with the one saved on the projections storage system to avoid possible confusion.
+- `castFunction` → the identifier of the function to be applied on the value of this field. For a reference of possible
+values that this property can get, please refer to [cast functions](./#cast-functions-and-additional-cast-functions) section.
 
-The mount path used for these configurations is: `/home/node/app/configurations/mapTableFolder`.  
-Two mappings will be placed in this folder: one between cast functions and fields and another one between strategies and projections.
-This configuration is read-only since it's configured automatically based on the projections and strategies you configure from the Fast Data section of the Console.
+---
 
-### Kafka Projection Updates configuration
+Considering all the settings explained above, here is displayed a configuration for a projection named
+`pr_products`. It has its own ingestion and prUpdate topic, its records will be stored on the storage system
+under the namespace `products` and its fields will maintain the same naming with their value transformed according to
+defined cast function.
 
-Whenever the Real-Time Updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
-
-:::info
-This feature has been introduced since version v3.5.0 of the real time updater
-:::
-
-To activate this feature you need to set the following environment variables:
-- `KAFKA_PROJECTION_UPDATES_FOLDER`: path to the folder that contains the file `kafkaProjectionUpdates.json`, containing configurations of the topic where to send the updates to, mapped to each projection.
-- `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. Default is `false`
-
-:::info
-From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
-:::
-
-You need to create a configuration with the same path as the one you set in `KAFKA_PROJECTION_UPDATES_FOLDER`. Then, you have to create a configuration file `kafkaProjectionUpdates.json` inside that configuration.
-
-:::warning
-To prevent possible conflicts with the automatically created configuration, please set the `KAFKA_PROJECTION_UPDATES_FOLDER` to a value different from the default `/home/node/app/kafkaProjectionUpdates` path.
-:::
-
-To know more on how to configure the `kafkaProjectionUpdates.json` please refer to its [Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
-
-:::info
-Notice that you can either set the topics for all the projections, or for a subset of them.
-So, for example, if you need to setup a [Single View Patch](#single-view-patch) operation, you may want to configure only the projections needed in such Single View.
-:::
+```json
+"projections": {
+  "pr_products": {
+    "topics": {
+      "ingestion": {
+        "name": "galaxy.fast-data.DEV.products.ingestion"
+      },
+      "prUpdate": {
+        "name": "galaxy.fast-data.DEV.products.pr-update"
+      }
+    },
+    "customStorageNamespace": "products",
+    "primaryKeys": [
+      "id"
+    ],
+    "fieldsMapping": {
+      "id": {
+        "targetField": "id",
+        "castFunction": "identity"
+      },
+      "name": {
+        "targetField": "name",
+        "castFunction": "castToString"
+      },
+      "description": {
+        "targetField": "description",
+        "castFunction": "castToString"
+      },
+      "weight": {
+        "targetField": "weight",
+        "castFunction": "castToFloat"
+      },
+      "material": {
+        "targetField": "material",
+        "castFunction": "castToString"
+      },
+      "price": {
+        "targetField": "price",
+        "castFunction": "castToFloat"
+      }
+    }
+  }
+}
+```
 
 ## Configuration File Example
 
@@ -331,13 +565,13 @@ supported by the service.
   },
   "consumer": {
     "type": "kafka",
-    "configurations": {
+    "configuration": {
       "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-consumer",
       "bootstrap.servers": "localhost:9092",
       "group.id": "galaxy.fast-data.DEV.inventory-realtime-updater",
-      "auto.offset.reset": "earliest",
+      "auto.offset.reset": "latest",
       "max.poll.records": 2000,
-      "max.poll.timeout": 500,
+      "max.poll.timeout.ms": 500,
       "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
       "sasl.mechanism": "SCRAM-SHA-256",
       "security.protocol": "SASL_SSL"
@@ -345,7 +579,7 @@ supported by the service.
   },
   "producer": {
     "type": "kafka",
-    "configurations": {
+    "configuration": {
       "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-producer",
       "bootstrap.servers": "localhost:9092",
       "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
@@ -355,7 +589,7 @@ supported by the service.
   },
   "storage": {
     "type": "mongodb",
-    "configurations": {
+    "configuration": {
       "url": "mongodb://localhost:27017",
       "database": "fast-data-inventory-dev"
     }
@@ -364,12 +598,10 @@ supported by the service.
     "pr_customers": {
       "topics": {
         "ingestion": {
-          "name": "galaxy.fast-data.DEV.customers.ingestion",
-          "active": true
+          "name": "galaxy.fast-data.DEV.customers.ingestion"
         },
         "prUpdate": {
-          "name": "galaxy.fast-data.DEV.customers.pr-update",
-          "active": true
+          "name": "galaxy.fast-data.DEV.customers.pr-update"
         }
       },
       "customStorageNamespace": "customers",
@@ -402,12 +634,10 @@ supported by the service.
     "pr_orders": {
       "topics": {
         "ingestion": {
-          "name": "galaxy.fast-data.DEV.orders.ingestion",
-          "active": true
+          "name": "galaxy.fast-data.DEV.orders.ingestion"
         },
         "prUpdate": {
-          "name": "galaxy.fast-data.DEV.orders.pr-update",
-          "active": true
+          "name": "galaxy.fast-data.DEV.orders.pr-update"
         }
       },
       "customStorageNamespace": "orders",
@@ -448,12 +678,10 @@ supported by the service.
     "pr_products": {
       "topics": {
         "ingestion": {
-          "name": "galaxy.fast-data.DEV.products.ingestion",
-          "active": true
+          "name": "galaxy.fast-data.DEV.products.ingestion"
         },
         "prUpdate": {
-          "name": "galaxy.fast-data.DEV.products.pr-update",
-          "active": true
+          "name": "galaxy.fast-data.DEV.products.pr-update"
         }
       },
       "customStorageNamespace": "products",
@@ -506,19 +734,19 @@ settings:
     type: debezium
 consumer:
   type: kafka
-  configurations:
+  configuration:
     "client.id": galaxy.fast-data.DEV.inventory-realtime-updater-consumer
     "bootstrap.servers": localhost:9092
     "group.id": galaxy.fast-data.DEV.inventory-realtime-updater
-    "auto.offset.reset": earliest
+    "auto.offset.reset": latest
     "max.poll.records": 2000
-    "max.poll.timeout": 500
+    "max.poll.timeout.ms": 500
     "sasl.jaas.config": org.apache.kafka.common.security.scram.ScramLoginModule required username="<username>" password="<password>";
     "sasl.mechanism": SCRAM-SHA-256
     "security.protocol": SASL_SSL
 producer:
   type: kafka
-  configurations:
+  configuration:
     "client.id": galaxy.fast-data.DEV.inventory-realtime-updater-producer
     "bootstrap.servers": localhost:9092
     "sasl.jaas.config": org.apache.kafka.common.security.scram.ScramLoginModule required username="<username>" password="<password>";
@@ -526,7 +754,7 @@ producer:
     "security.protocol": SASL_SSL
 storage:
   type: mongodb
-  configurations:
+  configuration:
     url: mongodb://localhost:27017
     database: fast-data-inventory-dev
 projections:
@@ -534,10 +762,8 @@ projections:
     topics:
       ingestion:
         name: galaxy.fast-data.DEV.customers.ingestion
-        active: true
       prUpdate:
         name: galaxy.fast-data.DEV.customers.pr-update
-        active: true
     customStorageNamespace: customers
     primaryKeys:
       - id
@@ -561,10 +787,8 @@ projections:
     topics:
       ingestion:
         name: galaxy.fast-data.DEV.orders.ingestion
-        active: true
       prUpdate:
         name: galaxy.fast-data.DEV.orders.pr-update
-        active: true
     customStorageNamespace: orders
     primaryKeys:
       - order_number
@@ -594,10 +818,8 @@ projections:
     topics:
       ingestion:
         name: galaxy.fast-data.DEV.products.ingestion
-        active: true
       prUpdate:
         name: galaxy.fast-data.DEV.products.pr-update
-        active: true
     customStorageNamespace: products
     primaryKeys:
       - id
@@ -624,21 +846,3 @@ projections:
 
 </p>
 </details>
-
-## Advanced topics
-
-
-### PR Update format 
-
-* *type*: set **topic** type.
-* *topic name*: new or existent one.
-* *pattern type*: literal or prefixed. If you want to declare an ACL for each topic you should use **literal**.
-* *operation*: for each topic, you should set **READ** and **WRITE** operation.
-* *permission*: could be `ALLOW` or `DENY`. You should set **ALLOW**. Once created, by default permission are to deny all others operations.
-
-
-
-
-### CA certs
-
-Since service version `5.4.0`, you can set your CA certs by providing a path to the certification file in the environment variable `CA_CERT_PATH`.
