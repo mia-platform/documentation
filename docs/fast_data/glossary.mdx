@@ -51,9 +51,9 @@ export const GlossaryTable = ({entries}) => (
   {name: "Single View Event", description: "Kafka message that informs the listener that a Single View has been successfully updated", alias: "svc-events", link: "./inputs_and_outputs#single-view-event"},
   {name: "Change Data Capture (CDC)", description: "A system that reacts to change of data at some source (in our case the System of Records) by emitting an event", alias: "CDC", link: "./the_basics#change-data-capture-cdc"},
   {name: "Cast function", description: "A function used to transform the data originally coming from the System of Records before it is saved in the Projection", alias: "-", link: "./the_basics#cast-function"},
-  {name: "Kafka adapter", description: "A function that transforms the ingested Kafka messages into a format that can be read by the the Real-Time Updater", alias: "-", link: "./configuration/realtime_updater#kafka-adapters-kafka-messages-format"},
-  {name: "Golden Gate Adapter", description: "A Kafka adapter containing before and after fields", alias: "-", link: "./configuration/realtime_updater#golden-gate"},
-  {name: "DB2 Adapter", description: "The default Kafka adapter", alias: "-", link: "./configuration/realtime_updater#ibm-infosphere-data-replication-for-db2"},
+  {name: "Kafka adapter", description: "A function that transforms the ingested Kafka messages into a format that can be read by the the Real-Time Updater", alias: "-", link: "./configuration/realtime_updater/realtime_updater_v7.md#kafka-adapters-kafka-messages-format"},
+  {name: "Golden Gate Adapter", description: "A Kafka adapter containing before and after fields", alias: "-", link: "./configuration/realtime_updater/realtime_updater_v7.md#golden-gate"},
+  {name: "DB2 Adapter", description: "The default Kafka adapter", alias: "-", link: "./configuration/realtime_updater/realtime_updater_v7.md#ibm-infosphere-data-replication-for-db2"},
   {name: "Initial projection", description: "Is the projection modified by the ingestion message, e.g if we have an ingestion message that updates a \"pr_allergens\" document, then our Initial projection will be \"pr_allergens\"",  alias: "-", link: "./the_basics#projection"},
   {name: "Base projection", description: "Is the projection that correlates 1:1 to your single view, e.g if we have a Single View for your users named \"sv_registry\", the Base projection will most likely be a projection called \"pr_registry\"", alias: "-", link: "./the_basics#projection"}
 ].sort((a, b) => a.name.localeCompare(b.name))} />
