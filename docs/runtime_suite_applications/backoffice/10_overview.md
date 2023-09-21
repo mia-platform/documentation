@@ -8,6 +8,6 @@ instance, this application available in the Marketplace will help you configure 
 
 :::caution
 This application is meant to be used with the 
-[Backoffice Configurator](../../business_suite/backoffice-configuration/overview). For this
+[Backoffice Configurator](../../business_suite/backoffice-configuration/structure). For this
 reason, you will find that almost all the default config maps are _readonly_.
 :::

@@ -85,7 +85,7 @@ For further configuration of the microservices you can refer to the dedicated do
 - [Flow-Manager-Service](../../runtime_suite/flow-manager-service/overview)
 - [Files-Service](../../runtime_suite/files-service/configuration)
 - [SMTP Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage)
-- [Data-Visualization](../../business_suite/data-visualization)
+- [Data-Visualization](../../business_suite/backoffice/use-cases/data-visualization)
 - [Analytics](../../runtime_suite/mongodb-reader/configuration)
 
 ## View

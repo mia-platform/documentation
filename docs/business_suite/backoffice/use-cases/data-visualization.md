@@ -2,7 +2,9 @@
 id: data-visualization
 title:  Data Visualization
 sidebar_label: Dashboard configuration
+sidebar_position: 10
 ---
+
 This page explains how to configure the new frontend for analytics. It is possible to configure multiple dashboards that can be visualized on the CMS.
 
 To be able to configure your charts and dashboards, in the **Services** section of the Console, you need to have for each chart:

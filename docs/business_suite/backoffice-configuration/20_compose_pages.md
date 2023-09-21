@@ -3,8 +3,8 @@ id: compose_pages
 title: Compose pages
 sidebar_label: Compose Pages
 ---
-The pages of type [_compose_](./20_structure.md#page-type) can be configured in a **dedicated section**
-accessible via _edit page_ option in pages [context menu](./20_structure.md#edit-page).
+The pages of type [_compose_](./10_structure.md#page-type) can be configured in a **dedicated section**
+accessible via _edit page_ option in pages [context menu](./10_structure.md#edit-page).
 
 :::tip
 You can refer the [micro-lc documentation](https://micro-lc.io/docs/guides/applications/compose) on how to properly
@@ -18,7 +18,7 @@ configure a compose page.
 Compose pages can be created starting from a template, which is a pre-defined configuration carring a set of components.
 
 :::tip
-To learn how to use your own custom templates, read the [dedicated documentation](./40_configurator_settings.md#template-sources).
+To learn how to use your own custom templates, read the [dedicated documentation](./30_configurator_settings.md#template-sources).
 ::: 
 
 ### Page with table
@@ -57,18 +57,18 @@ A table page built to be connected with another page that provides further detai
 ![Master table template](img/compose-page_templates_master-table.png)
 
 The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details
-page configuring the table [`customActions` property](../../business_suite/backoffice/components/data_visualization#configuring-actions-via-customactions).
+page configuring the table [`customActions` property](../../business_suite/back-kit/components/data_visualization#configuring-actions-via-customactions).
 
 ### Details page
 
-A page built to display a detailed view of data (e.g., a single row of a table) through [card components](../../business_suite/backoffice/components/data_visualization#bk-card).
+A page built to display a detailed view of data (e.g., a single row of a table) through [card components](../../business_suite/back-kit/components/data_visualization#bk-card).
 
 ![Details page template](img/compose-page_templates_details-page.png)
 
 The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
 interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_
 section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be
-[properly configured](../../business_suite/backoffice/components/adapters#bk-url-parameters) to
+[properly configured](../../business_suite/back-kit/components/adapters#bk-url-parameters) to
 query data correctly.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
@@ -99,7 +99,7 @@ section.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
 [dedicated section](#shared-properties). Pre-configured schema already has the required fields by the
-[calendar component](../../business_suite/backoffice/components/data_visualization#bk-calendar).
+[calendar component](../../business_suite/back-kit/components/data_visualization#bk-calendar).
 
 ### Picture gallery
 
@@ -126,7 +126,7 @@ This section works just as the layout tab of Backoffice Configurator. The
 **left menu** allows viewing, selecting, and hiding the custom components composing the page, the **live central preview** shows 
 how the final page will look like, and from the **right menu** components properties can be consulted and edited.
 
-For more technical insights, visit the [Layout section](./20_structure.md#layout) where all the behaviors are explained in deep.
+For more technical insights, visit the [Layout section](./10_structure.md#layout) where all the behaviors are explained in deep.
 
 ![Compose page layout tab](img/compose-page_layout.png)
 
@@ -162,7 +162,7 @@ it in a no-code fashion.
 Once that the property has been created, it will be visible in the left side menu. It is possible to assign it to a property of a component 
 in page by selecting it and flagging the checkbox of the relative property.
 
-Alternatively, it is possible to assign a Shared Property to a component property directly in the [Component properties editor](./20_structure.md#components-properties-editor)
+Alternatively, it is possible to assign a Shared Property to a component property directly in the [Component properties editor](./10_structure.md#components-properties-editor)
 
 ![Compose page shared properties tab](img/compose-page_shared-properties-checkbox.png)
 
@@ -173,7 +173,7 @@ Some shared property types are well known by the Configurator, and a no-code edi
 #### Back Kit data schema
 
 Properties of type `back-kit/data-schema` are a core concept of the
-[back-kit web-components library](../../business_suite/backoffice/page_layout#data-schema)
+[back-kit web-components library](../../business_suite/back-kit/page_layout#data-schema)
 and can be configured through a graphical interface.
 
 You can add new fields to the schema, choose and edit their name, and set some relevant properties for each of them.
@@ -182,7 +182,7 @@ You can add new fields to the schema, choose and edit their name, and set some r
 
 Moreover, data schemas can be **automatically generated** from CRUD collections. This can be done in specific components
 that are responsible for CRUD communication
-(e.g., [Curd Client](../../business_suite/backoffice/components/clients#bk-crud-client) component),
+(e.g., [Curd Client](../../business_suite/back-kit/components/clients#bk-crud-client) component),
 with the _Generate Schema_ button.
 
 ![Generate schema button](img/compose-page_crud-generation-button.png)
@@ -199,7 +199,7 @@ shared property (this includes any additional field you may have added to the pr
 
 ## Advanced
 
-The fourth and last tab works like the advanced tab of the [structure section](./20_structure.md#advanced-configuration):
+The fourth and last tab works like the advanced tab of the [structure section](./10_structure.md#advanced-configuration):
 the **whole configuration** of the page can be edited from a code editor with a live preview on the right.
 
 ![Compose page advanced tab](img/compose-page_advanced.png)

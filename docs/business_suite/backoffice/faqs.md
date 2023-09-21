@@ -10,7 +10,7 @@ sidebar_label: FAQs
 
 :::caution
 The information regarding the menu are valid only if you are using the
-[`bk-layout`](../../business_suite/backoffice/components/misc#bk-layout) component.
+[`bk-layout`](../../business_suite/back-kit/components/misc#bk-layout) component.
 :::
 
 The first step to add a new page to your Backoffice is to [create](/business_suite/backoffice-configuration/structure#create-new-page) it the _Pages_
@@ -29,7 +29,7 @@ menu. The click will spawn a new _Edit item_ button.
 ![Add item](./img/faqs_add-new-menu-item_add-item.png)
 
 One clicked, a code editor will appear in the modal for you to write the 
-[item configuration](../../business_suite/backoffice/components/misc#application). Remember
+[item configuration](../../business_suite/back-kit/components/misc#application). Remember
 that the _id_ must match the identifier of your newly created page.
 
 ![Item configuration](./img/faqs_add-new-menu-item_item-configuration.png)
@@ -40,11 +40,11 @@ Once you have done, click the _Save_ button. The modal will close, and the new i
 
 :::caution
 This information are valid only if you are using the
-[`bk-table`](../../business_suite/backoffice/components/data_visualization#bk-table) component.
+[`bk-table`](../../business_suite/back-kit/components/data_visualization#bk-table) component.
 :::
 
 Columns of the table are defined by it's 
-[`dataSchema` property](../../business_suite/backoffice/page_layout#data-schema). To edit
+[`dataSchema` property](../../business_suite/back-kit/page_layout#data-schema). To edit
 it you first need to open the configuration of the _compose page_ of your choice. Now you need to select the _Table_
 component in the left menu (if you are starting from a template, it usually located under the _Main_ component) and click the _Edit property_ button of the _Data schema_ property in the right menu.
 
@@ -52,7 +52,7 @@ component in the left menu (if you are starting from a template, it usually loca
 
 A modal will open with a code editor you can use to edit the property. Now you just need to add a new entry to the
 `properties` object as explained in the 
-[official documentation](../../business_suite/backoffice/page_layout#data-schema).
+[official documentation](../../business_suite/back-kit/page_layout#data-schema).
 
 Once you have done, click the _Save_ button. The modal will close, and the table will display the new column.
 
@@ -151,11 +151,11 @@ Backoffice implementation.
 ### How can I use my own web-components?
 
 The first step is to properly build, bundle, and serve your own web-components library. You can read the section dedicated
-to [external components](/business_suite/backoffice/external-components/summary) to cover the ins and outs of the process with
+to [external components](/business_suite/backoffice/external-components/overview) to cover the ins and outs of the process with
 particular attention to the [bundling section](/business_suite/backoffice/external-components/bundling).
 
 Runtime-wise, micro-lc has no limitations regarding web-components sources, as long as they can be correctly loaded by the
-application (read more about the different types of [sourcing](/business_suite/backoffice/external-components/summary#sourcing)). To use
+application (read more about the different types of [sourcing](/business_suite/backoffice/external-components/overview#sourcing)). To use
 a web-components library in the layout or in a compose page you just need to declare it in the configuration
 [sources](https://micro-lc.io/docs/guides/applications/compose#plugin-configuration):
 
@@ -176,7 +176,7 @@ In the Configurator you can edit sources from the _Advanced_ tabs.
 
 The Configurator, on the other hand, may have some troubles showing your custom components in the preview. For example,
 there may be CORS issues or authentication issues. To fix them you may need to adjust how your components are
-[served](/business_suite/backoffice/external-components/summary#sourcing), or you can rely on the Configurator
+[served](/business_suite/backoffice/external-components/overview#sourcing), or you can rely on the Configurator
 [Service Worker](/business_suite/backoffice-configuration/configurator_settings#source-maps) to reverse proxy your sources to something that can be loaded
 by the preview.
 

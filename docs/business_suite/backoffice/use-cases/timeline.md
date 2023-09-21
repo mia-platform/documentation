@@ -2,7 +2,9 @@
 id: timeline
 title:  Timeline
 sidebar_label: Timeline
+sidebar_position: 20
 ---
+
 This generic frontend can be used to visualize data on a timeline. It requires a specific format for data exposed on a
 certain endpoint.
 

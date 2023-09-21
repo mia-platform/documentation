@@ -11,9 +11,9 @@ It provides two dashboards, `Users` and `Services`, that can immediately give fe
 It’s based on the following services:
 
 - `Charts-service`: It is used to assemble dashboards with different charts.
-For more details, please refer to this [documentation](../../business_suite/data-visualization).
+For more details, please refer to this [documentation](../../business_suite/backoffice/use-cases/data-visualization).
 
-- `Data-visualization`: It is required to display dashboards on the Backoffice application. For more details, please refer to this [documentation](../../business_suite/data-visualization).
+- `Data-visualization`: It is required to display dashboards on the Backoffice application. For more details, please refer to this [documentation](../../business_suite/backoffice/use-cases/data-visualization).
 
 - `MongoDB-reader`: This microservice is used to retrieve the necessary data from mongoDB to feed the different charts. For more details, please refer to this [documentation](../../runtime_suite/mongodb-reader/configuration).
 
