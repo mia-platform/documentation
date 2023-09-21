@@ -11,7 +11,7 @@ For having an overview of the features of the Real-Time Updater, you can go [her
 Here below, instead, all the configurations the service accepts are explained. 
 
 :::info
-The documentation regarding the Real-Time Updater version v8 can be found [here](/fast_data/configuration/realtime_updater/realtime_updater_v8.md).
+The documentation regarding the Real-Time Updater version `v8` can be found [here](/fast_data/configuration/realtime_updater/realtime_updater_v8.md).
 :::
 
 ## Environment variables

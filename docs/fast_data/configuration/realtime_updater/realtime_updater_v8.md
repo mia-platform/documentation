@@ -13,6 +13,13 @@ has been overhauled and polished to offer a more streamlined configuration exper
 
 For an overview Real-Time Updater's features, it is possible to read the introduction documentation [here](/fast_data/realtime_updater.md).
 
+:::danger
+Using version `v8` or newer of the Real-Time Updater will not allow to compose the Fast Data [standard architecture](/fast_data/architecture.md#standard-architecture).
+However, it supports all the others architecture where Projection Records Updates messages are emitted by the service as
+triggers for the Fast Data downstream components. This means that, in order to use this Real-Time Updater version, it will
+be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) plugin to actually trigger the generation of Single Views.
+:::
+
 ## Environment variables
 
 | Name             | Required | Description                                                                                               | Default            |
