@@ -491,7 +491,7 @@ For each of these fields of interest of this projection it is necessary to confi
 It can potentially be different from the original name, although by default the system tend to match the name from the
 incoming document with the one saved on the projections storage system to avoid possible confusion.
 - `castFunction` → the identifier of the function to be applied on the value of this field. For a reference of possible
-values that this property can get, please refer to [cast functions](./#cast-functions-and-additional-cast-functions) section.
+values that this property can get, please refer to [cast functions](/fast_data/configuration/realtime_updater/realtime_updater_v8.md#cast-functions-and-additional-cast-functions) section.
 
 ---
 
