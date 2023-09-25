@@ -24,12 +24,16 @@
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "development_suite/clusters-management/clusters-overview-setup",
+            "id": "development_suite/clusters-management/vendors-runtime-services",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/clusters-management/vendors-runtime-services",
+              "id": "development_suite/clusters-management/cluster-setup",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/clusters-management/connect-and-manage-cluster",
               "type": "doc"
             }
           ]
@@ -969,10 +973,6 @@
         },
         {
           "id": "getting-started/handbooks/crud-service/crud-oss-usage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/company/connect-and-manage-cluster",
           "type": "doc"
         }
       ]

@@ -1,11 +1,16 @@
 ---
 id: vendors-runtime-services
-title: Vendors & Runtime services
-sidebar_label: Vendors & Runtime services
+title: Clusters Overview
+sidebar_label: Clusters
 ---
 
-When the user [connects a new cluster](/getting-started/handbooks/company/connect-and-manage-cluster.md#connect-a-cluster), they are required to enter information about the cluster's vendor and runtime service.
+Mia-Platform Console allows authorized users to manage the Kubernetes clusters on which projects are deployed. 
+
+## Supported clusters
+
+When the user [connects a new cluster](/development_suite/clusters-management/connect-and-manage-cluster.md), they are required to enter information about the cluster's vendor and runtime service.
 To date, the Console only supports runtime services based on Kubernetes, and all vendors can be associated with the following runtime services:
+
 * Kubernetes (https://kubernetes.io);
 * Red Hat OpenShift (https://www.redhat.com/en/technologies/cloud-computing/openshift).
 

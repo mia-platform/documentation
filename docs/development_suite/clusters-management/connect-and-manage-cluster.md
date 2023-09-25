@@ -4,6 +4,32 @@ title: Connect and Manage a Cluster
 sidebar_label: Connect and Manage a Cluster
 ---
 
+Mia-Platform Console allows authorized users to manage the Kubernetes clusters on which projects are deployed. More specifically, a user can:
+
+* Add a new connection to an existing Kubernetes cluster, also including some cluster information such as vendor, distribution, or geographics;
+* Edit the connection to an existing Kubernetes cluster, and eventually the cluster information;
+* Delete the connection to an existing Kubernetes cluster.
+
+Detailed information on how to perform these operations can be found [here](/development_suite/clusters-management/connect-and-manage-cluster.md).
+
+:::note
+It is essential to point out that these operations do not have an impact on the original Kubernetes cluster, but only on the connection to the cluster itself,as they are meant to provide the user with information about it. Therefore, as an example, adding a new cluster connection does not generate a new cluster, but simply links an existing one to the Console.
+:::
+
+To access these features, head to the Company Overview area of the Console by clicking the related button on the home page, next to your company name.
+
+![Go to Company Overview](img/go-to-company-overview.png)
+
+You will be automatically redirected to the Clusters section, in which you can see a table containing some information about the clusters connected to the Console:
+
+* **Cluster ID**: friendly identifier of the cluster, assigned by the user while connecting the cluster to the Console;
+* **Kubernetes version**: Git version of the Kubernetes master node associated with the cluster;
+* **Cluster URL**: URL used to connect to the cluster, which indicates where the cluster is exposed;
+* **Vendor**: a label used to describe the vendor of the cluster (e.g. Google, AWS...);
+* **Runtime service**: a label used to describe the runtime service of the cluster (e.g. WMWare Tanzu, GKE).
+
+![Clusters table](img/clusters-table.png)
+
 ## Connect a Cluster
 
 You can connect a cluster by clicking on the "Add cluster connection" button, located in the page's top right corner. A modal will show up, and, through a few steps, you will be asked to enter some information related to the cluster.
@@ -35,7 +61,7 @@ In this step, you are required to insert some information about the cluster cred
 
 * **Credentials Type** (*required*): the type of credentials used to authenticate requests to the cluster. Only the "Token" type is currently supported;
 * **Service account token** (*required*): JWT token needed by the service account to perform operations on the cluster.
-To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token).
+To extract it, refer to [this paragraph](/development_suite/clusters-management/cluster-setup.mdx#ca-and-token).
 
 :::info
 All credentials data are stored in an encrypted MongoDB collection.
@@ -53,7 +79,7 @@ Credentials entered at this stage, for security reasons, will never again be sho
 In this step, you can insert some advanced information about the cluster:
 
 * **Certificate authority**: CA certificate for the TLS connection with the cluster.
-  To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token);
+  To extract it, refer to [this paragraph](/development_suite/clusters-management/cluster-setup.mdx#ca-and-token);
 * **Proxy URL**: URL of the proxy used to connect to the cluster, usually needed when the cluster is exposed on a private network.
 
 By clicking on "Add cluster", the connection to the cluster will be set, and it will appear as a new entry in the table.
@@ -63,7 +89,7 @@ A syntactic check is performed at the moment of data entry, but the Console will
 Therefore, inserting a wrong URL, token, or certificate will result in a network error because the cluster will not be contacted successfully, and thus it will not be connected nor saved.
 :::
 :::danger
-In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment. More information on how to connect the service account can be found [here](/development_suite/clusters-management/clusters-overview-setup.md#configure-and-connect-the-service-account-to-the-cluster).
+In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment. More information on how to connect the service account can be found [here](/development_suite/clusters-management/cluster-setup.mdx#configure-and-connect-the-service-account-to-the-cluster).
 :::
 
 ## View Cluster Information
