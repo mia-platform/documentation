@@ -1135,10 +1135,6 @@
             {
               "id": "paas/mtls",
               "type": "doc"
-            },
-            {
-              "id": "paas/deployment-tools",
-              "type": "doc"
             }
           ]
         }
@@ -1188,6 +1184,17 @@
       "id": "byoi/byoi-overview",
       "type": "doc"
 
+    },
+    {
+      "label": "Third Party Integrations",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "infrastructure/third-party-integrations/deployment-tools",
+          "type": "doc"
+        }
+      ]
     }
   ],
   "marketplace": [
