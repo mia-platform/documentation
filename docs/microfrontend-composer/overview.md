@@ -1,8 +1,7 @@
 ---
 id: overview
-title:  Backoffice Overview
+title:  Microfrontend Composer overview
 sidebar_label: Overview
-sidebar_position: 20
 ---
 
 Mia-Platform Backoffice represents the nexus of innovation and user-centric design, enabling businesses to seamlessly create, manage, and optimize their web interfaces. This overview illustrates the core components, functionalities, and use cases, demonstrating the high adaptability and value Mia-Platform Backoffice brings to various scenarios.

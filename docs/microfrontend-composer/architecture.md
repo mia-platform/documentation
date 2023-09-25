@@ -1,8 +1,7 @@
 ---
 id: architecture
-title: Backoffice architecture
+title: Microfrontend Composer architecture
 sidebar_label: Architecture
-sidebar_position: 30
 ---
 
 Given their remarkable degree of flexibility Backoffice applications are usually composed of multiple moving parts that interacts with each other and with external systems. 

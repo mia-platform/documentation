@@ -1,8 +1,7 @@
 ---
-id: what-is-backoffice
-title:  What is Mia-Platform Backoffice
-sidebar_label: What is backoffice
-sidebar_position: 10
+id: what-is
+title:  What is Mia-Platform Microfrontend Composer
+sidebar_label: What is Microfrontend Composer
 ---
 
 Mia-Platform Backoffice is an innovative solution that goes beyond the traditional definition of a Backoffice. While it excels in crafting backoffice applications, its capabilities extend further, allowing for the generation and management of a wide range of web pages. You can design anything from simple static pages without authentication needs to intricate, specialized web structures.

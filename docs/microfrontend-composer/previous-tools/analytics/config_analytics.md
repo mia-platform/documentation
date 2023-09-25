@@ -31,7 +31,7 @@ Multi series graphs are available only for *custom-stock* type graphs.
 
 Click on "next" to go further.
 
-![selectType](img/selectType.PNG)
+![selectType](img/selectType.png)
 
 ## **Step 2: Configuration**
 
@@ -53,7 +53,7 @@ In this phase, if you have chosen a *chart* type graph, you can choose an **orde
 
 Click on "next" to go further.
 
-![configuration](img/configuration.PNG)
+![configuration](img/configuration.png)
 
 ## **Step 3: Series setting**
 
@@ -91,7 +91,7 @@ In this section, you can configure most of the properties of the analytic:
 
 In this phase it is also possible to enable a mongoquery by clicking on the **mongoquery switch enabled / disabled**. This field allows you to write a query on mongo to be able to do more complex operations related to the chosen operator (eg you want to make a sum on the orders of two customers, but only if the order is between € 50 and € 100 ). The field is activated for all operators, with the exception of the count operator. When this switch is activated, the **Type** field appears, where the query is written in json format.
 
-![setUp](img/setUp.PNG)
+![setUp](img/setUp.png)
 
 Once a series has been configured, a second series can be inserted in the same graph via the **"Add a series"** button.
 
@@ -113,7 +113,7 @@ In advanced you can choose the time frame of the data that you want to show in t
 
 In the case of a *chart* chart, a **custom interval** of data visualization is possible: through a calendar view you can choose the start and end date.
 
-![advanced](img/advanced.PNG)
+![advanced](img/advanced.png)
 
 Throughout the configuration process via the **Previous** button you can go back to the previous step to change the fields. When you have finished configuring the analytic you need to click on **Done**. At this point, save the configuration on the API Console and deploy the branch in the desired environment. At this point, by accessing the CMS in the environment in which it is deployed, it will be possible to see its analytic.
 

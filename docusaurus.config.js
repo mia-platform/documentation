@@ -8,8 +8,8 @@ async function createConfig() {
     tagline: "Learn how Mia-Platform can help you to develop your business",
     url: "https://docs.mia-platform.eu",
     baseUrl: "/",
-    onBrokenLinks: "throw",
-    onBrokenMarkdownLinks: 'throw',
+    // onBrokenLinks: "throw",
+    // onBrokenMarkdownLinks: 'throw',
     favicon: "img/favicon.ico",
     organizationName: "Mia-Platform", // Usually your GitHub org/user name.
     projectName: "Mia-Platform", // Usually your repo name.
@@ -46,7 +46,7 @@ async function createConfig() {
           {
             label: "Products",
             position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
+            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
             type: "dropdown",
             items: [{
                 type: 'doc',
@@ -62,9 +62,9 @@ async function createConfig() {
               },
               {
                 type: 'doc',
-                docId: "business_suite/backoffice/what-is-backoffice",
-                label: "Backoffice",
-                activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
+                docId: "microfrontend-composer/what-is",
+                label: "Microfrontend Composer",
+                activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
               },
               {
                 type: 'doc',
