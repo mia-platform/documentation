@@ -191,3 +191,23 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired company
 - `--project-id`, to set the ID of the desired project
+
+### pod list
+
+The `runtime pod list` subcommand allows you to see all pods that are running for the environment associated to a
+given project.
+
+Usage:
+
+```sh
+miactl runtime pod list ENVIRONMENT [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired company
+- `--project-id`, to set the ID of the desired project

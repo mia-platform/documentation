@@ -15,6 +15,7 @@ The `miactl` CLI functionalities can be summarized within its main subcommands:
 - `deploy`: deploy resources to a project
 - `project`: view and manage the projects of a specific company
 - `serviceaccount`: create new service accounts for your company
+- `runtime`: view and manage resources that are deployed on the runtime associated with the project
 
 ## Guides
 
