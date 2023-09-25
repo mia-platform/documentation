@@ -85,7 +85,7 @@ The `resourceId` field enables the Appointment Manager to:
 To correctly configure the Appointment Manager, you need to:
 
 - set the `RESOURCE_ID_FIELD_NAME` environment variable with the name you choose for the CRUD field storing the resource ID (e.g. `resourceId`);
-- add a field with the chosen name and type `string` to each CRUD collection (for availabilities, exceptions and appointments). 
+- add a required field with the chosen name and type `string` to each CRUD collection (for availabilities, exceptions and appointments).
 
 More details about the AM configuration can be found in the [*Configuration*][configuration] section.
 

@@ -375,6 +375,8 @@ Each participant has the following properties:
 | required           | `boolean` | Yes      | If the user is required to attend the appointment.     |
 | acceptanceRequired | `boolean` | Yes      | If the user is expected to explicitly accept or decline the participation to the appointment.   |
 
+You also need to create a required `string` field named as specified in the [`RESOURCE_ID_FIELD_NAME` environment variable][environment-variables].  
+
 :::tip
 
 On top of the aforementioned fields, you can add any field you want to the CRUD. The service will treat them as the CRUD would.
@@ -438,6 +440,8 @@ The availabilities collection must have the following fields:
 | onDelete | `Object` | No | The custom behaviors when the availability is deleted. |
 | onCompute | `Object` | No | The custom behaviors when the availability occurrences and slots are computed. |
 
+You also need to create a required `string` field named as specified in the [`RESOURCE_ID_FIELD_NAME` environment variable][environment-variables].  
+
 :::tip
 
 On top of the aforementioned fields, you can add any custom field you want to the CRUD. The service will treat them as the CRUD would.
@@ -463,6 +467,8 @@ The exceptions collection must have the following fields:
 | startDate | `date` | Yes | Start date/time of the exception, expressed in format **ISO 8601** |
 | endDate | `date` | Yes | End date/time of the exception, expressed in format **ISO 8601** |
 | reason | `string` | No | The reason for the absence of the resource (a doctor vacation, an equipment out of use, ...) |
+
+You also need to create a required `string` field named as specified in the [`RESOURCE_ID_FIELD_NAME` environment variable][environment-variables].
 
 :::tip
 
@@ -502,7 +508,7 @@ This section provide instructions on how to configure the Appointment Manager to
 - Create the [appointments CRUD collection][crud-appointments] with at least the following custom properties:
 
   - one field for each [`users`][users] category defined in the service configuration;
-  - the field of type `string` containing the resource ID (e.g. `resourceId`);
+  - a required field with type `string` containing the resource ID (e.g. `resourceId`);
   - the `participants` field, if you set the [`isParticipantStatusAvailable` configuration field][is-participant-status-available] to `true`.
 
 - Add the name of the [appointments CRUD collection][crud-appointments] to the `APPOINTMENTS_CRUD_NAME` [environment variable][environment-variables].
@@ -521,13 +527,13 @@ This section provide instructions on how to configure the Appointment Manager to
 
 - Create the [availabilities CRUD collection][crud-availabilities] with at least the following custom properties:
 
-  - a field of type `string` containing the resource ID (e.g. `resourceId`).
+  - a required field with type `string` containing the resource ID (e.g. `resourceId`);
 
 - Add the name of the [availabilities CRUD collection][crud-availabilities] to the `AVAILABILITIES_CRUD_NAME` [environment variable][environment-variables].
 
 - Create the [exceptions CRUD collection][crud-exceptions] with at least the following custom properties:
 
-  - a field of type `string` containing the resource ID (e.g. `resourceId`).
+  - a required field with type `string` containing the resource ID (e.g. `resourceId`);
 
 - Add the name of the [exceptions CRUD collection][crud-exceptions] to the `EXCEPTIONS_CRUD_NAME` [environment variable][environment-variables].
 
