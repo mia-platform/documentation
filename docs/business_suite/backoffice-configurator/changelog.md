@@ -3,6 +3,18 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.3.3] - 2023-09-22
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.1`
+- `@mia-platform-internal/reactord` to `^9.8.1`
+- `flag-icons` to `6.11.1`
+- `monaco-editor` to `^0.43.0`
+- `rc-virtual-list` to `^3.11.1`
+- `react-router-dom` to `^6.16.0`
+- Dev dependencies updated
+
 ## [1.3.2] - 2023-09-11
 
 ### Versioning
