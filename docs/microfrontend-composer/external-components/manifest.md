@@ -11,21 +11,17 @@ Any webcomponent is or aims to be:
 2. a CSS encapsulated environment
 3. a JS business logic unit
 
-As HTML tag, a custom webcomponent has `attributes` and `properties`. Moreover a pair `attribute` and `property` can be
-coupled by reflecting changes: a change on the former is mirrored on the latter, and viceversa.
+As HTML tag, a custom webcomponent has `attributes` and `properties`. Moreover a pair `attribute` and `property` can be coupled by reflecting changes: a change on the former is mirrored on the latter, and viceversa.
 
 ## Basics
 
-The Configurator layout section queries the webcomponents to discover their properties/attributes using a static getter
-promise called a _Manifest_.
+The Configurator layout section queries the webcomponents to discover their properties/attributes using a static getter promise called a _Manifest_.
 
 :::tip
-You can use the [JSON schema](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/manifest.schema.json)
-to check your components manifests.
+You can use the [JSON schema](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/manifest.schema.json) to check your components manifests.
 :::
 
-The `__manifest` static getter must return a JavaScript object that has a key `type` which must be `object` (to be JSON schema compatible) and a
-map of `properties`.
+The `__manifest` static getter must return a JavaScript object that has a key `type` which must be `object` (to be JSON schema compatible) and a map of `properties`.
 
 ```typescript
 const manifest = {
@@ -70,8 +66,7 @@ const manifest = {
 export default manifest
 ```
 
-In the outlined example, the Configurator layout section will provide its configuration form with a boolean toggle
-for the `hidden` property.
+In the outlined example, the Configurator layout section will provide its configuration form with a boolean toggle for the `hidden` property.
 
 Types can be **almost** anything that JSON schema provides:
 
@@ -88,8 +83,7 @@ Trivially, primitive types `boolean`, `string`, and `number` are simple to edit 
 
 Complex properties such as objects and arrays are also handled in a `no-code` fashion so far the manifest is precise in describing their nested properties.
 
-The most basic visualization for an `object` without a schema is an IDE-like editor, with basic JSON validation capabilities.
-Likewise an array has a `no-code` item selector, which again, without schema will spawn an IDE-like editor for each one of its items.
+The most basic visualization for an `object` without a schema is an IDE-like editor, with basic JSON validation capabilities. Likewise an array has a `no-code` item selector, which again, without schema will spawn an IDE-like editor for each one of its items.
 
 The owner/developer of custom webcomponents can enforce `no-code` configurability by nesting the component manifest.
 
@@ -136,16 +130,13 @@ const manifest: Manifest = {
 export default manifest
 ```
 
-Despite the `action` being an object, the Configurator layout section will spawn a modal (which can have potentially infinite levels
-of nesting) to configure `type` as a string with at most 2 fixed values and `url` as a string.
+Despite the `action` being an object, the Configurator layout section will spawn a modal (which can have potentially infinite levels of nesting) to configure `type` as a string with at most 2 fixed values and `url` as a string.
 
 ## Mia's Configuration Advanced
 
-The Webcomponent manifest is a superset of a compliant draft-07 JSON schema. The Configurator guarantees to display a `no-code`
-comfortable version of each property.
+The Webcomponent manifest is a superset of a compliant draft-07 JSON schema. The Configurator guarantees to display a `no-code` comfortable version of each property.
 
-Beside this specification, Configurator can enforce some extra logic using a special property, available to any webcomponent property or
-nested property: `__mia_configuration`.
+Beside this specification, Configurator can enforce some extra logic using a special property, available to any webcomponent property or nested property: `__mia_configuration`.
 
 Let's consider a custom button
 
@@ -278,11 +269,9 @@ const manifest = {
 export default manifest
 ```
 
-By using `oneOfGuard` set to `type` Configurator layout section is able to provide a `no-code` configuration to the property
-`action` by requesting the user to select a `type` between `http-post` and `event` and then the rest of the object.
+By using `oneOfGuard` set to `type` Configurator layout section is able to provide a `no-code` configuration to the property `action` by requesting the user to select a `type` between `http-post` and `event` and then the rest of the object.
 
-If the user selects `http-post` then 2 string input will appear in order to configure `url` and `payload`, otherwise an
-IDE-like editor will allow to type directly the `payload` property since no schema was provided.
+If the user selects `http-post` then 2 string input will appear in order to configure `url` and `payload`, otherwise an IDE-like editor will allow to type directly the `payload` property since no schema was provided.
 
 ### The `schema-hint` key
 
@@ -303,9 +292,7 @@ Configurator provides some types that are well known and often used in order to 
 
 ### The `shared-key` key
 
-JSON schema supports referencing of property definitions. Despite not being a fixed pattern there's a recommendation for
-draft-07 which suggests to use the key `definitions` at the first level of your JSON configuration. In the most recent drafts
-it will be substituted by the `$defs` keyword.
+JSON schema supports referencing of property definitions. Despite not being a fixed pattern there's a recommendation for draft-07 which suggests to use the key `definitions` at the first level of your JSON configuration. In the most recent drafts it will be substituted by the `$defs` keyword.
 
 The following example shows how it works:
 
@@ -328,5 +315,4 @@ The following example shows how it works:
 }
 ```
 
-The `shared-key` property suggests to the Configurator how to group properties using JSON `definitions` (refer to the
-[dedicated documentation](/business_suite/backoffice-configuration/compose_pages#shared-properties) for more information).
+The `shared-key` property suggests to the Configurator how to group properties using JSON `definitions` (refer to the [dedicated documentation](/microfrontend-composer/composer/20_compose_pages.md#shared-properties) for more information).

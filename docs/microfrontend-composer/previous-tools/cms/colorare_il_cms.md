@@ -257,6 +257,6 @@ We, therefore, recommend uploading the desired image in the [File service](../ru
 3. **Optional - expose the CRUD in the CMS**
 
    Last step you can optionally create another endpoint exposing the same CRUD created and use the endpoint to
-   display the CRUD in the CMS following [these steps](./cms_configuration/config_cms.md).
+   display the CRUD in the CMS following [these steps](/microfrontend-composer/previous-tools/cms/config_cms.md).
 
 Now you can commit and deploy your project.
