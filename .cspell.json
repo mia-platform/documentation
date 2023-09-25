@@ -340,7 +340,7 @@
     "Noto",
     "Segoe",
     "kotlinx",
-    "reauthentication"
+    "Dynatrace"
   ],
   "dictionaries": [
     "softwareTerms",
@@ -370,6 +370,7 @@
   "allowCompoundWords": true,
   "ignoreRegExpList": [
     "\".*\": \".*\"",
-    "`.*`"
+    "`.*`",
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm"
   ]
 }
