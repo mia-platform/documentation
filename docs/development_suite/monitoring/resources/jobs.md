@@ -37,7 +37,7 @@ Please note that also the related Pod(s) are marked for deletion, along with the
 
 You can delete a single Job by clicking on the **Delete button** on the last column of the Job table.
 
-You can also delete multiple Jobs at the same time, in this case select the checkbox on the left of the Jobs you want to delete and click on the **Delete Jobs** button that appears at the bottom of the table.
+You can also delete multiple Jobs at the same time, by selecting the checkbox on the left of the Jobs you want to delete and clicking on the **Delete Jobs** button that appears at the bottom of the table.
 
 ![list_of_selected_jobs](../img/jobs_list_selected.png)
 
