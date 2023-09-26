@@ -35,9 +35,9 @@ In this step, you can insert some information about the cluster connection:
 * **Cluster URL** (*required*): URL used to connect to the cluster, which indicates where the cluster is exposed;
 * **Proxy URL**: URL of the proxy used to connect to the cluster, usually needed when the cluster is exposed on a private network;
 * **Cluster Token** (*required*): base64 decoded JWT token needed by the service account to perform operations on the cluster.  
-  To extract it, refer to [this paragraph](/development_suite/clusters-management/cluster-setup.mdx#ca-and-token);
+  To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token);
 * **Certificate authority**: base64 decoded CA certificate for the TLS connection with the cluster.  
-  To extract it, refer to [this paragraph](/development_suite/clusters-management/cluster-setup.mdx#ca-and-token).
+  To extract it, refer to [this paragraph](/development_suite/clusters-management/clusters-overview-setup.md#ca-and-token).
 
 By clicking on "Add cluster", the connection to the cluster will be set, and it will appear as a new entry in the table.
 
@@ -46,7 +46,7 @@ A syntactic check is performed at the moment of data entry, but the Console will
 Therefore, inserting a wrong URL, token, or certificate will result in a network error because the cluster will not be contacted successfully, and thus it will not be connected nor saved.
 :::
 :::danger
-In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment. More information on how to connect the service account can be found [here](/development_suite/clusters-management/cluster-setup.mdx#configure-and-connect-the-service-account-to-the-cluster).
+In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment. More information on how to connect the service account can be found [here](/development_suite/clusters-management/clusters-overview-setup.md#configure-and-connect-the-service-account-to-the-cluster).
 :::
 
 ## View Cluster Information
