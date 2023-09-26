@@ -13,7 +13,7 @@ Mia-Platform Console allows authorized users to manage the Kubernetes clusters o
 * Edit the connection to an existing Kubernetes cluster, and eventually the cluster information;
 * Delete the connection to an existing Kubernetes cluster.
 
-Detailed information on how to perform these operations can be found [here](/development_suite/clusters-management/add-edit-remove-cluster.md).
+Detailed information on how to perform these operations can be found [here](/getting-started/handbooks/company/connect-and-manage-cluster.md).
 
 :::note
 It is essential to point out that these operations do not have an impact on the original Kubernetes cluster, but only on the connection to the cluster itself, as they are meant to provide the user with information about it. Therefore, as an example, adding a new cluster connection does not generate a new cluster, but simply links an existing one to the Console.
@@ -93,6 +93,15 @@ rules:
       - "get"
       - "list"
   - apiGroups:
+      - "batch"
+    resources:
+      - "jobs"
+    verbs:
+      - "create"
+      - "delete"
+      - "get"
+      - "list"
+  - apiGroups:
       - ""
     resources:
       - "secrets"
@@ -118,11 +127,9 @@ rules:
       - "list"
   - apiGroups:
       - "apps"
-      - "extensions"
     resources:
       - "deployments"
       - "daemonsets"
-      - "jobs"
     verbs:
       - "get"
       - "list"
@@ -139,6 +146,7 @@ rules:
       - "namespaces"
     verbs:
       - "create"
+      - "delete"
   - apiGroups:
       - ""
     resources:

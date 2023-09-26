@@ -391,10 +391,10 @@ Displays a menu, analogous to the [micro-lc](https://github.com/micro-lc/micro-l
 
 ### Mode
 
-Three modes are available:
+Four modes are available:
 
 ```typescript
-type Menu = 'fixedSideBar' | 'overlaySideBar' | 'topBar'
+type Menu = 'fixedSideBar' | 'overlaySideBar' | 'leftMenu' | 'topBar'
 ```
 
 Controlling how the menu is rendered - either as a side-bar (overlay or fixed) or a top-bar.
@@ -637,16 +637,19 @@ interface GroupMenuItem {
 
 ### Properties & Attributes
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-| userInfoUrl | user-info-url | string | - | URL called in GET to retrieve user data |
-| mode | mode | [Mode](#mode) | overlaySideBar | controls how the menu is visualized |
-| logo | - | [Logo](#logo) | - | logo to be visualized in the menu |
-| menuItems | - | [MenuItem](#menu-items)[] | - | describes the items in the menu |
-| helpMenu | - | [HelpMenu](#help-menu)  | - | controls the help button on the menu |
-| userMenu | - | [UserMenu](#user-menu) | - | controls the user information section of the menu |
-| head | - | [Head](#head) | - | controls tab visualization options |
-| locale | - | {[x: string]: string} | - | allows to override component labels |
+| property       | attribute       | type                      | default        | description                                         |
+| -------------- | --------------- | ------------------------- | -------------- | --------------------------------------------------- |
+| userInfoUrl    | user-info-url   | string                    | -              | URL called in GET to retrieve user data             |
+| mode           | mode            | [Mode](#mode)             | overlaySideBar | controls how the menu is visualized                 |
+| logo           | -               | [Logo](#logo)             | -              | logo to be visualized in the menu                   |
+| menuItems      | -               | [MenuItem](#menu-items)[] | -              | describes the items in the menu                     |
+| helpMenu       | -               | [HelpMenu](#help-menu)    | -              | controls the help button on the menu                |
+| userMenu       | -               | [UserMenu](#user-menu)    | -              | controls the user information section of the menu   |
+| head           | -               | [Head](#head)             | -              | controls tab visualization options                  |
+| locale         | -               | {[x: string]: string}     | -              | allows to override component labels                 |
+| sideBarWidth   | side-bar-width  | number                    | 200            | Width of the sidebar in pixels, if applicable       |
+| collapsedWidth | collapsed-width | number                    | 80             | Width of collapsed sidebar in pixels, if applicable |
+
 
 ### Listens to
 

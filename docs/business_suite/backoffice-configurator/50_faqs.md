@@ -3,10 +3,6 @@ id: faqs
 title: FAQs
 sidebar_label: Faqs
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 ## Components
 
 ## How can I add a new page to and show it in the navigation menu?
@@ -154,11 +150,11 @@ Backoffice implementation.
 ### How can I use my own web-components?
 
 The first step is to properly build, bundle, and serve your own web-components library. You can read the section dedicated
-to [external components](./60_external-components/10_overview.md) to cover the ins and outs of the process with
-particular attention to the [bundling section](./60_external-components/30_bundling.md).
+to [external components](./60_external_components/10_summary.md) to cover the ins and outs of the process with
+particular attention to the [bundling section](./60_external_components/30_bundling.md).
 
 Runtime-wise, micro-lc has no limitations regarding web-components sources, as long as they can be correctly loaded by the
-application (read more about the different types of [sourcing](./60_external-components/10_overview.md#sourcing)). To use
+application (read more about the different types of [sourcing](./60_external_components/10_summary.md#sourcing)). To use
 a web-components library in the layout or in a compose page you just need to declare it in the configuration
 [sources](https://micro-lc.io/docs/guides/applications/compose#plugin-configuration):
 
@@ -179,6 +175,13 @@ In the Configurator you can edit sources from the _Advanced_ tabs.
 
 The Configurator, on the other hand, may have some troubles showing your custom components in the preview. For example,
 there may be CORS issues or authentication issues. To fix them you may need to adjust how your components are
-[served](./60_external-components/10_overview.md#sourcing), or you can rely on the Configurator
-[Service Worker](./40_configurator-settings.md#source-maps) to reverse proxy your sources to something that can be loaded
+[served](./60_external_components/10_summary.md#sourcing), or you can rely on the Configurator
+[Service Worker](./40_configurator_settings.md#source-maps) to reverse proxy your sources to something that can be loaded
 by the preview.
+
+### How can I use my own compose page templates?
+
+Templates available when creating a compose page are fetched from remote sources, which can be controlled in the
+_Template sources_ tab of the _Configurator Settings_ modal.
+
+Refer to the [dedicated documentation](./40_configurator_settings.md#template-sources) for more information.

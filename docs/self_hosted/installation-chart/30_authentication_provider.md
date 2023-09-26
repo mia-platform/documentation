@@ -21,7 +21,7 @@ Any `OAuth2` compliant Identity Provider is supported, however Mia-Platform Cons
 For provider not listed here, you can use the `generic` authentication provider to configure your own.
 :::
 
-## Configure you Authentication Provider
+## Configure your Authentication Provider
 
 To connect Mia-Platform Console with your Authentication Provider you have to setup the `authProviders` configuration.
 
@@ -51,6 +51,29 @@ Please bear in mind that the `authProviders` field is a required field, you can
 | `additionalScopes` | string[] | The additional scope for the provider | [] | ✅ |
 | `genericProviderOidcKeys` | object | The keys that must be extracted from the provider response, only available for `generic` auth provider type |  | ✅ |
 
+## Logout flow
+
+You can configure the Console to logout the user from the Identity Provider when the user logs out from the Console itself. In oder to do so, you have to set one of the following properties:
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
+| `logoutUrlPath` | string | The path to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
+
+In case you set the `logoutUrlPath`, it will be appended to the Identity Provider base URL.
+
+:::info
+
+Please note that you may need to allow the redirect URL to the homepage of the Console and to the homepage of the CMS login site inside the Identity Provider configuration.
+
+The urls are the following:
+- `<CONSOLE-BASE-URL>/`
+- `<CONSOLE-CMS-BASE-URL>/web-login`
+
+Consult the documentation of your Identity Provider to know how to configure the redirect URLs.
+
+:::
+
 ## Session signing
 
 Even though the authentication is resolved by a third party, the sessions provided by Mia-Platform Console to its users are signed by the console itself, to be able to properly sign the Console requires a few additional configurations:
@@ -63,6 +86,16 @@ Even though the authentication is resolved by a third party, the sessions provid
 :::info
 If you are in doubt on how to generate such values, you can use the `openssl rand` command, for instance use `openssl rand -hex 512` for the `jwtTokenSignKey` and `openssl rand -hex 128` for the `tokenPassphrase`.
 :::
+
+## Expose synchronization webhooks
+
+If you want to control user creation and deletion from an external Identity Provider you can use the `enableUserSynchronizationWebhooks` configuration flag
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+|`enableUserSynchronizationWebhooks`| boolean | Activates webhooks for automatic user synchronization with external Identity providers |  | ✅ |
+
+To know more about user synchronization with an Identity Provider, visit the [dedicated documentation page](../../self_hosted/synchronize-users).
 
 ## Additional Authentication Clients
 

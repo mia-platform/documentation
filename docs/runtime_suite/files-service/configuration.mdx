@@ -9,9 +9,12 @@ import TabItem from '@theme/TabItem';
 
 
 This microservice allows you to upload and download files to a third-party service.
-**Google Cloud Storage**, **[MongoDB GridFS](https://docs.mongodb.com/manual/core/gridfs/)** and **Amazon s3** are currently supported.
+The following file bucket services are currently supported:
+- **[Google Cloud Storage](https://cloud.google.com/storage)**
+- **[MongoDB GridFS](https://docs.mongodb.com/manual/core/gridfs/)**
+- **[Amazon S3](https://aws.amazon.com/s3/)** and third-parties vendors compliant with its specifications, such as Oracle Object Storage.
+- **[Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs)**
 
-Consequently, it needs to know either one or more between MongoDB GridFS bucket configurations, Amazon s3 bucket configurations or Google Storage credentials.
 
 In addition, after each upload it saves the file's information using the [CRUD Service](../../runtime_suite/crud-service/configuration) on a configurable mongoDB collection (usually files).
 
@@ -35,6 +38,7 @@ These fields will be automatically filled during the upload of files.
 * **SERVICE_PREFIX**: the prefix used for the path of the service endpoints.
 * **HEADERS_TO_PROXY**: comma separated list of the headers to proxy (the Mia-Platform headers).
 * **FILE_TYPE_INCLUDE_LIST** (from `v2.3.0`): comma separated list of file extensions (without the dot) to be accepted for upload. If you do not set the variable, the service will accept all uploaded file types.
+* **ADDITIONAL_MIME_TYPES**: comma separated list of key:value pairs where each item is an additional extension mime-type relationship to add to mime-type db. This allow the upload of file when mime-type is correctly recognized but there is no mime-type linked to file extension in `mime-db` used by `mime-types` library. This happens for example with DICOM files.
 * **TRUSTED_PROXIES**: the string containing the trusted proxies values.
 * **ADDITIONAL_FUNCTION_CASTER_FILE_PATH**: the path of the file that exports the function to cast.
 * **GOOGLE_APPLICATION_CREDENTIALS**: the path to access to the google storage credentials. This is *required* for GoogleStorage type.
@@ -295,7 +299,7 @@ You need to specify the Azure Storage account, its key and the name of the conta
       "containerName": "my-container",
       "scope": "scope-2"
     }
-  },  
+  },
 ]
 ```
 </TabItem>

@@ -7,8 +7,10 @@
       "misc"
     ],
     "words": [
+      "configurator",
       "miactl",
       "multitinenant",
+      "OIDC",
       "rond",
       "rönd",
       "upgrader",
@@ -22,6 +24,7 @@
       "`.*`",
       "'.*'",
       "# .*",
-      "<.*>"
-    ] 
+      "<.*>",
+      "/^\\s*```[\\s\\S]*?^\\s*```/gm"
+    ]
 }

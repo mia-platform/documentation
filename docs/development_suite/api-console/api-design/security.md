@@ -13,7 +13,7 @@ To better account for the differences between container management systems and c
 * **hostProperties**
 * **seccompProfile**
 
-These functions properties can be configured through the **securityFeatures** object in the **CMS** area at Company and Project level.
+These functions properties can be configured through the **securityFeatures** object in the **CMS** area at company level. They can also be set at project level through the "Settings" section of the Console, as described [here](/console/project-configuration/project-settings.md#security-features).
 
 If the security features are not configured for the projects, the respective attributes are collected at company level. 
 
@@ -25,33 +25,33 @@ If the Security Features are enabled in your project but not all of them are set
 
 ## appArmor
 
-AppArmor is a Linux Security Module that implements Mandatory Access Control [since Kubernetes v1.4](https://kubernetes.io/docs/tutorials/security/apparmor/).
+AppArmor is a Linux Security Module that implements Mandatory Access Control since [Kubernetes v1.4](https://kubernetes.io/docs/tutorials/security/apparmor/).
 
 AppArmor annotations set up a profile used by containerd to harden containerized applications to contrain exploitation.
 
-The template for such profile [is available on GitHub](https://github.com/moby/moby/blob/master/profiles/apparmor/template.go).
+The template for such profile is available [on GitHub](https://github.com/moby/moby/blob/master/profiles/apparmor/template.go).
 
 ## privilegedPod
 
 The **privilegedPod** property configures the following attributes in a `securityContext` object:
 
-* **allowPrivilegeEscalation:** controls whether a process can gain more privileges than its parent process, this defaults to true when the `CAP_SYS_ADMIN` capability is enabled or is run as privileged.
+* **allowPrivilegeEscalation:** controls whether a process can gain more privileges than its parent process, by default is set to true when the `CAP_SYS_ADMIN` capability is enabled or is run as privileged;
 * **privileged:** controls whether the Pod can run privileged containers.
 
-You can learn more about the Security Context object at the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/).
+You can learn more about the `securityContext` object by taking a look at the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/).
 
 ## hostProperties
 
-The **hostProperties** property sets to `false` the following parameters, these could be used to allow access to shared information and can be used to elevate privileges.
+The **hostProperties** property sets to `false` the following parameters, which could be used to allow access to shared information and elevate privileges:
 
 * **hostPID:** controls whether containers can share host process namespaces;
 * **hostIPC:** enables to read the shared memory between processes that communicate with IPC mechanisms;
 * **hostNetwork:** controls whether containers can use the host network and allows to bypass network policies.
 
-These fields are described [in the Pod Security Policies section of the official Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-policy/).
+These fields are described in the [Pod Security Policies section of the official Kubernetes documentation](https://kubernetes.io/docs/concepts/security/pod-security-policy/).
 
 ## seccompProfile
 
-This property enables the **seccompProfile** attribute of the `Security Context` object in order to restrict a Container's syscall.
+This property enables the **seccompProfile** attribute of the `securityContext` object in order to restrict a Container's syscall.
 
-This feature is available as of Kubernetes v1.19 and you can learn more [on the official Kubernetes documentation](https://kubernetes.io/docs/tutorials/security/seccomp/).
+This feature is available as of Kubernetes v1.19 and you can learn more by taking a look at the [official Kubernetes documentation](https://kubernetes.io/docs/tutorials/security/seccomp/).

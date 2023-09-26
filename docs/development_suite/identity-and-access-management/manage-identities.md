@@ -14,7 +14,7 @@ Granting accesses and permissions to Company resources can be performed through 
 Users with enough administrative permission can manage roles and permissions given to users, service accounts and groups and perform actions on them at both Company and Project levels. This grants them ownership over the decision-making process regarding which resources are accessible and at what level of authorization.
 
 :::info
-To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
+To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/index.md#identity-and-access-management).
 :::
 
 ## Managing Company Identities
@@ -197,7 +197,7 @@ For groups:
 
 ### Adding a new Identity at Project level
 
-Users and service accounts can be added to a Company with specific Project and Environment roles from the Project settings Area.
+Users and service accounts can be added to a Company with specific Project and Environment roles from the Project Overview area.
 
 :::note
 This is a useful shortcut for Company Owners that want to directly add users and service accounts to their Company with specific permissions on a particular Project, without having to navigate to the respective portals.
@@ -205,7 +205,7 @@ This is a useful shortcut for Company Owners that want to directly add users and
 
 #### Adding a user
 
-The Company Owner can add a new user to a Company by pressing the *Add user* button in the IAM portal inside the Project settings Area. Here, the user can be assigned a Company role and additional roles on the specific Project and its Runtime Environments. The user invitation process will also require the invited user email to be provided.
+The Company Owner can add a new user to a Company by pressing the *Add user* button in the IAM portal inside the Project Overview area. Here, the user can be assigned a Company role and additional roles on the specific Project and its Runtime Environments. The user invitation process will also require the invited user email to be provided.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>
@@ -223,12 +223,12 @@ If the user does not exist in the Platform, please open a Service Request.
 
 #### Adding a service account
 
-The Company Owner can add a new service account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the IAM portal inside the Project settings Area. Here, the service account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
+The Company Owner can add a new service account by clicking on the *Add Service Account* option inside the *Add User* dropdown, on the top-right corner of the IAM portal inside the Project Overview area. Here, the service account can be assigned a Company Role and additional Roles on the specific Project and its Runtime Environments. 
 
 The service account invitation process will also require an authentication method, as specified in the [Adding a new Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-new-service-account) paragraph.
 
 :::note
-New service accounts are always instantiated at Company level: you can create a service account from the Project settings Area, but it will still be shared with the whole Company.
+New service accounts are always instantiated at Company level: you can create a service account from the Project Overview area, but it will still be shared with the whole Company.
 :::
 
 With the Client Secret Basic method: 

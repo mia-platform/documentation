@@ -1,0 +1,73 @@
+---
+id: usage
+title: SMS Service Usage
+sidebar_label: Usage
+---
+This sections illustrates how to use the SMS Service.
+
+## POST /send
+
+With this API you can send a new SMS.
+
+### Body
+
+The body of the request should have the following shape.
+
+- `sender` (required): the sender of the message. It can be one of the following:
+  - a phone number in [E.164][e164] format
+  - an [alphanumeric sender ID][twilio-sender-id]
+
+- `receiver` (required): the destination phone number in [E.164][e164] format.
+
+- `body` (required): the text of the SMS you want to send.
+
+:::caution
+The body of a single SMS can be up to **1600 characters** long. If it's longer than that, the service will send the 
+message as a segmented SMS and your Twilio account will be charged accordingly.
+:::
+
+It follows an example of a valid request body.
+
+```json
+{
+  "sender": "+15017122661",
+  "receiver": "+15558675310",
+  "body": "Your SMS body"
+}
+```
+
+### Response
+
+#### Exceptions
+
+If something goes wrong during the request, the response will have a `4xx` or `5xx` status code and the following
+payload:
+
+```json
+{
+  "statusCode": "400",
+  "error": "Bad request",
+  "message": "Exception description"
+}
+```
+
+A notable status code is **429**, which means that you have reached the REST API concurrency limit of Twilio (more
+information [here][twilio-rate-limits]).
+
+#### Success
+
+In case of successful response (status code `200`), the body of the response has the following structure:
+
+```json
+{
+  "dateEvent": "2021-08-13T12:53:52.959Z", // ISO format
+  "numSegments": "1", // Number of SMS messages it took to deliver the body of the message
+  "sid": "124354", // Unique identifier of the SMS
+  "status": "sent"
+}
+```
+
+
+[e164]: https://www.twilio.com/docs/glossary/what-e164
+[twilio-sender-id]: https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id
+[twilio-rate-limits]: https://support.twilio.com/hc/en-us/articles/115002943027-Understanding-Twilio-Rate-Limits-and-Message-Queues
