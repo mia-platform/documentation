@@ -3,6 +3,12 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.3.4] - 2023-09-25
+
+### Fixed
+
+- Fixed data schema from CRUD generation modal style
+
 ## [1.3.3] - 2023-09-22
 
 ### Versioning
