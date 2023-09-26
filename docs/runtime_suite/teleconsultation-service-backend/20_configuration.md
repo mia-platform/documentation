@@ -90,18 +90,28 @@ Update the `JSON` configuration file in the ConfigMaps section according to your
 
 ### Environment Variables
 
-The Teleconsultation Service Backend accepts the following environment variables.
+The Teleconsultation Service Backend accepts the environment variables described in the following table.
 
-- **BANDYER_API_SECRET_KEY (required)**: API Secret Key to use in order to communicate with Kaleyra's APIs.
-- **BANDYER_BASE_URL (required)**: name of the kaleyra API endpoint.
-- **TELECONSULTATION_SERVICE_CONFIG_PATH**: full path of the updated file defined in the [previous section](#environment-variables).
-- **TELECONSULTATIONS_CRUD_NAME**: name of the endpoint of the CRUD with all the teleconsultations.
-- **USER_ID_MAP_CRUD_NAME**: name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.
-- **AUTH_SERVICE**: name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)).
-- **DEFAULT_CLIENT_TYPE**: name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.
-- **UNLIMITED_TELECONSULTATION**: if true the teleconsultation duration is infinite. 
-- **LIVE_TELECONSULTATION**: if true the teleconsultation ends when a participant leaves the call and the number of the remaining partipants are less than two. If no variable is given, true is used as a default.
-- **IMMUTABLE_PERIOD_MS**: the duration of the period (in milliseconds) immediately before the teleconsultation `start_date` during which, if all the participants are known, the service will refuse modification requests for the teleconsultation instance. If no variable is given, 0 is used as a default.
+| Name                                     | Required | Default | Description                                                                                                                                                                                                       |
+|------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **BANDYER_API_SECRET_KEY**               | Yes      | -       | API Secret Key to use in order to communicate with Kaleyra's APIs.                                                                                                                                                |
+| **BANDYER_BASE_URL**                     | Yes      | -       | Name of the Kaleyra API endpoint.                                                                                                                                                                                 |
+| **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | Full path of the updated file defined in the [previous section](#environment-variables).                                                                                                                          |
+| **TELECONSULTATIONS_CRUD_NAME**          | No       | -       | Name of the endpoint of the CRUD with all the teleconsultations.                                                                                                                                                  |
+| **USER_ID_MAP_CRUD_NAME**                | No       | -       | Name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.                                                                                                           |
+| **AUTH_SERVICE**                         | No       | -       | Name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)). |
+| **DEFAULT_CLIENT_TYPE**                  | No       | -       | Name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.                                                                                                    |
+| **UNLIMITED_TELECONSULTATION**           | No       | `true`  | If the teleconsultation duration is infinite.                                                                                                                                                                     |
+| **LIVE_TELECONSULTATION**                | No       | `true`  | If the teleconsultation ends when a participant leaves the call and the number of the remaining participants are less than two.                                                                                   |
+| **IMMUTABLE_PERIOD_MS**                  | No       | 0       | How much time (in milliseconds) before the scheduled start date you can join the teleconsultation room and you can no longer update the teleconsultation.                                                         |
+
+:::tip
+
+If the appointment starts at 11:00 and you want the doctor to be able to start the teleconsultation session earlier than the scheduled appointment date, you simply have to set the   `IMMUTABLE_PERIOD_MS` environment variable accordingly. So, for example, to allow the session to start up to ten minutes before the scheduled date, you can simply set `IMMUTABLE_PERIOD_MS` to 600000 (ten minutes expressed in milliseconds). If the participants join the call after 10:50, the session starts automatically as soon as they are connected.
+
+Also remember that, in such scenario, after 10:50 the teleconsultation room would be no longer changeable, including the participants, so we recommend setting a value that leaves room for last minute changes, for example if the appointment need to be assigned to a different doctor.
+
+:::
 
 :::note
 When retrieving the teleconsultation link, via `GET /teleconsultation/:teleconsultationId`, the actual link is returned only if the service is not accepting any further modification to the room. In this case, the teleconsultation is either inside the `IMMUTABLE_PERIOD_MS` time frame, or its `start_date` has been passed.

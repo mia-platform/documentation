@@ -45,11 +45,15 @@ There's the possibility to specify a max duration for a Room in seconds (max tim
 For additional information about rooms, check [this link](https://docs.bandyer.com/Bandyer-RESTAPI/?shell#create-room).
 
 ## Teleconsultation Service Backend APIs
-The **Teleconsultation Service Backend** service exposes the following APIs:
 
-- `POST /teleconsultation`: it allows the creation of a new teleconsultation;
-- `PATCH /teleconsultation/:teleconsultationId`: it allows the complete or partial update of a teleconsultation (_participants_, *start_date*, *end_date*);
-- `POST /teleconsultation/:teleconsultationId/participants/data`: it allows adding a new participant to the teleconsultation;
-- `DELETE /teleconsultation/:teleconsultationId`: it allows the deletion of a teleconsultation;
-- `GET /teleconsultation/:teleconsultationId`: it returns all the data needed to instantiate a teleconsultation UI to start the call;
-- `POST /credentials`: it returns a valid accessToken to provide for the clients using SDK authentication (available from version 1.4.0).
+The **Teleconsultation Service Backend** service exposes the APIs listed in the following table.
+
+| Endpoint                                                       | Minimum version required | Description                                                                               |
+|----------------------------------------------------------------|--------------------------|-------------------------------------------------------------------------------------------|
+| `POST /teleconsultation`                                       | 1.0.0                    | Create a new teleconsultation.                                                            |
+| `PATCH /teleconsultation/:teleconsultationId`                  | 1.0.0                    | Complete or partial update a teleconsultation (_participants_, *start_date*, *end_date*). |
+| `POST /teleconsultation/:teleconsultationId/participants/data` | 1.2.0                    | Add a new participant to the teleconsultation.                                            |
+| `DELETE /teleconsultation/:teleconsultationId`                 | 1.0.0                    | Delete a teleconsultation.                                                                |
+| `GET /teleconsultation/:teleconsultationId`                    | 1.0.0                    | Return all data required to instantiate a teleconsultation UI and start the call.         |
+| `DELETE /teleconsultation/:teleconsultationId/uploads`         | 1.5.0                    | Delete all files uploaded by the participants during a teleconsultation.                  |
+| `POST /credentials`                                            | 1.4.0                    | Return a valid accessToken for clients using SDK authentication.                          |

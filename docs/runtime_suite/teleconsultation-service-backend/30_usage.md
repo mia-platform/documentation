@@ -415,7 +415,31 @@ Example Response:
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service DELETE /:id request.
 
-<br/>
+### DELETE /teleconsultation/:roomId/uploads
+
+Delete all files uploaded by the participants during a teleconsultation.
+
+**Example DELETE Request:**
+```
+curl -X DELETE "https://my_project_url/teleconsultation/room_xyz/uploads"
+```
+
+#### Response
+
+In case a teleconsultation is successfully deleted, a status code of 200 will be returned and a payload looking like this.
+
+```json
+{
+  "total": 2,
+  "deleted": 2
+}
+```
+
+where `total` represents the total number of files associated to the teleconsultation room, while `deleted` is the number of files correctly deleted.
+
+If the two values are different, it means some files were not correctly deleted. If this is due to a temporary issue with the Kaleyra services, you can try again later sending the same request. 
+
+In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `DELETE /` request.
 
 ### POST /credentials
 
