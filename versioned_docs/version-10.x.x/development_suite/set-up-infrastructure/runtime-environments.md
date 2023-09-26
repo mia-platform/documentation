@@ -70,7 +70,7 @@ If there are no errors, the creation modal will display a successful feedback co
 :::info
 If the Kubernetes cluster has not been properly prepared (and consequently does not have a reference service account that can be associated with the new namespace), steps 4-7 are skipped, and the successful feedback is shown to the user without credentials. The user will then **not** be able to deploy without further actions on the cluster.
 
-[Here](/development_suite/clusters-management/clusters-overview-setup.md#cluster-preparation) you can find more information on how to setup your cluster.
+[Here](/development_suite/clusters-management/cluster-setup.mdx#cluster-preparation) you can find more information on how to setup your cluster.
 :::
 
 The action of creating the environment will instead result in an error if problems occur in steps 1-3. In case of issues in steps 4-7, the modal will still show a successful feedback, along with an error warning prompting the user to contact their cluster administrator.

@@ -41,7 +41,7 @@ In addition, the related documentation has also been updated, check it out [here
 
 In the cluster section of the company overview area, the respective icons of the chosen vendor and runtime services have been added to the table.
 In addition, the respective icons have also been included in the detail of each cluster.
-For more information, [go to the documentation](/development_suite/clusters-management/clusters-overview-setup.md).
+For more information, [go to the documentation](/development_suite/clusters-management/cluster-setup.md).
 
 #### Support of binary files at microservice creation
 
