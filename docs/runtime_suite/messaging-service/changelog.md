@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] 2023-09-25
+
+### Added
+- Added the API POST /saga/send that accepts a [Flow Manager](../../runtime_suite/flow-manager-service/overview) command as input body.
+- Add support for custom metadata to push notifications using pushData template field
+
 ## [1.4.0] 2023-08-31
 
 ### Added
