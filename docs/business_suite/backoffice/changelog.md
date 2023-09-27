@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Component `bk-layout` supports new layout modality `leftMenu`
 - Form components support month/year navigation and selection in date fields
 
-### Fixes
+### Fixed
 
 - Title of footer buttons in `bk-gallery` are localized
 - File upload action propagates returned object in hooks
