@@ -19,7 +19,7 @@ In order to use this dashboard, the following configuration steps are needed:
 
 - Create a MongoDB collection named `unmapped_fields`
 - Set the environment variable `COLLECTION_NAME_UNMAPPED_FIELDS_STORAGE` equal to `unmapped_fields` in any _Real Time Updater_ service you want to keep track of the unmapped fields
-- Register the collection [on CMS](/business_suite/cms_configuration/config_cms.md)
+- Register the collection [on CMS](/microfrontend-composer/previous-tools/cms/config_cms.md)
 - Add the [Fast Data Monitoring Application](/fast_data/monitoring/overview.md#fast-data-monitoring-application) (if you don't have it already) to add to the project the MongoDB Query Exporter service and configure it accordingly
 - Configure MongoDB Query Exporter
 - Create a Grafana Dashboard to read the metrics

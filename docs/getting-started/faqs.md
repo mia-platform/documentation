@@ -18,7 +18,7 @@ Verify it checking out the [dedicated page](/info/supported_browser.md).
 
 ### How Can I update the CMS?
 
-Check out this [page](/business_suite/update_cms.md) to know how to update your CMS
+Check out this [page](/microfrontend-composer/previous-tools/cms/update_cms.md) to know how to update your CMS
 
 ## Deploy
 

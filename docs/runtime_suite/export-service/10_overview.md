@@ -22,7 +22,7 @@ First thing is needed a route that returns a `jsonl` with the data to export.
 The CRUD Service `/export` API or the [MongoDB Reader](../mongodb-reader/configuration) can both be useful to this need. 
 Once the jsonl endpoint is available add the `url` in the [configuration](#configuration) of the Export Service. 
 
-In case you want to export a file with a button in the [Headless CMS](../../business_suite/guide_cms) take note that it is only possible to make GET Requests, so you need a custom adapter service that transforms the POST Request to the Export Service and exposes a GET route returning the exported file.
+In case you want to export a file with a button in the [Headless CMS](../../microfrontend-composer/previous-tools/cms/guide_cms.md) take note that it is only possible to make GET Requests, so you need a custom adapter service that transforms the POST Request to the Export Service and exposes a GET route returning the exported file.
 
 ## Setup
 

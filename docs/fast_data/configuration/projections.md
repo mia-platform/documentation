@@ -210,7 +210,7 @@ You can expose a projection through API, only with `GET` method (the data in the
 
 To expose the Fast Data projection, [create an Endpoint](/development_suite/api-console/api-design/endpoints.md) with type `Fast Data Projection` linked to the desired projection.
 
-You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](/business_suite/cms_configuration/conf_cms.md#configure-pages).
+You can expose a projection on a CMS page to help you review the data inside the collection, follow [Configure CMS extensions](/microfrontend-composer/previous-tools/cms/conf_cms.md#configure-pages).
 
 :::info
 The exposed API is not required for Fast Data to work. It is an optional behavior in case you need access to the data without directly accessing it from the database.

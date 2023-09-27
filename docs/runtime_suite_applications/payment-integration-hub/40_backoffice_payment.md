@@ -5,7 +5,7 @@ sidebar_label: Backoffice Payment
 ---
 The Payment Integration Hub provides already configured pages that allow to perform actions on payments and includes customizable dashboards to monitor custom payment KPIs.
 
-The pages are fully customizable and they can be modified to implement a new functionalities and adapt to specific needs; for more details on how to configure the pages you can refer to [backoffice documentation](../../business_suite/backoffice/overview).
+The pages are fully customizable and they can be modified to implement a new functionalities and adapt to specific needs; for more details on how to configure the pages you can refer to [backoffice documentation](../../microfrontend-composer/overview.md).
 
 :::note
 The Backoffice is not included by default in the Payment Integration Hub Application.
