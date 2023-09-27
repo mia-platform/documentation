@@ -16,23 +16,23 @@ The information regarding the menu are valid only if you are using the
 The first step to add a new page to your Backoffice is to [create](/business_suite/backoffice-configuration/structure#create-new-page) it the _Pages_
 tab of the Configurator.
 
-![Page creation](/img/faqs_add-new-menu-item_page-creation.png)
+![Page creation](img/faqs_add-new-menu-item_page-creation.png)
 
 Once the page has been spawned, you can move to the _Layout_ tab to connect it to the navigation menu. In the left drawer
 select the component named _Layout_, and in the right form locate the _Menu Items_ property.
 
-![Select component](/img/faqs_add-new-menu-item_select-component.png)
+![Select component](img/faqs_add-new-menu-item_select-component.png)
 
 Click the _Edit property_ button and in the modal that pops up click the _Add item_ button to insert a new voice in the
 menu. The click will spawn a new _Edit item_ button.
 
-![Add item](/img/faqs_add-new-menu-item_add-item.png)
+![Add item](img/faqs_add-new-menu-item_add-item.png)
 
 One clicked, a code editor will appear in the modal for you to write the 
 [item configuration](../../business_suite/back-kit/components/misc#application). Remember
 that the _id_ must match the identifier of your newly created page.
 
-![Item configuration](/img/faqs_add-new-menu-item_item-configuration.png)
+![Item configuration](img/faqs_add-new-menu-item_item-configuration.png)
 
 Once you have done, click the _Save_ button. The modal will close, and the new item will appear in the menu.
 
@@ -48,7 +48,7 @@ Columns of the table are defined by it's
 it you first need to open the configuration of the _compose page_ of your choice. Now you need to select the _Table_
 component in the left menu (if you are starting from a template, it usually located under the _Main_ component) and click the _Edit property_ button of the _Data schema_ property in the right menu.
 
-![Select component](/img/faqs_add-new-column_select-component.png)
+![Select component](img/faqs_add-new-column_select-component.png)
 
 A modal will open with a code editor you can use to edit the property. Now you just need to add a new entry to the
 `properties` object as explained in the 
