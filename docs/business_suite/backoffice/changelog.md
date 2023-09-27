@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Component `bk-layout` supports new layout modality `leftMenu`
 - Form components support month/year navigation and selection in date fields
 
-### Fixed
+### Fixes
 
 - Title of footer buttons in `bk-gallery` are localized
 - File upload action propagates returned object in hooks
@@ -171,7 +171,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `urlMask` properties of `bk-button` and `bk-url-paramters` allow separate masks for `pathname` and `search` fields of current URL
+- `urlMask` properties of `bk-button` and `bk-url-parameters` allow separate masks for `pathname` and `search` fields of current URL
 - actions of type `http` support methods `PATCH` and `PUT`
 
 ### Fixed
