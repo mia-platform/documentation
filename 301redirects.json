@@ -824,5 +824,17 @@
   "/docs/runtime_suite/payment-gateway-manager/recurrent_payments":  {
     "destination": "/docs/runtime_suite/payment-gateway-manager/how_it_works",
     "addedOn": "2023-09-18"
+  },
+  "/docs/runtime_suite/identification-router/overview":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/overview",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/changelog":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/changelog",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/configuration":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/configuration",
+    "addedOn": "2023-09-27"
   }
 }

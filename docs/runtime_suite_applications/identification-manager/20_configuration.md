@@ -16,7 +16,7 @@ To complete the configuration is needed to:
 
 ## Identification Manager Router
 
-The [identification manager router](../../runtime_suite/identification-router/overview) manages the communication between external services and the set of `sub flows`. The plugin comes in the application with only one default rule that holds information about the used identification process, but it is possible to add more rules in order to add more identification processes to the application. 
+The [identification manager router](../../runtime_suite/flow-manager-router/overview) manages the communication between external services and the set of `sub flows`. The plugin comes in the application with only one default rule that holds information about the used identification process, but it is possible to add more rules in order to add more identification processes to the application. 
 
 ## Identification Provider Adapter
 
