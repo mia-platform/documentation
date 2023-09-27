@@ -20,7 +20,7 @@ const features = [
   {
     title: "Getting Started",
     icon: "rocket",
-    toUrl: "/docs/overview/mia_platform_overview",
+    toUrl: "/docs/getting-started/mia-platform-overview",
     description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`,
   },
   {
@@ -32,7 +32,7 @@ const features = [
   {
     title: "Learn to build what you want",
     icon: "learn",
-    toUrl: "/docs/getting_started/video_pills/video_pills",
+    toUrl: "/docs/getting-started/videos/",
     description: `Read our tutorials, follow walkthroughs and learn how to decouple your
         IT systems from your channels and develop modern cloud-native
         applications.`,
