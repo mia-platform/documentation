@@ -23,3 +23,8 @@ The **Port name** is the unique identifier of the port, which can be used to ref
 The **Port** field contains the abstracted Kubernetes Service port; this is the port that must be used by other pods to access the Service. The default port value is 80.  
 The **Target Port** represents the port that the Kubernetes container accepts traffic on. Our default is 3000.  
 The **Protocol** field defines the network protocol used for the Service. The default is TCP but UDP is also supported.
+
+:::caution
+Remember that the port used to attempt to contact the probes is always (and only) the one indicated in the environment variable "HTTP_PORT". For more information on the [probes](/development_suite/api-console/api-design/microservice-runtime-resources.md#probes), click here.   
+For more information on environment variables, [click here](/development_suite/api-console/api-design/services#environment-variable-configuration).
+:::
