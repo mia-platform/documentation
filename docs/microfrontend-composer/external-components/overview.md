@@ -72,7 +72,7 @@ This strategy is suitable when either the components library must be kept privat
 An API key authentication can be provided by:
 
 1. known headers, like [`Authorization`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)
-2. custom headers, like [`Secret`](/development_suite/api-console/api-design/api-key.md#how-to-use-an-api-key) on **Mia-Platform Console**
+2. custom headers, like [`Secret`](/development_suite/api-console/api-design/api_key.md#how-to-use-an-api-key) on **Mia-Platform Console**
 
 The custom headers approach requires special handling since browser issue a preflight call to the requested endpoint to validate acceptance of custom headers and the HTTP method (which is `GET` to fetch a resource).
 

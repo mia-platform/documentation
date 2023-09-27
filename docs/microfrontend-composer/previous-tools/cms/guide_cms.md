@@ -307,7 +307,7 @@ on it, you can view, apply, modify, and delete all the saved filters.
 #### How to enable the feature
 
 To enable this feature in your CMS you have to
-[create a CRUD](../development_suite/api-console/api-design/crud_advanced) named
+[create a CRUD](/development_suite/api-console/api-design/crud_advanced) named
 `cmsfilters` with the following properties (all not required and not nullable):
 
 * `collection` (String)
@@ -319,7 +319,7 @@ To enable this feature in your CMS you have to
 ![image alt text](img/cmsfilters-collection.png)
 
 Once the CRUD is created, you have to
-[expose it](../development_suite/api-console/api-design/endpoints#crud)
+[expose it](/development_suite/api-console/api-design/endpoints.md#crud)
 through an endpoint with base path `/cmsfilters`.
 
 ## Media management
