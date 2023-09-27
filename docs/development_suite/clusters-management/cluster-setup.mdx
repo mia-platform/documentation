@@ -12,175 +12,174 @@ In order to connect your cluster to the Console, there are some preparation step
 You can choose between the automatic procedure and the manual one.
 
 <Tabs queryString="type">
-<TabItem value="automatic" label="Automatic" default>
+  <TabItem value="automatic" label="Automatic" default>
 
-Contact us to receive the `Mia Platform Helm Chart` and `Template Console Helm Chart` that will automatically create the needed `ServiceAccount`, `ClusterRole` and `ClusterRoleBindings`.
-    
-</TabItem>
-<TabItem value="manual" label="Manual" lazy>
+  Contact us to receive the `Mia Platform Helm Chart` and `Template Console Helm Chart` that will automatically create the needed `ServiceAccount`, `ClusterRole` and `ClusterRoleBindings`.
+      
+  </TabItem>
+  <TabItem value="manual" label="Manual" lazy>
 
-### ServiceAccount
+  ### ServiceAccount
 
-First, you must create a `ServiceAccount` on Kubernetes: this service account will be used by the Console to interact with the APIs exposed by Kubernetes on your cluster.
+  First, you must create a `ServiceAccount` on Kubernetes: this service account will be used by the Console to interact with the APIs exposed by Kubernetes on your cluster.
 
-You can do this using the dedicated [kubectl command](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_create_serviceaccount/) or by creating a new Kubernetes object with the following template:
+  You can do this using the dedicated [kubectl command](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_create_serviceaccount/) or by creating a new Kubernetes object with the following template:
 
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: {{SERVICE_ACCOUNT_NAME}}
-  labels:
-  annotations:
-```
+  ```yaml
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: {{SERVICE_ACCOUNT_NAME}}
+    labels:
+    annotations:
+  ```
 
-### ClusterRole
+  ### ClusterRole
 
-Next, we must define the roles needed by the previously created service account. These are the minimal roles required by the Console to work.
+  Next, we must define the roles needed by the previously created service account. These are the minimal roles required by the Console to work.
 
-Here is the template to quickly define them:
+  Here is the template to quickly define them:
 
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: {{CLUSTER_ROLE_NAME}}
-  labels:
-  annotations:
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      - "pods"
-    verbs:
-      - "delete"
-      - "get"
-      - "list"
-  - apiGroups:
-      - "batch"
-    resources:
-      - "cronjobs"
-    verbs:
-      - "get"
-      - "list"
-  - apiGroups:
-      - "batch"
-    resources:
-      - "jobs"
-    verbs:
-      - "create"
-      - "delete"
-      - "get"
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - "secrets"
-    verbs:
-      - "create"
-      - "get"
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - pods/log
-      - nodes
-      - events
-      - services
-    verbs:
-      - "get"
-      - "list"
-  - apiGroups:
-      - "metrics.k8s.io"
-    resources:
-      - "pods"
-    verbs:
-      - "list"
-  - apiGroups:
-      - "apps"
-    resources:
-      - "deployments"
-      - "daemonsets"
-    verbs:
-      - "get"
-      - "list"
-  - apiGroups:
-      - "autoscaling"
-    resources:
-      - "horizontalpodautoscalers"
-    verbs:
-      - "get"
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - "namespaces"
-    verbs:
-      - "create"
-      - "delete"
-  - apiGroups:
-      - ""
-    resources:
-      - "limitranges"
-      - "resourcequotas"
-    verbs:
-      - "create"
-      - "get"
-      - "list"
-      - "patch"
-      - "update"
-  - apiGroups:
-      - ""
-    resources:
-      - "namespaces"
-    verbs:
-      - "get"
-  - apiGroups:
-      - "rbac.authorization.k8s.io"
-    resources:
-      - "rolebindings"
-    verbs:
-      - "create"
-  - apiGroups:
-      - ""
-    resources:
-      - "serviceaccounts"
-    verbs:
-      - "create"
-      - "get"
-  - apiGroups:
-      - "rbac.authorization.k8s.io"
-    resources:
-      - "clusterroles"
-    verbs:
-      - bind
-    resourceNames:
-      - {{NAME_OF_THE_SERVICE_ACCOUNT_USED_FOR_THE_DEPLOY}}
-```
-
-### ClusterRoleBindings
-
-Finally, we **must** associate the roles with the service account using the `ClusterRoleBindings` that can be created using the following template:
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: 
-  labels:
-  annotations:
-roleRef:
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRole
-  name: {{CLUSTER_ROLE_NAME}}
-  apiGroup: rbac.authorization.k8s.io
-subjects:
-- kind: ServiceAccount
-  name: {{SERVICE_ACCOUNT_NAME}}
-  namespace:
-```
+  metadata:
+    name: {{CLUSTER_ROLE_NAME}}
+    labels:
+    annotations:
+  rules:
+    - apiGroups:
+        - ""
+      resources:
+        - "pods"
+      verbs:
+        - "delete"
+        - "get"
+        - "list"
+    - apiGroups:
+        - "batch"
+      resources:
+        - "cronjobs"
+      verbs:
+        - "get"
+        - "list"
+    - apiGroups:
+        - "batch"
+      resources:
+        - "jobs"
+      verbs:
+        - "create"
+        - "delete"
+        - "get"
+        - "list"
+    - apiGroups:
+        - ""
+      resources:
+        - "secrets"
+      verbs:
+        - "create"
+        - "get"
+        - "list"
+    - apiGroups:
+        - ""
+      resources:
+        - pods/log
+        - nodes
+        - events
+        - services
+      verbs:
+        - "get"
+        - "list"
+    - apiGroups:
+        - "metrics.k8s.io"
+      resources:
+        - "pods"
+      verbs:
+        - "list"
+    - apiGroups:
+        - "apps"
+      resources:
+        - "deployments"
+        - "daemonsets"
+      verbs:
+        - "get"
+        - "list"
+    - apiGroups:
+        - "autoscaling"
+      resources:
+        - "horizontalpodautoscalers"
+      verbs:
+        - "get"
+        - "list"
+    - apiGroups:
+        - ""
+      resources:
+        - "namespaces"
+      verbs:
+        - "create"
+        - "delete"
+    - apiGroups:
+        - ""
+      resources:
+        - "limitranges"
+        - "resourcequotas"
+      verbs:
+        - "create"
+        - "get"
+        - "list"
+        - "patch"
+        - "update"
+    - apiGroups:
+        - ""
+      resources:
+        - "namespaces"
+      verbs:
+        - "get"
+    - apiGroups:
+        - "rbac.authorization.k8s.io"
+      resources:
+        - "rolebindings"
+      verbs:
+        - "create"
+    - apiGroups:
+        - ""
+      resources:
+        - "serviceaccounts"
+      verbs:
+        - "create"
+        - "get"
+    - apiGroups:
+        - "rbac.authorization.k8s.io"
+      resources:
+        - "clusterroles"
+      verbs:
+        - bind
+      resourceNames:
+        - {{NAME_OF_THE_SERVICE_ACCOUNT_USED_FOR_THE_DEPLOY}}
+  ```
 
-</TabItem>
+  ### ClusterRoleBindings
 
+  Finally, we **must** associate the roles with the service account using the `ClusterRoleBindings` that can be created using the following template:
+
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: 
+    labels:
+    annotations:
+  roleRef:
+    kind: ClusterRole
+    name: {{CLUSTER_ROLE_NAME}}
+    apiGroup: rbac.authorization.k8s.io
+  subjects:
+  - kind: ServiceAccount
+    name: {{SERVICE_ACCOUNT_NAME}}
+    namespace:
+  ```
+
+  </TabItem>
 </Tabs>
 
 ### CA and Token
