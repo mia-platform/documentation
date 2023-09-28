@@ -7,7 +7,7 @@ sidebar_label: Manage Providers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Providers can be generically defined as a means of storing information about external services. 
+Providers can be generically defined as a means of storing information about external services.
 
 The Mia-Platform Console supports providers with 3 different capabilities:
 
@@ -55,10 +55,12 @@ You can connect a Provider by clicking on the "**Add Provider connection**" or "
 ![Add provider button](img/add-provider-connection-choice.png)
 
 :::info
-For mor specific details on how to connect a Provider for Marketplace, please refer to the [dedicated paragraph](#connect-a-provider-for-marketplace) later on this page.
+
+For more specific details on how to connect a Provider for Marketplace, please refer to the [dedicated paragraph](#connect-a-provider-for-marketplace) later on this page.
+
 :::
 
-After clicking on it a modal will show up, and, through a few steps, you will be asked to enter some information related to the Provider.
+After clicking the button a modal will show up, and, through a few steps, you will be asked to enter some information related to the Provider.
 
 
 ### Step 1: Provider Services
@@ -85,7 +87,7 @@ In this step, you can insert some general details about your provider:
 
 #### Provider Details of a Provider for Marketplace
 
-If you are connecting a new Provider for Marketplace, you will also see an additional toggle, which allows you to manage the accessibility to the Provider.
+If you are connecting a new Provider for Marketplace, you will also see an additional toggle, which allows you to manage the accessibility to the Provider by other Companies.
 For further details, please refer to the [dedicated paragraph](#connect-a-provider-for-marketplace) later on this page.
 
 ### Step 3: Credentials
@@ -440,7 +442,7 @@ Learn more on how to retrieve the ID of a pipeline on the Azure DevOps [pipeline
 </Tabs>
 
 In addition, it is also possible to change the CI/CD Tool of a specific environment within the Project.
-To do this, you need to modify the `deploy` object within the referenced environment in the `Environments` object
+To do this, you need to modify the `deploy` object within the referenced environment in the `environments` object
 (from the CMS: `Environments` > *environment object* > `deploy`). The fields to be edited are the same as described above.
 
 ## Connect a Provider for Marketplace
@@ -450,17 +452,20 @@ By doing so, you can decide to make any resources related to that specific **Pro
 For more information about how to share a Marketplace Resource, please refer to the [dedicated documentation page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
 
 
-:::note
+:::info
+
 Marketplace related Providers are distinguished by the label "**for Marketplace**" in the Capabilities column.
+
 :::
 
 
 ![Provider overview Marketplace](img/providers-overview-marketplace.png)
 
-The process of connecting a Provider for Marketplace is the same as the one described in the [Connect a Provider](#connect-a-provider) section, with only small differences in the first and second steps.
+The process of connecting a Provider for Marketplace is similar to the one described in the [Connect a Provider](#connect-a-provider) section, with only small differences in the first and second steps.
 Here below you can find the description of the differences between the two processes.
 
 ### Step 1: Provider Services
+
 First step is the same as the one described in the [Connect a Provider](#step-1-provider-services) section with only one difference:
 you will be able to select only among Providers that allow to be used with the purpose of Marketplace connection.
 
@@ -478,8 +483,13 @@ A toggle "**Allow access to all the Companies**" will be displayed in the Provid
 By enabling or disabling this toggle you will be able to manage the accessibility to the Provider. 
 **When enabled, this toggle allows other Companies to access this Provider related resources**.
 
-:::note
-Provider credentials won't be shared with other Companies at any time.
+
+:::info
+
+Even when the "**Allow access to all the Companies**" is enabled, the Provider itself can be viewed and edited only in the Company where it is created.
+
+Additionally, Provider credentials won't be shared with other Companies at any time.
+
 :::
 
 ![Provider Step 2 Marketplace](img/add-provider-2-marketplace.png)
@@ -487,6 +497,14 @@ Provider credentials won't be shared with other Companies at any time.
 :::info
 You can manage the accessibility to the Provider at any time, by simply switching off the accessibility toggle in Provider Edit page.
 :::
+
+### Step 3: Credentials
+
+This step has no differences with the [Connect a provider Step 3](#step-3-credentials)
+
+### Step 4: Advanced
+
+This step has no differences with the [Connect a provider Step 4](#step-4-advanced)
 
 ## Provider APIs
 For versions prior to 10.8, the above information is not valid, as providers were managed directly through APIs. Therefore, for the sake of backward compatibility, we report in this section the APIs used to create and modify providers, along with examples of request bodies:
