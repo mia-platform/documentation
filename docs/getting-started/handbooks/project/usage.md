@@ -281,5 +281,5 @@ For more information about monitoring CPU and memory using Grafana please see th
 
 You can also set the Console homepage to show environment metrics by using the [Metrics homepage](/development_suite/overview-dev-suite.md#metrics-homepage).
 
-For information on how to directly interact with the Kubernetes infrastructure please see [here](/getting-started/handbooks/company/connect-and-manage-cluster.md).
+For information on how to directly interact with the Kubernetes infrastructure please see [here](/development_suite/clusters-management/connect-and-manage-cluster.mdx).
 

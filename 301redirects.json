@@ -693,10 +693,6 @@
     "destination": "/docs/getting-started/tutorials/protect-your-endpoints-with-policies",
     "addedOn": "2023-09-18"
   },
-  "/docs/how_to/company/manage-cluster":  {
-    "destination": "/docs/getting-started/handbooks/company/connect-and-manage-cluster",
-    "addedOn": "2023-09-18"
-  },
   "/docs/tutorial/design_overview/":  {
     "destination": "/docs/getting-started/tutorials/design-overview",
     "addedOn": "2023-09-18"
@@ -829,7 +825,23 @@
     "destination": "/docs/runtime_suite/payment-gateway-manager/how_it_works",
     "addedOn": "2023-09-18"
   },
-  "/docs/getting_started/video_pills/video_pills":  {
+  "/docs/how_to/company/manage-cluster": {
+    "destination": "/docs/development_suite/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/handbooks/company/connect-and-manage-cluster": {
+    "destination": "/docs/development_suite/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2023-09-25"
+  },
+  "/docs/development_suite/clusters-management/clusters-overview-setup": {
+    "destination": "/docs/development_suite/clusters-management/cluster-setup",
+    "addedOn": "2023-09-25"
+  },
+  "/docs/development_suite/clusters-management/vendors-runtime-services": {
+    "destination": "/docs/development_suite/clusters-management/overview",
+    "addedOn": "2023-09-28"
+  },
+  "/docs/getting_started/video_pills/video_pills": {
     "destination": "/docs/getting-started/videos/",
     "addedOn": "2023-09-28"
   }
