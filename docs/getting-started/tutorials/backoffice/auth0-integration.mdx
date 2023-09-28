@@ -372,6 +372,8 @@ Then you have to add new endpoints and modify some of the existing ones (beware 
 ## Configure the Backoffice application
 Now that you have configured all the microservices you need to follow these last steps to configure the Backoffice to enable the creation of Auth0 users.
 
+### Create the pages
+
 First of all, you need to create the pages to handle **users** and `user-manager-service` **configurations**:
 1. Go to Configurations, select the `Pages` tab and click on the `Create new page` button.
 2. Select the following configuration
@@ -384,6 +386,8 @@ First of all, you need to create the pages to handle **users** and `user-manager
 |--------------------------|----------------------|
 | **Id**                   | ums-configurations   |
 | **Page rendering route** | ./ums-configurations |
+
+### Link the pages with the CRUD collections
 
 Now you can link the Backoffice pages with the CRUD collections. 
 For `users`:
@@ -677,6 +681,8 @@ For `ums-configurations`:
 }
 ```
 
+### Add the pages to the Backoffice
+
 Then you can add the newly created pages to the Backoffice menu:
 1. Click on the `Layout` tab.
 2. Select `Layout` from the left-side menu.
@@ -690,6 +696,19 @@ Then you can add the newly created pages to the Backoffice menu:
 |-----------|--------------------|
 | **Id**    | ums-configurations |
 | **Label** | Configurations     |
+
+### Define the ACLs
+
+With the **ACL Expressions** you've just set, users outside `groups.admin` will see these pages in the left-side menu of the Backoffice, but will receive a 404 status code page. 
+In order to hide them the newly created pages, you need to add the ACLs in your advanced configuration:
+1. Click on `Advanced` tab.
+2. Add this expression `"aclExpression": "groups.admin"` under `layout > content > properties > menuItems` as property of `auth0-users` and `ums-configurations` applications.
+3. Click on the `Apply` button.
+The result with be similar to the following:
+![Advanced Configuration](img/auth0_09-advanced-configuration.png)
+
+
+### Set the user menu
 
 Then you have to set the user menu:
 1. Click on the `Layout` tab.
