@@ -20,7 +20,7 @@ Mia-Platform Console provides capabilities to manage and modify the ports on whi
 ### Environment Variables
 Imagine you have a microservice that accepts an environment variable for port configuration.  
 In this scenario, we want our service to listen on port 8080.  
-To do this, we pass 8080 as a value using the default variable `HTTP_PORT` within the [Environment Variables](/docs/development_suite/api-console/api-design/services.md#environment-variable-configuration) section of the microservice page. 
+To do this, we pass 8080 as a value using the default variable `HTTP_PORT` within the [Environment Variables](/development_suite/api-console/api-design/services.md#environment-variable-configuration) section of the microservice page. 
 
 Our microservice needs to accept this variable from the environment and use it to set up the port on which it listens.  
   
@@ -34,7 +34,7 @@ How do we achieve this?
 
 Using the configurations in Mia-Platform Console:
 
-1. From the microservice page navigate to the [**Container Ports**](/docs/development_suite/api-console/api-design/services.md#container-ports-configuration) section.
+1. From the microservice page navigate to the [**Container Ports**](/development_suite/api-console/api-design/services.md#container-ports-configuration) section.
 2. In this example we want to expose our service on External Port 80, so we set **Port** as 80.
 3. Our microservice is set to listen on port 8080, so we set **Target Port** as 8080 - This indicates that the external port 80 should map to our microservice's internal port 8080.
 4. You can choose the **Protocol** used for communication. You can choose between TCP and UDP. By default for HTTP services, TCP is used.
