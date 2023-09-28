@@ -20,7 +20,7 @@ The table presented here shows the following information:
 
 ![list_of_jobs](../img/jobs_list.png)
 
-## Deleting a Job
+## Deleting Jobs
 
 :::info
 
@@ -28,18 +28,22 @@ This feature is only available to users with sufficient permissions. For more in
 
 :::
 
-By clicking on the **Delete button** on the last column of the Job table, the Job will be permanently deleted.
-
-A modal will ask for confirmation for the action to be performed.
-
-Any related resources, such as Pods, will be marked for deletion, and Kubernetes may [cascading delete](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#cascading-deletion) them at any time.
-
 :::warning
 
 The deletion is permanent, therefore make sure to save elsewhere any important information before deleting a Job.
 Please note that also the related Pod(s) are marked for deletion, along with their information such as logs.
 
 :::
+
+You can delete a single Job by clicking on the **Delete button** on the last column of the Job table.
+
+You can also delete multiple Jobs at the same time, by selecting the checkbox on the left of the Jobs you want to delete and clicking on the **Delete Jobs** button that appears at the bottom of the table.
+
+![list_of_selected_jobs](../img/jobs_list_selected.png)
+
+A modal will ask for confirmation for the action to be performed, and inform you on the operation outcome.
+
+Any related resources, such as Pods, will be marked for deletion, and Kubernetes may [cascading delete](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#cascading-deletion) them at any time.
 
 ## Inspecting a Job
 

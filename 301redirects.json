@@ -614,7 +614,11 @@
     "addedOn": "2023-08-29"
   },
   "/docs/tutorial/demo_project/overview":  {
-    "destination": "/docs/overview/mia_platform_overview",
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/overview/mia_platform_overview": {
+    "destination": "/docs/getting-started/mia-platform-overview",
     "addedOn": "2023-08-29"
   },
   "/docs/development_suite/identity-and-access-management/overview":  {
@@ -835,6 +839,10 @@
   },
   "development_suite/clusters-management/vendors-runtime-services": {
     "destination": "/docs/development_suite/clusters-management/overview",
+    "addedOn": "2023-09-28"
+  },
+  "/docs/getting_started/video_pills/video_pills": {
+    "destination": "/docs/getting-started/videos/",
     "addedOn": "2023-09-28"
   }
 }
