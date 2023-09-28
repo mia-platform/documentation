@@ -21,27 +21,35 @@ Some providers may require additional fields, in which case they will be wrapped
 
 ## Supported Providers and Payment Methods
 
-| Provider   | Credit Cards | ApplePay | GooglePay | PayPal | Satispay | Scalapay | Soisy |
-|------------|--------------|----------|-----------|--------|----------|----------|-------|
-| Axerve     | ✓            | ✓        | ✓         | ✓      | ✓        |          |       |
-| Adyen      | ✓            |          |           |        |          |          |       |
-| Braintree  |              |          |           | ✓      |          |          |       |
-| Satispay   |              |          |           |        | ✓        |          |       |
-| Scalapay   |              |          |           |        |          | ✓        |       |
-| Soisy      |              |          |           |        |          |          | ✓     |
-| Stripe     | ✓            |          |           |        |          |          |       |
+| Provider   | Credit/Debit Cards | ApplePay | GooglePay | PayPal | Satispay | Scalapay | Soisy |
+|------------|--------------------|----------|-----------|--------|----------|----------|-------|
+| Axerve     | ✓                  | ✓        | ✓         | ✓      | ✓        |          |       |
+| Adyen      | ✓                  |          |           |        |          |          |       |
+| Braintree  |                    |          |           | ✓      |          |          |       |
+| Satispay   |                    |          |           |        | ✓        |          |       |
+| Scalapay   |                    |          |           |        |          | ✓        |       |
+| Soisy      |                    |          |           |        |          |          | ✓     |
+| Stripe     | ✓                  |          |           |        |          |          |       |
+
+::: note
+Regarding Credit/Debit Cards, supported payment circuits are:
+- Visa
+- Mastercard
+- Maestro
+- American Express (AMEX)
+:::
 
 ## Supported Providers and Subscriptions type
 
-| Provider  | Manual | Automatic | Payment Methods      |
-|-----------|--------|-----------|----------------------|
-| Axerve    | ✓      |           | Credit Cards, PayPal |
-| Adyen     | ✓      |           | Credit Cards         |
-| Braintree |        | ✓         | PayPal               |
-| Satispay  | ✓      |           |                      |
-| Scalapay  |        |           |                      |
-| Soisy     |        |           |                      |
-| Stripe    |        | ✓         | Credit Cards         |
+| Provider  | Manual | Automatic | Payment Methods            |
+|-----------|--------|-----------|----------------------------|
+| Axerve    | ✓      |           | Credit/Debit Cards, PayPal |
+| Adyen     | ✓      |           | Credit/Debit Cards         |
+| Braintree |        | ✓         | PayPal                     |
+| Satispay  | ✓      |           |                            |
+| Scalapay  |        |           |                            |
+| Soisy     |        |           |                            |
+| Stripe    |        | ✓         | Credit/Debit Cards         |
 
 ## Supported Providers with Pay By Link
 
