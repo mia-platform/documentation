@@ -21,9 +21,9 @@ sidebar_label: Page layout
 
 [add-filter]: ./70_events.md#add-filter
 [available-operators]: ./70_events.md#add-filter
-[display-data]: ./70_Events#display-data
+[display-data]: ./70_events.md#display-data
 
-[lookups-from-views]: ./90_Flows/50_Lookups.md
+[lookups-from-views]: ./80_flows/40_lookups.md
 
 
 

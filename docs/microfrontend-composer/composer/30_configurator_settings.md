@@ -27,7 +27,7 @@ Variables defined in the *Test* section of the modal are shared between all sect
 
 The Configurator preview can only load resources that are publicly available on the net and with the right [CORS headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). 
 
-This poses an issue if you would like to view [external components](/microfrontend-composer/external_components/overview.md), images, or assets deployed in a production environment, CDN, or authenticated route.
+This poses an issue if you would like to view [external components](/microfrontend-composer/external-components/overview.md), images, or assets deployed in a production environment, CDN, or authenticated route.
 
 Let's consider, for example, the following compose page configuration, where web-components are sourced from the authenticated endpoint `https://my-domain/back-kit`:
 

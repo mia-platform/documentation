@@ -45,15 +45,15 @@ A table page built to be connected with another page that provides further detai
 
 ![Master table template](img/compose-page_templates_master-table.png)
 
-The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details page configuring the table [`customActions` property](/microfrontend-composer/back-kit/60_components/60_data_visualization.md#configuring-actions-via-customactions).
+The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details page configuring the table [`customActions` property](/microfrontend-composer/back-kit/60_components/510_table.md#configuring-actions-via-customactions).
 
 ### Details page
 
-A page built to display a detailed view of data (e.g., a single row of a table) through [card components](/microfrontend-composer/back-kit/60_components/60_data_visualization.md#bk-card).
+A page built to display a detailed view of data (e.g., a single row of a table) through [card components](/microfrontend-composer/back-kit/60_components/140_card.md).
 
 ![Details page template](img/compose-page_templates_details-page.png)
 
-The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_ section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be [properly configured](/microfrontend-composer/back-kit/60_components/10_adapters.md#bk-url-parameters) to query data correctly.
+The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_ section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be [properly configured](/microfrontend-composer/back-kit/60_components/540_url_parameters_adapter.md) to query data correctly.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties).
 
@@ -76,7 +76,7 @@ A page built to visualize data on a calendar. It provides filtering, exporting, 
 The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ and _CRUD export_ components in _Connectors & Adapters_
 section.
 
-Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties). Pre-configured schema already has the required fields by the [calendar component](/microfrontend-composer/back-kit/60_components/60_data_visualization.md#bk-calendar).
+Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties). Pre-configured schema already has the required fields by the [calendar component](/microfrontend-composer/back-kit/60_components/130_calendar.md).
 
 ### Picture gallery
 
@@ -133,14 +133,14 @@ Some shared property types are well known by the Configurator, and a no-code edi
 
 #### Back Kit data schema
 
-Properties of type `back-kit/data-schema` are a core concept of the [back-kit web-components library](/microfrontend-composer/back-kit/30_page_layout#data.md-schema)
+Properties of type `back-kit/data-schema` are a core concept of the [back-kit web-components library](/microfrontend-composer/back-kit/30_page_layout.md#data-schema)
 and can be configured through a graphical interface.
 
 You can add new fields to the schema, choose and edit their name, and set some relevant properties for each of them.
 
 ![New shared property](img/compose-page_shared-properties-bk-data-schema.png)
 
-Moreover, data schemas can be **automatically generated** from CRUD collections. This can be done in specific components that are responsible for CRUD communication (e.g., [Curd Client](/microfrontend-composer/back-kit/60_components/30_clients.md#bk-crud-client) component), with the _Generate Schema_ button.
+Moreover, data schemas can be **automatically generated** from CRUD collections. This can be done in specific components that are responsible for CRUD communication (e.g., [Curd Client](/microfrontend-composer/back-kit/60_components/100_crud_client.md) component), with the _Generate Schema_ button.
 
 ![Generate schema button](img/compose-page_crud-generation-button.png)
 
