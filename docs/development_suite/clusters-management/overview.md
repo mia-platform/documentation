@@ -1,14 +1,14 @@
 ---
-id: vendors-runtime-services
+id: overview
 title: Clusters Overview
 sidebar_label: Clusters
 ---
 
 Mia-Platform Console allows authorized users to manage the Kubernetes clusters on which projects are deployed. 
 
-## Supported clusters
+## Supported vendors and runtime services
 
-When the user [connects a new cluster](/development_suite/clusters-management/connect-and-manage-cluster.md), they are required to enter information about the cluster's vendor and runtime service.
+When the user [connects a new cluster](/development_suite/clusters-management/connect-and-manage-cluster.mdx), they are required to enter information about the cluster's vendor and runtime service.
 To date, the Console only supports runtime services based on Kubernetes, and all vendors can be associated with the following runtime services:
 
 * Kubernetes (https://kubernetes.io);

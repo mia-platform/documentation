@@ -24,7 +24,7 @@
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "development_suite/clusters-management/vendors-runtime-services",
+            "id": "development_suite/clusters-management/overview",
             "type": "doc"
           },
           "items": [

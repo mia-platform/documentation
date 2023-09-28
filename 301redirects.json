@@ -832,5 +832,9 @@
   "/docs/development_suite/clusters-management/clusters-overview-setup": {
     "destination": "/docs/development_suite/clusters-management/cluster-setup",
     "addedOn": "2023-09-25"
+  },
+  "development_suite/clusters-management/vendors-runtime-services": {
+    "destination": "/docs/development_suite/clusters-management/overview",
+    "addedOn": "2023-09-28"
   }
 }
