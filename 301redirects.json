@@ -614,7 +614,11 @@
     "addedOn": "2023-08-29"
   },
   "/docs/tutorial/demo_project/overview":  {
-    "destination": "/docs/overview/mia_platform_overview",
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/overview/mia_platform_overview": {
+    "destination": "/docs/getting-started/mia-platform-overview",
     "addedOn": "2023-08-29"
   },
   "/docs/development_suite/identity-and-access-management/overview":  {
@@ -824,5 +828,9 @@
   "/docs/runtime_suite/payment-gateway-manager/recurrent_payments":  {
     "destination": "/docs/runtime_suite/payment-gateway-manager/how_it_works",
     "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/video_pills/video_pills":  {
+    "destination": "/docs/getting-started/videos/",
+    "addedOn": "2023-09-28"
   }
 }
