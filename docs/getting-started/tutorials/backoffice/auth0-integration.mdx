@@ -28,14 +28,14 @@ Before starting this tutorial, we need to be familiar with the concepts of the [
 * [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
 
 This tutorial will use the following application:
-* [Secure API Gateway](../../../runtime_suite_applications/secure-apigateway/overview)
+* [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview.md)
 
 and some of the concepts described on this tutorial:
-* [Dev Portal - Authentication Configuration](../../../runtime_suite_applications/dev_portal/authentication_configuration)
+* [Dev Portal - Authentication Configuration](/runtime_suite_applications/dev_portal/authentication_configuration.md)
 
 ## Setup the Microservices
 
-You can install almost all the microservices for this tutorial using the [Secure API Gateway](../../../runtime_suite_applications/secure-apigateway/overview) application:
+You can install almost all the microservices for this tutorial using the [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview.md) application:
 1. Go to Applications and click on the `Create New Application` button.
 2. Search for `Secure ApiGateway` and click on the card.
 ![Secure ApiGateway Application Marketplace](img/auth0_01-secure-api-gateway-application.png)
@@ -70,19 +70,19 @@ Now that you have created all the required microservices you need to configure t
 
 ### API Gateway
 
-You can follow this page: [API Gateway Configuration](../../../runtime_suite_applications/secure-apigateway/configuration#api-gateway).
+You can follow this page: [API Gateway Configuration](/runtime_suite_applications/secure-apigateway/configuration.md#api-gateway).
 
 When the configuration is completed, you should have added to the *server-extension.conf* file the advanced configuration for the `api-gateway` to redirect calls that need authentication to the Login page.
 
 ### Authorization Service
 
-You can follow this page: [Authorization Service Configuration](../../../runtime_suite_applications/secure-apigateway/configuration#authorization-service).
+You can follow this page: [Authorization Service Configuration](/runtime_suite_applications/secure-apigateway/configuration.md#authorization-service).
 
 When the process is completed, you should have added the `authorization-service` configuration inside the *auth.json* file.
 
 ### Auth0 and Auth0 Client
 
-In order to configure the `auth0-client`, the first step require to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](../../../runtime_suite/auth0-client/configure_auth0) (for the scope of this tutorial you can avoid steps 3 and 4).
+In order to configure the `auth0-client`, the first step require to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](/runtime_suite/auth0-client/30_configure_auth0.md) (for the scope of this tutorial you can avoid steps 3 and 4).
 
 When the tenant configuration is completed you should have created:
 - one regular application
@@ -158,7 +158,7 @@ In order to complete this configuration you have to define the following variabl
 
 ### User Manager Service
 
-You can configure `user-manager-service` following this page: [User Manager Service Configuration](../../../runtime_suite/user-manager-service/overview).
+You can configure `user-manager-service` following this page: [User Manager Service Configuration](/runtime_suite/user-manager-service/10_overview.md).
 
 During the configuration you have to:
 * create a CRUD collection for **Auth0** Users (i.e. `auth0_users`) and populate the variable `USERS_CRUD_ENDPOINT` (i.e. `/auth0-users`). For the collection you can import the following fields:
