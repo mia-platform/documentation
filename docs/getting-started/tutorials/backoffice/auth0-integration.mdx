@@ -25,7 +25,7 @@ Throughout this tutorial, we will:
 ## Prerequisites
 
 Before starting this tutorial, we need to be familiar with the concepts of the [Mia-Platform Backoffice](/business_suite/backoffice/10_overview.md) and have completed:
-* The [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
+* [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
 
 This tutorial will use the following application:
 * [Secure API Gateway](../../../runtime_suite_applications/secure-apigateway/overview)
@@ -82,14 +82,14 @@ When the process is completed, you should have added the `authorization-service`
 
 ### Auth0 and Auth0 Client
 
-In order to configure the `auth0-client`, the first step require to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](/runtime_suite/auth0-client/configure_auth0) (for the scope of this tutorial you can avoid steps 3 and 4).
+In order to configure the `auth0-client`, the first step require to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](../../../runtime_suite/auth0-client/configure_auth0) (for the scope of this tutorial you can avoid steps 3 and 4).
 
 When the tenant configuration is completed you should have created:
 - one regular application
 - one M2M application for user management
 - a rule to inject the id token
 - one user with the following `app_metadata`:
-```
+```json
 {
   "groups": [
     "admin"
@@ -158,11 +158,11 @@ In order to complete this configuration you have to define the following variabl
 
 ### User Manager Service
 
-You can configure Auth0 following this page: [Auth0 Configuration](/runtime_suite/auth0-client/configure_auth0).
+You can configure `user-manager-service` following this page: [User Manager Service Configuration](../../../runtime_suite/user-manager-service/overview).
 
 During the configuration you have to:
 * create a CRUD collection for **Auth0** Users (i.e. `auth0_users`) and populate the variable `USERS_CRUD_ENDPOINT` (i.e. `/auth0-users`). For the collection you can import the following fields:
-```
+```json
 [
     {
         "name": "_id",
@@ -281,7 +281,7 @@ During the configuration you have to:
 ]
 ```
 * create a CRUD collection for **User Manager Service** configuration (i.e. `ums_configurations`) and populate the variable `UMS_CONFIG_CRUD_ENDPOINT` (i.e. `/ums-configurations`). For the collection you can import the following fields:
-```
+```json
 [
     {
         "name": "_id",
@@ -383,10 +383,11 @@ First of all, you need to create the pages to handle **users** and `user-manager
 ![User Configuration](img/auth0_04-users-config-2.png)
 3. Click the `Save` button.
 4. Repeat the first 3 steps to create the page for the `user-manager-service` configurations with only these changes:
-```
-Id: ums-configurations
-Page rendering route: ./ums-configurations
-```
+
+| Field                    | Value                |
+|--------------------------|----------------------|
+| **Id**                   | ums-configurations   |
+| **Page rendering route** | ./ums-configurations |
 
 Now you can link the Backoffice pages with the CRUD collections. 
 For `users`:
@@ -397,7 +398,7 @@ For `users`:
 5. Click on `Connectors & Adapters` tab, and then on `CRUD Client`.
 6. Click on `Edit property` button under the `Data schema` section.
 7. Toggle the `Use custom value` switch and paste the following schema:
-```
+```json
 {
   "type": "object",
   "properties": {
@@ -450,7 +451,7 @@ For `users`:
 10. Toggle the `Use custom value` switch and paste the previous schema.
 11. Click on `Form Modal` and then on the `Edit property` button under the `Data Schema` section on the right-side menu.
 12. Toggle the `Use custom value` switch and paste the following schema:
-```
+```json
 {
   "type": "object",
   "properties": {
@@ -507,7 +508,7 @@ For `ums-configurations`:
 5. Click on `Layout` tab, then on `Main` and `Table`.
 6. Click on `Edit property` button under the `Data schema` section on the right-side menu.
 7. Toggle the `Use custom value` switch and paste the following schema:
-```
+```json
 {
   "type": "object",
   "properties": {
@@ -594,7 +595,7 @@ For `ums-configurations`:
 ```
 8. Click on `Form Modal` and then on the `Edit property` button under the `Data Schema` section on the right-side menu.
 9. Toggle the `Use custom value` switch and paste the following schema:
-```
+```json
 {
   "type": "object",
   "properties": {
@@ -688,10 +689,11 @@ Then you can add the newly created pages to the Backoffice homepage:
 5. Choose the following configuration: ![Users page layout](img/auth0_05-users-page-layout.png)
 6. Click on the `Save` button.
 7. Repeat the first 6 steps to add the `user-manager-service` configurations page, choosing your favourite *Icon* and with the following changes:
-```
-Id: ums-configurations
-Label: Configurations
-```
+
+| Field     | Value              |
+|-----------|--------------------|
+| **Id**    | ums-configurations |
+| **Label** | Configurations     |
 
 Then you have to set the user menu:
 1. Click on the `Layout` tab.
