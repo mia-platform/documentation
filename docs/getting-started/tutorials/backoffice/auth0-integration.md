@@ -1,32 +1,38 @@
 ---
-id: basics
-title: Backoffice Tutorial Basics
-sidebar_label: Backoffice Tutorial Basics
+id: backoffice-auth0-integration
+title: Backoffice Integration with Auth0
+sidebar_label: Backoffice Integration with Auth0
 ---
 
 # Mia-Platform Backoffice Integration with Auth0
 
-In this tutorial, we will integrate the Backoffice with Auth0 that allow us to:
-- setup a frontend where users can register or authenticate to get access to the Backoffice
-- protect Backoffice pages using ACLs to grant access to certain users
+In this tutorial, we will integrate the Backoffice with Auth0. This will allow us to:
+- create, delete and manage Auth0 users using the Backoffice;
+- create, delete and manage users' groups to handle the access to Backoffice pages using ACLs;
+- setup a frontend where users can get access to the Backoffice.
 
 ## What We Will Build
 
 Throughout this tutorial, we will:
 
 - [Set Up the Microservices](#setup-the-microservices)
-- [Customize the Backoffice Appearance](#customize-the-backoffice-appearance)
-- [Create a Backoffice Table Page](#create-a-backoffice-table-page)
-- [Connect the Page to the Backoffice Menu](#connect-the-page-with-the-backoffice-menu)
+- [Configure the Microservices and Auth0](#configure-the-microservices-and-auth0)
+- [Configure the Backoffice](#configure-the-backoffice)
+- [Configure the authorization process](#configure-the-authorization-process)
+- [Setup the ACLs to manage Backoffice access](#setup-the-acls-to-manage-backoffice-access)
 - [Save and Deploy the Backoffice](#save-and-deploy)
+- [Create a user using Backoffice](#create-a-user-using-backoffice)
 
 ## Prerequisites
 
 Before starting this tutorial, we need to be familiar with the concepts of the [Mia-Platform Backoffice](/business_suite/backoffice/10_overview.md) and have completed:
 * The [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
 
-This tutorial will follow the following:
+This tutorial will use the following application:
 * [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview)
+
+and the concepts described on this tutorial:
+* [Dev Portal - Authentication Configuration](https://docs.mia-platform.eu/docs/runtime_suite_applications/dev_portal/authentication_configuration)
 
 ## Setup the Microservices
 
@@ -37,7 +43,7 @@ You can install almost all the microservices for this tutorial using the `Secure
 3. Follow the wizard, selecting if you want to install new microservices or use existing ones.
 4. At the end, click the `Create` button and then save the new Application.
 
-This application will create:
+This application will create the following:
 * Microservices 
     - `Authorization Service`
     - `Api Gateway`
@@ -53,7 +59,7 @@ This application will create:
     - `AUTH0_NAMESPACE`
     - `AUTH0_CALLBACK_URL`
 
-In order to handle the users on `Auth0` you need to install the `user-manager-service`:
+In order to handle the users on `Auth0` you need to add the `user-manager-service`:
 1. Go to Microservices and click on the `Create a Microservice` button.
 2. Search for `User Manager Service` and click on the card.
 ![User Manager Service Marketplace](img/basics_01-search-backoffice-application.png)
@@ -127,12 +133,17 @@ In order to complete this configuration you have to define the following variabl
 * `AUTH0_CONNECTION`: `Username-Password-Authentication`, the default Auth0 database
 * `MIA_NAMESPACE`: the namespace you already set in the Rules configuration on Auth0
 
+On Auth0 beware to set the following logout url:
+```
+https://your-project.cms.mia-platform.eu/web-login
+```
+
 ### User Manager Service
 
 You can configure Auth0 following this page: [Auth0 Configuration](/runtime_suite/auth0-client/configure_auth0)
 Briefly you have to:
-* create a CRUD collection for Auth0 Users (i.e. auth0_users) and populate the variable USERS_CRUD_ENDPOINT (i.e. USERS_CRUD_ENDPOINT)
-* create a CRUD collection for User Manager Service configuration (i.e. ums_configuration) and populate the variable UMS_CONFIG_CRUD_ENDPOINT (i.e. /ums-configurations)
+* create a CRUD collection for Auth0 Users (i.e. auth0_users) and populate the variable USERS_CRUD_ENDPOINT (i.e. USERS_CRUD_ENDPOINT). You can import the following fields.
+* create a CRUD collection for User Manager Service configuration (i.e. ums_configuration) and populate the variable UMS_CONFIG_CRUD_ENDPOINT (i.e. /ums-configurations). You can import the following fields.
 
 Then you have to add new endpoints and modify some of the existing ones (beware that for all the following endpoints the `Rewrite Base Path` must be equal to the `Base path`):
 * remove the `/oauth/token` endpoint linked to `auth0-client` and create the same endpoint linked to `user-manager-service`
@@ -150,6 +161,298 @@ First of all you need to create the pages to handle users and `user-manager-serv
 ![User Manager Service Marketplace](img/basics_01-search-backoffice-application.png)
 3. Click the `Save` button.
 4. Repeat the first 3 steps to create the page for the `user-manager-service` configurations.
+
+Now you can link the Backoffice pages with the CRUD collections. 
+For `users`:
+1. Select the configuration for the new `users` just created.
+2. Click on `Advanced` tab.
+3. Search for `"basePath": "/data-source-endpoint"` and change it with `"basePath": "/users"`.
+4. Click on the `Apply` button.
+5. Click on `Connectors & Adapters` tab, and then on `CRUD Client`.
+6. Click on `Edit property` button under the `Data schema` section.
+7. Toggle the `Use custom value` switch and paste the following schema:
+```
+{
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "label": "ID",
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "__STATE__": {
+      "type": "string",
+      "label": "State",
+      "enum": [
+        "PUBLIC",
+        "DRAFT",
+        "TRASH",
+        "DELETED"
+      ],
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "name": {
+      "label": "Nome",
+      "type": "string"
+    },
+    "email": {
+      "label": "Email",
+      "type": "string"
+    },
+    "userGroup": {
+      "type": "string",
+      "label": "Gruppo"
+    }
+  },
+  "required": [
+    "userGroup"
+  ]
+}
+```
+8. Click on `Layout` tab, then on `Main` and `Table`.
+9. Click on `Edit property` button under the `Data schema` section on the right-side menu.
+10. Toggle the `Use custom value` switch and paste the previous schema.
+11. Click on `Form Modal` and then on the `Edit property` button under the `Data Schema` section on the right-side menu.
+12. Toggle the `Use custom value` switch and paste the following schema:
+```
+{
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "label": "ID",
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "__STATE__": {
+      "type": "string",
+      "label": "State",
+      "enum": [
+        "PUBLIC",
+        "DRAFT",
+        "TRASH",
+        "DELETED"
+      ],
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "name": {
+      "label": "Nome",
+      "type": "string"
+    },
+    "email": {
+      "label": "Email",
+      "type": "string"
+    },
+    "userGroup": {
+      "type": "string",
+      "label": "Gruppo"
+    }
+  },
+  "required": [
+    "userGroup"
+  ]
+}
+```
+
+For `ums-configurations`:
+1. Select the configuration for the new `ums-configurations` just created.
+2. Click on `Connectors & Adapters` tab, and then on `CRUD Client`.
+3. Select `/v2/ums-configurations` as CRUD Service base path.
+4. Click on the `Generate Schema` button, then `Save` on the opened modal.
+5. Click on `Layout` tab, then on `Main` and `Table`.
+6. Click on `Edit property` button under the `Data schema` section on the right-side menu.
+7. Toggle the `Use custom value` switch and paste the following schema:
+```
+{
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "label": "ID",
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "__STATE__": {
+      "type": "string",
+      "label": "State",
+      "enum": [
+        "PUBLIC",
+        "DRAFT",
+        "TRASH",
+        "DELETED"
+      ],
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "userGroup": {
+      "type": "string",
+      "label": "Gruppo"
+    },
+    "crudSchema": {
+      "type": "object",
+      "label": "Schema CRUD",
+      "default": {
+        "type": "object",
+        "required": [
+          "email",
+          "userGroup",
+          "name"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "userGroup": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "label": {
+      "label": "Etichetta",
+      "type": "string"
+    },
+    "authUserCreationDisabled": {
+      "label": "Disabilita creazione utente",
+      "type": "boolean",
+      "default": false,
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
+```
+8. Click on `Form Modal` and then on the `Edit property` button under the `Data Schema` section on the right-side menu.
+9. Toggle the `Use custom value` switch and paste the following schema:
+```
+{
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "label": "ID",
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "__STATE__": {
+      "type": "string",
+      "label": "State",
+      "enum": [
+        "PUBLIC",
+        "DRAFT",
+        "TRASH",
+        "DELETED"
+      ],
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "userGroup": {
+      "type": "string",
+      "label": "Gruppo"
+    },
+    "crudSchema": {
+      "type": "object",
+      "label": "Schema CRUD",
+      "default": {
+        "type": "object",
+        "required": [
+          "email",
+          "userGroup",
+          "name"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "userGroup": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    },
+    "label": {
+      "label": "Etichetta",
+      "type": "string"
+    },
+    "authUserCreationDisabled": {
+      "label": "Disabilita creazione utente",
+      "type": "boolean",
+      "default": false,
+      "visualizationOptions": {
+        "hidden": true
+      },
+      "formOptions": {
+        "hidden": true
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
+```
 
 Then you can add the newly created pages to the Backoffice homepage:
 1. Click on the `Layout` tab.
@@ -196,7 +499,7 @@ You can now try to access your application. You should be automatically redirect
 In order to grant access to a user, make sure his/her credentials are also defined on your Auth0 platform.
 :::
 
-## Setup ACLs to show Backoffice sections to certain users
+## Setup the ACLs to manage Backoffice access
 Here it will be described the ACLs setup to manage the access of users using groups.
 
 ## Save and Deploy
@@ -206,7 +509,23 @@ With all the configurations in place, save your changes and then deploy. For fur
 ![Backoffice Page Composer](img/basics_20-backoffice-table-page-output.png)
 
 ## Create a user using Backoffice
-Here it will be described the process of user creation using Backoffice. The created user cannot see users and ums configurations table.
+In order to create your first user you need to create a configuration. To do that:
+1. Click on `Configurations` page.
+2. Click on `Add new` button.
+3. Fill the form with the following parameters:
+```
+Group: user
+Label: User
+```
+4. Click on `Create` button and `Confirm` on the warning modal.
+
+Now it's possible to create the first user:
+1. Click on `Users` page.
+2. Click on `Add new` button.
+3. Fill the form with the `Name` and `Email` of your first user and using `user` as `Group`.
+4. Click on `Create` button and `Confirm` on the warning modal.
+
+Now if you delete the created user it will be blocked on Auth0 and marked as `TRASH` inside the CRUD collection.
 
 ## Backoffice Tutorials
 
