@@ -18,8 +18,7 @@ Throughout this tutorial, we will:
 - [Set Up the Microservices](#setup-the-microservices)
 - [Configure the Microservices and Auth0](#configure-the-microservices-and-auth0)
 - [Configure the Backoffice](#configure-the-backoffice)
-- [Configure the authorization process](#configure-the-authorization-process)
-- [Setup the ACLs to manage Backoffice access](#setup-the-acls-to-manage-backoffice-access)
+- [Configure the authentication process](#configure-the-authentication-process)
 - [Save and Deploy the Backoffice](#save-and-deploy)
 - [Create a user using Backoffice](#create-a-user-using-backoffice)
 
@@ -29,17 +28,17 @@ Before starting this tutorial, we need to be familiar with the concepts of the [
 * The [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
 
 This tutorial will use the following application:
-* [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview)
+* [Secure API Gateway](../../../runtime_suite_applications/secure-apigateway/overview)
 
-and the concepts described on this tutorial:
-* [Dev Portal - Authentication Configuration](https://docs.mia-platform.eu/docs/runtime_suite_applications/dev_portal/authentication_configuration)
+and some of the concepts described on this tutorial:
+* [Dev Portal - Authentication Configuration](../../../runtime_suite_applications/dev_portal/authentication_configuration)
 
 ## Setup the Microservices
 
-You can install almost all the microservices for this tutorial using the `Secure API Gateway` application:
+You can install almost all the microservices for this tutorial using the [Secure API Gateway](../../../runtime_suite_applications/secure-apigateway/overview) application:
 1. Go to Applications and click on the `Create New Application` button.
 2. Search for `Secure ApiGateway` and click on the card.
-![Secure ApiGateway Application Marketplace](img/basics_01-search-backoffice-application.png)
+![Secure ApiGateway Application Marketplace](img/auth0_01-secure-api-gateway-application.png)
 3. Follow the wizard, selecting if you want to install new microservices or use existing ones.
 4. At the end, click the `Create` button and then save the new Application.
 
@@ -59,10 +58,10 @@ This application will create the following:
     - `AUTH0_NAMESPACE`
     - `AUTH0_CALLBACK_URL`
 
-In order to handle the users on `Auth0` you need to add the `user-manager-service`:
+In order to handle the users on `Auth0`, you need to add the `user-manager-service`:
 1. Go to Microservices and click on the `Create a Microservice` button.
 2. Search for `User Manager Service` and click on the card.
-![User Manager Service Marketplace](img/basics_01-search-backoffice-application.png)
+![User Manager Service Marketplace](img/auth0_02-user-manager-service.png)
 3. Choose the name of the service and then click the `Create` button.
 
 ## Configure the Microservices and Auth0
@@ -71,15 +70,39 @@ Now that you have created all the required microservices you need to configure t
 
 ### API Gateway
 
-You can follow this page: [API Gateway Configuration](/runtime_suite_applications/secure-apigateway/configuration#api-gateway)
+You can follow this page: [API Gateway Configuration](../../../runtime_suite_applications/secure-apigateway/configuration#api-gateway).
+
+When the configuration is completed, you should have added to the *server-extension.conf* file the advanced configuration for the `api-gateway` to redirect calls that need authentication to the Login page.
 
 ### Authorization Service
 
-You can follow this page: [Authorization Service Configuration](/runtime_suite_applications/secure-apigateway/configuration#authorization-service)
+You can follow this page: [Authorization Service Configuration](../../../runtime_suite_applications/secure-apigateway/configuration#authorization-service).
 
-### Auth0 Client
+When the process is completed, you should have added the `authorization-service` configuration inside the *auth.json* file.
 
-The Auth0-Client service accepts the following environment variables:
+### Auth0 and Auth0 Client
+
+In order to configure the `auth0-client`, the first step require to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](/runtime_suite/auth0-client/configure_auth0) (for the scope of this tutorial you can avoid steps 3 and 4).
+
+When the tenant configuration is completed you should have created:
+- one regular application
+- one M2M application for user management
+- a rule to inject the id token
+- one user with the following `app_metadata`:
+```
+{
+  "groups": [
+    "admin"
+  ]
+}
+```
+
+On Auth0 beware to set the following logout url:
+```
+https://your-backoffice-project.mia-platform.eu/web-login
+```
+
+Now, you can configure the `auth0-client` service. It accepts the following environment variables:
 
 - __LOG_LEVEL__: defines the logging level of the logger (default: `{{LOG_LEVEL}}`)
 - __HTTP_PORT__: defines the http port to use (default: 8080)
@@ -127,23 +150,221 @@ In order to complete this configuration you have to define the following variabl
 * `AUTH0_NAMESPACE`: the namespace of your tenant on Auth0 (i.e. https://tenant-name.eu.auth0.com/)
 * `AUTH0_CLIENT_ID`: the Client ID of your Regular Application (you can find it inside `Dashboard > Applications > Your Regular Application`)
 * `AUTH0_CLIENT_SECRET`: the Client Secret of your Regular Application (you can find it inside `Dashboard > Applications > Your Regular Application`)
-* `AUTH0_CALLBACK_URL`: the url already defined during Auth0 configuration (i.e. https://your-project.cms.mia-platform.eu/web-login/callback)
+* `AUTH0_CALLBACK_URL`: the url already defined during Auth0 configuration (i.e. https://your-backoffice-project.mia-platform.eu/web-login/callback)
 * `AUTH0_USER_MANAGEMENT_CLIENT_ID`: the Client ID of your M2M Application (you can find it inside `Dashboard > Applications > Your M2M Application`)
 * `AUTH0_USER_MANAGEMENT_CLIENT_SECRET`: the Client Secret of your M2M Application (you can find it inside `Dashboard > Applications > Your M2M Application`)
 * `AUTH0_CONNECTION`: `Username-Password-Authentication`, the default Auth0 database
 * `MIA_NAMESPACE`: the namespace you already set in the Rules configuration on Auth0
 
-On Auth0 beware to set the following logout url:
-```
-https://your-project.cms.mia-platform.eu/web-login
-```
-
 ### User Manager Service
 
-You can configure Auth0 following this page: [Auth0 Configuration](/runtime_suite/auth0-client/configure_auth0)
-Briefly you have to:
-* create a CRUD collection for Auth0 Users (i.e. auth0_users) and populate the variable USERS_CRUD_ENDPOINT (i.e. USERS_CRUD_ENDPOINT). You can import the following fields.
-* create a CRUD collection for User Manager Service configuration (i.e. ums_configuration) and populate the variable UMS_CONFIG_CRUD_ENDPOINT (i.e. /ums-configurations). You can import the following fields.
+You can configure Auth0 following this page: [Auth0 Configuration](/runtime_suite/auth0-client/configure_auth0).
+
+During the configuration you have to:
+* create a CRUD collection for **Auth0** Users (i.e. `auth0_users`) and populate the variable `USERS_CRUD_ENDPOINT` (i.e. `/auth0-users`). For the collection you can import the following fields:
+```
+[
+    {
+        "name": "_id",
+        "description": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "creatorId",
+        "description": "creatorId",
+        "type": "string",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "createdAt",
+        "description": "createdAt",
+        "type": "Date",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "updaterId",
+        "description": "updaterId",
+        "type": "string",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "updatedAt",
+        "description": "updatedAt",
+        "type": "Date",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "__STATE__",
+        "description": "__STATE__",
+        "type": "string",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "userGroup",
+        "type": "string",
+        "required": true,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "authUserId",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "username",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "email",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "blocked",
+        "type": "boolean",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "expirationDate",
+        "type": "Date",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "expirationId",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    }
+]
+```
+* create a CRUD collection for **User Manager Service** configuration (i.e. `ums_configurations`) and populate the variable `UMS_CONFIG_CRUD_ENDPOINT` (i.e. `/ums-configurations`). For the collection you can import the following fields:
+```
+[
+    {
+        "name": "_id",
+        "description": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "creatorId",
+        "description": "creatorId",
+        "type": "string",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "createdAt",
+        "description": "createdAt",
+        "type": "Date",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "updaterId",
+        "description": "updaterId",
+        "type": "string",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "updatedAt",
+        "description": "updatedAt",
+        "type": "Date",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "__STATE__",
+        "description": "__STATE__",
+        "type": "string",
+        "required": true,
+        "nullable": false
+    },
+    {
+        "name": "userGroup",
+        "type": "string",
+        "required": true,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "crudSchema",
+        "type": "RawObject",
+        "required": true,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    },
+    {
+        "name": "authUserCreationDisabled",
+        "type": "boolean",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false
+    }
+]
+```
+* Fill the `ADDITIONAL_HEADERS_TO_PROXY` environment variable with this value: `acl_rows,x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host`.
+* Fill the `USERINFO_ADDITIONAL_PROPERTIES` environment variable with this value: `permissions`.
 
 Then you have to add new endpoints and modify some of the existing ones (beware that for all the following endpoints the `Rewrite Base Path` must be equal to the `Base path`):
 * remove the `/oauth/token` endpoint linked to `auth0-client` and create the same endpoint linked to `user-manager-service`
@@ -153,14 +374,19 @@ Then you have to add new endpoints and modify some of the existing ones (beware 
 * add the `/ums-configurations` endpoint linked to `ums-configurations` CRUD path
 
 ## Configure the Backoffice
-Now that you have configured all the microservices you need to follow these last steps to configure the Backoffice to enable the creation of Auth0 users using it.
+Now that you have configured all the microservices you need to follow these last steps to configure the Backoffice to enable the creation of Auth0 users.
 
-First of all you need to create the pages to handle users and `user-manager-service` configurations:
+First of all, you need to create the pages to handle **users** and `user-manager-service` **configurations**:
 1. Go to Configurations, select the `Pages` tab and click on the `Create new page` button.
 2. Select the following configuration
-![User Manager Service Marketplace](img/basics_01-search-backoffice-application.png)
+![User Configuration](img/auth0_03-users-config-1.png)
+![User Configuration](img/auth0_04-users-config-2.png)
 3. Click the `Save` button.
-4. Repeat the first 3 steps to create the page for the `user-manager-service` configurations.
+4. Repeat the first 3 steps to create the page for the `user-manager-service` configurations with only these changes:
+```
+Id: ums-configurations
+Page rendering route: ./ums-configurations
+```
 
 Now you can link the Backoffice pages with the CRUD collections. 
 For `users`:
@@ -459,9 +685,13 @@ Then you can add the newly created pages to the Backoffice homepage:
 2. Select `Layout` from the left-side menu.
 3. Click on the `Edit property` button under the `Menu Items` section on the right-side menu.
 4. On the opened modal click on the `Add item` button.
-5. Choose the following configuration: ![User Manager Service Marketplace](img/basics_01-search-backoffice-application.png)
+5. Choose the following configuration: ![Users page layout](img/auth0_05-users-page-layout.png)
 6. Click on the `Save` button.
-7. Repeat the first 6 steps to add the `user-manager-service` configurations page.
+7. Repeat the first 6 steps to add the `user-manager-service` configurations page, choosing your favourite *Icon* and with the following changes:
+```
+Id: ums-configurations
+Label: Configurations
+```
 
 Then you have to set the user menu:
 1. Click on the `Layout` tab.
@@ -472,13 +702,13 @@ Then you have to set the user menu:
 6. Fill the `Redirect Url` with `/logout?redirect=/web-login?redirect=/backoffice`.
 7. Click on the `Save` button.
 
-## Configure the authorization process
+## Configure the authentication process
 
 In order to protect your Backoffice you need to follow these steps:
 1. Go to Endpoints, select `/backoffice` and check the `Authentication required` checkbox under the `Endpoint settings`
 2. Set the following variables on `Authentication Service`:
-  - USERINFO_URL: http://user-manager-service/userinfo
-  - AUTHORIZATION_HEADERS_TO_PROXY: cookie,authorization,client-type
+  - `USERINFO_URL`: http://user-manager-service/userinfo
+  - `AUTHORIZATION_HEADERS_TO_PROXY`: cookie,authorization,client-type
 
 The final configuration step is to change the API key client type with the one defined as defaultClient in the Auth0 Client configuration.
 
@@ -486,37 +716,24 @@ The final configuration step is to change the API key client type with the one d
 This step will allow the oauth-login-site microservice to obtain the right client key necessary for the authorization process.
 :::
 
-In our case, the client type will be **frontEnd**. 
+In our case, the client type will be **frontEnd**. The final configuration will look something like this: 
 
-The final configuration will look something like this: 
+![API Key](./img/auth0_06-api-key.png)
 
-![API Key](./img/api_key.png) -> add API Key image
-
-After that, you finally completed the configuration of the authentication process.
-You can now try to access your application. You should be automatically redirected to a login page.
-
-:::caution
-In order to grant access to a user, make sure his/her credentials are also defined on your Auth0 platform.
-:::
-
-## Setup the ACLs to manage Backoffice access
-Here it will be described the ACLs setup to manage the access of users using groups.
+After that, you have finally completed the configuration of the authentication process.
 
 ## Save and Deploy
 
 With all the configurations in place, save your changes and then deploy. For further details on the deploy command, consult the [Console Handbook](/getting-started/handbooks/project/usage.md).
 
-![Backoffice Page Composer](img/basics_20-backoffice-table-page-output.png)
+![Backoffice Homepage](img/auth0_07-homepage.png)
 
 ## Create a user using Backoffice
 In order to create your first user you need to create a configuration. To do that:
 1. Click on `Configurations` page.
 2. Click on `Add new` button.
 3. Fill the form with the following parameters:
-```
-Group: user
-Label: User
-```
+![Backoffice Page Composer](img/auth0_08-create-config.png)
 4. Click on `Create` button and `Confirm` on the warning modal.
 
 Now it's possible to create the first user:
@@ -525,6 +742,8 @@ Now it's possible to create the first user:
 3. Fill the form with the `Name` and `Email` of your first user and using `user` as `Group`.
 4. Click on `Create` button and `Confirm` on the warning modal.
 
+Congratulations! You have successfully created your first user using the backoffice.
+If you try to access the Backoffice with this new user you won't see the users management pages that are protected with the ACLs created in the previous steps.
 Now if you delete the created user it will be blocked on Auth0 and marked as `TRASH` inside the CRUD collection.
 
 ## Backoffice Tutorials
