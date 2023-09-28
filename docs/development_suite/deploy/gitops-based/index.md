@@ -36,7 +36,7 @@ Moreover, in push-based deployment models, pipelines often require access to cre
 
 ## Export and review configuration files
 
-When using **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision, you will have the possibility to export and download the files in `tag.gz` format, or to review them directly inside the browser.
+When using **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you will have the possibility to export and download the files in `tag.gz` format, or to review them directly inside the browser.
 
 ![ExportAndReview](../img/export-and-review-files.png)
 
