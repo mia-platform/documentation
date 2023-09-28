@@ -6,18 +6,18 @@ sidebar_label: Backoffice Integration with Auth0
 
 # Mia-Platform Backoffice Integration with Auth0
 
-In this tutorial, we will integrate the Backoffice with Auth0. This will allow us to:
-- create, delete and manage Auth0 users using the Backoffice;
-- create, delete and manage users' groups to handle the access to Backoffice pages using ACLs;
-- setup a frontend where users can get access to the Backoffice.
+In this tutorial, we will guide you through the process of securing Mia-Platform Backoffice using Auth0 as your Identity Provider. In particular, we will see how to:
+- protect the Mia-Platform backoffice with the Auth0 login page;
+- create, delete and manage both Auth0 users and users' groups using the Backoffice;
+- use backoffice ACLs to display to the user only the subset of pages and components they are authorized to access.
 
 ## What We Will Build
 
 Throughout this tutorial, we will:
 
-- [Set Up the Microservices](#setup-the-microservices)
+- [Create the necessary Microservices](#create-the-necessary-microservices)
 - [Configure the Microservices and Auth0](#configure-the-microservices-and-auth0)
-- [Configure the Backoffice](#configure-the-backoffice)
+- [Configure the Backoffice application](#configure-the-backoffice-application)
 - [Configure the authentication process](#configure-the-authentication-process)
 - [Save and Deploy the Backoffice](#save-and-deploy)
 - [Create a user using Backoffice](#create-a-user-using-backoffice)
@@ -27,15 +27,9 @@ Throughout this tutorial, we will:
 Before starting this tutorial, we need to be familiar with the concepts of the [Mia-Platform Backoffice](/business_suite/backoffice/10_overview.md) and have completed:
 * [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
 
-This tutorial will use the following application:
-* [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview.md)
+## Create the necessary Microservices
 
-and some of the concepts described on this tutorial:
-* [Dev Portal - Authentication Configuration](/runtime_suite_applications/dev_portal/authentication_configuration.md)
-
-## Setup the Microservices
-
-You can install almost all the microservices for this tutorial using the [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview.md) application:
+Create the [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview.md) application:
 1. Go to Applications and click on the `Create New Application` button.
 2. Search for `Secure ApiGateway` and click on the card.
 ![Secure ApiGateway Application Marketplace](img/auth0_01-secure-api-gateway-application.png)
@@ -43,7 +37,7 @@ You can install almost all the microservices for this tutorial using the [Secure
 4. At the end, click the `Create` button and then save the new Application.
 
 This application will create the following:
-* Microservices 
+* Microservices
     - `Authorization Service`
     - `Api Gateway`
     - `Auth0 Client`
@@ -58,7 +52,7 @@ This application will create the following:
     - `AUTH0_NAMESPACE`
     - `AUTH0_CALLBACK_URL`
 
-In order to handle the users on `Auth0`, you need to add the `user-manager-service`:
+In order to handle the users on `Auth0`, you need to add the [User Manager Service](/runtime_suite/user-manager-service/10_overview.md):
 1. Go to Microservices and click on the `Create a Microservice` button.
 2. Search for `User Manager Service` and click on the card.
 ![User Manager Service Marketplace](img/auth0_02-user-manager-service.png)
@@ -66,7 +60,7 @@ In order to handle the users on `Auth0`, you need to add the `user-manager-servi
 
 ## Configure the Microservices and Auth0
 
-Now that you have created all the required microservices you need to configure them.
+All the microservices that you have added in the previous step are Mia-Platform plugins, so you don't need to write code, but just to configure them.
 
 ### API Gateway
 
@@ -82,9 +76,9 @@ When the process is completed, you should have added the `authorization-service`
 
 ### Auth0 and Auth0 Client
 
-In order to configure the `auth0-client`, the first step require to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](/runtime_suite/auth0-client/30_configure_auth0.md) (for the scope of this tutorial you can avoid steps 3 and 4).
+In order to configure the `auth0-client`, the first step is to setup the **Auth0 Tenant**. You can follow this page: [Configure Auth0](/runtime_suite/auth0-client/30_configure_auth0.md) (for the scope of this tutorial you can avoid steps 3 and 4).
 
-When the tenant configuration is completed you should have created:
+Once the tenant configuration is completed you should have created:
 - one regular application
 - one M2M application for user management
 - a rule to inject the id token
@@ -146,15 +140,17 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
   ]
 }
 ```
-In order to complete this configuration you have to define the following variables:
+In order to complete this configuration you have to define the following **Public Variables**:
 * `AUTH0_NAMESPACE`: the namespace of your tenant on Auth0 (i.e. https://tenant-name.eu.auth0.com/)
-* `AUTH0_CLIENT_ID`: the Client ID of your Regular Application (you can find it inside `Dashboard > Applications > Your Regular Application`)
-* `AUTH0_CLIENT_SECRET`: the Client Secret of your Regular Application (you can find it inside `Dashboard > Applications > Your Regular Application`)
 * `AUTH0_CALLBACK_URL`: the url already defined during Auth0 configuration (i.e. https://your-backoffice-project.mia-platform.eu/web-login/callback)
-* `AUTH0_USER_MANAGEMENT_CLIENT_ID`: the Client ID of your M2M Application (you can find it inside `Dashboard > Applications > Your M2M Application`)
-* `AUTH0_USER_MANAGEMENT_CLIENT_SECRET`: the Client Secret of your M2M Application (you can find it inside `Dashboard > Applications > Your M2M Application`)
 * `AUTH0_CONNECTION`: `Username-Password-Authentication`, the default Auth0 database
 * `MIA_NAMESPACE`: the namespace you already set in the Rules configuration on Auth0
+
+And **Secreted Variables**:
+* `AUTH0_CLIENT_ID`: the Client ID of your Regular Application (you can find it inside `Dashboard > Applications > Your Regular Application`)
+* `AUTH0_CLIENT_SECRET`: the Client Secret of your Regular Application (you can find it inside `Dashboard > Applications > Your Regular Application`)
+* `AUTH0_USER_MANAGEMENT_CLIENT_ID`: the Client ID of your M2M Application (you can find it inside `Dashboard > Applications > Your M2M Application`)
+* `AUTH0_USER_MANAGEMENT_CLIENT_SECRET`: the Client Secret of your M2M Application (you can find it inside `Dashboard > Applications > Your M2M Application`)
 
 ### User Manager Service
 
@@ -373,7 +369,7 @@ Then you have to add new endpoints and modify some of the existing ones (beware 
 * add the `/users` endpoint linked to `user-manager-service`
 * add the `/ums-configurations` endpoint linked to `ums-configurations` CRUD path
 
-## Configure the Backoffice
+## Configure the Backoffice application
 Now that you have configured all the microservices you need to follow these last steps to configure the Backoffice to enable the creation of Auth0 users.
 
 First of all, you need to create the pages to handle **users** and `user-manager-service` **configurations**:
@@ -681,7 +677,7 @@ For `ums-configurations`:
 }
 ```
 
-Then you can add the newly created pages to the Backoffice homepage:
+Then you can add the newly created pages to the Backoffice menu:
 1. Click on the `Layout` tab.
 2. Select `Layout` from the left-side menu.
 3. Click on the `Edit property` button under the `Menu Items` section on the right-side menu.
@@ -718,7 +714,9 @@ The final configuration step is to change the API key client type with the one d
 This step will allow the oauth-login-site microservice to obtain the right client key necessary for the authorization process.
 :::
 
-In our case, the client type will be **frontEnd**. The final configuration will look something like this: 
+1. Go to `API Key`.
+2. Click on the `Add new` button.
+3. Create a new API Key with the following configuration and click on the `Create` button.
 
 ![API Key](./img/auth0_06-api-key.png)
 
