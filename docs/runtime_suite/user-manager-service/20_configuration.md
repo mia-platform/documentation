@@ -64,25 +64,26 @@ The integration with Rönd is not mandatory and can be enabled or disabled throu
 
 The User Manager Service accepts the following environment variables.
 
-| Name                               | Required | Default        | Description                                                                                                                                   |
-|------------------------------------|----------|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| **AUTH_MODULE**                    | No       | `auth0Client`  | The module used for the authentication (at this time only Auth0 is available, so it defaults to `auth0Client` if not set).                    |
+| Name                               | Required | Default        | Description                                                                                                                                  |
+|------------------------------------|----------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| **AUTH_MODULE**                    | No       | `auth0Client`  | The module used for the authentication (at this time only Auth0 is available, so it defaults to `auth0Client` if not set).                   |
 | **AUTH_SERVICE**                   | Yes      | -              | The name of the authentication microservice (the address of the Auth0 Client microservice if `auth0Client` is used as authentication module). |
-| **AUTH_CONNECTION**                | Yes      | -              | Name of the auth service database (e.g. for Auth0 can be `Username-Password-Authentication`).                                                 |
-| **CRUD_SERVICE**                   | No       | `crud-service` | Name of the CRUD service.                                                                                                                     |
-| **UMS_CONFIG_CRUD_ENDPOINT**       | Yes      | -              | The endpoint of the CRUD containing the UMS configuration, e.g. `/ums/config`.                                                                |
-| **USERS_CRUD_ENDPOINT**            | Yes      | -              | The endpoint of CRUD containing the users, e.g. `/users`.                                                                                     |
-| **RANDOM_PWD_GEN**                 | No       | `true`         | Enable the random password generation if set to `true`.                                                                                       |
-| **RANDOM_PWD_LENGTH**              | No       | 8              | Length of the random generated password                                                                                                       |
-| **AUTH_HARD_DELETE**               | No       | `true`         | Perform user delete on auth service if `true`, blocks the user otherwise.                                                                     |
-| **CUSTOM_USER_ID_KEY**             | No       | `sub`          | The user id key that identifies the user and is returned as one of the `/userinfo` properties                                                 |
-| **CONFIG_PATH**                    | No       | -              | The path to the config file (not required, the service starts also without the config file).                                                  |
-| **USERINFO_ADDITIONAL_PROPERTIES** | No       | -              | A comma-separated string, representing the CRUD user properties that must be returned with the `/userinfo` endpoint.                          |
-| **ROND_ENABLED**                   | No       | `false`        | If `true` allows the UMS to integrate with Rönd.                                                                                              |
-| **ROND_SERVICE**                   | No       | `rond-service` | The name of the Rönd service.                                                                                                                 |
-| **ROLES_CRUD_ENDPOINT**            | No       | -              | The CRUD endpoint that stores the roles that can be assigned to users in the `roles` string array.                                            |
-| **TIMER_SERVICE**                  | No       | -              | The name of the Timer Service. **Required** if you want to block users automatically on expiration.                                           |
-| **TIMER_SERVICE_HEADERS**          | No       | -              | A comma-separated list of headers from the incoming request that the Timer Service will send when blocking the user on expiration.            |
+| **AUTH_CONNECTION**                | Yes      | -              | Name of the auth service database (e.g. for Auth0 can be `Username-Password-Authentication`).                                                |
+| **CRUD_SERVICE**                   | No       | `crud-service` | Name of the CRUD service.                                                                                                                    |
+| **UMS_CONFIG_CRUD_ENDPOINT**       | Yes      | -              | The endpoint of the CRUD containing the UMS configuration, e.g. `/ums/config`.                                                               |
+| **USERS_CRUD_ENDPOINT**            | Yes      | -              | The endpoint of CRUD containing the users, e.g. `/users`.                                                                                    |
+| **RANDOM_PWD_GEN**                 | No       | `true`         | Enable the random password generation if set to `true`.                                                                                      |
+| **RANDOM_PWD_LENGTH**              | No       | 8              | Length of the random generated password                                                                                                      |
+| **AUTH_HARD_DELETE**               | No       | `true`         | Perform user delete on auth service if `true`, blocks the user otherwise.                                                                    |
+| **CUSTOM_USER_ID_KEY**             | No       | `sub`          | The user id key that identifies the user and is returned as one of the `/userinfo` properties                                                |
+| **CONFIG_PATH**                    | No       | -              | The path to the config file (not required, the service starts also without the config file).                                                 |
+| **USERINFO_ADDITIONAL_PROPERTIES** | No       | -              | A comma-separated string, representing the CRUD user properties that must be returned with the `/userinfo` endpoint.                         |
+| **ROND_ENABLED**                   | No       | `false`        | If `true` allows the UMS to integrate with Rönd.                                                                                             |
+| **ROND_SERVICE**                   | No       | `rond-service` | The name of the Rönd service.                                                                                                                |
+| **ROLES_CRUD_ENDPOINT**            | No       | -              | The CRUD endpoint that stores the roles that can be assigned to users in the `roles` string array.                                           |
+| **TIMER_SERVICE**                  | No       | -              | The name of the Timer Service. **Required** if you want to block users automatically on expiration.                                          |
+| **TIMER_SERVICE_HEADERS**          | No       | -              | A comma-separated list of headers from the incoming request that the Timer Service will send when blocking the user on expiration.           |
+| **CONFIGURATION_PATH**            | No       | -              | The path of a configuration file used by the service to add properties to the users, getting the information from Auth0.                     |
 
 :::info
 
@@ -108,6 +109,35 @@ it is not possible to create again a user with the same email, since the user st
 The User Manager Service also inherits the custom-plugin-library standard environment variables.
 The `ADDITIONAL_HEADERS_TO_PROXY` environment variable must contain `cookie` in order to make the `/userinfo`
 endpoint forward the cookie when calling the Auth Client.
+
+## Configuration File
+
+Information related to the users and present on auth0 can be added to the users properties when calling GET /users/ endpoint. In order to do so, a configuration file must be added and its path configured through the `CONFIGURATION_PATH` variable. 
+The configuration file will be validated through the following schema:
+````
+{
+    "type": "object",
+    "required": [
+        "user_id",
+        "additionalProperties"
+    ],
+    "properties": {
+        "additionalProperties": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "user_id": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+}
+
+````
+
+When no file is provided, no additional properties will be added. 
 
 ## Console Endpoint
 
