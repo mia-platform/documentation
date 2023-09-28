@@ -4,7 +4,7 @@ title: Lookup fields - Working with writable views
 sidebar_label: Lookups
 ---
 [crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
-[writable-views]: ../../runtime_suite/crud-service/writable_views
+[writable-views]: /runtime_suite/crud-service/writable_views
 
 [data-schema]: ../30_page_layout.md#data-schema
 [visualization-options]: ../30_page_layout.md#visualization-options
