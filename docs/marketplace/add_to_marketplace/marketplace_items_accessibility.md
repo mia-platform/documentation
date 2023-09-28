@@ -40,7 +40,7 @@ The Provider has to be created in the same Company where the item is created (de
 
 :::info
 
-Please note that, in order for the Marketplace resources to be visible to other Companies, yor need to enable the *Allow access to other companies* switch. 
+Please note that, in order for the Marketplace resources to be visible to other Companies, yor need to enable the *Allow access to all the Companies* switch, as explained [here](development_suite/set-up-infrastructure/configure-provider.mdx#step-2-provider-details-1). 
 This allows the Console to access Marketplace items resources when they are created within a Project belonging to any Company.
 
 :::
