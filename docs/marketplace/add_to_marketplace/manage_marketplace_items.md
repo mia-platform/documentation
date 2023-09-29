@@ -25,7 +25,7 @@ With the `miactl marketplace` subcommands, you can perform several actions, desc
 
 :::info
 
-You need either the *Comapany Owner* or *Project Administrator* permission to perform this action
+You need either the *Company Owner* or *Project Administrator* permission to perform this action
 
 :::
 
@@ -40,7 +40,7 @@ To create the item on the Marketplace, simply run this command:
 miactl marketplace apply -f myMarketplaceItem.json
 ```
 
-A message will confirm the operation, returning some informations:
+A message will confirm the operation, returning some information:
 ```
 1 of 1 items have been successfully applied:
 
