@@ -1,71 +1,118 @@
 ---
 id: contributing_overview
-title:  Add a new element to the Marketplace
-sidebar_label: Add a new element to the Marketplace
+title:  Contributing to the Marketplace
+sidebar_label:  Contributing to the Marketplace
 ---
 
-In this section, we dive into the process of creating a new component for the Marketplace, analyzing the main differences between different types of components and providing some configuration examples.
+As a Console user, you can contribute to the Marketplace by creating new items of any kind. You can choose to make them available on the internal Company, or request for them to be published.
+
+In this section, we dive into the process of creating a new item for the Marketplace, analyzing the main differences between different types of items and providing some configuration examples.
 
 :::info
-Marketplace items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to add your Marketplace items for you.
+
+There are different methods to manage Marketplace items, described in details in the [related page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md)
+
 :::
 
 ## Public and Internal Company Marketplace
 
-Mia-Platform public Marketplace is the place where every Company can find most of the components needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
+The **Mia-Platform public Marketplace** is the place where every Company can find most of the items needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
-However, a Company might want to have its own internal Marketplace, fulfilled also with components that must not be shared with everyone else outside the Company.
+However, a Company might want to have its own internal Marketplace, fulfilled also with items that must not be shared with everyone else outside the Company.
 
-To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visible only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
 
-Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
-The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
+## Creation of a Marketplace Item
 
-:::info
-Instead, if you want to contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+Creation of a Marketplace item consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
+
+You have to ways to upload the item file:
+- by using [`miactl`](/docs/cli/miactl), the official Mia-Platform CLI tool (recommended)
+- by copying its contents in the CMS related section.
+
+:::info 
+
+To create Marketplace items  *Company Owner* and a *Project Administrator* can create new Marketplace items.
+
 :::
 
-## Marketplace components
+### Marketplace item visibility and the `tenantId` field
 
-Mia-Platform Marketplace can be populated with components belonging to one of the following typologies:
+When creating a new Marketplace item, you always need to set the `tenantId` relative to the Company you are creating the item in.
 
-- **plugins**: services for which users have no access to the actual code. Users will still be able to download their Docker image, configure and use them within their projects.  
-- **templates** and **examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
-- **applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
-- **proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
+You can also contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
+
+:::info
+
+Even if you make the item public, it will always belong to the Company where it is created from
+
+:::
+
+
+## Marketplace items
+
+A Marketplace **Item**, also called **Component**, is the basic unit of the Marketplace and represents a software resource available for use within Mia-Platform Projects.
+
+These components provide various functionalities and can be integrated into Mia-Platform projects to streamline development and configuration processes.
+
+The Mia-Platform Marketplace contains items belonging to many types, with different case of uses.
+
+To use a Marketplace in a Project, a user have to **create** it; depending on the type, the creation of an element has different consequences on the Project.
+
+### Item Types
+
+The Marketplace is composed of items with the following types.
+
+- **Plugins**: items for which users have no access to the actual code. Users will still be able to download their Docker image, in order to configure and use them within their projects.
+- **Templates** and **Examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their Project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
+- **Applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
+- **Proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
 
 :::note
-Marketplace components are identified by a **category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
 
-Once the request has been taken over, together with the Mia-Platform referent it will be possible to determine whether the component can be associated to a pre-existing category, or whether a new category will be needed.
+Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
+
+Once the request has been taken over, together with the Mia-Platform referent it will be possible to determine whether the item can be associated to a pre-existing category, or whether a new category will be needed.
+
 :::
 
-## How to configure a new component
+## How to configure a new item
 
-Each Marketplace component is identified by a specific data model (a JSON document). Such models are stored on a MongoDB collection and can be modified through the Marketplace section of the Console CMS.
+Each Marketplace item is identified by a specific data model (a JSON document). Such models are stored on a MongoDB collection and can be modified through the Marketplace section of the Console CMS.
 
-In the [Examples](#examples) section, you will find a few samples of preconfigured components configurations.
+In the [Examples](#examples) section, you will find a few samples of preconfigured items configurations.
 
 :::info
-If you don't have the right permission to access the Console CMS, you should hand over the newly created component configuration to one of your Mia-Platform referents.
+If you don't have the right permission to access the Console CMS, you should hand over the newly created item configuration to one of your Mia-Platform referents.
 
-They will then be responsible for adding your data to the Marketplace components collection.
+They will then be responsible for adding your data to the Marketplace items collection.
 :::
 
-### Common to every component
+### Common to every item
 
-Here below are listed all the properties that must be provided for each type of component:
+Here below are listed all the properties that must be provided for each type of item:
 
-- **name**: the component name appearing in the Marketplace card
+- **name** (required): the item name appearing in the Marketplace card
 - **description**: a brief description (10 to 20 words) regarding the service functionalities
-- **type**: the type of your component (plugin, template, example, application, or proxy)
-- **comingSoon** and **releaseStage**: properties to identify the maturity of the component (learn how to configure them in a [dedicated section](#release-stage-of-a-new-component) later on this page)
-- **categoryId**: a label to help categorize components by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a component uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
-- **supportedBy**: a label to identify the company that has produced the component (only used if `supportedByImage` is not provided)
-- **image** and **supportedByImage**: respectively the image that will be associated with the component and the image that will be associated with the company that has produced it.
-- **tenantId** (optional): the Company id, only needed if the component is a private Company-owned Marketplace component that must not be generally available on the public Mia-Platform Marketplace.
+- **type**: the type of your item (plugin, template, example, application, or proxy)
+- **comingSoon** and **releaseStage**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](#release-stage-of-a-new-item) later on this page)
+- **categoryId**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
+- **supportedBy**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
+- **tenantId** (optional): the Company id, only needed if the item is a private Company-owned Marketplace item that must not be generally available on the public Mia-Platform Marketplace.
+- **imageUrl** and **supportedByImageUrl**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
   
-It will be possible to add images using dedicated input fields:  
+#### Adding images
+
+The procedure of adding images differs if you are using CMS or Miactl:
+
+##### With `miactl`
+
+To upload the *image* and *supportedByImage* with the `miactl marketplace apply` command, you need to add the respective `image` and `supportedByImage` keys to the object.
+
+Refer to the [related miactl documentation](/docs/cli/miactl/commands#apply) to know the exact specifications of such object.
+
+##### With the CMS
+
+It is be possible to add images using dedicated input fields:  
 
 ![upload-images](img/cms-upload-image.png) ![upload-images](img/cms-upload-supported-by-image.png)
 
@@ -73,7 +120,7 @@ The final result will be as follows:
 
 ![Console-custom-service](img/dev-console-custom-service.png)
 
-### Common to microservice components (Plugins, Templates, Examples)
+### Common to microservice items (Plugins, Templates, Examples)
 
 Each property described in the following paragraphs regarding the microservices configuration must be configured under the property `resources/services/:serviceId` as follows:
 
@@ -93,9 +140,9 @@ Each property described in the following paragraphs regarding the microservices 
 }
 ```
 
-Here below are listed all the properties that you can provide for each microservice component:
+Here below are listed all the properties that you can provide for each microservice item:
   
-- **componentId**: a unique component id that can be used to identify the component and all the services generated from it. Each service created using this component will have the identifier value in the **sourceComponentId** property.
+- **itemId**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
 - **defaultEnvironmentVariables**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
   In particular, for each of them you need to provide:  
   - **name**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
@@ -179,18 +226,22 @@ Two properties must be specified inside `documentation`:
   - `url`, contains the URL where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).  
 
 :::caution
-By adding an **Example** or a **Template**, the code provided will act as a boilerplate for everyone creating a service from that Marketplace component, therefore that code will be accessible to all Console users.
+
+By adding an **Example** or a **Template**, the code provided will act as a boilerplate for everyone creating a service from that Marketplace item, therefore that code will be accessible to all Console users.
+
 :::  
 
 Once the user creates a new microservice starting from your template or example, the Console will create a new Git repository in which it will copy all the template files.
 
 :::info
+
 Further details on creating a template are provided by visiting [this documentation page](/marketplace/templates/template_create.md).
+
 :::
 
-#### Configure Marketplace Strings
+#### Configure Marketplace Placeholders
 
-The files of your template repository can contain some special strings that will be replaced by the Console at the creation of the new microservice:
+The files of your template repository can contain some special placeholders that will be replaced by the Console at the creation of the new microservice:
 
 - `mia_template_image_name_placeholder`: name of the docker image entered by the user;
 - `%CUSTOM_PLUGIN_PROJECT_NAME%`: name (label) of the Console project;
@@ -205,10 +256,13 @@ The files of your template repository can contain some special strings that will
 - `%NEXUS_HOSTNAME%`: docker registry hostname.
 
 :::warning
-The following strings still work but are deprecated: it is recommended not to use them as they will be deleted in future versions
+
+The following placeholders still work but are deprecated: it is recommended not to use them as they will be deleted in future versions.
+Considering changing them with the corresponding placeholders described above.
+
 :::
 
-- `%CUSTOM_PLUGIN_IMAGE_NAME%`: name of the docker image entered by the user;
+- `%CUSTOM_PLUGIN_IMAGE_NAME%`: name of the docker image entered by the user
 - `%CUSTOM_PLUGIN_PROJECT_ID%`: id of the Console project;
 - `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%`: id of the Console project;
 - `%CUSTOM_PLUGIN_SERVICE_NAME%`: service name chosen by the user.
@@ -217,12 +271,12 @@ The following strings still work but are deprecated: it is recommended not to us
 
 Currently, applications support 4 types of resources:
 
-- services (plugins, templates, examples)
-- endpoints
+- Services (Plugins, Templates, Examples)
+- Endpoints
 - CRUD collections
-- public variables
+- Public Variables
 
-Therefore an application will include a **resources** field with the following structure:
+Therefore an application will include a `resources` field with the following structure:
 
 ```json
 {
@@ -234,40 +288,40 @@ Therefore an application will include a **resources** field with the following s
 ```
 
 :::info
-Only the **services** field must be necessarily configured for an application configuration to be valid.
+Only the `services` field must be necessarily configured for an application configuration to be valid.
 :::
 
 #### Configure Services
 
-The **services** field of an application is an object composed of properties that reflect the microservice configurations seen in the previous paragraphs.
+The `services` field of an application is an object composed of properties that reflect the microservice configurations seen in the previous paragraphs.
 
 Thus, if you plan to add a plugin, a template, or an example to your application you can follow the same configuration. Remember to add general details to every microservice, such as name and description.
 
 #### Configure Endpoints
 
-The **endpoints** field of an application is an object composed of properties named as the endpoints composing it.
+The `endpoints` field of an application is an object composed of properties named as the endpoints composing it.
 
 Here below are listed all the properties that must be provided for each endpoint:
 
-- **defaultBasePath**: the base path of the endpoint
-- **defaultPathRewrite**: the default path rewrite of the endpoint
-- **description**: a brief description (10 to 20 words) regarding the endpoint functionalities
-- **type**: a label to identify the type of endpoint:
-  - `custom`: linked to a microservice
+- `defaultBasePath`: the base path of the endpoint
+- `defaultPathRewrite`: the default path rewrite of the endpoint
+- `description`: a brief description (10 to 20 words) regarding the endpoint functionalities
+- `type`: a label to identify the type of endpoint:
+  - `custom`: linked to a Microservice
   - `crud`: linked to a CRUD collection
   - `view`: linked to a MongoDB view
-  - `external`: linked to an external proxy
-  - `cronjob`: linked to a cronjob
+  - `external`: linked to an External Proxy
+  - `cronjob`: linked to a CronJob
   - `cross-project`: linked to a cross-project proxy
   - `fast-data-projection`: linked to a Fast Data projection
   - `fast-data-single-view`: linked to a Fast Data single view
-- **tags**: array of strings to arbitrarily catalog the endpoint in the Console
-- **public**: whether the endpoint should require authentication
-- **showInDocumentation**: whether the endpoint should appear in the API Portal section
-- **secreted**: whether the endpoint should require an API key
-- **service**: present only in custom type endpoints, identifies the microservice the endpoint is linked to
-- **collectionId**: present only in CRUD type endpoints, identifies the collection the endpoint is linked to
-- **pathName**: present only in CRUD type endpoints, identifies the path name of the collection di endpoint is linked to
+- `tags`: array of strings to arbitrarily catalog the endpoint in the Console
+- `public`: whether the endpoint should require authentication
+- `showInDocumentation`: whether the endpoint should appear in the API Portal section
+- `secreted`: whether the endpoint should require an API key
+- `service`: present only in custom type endpoints, identifies the microservice the endpoint is linked to
+- `collectionId`: present only in CRUD type endpoints, identifies the collection the endpoint is linked to
+- `pathName`: present only in CRUD type endpoints, identifies the path name of the collection di endpoint is linked to
   
 :::caution
 When you add an endpoint to an application make sure the resource the endpoint is linked to (microservice, collection, etc.) is also present in the application configuration.
@@ -289,8 +343,8 @@ Every route boolean value (such as public, secreted, etc.) must comply with the 
 
 ```json
 {
-  "inherited": boolean,
-  "value": boolean
+  "inherited": {"type": "boolean"},
+  "value": {"type": "boolean"}
 }
 ```
 
@@ -345,28 +399,28 @@ Here below are listed all the properties that must be provided for each public v
 
 ## Best Practices!
 
-Here are listed some useful advice to strengthen your components:
+Here are listed some useful advice to strengthen your items:
 
 - **Test**: each service must have well-tested code;
 - **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
 
-## Release Stage of a new component
+## Release Stage of a new item
 
-From the CMS of the Console, users can associate components with a **release stage** label that will help users identify the maturity of the component.
+From the CMS of the Console, users can associate items with a **release stage** label that will help users identify the maturity of the item.
 
-If you just started developing your component you can select the **coming soon** option to inform users about the imminent publication of your component.
+If you just started developing your item you can select the **coming soon** option to inform users about the imminent publication of your item.
 
-Alternatively, you can choose among the available labels of a Marketplace component lifecycle:
+Alternatively, you can choose among the available labels of a Marketplace item lifecycle:
 
 - preview
 - beta
 - stable
 
-For more information regarding release stages, take a look at the [components lifecycle](/marketplace/overview_marketplace.md#marketplace-component-lifecycle) section.
+For more information regarding release stages, take a look at the [items lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section.
 
-## Examples
+## Marketplace Items Examples
 
-<details><summary>Example Service configuration</summary>
+<details><summary>Example of a Plugin</summary>
 <p>
 
 ```json
