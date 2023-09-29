@@ -3,7 +3,6 @@ id: overview_marketplace
 title: The Marketplace
 sidebar_label: Why take advantage of the Marketplace?
 ---
-## Why always starting from scratch?
 
 The Mia-Platform Marketplace contains several code resources that facilitate a faster and frictionless building of your architecture.
 

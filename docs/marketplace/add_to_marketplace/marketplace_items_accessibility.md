@@ -17,10 +17,6 @@ After editing, the visibility property should look like this:
 ...
 ```
 
-:::tip
-
-
-
 Depending on whether the item is hosted on a public or private repository, you may have to perform additional actions, as described here below.
 
 #### Open Source item

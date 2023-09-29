@@ -27,11 +27,11 @@ Creation of a Marketplace item consists of two steps. The first is writing a Mar
 
 You have to ways to upload the item file:
 - by using [`miactl`](/docs/cli/miactl), the official Mia-Platform CLI tool (recommended)
-- by copying its contents in the CMS related section.
+- by creating it in the CMS
 
-:::info 
+:::info
 
-To create Marketplace items  *Company Owner* and a *Project Administrator* can create new Marketplace items.
+To create Marketplace items you need to be a *Company Owner* or a *Project Administrator*
 
 :::
 
@@ -41,28 +41,21 @@ When creating a new Marketplace item, you always need to set the `tenantId` rela
 
 You can also contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
 
-:::info
-
-Even if you make the item public, it will always belong to the Company where it is created from
-
-:::
-
-
 ## Marketplace items
 
-A Marketplace **Item**, also called **Component**, is the basic unit of the Marketplace and represents a software resource available for use within Mia-Platform Projects.
+A Marketplace **Item** (also referred to as **Component**) is the basic unit of the Marketplace and represents a software resource available for use within Mia-Platform Projects.
 
-These components provide various functionalities and can be integrated into Mia-Platform projects to streamline development and configuration processes.
+These components provide various functionalities and can be integrated into Mia-Platform Projects to streamline development and configuration processes.
 
-The Mia-Platform Marketplace contains items belonging to many types, with different case of uses.
+The Mia-Platform Marketplace contains items belonging to many types, with different use cases.
 
-To use a Marketplace in a Project, a user have to **create** it; depending on the type, the creation of an element has different consequences on the Project.
+To use a Marketplace item in a Project, a user have to **create** it; depending on the type, the creation of an element has different consequences on the Project.
 
 ### Item Types
 
 The Marketplace is composed of items with the following types.
 
-- **Plugins**: items for which users have no access to the actual code. Users will still be able to download their Docker image, in order to configure and use them within their projects.
+- **Plugins**: items for which users have no access to the actual code. Users will still be able to download their Docker image, in order to configure and use them within their Projects.
 - **Templates** and **Examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their Project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
 - **Applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
 - **Proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
@@ -91,14 +84,14 @@ They will then be responsible for adding your data to the Marketplace items coll
 
 Here below are listed all the properties that must be provided for each type of item:
 
-- **name** (required): the item name appearing in the Marketplace card
-- **description**: a brief description (10 to 20 words) regarding the service functionalities
-- **type**: the type of your item (plugin, template, example, application, or proxy)
-- **comingSoon** and **releaseStage**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](#release-stage-of-a-new-item) later on this page)
-- **categoryId**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
-- **supportedBy**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
-- **tenantId** (optional): the Company id, only needed if the item is a private Company-owned Marketplace item that must not be generally available on the public Mia-Platform Marketplace.
-- **imageUrl** and **supportedByImageUrl**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
+- **`name`** (required): the item name appearing in the Marketplace card
+- **`description`**: a brief description (10 to 20 words) regarding the service functionalities
+- **`type`**: the type of your item (plugin, template, example, application, or proxy)
+- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](#release-stage-of-a-new-item) later on this page)
+- **`categoryId` **: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely determines both a specific category and a sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs")
+- **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
+- **`tenantId`** (required): the ID of the Company the item belongs to
+- **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
   
 #### Adding images
 
@@ -112,7 +105,7 @@ Refer to the [related miactl documentation](/docs/cli/miactl/commands#apply) to 
 
 ##### With the CMS
 
-It is be possible to add images using dedicated input fields:  
+It is possible to add images using dedicated input fields:  
 
 ![upload-images](img/cms-upload-image.png) ![upload-images](img/cms-upload-supported-by-image.png)
 
@@ -142,36 +135,36 @@ Each property described in the following paragraphs regarding the microservices 
 
 Here below are listed all the properties that you can provide for each microservice item:
   
-- **itemId**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
-- **defaultEnvironmentVariables**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
+- **`itemId`**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
+- **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
   In particular, for each of them you need to provide:  
-  - **name**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
-  - **value**: the variable default value
-- **defaultConfigMaps**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
+  - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
+  - **`value`**: the variable default value
+- **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
-  - **name**: the name of the ConfigMap
-  - **mountPath**: the directory where the ConfigMap data will be added  
+  - **`name`**: the name of the ConfigMap
+  - **`mountPath`**: the directory where the ConfigMap data will be added  
   
   You can also provide:
-  - **files**: a list of files where the ConfigMap data will be stored. Each file should be an object with the following properties:
-    - **name**: the name of the file
-    - **content**: the initial content of the file
-  - **usePreserve**: a boolean the indicates whether the existing files and directories in the mountPath directory should be preserved or not. If not set, it will be considered as false.
-- **defaultSecrets**: the default secrets, if any, to be mounted inside the container of the  microservice.
+  - **`files`**: a list of files where the ConfigMap data will be stored. Each file should be an object with the following properties:
+    - **`name`**: the name of the file
+    - **`content`**: the initial content of the file
+  - **`usePreserve`**: a boolean the indicates whether the existing files and directories in the mountPath directory should be preserved or not. If not set, it will be considered as false.
+- **`defaultSecrets`**: the default secrets, if any, to be mounted inside the container of the  microservice.
   In particular, for each of them you need to provide:  
-  - **name**: the name of the secret file  
-- **defaultProbes**: the readiness and liveness paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by DevOps Console.
-- **defaultLogParser**: one of the following log parser types:
+  - **`name`**: the name of the secret file  
+- **`defaultProbes`**: the readiness and liveness paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by DevOps Console.
+- **`defaultLogParser`**: one of the following log parser types:
   - `mia-plain`: collects logs but does not parse them
   - `mia-json`: parses JSON logs based on the documented format
   - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
-- **defaultAnnotations**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation). The annotations that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
-- **defaultLabels**: the service labels, which can be used to categorize, group, and select your service. The labels that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
-- **defaultDocumentationPath**: the APIs documentation path.
-- **defaultResources**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
-- **visibility**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
-  - **allTenants**: a boolean that indicates whether your service should be visible to all other tenants, making it public if set to `true`.
-- **providerId**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
+- **`defaultAnnotations`**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation). The annotations that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
+- **`defaultLabels`**: the service labels, which can be used to categorize, group, and select your service. The labels that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
+- **`defaultDocumentationPath`**: the APIs documentation path.
+- **`defaultResources`**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
+- **`visibility`**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
+  - **`allTenants`**: a boolean that indicates whether your service should be visible to all other tenants, making it accessible if set to `true`.
+- **`providerId`**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
 
 :::caution
 Please note that in this configuration **`min`** corresponds to the **`request`** value while **`max`** corresponds to the **`limit`** value specified in the Kubernetes documentation.  
@@ -181,17 +174,17 @@ In addition, measurement units are required. Resources are expressed in terms of
 
 #### Configure Console Links
 
-A service created from the Marketplace can feature custom links to other console pages, managed by different microfrontend plugins. To configure them on newly created services set up new objects in the `links` property for each template or plugin you wish.
+A service created from the Marketplace can feature custom links to other Console pages, managed by different microfrontend Plugins. To configure them on newly created services set up new objects in the `links` property for each template or plugin you wish.
 
 A link is an object shaped as follows:
 
-- **label** *string* (required): the label to be shown in the link button, does not support internationalization and it is shown right next to a  *View* copy (e.g. with the label set to **Resource** the resulting button will be **View Resource**);
-- **targetSection** *string* (required): the name of the registered microfrontend where the link should land (e.g. `flow-manager`);
-- **enableIf** *string*: the name of a feature toggle to be used to optionally display the link.
+- **`label`** *string* (required): the label to be shown in the link button, does not support internationalization and it is shown right next to a  *View* copy (e.g. with the label set to **Resource** the resulting button will be **View Resource**);
+- **`targetSection`** *string* (required): the name of the registered microfrontend where the link should land (e.g. `flow-manager`);
+- **`enableIf`** *string*: the name of a feature toggle to be used to optionally display the link.
 
 ### Plugins
 
-If the service you want to publish is a **plugin**:
+If the service you want to publish is a **Plugin**:
 
 - The service must be a **Docker image**.  
 - The Docker image must be pushed on an accessible registry. If you use the **Mia-Platform registry**, your Mia-Platform referent will provide the credentials to do it.
@@ -251,7 +244,7 @@ The files of your template repository can contain some special placeholders that
 - `%CUSTOM_PLUGIN_CREATOR_USERNAME%`: username of the user who created the service;
 - `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%`: full path of the repository of the Git provider;
 - `%GIT_PROVIDER_PROJECT%`: name of the Git project entered by the user (e.g. GitHub repository or GitLab project).
-- `%GIT_PROVIDER_GROUP%`: name of the group of projects entered by the user (e.g. GitHub organization or GitLab group).
+- `%GIT_PROVIDER_GROUP%`: name of the group of Projects entered by the user (e.g. GitHub organization or GitLab group).
 - `%GIT_PROVIDER_BASE_URL%`: URL base of the Git provider.
 - `%NEXUS_HOSTNAME%`: docker registry hostname.
 
@@ -303,40 +296,40 @@ The `endpoints` field of an application is an object composed of properties name
 
 Here below are listed all the properties that must be provided for each endpoint:
 
-- `defaultBasePath`: the base path of the endpoint
-- `defaultPathRewrite`: the default path rewrite of the endpoint
-- `description`: a brief description (10 to 20 words) regarding the endpoint functionalities
-- `type`: a label to identify the type of endpoint:
-  - `custom`: linked to a Microservice
-  - `crud`: linked to a CRUD collection
-  - `view`: linked to a MongoDB view
-  - `external`: linked to an External Proxy
-  - `cronjob`: linked to a CronJob
-  - `cross-project`: linked to a cross-project proxy
-  - `fast-data-projection`: linked to a Fast Data projection
-  - `fast-data-single-view`: linked to a Fast Data single view
-- `tags`: array of strings to arbitrarily catalog the endpoint in the Console
-- `public`: whether the endpoint should require authentication
-- `showInDocumentation`: whether the endpoint should appear in the API Portal section
-- `secreted`: whether the endpoint should require an API key
-- `service`: present only in custom type endpoints, identifies the microservice the endpoint is linked to
-- `collectionId`: present only in CRUD type endpoints, identifies the collection the endpoint is linked to
-- `pathName`: present only in CRUD type endpoints, identifies the path name of the collection di endpoint is linked to
+- **`defaultBasePath`**: the base path of the endpoint
+- **`defaultPathRewrite`**: the default path rewrite of the endpoint
+- **`description`**: a brief description (10 to 20 words) regarding the endpoint functionalities
+- **`type`**: a label to identify the type of endpoint:
+  - **`custom`**: linked to a Microservice
+  - **`crud`**: linked to a CRUD collection
+  - **`view`**: linked to a MongoDB view
+  - **`external`**: linked to an External Proxy
+  - **`cronjob`**: linked to a CronJob
+  - **`cross-project`**: linked to a cross-project proxy
+  - **`fast-data-projection`**: linked to a Fast Data projection
+  - **`fast-data-single-view`**: linked to a Fast Data single view
+- **`tags`**: array of strings to arbitrarily catalog the endpoint in the Console
+- **`public`**: whether the endpoint should require authentication
+- **`showInDocumentation`**: whether the endpoint should appear in the API Portal section
+- **`secreted`**: whether the endpoint should require an API key
+- **`service`**: present only in custom type endpoints, identifies the microservice the endpoint is linked to
+- **`collectionId`**: present only in CRUD type endpoints, identifies the collection the endpoint is linked to
+- **`pathName`**: present only in CRUD type endpoints, identifies the path name of the collection di endpoint is linked to
   
 :::caution
 When you add an endpoint to an application make sure the resource the endpoint is linked to (microservice, collection, etc.) is also present in the application configuration.
 :::
 
-- **routes**: routes already configured for your endpoint.
+- **`routes`**: routes already configured for your endpoint.
   Each route should specify the following properties:
-  - **id**: route id (e.g. POST/users)
-  - **verb**: route verb: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
-  - **path**: route path (e.g. /)
-  - **public**: whether the route should require authentication
-  - **showInDocumentation**: whether the endpoint should appear in the API Portal section
-  - **secreted**: whether the endpoint should require an API key
-  - **allowUnknownRequestContentType**: permit request content type different from application/json
-  - **allowUnknownResponseContentType**: permit response content type different from application/json.
+  - **`id`**: route id (e.g. POST/users)
+  - **`verb`**: route verb: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`
+  - **`path`**: route path (e.g. /)
+  - **`public`**: whether the route should require authentication
+  - **`showInDocumentation`**: whether the endpoint should appear in the API Portal section
+  - **`secreted`**: whether the endpoint should require an API key
+  - **`allowUnknownRequestContentType`**: permit request content type different from application/json
+  - **`allowUnknownResponseContentType`**: permit response content type different from application/json.
 
 :::info
 Every route boolean value (such as public, secreted, etc.) must comply with the following inheritance structure:
@@ -356,37 +349,37 @@ The **collections** field of an application is an object composed of properties 
 
 Here below are listed all the properties that must be provided for each collection:
 
-- **id**: the collection identifier (e.g. users)
-- **description**: a brief description (10 to 20 words) regarding the collection functionalities
-- **defaultName**: name proposed to the user when creating the collection
-- **type**: `collection`, `view`
-- **tags**: array of strings to arbitrarily catalog the collection in the Console
-- **fields**: array of fields composing your collection data model.  
+- **`id`**: the collection identifier (e.g. users)
+- **`description`**: a brief description (10 to 20 words) regarding the collection functionalities
+- **`defaultName`**: name proposed to the user when creating the collection
+- **`type`**: `collection`, `view`
+- **`tags`**: array of strings to arbitrarily catalog the collection in the Console
+- **`fields`**: array of fields composing your collection data model.  
   Each field should specify the following properties:
-  - **name**: the name of the field
-  - **description**: a brief description (10 to 20 words) regarding the field purpose
-  - **type**: `string`, `number`, `boolean`, `date`, `Geopoint`, `RawObject`, `Array_string`, `Array_number`, `Array_RawObject`, `ObjectId`
-  - **required**: whether this field should be required in the data model
-  - **nullable**: whether this field could be set to null
-  - **sensitivityValue**: the level of data sensitivity associated with this field
-  - **sensitivityDescription**: a brief description regarding the sensitivity classification
-  - **encryptionEnabled**: whether this field should be encrypted in the database
-  - **encryptionSearchable**: a brief description regarding the reason for the encryption
+  - **`name`**: the name of the field
+  - **`description`**: a brief description (10 to 20 words) regarding the field purpose
+  - **`type`**: `string`, `number`, `boolean`, `date`, `Geopoint`, `RawObject`, `Array_string`, `Array_number`, `Array_RawObject`, `ObjectId`
+  - **`required`**: whether this field should be required in the data model
+  - **`nullable`**: whether this field could be set to null
+  - **`sensitivityValue`**: the level of data sensitivity associated with this field
+  - **`sensitivityDescription`**: a brief description regarding the sensitivity classification
+  - **`encryptionEnabled`**: whether this field should be encrypted in the database
+  - **`encryptionSearchable`**: a brief description regarding the reason for the encryption
   
 :::info
 You can find more information regarding **sensitivity** and **encryption** properties in the [**gdpr** section](/development_suite/api-console/api-design/gdpr.md) of the documentation.
 :::
 
-- **indexes**: array of indexes used in your collection.  
+- **`indexes`**: array of indexes used in your collection.  
   Each index should specify the following properties:
-  - **name**: name of the index
-  - **type**: `normal`, `geo`, `hash`, `TTL`
-  - **unique**: whether this index should be unique
-  - **fields**:array of fields composing your index data model. Index fields follow the same configuration expressed for collection fields
-- **internalEndpoints**: array of internal endpoints present in your collection.  
+  - **`name`**: name of the index
+  - **`type`**: `normal`, `geo`, `hash`, `TTL`
+  - **`unique`**: whether this index should be unique
+  - **`fields`**:array of fields composing your index data model. Index fields follow the same configuration expressed for collection fields
+- **`internalEndpoints`**: array of internal endpoints present in your collection.  
   Each field should specify the following properties:
-  - **basePath**: path of the internalEndpoint
-  - **defaultState**: `DRAFT`, `PUBLIC`.
+  - **`basePath`**: path of the internalEndpoint
+  - **`defaultState`**: `DRAFT`, `PUBLIC`.
 
 #### Configure Public Variables
 
@@ -394,8 +387,8 @@ The **unsecretedVariables** field of an application is an object composed of pro
 
 Here below are listed all the properties that must be provided for each public variable:
 
-- **productionEnv**: value to be used in production environments
-- **noProductionEnv**: value to be used in no production environments
+- **`productionEnv`**: value to be used in production environments
+- **`noProductionEnv`**: value to be used in no production environments
 
 ## Best Practices!
 

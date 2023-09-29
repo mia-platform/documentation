@@ -4,17 +4,13 @@ title:  Manage Marketplace Items
 sidebar_label:  Manage Marketplace Items
 ---
 
-You can contribute to the Mia-Platform Marketplace with the Marketplace items of your Company, by deciding to make them accessible also to other Companies. This section will guide you on how to do so.
-
 There are three main methods to create, modify and delete Marketplace items:
 
-* Using [`miactl`](/docs/cli/miactl/overview), the Mia-Platform command line interface tool.
+* (recommended) Use [`miactl`](/docs/cli/miactl/overview), the Mia-Platform command line interface tool.
 * Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
-* (deprecated) Use the [CMS](/business_suite/guide_cms.md) to make your Marketplace item accessible to other Companies.
+* (deprecated) Use the [CMS](/business_suite/guide_cms.md).
 
-## Using `miactl` (recommended)
-
-
+## Use `miactl`
 
 
 First of all, you need to setup `miactl`, as explained in the [dedicated doc](/docs/cli/miactl/setup).
@@ -25,7 +21,7 @@ With the `miactl marketplace` subcommands, you can perform several actions, desc
 
 :::info
 
-You need either the *Company Owner* or *Project Administrator* permission to perform this action
+You need to have *Company Owner* or *Project Administrator* permission to perform this action
 
 :::
 
@@ -62,7 +58,7 @@ More information on this point can be found in the [dedicated doc](/docs/cli/mia
 
 :::info
 
-You need either the *Company Owner* or *Project Administrator* permission to perform this action
+You need to have *Company Owner* or *Project Administrator* permission to perform this action
 
 :::
 
@@ -75,7 +71,7 @@ where `ITEM_ID` is an alphanumerical id of the Marketplace element. If you don't
 
 :::tip
 
-It is suggested to always download the Marketplace Item just before updating it to be sure to get the latest version.
+It is suggested to always download the Marketplace Item just before updating it to be sure to work on the latest version.
 
 :::
 
