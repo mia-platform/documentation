@@ -10,7 +10,7 @@ In this section, we dive into the process of creating a new item for the Marketp
 
 :::info
 
-There are different methods to manage Marketplace items, described in details in the [related page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md)
+There are different methods to manage Marketplace items, described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
 
 :::
 

@@ -56,6 +56,3 @@ The following are the expected stages along a Marketplace component lifecycle:
 * **Beta**: implementation is complete, these components won't be subject to any undocumented breaking change but may still include bugs (hence they must be used with caution)
 
 * **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.
-
-## Contribute to the Marketplace
-
