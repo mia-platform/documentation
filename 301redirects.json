@@ -844,5 +844,49 @@
   "/docs/getting_started/video_pills/video_pills": {
     "destination": "/docs/getting-started/videos/",
     "addedOn": "2023-09-28"
+  },
+  "/docs/business_suite/backoffice/data_flow": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/plugin_example": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/plugin_navigation": {
+    "destination": "/docs/business_suite/backoffice/flows/plugin_navigation",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/adapters": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/buttons": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/clients": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_manipulation": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_querying": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_visaulization": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/misc": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/typography": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
   }
 }
