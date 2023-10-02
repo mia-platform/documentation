@@ -84,6 +84,20 @@ The check is performed to each file in the /docs/ folder excluding the folder ma
 - docs/runtime_suite_tools
 - docs/business_suite
 
+### Deleting a page
+
+If, for any reason, you intend to delete a page from the documentation, you are required to create a redirect url, since links to the deleted resource may be also outside the doc and it's preferable to avoid showing 404 errors to users.
+
+Add an entry to the file [301redirects.json](./301redirects.json) with the following format:
+
+```json
+"/docs/path/to/page/you/deleted": {
+  "destination": "/docs/path/to/an/existing/page",
+  "addedOn": "yyyy-mm-dd"
+}
+```
+
+Depending on the situation, the choice of the destination URL can be the page that replaced the one you deleted, a similar page, the home of the section where the deleted page was or the home of the documentation site.
 
 #### Content checks
 
