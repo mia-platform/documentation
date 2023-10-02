@@ -1218,25 +1218,6 @@
     },
     {
       "collapsed": true,
-      "label": "Marketplace Management",
-      "type": "category",
-      "items": [{
-        "id": "marketplace/add_to_marketplace/contributing_overview",
-        "type": "doc",
-        "label": "Add to marketplace"
-      },
-      {
-        "id": "marketplace/add_to_marketplace/manage_marketplace_items",
-        "type": "doc",
-        "label": "Manage Marketplace Items"
-      },
-      {
-        "id": "marketplace/add_to_marketplace/marketplace_items_accessibility",
-        "type": "doc"
-      }]
-    },
-    {
-      "collapsed": true,
       "type": "category",
       "label": "Marketplace Items",
       "items": [{
@@ -1294,9 +1275,23 @@
       }]
     },
     {
-      "label": "Compatibility matrices",
-      "id": "marketplace/compatibility_matrices/mongo_compatibility_matrix",
-      "type": "doc"
+      "collapsed": true,
+      "label": "Marketplace Management",
+      "type": "category",
+      "items": [{
+        "id": "marketplace/add_to_marketplace/contributing_overview",
+        "type": "doc",
+        "label": "Add to marketplace"
+      },
+      {
+        "id": "marketplace/add_to_marketplace/manage_marketplace_items",
+        "type": "doc",
+        "label": "Manage Marketplace Items"
+      },
+      {
+        "id": "marketplace/add_to_marketplace/marketplace_items_accessibility",
+        "type": "doc"
+      }]
     },
     {
       "collapsed": true,
