@@ -65,10 +65,6 @@ On this page we keep you aligned on the most important issues:
     * Drag & Drop components
   * _Flow Manager_
     * No Code Functions
-* **Mia-Platform Hub**
-  * Content New Organizations
-  * Material Review
-  * Expert Program Extended
 
 
 ## How to contribute to the roadmap
