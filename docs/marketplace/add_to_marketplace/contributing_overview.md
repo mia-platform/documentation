@@ -26,7 +26,7 @@ However, a Company might want to have its own internal Marketplace, fulfilled al
 Creation of a Marketplace item consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
 
 You have to ways to upload the item file:
-- by using [`miactl`](/docs/cli/miactl), the official Mia-Platform CLI tool (recommended)
+- by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool (recommended)
 - by creating it in the CMS
 
 :::info
@@ -101,7 +101,7 @@ The procedure of adding images differs if you are using CMS or Miactl:
 
 To upload the *image* and *supportedByImage* with the `miactl marketplace apply` command, you need to add the respective `image` and `supportedByImage` keys to the object.
 
-Refer to the [related miactl documentation](/docs/cli/miactl/commands#apply) to know the exact specifications of such object.
+Refer to the [related miactl documentation](/cli/miactl/30_commands.md#apply) to know the exact specifications of such object.
 
 ##### With the CMS
 

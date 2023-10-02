@@ -6,14 +6,14 @@ sidebar_label:  Manage Marketplace Items
 
 There are three main methods to create, modify and delete Marketplace items:
 
-* (recommended) Use [`miactl`](/docs/cli/miactl/overview), the Mia-Platform command line interface tool.
+* (recommended) Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 * Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
 * (deprecated) Use the [CMS](/business_suite/guide_cms.md).
 
 ## Use `miactl`
 
 
-First of all, you need to setup `miactl`, as explained in the [dedicated doc](/docs/cli/miactl/setup).
+First of all, you need to setup `miactl`, as explained in the [dedicated doc](/cli/miactl/20_setup.md).
 
 With the `miactl marketplace` subcommands, you can perform several actions, described here below.
 
@@ -52,8 +52,7 @@ The keys will be replaced with the `imageUrl` and the `supportedByImageUrl`, to 
 miactl marketplace get ITEM_ID > myMarketplaceItem.json
 ```
 
-More information on this point can be found in the [dedicated doc](/docs/cli/miactl/commands#apply).
-
+More information on this point can be found in the [dedicated doc](/cli/miactl/30_commands.md#apply).
 ### Update an item
 
 :::info

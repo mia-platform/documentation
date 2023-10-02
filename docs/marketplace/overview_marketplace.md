@@ -30,7 +30,7 @@ Visit the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform
 Mia-Platform Marketplace has two different entry points, both located in the *Design Area* of the Console.
 
 To browse Marketplace Applications, head to the *Applications* section and click on the button *Create new Application*. 
-For more information see [the related page](/docs/marketplace/applications/mia_applications.md).
+For more information see [the related page](/marketplace/applications/mia_applications.md).
 
 To browse Markeplace Plugins, Templates and Examples, go to the *Microservices* section and click on the button *Create a Microservice*, then click on the option **For Marketplace** of the dropdown menu.
 
