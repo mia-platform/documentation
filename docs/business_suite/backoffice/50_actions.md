@@ -3,16 +3,30 @@ id: actions
 title: Actions
 sidebar_label: Actions
 ---
-Some components may expose properties that allow to configure callbacks, or `actions`.
-Multiple types of actions can be configured.
+[localized-text]: ./40_core_concepts.md#localization-and-i18n
+[dynamic-configurations]: ./40_core_concepts.md#dynamic-configuration
+[helpers]: ./40_core_concepts.md#helpers
+[rawobject]: ./40_core_concepts.md#rawobject
+[template---configmap]: ./40_core_concepts.md#template---configmap
+
+[bk-notifications]: ./60_components/450_notifications.md
+[bk-table]: ./60_components/510_table.md
+[bk-crud-client]: ./60_components/100_crud_client.md
+[customactions]: ./60_components/510_table.md#configuring-actions-via-customactions
+
+[change-query]: ./70_events.md#change-query
+
+
+
+Some components may expose properties that allow to configure callbacks, or `actions`. Multiple types of actions can be configured.
 
 Actions are generally composed of a triple: `<type, config, hooks>`.
 
-- `type` is used to identify the type of action to be performed.
-- `config` defines the operations that the computed callback performs.
+- `type` is used to identify the type of action to be performed,
+- `config` defines the operations that the computed callback performs,
 - `hooks` allows to specify further actions that are to be chained to the current one at specific times or under specific conditions.
 
-Each action is compiled to a callback that can be executed by components, possibly providing some data as input (or `context`). Different components may provide different context, which can be utilized to specify dynamic action configurations, using [handlebars syntax](https://handlebarsjs.com/guide/expressions.html).
+Some components provide properties that accept such actions as value. Each action is compiled to a callback that can be triggered by the components, possibly providing some data as input (or `context`). Different components may provide different context to their actions, which can be utilized to specify [dynamic action configurations][dynamic-configurations], using [handlebars syntax][handlebars-syntax](https://handlebarsjs.com/guide/expressions.html).
 
 ## Types of actions
 
@@ -100,6 +114,7 @@ type HttpClientConfig = Omit<RequestInit, 'method'> & {
   downloadAsFile?: boolean
 }
 ```
+
 Where [RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) refers to the standard Typescript interface.
 
 Actions of type `http` allow to perform REST calls.
@@ -125,9 +140,9 @@ For instance:
 ```
 adds `foo` to the headers of the call with value `bar`, adds query parameter `some` with value `query-params`, and attempts to download the result as a file.
 
-Field `config.triggeredBy` has a duplicate function:
+Field `config.triggeredBy` has a double function:
 
-- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./60_components/70_misc.md#triggering-notifications-from-actions), in order to display notification messages upon success/failure of the action,
+- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as the [Notifications][bk-notifications], in order to display notification messages upon success/failure of the action,
 
 - it allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action.
 
@@ -214,7 +229,10 @@ Actions of type `file-upload` perform a file upload post. The native upload dial
 
 Property `accept` can be used to restrict the type of files that the user can select for the upload, following the [syntax](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) that is used by the `input` element.
 
-Field `config.triggeredBy` is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as [bk-notifications](./60_components/70_misc.md#triggering-notifications-from-success-and-error-events), in order to display notification messages upon success/failure of the action.
+Field `config.triggeredBy` has a double function:
+- it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as the [Notifications][bk-notifications], in order to display notification messages upon success/failure of the action.
+- it allows to specify what key can be used to reference the returned data after this is forwarded into the context of the `onSuccess` action.
+
 
 ### Navigation - push
 
@@ -278,7 +296,7 @@ type HrefAction = {
     /* target to use for navigating to href, defaults to "_self" */
     target?: string | undefined;
     /* query parameters to add to destination url */
-    query?: LinkQueryParams | undefined;
+    query?: Record<string, any> | undefined;
   },
   hooks: {
     /* action executed before the navigation happens */
@@ -346,7 +364,7 @@ type XPath = string | {
   default?: LocalizedText
 }
 ```
-With [LocalizedText](./40_core_concepts.md#localization-and-i18n) being either a string or an object with language support.
+With [LocalizedText][localized-text] being either a string or an object with language support.
 
 Actions of type `copy` allow to copy data to clipboard. They require input data to be provided in order to properly execute. Components that expose action properties should provide appropriate context when executing the actions callback.
 
@@ -405,8 +423,8 @@ results in "stringValue" being copied to clipboard.
 
 #### Example 2 - default value
 
-It is possible to specify a default value to be copied to clipboard, in case the `path` does not correspond to any data.
-For instance, with input data such as:
+It is possible to specify a default value to be copied to clipboard, in case the `path` does not correspond to any data. For instance, with input data such as:
+
 ```json
 {
   "objField": {
@@ -431,9 +449,9 @@ results in "defaultValue" being copied to clipboard.
 
 ## Dynamic configurations
 
-Actions support [dynamic configurations](./40_core_concepts.md#dynamic-configuration) using [handlebars syntax](https://handlebarsjs.com/guide/expressions.html). Data provided as input (`context`)  ato the actions callbacks is used to resolve dynamic configurations. Custom [helpers](./40_core_concepts.md#helpers) are also supported.
+Actions support [dynamic configurations][dynamic-configurations] using [handlebars syntax](https://handlebarsjs.com/guide/expressions.html). Data provided as input (`context`) to the actions callbacks is used to resolve dynamic configurations. Custom [helpers] are also supported.
 
-Components that support actions have the responsibility to provide context upon executing them. For instance, [bk-table](./60_components/60_data_visualization.md#bk-table) supports actions through property [customActions](./60_components/60_data_visualization.md#configuring-actions-via-customactions), adding buttons at the end of each table row, to which provides as `context` the corresponding row in form of an object.
+Components that support actions have the responsibility to provide context upon executing them. For instance, the [Table][bk-table] supports actions through property [customActions][customactions], adding buttons at the end of each table row, to which provides the corresponding row in form of an object as context.
 
 ### Example 1
 
@@ -461,7 +479,7 @@ If
   "name": "joe"
 }
 ```
-is provided as context to the action, this results in an event being executed with label  `add-new` and payload:
+is provided as context to the action, this results in an event being executed with label `add-new` and payload:
 ```json
 {
   "data": "joe"
@@ -470,7 +488,7 @@ is provided as context to the action, this results in an event being executed wi
 
 ### Example 2 - template / configMap
 
-Pair [template - configMap](./40_core_concepts.md#template---configmap) can be used to specify dynamic configurations.
+Pair [template - configMap][template---configmap] can be used to specify dynamic configurations.
 
 ```json
 {
@@ -517,7 +535,7 @@ the above action is equivalent to:
 
 ### Example 3 - rawObject helpers
 
-It is possible to avoid to stringify dynamic values within a configuration using the custom helper [rawObject](./40_core_concepts.md#rawobject).
+It is possible to avoid to stringify dynamic values within a configuration using the custom helper [rawObject][rawobject].
 ```json
 {
   "iconId": "fas fa-users",
@@ -614,7 +632,7 @@ is thus executed after the GET call, navigating to the url `/some/path`.
 
 ### Example 2 - data refresh is needed after action
 
-Often a plugin reload is required after a successful action (for instance, after a successful `file-upload` action). If a component like [bk-crud-client](./60_components/30_clients.md#bk-crud-client) is included in the plugin, one could pipe a [change-query](./70_events.md#change-query) event to the main action:
+Often a plugin reload is required after a successful action (for instance, after a successful `file-upload` action). If a component like the [CRUD Client][bk-crud-client] is included in the plugin, one could pipe a [change-query] event to the main action:
 
 ```json
 {
@@ -679,108 +697,107 @@ For instance, the following is a valid configuration:
 Assuming all actions to be successful, this action results in the following steps:
 
 - the first action
-```json
-{
-  "type": "http",
-  "config": {
-    "url": "/url-1",
-    "method": "GET",
-    "triggeredBy": "data_1"
+  ```json
+  {
+    "type": "http",
+    "config": {
+      "url": "/url-1",
+      "method": "GET",
+      "triggeredBy": "data_1"
+    }
+    ...
   }
-  ...
-}
-```
-is executed, resulting in a GET call to the endpoint `/url-1`.
+  ```
+  is executed, resulting in a GET call to the endpoint `/url-1`.
 
 - Assuming the call is successful and the response looks like:
-```json
-{
-  "field": "foo"
-}
-```
-the `onSuccess` action
-```json
-{
-  ...
-  "type": "http",
-  "config": {
-    "url": "/url-2/{{data_1.field}}",
-    "method": "GET",
-    "triggeredBy": "data_2"
-  },
-  ...
-}
-```
-is executed - having access to the response of the previous call through the key `data_1`.
-This results in a second GET call, this time to the endpoint `/url-2/foo`. The dynamic url value `/url-2/{{data_1.field}}` can be correctly resolved using the response of the previous call.
+  ```json
+  {
+    "field": "foo"
+  }
+  ```
+  the `onSuccess` action
+  ```json
+  {
+    ...
+    "type": "http",
+    "config": {
+      "url": "/url-2/{{data_1.field}}",
+      "method": "GET",
+      "triggeredBy": "data_2"
+    },
+    ...
+  }
+  ```
+  is executed - having access to the response of the previous call through the key `data_1`. This results in a second GET call, this time to the endpoint `/url-2/foo`. The dynamic url value `/url-2/{{data_1.field}}` can be correctly resolved using the response of the previous call.
 
 - Assuming the call succeeds, and the returned response to be:
-```json
-{
-  "otherField": "bar"
-}
-```
-the `onSuccess` hook of the second action
-```json
-{
-  ...
-  "type": "event",
-  "config": {
-    "events": {
-      "label": "add-new",
-      "payload": {
-        "test": "{{data_1.field}}",
-        "test2": "{{data_2.otherField}}"
-      }
-    }
-  }
-  ...
-}
-```
-is executed, resulting in an event being emitted, with label `add-new` and payload:
-```json
-{
-  "test": "foo",
-  "test2": "bar"
-}
-```
-which can be resolved as the responses from both previous calls are available, through keys `data_1` and `data_2` respectively.
-
-Notice how the third chained action still provides access to the return value from the first action: each action always forwards all of its context to its hooks (possibly adding additional data to it). Assuming the same return values for each GET call as previously, and assuming the first action to have context:
-```json
-{
-  "name": "joe",
-  "obj": {
-    "data": "test",
-  }
-}
-```
-
-then the second action is executed with context:
-```json
-{
-  "name": "joe",
-  "obj": {
-    "data": "test",
-  },
-  "data_1": {
-    "field": "foo"
-  }
-}
-```
-
-and the third with:
-```json
-{
-  "name": "joe",
-  "obj": {
-    "data": "test",
-  },
-  "data_1": {
-    "field": "foo"
-  },
-  "data_2": {
+  ```json
+  {
     "otherField": "bar"
   }
-}
-```
+  ```
+  the `onSuccess` hook of the second action
+  ```json
+  {
+    ...
+    "type": "event",
+    "config": {
+      "events": {
+        "label": "add-new",
+        "payload": {
+          "test": "{{data_1.field}}",
+          "test2": "{{data_2.otherField}}"
+        }
+      }
+    }
+    ...
+  }
+  ```
+  is executed, resulting in an event being emitted, with label `add-new` and payload:
+  ```json
+  {
+    "test": "foo",
+    "test2": "bar"
+  }
+  ```
+  which can be resolved as the responses from both previous calls are available, through keys `data_1` and `data_2` respectively.
+
+  Notice how the third chained action still provides access to the return value from the first action: each action always forwards all of its context to its hooks (possibly adding additional data to it). Assuming the same return values for each GET call as previously, and assuming the first action to have context:
+  ```json
+  {
+    "name": "joe",
+    "obj": {
+      "data": "test",
+    }
+  }
+  ```
+
+  then the second action is executed with context:
+  ```json
+  {
+    "name": "joe",
+    "obj": {
+      "data": "test",
+    },
+    "data_1": {
+      "field": "foo"
+    }
+  }
+  ```
+
+  and the third with:
+  ```json
+  {
+    "name": "joe",
+    "obj": {
+      "data": "test",
+    },
+    "data_1": {
+      "field": "foo"
+    },
+    "data_2": {
+      "otherField": "bar"
+    }
+  }
+  ```

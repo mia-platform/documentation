@@ -191,8 +191,37 @@
     "objs",
     "Krew",
     "krew",
-    "VULNDB",
-    "choco"
+    "choco",
+    "Prelios",
+    "PRELIOS",
+    "categoriaprincipale",
+    "tipo",
+    "Residenziale",
+    "Ufficio",
+    "Industriale",
+    "Agricolo",
+    "superficie",
+    "VANI",
+    "ascensore",
+    "stato",
+    "manutentivo",
+    "edificio",
+    "fatiscente",
+    "ristrutturato",
+    "nuovo",
+    "unita",
+    "comune",
+    "toponimo",
+    "indirizzo",
+    "civico",
+    "belfiore",
+    "mqragguagliati",
+    "principale",
+    "FAIREAI",
+    "dazn",
+    "deliveroo",
+    "serp",
+    "VULNDB"
   ],
   "ignoreWords": [
     "asncdctools",
@@ -311,7 +340,7 @@
     "Noto",
     "Segoe",
     "kotlinx",
-    "reauthentication"
+    "Dynatrace"
   ],
   "dictionaries": [
     "softwareTerms",
@@ -341,6 +370,7 @@
   "allowCompoundWords": true,
   "ignoreRegExpList": [
     "\".*\": \".*\"",
-    "`.*`"
+    "`.*`",
+    "/^\\s*```[\\s\\S]*?^\\s*```/gm"
   ]
 }

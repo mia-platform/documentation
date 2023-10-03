@@ -21,10 +21,14 @@ In this section it is possible configure the following fields:
 #### Path
 
 For Readiness field default is `/-/ready/`.
-For Liveness field default is `/-/healthz/`.
-If you leave these fields empty, there will be a tcp socket on the provided microservice port (set using `HTTP_PORT` environment variable).
+For Liveness field default is `/-/healthz/`.  
+If you leave these fields empty, there will be a tcp socket on the provided microservice port.
 
 If your probes are available on a different path you can customize them to specify the proper route to be used to access the HTTP server.
+
+#### Port
+
+The port used by the probes is the one specified by the environment variable `HTTP_PORT`, so make sure to define that variable even if your service does not use it.
 
 #### Initial delay seconds
 

@@ -115,3 +115,4 @@ mia-console:
 |`configurations.enablePrometheusMetrics`| boolean | enable prometheus to collect metrics. This is a beta feature and could have breaking changes. | `false` | ✅ |
 |`configurations.enableRuntimeServiceClusterSelection`| boolean | Enable selection from supported runtime providers during cluster setup, if you disable it you will have to manually fill all the required information | `true` | ✅ |
 |`configurations.enableBackofficeConfigurator`| boolean | Enable Backoffice Configurator | `true` | ✅ |
+|`configurations.enableFlowManager`| boolean | Enable Flow Manager | `true` | ✅ |

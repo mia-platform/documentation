@@ -3,11 +3,15 @@ id: core_concepts
 title: Core concepts
 sidebar_label: Core concepts
 ---
+[data-schema]: ./30_page_layout.md#data-schema
+
+[change-query]: ./70_events.md#change-query
+
+
+
 ## Localization and i18n
 
-Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind
-of typography can be easily internationalized by passing a `LocalizedString` (or `LocalizedText`) object containing specific translations according
-to [ISO 639-1 codes](https://www.loc.gov/standards/iso639-2/php/code_list.php).
+Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind of typography can be easily internationalized by passing a `LocalizedString` (or `LocalizedText`) object containing specific translations according to [ISO 639-1 codes](https://www.loc.gov/standards/iso639-2/php/code_list.php).
 
 ```json
 {
@@ -25,8 +29,7 @@ Fields that support i18n are marked through this guide as taking either `string`
 
 ## Dynamic configuration
 
-Many components allow the user to build *dynamic configurations*. Such configurations are really helpful when an event needs to be aware
-of situation-specific data, such as, while clicking a button onto a given table row, the event must be intertwined with data of that row.
+Many components allow the user to build *dynamic configurations*. Such configurations are really helpful when an event needs to be aware of situation-specific data, such as, while clicking a button onto a given table row, the event must be intertwined with data of that row.
 
 To achieve dynamic configurations logic, Back-Kit components use [handlebars syntax](https://handlebarsjs.com/guide/expressions.html) and embed a web component property to register a handlebar template. By default, a string is parsed by the handlebar parser without making any changes to it if no `{{}}`-syntax is present.
 
@@ -51,7 +54,7 @@ Custom helpers to be used in conjunction with [handlebars](https://handlebarsjs.
 
 #### rawObject
 
-`rawObject` allows to avoid to stringify dynamic values within a configuration.
+By default, the handlebars interpolation cast everything to string. `rawObject` allows to avoid to stringify dynamic values within a configuration.
 
 ```json
 {
@@ -62,6 +65,7 @@ Custom helpers to be used in conjunction with [handlebars](https://handlebarsjs.
 ```
 
 `rawObject` signals that the provided dynamic value (`data` in this case) should not be stringified. So, with input data:
+
 ```json
 {
   "data": {
@@ -72,6 +76,7 @@ Custom helpers to be used in conjunction with [handlebars](https://handlebarsjs.
 ```
 
 the example is equivalent to:
+
 ```json
 {
   "url": "/url",
@@ -92,6 +97,7 @@ the example is equivalent to:
 `nFormat` allows to format numeric values specifying number of decimal places, decimal separator, group separator.
 
 For instance, given the dynamic configuration:
+
 ```json
 {
   "amount1": "$ {{nFormat '2.,' value}}",
@@ -103,6 +109,7 @@ For instance, given the dynamic configuration:
 ```
 
 and input data:
+
 ```json
 {
   "value": 7654.321
@@ -110,6 +117,7 @@ and input data:
 ```
 
 the resulting configuration is:
+
 ```json
 {
   "amount1": "7,654.32",
@@ -136,6 +144,7 @@ Some components allow to specify an object with fields `template`-`configMap` in
   }
 }
 ```
+
 The value of `template` is matched against keys of `configMap`. On the first match, the corresponding value in `configMap` is used as value for the dynamic variable.
 
 For instance, with context
@@ -220,8 +229,7 @@ Some components may allow to ignore part of the URL using wildcards, "(.*)". For
 
 ## Links
 
-A standard interface is available for encoding external links and href. This interface can be found as building block of
-several Back-Kit web components properties.
+A standard interface is available for encoding external links and href. This interface can be found as building block of several Back-Kit web components properties.
 
 A basic external href link rendering in a browser new tab can be implemented as
 
@@ -233,15 +241,11 @@ A basic external href link rendering in a browser new tab can be implemented as
 }
 ```
 
-Property `href` can either be absolute or relative, `target` can be picked amongst `_blank`, `_self`, `_parent`, `_top`:
-most commonly either an href renders into the same window with `_self` or it opens a new tab with `_blank`.
+Property `href` can either be absolute or relative, `target` can be picked amongst `_blank`, `_self`, `_parent`, `_top`: most commonly either an href renders into the same window with `_self` or it opens a new tab with `_blank`.
 
-The `icon` properties allow to attach a [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free)
-when the link is rendered by a component which support this interface.
+The `icon` properties allow to attach a [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free) when the link is rendered by a component which support this interface.
 
-A web component that contains state or data might implement [dynamic configurations](#dynamic-configuration). In this case the `href` can be
-enriched with query parameters that are bound to the internal state of the component with which the user is interacting.
-Suppose the user with email `my-mail@mail.com` is in session, then the following link
+A web component that contains state or data might implement [dynamic configurations](#dynamic-configuration). In this case the `href` can be enriched with query parameters that are bound to the internal state of the component with which the user is interacting. Suppose the user with email `my-mail@mail.com` is in session, then the following link
 
 ```json
 {
@@ -258,17 +262,14 @@ renders the dynamic link `./ingredients?name=John&createdBy=admin%7Cmy-mail%40ma
 
 ## Filters
 
-Back-kit web components refine data queries and data views using filters. Filters can be used to enrich a
-[change-query](events#change-query) and are building blocks of many tag properties. A filter is made of three
+Back-kit web components refine data queries and data views using filters. Filters can be used to enrich a [change-query] and are building blocks of many tag properties. A filter is made of three
 required build blocks:
 
 1. `property`: the unique identifier of the property they filter
 2. `operator`: the operator used to filter (i.e., "equal", "includeSome", ...)
 3. `value`: the value or the regex pattern (where it applies) to filter for
 
-Operators and values vary according to the property type which is set by the [data schema](./30_page_layout.md#data-schema).
-If a `DataSchema` should be filtered only according with a subset of available operators, a configuration key it available within
-the field `filtersOptions`. The key `availableOperators` is an array of string which, if defined, enables only explicitly selected operators on the given field.
+Operators and values vary according to the property type which is set by the [data schema][data-schema]. If a `DataSchema` should be filtered only according with a subset of available operators, a configuration key it available within the field `filtersOptions`. The key `availableOperators` is an array of string which, if defined, enables only explicitly selected operators on the given field.
 
 ### Filter Operators
 
@@ -276,39 +277,28 @@ Filter operators can be selected from the following list:
 
 ```typescript
 type FilterOperator = |
-  'equals' |
-  'doesNotEqual' |
-  'contains' |
-  'startsWith' |
-  'endsWith' |
-  'between' |
-  'before' |
-  'beforeOrEqual' |
-  'on' |
-  'notOn' |
-  'after' |
-  'afterOrEqual' |
-  'is' |
-  'isNot' |
+  'equal' |
+  'exists' |
+  'notEqual' |
   'greater' |
-  'greaterOrEqual' |
+  'greaterEqual' |
   'less' |
-  'lessOrEqual' |
-  'includesAll' |
-  'includesSome' |
-  'includesExactly' |
-  'doesNotInclude' |
+  'lessEqual' |
+  'regex' |
+  'includeSome' |
+  'includeAll' |
+  'includeExactly' |
+  'notIncludeAny' |
+  'between' |
+  'notBetween' |
   'hasLengthEqual' |
   'hasLengthGreaterEqual' |
-  'hasLengthLessEqual' |
-  'exists' |
-  'notBetween'
+  'hasLengthLessEqual'
 ```
 
 ## Inline queries
 
-Some components allow to filter data based on inline queries - that is, queries that are directly applied to the data in the state
-of the component, no call to the backend is performed.
+Some components allow to filter data based on inline queries - that is, queries that are directly applied to the data in the state of the component, no call to the backend is performed.
 
 The supported syntax for inline queries is [mongo-like](https://www.mongodb.com/docs/manual/reference/operator/query/), and their implementation is based on the [SiftJS](https://github.com/crcn/sift.js) library.
 
@@ -333,8 +323,7 @@ Supported operators are:
   - [$regex](https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex)
   - [$elemMatch](https://www.mongodb.com/docs/manual/reference/operator/query/elemMatch/#mongodb-query-op.-elemMatch)
 
-Most components allow queries to include [dynamic values](#dynamic-configuration).
-If that is the case, it is the components responsibility to ensure that sufficient context is provided to resolve the query.
+Most components allow queries to include [dynamic values](#dynamic-configuration). If that is the case, it is the components responsibility to ensure that sufficient context is provided to resolve the query.
 
 For instance, the following query
 ```json
@@ -379,101 +368,4 @@ matches:
   {"name": "Foo", "age": 15},
   {"name": "Bar", "age": 27}
 ]
-```
-
-## File Management
-
-Upload and management of files related to a record is handled by 3 components that interact together:
-
-- [bk-file-client](./60_components/30_clients.md#bk-file-client)
-- [bk-file-manager](./60_components/30_clients.md#bk-file-manager)
-- a data manipulation component that allows to interact with file fields, for instance:
-  - [bk-form-drawer](./60_components/40_data_manipulation.md#bk-form-drawer)
-  - [bk-form-modal](./60_components/40_data_manipulation.md#bk-form-modal)
-  - [bk-file-picker-drawer](./60_components/40_data_manipulation.md#bk-file-picker-drawer)
-  - [bk-file-picker-modal](./60_components/40_data_manipulation.md#bk-file-picker-modal)
-  
-
-Components are designed to interact with [Mia Files Service](../../runtime_suite/files-service/configuration), thus files are saved to DB with the following interface:
-```json
-{
-  "_id": {
-    "type": "string"
-  },
-  "name": {
-    "type": "string"
-  },
-  "file": {
-    "type": "string"
-  },
-  "size": {
-    "type": "number"
-  },
-  "location": {
-    "type": "string"
-  }
-}
-```
-
-Any file property can be specified in the [data schema](page_layout#data-schema) as:
-
-``` json
-{
-  "type": "object",
-  "format": "file"
-}
-```
-or, in case of a files array
-``` json
-{
-  "type": "array",
-  "format": "file"
-}
-```
-
-Once a file property is specified in the [data schema](./30_page_layout.md#data-schema) and its form field is touched (for instance using a `bk-form-drawer`) the routine will be as follows:
-
-  1. `bk-form-drawer` fires a [create-data-with-file](./70_events.md#create-data-with-file)/[update-data-with-file](./70_events.md#update-data-with-file) event containing the full payload and list of all the `file` properties that have to be uploaded
-  2. The above event is handled by the `file-manager` which will proceed to fire an `upload-file` event for each file in the list
-  3. The `file-client` handles the [upload-file](./70_events.md#upload-file) event by taking its payload (the file object) and upload it to the file service, upon success will fire an [uploaded-file](./70_events.md#uploaded-file) event, containing the fileId to be linked to the record
-  4. The `file-manager` listens for `uploaded-file` events and links each file to the proper record key, replacing it in the payload that was provided by the `bk-form-drawer`
-  5. Once all the files have been uploaded, the `file-manager` fires a [create-data](./70_events.md#create-data)/[update-data](./70_events.md#update-data) event with the full payload as the `bk-form-drawer` would have, with the file objects correctly linked
-
-:::caution
-Upon failure while uploading one file, any new file that was being uploaded in the same transaction (i.e. creating a new record that contained multiple file properties), will be deleted, even if already uploaded, because the final create/update of the record will not be performed
-:::
-
-:::caution
-By design, any file that is unlinked from the record when updating an entry, isn't deleted from the file-service
-:::
-
-File fields may present `dataSchema` and `items` properties. When that is the case, these are interpreted as representing the shape of their metadata. Components `bk-form-drawer`, `bk-form-modal`, `bk-file-picker-drawer`, `bk-file-picker-modal` allow to visualize and edit metadata fields of type string.
-
-``` json
-{
-  "type": "object",
-  "format": "file",
-  "dataSchema": {
-    "type": "object",
-    "properties": {
-      "ownerId": {
-        "type": "string"
-      }
-    }
-  }
-}
-```
-``` json
-{
-  "type": "array",
-  "format": "file",
-  "items": {
-    "type": "object",
-    "properties": {
-      "ownerId": {
-        "type": "string"
-      }
-    }
-  }
-}
 ```
