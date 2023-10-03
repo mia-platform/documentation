@@ -109,4 +109,62 @@ The _Pull_ strategy can be implemented in different ways and with different tool
 ## ArgoCD
 
 ## GitLab Agent
+Gitlab provides a Kubernetes Agent to perform advanced deploy on a Kubernetes cluster.
 
+The Agent provides a permanent connection using websockets or gRPC between a Kubernetes cluster and a GitLab instance.
+The Agent is made up by two components:
+* `Agentk`: the cluster-side component that has to be deployed in the Kubernetes cluster;
+* `Kas`: is the GitLab Agent Server for Kubernetes.
+It is the GitLab server-side component that is managed alongside GitLab.
+It is responsible for much of the heavy lifting, since the cluster agent has to be left as lightweight as possible.
+
+The agent has two different approaches and both require the agent installation on the Kubernetes cluster:
+* __GitOps pull based__ approach;
+* typical __GitLab CI/CD Pipeline__ approach, that allows the pipeline to run `kubectl` commands.
+
+We tried, for a private cluster, to configure it with the second approach, but few steps are shared through both of them.
+
+For more information we suggest to read the [official GitLab documentation](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html).
+
+### Agent setup on GitLab
+In this paragraph we will see the steps to add a GitLab Agent on a project on GitLab.
+
+:::warn
+The agent should already be installed on the Kubernetes cluster.
+:::
+
+1. Navigate in the GitLab repository of the project you want to Deploy on Kubernetes with the GitLab Agent;
+2. create a `.gitlab/agents/<agent_name>` folder. 
+The project could be dedicated for the Agent or it could be a project of an existing application.
+3. create a `config.yaml` file (__<u>IMPORTANT:</u>__ `yaml`, not `yml`) in the `<agent-name>` folder, which contains the config of the agent;
+
+  The `config.yaml` file has the following structure:
+  ```yaml
+  ci_access:
+    groups:
+      - id: cluster-setup
+        access_as:
+          ci_job: {}
+  ```
+
+    * `ci_access`: specifies that the approach is the Gitlab CI/CD flow;
+    * `groups` section: specifies which groups can use this agent;
+    * `access_as`: is the authentication section. The jobs impersonates to Kubernetes as `gitlab:ci_job:<job id>` belonging to `gitlab:ci_job` Group (use this to define RBAC on what the Agent can do on the cluster).
+
+4. in the left bar on GitLab, go on `Infrastructure` > `Kubernetes cluster` and configure the agent;
+5. after the agent configuration, GitLab will prompt an Helm command to create the Agent on Kubernetes as a Helm Release,
+specifying which token you need to use to bound the two agents.
+6. install the agent on the cluster;
+7. check if the installation is done, the agent should appear on GitLab in the `Kubernetes cluster` section.
+![GitLab - Kubernetes cluster Agents](./img/gitlab-demo-kubernetes-agent-installed.png)
+
+### Agent usage
+Once the agent is configured, the CI/CD pipelines should be able to run `kubectl` commands.
+You can choose to build you custom deploy pipelines, running `kubectl` command inside them, or you can use `mlp`.
+
+`mlp` is a command line tool we use to deploy on Kubernetes, look at the [dedicated documentation page](/runtime_suite_tools/mlp/10_overview.md) for more.
+
+All you need to change, using `mlp`, is the deploy command, because you need to add the GitLab agent context option:
+```sh
+mlp deploy --ensure-namespace=false --context ${GITLAB_AGENT_CONTEXT} --deploy-type "${DEPLOY_TYPE}" --force-deploy-when-no-semver=${FORCE_DEPLOY_WHEN_NO_SEMVER} -f ${DESTINATION_PATH} -n "${KUBE_NAMESPACE}"
+```
