@@ -78,12 +78,12 @@ For an example, see [below](#example-showing-lookup-fields-in-the-Table).
 
 Starting from version 1.4.0 of Back-Kit, lookup fields should be handled through [CRUD Service][crud-service] feature of [writable views][writable-views].
 
-In particular, the Dynamic Form Modal, Drawer, Card components do not listen to events triggered by the Crud Lookup Client, but rather fetch lookup options directly by calling the `/lookup` route, that the Crud Service makes available for writable views.
+In particular, the [Dynamic Form Modal][bk-dynamic-form-modal], [Drawer][bk-dynamic-form-drawer], [Card][bk-dynamic-form-card] components do not listen to events triggered by the [Crud Lookup Client][bk-crud-lookup-client], but rather fetch lookup options directly by calling the `/lookup` route, that the Crud Service makes available for writable views.
 
-The [Crud Lookup Client][bk-crud-lookup-client] component is therefore deprecated, as well as:
-- the [Form Modal][bk-form-modal], which should be replaced by the [Dynamic Form Modal][bk-dynamic-form-modal],
-- the [Form Drawer][bk-form-drawer], which should be replaced by the [Dynamic Form Drawer][bk-dynamic-form-drawer],
-- the [Form Card][bk-form-card], which should be replaced by the [Dynamic Form Card][bk-dynamic-form-card].
+The Crud Lookup Client component is therefore deprecated, as well as:
+- the [Form Modal][bk-form-modal], which should be replaced by the Dynamic Form Modal,
+- the [Form Drawer][bk-form-drawer], which should be replaced by the Dynamic Form Drawer,
+- the [Form Card][bk-form-card], which should be replaced by the Dynamic Form Card.
 
 [Data-schema][data-schema] key `lookupOptions` is also deprecated, and ignored by the new form components.
 
@@ -91,14 +91,16 @@ The Dynamic Form Modal, Drawer, Card can be configured in a way to cover feature
 
 - `lookupQueries`
 
-  `lookupQueries` should not be specified inside `lookupOptions` in the [data-schema], but rather as a [property of the form component][modal-lookup-queries], which maps each lookup field to additional queries to append to the call to fetch options.\
+  `lookupQueries` should not be specified inside `lookupOptions` in the data-schema, but rather as a [property of the form component][modal-lookup-queries], which maps each lookup field to additional queries to append to the call to fetch options.
+  
   An [example](#example-setting-up-extra-queries-to-fetch-lookup-options) is available showing how to configure the property `lookupQueries` of the Dynamic Form Modal.
 
 - `lookupDeps`
 
   Property `lookupDeps` of `lookupOptions` is used to specify a dependency between a lookup field and other fields within the form.
-  The Dynamic Form Modal, Drawer, Card, instead, handle [dependencies among fields][modal-conditional-fields] through properties `conditionalOptions` and `conditionalValues`.\
-  An [example](#exmaple-specifying-lookup-dependencies) is available showing how to use properties `conditionalValues` and `lookupQueries` of the Dynamic Form Modal to set up lookup fields that depend on other fields of the form.
+  The Dynamic Form Modal, Drawer, Card, instead, handle [dependencies among fields][modal-conditional-fields] through properties `conditionalOptions` and `conditionalValues`.
+
+  An [example](#example-specifying-lookup-dependencies) is available showing how to use properties `conditionalValues` and `lookupQueries` of the Dynamic Form Modal to set up lookup fields that depend on other fields of the form.
 
 
 ## Examples
