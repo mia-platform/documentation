@@ -5,7 +5,7 @@ sidebar_label: Configuration
 ---
 In order to configure the Teleconsultation Service with the console you need to deploy two services: the Teleconsultation Service Backend and the Teleconsultation Service Frontend. Both are available in the marketplace.
 
-Configure the Teleconsultation Service Backend following [this guide](../teleconsultation-service-backend/overview) before using the Teleconsultation Service Frontend.
+Configure the Teleconsultation Service Backend following [this guide][teleconsultation-service-be] before using the Teleconsultation Service Frontend.
 
 ## Endpoint configuration
 
@@ -16,7 +16,7 @@ Example:
 
 ## Config Map (optional)
 
-The teleconsultation-service-fe normally does not require any config map. But, if you plan to embed the teleconsultation-service-fe inside an iframe or web-view, you might run into a CSP error ([Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)). To avoid this error you could set the right Content Security Policy through the config map.
+The teleconsultation-service-fe normally does not require any config map. But, if you plan to embed the teleconsultation-service-fe inside an iframe or web-view, you might run into a CSP error ([Content Security Policy][mdn-csp]). To avoid this error you could set the right Content Security Policy through the config map.
 
 
 <details>
@@ -38,3 +38,7 @@ location / {
 :::note
 Mount your config map in the right place in order to override the default one, e.g.: `/etc/nginx/conf.d/website.conf`.
 :::
+
+
+[mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+[teleconsultation-service-be]: ../../runtime_suite/teleconsultation-service-backend/overview
