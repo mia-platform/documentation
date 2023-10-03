@@ -168,7 +168,7 @@
           "type": "doc"
         },
         {
-          "id": "console/project-configuration/registry-configuration",
+          "id": "console/project-configuration/docker-registry-configuration",
           "type": "doc"
         }
       ]
