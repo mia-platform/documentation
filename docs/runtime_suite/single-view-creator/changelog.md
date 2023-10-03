@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- updated @mia-platform-internal/single-view-creator-lib@14.7.0 to leverage messages compactions in Kafka Message Handler
+- updated `@mia-platform-internal/single-view-creator-lib@14.7.0` to leverage messages compactions in Kafka Message Handler
 - reviewed pipeline described in `gitlab-ci.yml` to update the employed Kafka image
 - reviewed `docker-compose.yml` to setup all the systems needed to run the service
 - removed dependencies not necessaries or classified as dev-dependencies
