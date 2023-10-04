@@ -18,9 +18,9 @@ Currently Listeners are only available to Projects using an **Envoy API Gateway*
 ## Create a Listener
 
 Follow these three steps in order to create a new Listener and make an Endpoint reachable from outside the Console:
-- create the new Listener resource
-- expose the Endpoint on the Listener
-- define a new Traefik IngressRoute for the newly exposed API Gateway port
+- Create the new Listener resource
+- Expose the Endpoint on the Listener
+- Configure the [Kubernetes Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to make the new exposed port reachable
 
 ### Defining the Listener 
 
@@ -44,10 +44,15 @@ Container Ports associated to Listeners cannot be deleted. To delete them firstl
 
 Once the new Listener has been created, it can be selected from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) within the Endpoint detail page of the project.
 
-### Define the Kubernetes Ingress
+### Configure the Kubernetes Ingress Controller
 
-In order to receive incoming requests from the newly exposed API Gateway port, it is required to define the [Traefik IngressRoute](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-ingressroute) for the same port too.  
-To do this, on the git repository of your Project locate the correct `.ingressroute.yaml` file for your environment and extend it with the new route and defining a new `host`. The resulting file should look like this:
+In order to receive incoming requests from the newly exposed API Gateway port, it is required to configure the [Kubernetes Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to make the exposed port reachable.  
+
+:::info
+For example, if your Kubernetes cluster is configured to use [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress/) as Ingress Controller provider, you may need to define a new [IngressRoute](https://doc.traefik.io/traefik/providers/kubernetes-crd/).
+
+To do this, on the git repository of your Project locate the correct `.ingressroute.yaml` file for your environment and extend it with the new route and defining a new `host`.  
+The resulting file should look like this:
 
 ``` yaml
 apiVersion: traefik.containo.us/v1alpha1
@@ -64,13 +69,24 @@ spec:
         port: 8082 # the port just exposed
 
 ```
+:::
+
+## Edit a Listener
+
+From the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Console it is possible to update settings of a Listener.
+
+Changes made to the port of the Listener will be reflected on the Container Ports of the API Gateway too.  
+This means that changing the port of a Listener will also enable the relative port on the API Gateway. The old port of the API Gateway stays enabled and it is up to the user to disable it if needed. 
+
+![edjt-listener](img/listeners/edit-listener.png)
+
 
 ## Delete a Listener
 
 To delete a listener just click on the delete action.
 
 :::warning
-Be aware that any Endpoint that is exposed **only** on the Listener you want to delete, will be deleted too.
+Be aware that any Endpoint **only exposed by** the Listener you want to delete, will be deleted too.
 :::
 
 ![delete-listener](img/listeners/delete-listener.png)
