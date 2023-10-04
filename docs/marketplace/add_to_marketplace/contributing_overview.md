@@ -31,7 +31,7 @@ You have to ways to upload the item file:
 
 :::info
 
-To create Marketplace items you need to be a *Company Owner* or a *Project Administrator*
+To create Marketplace items you need to be a *Company Owner* or a *Project Administrator* at Company level
 
 :::
 
