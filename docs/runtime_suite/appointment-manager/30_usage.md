@@ -154,16 +154,28 @@ The values for this fields can be either `string` or `arrayOfString`, for instan
 
 #### Sending messages
 
-A message will be sent to the participants that belong to a category with a `create` template id (see the
-[service overview][sending-messages] for more information).
+:::info
 
-:::warning
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
 
-The messages will be sent only if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
+:::
+
+If you use the [Messaging Service][messaging-service-doc], a message will be sent to the participants that belong to a category with a `create` template id (see the
+[service overview][sending-messages] for more information), if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
+
+If you use the [Notification Manager][notification-manager-doc], an event named `AM/AppointmentCreated/v1` with the appointment as payload will be sent to the NM. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
 
 :::
 
 #### Setting reminders
+
+:::info
+
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
+
+:::
 
 :::caution
 
@@ -173,13 +185,15 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview][setting-reminders] for more information).
+If you use the [Messaging Service][messaging-service-doc] and a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview][setting-reminders] for more information).
 
 :::warning
 
 The reminders will be set only if the `isMessagingAvailable` and `isTeleconsultationAvailable` [configuration options][service-configuration] are set to `true` and the new appointment `startDate` is in the future.
 
 :::
+
+If you use the [Notification Manager][notification-manager-doc], an event named `AM/AppointmentCreated/v1` with the appointment as payload will be sent to the NM. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
 
 :::note
 
@@ -290,17 +304,25 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 ## POST /appointments/state
 
+:::info
+
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
+
+:::
+
 Changes the state of the appointments matching the provided filters.
 
-For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state, the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview][sending-messages] for more information) and delete all existing reminders.
+For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state:
 
-:::warning
-The messages will be sent only if the `isMessagingAvailable` and `isTimerAvailable` [configuration option][service-configuration] are set to `true`
-:::
+- if you use the [Messaging Service][messaging-service-doc], the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview][sending-messages] for more information);
 
 :::warning
 The messages will be sent only if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
 :::
+
+- if you use the [Timer Service][timer-service-doc], the AM deletes all existing reminders;
+- if you use the [Notification Manager][notification-manager-doc], the AM sends an event named `AM/AppointmentDeleted/v1` with the appointment as payload.
 
 For remote appointments moved from a `TRASH` to a `DELETED` state, the teleconsultation room is deleted. 
 
@@ -434,30 +456,37 @@ When a participant is added or removed through any of the [`users` custom fields
 
 #### Sending messages
 
-Participants that are **added** to the appointment will receive a creation message if they belong to a category with a
-`create` template id (see the [service overview][sending-messages] for more information).
+:::info
 
-Participants that are **removed** from the appointment will receive a deletion message if they belong to a category with a
-`delete` template id (see the [service overview][sending-messages] for more information).
-
-Participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview][sending-messages] for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
-
-:::warning
-
-The messages will be sent only if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
 
 :::
 
-:::note
+If you use the [Messaging Service][messaging-service-doc]:
 
-If the appointment's `startDate` is in the past after the update (even if it already was before the update), no message will be sent.
+- participants that are **added** to the appointment will receive a creation message if they belong to a category with a
+`create` template id (see the [service overview][sending-messages] for more information);
+- participants that are **removed** from the appointment will receive a deletion message if they belong to a category with a
+`delete` template id (see the [service overview][sending-messages] for more information);
+- participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview][sending-messages] for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
 
-However, if the appointment's `startDate` is not in the past after the update (even if it was before), any applicable message
-will be sent.
+If you use the [Notification Manager][notification-manager-doc], the AM sends an event named `AM/AppointmentUpdated/v1` with the original and updated appointments in the payload. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
+
+:::warning
+
+The messages will be sent only if the the appointment `startDate` is in the future after the update is performed.
 
 :::
 
 #### Setting reminders
+
+:::info
+
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
+
+:::
 
 :::caution
 
@@ -467,22 +496,16 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview][sending-messages] for more information).
+If you use the [Messaging Service][messaging-service-doc]:
 
-Any reminder set for participants that are **removed** from the appointment will be aborted.
+- one or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview][sending-messages] for more information).
+- any reminder set for participants that are **removed** from the appointment will be aborted.
+
+If you use the [Notification Manager][notification-manager-doc], the AM sends an event named `AM/AppointmentUpdated/v1` with the original and updated appointments in the payload. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
 
 :::warning
 
-The reminders will be set or aborted only if the `isMessagingAvailable` and `isTeleconsultationAvailable` [configuration options][service-configuration] are set to `true` and the new appointment `startDate` is in the future.
-
-:::
-
-:::note
-
-If the appointment's `startDate` is in the past after the update (even if it already was before the update), no reminder will be set.
-
-However, if the appointment's `startDate` is not in the past after the update (even if it was before), any applicable reminder
-will be set.
+The reminders will be set or aborted only if the new appointment `startDate` is in the future after the update.
 
 :::
 
@@ -556,7 +579,9 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 Deletes a single appointment. This endpoint is a direct proxy to the `DELETE /appointments/:id` of the CRUD service and has no side effects.
 
 :::info
+
 If the appointment is remote, the teleconsultation room is automatically deleted.
+
 :::
 
 # Availabilities
@@ -1242,7 +1267,10 @@ If one ore more slots are successfully found, you will receive a response with a
 
 [iana-time-zones]: https://www.iana.org/time-zones "IANA Time Zones"
 [iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
+[messaging-service-doc]: ../../runtime_suite/messaging-service/overview "Messaging Service official documentation"
+[notification-manager-doc]: ../../runtime_suite/messaging-service/overview "Notification Manager"
 [teleconsultation-participants]: ../../runtime_suite/teleconsultation-service-backend/usage#participants-required "Required participants | Usage | Teleconsultation Service Backend"
+[timer-service-doc]: ../../runtime_suite/timer-service/overview "Timer Service official documentation"
 
 [sending-messages]: ./10_overview.md#sending-messages "Sending messages | Overview"
 [setting-reminders]: ./10_overview.md#setting-reminders "Setting reminders | Overview"

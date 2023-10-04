@@ -29,7 +29,8 @@ In the documentation, when you will encounter any of the terms listed below, you
 | *Custom field*  | A custom field is a property of an availability, appointment or exception stored in the CRUD alongside the fields required and recognized by the AM. |  
 | *Exception*     | A period of time when a resource is not available and unable to provide some service (e.g. a doctor on vacation for two weeks). |
 | *Fixed slot*    | A slot from an availability with a fixed slot duration. |
-| *Flexible slot* | A slot from an availability without a slot duration. |
+| *Flexible slot* | A slot from an availability without a slot duration. |ù
+| *NM*            | Abbreviation for *Notification Manager*. |
 | *Participant*   | A doctor, patient, etc. involved in an appointment. |
 | *Resource*      | A person, room, equipment, etc. required to provide some services. |
 | *Service*       | A service delivered by a resource. |
@@ -428,7 +429,11 @@ This field is available in read only thorugh the API, therefore you can only set
 
 ## Sending messages
 
-Whenever you create, update or delete an appointment, you may want to send a specific message to the participants. 
+Whenever you create, update or delete an appointment, you may want to send a specific message to the participants.
+
+Since version 2.3.0, the AM supports both the Messaging Service and the Notification Manager to send messages. You must choose which one you want to use when configuring the AM.
+
+### Messaging Service
 
 :::caution
 In order to send messages you need deploy an instance of the [Messaging Service][messaging-service-doc] 
@@ -472,9 +477,58 @@ id.
 
 For more details on how messages are sent in each phase of the lifecycle, see the [usage section][usage].
 
+### Notification Manager
+
+:::info
+
+The Notification Manager is supported since version 2.3.0 of the AM.
+
+:::
+
+The [Notification Manager][notification-manager-doc] adopts an event-driven architecture and provides an high-level API to send messages and set reminders.
+
+Unlike the Messaging Service, the AM sends to the NM an event looking like this:
+
+```json
+{
+  "name": "AM/AppointmentCreated/v1",
+  "key": "appointment-12345",
+  "metadata": {
+    "userFields": ["resourceId", "participantIds"]
+  },
+  "payload": {
+    "startDate": "2023-08-01T09:30:00Z",
+    "endDate": "2023-08-01T10:15:00Z",
+    "status": "BOOKED",
+    "lockExpiration": null,
+    "resourceId": "auth0|dr.mario.rossi",
+    "participantIds": [
+      "auth0|jenny.king",
+      "auth0|dr.mark.greene"
+    ]
+  }
+}
+
+```
+
+and all the notification settings must be configured in the NM, including:
+
+- which users receive messages for a given event (identified by user ID, group, role and/or cluster);
+- which template is used to send the messages;
+- on which channels the messages are sent;
+- …
+
+Therefore, if you use the Notification Manager, you must not configure the templates for each user category in the service configuration, but directly in the NM notification settings.
+
+Please take a look at the [Notification Manager documentation][notification-manager-doc] for further configuration and usage details. 
+
 ## Setting reminders
 
-When you create a new appointment, the service may set multiple reminders to send a message to the participants. Each reminder is characterized by a message template and the amount of time before the appointment that the reminder has to be sent. 
+When you create a new appointment, the service may set multiple reminders to send a message to the participants. Each reminder is characterized by a message template and the amount of time before the appointment that the reminder has to be sent.
+
+Since version 2.3.0, the AM supports both the Messaging Service and the Notification Manager to set reminders. You must choose which one you want to use when configuring the AM.
+
+### Messaging Service
 
 :::caution
 In order to send reminders you need to deploy an instance of the [Messaging Service][messaging-service-doc] and [Timer Service][timer-service-doc], 
@@ -536,13 +590,60 @@ When the appointment is *updated*, if the date of the appointment has been updat
 
 When the appointment is *deleted*, the reminders scheduled for the patients will be aborted.
 
+### Notification Manager
+
+As illustrated in the [messages section][nm-messages], the Notification Manager computes the reminders to schedule when processing an event based on the notification settings configured for the users.
+
+Therefore, if you use the Notification Manager, you must not configure the reminders for each user category in the service configuration, but directly in the NM notification settings.
+
+The Notification Manager still relies on the [Timer Service][timer-service-doc] to send reminders, but you must configure it directly in the NM, while you should left it disabled in the AM, by setting `isTimerAvailable` to `false`.
+
+Please take a look at the [Notification Manager documentation][notification-manager-doc] for further configuration and usage details. 
+
+## Functional test
+
+This section provides several integration test suites written using Postman, that you can download and run against your environment.
+
+### Appointment Manager basic interactions
+
+This integration test suite covers the most common interactions from a client perspective, in particular:
+
+- create a recurring availability (`POST /availabilities/`);
+- create an exception (`POST /exceptions/`);
+- view the calendar (`GET /calendar/`);
+- book an appointment (`POST /appointments/`);
+- cancel an appointment (`DELETE /appointments/:id`).
+
+The test suite - a Postman collection and its environment - can be downloaded from the following links:
+
+- <a download target="_blank" href="/docs_files_to_download/appointment-manager/integration_tests_basic.postman_collection.json">Postman collection</a>
+- <a download target="_blank" href="/docs_files_to_download/appointment-manager/integration_tests_basic.postman_environment.json">Postman environment</a>.
+
+### Notification Manager integration
+
+This integration test suite covers the events sent to the [Notification Manager][notification-manager-doc] during an appointment lifecycle.
+
+The test suite - a Postman collection and its environment - can be downloaded from the following links:
+
+- <a download target="_blank" href="/docs_files_to_download/appointment-manager/integration_tests_notification_manager.postman_collection.json">Postman collection</a>
+- <a download target="_blank" href="/docs_files_to_download/appointment-manager/integration_tests_notification_manager.postman_environment.json">Postman environment</a>.
+
+The test suite covers the following operations:
+
+- create an appointment (`POST /appointments/`);
+- update an appointment (`PATCH /appointments/:id`);
+- cancel an appointment (`DELETE /appointments/:id`);
+- cancel multiple appointments (`POST /appointments/state`);
+
 
 [crud-service-doc]: ../../runtime_suite/crud-service/overview_and_usage "CRUD Service"
 [messaging-service-doc]: ../../runtime_suite/messaging-service/overview "Messaging Service"
+[notification-manager-doc]: ../../runtime_suite/messaging-service/overview "Notification Manager"
 [timer-service-doc]: ../../runtime_suite/timer-service/overview "Timer Service"
 [teleconsultation-service-be-doc]: ../../runtime_suite/teleconsultation-service-backend/overview "Teleconsultation Service BE"
 
 [overview-exceptions]: #exceptions "Exceptions | Overview"
+[nm-messages]: #notification-manager
 
 [configuration]: ./20_configuration.md "Configuration page"
 [service-configuration]: ./20_configuration.md#service-configuration "Service configuration | Configuration"

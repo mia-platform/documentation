@@ -20,6 +20,15 @@ If you are looking for instructions to configure the service in appointments or 
 
 :::info
 
+**v2.3.0**
+Since v2.3.0 a new service configuration field is supported: `isNotificationManagerAvailable`.
+
+The `isNotificationManagerAvailable` configuration field, disabled by default, allows you to enable or disable the integration with the [Notification Manager][notification-manager-doc] to send messages and set reminders, as an alternative to the [Messaging Service][messaging-service-doc].
+
+:::
+
+:::info
+
 **v2.2.0**
 Since v2.2.0 two new service configuration fields are supported: `isFlexibleSlotAvailable` and `isParticipantStatusAvailable`.
 
@@ -85,6 +94,7 @@ Here's an example of a full configuration:
   "reminderThresholdMs": 86400000,
   "isTeleconsultationAvailable": true,
   "isMessagingAvailable": true,
+  "isNotificationManagerAvailable": false,
   "isTimerAvailable": true,
   "isFlexibleSlotAvailable": true,
   "isParticipantStatusAvailable": true,
@@ -101,13 +111,28 @@ A reference presentation of each available field is provided in the following ta
 | `reminderThresholdMs` | No | 0 | Send reminders only at least as early before the appointment starts. Zero means the reminders, if enabled, are always sent |
 | `isTeleconsultationAvailable` | No | `false` | If the teleconsultation service is available, enable the integration to generate teleconsultation links. |
 | `isMessagingAvailable` | No | `false` | If the messaging service is available, enable the integration to send messages and reminders. |
+| `isNotificationManagerAvailable` | No | `false` | If the [Notification Manager][notification-manager-doc] service is available, enable the integration to send messages and set reminders. |
 | `isTimerAvailable` | No | `false` | If the timer service is available, enable the integration to set reminders. |
 | `isUserAvailable` | No | `false` | If the resources crud path is available, enable to recover resource's information for `POST /searches/first-available-slot/` endpoint. |
 | `isFlexibleSlotAvailable` | No | `false` | If you can create availabilities without setting a fixed slot duration. | 
 | `isParticipantStatusAvailable` | No | `false` | If additional status information about the participants are stored in the [appointments CRUD][crud-appointments]. | 
 | `defaultLockDurationMs` | No | - | The default duration of the temporary slot lock (in milliseconds). |
 
+:::danger
+
+**v2.3.0**
+Starting with version 2.3.0, you can choose if you want to send messages and reminders using the [Messaging Service][messaging-service-doc] or the [Notification Manager][notification-manager-doc], but you can't have them both enabled, so if you set both the `isMessagingAvailable` and `isNotificationManagerAvailable` configuration fields to `true`, the AM service returns an error on startup. 
+
+:::
+
 #### `users`
+
+:::info
+
+**v2.3.0**
+Starting with version 2.3.0, if you choose to send messages and reminders using the [Notification Manager][notification-manager-doc], you must configure which messages and reminders to send using NM notification settings.
+
+:::
 
 With this field you can specify, for each category of users, which template to use when sending messages on different phases of an appointment lifecycle (see the [service overview][overview] for more information), and the default values for the participation status fields.
 
@@ -207,6 +232,13 @@ The default value is **false**.
 
 #### `isMessagingAvailable`
 
+:::caution
+
+**v2.3.0**
+If both this field and the `isNotificationManagerAvailable` field are set to `true`, an error is raised at startup, since only one can be enabled at the same time.
+
+:::
+
 :::info
 
 **v2.0.0**
@@ -217,6 +249,27 @@ This configuration field is supported only from v2.0.0
 A `boolean` which determines if the messaging service can be used.
 If the value is set to **false**, the user can't send messages or reminders.
 If the value is set to **true**, the user can configure which messages are sent to which participants.
+
+The default value is **false**.
+
+#### `isNotificationManagerAvailable`
+
+:::info
+
+**v2.3.0**
+This configuration field is supported only from v2.3.0
+
+:::
+
+:::caution
+
+If both this field and the `isMessagingAvailable` field are set to `true`, an error is raised at startup, since only one can be enabled at the same time.
+
+:::
+
+A `boolean` which determines if the Notification Service can be used.
+If the value is set to **false**, the user can't send messages or reminders.
+If the value is set to **true**, the user can configure which messages are sent to which participants using the NM notification settings.
 
 The default value is **false**.
 
@@ -311,12 +364,13 @@ The Appointment Manager accepts the following environment variables.
 | **EXCEPTIONS_CRUD_NAME** | In full mode | Name of the CRUD collection containing the exceptions. |
 | **USERS_CRUD_NAME** | If `isUserAvailable` is `true` | Name of the CRUD collection containing the users. |
 | **USER_ID_FIELD_NAME** |  If `isUserAvailable` is `true`  | Name of the CRUD field containing the user ID in the users CRUD. |
-| **MESSAGING_SERVICE_NAME** | If `isMessagingAvailable` or `isTimerService` is `true` | Name of the Messaging Service. **Required** if you want to send messages or set reminders for your appointments.
-| **TIMER_SERVICE_NAME** | If `isTimerService` is `true` | Name of the Timer Service. **Required** if you want to set reminders for your appointments.
-| **TELECONSULTATION_SERVICE_NAME** | If `isTeleconsultationAvailable` is `true` | Name of the teleconsultation service. **Required** if you want to create teleconsultations.
-| **TELECONSULTATION_ENDPOINT_FE** | If `isTeleconsultationAvailable` is `true` | Endpoint associated with the Teleconsultation Service FrontEnd (the root). **Required** if you want to create teleconsultations.
-| **TELECONSULTATION_BASE_PATH** | If `isTeleconsultationAvailable` is `true` | Custom base path for the teleconsultation URL. **Required** if you want to create teleconsultations.
-| **PARTICIPANT_USER_PROPERTIES** | If `isParticipantAvailable` and `isUserAvailable` are set to `true` | Comma-separated list containing the fields in the users crud to insert in the appointment `participants` array.
+| **MESSAGING_SERVICE_NAME** | If `isMessagingAvailable` or `isTimerService` is `true` | Name of the Messaging Service. **Required** if you want to send messages or set reminders using the Messaging Service. |
+| **NOTIFICATION_MANAGER_NAME** | If `isNotificationManagerAvailable` is `true` | Name of the Notification Manager service. **Required** if you want to send messages or set reminders using the Notification Manager. |
+| **TIMER_SERVICE_NAME** | If `isTimerService` is `true` | Name of the Timer Service. **Required** if you want to set reminders using the Messaging Service. |
+| **TELECONSULTATION_SERVICE_NAME** | If `isTeleconsultationAvailable` is `true` | Name of the teleconsultation service. **Required** if you want to create teleconsultations. |
+| **TELECONSULTATION_ENDPOINT_FE** | If `isTeleconsultationAvailable` is `true` | Endpoint associated with the Teleconsultation Service FrontEnd (the root). **Required** if you want to create teleconsultations. |
+| **TELECONSULTATION_BASE_PATH** | If `isTeleconsultationAvailable` is `true` | Custom base path for the teleconsultation URL. **Required** if you want to create teleconsultations. |
+| **PARTICIPANT_USER_PROPERTIES** | If `isParticipantAvailable` and `isUserAvailable` are set to `true` | Comma-separated list containing the fields in the users crud to insert in the appointment `participants` array. |
 
 ### CRUD collections
 
@@ -326,6 +380,13 @@ Availabilities, appointments and exceptions CRUD collections need to have a `str
 The name of the `string` field in the users CRUD collection that identifies a user can be specified in the `USER_ID_FIELD_NAME` [environment variable][environment-variables].
 
 #### Appointments CRUD collection
+
+:::info
+
+**v2.3.0**
+Starting from v2.3.0, if you set reminders using the [Notification Manager][notification-manager-doc], the reminders are not saved in the `reminderIds` field.
+
+:::
 
 :::info
 
@@ -484,6 +545,18 @@ The Appointment Manager uses the users CRUD collection to fetch additional infor
 
 ## Appointments mode
 
+:::caution
+
+**v2.3.0**
+Starting with version 2.3.0, you can choose between two different configurations to send messages or reminders:
+
+- use the [Messaging Service][messaging-service-doc] to send messages and the [Timer Service][timer-service-doc] to send the reminders;
+- use the [Notification Manager][notification-manager-doc] to both send messages and reminders.
+
+You should choose carefully which configuration to use, since you cannot easily change it later. 
+
+:::
+
 This section provide instructions on how to configure the Appointment Manager to deploy it in appointments mode.
 
 - Create the [service configuration][service-configuration] JSON file, defining the users to notify and the external services to integrate with.
@@ -494,11 +567,15 @@ This section provide instructions on how to configure the Appointment Manager to
   - `TELECONSULTATION_ENDPOINT_FE`;
   - `TELECONSULTATION_BASE_PATH`.
 
-- If you enabled the integration with the messaging service, setting `isMessagingAvailable` to `true`, set the following environment variables:
+- If you enabled the integration with the [Messaging Service][messaging-service-doc], setting `isMessagingAvailable` to `true`, set the following environment variables:
 
   - `MESSAGING_SERVICE_NAME`.
 
-- If you enabled the integration with the timer service, setting both `isMessagingAvailable` and `isTimerAvailable` to `true`, set the following environment variables:
+- (**v2.3.0 and later**) If you enabled the integration with the [Notification Manager][notification-manager-doc] service, setting `isNotificationManagerAvailable` to `true`, set the following environment variables:
+
+  - `NOTIFICATION_MANAGER_NAME`.
+
+- If you enabled the integration with the [Timer Service][timer-service-doc], setting both `isMessagingAvailable` and `isTimerAvailable` to `true`, set the following environment variables:
 
   - `MESSAGING_SERVICE_NAME`;
   - `TIMER_SERVICE_NAME`.
@@ -546,6 +623,7 @@ Since the reminder service in turn requires the messaging service to send remind
 
 [crud-service-doc]: ../../runtime_suite/crud-service/overview_and_usage "CRUD Service official documentation"
 [messaging-service-doc]: ../../runtime_suite/messaging-service/overview "Messaging Service official documentation"
+[notification-manager-doc]: ../../runtime_suite/messaging-service/overview "Notification Manager"
 [timer-service-doc]: ../../runtime_suite/timer-service/overview "Timer Service official documentation"
 [teleconsultation-service-doc]: ../../runtime_suite/teleconsultation-service-backend/overview "Teleconsultation Service official documentation"
 
