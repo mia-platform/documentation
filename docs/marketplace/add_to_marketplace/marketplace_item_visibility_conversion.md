@@ -1,7 +1,7 @@
 ---
 id: marketplace_items_visibility_conversion
-title: How to change a Marketplace item's visibility from private to public and vice versa
-sidebar_label: How to change a Marketplace item's visibility from private to public and vice versa
+title: How to change a Marketplace item visibility from private to public and vice versa
+sidebar_label: How to change a Marketplace item visibility from private to public and vice versa
 ---
 
 The marketplace is an essential tool within the development platform, designed to empower developers with maximum autonomy in their development activities. As such, it offers a vast library of ready-to-use components that are highly dynamic. Consequently, there may arise a need for an item that initially started as a public asset within the marketplace to be restricted for use by a single company. In the opposite scenario, an item that began as private for exclusive use by one company may need to become publicly available to all tenants.
