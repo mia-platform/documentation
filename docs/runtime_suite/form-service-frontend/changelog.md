@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.9.2 2023-09-13
 
 ### Fixed
+
 - Fixed templates retrieval.
 
 ## 1.9.1 2023-09-04
 ### Fixed
+
 - Fixed autocomplete when a form is a wizard with many nested components.
 - Removed the "X" closing icon in FormExpiredModal; fixed the FormDatePicker when the expirationDate is not set.
 
