@@ -38,7 +38,7 @@ In addition to the common mandatory fields, has four provider specific required 
    }
 }
 ```
-All these four fields are related to the shopper credit card details and must be encrypted by Adyen system first. 
+All these four fields are related to the shopper credit/debit card details and must be encrypted by Adyen system first. 
 
 ### Refund
 

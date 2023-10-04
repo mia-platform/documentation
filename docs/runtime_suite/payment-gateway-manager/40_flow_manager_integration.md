@@ -208,7 +208,7 @@ Based on the outcome of the transaction the service can sent the following event
     "messageLabel":"eventName",
     "messagePayload": {
       "provider": "provider",
-      "amount": 5,
+      "amount": 500,
       "currency": "EUR",
       "shopTransactionId": "shop-id",
       "payRequestData": {
