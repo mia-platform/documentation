@@ -417,7 +417,13 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 ### DELETE /teleconsultation/:roomId/uploads
 
-Delete all files uploaded by the participants during a teleconsultation.
+:::info
+
+This endpoint is available only since version 1.5.0.
+
+:::
+
+Delete all files uploaded by the participants during a teleconsultation if and only if the [`TELECONSULTATION_DELETE_UPLOADS` environment variable][environment-variables] is set to `true`.
 
 **Example DELETE Request:**
 ```
@@ -425,6 +431,8 @@ curl -X DELETE "https://my_project_url/teleconsultation/room_xyz/uploads"
 ```
 
 #### Response
+
+If the [`TELECONSULTATION_DELETE_UPLOADS` environment variable][environment-variables] is set to `false`, a status code 204 will be returned. 
 
 In case a teleconsultation is successfully deleted, a status code of 200 will be returned and a payload looking like this.
 
@@ -487,3 +495,6 @@ In case the service is not able to get user authentication from the request head
 ```
 401: { "error": "Unauthorized user" } 
 ```
+
+
+[environment-variables]: ./20_configuration.md#environment-variables
