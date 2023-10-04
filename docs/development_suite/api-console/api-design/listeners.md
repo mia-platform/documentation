@@ -12,35 +12,37 @@ Each listener is mapped to a single port and defines rules to route incoming req
 This page describes the features of a Listener and how to configure these from the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Console.
 
 :::info
-Currently Listeners are available only to Projects configured to use an **Envoy API Gateway**.
+Currently Listeners are only available to Projects using an **Envoy API Gateway**.
 :::
 
 ## Create a Listener
 
-Follow this three steps in order to create the new Listener and make an Endpoint reachable from outside the Console:
+Follow these three steps in order to create a new Listener and make an Endpoint reachable from outside the Console:
 - create the new Listener resource
 - expose the Endpoint on the Listener
 - define a new Traefik IngressRoute for the newly exposed API Gateway port
 
 ### Defining the Listener 
 
-Creating a new Listener is as easy as clicking on the **Add listener** button and specifying its `name` and `port`. Both these two fields must be unique on your Project.  
+To create a new listener, just click the **Add Listener** button and specify its `name` and `port`. Both fields must be unique in the Project. 
 
 Optionally, you can define whether to:
-- **expose new endpoints on the listener** by deafult
+- **expose new endpoints on the listener** by default
 - **expose all existing endpoints** on the listener
 
 ![create-listener](img/listeners/create-listener.png)
 
-Creating a new Listener means opening the relative container port on the Api Gateway too. This step is automated and in fact you can find the new port under the Container Ports section of the API Gateway.  
+Creating a new Listener means opening the relative container port on the API Gateway too. This step is automated and in fact you can find the new port under the Container Ports section of the API Gateway.  
+:::caution
 Container Ports associated to Listeners cannot be deleted. To delete them firstly delete the Listener and then you can delete the port.
+:::
 
 <!-- TODO: update image with disabled buttons -->
 ![listeners-api-gateway-container-ports](img/listeners/listeners-api-gateway-ports.png)
 
 ### Exposing an Endpoint on the Listener
 
-Once the new Listener has been created you can select it from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) of an Endpoint.
+Once the new Listener has been created, it can be selected from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) within the Endpoint detail page of the project.
 
 ### Define the Kubernetes Ingress
 
@@ -63,14 +65,12 @@ spec:
 
 ```
 
-At this point
-
 ## Delete a Listener
 
 To delete a listener just click on the delete action.
 
 :::warning
-Be aware that if the Listener is the only one exposing some endpoints, these will be deleted as well.  
+Be aware that any Endpoint that is exposed **only** on the Listener you want to delete, will be deleted too.
 :::
 
 ![delete-listener](img/listeners/delete-listener.png)
