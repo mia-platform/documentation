@@ -68,15 +68,9 @@ Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visua
 
 ## How to configure a new item
 
-Each Marketplace item is identified by a specific data model (a JSON document). Such models are stored on a MongoDB collection and can be modified through the Marketplace section of the Console CMS.
+Each Marketplace item is identified by a specific data model (a JSON document).
 
 In the [Examples](#examples) section, you will find a few samples of preconfigured items configurations.
-
-:::info
-If you don't have the right permission to access the Console CMS, you should hand over the newly created item configuration to one of your Mia-Platform referents.
-
-They will then be responsible for adding your data to the Marketplace items collection.
-:::
 
 ### Common to every item
 
