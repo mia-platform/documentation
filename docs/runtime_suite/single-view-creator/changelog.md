@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.2.1] 2023-10-03
+
+### Added
+
+- configuration and input data for running a simple demo of the service
+
+### Changed
+
+- updated `@mia-platform-internal/single-view-creator-lib@14.7.2` to fix a commit issue introduced in previous release
+
 ## [6.2.0] 2023-09-27
 
 ### Changed
