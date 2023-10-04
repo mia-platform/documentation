@@ -99,13 +99,14 @@ Here an example of a *theming* object to add in Form Builder configuration `JSON
 
 This parameter is the CRUD endpoint used in the **Form Service Backend** to perform CRUD operations on the forms created with the Form Builder. It can be any CRUD endpoint. The default value is `/form-schemas`.
 
-The mandatory properties of the CRUD are:
+The properties of the CRUD are:
 
 - **name**, of type *string*;
 - **formSubmitUrl**, of type *string*, which specifies the url that will be used for Form submission;
 - **formSchema**, of type *object*, which is the property where the configured Form `JSON` will be saved;
 - **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved;
 - **formExpirationDate** (optional), of type *string*, which is the expiration date of the form.
+- **formExpirationMessage** (optional), of type *string*, which is the expiration message of the form.
 
 :::note
 
