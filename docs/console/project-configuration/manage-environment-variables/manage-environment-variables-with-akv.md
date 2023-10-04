@@ -22,7 +22,7 @@ To correctly configure a Key Vault in your project follow these steps:
 
 ## Setup the Key Vault instance
 
-There are several ways to enable the operator authentication against the Key Vault instance, the one we chose is the Workload Identity authentication. This authentication method does not require sharing any secret between the cluster and Key Vaut.
+There are several ways to enable the operator authentication against the Key Vault instance, the one we chose is the Workload Identity authentication. This authentication method does not require sharing any secret between the cluster and Key Vault.
 
 ### Workload Identity setup
 
@@ -34,11 +34,11 @@ First off, you need to create an Azure application aka Service Principal. This a
 
 #### 2. Authorize the AAD application
 
-Once the AAD Application has been created you need to authorize it to read the secrets stored in Key Vaut. This process depends on your organization's policies and the authorization method chosen, if you are using the RBAC authorization model follow [these steps](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide).
+Once the AAD Application has been created you need to authorize it to read the secrets stored in Key Vault. This process depends on your organization's policies and the authorization method chosen, if you are using the RBAC authorization model follow [these steps](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide).
 
 #### 3. Enable your cluster as an Open ID Connect provider
 
-In this step, we are going to enable the cluster to act as an Open ID Connect provider. This step allows the verification of the token signed by the operator by Key Vaut.
+In this step, we are going to enable the cluster to act as an Open ID Connect provider. This step allows the verification of the token signed by the operator by Key Vault.
 
 The actions to be performed in this step depend on the nature of your cluster:
 
@@ -96,4 +96,4 @@ You also have the option to distinguish between providers for specific environme
 
 Secrets stored within an Azure Key Vault provider cannot be directly utilized as interpolations in the project's configuration. However, you can access these variables by creating a new microservice environment variable with the value type set to `from secret` the secret name designated as `akv-secret` and the secret key specified as the desired secret name. Detailed instructions for this process can be found in the [microservice configuration section](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
-By design, the `akv-secret` in the cluster is not automatically synchronized with its corresponding secrets on Azure Key Vault. Instead, when a new variable is added or removed in Key Vaut, it is necessary to regenerate the project's configuration to properly reconfigure the Kubernetes secret. Conversely, if a variable is edited, a redeployment of the target environment is all that's required to update the variables on the cluster.
+By design, the `akv-secret` in the cluster is not automatically synchronized with its corresponding secrets on Azure Key Vault. Instead, when a new variable is added or removed in Key Vault, it is necessary to regenerate the project's configuration to properly reconfigure the Kubernetes secret. Conversely, if a variable is edited, a redeployment of the target environment is all that's required to update the variables on the cluster.
