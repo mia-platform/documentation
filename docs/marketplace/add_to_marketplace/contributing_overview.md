@@ -64,8 +64,6 @@ The Marketplace is composed of items with the following types.
 
 Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
 
-Once the request has been taken over, together with the Mia-Platform referent it will be possible to determine whether the item can be associated to a pre-existing category, or whether a new category will be needed.
-
 :::
 
 ## How to configure a new item
