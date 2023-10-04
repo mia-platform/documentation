@@ -26,9 +26,9 @@ Follow these three steps in order to create a new Listener and make an Endpoint 
 
 To create a new listener, just click the **Add Listener** button and specify its `name` and `port`. Both fields must be unique in the Project. 
 
-Optionally, you can define whether to:
-- **expose new endpoints on the listener** by default
-- **expose all existing endpoints** on the listener
+Optionally, during listener creation, you can define whether to:
+- **expose all new endpoints** that will be created on that listener by default
+- **expose all existing endpoints** on that listener
 
 ![create-listener](img/listeners/create-listener.png)
 
