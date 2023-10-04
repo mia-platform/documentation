@@ -57,7 +57,7 @@ system:serviceaccount:<namespace>:akv-accessor
 
 Where:
 
-- `<namespace>` is the namespace where your project will be deployed. it depends on the environment of the project, its value can be retrieved from the [environments page](../../project-configuration/manage-runtime-environments/index.md) in the Console.
+- `<namespace>` is the namespace where your project will be deployed. it depends on the environment of the project, its value can be retrieved from the [environments page](/console/project-configuration/manage-runtime-environments/index.md) in the Console.
 
 The other fields of the form can be filled in as you wish.
 
