@@ -53,11 +53,12 @@ miactl marketplace get ITEM_ID > myMarketplaceItem.json
 ```
 
 More information on this point can be found in the [dedicated doc](/cli/miactl/30_commands.md#apply).
+
 ### Update an item
 
 :::info
 
-You need to have *Company Owner* or *Project Administrator* permission to perform this action
+You need to have *Company Owner* or *Project Administrator* role at Company level to perform this action
 
 :::
 
@@ -66,7 +67,7 @@ To update an item already on the Marketplace you can download it and save it to 
 ```sh
 miactl marketplace get ITEM_ID > myMarketplaceItem.json
 ```
-where `ITEM_ID` is an alphanumerical id of the Marketplace element. If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items, you can easily locate the one of interest by looking for its name.
+where `ITEM_ID` is an alphanumerical id of the Marketplace element. If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
 
 :::tip
 
@@ -74,7 +75,7 @@ It is suggested to always download the Marketplace Item just before updating it 
 
 :::
 
-Follow the steps in the [Modifying the Marketplace Item](#enabling-the-visibility-to-all-companies); once you are finished save the file and apply it to the Marketplace:
+Follow the steps in the [Modifying the Marketplace Item](#enabling-the-visibility-to-all-companies); once you have finished, save the file and apply it to the Marketplace:
 
 ```sh
 miactl marketplace apply -f myMarketplaceItem.json
@@ -93,7 +94,7 @@ You will see the outcome of the operation in the command output:
 
 :::info
 
-You need either the *Company Owner* or *Project Administrator* permission to perform this action
+You need either the *Company Owner* or *Project Administrator* role at Company level to perform this action
 
 :::
 
