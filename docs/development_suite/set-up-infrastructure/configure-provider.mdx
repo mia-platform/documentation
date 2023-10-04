@@ -20,7 +20,7 @@ The following table shows the providers currently supported by the Console, grou
 | Capability     | Providers                                                           | `type` in data model                                |
 |----------------|---------------------------------------------------------------------|-----------------------------------------------------|
 | Git Provider   | GitLab, GitHub, Bitbucket, Azure DevOps                             | gitlab, github, bitbucket, azure-devops             |
-| Secret Manager | GitLab, Vault                                                       | gitlab, vault                                       |
+| Secret Manager | GitLab, Vault, Azure Key Vault                                      | gitlab, vault, azure-key-vault                      |
 | CI/CD Tool     | GitLab (Git Runner), GitHub (GitHub Actions), Jenkins, Azure DevOps | gitlab-ci, github-actions, jenkins, azure-pipelines |
 
 ## Providers Overview
@@ -123,11 +123,13 @@ Credentials entered at this stage, for security reasons, will never again be sho
 
 Depending on the provider selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each provider:
 
-| Credentials Type  | Providers                                                             |
-| ----------------- |:---------------------------------------------------------------------:|
-| Token             | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins               |
-| M2M               | Vault                                                                 |
-| OAuth2            | Jenkins                                                               |
+| Credentials Type               | Providers                                                                |
+| ------------------------------ |:------------------------------------------------------------------------:|
+| Token                          | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins, Azure Key Vault |
+| M2M                            | Vault                                                                    |
+| OAuth2                         | Jenkins                                                                  |
+| Client Credentials             | Azure Key Vault                                                          |
+| Client Credentials Certificate | Azure Key Vault                                                          |
 
 :::caution Assign the right scope to your credentials
 Make sure, when generating credentials on the respective provider sites, to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
