@@ -148,6 +148,10 @@
             {
               "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
               "type": "doc"
+            },
+            {
+              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
+              "type": "doc"
             }
           ]
         },
