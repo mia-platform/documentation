@@ -37,7 +37,7 @@ To create Marketplace items you need to be a *Company Owner* or a *Project Admin
 
 ### Marketplace item visibility and the `tenantId` field
 
-When creating a new Marketplace item, you always need to set the `tenantId` relative to the Company you are creating the item in.
+When creating a new Marketplace item, you always need to set the `tenantId` related to the Company you are creating the item in.
 
 You can also contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
 
