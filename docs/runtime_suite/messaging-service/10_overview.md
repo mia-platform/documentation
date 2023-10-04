@@ -15,6 +15,8 @@ In order to send a message through a particular channel, you need to deploy the 
 This is not needed for the **voice** channel, for which there is a direct interaction with Kaleyra APIs.
 :::
 
+The notification can also be triggered directly by a [Flow Manager][flow-manager] command. See the [Configuration][configuration-flow-manager] section for more information. 
+
 ## Users clustering
 
 In order to send messages to a particular group of users, the service supports users clustering. 
@@ -118,8 +120,10 @@ In this case the `eq` function is provided by the [handlebars-helpers][handlebar
 [ses-mail-notification]: ../../runtime_suite/ses-mail-notification-service/configuration
 [sms-service]: ../../runtime_suite/sms-service/configuration
 [kafka2firebase]: ../../runtime_suite/kafka2firebase/overview
+[flow-manager]: ../../runtime_suite/flow-manager-service/overview
 
 [message-interpolation]: #messages-interpolation
 [crud-templates]: ./20_configuration.md#templates-crud
 [crud-users]: ./20_configuration.md#users-crud-required
+[configuration-flow-manager]: ./20_configuration.md#service-configuration
 [usage-body]: ./30_usage.md#body
