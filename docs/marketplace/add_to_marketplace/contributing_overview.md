@@ -21,13 +21,13 @@ To achieve this, a Company Owner or a Project Administrator can create new Compa
 Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
-### Deciding whether to create a private or public marketplace item
+### Deciding whether to create a private or public Marketplace item
 
-The choice between a private and public marketplace involves benefits on both sides that should be carefully analyzed before making a decision.
+The choice between a private and public Marketplace involves benefits on both sides that should be carefully analyzed before making a decision.
 
-Creating an item within the private marketplace is undoubtedly the better choice when you want to make something highly specialized available for the specific use cases of your Company. If the item cannot be generalized and would have little value for other Companies, then a private marketplace is the way to go. Additionally, in this case, creating items within the private marketplace allows for complete ownership in managing your plugin, resulting in a faster maintenance process.
+Creating an item within the private Marketplace is undoubtedly the better choice when you want to make something highly specialized available for the specific use cases of your Company. If the item cannot be generalized and would have little value for other Companies, then a private Marketplace is the way to go. Additionally, in this case, creating items within the private Marketplace allows for complete ownership in managing your plugin, resulting in a faster maintenance process.
 
-On the other hand, publishing your items in the private marketplace leads to a loss of corporate visibility that you would otherwise have by making your plugin publicly available in the marketplace. It also means missing out on the opportunity to receive reviews from the Mia-Platform team and potential external contributions that can help your product grow and improve more rapidly.
+On the other hand, publishing your items in the private Marketplace leads to a loss of corporate visibility that you would otherwise have by making your plugin publicly available in the Marketplace. It also means missing out on the opportunity to receive reviews from the Mia-Platform team and potential external contributions that can help your product grow and improve more rapidly.
 
 
 :::info
@@ -35,7 +35,7 @@ If you want to contribute to the **Mia-Platform Marketplace** by making your Mar
 :::
 
 :::info
-To learn how to migrate an item from the public to private marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/marketplace_item_visibility_conversion.md).
+To learn how to migrate an item from the public to private Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/marketplace_item_visibility_conversion.md).
 :::
 
 ## Marketplace components
