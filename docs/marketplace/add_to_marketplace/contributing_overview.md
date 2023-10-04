@@ -235,8 +235,8 @@ The files of your template repository can contain some special placeholders that
 - `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%`: description of the service chosen by the user;
 - `%CUSTOM_PLUGIN_CREATOR_USERNAME%`: username of the user who created the service;
 - `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%`: full path of the repository of the Git provider;
-- `%GIT_PROVIDER_PROJECT%`: name of the Git project entered by the user (e.g. GitHub repository or GitLab project).
-- `%GIT_PROVIDER_GROUP%`: name of the group of Projects entered by the user (e.g. GitHub organization or GitLab group).
+- `%GIT_PROVIDER_PROJECT%`: name of the Git project entered by the user (e.g. GitHub repository or Gitlab project).
+- `%GIT_PROVIDER_GROUP%`: name of the group of Projects entered by the user (e.g. GitHub organization or Gitlab group).
 - `%GIT_PROVIDER_BASE_URL%`: URL base of the Git provider.
 - `%NEXUS_HOSTNAME%`: docker registry hostname.
 
