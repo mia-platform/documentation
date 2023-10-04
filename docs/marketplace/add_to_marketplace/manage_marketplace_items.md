@@ -21,7 +21,7 @@ With the `miactl marketplace` subcommands, you can perform several actions, desc
 
 :::info
 
-You need to have *Company Owner* or *Project Administrator* permission to perform this action
+You need to have *Company Owner* or *Project Administrator* role at Company level to perform this action
 
 :::
 
