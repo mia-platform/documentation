@@ -109,6 +109,16 @@ Depending on the credentials type, the other information to be entered will be:
   - **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
   - **Client ID** (*required*): OAuth2 public client identifier;
   - **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server.
+* For credentials of type "Client credentials":
+  - **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
+  - **Client ID** (*required*): public client identifier;
+  - **Client secret** (*required*): the shared secret, known only to the client and the authorization server.
+  - **Scope**: an optional scope to restrict the generated token permissions
+* For credentials of type "Client credentials certificate":
+  - **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
+  - **Client ID** (*required*): public client identifier;
+  - **Private key** (*required*): the PEM-encoded private key whose certificate has been registered against the authorization service;
+  - **Scope**: an optional scope to restrict the generated token permissions
 
 :::info
 All credentials data are stored in an encrypted MongoDB collection.
