@@ -26,11 +26,11 @@ To correctly configure a Key Vault in your project follow these steps:
 
 ## Setup the Key Vault instance
 
-There are several ways to enable the operator authentication against the Key Vault instance, the one we chose is the Workload Identity authentication. This authentication method does not require sharing any secret between the cluster and Key Vault.
+There are several ways to enable the operator authentication against the Key Vault instance, the one we support at the moment is the Workload Identity authentication. This authentication method does not require sharing any secret between the cluster and Key Vault.
 
 ### Workload Identity setup
 
-The [Workload Identity](https://azure.github.io/azure-workload-identity/docs/) authentication works by establishing a trust relationship between a service account from the Kubernetes cluster's namespace where your project will be deployed and the Azure Active Directory service that is responsible for the authentication and authorization against the Key Vault instance.
+The [Workload Identity](https://azure.github.io/azure-workload-identity/docs/) authentication works by establishing a trust relationship between a service account from the namespace of the Kubernetes cluster where your project will be deployed and the Azure Active Directory service that is responsible for the authentication and authorization against the Key Vault instance.
 
 #### 1. Create an Azure Active Directory application
 
@@ -51,7 +51,7 @@ The actions to be performed in this step depend on the nature of your cluster:
 
 #### 4. Add the federated credentials to the application
 
-In this last step, we are ready to associate the service account that will be automatically deployed in the project's cluster with the AAD Application created before.
+In this last step, we are ready to associate the service account that will be automatically deployed in the cluster namespace associated to the environment of the project with the AAD Application created before.
 
 On the Application main page, click on the `Certificates & secrets` menu voice on the left, then switch to the `Federated credential` tab and click `Add credential`, you will be prompted with a form. Inside the form fill in the `Subject identifier` field in the following way:
 
@@ -65,7 +65,7 @@ Where:
 
 The other fields of the form can be filled in as you wish.
 
-This configuration can also be done from the Azure CLI program `az`, [here](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html#federated-identity-credential-for-an-azure-ad-application) is how.
+This configuration can also be done from the Azure CLI program `az`, as explained [here](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html#federated-identity-credential-for-an-azure-ad-application).
 
 ## Setup the Console project
 
@@ -100,4 +100,4 @@ You also have the option to distinguish between providers for specific environme
 
 Secrets stored within an Azure Key Vault provider cannot be directly utilized as interpolations in the project's configuration. However, you can access these variables by creating a new microservice environment variable with the value type set to `from secret` the secret name designated as `akv-secret` and the secret key specified as the desired secret name. Detailed instructions for this process can be found in the [microservice configuration section](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
-By design, the `akv-secret` in the cluster is not automatically synchronized with its corresponding secrets on Azure Key Vault. Instead, when a new variable is added or removed in Key Vault, it is necessary to regenerate the project's configuration to properly reconfigure the Kubernetes secret. Conversely, if a variable is edited, a redeployment of the target environment is all that's required to update the variables on the cluster.
+By design, the `akv-secret` in the cluster is not automatically synchronized with its corresponding secrets on Azure Key Vault. Instead, when a new variable is added or removed in Key Vault, it is necessary to regenerate the Design configuration of the project to properly reconfigure the Kubernetes secret. Conversely, if a variable is edited, a new deploy of the target environment is required to update the variables on the cluster.
