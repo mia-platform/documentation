@@ -35,7 +35,7 @@ Perform a payment on the `provider` with the `payment-method` chosen.
 #### Request
 ```jsonc
 {
-    "amount": 5,                                     // the amount to be paid
+    "amount": 500,                                     // the amount to be paid
     "currency": "EUR",                               // currency used for the payment
     "shopTransactionId": "123456789",                // the unique id of your transaction
     "successRedirectUrl": "http://example.com/ok",   // the URL to be redirected to if payment succeeds (optional)
@@ -75,7 +75,7 @@ Perform a refund for a transaction on the `provider`.
 
 ```jsonc
 {
-    "amount": 5,
+    "amount": 500,
     "currency": "EUR",
     "paymentId": "123456789",
     "providerData": {...}   // the object with provider-specific data (optional, varies with the provider)
@@ -281,7 +281,7 @@ At the end of the process the PGM will receive a callback that notifies about th
 #### Request
 ```jsonc
 {
-    "amount": 5,                                     // the amount to be paid
+    "amount": 500,                                     // the amount to be paid
     "currency": "EUR",                               // currency used for the payment
     "shopTransactionId": "123456789",                // the unique id of your transaction
     "successRedirectUrl": "http://example.com/ok",   // the URL to be redirected to if payment succeeds (optional)

@@ -232,7 +232,7 @@ In order to tokenize a payment we need a request body as below:
 ```json
 {
   "shopLogin": "shopLoginId",
-  "amount": "10",
+  "amount": "100",
   "shopTransactionId": "transactionId",
   "currency": "EUR"
 }

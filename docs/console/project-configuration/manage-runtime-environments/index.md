@@ -33,7 +33,7 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 * **Production environment**: a toggle that specifies whether or not the runtime environment is a production environment;
 * **Environment ID** (*required*): the human-readable ID of the runtime environment;
 * **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
-* **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](/getting-started/handbooks/company/connect-and-manage-cluster.md) first);
+* **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](/development_suite/clusters-management/connect-and-manage-cluster.mdx) first);
 * **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Company ID and Environment ID);
 * **Project URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
 * **CMS URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
@@ -70,7 +70,7 @@ If there are no errors, the creation modal will display a successful feedback co
 :::info
 If the Kubernetes cluster has not been properly prepared (and consequently does not have a reference service account that can be associated with the new namespace), steps 4-7 are skipped, and the successful feedback is shown to the user without credentials. The user will then **not** be able to deploy without further actions on the cluster.
 
-[Here](/development_suite/clusters-management/clusters-overview-setup.md#cluster-preparation) you can find more information on how to setup your cluster.
+[Here](/development_suite/clusters-management/cluster-setup.mdx#cluster-preparation) you can find more information on how to setup your cluster.
 :::
 
 The action of creating the environment will instead result in an error if problems occur in steps 1-3. In case of issues in steps 4-7, the modal will still show a successful feedback, along with an error warning prompting the user to contact their cluster administrator.
