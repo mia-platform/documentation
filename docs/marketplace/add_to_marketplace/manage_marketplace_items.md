@@ -154,7 +154,7 @@ First of all, download and save the latest version of the item configuration:
 ```sh
 miactl marketplace get ITEM_ID > myMarketplaceItem.json
 ```
-where `ITEM_ID` is an alphanumerical id of the Marketplace element. If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
+where `ITEM_ID` is an alphanumerical id of the Marketplace item. If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
 
 :::tip
 
