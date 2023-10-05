@@ -158,7 +158,7 @@ where `ITEM_ID` is an alphanumerical id of the Marketplace element. If you don't
 
 :::tip
 
-It is suggested to always download the Marketplace Item just before updating it to be sure to work on the latest version.
+It is suggested to always download the Marketplace item just before updating it to make sure it works on the latest version.
 
 :::
 
