@@ -11,7 +11,7 @@ A Real-Time Updater service is automatically created when you create a new Syste
 :::info
 From version `11.7.0` of the Console, the Real-Time Updater will not be automatically generated anymore but must be created beforehand in the _Microservices_ section, and after it must be attached to the System of Records containing the projections of your interest.
 
-This new feature will also include the possibility to use multiple Real-Time Updater services to the same System of Records, with different servies attached to some projections in order to improve scalability and perfomances.
+This new feature will also include the possibility to use multiple Real-Time Updater services to the same System of Records, with different servies attached to some projections in order to improve scalability and performances.
 :::
 
 ## Projection Update
