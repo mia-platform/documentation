@@ -31,7 +31,7 @@ You have developed a new service (for example a NodeJS service)
 called "My Awesome Service", and you want it to be available in the Marketplace of your Company.
 
 First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component). 
-Save the file in the current directory, for example as `myMarketplaceItem.json` file.
+Save the file in the current directory, for example as `myAwesomeService.json` file.
 
 The file contents will probably look like this:
 ```json
@@ -103,7 +103,7 @@ Notice that the `image` and `supportedByImage` objects are populated with local 
 To create the item on the Marketplace, simply run this command:
 
 ```sh
-miactl marketplace apply -f myMarketplaceItem.json
+miactl marketplace apply -f myAwesomeService.json
 ```
 
 This command will create the Marketplace item and upload the images along with it.
@@ -119,7 +119,7 @@ A message will confirm the operation, returning some information:
 
 After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of the item use the `get` command: 
 ```sh
-miactl marketplace get 65368hf0c91d871a87afbcbf > myMarketplaceItem.json
+miactl marketplace get 65368hf0c91d871a87afbcbf > myAwesomeService.json
 ```
 
 :::tip
@@ -152,7 +152,7 @@ Imagine now that you noticed that the description of "My Awesome Service" is not
 First of all, download and save the latest version of the item configuration:
 
 ```sh
-miactl marketplace get ITEM_ID > myMarketplaceItem.json
+miactl marketplace get ITEM_ID > myAwesomeService.json
 ```
 where `ITEM_ID` is an alphanumerical id of the Marketplace item. If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
 
@@ -166,7 +166,7 @@ Edit your file following the steps in the [Modifying the Marketplace Item](#enab
 once you are happy with the changes, save the file and apply it to the Marketplace:
 
 ```sh
-miactl marketplace apply -f myMarketplaceItem.json
+miactl marketplace apply -f myAwesomeService.json
 ```
 
 You will see the outcome of the operation in the command output:
@@ -193,7 +193,7 @@ Imagine you notice that the service "My Awesome Service" is no longer useful for
 You can delete an item from the Marketplace by means of the `delete` command:
 
 ```sh
-miactl marketplace apply -f myMarketplaceItem.json
+miactl marketplace apply -f myAwesomeService.json
 ```
 
 The item is then deleted from the Marketplace. 
