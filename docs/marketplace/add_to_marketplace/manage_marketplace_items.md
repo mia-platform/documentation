@@ -28,7 +28,7 @@ You need to have *Company Owner* or *Project Administrator* role at Company leve
 Imagine you are a software developer, working for the Company "Acme Corporation".
 
 You have developed a new service (for example a NodeJS service) 
-called "My Awesome Service",and you want it to be available in the Marketplace of your Company.
+called "My Awesome Service", and you want it to be available in the Marketplace of your Company.
 
 First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component). 
 Save the file in the current directory, for example as `myMarketplaceItem.json` file.
