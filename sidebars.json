@@ -1089,6 +1089,10 @@
       "type": "doc"
     },
     {
+      "id": "infrastructure/private-clusters",
+      "type": "doc"
+    },
+    {
       "type": "category",
       "collapsed": true,
       "label": "PaaS",
