@@ -188,7 +188,7 @@ You need either the *Company Owner* or *Project Administrator* role at Company l
 
 :::
 
-Imagine notice that "My Awesome Service" is not useful anymore, and you want to delete it.
+Imagine you notice that the service "My Awesome Service" is no longer useful for your Company and so you want to delete it.
 
 You can delete an item from the Marketplace by means of the `delete` command:
 
