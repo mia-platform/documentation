@@ -5,14 +5,18 @@ sidebar_label: Setup
 ---
 ## Installation
 
-`miactl` can be installed in different ways, you can choose to one that better fits your needs:
+`miactl` can be installed in different ways, you can choose the one that better fits your needs and the operating system you are using:
 
-- [Homebrew](#homebrew)
-- [Go](#go)
-- [Binary Download](#binary-download)
-- [Docker Image](#docker)
+- [Linux and MacOs](#linux-and-macos)
+  - [Homebrew](#homebrew)
+  - [Go](#go)
+  - [Binary Download](#binary-download)
+  - [Docker](#docker)
+- [Windows (with WSL)](#windows)
 
-### Homebrew
+### Linux and MacOs
+
+#### Homebrew
 
 If you have [Homebrew] installed on your system `miactl` is only a command away:
 
@@ -20,7 +24,7 @@ If you have [Homebrew] installed on your system `miactl` is only a command away:
 brew install mia-platform/tap/miactl
 ```
 
-### Go
+#### Go
 
 If you have [Golang] installed with a version >= 1.13 in your system and you have the `$GOPATH`env set, you can
 install `miactl` like this:
@@ -35,7 +39,7 @@ Or like this if the `install` command is not available
 go get -u github.com/mia-platform/miactl@0.7.0
 ```
 
-### Binary Download
+#### Binary Download
 
 You can install `miactl` with the use of `curl` or `wget` and downloading the latest packages available on GitHub
 choosing the correct platform and operating system:
@@ -62,13 +66,45 @@ chmod +x /tmp/miactl
 mv /tmp/miactl /usr/local/bin
 ```
 
-### Docker
+If the `mv` command replies with a `Permission denied`, retry it as root:
+```sh
+sudo mv /tmp/miactl /usr/local/bin
+```
+
+#### Docker
 
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
 docker run ghr.io/mia-platform/miactl@0.7.0 miactl
 ```
+
+### Windows
+
+`miactl` is not directly compatible with Windows, even if you have Go installed: 
+compilation on this OS is not possible due to current technical restrictions.
+
+However, it is still possible to use `miactl` with Windows Subsystem for Linux (WSL), as explained here below.
+
+#### Installation of WSL
+
+If you don't have WSL on your system, follow the [official guide] to get it.
+
+Once WSL is installed, to open a Linux bash terminal, press Start+R, enter `bash` in the text box and press OK.
+
+#### Install `miactl`
+
+You can now install miactl with any of the methods explained above for Linux, 
+we suggest the [binary installation](#binary-download) since it's the most straightforward.
+
+#### Setup a service account
+
+Due to some technical restriction, it is not possible to login with a browser when using WSL.
+For this reason, we need to [setup a service account](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication).
+
+Once you have created it, you need to use the [`miactl context auth` command](./30_commands.md#auth) to setup authentication.
+
+You are now ready to use `miactl`.
 
 ## Shell Autocompletion
 
@@ -130,3 +166,4 @@ enable the autocompletion.
 [`bash-completion`]: https://github.com/scop/bash-completion "Programmable completion functions for bash"
 [`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven
 	framework for managing your Zsh configuration"
+[official guide]: (https://learn.microsoft.com/en-us/windows/wsl/install)
