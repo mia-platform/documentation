@@ -7,7 +7,7 @@ In the Metrics card it is possible to configure in which path and how often the 
 
 ## Enable Metrics Card
 
-In order to visualize the Metrics card and be able to define a ServiceMonitor for your services you should set up the monitoring system in the [Runtime Settings](/docs/console/project-configuration/project-settings.md#runtime-settings) cards found in the Project Settings section of the Console.
+In order to visualize the Metrics card and be able to define a ServiceMonitor for your services you should set up the monitoring system in the [Runtime Settings](/console/project-configuration/project-settings.md#runtime-settings) cards found in the Project Settings section of the Console.
 
 If the section of the Console is not available you can set through the CMS, in your project settings, the `monitoring` property in the following way:
 
