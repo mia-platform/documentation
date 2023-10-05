@@ -166,6 +166,10 @@
         {
           "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
           "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/docker-registry-configuration",
+          "type": "doc"
         }
       ]
     },
@@ -951,6 +955,10 @@
             {
               "id": "getting-started/tutorials/backoffice/microfrontends",
               "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/backoffice/auth0-integration",
+              "type": "doc"
             }
           ]
         }
@@ -1383,6 +1391,10 @@
         "id": "release-notes/versions"
       },
       "items": [
+        {
+          "id": "release-notes/v11.6.3",
+          "type": "doc"
+        },
         {
           "id": "release-notes/v11.6.2",
           "type": "doc"

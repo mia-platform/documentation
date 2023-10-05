@@ -111,11 +111,11 @@ Each property described in the following paragraphs regarding the microservices 
 
 ```json
 {
-  "name": "Example",
+  "name": "Service Name",
   ...
   "resources": {
     "services": {
-      "example": {
+      "service-id": {
         "defaultEnvironmentVariables": [...],
         "defaultConfigMaps": [...],
         ...
@@ -124,6 +124,7 @@ Each property described in the following paragraphs regarding the microservices 
   }
 }
 ```
+The serviceId **must** be in `kebab-case` format.
 
 Here below are listed all the properties that you can provide for each microservice item:
   
