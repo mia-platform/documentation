@@ -192,6 +192,8 @@ Then, we are ready to save the configuration.
 After saving the configuration, we can return to the _fast-data-delivery-realtime-updater_ microservice to notice several differences: 
 some environment variables have been modified (such as the INVARIANT_TOPIC_MAP, SYSTEM_OF_RECORDS) and several new ConfigMaps have been created.
 
+![Real Time Updater Microservice](img/09-real-time-updater-microservice.png)
+
 Among these, two of them needs to be configured:
 
 - The **ER Schema**, which is a ConfigMap in JSON format that represents a classic entity-relationship model, so it is used to know how the data of different projections are connected.
