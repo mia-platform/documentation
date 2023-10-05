@@ -31,7 +31,7 @@ You have developed a new service (for example a NodeJS service)
 called "My Awesome Service", and you want it to be available in the Marketplace of your Company.
 
 First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component). 
-Save the file in the current directory, for example as `myAwesomeService.json` file.
+Save the file, for example as `myAwesomeService.json` file.
 
 The file contents will probably look like this:
 ```json
@@ -99,7 +99,7 @@ The file contents will probably look like this:
 
 Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exists and that their path is correct.
 
-To create the item on the Marketplace, simply run this command:
+To create the item on the Marketplace, open up a terminal in directory where the file `myAwesomeService.json` is and simply run this command:
 
 ```sh
 miactl marketplace apply -f myAwesomeService.json
