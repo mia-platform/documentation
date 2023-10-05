@@ -103,10 +103,13 @@ The _Pull_ approach involves an agent installed on k8s instead; the agent period
 
 # Pull instead of push
 The _Pull_ strategy can be implemented in different ways and with different tools. In Mia-Platform we suggest the following ones:
-* [__ArgoCD__](https://argo-cd.readthedocs.io/en/stable/);
 * [__GitLab Agent__](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html).
+* [__ArgoCD__](https://argo-cd.readthedocs.io/en/stable/);
+* [__FluxCD__](https://fluxcd.io/).
 
-## ArgoCD
+:::info
+__ArgoCD__ and __FluxCD__ are sample tools for GitOps delivery and, if you want more information, read the official documentation linked above.
+:::
 
 ## GitLab Agent
 Gitlab provides a Kubernetes Agent to perform advanced deploy on a Kubernetes cluster.
