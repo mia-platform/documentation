@@ -29,7 +29,7 @@ We also recommend to complete the [Backoffice Tutorial Basics](/getting-started/
 
 ## Create the necessary Microservices
 
-Create the [Secure API Gateway](/runtime_suite_applications/secure-apigateway/overview.md) application:
+Create the [Secure API Gateway](/runtime_suite_applications/secure-api-gateway/10_overview.md) application:
 1. Go to Applications and click on the `Create New Application` button.
 2. Search for `Secure ApiGateway` and click on the card.
 ![Secure ApiGateway Application Marketplace](img/auth0_01-secure-api-gateway-application.png)
@@ -64,13 +64,13 @@ All the microservices that you have added in the previous step are Mia-Platform 
 
 ### API Gateway
 
-You can follow this page: [API Gateway Configuration](/runtime_suite_applications/secure-apigateway/configuration.md#api-gateway).
+You can follow this page: [API Gateway Configuration](/runtime_suite_applications/secure-api-gateway/20_configuration.md#api-gateway).
 
 When the configuration is completed, you should have added to the *server-extension.conf* file the advanced configuration for the `api-gateway` to redirect calls that need authentication to the Login page.
 
 ### Authorization Service
 
-You can follow this page: [Authorization Service Configuration](/runtime_suite_applications/secure-apigateway/configuration.md#authorization-service).
+You can follow this page: [Authorization Service Configuration](/runtime_suite_applications/secure-api-gateway/20_configuration.md#authorization-service).
 
 When the process is completed, you should have added the `authorization-service` configuration inside the *auth.json* file.
 
@@ -389,7 +389,7 @@ First of all, you need to create the pages to handle **users** and `user-manager
 
 ### Link the pages with the CRUD collections
 
-Now you can link the Backoffice pages with the CRUD collections. 
+Now you can link the Backoffice pages with the CRUD collections.
 For `users`:
 1. Select the configuration for the new `users` just created.
 2. Click on `Advanced` tab.
@@ -699,7 +699,7 @@ Then you can add the newly created pages to the Backoffice menu:
 
 ### Define the ACLs
 
-With the **ACL Expressions** you've just set, users outside `groups.admin` will see these pages in the left-side menu of the Backoffice, but will receive a 404 status code page. 
+With the **ACL Expressions** you've just set, users outside `groups.admin` will see these pages in the left-side menu of the Backoffice, but will receive a 404 status code page.
 In order to hide them the newly created pages, you need to add the ACLs in your advanced configuration:
 1. Click on `Advanced` tab.
 2. Add this expression `"aclExpression": "groups.admin"` under `layout > content > properties > menuItems` as property of `auth0-users` and `ums-configurations` applications.
