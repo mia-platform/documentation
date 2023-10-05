@@ -97,7 +97,7 @@ The file contents will probably look like this:
 }
 ```
 
-Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exists and that their path is correct.
+Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exist and that their path is correct.
 
 To create the item on the Marketplace, open up a terminal in directory where the file `myAwesomeService.json` is and simply run this command:
 
@@ -107,7 +107,7 @@ miactl marketplace apply -f myAwesomeService.json
 
 This command will create the Marketplace item and upload the images along with it.
 
-A message will confirm the operation, returning some information:
+A message will confirm the operation, returning some information as shown here below:
 ```
 1 of 1 items have been successfully applied:
 
@@ -116,7 +116,7 @@ A message will confirm the operation, returning some information:
   65368hf0c91d871a87afbcbf  My Awesome Service   Inserted  
 ```
 
-After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of the item use the `get` command: 
+After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of the item, use the `get` command: 
 ```sh
 miactl marketplace get 65368hf0c91d871a87afbcbf > myAwesomeService.json
 ```
@@ -128,7 +128,7 @@ Make sure to always download a new copy afterwards to keep your local copy up to
 
 :::
 
-From now on, the service "My Awesome Service" will be visible in the Marketplace section of the Console.
+From now on, the service "My Awesome Service" will be visible as a clickable card inside the Internal Company Marketplace section of the Console.
 
 ![awesome service](img/awesome_service.png)
 
@@ -153,7 +153,8 @@ First of all, download and save the latest version of the item configuration:
 ```sh
 miactl marketplace get ITEM_ID > myAwesomeService.json
 ```
-where `ITEM_ID` is an alphanumerical id of the Marketplace item. If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
+where `ITEM_ID` is an alphanumerical id of the Marketplace item.  
+If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
 
 :::tip
 
@@ -161,7 +162,7 @@ It is suggested to always download the Marketplace item just before updating it 
 
 :::
 
-Edit your file following the steps in the [Modifying the Marketplace Item](#enabling-the-visibility-to-all-companies); 
+Edit your file following the steps described in the [Modifying the Marketplace Item](#enabling-the-visibility-to-all-companies); 
 once you are happy with the changes, save the file and apply it to the Marketplace:
 
 ```sh
