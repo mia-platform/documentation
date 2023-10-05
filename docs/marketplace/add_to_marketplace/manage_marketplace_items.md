@@ -50,7 +50,7 @@ The file contents will probably look like this:
   "resources": {
     "services": {
       "api-portal": {
-        "componentId": "api-portal",
+        "componentId": "my-awesome-service",
         "containerPorts": [
           {
             "from": 80,
@@ -89,11 +89,11 @@ The file contents will probably look like this:
       }
     }
   },
-  "supportedBy": "Mia-Platform",
+  "supportedBy": "Acme Corporation",
   "supportedByImage": {
     "localPath": "./acmeCorporation.png"
   },
-  "tenantId": "team-rocket-test",
+  "tenantId": "acme-corporation",
   "type": "plugin"
 }
 ```
