@@ -45,7 +45,7 @@ The file contents will probably look like this:
     "localPath": "./awesomeService.png"
   },
   "name": "My Awesome Service",
-  "publishOnMiaDocumentation": true,
+  "itemId": "my-awesome-service",
   "repositoryUrl": "https://git.example.org/awesome-service",
   "resources": {
     "services": {
@@ -89,7 +89,6 @@ The file contents will probably look like this:
       }
     }
   },
-  "supportedBy": "Acme Corporation",
   "supportedByImage": {
     "localPath": "./acmeCorporation.png"
   },
