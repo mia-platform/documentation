@@ -4,6 +4,10 @@ title: Manage Environment Variables with Azure Key Vault
 sidebar_label: Manage Environment Variables with Azure Key Vault
 ---
 
+:::info
+This feature is supported from version vX.Y.Z upward
+:::
+
 [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault), serves as a valuable solution for securely storing and managing a wide range of sensitive information. This includes not only fundamental key-value pairs but also digital certificates and private keys. It ensures the continuous availability of these resources for our deployments and applications, enhancing security and accessibility.
 
 :::warning
