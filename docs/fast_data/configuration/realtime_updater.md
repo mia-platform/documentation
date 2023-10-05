@@ -56,6 +56,19 @@ Here below, instead, all the configurations the service accepts are explained.
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
 | USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
 
+### Multiple services to the same System of Records
+
+From version `11.7.0` of the Console it is possible to have a single System of Records attached to multiple Real-Time Updater. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
+
+:::caution
+Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will
+actually update those projections.
+:::
+
+:::info
+One projection can be evaluated by only one service.
+:::
+
 ### Usage of the Low Code
 
 The Low Code features of the Real-Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service Config Maps .
