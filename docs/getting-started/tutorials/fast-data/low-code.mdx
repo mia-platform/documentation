@@ -29,16 +29,42 @@ To do that, in the console, you will:
 Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](/fast_data/architecture.md), including [Projections](/fast_data/configuration/projections.md), [Single View](/fast_data/configuration/single_views.md), and Kafka (including producers and consumers).
 For the technical part of this tutorial, an up-and-running Kafka cluster is required.
 
-## Projections
+## System of Records
 
-The Projection is an architectural object that is responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
-We will use this projection to have an easy way to read a 1:1 copy of the data from the source systems, and later it will be used to aggregate the data from the source systems, using the Single View Creator.
+A System of Records is a container of _Projections_, which is are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
+We will use this projections to have an easy way to read a 1:1 copy of the data from the source systems, and later it will be used to aggregate the data from the source systems, using the Single View Creator.
 
-The architectural component responsible for creating and updating the projection is the Real Time Updater.
+The architectural component responsible for creating and updating the projection is the _Real-Time Updater_ service.
 To simplify, this microservice is a Kafka consumer that will consume the data from the source systems and will update the projection.
 
 In this tutorial, we can imagine a simple delivery platform where the data are the registry and the order of the customers.
-So, we will create two projections: one for the registry and one for the order.
+So, we will create a single System of Records with two projections (one for the registry and one for the order) attached to a single Real-Time Updater.
+
+### Microservice Real-Time Updater
+
+The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Records we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
+"Create a Microservice" button on the top-left corner to open the Marketplace and select our microservice.
+
+We can find it under the name of *Real-Time Updater*.
+
+![Create Order Projection](img/07-create-RTU.png)
+
+After selecting the _Real-Time Updater_ service, the only thing you need to choose is a unique name (we suggest _fast-data-delivery-realtime-updater_) and, eventually the description. Once clicked on the "Create" button, the service
+will be created and we will be redirected to the service page. Now we need to configure all the parameters of the microservice. Here is an example of the fields that we need to configure:
+
+- **PROJECTIONS_DATABASE_NAME**: the name of the database that will be used to store the data of the Projections
+- **PROJECTIONS_CHANGES_COLLECTION_NAME**: the name of the collection that will be used to store the changes of the Projections (we suggest _fd-pc-delivery_)
+- **KAFKA_BROKERS**: the list of the kafka brokers that will be used to send the data to the Projections
+- **KAFKA_GROUP_ID**: the group id that will be used to consume the data from the source systems
+- **KAFKA_SASL_USERNAME**: the username that will be used to login to the kafka brokers
+- **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers
+- **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
+
+:::info
+The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater.md).
+:::
+
+### Create the System of Records
 
 Before starting to create projections, we need to create the System of Records (_SoR_) representing the source system we want to connect to.
 
@@ -139,35 +165,28 @@ These are the topics defined in Kafka where we expect to receive messages relate
 - **demo.integration.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in the _integration_ environment
 - **demo.production.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in the _production_ environment
 
-### Microservice Realtime Updater Configuration
+### Attach the Real-Time Updater to the System of Records
 
-Now that we have one System of Records with two Projections, we [save the configuration](/getting-started/handbooks/project/usage.md#save-changes).
-During the save, the Mia-Platform Console will create a new microservice, called _Real-Time Updater_ that will consume the data from the source systems, and that will update the configured Projections.
-This service will automatically be named _fast-data-delivery-realtime-updater_ and it can be found in the "Microservices" section.
+The last step to finish the configuration of the System of Records is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
+have been attached yet and suggest you to select one from the list of compatible services.
 
-![Real Time Updater Microservice](img/09-real-time-updater-microservice.png)
+![Attach Real-Time Updater](img/08-attach-RTU.png)
 
-Now we need to configure all the parameters of the microservice. Here is an example of the fields that we need to configure:
+After choosing the _fast-data-delivery-realtime-updater_ and clicking to "Attach service" a new page will inform you that the service have been attached successfully. You can enter inside the service page (by clicking the arrow button on
+the right side of the table) to finalize the configuration by selecting the projections that will be managed by the Real-Time Updater (in our case, both _Registry_ and _Order_ projection).
 
-- **PROJECTIONS_DATABASE_NAME**: the name of the database that will be used to store the data of the Projections
-- **PROJECTIONS_CHANGES_COLLECTION_NAME**: the name of the collection that will be used to store the changes of the Projections (we suggest _fd-pc-delivery_)
-- **KAFKA_BROKERS**: the list of the kafka brokers that will be used to send the data to the Projections
-- **KAFKA_GROUP_ID**: the group id that will be used to consume the data from the source systems
-- **KAFKA_SASL_USERNAME**: the username that will be used to login to the kafka brokers
-- **KAFKA_SASL_PASSWORD**: the password that will be used to login to the kafka brokers
-- **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
+Then, we are ready to save the configuration.
 
-:::info
-The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater.md).
-:::
+### Configure Real-Time Updater ConfigMaps
 
-#### Microservice ConfigMaps
+After saving the configuration, we can return to the _delivery-realtime-updater_ microservice to notice several differences: some environment variables have been modified (such as the INVARIANT_TOPIC_MAP, SYSTEM_OF_RECORDS) and
+several new ConfigMaps have been created.
 
-After the basic configuration of the microservice, we need to configure two ConfigMaps:
+Among these, two of them needs to be configured:
 
-- The **ER Schema** is a ConfigMap in JSON format that represents a classic entity-relationship model, so it is used to know how the data of different projections are connected.
-- The **Projection Changes Schema** is a ConfigMap in JSON format that represents the path that goes from one projection to another and will be used to find the Single View key
-(in this tutorial it will be registry_id) that needs to be updated.
+- The **ER Schema**, which is a ConfigMap in JSON format that represents a classic entity-relationship model, so it is used to know how the data of different projections are connected.
+- The **Projection Changes Schema**, which is a ConfigMap in JSON format that represents the path that goes from one projection to another and will be used to find the Single View key
+(in this tutorial it will be _registry_id_) that needs to be updated.
 
 The goal of these configurations is to create a relationship from the _order_ Projection to the _registry_ Projection. So whenever an Order or a Registry is updated, we will store it in a dedicated
 collection in MongoDB that a Single View associated with that Registry has to be re-aggregated (so, updated with the latest values of the Projections).
@@ -221,7 +240,7 @@ go to the "ConfigMaps & Secret" and select the "er-schema" tab).
 </TabItem>
 
 <TabItem value="low-code">
-To change the ER Schema Config Map, move to the page of the Real-Time Updater and click on the _ConfigMaps & Secrets_ tab. After that, select the _er-schema_ ConfigMap.
+To change the ER Schema Config Map, move to the page of the Real-Time Updater and click on the <i>ConfigMaps & Secrets</i> tab. After that, select the <i>er-schema</i> ConfigMap.
 Its content must be replaced with the following:
 
 ```json {4,6,10} showLineNumbers
