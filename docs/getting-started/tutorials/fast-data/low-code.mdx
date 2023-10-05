@@ -42,6 +42,12 @@ So, we will create a single System of Records with two projections (one for the 
 
 ### Microservice Real-Time Updater
 
+:::info
+From version `11.7.0` of the Console, the _Real-Time Updater_ service must be created manually with the guide explained in this paragraph. 
+
+If you're using an older version, you can skip this paragraph since the service to be automatically created when saving the configuration after creating the System of Records.
+:::
+
 The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Records we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
 "Create a Microservice" button on the top-left corner to open the Marketplace and select our microservice.
 
@@ -167,6 +173,10 @@ These are the topics defined in Kafka where we expect to receive messages relate
 
 ### Attach the Real-Time Updater to the System of Records
 
+:::info
+Attaching a service to a System of Records is required only with version `11.7.0` of the Console or above. Otherwise, the service will be automatically created and attached to the System
+:::
+
 The last step to finish the configuration of the System of Records is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
 have been attached yet and suggest you to select one from the list of compatible services.
 
@@ -179,8 +189,8 @@ Then, we are ready to save the configuration.
 
 ### Configure Real-Time Updater ConfigMaps
 
-After saving the configuration, we can return to the _delivery-realtime-updater_ microservice to notice several differences: some environment variables have been modified (such as the INVARIANT_TOPIC_MAP, SYSTEM_OF_RECORDS) and
-several new ConfigMaps have been created.
+After saving the configuration, we can return to the _fast-data-delivery-realtime-updater_ microservice to notice several differences: 
+some environment variables have been modified (such as the INVARIANT_TOPIC_MAP, SYSTEM_OF_RECORDS) and several new ConfigMaps have been created.
 
 Among these, two of them needs to be configured:
 
