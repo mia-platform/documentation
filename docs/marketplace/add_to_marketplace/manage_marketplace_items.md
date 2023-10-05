@@ -111,7 +111,7 @@ A message will confirm the operation, returning some information as shown here b
 ```
 1 of 1 items have been successfully applied:
 
-  ITEM ID                   NAME                 STATUS   
+  ID                  NAME                 STATUS   
 
   65368hf0c91d871a87afbcbf  My Awesome Service   Inserted  
 ```
