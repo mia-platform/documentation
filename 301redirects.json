@@ -900,5 +900,17 @@
   "/docs/runtime_suite_applications/secure-apigateway/changelog": {
     "destination": "/docs/runtime_suite_applications/secure-api-gateway/changelog",
     "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite/identification-router/overview":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/overview",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/changelog":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/changelog",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/configuration":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/configuration",
+    "addedOn": "2023-09-27"
   }
 }
