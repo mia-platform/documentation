@@ -951,6 +951,10 @@
             {
               "id": "getting-started/tutorials/backoffice/microfrontends",
               "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/backoffice/auth0-integration",
+              "type": "doc"
             }
           ]
         }
