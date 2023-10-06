@@ -43,7 +43,7 @@ Here below, instead, all the configurations the service accepts are explained.
 | KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the 
 [Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic |
 | KAFKA_ADAPTER_FOLDER | - | defines the path to the Kafka adapter folder containing the custom message adapter, if required | - |
-| GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the realtime updater should send a message of update every time it writes the projection to Mongo. | false |
+| GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. | false |
 | KAFKA_PROJECTION_UPDATES_FOLDER | - | path to the folder that contains the file ```kafkaProjectionUpdates.json```, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above). | - |
 | COMMIT_MESSAGE_LOGGING_INTERVAL | - | specify the interval in ms of logging the info that messages have been committed. | 3000 |
 | KAFKA_CONSUMER_MAX_WAIT_TIME | - | defines the maximum waiting time of Kafka Consumer for new data in batch. | 500 |

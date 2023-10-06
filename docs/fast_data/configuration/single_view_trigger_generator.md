@@ -94,7 +94,7 @@ Mind that only one producer and consumer must be configured at a time so the ser
 
 **Consumers**
 
-At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real Time Updater. To configure it you must follow the JsonSchema specification below.
+At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification below.
 
 <details><summary>Kafka consumer config JsonSchema</summary>
 <p>
@@ -183,7 +183,7 @@ At the moment you can only configure your consumer with kafka which will read `p
 **Producers**
 
 For the producers you can choose between two options: Kafka or MongoDB ([`sv-trigger` vs. `pc`](/fast_data/single_view_trigger_generator.md#sv-trigger-vs-pc)).
-With MongoDB you will save Projection Changes on the DB just like the Real Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
+With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
 
 <details><summary>MongoDB producer config JsonSchema</summary>
 <p>

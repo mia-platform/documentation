@@ -123,7 +123,7 @@ For the scope of this tutorial, we ask you to add the following fields:
 #### Ingestion Topics
 
 At the bottom of the same page, we can also see the Kafka topics for each environment. There are two types of topics (_Ingestion topics_ and _PR Update topics_)
-but within the scope of this tutorial, only the ingestion topics are considered. The Kafka Ingestion topics will be used by the Real Time Updater
+but within the scope of this tutorial, only the ingestion topics are considered. The Kafka Ingestion topics will be used by the Real-Time Updater
 to receive the data from the Source Systems so that the Projections will be updated, but we will discuss this later.
 ![Create System of Records](img/05b-page-overview-projection-kafka.png)
 
@@ -192,7 +192,7 @@ Then, we are ready to save the configuration.
 After saving the configuration, we can return to the _fast-data-delivery-realtime-updater_ microservice to notice several differences: 
 some environment variables have been modified (such as the INVARIANT_TOPIC_MAP, SYSTEM_OF_RECORDS) and several new ConfigMaps have been created.
 
-![Real Time Updater Microservice](img/09-real-time-updater-microservice.png)
+![Real-Time Updater Microservice](img/09-real-time-updater-microservice.png)
 
 Among these, two of them needs to be configured:
 

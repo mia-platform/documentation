@@ -150,7 +150,7 @@ For example, in this folder:
                       |-- myFn2.js
 ```
 
-The file included in Real Time Updater service will be `myFn1.js` and `myFn2.js`.
+The file included in Real-Time Updater service will be `myFn1.js` and `myFn2.js`.
 
 The folder `fast-data-files` must be created at the root level of the configuration repository of your project.
 
