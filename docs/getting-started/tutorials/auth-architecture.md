@@ -68,9 +68,8 @@ In this case, you need to:
       ```
 
 
-## Scenario 2: Add an external Identity Provider to your project
+## Scenario 2: Integrate an external Identity Provider to your project
 In order to provide a higher security level, you may need to protect your endpoints using an external Identity Provider (IDP) such as Okta, Keycloak, etc.
-In this case, you can protect your endpoints with the login of your external IDP. You can also specify the groups of users that are authorized to access your endpoints.
 
 ![Scenario2](./img/auth-scenario2.png)
 
@@ -81,18 +80,18 @@ The involved microservice of the flow at runtime are:
 4. The microservice connected to the endpoint 
 
 The picture above illustrates the auth flow at runtime:
-1. The client authenticates on your external IDP: they will obtain a valid token to cal the endpoints of your project
-2. The client calls the endpoint of your project, sending the valid token as well. Usually this token is placed in the `Authorization` header but it can be placed in the header or cookie.
+1. The client, be it a web application or backend software, need to implement the authentication flow required by the IDP to obtain a valid token. With this token, the client will be able to call the endpoints of your project.
+2. The client calls the endpoint of your project, including the valid token in the request. Usually this token is placed in the `Authorization` header but it can be placed in other headers or cookies.
 3. The API Gateway calls the Authorization Service which is in charge to verify if the user who made the reqeust is authorized to access to the requested endpoint.
 4. To do so, the Authorization Service requests to the Authentication Service to resolve the token
 5. The Authentication Service resolves the token contacting the external IDP and returns the user payload to the Authorization Service that can now check if the user belongs to the authorized groups 
 6. If the verification performed by the Authentication Service is successful, then the API Gateway forwards the API call the right microservice of the project. Note that the target microservice will receive the follwoing additional headers that could be useful for their business logic:
   
-  | Header            | Description                                                                                |
-  | ------------------| ------------------------------------------------------------------------------------------ |
-  | Miausergroups     | comma separated list of the groups the user belongs to                                     |
-  | Miauserid         | the ID of the user                                                                         |
-  | Miauserproperties | stringified JSON object containing the user payload returned by the Authentication Service |
+  | Header              | Description                                                                                |
+  | --------------------| ------------------------------------------------------------------------------------------ |
+  | `Miausergroups`     | comma separated list of the groups the user belongs to                                     |
+  | `Miauserid`         | the ID of the user                                                                         |
+  | `Miauserproperties` | stringified JSON object containing the user payload returned by the Authentication Service |
 
 
 
@@ -120,13 +119,13 @@ In order to implement the flow depicted above, you can perform the following ste
     - Click on `Create`
     - Update the values of the following enviornment variables:
 
-      | Variable                       | Value                                                                       |
-      | -------------------------------| --------------------------------------------------------------------------- |
-      | USERINFO_URL                   | http://authentication-service/userinfo                                      |
-      | CUSTOM_USER_ID_KEY             | userID                                                                      |
-      | HEADERS_TO_PROXY               | <header of the client's request containing the token (e.g. `Authorization`) |
-      | AUTHORIZATION_HEADERS_TO_PROXY | <header of the client's request containing the token (e.g. `Authorization`) |
-      | USER_PROPERTIES_TO_PROXY       | userID,groups                                                               |
+      | Variable                       | Value                                                                        |
+      | -------------------------------| ---------------------------------------------------------------------------  |
+      | USERINFO_URL                   | http://authentication-service/userinfo                                       |
+      | CUSTOM_USER_ID_KEY             | userID                                                                       |
+      | HEADERS_TO_PROXY               | <header of the client's request containing the token> (e.g. `Authorization`) |
+      | AUTHORIZATION_HEADERS_TO_PROXY | <header of the client's request containing the token> (e.g. `Authorization`) |
+      | USER_PROPERTIES_TO_PROXY       | userID,groups                                                                |
 
 3. Secure the endpoint
     - Select the endpoint you want to secure in the `Endpoints` section
@@ -142,9 +141,29 @@ In order to implement the flow depicted above, you can perform the following ste
       :::
 
 
+## Scenario 3: Manage user groups within your project
+This scenario is a slight modification of the previous-one: we keep your external Identity Provider (IDP) but we manage the user groups within your project using a dedicated CRUD collection.
 
-## Scenario 3: Integrate your existing Identity Provider
-I already have IDP,
+To do so, we need to introduce in the architecture the [`Authentication Service`](/runtime_suite/authentication-service/10_overview.md) plugin. Note that, this time, it is a Mia-Platform plugin rather than a custom microservice as in Scenario 2. This imposes a limitations on the presented architecture: your external Identity Provider must be supported by the Authentication Service plugin (see [the list of supported IDPs](/runtime_suite/authentication-service/10_overview.md)) otherwise this scenario is not applicable.
+
+The involved microservices of the flow at runtime are:
+1. `API Gateway`: Mia-Platform plugin available in [Nginix](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)
+2. [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md): Mia-Platform plugin
+3. [`Authentication Service`](/runtime_suite/authentication-service/10_overview.md): Mia-Platform plugin
+4. [`CRUD Service`](/runtime_suite/crud-service/10_overview_and_usage.md): Mia-Platform plugin
+5. Your web app and eventually its backend
+
+While in Scenario 2 the client gets the token directily on the IDP, this time the process of obtaining the token goes through the Authentication Service. The complete runtime flow is depicted below:
+ 
+![Scenario3](./img/auth-scenario3.png)
+
+Note that the token is generated by the Authentication Service after merging the user info obtained from the IDP and the ones saved on a dedicated CRUD collection. In particular, the only user attributes that are inherited from the IDP are id, name and email; all the other attributes (`groups` included) must be added on the dedicated CRUD collection.  
+
+Once, your web app has obtained the token following the above flow, the authentication and authorization of the API calls made with that token is similar to Scenario 2 but not identical. 
+
+![Scenario3a](./img/auth-scenario3a.png)
+
+Indeed, as you can notice from the picture above, the token resolution is performed directly from the Authentication Service rather than the Identity Provider.  
 
 ### Tutorial steps
 
