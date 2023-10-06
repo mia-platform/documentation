@@ -6,19 +6,39 @@ sidebar_label: Overview
 This is a plugin made for converting kafka messages into firebase push. It takes as input a kafka message composed as following:
 
 ```json
-{ 
-    "device_tokens" : ["token1", "token2"],         // The list of firebase devices token to which send the push
-    "topics": ["topic1", "topic2"],                 // The list of firebase topics to which send the push
-    "message_id": "messageId",
-    "push_notification": {                          // The information of the push
-        "title": "title",
-        "subtitle": "subtitle",
-        "message": "message"
+{
+  "device_tokens": [
+    "token1",
+    "token2"
+  ],
+  // The list of firebase devices token to which send the push
+  "topics": [
+    "topic1",
+    "topic2"
+  ],
+  // The list of firebase topics to which send the push
+  "message_id": "messageId",
+  "push_notification": {
+    // The information of the push
+    "title": "title",
+    "subtitle": "subtitle",
+    "message": "message",
+    "android": {
+      // Android specific configuration 
+      "priority": "normal"
+    },
+    "apns": {
+      // IOs specific configuration 
+      "headers": {
+        "apns-priority": 5
+      }
     }
-    "payload": {                                    // The additional information to send to the application
-        "description": "any description"
-    }
-
+  },
+  "payload": {
+    // The additional information to send to the application
+    "description": "any description"
+  }
+}
 ```
 
 The `message_id` and `push_notification` with its inner values are mandatory. The`device_tokens` and `topics` can be both valorized,
