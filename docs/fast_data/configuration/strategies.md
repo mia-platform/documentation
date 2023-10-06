@@ -171,7 +171,7 @@ In your custom files (e.g. `fast-data-files`) you can import only the node modul
 This information are valid only when using a [Real-Time Updater](/fast_data/configuration/realtime_updater.md) with **Projection Changes**.
 :::
 
-Each strategy is associated with a **type**, which usually (and by default) corresponds to the name of the Single View for which it is configured. When using a Real-Time Updated with Projection Changes, this type should match the one declared in the `TYPE` environment variable of the Single View Creator(s) associated with the Single View. The reason is that, behind the hood, the strategy type is written in the Projection Changes record by the Real-Time Updater and the Single View Creators will discern which records to process based on it.
+Each strategy is associated with a **type**, which usually (and by default) corresponds to the name of the Single View for which it is configured. When using a Real-Time Updater with Projection Changes, this type should match the one declared in the `TYPE` environment variable of the Single View Creator(s) associated with the Single View. The reason is that, behind the hood, the strategy type is written in the Projection Changes record by the Real-Time Updater and the Single View Creators will discern which records to process based on it.
 
 There may be scenarios in which you want two Single View Creators associated with the same Single View to process Projection Changes records with different types. This may happen, for example, to isolate a critical flow in which one projection concurring in a Single View is updated much more often than the others needing a dedicated set of services to ensure maximum efficiency.
 
