@@ -25,9 +25,9 @@ The Console Super User role, instead, has permission to manage all Marketplace i
 
 The choice between a private and public Marketplace involves benefits on both sides that should be carefully analyzed before making a decision.
 
-Creating an item within the private Marketplace is undoubtedly the better choice when you want to make something highly specialized available for the specific use cases of your Company. If the item cannot be generalized and would have little value for other Companies, then a private Marketplace is the way to go. Additionally, in this case, creating items within the private Marketplace allows for complete ownership in managing your plugin, resulting in a faster maintenance process.
+Creating an item within the private Marketplace is undoubtedly the better choice when you want to make something highly specialized available for the specific use cases of your Company. If the item cannot be generalized and would have little value for other Companies, then a private Marketplace is the way to go. Additionally, in this case, creating items within the private Marketplace allows for complete ownership in managing them, resulting in a faster maintenance process.
 
-On the other hand, publishing your items in the private Marketplace leads to a loss of corporate visibility that you would otherwise have by making your plugin publicly available in the Marketplace. It also means missing out on the opportunity to receive reviews from the Mia-Platform team and potential external contributions that can help your product grow and improve more rapidly.
+On the other hand, publishing your items in the private Marketplace leads to a loss of corporate visibility that you would otherwise have by making your item publicly available in the Marketplace. It also means missing out on the opportunity to receive reviews from the Mia-Platform team and potential external contributions that can help your product grow and improve more rapidly.
 
 
 :::info
