@@ -7,8 +7,8 @@ This section explores a summary of the `miactl` commands and their functionaliti
 
 :::tip
 
-You can also display a complete help message on the command line by using the `--help` flag postponed to any `miactl` command or subcommand.
-
+You can also display a complete help message on the command line by using the `--help` flag postponed to any `miactl`
+command or subcommand.  
 This way you can also be sure of the available features of the `miactl` version you currently have installed.
 
 :::
@@ -214,95 +214,15 @@ Available flags for the command:
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 
-### pod list
+### list RESOURCE-TYPE
 
-The `runtime pod list` subcommand allows you to see all pods that are running for the environment associated to a
-given project.
-
-Usage:
-
-```sh
-miactl runtime pod list ENVIRONMENT [flags]
-```
-
-Available flags for the command:
-
-- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--certificate-authority`, to provide the path to a custom CA certificate
-- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
-- `--context`, to specify a different context from the currently selected one
-- `--company-id`, to set the ID of the desired Company
-- `--project-id`, to set the ID of the desired Project
-
-### cronjob list
-
-The `runtime cronjob list` subcommand allows you to see all cronjobs that are running for the environment associated
-to a given Project.
+The `runtime list` subcommand allows you to list all resources of a specific type that are running for the
+environment associated to a given Project.
 
 Usage:
 
 ```sh
-miactl runtime cronjob list ENVIRONMENT [flags]
-```
-
-Available flags for the command:
-
-- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--certificate-authority`, to provide the path to a custom CA certificate
-- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
-- `--context`, to specify a different context from the currently selected one
-- `--company-id`, to set the ID of the desired Company
-- `--project-id`, to set the ID of the desired Project
-
-### job list
-
-The `runtime job list` subcommand allows you to see all jobs that are running for the environment associated
-to a given project.
-
-Usage:
-
-```sh
-miactl runtime job list ENVIRONMENT [flags]
-```
-
-Available flags for the command:
-
-- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--certificate-authority`, to provide the path to a custom CA certificate
-- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
-- `--context`, to specify a different context from the currently selected one
-- `--company-id`, to set the ID of the desired Company
-- `--project-id`, to set the ID of the desired Project
-
-### deployment list
-
-The `runtime deployment list` subcommand allows you to see all deployments that are running for the environment
-associated to a given Project.
-
-Usage:
-
-```sh
-miactl runtime deployment list ENVIRONMENT [flags]
-```
-
-Available flags for the command:
-
-- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--certificate-authority`, to provide the path to a custom CA certificate
-- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
-- `--context`, to specify a different context from the currently selected one
-- `--company-id`, to set the ID of the desired Company
-- `--project-id`, to set the ID of the desired Project
-
-### service list
-
-The `runtime service list` subcommand allows you to see all services that are running for the environment associated
-to a given Project.
-
-Usage:
-
-```sh
-miactl runtime service list ENVIRONMENT [flags]
+miactl runtime list RESOURCE-TYPE ENVIRONMENT [flags]
 ```
 
 Available flags for the command:
@@ -327,6 +247,26 @@ miactl runtime events ENVIRONMENT RESOURCE-NAME [flags]
 
 Available flags for the command:
 
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+
+### create job
+
+The `runtime create job` subcommand allows you to manually create a job from a cronjob .
+
+Usage:
+
+```sh
+miactl runtime create job ENVIRONMENT [flags]
+```
+
+Available flags for the command:
+
+- `--from`, to set the cronjob name from which the job will be created
 - `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
 - `--certificate-authority`, to provide the path to a custom CA certificate
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
