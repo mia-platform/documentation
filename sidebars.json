@@ -1227,9 +1227,9 @@
       "label": "Make your Marketplace items available to others"
     },
     {
-      "id": "marketplace/add_to_marketplace/marketplace_items_visibility_conversion",
+      "id": "marketplace/add_to_marketplace/change_marketplace_item_visibility",
       "type": "doc",
-      "label": "How to change a Marketplace item's visibility from private to public and vice versa"
+      "label": "Change Marketplace Items Visibility"
     },
     {
       "collapsed": true,

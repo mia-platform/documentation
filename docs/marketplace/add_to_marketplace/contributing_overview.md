@@ -35,7 +35,7 @@ If you want to contribute to the **Mia-Platform Marketplace** by making your Mar
 :::
 
 :::info
-To learn how to migrate an item from the public to private Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/marketplace_item_visibility_conversion.md).
+To learn how to migrate an item from the public to private Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
 :::
 
 ## Marketplace components
