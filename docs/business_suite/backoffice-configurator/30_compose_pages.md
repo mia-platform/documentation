@@ -57,18 +57,18 @@ A table page built to be connected with another page that provides further detai
 ![Master table template](img/compose-page_templates_master-table.png)
 
 The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details
-page configuring the table [`customActions` property](../../business_suite/backoffice/components/data_visualization#configuring-actions-via-customactions).
+page configuring the table [`customActions` property](/business_suite/backoffice/60_components/510_table.md#configuring-actions-via-customactions).
 
 ### Details page
 
-A page built to display a detailed view of data (e.g., a single row of a table) through [card components](../../business_suite/backoffice/components/data_visualization#bk-card).
+A page built to display a detailed view of data (e.g., a single row of a table) through [card components](/business_suite/backoffice/60_components/140_card.md).
 
 ![Details page template](img/compose-page_templates_details-page.png)
 
 The template should be linked to a data source implementing a [CRUD service](../../runtime_suite/crud-service/overview_and_usage)-compatible
 interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_
 section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be
-[properly configured](../../business_suite/backoffice/components/adapters#bk-url-parameters) to
+[properly configured](/business_suite/backoffice/60_components/540_url_parameters_adapter.md) to
 query data correctly.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
@@ -99,7 +99,7 @@ section.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the
 [dedicated section](#shared-properties). Pre-configured schema already has the required fields by the
-[calendar component](../../business_suite/backoffice/components/data_visualization#bk-calendar).
+[calendar component](/business_suite/backoffice/60_components/130_calendar.md).
 
 ### Picture gallery
 
@@ -173,7 +173,7 @@ Some shared property types are well known by the Configurator, and a no-code edi
 #### Back Kit data schema
 
 Properties of type `back-kit/data-schema` are a core concept of the
-[back-kit web-components library](../../business_suite/backoffice/page_layout#data-schema)
+[back-kit web-components library](/business_suite/backoffice/30_page_layout.md#data-schema)
 and can be configured through a graphical interface.
 
 You can add new fields to the schema, choose and edit their name, and set some relevant properties for each of them.
@@ -182,7 +182,7 @@ You can add new fields to the schema, choose and edit their name, and set some r
 
 Moreover, data schemas can be **automatically generated** from CRUD collections. This can be done in specific components
 that are responsible for CRUD communication
-(e.g., [Curd Client](../../business_suite/backoffice/components/clients#bk-crud-client) component),
+(e.g., [Curd Client](/business_suite/backoffice/60_components/100_crud_client.md) component),
 with the _Generate Schema_ button.
 
 ![Generate schema button](img/compose-page_crud-generation-button.png)

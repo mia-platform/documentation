@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2023-09-22
+
+### Added
+
+- Component `bk-calendar` supports dynamic configuration in `additionalCreatePayload`
+- Component `bk-calendar` has `urlMask` property to retrieve data from URL
+- Component `bk-layout` supports new layout modality `leftMenu`
+- Form components support month/year navigation and selection in date fields
+
+### Fixes
+
+- Title of footer buttons in `bk-gallery` are localized
+- File upload action propagates returned object in hooks
+- Copy action supports dynamic configurations via handlebars
+- Component `bk-form-wizard` does not reset in accordion mode on fields changes
+
 ## [1.4.0] - 2023-08-28
 
 ### Fixed
@@ -155,7 +171,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `urlMask` properties of `bk-button` and `bk-url-paramters` allow separate masks for `pathname` and `search` fields of current URL
+- `urlMask` properties of `bk-button` and `bk-url-parameters` allow separate masks for `pathname` and `search` fields of current URL
 - actions of type `http` support methods `PATCH` and `PUT`
 
 ### Fixed
