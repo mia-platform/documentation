@@ -757,19 +757,12 @@
           ]
         },
         {
-          "type": "category",
-          "label": "Real Time Updater",
-          "collapsed": false,
-          "items": [
-            {
-              "id": "fast_data/configuration/realtime_updater/realtime_updater_v8",
-              "type": "doc"
-            },
-            {
-              "id": "fast_data/configuration/realtime_updater/realtime_updater_v7",
-              "type": "doc"
-            }
-          ]
+          "id": "fast_data/configuration/projections_storer",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/realtime_updater",
+          "type": "doc"
         },
         {
           "id": "fast_data/configuration/single_view_creator",

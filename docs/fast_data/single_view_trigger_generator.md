@@ -38,7 +38,7 @@ In order to introduce the Single View Trigger Generator in the Fast Data flow it
 - set environment variable `KAFKA_PROJECTION_UPDATES_FOLDER` to `/home/node/app/kafkaProjectionUpdates`. This allows the Real-Time Updater to load a configuration file automatically generated that instructs the service how to map each projection to the corresponding projection-update topic of the event streaming platform. This mapping can be changed in Console in each projection detail section, besides the configuration of the ingestion topic. In case this config map is not already available, please commit your work. It should appear afterward.
 - disable the computation of projections changes by setting environment variable `PROJECTIONS_CHANGES_ENABLED` to `false`
 
-Additional details on how to configure the Real-Time Updater to produce Projection Update events can be found in the [service configuration page](/fast_data/configuration/realtime_updater/realtime_updater_v7.md#kafka-projection-updates-configuration).
+Additional details on how to configure the Real-Time Updater to produce Projection Update events can be found in the [service configuration page](/fast_data/configuration/realtime_updater.md#kafka-projection-updates-configuration).
 
 #### Single View Creator
 
@@ -52,11 +52,11 @@ In case the topic does not already exist, we recommend adopting our [naming conv
 
 ### Single View Trigger vs Projection Changes
 
-From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real-Time Updater](/fast_data/configuration/realtime_updater/realtime_updater_v7.md#projection-changes).
+From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real-Time Updater](/fast_data/configuration/realtime_updater.md#projection-changes).
 
 `sv-trigger` messages are sent and consumed on Event Streaming Platforms making the full cycle of Fast Data completely event driven. This offers a greater separation of concers since it means that business data like Projections and Single Views will be on your DB, while all the events that make Fast Data work will be on your Event Streaming Platform.
 
-While `sv-trigger` messages sound like the better option so far, `pc` records usually offer a better performance of the aggregation process. This is because `pc` records are unique by their Single View Identifier, so if a Projection record gets updated twice in a very short period of time the Single View Creator will most likely process the aggregation of the Single Views related to that Projection record only once. This is a broad generalization and it depends also on the size and frequency of the incoming flow of data you may have, if you choose to generate `pc` records make sure you have the [recommended indexes](/fast_data/configuration/realtime_updater/realtime_updater_v7.md#custom-projection-changes-collection) set up.
+While `sv-trigger` messages sound like the better option so far, `pc` records usually offer a better performance of the aggregation process. This is because `pc` records are unique by their Single View Identifier, so if a Projection record gets updated twice in a very short period of time the Single View Creator will most likely process the aggregation of the Single Views related to that Projection record only once. This is a broad generalization and it depends also on the size and frequency of the incoming flow of data you may have, if you choose to generate `pc` records make sure you have the [recommended indexes](/fast_data/configuration/realtime_updater.md#custom-projection-changes-collection) set up.
 
 ### Configuration
 
