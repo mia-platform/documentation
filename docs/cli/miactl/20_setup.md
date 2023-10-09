@@ -30,7 +30,7 @@ If you have [Golang] installed with a version >= 1.13 in your system and you hav
 install `miactl` like this:
 
 ```sh
-go install github.com/mia-platform/miactl@0.7.0
+go install github.com/mia-platform/miactl/cmd/miactl@v0.7.0
 ```
 
 Or like this if the `install` command is not available
