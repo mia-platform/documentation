@@ -38,7 +38,6 @@ When filling out the feedback description, be sure to give as much context infor
 
 ## Configuration for Feedback Management in On-Premise Installations
 
-<<<<<<< HEAD
 :::caution
 To enable this functionality you need to have the "manage_users" group. 
 This group is necessary to view the section dedicated to users within the CMS. 
