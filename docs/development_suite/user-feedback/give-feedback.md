@@ -49,4 +49,4 @@ To enable the viewing of this feedback it is necessary to add a new group within
 
 Once this is done, save and go to the users section under "User Management", and add the new group to each user you want to be able to see the feedback.
 
-By logging out and logging in, that user will now be able to see all the feedback from the collaborators
+By logging out and logging in, to refresh system data, that user will now be able to see all the feedback from the collaborators
