@@ -6,9 +6,15 @@ sidebar_label: Give Feedback
 
 Mia-Platform users can actively contribute to the product through a feature that allows them to submit feedback on any area of the Console. This feature is accessible through a dedicated button located on the right side of the Console top bar.
 
+Every feedback will be addressed to the Console Managers who will be able to conveniently manage and moderate them through a new section of the CMS, in order to constantly improve the product experience.
+
+For PaaS type customer every feedback will be collected directly from the Product R&D department, while for On-Premise type installations they will be collected and managed by the respective Console Managers.
+
+## How to leave feedback from the console
+
 ![feedback button](./img/feedback-button.png)
 
-Clicking on the button opens a modal, through which the user can choose the type of feedback to give:
+In any section or area of the Console by clicking on the respective feedback button on the main topbar you can access to the feedback modal, through which the user can choose the type of feedback to give:
 * **Issue**: feedback inherent to a bug or technical problem related to a feature of the Console. For example:
   - By making changes A and B to the configuration, I get error C when saving.
   - Page X does not scroll properly and thus has display problems on screens with a*b resolution.
@@ -30,23 +36,24 @@ Once the type is selected, the user is required to enter a description for feedb
 When filling out the feedback description, be sure to give as much context information as possible (e.g., the reference section, the actions that caused a particular behavior, and so on). This will make it much more immediate for us to identify the problem or area for improvement.
 :::
 
-### How do you see the users' feedback?
+## Configuration for Feedback Management in On-Premise Installations
 
+<<<<<<< HEAD
 :::caution
 To enable this functionality you need to have the "manage_users" group. 
 This group is necessary to view the section dedicated to users within the CMS. 
 If you do not see the section called "User Management" contact an administrator to assist you
 :::
 
-Actually, we do not have a section within the console. 
-The feedback from your collaborators can be viewed within the [cms](https://docs.mia-platform.eu/docs/business_suite/overview-business-suite#cms-site).
+To date, there is not a section within the console where to manage and see all feedback left by users. The feedback from your collaborators can be viewed and managed within the Mia-Platform [CMS](https://docs.mia-platform.eu/docs/business_suite/overview-business-suite#cms-site).
 
 ![feedback modal](./img/feedback-cms-groups.png)
 
-To enable the viewing of this feedback it is necessary to add a new group within the groups' collection under the "User Management" heading. By pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. 
+To enable the view of the section on the Mia-Platform CMS where to manage the feedback it is necessary to add a new group within the groups collection under the "User Management" heading. 
+By pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. 
 
 ![feedback modal](./img/feedback-cms-form.png)
 
-Once this is done, save and go to the users section under "User Management", and add the new group to each user you want to be able to see the feedback.
+Once this is done, save and go to the users section under "User Management", and add the new group to each user you want to be able to see the feedback page on the CMS.
 
-By logging out and logging in, to refresh system data, that user will now be able to see all the feedback from the collaborators
+By logging out and logging in, to refresh system data, that user will now be able to see in the CMS the section called "User Feedback" containing all the feedback from the collaborators.
