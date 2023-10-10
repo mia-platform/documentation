@@ -111,6 +111,8 @@ The selection will be applied to every Real-Time Updater service attached (or to
 
 In case you need to change the type of adapter to use in the Real-Time Updater, you can easily do that from the System of Records page in the _Projection_ section of the console: after selecting your System, click on the _Message Format_ tab, then select the adapter type you want to use.
 
+![Message Format page](./img/message-format.png)
+
 #### IBM InfoSphere Data Replication for DB2
 
 It's the default one, it is based on the [IBM InfoSphere Data Replication engine](https://www.ibm.com/docs/en/idr/11.4.0?topic=console-overview-cdc-replication).
