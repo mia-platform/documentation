@@ -90,9 +90,25 @@ Connect the provider to the project or environment through the CMS. Retrieve the
 ```json
 {
   "type": "azure-key-vault",
-  "providerId": <your provider's _id>
+  "providerId": <providerId>,
+  "azureClientId": <azureClientId>,
+  "azureTenantId": <azureTenantId>,
+  "serviceAccountName": <serviceAccountName>,
+  "serviceAccountNamspace": <serviceAccountNamspace>,
 }
 ```
+
+Where:
+
+- `<providerId>` (**required**) is the `_id` of the provider created before
+- `<azureClientId>` (**required**) is the client id of the Azure Active Directory application that will fetch the secrets from the cluster
+- `<azureTenantId>` (**required**) the tenant identifier for your company on Azure
+- `<serviceAccountName>` an optional name for the service account to use in the authentication process. Defaults to `akv-accessor`
+- `<serviceAccountNamspace>` an optional namespace for the service account to use in the authentication process. Defaults to the namespace of the respective environment
+
+:::warning
+If any of `serviceAccountName` or `serviceAccountNamspace` is defined the Console will not deploy the service account automatically but is your responsibility to provision it.
+:::
 
 You also have the option to distinguish between providers for specific environments. This enables you to establish various Azure Key Vault providers for different environments. To achieve this, you need to create an `environmentsVariables` object with the same structure as the one demonstrated above within the target environment object found in the `Environments` section of the project's page in the CMS. Any environment that doesn't specify its own `environmentsVariables` configuration will automatically inherit it from the project.
 
