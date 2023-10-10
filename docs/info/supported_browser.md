@@ -13,7 +13,9 @@ Use Mia-Platform Console with the latest version of any supported browser:
 * Chrome;
 * Firefox;
 * Safari;
-* Edge.
+* Edge;
+* Opera;
+* Arc Browser;
 
 ## Unsupported Browsers
 
