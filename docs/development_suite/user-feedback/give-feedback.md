@@ -6,9 +6,13 @@ sidebar_label: Give Feedback
 
 Mia-Platform users can actively contribute to the product through a feature that allows them to submit feedback on any area of the Console. This feature is accessible through a dedicated button located on the right side of the Console top bar.
 
+Every feedback will be addressed to the Console Managers who will be able to conveniently manage and moderate them through a new section of the CMS, in order to constantly improve the product experience.
+
+For PaaS type customer every feedback will be collected directly from the Product R&D department, while for On-Premise type installations they will be collected and managed by the respective Console Managers.
+
 ![feedback button](./img/feedback-button.png)
 
-Clicking on the button opens a modal, through which the user can choose the type of feedback to give:
+In any section or area of the Console by clicking on the respective feedback button on the main topbar you can access to the feedback modal, through which the user can choose the type of feedback to give:
 * **Issue**: feedback inherent to a bug or technical problem related to a feature of the Console. For example:
   - By making changes A and B to the configuration, I get error C when saving.
   - Page X does not scroll properly and thus has display problems on screens with a*b resolution.
