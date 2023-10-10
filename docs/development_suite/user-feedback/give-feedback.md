@@ -38,6 +38,6 @@ When filling out the feedback description, be sure to give as much context infor
 
 ## Configuration for Feedback Management in On-Premise Installations
 
-Go the users section under "User Management", and add the new group to each user you want to be able to see the feedback page on the CMS.
+Go the Users section under "User Management", and add the new group to each user you want to be able to see the feedback page on the CMS.
 
 By logging out and logging in, to refresh system data, that user will now be able to see in the CMS the section called "User Feedback" containing all the feedback from the collaborators.
