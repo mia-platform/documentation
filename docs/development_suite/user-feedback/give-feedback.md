@@ -10,6 +10,8 @@ Every feedback will be addressed to the Console Managers who will be able to con
 
 For PaaS type customer every feedback will be collected directly from the Product R&D department, while for On-Premise type installations they will be collected and managed by the respective Console Managers.
 
+## How to leave feedback from the console
+
 ![feedback button](./img/feedback-button.png)
 
 In any section or area of the Console by clicking on the respective feedback button on the main topbar you can access to the feedback modal, through which the user can choose the type of feedback to give:
@@ -34,7 +36,7 @@ Once the type is selected, the user is required to enter a description for feedb
 When filling out the feedback description, be sure to give as much context information as possible (e.g., the reference section, the actions that caused a particular behavior, and so on). This will make it much more immediate for us to identify the problem or area for improvement.
 :::
 
-### Configuration for Feedback Management in On-Premise Installations
+## Configuration for Feedback Management in On-Premise Installations
 
 To date, there is not a section within the console where to manage and see all feedback left by users. The feedback from your collaborators can be viewed and managed within the Mia-Platform [CMS](https://docs.mia-platform.eu/docs/business_suite/overview-business-suite#cms-site).
 
