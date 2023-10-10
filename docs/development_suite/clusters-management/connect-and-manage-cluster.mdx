@@ -146,7 +146,7 @@ If the credentials type is "Client credentials":
 If the credentials type is "Client credentials certificate":
 
 * **Private key**: the private key of the certificate uploaded;
-* **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, whose value is displayed at the end of the upload process.
+* **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, it is the Base64url-encoded SHA-1 thumbprint of the certificate itself. As specified in the [official documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/certificate-credentials#header) of the `x5t` field. 
 
 </TabItem>
 </Tabs>
