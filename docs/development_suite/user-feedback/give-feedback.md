@@ -30,10 +30,12 @@ Once the type is selected, the user is required to enter a description for feedb
 When filling out the feedback description, be sure to give as much context information as possible (e.g., the reference section, the actions that caused a particular behavior, and so on). This will make it much more immediate for us to identify the problem or area for improvement.
 :::
 
-### How do you see the users' feedback?
+### Configuration for Feedback Management in On-Premise Installations
 
-To date, we do not have a section within the console. The feedback from your collaborators can be viewed within the [cms](https://docs.mia-platform.eu/docs/business_suite/overview-business-suite#cms-site).
+To date, there is not a section within the console where to manage and see all feedback left by users. The feedback from your collaborators can be viewed and managed within the Mia-Platform [CMS](https://docs.mia-platform.eu/docs/business_suite/overview-business-suite#cms-site).
 
-To enable the viewing of this feedback it is necessary to add a new group within the groups' collection under the "User Management" heading. By pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. Once this is done, save and go to the users section under "User Management", and add the new group to each user you want to be able to see the feedback.
+To enable the view pf the section on the Mia-Platform CMS where to manage the feedback it is necessary to add a new group within the groups collection under the "User Management" heading. 
+By pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. 
+Once this is done, save and go to the users section under "User Management", and add the new group to each user you want to be able to see the feedback page on the CMS.
 
 By logging out and logging in, that user will now be able to see all the feedback from the collaborators
