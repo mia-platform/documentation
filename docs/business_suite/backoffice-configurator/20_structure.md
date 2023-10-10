@@ -177,6 +177,29 @@ Modals have the option to turn on an **Advanced mode** that will make available 
 ![Right menu modal advanced mode](img/structure_layout-right-menu-modal-advanced.png)
 :::tip
 
+#### ACL expression
+
+Components will also have a special property called `aclExpression`, which can be used to [control](https://micro-lc.io/add-ons/backend/middleware#acl-application) whether certain portions of the configuration are removed based on a logical expression evaluated against user's groups and permissions.
+
+The property is configurable at two levels.
+
+- On a **component level** from the properties form itself to limit the presence of the whole component definition. 
+  
+  For example, with the following configuration
+
+  ![ACL component](img/structure_layout-acl-component.png)
+
+  the layout component will not be included if the configuration is not fetched by a user with the _admin_ group.
+
+- On a **property level** for all the properties (and sub-properties) of type `object`. 
+  
+  For example, with the following configuration
+  
+  ![ACL property](img/structure_layout-acl-property.png)
+
+  the property `logo` of the layout will not be included if the configuration is not fetched by a user with the _admin_ group.
+
+
 ## Settings
 
 The _Settings_ tab collects several Backoffice global settings. The default configurations in most cases should be sufficient,
