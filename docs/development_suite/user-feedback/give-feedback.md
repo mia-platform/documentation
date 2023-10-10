@@ -48,8 +48,7 @@ To date, there is not a section within the console where to manage and see all f
 
 ![feedback modal](./img/feedback-cms-groups.png)
 
-To enable the view of the section on the Mia-Platform CMS where to manage the feedback it is necessary to add a new group within the groups collection under the "User Management" heading. 
-By pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. 
+To enable the view of the section on the Mia-Platform CMS where to manage the feedback it is necessary to add a new group within the "Groups" section under the "User Management" heading: by pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. 
 
 ![feedback modal](./img/feedback-cms-form.png)
 
