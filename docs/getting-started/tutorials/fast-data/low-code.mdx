@@ -32,7 +32,7 @@ For the technical part of this tutorial, an up-and-running Kafka cluster is requ
 ## System of Records
 
 A System of Records is a container of _Projections_, which is are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
-We will use this projections to have an easy way to read a 1:1 copy of the data from the source systems, and later it will be used to aggregate the data from the source systems, using the Single View Creator.
+We will use these projections to have an easy way to read a 1:1 copy of the data from the source systems, and later they will be used to aggregate the data from the source systems, using the Single View Creator.
 
 The architectural component responsible for creating and updating the projection is the _Real-Time Updater_ service.
 To simplify, this microservice is a Kafka consumer that will consume the data from the source systems and will update the projection.
