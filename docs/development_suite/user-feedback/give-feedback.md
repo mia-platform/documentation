@@ -38,21 +38,6 @@ When filling out the feedback description, be sure to give as much context infor
 
 ## Configuration for Feedback Management in On-Premise Installations
 
-:::caution
-To enable this functionality you need to have the "manage_users" group. 
-This group is necessary to view the section dedicated to users within the CMS. 
-If you do not see the section called "User Management" contact an administrator to assist you
-:::
-
-To date, there is not a section within the console where to manage and see all feedback left by users. The feedback from your collaborators can be viewed and managed within the Mia-Platform [CMS](https://docs.mia-platform.eu/docs/business_suite/overview-business-suite#cms-site).
-
-![feedback modal](./img/feedback-cms-groups.png)
-
-To enable the view of the section on the Mia-Platform CMS where to manage the feedback it is necessary to add a new group within the groups collection under the "User Management" heading. 
-By pressing the add button, create a group called "manage_user_feedback". There is no need to add anything else to other input fields. 
-
-![feedback modal](./img/feedback-cms-form.png)
-
-Once this is done, save and go to the users section under "User Management", and add the new group to each user you want to be able to see the feedback page on the CMS.
+Go the users section under "User Management", and add the new group to each user you want to be able to see the feedback page on the CMS.
 
 By logging out and logging in, to refresh system data, that user will now be able to see in the CMS the section called "User Feedback" containing all the feedback from the collaborators.
