@@ -204,7 +204,7 @@ If the user json fails the validation against its group schema, a `400 Bad Reque
 
 ### GET /users/
 
-Returns the list of users. This endpoint is a direct proxy to the `GET /users` of the CRUD service and it has no side effects.
+Returns the list of users. This endpoint is a direct proxy to the `GET /users` of the CRUD service and it has no side effects. When configured, additional properties are retrieved from auth0. In such case, the `acl_rows` headers will not be forwarded to the auth0-client.  
 
 ### DELETE /users/:id
 
