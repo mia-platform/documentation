@@ -195,9 +195,16 @@ For instance, if the CRUD Client fetches and propagates data like:
   {"weekDay": "1", ...}
 ]
 ```
-the Table renders a table with two rows, having a `weekDay` column with entries "Monday" instead of "0" and "Tuesday" instead of "1".
+the Table renders a table with two rows, having a `weekDay` column with entries "Monday" instead of "0" and "Tuesday" instead of "1", as specified in the `enum` property of the data-schema:
 
-Using the Search Bar to search for the values displayed in the Table ("Monday", "Tuesday", ...) fields, since ultimately the search is performed by the CRUD Client against the actual stored value.
+```json
+[
+  ["Monday", ...],
+  ["Tuesday", ...]
+]
+```
+
+Using the Search Bar to search for the values displayed in the Table ("Monday", "Tuesday", ...) fails, since ultimately the search is performed by the CRUD Client against the actual stored value.
 
 Searching for "mon" triggers the Search Bar to emit a [change-query] event with payload:
 ```json
