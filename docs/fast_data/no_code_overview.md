@@ -35,13 +35,13 @@ The Fast Data Low Code experience is basically composed by some steps with No Co
 
 ### Creating a System of Records (No Code)
 
-The creation of the System of Records is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Records that, after saving the configuration inside the console, it is linked to a [Real Time Updater Low Code](/fast_data/configuration/realtime_updater.md) microservice.
+The creation of the System of Records is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Records that, after saving the configuration inside the console, it is linked to a [Real-Time Updater Low Code](/fast_data/configuration/realtime_updater.md) microservice.
 
 ### ER Schema definition and other Configmaps (Low Code/ No Code)
 
 #### Low Code
 
-The Real Time Updater Low Code needs some configurations:
+The Real-Time Updater Low Code needs some configurations:
 
 - [erSchema.json](/fast_data/configuration/config_maps/erSchema.md) configuration: useful to define the interconnection between projections
 - The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
@@ -59,7 +59,7 @@ You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 
 - singleViewKey.json: it is fundamental to generate the query that will be applied on the single view
-- erSchema.json: it needs to be the same Real Time Updater Low Code's erSchema.json of the System of Records
+- erSchema.json: it needs to be the same Real-Time Updater Low Code's erSchema.json of the System of Records
 - aggregation.json: useful to define the aggregation and generate the single view's fields
 
 ![Singleviewlowcode](./img/singleviewlowcode.png)
