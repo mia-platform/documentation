@@ -8,10 +8,7 @@ Welcome to the Mia-Platform AuthN/AuthZ Architecture tutorial! This is an holist
 
 We'll start with the basics, addressing the simplest scenarios first, and gradually advance, tackling multi-project architectures and integrating multiple external Identity Providers. 
 
-## Prerequisites
-
-## Use cases
-For each of the following scenarios, we will provide a brief introduction and complete step-by-step tutorial to implement it.
+For each of the following scenarios, we will provide an overview of the architecture and a complete step-by-step tutorial to implement it.
 ## Scenario 1: Use a static API Key to secure your endpoints
 The simplest authentication method you can implement with Mia-Platform is using the [API Keys](/development_suite/api-console/api-design/api_key.md) offered by our API Gateway (both [Nginix](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)) to secure your APIs.  
 
