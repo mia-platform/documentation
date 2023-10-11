@@ -30,13 +30,13 @@ If you have [Golang] installed with a version >= 1.13 in your system and you hav
 install `miactl` like this:
 
 ```sh
-go install github.com/mia-platform/miactl/cmd/miactl@v0.7.0
+go install github.com/mia-platform/miactl/cmd/miactl@v0.8.0
 ```
 
 Or like this if the `install` command is not available
 
 ```sh
-go get -u github.com/mia-platform/miactl@0.7.0
+go get -u github.com/mia-platform/miactl/cmd/miactl@0.8.0
 ```
 
 #### Binary Download
@@ -45,11 +45,11 @@ You can install `miactl` with the use of `curl` or `wget` and downloading the la
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL https://github.com/mia-platform/miactl/releases/download/v0.7.0/miactl-linux-amd64 -o /tmp/miactl
+curl -fsSL https://github.com/mia-platform/miactl/releases/download/v0.8.0/miactl-linux-amd64 -o /tmp/miactl
 ```
 
 ```sh
-wget -q https://github.com/mia-platform/miactl/releases/download/v0.7.0/miactl-linux-amd64 -O /tmp/miactl
+wget -q https://github.com/mia-platform/miactl/releases/download/v0.8.0/miactl-linux-amd64 -O /tmp/miactl
 ```
 
 After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
@@ -67,6 +67,7 @@ mv /tmp/miactl /usr/local/bin
 ```
 
 If the `mv` command replies with a `Permission denied`, retry it as root:
+
 ```sh
 sudo mv /tmp/miactl /usr/local/bin
 ```
@@ -76,12 +77,12 @@ sudo mv /tmp/miactl /usr/local/bin
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
-docker run ghr.io/mia-platform/miactl@0.7.0 miactl
+docker run ghr.io/mia-platform/miactl@0.8.0 miactl
 ```
 
 ### Windows
 
-`miactl` is not directly compatible with Windows, even if you have Go installed: 
+`miactl` is not directly compatible with Windows, even if you have Go installed:
 compilation on this OS is not possible due to current technical restrictions.
 
 However, it is still possible to use `miactl` with Windows Subsystem for Linux (WSL), as explained here below.
@@ -94,7 +95,7 @@ Once WSL is installed, to open a Linux bash terminal, press Start+R, enter `bash
 
 #### Install `miactl`
 
-You can now install miactl with any of the methods explained above for Linux, 
+You can now install miactl with any of the methods explained above for Linux,
 we suggest the [binary installation](#binary-download) since it's the most straightforward.
 
 #### Setup a service account
@@ -162,7 +163,7 @@ enable the autocompletion.
 
 [Homebrew]: https://brew.sh "The Missing Package Manager for macOS (or Linux)"
 [Golang]: https://go.dev "Build simple, secure, scalable systems with Go"
-[url]: https://github.com/mia-platform/miactl/releases/download/v0.7.0/checksums.txt "miactl checksums"
+[url]: https://github.com/mia-platform/miactl/releases/download/v0.8.0/checksums.txt "miactl checksums"
 [`bash-completion`]: https://github.com/scop/bash-completion "Programmable completion functions for bash"
 [`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven
 	framework for managing your Zsh configuration"
