@@ -4,15 +4,17 @@ title: Create a Microservice from a Docker Image
 sidebar_label: Create a Microservice from a Docker Image
 ---
 
-In this tutorial, we will create and expose a service to the outside of the cluster using the Mia-Platform Console. We will start with a pre-packaged Docker image. The service will expose a route `/compute-salary?name`, which, given a name, will calculate its salary and return it in the response.
+In this tutorial, we will create and expose a service to the outside of the cluster using the Mia-Platform Console. We will start with a pre-packaged Docker image. The service will expose a route that returns the timestamp of the API invocation.
 
 ## What we will build
 
-We will create a new microservice using the Docker image `nexus.mia-platform.eu/academy/salary:latest`. This image exposes the route `/compute-salary?name`, which, when given a name in the query parameters, returns the salary of the specified person based on a specific calculation.
+We will create a new microservice using the Docker image `registry.k8s.io/e2e-test-images/agnhost:2.39`. The service will expose a route that returns the timestamp of the API invocation.
 
 ## Prerequisites
 
 Before starting, we will assume that, you already have a clean project in Mia-Platform Console. To know how to create a project on Mia-Platform Console, read [this guide](/console/project-configuration/create-a-project.mdx).
+
+To follow this tutorial correctly, it is necessary to have configured a Docker Registry within the Mia-Platform Console. To learn how to configure a Docker Registry, please follow [this](/console/project-configuration/docker-registry-configuration.md) guide.
 
 The project must:
 
@@ -25,6 +27,7 @@ The project must:
 Better to have:
 
 - Some familiarity with **API** and **REST** concepts. More information about API is available [here](/getting-started/guidelines/rest-api-vademecum.md).
+- Basic **Docker** knowledge. More information about Docker is available [here](/getting-started/guidelines/docker-vademecum.md)
 
 :::tip
 If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
@@ -35,9 +38,9 @@ If your are using a Mia-Platform Console in PaaS and the project has been create
 The only requirement to import an external Microservice is that the Docker Image needs to be already built.
 Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the following information:
 
-* **Name** (*required*): this is the internal hostname (`salary-service` for our purpose);  
+* **Name** (*required*): this is the internal hostname (`simple-service` for our purpose);  
 
-* **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s (`nexus.mia-platform.eu/academy/salary:latest` for our purpose);
+* **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s (`registry.k8s.io/e2e-test-images/agnhost:2.39` for our purpose);
 
 :::info
   Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
@@ -53,6 +56,18 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 ![service-docker-image](img/create-a-ms-from-docker-img.png)
 
 Finally to create the Microservice push **create**.
+
+## Configure the service 
+
+To ensure that the newly created _simple-service_ functions correctly, we need to modify some service configurations.
+The first step is to set `netexec` as a command-line argument through the _Microservice Configuration_ section in the _Args_ field.
+Next, in the _Container Ports_ section, you should change the default port by modifying the _Target Port_ from `3000` to `8080`.
+
+![service-commandline-arg-configurations](img/ms-from-docker-config.png)
+
+The final step is to modify the _Environment variables_ of the service by changing the value of the key `HTTP_PORT` to `8080`.
+
+![service-environment-variable-change](img/service-environment-variable-change.png)
 
 ## Create a gateway microservice
 
@@ -84,16 +99,16 @@ In order to do so:
 1. Navigate to the _endpoints_ section from the left side menu.
 1. Click on the _Create new endpoint_ button;
 1. Fill the input:
-   - **Base path**: `/salary-service`
+   - **Base path**: `/simple-service`
    - **Type**: in the dropdown menu "_Microservice_"
-   - **Microservice**: in the dropdown menu "salary-service"
+   - **Microservice**: in the dropdown menu "_simple-service_"
 1. Click on the _Create_ button.
 1. In the generated configuration, check that the "Rewrite Base Path" is set to `/`;
 1. Save the changes to make them persistent.
 
-![Create endpoint](img/create-endpoint-salary-service.png)
+![Create endpoint](img/create-endpoint-simple-service.png)
 
-By doing this, we have configured the API Gateway so that all the incoming requests having `/salary-service` as prefix in the path, are forwarded to the "salary-service" without the previously mentioned prefix (e.g. `/salary-service/compute-salary?name` will be received as `/compute-salary?name` by the service).
+By doing this, we have configured the API Gateway so that all the incoming requests having `/simple-service` as prefix in the path, are forwarded to the "_simple-service_" without the previously mentioned prefix.
 
 We have completed the design of our first project! Now the last step is to deploy it and test the developed functionality.
 
@@ -116,7 +131,7 @@ Now we are ready to test the endpoint!
 Replace `<project-domain>` with the correct one and try it:
 
 ```sh
-curl https://<project-domain>/delivery-service/compute-salary?<rider-name>
+curl https://<project-domain>/simple-service
 ```
 
 
