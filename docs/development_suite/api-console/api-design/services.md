@@ -76,6 +76,33 @@ In order to use the templates provided by Mia-Platform you can contact your refe
 At this [link](/development_suite/api-console/api-design/custom_microservice_get_started.md) you can find a more detailed guide and overview about how to create new service starting from Templates.
 :::
 
+## How to create a Microservice from a Docker Image
+
+The only requirement to import an external Microservice is that the Docker Image needs to be already built.
+Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the following information:
+
+* **Name** (*required*): this is the internal hostname;  
+
+* **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s;
+:::info
+  Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
+  - `hostname` is the registry hostname where the docker image is hosted
+  - `imagename` is the docker image name
+  - `tag` is the version of the docker image
+:::
+
+* **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
+
+* **Description** (*optional*): this is the description of your microservice.
+
+![service-docker-image](img/service-docker-image.png)
+
+Finally to create the Microservice push **create**.
+
+:::info
+For a step-by-step guide on creating a microservice using a Docker image, refer to the [dedicated tutorial](/getting-started/tutorials/microservice-from-docker-image.md).
+:::
+
 ## Manage Microservices
 
 For each microservice, Console allows to:

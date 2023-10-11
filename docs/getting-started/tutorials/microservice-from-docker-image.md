@@ -57,6 +57,10 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 
 Finally to create the Microservice push **create**.
 
+:::info
+To explore service management within the Mia-Platform console, please refer to the [dedicated documentation page](/development_suite/api-console/api-design/services.md).
+:::
+
 ## Configure the service 
 
 To ensure that the newly created _simple-service_ functions correctly, we need to modify some service configurations.
@@ -133,7 +137,6 @@ Replace `<project-domain>` with the correct one and try it:
 ```sh
 curl https://<project-domain>/simple-service
 ```
-
 
 
 
