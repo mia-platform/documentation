@@ -137,10 +137,3 @@ Replace `<project-domain>` with the correct one and try it:
 ```sh
 curl https://<project-domain>/simple-service
 ```
-
-
-
-
-
-
-
