@@ -50,7 +50,7 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 
 * **Description** (*optional*): this is the description of your microservice.
 
-![service-docker-image](img/service-docker-image.png)
+![service-docker-image](img/create-a-ms-from-docker-img.png)
 
 Finally to create the Microservice push **create**.
 
@@ -91,7 +91,7 @@ In order to do so:
 1. In the generated configuration, check that the "Rewrite Base Path" is set to `/`;
 1. Save the changes to make them persistent.
 
-<!--![Create endpoint](img/create-endpoint-salary-service.png)-->
+![Create endpoint](img/create-endpoint-salary-service.png)
 
 By doing this, we have configured the API Gateway so that all the incoming requests having `/salary-service` as prefix in the path, are forwarded to the "salary-service" without the previously mentioned prefix (e.g. `/salary-service/compute-salary?name` will be received as `/compute-salary?name` by the service).
 
