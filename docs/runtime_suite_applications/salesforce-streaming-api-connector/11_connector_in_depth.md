@@ -43,14 +43,14 @@ service side when you need to add, remove or edit a field.
 
 ### Using ChangeDataCapture Topics
 
-If you connect CDC topics, pay attention to the version of the Real-Time Updater and the strategies you are using.
-CDC topics only send the updated fields, unlike other kinds of topics. Thus, you must use a Real-Time Updater version 
+If you connect CDC topics, pay attention to the version of the realtime updater and the strategies you are using.
+CDC topics only send the updated fields, unlike other kinds of topics. Thus, you must use a realtime updater version 
 that **supports incremental changes**, i.e. `3.1.2` onward. You also must pay attention to the strategies you write,
 as you will receive a `document` object that only contains an aggregation of changes. If you miss critical data,
 e.g. a field used to generate the projection change identifier, you need to retrieve the current projection from Mongo
 and take the desired value from there.
 
-:::caution Your Real-Time Updater service should use a version that supports incremental changes, i.e. `3.1.2` onward.:::
+:::caution Your realtime updater service should use a version that supports incremental changes, i.e. `3.1.2` onward.:::
 
 :::caution Inside a strategy, you will receive a `document` object that only contains an aggregation of changes, not
 the whole object.:::
