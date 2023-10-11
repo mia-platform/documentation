@@ -56,23 +56,7 @@ The public key can be freely distributed and is used to encrypt messages that ca
 ### Creation
 
 This service accepts a **private RSA key** to sign the generated JWT (JSON Web Token).
-NIST recommends at least 2048-bit keys for RSA. An RSA key length of at least 3072 bits should be used if security is required beyond 2030.
-In this guide, we will use a key of 4096 bits.
-
-To generate a new private key, you could run:
-
-```sh
-openssl genrsa -out ~/private.key 4096
-```
-
-The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `PRIVATE_KEY_PASSWORD` environment variable.
-You could run the following command to generate the key with password:
-
-```sh
-openssl genrsa -des3 -out ~/private.key 4096
-```
-
-After the creation, you have the private key.
+Refer to [the related section](./30_jwt_keys.md#private-key-generation) for an explanation on how to generate it.
 
 ### Deploy key in the Kubernetes cluster
 

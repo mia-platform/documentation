@@ -16,6 +16,13 @@ First of all you have to create a private key in PEM format.
 
 You can use one of the following methods to create it.
 
+:::info
+
+NIST recommends at least 2048-bit keys for RSA. An RSA key length of at least 3072 bits should be used if security is required beyond 2030.
+In this guide, we will use a key of 4096 bits.
+
+:::
+
 ### openssl
 
 Use the following command:
@@ -32,8 +39,9 @@ Use the following command:
 ssh-keygen -t rsa -b 4096 -m PEM -f private.key
 ```
 
-Do not add any passphrase.
-Moreover this will create in your directory also a `private.key.pub` file that you can delete or ignore.
+This command also allows to protect the key with a password: if you decide to do so, remember to set it in the `PRIVATE_KEY_PASSWORD` environment variable of the service.
+
+Moreover this will create in your directory a `private.key.pub` public key file that you can delete or ignore.
 
 ### Result
 
@@ -65,13 +73,13 @@ This will create in your current directory the `public.key` file containing your
 
 ## Client Credential Key format
 
-The Client Credential accept the public key in a JWK format. You can you a library or an online tool to generate the needed JWK.
+The Client Credential accepts the public key in a JWK format. You can you a library or an online tool to generate the needed JWK.
 We suggest the following [online tool](https://russelldavies.github.io/jwk-creator/).
 Configure it like this:
 
 - Public Key Use: Signing
 - Algorithm: RS256
-- Key ID: choose yours
-- PEM encoded key: your public key (`cat public.key | pbcopy`)
+- Key ID: The same you set in `PRIVATE_RSA_KEY_ID` environment variable
+- PEM encoded key: your public key, copy here the contents of the file `public.key`.
 
 Now you have the JWK necessary to register your client using the private key JWT.

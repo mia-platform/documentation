@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2023-10-06
+
+### Fixes
+
+- Added boolean type to `filters.value` in `bk-tabs` manifest
+- Added `oneOfGuard` to child elements of categories and groups in `bk-layout` manifest
+- Added schema for `default` property of dataSchema manifest
+- Calendar component sets style correctly on first render
+
+### Added
+
+- Form components allow to edit fields of format `geopoint`
+
 ## [1.4.1] - 2023-09-22
 
 ### Added
@@ -17,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Component `bk-layout` supports new layout modality `leftMenu`
 - Form components support month/year navigation and selection in date fields
 
-### Fixed
+### Fixes
 
 - Title of footer buttons in `bk-gallery` are localized
 - File upload action propagates returned object in hooks
@@ -171,7 +184,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `urlMask` properties of `bk-button` and `bk-url-paramters` allow separate masks for `pathname` and `search` fields of current URL
+- `urlMask` properties of `bk-button` and `bk-url-parameters` allow separate masks for `pathname` and `search` fields of current URL
 - actions of type `http` support methods `PATCH` and `PUT`
 
 ### Fixed

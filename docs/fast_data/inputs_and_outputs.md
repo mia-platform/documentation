@@ -20,11 +20,11 @@ Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
 **Producer**: The CDC Connectors of the source databases
 
-**Consumer**: Real Time Updater
+**Consumer**: Real-Time Updater
 
 **Description**: The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
 
-When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format) of the Real Time Updater, which uses it to update the Projections.
+When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format) of the Real-Time Updater, which uses it to update the Projections.
 
 Based on how the ingestion system is set up, the format can be one of three possible types:
 
@@ -33,7 +33,7 @@ Based on how the ingestion system is set up, the format can be one of three poss
 * [Debezium](#debezium)
 
 You can also specify a [custom adapter](/fast_data/configuration/realtime_updater.md#custom) to handle any other message formats you need.
-This format is always configurable in the System of Records page on the console, on the _Real Time Updater_ tab.
+This format is always configurable in the System of Records page on the console, on the _Real-Time Updater_ tab.
 
 Here's the AsyncApi specification of the message and some examples of the different formats.
 
@@ -323,7 +323,7 @@ Examples:
 
 Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
-**Producer**: Real Time Updater
+**Producer**: Real-Time Updater
 
 **Consumer**: Single View Trigger Generator or Single View Creator ([sv-patch](/fast_data/configuration/single_views.md#single-view-patch))
 
@@ -499,7 +499,7 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 
 **Channel**: MongoDB
 
-**Producer**: Real Time Updater or Single View Trigger Generator
+**Producer**: Real-Time Updater or Single View Trigger Generator
 
 **Consumer**: Single View Creator
 
@@ -647,11 +647,11 @@ This method is deprecated in favor of [sv-trigger](#single-view-trigger-message)
 
 **Channel**: Apache Kafka
 
-**Producer**: Real Time Updater
+**Producer**: Real-Time Updater
 
 **Consumer**: Single View Creator
 
-**Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real Time Updater.
+**Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real-Time Updater.
 
 <details><summary>AsyncApi specification</summary>
 <p>

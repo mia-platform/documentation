@@ -9,7 +9,7 @@ In this page, the Marketplace components compatibility matrix for MongoDB suppor
     <tr><td>MongoDB</td><td></td><td>4.0</td><td>4.2</td><td>4.4</td><td>5.0</td></tr>
     <tr><td rowspan="2">CRUD Service</td><td>v5.0.0</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v3.1.1</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-    <tr><td rowspan="2">Real Time Updater</td><td>v5.0.2</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    <tr><td rowspan="2">Real-Time Updater</td><td>v5.0.2</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v4.0.0</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
     <tr><td rowspan="2">Single View Creator</td><td>v3.5.1</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
     <tr><td>v3.0.0</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
