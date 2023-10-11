@@ -912,5 +912,9 @@
   "/docs/runtime_suite/identification-router/configuration":  {
     "destination": "/docs/runtime_suite/flow-manager-router/configuration",
     "addedOn": "2023-09-27"
+  },
+  "/docs/development_suite/set-up-infrastructure/providers-management": {
+    "destination": "/docs/console/company-configuration/providers/overview",
+    "addedOn": "2023-10-11"
   }
 }
