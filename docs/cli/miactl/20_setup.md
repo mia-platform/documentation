@@ -167,4 +167,4 @@ enable the autocompletion.
 [`bash-completion`]: https://github.com/scop/bash-completion "Programmable completion functions for bash"
 [`oh-my-zsh`]: https://ohmyz.sh "Oh My Zsh is a delightful, open source, community-driven
 	framework for managing your Zsh configuration"
-[official guide]: (https://learn.microsoft.com/en-us/windows/wsl/install)
+[official guide]: https://learn.microsoft.com/en-us/windows/wsl/install "How to install Linux on Windows with WSL"
