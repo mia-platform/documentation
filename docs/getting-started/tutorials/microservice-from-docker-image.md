@@ -99,18 +99,18 @@ We have completed the design of our first project! Now the last step is to deplo
 
 ## Deploy the project
 
-In this last step of the tutorial we will [deploy](../../development_suite/deploy/overview.md) all the committed configurations. That means to create a new Kubernetes Pod for each service.
+In this last step of the tutorial we will [deploy](/development_suite/deploy/overview.md) all the committed configurations. That means to create a new Kubernetes Pod for each service.
 
 To sum up, the services we are going to deploy are:
 
 - The "delivery-service" microservice;
 - The API gateway with the endpoint configurations.
 
-We can now deploy the project! If you do not know how to do it, take a quick look at [Mia-Platform handbook](../handbooks/project/usage.md#deploy-changes) first.
+We can now deploy the project! If you do not know how to do it, take a quick look at [Mia-Platform handbook](/getting-started/handbooks/project/usage.md#deploy-changes) first.
 
 A pipeline will be triggered by the Console to start the deploy of your project.
 
-At the end of the pipeline, go to the _Runtime_ section and wait for your pod to be ready. If you do not know how to do it, take a quick look at [Mia-Platform handbook](../handbooks/project/usage.md#monitor-runtime-system) first.
+At the end of the pipeline, go to the _Runtime_ section and wait for your pod to be ready. If you do not know how to do it, take a quick look at [Mia-Platform handbook](/getting-started/handbooks/project/usage.md#monitor-runtime-system) first.
 
 Now we are ready to test the endpoint!
 Replace `<project-domain>` with the correct one and try it:
