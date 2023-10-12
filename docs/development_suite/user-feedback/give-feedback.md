@@ -10,7 +10,7 @@ Every feedback will be addressed to the Console Managers who will be able to con
 
 For PaaS type customer every feedback will be collected directly from the Product R&D department, while for On-Premise type installations they will be collected and managed by the respective Console Managers.
 
-## How to leave feedback from the console
+## How to leave feedback from Console
 
 ![feedback button](./img/feedback-button.png)
 
