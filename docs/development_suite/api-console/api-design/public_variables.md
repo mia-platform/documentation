@@ -24,7 +24,7 @@ This type of variables ensures a greater level of accessibility compared to proj
 :::warning
 Public variables **should not contain sensitive information**. 
 
-As the name suggest, these variables save their content in an open environment. In order to configure environment variables either presenting confidential information or requiring a conditional access policy, please refer to the [**Environments**](/development_suite/set-up-infrastructure/env-var-intro.md) section.
+As the name suggest, these variables save their content in an open environment. In order to configure environment variables either presenting confidential information or requiring a conditional access policy, please refer to the [**Environments**](/console/project-configuration/manage-environment-variables/index.md) section.
 :::
 
 ## Create a new public variable
@@ -46,7 +46,7 @@ By selecting the **Create Another** checkbox, you can keep the popover opened to
 
 ### Inheritance with Env variables
 
-When generating a public variable, it might occur that the chosen name overlaps with other variables already existing in the project configuration. In particular, project level variables set in the [Environments](/development_suite/set-up-infrastructure/env-var-intro.md) section are taken into consideration, since they share the same scope and purpose. 
+When generating a public variable, it might occur that the chosen name overlaps with other variables already existing in the project configuration. In particular, project level variables set in the [Environments](/console/project-configuration/manage-environment-variables/index.md) section are taken into consideration, since they share the same scope and purpose. 
 
 In this case, there exists a precise hierarchy to establish which value should be considered. In the deployment pipeline public variables are mounted after Env variables, hence their value will take the precedence over a project level configuration in case of overlaps.
 

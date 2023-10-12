@@ -8,6 +8,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] 2023-09-25
+
+### Added
+- Added the API POST /saga/send that accepts a [Flow Manager](../../runtime_suite/flow-manager-service/overview) command as input body.
+- Add support for custom metadata to push notifications using pushData template field
+
+## [1.4.0] 2023-08-31
+
+### Added
+
+- The API POST /send now accepts the new field **emailCarbonCopies** for adding email addresses as carbon copies (CC). 
+- The API POST /send now accepts the new field **emailBlindCarbonCopies** for adding email addresses as blind carbon copies (BCC). 
+
+## [1.3.0] 2023-06-26
+
+- Upgrade to Node.js v18
+
+### Added
+
+- Added [handlebars-helpers](https://github.com/helpers/handlebars-helpers) library for advanced message interpolation.
+
+### Fixed
+
+- Fixed documentation links
+
 ## [1.2.1] 2023-03-07
 
 ### Changed

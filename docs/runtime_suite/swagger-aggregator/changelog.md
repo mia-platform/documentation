@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.5.1] 2023-09-11
+
+### Fixed
+
+- security vulnerabilities: VULNDB-329638
+
+## [3.5.0] 2023-07-04
+
+### Added
+
+
+- `PREVENT_REQUEST_BODY_CONFLICTS` environment variable, to prevent the request body aggregation during the conversion from Swagger 2 to OpenAPI Specification v3. It is equivalent to the `resolveInternal` [parameter of the `swagger2openapi` library](https://github.com/Mermade/oas-kit/blob/main/packages/swagger2openapi/README.md#a-command-line) used for the conversion.
+
+### Updated
+
+- upgrade lc39 to v7
+
 ## [3.4.14] 2023-03-13
 
 ### Updated

@@ -8,8 +8,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [5.6.8] 2023-06-26
+## [6.2.1] 2023-10-03
 
+### Added
+
+- configuration and input data for running a simple demo of the service
+
+### Changed
+
+- updated `@mia-platform-internal/single-view-creator-lib@14.7.2` to fix a commit issue introduced in previous release
+
+## [6.2.0] 2023-09-27
+
+### Changed
+
+- updated `@mia-platform-internal/single-view-creator-lib@14.7.0` to leverage messages compactions in Kafka Message Handler
+- reviewed pipeline described in `gitlab-ci.yml` to update the employed Kafka image
+- reviewed `docker-compose.yml` to setup all the systems needed to run the service
+- removed dependencies not necessaries or classified as dev-dependencies
+
+## [6.1.0] 2023-09-07
+
+### Added
+
+- Support for `pr-update` version 2.0.0 and message ajv validation for all input message types 
+
+### Updated
+
+- updated @mia-platform-internal/single-view-creator-lib@14.6.0
+
+### Fixed
+
+- Now at the startup, the service will not only check that a configMap exists, but also that it isn't empty and contains a valid function.
+
+## [6.0.0] 2023-07-18
+
+### BREAKING CHANGE
+
+- The service will crash at startup if the _Aggregation_ configuration file contains at least a condition that does not exist in the _ER Schema_ or it includes an empty query. Before this update, an error was thrown at every Single View aggregation attempt, but the service would stay up. Now it stops, forcing the user to review their configurations.
+
+### Updated
+
+- A clean up operation is performed to remove empty conditions in the _ER Schema_ configuration file and a safety check is performed in the _Aggregation_ configuration file to verify if includes conditions that does not exists (or refer to empty conditions). This feature comes with the library `@mia-platform-internal/fast-data-automation-lib@3.1.0`.
+
+### Fixed
+
+- avoid to re-evaluate `erSchema.json` and `aggregation.json` content every time an aggregation of a Single View is performed, from now on these operation will be executed at service startup.
+
+
+## [5.6.8] 2023-06-26
 
 ### Changed 
 

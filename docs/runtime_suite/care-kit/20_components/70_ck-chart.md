@@ -9,7 +9,14 @@ The `ck-chart` web component is a web-component able to display a chart. The com
 
 ![ck-chart](../img/ck-chart.png)
 
-The `ck-chart` web-component is a web-component able to display charts.
+The `ck-chart` web-component is a web-component able to display Highcharts charts.
+
+Highcharts, along side the default type `chart`, offers different type of charts: 
+- [stock charts](https://www.highcharts.com/docs/stock/getting-started-stock)
+- [map chart](https://www.highcharts.com/docs/maps/getting-started)
+- [gantt chart](https://www.highcharts.com/docs/gantt/getting-started-gantt) 
+
+It is possible to select the type of chart through the `constructorType` property. The accepted values are `chart`, `stockChart`, `mapChart`, and `ganttChart` where `chart` is the default value.
 
 Through the `options` property, it is possible to customize the chart. As `options` you can use any valid [highcharts options](https://api.highcharts.com/highcharts/).
 
@@ -53,8 +60,10 @@ An example configuration follows:
 |----------|------|----------|---------|-------------|
 |`dataEndpoint`| string | true | '/' | Endpoint used to retrieve the data displayed on the chart. |
 |`options`| object | true | {} | Object that contains the Highchart chart options. |
+|`constructorType`| string | false | 'chart' |String for chart constructor method. Valid values are `chart`, `stockChart`, `mapChart`, `ganttChart`|
 |`urlMask`| string | false |`/:id` | url mask to apply to the current path to extract id dynamically. |
-|`idKeys`| string[] | false |`['id']` | id keys in urlMask. | 
+|`idKeys`| string[] | false |`['id']` | id keys in urlMask. |
+|`interactiveTooltip`| boolean | false | if set to true a point tooltip is shown upon click, insted of the standard hover | 
 
 
 ## Listens to

@@ -81,7 +81,7 @@ mia-console:
       clientIdSalt: "CLIENT SALT"
       rsaPrivateKeyBase64: |
         "BASE64_PrivateKey"
-    customServicesImagePullSecrets:
+    servicesImagePullSecrets:
       - "<SERVICE_PULL_SECRET>" # array of image pull secret to pull your custom services
     defaultCoreResources:
       apiGateway:

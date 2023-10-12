@@ -477,10 +477,6 @@
     "destination": "/docs/development_suite/deploy/overview",
     "addedOn": "2023-05-10"
   },
-  "/docs/development_suite/deploy/configuration": {
-    "destination": "/docs/development_suite/deploy/configure-jenkins",
-    "addedOn": "2023-05-10"
-  },
   "/docs/development_suite/api-console/api-design/design-overview": {
     "destination": "/docs/development_suite/api-console/api-design/overview",
     "addedOn": "2023-05-23"
@@ -500,5 +496,421 @@
   "/docs/business_suite/backoffice-configurator/environment": {
     "destination": "/docs/business_suite/backoffice-configurator/configurator-settings",
     "addedOn": "2023-06-23"
+  },
+  "/docs/business_suite/backoffice-configurator/compose-pages": {
+    "destination": "/docs/business_suite/backoffice-configurator/compose_pages",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/configurator-settings": {
+    "destination": "/docs/business_suite/backoffice-configurator/configurator_settings",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/overview": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/summary",
+    "addedOn": "2023-07-04"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/manifest": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/manifest",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/business_suite/backoffice-configurator/external-components/bundling": {
+    "destination": "/docs/business_suite/backoffice-configurator/external_components/bundling",
+    "addedOn": "2023-07-10"
+  },
+  "/docs/how_to/console/project_dev_tools_setup": {
+    "destination": "/docs/how_to/console/project_development",
+    "addedOn": "2023-07-13"
+  },
+  "/docs/development_suite/monitoring/configuration": {
+    "destination": "/docs/development_suite/clusters-management/add-edit-remove-cluster",
+    "addedOn": "2023-07-21"
+  },
+  "/release_notes/support-policy/": {
+    "destination": "/docs/release-notes/support-policy",
+    "addedOn": "2023-07-28"
+  },
+  "/info/version-policy/": {
+    "destination": "/docs/info/version_policy",
+    "addedOn": "2023-08-01"
+  },
+  "/docs/paas/alerting_rules": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/alarms": {
+    "destination": "/docs/paas/grafana",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/paas/K8s_roles_and_permissions": {
+    "destination": "/docs/paas/runtime",
+    "addedOn": "2023-08-03"
+  },
+  "/docs/development_suite/clusters-management/add-edit-remove-cluster": {
+    "destination": "/docs/how_to/company/manage-cluster",
+    "addedOn": "2023-08-11"
+  },
+  "/docs/development_suite/deploy/configuration": {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
+    "addedOn": "2023-08-25"
+  },
+  "/docs/development_suite/set-up-infrastructure/create-project": {
+    "destination": "/docs/console/project-configuration/create-a-project",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/project-settings": {
+    "destination": "/docs/console/project-configuration/project-settings",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/migrate": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/migrate-to-kustomize",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/projects": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/kustomize/examples": {
+    "destination": "/docs/console/project-configuration/kustomize-your-configurations/kustomize-use-cases",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/runtime-environments": {
+    "destination": "/docs/console/project-configuration/manage-runtime-environments/",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/add-environment": {
+    "destination": "/docs/console/project-configuration/manage-runtime-environments/configure-a-new-environment",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/remove-environment": {
+    "destination": "/docs/console/project-configuration/manage-runtime-environments/delete-an-environment",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/env-var": {
+    "destination": "/docs/console/project-configuration/manage-environment-variables/",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/env-var-gitlab": {
+    "destination": "/docs/console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/env-var-vault": {
+    "destination": "/docs/console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/set-up-infrastructure/authorization-flow": {
+    "destination": "/docs/console/project-configuration/authorization-flow",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/api-portal/api-documentations": {
+    "destination": "/docs/console/project-configuration/documentation-portal",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/user-settings/user-profile-picture":  {
+    "destination": "/docs/development_suite/user-settings/user-personal-info",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/tutorial/demo_project/overview":  {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/overview/mia_platform_overview": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/development_suite/identity-and-access-management/overview":  {
+    "destination": "/docs/development_suite/identity-and-access-management",
+    "addedOn": "2023-08-29"
+  },
+  "docs/runtime_suite_applications/payment-integration-hub/30_configuration.md": {
+    "destination": "docs/runtime_suite_applications/payment-integration-hub/50_configuration.md",
+    "addedOn": "2023-09-08"
+  },
+  "/docs/development_suite/deploy/configure-github-actions":  {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-github-actions",
+    "addedOn": "2023-09-12"
+  },
+  "/docs/development_suite/deploy/configure-jenkins":  {
+    "destination": "/docs/development_suite/deploy/pipeline-based/configure-jenkins",
+    "addedOn": "2023-09-12"
+  },
+  "/docs/getting_started/faqs":  {
+    "destination": "/docs/getting-started/faqs",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/git_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/git-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/microservices/microservice_hello_world":  {
+    "destination": "/docs/getting-started/tutorials/hello-world",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/fast_data/fast_data_low_code_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/low-code",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/requests_limits/requests_limits_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/set-requests-limits-of-a-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/console/project_handbook":  {
+    "destination": "/docs/getting-started/handbooks/project-handbook",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/backoffice":  {
+    "destination": "/docs/getting-started/videos/backoffice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/backoffice/basics":  {
+    "destination": "/docs/getting-started/tutorials/backoffice/basics",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/node_ms/node_ms_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/create-a-custom-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/flow_manager/flow_manager_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/flow-manager",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/rest_api/quick_rest_api":  {
+    "destination": "/docs/getting-started/tutorials/rest-api-for-crud-on-data",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/console/console_handbook":  {
+    "destination": "/docs/getting-started/handbooks/project-usage-handbook",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/api_portal/api_portal_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/api-portal",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/authorization/authorization_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/protect-your-endpoints-with-policies",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/design_overview/":  {
+    "destination": "/docs/getting-started/tutorials/design-overview",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/crud_service/crud_oss_usage":  {
+    "destination": "/docs/getting-started/handbooks/crud-service/crud-oss-usage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/backoffice/templates":  {
+    "destination": "/docs/getting-started/tutorials/backoffice/templates",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/rest_api_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/rest-api-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/microservice_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/microservice-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/guidelines/docker_vademecum":  {
+    "destination": "/docs/getting-started/guidelines/docker-vademecum",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/backoffice/microfrontends":  {
+    "destination": "/docs/getting-started/tutorials/backoffice/microfrontends",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/create_project_jenkins/project_template_jenkins_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/project-template-integrated-with-jenkins",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/migration/":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/migration-tutorial",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/tutorial/fast_data/bucket_storage_support_tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/bucket-storage-support",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/traefik/traefik_handbook":  {
+    "destination": "/docs/getting-started/handbooks/traefik/traefik-handbook",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/console/project_development":  {
+    "destination": "/docs/getting-started/handbooks/console/project-development",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/bucket_storage":  {
+    "destination": "/docs/getting-started/videos/bucket-storage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/connecting_cluster":  {
+    "destination": "/docs/getting-started/videos/connecting-cluster",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/fast_data_no_code":  {
+    "destination": "/docs/getting-started/videos/fast-data-no-code",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/feature_preview":  {
+    "destination": "/docs/getting-started/videos/feature-preview",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/m2m_auth":  {
+    "destination": "/docs/getting-started/videos/m2m-auth",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/providers":  {
+    "destination": "/docs/getting-started/videos/providers",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting_started/videos/runtime_area":  {
+    "destination": "/docs/getting-started/videos/runtime-area",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/fast-data/fast-data-low-code-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/low-code",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/requests-limits/requests-limits-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/set-requests-limits-of-a-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/node-ms/node-ms-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/create-a-custom-microservice",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/flow-manager/flow-manager-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/flow-manager",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/rest-api/quick-rest-api":  {
+    "destination": "/docs/getting-started/tutorials/rest-api-for-crud-on-data",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/console/console-handbook":  {
+    "destination": "/docs/getting-started/handbooks/project/manage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/api-portal/api-portal-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/api-portal",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/microservices/microservice-hello-world":  {
+    "destination": "/docs/getting-started/tutorials/microservice-hello-world",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/authorization/authorization-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/protect-your-endpoints-with-policies",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/create-project-jenkins/project-template-integrated-with-jenkins":  {
+    "destination": "/docs/getting-started/tutorials/project-template-integrated-with-jenkins",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/migration/":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/migration",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/fast-data/bucket-storage-support-tutorial":  {
+    "destination": "/docs/getting-started/tutorials/fast-data/bucket-storage-support",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/tutorials/console/project-handbook":  {
+    "destination": "/docs/getting-started/handbooks/project/usage",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/recurrent_payments":  {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/how_it_works",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/company/manage-cluster": {
+    "destination": "/docs/development_suite/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/handbooks/company/connect-and-manage-cluster": {
+    "destination": "/docs/development_suite/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2023-09-25"
+  },
+  "/docs/development_suite/clusters-management/clusters-overview-setup": {
+    "destination": "/docs/development_suite/clusters-management/cluster-setup",
+    "addedOn": "2023-09-25"
+  },
+  "/docs/development_suite/clusters-management/vendors-runtime-services": {
+    "destination": "/docs/development_suite/clusters-management/overview",
+    "addedOn": "2023-09-28"
+  },
+  "/docs/getting_started/video_pills/video_pills": {
+    "destination": "/docs/getting-started/videos/",
+    "addedOn": "2023-09-28"
+  },
+  "/docs/business_suite/backoffice/data_flow": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/plugin_example": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/plugin_navigation": {
+    "destination": "/docs/business_suite/backoffice/flows/plugin_navigation",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/adapters": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/buttons": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/clients": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_manipulation": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_querying": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_visaulization": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/misc": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/typography": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/runtime_suite_applications/secure-apigateway/overview": {
+    "destination": "/docs/runtime_suite_applications/secure-api-gateway/overview",
+    "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite_applications/secure-apigateway/configuration": {
+    "destination": "/docs/runtime_suite_applications/secure-api-gateway/configuration",
+    "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite_applications/secure-apigateway/changelog": {
+    "destination": "/docs/runtime_suite_applications/secure-api-gateway/changelog",
+    "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite/identification-router/overview":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/overview",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/changelog":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/changelog",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/configuration":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/configuration",
+    "addedOn": "2023-09-27"
   }
 }

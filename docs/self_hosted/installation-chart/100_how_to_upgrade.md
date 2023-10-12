@@ -17,9 +17,9 @@ kubeVersion: ">= 1.20.0-0"
 description: Self Hosted Console Installation Chart
 type: application
 dependencies:
-- name: mia-console
-  version: "X.Y.Z"
-  repository: "https://nexus.mia-platform.eu/repository/helm-internal/"
+  - name: mia-console
+    version: "X.Y.Z"
+    repository: "https://nexus.mia-platform.eu/repository/helm-internal/"
 ```
 
 When upgrading also make sure to check if any new configuration option is available or if something has been removed.
@@ -29,6 +29,46 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 :::
 
 ## v11 - version upgrades
+
+### Upgrade from v11.5.x to v11.6.0
+
+This version introduces the possibility to create Jobs from CronJobs, and to delete Jobs.
+
+Therefore, the Kubernetes Service Account set up on the clusters managed by your Console instance needs some specific permissions.
+
+If during the [Cluster Preparation](../../development_suite/clusters-management/cluster-setup#cluster-preparation) you chose the Automatic procedure, just make sure that you have been provided at least the `v2.18.0` Mia-Platform Helm Chart.
+
+Otherwise, if you manually configure your cluster connections, in the `ClusterRole` bound to the Console Kubernetes Service Account, add the `create` and `delete` verbs to the `jobs` resource, along with the already present `get` and `list`:
+
+```yaml
+- apiGroups:
+      - "batch"
+    resources:
+      - "jobs"
+    verbs:
+      - "get"
+      - "list"
+      - "create"
+      - "delete"
+```
+
+### Upgrade from v11.4.0 to v11.4.1
+
+With version v11.4.1 (Chart version v9.5.0) the feature toggle service now uses Rönd, therefore `rbacSidecar` configurations should be added:
+
+```yaml
+featureToggleService:
+  deploy:
+    # ...
+  rbacSidecar:
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "200Mi"
+        cpu: "200m"
+```
 
 ### Upgrade from v11.3.0 to v11.4.0
 

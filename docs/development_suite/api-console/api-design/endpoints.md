@@ -6,7 +6,7 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/tutorial/rest_api/quick_rest_api.mdx).
+An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/getting-started/tutorials/rest-api-for-crud-on-data.mdx).
 
 This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md).
 
@@ -165,7 +165,7 @@ Check out the [API Key section](/development_suite/api-console/api-design/api_ke
 
 ![Endpoint settings card - Documentation](img/endpoint-settings-card-documentation.png)
 
-The **Documentation** tab is visible only if the API Portal is enabled, and includes the `Show in API Portal` flag, which, if enabled, allows seeing all endpoint routes in the [Documentation Portal](/development_suite/api-portal/api-documentations.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
+The **Documentation** tab is visible only if the API Portal is enabled, and includes the `Show in API Portal` flag, which, if enabled, allows seeing all endpoint routes in the [Documentation Portal](/console/project-configuration/documentation-portal.md) documentation. By **default**, all endpoints have this **flag enabled**. Disabling this flag for any endpoint type will guarantee that all its routes will not appear.
 
 The visibility can also be defined at the route level in the [routes](/development_suite/api-console/api-design/endpoints.md#routes) section. In this way, it is possible to specify which routes of a specific endpoint should be visible in the API Portal and which should not.
 The `inherited` flag (enabled by default) will guarantee that the selected route will inherit the visibility of its base endpoint.

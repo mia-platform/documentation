@@ -3,6 +3,140 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.4.0] - 2023-10-06
+
+### Added
+
+- Added support for `aclExpression` property of components and components object properties
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.1`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.1`
+- Dev dependencies updated
+
+## [1.3.4] - 2023-09-25
+
+### Fixed
+
+- Fixed data schema from CRUD generation modal style
+
+## [1.3.3] - 2023-09-22
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.1`
+- `@mia-platform-internal/reactord` to `^9.8.1`
+- `flag-icons` to `6.11.1`
+- `monaco-editor` to `^0.43.0`
+- `rc-virtual-list` to `^3.11.1`
+- `react-router-dom` to `^6.16.0`
+- Dev dependencies updated
+
+## [1.3.2] - 2023-09-11
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.0`
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.5.2`
+- `@mia-platform-internal/reactord` to version `^9.8.0`
+- Dev dependencies updated
+
+### Changed
+
+- Scoped CSS classes to container id
+
+## [1.3.1] - 2023-08-24
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.3.18`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.0`
+- `@mia-platform-internal/reactord` to version `^9.7.0`
+- `@micro-lc/iconic` to version `^1.3.1`
+- `miaplatform/cdn-publish` to version `0.5.0`
+- `flag-icons` to version `^6.11.0`
+- `monaco-editor` to version `^0.41.0`
+- `rc-util` to version `^5.37.0`
+- `rc-virtual-list` to version `^3.10.5`
+- `react-router-dom` to version `^6.15.0`
+- Dev dependencies updated
+
+### Changed
+
+- Updated internal routing and links to reflect new Console URL pattern with `pathRefType` parameter
+
+### Fixed
+
+- Fixed internal broken navigation when Console branch contains a `/`
+
+## [1.3.0] - 2023-07-17
+
+### Versioning
+
+- `BACKOFFICE_TEMPLATE_VERSION` to `0.5.1`
+- `BACK_KIT_VERSION` to `1.3.17`
+- `@mia-platform-internal/reactord` to version `v9.6.0`
+- `@micro-lc/iconic` to version `^1.3.0`
+- `monaco-editor` to version `^0.40.0`
+- `rc-util` to version `^5.34.1`
+- `rc-virtual-list` to version `^3.5.3`
+- `react-router-dom` to version `^6.14.1`
+- `strip-json-comments` to version `^5.0.1`
+- Dev dependencies updated
+
+### Added
+
+- Added switch to set fields as required in data schema fields editor
+- During compose page creation, templates shows a description and a doc link
+- During compose page creation, input mode field shows an explanation of the different options
+- Added `dynamic-icon` format support for `fontawesome` brand library and `phosphor` libraries
+- Added web worker to fetch compose page templates from custom sources
+
+### Changed
+
+- When a shared property is deleted, the first of the remaining ones (if present) will be selected
+- "Edit property" button label changed to "Add property" when property value is not set
+- Generate Data Schema button is always visible and disabled if conditions are missing
+- Data schema from CRUD generation disclaimer badge better highlights that generating the schema will overwrite any existing value
+- Data schema from CRUD generation now handles "base" CRUD properties and properties of type ObjectId and Geopoint
+
+### Fixed
+
+- Fixed `dynamic-icon` form field CSP error in previewing icons switching to locally bundled libraries
+- Fixed `dynamic-icon` form field bug where after searching an item it could not be selected
+- Fixed Advanced tab blue dot appearing when other tabs are selected
+
+## [1.2.0] - 2023-07-03
+
+### Versioning
+
+- `@mia-platform-internal/reactord` to version `^9.5.0`
+- `@micro-lc/iconic` to version `^1.2.0`
+- Dev dependencies updated
+
+### Changed
+
+- "Add field" top button is no longer visible in dataSchema fields editor when there are no fields
+- default templates are fetched from `cdn.mia-platform.eu`
+- loading animation is fetched from `cdn.mia-platform.eu`
+- updates to internal CSP rules
+
+### Added
+
+- `back-kit` data schema can be automatically generated starting from a CRUD collection
+- support for mia cdn: static files for the default configuration are downloaded from `https://cdn.mia-platform.eu`
+
+### Fixed
+
+- Improved DataSchema editor rendering performances in Shared Properties section
+- Edit shared property modal form is correctly reset to the default value when closed
+- Fixed UI inconsistencies in Shared Property page
+- `oneOf` with a primitive type and object shows an in-form monaco-editor in the latter case
+- object `oneOf` multiple choices shows an in-form monaco-editor
+- `noService` mode helper section pushes to a URL that must be URL-encoded
+- `mia-preview-button` takes communication channel from proxyWindow
+
 ## [1.1.0] - 2023-06-19
 
 ### Versioning
@@ -19,7 +153,7 @@ sidebar_label: CHANGELOG
 
 - Shared Property page
 - Possibility of creating shared properties starting from existing non-shared definitions
-- No-code editor for Shared Properties of type Data Schema 
+- No-code editor for Shared Properties of type Data Schema
 - Advanced modal to edit Shared Properties
 - Support for `dynamic-icon` manifest schema hint
 - Added support for `mia/endpoints/data-source` schema hint

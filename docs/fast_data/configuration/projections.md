@@ -22,7 +22,9 @@ The System of Records is then created.
 
 To delete a System of Records, you have to click the `Delete` button in the bottom-right corner of the System of Records detail page.
 
-:::warning The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it. :::
+:::warning
+The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it. 
+:::
 
 ## Create a Projection
 
@@ -33,7 +35,7 @@ Inside the System of Records page click the `Create new Projection` button on th
 In order to finally create the new Projection, you will need to save the configuration.
 
 :::tip
-Too see more details about your projection you can click on the arrow on the right inside the same section
+To see more details about your projection you can click on the arrow on the right inside the same section
 :::
 
 ### Projection fields
@@ -54,12 +56,8 @@ Once you click the `Create field` button, a form is prompted where you should in
 
 It's **mandatory** to set at least one Primary Key for each Projection. Otherwise, you will not be able to save your configuration.
 
-:::note
-Setting the Primary Keys creates automatically the unique indexes as explained [here](#primary-key-index-automation)
-:::
-
 :::info
-When the `Real Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
+When the `Real-Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
 :::
 
 #### Generate projection fields from data sample
@@ -95,35 +93,6 @@ In Case some fields are not in the correct format, they will be ignored.
 
 :::caution
 You cannot import fields with the same name as one of the metadata fields. If this happens, a warning will be displayed and the import won't be successful
-:::
-
-### Indexes
-
-In the card `Indexes`, you can add indexes to the collection. To learn more about CRUD indexes, [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
-However, differently from `Indexes` that can be created on a normal CRUD, in this section the `Geo` index type is not available.
-
-An `_id` index is created by default, and it is not deletable.
-
-Both custom fields and metadata can be used as fields for indexes.
-
-#### Primary Key Index Automation
-
-An automation on the primary key index is available in the console. If enabled, the automation will update a primary key index, starting either from an index of your choice, or a newly generated one named `primary_key_index`.
-
-:::info
-A primary key index is an index made up of all the projection fields that are marked as primary keys, and no other field.
-:::
-
-From the Console, you can change your preferences about primary key index automation by selecting a different index to be marked as primary key index, and by turning the functionality on or off.
-When the automation is on, the index will be updated only after you change the fields of the projection.
-
-:::caution
-In order for the Real Time Updater to correctly update its projections two actions are necessary:
-
-* You should define at least one custom field with flags **Primary Key** and **Required** set to true in the `Fields` card.
-* Then, you should create an index using the previously defined custom field and set to true the index **unique** flag.
-
-In this way, the Real Time Updater updates the Projection document with the correct primary key value instead of creating a new document.
 :::
 
 ### Kafka topics
@@ -237,7 +206,7 @@ When you click continue, the console will generate the new configuration for the
 
 ## Expose projections through API
 
-You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real Time Updater service).
+You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real-Time Updater service).
 
 To expose the Fast Data projection, [create an Endpoint](/development_suite/api-console/api-design/endpoints.md) with type `Fast Data Projection` linked to the desired projection.
 

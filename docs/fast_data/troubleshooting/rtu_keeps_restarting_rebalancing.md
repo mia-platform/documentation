@@ -1,18 +1,18 @@
 ---
 id: rtu_keeps_restarting_rebalancing
-title: The Real Time Updater keeps restarting or rebalancing
+title: The Real-Time Updater keeps restarting or rebalancing
 sidebar_label: RTU restarting/rebalancing
 ---
 
 ## Problem
 
-The Real Time Updater begins to restart or rebalance in an infinite loop; Usually this happens when you have a peak of input data from the ingestion topics, like in an Initial Load case for example.
+The Real-Time Updater begins to restart or rebalance in an infinite loop; Usually this happens when you have a peak of input data from the ingestion topics, like in an Initial Load case for example.
 
 ## Cause
 
-**The Real Time Updater keeps restarting:** If it keeps restarting itself it's because the [health routes](/guidelines/microservice_vademecum.md#health-routes) are unreachable, meaning the service is too busy running strategies (CPU consumption too high).
+**The Real-Time Updater keeps restarting:** If it keeps restarting itself it's because the [health routes](/getting-started/guidelines//microservice-vademecum.md#health-routes) are unreachable, meaning the service is too busy running strategies (CPU consumption too high).
 
-**The Real Time Updater keeps rebalancing:** If it keeps rebalancing without restarting it's because the strategies are taking too much time to complete (usually due to long waiting times between responses from MongoDB queries) and the consumer can't emit the hearbeat in time. This results in the Real Time Updater's consumer being kicked out by the group coordinator, outputting and error similar to this: `kafkajs error: Group coordinator is not aware of this member`.
+**The Real-Time Updater keeps rebalancing:** If it keeps rebalancing without restarting it's because the strategies are taking too much time to complete (usually due to long waiting times between responses from MongoDB queries) and the consumer can't emit the hearbeat in time. This results in the Real-Time Updater's consumer being kicked out by the group coordinator, outputting and error similar to this: `kafkajs error: Group coordinator is not aware of this member`.
 
 ## Solution
 
@@ -29,11 +29,11 @@ In that case, here's a simple temporary solution:
 
 ### 1. Stop the strategy execution mechanism
 
-To stop running the strategies you must disable the projections changes generation on the Real Time Updaters (env var `PROJECTIONS_CHANGES_ENABLED=false`). This will apply the incoming updates (ingestion messages) on the Projections but won't trigger the Single Views' regeneration
+To stop running the strategies you must disable the projections changes generation on the Real-Time Updaters (env var `PROJECTIONS_CHANGES_ENABLED=false`). This will apply the incoming updates (ingestion messages) on the Projections but won't trigger the Single Views' regeneration
 
 ### 2. Consume all the ingestion messages in queue
 
-Wait for the Real Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our [Grafana dashboards for Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md).
+Wait for the Real-Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real-Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real-Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our [Grafana dashboards for Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md).
 
 ### 3. Manually generate the Projection Changes to trigger all the Single Views' regeneration
 
@@ -47,8 +47,8 @@ After generating the Projection Changes, scale up (if possible) the Single View 
 
 Once all the Single Views have been regenerated, restore the Fast Data's normal flow. To do so you should:
 1. Scale down the Single View Creators if you scaled them up before
-2. Re-enable the Projections Changes generation on the Real Time Updaters (env var `PROJECTIONS_CHANGES_ENABLED=true`)
-3. Scale up the Real Time Updaters to the normal replicas count
+2. Re-enable the Projections Changes generation on the Real-Time Updaters (env var `PROJECTIONS_CHANGES_ENABLED=true`)
+3. Scale up the Real-Time Updaters to the normal replicas count
 
 :::tip
 You may have accumulated a great amount of messages in the ingestion topics during this process, so you may need to apply this solution again until normality is restored.

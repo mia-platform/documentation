@@ -9,7 +9,7 @@ import TabItem from "@theme/TabItem";
 
 Once you [created a company](/development_suite/company/create.md), you can configure:
 
-- [clusters](/development_suite/clusters-management/clusters-overview-setup.md)
+- [clusters](/development_suite/clusters-management/cluster-setup.mdx)
 - [providers](/development_suite/set-up-infrastructure/configure-provider.mdx) (Git Providers, Secret Managers, CI/CD Tools)
 - projects default configurations (such as environments, logical layers, and accessible namespaces)
 
@@ -23,7 +23,7 @@ Let's now proceed with each step of the configuration:
 
 Clusters can be connected to a company from the **Clusters** section of the Console, inside the Company Overview area.
 
-To connect a cluster, you can follow the [clusters connection guide](/development_suite/clusters-management/add-edit-remove-cluster.md).
+To connect a cluster, you can follow the [clusters connection guide](/development_suite/clusters-management/connect-and-manage-cluster.mdx).
 
 ### Configure Providers
 
@@ -42,35 +42,35 @@ This configuration can be done from the `Companies` section of the Console CMS.
 The projects default configurations fields are:
 
 - **defaultTemplateId**:
-  
-  The identifier of the default template to be used for the creation of a project. 
+
+  The identifier of the default template to be used for the creation of a project.
   This information can be changed for a specific project during the steps of the project creation wizard.
 
 - **cmsImageName**:
-  
+
   The Docker image configuring the CMS used in your project. It should also contain the CMS tag to be used.
   This value will interpolate the template archive of your project.
-  
+
   If `cms-site` service is disabled during the project creation, this field will not be used.
 
 - **repository** (_required_):
-  
-  An object that specifies the information regarding the repository where the projects of this company will be created. 
+
+  An object that specifies the information regarding the repository where the projects of this company will be created.
 
   :::info
   This field can also be set by [selecting a default Git Provider](/development_suite/set-up-infrastructure/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
   :::
-  
+
   The object must have the following properties:
 
-  - **providerId** (_required_): the unique identifier of the Git Provider associated with the company 
-  
+  - **providerId** (_required_): the unique identifier of the Git Provider associated with the company
+
     It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
 
     Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
-  
-  - **basePath**: the base path where the project will be created. 
-    
+
+  - **basePath**: the base path where the project will be created.
+
     :::caution
     Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
     :::
@@ -87,7 +87,7 @@ The projects default configurations fields are:
 
       For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
       then the `basePath` must be **`mia-platform/projects`**.
-      
+
       If your group does not exist (in the example groupB):
 
       - /groupA/groupB -> if the user has permission to create groups in groupA, then groupB will be created;
@@ -98,8 +98,8 @@ The projects default configurations fields are:
 
     <TabItem value="github" label="GitHub">
 
-      It corresponds to the **path of an existing organization**. 
-      
+      It corresponds to the **path of an existing organization**.
+
       If the path does not exist, the project will not be created.
 
       For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, <br/>
@@ -115,16 +115,16 @@ The projects default configurations fields are:
       #### A single Azure DevOps project with multiple configurations repository
 
       It corresponds to the **path where your Azure project is reachable**: the pattern is _organization-name/project-name_.
-      
+
       For example, if your project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
       then the `basePath` must be **`mia-platform-devops/Test`**.
 
       #### An Azure DevOps project for each Console project
 
       It corresponds to the **organization where to create the project**: the pattern is organization-name_.
-      
+
       For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
-      then the `basePath` must be **`mia-platform-devops`**. 
+      then the `basePath` must be **`mia-platform-devops`**.
 
     </TabItem>
 
@@ -138,8 +138,8 @@ The projects default configurations fields are:
     </TabItem>
 
     </Tabs>
-      
-  - **visibility**: the visibility of the project. 
+
+  - **visibility**: the visibility of the project.
 
     Either one of the following:
 
@@ -203,17 +203,17 @@ The projects default configurations fields are:
   </Tabs>
 
 - **pipelines** (_required_):
-  
-  An object that specifies the information regarding the CI/CD pipelines used by the company. 
+
+  An object that specifies the information regarding the CI/CD pipelines used by the company.
 
   :::info
   This field can also be set by [selecting a default CI/CD Tool](/development_suite/set-up-infrastructure/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
   :::
-  
+
   The object must have the following properties:
 
   - **providerId**: the unique identifier of the CI/CD Tool associated with the company.
-    
+
     It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
@@ -234,10 +234,10 @@ The projects default configurations fields are:
 
       In Jenkins, pipeline views allow you to visualize and monitor your pipelines and their status in a more organized and user-friendly way, making it easier to track their progress and health.
 
-      The `view` configuration includes the following fields: 
+      The `view` configuration includes the following fields:
 
       - **name**: the name of the visualization step where Jenkins pipelines are shown.
-  
+
   </TabItem>
   </Tabs>
 
@@ -254,7 +254,7 @@ The projects default configurations fields are:
   ```
   </TabItem>
   <TabItem value="github" label="GitHub">
-  
+
   ```json
   {
     "providerId": "my-github",
@@ -263,7 +263,7 @@ The projects default configurations fields are:
   ```
   </TabItem>
   <TabItem value="azure-devops" label="Azure DevOps">
-  
+
   ```json
   {
     "providerId": "my-azure",
@@ -273,7 +273,7 @@ The projects default configurations fields are:
   ```
   </TabItem>
     <TabItem value="jenkins" label="Jenkins">
-  
+
   ```json
   {
     "providerId": "my-jenkins",
@@ -287,8 +287,8 @@ The projects default configurations fields are:
   </Tabs>
 
 - **environmentsVariables**:
-   
-  An object that describes the configuration to enable the Variables section in the Project Settings area of the Console.
+
+  An object that describes the configuration to enable the Variables section in the Project Overview area of the Console.
 
   :::info
   This field can also be set by [selecting a default Secret Manager](/development_suite/set-up-infrastructure/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
@@ -300,8 +300,8 @@ The projects default configurations fields are:
 
   The object can be configured with the following properties:
 
-  - **providerId**: the unique identifier of the Secret Manager associated with the company. 
-  
+  - **providerId**: the unique identifier of the Secret Manager associated with the company.
+
     It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx).
@@ -310,8 +310,8 @@ The projects default configurations fields are:
 
   <Tabs>
   <TabItem value="gitlab" label="GitLab">
-  
-  - **baseUrl**: the base path from which the variables will be read. 
+
+  - **baseUrl**: the base path from which the variables will be read.
 
     If not specified, variables will be read from the first parent group of the Configurations project in GitLab.
 
@@ -333,9 +333,9 @@ The projects default configurations fields are:
       - `projects`: variables will be managed at the project level.
 
     <br/>
-    
+
   :::info
-  This configuration is saved only within the company model and is retrieved by projects at runtime. 
+  This configuration is saved only within the company model and is retrieved by projects at runtime.
 
   If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables' path for all the projects in the company.
   :::
@@ -374,7 +374,7 @@ The projects default configurations fields are:
   </Tabs>
 
 - **environments** (_required_):
-  
+
   An array of objects containing the definitions of the environments for the company.
 
   :::note
@@ -383,13 +383,13 @@ The projects default configurations fields are:
 
   Each object is shaped as follows:
 
-  - **label**: a descriptive, human-readable identifier for the environment;  
+  - **label**: a descriptive, human-readable identifier for the environment;
   - **envId** (_required_): a unique identifier associated with the environment;
   - **envPrefix**: defines a common prefix for environment-specific variables;
   - **description**: a short description of the environment;
   - **isProduction**: a boolean value indicating whether it is considered to be a production environment;
   - **hosts**: an array of objects identifying the hosts used by the environment.
-  
+
     Each host is shaped as follows:
 
     - **host**: the URL identifying where the host is located;
@@ -398,42 +398,42 @@ The projects default configurations fields are:
 
     This object can be used to specify where a specific environment should be hosted,
     where it should expose its documentation or where to access its CMS.
-  
+
   - **environmentsVariables**: an object that describes the configuration of variables for the environment.
-    
+
     :::info
-    This field can be overwritten by the configuration provided in the `environmentsVariables` field for a specific environment. 
+    This field can be overwritten by the configuration provided in the `environmentsVariables` field for a specific environment.
     :::
 
     It can be configured following the configuration of the `environmentsVariables` company field.
 
   - **deploy**: an object that describes the configuration of CI/CD pipelines for the environment.
-    
+
     :::info
-    This field can be overwritten by the configuration provided in the `pipelines` field for a specific environment. 
+    This field can be overwritten by the configuration provided in the `pipelines` field for a specific environment.
     :::
 
     It can be configured following the configuration of the `pipelines` company field.
 
     In addition, it can include the following properties, supported only by specific providers:
 
-    <Tabs>    
+    <Tabs>
     <TabItem value="jenkins" label="Jenkins">
 
      - **jobId**: identifier of the Jenkins job associated with the pipeline.
-      
-      It uniquely identifies the job within the Jenkins instance. 
 
-     - **paramsMap**: a map or dictionary of parameters that can be passed to a Jenkins pipeline. 
-  
-      Parameters allow you to provide inputs or configuration values to the pipeline, enabling dynamic behavior and customization. 
+      It uniquely identifies the job within the Jenkins instance.
+
+     - **paramsMap**: a map or dictionary of parameters that can be passed to a Jenkins pipeline.
+
+      Parameters allow you to provide inputs or configuration values to the pipeline, enabling dynamic behavior and customization.
 
     </TabItem>
     </Tabs>
-  
+
   - **cluster**: an object identifying the connection parameters of the cluster the environment is deployed to.
 
-    It contains the following properties: 
+    It contains the following properties:
 
       - **clusterId**: a unique identifier associated with the Kubernetes cluster;
       - **namespace**: the name of the logical partitioning the cluster refers to;
@@ -444,9 +444,9 @@ The projects default configurations fields are:
           - **KUBE_URL**: the URL or endpoint used to access the cluster;
 
           - **KUBE_TOKEN**: an authentication token required to authenticate and authorize access to the cluster.
-          
-          - **KUBE_CA_PEM**: a PEM-encoded certificate authority. 
-            
+
+          - **KUBE_CA_PEM**: a PEM-encoded certificate authority.
+
             It is used to verify the authenticity of the cluster's TLS certificate during secure communication.
 
   :::danger
@@ -454,11 +454,11 @@ The projects default configurations fields are:
 
   Do not set the `cluster.kubeContextVariables` with plain values to access the cluster.
 
-  Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponding project variable. 
+  Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponding project variable.
   :::
-  
+
   ##### Example Configuration
-  
+
   ```json
   [
     {
@@ -498,28 +498,28 @@ The projects default configurations fields are:
   ```
 
 - **logicalScopeLayers**:
-   
-  An array of objects that identifies the set of logical layers available in the current company. 
-  
+
+  An array of objects that identifies the set of logical layers available in the current company.
+
   Each object is shaped as follows:
 
   - **name**: identifies the name of the logical layer;
   - **order**: identifies the numerical order of the layer, used to display layers according to the sorting order defined by the user.
 
-  The `logicalScopeLayers` field will be created in the project model according to the project `layerId` value. Please refer to the [Create a Project](/development_suite/set-up-infrastructure/create-project.mdx) section for further details.
+  The `logicalScopeLayers` field will be created in the project model according to the project `layerId` value. Please refer to the [Create a Project](/console/project-configuration/create-a-project.mdx) section for further details.
 
   ##### Example Configuration
   ```json
   [
-    { "name": "layer-1", "order": 2}, 
+    { "name": "layer-1", "order": 2},
     { "name": "layer-2", "order": 1}
   ]
   ```
 
 - **availableNamespaces**:
-  
-  Namespaces which are internally accessible from your project, using the `cross-projects` endpoint. 
-  
+
+  Namespaces which are internally accessible from your project, using the `cross-projects` endpoint.
+
   Namespaces are useful when your company is made up of several projects that communicate with each other.
 
   :::note
@@ -536,23 +536,23 @@ The projects default configurations fields are:
   ##### Example Configuration
   ```json
   [
-    { "value": "dev.%projectId%", "label": "Development"}, 
-    { "value": "preprod.%projectId%", "label": "Preproduction"}, 
+    { "value": "dev.%projectId%", "label": "Development"},
+    { "value": "preprod.%projectId%", "label": "Preproduction"},
   ]
   ```
 
 - **dockerImageNameSuggestion**:
-  
-  An object defining the Docker image name suggestion that will be passed to every project created in your company. 
-  
+
+  An object defining the Docker image name suggestion that will be passed to every project created in your company.
+
   :::info
   This suggestion will appear in the `Docker Image Name` field when you [create a microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
   :::
 
   The object should have the following properties:
 
-  - **type** (_required_): defines the format of the suggestion. 
-    
+  - **type** (_required_): defines the format of the suggestion.
+
     Currently, three types are present:
 
       - `PROJECT_ID` (_default_): **`<project-id>/<your-service-name>`**
@@ -563,12 +563,12 @@ The projects default configurations fields are:
 
         Do **not** set the _prefix_ property if you choose this type of suggestion.
 
-      - `CONSTANT_PREFIX`: **`<prefix-value>/<your-service-name>`**. 
+      - `CONSTANT_PREFIX`: **`<prefix-value>/<your-service-name>`**.
 
         The _prefix_ property is required for this type and will replace _prefix-value_.
 
-  - **prefix**: defines the prefix that will appear in the suggestion for the Docker image name. 
-  
+  - **prefix**: defines the prefix that will appear in the suggestion for the Docker image name.
+
     This property must be defined only when **type** property value is set to `CONSTANT_PREFIX`.
 
   ##### Example Configuration
@@ -580,11 +580,11 @@ The projects default configurations fields are:
   ```
 
 - **imagePullSecretNames**:
-  
-  A list of imagePullSecret names. 
-  
+
+  A list of imagePullSecret names.
+
   :::note
-  An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
+  An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries.
   :::
 
   The imagePullSecrets whose name is specified in this field will be inherited in the project during project creation and then used in deployment and cronjob files for pulling Docker images.
@@ -597,27 +597,27 @@ The projects default configurations fields are:
   ```
 
 - **enabledSecurityFeatures**:
-  
-  A set of features to enforce the security of the project. 
+
+  A set of features to enforce the security of the project.
 
   It defines the security features and settings that will be applied to the Kubernetes environment that your project will be deployed on.
 
   The object can be configured with the following properties:
 
-  - **`seccompProfile`**: indicates whether the Seccomp profile is enabled. 
-    
+  - **`seccompProfile`**: indicates whether the Seccomp profile is enabled.
+
     Seccomp (short for secure computing mode) is a Linux kernel feature that restricts the system calls a process can make. Enabling Seccomp profiles helps enhance the security of containers by limiting their access to potentially dangerous system calls.
 
-  - **`appArmor`**: indicates whether AppArmor is enabled. 
-    
+  - **`appArmor`**: indicates whether AppArmor is enabled.
+
     AppArmor is a Linux security module that provides mandatory access control (MAC) policies. It allows you to define fine-grained restrictions on the actions that a process can perform, helping to prevent unauthorized activities and limit the potential impact of security breaches.
 
-  - **`hostProperties`**: indicates whether the container has access to host properties. 
-    
+  - **`hostProperties`**: indicates whether the container has access to host properties.
+
     Host properties typically include information about the underlying host system, such as network interfaces, file systems, or hardware details. Disabling access to host properties helps isolate the container from the host environment, reducing the risk of information leakage or unauthorized system access.
 
-  - **`privilegedPod`**: indicates whether the container or pod has privileged access. 
-    
+  - **`privilegedPod`**: indicates whether the container or pod has privileged access.
+
     Privileged access means that the container or pod has elevated permissions and can perform privileged operations on the host system. Disabling privileged access is generally recommended for improved security, as it helps prevent containers from having unrestricted control over the underlying infrastructure.
 
   ##### Example Configuration

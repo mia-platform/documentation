@@ -142,3 +142,12 @@ We recommend building you own form validation in a dedicated backend microservic
 This may change in the future.
 
 :::
+
+:::warning
+
+If a **form-schema** is modified, the data from filled-out forms is not lost. The API `GET /visualizer/forms/:formId` returns the completed data in the `data` field. However, in the `formSchema` field, components related to the completed data may be missing if they have been modified or deleted. As a result, these fields and their completed data will not be visible in the visualizer.
+
+
+If a **form-schema** is deleted, the data from filled-out forms is not lost. However, the API `GET /visualizer/forms/:formId` will return a `500 Internal Server Error` because it cannot retrieve the form-schema of the form.
+
+:::

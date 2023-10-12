@@ -16,6 +16,10 @@ The following software and hardware recommendations are for installing Mia-Platf
 
 ### Software and Hardware prerequisites  
 
+:::note
+Blanks cell in the following table are for tools that do not require a specific version or a minimum of RAM and CPU.  
+:::
+
 <table>
    <thead>
       <tr>
@@ -30,33 +34,33 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td rowspan="7"><strong>Auth Provider</strong></td>
          <td><img src="/img/okta.ico" width="15" height="15"/> Okta</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>> 14.x</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub</td>
          <td>> 3.x</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/microsoft.ico" width="15" height="15"/> Microsoft</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/microsoft.ico" width="15" height="15"/> Azure AD B2C</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
@@ -66,9 +70,9 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td><img src="/img/keycloak.ico" width="15" height="15"/> Keycloak</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td rowspan="4"><strong>Git Provider</strong></td>
@@ -85,9 +89,9 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td><img src="/img/azure-repos.png" width="15" height="15"/> Azure Repos</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
@@ -98,15 +102,15 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td rowspan="2"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/vault.png" width="15" height="15"/> Vault</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td rowspan="4"><strong>CI/CD Tool</strong></td>
@@ -117,26 +121,26 @@ The following software and hardware recommendations are for installing Mia-Platf
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub Actions</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/azure-pipelines.png" width="15" height="15"/> Azure Pipelines</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><img src="/img/jenkins.png" width="15" height="15"/> Jenkins</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td><strong>NoSQL database</strong></td>
          <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB Enterprise</td>
-         <td>&gt; 4.2</td>
+         <td>&gt; 4.2<br/>&lt;= 6</td>
          <td>2 cores</td>
          <td>2 GB</td>
       </tr>
@@ -150,41 +154,41 @@ The following software and hardware recommendations are for installing Mia-Platf
       <tr>
          <td><strong>Container image registry</strong></td>
          <td>Any container image registry</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td rowspan="3"><strong>Object Storage</strong></td>
          <td><img src="/img/gcs.png" width="15" height="15"/> Google Cloud Storage</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
         <td>S3-Compatible Object Storages</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
+        <td>SaaS</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
         <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB</td>
-        <td>N/A</td>
-        <td>N/A</td>
-        <td>N/A</td>
+        <td>SaaS</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
          <td rowspan="2"><strong>Key Management Service</strong></td>
          <td><img src="/img/gcp.ico" width="15" height="15"/> Google Cloud Platform</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
       <tr>
          <td>Local Key</td>
-         <td>N/A</td>
-         <td>N/A</td>
-         <td>N/A</td>
+         <td>SaaS</td>
+         <td></td>
+         <td></td>
       </tr>
    </tbody>
 </table>
@@ -196,14 +200,14 @@ The following is an example architecture for the installation of the Mia-Platfor
 
 | **Tool**                  | **Version** | **Nodes**      | **CPU** | **RAM** | **Storage** |
 |---------------------------|-------------|----------------|---------|---------|-------------|
-| Okta                      | N/A         | N/A            | N/A     | N/A     | N/A         |
+| Okta                      |   SaaS       |             |      |      |          |
 | GitLab                    | 14          | 1              | 8 core  | 32 GB   | 200 GB      |
 | GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
 | MongoDB Enterprise        | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
-| Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    | N/A         |
-| Google Container Registry | N/A         | N/A            | N/A     | N/A     | N/A         |
-| Google Cloud Storage      | N/A         | N/A            | N/A     | N/A     | N/A         |
-| Google Cloud Platform KMS | N/A         | N/A            | N/A     | N/A     | N/A         |
+| Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    |          |
+| Google Container Registry |   SaaS       |             |      |      |          |
+| Google Cloud Storage      |   SaaS       |             |      |      |          |
+| Google Cloud Platform KMS |   SaaS       |             |      |      |          |
 
 ### Designating the Console Super User
 

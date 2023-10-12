@@ -8,7 +8,7 @@ The API documentation aggregator can be used to aggregate the individual [Open A
 
 ### Usage
 
-To reach the portal and visualize all the routes exposed by the endpoints, go to the "`Settings`" section of your project, and then click the "`Go to Documentation`" button within the table line related to the reference environment.
+To reach the portal and visualize all the routes exposed by the endpoints, go to the "`Overview`" area of your project, and then click the "`Go to Documentation`" button within the table line related to the reference environment.
 
 ## Microservices
 

@@ -8,6 +8,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] 2023-10-03
+
+### Added
+
+- Add Notification Manager integration to service configuration
+- Send an event to the Notification Manager when a new appointment is created
+- Send an event to the Notification Manager when an appointment is updated
+- Send events to the Notification Manager when appointments state is updated
+- Add Notification Manager integration libraries
+- Add integration test suite for the Notification Manager
+
+## [2.2.0] 2023-07-10
+
+- Upgrade Node.js to v18
+
+The following optional fields have been added to the availabilities CRUD collection: `onCreate`, `onUpdate`, `onDelete` and `onCompute`.
+The following optional fields have been added to the appointments CRUD collection: `participants`.
+If you have custom properties with these names, please rename them before upgrading from a version prior to 2.2.0.
+
+### Fixed
+
+- Searching for first available slot could return slots already started
+- Cannot patch participant status when AM is deployed in appointments mode
+
+### Added
+
+- Create appointment on flexible slot
+- Generate flexible slots
+- Update appointments on flexible slots
+- Create availability with flexible slots
+- Update availability with flexible slots
+- Update GET /calendar/ to return flexible slots
+- Add validation of flexible slots
+- GET /slots/ returns availabilities with flexible slots
+- Find flexible slots
+- PATCH /slots/lock/:id allows lock on flexible slot
+- Update POST /searches/first-available-slot/ to return flexible slots
+- Lock flexible slot
+- Update find first available slot
+- Update PATCH /slots/lock/:id with custom start and end date
+- Update service configuration for participants status (feature toggle and user category defaults) 
+- Add a new participants field to the appointments CRUD
+- Add participants status synchronization
+- Add participants status when creating an appointment
+- Update participants status when updating an appointment
+- Add endpoint PATCH /appointments/:id/status to change the status of an appointment participant
+- Add user info to the participants
+- Update handlers to synchronize user info for the participants
+
 ## [2.1.2] 2023-03-01
 
 ### Fixed

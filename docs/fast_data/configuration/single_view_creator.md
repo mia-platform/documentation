@@ -103,52 +103,277 @@ service.addHook('onClose', async() => {
 
 ## Environment Variables
 
-| Name | Required | Description | Default value |
-|------|----------|-------------|---------------|
-| CONFIGURATION_FOLDER | - | Folder where configuration files are mounted | /home/node/app/src/ |
-| LOG_LEVEL | &check; | Level to use for logging | - |
-| HTTP_PORT | - | Port exposed by the service | 3000 |
-| TYPE | &check; | Identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update. | - |
-| SCHEDULING_TIME | - | a quantity of time in milliseconds, every X milliseconds the service wake up and check if there are some projections changes in `NEW` state to work on. The service continue working until no more new projections changes are found, if so he goes to sleep for X milliseconds. | 60000 |
-| PROJECTIONS_MONGODB_URL | &check; | MongoDB connection string where projections are stored. Must be a valid uri | - |
-| SINGLE_VIEWS_MONGODB_URL | &check; | MongoDB connection string where single view must be stored. Must be a valid uri | - |
-| PROJECTIONS_CHANGES_MONGODB_URL | - | The db from where projections changes are read. If not set, `PROJECTIONS_MONGODB_URL` is used. | - |
-| PROJECTIONS_CHANGES_DATABASE | &check; | The db from where projections changes are read. | - |
-| PROJECTIONS_DATABASE | &check; | The db from where projections are read. If not set, `PROJECTIONS_CHANGES_DATABASE` is used. | - |
-| PROJECTIONS_CHANGES_COLLECTION | - | if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for. | - |
-| SINGLE_VIEWS_DATABASE | &check; | The db from where single views are written. | - |
-| SINGLE_VIEWS_COLLECTION | &check; | It must be equals to the Single View name the service is in charge of keeping updated. | - |
-| SINGLE_VIEWS_PORTFOLIO_ORIGIN | &check; | should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION` | - |
-| SINGLE_VIEWS_ERRORS_COLLECTION | &check; | Name of a MongoDB CRUD you want to use as collection for single view errors. | - |
-| KAFKA_CONSUMER_GROUP_ID | - | **@deprecated** - in favor of KAFKA_GROUP_ID. The Kafka consumer group identifier | - |
-| KAFKA_GROUP_ID | - | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}```) | - |
-| KAFKA_CLIENT_ID | - | The Kafka client identifier | - |
-| KAFKA_BROKERS_LIST | - | **@deprecated** - in favor of KAFKA_BROKERS. list of brokers the service needs to connect to | - |
-| KAFKA_BROKERS | - | list of brokers the service needs to connect to | - |
-| KAFKA_SASL_MECHANISM | - | The Kafka SASL mechanism to be used. Can be one of the following: "plain", "PLAIN", "scram-sha-256", "SCRAM-SHA-256", "scram-sha-512", "SCRAM-SHA-512" | plain |
-| KAFKA_SASL_USERNAME | - | username to use for logging into Kafka | - |
-| KAFKA_SASL_PASSWORD | - | password to use for logging into Kafka | - |
-| KAFKA_SVC_EVENTS_TOPIC | - | topic used to queue Single View Creator state changes (e.g. single view creation). This feature is deprecated in favor of KAFKA_SV_UPDATE_TOPIC and it will be removed soon | - |
-| SEND_BA_TO_KAFKA | - | true if you want to send to Kafka the `before-after` information about the update changes of the single view. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon | false |
-| KAFKA_BA_TOPIC | - | topic where to send the `before-after` messages which represent the single view document before and after a change. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon | - |
-| SEND_SV_UPDATE_TO_KAFKA | - | true if you want to send to Kafka the `sv-update` message about the update changes of the single view | false |
-| ADD_BEFORE_AFTER_CONTENT | - | true if you want to add the _before_ and _after_ content to the `sv-update` message, works only if `SEND_SV_UPDATE_TO_KAFKA` is set to true | false |
-| KAFKA_SV_UPDATE_TOPIC | - | topic where to send the `sv-update` message | - |
-| UPSERT_STRATEGY | - | (v3.1.0 or higher) If it is set to "replace", the whole Single View document will be replaced with the new one. If it is set to "update", the existing one will be updated with the new one, but fields not present in the latter will be kept.  Otherwise the custom function placed at the path equals to the value of this env will be used. | replace |
-| DELETE_STRATEGY | - | (v3.1.0 or higher) If it is set to "delete", the whole Single View document will be deleted. Otherwise the custom function placed at the path equals to the value of this env will be used. | delete |
-| SINGLE_VIEWS_MAX_PROCESSING_MINUTES | - | (v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS | 30 |
-| CA_CERT_PATH | - | the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem` | - |
-| ER_SCHEMA_FOLDER | - | the path to the ER Schema folder, e.g. `/home/node/app/erSchema` | - |
-| AGGREGATION_FOLDER | - | the path to the Aggregation folder, e.g. `/home/node/app/aggregation` | - |
-| USE_AUTOMATIC | - | wheather to use the low code architecture for the Single View Creator service or not | - |
-| PROJECTIONS_CHANGES_SOURCE | - | System to use to handle the Projection Changes, supported methods are KAFKA or MONGO | MONGO |
-| KAFKA_PROJECTION_CHANGES_TOPICS | - | Comma separated list of projection changes topics | - |
-| KAFKA_PROJECTION_UPDATE_TOPICS | - | Comma separated list of projection update topics | - |
-| SV_TRIGGER_HANDLER_CUSTOM_CONFIG | - | Path to the config defining SV-Patch actions | - |
-| READ_TOPIC_FROM_BEGINNING | - | Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if ```PROJECTIONS_CHANGES_SOURCE``` is set to <i>KAFKA</i>. | false |
-| USE_UPDATE_MANY_SV_PATCH | - | Use the MongoDB ```updateMany``` operation instead of the ```findOneAndUpdate``` with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: ```SEND_BA_TO_KAFKA```, ```KAFKA_BA_TOPIC```, ```SEND_SV_UPDATE_TO_KAFKA```, ```KAFKA_SV_UPDATE_TOPIC```, ```ADD_BEFORE_AFTER_CONTENT```, ```KAFKA_SVC_EVENTS_TOPIC``` | false |
+| Name                                | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Default value       |
+| ----------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| CONFIGURATION_FOLDER                | -        | Folder where configuration files are mounted                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | /home/node/app/src/ |
+| LOG_LEVEL                           | &check;  | Level to use for logging                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | -                   |
+| HTTP_PORT                           | -        | Port exposed by the service                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 3000                |
+| TYPE                                | &check;  | Identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update.                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
+| SCHEDULING_TIME                     | -        | a quantity of time in milliseconds, every X milliseconds the service wake up and check if there are some projections changes in `NEW` state to work on. The service continue working until no more new projections changes are found, if so he goes to sleep for X milliseconds.                                                                                                                                                                                                                                            | 60000               |
+| PROJECTIONS_MONGODB_URL             | &check;  | MongoDB connection string where projections are stored. Must be a valid uri                                                                                                                                                                                                                                                                                                                                                                                                                                                 | -                   |
+| SINGLE_VIEWS_MONGODB_URL            | &check;  | MongoDB connection string where single view must be stored. Must be a valid uri                                                                                                                                                                                                                                                                                                                                                                                                                                             | -                   |
+| PROJECTIONS_CHANGES_MONGODB_URL     | -        | The db from where projections changes are read. If not set, `PROJECTIONS_MONGODB_URL` is used.                                                                                                                                                                                                                                                                                                                                                                                                                              | -                   |
+| PROJECTIONS_CHANGES_DATABASE        | &check;  | The db from where projections changes are read.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | -                   |
+| PROJECTIONS_DATABASE                | &check;  | The db from where projections are read. If not set, `PROJECTIONS_CHANGES_DATABASE` is used.                                                                                                                                                                                                                                                                                                                                                                                                                                 | -                   |
+| PROJECTIONS_CHANGES_COLLECTION      | -        | if you have set a custom projection change collection name from advanced, then set its name. Otherwise, it is `fd-pc-SYSTEM_ID` where `SYSTEM_ID` is the id of the System of Records this single view creator is responsible for.                                                                                                                                                                                                                                                                                           | -                   |
+| SINGLE_VIEWS_DATABASE               | &check;  | The db from where single views are written.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | -                   |
+| SINGLE_VIEWS_COLLECTION             | &check;  | It must be equals to the Single View name the service is in charge of keeping updated.                                                                                                                                                                                                                                                                                                                                                                                                                                      | -                   |
+| SINGLE_VIEWS_PORTFOLIO_ORIGIN       | &check;  | should be equals to the `SYSTEM_ID` you have set in `PROJECTIONS_CHANGES_COLLECTION`                                                                                                                                                                                                                                                                                                                                                                                                                                        | -                   |
+| SINGLE_VIEWS_ERRORS_COLLECTION      | &check;  | Name of a MongoDB CRUD you want to use as collection for single view errors.                                                                                                                                                                                                                                                                                                                                                                                                                                                | -                   |
+| KAFKA_CONSUMER_GROUP_ID             | -        | **@deprecated** - in favor of KAFKA_GROUP_ID. The Kafka consumer group identifier                                                                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
+| KAFKA_GROUP_ID                      | -        | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.{singleViewName}.single-view-creator'}```)                                                                                                                                                                                                                                                                                                                                                              | -                   |
+| KAFKA_CLIENT_ID                     | -        | The Kafka client identifier                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | -                   |
+| KAFKA_BROKERS_LIST                  | -        | **@deprecated** - in favor of KAFKA_BROKERS. list of brokers the service needs to connect to                                                                                                                                                                                                                                                                                                                                                                                                                                | -                   |
+| KAFKA_BROKERS                       | -        | list of brokers the service needs to connect to                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | -                   |
+| KAFKA_SASL_MECHANISM                | -        | The Kafka SASL mechanism to be used. Can be one of the following: "plain", "PLAIN", "scram-sha-256", "SCRAM-SHA-256", "scram-sha-512", "SCRAM-SHA-512"                                                                                                                                                                                                                                                                                                                                                                      | plain               |
+| KAFKA_SASL_USERNAME                 | -        | username to use for logging into Kafka                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | -                   |
+| KAFKA_SASL_PASSWORD                 | -        | password to use for logging into Kafka                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | -                   |
+| KAFKA_SVC_EVENTS_TOPIC              | -        | topic used to queue Single View Creator state changes (e.g. single view creation). This feature is deprecated in favor of KAFKA_SV_UPDATE_TOPIC and it will be removed soon                                                                                                                                                                                                                                                                                                                                                 | -                   |
+| SEND_BA_TO_KAFKA                    | -        | true if you want to send to Kafka the `before-after` information about the update changes of the single view. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon                                                                                                                                                                                                                                                                                       | false               |
+| KAFKA_BA_TOPIC                      | -        | topic where to send the `before-after` messages which represent the single view document before and after a change. This feature is deprecated in favor of ADD_BEFORE_AFTER_CONTENT using the 'sv-update' event and it will be removed soon                                                                                                                                                                                                                                                                                 | -                   |
+| SEND_SV_UPDATE_TO_KAFKA             | -        | true if you want to send to Kafka the `sv-update` message about the update changes of the single view                                                                                                                                                                                                                                                                                                                                                                                                                       | false               |
+| ADD_BEFORE_AFTER_CONTENT            | -        | true if you want to add the _before_ and _after_ content to the `sv-update` message, works only if `SEND_SV_UPDATE_TO_KAFKA` is set to true                                                                                                                                                                                                                                                                                                                                                                                 | false               |
+| KAFKA_SV_UPDATE_TOPIC               | -        | topic where to send the `sv-update` message                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | -                   |
+| UPSERT_STRATEGY                     | -        | (v3.1.0 or higher) Strategy name or file path to update/insert Single View records, for more info checkout [Upsert and Delete strategies](#upsert-delete-strategies).                                                                                                                                                                                                                                                                                                                                                       | replace             |
+| DELETE_STRATEGY                     | -        | (v3.1.0 or higher) Strategy name or file path to delete Single View records, for more info checkout [Upsert and Delete strategies](#upsert-delete-strategies).                                                                                                                                                                                                                                                                                                                                                              | delete              |
+| SINGLE_VIEWS_MAX_PROCESSING_MINUTES | -        | (v3.4.2 or higher) time to wait before processing again a Projection with state IN_PROGRESS                                                                                                                                                                                                                                                                                                                                                                                                                                 | 30                  |
+| CA_CERT_PATH                        | -        | the path to the CA certificate, which should include the file name as well, e.g. `/home/my-ca.pem`                                                                                                                                                                                                                                                                                                                                                                                                                          | -                   |
+| ER_SCHEMA_FOLDER                    | -        | the path to the ER Schema folder, e.g. `/home/node/app/erSchema`                                                                                                                                                                                                                                                                                                                                                                                                                                                            | -                   |
+| AGGREGATION_FOLDER                  | -        | the path to the Aggregation folder, e.g. `/home/node/app/aggregation`                                                                                                                                                                                                                                                                                                                                                                                                                                                       | -                   |
+| USE_AUTOMATIC                       | -        | wheather to use the low code architecture for the Single View Creator service or not                                                                                                                                                                                                                                                                                                                                                                                                                                        | -                   |
+| PROJECTIONS_CHANGES_SOURCE          | -        | System to use to handle the Projection Changes, supported methods are KAFKA or MONGO                                                                                                                                                                                                                                                                                                                                                                                                                                        | MONGO               |
+| KAFKA_PROJECTION_CHANGES_TOPICS     | -        | Comma separated list of projection changes topics                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
+| KAFKA_PROJECTION_UPDATE_TOPICS      | -        | Comma separated list of projection update topics                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | -                   |
+| SV_TRIGGER_HANDLER_CUSTOM_CONFIG    | -        | Path to the config defining SV-Patch actions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -                   |
+| READ_TOPIC_FROM_BEGINNING           | -        | Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if ```PROJECTIONS_CHANGES_SOURCE``` is set to <i>KAFKA</i>.                                                                                                                           | false               |
+| USE_UPDATE_MANY_SV_PATCH            | -        | Use the MongoDB ```updateMany``` operation instead of the ```findOneAndUpdate``` with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: ```SEND_BA_TO_KAFKA```, ```KAFKA_BA_TOPIC```, ```SEND_SV_UPDATE_TO_KAFKA```, ```KAFKA_SV_UPDATE_TOPIC```, ```ADD_BEFORE_AFTER_CONTENT```, ```KAFKA_SVC_EVENTS_TOPIC``` | false               |
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* `v9.1.0` or higher)
+
+## Upsert and Delete Strategies
+
+The Single View Creator provides different ways to handle the upsert and delete of Single View records through the `UPSERT_STRATEGY` and `DELETE_STRATEGY` environment variables.
+Most of the times one of the pre-configured strategies will be enough, but if it isn't you can also [customize them](#custom-functions) to your specific needs.
+
+### Upsert
+
+The available strategies for the upsert are the following:
+
+- **replace**: Replaces the whole Single View record that matches the Single View Key with the new record from the aggregation. This is the default method.
+- **update**: Updates or inserts the Single View record but does not replace it, meaning that any other properties that are not present in the `aggregation.json` will not be removed.
+
+#### Replace vs Update
+
+While the replace strategy covers every basic case, the update strategy provides a way to divide the aggregation effort between more than one Single View Creator.
+For example, we have a Single View called posts with a relationship to comments:
+
+```typescript [title="posts"]
+{
+  title: string,
+  comments: {text: string}[]
+}
+```
+
+And then we have two Single View Creators, each one configured with the `update` strategy to update only one of the fields.
+The `aggregation.json` files would look like that:
+
+```json [title="svc-1-aggregation.json"]
+{
+  "version": "1.3.0",
+   "config": {
+      "SV_CONFIG": {
+         "dependencies": {
+            "posts": {
+               "type": "projection",
+               "on": "_identifier",
+            },
+         },
+         "mapping": {
+            "title":"posts.title"
+         }
+      }
+   }
+}
+```
+
+```json [title="svc-2-aggregation.json"]
+{
+   "version": "1.3.0",
+   "config": {
+      "SV_CONFIG": {
+         "dependencies": {
+            "posts": {
+               "type": "projection",
+               "on": "_identifier"
+            },
+            "COMMENTS": {
+               "type": "config"
+            }
+         },
+         "mapping": {
+            "comments": "COMMENTS"
+         }
+      },
+      "COMMENTS": {
+         "dependencies": {
+            "comments": {
+               "on": "posts_to_comments",
+               "type": "projection"
+            }
+         },
+         "joinDependency": "comments",
+         "mapping": {
+            "text": "comments.text"
+         }
+      }
+   }
+}
+```
+
+Now we only need to configure one of the Single View Creators to react to changes on the `posts` projection and the other one to the `comments` projection. This is specially useful when one of the computation efforts is much bigger than the other so it makes sense to dedicate a Single View Creator with more resources to deal with the workload and not block the queue for what could be faster aggregations.
+
+So, at the end we will have the first Single View Creator with the first `aggregation.json` ( `svc-1-aggregation.json` ) above and the `UPSERT_STRATEGY` set to `update`. And the second Single View Creator with the second `aggregation.json` ( `svc-2-aggregation.json` ) and the `UPSERT_STRATEGY` also set to `update`.
+
+### Delete
+
+For the delete we offer the `delete` pre-configured strategy which [Hard deletes](https://www.becomebetterprogrammer.com/soft-delete-vs-hard-delete/#Hard_Delete) the Projection record when the Base Projection gets deleted. If you need a more complex deleting strategy we encourage you to take a look to the [Custom functions](#custom-functions) section.
+
+### Custom functions
+
+If you want, you can replace both upsert and delete functions with your own custom functions.
+
+These functions represent the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
+
+In case the validation succeeds, the upsert function will be called with the following arguments:
+
+- `logger` is the logger
+- `singleViewCollection` is the Mongo collection object
+- `singleView` is the result of the mapping operation
+- `singleViewKey` is the Single View key
+
+On the other hand, if the validation has a negative outcome, the delete function will be called with the same arguments, except for the `singleView`, which will not be handled by the delete function.
+
+In both cases, some operation should be done on `singleViewCollection` in order to modify the Single View with the current `singleViewKey`, with the idea of "merging" the current result with the one already present in the database.
+
+For example, we have a "Customer" Single View with a list of products the customer bought from different e-commerce websites, and we receive an update for a new object on a specific shop. In that case we don't want to replace the list of bought products with the last one arrived, but we want to push the product in the list in order to have the complete history of purchases.
+
+For both functions, the output is composed of an object containing two fields:
+
+- `old` which contains the old Single View
+- `new` which contains the new Single View
+
+These values will respectively be the `before` and the `after` of the message sent to the `KAFKA_BA_TOPIC` topic, which is the topic responsible for tracking any result of the Single View Creator. The naming convention for this topic can be found [here](/fast_data/inputs_and_outputs.md#single-view-before-after).
+
+```js
+async function upsertSingleViewFunction(
+  logger,
+  singleViewCollection,
+  singleView,
+  singleViewKey)
+{
+  logger.trace('Upserting Single View...')
+  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
+
+  await singleViewCollection.replaceOne(
+    singleViewKey,
+    singleView,
+    { upsert: true }
+  )
+
+  logger.trace({ isNew: Boolean(oldSingleView) }, 'Updated Single View')
+  return {
+    old: oldSingleView,
+    new: singleView,
+  }
+}
+
+async function deleteSingleViewFunction(
+  logger,
+  singleViewCollection,
+  singleViewKey)
+{
+  logger.trace('Deleting Single View...')
+  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
+
+  if (oldSingleView !== null) {
+    try {
+      await singleViewCollection.deleteOne(singleViewKey)
+    } catch (ex) {
+      logger.error(`Error during Single View delete: ${ex}`)
+    }
+  }
+
+  logger.trace('Single view deletion procedure terminated')
+  return {
+    old: oldSingleView,
+    new: null,
+  }
+}
+```
+
+#### Plugin
+
+Add a config map to your service and put the Javascript files into it. These files should contain the custom function you want to use as upsert or delete function. 
+
+For instance:
+
+```js title="myDeleteFunction.js"
+module.exports = async function myDeleteFunction(
+  logger,
+  singleViewCollection,
+  singleViewKey)
+{
+  logger.trace('Checking if it can be deleted...')
+  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
+
+  // my custom logic
+  // do something...
+
+  if (oldSingleView !== null) {
+    
+    try {
+      await singleViewCollection.deleteOne(singleViewKey)
+    } catch (ex) {
+      logger.error(`Error during Single View delete: ${ex}`)
+    }
+  }
+
+  logger.trace('Single view deletion procedure terminated')
+  return {
+    old: oldSingleView,
+    new: null,
+  }
+}
+```
+
+Let's suppose that I put this file in a config map mounted on path `/home/node/app/my-functions`. Then, in order to use that, I need to set the `DELETE_STRATEGY` environment variable to `/home/node/app/my-functions/myDeleteFunction.js`. 
+
+The same logic can be applied to upsert function, but setting the file path to the environment variable `UPSERT_STRATEGY`.
+
+#### Template
+
+You can choose to apply the same pattern used in plugin (by setting the environment variables) or to pass your custom functions directly to the `startCustom` method.
+
+```js title="index.js" {6-7} showLineNumbers
+const resolvedOnStop = singleViewCreator.startCustom({
+  strategy: aggregatorBuilder(projectionsDB),
+  mapper,
+  validator,
+  singleViewKeyGetter: singleViewKey,
+  upsertSingleView: upsertFnSV,
+  deleteSingleView: deleteSV,
+})
+```
+## Consuming from Kafka
+
+As you can see, the Single View Creator lets you configure what channel is used as input through the `PROJECTIONS_CHANGES_SOURCE` environment variable. The default channel is MongoDB for the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) but this might not always be what you need. The service gives you the alternative to listen from Apache Kafka instead, this can be useful in two different cases:
+
+- You want to use the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to produce [`sv-trigger`](/fast_data/inputs_and_outputs.md#single-view-trigger-message) messages.
+- You want to configure the [Single View Patch](#single-view-patch) cycle which reads [`pr-update`](/fast_data/inputs_and_outputs.md#projection-update-message) messsages from the Real-Time Updater.
+
+In both of the cases you have to configure all the required environment variables related to kafka. First you need to configure the `KAFKA_BROKERS` and `KAFKA_GROUP_ID`, then you probably need to configure your authentication credentials with `KAFKA_SASL_MECHANISM`, `KAFKA_SASL_USERNAME` and `KAFKA_SASL_PASSWORD`.
+
+Once this is done remember to set the `PROJECTIONS_CHANGES_SOURCE` environment variable to `KAFKA` and to check out the configuration page of the system you need to complete the necessary steps.
 
 ## Single View Key
 
@@ -246,133 +471,6 @@ The `startCustom` function accepts a function in the configuration object called
 
 The input fields of the validation function are the logger and the Single View, while the output is a boolean containing the result of the validation.
 
-## Customize Upsert and Delete functions
-
-If you want, you can replace both upsert and delete functions with your own custom functions.
-
-These functions represent the last step of the creation (or deletion) of a Single View, in which the Single View collection is actually modified.
-
-In case the validation succeeds, the upsert function will be called with the following arguments:
-
-- `logger` is the logger
-- `singleViewCollection` is the Mongo collection object
-- `singleView` is the result of the mapping operation
-- `singleViewKey` is the Single View key
-
-On the other hand, if the validation has a negative outcome, the delete function will be called with the same arguments, except for the `singleView`, which will not be handled by the delete function.
-
-In both cases, some operation should be done on `singleViewCollection` in order to modify the Single View with the current `singleViewKey`, with the idea of "merging" the current result with the one already present in the database.
-
-For example, we have a "Customer" Single View with a list of products the customer bought from different e-commerce websites, and we receive an update for a new object on a specific shop. In that case we don't want to replace the list of bought products with the last one arrived, but we want to push the product in the list in order to have the complete history of purchases.
-
-For both functions, the output is composed of an object containing two fields:
-
-- `old` which contains the old Single View
-- `new` which contains the new Single View
-
-These values will respectively be the `before` and the `after` of the message sent to the `KAFKA_BA_TOPIC` topic, which is the topic responsible for tracking any result of the Single View Creator. The naming convention for this topic can be found [here](/fast_data/inputs_and_outputs.md#single-view-before-after).
-
-```js
-async function upsertSingleViewFunction(
-  logger,
-  singleViewCollection,
-  singleView,
-  singleViewKey)
-{
-  logger.trace('Upserting Single View...')
-  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
-
-  await singleViewCollection.replaceOne(
-    singleViewKey,
-    singleView,
-    { upsert: true }
-  )
-
-  logger.trace({ isNew: Boolean(oldSingleView) }, 'Updated Single View')
-  return {
-    old: oldSingleView,
-    new: singleView,
-  }
-}
-
-async function deleteSingleViewFunction(
-  logger,
-  singleViewCollection,
-  singleViewKey)
-{
-  logger.trace('Deleting Single View...')
-  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
-
-  if (oldSingleView !== null) {
-    try {
-      await singleViewCollection.deleteOne(singleViewKey)
-    } catch (ex) {
-      logger.error(`Error during Single View delete: ${ex}`)
-    }
-  }
-
-  logger.trace('Single view deletion procedure terminated')
-  return {
-    old: oldSingleView,
-    new: null,
-  }
-}
-```
-
-### Plugin
-
-Add a config map to your service and put the Javascript files into it. These files should contain the custom function you want to use as upsert or delete function. 
-
-For instance:
-
-```js title="myDeleteFunction.js"
-module.exports = async function myDeleteFunction(
-  logger,
-  singleViewCollection,
-  singleViewKey)
-{
-  logger.trace('Checking if it can be deleted...')
-  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
-
-  // my custom logic
-  // do something...
-
-  if (oldSingleView !== null) {
-    
-    try {
-      await singleViewCollection.deleteOne(singleViewKey)
-    } catch (ex) {
-      logger.error(`Error during Single View delete: ${ex}`)
-    }
-  }
-
-  logger.trace('Single view deletion procedure terminated')
-  return {
-    old: oldSingleView,
-    new: null,
-  }
-}
-```
-
-Let's suppose that I put this file in a config map mounted on path `/home/node/app/my-functions`. Then, in order to use that, I need to set the `DELETE_STRATEGY` environment variable to `/home/node/app/my-functions/myDeleteFunction.js`. 
-
-The same logic can be applied to upsert function, but setting the file path to the environment variable `UPSERT_STRATEGY`.
-
-### Template
-
-You can choose to apply the same pattern used in plugin (by setting the environment variables) or to pass your custom functions directly to the `startCustom` method.
-
-```js title="index.js" {6-7} showLineNumbers
-const resolvedOnStop = singleViewCreator.startCustom({
-  strategy: aggregatorBuilder(projectionsDB),
-  mapper,
-  validator,
-  singleViewKeyGetter: singleViewKey,
-  upsertSingleView: upsertFnSV,
-  deleteSingleView: deleteSV,
-})
-```
-
 ## Error handling
 
 When generating a Single View, every error that occurs is saved in MongoDB, with a format that satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console. The fields of the error messages when they are first created are:
@@ -403,8 +501,9 @@ This feature is supported from version `5.6.1` of the Single View Creator
 To configure a Single View Creator dedicated to [Single View Patch](/fast_data/configuration/single_views.md#single-view-patch) operations, some steps have to be followed:
 
 * Set the env var `KAFKA_PROJECTION_UPDATE_TOPICS` with the comma separated list of the `pr-update` topics corresponding to the SV-Patch Projection.
+* Configure the service to consume from Kafka (see the [Consuming from Kafka](#consuming-from-kafka) section)
 * Set the env var `SV_TRIGGER_HANDLER_CUSTOM_CONFIG` with the path to the main file defining SV-Patches actions, for example `/home/node/app/svTriggerHandlerCustomConfig/svTriggerHandlerCustomConfig.json`
-* Create a new ConfigMap with this Runtime Mount Path: `.../svTriggerHandlerCustomConfig`
+* Create a new ConfigMap with this Runtime Mount Path: `/home/node/app/svTriggerHandlerCustomConfig`
 
 This last config map is composed by a main file, `svTriggerHandlerCustomConfig.json`, which defines where to read the Patch Action for each Projection.
 

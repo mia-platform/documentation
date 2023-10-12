@@ -3,9 +3,9 @@ id: configuration
 title: API Portal Configuration
 sidebar_label: Configuration
 ---
-This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace.md) and creating a new microservice from the **API Portal** plugin.
+This service can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace) and creating a new microservice from the **API Portal** plugin.
 
-In order to access the [Documentation Portal](../../development_suite/api-portal/api-documentations.md) you should also [create an endpoint](../../development_suite/api-console/api-design/endpoints) that should expose your microservice at the following path: `/documentations/api-portal`. For this endpoint you should also **unset** the following flags:
+In order to access the [Documentation Portal](../../console/project-configuration/documentation-portal) you should also [create an endpoint](../../development_suite/api-console/api-design/endpoints) that should expose your microservice at the following path: `/documentations/api-portal`. For this endpoint you should also **unset** the following flags:
 
 * **Show in API Portal** (_Details_ card)
 * **Support only JSON format on request** (_Configure microservice gateway_ card)

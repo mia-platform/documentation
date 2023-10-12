@@ -9,7 +9,7 @@ Mia-Platform Console allows the creation of service accounts, which are typicall
 Just like human users, service accounts can be assigned roles at Console, Company, Project or Runtime Environment levels, according to which they can perform different types of actions.
 
 :::note
-To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management).
+To find out more about roles check out the available [capabilities](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) that can be assigned to an [identity](/development_suite/identity-and-access-management/index.md#identity-and-access-management).
 :::
 
 ### What can you do with a Service Account?
@@ -104,7 +104,7 @@ Always pay attention when assigning roles, in order to avoid providing undesired
 
 ### Managing Service Accounts at Project level
 
-A user with enough administrative permission on a specific Project will be able to view all the existing service accounts inside the Project Settings Area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
+A user with enough administrative permission on a specific Project will be able to view all the existing service accounts inside the Project Overview area of a Project belonging to that specific Company. From there, the user can edit the role of service accounts on the specific Project (and, optionally, on each existing Runtime Environment).
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}>

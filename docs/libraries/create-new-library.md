@@ -41,7 +41,7 @@ Check out the [Mia service Node.js library API documentation](https://github.com
 
 ### Logging
 
-The library should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/getting_started/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
+The library should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/getting-started/guidelines/guidelines-for-logs.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
 
 Check out the [Mia service Node.js logging documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/logging.md) for an example.
 

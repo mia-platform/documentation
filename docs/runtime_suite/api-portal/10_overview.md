@@ -15,5 +15,5 @@ You can [apply custom configurations directly from the Console](../../developmen
 The Open Api documentation lets you know exactly how your APIs will work and behave, before integrating your APIs into your code. It lists all the available REST-endpoints and provides detailed information for each of them: description, parameters and schema.  
 
 :::note
-API Portal generates the [Documentation Portal](../../development_suite/api-portal/api-documentations.md) section of the Console where all services and CRUDs routes are shown and can be tested.
+API Portal generates the [Documentation Portal](../../console/project-configuration/documentation-portal) section of the Console where all services and CRUDs routes are shown and can be tested.
 :::

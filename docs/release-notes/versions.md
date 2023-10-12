@@ -7,6 +7,17 @@ slug: "/release-notes/versions"
 ---
 | Release | Release notes                              |
 |---------|--------------------------------------------|
+| v11.6.3 | [Read the release notes](/release-notes/v11.6.3.md) |
+| v11.6.2 | [Read the release notes](/release-notes/v11.6.2.md) |
+| v11.6.1 | [Read the release notes](/release-notes/v11.6.1.md) |
+| v11.6.0 | [Read the release notes](/release-notes/v11.6.0.md) |
+| v11.5.3 | [Read the release notes](/release-notes/v11.5.3.md) |
+| v11.5.2 | [Read the release notes](/release-notes/v11.5.2.md) |
+| v11.5.1 | [Read the release notes](/release-notes/v11.5.1.md) |
+| v11.5.0 | [Read the release notes](/release-notes/v11.5.0.md) |
+| v11.4.2 | [Read the release notes](/release-notes/v11.4.2.md) |
+| v11.4.1 | [Read the release notes](/release-notes/v11.4.1.md) |
+| v11.4.0 | [Read the release notes](/release-notes/v11.4.0.md) |
 | v11.3.0 | [Read the release notes](/release-notes/v11.3.0.md) |
 | v11.2.1 | [Read the release notes](/release-notes/v11.2.1.md) |
 | v11.2.0 | [Read the release notes](/release-notes/v11.2.0.md) |

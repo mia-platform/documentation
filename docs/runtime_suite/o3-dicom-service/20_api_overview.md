@@ -494,8 +494,8 @@ curl -- request POST \
 
 ## Viewer Token
 The DICOM Service exposes an endpoint that is used by the **DICOM Viewer** service for the visualization of a specific token. The endpoint accepts the following query parameters (some of them are mandatory):
-* `patientID` (**mandatory**)
 * `studyUID` (**mandatory**)
+* `patientID`
 * `user`
 * `role`
 

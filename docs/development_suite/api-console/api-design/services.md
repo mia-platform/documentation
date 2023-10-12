@@ -149,7 +149,7 @@ In this section, you can manage the resources dedicated to your microservice:
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
 :::info
-  See more about the log parsers on the [guidelines](/getting_started/monitoring-dashboard/dev_ops_guide/log.md)
+  See more about the log parsers on the [guidelines](/getting-started/guidelines/guidelines-for-logs.md)
 :::
 
 * **Args**: You can specify the arguments for the [command](https://kubernetes.io/docs/tasks/inject-data-application/_print/#define-a-command-and-arguments-when-you-create-a-pod) of your microservice container.  
@@ -218,7 +218,7 @@ A variable definition in the `.env` file has to be contained in a single line an
 
  ![service-detail-variable-new](img/service-detail-variable-new.png)
 
-You can find more information about environment variables at this [link](/development_suite/set-up-infrastructure/env-var-intro.md) of Mia-Platform Docs.
+You can find more information about environment variables at this [link](/console/project-configuration/manage-environment-variables/index.md) of Mia-Platform Docs.
 
 ### Labels Configuration
 

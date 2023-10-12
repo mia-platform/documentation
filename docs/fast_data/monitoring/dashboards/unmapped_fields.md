@@ -7,7 +7,7 @@ sidebar_label: Unmapped Fields
 This dashboard will help you to monitor unmapped fields. With unmapped field we mean a field which is in a Kafka message, but it is not included in the projection definition or it can not be casted to the desired field type.
 
 :::info
-This feature is available since Realtime Updater v4.4.0
+This feature is available since Real-Time Updater v4.4.0
 :::
 
 This situation could happen for two main reasons:
@@ -18,7 +18,7 @@ This situation could happen for two main reasons:
 In order to use this dashboard, the following configuration steps are needed:
 
 - Create a MongoDB collection named `unmapped_fields`
-- Set the environment variable `COLLECTION_NAME_UNMAPPED_FIELDS_STORAGE` equal to `unmapped_fields` in any _Real Time Updater_ service you want to keep track of the unmapped fields
+- Set the environment variable `COLLECTION_NAME_UNMAPPED_FIELDS_STORAGE` equal to `unmapped_fields` in any _Real-Time Updater_ service you want to keep track of the unmapped fields
 - Register the collection [on CMS](/business_suite/cms_configuration/config_cms.md)
 - Add the [Fast Data Monitoring Application](/fast_data/monitoring/overview.md#fast-data-monitoring-application) (if you don't have it already) to add to the project the MongoDB Query Exporter service and configure it accordingly
 - Configure MongoDB Query Exporter

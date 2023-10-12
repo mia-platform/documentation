@@ -10,8 +10,7 @@ availabilities or directly.
 :::note
 
 As stated in the [configuration section][crud-appointments], you can name the CRUD collections however
-you like. For simplicity’s sake, in the following page it is assumed that you have called them `availabilities` and
-`appointments`.
+you like. For simplicity’s sake, in the following page it is assumed that you have called them `availabilities`, `exceptions`, `appointments` and `users`.
 
 :::
 
@@ -64,6 +63,12 @@ Depending on the [AM configuration][configuration], you can create an appointmen
   - an availability ID (`availabilityId`), a start (`startDate`) and end (`endDate`) date/time representing a valid slot and the owner ID (`ownerId`);
   - only since version 2.0.1, a slot ID (`slotId`) in the new format and the owner ID (`ownerId`).
 
+:::info
+**v2.2.0**. Since version 2.2.0 this endpoint, when the [`isFlexibleSlotAvailable` configuration option][flexible-duration-slots] is set to true, allows you to book appointments on availabilities with flexible slots, i.e. without a slot duration.
+When the [`isParticipantStatusAvailable` configuration option][is-participant-status-available] is set to true, the AM automatically initializes and populates the `participants` field.
+See the _Response_ section below for more details on the possible error cases.
+:::
+
 :::warning
 **v2.0.2**. Since version 2.0.2 this endpoint, when used in *appointments mode*, automatically truncates the date/time fields - `startDate` and `endDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before storing the appointment into the CRUD.
 :::
@@ -80,7 +85,53 @@ Depending on the [AM configuration][configuration], you can create an appointmen
 Please note that the date fields are saved in [ISO 8601][iso-8601] format, so its up to the client to convert them in UTC from its local time before using them in the Appointment Manager.
 :::
 
+### Possible side effects
+
 This endpoint may have the following side effects.
+
+#### Creating participants
+
+:::info
+**v2.2.0**. This feature is available only since version 2.2.0 and must be enabled explicitly by setting the [`isParticipantStatusAvailable` configuration option][is-participant-status-available] to `true`.
+:::
+
+When a participant is added through any of the [`users` custom fields][users], a new participant is added to the `participants` field, with the given `id` and `type` and the default values specified in the corresponding user category for the `status`, `required` and `acceptanceRequired` fields.
+
+If the `isUserAvailable` property is set to `true` in the configuration file, it is possible to fetch further information about the participants. Such information are fields that can be specified in the environment variable `PARTICIPANT_USER_PROPERTIES` as a comma-separated list. These fields will populate the property `userProperties` inside each participant.
+
+For example if `PARTICIPANT_USER_PROPERTIES` is set to `firstName,lastName` then the appointment will look like this:
+```json
+{
+  "patients": ["patient1"],
+  "doctors": ["doctor1", "doctor2"],
+  "participants":[
+    {
+      "id": "patient1",
+      "type": "patients",
+      "userProperties":{
+        "firstName": "John",
+        "lastName": "Doe"
+      }
+    },
+    {
+      "id": "doctor1",
+      "type": "doctors",
+      "userProperties":{
+        "firstName": "Mario",
+        "lastName": "Rossi"
+      }
+    },
+    {
+      "id": "doctor2",
+      "type": "doctors",
+      "userProperties":{
+        "firstName": "Luigi",
+        "lastName": "Bianchi"
+      }
+    }
+  ]
+}
+```
 
 #### Creating a telecommunication room
 
@@ -103,16 +154,28 @@ The values for this fields can be either `string` or `arrayOfString`, for instan
 
 #### Sending messages
 
-A message will be sent to the participants that belong to a category with a `create` template id (see the
-[service overview][sending-messages] for more information).
+:::info
 
-:::warning
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
 
-The messages will be sent only if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
+:::
+
+If you use the [Messaging Service][messaging-service-doc], a message will be sent to the participants that belong to a category with a `create` template id (see the
+[service overview][sending-messages] for more information), if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
+
+If you use the [Notification Manager][notification-manager-doc], an event named `AM/AppointmentCreated/v1` with the appointment as payload will be sent to the NM. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
 
 :::
 
 #### Setting reminders
+
+:::info
+
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
+
+:::
 
 :::caution
 
@@ -122,7 +185,7 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-If a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview][setting-reminders] for more information).
+If you use the [Messaging Service][messaging-service-doc] and a user category has the field `reminders` defined in the configuration file, every reminder in the list will be scheduled for the participants that belong to that category with the specified `reminder` template id (see the [service overview][setting-reminders] for more information).
 
 :::warning
 
@@ -130,9 +193,11 @@ The reminders will be set only if the `isMessagingAvailable` and `isTeleconsulta
 
 :::
 
+If you use the [Notification Manager][notification-manager-doc], an event named `AM/AppointmentCreated/v1` with the appointment as payload will be sent to the NM. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
+
 :::note
 
-If the `reminderThresholdMs` field in the [service configuration][service-configuration] is set, and the new appointment `startDate` is closer than the given threshold, no reminder will be set (check the [service configuration section][reminders-threshold] for more information).
+If the `reminderThresholdMs` field in the [service configuration][reminders-threshold] is set, and the new appointment `startDate` is closer than the given threshold, no reminder will be set (check the [service configuration section][reminders-threshold] for more information).
 
 :::
 
@@ -208,8 +273,15 @@ created appointment in the payload.
 If you are trying to create an appointment from a slot, you may receive one of the following errors:
 
 - 404: if `availabilityId` does not correspond to an existing availability;
-- 400: if `startDate`, `endDate` and `availabilityId` do not correspond to a slot;
-- 403: if the slot is unavailable, due to overlapping exceptions, or already booked.
+- 400: if `startDate`, `endDate` and `availabilityId` do not correspond to a valid slot:
+  - with fixed slots, there must be a slot associated to the availability with exactly the given start and end date;
+  - with flexible slots, there must be an availability occurrence entirely containing the appointment;
+- 403: if the slot is already booked:
+  - with fixed slots, the number of appointments already booked or reserved in the slot must be lower than the slot capacity;
+  - with flexible slots, the number of appointments already booked or reserved and overlapping, even partially, with the given appointment must be lower than the slot capacity;
+- 403: if the slot is unavailable, due to overlapping exceptions:
+  - with fixed slots, there must be no exception overlapping, even partially, with the slot;
+  - with flexible slots, there must be no exception overlapping, even partially, with the appointment.
 
 The payload will contain any error that may have occurred while sending messages or scheduling reminders.
 
@@ -232,17 +304,25 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 
 ## POST /appointments/state
 
+:::info
+
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
+
+:::
+
 Changes the state of the appointments matching the provided filters.
 
-For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state, the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview][sending-messages] for more information) and delete all existing reminders.
+For appointments moved from a `PUBLIC` or `DRAFT` to a `TRASH` state:
 
-:::warning
-The messages will be sent only if the `isMessagingAvailable` and `isTimerAvailable` [configuration option][service-configuration] are set to `true`
-:::
+- if you use the [Messaging Service][messaging-service-doc], the AM sends a `delete` messages to all the participants that belong to a category with a `delete` template id (see the [service overview][sending-messages] for more information);
 
 :::warning
 The messages will be sent only if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
 :::
+
+- if you use the [Timer Service][timer-service-doc], the AM deletes all existing reminders;
+- if you use the [Notification Manager][notification-manager-doc], the AM sends an event named `AM/AppointmentDeleted/v1` with the appointment as payload.
 
 For remote appointments moved from a `TRASH` to a `DELETED` state, the teleconsultation room is deleted. 
 
@@ -275,6 +355,47 @@ The structure of the payload is like the following:
 
 In case of error (4xx or 5xx status codes), the response has the same interface of a CRUD service `POST /appointments/state` request.
 
+## PATCH /appointments/:id/status
+
+:::info
+**v2.2.0**. This endpoint is available only since version 2.2.0 and is exposed only if you explicitly set the [`isParticipantStatusAvailable` configuration option][is-participant-status-available] to `true`.
+:::
+
+Updates the participation status of the participant having an `id` equals to the ID of the current user.
+
+### Body
+
+This endpoint expects a JSON object with the `status` property in the body providing the desired participation status, for example:
+
+```json
+{
+  "status": "accepted"
+}
+```
+
+### Response
+
+If the participant status is successfully created or updated, you will receive a response with a 200 status code and the updated participant status details, for example:
+
+```json
+{
+  "id": "user_id",
+  "type": "doctors",
+  "status": "accepted",
+  "required": true,
+  "acceptanceRequired": true,
+}
+```
+
+If the appointment or the participant associated to the current user does not exist, you will received a response with a 404 status code and a body looking like this:
+```json
+{
+  "statusCode": 404,
+  "error": "Bad Request",
+  "message": "Appointment with given participant not found"
+}
+```
+
 ## PATCH /appointments/:id
 
 Updates the appointment with the specified id.
@@ -292,6 +413,13 @@ The following updates trigger specific actions:
 - If the `availabilityId`, `startDate` and/or `endDate` are changed, the AM checks if the new slot is valid and available.
 
 For further info about what to set as the users value, see the [Teleconsultation Service doc - participants][teleconsultation-participants].
+
+:::info
+
+**v2.2.0**
+Since version 2.2.0 this endpoint, when the [`isFlexibleSlotAvailable` configuration option][flexible-duration-slots] is set to true, allows you to update booked appointments on availabilities with flexible slots, i.e. without a slot duration.
+
+:::
 
 :::warning
 
@@ -313,32 +441,52 @@ If the Teleconsultation Service is not configured properly on the Console, the t
 
 ### Possible side effects
 
+This endpoint may have the following side effects.
+
+#### Updating participants status
+
+:::info
+**v2.2.0**. This feature is available only since version 2.2.0 and must be enabled explicitly by setting the [`isParticipantStatusAvailable` configuration option][is-participant-status-available] to `true`.
+:::
+
+When a participant is added or removed through any of the [`users` custom fields][users], the `participants` fields is updated according to the following rules:
+
+- if a user is added, a new participant is added to the `participants` field, with the given `id` and `type` and the default values specified in the corresponding user category for the `status`, `required` and `acceptanceRequired` fields;
+- if a user is removed, the corresponding participant, identified by the `id` and `type` fields, is removed from the `participants` field.
+
 #### Sending messages
 
-Participants that are **added** to the appointment will receive a creation message if they belong to a category with a
-`create` template id (see the [service overview][sending-messages] for more information).
+:::info
 
-Participants that are **removed** from the appointment will receive a deletion message if they belong to a category with a
-`delete` template id (see the [service overview][sending-messages] for more information).
-
-Participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview][sending-messages] for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
-
-:::warning
-
-The messages will be sent only if the `isMessagingAvailable` [configuration option][service-configuration] is set to `true` and the appointment `startDate` is in the future.
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
 
 :::
 
-:::note
+If you use the [Messaging Service][messaging-service-doc]:
 
-If the appointment's `startDate` is in the past after the update (even if it already was before the update), no message will be sent.
+- participants that are **added** to the appointment will receive a creation message if they belong to a category with a
+`create` template id (see the [service overview][sending-messages] for more information);
+- participants that are **removed** from the appointment will receive a deletion message if they belong to a category with a
+`delete` template id (see the [service overview][sending-messages] for more information);
+- participants that are **not modified** will receive an update message if they belong to a category with an `update` template id (see the [service overview][sending-messages] for more information), and if the `startDate` or the `endDate` of the appointments has been modified.
 
-However, if the appointment's `startDate` is not in the past after the update (even if it was before), any applicable message
-will be sent.
+If you use the [Notification Manager][notification-manager-doc], the AM sends an event named `AM/AppointmentUpdated/v1` with the original and updated appointments in the payload. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
+
+:::warning
+
+The messages will be sent only if the the appointment `startDate` is in the future after the update is performed.
 
 :::
 
 #### Setting reminders
+
+:::info
+
+**v2.3.0**
+The integration with the Notification Manager is available only since version 2.3.0.
+
+:::
 
 :::caution
 
@@ -348,28 +496,22 @@ Since v2.1.0 the `reminderMilliseconds` property of an appointment is ignored wh
 
 :::
 
-One or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview][sending-messages] for more information).
+If you use the [Messaging Service][messaging-service-doc]:
 
-Any reminder set for participants that are **removed** from the appointment will be aborted.
+- one or more reminders will be set for participants that are **added** to the appointment if they belong to a category with the field `reminders` configured in the configuration file (see the [service overview][sending-messages] for more information).
+- any reminder set for participants that are **removed** from the appointment will be aborted.
+
+If you use the [Notification Manager][notification-manager-doc], the AM sends an event named `AM/AppointmentUpdated/v1` with the original and updated appointments in the payload. Please look at the [NM documentation][notification-manager-doc] for further details about how the event is processed.
 
 :::warning
 
-The reminders will be set or aborted only if the `isMessagingAvailable` and `isTeleconsultationAvailable` [configuration options][service-configuration] are set to `true` and the new appointment `startDate` is in the future.
+The reminders will be set or aborted only if the new appointment `startDate` is in the future after the update.
 
 :::
 
 :::note
 
-If the appointment's `startDate` is in the past after the update (even if it already was before the update), no reminder will be set.
-
-However, if the appointment's `startDate` is not in the past after the update (even if it was before), any applicable reminder
-will be set.
-
-:::
-
-:::note
-
-If the `reminderThresholdMs` field in the configuration is set, and the appointment date is below the threshold, no reminder will be set (see the [service configuration section][service-configuration] for more information).
+If the `reminderThresholdMs` field in the configuration is set, and the appointment date is below the threshold, no reminder will be set (see the [service configuration section][reminders-threshold] for more information).
 
 :::
 
@@ -383,6 +525,7 @@ In addition, only a subset of CRUD operations are allowed:
   - `reminderIds`
   - `linkTeleconsultation`
   - `isFlagged`
+  - `participants`
 - you can use the `$unset` operator only with custom fields and the following:
   - `availabilityId`
   - `channels`
@@ -395,7 +538,7 @@ In addition, only a subset of CRUD operations are allowed:
 
 :::note
 
-`reminderIds` and `linkTeleconsultation` are fully managed by the AM and they cannot be modified by any client
+`reminderIds`, `linkTeleconsultation` and `participants` are fully managed by the AM and they cannot be modified by any client
 You will receive a 400 error if you try to change `availabilityId` when running AM in *appointments mode*.
 
 :::
@@ -436,7 +579,9 @@ In case of error (4xx or 5xx status codes), the response has the same interface 
 Deletes a single appointment. This endpoint is a direct proxy to the `DELETE /appointments/:id` of the CRUD service and has no side effects.
 
 :::info
+
 If the appointment is remote, the teleconsultation room is automatically deleted.
+
 :::
 
 # Availabilities
@@ -476,8 +621,19 @@ This endpoint has no side effects.
 
 Creates a new availability in the CRUD collection.
 
+:::info
+
+**v2.2.0**
+Starting from v2.2.0, you can create availabilities without specifying the slot duration (`slotDuration`), resulting in flexible duration slots when not set. This feature is disabled by default, you can enable it by setting [`isFlexibleSlotAvailable`][is-flexible-slot-available] to `true`.
+When created, each availability occurrence has a single slot corresponding to the entire availability duration.
+Once appointments are reserved or booked, the AM will automatically recompute the available slots, as described in the [*Overview* section][flexible-duration-slots].
+
+:::
+
 :::warning
+
 **v2.0.2**. Since v2.0.2 this endpoint automatically truncates the date/time fields - `startDate`, `endDate` and `untilDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before storing the availability into the CRUD.
+
 :::
 
 ### Body
@@ -488,27 +644,38 @@ The body of this request accepts the following fields:
 |-------------------------|-------------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | startDate               | `string`          | Yes                              | Start date/time of the first occurrence of the availability, expressed in format **ISO 8601**.                                                             |
 | endDate                 | `string`          | Yes                              | End date/time of the first occurrence of the availability, expressed in format **ISO 8601**.                                                               |
-| slotDuration            | `number`          | Yes                               | The duration of the slot (in minutes). |
+| slotDuration            | `number`          | No                               | The duration of the slot (in minutes). **Required** before version 2.2.0.                                                                                  |
 | simultaneousSlotsNumber | `number`          | No                               | The number of appointments you can book in each slot, one by default.                                                                                      |
 | each                    | `string`          | No                               | The frequency of a recurring availability: daily (`day`), weekly (`week`) or monthly (`month`).                                                            |
 | on                      | `Array of number` | Only if  `each` is set to `week` | The weekdays on which a weekly availability occurs (0 for Sunday, 1 for Monday, 2 for Tuesday, and so on).                                                 |
 | untilDate               | `date`            | No                               | The expiration date of a recurring availability, expressed in format **ISO 8601**. If the field is omitted, the availability never expires.                |
 | timeZone                | `string`          | No                               | The IANA time zone of the availability. If the field is omitted, the **DEFAULT_TIME_ZONE** value is used.                                                  |
+| onCreate                | `Object`          | No                               | The custom behaviors when the availability is created. See the [*Overview* section][availabilities-on-create] for more details.                          |
+| onUpdate                | `Object`          | No                               | The custom behaviors when the availability is updated. See the [*Overview* section][availabilities-on-update] for more details.                          |
+| onDelete                | `Object`          | No                               | The custom behaviors when the availability is deleted. See the [*Overview* section][availabilities-on-delete] for more details.                          |
+| onCompute               | `Object`          | No                               | The custom behaviors when the availability occurrences and slots are computed. See the [*Overview* section][availabilities-on-compute] for more details. |
 
 Additional fields can also be added to the body, depending on the underlying CRUD.
+
+:::caution
+The `onCreate.ignoreResourceAppointments` field can be set to `false` only when creating single availabilities, otherwise a 403 (`Unauthorized`) error is returned.
+When the field is set to `false`, the AM checks if the availability resource has already booked appointments overlapping, even partially, with the availability; any reserved but not confirmed appointment is not included in the count.
+:::
 
 :::note
 If the day specified in `startDate` does not match the recurrence pattern given, the first occurrence of the availability will occur in the first day of the scheduling pattern.
 :::
 
 :::note
-The number of time slots is computed by the following formula: `(endDate - startDate) / slotDuration`.
-If the `(endDate - startDate)` is not exactly divisible by `slotDuration`, some time at the end of the availability may not be allocated to a slot.
+If the slot duration (`slotDuration`) is set, the number of time slots is computed according to the following formula: `(endDate - startDate) / slotDuration`.
+If the `(endDate - startDate)` is not an exact multiple of `slotDuration`, some time at the end of the availability may not be allocated to a slot.
 For example, if `startDate` is `2030-02-08 09:00`, `endDate` is `2030-02-08 12:30` and `slotDuration` is `60` minutes, only 3 time slots are created, the last one ending at `2030-02-08 12:00`.
 :::
 
 :::note
-Simultaneous slots are slots that you can book multiple appointments on. 
+The simultaneous slots (`simultaneousSlotsNumber`) represent the maximum number of appointments you can handle at a given time.
+If the slot duration is set, it represents the maximum number of appointments you can book on each slot, i.e. the capacity of a slot.
+If the slot duration is not set, it represents the maximum number of appointments overlapping, even partially.
 These slots may be useful to model resources that can be used at the same time, e.g. a clinic with three rooms can handle three appointments at the same time.
 :::
 
@@ -544,8 +711,22 @@ Updates the availability with the specified id.
 
 All scheduled appointments, booked on slots that are no longer valid after the patch, will be flagged (`isFlagged` field set to `true`).
 
+:::info
+
+**v2.2.0**.
+Starting from v2.2.0, you can have availabilities without a slot duration (`slotDuration`), resulting in flexible duration slots.
+This feature is disabled by default, you can enable it by setting [`isFlexibleSlotAvailable`][is-flexible-slot-available] to `true`.
+If enabled, you can perform an `$unset` operation on the `slotDuration`.
+
+:::
+
 :::warning
 **v2.0.2**. Since v2.0.2 this endpoint automatically truncates the date/time fields - `startDate`, `endDate` and `untilDate` - to the second, meaning that seconds and milliseconds in the date/time are always set to zero before updating the availability into the CRUD.
+:::
+
+:::info
+**v2.0.0**
+An availability must have a valid [IANA time zone][iana-time-zones]. Trying to set an invalid `timeZone` or unset it will trigger an automatic rollback.
 :::
 
 :::note
@@ -554,11 +735,6 @@ Due to technical constraints, under unexpected circumstances (networking issues,
 
 :::warning
 If the availability resulting from the patch is no longer valid, the AM performs an automatic rollback and returns a 400 error. Due to technical constraints, if the rollback fails it may result in an inconsistent availability saved into the CRUD and the user may have to fix it manually.
-:::
-
-:::info
-**v2.0.0
-An availability must have a valid [IANA time zone](https://www.iana.org/time-zones). Trying to set an invalid `timeZone` or unset it will trigger an automatic rollback.
 :::
 
 ### Body
@@ -629,6 +805,10 @@ We recommend using the [`GET /calendar/`][get-calendar] endpoint, which provides
 :::
 
 :::info
+**v2.2.0**. Starting with version 2.2.0 we support availabilities without a slot duration; for these availabilities, we only return available slots, computed as described in the [*Overview* section][flexible-duration-slots].
+:::
+
+:::info
 **v2.1.0**. Starting with version 2.1.0 we return, for each slot, the resource ID from the corresponding availability, and we filter the exceptions only according to the availabilities resources.
 :::
 
@@ -654,6 +834,10 @@ The slot ID must have the new format, introduced in version 2.0.0. The slot ID f
 The slot ID must have the new format, introduced in version 2.0.0. The slot ID from the CRUD collection used in version 1.x is not supported.
 :::
 
+:::info
+**v2.0.0**. With the introduction of recurring availabilities without expiration in v2.0.0, it is now always required a period when searching for calendar events and slots, due to the virtually infinite number of slots associated to this class of availabilities.
+:::
+
 Returns the slots matching the given query in a certain period of time and optionally with a given status.
 
 Since the slots are computed on demand, the AM performs the following operations behind the scenes:
@@ -664,7 +848,7 @@ Since the slots are computed on demand, the AM performs the following operations
 4. retrieve from the CRUD all exceptions overlapping, even partially, with the period, and matching the availabilities resources;
 5. retrieve from the CRUD all appointments and reservations overlapping, even partially, with the period and associated to the availabilities fetched at step 1;
 6. for each availability, compute all the occurrences overlapping, even partially, with the period;
-7. for each availability occurrence obtained at the previous step, compute all the slots;
+7. for each availability occurrence obtained at the previous step, compute all the slots (if slot duration is set) or just the available slots (if slot duration is not set);
 8. if the slot ID is passed, filter the slot with given ID;
 9. for each slot, set its status according to the following rules:
    1. `UNAVAILABLE` if any exception overlaps, even partially, the time slot;
@@ -673,10 +857,6 @@ Since the slots are computed on demand, the AM performs the following operations
 
 :::warning
 Since the association between availabilities and exceptions is based on the resource ID, you should set the filter on the corresponding field using the `_q` query parameter. Otherwise the AM assumes all exceptions and all availabilities refer to the same resource.
-:::
-
-:::info
-**v2.0.0**. With the introduction of recurring availabilities without expiration in v2.0.0, it is now always required a period when searching for calendar events and slots, due to the virtually infinite number of slots associated to this class of availabilities.
 :::
 
 ### Request
@@ -690,13 +870,17 @@ This endpoint supports the following query parameters:
 - `_q`: additional query to filter availabilities and exceptions;
 - `_l`: the maximum number of results returned;
 - `_sk`: the number of slots to skip from the result set (after sorting, see `_s`);
-- `_s`: field to be used to sort slots, these are the values supported:
+- `_s`: field to be used to sort slots, otherwise the slots are returned in random order; these are the values supported:
   - `startDate`: sort ascending by start date/time;
-  - `-startDate` (**default**): sort descending by start date/time;
+  - `-startDate`: sort descending by start date/time;
   - `endDate`: sort ascending by start date/time;
   - `-endDate`: sort descending by start date/time.
 
 ### Response
+
+:::info
+**v2.2.0**. Since version 2.2.0, we only return available slots for availabilities without a slot duration.
+:::
 
 :::info
 **v2.0.2**
@@ -728,7 +912,7 @@ Lock an availability slot with the specified id. This process succeeds only if t
 Since the slots are computed on demand, the AM performs the following operations behind the scenes:
 
 1. retrieve from the CRUD the availability the slot belongs to;
-2. check if the slot is valid, i.e. it does match an availability slot;
+2. check if the slot is valid, i.e. it does match an availability fixed or flexible slot;
 3. check the number of appointments and reservation on the slot and returns 403 if the slot is full;
 4. check the number of exceptions overlapping, even partially, with the slot and returns 403 if there's any;
 5. create or update the reservation.
@@ -739,6 +923,8 @@ The body of this request accepts the following fields:
 
 - `ownerId` (**required**): a `string` representing the user who wants to lock the availability;
 - `lockDurationMs`: the duration of the lock expressed in milliseconds (default: the [`defaultLockDurationMs`][default-lock-duration] field of the service configuration file).
+- `startDate`: a string representing the start date of the slot. It must be equal to the starting date included in the `:id` parameter when the availability has a `slotDuration` and greater or equal when it does not.
+- `endDate`: a string representing the end date of the slot. It must be equal to the end date included in the `:id` parameter when the availability has a `slotDuration` and lower or equal when it does not.
 
 ### Response
 
@@ -893,11 +1079,16 @@ Since the events are aggregated on demand, the AM performs the following operati
 2. retrieve from the CRUD all availabilities overlapping, even partially, with the period and matching the given resource, if specified;
 3. retrieve from the CRUD all exceptions overlapping, even partially, with the period and matching the given resource, if specified;
 4. for each availability, compute all the occurrences overlapping, even partially, with the period;
-5. for each availability occurrence obtained at the previous step, compute all the slots;
-6. for each slot, set its status according to the following rules:
-   1. `UNAVAILABLE` if any exception overlaps, even partially, the time slot;
-   2. `BOOKED` if no exception overlaps, even partially, the time slot and the number of appointments or reservation is equals to the slot capacity;
-   3. `AVAILABLE` otherwise.
+5. if the availabilities have a slot duration (aka `no flexible slots`):
+
+    2. for each availability occurrence obtained at the previous step, compute all the slots;
+    3. for each slot, set its status according to the following rules:
+
+        1. `UNAVAILABLE` if any exception overlaps, even partially, the time slot;
+        2. `BOOKED` if no exception overlaps, even partially, the time slot and the number of appointments or reservation is equals to the slot capacity;
+        3. `AVAILABLE` otherwise.
+
+5. if the availabilities does not have a slot duration (aka `flexible slots`) returns a single slot of the duration of availability.
 
 :::warning
 This endpoint accepts, for compatibility reasons, but ignores the `_l` and `_sk` query parameters. As a consequence, be aware that this endpoint may return an arbitrary number of events, depending on the requested period.
@@ -973,6 +1164,16 @@ Each availability has all the [CRUD collection properties][crud-availabilities] 
 :::note
 **v2.0.0**
 Since slots are computed dinamically, the `_id` field does not represent and does not have the format of the random ID assigned from the CRUD to each new document, but it's a deterministic string derived from other slot properties (`availabilityId`, `startDate` and `endDate`) that allows the AM to obtain all the slot information from its `_id`.
+:::
+
+:::note
+**v2.2.0**
+The `status` field will not be included in the availability response if the slot duration is not set.
+:::
+
+:::caution
+**v2.2.0**
+In the case of availability without a specific slot duration, a single slot is created containing all the appointments booked within that occurrence of availability; therefore, unlike slots with fixed duration, the start and end date/time of the appointments do not necessarily coincide with those of the slot, and appointments can have variable durations.
 :::
 
 #### `Exception`
@@ -1056,19 +1257,24 @@ The body of this request accepts the following fields:
 | Name                | Type     | Required | Description |
 |---------------------|--------- |----------|-------------|
 | endDate             | `string` | Yes      | End date/time of the range in which the first slot will be searched, expressed in format **ISO 8601**. The range start is by default the moment in which the request is sent. |
+| slotDuration        | `integer`| No       | The minimum duration in minutes of the slot to be searched |
 | resourceFilters     | `Object` | No       | Object containing CRUD filtering option to be applied to the resources. |
 | availabilityFilters | `Object` | No       | Object containing CRUD filtering option to be applied to the availability. |
 
 ### Response
 
-If one ore more slots are successfully found, you will receive a response with a 200 status code and the array of objects. Each of them contains the slot-resource pair. If no slot is found the array will be empty.
+If one ore more slots are successfully found, you will receive a response with a 200 status code and the array of objects. Each of them contains the slot-resource pair. In each slot it is specified the duration is of `type` FLEXIBLE or FIXED. If no slot is found the array will be empty.
 
 [iana-time-zones]: https://www.iana.org/time-zones "IANA Time Zones"
 [iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
+[messaging-service-doc]: ../../runtime_suite/messaging-service/overview "Messaging Service official documentation"
+[notification-manager-doc]: ../../runtime_suite/messaging-service/overview "Notification Manager"
 [teleconsultation-participants]: ../../runtime_suite/teleconsultation-service-backend/usage#participants-required "Required participants | Usage | Teleconsultation Service Backend"
+[timer-service-doc]: ../../runtime_suite/timer-service/overview "Timer Service official documentation"
 
 [sending-messages]: ./10_overview.md#sending-messages "Sending messages | Overview"
 [setting-reminders]: ./10_overview.md#setting-reminders "Setting reminders | Overview"
+[flexible-duration-slots]: ./10_overview.md#flexible-slots "Flexible duration slots | Availabilities and slots | Overview"
 [availabilities-on-create]: ./10_overview.md#on-create "On create | Custom behaviors | Availabilities and slots | Overview"
 [availabilities-on-update]: ./10_overview.md#on-update "On update | Custom behaviors | Availabilities and slots | Overview"
 [availabilities-on-delete]: ./10_overview.md#on-delete "On delete | Custom behaviors | Availabilities and slots | Overview"
@@ -1076,6 +1282,8 @@ If one ore more slots are successfully found, you will receive a response with a
 
 [configuration]: ./20_configuration.md "Configuration page"
 [service-configuration]: ./20_configuration.md#service-configuration "Service configuration | Configuration"
+[users]: ./20_configuration.md#users "`users` | Service configuration | Configuration"
+[is-participant-status-available]: ./20_configuration.md#isparticipantstatusavailable "`isParticipantStatusAvailable` | Service configuration | Configuration"
 [environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
 [crud-availabilities]: ./20_configuration.md#availabilities-crud-collection "Availabilities CRUD collection | CRUD collections | Configuration"
 [crud-exceptions]: ./20_configuration.md#exceptions-crud-collection "Exceptions CRUD collection | CRUD collections | Configuration"

@@ -9,11 +9,10 @@ This Plugin is a BETA Plugin and, as such, is currently under active development
 :::
 
 The Single View Trigger Generator is a new component of the Fast Data architecture. Its introduction allows splitting the import phase
-from [strategies](/fast_data/the_basics.md#strategies) execution, which are currently handled both by the [Real Time Updater](/fast_data/realtime_updater.md).
+from [strategies](/fast_data/the_basics.md#strategies) execution, which are currently handled both by the [Real-Time Updater](/fast_data/realtime_updater.md).
 
 Here below a diagram showing how the Single View Trigger Generator service integrates with Fast Data flow is provided:
 
-<!-- TODO: change the graphic (can I use excalidraw?) -->
 ![Fast data lifecycle with Single View Trigger Generator](img/svtg-fd-arch.svg)
 
 In this particular Fast Data configuration, Real-Time Updater is set to not execute strategies, but to rather emit a [Projection Update event](/fast_data/inputs_and_outputs.md#projection-update-message) (`pr-update`) for each modified projection.  
@@ -47,13 +46,13 @@ Additional details on how to configure the Real-Time Updater to produce Projecti
 The following steps are only required if you choose to [generate `sv-trigger` messages](/fast_data/configuration/single_view_trigger_generator.md#event-store-config) over Projection changes
 :::
 
-- configure the Single View Creator service to get triggered from `sv-trigger` events setting the environment variable `PROJECTIONS_CHANGES_SOURCE` to `KAFKA`
-- set environment variable `KAFKA_PROJECTION_CHANGES_TOPICS` to the topic of the event streaming platform on which the Single View Trigger Generator service will publish the `sv-trigger` events.
+- Configure the service to consume from Kafka (see the [Consuming from Kafka](/fast_data/configuration/single_view_creator.md#consuming-from-kafka) section)
+- Set environment variable `KAFKA_PROJECTION_CHANGES_TOPICS` to the topic of the event streaming platform on which the Single View Trigger Generator service will publish the `sv-trigger` events.
 In case the topic does not already exist, we recommend adopting our [naming convention](/fast_data/inputs_and_outputs.md#single-view-trigger-message) for defining the topic name.
 
-### `sv-trigger` vs. `pc`
+### Single View Trigger vs Projection Changes
 
-From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real Time Updater](/fast_data/configuration/realtime_updater.md#projection-changes).
+From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real-Time Updater](/fast_data/configuration/realtime_updater.md#projection-changes).
 
 `sv-trigger` messages are sent and consumed on Event Streaming Platforms making the full cycle of Fast Data completely event driven. This offers a greater separation of concers since it means that business data like Projections and Single Views will be on your DB, while all the events that make Fast Data work will be on your Event Streaming Platform.
 

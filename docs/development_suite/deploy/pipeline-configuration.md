@@ -35,7 +35,7 @@ test -f "${VARIABLES_FILE}" && set -a && source "${VARIABLES_FILE}"
 
 For compatibility reasons we always check first if the file actually exists before sourcing it.  
 Additionally, we have inside the shell environment the variables set inside the Environment Variables table of the
-Project Settings page of the Console.
+Project Overview area of the Console.
 
 After setting up the shell environment with all the variables, we can start to setup the files for being ready to be
 deployed inside the target environment.

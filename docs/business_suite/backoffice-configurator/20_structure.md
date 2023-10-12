@@ -3,10 +3,6 @@ id: structure
 title: Backoffice structure
 sidebar_label: Structure
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 The first section of the configurator targets the general structure of the Backoffice. It is divided into five tabs:
 
 1. [pages](#pages), where you can overview the Backoffice structure and quickly adding or removing pages,
@@ -60,7 +56,7 @@ For **compose pages**, available fields are:
 - _configurations manager endpoint_ (only if input mode is _external_): endpoint from which the configuration file can
   be fetched;
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
-- _template_ (only if input mode is _external_): a [configuration template](./30_compose-pages.md#templates) carrying a pre-defined, pre-arranged set of components.
+- _template_ (only if input mode is _external_): a [configuration template](./30_compose_pages.md#templates) carrying a pre-defined, pre-arranged set of components.
 
 ![Page compose options](img/structure_page-compose-options.png)
 
@@ -98,7 +94,7 @@ The buttons placed in the last column of the page table allows you to interact w
 
 From left to right, available actions are:
 
-- _edit page_ (only for compose pages): to open the section for [compose pages configuration](./30_compose-pages.md);
+- _edit page_ (only for compose pages): to open the section for [compose pages configuration](./30_compose_pages.md);
 - _edit details_: to re-open the [page creation wizard](#create-new-page) in edit mode;
 - _delete_: to delete the page.
 
@@ -171,7 +167,7 @@ for which a modal will be spawned.
 ![Right menu modal](img/structure_layout-right-menu-modal.png)
 
 Some properties will be marked as **Shared**. This means that it is possible to assign them a common reusable property of the same type. In order
-to do so, create a Shared Property in the [Shared Properties](30_compose-pages.md#shared-properties) section.
+to do so, create a Shared Property in the [Shared Properties](30_compose_pages.md#shared-properties) section.
 
 ![Shared Property](img/structure_layout-shared-property.png)
 
@@ -180,6 +176,29 @@ Modals have the option to turn on an **Advanced mode** that will make available 
 
 ![Right menu modal advanced mode](img/structure_layout-right-menu-modal-advanced.png)
 :::tip
+
+#### ACL expression
+
+Components will also have a special property called `aclExpression`, which can be used to [control](https://micro-lc.io/add-ons/backend/middleware#acl-application) whether certain portions of the configuration are removed based on a logical expression evaluated against user's groups and permissions.
+
+The property is configurable at two levels.
+
+- On a **component level** from the properties form itself to limit the presence of the whole component definition. 
+  
+  For example, with the following configuration
+
+  ![ACL component](img/structure_layout-acl-component.png)
+
+  the layout component will not be included if the configuration is not fetched by a user with the _admin_ group.
+
+- On a **property level** for all the properties (and sub-properties) of type `object`. 
+  
+  For example, with the following configuration
+  
+  ![ACL property](img/structure_layout-acl-property.png)
+
+  the property `logo` of the layout will not be included if the configuration is not fetched by a user with the _admin_ group.
+
 
 ## Settings
 

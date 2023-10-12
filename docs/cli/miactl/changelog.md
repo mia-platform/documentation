@@ -8,6 +8,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2023-10-10
+
+### Changed
+
+- update go version to 1.21.1
+- update mergo to v1.0.0
+- update exp to v0.0.0-20230905200255-921286631fa9
+- update oauth2 to v0.12.0
+- update uuid to v1.3.1
+
+### Added
+
+- marketplace list command
+- marketplace get command
+- environment list command
+- runtime list resources command
+- runtime create job command
+- events command
+- version command
+
+## [0.7.0] - 2023-06-26
+
+### Added
+
+- create service account with jwt authentication
+
 ## [0.6.1] - 2023-06-12
 
 ### Added
@@ -89,7 +115,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.6.1...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/mia-platform/miactl/compare/v0.7.0...v0.8.0
+[0.7.0]: https://github.com/mia-platform/miactl/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/mia-platform/miactl/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/mia-platform/miactl/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/mia-platform/miactl/compare/v0.4.0...v0.5.0

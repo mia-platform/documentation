@@ -8,6 +8,72 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2023-10-06
+
+### Fixes
+
+- Added boolean type to `filters.value` in `bk-tabs` manifest
+- Added `oneOfGuard` to child elements of categories and groups in `bk-layout` manifest
+- Added schema for `default` property of dataSchema manifest
+- Calendar component sets style correctly on first render
+
+### Added
+
+- Form components allow to edit fields of format `geopoint`
+
+## [1.4.1] - 2023-09-22
+
+### Added
+
+- Component `bk-calendar` supports dynamic configuration in `additionalCreatePayload`
+- Component `bk-calendar` has `urlMask` property to retrieve data from URL
+- Component `bk-layout` supports new layout modality `leftMenu`
+- Form components support month/year navigation and selection in date fields
+
+### Fixes
+
+- Title of footer buttons in `bk-gallery` are localized
+- File upload action propagates returned object in hooks
+- Copy action supports dynamic configurations via handlebars
+- Component `bk-form-wizard` does not reset in accordion mode on fields changes
+
+## [1.4.0] - 2023-08-28
+
+### Fixed
+
+- `bk-layout` shows the user menu when `user` context is defined (when fetch request to api is successful). This fix will show an empty user `name` if not provided
+- `bk-layout` manifest `userInfoUrl` was missing the mock fetch implementation
+- `bk-layout` manifest `userInfoUrl.userPropertiesMapping` fixed key overwrite
+### Added
+
+- Support for `CRUD Service` import functionality is available through components `bk-import-modal` and `bk-crud-client`
+- Support for `CRUD Service` writable views is available in components. Standard lookup fields handling is now deprecated.
+- New components `bk-dynamic-form-modal`, `bk-dynamic-form-drawer`, `bk-dynamic-form-card`, `bk-form-wizard`  are available. These extend the functionalities of `bk-form-modal`, `bk-form-drawer`, `bk-form-card`, which are now deprecated.
+
+## [1.3.18] - 2023-07-24
+
+### Fixed
+
+- `phosphor` icons render tags such as `rect` or `circle` via `@micro-lc/iconic@1.3.1` (<https://github.com/micro-lc/micro-lc/pull/796>)
+
+## [1.3.17] - 2023-07-14
+
+### Fixed
+
+- `bk-layout` icon style back to micro-lc v1 look and feel
+- `bk-layout` supports `phosphor` icons via `@micro-lc/iconic@1.3.0`
+
+## [1.3.16] - 2023-06-30
+
+## Added
+
+- `bk-file-picker-modal` allows to visualize and select files that have already been uploaded (requires `Files Service` version 2.7.0 or higher)
+
+### Fixed
+
+- `bk-button` callback context is responsive to url updates
+- `bk-expanded-filters` with filters parsed from URL correctly perform reset
+
 ## [1.3.15] - 2023-06-19
 
 ### Added
@@ -118,7 +184,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `urlMask` properties of `bk-button` and `bk-url-paramters` allow separate masks for `pathname` and `search` fields of current URL
+- `urlMask` properties of `bk-button` and `bk-url-parameters` allow separate masks for `pathname` and `search` fields of current URL
 - actions of type `http` support methods `PATCH` and `PUT`
 
 ### Fixed

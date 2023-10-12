@@ -69,7 +69,7 @@ Conversely, if you have already performed some changes, a merge modal will be op
 
 In order to perform the merge, press on the _Merge Configuration_ button: this will open a modal where the different parts of the configuration are shown; each configuration part will open up two editors displaying the remote configuration saved by someone else (on the left) and your local configuration (on the right).
 
-![Merge configuration modal](img/merge-collaboration/merge-modal-change-view.png)
+![Merge configuration modal](img/merge-collaboration/merge-configuration-diff.png)
 
 From the sidebar on the left, you can navigate through different sections showing different parts of your project configuration.
 The items shown in the sidebar follow the grouping order used within the Design area sidebar (for example, the user can easily identify the Endpoints section on top, then move on to the Workload section - in which there are the microservices configurations - and finally arrive at the MongoDB CRUD section to view its collections).
@@ -91,6 +91,14 @@ Entering one of them, to resolve a diff, you can:
 
 In every section, navigate from one change to the following/previous one thanks to the related navigation buttons. If there are no changes in the current section, the navigation buttons will be disabled.
 
+In case you want to accept all incoming or current changes inside a specific section of the merge modal, to speed up your merge process you can leverage two different buttons:
+
+* The `Keep current changes` button (above the right-hand editor) allows you to accept the entire content of your current configuration
+
+* The `Accept incoming changes` button (above the left-hand editor) allows you to accept all changes from the incoming configuration
+
+![Keep current changes](img/merge-collaboration/keep-current-changes.png)
+
 When you are satisfied with your merge just press the _Confirm Merge_ button.
 
 :::caution
@@ -99,15 +107,7 @@ Once the merge is confirmed, the content from the editor on the _right_ is taken
 Please note that **you will have to approve all the changes coming from the remote configuration**, otherwise you may lose some changes.
 :::
 
-After the merge process is completed with success, press the _Continue Editing_ button in the feedback modal
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '450px'}}> 
-
-![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-ok-feedback.png)
-
-  </div>
-</div>
+After the merge process is completed with success, you can can proceed to save your local changes applied to the current configuration, or continue editing it.
 
 ### What if I made a mistake?
 

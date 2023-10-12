@@ -3,17 +3,13 @@ id: faqs
 title: FAQs
 sidebar_label: Faqs
 ---
-:::caution
-This is a **BETA** feature and, as such, is currently under **active development**. Pay attention using this section.
-:::
-
 ## Components
 
-## How can I add a new page to and show it in the navigation menu?
+### How can I add a new page and show it in the navigation menu?
 
 :::caution
 The information regarding the menu are valid only if you are using the
-[`bk-layout`](../../business_suite/backoffice/components/misc#bk-layout) component.
+[`bk-layout`](/business_suite/backoffice/60_components/380_layout.md) component.
 :::
 
 The first step to add a new page to your Backoffice is to [create](./20_structure.md#create-new-page) it the _Pages_
@@ -32,7 +28,7 @@ menu. The click will spawn a new _Edit item_ button.
 ![Add item](./img/faqs_add-new-menu-item_add-item.png)
 
 One clicked, a code editor will appear in the modal for you to write the 
-[item configuration](../../business_suite/backoffice/components/misc#application). Remember
+[item configuration](/business_suite/backoffice/60_components/380_layout.md#application). Remember
 that the _id_ must match the identifier of your newly created page.
 
 ![Item configuration](./img/faqs_add-new-menu-item_item-configuration.png)
@@ -43,11 +39,11 @@ Once you have done, click the _Save_ button. The modal will close, and the new i
 
 :::caution
 This information are valid only if you are using the
-[`bk-table`](../../business_suite/backoffice/components/data_visualization#bk-table) component.
+[`bk-table`](/business_suite/backoffice/60_components/510_table.md) component.
 :::
 
 Columns of the table are defined by it's 
-[`dataSchema` property](../../business_suite/backoffice/page_layout#data-schema). To edit
+[`dataSchema` property](/business_suite/backoffice/30_page_layout.md#data-schema). To edit
 it you first need to open the configuration of the _compose page_ of your choice. Now you need to select the _Table_
 component in the left menu (if you are starting from a template, it usually located under the _Main_ component) and click the _Edit property_ button of the _Data schema_ property in the right menu.
 
@@ -55,9 +51,20 @@ component in the left menu (if you are starting from a template, it usually loca
 
 A modal will open with a code editor you can use to edit the property. Now you just need to add a new entry to the
 `properties` object as explained in the 
-[official documentation](../../business_suite/backoffice/page_layout#data-schema).
+[official documentation](/business_suite/backoffice/30_page_layout.md#data-schema).
 
 Once you have done, click the _Save_ button. The modal will close, and the table will display the new column.
+
+
+### How can I change parts of the configuration based on user's groups and permissions?
+
+Backoffice [suppports](https://micro-lc.io/add-ons/backend/middleware#acl-application) the usage of ACL expressions in configurations to omit sections based on logical expressions evaluated against user's groups and permissions.
+
+:::info
+An ALC expression is a combination of groups, permissions and JavaScript operators like `groups.admin && permissions.api.users.get`.
+:::
+
+ACL expressions can be [added](./20_structure.md#acl-expression) to each object in the configurations regardless of the nesting level. If an object has the special property `aclExpression`, the server will evaluate it and remove the object altogether in case of a *falsy* outcome.
 
 ### How can I use an Angular micro-frontend as parcel?
 
@@ -154,11 +161,11 @@ Backoffice implementation.
 ### How can I use my own web-components?
 
 The first step is to properly build, bundle, and serve your own web-components library. You can read the section dedicated
-to [external components](./60_external-components/10_overview.md) to cover the ins and outs of the process with
-particular attention to the [bundling section](./60_external-components/30_bundling.md).
+to [external components](./60_external_components/10_summary.md) to cover the ins and outs of the process with
+particular attention to the [bundling section](./60_external_components/30_bundling.md).
 
 Runtime-wise, micro-lc has no limitations regarding web-components sources, as long as they can be correctly loaded by the
-application (read more about the different types of [sourcing](./60_external-components/10_overview.md#sourcing)). To use
+application (read more about the different types of [sourcing](./60_external_components/10_summary.md#sourcing)). To use
 a web-components library in the layout or in a compose page you just need to declare it in the configuration
 [sources](https://micro-lc.io/docs/guides/applications/compose#plugin-configuration):
 
@@ -179,6 +186,13 @@ In the Configurator you can edit sources from the _Advanced_ tabs.
 
 The Configurator, on the other hand, may have some troubles showing your custom components in the preview. For example,
 there may be CORS issues or authentication issues. To fix them you may need to adjust how your components are
-[served](./60_external-components/10_overview.md#sourcing), or you can rely on the Configurator
-[Service Worker](./40_configurator-settings.md#source-maps) to reverse proxy your sources to something that can be loaded
+[served](./60_external_components/10_summary.md#sourcing), or you can rely on the Configurator
+[Service Worker](./40_configurator_settings.md#source-maps) to reverse proxy your sources to something that can be loaded
 by the preview.
+
+### How can I use my own compose page templates?
+
+Templates available when creating a compose page are fetched from remote sources, which can be controlled in the
+_Template sources_ tab of the _Configurator Settings_ modal.
+
+Refer to the [dedicated documentation](./40_configurator_settings.md#template-sources) for more information.

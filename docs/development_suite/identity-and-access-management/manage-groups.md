@@ -6,7 +6,7 @@ sidebar_label: Manage Groups
 
 Mia-Platform Console allows you to assign and manage authorization privileges to groups of users at Company level. Groups aim to simplify the management of a large number of users who have to be assigned the same privileges (e.g. a work team).
 
-Groups are considered a type of [identity](/development_suite/identity-and-access-management/overview.md#identity-and-access-management) whereby users with enough permissions can assign and manage roles on the following resources:
+Groups are considered a type of [identity](/development_suite/identity-and-access-management/index.md#identity-and-access-management) whereby users with enough permissions can assign and manage roles on the following resources:
 
 * Company
 * Project
@@ -18,7 +18,11 @@ To find out more about roles management, check out the available [capabilities](
 
 ## Managing Company Groups
 
-Each Company can have its own groups. This type of identity is configurable and manageable exclusively by a Company Owner from the dedicated **Groups section** within the Company Overview. 
+:::info 
+Each company has the flexibility to establish its own groups, allowing for distinct identities. Company Owners can configure and manage this feature specifically through the designated **Groups** section within the **Company Overview**, providing clear control over group settings.
+
+While groups offer an efficient way to manage user access, they're not the only way to handle permissions within a company. In fact, you still have the option to individually manage user privileges, or even use a combination of both approaches. For a deeper understanding of user management, you can refer to the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users).
+:::
 
 ![Group table](./img/manage-groups/groups-portal.png)
 
@@ -28,19 +32,16 @@ At Company level, for each group, it is possible to manage:
 * Role: the group Company role
 * Members: adding and/or removing users from the group
 
-Existing groups can also be found within the IAM portal at both Company and Project level, where it is possible to manage roles assigned to them just like for the other identity types. 
+You can also locate existing groups in the IAM section, both at the Company and Project levels. In these sections, you have the ability to handle the roles assigned to these groups, similar to how you manage roles for other types of identities.
 
-Groups allow you to efficiently manage accesses to your users. Nevertheless, they are not the only possible way to manage permissions on a Company. As a matter of fact, you can still manage user privileges at individual level, or even handle them through a combination of both methods. If you want to discover more about user management, visit the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users).
 
 :::caution
-Please note that some permissions granted by the assigned Company role may be inherited on the Projects and Runtime Environments of the Company itself.  
-Always pay attention when assigning roles in order to avoid providing undesired access to resources!
-You can check which capabilities are granted according to the chosen role by visiting the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console) documentation page.
+Please be aware that certain permissions granted through the assigned Company role might be inherited on the Projects and Runtime Environments within that Company. It's important to be cautious while assigning roles to prevent unintended access to resources. You can verify the specific capabilities granted based on the chosen role by referring to the documentation page on  [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console).
 :::
 
 ### Creating a Group
 
-The Company Owner can start the group creation process by pressing the *Create group* button inside the Groups section. In the creation process it is required to define both the name and Company role of the group. It is also possible to optionally add members to the group.
+The Company Owner can initiate the group creation process by clicking the `Create group` button within the Groups section in the IAM section. During the creation process, it's necessary to specify both the name and the Company role for the group. There's also an option to optionally include members in the group.
 
 :::info
 During the creation process, the group can be also created without adding members. This action can still be performed later on, after the group has already been created, from the [group detail page](/development_suite/identity-and-access-management/manage-groups.md#editing-a-group).
@@ -54,11 +55,10 @@ During the creation process, the group can be also created without adding member
   </div>
 </div>
 
-Both users who are already part of the Company and new users that have no access yet can be added to a group.
-For the latter, the user must already be registered on the Platform. In this case, when added to the group, the user will receive an invitation email to join the Company.
-As long as a user is part of at least one group of a Company, they will have access to the resources of that Company.  
+Both existing users within the Company and new users who haven't been granted access yet can be included in a group. For new users, they must be registered on the Platform beforehand. When a new user is added to a group, they will receive an invitation email to join the Company. Once a user belongs to at least one group within a Company, they will be able to access that Company's resources. 
+
 :::info
-If the user does not exist on the Platform, please open a Service Request to invite them to register in the Platform.
+If the user isn't already registered on the Platform, kindly initiate a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21/group/79/create/340) to invite them to sign up on the Platform.
 :::
 
 ### Editing a Group
@@ -104,24 +104,26 @@ To remove a member from the group, click on the delete button on the correspondi
   </div>
 </div>
 
-:::info
-In case a user has access to the Company solely from their membership in that group, the removal from that group will result in a loss of access to the Company for that user.  
+:::caution
+If a user's access to a Company is solely tied to their membership in a specific group, removing them from that group will lead to a loss of access to the Company for that user.
 
-In case a user has access to more Company Groups, or has a specific individual Company role assigned, the removal from that Group will NOT result in the loss of access to the Company for that user; for this reason, it is necessary to pay close attention to what privileges are still left to that user on the Company resources. 
+However, if a user has access through multiple Company Groups or holds an individual Company role, removing them from one group will NOT result in a loss of Company access. It's important to carefully consider the remaining privileges the user might still have on Company resources.
+:::
 
-You can completely remove user access to a Company with one single action from the [Users section](/development_suite/identity-and-access-management/manage-users.md#removing-a-user).
+:::info 
+To completely revoke user access to a Company, you can take a single action from the [Users section](/development_suite/identity-and-access-management/manage-users.md#removing-a-user).
 :::
 
 ### Deleting a Group
 
-A group can be deleted by accessing its detail page, clicking on the *Delete* button at the end of the page and then confirming the action.
+A group can be deleted by accessing its detail page, clicking on the `Delete` button at the end of the page and then confirming the action.
 
 :::caution
-Group deletion may result in loss of access to the Company for those group members who are not members of at least one other Company group or who do not have a specific individual Company role assigned.   
+Deleting a group could potentially lead to the loss of Company access for members of that group who aren't part of any other Company group or don't hold a specific individual Company role.
 
-In the event that a member of a group has access to the Company solely by virtue of being a member of a group, the deletion of that group (or the removal of the user's membership) will result in the loss of access to the Company for that user.  
+If a user's access to the Company is solely dependent on their membership in a group, removing them from that group or deleting the group altogether will result in them losing access to the Company.
 
-In the case that a user has access to more Company groups, or has a specific individual Company role assigned, the deletion of the group will NOT result in loss of access to the Company for that user; for this reason, it is necessary to pay attention to what privileges are still left to that user on the Company resources.
+However, if a user has access through multiple Company groups or holds a specific individual Company role, deleting a group will NOT lead to loss of Company access for that user. It's crucial to be mindful of the remaining privileges the user might have on Company resources.
 :::
 
 
@@ -135,13 +137,13 @@ In the case that a user has access to more Company groups, or has a specific ind
 
 ## Managing Group roles
 
-All identity roles are managed from the [IAM portal](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
+All identity roles are managed from the [IAM section](/development_suite/identity-and-access-management/manage-identities.md), which is specifically dedicated to the governance of roles and accesses to the resources of the Company.  
 
-As a result, the Company role of a group can be modified not only from the Groups section, but also from the IAM portal.
+As a result, the Company role of a group can be modified not only from the Groups section, but also from the IAM section.
 
 ### Managing Group role at Company level
 
-To edit a group's role from the IAM portal, simply click on the edit button for the desired group row and select the new role.
+To edit a group's role from the IAM section, simply click on the edit button for the desired group row and select the new role.
 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -154,7 +156,7 @@ To edit a group's role from the IAM portal, simply click on the edit button for 
 
 ### Managing Group role at Project level
 
-Groups which have access to a Company are shown in the IAM portal inside the Project Settings Area of a Project belonging to that specific Company.
+Groups which have access to a Company are shown in the IAM section inside the Project Overview area of a Project belonging to that specific Company.
 You can change the role of the group in the Project or in any Project Runtime Environment. To do so, just open the editing dialog and select the new role of the group for the Project itself and/or for Project Runtime Environments.
 
 
@@ -167,7 +169,7 @@ You can change the role of the group in the Project or in any Project Runtime En
 </div>
 
 :::note
-Even though the Project IAM portal shows all the Company identities, this does not mean that all the identities have also access to the Projects, as this depends on their assigned role in the Company and how the permissions are inherited.
+While the Project IAM section displays all the identities from the Company, it's important to note that not all these identities necessarily have access to the Projects. Access depends on the roles assigned to them within the Company and how permissions are inherited.
 
 For further information about permissions and role inheritance, check out the [Console Levels and Permission Management](/development_suite/identity-and-access-management/console-levels-and-permission-management.md) page.
 :::

@@ -7,6 +7,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v7.0.2 - 2023-10-09
+
+### Fixed
+
+- fix fastify.close function undefined
+
+## v7.0.1 - 2023-07-19
+
+### Updates
+
+* remove HEAD method by default on exposed OpenAPI documentation
+* upgrade dependencies
+
 ## v7.0.0 - 2023-05-11
 
 In this version, is added the support for Fastify v4. To upgrade, read the [migration guide](https://www.fastify.io/docs/latest/Guides/Migration-Guide-V4/).
@@ -291,7 +304,7 @@ Metrics options are changed. Below there are the main changes. For other configu
 ### BREAKING CHANGES
 
 - Dropped support to Node 8
-- Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../getting_started/monitoring-dashboard/dev_ops_guide/log). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js).
+- Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../getting-started/guidelines/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js).
 
 ### Added
 

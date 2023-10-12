@@ -22,7 +22,7 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 Each template, or the eventual service library from which depends, should expose health routes.
 These routes provide information on the health of the systems, and let to carry out debugging checks.
-Check out the [Microservices vademecum](/guidelines/microservice_vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for details.
+Check out the [Microservices vademecum](/getting-started/guidelines/microservice-vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for details.
 
 :::info
 For example, in all Node.js templates, health routes are exposed by [LC-39](https://github.com/mia-platform/lc39)
@@ -49,7 +49,7 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 ### Dockerfile
 
-Your template has to have a [Dockerfile](/guidelines/docker_vademecum.md) built with the best practices.
+Your template has to have a [Dockerfile](/getting-started/guidelines//docker-vademecum.md) built with the best practices.
 
 Check out the [Node.js service template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/Dockerfile) to see an example.
 
@@ -119,7 +119,7 @@ Check out the [Node.js service template package.json](https://github.com/mia-pla
 
 ### Logging
 
-The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/getting_started/monitoring-dashboard/dev_ops_guide/log.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
+The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/getting-started/guidelines/guidelines-for-logs.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
 
 * The template should provide a logger.
 * If exposes routes, it should generate logs for incoming and completed request.
@@ -143,4 +143,4 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 The template should be able to expose auto-generated documentation for each endpoint. It should exist a dedicated endpoint where show the API documentation.
 
-In order to properly view API documentation in the [*Documentation Portal* of the Console](/development_suite/api-portal/api-documentations.md), it should be exposed in [OAS3(Swagger) format](https://swagger.io/specification/).
+In order to properly view API documentation in the [*Documentation Portal* of the Console](/console/project-configuration/documentation-portal.md), it should be exposed in [OAS3(Swagger) format](https://swagger.io/specification/).

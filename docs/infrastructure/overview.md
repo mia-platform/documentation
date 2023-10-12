@@ -6,10 +6,13 @@ sidebar_label: Infrastructure overview
 
 Mia-Platform can be adopted in three different ways, according to your needs:
 
-- **SaaS**: we manage the tools, you bring your own infrastructure and providers (Git, pipelines, secret manager, etc.).
-- **PaaS**: we take care of everything.
-- **On-Premises**: install it wherever you want.
+- **Platform as a Service (PaaS)**: Purchase Mia-Platform as a fully managed environment, ready to use for your development teams. Further information available [here](/paas/overview.md).
+- **Bring Your Own Infrastructure (SaaS)**: Purchase Mia-Platform as a managed service but keep the runtime infrastructure under your control and management. Further information available [here](/byoi/overview.md).
+- **Self Hosted (on-premises)**: Purchase Mia-Platform License and have everything installed and managed on your own infrastructure. Further information available [here](/self_hosted/self_hosted_requirements.md).
 
-The SaaS distribution is the most widely adopted by our customers. Our team will assist and guide you during the onboarding process.
+The BYOI distribution is the most widely adopted by our customers. In the picture below, you can see what each model offers:
 
-Please refer to the [PaaS section](/paas/overview.md) and [On-Premises section](/self_hosted/self_hosted_requirements.md) to get all the information about these distribution models.
+![Mia-Platform Distribution Model](img/mia-platform_distribution_model.png)
+
+If you are interested in PaaS or BYOI, you can [book a free demo](https://contact.mia-platform.eu/ask-for-a-demo-mia-platform) and then agree for a PoC.  
+For Self Hosted, you can purchase the license and start your project right away.

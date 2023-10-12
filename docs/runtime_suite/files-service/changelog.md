@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.9.1 - 2023-09-07
+
+## Fixed
+
+- Fix cache config not being used in multibucket configurations
+- sec: audit fix for VULNDB-329638
+
 ## 2.9.0 - 2023-07-03
 
 - Add `ADDITIONAL_MIME_TYPES` environment variable to add new extension/mime-type relationships to `mime-types` db
@@ -27,7 +34,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- internal fixes
+- Solved a bug that caused the `/download` route in single-bucket mode to fail due to improper scope management.
+This bug was introduced in `v2.7.0`.
 
 ## 2.7.0 - 03-15-2023
 

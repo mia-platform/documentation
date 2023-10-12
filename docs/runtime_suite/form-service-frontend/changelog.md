@@ -8,6 +8,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.9.2 2023-09-13
+
+### Fixed
+
+- Fixed templates retrieval.
+
+## 1.9.1 2023-09-04
+### Fixed
+
+- Fixed autocomplete when a form is a wizard with many nested components.
+- Removed the "X" closing icon in FormExpiredModal; fixed the FormDatePicker when the expirationDate is not set.
+
+## 1.9.0 2023-08-31
+### Added
+
+- Revised the user interface to include the following components: a checkbox to enable notification emails, a select dropdown for selecting templates, and a text input field for adding carbon copy (CC) email addresses.
+- Revised the user interface to include the following component: a text input field for adding blind carbon copy (BCC) email addresses.
+## 1.8.0 2023-07-28
+
+### Added
+
+- Update UI to display 'formExpirationDate' property with date picker
+- Update builder page to include 'formExpirationDate' property on form save
+- Update builder page to include 'formExpirationDate' property on form update
+- Update visualizer page to show a modal in case the form is expired
+- The form expiration date format can be set in the backend configuration file
+
 ## 1.7.1 2023-03-09
 
 ### Fixed

@@ -22,7 +22,7 @@ The performance of the Appointment Manager, and the aforementioned endpoints in 
 - the period: we simulated a client fetching calendar events for a single day, week or month;
 - the number of resources: we simulated a client fetching events for 5 or 25 resources;
 - the availability frequency and duration: we simulated a daily availability from 7:00 to midnight for each resource;
-- the slot duration: we simulated slots having a fixed duration of 15 minutes in the first test suite and variable duration (15, 30 and 60 minutes) in the second.
+- the slot duration: we simulated slots having a fixed duration of 15 minutes in the first test suite and flexible duration (15, 30 and 60 minutes) in the second.
 
 ### Variable resources
 

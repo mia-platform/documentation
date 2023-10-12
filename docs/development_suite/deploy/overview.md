@@ -1,7 +1,7 @@
 ---
 id: overview
-title: Deploy your Project from Console
-sidebar_label: Overview
+title: Deploy your project from Console
+sidebar_label: Deploy your project from Console
 ---
 ## Introduction  
 
