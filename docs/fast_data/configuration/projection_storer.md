@@ -83,7 +83,7 @@ This flag determines whether the _soft delete_ policy is enabled, which by defau
 |---------------------|----------|----------|---------------------|
 | `dataSourceAdapter` | `object` | -        | `{ "type": "db2" }` |
 
-When consuming change events from ingestion topics, the Real-Time Updater needs to know how to parse them. For
+When consuming change events from ingestion topics, the Projection Storer needs to know how to parse them. For
 this reason it is provided a convenient manner to select the message adapter. Out of the box the service supports
 message formats employed by some Change Data Capture systems (CDC), which are:
 
@@ -218,7 +218,7 @@ to define a function named `messageAdapter`, which will be treated as entry poin
 |-----------------|----------|----------|---------|
 | `castFunctions` | `object` | -        |         |
 
-Real-Time Updater service allows to perform basic transformation logic on each field of projection records before writing
+Projection Storer service allows to perform basic transformation logic on each field of projection records before writing
 them onto the storage system. By default, it offers a set of predefined functions that convert a projection record field from one type
 into another. For example, it allows to convert a string containing a number into an integer. Below it is shown the list of
 existing functions:
@@ -323,7 +323,7 @@ as input events. Currently only Kafka (and platforms adopting Kafka APIs) is sup
 
 #### Kafka Configuration
 
-When Kafka is selected as consumer for the Real-Time Updater service, it is possible to provide most of the Kafka Consumer
+When Kafka is selected as consumer for the Projection Storer service, it is possible to provide most of the Kafka Consumer
 properties that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
 
 This is an example of consumer configuration when `kafka` is selected as type: 
@@ -332,9 +332,9 @@ This is an example of consumer configuration when `kafka` is selected as type:
 "consumer": {
   "type": "kafka",
   "configuration": {
-    "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-consumer",
+    "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-consumer",
     "bootstrap.servers": "localhost:9092",
-    "group.id": "galaxy.fast-data.DEV.inventory-realtime-updater",
+    "group.id": "galaxy.fast-data.DEV.inventory-projection-storer",
     "auto.offset.reset": "latest",
     "max.poll.records": 2000,
     "max.poll.timeout.ms": 500
@@ -368,7 +368,7 @@ as input events. Currently only Kafka (and platforms adopting Kafka APIs) is sup
 
 #### Kafka Configuration
 
-When Kafka is selected as producer for the Real-Time Updater service, it is possible to provide most of the Kafka Producer
+When Kafka is selected as producer for the Projection Storer service, it is possible to provide most of the Kafka Producer
 properties that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#producerconfigs).
 
 This is an example of producer configuration when `kafka` is selected as type:
@@ -377,7 +377,7 @@ This is an example of producer configuration when `kafka` is selected as type:
 "producer": {
   "type": "kafka",
   "configuration": {
-    "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-producer",
+    "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-producer",
     "bootstrap.servers": "localhost:9092"
   }
 }
@@ -403,7 +403,7 @@ which are its configuration properties. Currently only MongoDB is supported as s
 
 #### MongoDB Configuration
 
-When MongoDB is selected as a storage system for the Real-Time Updater service, it requires the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/)
+When MongoDB is selected as a storage system for the Projection Storer service, it requires the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/)
 and the _name_ of the database the service will connect to. The database name is not necessary in case it is already
 specified in the connection string, although it would be recommended to set it in case the connection string is shared
 among multiple 
@@ -423,7 +423,7 @@ This is an example of storage configuration when `mongodb` is selected as type:
 ### Projections Config
 
 This section of the configuration provides all the details related to each projection associated to an instance of the
-Real-Time Updater service. The content of this property is mapping between projection names and their configuration the input and output specification together with the mapping configuration that
+Projection Storer service. The content of this property is mapping between projection names and their configuration the input and output specification together with the mapping configuration that
 instructs the service on how to transform each ingestion event into a projection record and where to store it.
 
 #### Topics
@@ -557,10 +557,10 @@ defined cast function.
 
 ## Configuration File Example
 
-Below is presented an example of Real-Time Updater working configuration, both `JSON` and `YAML` formats, which are the ones
+Below is presented an example of Projection Storer working configuration, both `JSON` and `YAML` formats, which are the ones
 supported by the service.
 
-<details><summary>Real-Time Updater configuration (JSON)</summary>
+<details><summary>Projection Storer configuration (JSON)</summary>
 <p>
 
 ```json
@@ -576,9 +576,9 @@ supported by the service.
   "consumer": {
     "type": "kafka",
     "configuration": {
-      "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-consumer",
+      "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-consumer",
       "bootstrap.servers": "localhost:9092",
-      "group.id": "galaxy.fast-data.DEV.inventory-realtime-updater",
+      "group.id": "galaxy.fast-data.DEV.inventory-projection-storer",
       "auto.offset.reset": "latest",
       "max.poll.records": 2000,
       "max.poll.timeout.ms": 500,
@@ -590,7 +590,7 @@ supported by the service.
   "producer": {
     "type": "kafka",
     "configuration": {
-      "client.id": "galaxy.fast-data.DEV.inventory-realtime-updater-producer",
+      "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-producer",
       "bootstrap.servers": "localhost:9092",
       "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
       "sasl.mechanism": "SCRAM-SHA-256",
@@ -732,7 +732,7 @@ supported by the service.
 </p>
 </details>
 
-<details><summary>Real-Time Updater configuration (YAML)</summary>
+<details><summary>Projection Storer configuration (YAML)</summary>
 <p>
 
 ```yaml
@@ -745,9 +745,9 @@ settings:
 consumer:
   type: kafka
   configuration:
-    "client.id": galaxy.fast-data.DEV.inventory-realtime-updater-consumer
+    "client.id": galaxy.fast-data.DEV.inventory-projection-storer-consumer
     "bootstrap.servers": localhost:9092
-    "group.id": galaxy.fast-data.DEV.inventory-realtime-updater
+    "group.id": galaxy.fast-data.DEV.inventory-projection-storer
     "auto.offset.reset": latest
     "max.poll.records": 2000
     "max.poll.timeout.ms": 500
@@ -757,7 +757,7 @@ consumer:
 producer:
   type: kafka
   configuration:
-    "client.id": galaxy.fast-data.DEV.inventory-realtime-updater-producer
+    "client.id": galaxy.fast-data.DEV.inventory-projection-storer-producer
     "bootstrap.servers": localhost:9092
     "sasl.jaas.config": org.apache.kafka.common.security.scram.ScramLoginModule required username="<username>" password="<password>";
     "sasl.mechanism": SCRAM-SHA-256
