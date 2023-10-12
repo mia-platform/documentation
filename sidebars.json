@@ -6,11 +6,13 @@
     },
     {
       "collapsed": true,
+      "type": "category",
+      "label": "Company Configuration",
+      "link": {
+        "id": "development_suite/company/overview",
+        "type": "doc"
+      },
       "items": [
-        {
-          "id": "development_suite/company/overview",
-          "type": "doc"
-        },
         {
           "id": "development_suite/company/create",
           "type": "doc"
@@ -39,7 +41,34 @@
           ]
         },
         {
-          "id": "development_suite/set-up-infrastructure/providers-management",
+          "collapsed": true,
+          "type": "category",
+          "label": "Providers",
+          "link": {
+            "id": "console/company-configuration/providers/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "console/company-configuration/providers/management",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/marketplace",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/project-configuration",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/api-reference",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "console/company-configuration/project-default-configuration",
           "type": "doc"
         },
         {
@@ -69,9 +98,7 @@
             }
           ]
         }
-      ],
-      "label": "Company Configuration",
-      "type": "category"
+      ]
     },
     {
       "label": "Project Configuration",
