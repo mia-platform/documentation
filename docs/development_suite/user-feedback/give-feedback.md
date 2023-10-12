@@ -17,8 +17,8 @@ For PaaS type customer every feedback will be collected directly from the Produc
 In any section or area of the Console by clicking on the respective feedback button on the main topbar you can access to the feedback modal, through which the user can choose the type of feedback to give:
 * **Feedback**: feedback related to a feature of the Console. For example:
   - I find the user experience of a specific feature or section of the console confusing;
-  - A specitif page scroll ina a strange way;
-  - I followed the instructions in the documentation but nevertheless could not configure feature Y correctly.
+  - A specitif page scroll in a strange way;
+  - I followed the instructions in the documentation but nevertheless I could not configure feature Y correctly.
 * **Idea**: feedback of improvement of a feature of the Console, or proposed addition of new feature. For example:
   - In section A, it would be helpful if information B was also shown;
   - In section X, it would be useful to make information Y editable;
