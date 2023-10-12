@@ -7,29 +7,29 @@ sidebar_label: Default Project Configurations
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-By editing the company data model, you will be able to set default configurations for all the projects that will be created within the company.
+By editing the Company data model, you will be able to set default configurations for all the Projects that will be created within the Company.
 
 :::info
 This configuration can be done from the `Companies` section of the Console CMS.
 :::
 
-The projects default configurations fields are:
+The Projects default configurations fields are:
 
 - **defaultTemplateId**:
 
-  The identifier of the default template to be used for the creation of a project.
-  This information can be changed for a specific project during the steps of the project creation wizard.
+  The identifier of the default template to be used for the creation of a Project.
+  This information can be changed for a specific Project during the steps of the Project creation wizard.
 
 - **cmsImageName**:
 
-  The Docker image configuring the CMS used in your project. It should also contain the CMS tag to be used.
-  This value will interpolate the template archive of your project.
+  The Docker image configuring the CMS used in your Project. It should also contain the CMS tag to be used.
+  This value will interpolate the template archive of your Project.
 
-  If `cms-site` service is disabled during the project creation, this field will not be used.
+  If `cms-site` service is disabled during the Project creation, this field will not be used.
 
 - **repository** (_required_):
 
-  An object that specifies the information regarding the repository where the projects of this company will be created.
+  An object that specifies the information regarding the repository where the Projects of this Company will be created.
 
   :::info
   This field can also be set by [selecting a default Git Provider](/console/company-configuration/providers/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
@@ -37,16 +37,16 @@ The projects default configurations fields are:
 
   The object must have the following properties:
 
-  - **providerId** (_required_): the unique identifier of the Git Provider associated with the company
+  - **providerId** (_required_): the unique identifier of the Git Provider associated with the Company
 
-    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the Provider.
 
     Check out the complete list of [supported providers](/console/company-configuration/providers/configure-provider.mdx);
 
-  - **basePath**: the base path where the project will be created.
+  - **basePath**: the base path where the Project will be created.
 
     :::caution
-    Make sure the selected Git Provider has the right permissions for creating projects on the configured path.
+    Make sure the selected Git Provider has the right permissions for creating Projects on the configured path.
     :::
 
     Here are some tips on how to correctly configure the _basePath_ property, grouped by Git Provider:
@@ -55,9 +55,9 @@ The projects default configurations fields are:
 
     <TabItem value="gitlab" label="GitLab" default>
 
-      It corresponds to the **basePath of the group** where to create the project.
+      It corresponds to the **basePath of the group** where to create the Project.
 
-      If the group does not exist, the project will be created only if the user has the needed permission to create the group in its parent.
+      If the group does not exist, the Project will be created only if the user has the needed permission to create the group in its parent.
 
       For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
       then the `basePath` must be **`mia-platform/projects`**.
@@ -74,7 +74,7 @@ The projects default configurations fields are:
 
       It corresponds to the **path of an existing organization**.
 
-      If the path does not exist, the project will not be created.
+      If the path does not exist, the Project will not be created.
 
       For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, <br/>
       then the `basePath` must be **`mia-platform`**
@@ -83,19 +83,19 @@ The projects default configurations fields are:
 
     <TabItem value="azure-devops" label="Azure DevOps">
 
-      There are two different possibilities: use an already existent Azure DevOps project with multiple
-      Console project inside it or create an Azure DevOps project for each Console project.
+      There are two different possibilities: use an already existing Azure DevOps Project with multiple
+      Console Projects inside it or create an Azure DevOps Project for each Console Project.
 
-      #### A single Azure DevOps project with multiple configurations repository
+      #### A single Azure DevOps Project with multiple configurations repository
 
       It corresponds to the **path where your Azure project is reachable**: the pattern is _organization-name/project-name_.
 
       For example, if your project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
       then the `basePath` must be **`mia-platform-devops/Test`**.
 
-      #### An Azure DevOps project for each Console project
+      #### An Azure DevOps Project for each Console Project
 
-      It corresponds to the **organization where to create the project**: the pattern is organization-name_.
+      It corresponds to the **organization where to create the Project**: the pattern is organization-name_.
 
       For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
       then the `basePath` must be **`mia-platform-devops`**.
@@ -104,16 +104,16 @@ The projects default configurations fields are:
 
     <TabItem value="bitbucket" label="Bitbucket">
 
-      It corresponds to the **path where your Bitbucket project is reachable**: the pattern is _projects/project-code_.
+      It corresponds to the **path where your Bitbucket Project is reachable**: the pattern is _projects/project-code_.
 
-      For example, if your project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
+      For example, if your Project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
       then the `basePath` must be **`projects/Test`**.
 
     </TabItem>
 
     </Tabs>
 
-  - **visibility**: the visibility of the project.
+  - **visibility**: the visibility of the Project.
 
     Either one of the following:
 
@@ -178,7 +178,7 @@ The projects default configurations fields are:
 
 - **pipelines** (_required_):
 
-  An object that specifies the information regarding the CI/CD pipelines used by the company.
+  An object that specifies the information regarding the CI/CD pipelines used by the Company.
 
   :::info
   This field can also be set by [selecting a default CI/CD Tool](/console/company-configuration/providers/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
@@ -186,13 +186,13 @@ The projects default configurations fields are:
 
   The object must have the following properties:
 
-  - **providerId**: the unique identifier of the CI/CD Tool associated with the company.
+  - **providerId**: the unique identifier of the CI/CD Tool associated with the Company.
 
-    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the Provider.
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/console/company-configuration/providers/configure-provider.mdx).
 
-  In addition, it can include the following properties, supported only by specific providers:
+  In addition, it can include the following properties, supported only by specific Providers:
 
   <Tabs>
   <TabItem value="azure-devops" label="Azure DevOps">
@@ -269,27 +269,27 @@ The projects default configurations fields are:
   :::
 
   :::caution
-  This field is not required. However, by leaving an empty configuration you will need to manually configure a Secret Manager for each project you create.
+  This field is not required. However, by leaving an empty configuration you will need to manually configure a Secret Manager for each Project you create.
   :::
 
   The object can be configured with the following properties:
 
-  - **providerId**: the unique identifier of the Secret Manager associated with the company.
+  - **providerId**: the unique identifier of the Secret Manager associated with the Company.
 
-    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the provider.
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the Provider.
 
   - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/console/company-configuration/providers/configure-provider.mdx).
 
-  In addition, it can include the following properties, supported only by specific providers:
+  In addition, it can include the following properties, supported only by specific Providers:
 
   <Tabs>
   <TabItem value="gitlab" label="GitLab">
 
   - **baseUrl**: the base path from which the variables will be read.
 
-    If not specified, variables will be read from the first parent group of the Configurations project in GitLab.
+    If not specified, variables will be read from the first parent group of the Configurations Project in GitLab.
 
-    As an example, if your GitLab project is saved in **`https://git.tools.mia-platform.eu/mia-platform/Test/configurations`**, the environment variables will be written in the **`mia-platform/Test`** group.
+    As an example, if your GitLab Project is saved in **`https://git.tools.mia-platform.eu/mia-platform/Test/configurations`**, the environment variables will be written in the **`mia-platform/Test`** group.
 
   - **storage**: additional settings related to the storage of environment variables within the GitLab installation.
 
@@ -303,15 +303,15 @@ The projects default configurations fields are:
 
       Either one of the following:
 
-      - `groups`: variables will be managed at the group level;
-      - `projects`: variables will be managed at the project level.
+      - `groups`: variables will be managed at the Group level;
+      - `projects`: variables will be managed at the Project level.
 
     <br/>
 
   :::info
-  This configuration is saved only within the company model and is retrieved by projects at runtime.
+  This configuration is saved only within the Company model and is retrieved by Projects at runtime.
 
-  If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables' path for all the projects in the company.
+  If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables' path for all the Projects in the Company.
   :::
 
   </TabItem>
@@ -349,10 +349,10 @@ The projects default configurations fields are:
 
 - **environments** (_required_):
 
-  An array of objects containing the definitions of the environments for the company.
+  An array of objects containing the definitions of the environments for the Company.
 
   :::note
-  The content of this array will be interpolated during project creation by replacing `%projectId%` strings with the `projectId` field specified in the project.
+  The content of this array will be interpolated during Project creation by replacing `%projectId%` strings with the `projectId` field specified in the Project.
   :::
 
   Each object is shaped as follows:

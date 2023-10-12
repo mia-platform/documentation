@@ -13,7 +13,7 @@ Vault is capable of storing a multitude of variable types, but the most importan
 To correctly set up your Vault backed project, you will need to:
 
 <!-- 1. [Configure the Vault instance and the Kubernetes cluster](#configure-the-vault-instance-and-the-kubernetes-cluster)
-2. [Configure your Console project](#configure-your-console-project)
+2. [Configure your Console Project](#configure-your-console-project)
 3. [Use Vault variables inside a project](#use-vault-variables-inside-a-project) -->
 
 ## Configure the Vault instance and the Kubernetes cluster
