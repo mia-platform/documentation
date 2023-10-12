@@ -15,7 +15,7 @@ For PaaS type customer every feedback will be collected directly from the Produc
 ![feedback button](./img/feedback-button.png)
 
 In any section or area of the Console by clicking on the respective feedback button on the main topbar you can access to the feedback modal, through which the user can choose the type of feedback to give:
-* **Issue**: feedback inherent to a bug or technical problem related to a feature of the Console. For example:
+* **Feedback**: feedback inherent to a bug or technical problem related to a feature of the Console. For example:
   - By making changes A and B to the configuration, I get error C when saving.
   - Page X does not scroll properly and thus has display problems on screens with a*b resolution.
   - I followed the instructions in the documentation but nevertheless could not configure feature Y correctly.
