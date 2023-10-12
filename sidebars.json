@@ -757,7 +757,7 @@
           ]
         },
         {
-          "id": "fast_data/configuration/projections_storer",
+          "id": "fast_data/configuration/projection_storer",
           "type": "doc"
         },
         {

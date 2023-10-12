@@ -1,12 +1,12 @@
 ---
-id: projections_storer
-title: Projections Storer Configuration
-sidebar_label: Projections Storer
+id: projection_storer
+title: Projection Storer Configuration
+sidebar_label: Projection Storer
 ---
 
-Projections Storer is the service in charge of constantly keeping up-to-date projections records with respect to change events
+Projection Storer is the service in charge of constantly keeping up-to-date projections records with respect to change events
 that are received from the associated System of Records. Once modifications are stored to the database, the service
-triggers downstream components with the proper mechanism, so that Single Views can be regenerated with the latest data. 
+triggers downstream components with the proper mechanism, so that Single Views can be regenerated with latest data. 
 
 This service partially overlap with the concerns of Real-Time Updater plugin, in particular converting in near real-time
 change events into projections records. Nonetheless, it has been designed to offer a more streamlined configuration experience,
@@ -17,9 +17,9 @@ For an overview of which are Real-Time Updater's features, it is possible to rea
 <!--TODO: add page describing the differences between PS and RTU-->
 
 :::danger
-Projections Storer plugin does not support the Fast Data [standard architecture](/fast_data/architecture.md#standard-architecture).
+Projection Storer plugin does not support the Fast Data [standard architecture](/fast_data/architecture.md#standard-architecture).
 However, it supports all the others architecture where Projection Records Updates messages are emitted by the service as
-triggers for the Fast Data downstream components. This means that, in order to use the Projections Storer, it will
+triggers for the Fast Data downstream components. This means that, in order to use the Projection Storer, it will
 be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) plugin to actually trigger the generation of Single Views.
 :::
 
@@ -501,7 +501,7 @@ For each of these fields of interest of this projection it is necessary to confi
 It can potentially be different from the original name, although by default the system tend to match the name from the
 incoming document with the one saved on the projections storage system to avoid possible confusion.
 - `castFunction` → the identifier of the function to be applied on the value of this field. For a reference of possible
-values that this property can get, please refer to [cast functions](/fast_data/configuration/projections_storer.md#cast-functions-and-additional-cast-functions) section.
+values that this property can get, please refer to [cast functions](/fast_data/configuration/projection_storer.md#cast-functions-and-additional-cast-functions) section.
 
 ---
 

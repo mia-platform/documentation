@@ -11,7 +11,7 @@ For having an overview of the features of the Real-Time Updater, you can go [her
 Here below, instead, all the configurations the service accepts are explained. 
 
 :::info
-The documentation regarding the Projections Storer can be found [here](/fast_data/configuration/projections_storer.md).
+The documentation regarding the Projection Storer can be found [here](/fast_data/configuration/projection_storer.md).
 :::
 
 ## Environment variables
