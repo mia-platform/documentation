@@ -8,6 +8,65 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.2] 2023-10-10
+
+### Fix
+
+- review support of custom CA certificate for Kafka Producer client
+
+## [3.1.1] 2023-10-02
+
+### Added
+
+- message header to `sv-trigger` events to specify which schema it is employed
+
+### Changed
+
+- upgraded `fast-data-automation-lib` to `v3.1.3` to fix an issue on `pr-update` events with `after` property in message payload set to `null`
+- updated development demo to test service functioning with multiple projections
+- updated definition of `__internal__kafkaInfo` in `pr-update` event to avoid conflicts with types
+
+## [3.1.0] 2023-09-25
+
+### Added
+
+- add support for `v2.0.0` of pr-update 
+
+### Changed
+
+- update NodeJS version to `v18.18.0`
+
+## [3.0.4] 2023-09-22
+
+### Added
+
+- Added check on foreign keys to know if running strategy on both before and after is necessary
+
+### Changed
+
+- upgraded `fast-data-automation-lib` to `v3.1.2`
+- remove unused environment variables `READ_TOPIC_FROM_BEGINNING` and `CA_CERT_PATH`. Their actual configuration can be found within the event store config file
+- update NodeJS version to `v18.17.1`
+- updated library dependencies
+
+### Fixed
+
+- additional CA files can be added to the `ssl` config of the event store
+- removed printing invalid event store configuration to avoid sharing sensitive information
+
+## [3.0.3] 2023-07-25
+
+### Added
+
+- added new metrics to monitor Kafka consumer that reads from pr-update topics
+- added a docker-compose file and an example of configuration, which allows to automatically configure a demo of the Single View Trigger Generator
+- added a Makefile to simplify the interaction with docker-compose and starting tests using dependencies defined in the docker-compose
+
+### Changed
+
+- updated `fast-data-automation-lib` to `v3.1.1`
+- updated service dependencies
+
 ## [3.0.2] 2023-06-30
 
 ### Fixed

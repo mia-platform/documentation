@@ -36,7 +36,7 @@ This version introduces the possibility to create Jobs from CronJobs, and to del
 
 Therefore, the Kubernetes Service Account set up on the clusters managed by your Console instance needs some specific permissions.
 
-If during the [Cluster Preparation](../../development_suite/clusters-management/clusters-overview-setup#cluster-preparation) you chose the Automatic procedure, just make sure that you have been provided at least the `v2.18.0` Mia-Platform Helm Chart.
+If during the [Cluster Preparation](../../development_suite/clusters-management/cluster-setup#cluster-preparation) you chose the Automatic procedure, just make sure that you have been provided at least the `v2.18.0` Mia-Platform Helm Chart.
 
 Otherwise, if you manually configure your cluster connections, in the `ClusterRole` bound to the Console Kubernetes Service Account, add the `create` and `delete` verbs to the `jobs` resource, along with the already present `get` and `list`:
 

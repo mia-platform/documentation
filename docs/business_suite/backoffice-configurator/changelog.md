@@ -3,6 +3,49 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.4.0] - 2023-10-06
+
+### Added
+
+- Added support for `aclExpression` property of components and components object properties
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.1`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.1`
+- Dev dependencies updated
+
+## [1.3.4] - 2023-09-25
+
+### Fixed
+
+- Fixed data schema from CRUD generation modal style
+
+## [1.3.3] - 2023-09-22
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.1`
+- `@mia-platform-internal/reactord` to `^9.8.1`
+- `flag-icons` to `6.11.1`
+- `monaco-editor` to `^0.43.0`
+- `rc-virtual-list` to `^3.11.1`
+- `react-router-dom` to `^6.16.0`
+- Dev dependencies updated
+
+## [1.3.2] - 2023-09-11
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.0`
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.5.2`
+- `@mia-platform-internal/reactord` to version `^9.8.0`
+- Dev dependencies updated
+
+### Changed
+
+- Scoped CSS classes to container id
+
 ## [1.3.1] - 2023-08-24
 
 ### Versioning

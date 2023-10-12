@@ -10,7 +10,7 @@ Bring Your Own Infrastructure (BYOI) allows customers to use their own runtime, 
 
 The above schema, shows the typical infrastructure architecture and the main elements that are involved in the Mia-Platform BYOI configuration.
 
-- **Mia-Platform Console**: Mia-Platform Console is completely managed by Mia-Platform. It is [connected to the Runtime](/how_to/company/manage-cluster.md#step-1-runtime-service) in order to retrieve information about the runtime status.
+- **Mia-Platform Console**: Mia-Platform Console is completely managed by Mia-Platform. It is [connected to the Runtime](/development_suite/clusters-management/connect-and-manage-cluster.mdx#step-1-runtime-service) in order to retrieve information about the runtime status.
 Mia-Platform is [integrated with CI/CD tool](/development_suite/set-up-infrastructure/configure-provider.mdx) to streamline the software development process, automate the build and deployment procedures.
 Every change in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx#setup-git-provider).
 
@@ -20,7 +20,7 @@ Every change in the microservices architecture undergoes versioning and is subse
   
 - **Container image registry**: You can [configure](/development_suite/company/configuration.mdx#example-configuration-3) any container registry.
   
-- **Runtime**: A k8s [runtime](/development_suite/clusters-management/vendors-runtime-services.md).
+- **Runtime**: A k8s [runtime](/development_suite/clusters-management/overview.md).
   
 - **MongoDB**: It is a necessary dependency for [Fast Data](/fast_data/what_is_fast_data.md) and [CRUD service](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
   

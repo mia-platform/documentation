@@ -52,7 +52,7 @@ The following steps will lead you to the configuration of the theming properties
 1. Go to the `Microservices` section 
 2. Open the detail of the microservice originally named `dev-portal-frontend`;
 3. Move to the `ConfigMaps` section
-4. In the file `configuration.json` edit the logo and colors following the documentation of [layout component](/docs/business_suite/backoffice/components/misc#bk-layout) and of [theme manager component](/docs/business_suite/backoffice/components/misc#bk-antd-theme-manager);
+4. In the file `configuration.json` edit the logo and colors following the documentation of [layout component](/business_suite/backoffice/60_components/380_layout.md) and of [theme manager component](/business_suite/backoffice/60_components/30_antd_theme_manager.md);
    
    :::caution
    The remaining configurations are already set for the `Dev Portal`: to know more about their purpose, please consult micro-lc [official documentantion](https://microlc.io/). 

@@ -2,7 +2,7 @@ const createRedirects = require("./createRedirects");
 
 async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
-  
+
   return {
     title: "Mia-Platform Documentation",
     tagline: "Learn how Mia-Platform can help you to develop your business",
@@ -38,7 +38,7 @@ async function createConfig() {
         },
         items: [{
             type: 'doc',
-            docId: "overview/mia_platform_overview",
+            docId: "getting-started/mia-platform-overview",
             label: "Getting Started",
             position: "left",
             activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
@@ -62,7 +62,7 @@ async function createConfig() {
               },
               {
                 type: 'doc',
-                docId: "business_suite/backoffice/overview",
+                docId: "business_suite/what-is-backoffice",
                 label: "Backoffice",
                 activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
               },
@@ -119,7 +119,7 @@ async function createConfig() {
                 to: "/docs/info/bug_policy",
               },
               {
-                label: "Supported browser",
+                label: "Supported browsers",
                 to: "/docs/info/supported_browser",
               },
               {
@@ -143,44 +143,44 @@ async function createConfig() {
           {
             title: "Company",
             items: [{
-                label: "Site",
-                href: "https://www.mia-platform.eu/en/",
+                label: "Website",
+                href: "https://mia-platform.eu",
               },
               {
                 label: "About",
-                href: "https://www.mia-platform.eu/en/company/about",
+                href: "https://mia-platform.eu/company/about-us/",
               },
               {
-                label: "Mission",
-                href: "https://www.mia-platform.eu/en/company/mission",
+                label: "Mission & Vision",
+                href: "https://mia-platform.eu/mission-vision/",
               },
               {
                 label: "Blog",
                 href: "https://blog.mia-platform.eu/en",
               },
               {
+                label: "Events",
+                href: "https://mia-platform.eu/resources/events/",
+              },
+              {
                 label: "Privacy Policy",
-                href: "https://www.mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+                href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
               },
             ],
           },
           {
             title: "Core Platform",
             items: [{
-                label: "Console",
-                href: "https://www.mia-platform.eu/en/products/devops-console",
+                label: "Mia-Platform Console",
+                href: "https://mia-platform.eu/platform/console/",
               },
               {
-                label: "Microservice Ecosystem",
-                href: "https://www.mia-platform.eu/en/products/microservices-ecosystem",
+                label: "Mia-Platform Marketplace",
+                href: "https://mia-platform.eu/platform/mia-platform-marketplace/",
               },
               {
-                label: "Fast Data",
-                href: "https://www.mia-platform.eu/en/products/fast-data",
-              },
-              {
-                label: "Headless CMS",
-                href: "https://www.mia-platform.eu/en/products/api-management-and-headless-cms",
+                label: "Mia-Platform Fast Data",
+                href: "https://mia-platform.eu/platform/console/fast-data",
               },
               {
                 label: "Release Notes",
@@ -196,7 +196,7 @@ async function createConfig() {
               },
               {
                 label: "Guidelines",
-                to: "/docs/guidelines/git_vademecum",
+                to: "/docs/getting-started/guidelines/",
               },
               {
                 label: "Library",
@@ -219,12 +219,16 @@ async function createConfig() {
                 href: 'https://makeitapp.atlassian.net/servicedesk/customer/portal/21'
               },
               {
+                label: "Community",
+                to: "https://github.com/mia-platform/community/discussions",
+              },
+              {
                 label: 'FAQ',
-                to: '/docs/getting_started/faqs'
+                to: '/docs/getting-started/faqs'
               },
               {
                 label: "Getting Started",
-                to: "/docs/overview/mia_platform_overview",
+                to: "/docs/getting-started/mia-platform-overview",
               },
             ],
           },

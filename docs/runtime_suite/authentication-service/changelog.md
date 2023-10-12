@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.5.0 - 2023-10-09
+
+### Fixed
+
+- handle some unhandled errors in logout logic
+
+### Added
+
+- migrate internal crud implementation to Mia-Platform [Go Crud Library](https://github.com/mia-platform/go-crud-service-client)
+- add support for Redis Sentinel
+
+### Updated
+
+-  update libs, fix breaking changes of golang-jwt and logrus
+
+## 3.4.0 - 14-09-2023
+
+### Added
+- Env var `STATE_MANAGER_EXPIRATION_TIME_MINUTES` to control the duration of the state during login, registration and password reset flows. 
+
 ## 3.3.0 - 28-06-2023
 
 ### Added

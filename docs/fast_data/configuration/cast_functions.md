@@ -13,8 +13,9 @@ The Console provides your project with a set of default cast functions ready to 
 To see the implementation of the default cast functions:
 
 1. Go to the Design Area
-2. Go to the Cast Function Section
-3. In the `Default cast functions` card, hover the zoom icon
+2. Go to the Projections Section
+3. Go to the Cast Function tab
+4. In the `Default cast functions` card, hover the zoom icon
 
 
 ![Default cast functions implementation](../img/fastdata-default-castfunction-zoom.png)
@@ -74,7 +75,7 @@ Let’s analyze each case in the next sections:
 
   ![Fast Data new default castFunction](../img/fastdata-new-default-castfunction.png)
 
-  If a new default cast function is added on the Console, it will be available in the Cast Function section when you visit the Design area (even if it is not yet stored on your git provider in your `fastdata-config.json`). When you save the configuration it will be stored in the configuration file.
+  If a new default cast function is added on the Console, it will be available in the Cast Function tab of the Projections section when you visit the Design area (even if it is not yet stored on your git provider in your `fastdata-config.json`). When you save the configuration it will be stored in the configuration file.
 
 - ### A default cast function is deleted
 

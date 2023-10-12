@@ -12,7 +12,7 @@ Both are available in the Marketplace.
 
 2. Create the `/api/v1/telecons-be` endpoint for the newly created microservice. The endpoint of this microservice must be exactly this one because the Teleconsultation Service Frontend will use this path as prefix for the API calls to the Teleconsultation Service Backend.
 
-The microservice requires the `BANDYER_API_SECRET_KEY` environment variable in order to communicate with the Bandyer RESTful APIs.
+The microservice requires the `BANDYER_API_SECRET_KEY` environment variable in order to communicate with the Kaleyra RESTful APIs.
 
 The microservice supports two operating modes, having a different handing of user information:
 - if `AUTH_SERVICE` env var is specified, the microservice service will retrieve user information from the service having given hostname.
@@ -90,18 +90,35 @@ Update the `JSON` configuration file in the ConfigMaps section according to your
 
 ### Environment Variables
 
-The Teleconsultation Service Backend accepts the following environment variables.
+The Teleconsultation Service Backend accepts the environment variables described in the following table.
 
-- **BANDYER_API_SECRET_KEY (required)**: API Secret Key to use in order to communicate with Bandyer's APIs.
-- **BANDYER_BASE_URL (required)**: name of the bandyer API endpoint.
-- **TELECONSULTATION_SERVICE_CONFIG_PATH**: full path of the updated file defined in the [previous section](#environment-variables).
-- **TELECONSULTATIONS_CRUD_NAME**: name of the endpoint of the CRUD with all the teleconsultations.
-- **USER_ID_MAP_CRUD_NAME**: name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.
-- **AUTH_SERVICE**: name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)).
-- **DEFAULT_CLIENT_TYPE**: name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.
-- **UNLIMITED_TELECONSULTATION**: if true the teleconsultation duration is infinite. 
-- **LIVE_TELECONSULTATION**: if true the teleconsultation ends when a participant leaves the call and the number of the remaining partipants are less than two. If no variable is given, true is used as a default.
-- **IMMUTABLE_PERIOD_MS**: the duration of the period (in milliseconds) immediately before the teleconsultation `start_date` during which, if all the participants are known, the service will refuse modification requests for the teleconsultation instance. If no variable is given, 0 is used as a default.
+| Name                                     | Required | Default | Minimum version | Description                                                                                                                                                                                                       |
+|------------------------------------------|----------|---------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **BANDYER_API_SECRET_KEY**               | Yes      | -       | 1.0.0           | API Secret Key to use in order to communicate with Kaleyra's APIs.                                                                                                                                                |
+| **BANDYER_BASE_URL**                     | Yes      | -       | 1.0.0           | Name of the Kaleyra API endpoint.                                                                                                                                                                                 |
+| **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | 1.0.0           | Full path of the updated file defined in the [previous section](#environment-variables).                                                                                                                          |
+| **TELECONSULTATIONS_CRUD_NAME**          | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the teleconsultations.                                                                                                                                                  |
+| **USER_ID_MAP_CRUD_NAME**                | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.                                                                                                           |
+| **AUTH_SERVICE**                         | No       | -       | 1.0.0           | Name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)). |
+| **DEFAULT_CLIENT_TYPE**                  | No       | -       | 1.0.0           | Name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.                                                                                                    |
+| **UNLIMITED_TELECONSULTATION**           | No       | `true`  | 1.1.2           | If the teleconsultation duration is infinite.                                                                                                                                                                     |
+| **LIVE_TELECONSULTATION**                | No       | `true`  | 1.3.0           | If the teleconsultation ends when a participant leaves the call and the number of the remaining participants are less than two.                                                                                   |
+| **IMMUTABLE_PERIOD_MS**                  | No       | 0       | 1.2.1           | How much time (in milliseconds) before the scheduled start date you can join the teleconsultation room and you can no longer update the teleconsultation.                                                         |
+| **TELECONSULTATION_DELETE_UPLOADS**      | No       | `false` | 1.5.0           | If set to `true`, the files uploaded during a teleconsultation are deleted when the call ends.                                                                                                                    |
+
+:::caution
+
+Since v1.5.0, you can set the `TELECONSULTATION_DELETE_UPLOADS` environment variable to `true` in order to automatically delete the files uploaded by the participants during the teleconsultation session. Remember that this operation is performed every time the call is interrupted, even if that happens for external causes, like network connectivity issues. Once the participants join the teleconsultation again, if the feature is enabled they will have to upload again all the files, unless they already downloaded a copy on their devices.  
+
+:::
+
+:::tip
+
+If the appointment starts at 11:00 and you want the doctor to be able to start the teleconsultation session earlier than the scheduled appointment date, you simply have to set the   `IMMUTABLE_PERIOD_MS` environment variable accordingly. So, for example, to allow the session to start up to ten minutes before the scheduled date, you can simply set `IMMUTABLE_PERIOD_MS` to 600000 (ten minutes expressed in milliseconds). If the participants join the call after 10:50, the session starts automatically as soon as they are connected.
+
+Also remember that, in such scenario, after 10:50 the teleconsultation room would be no longer changeable, including the participants, so we recommend setting a value that leaves room for last minute changes, for example if the appointment need to be assigned to a different doctor.
+
+:::
 
 :::note
 When retrieving the teleconsultation link, via `GET /teleconsultation/:teleconsultationId`, the actual link is returned only if the service is not accepting any further modification to the room. In this case, the teleconsultation is either inside the `IMMUTABLE_PERIOD_MS` time frame, or its `start_date` has been passed.
@@ -125,7 +142,7 @@ The Teleconsultation Service Configuration is a JSON object with 5 root properti
 
 -   _type_: string;
 -   _required_:  `true`;
--   _description_: can assumes two values: _sandbox_ or _production_. Specify the Bandyer environment's you want to use.
+-   _description_: can assumes two values: _sandbox_ or _production_. Specify the Kaleyra environment's you want to use.
 
 **3. theme**
 
@@ -296,10 +313,10 @@ The collection can have any name you want, as long as you specify the correct na
 TELECONSULTATIONS_CRUD_NAME environment variable.
 
 A teleconsultation is the equivalent of a Room (the place where the call will have place).
-Look the Overview section for more details about Room in Bandyer.
+Look the Overview section for more details about Room in Kaleyra.
 
 The teleconsultations CRUD needs the following service-specific fields:
-- **bandyerRoomId (required)** - `string`: the id of the Room created on Bandyer for the call;
+- **bandyerRoomId (required)** - `string`: the id of the Room created on Kaleyra for the call;
 - **participantsNumber (required)**: the number of expected participants,
 - **participants** - `array of objects`: the list of participants to the call. For each participant, it contains:
   - `userBandyerId` (_required_),
@@ -327,16 +344,16 @@ The structure of this array is the following:
 }
 ```
 
-- The field **bandyerId** is the bandyer's id of a user.
+- The field **bandyerId** is the kaleyra's id of a user.
 - The field **accessLinkURL** is the link required in order to join the call. During the creation of a teleconsultation, every participant receives a link (valid only for that person for that teleconsultation).
 
 ## User Id Map CRUD
-The Teleconsultation Service requires a CRUD in order to save the Bandyer user id for each user which have used the teleconsultation service at least one time.
+The Teleconsultation Service requires a CRUD in order to save the Kaleyra user id for each user which have used the teleconsultation service at least one time.
 The collection can have any name you want, as long as you specify the correct name in the USER_MAP_ID_CRUD_NAME environment variable.
 
-The user-id-map CRUD, stores for every user their receivedUserId (which is mainly used to authenticate the users), and the relative Bandyer's id.
-This allows the Teleconsultation Service Backend to communicate with Bandyer (a user needs to be registered on Bandyer in order to use their services).
+The user-id-map CRUD, stores for every user their receivedUserId (which is mainly used to authenticate the users), and the relative Kaleyra's id.
+This allows the Teleconsultation Service Backend to communicate with Kaleyra (a user needs to be registered on Kaleyra in order to use their services).
 
 The teleconsultations CRUD needs the following service-specific fields:
-- **bandyerId (required)** - `string`: the id of the user on Bandyer;
+- **bandyerId (required)** - `string`: the id of the user on Kaleyra;
 - **receivedUserId (required)** - `string`: the id of the user on Auth0;

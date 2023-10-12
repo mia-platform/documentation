@@ -23,5 +23,5 @@ for more details.
 :::caution
 Remember to set appropriate **request** and **limits** levels to the Swagger Aggregator microservice in order to avoid performance issues.
 
-Check out the dedicated [section](/tutorial/requests_limits/requests_limits_tutorial.mdx) for more information regarding requests and limits.
+Check out the dedicated [section](/getting-started/tutorials/set-requests-limits-of-a-microservice.mdx) for more information regarding requests and limits.
 :::

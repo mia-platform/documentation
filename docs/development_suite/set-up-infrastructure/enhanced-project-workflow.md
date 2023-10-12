@@ -10,7 +10,7 @@ import TabItem from "@theme/TabItem"
 :::caution
 This is a **BETA** feature and, as such, is currently under active development. Pay attention using it.
 
-The feature is available in **PRIVATE BETA** since Mia-Platform Console v11.6.0, if you want to enable it please contact your Mia-Platform referent.
+The feature is available in **INTERNAL PRIVATE BETA** since Mia-Platform Console v11.6.0, if you want to enable it please contact your Mia-Platform referent.
 :::
 
 The **Enhanced Project Workflow** feature aims to provide a better developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).

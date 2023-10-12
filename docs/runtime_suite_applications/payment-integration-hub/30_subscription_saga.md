@@ -23,7 +23,7 @@ The business states of the saga describe the overall state of the subscription, 
 
 ### Technical States
 The technical states of the saga describe all the necessary steps to describe the subscription life-cycle:
-- **CREATED**: the subscription is created and he system is still collecting information (e.g., the payment method to be used).
+- **CREATED**: the subscription is created and he system is still collecting information (e.g., the payment method to be used)
 - **ACTIVE**: the subscription is active and recurrent payments are performing periodically
 - **PAYMENT_FAILED**: the subscription is on hold because the last payment was failed
 - **EXPIRED**: the subscription was expired
@@ -41,11 +41,11 @@ A *subscription_saga* collection will be included in the project and by default 
 - **metadata**: object with information related to the payment
     - **shopSubscriptionId**: the unique id of your subscription
     - **transactions**: list with all the transactions identifiers related to the current subscription
-    - **amount**: amount to charge the user at each payment
-    - **currency**: currency of the payment
+    - **amount**: amount, as an integer, to charge the user at each payment
+    - **currency**: currency of the payment in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
     - **paymentMethod**: payment method used
     - **provider**: provider used for the payment
-    - **interval**: time unit used to schedule payments. can be either *MONTH* or *DAY*
+    - **interval**: time unit used to schedule payments. It can be either *MONTH* or *DAY*
     - **intervalCount**: number of time unit to wait before schedule the next payment
     - **nextPaymentDate**: date of the next payment scheduled
     - **expirationDate**: last date of validity of the subscription

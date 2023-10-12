@@ -113,7 +113,7 @@ Then, to apply the patch to all your Deployments, you have to manually edit the 
 ```yaml
 # file: ./overlays/development/kustomization.yaml
 resources:
-- deployments.yaml
+- ../../configuration
 
 patches:
 - path: sidecar.patch.yaml
@@ -126,3 +126,21 @@ When using `target`, the `metadata.name` of the patch will be ignored.
 :::
 
 Once deployed, you will see the two Deployment resources with an additional `istio-proxy` container.
+
+You can choose to add other conditions to find the targets to patch instead patching all deployments.
+For example you can patch only deployments with a specific label or annotation:
+
+```yaml
+# file: ./overlays/development/kustomization.yaml
+resources:
+- ../../configuration
+
+patches:
+- path: sidecar.patch.yaml
+  target:
+    kind: Deployment
+    labelSelector: myLabel=labelValue,otherLabel=otherValue
+    annotationSelector: myAnnotation=annotationValue,otherAnnotation=otherValue
+```
+
+With the example above, the `istio-proxy` container will be add to deployments with **all the specified labels and annotations**.

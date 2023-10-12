@@ -20,28 +20,52 @@ Listed below you find which product features will be released in the following m
 Our Product is constantly evolving and every week we release new features, so it is possible that this list may not be always up-to-date.
 On this page we keep you aligned on the most important issues:
 
-* **Mia-Platform Control Plane**
-    * Managing Groups
-    * Revision of Console HomePage & Navigation 
-    * Managing Vault Environment Variables in Console
-    * Licenses Management
-    * Miactl CLI improvement
 
-* **Integration Features**:
-    * Support Deploy on various container based runtimes
+* **Mia-Platform Console**:
+  * _Governance_  
+    * Empowered IAM
+    * Company/Profile management optimization
+    * Enhanced Runtime Resources Monitoring and management
+    * Extended FinOps integration
+    * Enhanced Runtime Resources Monitoring and management
+  * _DevX_
+    * Improved Navigation Flow
+    * Better Product Feedback Loop
+    * Enhanced CLI
+    * Start Manually a CronJob
+    * Pair with AI
+    * Improved Vault integrations
+    * AI integration
+  * _Extensibility_
+    * Gitops Tools support
+    * Support Endpoint Listener
+    * New K8s auth
+    * Better integration with 3rd party plugins
+    * Support Ingress Controller
+    * New Dev Portal for public API reference
+    * Better integration with 3rd party plugins
+* **Mia-Platform Fast Data**
+  * Domain Decoupling
+  * Full Event-Driven Architecture
+  * No-code/Low-code
+  * New Data Connectors
+  * Runtime Management
+  * Pre-release Testing of No Code config
+  * Data Catalog
+  * Control Plane Enhancements
+* **Mia-Platform Marketplace**
+  * Improved Marketplace Governance
+  * Marketplace management through Miactl
+  * Improved Marketplace Monitoring
+  * Enhanced Navigation
+* **Components**
+  * _Microfrontend Composer_
+    * No Code Functions
+    * Custom Template Management
+    * Drag & Drop components
+  * _Flow Manager_
+    * No Code Functions
 
-* **Product Operations**
-    * OpenTelemetry for collecting infrastructure telemetry data
-
-* **Fast Data**:
-    * CDCs integration with Mia-Platform Fast Data
-    * Support no-code configuration in Console for ER Schemas
-    * Bucket Storage Support
-    * CSV reader as Fast Data connector
-
-* **Back-office**:
-    * Support low-code configuration in Console
-    * Micro-lc 2.0
 
 ## How to contribute to the roadmap
 

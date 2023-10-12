@@ -9,8 +9,6 @@ checkSidebar('./docs', './sidebars.json', '', false, 'throw')
 
 const filesToExcludeFromSidebarCheck = [
   "monitoring/paas_alerting_rules",
-  "getting_started/monitoring-dashboard/dev_ops_guide/business_continuity",
-  "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery",
   "info/licenses-reports/.gitkeep",
   'cli/miactl/*',
   "info/licenses/*",
@@ -21,8 +19,9 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_tools/*",
   "business_suite/*",
   "self_hosted/installation-chart/*",
-  "getting_started/videos/*",
-  "getting_started/videos/subtitle/*", // TODO:
+  "getting-started/videos/*",
+  "getting-started/videos/subtitle/*",
+  "standalone-resources/*"
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')
