@@ -60,10 +60,10 @@ the final aggregated Single View.
 |:----------------:|:------------------:|
 |      1.5.1       |       1.4.1        |
 
-## Deprecated Services Versions
+## Versions With Known issues
 
-Here are listed all the services version that are deprecated because they are affected by a known bug and
-do not work as intended.
+Here are listed all the services version that are affected by a known bug that prevents the plugins
+from working as intended.
 
 ### Real-Time Updater
 
