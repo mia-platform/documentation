@@ -23,9 +23,6 @@ On the Mia-Platform Console we "directly" interact with the kubernetes clusters 
 
 How can we handle the operations above if the cluster is private?
 
-# TL;DR;
-Following a recap table that shows you the different approaches and which use cases are they appropriate for.
-
 # Proxy is the way
 
 The proxy solution solved all the use cases listed above because using, for example, a bastion proxy, you can:
@@ -132,7 +129,7 @@ For more information we suggest to read the [official GitLab documentation](http
 ### Agent setup on GitLab
 In this paragraph we will see the steps to add a GitLab Agent on a project on GitLab.
 
-:::warn
+:::warning
 The agent should already be installed on the Kubernetes cluster.
 :::
 
