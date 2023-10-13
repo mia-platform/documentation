@@ -4,18 +4,6 @@ title: The Real-Time Updater violates unique keys
 sidebar_label: RTU violates unique keys
 ---
 
-<!-- Task Jira FDBM-102 -->
-<!--
-USE CASE
-In the System of Records we are receiving a combination of a delete and an insert ingestion message for 4 different records. The collection involved has a  secondary unique index that differs from the primary key one. To be able to update the unique key fields inside the records without violating the condition, they went on to delete all 4 the records on the original DB and then insert them again with updated values of the UK shortly after.
-Our RTU looks like he’s ignoring the delete messages, going straight with the inserts, violating the UK and throwing an error. 
-PAUSE_TOPIC_CONSUMPTION_ON_ERROR env variable is disabled, so the RTU will restart itself after the error.
-
-This bug has been fixed with the new service Projection Storer. It was caused by the fact that the RTU executes a compaction of the messages having the same id, resulting in keeping only the insert messages, hence violating the unique key.
-
-The solution is to try to pass to the new version of the projection storer. If that's not possible, unique indexes on non PK fields should be deactivated in the projections.
--->
-
 ## Problem
 
 The Real-Time Updater violates unique keys on MongoDB. This usually happens when a combination of a delete and an insert ingestion message for the same record comes from the CDC, and the collection involved has a secondary unique index that differs from the primary key one.
@@ -38,4 +26,4 @@ There are two possible solutions to this problem:
 
 2. In the *Projections* list, select the projection you want to edit.
 
-3. In the **Indexes** section, click on the index tab that presents the unique constraint and deactivate the Unique checkbox.
+3. In the ***Indexes*** section, click on the index tab that presents the unique constraint and deactivate the Unique checkbox.
