@@ -4,8 +4,8 @@ title: Fast Data Versioning
 sidebar_label: Fast Data Versioning
 ---
 
-In this page are reported the details regarding the version of each Fast Data Service to provide a reference
-on which service is compatible with the others.
+In this page are reported for each Fast Data service its version details. This information should provide a reference
+on which service is compatible with the others, which versions should be skipped and which one enables certain features.
 
 ## Latest Stable Services Version
 
@@ -22,7 +22,7 @@ on which service is compatible with the others.
 |       7.4.0       |             3.0.0             |        5.6.5        |
 
 :::caution
-In case it is selected `debezium` as message adapter, the minimum service version for the Real-Time Updater plugin
+In case it is selected `debezium` as message adapter, the minimum service version for Real-Time Updater plugin
 is `v7.5.4`
 :::
 
@@ -35,8 +35,9 @@ is `v7.5.4`
 ## Projection Storer Support
 
 Projection Storer is a new service that can be employed as a replacement of Real-Time Updater
-in the Fast Data _event-driven_ architectures, that is in conjunction with both Single View Trigger Generator
-and Single View Creator plugins.
+when Fast Data is configured for adopting the _event-driven_ architecture. This service works in conjunction with both
+Single View Trigger Generator and Single View Creator plugins to transform change events from the system of record into
+the final aggregated Single View.
 
 ### Minimum Services Version
 
@@ -45,11 +46,19 @@ and Single View Creator plugins.
 |       1.0.0       |             3.1.2             |        6.2.1        |
 
 
-### Minimum Services Version
+### Recommended Services Version
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
 |       1.0.0       |             3.1.2             |        6.2.1        |
+
+## Bucket Storage Support
+
+### Recommended Services Version
+
+| Ingestion Storer | Ingestion Reloader |
+|:----------------:|:------------------:|
+|      1.5.1       |       1.4.1        |
 
 ## Deprecated Services Versions
 
@@ -61,9 +70,12 @@ do not work as intended.
 ### Single View Trigger Generator
 
 - `v3.1.0`: the introduction of message validation on existing messages was too strict causing the discard of all the
-`pr-update` events using the `v1` schema. Please upgrade to `v3.1.1`
+`pr-update` events using the `v1` schema. Please upgrade to `v3.1.1` or newer
 
 ### Single View Creator
 
-- `v6.2.0`: affected by a bug on the Kafka Consumer. Please upgrade to `v6.2.1`
+- `v6.2.0`: affected by a bug on the Kafka Consumer. Please upgrade to `v6.2.1` or newer
 
+### Ingestion Storer
+
+- `v1.3.1`: native image failed to build correctly. Please upgrade to `v1.3.2` or newer
