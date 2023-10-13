@@ -274,13 +274,14 @@ emits [add-new] events with payload:
 
 ### Properties & Attributes
 
-| property                  | attribute | type                                   | default                                                                   | description                                                |
-| ------------------------- | --------- | -------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `additionalCreatePayload` | -         | {[x: string]: any}                     | {}                                                                        | extra data to be passed in the payload of [add-new] events |
-| `date`                    | -         | Date                                   | `new Date()`                                                              | current date of the calendar                               |
-| `height`                  | `height`  | string                                 | -                                                                         | css-height of the calendar                                 |
-| `view`                    | -         | "agenda" \| "day" \| "month" \| "week" | 'month'                                                                   | current view of the calendar                               |
-| `filtersName`             | -         | [FiltersName](#filtersname)            | {start:"bk-calendar-start-date-filter",end:"bk-calendar-end-date-filter"} | names of date filters                                      |
+| property                  | attribute  | type                                   | default                                                                   | description                                                         |
+| ------------------------- | ---------- | -------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `additionalCreatePayload` | -          | {[x: string]: any}                     | {}                                                                        | extra data to be passed in the payload of [add-new] events          |
+| `date`                    | -          | Date                                   | `new Date()`                                                              | current date of the calendar                                        |
+| `height`                  | `height`   | string                                 | -                                                                         | css-height of the calendar                                          |
+| `view`                    | -          | "agenda" \| "day" \| "month" \| "week" | 'month'                                                                   | current view of the calendar                                        |
+| `filtersName`             | -          | [FiltersName](#filtersname)            | {start:"bk-calendar-start-date-filter",end:"bk-calendar-end-date-filter"} | names of date filters                                               |
+| `urlMask`                 | `url-mask` | [UrlMask][url-mask]                    | -                                                                         | url mask to apply to the current path to extract dynamic parameters |
 
 #### FiltersName
 
