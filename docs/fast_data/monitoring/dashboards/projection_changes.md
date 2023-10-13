@@ -4,21 +4,10 @@ title: Projection Changes
 sidebar_label: Projection Changes
 ---
 
-This Dashboard is mainly concerned with Projection-Changes related concepts, and a MongoDB Query Exporter service is required for exposing the metrics of interest.
+This dashboard displays data about Projection Changes on MongoDB. It is a very simple dashboard that allows you to keep track of the NEW Projection Changes on your system.
 
-Click <a download target="_blank" href="/docs_files_to_download/projections-changes.json">**here**</a> to download the dashboard.
+To download the dashboard's json click <a download target="_blank" href="/docs_files_to_download/dashboards/projection-changes.json">**here**</a> and import it on your Grafana portal.
 
-For a fast and complete configuration of all necessary monitoring services, you should use Mia Platform [Fast Data Monitoring Application](/fast_data/monitoring/overview.md#fast-data-monitoring-application).  
-One of the services that will be generated using Fast Data Monitoring application is the MongoDB Query Exporter. This service will be automatically configured to export information about MongoDB concerning how many Projection Changes are in a `NEW` state.
-
-## Panels
-
-The Dashboard contains the following panels, first depicted in sample screenshots, and later described in detail in the table below.
-
-![projection changes dashboard - part 1](../../img/dashboards/projection_changes_1.png)
-
-
-| Panel Name                        | Chart Type               | Description                              |
-|---------------------------------- | ------------------------ | ---------------------------------------- |
-| Total Number of Projections Changes in state      | Line chart | Shows the number of projection changes that have been updated and not yet read in the specified namespace.  |
-| System Projection Changes                         | Line chart | Shows the number of projection changes that have been updated and not yet read in the whole cluster.        |
+:::note
+The Projection Changes dashboard relies heavily on the [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) and its configuration. For more info check out the [MongoDB and Apache Kafka metrics](/fast_data/monitoring/overview.md#mongodb-and-apache-kafka-metrics) section.
+:::

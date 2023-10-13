@@ -33,7 +33,7 @@ To stop running the strategies you must disable the projections changes generati
 
 ### 2. Consume all the ingestion messages in queue
 
-Wait for the Real-Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real-Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real-Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our [Grafana dashboards for Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md).
+Wait for the Real-Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real-Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real-Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our Grafana dashboards for [Kafka Messages](/fast_data/monitoring/dashboards/kafka_messages.md) or [Real-Time Updaters](/fast_data/monitoring/dashboards/real_time_updater.md) (v7.5.5+).
 
 ### 3. Manually generate the Projection Changes to trigger all the Single Views' regeneration
 
