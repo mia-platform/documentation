@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved configuration parsing error logging
 
 ### Fixed
+
 - .npmrc file added to .dockerignore
 
 ## 2.5.0 - 03-05-2022
