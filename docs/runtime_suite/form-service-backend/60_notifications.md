@@ -30,6 +30,7 @@ The CRUD collection of `form-schemas` has to updated with the following fields:
 - **emailTemplateId**(optional) , of type *object*, which is the id of the email template;
 - **emailCarbonCopies** (optional), of type *array of strings*, which is the array containing the email addresses to be set as carbon copies (CC);
 - **emailBlindCarbonCopies** (optional), of type *array of strings*, which is the array containing the email addresses to be set as blind carbon copies (BCC).
+- **emailSender** (optional), of type *string*, which is the email used to send the recap email.
 
 ## Usage
 
