@@ -201,8 +201,6 @@ The item is then deleted from the Marketplace.
 The deletion is permanent, but the file on your machine will not be deleted.
 If you want, you can recreate the item on the Marketplace again by applying the file.
 
-
-
 ## Open an issue on Mia-Platform Github community page
 
 To contribute to the Mia-Platform Marketplace using this method, start by opening an issue [here](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+). This issue will outline the necessary information for your request.  
