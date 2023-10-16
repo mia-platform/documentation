@@ -111,9 +111,9 @@ A message will confirm the operation, returning some information as shown here b
 ```
 1 of 1 items have been successfully applied:
 
-  ID                  NAME                 STATUS   
+  ID                        ITEM ID             NAME                 STATUS   
 
-  65368hf0c91d871a87afbcbf  My Awesome Service   Inserted  
+  65368hf0c91d871a87afbcbf  my-awesome-service  My Awesome Service   Inserted  
 ```
 
 After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of the item, use the `get` command: 
@@ -173,9 +173,9 @@ You will see the outcome of the operation in the command output:
 ```
 1 of 1 items have been successfully applied:
 
-  ITEM ID                   NAME                STATUS   
+  ID                        ITEM ID             NAME                 STATUS   
 
-  65368hf0c91d871a87afbcbf  My Awesome Service  Updated  
+  65368hf0c91d871a87afbcbf  my-awesome-service  My Awesome Service   Updated
 ```
 
 The changes are now reflected to the Console.
