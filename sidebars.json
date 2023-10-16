@@ -1452,6 +1452,10 @@
       },
       "items": [
         {
+          "id": "release-notes/v11.7.1",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v11.7.0",
           "type": "doc"
         },
