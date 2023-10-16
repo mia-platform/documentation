@@ -18,9 +18,12 @@ The environment variables needed by the service are:
 - **HTTP_PORT** (default: 8080): http port exposed by the service;
 - **SERVICE_PREFIX** (_optional_): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
 - **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
-- **REDIS_HOST** (_required_): the Redis host, with the port;
-- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis;
-- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis;
+- **REDIS_MODE** (default: `normal`): defines the redis mode (`normal` or `sentinel`);
+- **REDIS_HOSTS** (_required_): a comma-separated list of the Redis hosts; The hosts can be in the form `redis://username:password@ipaddress:6379/dbnum`. When `REDIS_MODE=normal`, specify only one host; {/* gitleaks:allow */}
+- **REDIS_HOST** (_required_ if `REDIS_HOSTS` is not set, _DEPRECATED_): the Redis host, with the port; this is deprecated, and it can be used only when `REDIS_MODE=normal`;
+- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis, valid only if `REDIS_MODE=normal`. Deprecated: consider using the host form `redis://username:password@ipaddress:6379/dbnum` instead; {/* gitleaks:allow */}
+- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis, valid only if `REDIS_MODE=normal`. Deprecated: consider using the host form `redis://username:password@ipaddress:6379/dbnum` instead; {/* gitleaks:allow */}
+- **REDIS_MASTER_NAME** (_required_ if `REDIS_MODE=sentinel`): the name of the master of your Redis Sentinel configuration
 - **CONFIG_FILE_PATH** (_required_): the path to the configuration file. Do not include the file name;
 - **CONFIG_FILE_NAME** (_required_): the name of the JSON configuration file. Do not include the extension;
 - **USERS_CRUD_BASE_URL** (_required_): base URL of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);

@@ -29,9 +29,26 @@ You have to ways to upload the item file:
 - by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool (recommended)
 - by creating it in the CMS
 
+### Deciding whether to create a private or public Marketplace item
+
+The choice between a private and public Marketplace involves benefits on both sides that should be carefully analyzed before making a decision.
+
+Creating an item within the private Marketplace is undoubtedly the better choice when you want to make something highly specialized available for the specific use cases of your Company. If the item cannot be generalized and would have little value for other Companies, then a private Marketplace is the way to go. Additionally, in this case, creating items within the private Marketplace allows for complete ownership in managing them, resulting in a faster maintenance process.
+
+On the other hand, publishing your items in the private Marketplace leads to a loss of corporate visibility that you would otherwise have by making your item publicly available in the Marketplace. It also means missing out on the opportunity to receive reviews from the Mia-Platform team and potential external contributions that can help your product grow and improve more rapidly.
+
+
 :::info
 
 To create Marketplace items you need to be a *Company Owner* or a *Project Administrator* at Company level
+
+If you want to contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+
+:::
+
+:::info
+
+To learn how to migrate an item from the public to private Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
 
 :::
 

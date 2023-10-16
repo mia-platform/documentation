@@ -12,9 +12,9 @@ Vault is capable of storing a multitude of variable types, but the most importan
 
 To correctly set up your Vault backed project, you will need to:
 
-- [Configure the Vault instance and the Kubernetes cluster](#configure-the-vault-instance-and-the-kubernetes-cluster)
-- [Configure your Console project](#configure-your-console-project)
-- [Install the external-secrets](https://external-secrets.io/) operator that will create Kubernetes secrets in the namespaces in which the Console has deployed an *externalSecret* resource, and will populate it with the Values stored in Vault
+<!-- 1. [Configure the Vault instance and the Kubernetes cluster](#configure-the-vault-instance-and-the-kubernetes-cluster)
+2. [Configure your Console Project](#configure-your-console-project)
+3. [Use Vault variables inside a project](#use-vault-variables-inside-a-project) -->
 
 ## Configure the Vault instance and the Kubernetes cluster
 
@@ -32,7 +32,7 @@ You need to create [one policy](https://developer.hashicorp.com/vault/docs/conce
 
 An example of a policy is shown below, scoped to grant *admin* access to the project's secrets.
 
-```
+```text
 path "secrets/{tenantId}/{projectId}KvV2/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
@@ -44,12 +44,12 @@ To be deployed by the Console, the environment variables should be stored in a p
 
 1. Create a secret engine named `secrets/<companyId>/<projectId>KvV2`, where `<companyId>` is the identifier of the company the project belongs to and `<projectId>` is the identifier of the project itself. The secret engine should be of type `KV` (Key-Value), the other options can be set according to your needs.
 2. Inside the secret engine, create a secret for each environment of the project. The secret should be named the same as the environment identifier of the runtime environment where you want to deploy it.
-3. The actual values of the variables can be placed inside the corresponding environment secret in the form of key-value pairs. 
+3. The actual values of the variables can be placed inside the corresponding environment secret in the form of key-value pairs.  
 
 :::tip
 Imagine you have a project with project id `project`, inside the company `company`, with 2 runtime environments: `development` and `production`, and you want to store the secret variable `private_key` for the two environments, this is what your secrets should look like:
 
-```
+```text
 secret path: secrets/company/projectKvV2/development
 {
   private_key: "private_key_development"
@@ -58,12 +58,13 @@ secret path: secrets/company/projectKvV2/development
 
 and
 
-```
+```text
 secret path: secrets/company/projectKvV2/production
 {
   private_key: "private_key_production"
 }
 ```
+
 :::
 
 ### Setup an authentication methods
@@ -144,11 +145,11 @@ It is also **required** to deploy the corresponding secret in the project's envi
 
 Assuming you have a Vault instance setup and running and a Console project already created, you can configure it to use Vault to store your environment variables. The steps to do that are the following:
 
-1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](/development_suite/set-up-infrastructure/configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
+1. Create a provider for your Vault instance. This can be done using the dedicated [providers APIs](//console/company-configuration/providers/configure-provider.mdx). The provider is the entity that contains references to the public hostname of your Vault instance and credentials to access its APIs. 
   
   In this step you have to configure:
-    - The [provider related fields](/development_suite/set-up-infrastructure/configure-provider.mdx#body-schema), having type `vault`. Optionally, you can setup a custom Certificate Authority and/or proxy.
-    - The provider credentials, depending on the [authentication method chosen](#authentication-methods) while the Vault instance was configured, two types of credentials are supported:
+    - The [provider related fields](/console/company-configuration/providers/configure-provider.mdx?providerType=vault#step-2-provider-details), having type `vault`. Optionally, you can setup a custom Certificate Authority and/or proxy.
+    - The provider credentials, depending on the [authentication method chosen](#setup-an-authentication-methods) while the Vault instance was configured, two types of credentials are supported:
       - `token` credentials for the [token authentication method](#token-authentication-method), where `content.accessToken` directly stores your Vault token.
       - `m2m` credentials for the [kubernetes authentication method](#kubernetes-authentication-method). That stores a JWT linked to a service account in the target Kubernetes cluster and a URL to retrieve a short-lived token starting from the JWT via Vault APIs. These pieces of information are stored respectively in the `content.token` and `content.accessTokenURL` properties of the credentials document.
 
@@ -201,7 +202,7 @@ Assuming you have a Vault instance setup and running and a Console project alrea
 
 Variables stored in a Vault provider cannot be directly interpolated in the project's configuration. However, you could access these variables by creating a new microservice environment variable and setting **value type** to **from secret**, **secret name** to `vault-secret`, and **secret key** to the target secreted environment variable name, take a look at the [microservice configuration section](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
-Projects that use Vault as the secret provider cannot manage their variables using the Console interface but they need to be manually edited from the Vault instance as described in a [previous section](#secret-engines-and-vault-secrets).
+Projects that use Vault as the secret provider cannot manage their variables using the Console interface but they need to be manually edited from the Vault instance as described in a [previous section](#create-the-secret-engines-and-vault-secrets).
 
 :::warning
 Variables on Vault are not automatically synced with the respective secret on the cluster by design. Instead, every time a variable is added or deleted on Vault you have to regenerate the project's configuration in order to correctly reconfigure the external secret. Meanwhile, when a variable is edited a redeploy of the target environment will suffice to update the variables on the cluster.

@@ -29,7 +29,7 @@ With the elements available in the [marketplace](../../marketplace/overview_mark
 
 2. some plugins provide a ready to use integration with some identification services
 3. with the identification adapter template you can speed up the implementation of your custom integration
-4. the `identification router plugin` allows you to define custom rules to manage dynamically the communication between an external service (e.g. an identification service, backend for frontend etc...) and the proper `sub flow`
+4. the `flow manager router plugin` allows you to define custom rules to manage dynamically the communication between an external service (e.g. an identification service, backend for frontend etc...) and the proper `sub flow`
 5. with the `verifiable credential generator` template you can speed up the implementation of your custom service for the generation of the verifiable credential at the end of the identification process
 
 ## Standard Data Schema

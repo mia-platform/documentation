@@ -14,9 +14,9 @@ To complete the configuration is needed to:
     - edit the configuration file to define the steps of the processes
     - define a new [CRUD collection](../../development_suite/api-console/api-design/crud_advanced) to collect the data related to the new process
 
-## Identification Manager Router
+## Flow Manager Router
 
-The [identification manager router](../../runtime_suite/flow-manager-router/overview) manages the communication between external services and the set of `sub flows`. The plugin comes in the application with only one default rule that holds information about the used identification process, but it is possible to add more rules in order to add more identification processes to the application. 
+The [flow manager router](../../runtime_suite/flow-manager-router/overview) manages the communication between external services and the set of `sub flows`. The plugin comes in the application with only one default rule that holds information about the used identification process, but it is possible to add more rules in order to add more identification processes to the application. 
 
 ## Identification Provider Adapter
 
@@ -39,7 +39,7 @@ The services defined in the application can communicate relying on `REST` or `KA
 ### Kafka Topics
 
 Here we provide a suggestion for topic management:
-- two topics for the identification router
+- two topics for the flow manager router
 - one topic for the verifiable credential
 - one topic for the `main flow`
 - one topic **for each** `sub flow`

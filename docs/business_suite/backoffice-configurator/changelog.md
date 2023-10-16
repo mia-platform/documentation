@@ -3,6 +3,18 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.4.0] - 2023-10-06
+
+### Added
+
+- Added support for `aclExpression` property of components and components object properties
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.1`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.1`
+- Dev dependencies updated
+
 ## [1.3.4] - 2023-09-25
 
 ### Fixed

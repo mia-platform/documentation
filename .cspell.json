@@ -221,7 +221,8 @@
     "dazn",
     "deliveroo",
     "serp",
-    "VULNDB"
+    "VULNDB",
+    "mergo"
   ],
   "ignoreWords": [
     "asncdctools",
