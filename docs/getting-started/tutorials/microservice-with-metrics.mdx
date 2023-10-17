@@ -8,18 +8,18 @@ import VideoBox from "./../../../src/components/VideoBox";
 
 In this tutorial we are going to add custom metrics to a custom micro-service, that will be later collected by a monitoring system like the _Prometheus Operator_. 
 
-These metrics will then be available in [Grafana](/docs/paas/grafana.md) to use in personalized dashboards based on user-defined queries.
+These metrics will then be available in [Grafana](/paas/grafana.md) to use in personalized dashboards based on user-defined queries.
 
 ## Pre-Requisites
 
-Before starting, we assume that you have already created the `shipping-cost` microservice from the [Create a custom Microservice tutorial](create-a-custom-microservice.mdx).
+Before starting, we assume that you have already created the `shipping-cost` microservice from the [Create a custom Microservice tutorial](/getting-started/tutorials/create-a-custom-microservice.mdx).
 
 :::info
 Since there can be different libraries to handle custom metrics, we will consider the library provided by [our Nodes.js service launcher lc39](https://github.com/mia-platform/lc39/blob/master/docs/main-entrypoint.md#prometheus-metrics), used by the [Node.js Template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/).
 Therefore, javascript will be used as example language for this tutorial. Other languages and frameworks may provide different modes to expose metrics.  
 :::
 
-More-over, the project where the service has been created must have a monitoring system such as Promethoeus configured from the [Microservice Monitoring Section](/docs/development_suite/api-console/api-design/microservice-monitoring.md):
+More-over, the project where the service has been created must have a monitoring system such as Prometheus configured from the [Microservice Monitoring Section](/development_suite/api-console/api-design/microservice-monitoring.md):
 
 This monitoring system should also be configured as data source to Grafana, to view metrics inside the dashboards.
 
@@ -137,7 +137,7 @@ Also, since we wanna group metrics based on the status code provided by the endp
 
 Now, you can release the changes on the micro-service and release the new version. By performing http requests, you can see from the metrics endpoint the increase of the metric `custom_shipping_cost_metric`.
 
-<details><summary>Test the behaviour of your metrics:</summary>
+<details><summary>Test the behavior of your metrics:</summary>
 <p>
 
 Metrics can be tested also by using TDD! Let's take the `shipping-cost` unit test written during the previous tutorial and add an additional assert for the metrics response.
@@ -182,7 +182,7 @@ There are several libraries that parse the content of prometheus metrics, such a
 
 Now that custom metrics are correctly exposed by the micro-service and collected by the monitoring system, lets go over Grafana and create a new dashboard.
 
-![Crea New Metrics Dashboard](img/metrics-new-dashboard.png)
+![Create New Metrics Dashboard](img/metrics-new-dashboard.png)
 
 Grafana lets you create panels of different kinds containing one or more [PromQL queries](https://prometheus.io/docs/prometheus/latest/querying/basics/), which will be executed on the default datasource where your custom metric is stored.
 
@@ -204,5 +204,5 @@ Once you've executed this query, you'll see that the time-series visualization i
 If you try to perform GET requests to the `"/shipping-cost"` endpoint, you will see the counter increase. That's it, you have defined your custom metric and shown it on a Grafana visualization! 
 
 :::tip
-This dashboard can also be embedded into the Console using the [Dashboard Section](docs/development_suite/monitoring/dashboard).
+This dashboard can also be embedded into the Console using the [Dashboard Section](/development_suite/monitoring/dashboard.md).
 :::
