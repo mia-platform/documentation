@@ -386,7 +386,7 @@ Property `conditionalOptions` expects an array of objects with fields:
 
 Updating form fields triggers new evaluation of the conditional options, thus updating the form fields accordingly when necessary.
 
-An [example](#example-conditionally-disbale-a-field) is available.
+An [example](#example-conditionally-disable-a-field) is available.
 
 #### Conditionally reset fields value
 
@@ -827,7 +827,7 @@ In the previous example, [helper][helpers] `rawObject` is used to avoid form val
 :::
 
 
-### Example: Conditionally disbale a field
+### Example: Conditionally disable a field
 
 Let us assume a Dynamic Form Drawer to be configured like the following:
 
