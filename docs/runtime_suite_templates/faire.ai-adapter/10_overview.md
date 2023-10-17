@@ -13,7 +13,7 @@ The following events are sent by default by the service:
 - actionError
 
 ### POST /kpis
-With this endpoint the service calls [*Faire.ai* KPIs API](https://platform-dev.faire.ai/docs/#tag/kpis/operation/getKpiValue) and proxies the response to the flow manager router service defined in the ROUTER_URL environemnt variable as follow:
+With this endpoint the service calls [*Faire.ai* KPIs API](https://platform-dev.faire.ai/docs/#tag/kpis/operation/getKpiValue) and proxies the response to the flow manager router service defined in the ROUTER_URL environment variable as follow:
 
 Request
 ```json
