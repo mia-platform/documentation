@@ -951,6 +951,10 @@
           "type": "doc"
         },
         {
+          "id": "getting-started/tutorials/microservice-with-metrics",
+          "type": "doc"
+        },
+        {
           "id": "getting-started/tutorials/set-requests-limits-of-a-microservice",
           "type": "doc"
         },
