@@ -935,6 +935,10 @@
       },
       "items": [
         {
+          "id": "getting-started/tutorials/microservice-from-docker-image",
+          "type": "doc"
+        },
+        {
           "id": "getting-started/tutorials/microservice-hello-world",
           "type": "doc"
         },
