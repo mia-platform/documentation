@@ -14,11 +14,7 @@ The RTU was executing a compaction of the messages having the same id, resulting
 
 ## Solution
 
-There are two possible solutions to this problem:
-
-1. Try to adopt the Projection Storer. This new plugin has a fix for this bug and should prevent it from happening.
-
-2. If employing the new plugin is not possible, unique indexes on non-primary key fields should be deactivated in the projections. This will prevent the RTU from violating the unique key constraint.
+Deactivate unique indexes on non-primary key fields for the projections. This will prevent the RTU from violating the unique key constraint.
 
 ### How to deactivate unique indexes on non-primary key fields
 
@@ -27,3 +23,5 @@ There are two possible solutions to this problem:
 2. In the *Projections* list, select the projection you want to edit.
 
 3. In the ***Indexes*** section, click on the index tab that presents the unique constraint and deactivate the Unique checkbox.
+
+![Unique Keys Index deactivation](../img/non-primary-unique-keys.png)
