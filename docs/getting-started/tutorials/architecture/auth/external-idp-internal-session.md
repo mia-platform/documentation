@@ -91,7 +91,7 @@ Here you can notice some important values to set:
 - `isWebsiteApp` must be `true` if using the authentication for a web application, since it will make the Authentication Service return the session as a cookie.
 
 #### Authorization service
-Follow the [tutorial of the 'external IdP' scenario](/getting-started/tutorials/auth-architecture/external-idp.md#tutorial-steps).
+Follow the [tutorial of the 'external IdP' scenario](/getting-started/tutorials/architecture/auth/external-idp.md#tutorial-steps).
 
 #### Login Site
 -- TODO
@@ -117,7 +117,7 @@ This is because the application uses Auth0 as a default IdP, so:
 - if you want to use another Oauth2 compliant IdP:
   - start by creating the `crud-service` and the `authentication-service` as above
   - install the application, modifying the `auth0-client` with the `authentication-service` in the wizard
-  - change the environment variables of the `authorization-service` following the [tutorial of the 'external IdP' scenario](/getting-started/tutorials/auth-architecture/external-idp.md#tutorial-steps)
+  - change the environment variables of the `authorization-service` following the [tutorial of the 'external IdP' scenario](/getting-started/tutorials/architecture/auth/external-idp.md#tutorial-steps)
   - remove the unnecessary environment variables specific of Auth0
   - the application will take care of creating:
     - api-gateway

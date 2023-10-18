@@ -917,37 +917,37 @@
           "type": "doc"
         },
         {
-          "label": "AuthN/AuthZ Architecture",
+          "label": "Auth Architecture",
           "type": "category",
           "collapsed": true,
           "link": {
             "type": "generated-index",
-            "title": "AuthN/AuthZ Architecture ",
-            "slug": "/getting-started/tutorials/auth-architecture"
+            "title": "Auth Architecture ",
+            "slug": "/getting-started/tutorials/architecture/auth"
           },
           "items": [
             {
-              "id": "getting-started/tutorials/auth-architecture/intro",
+              "id": "getting-started/tutorials/architecture/auth/intro",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/auth-architecture/static-api-key",
+              "id": "getting-started/tutorials/architecture/auth/static-api-key",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/auth-architecture/external-idp",
+              "id": "getting-started/tutorials/architecture/auth/external-idp",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/auth-architecture/external-idp-internal-session",
+              "id": "getting-started/tutorials/architecture/auth/external-idp-internal-session",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/auth-architecture/multiple-projects",
+              "id": "getting-started/tutorials/architecture/auth/multiple-projects",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/auth-architecture/enterprise-architecture",
+              "id": "getting-started/tutorials/architecture/auth/enterprise-architecture",
               "type": "doc"
             }
           ]
