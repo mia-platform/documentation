@@ -222,7 +222,8 @@
     "deliveroo",
     "serp",
     "VULNDB",
-    "mergo"
+    "mergo",
+    "kpis"
   ],
   "ignoreWords": [
     "asncdctools",
