@@ -1,8 +1,13 @@
 /**  list of resources that does not need to be edited */
-const UNEDITABLE_RESOURCES = [ 
-  'runtime_suite', 
+const UNEDITABLE_RESOURCES = [
+  'runtime_suite_examples/.*',
+  'runtime_suite_templates/.*',
+  'runtime_suite_libraries/.*',
+  'runtime_suite_tools/.*',
+  'business_suite/.*', 
+  'runtime_suite/.*', 
   'business_suite/backoffice',
-  'runtime_suite_applications'
+  'runtime_suite_applications/.*'
 ];
 
 const isDocVersioned = (versionDocDirPath) => /versioned_docs/.test(versionDocDirPath)
