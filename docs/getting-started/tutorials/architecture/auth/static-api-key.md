@@ -4,7 +4,11 @@ title: Use static API Keys
 sidebar_label: Static API Keys
 ---
 
-The simplest authentication method you can implement with Mia-Platform is using the [API Keys](/development_suite/api-console/api-design/api_key.md) offered by our API Gateway (both [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)) to secure your APIs.
+The simplest authentication method you can implement with Mia-Platform is using the [API Keys](/development_suite/api-console/api-design/api_key.md) offered by our API Gateway (both [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)).
+
+:::danger
+The authentication method suggested in this scenario is straightforward but comes with a **lower level of security**. Therefore, we recommend using it only in use cases where APIs are not exposed on the public internet or in situations where security is not a critical aspect of the project (e.g., MVPs, internal projects, etc.).
+:::
 
 ## Definition
  
@@ -21,10 +25,6 @@ The picture above illustrates the auth flow at runtime:
 1. The client calls the endpoint of your project, placing their own API key in the `client-key` header (or in the `mia_client_key` cookie).
 2. The API gateway resolves the client type from the `client-key` header. Then, it calls the Authorization Service which is in charge to verify if the resolved client type has access to the requested endpoint.
 3. If the client type verification performed by the authentication service is successful, the API Gateway forwards the API call the right microservice of the project.
-
-:::warning
-The authentication method suggested in this scenario is straightforward but comes with a lower level of security. Therefore, we recommend using it only in use cases where APIs are not exposed on the public internet or in situations where security is not a critical aspect of the project (e.g., MVPs, internal projects, etc.).
-:::
 
 ## Tutorial steps
 :::note
