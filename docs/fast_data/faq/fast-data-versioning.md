@@ -13,6 +13,14 @@ on which service is compatible with the others, which versions should be skipped
 |:-----------------:|:-----------------------------:|:-------------------:|
 |       7.5.6       |             3.1.2             |        6.2.1        |
 
+## Compatibility Matrix
+
+| Real-Time Updater | Single View Trigger Generator | Single View Creator |
+|:-----------------:|:-----------------------------:|:-------------------:|
+|  \>=5.0.0 <7.0.0  |               ❌               |       >=5.2.0       |
+|      >=7.0.0      |            >=3.0.0            |       >=5.6.5       |
+
+
 ## Event Driven Architecture Support
 
 ### Minimum Services Version
