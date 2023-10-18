@@ -13,16 +13,16 @@ In order to provide a higher security level, you may need to protect your endpoi
 The involved microservice of the flow at runtime are:
 1. `API Gateway`: Mia-Platform plugin available in [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)
 2. [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md): Mia-Platform plugin
-3. `Authentication Service`: a custom microservice that you need to implement. It must integrate with your external IDP to resolve the user token.
+3. `Authentication Manager`: a custom microservice that you need to implement. It must integrate with your external IDP to resolve the user token.
 4. The microservice connected to the endpoint 
 
 The picture above illustrates the auth flow at runtime:
 1. The client, be it a web application or backend software, need to implement the authentication flow required by the IDP to obtain a valid token. With this token, the client will be able to call the endpoints of your project.
 2. The client calls the endpoint of your project, including the valid token in the request. Usually this token is placed in the `Authorization` header but it can be placed in other headers or cookies.
-3. The API Gateway calls the Authorization Service which is in charge to verify if the user who made the request is authorized to access to the requested endpoint.
-4. To do so, the Authorization Service requests to the Authentication Service to resolve the token
-5. The Authentication Service resolves the token contacting the external IDP and returns the user payload to the Authorization Service that can now check if the user belongs to the authorized groups 
-6. If the verification performed by the Authentication Service is successful, then the API Gateway forwards the API call the right microservice of the project. Note that the target microservice will receive the following additional headers that could be useful for their business logic:
+3. The `API Gateway` calls the `Authorization Service` which is in charge to verify if the user who made the request is authorized to access to the requested endpoint.
+4. To do so, the `Authorization Service` requests to the `Authentication Manager` to resolve the token
+5. The `Authentication Service` resolves the token by contacting the external IDP and returns the user payload to the `Authorization Service` that can now check if the user belongs to the authorized groups 
+6. If the verification performed by the `Authentication Service` is successful, then the `API Gateway` forwards the API call the right microservice of the project. Note that the target microservice will receive the following additional headers that could be useful for their business logic:
   
   | Header              | Description                                                                                |
   | --------------------| ------------------------------------------------------------------------------------------ |
@@ -37,7 +37,7 @@ The picture above illustrates the auth flow at runtime:
 We suppose that you have already created an API Gateway in your project and you already have some endpoints you want to secure.
 :::
 In order to implement the flow depicted above, you can perform the following steps on Mia-Platform Console:
-1. Create the `Authentication Service` custom microservice
+1. Create the `Authentication Manager` custom microservice
     - Click on `Microservices`
     - Click on `Create a Microservice` and select `From Markeplace`
     - Choose your preferred template to start coding your custom Authentication Service
