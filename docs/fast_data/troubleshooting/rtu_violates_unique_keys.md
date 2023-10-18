@@ -16,6 +16,10 @@ The RTU was executing a compaction of the messages having the same id, resulting
 
 Deactivate unique indexes on non-primary key fields for the projections. This will prevent the RTU from violating the unique key constraint.
 
+:::note
+If you are using the Projection Storer you should not encounter this issue.
+:::
+
 ### How to deactivate unique indexes on non-primary key fields
 
 1. Go to the *Projections* page of the *Fast Data* section in the Console and select your System of Record.

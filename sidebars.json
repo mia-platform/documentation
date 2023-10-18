@@ -884,6 +884,10 @@
         {
           "id": "fast_data/troubleshooting/pr_update_topics_overwritten",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/troubleshooting/rtu_violates_unique_keys",
+          "type": "doc"
         }
       ],
       "label": "Troubleshooting",
