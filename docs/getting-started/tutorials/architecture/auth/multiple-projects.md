@@ -1,6 +1,6 @@
 ---
 id: multiple-projects 
-title: Multiple projects
+title: Centralize the authentication in a multi-projects context
 sidebar_label: Multiple projects
 ---
 

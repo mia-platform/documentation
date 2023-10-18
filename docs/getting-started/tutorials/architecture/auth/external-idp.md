@@ -1,6 +1,6 @@
 ---
 id: external-idp 
-title: Integrate an external Identity Provider to your project
+title: Integrate an external Identity Provider
 sidebar_label: External Identity Provider
 ---
 

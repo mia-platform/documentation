@@ -1,7 +1,7 @@
 ---
 id: static-api-key
-title: Use a static API Key to secure your endpoints
-sidebar_label: Static API Key
+title: Use static API Keys
+sidebar_label: Static API Keys
 ---
 
 The simplest authentication method you can implement with Mia-Platform is using the [API Keys](/development_suite/api-console/api-design/api_key.md) offered by our API Gateway (both [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)) to secure your APIs.

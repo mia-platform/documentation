@@ -13,8 +13,8 @@ For each of the following scenarios, we will provide an overview of the architec
 ### Scenarios
 
 These are the scenarios you can find in this tutorial:
-- [Scenario 1: Use a static API Key to secure your endpoints](/getting-started/tutorials/architecture/auth/static-api-key.md)
-- [Scenario 2: Integrate an external Identity Provider to your project](/getting-started/tutorials/architecture/auth/external-idp.md)
-- [Scenario 3: Use an external Identity Provider for the login phase but manage session and user groups within your project](/getting-started/tutorials/architecture/auth/external-idp-internal-session.md)
-- [Scenario 4: Multiple projects](/getting-started/tutorials/architecture/auth/multiple-projects.md)
-- [Scenario 5: Enterprise Architecture with edge gateways](/getting-started/tutorials/architecture/auth/enterprise-architecture.md)
+- [Scenario 1: Use static API Keys](/getting-started/tutorials/architecture/auth/static-api-key.md)
+- [Scenario 2: Integrate an external Identity Provider](/getting-started/tutorials/architecture/auth/external-idp.md)
+- [Scenario 3: Integrate an external Identity Provider but manage session and user groups within your project](/getting-started/tutorials/architecture/auth/external-idp-internal-session.md)
+- [Scenario 4: Centralize the authentication in a multi-projects context](/getting-started/tutorials/architecture/auth/multiple-projects.md)
+- [Scenario 5: Use multiple edge gateways](/getting-started/tutorials/architecture/auth/enterprise-architecture.md)

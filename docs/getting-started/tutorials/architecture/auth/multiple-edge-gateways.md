@@ -1,7 +1,7 @@
 ---
 id: enterprise-architecture 
-title: Enterprise Architecture with edge gateways
-sidebar_label: Enterprise Architecture
+title: Use multiple edge gateways
+sidebar_label: Multiple edge gateways
 ---
 
 ## Definition
