@@ -3,6 +3,11 @@ id: page_layout
 title: Page layout
 sidebar_label: Page layout
 ---
+[leaflet]: https://leafletjs.com/
+[csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+[micro-lc]: https://micro-lc.io/docs
+[microlc-custom-headers]: https://micro-lc.io/add-ons/backend/middleware/#headers
+
 [mia-platform-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
 [writable-views]: /runtime_suite/crud-service/50_writable_views.md
 
@@ -13,6 +18,7 @@ sidebar_label: Page layout
 
 [crud-client]: ./60_components/100_crud_client.md
 [bk-dynamic-form-modal]: ./60_components/210_dynamic_form_modal.md
+[bk-dynamic-form-drawer]: ./60_components/200_dynamic_form_drawer.md
 [bk-form-modal]: ./60_components/340_form_modal.md
 [bk-crud-lookup-client]: ./60_components/170_crud_lookup_client.md
 [bk-form-drawer]: ./60_components/330_form_drawer.md
@@ -215,6 +221,41 @@ Please note that the date fields are saved in ISO 8601 format, so it's up to the
 When `type` is set to `object` and format is `localized-text`, table expects a [localized object][localized-text] and will render the closest language key, i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
 
 Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
+
+:::caution
+
+`Geopoint` fields within Form components, such as the [Dynamic Form Modal][bk-dynamic-form-modal] or the [Dynamic Form Drawer][bk-dynamic-form-drawer], are rendered using the [leaflet][leaflet] library.
+To ensure correct visualization of these fields, it is necessary to update the [Content Security Policy (CSP)][csp] for HTTP calls, allowing the needed retrieval of CSS files and images. The following CSP rules should be appended:
+
+```
+style-src https://unpkg.com/leaflet@1.8.0/
+img-src data:
+```
+
+For example, if the plugin orchestration is managed by [micro-lc][micro-lc] (version 2 or higher), additional CSP rules [can be configured][microlc-custom-headers] in its backend thorugh property `publicHeadersMap`. For instance:
+
+```json
+{
+  "publicHeadersMap": {
+    "/public/index.html": {
+      "content-security-policy": [
+        [
+          "script-src 'nonce-**CSP_NONCE**' 'strict-dynamic' 'unsafe-eval'",
+          "style-src 'self' 'unsafe-inline' https://unpkg.com/leaflet@1.8.0/",
+          "img-src 'self' https: data:",
+          "object-src 'none'",
+          "font-src 'self'",
+          "worker-src 'self' blob:",
+          "base-uri 'self'"
+        ]
+      ],
+      ...
+    }
+  }
+}
+```
+
+:::
 
 Fields of format `currency` automatically display numeric values according to the specified `template` inside [visualizationOptions](#visualization-options) and [formatOptions](#form-options). By default the value is formatted according to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale), but handlebars helper [nFormat][nformat] is also available.
 

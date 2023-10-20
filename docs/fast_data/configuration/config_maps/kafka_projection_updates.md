@@ -6,7 +6,7 @@ sidebar_label: Kafka Projection Updates
 
 ## Overview
 
-The Kafka Projection Updates is a JSON file which describes for each projection a [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) topic and a [Strategy](/fast_data/configuration/strategies.md) to generate the projection changes identifier. This file is typically used by the [Real Time Updater](/fast_data/realtime_updater.md) and the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to send the Projection Updates message to te right topic and apply the right Strategy.
+The Kafka Projection Updates is a JSON file which describes for each projection a [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) topic and a [Strategy](/fast_data/configuration/strategies.md) to generate the projection changes identifier. This file is typically used by the [Real-Time Updater](/fast_data/realtime_updater.md) and the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to send the Projection Updates message to te right topic and apply the right Strategy.
 
 ## Configuration Properties
 

@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.2] - 2023-10-06
+
+### Versioning
+
+- Updated `micro-lc` to version `2.2.1`
+- Updated `back-kit` to version `1.4.2`
+
+## [3.2.1] - 2023-10-02
+
+### Versioning
+
+- Updated `envoy` to version `v1.27.0`
+- Updated `micro-lc` to version `2.2.0`
+- Updated `middleware` to version `3.0.5`
+- Updated `back-kit` to version `1.4.1`
+
+### Changed
+
+- `middleware` image is now taken from Mia-Platform private Nexus
+
 ## [3.2.0] - 2023-07-17
 
 ### Versioning

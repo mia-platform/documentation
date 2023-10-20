@@ -11,12 +11,12 @@ Bring Your Own Infrastructure (BYOI) allows customers to use their own runtime, 
 The above schema, shows the typical infrastructure architecture and the main elements that are involved in the Mia-Platform BYOI configuration.
 
 - **Mia-Platform Console**: Mia-Platform Console is completely managed by Mia-Platform. It is [connected to the Runtime](/development_suite/clusters-management/connect-and-manage-cluster.mdx#step-1-runtime-service) in order to retrieve information about the runtime status.
-Mia-Platform is [integrated with CI/CD tool](/development_suite/set-up-infrastructure/configure-provider.mdx) to streamline the software development process, automate the build and deployment procedures.
+Mia-Platform is [integrated with CI/CD tool](/console/company-configuration/providers/overview.md) to streamline the software development process, automate the build and deployment procedures.
 Every change in the microservices architecture undergoes versioning and is subsequently released to the customer [Git Repository](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx#setup-git-provider).
 
 - **Mia-Platform Nexus**: Mia-Platform Nexus is a docker registry services where all the Mia-Platform marketplace services images are stored. It is a necessary dependency in order to utilize the images supported by Mia-Platform and published on the Mia-Platform Marketplace.
   
-- **CI/CD**: The customers can use any [supported tool](/development_suite/set-up-infrastructure/configure-provider.mdx#edit-cicd-tool) by Mia-Platform Console.
+- **CI/CD**: The customers can use any [supported tool](/console/company-configuration/providers/overview.md) by Mia-Platform Console.
   
 - **Container image registry**: You can [configure](/development_suite/company/configuration.mdx#example-configuration-3) any container registry.
   

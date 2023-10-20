@@ -77,7 +77,7 @@ This property controls the attempted width of each Gallery item, but may vary sl
 
 #### Preview Modal
 
-Unless property `disableExpand` is set to false, the preview image of an item can be visualized inside a modal.
+Unless property `disableExpand` is set to true, the preview image of an item can be visualized inside a modal.
 The modal can be configured in size using `modalWidth` and `modalHeight`, and a title can be specified with `modalTitle` (if not specified, the item title is used).
 
 ### Data

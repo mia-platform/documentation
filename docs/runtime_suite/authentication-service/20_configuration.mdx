@@ -18,13 +18,16 @@ The environment variables needed by the service are:
 - **HTTP_PORT** (default: 8080): http port exposed by the service;
 - **SERVICE_PREFIX** (_optional_): the prefix used for the path of the service endpoints (except for the metrics and health endpoints);
 - **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
-- **REDIS_HOST** (_required_): the Redis host, with the port;
-- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis;
-- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis;
+- **REDIS_MODE** (default: `normal`, introduced in `v3.5.0`): defines the redis mode (`normal` or `sentinel`);
+- **REDIS_HOSTS** (_required_): a comma-separated list of the Redis hosts; The hosts can be in the form `redis://username:password@ipaddress:6379/dbnum`. When `REDIS_MODE=normal`, specify only one host; {/* gitleaks:allow */}
+- **REDIS_HOST** ( _DEPRECATED_ since `v3.5.0`, _required_ if `REDIS_HOSTS` is not set): the Redis host, with the port; this is deprecated: use `REDIS_HOSTS` instead. It is still supported for retrocompatibility only when `REDIS_MODE=normal`;
+- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis, valid only if `REDIS_MODE=normal`. Deprecated: consider using the host form `redis://username:password@ipaddress:6379/dbnum` instead; {/* gitleaks:allow */}
+- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis, valid only if `REDIS_MODE=normal`. Deprecated: consider using the host form `redis://username:password@ipaddress:6379/dbnum` instead; {/* gitleaks:allow */}
+- **REDIS_MASTER_NAME** (_required_ if `REDIS_MODE=sentinel`): the name of the master of your Redis Sentinel configuration
 - **CONFIG_FILE_PATH** (_required_): the path to the configuration file. Do not include the file name;
 - **CONFIG_FILE_NAME** (_required_): the name of the JSON configuration file. Do not include the extension;
 - **USERS_CRUD_BASE_URL** (_required_): base URL of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
-- **MIA_JWT_TOKEN_SIGN_KEY** (_required_): a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC of least of 512 bytes);
+- **MIA_JWT_TOKEN_SIGN_KEY** (_optional_): required when `MIA_JWT_TOKEN_SIGNING_METHOD` is HS256 (the default value), a JWT signing key used to generate the authentication JWT for the user login (preferred an HMAC of least of 512 bytes);
 - **MIA_JWT_TOKEN_VALID_DURATION_SEC** (_required_): time in seconds before the generated access token expires;
 - **PROVIDER_TOKEN_PASS_PHRASE** (_required_): a string used to encrypt the JWT (preferred an HMAC at least of 128 bytes);
 - **MIA_REFRESH_TOKEN_VALID_DURATION_SEC** (_required_): time in seconds before the generated refresh token expires;
@@ -35,6 +38,10 @@ The environment variables needed by the service are:
 - **STORED_ACCESS_TOKEN_NUMBER** (_optional_): maximum number of stored access token associated to a user. The tokens are stored on Redis. Default is 10.
 - **REDIS_SESSIONS_SCOPE** (_required_): a string used to define the scope of redis in order to distinguish items in a multi-tenant architecture.
 - **STATE_MANAGER_EXPIRATION_TIME_MINUTES** (_optional_): Minutes the state should be maintained during registration, login, etc. Default is 2 minutes.
+- **MIA_JWT_TOKEN_SIGNING_METHOD** (default: `HS256`): The token signing method to be used. Currently supported methods are `HS256` (the default) and `RS256`
+- **MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH** (_optional_): required if  **MIA_JWT_TOKEN_SIGNING_METHOD** is RS256, the file name of the mounted private key, without extension.
+- **MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD** (_optional_): The password of the private key. Required only if the private key is password protected.
+- **MIA_JWT_TOKEN_PRIVATE_KEY_KID** (_optional_): required if  **MIA_JWT_TOKEN_SIGNING_METHOD** is RSA256, the kid of the current private key.
 
 ## Configurations file
 
