@@ -160,7 +160,7 @@ Similar to the _registry_ Projection, we ask you to add the following fields:
 | **order_id**    | String | The order ID. Check this field as "Required" and "Primary Key".|
 | **name**        | String | The name of the product.                                       |
 | **price**       | Number | The price of the product.                                      |
-| **date**        | Date   | The date when the order was placed.                            |
+| **date**        | String | The date when the order was placed.                            |
 | **registry_id** | String | The registry ID of the customer who placed the order.          |
 
 #### Ingestion Topics
@@ -463,20 +463,24 @@ It is important to also define the JSON Schema for the _order_ field of the Sing
 {
   "properties": {
     "id": {
+      "title": "Order id",
       "type": "string"
     },
     "price": {
+      "title": "Order Price",
       "type": "number"
     },
     "name": {
+      "title": "Order name",
       "type": "string"
     },
     "date": {
-      "type": "Date"
-    },
-    "additionalProperties": false,
-    "type": "object"
-  }
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object"
 }
 ```
 
