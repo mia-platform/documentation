@@ -75,7 +75,7 @@ The payload sent to the Extension is shaped as follows:
 | `annotations`  | Object   | Service annotation, fields (`name`, `value`, `description`) | |
 | `labels`       | Object   | Service labels, fields (`name`, `value`, `description`) | |
 | `resources`    | [Resource Schema](#resources-schema)   | CPU and MEM configuration | |
-| `probes`       | [Probes Schma](#probes-schema) | K8S probes configuration | |
+| `probes`       | [Probes Schema](#probes-schema) | K8S probes configuration | |
 | `containerPorts` | ContainerPort[] | List of ports exposed by the container (fields: `name`, `from`, `to`) | |
 | `configMaps`   | [ConfigMount[]](#configmount-schema) | List of configurations to be mounted | |
 | `terminationGracePeriodSeconds` | Number | Grace period time configuration | |

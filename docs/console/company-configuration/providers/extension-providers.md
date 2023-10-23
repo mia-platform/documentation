@@ -23,7 +23,7 @@ The steps to enable a Project Extension, using an Extension Provider, are the fo
 
 An Extension is characterized by a Provider capability:
 
-- **only one capability** is associatied to a specific Extension;
+- **only one capability** is associated to a specific Extension;
 - every Provider featuring that capability can be selected for that Extension.
 
 For example:
