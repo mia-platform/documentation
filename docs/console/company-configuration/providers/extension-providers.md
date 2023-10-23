@@ -6,7 +6,7 @@ sidebar_label: Extension Providers
 
 :::info
 
-Extension Providers can only be used when the [Enhanced Project Workflow](/docs/development_suite/set-up-infrastructure/enhanced-project-workflow) is enabled.
+Extension Providers can only be used when the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled.
 
 :::
 
@@ -14,9 +14,9 @@ Some providers can extend or replace specific Console features.
 
 The steps to enable a Project Extension, using an Extension Provider, are the following:
 
-- check that the [Enhanced Project Workflow](/docs/development_suite/set-up-infrastructure/enhanced-project-workflow) is enabled for the project; 
-- connect a _capable Provider_ (more details later) to its Company, as described in the [Management page](/docs/console/company-configuration/providers/configure-provider.mdx);
-- navigate to [_Project Settings_](/docs/console/project-configuration/project-settings) and click on the _Providers_ tab;
+- check that the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled for the project; 
+- connect a _capable Provider_ (more details later) to its Company, as described in the [Management page](/console/company-configuration/providers/configure-provider.mdx);
+- navigate to [_Project Settings_](/console/project-configuration/project-settings.md) and click on the _Providers_ tab;
 - enable the desired Extension in the _Extensions_ section, selecting a suitable Provider.
 
 ![Extension Provider banner](img/extension-provider-banner.png)
@@ -37,4 +37,4 @@ If no Provider with the capability associated to a specific Extension is connect
 
 The available Extensions are the following:
 
-- [Orchestrator Generator](extensions/orchestrator-generator.md)
+- [Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.md)
