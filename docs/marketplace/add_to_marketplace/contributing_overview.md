@@ -244,6 +244,7 @@ Therefore an application will include a **resources** field with the following s
   "endpoints": {},
   "collections": {},
   "unsecretedVariables": {},
+  "listeners": {},
 }
 ```
 
@@ -356,6 +357,17 @@ Here below are listed all the properties that must be provided for each public v
 
 - **productionEnv**: value to be used in production environments
 - **noProductionEnv**: value to be used in no production environments
+
+#### Configure Listeners
+
+The **listeners** field of an application is an Object where the object `key` is the name of the listener and the value is an object made of the following properties:
+
+- **name**: the name of the listener (same as the `key` of the Object)
+- **port**: the port that listener will be listening to
+- **description**: optional description for the listener
+- **selectedByDefault**: whether new Endpoints should be exposed on this listener or not
+- **ownedBy**: an Object made of the `componentIds` array. This array includes component ids of services that supports listeners and created by the same application template 
+
 
 ## Best Practices!
 
