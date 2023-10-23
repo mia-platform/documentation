@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2023-10-20
+
+### Added
+
+- Added support for side effects fired alongside commands
+- Added hook functions to build commands and side effects custom payload
+- Added possibility to deep merge saga metadata upon events reception
+
+### Fixed
+
+- convert a Buffer to string before logging it
+- add `tini` to Dockerfile
+
 ## v2.5.1 - 11-10-2023
 
 ### Added
