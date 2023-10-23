@@ -20,7 +20,6 @@ sidebar_label: Lookups
 [bk-form-drawer]: ../60_components/330_form_drawer.md
 [bk-crud-lookup-client]: ../60_components/170_crud_lookup_client.md
 
-[modal-modes]: ../60_components/210_dynamic_form_modal.md#modes
 [modal-lookup-queries]: ../60_components/210_dynamic_form_modal.md#lookupqueries
 [modal-conditional-fields]: ../60_components/210_dynamic_form_modal.md#conditional-fields
 [modal-writable-views]: ../60_components/210_dynamic_form_modal.md#writable-views
@@ -177,44 +176,12 @@ The following example shows a configuration of the Dynamic Form Modal designed t
         "rider": {"type": "object", "format": "lookup"}
       }
     },
-    "basePath": "/orders-view",
-    "omitSubmit": true,
-    "actions": {
-      "insert": [{
-        "content": "Add order",
-        "type": "primary",
-        "action": {
-          "type": "http",
-          "config": {
-            "url": "/orders-view/",
-            "method": "POST",
-            "body": "{{rawObject values}}"
-          }
-        }
-      }],
-      "select": [{
-        "content": "Update order",
-        "type": "primary",
-        "action": {
-          "type": "http",
-          "config": {
-            "url": "/orders-view/",
-            "method": "PATCH",
-            "body": "{{rawObject values}}"
-          }
-        }
-      }]
-    }
+    "basePath": "/orders-view"
   }
 }
 ```
 - being "rider" an `object` field with `lookup` format, is rendered as a select field
 - options for "rider" select field are dynamically fetched from `/orders-view/lookup/rider`
-- the default `submitButton` is overridden by a custom button that performs a POST with the whole body of the form to "/orders-view/" endpoint if the Dynamic Form Modal is operating under [*insert* mode][modal-modes], or an analogous PATCH if under [*edit* mode][modal-modes].
-
-:::info
-In the previous example, [`rawObject` helper][rawobject] is used to avoid form values from being stringified
-:::
 
 ### Example: Showing lookup fields in the Table
 

@@ -218,4 +218,4 @@ A component like the [File Manager][bk-file-manager] should pick up on this even
 | event                   | description                                                                                      |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
 | [update-data-with-file] | updates data by uploading a new file and patching the dataset with its storage location metadata |
-| [update-data]           | unlinks file on file delete                                                                      |
+| [update-data]           | requests data update after unlinking the file to the record                                              |

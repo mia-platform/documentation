@@ -282,8 +282,8 @@ Selecting a file establishes a link between the chosen file and the field being 
 
 ### Emits
 
-| event                   | description                                                                                      |
-| ----------------------- | ------------------------------------------------------------------------------------------------ |
-| [update-data-with-file] | updates data by uploading a new file and patching the dataset with its storage location metadata |
-| [update-data]           | unlinks file on file delete                                                                      |
-| [fetch-files]           | requests files to be fetched for preview                                                         |
+| event                   | description                                                                                              |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| [update-data-with-file] | requests data update by uploading a new file and patching the dataset with its storage location metadata |
+| [update-data]           | requests data update after unlinking the file to the record                                              |
+| [fetch-files]           | requests files to be fetched for preview                                                                 |

@@ -393,9 +393,12 @@ This is accomplished by emitting either a [create-data-with-file] or an [update-
 ### Working with Views
 
 The Dynamic Form Modal can be used with data from [Mia-Platform CRUD Service views][writable-views].
-An [example](#example-working-with-views) below shows how to configure a Dynamic Form Modal that handles writable views.
 
 #### Lookups
+
+:::info
+More in detail information is available with respect to lookup fields from writable views in the [dedicated section][lookup-flow].
+:::
 
 Fields described inside the data-schema as having type `object` or `array` and format `lookup` are rendered respectively as select and multi-select fields in the form.
 
@@ -404,13 +407,6 @@ Options for such fields are dynamically fetched from the endpoint specified in `
 The form stores selected values for lookup fields in their whole (not just `label` and `value` fields). Extra fields are thus available in submit payload, as well as in form [context](#dynamic-context).
 
 Extra queries can be specified to be applied when fetching options using property `lookupQueries`, which maps ids of lookup fields to ;`MongoDB`-like queries. [Dynamic values][dynamic configurations] are also available in property `lookupQueries`, being provided with [form context](#dynamic-context). An [example](#example-lookup-queries) is available.
-
-More information is available with respect to lookup fields from writable views in the [dedicated section][lookup-flow].
-
-#### Writable views
-
-`POST` and `PATCH` methods are supported by writable views, and expect the whole object to be inserted / updated as body of the request. To perform this task with the Dynamic Form Modal, it is possible to leverage the `actions` property of the component to include [extra buttons](#extra-buttons), instead of the default submit button, configuring them to initiate the needed POST or PATCH request.
-
 
 ### Conditional Fields
 
@@ -816,7 +812,7 @@ In the previous example, [helper][helpers] `rawObject` is used to avoid numeric 
 
 ### Example: Working with views
 
-The following example shows a configuration of the Dynamic Form Modal designed to interact with writable views:
+The Dynamic Form Modal should be provided with a value for the `basePath` property when it should interact with data coming form [writable views][writable-views].
 
 ```json
 {
@@ -826,47 +822,18 @@ The following example shows a configuration of the Dynamic Form Modal designed t
       "type": "object",
       "properties": {
         "name": {"type": "string"},
-        "rider": {"type": "object", "format": "lookup"}
+        "rider": {
+          "type": "object",
+          "format": "lookup"
+        }
       }
     },
-    "basePath": "/orders-view",
-    "omitSubmit": true,
-    "actions": {
-      "insert": [{
-        "content": "Add order",
-        "type": "primary",
-        "action": {
-          "type": "http",
-          "config": {
-            "url": "/orders-view/",
-            "method": "POST",
-            "body": "{{rawObject values}}"
-          }
-        }
-      }],
-      "select": [{
-        "content": "Update order",
-        "type": "primary",
-        "action": {
-          "type": "http",
-          "config": {
-            "url": "/orders-view/",
-            "method": "PATCH",
-            "body": "{{rawObject values}}"
-          }
-        }
-      }]
-    }
+    "basePath": "/orders-view"
   }
 }
 ```
 - being "rider" an `object` field with `lookup` format, is rendered as a select field
 - options for "rider" select field are dynamically fetched from `/orders-view/lookup/rider`
-- the default `submitButton` is overridden by a custom button that performs a POST with the whole body of the form to "/orders-view/" endpoint if the Dynamic Form Modal is operating under [*insert* mode](#modes), or an analogous PATCH if under [*edit* mode](#modes).
-
-:::info
-In the previous example, [helper][helpers] `rawObject` is used to avoid form values from being stringified
-:::
 
 
 ### Example: Conditionally disable a field
