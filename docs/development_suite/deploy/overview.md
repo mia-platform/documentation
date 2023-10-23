@@ -160,6 +160,17 @@ If you are not following sematic versioning, for example using `image:latest` or
 It is not recommended to activate the checkbox in a production runtime environment, because if some of your services by mistake have a pre-release or latest version tag they will be redeployed.
 :::
 
+
+### Export and review configuration files
+
+When using **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you will have the possibility to export and download the files in `tag.gz` format, or to review them directly inside the browser.
+
+![ExportAndReview](./img/export-and-review-files.png)
+
+While reviewing the files, you can select the one you view to open from the menu on the left. You can see the file content full-screen by clicking the top-right button with four outgoing arrows.
+
+![Review](./img/review-configuration-files.png)
+
 ## History
 
 The History Page is the second area of the Deploy section. In this tab it will be possible to visualize all the released deploy.
