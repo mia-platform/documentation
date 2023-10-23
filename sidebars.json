@@ -935,6 +935,10 @@
       },
       "items": [
         {
+          "id": "getting-started/tutorials/microservice-from-docker-image",
+          "type": "doc"
+        },
+        {
           "id": "getting-started/tutorials/microservice-hello-world",
           "type": "doc"
         },
@@ -948,6 +952,10 @@
         },
         {
           "id": "getting-started/tutorials/create-a-custom-microservice",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/microservice-with-metrics",
           "type": "doc"
         },
         {
@@ -1452,6 +1460,10 @@
       },
       "items": [
         {
+          "id": "release-notes/v11.7.1",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v11.7.0",
           "type": "doc"
         },
@@ -1469,6 +1481,18 @@
         },
         {
           "id": "release-notes/v11.6.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.6",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.5",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.4",
           "type": "doc"
         },
         {

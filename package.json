@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "11.7.0",
+  "version": "11.7.1",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -25,7 +25,7 @@
     "@docusaurus/preset-classic": "2.4.3",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.0.0",
-    "cspell": "^7.3.5",
+    "cspell": "^7.3.8",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
-    "@swc/core": "^1.3.92",
+    "@swc/core": "^1.3.93",
     "eslint": "^8.51.0",
     "eslint-plugin-react": "7.33.2",
     "prop-types": "^15.8.1"
