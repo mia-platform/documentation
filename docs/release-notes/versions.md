@@ -13,6 +13,7 @@ slug: "/release-notes/versions"
 | v11.6.2 | [Read the release notes](/release-notes/v11.6.2.md) |
 | v11.6.1 | [Read the release notes](/release-notes/v11.6.1.md) |
 | v11.6.0 | [Read the release notes](/release-notes/v11.6.0.md) |
+| v11.5.6 | [Read the release notes](/release-notes/v11.5.6.md) |
 | v11.5.5 | [Read the release notes](/release-notes/v11.5.5.md) |
 | v11.5.4 | [Read the release notes](/release-notes/v11.5.4.md) |
 | v11.5.3 | [Read the release notes](/release-notes/v11.5.3.md) |
