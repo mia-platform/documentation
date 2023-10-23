@@ -62,6 +62,21 @@
               "type": "doc"
             },
             {
+              "collapsed": true,
+              "type": "category",
+              "label": "Extension Providers",
+              "link": {
+                "id": "console/company-configuration/providers/extension-providers",
+                "type": "doc"
+              },
+              "items": [
+                {
+                  "id": "console/company-configuration/providers/extensions/orchestrator-generator",
+                  "type": "doc"
+                }
+              ]
+            },
+            {
               "id": "console/company-configuration/providers/api-reference",
               "type": "doc"
             }
