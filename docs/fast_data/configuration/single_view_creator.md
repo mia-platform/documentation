@@ -150,6 +150,28 @@ service.addHook('onClose', async() => {
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* `v9.1.0` or higher)
 
+## Attach to Single View
+
+To simplify the configuration of the Single View Creator service, you can attach a service previously created from the marketplace to a Single View.
+
+To do so, you must first create your Single View, update it with all the required configuration and then attach a _Single View Creator Service_ to it from the dedicated configuration page, that can be found inside the _Single View Creators_ tab.
+
+:::info
+You can even decide to attach more than one _Single View Creator_ service to a Single View. Every service will have its own configuration and will work separately.
+
+You can attach as many services as you want, but you can attach one service only to one Single View.
+:::
+
+After the selection of a _Single View Creator_ service you can access to the configuration page, and configure the _ER Schema_, the _Aggregation_, add a _Validator_ file and the _Single View Key_.
+
+Every update of these configuration will be reflected to the service config maps after saving the configuration.
+
+:::warning
+When a Single View Trigger Generator is attached to a Single View, the _ER Schema_, the _Aggregation_, the _Single View Key_ and the _Validator_ (if one) will be set in a _read-only_ mode.
+
+If you prefer to manually configure these services, you can always detach the service in the _Single View Creator_ tab, by clicking the detach icon in the table of Single View Creators.
+:::
+
 ## Upsert and Delete Strategies
 
 The Single View Creator provides different ways to handle the upsert and delete of Single View records through the `UPSERT_STRATEGY` and `DELETE_STRATEGY` environment variables.

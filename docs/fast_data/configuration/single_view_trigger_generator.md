@@ -40,12 +40,36 @@ When creating the service from the marketplace the following environment variabl
 | MANUAL_STRATEGIES_FOLDER         | -        | Path to the custom strategies folder where the custom strategies scripts are stored                                                                                                                     | -             |
 | TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Path to the custom functions folder used in `__fromFile__` values                                                                                                                                       | ''            |
 
-## Config Maps
+## Attach to Single View
+
+:::info
+This feature is available from version `v.11.8.0` of Mia-Platform Console
+:::
+
+To simplify the configuration of the Single View Trigger Generator service, you can attach a Single View Trigger Generator service previously created from the marketplace to a Single View.
+
+To do so, you must first create your Single View and [attach a _Single View Creator Service_ to it](/fast_data/configuration/single_view_creator.md#attach_to_single_view) from the dedicated configuration page. This is needed because the Single View Trigger Generator can work with one and only one Single View Creator Service.
+
+After this, in the _Single View Creator_ tab of the _Single View_ modal enter inside the configuration page of the Single View Creator configured and select the _Single View Trigger Generator_ tab. When inside you will allowed to select a Single View Trigger Generator among the ones configured and available. After selecting it, you can modify the configuration of two configMaps: the _Projection Changes Schema_ and the _Kafka Projection Updates_.
+
+![Single View Trigger Generator configuration page](./img/svtg-configuration.png)
+
+Every update of these configuration will be reflected to the service config maps after saving the configuration.
+
+Also, when a service is attached to a Single View, the _ER Schema_ config map will be automatically updated to use the same _ER Schema_ applied to the related Single View Creator, and also the environment variable `SINGLE_VIEW_NAME` will be automatically set to the name of the Single View.
+
+:::warning
+When a Single View Trigger Generator is attached to a Single View, the environment variable `SINGLE_VIEW_NAME` will be set in a _read-only_ mode, as well as the config maps of the _ER Schema_, the _Projection Changes Schema_ and the _Kafka Projection Updates_.
+
+If you prefer to manually configure these services, you can always detach the service in the _Single View Trigger Generator_ tab, by clicking the small "x" icon next to the name of the service inside the dropdown menu.
+:::
+
+## config maps
 
 The service can use the following 3 config maps:
 
 :::note
-When creating the service from the marketplace the following config maps will be created for you with some default values but you still need to properly configure them to make the service work
+When creating the service from the marketplace the following config maps will be created for you with some default values. The _Event Store Config_ must be manually modified from the _Microservice_ page to include all the missing configuration, but the _ER Schema_, the _Projection Changes Schema_ and the _Kafka Projection Updates_ configuration can be simplified by attaching the service to a Single View: in this case, the environment variables and config maps for these three config maps will be automatically managed by the application.
 :::
 
 ### ER Schema
@@ -68,6 +92,12 @@ The Kafka Projection Updates config map contains the `kafkaProjectionUpdates.jso
 
 Remember to copy/paste the mount path into the `KAFKA_PROJECTION_UPDATES_FOLDER` environment variable so the service can read the file.
 If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
+
+:::warning
+If you attach the service to a Single View, the _Kafka Projection Updates_ config map can be modified to support *only* automatic strategies.
+
+If you need to use manual strategies for one or more projections, please detach the service and configure the config maps from the _Microservices_ page.
+:::
 
 ### Event Store Config
 

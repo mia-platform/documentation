@@ -56,18 +56,21 @@ Here below, instead, all the configurations the service accepts are explained.
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
 | USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
 
-### Multiple services to the same System of Records
+## Attach to System of Records
 
-From version `11.7.0` of the Console it is possible to have a single System of Records attached to multiple Real-Time Updater. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
+From version `11.7.0` of the Console it is possible to have a one or more Real-Time Updater services attached a System of Records. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
 
 :::caution
-Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will
-actually update those projections.
+Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will actually update those projections.
+
+Also remember that a projection can be evaluated by only one service.
 :::
 
-:::info
-One projection can be evaluated by only one service.
-:::
+When a service is attached to a Real-Time Updater, some of its config maps are automatically updated and set as _read-only_, since it will be automatically managed by the console. Every update on a System of Records (such as adding, removing or updating a projection - or modifying the Message Adapter) will trigger the update of these config maps after saving the configuration.
+
+Also, the environment variables `SYSTEM_OF_RECORDS` and `KAFKA_MESSAGE_ADAPTER` (and, eventually, the `KAFKA_ADAPTER_FOLDER`) will be automatically updated after saving the configuration, and they will not be manually editable because these are going to be managed exclusively from the System of Records configuration module.
+
+Detaching the module, clicking on the _Detach microservice_ button from the service page inside the _System of Records_ module and saving the configuration, will cause the environment variables and config maps to be editable again, in case you need to manually configure the Real-Time Updater.
 
 ### Usage of the Low Code
 
