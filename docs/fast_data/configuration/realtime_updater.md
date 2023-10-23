@@ -58,19 +58,17 @@ Here below, instead, all the configurations the service accepts are explained.
 
 ## Attach to System of Records
 
-From version `11.7.0` of the Console it is possible to have a one or more Real-Time Updater services attached a System of Records. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
+Starting from version `11.7.0` of the Console, it is now possible to attach one or more Real-Time Updater services to a System of Records. The _System of Records_ page features a tab where you can attach one or more services and specify which projections of the System should be evaluated by each Real-Time Updater.
 
 :::caution
-Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will actually update those projections.
-
-Also remember that a projection can be evaluated by only one service.
+Please remember that, after attaching a Real-Time Updater to the System of Records, you must select the projections that the service should evaluate (selecting all of them is possible) to ensure the service updates those projections. Additionally, note that each projection can be evaluated by only one service.
 :::
 
-When a service is attached to a Real-Time Updater, some of its config maps are automatically updated and set as _read-only_, since it will be automatically managed by the console. Every update on a System of Records (such as adding, removing or updating a projection - or modifying the Message Adapter) will trigger the update of these config maps after saving the configuration.
+When a service is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
 
-Also, the environment variables `SYSTEM_OF_RECORDS` and `KAFKA_MESSAGE_ADAPTER` (and, eventually, the `KAFKA_ADAPTER_FOLDER`) will be automatically updated after saving the configuration, and they will not be manually editable because these are going to be managed exclusively from the System of Records configuration module.
+Furthermore, the environment variables `SYSTEM_OF_RECORDS` and `KAFKA_MESSAGE_ADAPTER` (and, if applicable, `KAFKA_ADAPTER_FOLDER`) will be automatically updated upon saving the configuration. These variables are not manually editable because they are managed exclusively from the System of Records configuration module.
 
-Detaching the module, clicking on the _Detach microservice_ button from the service page inside the _System of Records_ module and saving the configuration, will cause the environment variables and config maps to be editable again, in case you need to manually configure the Real-Time Updater.
+Should you need to manually configure the Real-Time Updater, you can detach the module by clicking the "Detach microservice" button from the service page within the System of Records module and saving the configuration. This will make the environment variables and configuration maps editable again.
 
 ### Usage of the Low Code
 

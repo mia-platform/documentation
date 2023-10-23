@@ -40,28 +40,30 @@ When creating the service from the marketplace the following environment variabl
 | MANUAL_STRATEGIES_FOLDER         | -        | Path to the custom strategies folder where the custom strategies scripts are stored                                                                                                                     | -             |
 | TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Path to the custom functions folder used in `__fromFile__` values                                                                                                                                       | ''            |
 
-## Attach to Single View
+## Attaching a Service to a Single View
 
 :::info
-This feature is available from version `v.11.8.0` of Mia-Platform Console
+This feature is available from version `v.11.8.0` of Mia-Platform Console.
 :::
 
-To simplify the configuration of the Single View Trigger Generator service, you can attach a Single View Trigger Generator service previously created from the marketplace to a Single View.
+To simplify the configuration of the Single View Trigger Generator service, you can attach a previously created Single View Trigger Generator service from the marketplace to a Single View.
 
-To do so, you must first create your Single View and [attach a _Single View Creator Service_ to it](/fast_data/configuration/single_view_creator.md#attach_to_single_view) from the dedicated configuration page. This is needed because the Single View Trigger Generator can work with one and only one Single View Creator Service.
+Here's how to do it:
 
-After this, in the _Single View Creator_ tab of the _Single View_ modal enter inside the configuration page of the Single View Creator configured and select the _Single View Trigger Generator_ tab. When inside you will allowed to select a Single View Trigger Generator among the ones configured and available. After selecting it, you can modify the configuration of two configMaps: the _Projection Changes Schema_ and the _Kafka Projection Updates_.
+First, create your Single View and attach a _Single View Creator Service_ to it [from the dedicated configuration page](/fast_data/configuration/single_view_creator.md#attach_to_single_view). This is necessary because the Single View Trigger Generator can work with only one Single View Creator Service.
+
+Within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured. Next, select the _Single View Trigger Generator_ tab. Here, you can choose a Single View Trigger Generator from the available configurations. After selecting it, you can modify the configuration of two configMaps: the _Projection Changes Schema_ and the _Kafka Projection Updates_.
 
 ![Single View Trigger Generator configuration page](./img/svtg-configuration.png)
 
-Every update of these configuration will be reflected to the service config maps after saving the configuration.
+Any updates to these configurations will be reflected in the service config maps after saving the configuration.
 
-Also, when a service is attached to a Single View, the _ER Schema_ config map will be automatically updated to use the same _ER Schema_ applied to the related Single View Creator, and also the environment variable `SINGLE_VIEW_NAME` will be automatically set to the name of the Single View.
+Additionally, when a service is attached to a Single View, the _ER Schema_ config map will be automatically updated to match the _ER Schema_ applied to the associated Single View Creator. Also, the environment variable `SINGLE_VIEW_NAME` will be set automatically to the name of the Single View.
 
 :::warning
-When a Single View Trigger Generator is attached to a Single View, the environment variable `SINGLE_VIEW_NAME` will be set in a _read-only_ mode, as well as the config maps of the _ER Schema_, the _Projection Changes Schema_ and the _Kafka Projection Updates_.
+When a Single View Trigger Generator is attached to a Single View, the environment variable `SINGLE_VIEW_NAME` will be set to "read-only" mode, as well as the config maps for the _ER Schema_, _Projection Changes Schema_, and _Kafka Projection Updates_.
 
-If you prefer to manually configure these services, you can always detach the service in the _Single View Trigger Generator_ tab, by clicking the small "x" icon next to the name of the service inside the dropdown menu.
+If you prefer to manually configure these services, you can always detach the service in the _Single View Trigger Generator_ tab by clicking the small "x" icon next to the service name inside the dropdown menu.
 :::
 
 ## config maps
