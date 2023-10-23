@@ -329,11 +329,17 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.projection-change` as well.
 
-## Custom Projection Changes Collection
+## Projection Changes Collection
 
-You can choose to use a collection you have already created in the CRUD section.  
+[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
 
-In order to do that, your collection is supposed to have the following fields (apart from the default ones):
+If the environment variable `PROJECTIONS_CHANGES_ENABLED`, you will be required to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
+
+If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (max 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection for you. This collection can be modified by you in any moment.
+
+If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service.
+
+In any case, your collection is supposed to have the following fields (apart from the default ones):
 
 ```json
 [
@@ -377,8 +383,6 @@ You need to add the following index fields:
 
 - *name* `identifier`, *order* `ASCENDENT`
 - *name* `type`, *order* `ASCENDENT`
-
-After that, you need to set your collection as the one to be used by the Real-Time Updater. To do so, set the name of the collection you want to use as value of the `PROJECTIONS_CHANGES_COLLECTION_NAME` environment variable of the service.
 
 :::note
 To allow the Single View Creator to read from the Projection Changes, the collection name should also be set in the `PROJECTIONS_CHANGES_COLLECTION` environment variable of your Single View Creator service. 
