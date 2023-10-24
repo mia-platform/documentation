@@ -12,10 +12,10 @@ An Orchestrator Generator can only be used when the [Enhanced Project Workflow](
 
 :::
 
-One of the main features of Mia-Platform is the automatic generation of the **orchestrator's files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
+One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
 
-It could be that you would want to generate those files differently: if this is the case, you should use an **Orchestrator Generator**.
-When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the deploy files. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
+However, you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.
+When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the files to be deployed. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
 
 ## Setup
 

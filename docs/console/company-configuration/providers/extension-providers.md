@@ -17,4 +17,4 @@ Depending on the Extension you would like to enable, select the corresponding **
 
 The available Extensions are the following:
 
-- [Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx): allows to generate orchestrator's files externally.
+- [Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx): allows to generate orchestrator files externally.
