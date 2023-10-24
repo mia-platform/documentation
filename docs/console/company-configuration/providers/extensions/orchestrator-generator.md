@@ -4,25 +4,50 @@ title: Orchestrator Generator
 sidebar_label: Orchestrator Generator
 ---
 
-Capability: `Orchestrator Generator`
+![Orchestrator Generator](img/orchestrator-generator.png)
 
-An Orchestrator Generator can generate orchestrator's **files**, ready to **deploy**, which are saved in the **configuration repository**. For instance, it could generate Kubernetes files.
-If the Extension is enabled, the Console will send a **POST request** to its Provider's API Base URL to generate the deploy files. The request body will contain some information about the Project and the Configuration. The Console will expect to receive, in response, the files.
+:::info
+
+An Orchestrator Generator can only be used when the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled.
+
+:::
+
+One of the main features of Mia-Platform is the automatic generation of the **orchestrator's files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console could generate Kubernetes files.
+
+It could be that you would want to generate those files differently: if this is the case, you should use an **Orchestrator Generator**.
+When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the deploy files. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files.
+
+## Setup
+
+To enable the Orchestrator Generator on a Project, follow these steps:
+
+- check that the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled for the Project;
+- connect a Provider of type Extension API Provider with the **Orchestrator Generator capability** to its Company, as described in the [Extension API Provider page](/console/company-configuration/providers/extension-providers.md);
+- navigate to [Project Settings](/console/project-configuration/project-settings.md) and click on the _Providers_ tab;
+- enable the Orchestrator Generator extension in the _Extensions_ section, selecting the Provider previously connected.
+
+![Extension Provider banner](img/orchestrator-generator-activation.png)
+
+The Providers suitable for the Orchestrator Generator Extension are the ones featuring the **Orchestrator Generator** capability.
+Every Provider with such capability can be selected to enable the Extension.
+
+If no Provider with the _Orchestrator Generator_ capability is connected to the Company, **the Orchestrator Generator Extension will not appear in Project Settings**.
+
+## Sequence diagram
+
+This is a simplified schema of the Orchestrator Generator's functioning.
+
+![Orchestrator Generator Sequence diagram](img/orchestrator-generator-sequence-diagram.png)
 
 ## Request format
 
-### Headers
+### Authentication
 
-For security concerns, the request is provided with a specific header, `X-Mia-Signature`, which can be used to validate that the payload comes from the Console.
-
-| Header | Value |
-|---|---|
-| `X-Mia-Signature` | `hex(sha256(payload + secret))` |
+The Console will authenticate using the method specified while connecting the Provider, which can be **Bearer Token** or **Basic Auth**.
 
 ### Body
 
 The payload sent to the Extension is shaped as follows:
-
 
 ```json
 {
@@ -239,7 +264,7 @@ The response, coming from the Extension and received by the Console, must be an 
 
 ```json
 {
-    "values.yaml": "the content of the values file ...",
-    "my-service.deployment.yml": "the content of the deployment file for my-service"
+    "values.yaml": "the content of the values file...",
+    "my-service.deployment.yml": "the content of the deployment file for my-service..."
 }
 ```

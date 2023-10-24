@@ -1,40 +1,20 @@
 ---
 id: extension-providers
-title: Extension Providers
-sidebar_label: Extension Providers
+title: Extension API Providers
+sidebar_label: Extension API Providers
 ---
 
-:::info
+The Extension API Provider can extend or replace some Console features.
+Extensions work by telling the Console to call a remote API to perform a specific task, that would, otherwise, be completed independently.
 
-Extension Providers can only be used when the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled.
+To enable an Extension, you should connect a Provider of type **Extension API** to the desired Company, following the steps described in the [Management page](/console/company-configuration/providers/configure-provider.mdx).
 
-:::
+![Extension API Provider](img/extension-api-provider.png)
 
-Some providers can extend or replace specific Console features.
-
-The steps to enable a Project Extension, using an Extension Provider, are the following:
-
-- check that the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled for the project; 
-- connect a _capable Provider_ (more details later) to its Company, as described in the [Management page](/console/company-configuration/providers/configure-provider.mdx);
-- navigate to [_Project Settings_](/console/project-configuration/project-settings.md) and click on the _Providers_ tab;
-- enable the desired Extension in the _Extensions_ section, selecting a suitable Provider.
-
-![Extension Provider banner](img/extension-provider-banner.png)
-
-An Extension is characterized by a Provider capability:
-
-- **only one capability** is associated to a specific Extension;
-- every Provider featuring that capability can be selected for that Extension.
-
-For example:
-
-- The Providers _Provider 1_ and _Provider 2_, both having the _Extension Feature_ capability, are connected to the Company.
-- The Extension _Extension Feature_ appears in the Project Settings, and allows you to select _Provider 1_ or _Provider 2_.
-
-If no Provider with the capability associated to a specific Extension is connected to the Company, *the Extension will not appear in Project Settings*.
+Depending on the Extension you would like to enable, select the corresponding **capability** from the ones featured by the Extension API Provider type.
 
 ## Extensions
 
 The available Extensions are the following:
 
-- [Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.md)
+- [Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.md): allows to generate orchestrator's files externally.
