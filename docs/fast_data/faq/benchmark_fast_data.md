@@ -129,7 +129,7 @@ This issue can be seen only with a huge amount of data: before releasing your se
 
 ### Why the RTU is processing ingestion messages at slow rate?
 
-When a strategies retrieves a huge number of projection identifiers, it may happen that the ingestion rate of the RTU decreases: this may increase the lag of your applicat, which may be critical in case there are some real-time boundaries.
+When a strategies retrieves a huge number of projection identifiers, it may happen that the ingestion rate of the RTU decreases: this may increase the lag of your application, which may be critical in case there are some real-time boundaries.
 
 In this case, consider using an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture) and move the strategies to the [Single View Trigger Generator (SVTG)](/fast_data/single_view_trigger_generator.md): in this way, the Real Time Updater just stores projections on MongoDb to produce a pr-update message, that will be processed by the SVTG.
 
