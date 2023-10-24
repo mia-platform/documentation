@@ -66,14 +66,6 @@ This feature is available from the [Deploy Page](/development_suite/deploy/overv
 The following features are still in development and will be available in future releases.
 :::
 
-### Kubernetes configuration review
-
-Before deploying the configurations to the cluster, users will be able to **review** which workload changes are going to be deployed by opening the review modal. This operation gives the developer a clear view of what is going to be released on the runtime environment, and it is especially important if the user is deploying on a production environment. 
-
-### Kubernetes configuration export
-
-Users will be able to **export Kubernetes configurations** with a simple click of a button.
-
 ### Improvements to Project Settings
 
 As of today, some **Project customizations** can be performed only through the backoffice:
