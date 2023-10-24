@@ -55,19 +55,16 @@ When Kubernetes configurations are generated, they get tailored for the specific
 
 The new deployment workflow also unlocks the possibility to adopt a **pull-based deployment strategy**, in which a GitOps tool can be set up to automatically align the cluster state to the latest changes pushed to the Git repository. To find out more about pull-based deployment and its advantages, visit the [GitOps deployment strategy documentation page](/development_suite/deploy/gitops-based/index.md).
 
+### Kubernetes configuration review and export
+
+This workflow enables users to review and export generated configurations before these are even deployed to the cluster.  
+This feature is available from the [Deploy Page](/development_suite/deploy/overview.md#export-and-review-configuration-files) after selecting the revision to deploy.
+
 ## Roadmap and future improvements
 
 :::note
 The following features are still in development and will be available in future releases.
 :::
-
-### Kubernetes configuration review
-
-Before deploying the configurations to the cluster, users will be able to **review** which workload changes are going to be deployed by opening the review modal. This operation gives the developer a clear view of what is going to be released on the runtime environment, and it is especially important if the user is deploying on a production environment. 
-
-### Kubernetes configuration export
-
-Users will be able to **export Kubernetes configurations** with a simple click of a button.
 
 ### Improvements to Project Settings
 
