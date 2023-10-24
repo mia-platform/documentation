@@ -27,7 +27,7 @@ This might happen when different composable pages have different versions of the
 but errors might arise when the final website is deployed.
 
 The default configuration of the Configurator section, once the [application](../../../runtime_suite_applications/backoffice/overview) is
-added to your Console project, on the branch you're currently working on, is preset to use the components library 
+added to your Console project, on the branch you're currently working on, is preset to use the components library
 [@micro-lc/bk-web-components](https://www.jsdelivr.com/package/npm/@micro-lc/bk-web-components), which is well-suited to
 visualize data through tables, cards and galleries.
 
@@ -67,7 +67,7 @@ CDN service. Most of the times, static assets are served through a webserver lik
 If any custom header is required to access this resource, follow the [API key authenticated strategy](#api-key-authenticated-endpoint).
 
 The webserver serving the library assets must provide an extra access control header. On an nginx
-webserver this can be achieved via the rule [`add_header`](http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header). 
+webserver this can be achieved via the rule [`add_header`](http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header).
 For instance, an nginx snippet might look like
 
 ```nginx
@@ -112,7 +112,29 @@ location / {
   }
 
   add_header                      'Access-Control-Allow-Origin' '*';
+
+  # 👇 for webserver => looks inside the root folder
   try_files                       $uri $uri/index.html /index.html =404;
+}
+```
+
+or maybe proxy-reversed to another service by applying the following configuration to your API gateway
+
+```nginx
+location /backoffice-web-components/ {
+  if ($request_method = 'OPTIONS') {
+    add_header                    'Access-Control-Allow-Origin' '*';
+    add_header                    'Access-Control-Allow-Methods' 'GET';
+    add_header                    'Access-Control-Allow-Headers' 'secret';
+    add_header                    'Content-Type' 'text/plain; charset=utf-8';
+    add_header                    'Content-Length' 0;
+    return                        204;
+  }
+
+  add_header                      'Access-Control-Allow-Origin' '*';
+
+  # 👇 notice the proxy pass statement
+  proxy_pass                      http://$proxy_name$proxy_url;
 }
 ```
 
@@ -128,6 +150,15 @@ perform the actual fetch including custom headers.
 
 The authorization service must be instructed to serve resources by including an API key matching the `Secret` header.
 
+Once the API key secret is set up, the _Backoffice Configurations_ section of the Mia-Platform Console must be instructed with advanced options in the [Source Maps](../40_configurator_settings.md#source-maps) section.
+A resource must thus include custom headers to perform the request:
+
+1. Add a resource in the _Source Map_ tab of the _Configurator Settings_ modal
+2. Edit the resource as a JSON file
+3. Add a key `headers` with the required custom header (see the image below)
+
+![Source map fetch options](../img/configurator-settings_source-map-fetch-options.png)
+
 ### Configure **Mia-Platform Console** to support preflight requests
 
 The following actions need to be addressed:
@@ -137,7 +168,7 @@ The following actions need to be addressed:
    for your resource like `custom_components`, then click on `Active` and then `Create`
 
 2. considering that static resources might be already available on an authenticated production endpoints as `/my-library`,
-   create a new endpoint, like `/external/my-library`, and link it to the relevant resource. Once created, on 
+   create a new endpoint, like `/external/my-library`, and link it to the relevant resource. Once created, on
    `Endpoint settings` → `Security`, remove `Authentication required` and check `API Key required`, then on `User Group Permission`
    add the boolean rule `clientType == "custom_components"` matching the `ClientType` created previously.
 
@@ -221,7 +252,7 @@ static get __manifest(): Promise<Manifest> {
 ```
 
 The **manifest** file, after JSON-stringify process, must validate an
-[extension](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/template.schema.json) of a draft-07 
+[extension](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/template.schema.json) of a draft-07
 [JSON schema](https://json-schema.org) where the `type` is always `object` and the field `properties` is an object listing
 the configurable properties of the custom webcomponent.
 
