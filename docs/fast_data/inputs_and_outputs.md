@@ -780,7 +780,7 @@ channels:
           properties:
             key:
               type: object
-              description: Identifier of the Single View or the Projection (depending on the value.type)
+              description: Identifier of the Single View
               additionalProperties: true
             value:
               type: object
@@ -788,10 +788,27 @@ channels:
                 - __internal__kafkaInfo
                 - change
               properties:
+                singleViewName:
+                  type: string
+                  description: Name of the Single View
                 singleViewIdentifier:
                   type: object
-                  description: Identifier of the Single View just like the Projection Changes Identifier. Mind that this field will be set only in case of type aggregation and not patch
+                  description: Identifier of the Single View just like the Projection Changes Identifier
                   additionalProperties: true
+                retry:
+                  type: object
+                  properties:
+                    lastError:
+                      type: object,
+                      description: Details of the last error that made the aggregation fail
+                      properties:
+                        type:
+                          type: string
+                        message:
+                          type: string
+                    attempts:
+                      type: number
+                      description: Number of attempts the Single View has been tried for
                 change:
                   type: object
                   description: Contains information about the projection record that triggered the strategy
