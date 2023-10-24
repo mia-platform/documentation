@@ -928,5 +928,5 @@
   "/docs/runtime_suite_templates/identification-provider-adapter/configuration": {
     "destination": "/docs/runtime_suite_templates/application-service-adapter/configuration",
     "addedOn": "2023-10-24"
-  },
+  }
 }
