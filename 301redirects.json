@@ -924,5 +924,9 @@
   "/docs/runtime_suite_templates/identification-provider-adapter/changelog": {
     "destination": "/docs/runtime_suite_templates/application-service-adapter/changelog",
     "addedOn": "2023-10-24"
-  }
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/configuration": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/configuration",
+    "addedOn": "2023-10-24"
+  },
 }
