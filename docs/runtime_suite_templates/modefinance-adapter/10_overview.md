@@ -13,7 +13,7 @@ The following events are sent by default by the service:
 - actionError
 
 ### POST /s-peek-extended
-With this endpoint the service calls [*Modefinance* S-Peek Extended API](https://api.modefinancegate.com/it/doc/v1/index) and proxies the response to the flow manager router service defined in the ROUTER_URL environemnt variable as follow:
+With this endpoint the service calls [*Modefinance* S-Peek Extended API](https://api.modefinancegate.com/it/doc/v1/index) and proxies the response to the flow manager router service defined in the ROUTER_URL environment variable as follow:
 
 Request
 ```json
