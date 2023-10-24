@@ -12,7 +12,7 @@ Each listener is mapped to a single port and defines rules to route incoming req
 This page describes the features of a Listener and how to configure these from the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Console.
 
 :::info
-Currently Listeners are only available to Projects using an **Envoy API Gateway**.
+Currently only Projects using configured with an [**Envoy API Gateway**](/runtime_suite/envoy-api-gateway/overview.md) can access the Listeners feature.
 :::
 
 ## Create a Listener
@@ -27,12 +27,13 @@ Follow these three steps in order to create a new Listener and make an Endpoint 
 To create a new listener, just click the **Add Listener** button and specify its `name` and `port`. Both fields must be unique in the Project. 
 
 Optionally, during listener creation, you can define whether to:
-- **expose all new endpoints** that will be created on that listener by default
+- **select the listener** by default when creating a new endpoint
 - **expose all existing endpoints** on that listener
 
 ![create-listener](img/listeners/create-listener.png)
 
 Creating a new Listener means opening the relative container port on the API Gateway too. This step is automated and in fact you can find the new port under the Container Ports section of the API Gateway.  
+
 :::caution
 Container Ports associated to Listeners cannot be deleted. To delete them firstly delete the Listener and then you can delete the port.
 :::
@@ -51,24 +52,7 @@ In order to receive incoming requests from the newly exposed API Gateway port, i
 :::info
 For example, if your Kubernetes cluster is configured to use [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress/) as Ingress Controller provider, you may need to define a new [IngressRoute](https://doc.traefik.io/traefik/providers/kubernetes-crd/).
 
-To do this, on the git repository of your Project locate the correct `.ingressroute.yaml` file for your environment and extend it with the new route and defining a new `host`.  
-The resulting file should look like this:
-
-``` yaml
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata: # your metadata here ...
-spec:
-  entrypoints: # your entrypoints config here ...
-  routes:
-  - # some already existing route here ...
-  - match: Host(`<put-a-host-here>.<your-domain-here>`) # e.g.: Host(`mobile-apis.your-domain.com`)
-    kind: Rule
-    services:
-      - name: api-gateway # the name of your API Gateway service
-        port: 8082 # the port just exposed
-
-```
+For more details on configuring a new IngressRoute, please refer to [this guide](/paas/traefik#expose-an-endpoint).
 :::
 
 ## Edit a Listener
@@ -86,7 +70,7 @@ This means that changing the port of a Listener will also enable the relative po
 To delete a listener just click on the delete action.
 
 :::warning
-Be aware that any Endpoint **only exposed by** the Listener you want to delete, will be deleted too.
+Be aware that Endpoints that are **only exposed by** the Listener you are deleting, will be deleted as well.
 :::
 
 ![delete-listener](img/listeners/delete-listener.png)
