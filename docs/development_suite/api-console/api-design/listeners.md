@@ -4,6 +4,14 @@ title: Create Listeners
 sidebar_label: Create Listeners
 ---
 
+## Listeners Management
+
+From the Design area you can manage your Listeners and control where your Endpoints are exposed. This means that you can map Endpoints to different Listeners, which will make them available on different exposed domains.
+
+:::info
+Currently only Projects using configured with an [**Envoy API Gateway**](/runtime_suite/envoy-api-gateway/overview.md) can access the Listeners feature.
+:::
+
 ## What is a Listener
 
 A Listener is a logical entity configured on your API Gateway that checks for incoming connection requests directed to your cluster.  
@@ -11,9 +19,6 @@ Each listener is mapped to a single port and defines rules to route incoming req
 
 This page describes the features of a Listener and how to configure these from the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Console.
 
-:::info
-Currently only Projects using configured with an [**Envoy API Gateway**](/runtime_suite/envoy-api-gateway/overview.md) can access the Listeners feature.
-:::
 
 ## Create a Listener
 
@@ -52,7 +57,7 @@ In order to receive incoming requests from the newly exposed API Gateway port, i
 :::info
 For example, if your Kubernetes cluster is configured to use [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress/) as Ingress Controller provider, you may need to define a new [IngressRoute](https://doc.traefik.io/traefik/providers/kubernetes-crd/).
 
-For more details on configuring a new IngressRoute, please refer to [this guide](/paas/traefik#expose-an-endpoint).
+For more details on configuring a new IngressRoute, please refer to [this guide](/paas/traefik.md#expose-an-endpoint).
 :::
 
 ## Edit a Listener
