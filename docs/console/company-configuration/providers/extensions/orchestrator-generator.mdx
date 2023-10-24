@@ -12,10 +12,10 @@ An Orchestrator Generator can only be used when the [Enhanced Project Workflow](
 
 :::
 
-One of the main features of Mia-Platform is the automatic generation of the **orchestrator's files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console could generate Kubernetes files.
+One of the main features of Mia-Platform is the automatic generation of the **orchestrator's files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
 
 It could be that you would want to generate those files differently: if this is the case, you should use an **Orchestrator Generator**.
-When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the deploy files. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files.
+When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the deploy files. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
 
 ## Setup
 
@@ -35,9 +35,24 @@ If no Provider with the _Orchestrator Generator_ capability is connected to the 
 
 ## Sequence diagram
 
-This is a simplified schema of the Orchestrator Generator's functioning.
+This is a simplified schema of the Orchestrator Generator's operation.
 
-![Orchestrator Generator Sequence diagram](img/orchestrator-generator-sequence-diagram.png)
+```mermaid
+sequenceDiagram
+    actor client as Client
+    participant console as Console
+    participant orch as Orchestrator Generator Provider
+    participant git as Git Provider
+    client->>console: Trigger deploy
+    console->>orch: POST (extension API URL)
+    Note over console,orch: External configurator payload
+    orch->>console: 200: generated configuration
+    Note over console,orch: {fileName1: fileContent1,<br>fileName2: fileContent2}
+    console->>console: Public variable interpolation
+    console->>git: Commit configurations
+    git->>console: 200: commitId
+    console->>client: 200: commitId, refName
+```
 
 ## Request format
 
@@ -158,6 +173,9 @@ Each additional container has a similar shape of the main service, holding the f
 
 #### Service data model example
 
+<details>
+<summary>JSON request body</summary>
+
 ```json
 {
     "name": "my-service",
@@ -255,6 +273,8 @@ Each additional container has a similar shape of the main service, holding the f
     ]
 }
 ```
+
+</details>
 
 ## Response format
 
