@@ -11,7 +11,7 @@ on which service is compatible with the others, which versions should be skipped
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.6       |             3.1.2             |        6.2.1        |
+|       7.5.6       |             3.1.2             |        6.2.2        |
 
 ## Compatibility Matrix
 
@@ -38,7 +38,7 @@ is `v7.5.4`
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.6       |             3.1.2             |        6.2.1        |
+|       7.5.6       |             3.1.2             |        6.2.2        |
 
 ## Projection Storer Support
 
@@ -51,14 +51,14 @@ the final aggregated Single View.
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       1.0.0       |             3.1.2             |        6.2.1        |
+|       1.0.0       |             3.1.2             |        6.2.2        |
 
 
 ### Recommended Services Version
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       1.0.0       |             3.1.2             |        6.2.1        |
+|       1.0.0       |             3.1.2             |        6.2.2        |
 
 ## Bucket Storage Support
 
@@ -82,7 +82,8 @@ from working as intended.
 
 ### Single View Creator
 
-- `v6.2.0`: affected by a bug on the Kafka Consumer. Please upgrade to `v6.2.1` or newer
+- `v6.2.0`: affected by a bug on the Kafka Consumer. Please upgrade to `v6.2.2` or newer
+- `v6.2.1`: unintended breaking change found for user that exploited `ramda` dependency in SVC user-defined functions. Please upgrade to `v6.2.2` or newer
 
 ### Ingestion Storer
 
