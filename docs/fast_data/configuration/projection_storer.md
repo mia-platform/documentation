@@ -126,9 +126,10 @@ Here is described the interface of the custom message adapter function:
 
 **Input**
 
-- `messageKey` → `ByteArray` (Kotlin) / `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic  
-- `payload` → `Map<String, Any>?` → a map object that contains the payload of the incoming message from the ingestion topic.  
-**Note:** in Javascript it is necessary to use the Kotlin Map methods to access the key / value entries of the object.
+- `message` → a map representing the ingestion message. It contains the following properties:
+  - `key` → `ByteArray` (Kotlin) / `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic  
+  - `value` → `Map<String, Any>?` → a map object that contains the payload of the incoming message from the ingestion topic.  
+**Note:** in Javascript it is necessary to use the Kotlin Map (e.g. `get`, `containsKey`, ...) methods to access the key / value entries of the object.
 - `primaryKeys` → `List<String>` → the list of fields that compose the primary key identifier for that specific projection
 - `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
 
@@ -151,7 +152,9 @@ package customMessageAdapter
 import org.slf4j.Logger
 
 // NOTE: the message adapter entry point function must be named `messageAdapter`
-fun messageAdapter(messageKey: ByteArray?, payload: Map<String, Any>?, primaryKeys: List<String>, logger: Logger): Any {
+fun messageAdapter(message: Map<String, Any>?, primaryKeys: List<String>, logger: Logger): Any {
+  val payload = message?.get("value") as? Map<*, *>?
+
   val key = primaryKeys
     .filter { payload?.containsKey(it) ?: false }
     .associateWith { payload?.get(it) }
@@ -177,11 +180,11 @@ fun messageAdapter(messageKey: ByteArray?, payload: Map<String, Any>?, primaryKe
 'use strict'
 
 // NOTE: the message adapter entry point function must be named `messageAdapter`
-function messageAdapter(messageKey, payload, rawPrimaryKeys, logger) {
-  // rawPrimaryKeys arrives as object -> to get a list it is necessary to extract its values
+function messageAdapter(message, rawPrimaryKeys, logger) {
+  const payload = message.get('value')
   const primaryKeys = Object.values(rawPrimaryKeys)
 
-  // use a convenience function to extract the event key
+  // use a convenient function to extract the event key
   // from any nested field (here the whole payload object has been used)
   const key = extractKey(payload, primaryKeys)
 
@@ -310,6 +313,13 @@ function castToTitleCase(value, fieldName) {
 
 </p>
 </details>
+
+:::danger
+For those migrating custom cast functions from the ones employed in the Real-Time Updater, please bear in mind that
+the `logger` parameter is not provided anymore in the function signature, and therefore it should be removed.  
+For debugging purposes, a logger is still provided via internal bindings, but it is recommended to not log
+within cast functions at levels higher than `debug`.
+:::
 
 ### Consumer
 
@@ -582,6 +592,7 @@ supported by the service.
       "auto.offset.reset": "latest",
       "max.poll.records": 2000,
       "max.poll.timeout.ms": 500,
+      /* the following properties define the authentication parameters - please update or remove them after copying the example config */
       "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
       "sasl.mechanism": "SCRAM-SHA-256",
       "security.protocol": "SASL_SSL"
@@ -592,6 +603,7 @@ supported by the service.
     "configuration": {
       "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-producer",
       "bootstrap.servers": "localhost:9092",
+      /* the following properties define the authentication parameters - please update or remove them after copying the example config */
       "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
       "sasl.mechanism": "SCRAM-SHA-256",
       "security.protocol": "SASL_SSL"
@@ -751,6 +763,7 @@ consumer:
     "auto.offset.reset": latest
     "max.poll.records": 2000
     "max.poll.timeout.ms": 500
+    # the following properties define the authentication parameters - please update or remove them after copying the example config
     "sasl.jaas.config": org.apache.kafka.common.security.scram.ScramLoginModule required username="<username>" password="<password>";
     "sasl.mechanism": SCRAM-SHA-256
     "security.protocol": SASL_SSL
@@ -759,6 +772,7 @@ producer:
   configuration:
     "client.id": galaxy.fast-data.DEV.inventory-projection-storer-producer
     "bootstrap.servers": localhost:9092
+    # the following properties define the authentication parameters - please update or remove them after copying the example config
     "sasl.jaas.config": org.apache.kafka.common.security.scram.ScramLoginModule required username="<username>" password="<password>";
     "sasl.mechanism": SCRAM-SHA-256
     "security.protocol": SASL_SSL
