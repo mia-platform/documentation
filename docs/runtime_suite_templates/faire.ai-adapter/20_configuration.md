@@ -10,8 +10,10 @@ The table below shows the environment variables that are used by this service.
 
 | Variable name                   | Variable type                   | Description                                                                    |
 |---------------------------------|---------------------------------|--------------------------------------------------------------------------------|
-| `ROUTER_URL`                    | `string` (required)             | Base URL for the IDM Router service                                            |
-| `IDENTIFICATION_URL`            | `string` (required)             | Base URL for the External identification service                               |
+| `FAIRE_AI_BASE_URL`                    | `string` (required)             | Base URL for the Faire.ai APIs        
+| `FAIRE_AI_CLIENT_ID`                    | `string` (required)             | Client ID to access Faire.ai APIs    
+| `FAIRE_AI_CLIENT_SECRET`                    | `string` (required)             | Client secret to access Faire.ai APIs     
+| `ROUTER_URL`                    | `string` (required)             | Base URL for the Flow Manager Router service                                            |
 | `MAX_RETRIES`                   | `int`    (required)             | Max retries to perform in case of http call                                    |
 | `RETRIES_DELAY_MS`              | `int`    (required)             | Delay between retries in milliseconds                                          |
 | `MODE`                          | `string` (default = REST)       | Service working mode. REST or KAFKA                                            |
@@ -21,7 +23,7 @@ The Platform variables `USERID_HEADER_KEY`, `GROUPS_HEADER_KEY`, `CLIENTTYPE_HEA
 
 ### Kafka
 
-Kafka can be enabled setting the `MODE` variable to `KAFKA`, in this case the `KAFKA_CONFIG_FILE_PATH` variable is required and `/identification` REST endpoint is disabled.
+Kafka can be enabled setting the `MODE` variable to `KAFKA`, in this case the `KAFKA_CONFIG_FILE_PATH` variable is required and REST endpoint is disabled.
 The configuration has the following schema:
 ```json
 {
@@ -75,15 +77,12 @@ The configuration has the following schema:
 
 Refer to [KafkaJS](https://kafka.js.org/) for the configuration meanings.
 
-## Identification Logic
-In order to customize the identification logic or integrate an external identification service you can modify the following files: 
-- `/src/lib/identification.ts`: contains custom identification logic
-- `/src/restHandlers/identification.ts` and `/src/kafkaHandlers/identification.ts`: contains identification handlers
-- `/src/clients/identificationClient.ts`: contains the logic to perform calls to external service
-- `/src/restHandlers/callback.ts`: contains the logic to correctly manage callback from external service
+## Service Logic
+In order to customize the logic or integrate an external service you can modify the following files: 
+- `/src/lib/service.ts`: contains custom logic
+- `/src/restHandlers/service.ts` and `/src/kafkaHandlers/service.ts`: contains service handlers
+- `/src/clients/externalServiceClient.ts`: contains the logic to perform calls to external service
 
-## Identification Data
-The identification data extracted can be modified before send them to main flow manager. 
-In particular, a mapping function, defined in `/src/services/mainFlowDataMapping.ts`,  is applied by default in order to map the extracted data to the identification manager schema. 
-
-In order to use this template inside the [identification manager application](../../runtime_suite_applications/identification-manager/overview) the extracted data have to follow the schema expected by the application.
+## Process Data
+Data extracted can be modified before send them to main flow manager. 
+In particular, a mapping function, defined in `/src/services/mainFlowDataMapping.ts`,  is applied by default in order to map the extracted data to the main process schema.
