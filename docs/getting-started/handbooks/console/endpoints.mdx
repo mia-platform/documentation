@@ -5,13 +5,13 @@ sidebar_label: Endpoints
 ---
 
 In this guide, we will see how to configure the various types of endpoints available in my platform console, including:
-- [CRUD](/getting-started/handbooks/console/endpoints.mdx#create-a-crud-endpoint)
-- [MongoDB View](/getting-started/handbooks/console/endpoints.mdx#create-a-mongodb-view-endpoint)
-- [Microservice](/getting-started/handbooks/console/endpoints.mdx#create-a-microservice-endpoint)
-- [External Proxy](/getting-started/handbooks/console/endpoints.mdx#create-an-external-proxy-endpoint)
-- [Cross Project Proxy](/getting-started/handbooks/console/endpoints.mdx#create-a-cross-project-proxy-endpoint)
-- [Fast Data Projection](/getting-started/handbooks/console/endpoints.mdx#create-a-fast-data-projection-endpoint)
-- [Fast Data Single View](/getting-started/handbooks/console/endpoints.mdx#create-a-fast-data-single-view-endpoint)
+- [CRUD](#create-a-crud-endpoint)
+- [MongoDB View](#create-a-mongodb-view-endpoint)
+- [Microservice](#create-a-microservice-endpoint)
+- [External Proxy](#create-an-external-proxy-endpoint)
+- [Cross Project Proxy](#create-a-cross-project-proxy-endpoint)
+- [Fast Data Projection](#create-a-fast-data-projection-endpoint)
+- [Fast Data Single View](#create-a-fast-data-single-view-endpoint)
 
 To good deeper visit the [Endpoint](/development_suite/api-console/api-design/endpoints.md) dedicated documentation page.
 
@@ -22,10 +22,14 @@ To install it, simply create a new microservice from the marketplace and select 
 
 ![Install API Gateway](img/install-api-gateway.png)
 
+To create a CRUD endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
+
 All endpoint types have some basic fields, which are:
 - **Base Path**: is the prefix of the route. 
     It can be set as the base address to which the API is served, relative to the host that supplies the endpoint.
 - **Description**: an optional description for the endpoint.
+
+![Create new Endpoint](img/create-endpoints.png)
 
 :::caution
 Please be careful when choosing the **Base Path**, as it cannot be modified after creating the endpoint.
@@ -39,8 +43,7 @@ Creating an endpoint of type **CRUD** hooks your endpoint directly to one of you
 To create a CRUD Collection it is necessary to have a CRUD Service installed, to do so you simply create a new Microservice from Marketplace choosing **CRUD Service** from the catalog.
 :::
 
-To create a CRUD endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `CRUD`.
+To create a CRUD endpoint you have to click the `Create new endpoint` button and then choose the type `CRUD`.
 After that you have to choose the `Base Path` and choose between the available CRUD collection which one you want to expose selecting it in the `CRUD Base Path` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
@@ -54,8 +57,7 @@ Creating an endpoint of type **MongoDB Views** hooks your endpoint directly to o
 To create a CRUD Collection it is necessary to have a CRUD Service installed, to do so you simply create a new Microservice from Marketplace choosing **CRUD Service** from the catalog.
 :::
 
-To create a MongoDB View endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `MongoDB View`.
+To create a MongoDB view endpoint have to click the `Create new endpoint` button and then choose the type `MongoDB View`.
 After that you have to choose the `Base Path` and choose between the available MongoDB Views which one you want to expose selecting it in the `Mongo View Base Path` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
@@ -69,8 +71,7 @@ Creating an endpoint of type **MongoDB Views** hooks your endpoint directly to o
 Pay attention to configure the `Container Ports` in the Microservice configuration, pay particular attention for microservices created starting from Docker Images.
 :::
 
-To create a Microservice endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `Microservice`.
+To create a microservice endpoint you have to click the `Create new endpoint` button and then choose the type `Microservice`.
 After that you have to choose the `Base Path` and choose between the available microservices which one you want to expose selecting it in the `Microservice` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
@@ -80,8 +81,7 @@ Optionally you can add a `Description` for the endpoint.
 
 Creating an endpoint of type **External Proxy** hooks your endpoint directly to one of your external proxies available in Mia-Platform Console. 
 
-To create an External Proxy endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `External Proxy`.
+To create an external proxy endpoint you have to click the `Create new endpoint` button and then choose the type `External Proxy`.
 After that you have to choose the `Base Path` and choose between the available external proxies which one you want to expose selecting it in the `Microservice` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
@@ -91,8 +91,7 @@ Optionally you can add a `Description` for the endpoint.
 
 Creating an endpoint of type **Cross Project Proxy** hooks your endpoint directly to one of your cross project proxies available in Mia-Platform Console. 
 
-To create an External Proxy endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `External Proxy`.
+To create a cross project endpoint you have to click the `Create new endpoint` button and then choose the type `External Proxy`.
 After that you have to choose the `Base Path` and choose between the available cross project proxies which one you want to expose selecting it in the `Microservice` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
@@ -102,8 +101,7 @@ Optionally you can add a `Description` for the endpoint.
 
 Creating an endpoint of type **Fast Data Projection** hooks your endpoint directly to one of your fast data projections available in Mia-Platform Console. 
 
-To create a Fast Data Projection endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `Fast Data Projection`.
+To create a Fast Data projection endpoint you have to click the `Create new endpoint` button and then choose the type `Fast Data Projection`.
 After that you have to choose the `Base Path` and choose between the available fast data projections which one you want to expose selecting it in the `Fast Data Projection` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
@@ -113,8 +111,7 @@ Optionally you can add a `Description` for the endpoint.
 
 Creating an endpoint of type **Fast Data Single View** hooks your endpoint directly to one of your fast data single views available in Mia-Platform Console. 
 
-To create a Fast Data Single View endpoint you have to move in the `Endpoint` section of the Mia-Platform Console, here you can create new endpoints.
-Now you have to click the `Create new endpoint` button and then choose the type `Fast Data Projection`.
+To create a Fast Data single view endpoint you have to click the `Create new endpoint` button and then choose the type `Fast Data Projection`.
 After that you have to choose the `Base Path` and choose between the available fast data single views which one you want to expose selecting it in the `Fast Data Single View` fields. 
 Optionally you can add a `Description` for the endpoint. 
 
