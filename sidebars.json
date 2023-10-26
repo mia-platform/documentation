@@ -5,6 +5,10 @@
       "type": "doc"
     },
     {
+      "id": "development_suite/design-patterns-with-mia",
+      "type": "doc"
+    },
+    {
       "collapsed": true,
       "type": "category",
       "label": "Company Configuration",
