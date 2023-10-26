@@ -43,7 +43,6 @@ Creating a new Listener means opening the relative container port on the API Gat
 Container Ports associated to Listeners cannot be deleted. To delete them firstly delete the Listener and then you can delete the port.
 :::
 
-<!-- TODO: update image with disabled buttons -->
 ![listeners-api-gateway-container-ports](img/listeners/listeners-api-gateway-ports.png)
 
 ### Exposing an Endpoint on the Listener
@@ -66,6 +65,10 @@ From the **Listeners** section of the [Design area](/development_suite/api-conso
 
 Changes made to the port of the Listener will be reflected on the Container Ports of the API Gateway too.  
 This means that changing the port of a Listener will also enable the relative port on the API Gateway. The old port of the API Gateway stays enabled and it is up to the user to disable it if needed. 
+
+:::warning
+Make sure to modify the Kubernetes Ingress Controller accordingly.
+:::
 
 ![edit-listener](img/listeners/edit-listener.png)
 
