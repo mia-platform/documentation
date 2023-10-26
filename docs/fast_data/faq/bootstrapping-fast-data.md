@@ -1,5 +1,5 @@
 ---
-id: benchmark_fast_data
+id: bootstrapping-fast-data
 title: Bootstrapping Fast Data
 sidebar_label: Bootstrapping Fast Data
 ---
@@ -19,13 +19,11 @@ The level of details of the following answers assumes that you have basic knowle
 
 This table shows details for each component that has been monitored and analyze to provide the guidelines.
 
-<table>
-    <tr><th>Component</th><th>Replicas</th><th>Details</th></tr>
-    <tr><td>Kafka</td><td>4 brokers</td><td> 600.000 nominal events X day, i.e. 30GB of ingestion messages.</td></tr>
-    <tr><td>MongoDB</td><td>3 replica sets</td><td>Enterprise distribution having 32 GB of RAM.</td></tr>
-    <tr><td>Fast Data</td><td>6 nodes</td><td>K8S cluster with each node having 8 core.</td></tr>
-</table>
-
+| Component | Replicas       | Details                                                        |
+|-----------|----------------|----------------------------------------------------------------|
+| Kafka     | 4 brokers      | 600.000 nominal events X day, i.e. 30GB of ingestion messages. |
+| MongoDB   | 3 replica sets | Enterprise distribution having 32 GB of RAM.                   |
+| Fast Data | 6 nodes        | K8S cluster with each node having 8 core.                      |
 
 ## Kafka
 
@@ -33,20 +31,21 @@ This table shows details for each component that has been monitored and analyze 
 ### What is the topic setup I should use to guarantee an high rate of ingestion?
 
 
-When creating and managing topics in a Kafka cluster, is crucial to define a number of partitions that can balance the identifiers of messages. This means that a topic:
+When creating and managing topics in a Kafka cluster, is crucial to define a number of partitions that can balance the identifiers of messages among different replicas that can read messages from the topic with the same consumer group. 
 
-* linked to a data source having a fixed cardinality, requires a number of partitions `<=` 3;   
-* linked to a data source having an higher number of insert/update/delete operation requires a number of partition `>` 3.
+While designing your Fast Data solution, is crucial that <ins>the message producer will assign the same key to events involving the same record</ins>: in this way, they will be assigned always to the same partition and then processed always in the same order.  
 
-:::tip Use Case
-A topic having an ingestion rate of `2.2k message/minute` requires 10 partitions to distribute the messages among the topics while speeding up micro-services performances.
+:::tip Useful Resources
+For more detailed benchmarks about topic partitions and data distribution among it, you can refer to this [Confluent blog post](https://www.confluent.io/blog/how-choose-number-topics-partitions-kafka-cluster/) .
 :::
 
 ### What is the topic setup I should use to guarantee an high availability?
 
 A topic is distributed among the brokers of your cluster, with a parameter called _replication factor_: for critical messages, this value should be set to the number of brokers, meaning that the data of a topic will be stored inside all brokers.
 
-You can also specify how many replicas are needed to send acknowledgments on produced messages before committing, to guarantee the synchronization of the distributed data. This value can be set at the topic level with the parameter `min.insync.replicas` and is usually equal to `# of brokers - 1`. Critical flows may require a number of in-sync replicas equal to the number of brokers. 
+You can also specify how many replicas are needed to send acknowledgments on produced messages before committing, to guarantee the synchronization of the distributed data.
+
+This value can be set at the topic level with the parameter `min.insync.replicas` and is usually equal to `# of brokers - 1`. Critical flows may require a number of in-sync replicas equal to the number of brokers. 
 
 ## Mongo Db
 
@@ -54,21 +53,21 @@ You can also specify how many replicas are needed to send acknowledgments on pro
 
 The **Initial Load** is a manual operation made at runtime to initialize the projection's records with the most recent copy of the dataset from the system of record linked to it.
 
-This activity is performed through the **Change Data Capture** (**CDC**) and will be performed by the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
+This operation is carried out when we need the more recent copy of a table, in order to transfer the data present within the Fast Data system, with a **Change Data Capture** (**CDC**) and will be then processed by the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
 
-:::danger Before executing the Initial Load...
+:::danger Before executing the Initial Load
 Since an high number of ingestion messages will be handled by the RTU, remember **to disable strategy** during the execution of the Initial Load.
 
 This will avoid to perform additional MongoDb queries made by the strategies to generate projection changes records.
 :::
 
 :::tip Execution Time
-An initial load of `6.100.000 records` took around _10 minutes_, which is approximately a rate of `58k message/minute`, using up until 70% of CPU from a single MongoDb core.  
+An initial load of `6.000.000 records` took around _10 minutes_, which is approximately a rate of `60k message/minute`: for this message rate, up until 70% of CPU from a single MongoDb core was used.  
 :::
 
 ### What should be the required resources to perform a Single View Refresh?
 
-The **Single View Refresh** is an operation performed to update all the projection changes of a single view: this activity is needed during the first release of a single view and every time a new feature is released in the environment, since it will start the aggregation pipeline of the [Single-View Creator. (**SVC**)](/fast_data/single_view_creator.md)
+The **Single View Refresh** is an operation performed to update all the projection changes of a single view: this activity is needed during the first release of a single view and every time a new feature is released in the environment, since it will start the aggregation pipeline of the [**Single-View Creator**. (**SVC**)](/fast_data/single_view_creator.md)
 
 On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), this means that the database will perform operations on:
 
@@ -151,5 +150,5 @@ A SVC generating a single view with a custom function from two projections linke
 
 ### Why the SVC is processing projection changes record slowly?
 
-If the SVC goes on idle while aggregating projections, it means that some query is not indexed and has triggered a collection scan on the MongoDB cluster, so [the same actions to improve strategies performance's](/fast_data/faq/benchmark_fast_data.md#why-the-rtu-is-stuck-while-performing-a-strategy) must be taken.
+If the SVC goes on idle while aggregating projections, it means that some query is not indexed and has triggered a collection scan on the MongoDB cluster, so [the same actions to improve strategies performance's](/fast_data/faq/bootstrapping-fast-data.md#why-the-rtu-is-stuck-while-performing-a-strategy) must be taken.
 
