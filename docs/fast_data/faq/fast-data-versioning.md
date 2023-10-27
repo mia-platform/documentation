@@ -70,7 +70,7 @@ the final aggregated Single View.
 
 ## Versions With Known issues
 
-Here are listed all the services version that are affected by a known bug that prevents the plugins
+Here are listed all the services version that are affected by a known issue that prevents the plugins
 from working as intended.
 
 ### Real-Time Updater
