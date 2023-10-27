@@ -1044,6 +1044,10 @@
           "type": "doc"
         },
         {
+          "id": "getting-started/handbooks/console/endpoints",
+          "type": "doc"
+        },
+        {
           "id": "getting-started/handbooks/microservice-ports",
           "type": "doc"
         },
