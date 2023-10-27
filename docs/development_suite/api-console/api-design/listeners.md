@@ -39,6 +39,7 @@ Optionally, during listener creation, you can define whether to:
 
 Creating a new Listener means opening the relative container port on the API Gateway too. This step is automated and in fact you can find the new port under the Container Ports section of the API Gateway.  
 
+
 :::caution
 Container Ports associated to Listeners cannot be deleted. To delete them firstly delete the Listener and then you can delete the port.
 :::
