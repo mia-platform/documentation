@@ -785,7 +785,8 @@ channels:
             value:
               type: object
               required:
-                - singleViewIdentifier                - __internal__kafkaInfo
+                - singleViewIdentifier
+                - __internal__kafkaInfo
                 - change
               properties:
                 singleViewName:
@@ -1074,7 +1075,7 @@ Example:
       "type": "string",
       "description": "Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the error"
     },
-    "type": {
+    "svType": {
       "type": "string",
       "description": "Name of the Single View"
     },
@@ -1082,7 +1083,7 @@ Example:
       "type": "object",
       "description": "Identifier of the Projection Changes that should match with the Single View Keys fields or the identifierQueryMapping ones from the aggregation.json"
     },
-    "errorType": {
+    "type": {
       "type": "string",
       "enum": [
         "NO_SV_GENERATED",
@@ -1091,6 +1092,10 @@ Example:
         "ERROR_SEND_SVC_EVENT"
       ],
       "description": "String describing the cause of the error"
+    },
+    "message": {
+      "type": "string",
+      "description": "Description of the error"
     },
     "resolutionMethod": {
       "type": "string",
