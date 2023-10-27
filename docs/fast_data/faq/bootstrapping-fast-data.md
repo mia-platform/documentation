@@ -53,7 +53,9 @@ This value can be set at the topic level with the parameter `min.insync.replicas
 
 The **Initial Load** is a manual operation made at runtime to initialize the projection's records with the most recent copy of the dataset from the system of record linked to it.
 
-This operation is carried out when we need the more recent copy of a table, in order to transfer the data present within the Fast Data system, with a **Change Data Capture** (**CDC**) and will be then processed by the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
+This operation is carried out either the first time the system is boot up, when no records have ever been ingested, or whenever a schema change is deemed relevant enough to require reloading all the table content. For example, a new field is added to the schema of a tablel and it should be added retroactively to records that have already been ingested but that might not receive further updates in the future.
+
+In order to transfer data present within the Fast Data system, with a **Change Data Capture** (**CDC**) and will be then processed by the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
 
 :::danger Before executing the Initial Load
 Since an high number of ingestion messages will be handled by the RTU, remember **to disable strategy** during the execution of the Initial Load.
