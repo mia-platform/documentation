@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 
+- Support form start date
 - Support custom expiration message for each form
 - Support custom recap email sender
 

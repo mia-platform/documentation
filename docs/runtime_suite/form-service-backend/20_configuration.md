@@ -105,6 +105,7 @@ The properties of the CRUD are:
 - **formSubmitUrl**, of type *string*, which specifies the url that will be used for Form submission;
 - **formSchema**, of type *object*, which is the property where the configured Form `JSON` will be saved;
 - **formVisualizerOptions** , of type *object*, which is the property where the form options `JSON`, will be saved;
+- **formAvailabilityDate** (optional), of type *string*, which is the date when the form will be available.
 - **formExpirationDate** (optional), of type *string*, which is the expiration date of the form.
 - **formExpirationMessage** (optional), of type *string*, which is the expiration message of the form.
 
@@ -510,6 +511,7 @@ Here you can find an example of a *formBuilderOptions* object that can be used i
 From version `1.9.0` it is possible to add other properties for customizing the form builder. The properties that can be set are the following:
 
 * **formExpirationDateFormat**: the date format shown in the expiration datepicker. Default is `YYYY-MM-DD`.
+* **formAvailabilityDateFormat**: the date format shown in the availability datepicker. Default is `YYYY-MM-DD`.
 
 ### Default client type parameter (`defaultClientType`)
 
