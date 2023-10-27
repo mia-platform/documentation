@@ -3,63 +3,40 @@ id: microservice-runtime-resources
 title: Microservice Runtime Resources
 sidebar_label: Define Runtime resources
 ---
-In the Runtime card, you can configure Readiness and Liveness probes, and the Termination Grace Period.
+
+The _Runtime Card_ contains settings that will be used at Runtime by the underlying cluster to manage the micro-service status.
 
 ![runtime-section](img/Runtime-card.png)
 
-### Probes
+## Liveness & Readiness Probes
 
-In this section it is possible configure the following fields:
+In a micro-service, two different kind of probes can be exposed:
 
-- Path
-- Initial delay seconds
-- Period seconds
-- Timeout seconds
-- Success threshold
-- Failure threshold
+* **Readiness**: tells the cluster orchestrator when a micro-service can accept traffic; 
+* **Liveness**: tells the cluster orchestrator if a micro-service is up-and-running.
 
-#### Path
+To learn more about probes, please refer to the [Kubernetes official API documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes).
 
-For Readiness field default is `/-/ready/`.
-For Liveness field default is `/-/healthz/`.  
-If you leave these fields empty, there will be a tcp socket on the provided microservice port.
 
-If your probes are available on a different path you can customize them to specify the proper route to be used to access the HTTP server.
+The _Runtime Card_ enables the developer to manage the following fields for each probe:
 
-#### Port
+- **Path**: represents the endpoint of the microservice that will be used to check the probe. If no value is provided:
+  - for Readiness Probe, `/-/ready/` will be used;
+  - for Liveness Probe `/-/healthz/` will be used.
 
-The port used by the probes is the one specified by the environment variable `HTTP_PORT`, so make sure to define that variable even if your service does not use it.
+  If probes are available on different endpoints, a different endpoint can be provided with the field and that route will be used.  
+- **Port**: defines the container port where the probe is exposed, from the list of ports defined in the [Container Port](/development_suite/api-console/api-design/microservice-container-ports.md) section. If no value is provided, the default port of the micro-service will be used   
+- **Initial delay seconds**: defines the number of seconds that need to pass after the container has started before the probe is invoked for the first time.
+- **Period seconds**: tells how often the probe needs to be invoked (Kubernetes default is 10 seconds, while the minimum value allowed is 1).
+- **Timeout seconds**: controls the probe timeout in seconds (Kubernetes default is 1 second, while the minimum value allowed is 1).
+- **Success threshold**: the minimum consecutive succeeded responses from the probe to consider it successful (Kubernetes default value is 1, while the minimum value allowed is 1).
+  :::warning
+  For livenessProbe this parameter has a fixed value of 1
+  :::
+- **Failure threshold**: the minimum consecutive failed response from the probe to consider it failed. (Kubernetes default value is 3, while the minimum value allowed is 1).
 
-#### Initial delay seconds
+## Termination Grace Period
 
-Use this value to specify the number of seconds that need to pass after the container has started before the probe is invoked for the first time.
+When a micro-service is shut down, Kubernetes allows the definition of a grace period to wait before the service gets forcibly closed: technically, it's the time waited between sending a `SIG_TERM` and a `SIG_KILL`. 
 
-#### Period seconds
-
-This value controls how often the probe needs to be invoked (Kubernetes default is 10 seconds, minimum value is 1).
-
-#### Timeout seconds
-
-This value controls the probe timeout in seconds (Kubernetes default is 1 second, minimum value is 1).
-
-#### Success threshold
-
-This value controls the minimum consecutive successes for the probe to be considered successful (Kubernetes default value is 1, minimum value is 1).
-
-:::warning
-For livenessProbe this parameter has a fixed value of 1
-:::
-
-#### Failure threshold
-
-This value controls the minimum consecutive failures for the probe to be considered failed after having succeeded. (Kubernetes default value is 3, minimum value is 1).
-
-To learn more about probes, please visit the [Kubernetes official API documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#probe-v1-core).
-
-### Termination Grace Period
-
-When a Pod needs to be destroyed Kubernetes allow the definition of a grace period to wait before the Pod gets forcibly killed.
-
-Technically it's the time that Kubernetes waits between sending a `SIG_TERM` and a `SIG_KILL`. Kubernetes default value is 30s.
-
-This parameter can be configured by user into this Runtime card.
+This field allows to choose the termination period of a micro-service, which is by default of 30 seconds, like the Kubernetes default value.

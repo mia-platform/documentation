@@ -25,6 +25,6 @@ The **Target Port** represents the port that the Kubernetes container accepts tr
 The **Protocol** field defines the network protocol used for the Service. The default is TCP but UDP is also supported.
 
 :::caution
-Remember that the port used to contact the probes is always (and only) the one indicated in the environment variable "HTTP_PORT". For more information on the [probes](/development_suite/api-console/api-design/microservice-runtime-resources.md#probes), click here.   
+Remember that the port used to contact the probes is always (and only) the one indicated in the environment variable "HTTP_PORT". For more information on the [probes](/development_suite/api-console/api-design/microservice-runtime-resources.md#liveness--readiness-probes), click here.   
 For more information on environment variables, [click here](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 :::
