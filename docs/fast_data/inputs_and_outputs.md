@@ -785,7 +785,7 @@ channels:
             value:
               type: object
               required:
-                - __internal__kafkaInfo
+                - singleViewIdentifier                - __internal__kafkaInfo
                 - change
               properties:
                 singleViewName:
@@ -808,7 +808,7 @@ channels:
                           type: string
                     attempts:
                       type: number
-                      description: Number of attempts the Single View has been tried for
+                      description: Number of times the aggreation of the Single View has been retried
                 change:
                   type: object
                   description: Contains information about the projection record that triggered the strategy
