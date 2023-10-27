@@ -1,5 +1,5 @@
 ---
-id: fast_data_versioning
+id: fast-data-versioning
 title: Fast Data Versioning
 sidebar_label: Fast Data Versioning
 ---
