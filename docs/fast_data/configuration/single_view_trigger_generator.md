@@ -4,10 +4,6 @@ title: Single View Trigger Generator
 sidebar_label: Single View Trigger Generator
 ---
 
-:::caution
-This Plugin is a BETA Plugin and, as such, is currently under active development. Pay attention using it.
-:::
-
 The Single View Trigger Generator has 3 fundamental parts:
 
 - The consumption of pr-update messages

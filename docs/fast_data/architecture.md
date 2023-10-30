@@ -26,6 +26,15 @@ The Real-Time Updater is responsible for listening to the events concerning chan
 
 It is up to you to decide whether to make it execute any of these, based on the architecture you prefer to build. For example, if having your Projections up to date in a very short period of time is crucial for your business, you might want to skip the part where you check which Single Views should be updated, delegating this job to the Single View Trigger and decreasing the overhead of the RTU.
 
+### Projection Storer (PS)
+
+Projection Storer service is an alternative to the Real-Time Updater that can be employed when configuring Fast Data event-driven architectures. Its goal is to ingest, clean and filter change events, transforming them into projections records to be stored onto the storage system (e.g. database).
+It maintains the same interface of Real-Time Updater, that is it consumes [ingestion events](/fast_data/inputs_and_outputs#ingestion-message) and emits  [pr-update events](/fast_data/inputs_and_outputs.md#projection-update-message) once it has stored projection records on the storage system.
+
+Compared to the Real-Time Updated it offers an overhaul and improved configuration experience and enhanced performances. When starting new Fast Data projects, it is strongly recommended to deploy this service instead of the Real-Time Updater. Furthermore, whenever possible, it is advised to migrate existing Fast Data configuration toward the use of an event-driven architectures and replace Real-Time Updater services with Projection Storer ones.
+
+A migration guide can be found [here](/fast_data/configuration/projection_storer.md#migration-guide) and a command-line is available to all customers to facilitate their transitioning towards the adoption of Projection Storer as entrypoint for Fast Data system. 
+
 ### Single View Trigger Generator (SVTG)
 
 The Single View Trigger Generator listens to `Projection Update` events, performing the logic needed to get the identifiers of all the Single Views that need to be updated, and emits the relevant `Projection Change` or `sv-trigger` events.
@@ -112,10 +121,6 @@ Click on [this link](/fast_data/configuration/single_views.md#single-view-patch)
 
 ### Event-Driven Architecture
 
-:::caution
-The Single View Trigger Generator (SVTG) is still a BETA Plugin and is under active development. Pay attention to using the following Event-Driven Architecture.
-:::
-
 As mentioned previously, you can use the SVTG service to keep your projections updated as quickly as possible. The SVTG will unload the RTU by taking up some of its responsibilities. For such an architecture, the information will flow as follows:
 1. The CDC emits an event stating that some data in the SoR has changed;
 2. The RTU performs the normalization of the messages received by the CDC to select the ones of interest and make them adhere to a standard of interest, and then stores the Projections on MongoDB;
@@ -127,10 +132,6 @@ As mentioned previously, you can use the SVTG service to keep your projections u
 ![Fast Data Event-Driven Architecture with RTU](img/fastdata-architecture-event-driven.svg)
 
 ### Alternative Event-Driven Architecture
-
-:::caution
-The Single View Trigger Generator (SVTG) is still a BETA Plugin and is under active development. Pay attention to using the following Alternative Event-Driven Architecture.
-:::
 
 For the sake of being retro-compatible, you can configure the SVTG to compute and emit `Projection Change` events instead of `sv-trigger` events, and save it on MongoDB. Then the SVC will use the `Projection Change` collection to aggregate the Single View as in the [Standard Architecture](#standard-architecture). Such an architecture will look like this:
 
