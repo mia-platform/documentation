@@ -15,16 +15,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed templates retrieval.
 
 ## 1.9.1 2023-09-04
+
 ### Fixed
 
 - Fixed autocomplete when a form is a wizard with many nested components.
 - Removed the "X" closing icon in FormExpiredModal; fixed the FormDatePicker when the expirationDate is not set.
 
 ## 1.9.0 2023-08-31
+
 ### Added
 
 - Revised the user interface to include the following components: a checkbox to enable notification emails, a select dropdown for selecting templates, and a text input field for adding carbon copy (CC) email addresses.
 - Revised the user interface to include the following component: a text input field for adding blind carbon copy (BCC) email addresses.
+
 ## 1.8.0 2023-07-28
 
 ### Added
