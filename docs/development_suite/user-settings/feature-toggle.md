@@ -4,9 +4,11 @@ title: Feature Toggle
 sidebar_label: Feature Toggle
 ---
 
-The console offers a section called Feature Preview in the User section. It gives you a preview of all the features available with its toggle in order to activate or deactivate it.
+The console offers a section called [Feature Preview](/development_suite/user-settings/feature-preview.md) in the User section. The section allows to activate features that are still in preview by enabling a toggle.
 
 ![feature preview](./img/feature-preview.png)
+
+## Add new feature
 
 In order to create a new feature you need to enter the CMS (of the desired environment) and access the Features section in the Configuration sidebar group.
 
@@ -21,6 +23,10 @@ From here you can press on "Add new" and insert a new feature by filling in the 
 
 :::caution
 You must be Console Super User and have the `console_cms` group.
+:::
+
+:::info
+Feature toggle items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to to give you acess to the CMS and to add the logic for you new feature toggle.
 :::
 
 ![add new feature](./img/add-new-feature.png)

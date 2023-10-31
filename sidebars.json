@@ -197,10 +197,6 @@
         {
           "id": "console/project-configuration/docker-registry-configuration",
           "type": "doc"
-        },
-        {
-          "id": "console/project-configuration/feature-toggle",
-          "type": "doc"
         }
       ]
     },
@@ -535,6 +531,10 @@
         },
         {
           "id": "development_suite/user-settings/feature-preview",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/user-settings/feature-toggle",
           "type": "doc"
         }
       ],
