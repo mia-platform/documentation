@@ -856,7 +856,7 @@ channels:
 </p>
 </details>
 
-Example:
+Examples:
 
 <details><summary>Trigger message</summary>
 <p>
@@ -868,8 +868,71 @@ Example:
   },
   "value": {
     "type": "aggregation",
+    "singleViewName": "sv_books",
     "singleViewIdentifier": {
       "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "change": {
+      "data": {
+        "__STATE__": "PUBLIC",
+        "__internal__counter": 1685118744745,
+        "__internal__counterType": "timestamp",
+        "__internal__kafkaInfo": {
+          "key": {
+            "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+          },
+          "offset": "151",
+          "partition": 0,
+          "timestamp": "2023-05-26T16:32:24.745Z",
+          "topic": "some.ingestion.topic"
+        },
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H",
+        "bio": "episode lover, designer",
+        "name": "Caitlyn",
+        "surname": "Hettinger",
+        "timestamp": "2023-05-26T16:32:24.745Z",
+        "updatedAt": "2023-05-26T16:32:24.845Z"
+      },
+      "projectionIdentifier": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "projectionName": "authors"
+    },
+    "__internal__kafkaInfo": {
+      "key": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "offset": "151",
+      "partition": 0,
+      "timestamp": "2023-05-26T16:32:24.745Z",
+      "topic": "some.ingestion.topic"
+    }
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Trigger message with retries</summary>
+<p>
+
+```json
+{
+  "key": {
+    "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+  },
+  "value": {
+    "type": "aggregation",
+    "singleViewName": "sv_books",
+    "singleViewIdentifier": {
+      "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "retry": {
+      "attempts": 5,
+      "lastError": {
+        "message": "Unexpected error: No Single View record generated",
+        "type": "NO_SV_GENERATED"
+      }
     },
     "change": {
       "data": {
