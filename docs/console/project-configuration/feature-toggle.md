@@ -25,7 +25,7 @@ You must be Console Super User and have the `console_cms` group.
 
 ![add new feature](./img/add-new-feature.png)
 
-In the Scope field it is possibile to choose between five values:
+In the Scope field it is possible to choose between five values:
 - `User` the feature will be activated for the user
 - `Company` the feature will be activated for the company
 - `Project` the feature will be activated only for the project
