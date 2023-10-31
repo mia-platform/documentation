@@ -1110,6 +1110,8 @@ Example:
 </p>
 </details>
 
+<!-- TODO: update the format -->
+
 ### Single View Error
 
 **Channel**: MongoDB
@@ -1128,9 +1130,9 @@ Example:
   "type": "object",
   "required": [
     "portfolioOrigin",
+    "svType",
     "type",
     "identifier",
-    "errorType",
     "resolutionMethod"
   ],
   "properties": {
@@ -1194,11 +1196,12 @@ Example:
 {
   "_id": "64426177a879bbfec4eaed0f",
   "portfolioOrigin": "food-delivery",
-  "type": "sv_customers",
+  "svType": "sv_customers",
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "errorType": "NO_SV_GENERATED",
+  "type": "NO_SV_GENERATED",
+  "message": "Unexpected error: No Single View record generated",
   "createdAt": "2022-05-20T10:25:35.656Z",
   "updatedAt": "2022-05-20T10:25:35.656Z",
   "resolutionMethod": "AGGREGATION"
