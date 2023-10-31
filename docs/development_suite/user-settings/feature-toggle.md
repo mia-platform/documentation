@@ -26,7 +26,7 @@ You must be Console Super User and have the `console_cms` group.
 :::
 
 :::info
-Feature toggle items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to to give you acess to the CMS and to add the logic for you new feature toggle.
+Feature toggle items can only be created and managed by people with access to the Mia-Platform Console CMS, therefore you may have to ask your Mia-Platform referent to to give you access to the CMS and to add the logic for you new feature toggle.
 :::
 
 ![add new feature](./img/add-new-feature.png)
@@ -35,7 +35,6 @@ In the Scope field it is possible to choose between five values:
 - `User` the feature will be activated for the user
 - `Company` the feature will be activated for the company
 - `Project` the feature will be activated only for the project
-- `Environment` the feature will be activated only for the chosen environment
 - `Console` the feature will be activated for the console
 
 ![scope list](./img/feature-scope-list.png)
