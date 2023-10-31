@@ -142,15 +142,27 @@ service.addHook('onClose', async() => {
 | AGGREGATION_FOLDER                  | -        | The path to the Aggregation folder, e.g. `/home/node/app/aggregation`                                                                                                                                                                                                                                                                                                                                                                                                                                                       | -                   |
 | USE_AUTOMATIC                       | -        | Whether to use the low code architecture for the Single View Creator service or not                                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
 | PROJECTIONS_CHANGES_SOURCE          | -        | System to use to handle the Projection Changes, supported methods are KAFKA or MONGO                                                                                                                                                                                                                                                                                                                                                                                                                                        | MONGO               |
-| KAFKA_PROJECTION_CHANGES_TOPICS     | -        | Comma separated list of projection changes topics                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
+| KAFKA_PROJECTION_CHANGES_TOPICS     | -        | Comma separated list of projection changes topics. Remember to set the `PROJECTIONS_CHANGES_SOURCE` to `KAFKA` to properly enable the consumer.                                                                                                                                                                                                                                                                                                                                                                             | -                   |
 | KAFKA_PROJECTION_UPDATE_TOPICS      | -        | Comma separated list of projection update topics                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | -                   |
 | SV_TRIGGER_HANDLER_CUSTOM_CONFIG    | -        | Path to the config defining SV-Patch actions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -                   |
 | READ_TOPIC_FROM_BEGINNING           | -        | Available from v.5.5.0 of the Single View Creator Plugin. If set to true, the Single View Creator will start reading from messages in the Projection Changes topic from the beginning, instead of the message with the latest commmitted offset. This will happen only the first time connecting to the topic, and it has effect only if ```PROJECTIONS_CHANGES_SOURCE``` is set to <i>KAFKA</i>.                                                                                                                           | false               |
 | USE_UPDATE_MANY_SV_PATCH            | -        | Use the MongoDB ```updateMany``` operation instead of the ```findOneAndUpdate``` with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: ```SEND_BA_TO_KAFKA```, ```KAFKA_BA_TOPIC```, ```SEND_SV_UPDATE_TO_KAFKA```, ```KAFKA_SV_UPDATE_TOPIC```, ```ADD_BEFORE_AFTER_CONTENT```, ```KAFKA_SVC_EVENTS_TOPIC``` | false               |
 | KAFKA_CONSUMER_MAX_WAIT_TIME_MS     | -        | (v6.2.1 or higher) The maximum amount of time in milliseconds the server will block before answering the fetch request if there isn't sufficient data to immediately satisfy the requirement given by minBytes [1 byte]                                                                                                                                                                                                                                                                                                     | 500                 |
 | SV_UPDATE_VERSION                   | -        | (v6.2.1 or higher) Define which version of the `sv-update` event should be emitted by the service. Accepted values are `v1.0.0` and `v2.0.0`. By default, for retro-compatibility, version `v1.0.0` is employed                                                                                                                                                                                                                                                                                                             | v1.0.0              |
+| KAFKA_SV_RETRY_TOPIC                | -        | Topic name for the [Single View Retry](#single-view-retry) mechanism. This enables the system which uses a Kafka consumer and a Kafka producer.                                                                                                                                                                                                                                                                                                                                                                             | -                   |
+| KAFKA_SV_RETRY_MAX_ATTEMPTS         | -        | Number of attempts allowed for a failed Projection Change. Defining `0` will **not** retry the failed aggregations but **will send the retry message to the DLQ**                                                                                                                                                                                                                                                                                                                                                           | 5                   |
+| KAFKA_SV_RETRY_DELAY                | -        | Time in milliseconds in which the service buffers the retry messages before sending them. This is meant to reduce the impact on performace of sending the retry messages.                                                                                                                                                                                                                                                                                                           | 5000                |
 
-If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* `v9.1.0` or higher)
+:::caution
+If you want to enable any mechanism that uses Kafka in the Single View Creator, like the [Single View Patch](/fast_data/configuration/single_view_creator.md#single-view-patch), remember to declare the following environment variables: 
+
+- `KAFKA_BROKERS` (required)
+- `KAFKA_CLIENT_ID` (required)
+- `KAFKA_GROUP_ID` (required if the machanism needs a consumer)
+- `KAFKA_SASL_USERNAME`
+- `KAFKA_SASL_PASSWORD`
+- `KAFKA_SASL_MECHANISM`
+:::
 
 ## Upsert and Delete Strategies
 
@@ -366,16 +378,6 @@ const resolvedOnStop = singleViewCreator.startCustom({
   deleteSingleView: deleteSV,
 })
 ```
-## Consuming from Kafka
-
-As you can see, the Single View Creator lets you configure what channel is used as input through the `PROJECTIONS_CHANGES_SOURCE` environment variable. The default channel is MongoDB for the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) but this might not always be what you need. The service gives you the alternative to listen from Apache Kafka instead, this can be useful in two different cases:
-
-- You want to use the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to produce [`sv-trigger`](/fast_data/inputs_and_outputs.md#single-view-trigger-message) messages.
-- You want to configure the [Single View Patch](#single-view-patch) cycle which reads [`pr-update`](/fast_data/inputs_and_outputs.md#projection-update-message) messsages from the Real-Time Updater.
-
-In both of the cases you have to configure all the required environment variables related to kafka. First you need to configure the `KAFKA_BROKERS` and `KAFKA_GROUP_ID`, then you probably need to configure your authentication credentials with `KAFKA_SASL_MECHANISM`, `KAFKA_SASL_USERNAME` and `KAFKA_SASL_PASSWORD`.
-
-Once this is done remember to set the `PROJECTIONS_CHANGES_SOURCE` environment variable to `KAFKA` and to check out the configuration page of the system you need to complete the necessary steps.
 
 ## Single View Key
 
@@ -569,6 +571,21 @@ module.exports = (logger, projection) => {
   }
 }
 ```
+
+## Single View Retry
+
+:::info
+This feature is supported from version `6.3.0` of the Single View Creator
+:::
+
+The Single View Retry mechanism lets you configure a Kafka topic as a [DLQ](https://en.wikipedia.org/wiki/Dead_letter_queue) where to send the failed aggregation attempts.
+Once a message is sent to that topic it will be consumed by all the Single View Creators with the Single View Retry enabled and connected to that topic, then an attempt to aggregate the failed Single View record will be performed.
+
+First thing you need to do to enable the mechanism is to define the `KAFKA_SV_RETRY_TOPIC` alongside with all the Kafka related variables to make Kafka work in the service. 
+The messages sent to that topic have the [Single View Trigger](/fast_data/inputs_and_outputs.md#single-view-trigger-message) format, that's why, if you are already listening to Single View Trigger messages on Kafka as the main input of the service
+you can re-use the same exact topic.
+
+To customize the system we also offer you the environment variables `KAFKA_SV_RETRY_MAX_ATTEMPTS` and `KAFKA_SV_RETRY_DELAY`. Check them out on the [Environment Variables](#environment-variables) table.
 
 ## Read from multiple databases
 
