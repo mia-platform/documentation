@@ -82,7 +82,6 @@ Even though the authentication is resolved by a third party, the sessions provid
 
 | Name | Type | Description | Default | Optional |
 |:----:|:----:|:-----------:|:-------:|:--------:|
-|`jwtTokenSignKey`| string | DEPRECATED: The old JWT token symmetric signing key. It will only be used to verify tokens issued by old Console versions, and removed in next versions. |  |  ✅  |
 |`jwtTokenPrivateKeyBase64`| string |  The private key file contents encoded to base64. |  |  ❌  |
 |`jwtTokenPrivateKeyPassword`| string | The password of the private key. |  |  ❌  |
 |`jwtTokenPrivateKeyKid`| string | The KID of the private key. It can be any string, we suggest to generate an UUIDv4 |  |  ❌  |
@@ -90,10 +89,9 @@ Even though the authentication is resolved by a third party, the sessions provid
 
 :::warning
 
-The latest version of the chart introduces the asymmetric signing of the users JWT tokens, thus the token won't be signed and verified anymore with the same `jwtTokenSignKey`, but signed with a private key and verified with a public key.
-However, if you specify a `jwtTokenSignKey`, it will be used to validate tokens by the Api Gateway, in case the validation with the new public key fails.
-This is to avoid 401 errors to be shown to users that still have an old token signed with the old key; the token will be then refreshed automatically without need of a login.
-If you decide not to specify the old signing key, users with tokens signed with the old signing key, but not yet expired, will receive 401 errors and will be forced to login from the Console home page.
+The latest version of the chart introduces the asymmetric signing of the users JWT tokens, thus the token won't be signed and verified anymore with the old symmetric `jwtTokenSignKey`, but signed with a private key and verified with a public key.
+This may cause 401 errors to be shown to users that still have an old token signed with the old key.
+The user may need to manually navigate to the Console login page to be able to login again. A new token signed with the new private key will then be issued.
 
 :::
 

@@ -37,18 +37,13 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 :::caution
 
 This feature introduce breaking changes in the chart configuration.
-The user account authentication configuration has been moved under a dedicated object in the `values.yml` file.
+The user account authentication configuration has been moved under a dedicated object in the `values.yml` file. The key `jwtTokenSignKey` has been removed.
+
+Additionally, users could be forced to login again, since tokens signed with the old signing key won't be valid anymore after the Console update.
 
 :::
 
 This version introduces the signing of the JWT token with an asymmetric algorithm, rather than the symmetric HS256 signing key used now.
-
-:::caution
-
-Once upgraded the Console, users could be forced to login again. This is avoidable using the `configurations.userAccountAuthProvider.jwtTokenSignKey` flag with the symmetric signing key, which will be used only to authenticate users with tokens signed with the old signing key.
-This deprecated flag will be removed in a next release, without the needs of a breaking change of the chart.
-
-:::
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
