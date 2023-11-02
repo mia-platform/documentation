@@ -1,5 +1,5 @@
 ---
-id: intro 
+id: intro
 title: Auth Architecture Introduction
 sidebar_label: Introduction
 ---

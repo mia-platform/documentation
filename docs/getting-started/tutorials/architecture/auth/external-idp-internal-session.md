@@ -1,7 +1,7 @@
 ---
-id: external-idp-internal-session 
+id: external-idp-internal-session
 title: Integrate an external Identity Provider but manage session and user groups within your project
-sidebar_label: External Identity Provider with internal user managment
+sidebar_label: External Identity Provider with internal user management
 ---
 
 This scenario is a slight modification of the previous-one: you keep your external Identity Provider (IDP) but the user will be linked to a custom session, and you can optionally manage the user groups within your project using a dedicated CRUD collection.
