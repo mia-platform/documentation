@@ -33,6 +33,8 @@ This table shows details for each component that has been monitored and analyze 
 
 When creating and managing topics in a Kafka cluster, is crucial to define a number of partitions that can balance the identifiers of messages among different replicas that can read messages from the topic with the same consumer group. 
 
+Also, the number of partitions of a topic defines the degree of parallelism Fast Data applications can achieve by reading. 
+
 While designing your Fast Data solution, is crucial that <ins>the message producer will assign the same key to events involving the same record</ins>: in this way, they will be assigned always to the same partition and then processed always in the same order.  
 
 :::tip Useful Resources
@@ -53,18 +55,20 @@ This value can be set at the topic level with the parameter `min.insync.replicas
 
 The **Initial Load** is a manual operation made at runtime to initialize the projection's records with the most recent copy of the whole dataset from the system of record linked to it.
 
-This operation is carried out either the first time the system is boot up, when no records have ever been ingested, or whenever a schema change is deemed relevant enough to require reloading all the table content. For example, a new field is added to the schema of a tablel and it should be added retroactively to records that have already been ingested but that might not receive further updates in the future.
+This operation is carried out either the first time the system is boot up, when no records have ever been ingested, or whenever a schema change is deemed relevant enough to require reloading all the table content: for example, a new field is added to the schema of a table and it should be added retroactively to records that have already been ingested but that might not receive further updates in the future.
 
-In order to transfer data present within the Fast Data system, with a **Change Data Capture** (**CDC**) and will be then processed by the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
+The component that will perform receive the record, for example from a Change Data Capture (CDC), is the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
 
 :::danger Before executing the Initial Load
-Since an high number of ingestion messages will be handled by the RTU, remember **to disable strategy** during the execution of the Initial Load.
+The RTU can be enabled to [execute strategies](/fast_data/the_basics.md#strategies), custom functions that from an ingestion record performs a set of queries to extract one or more projection change records that will be used to generate a Single View.
 
-This will avoid to perform additional MongoDb queries made by the strategies to generate projection changes records.
+Since an high number of ingestion messages will be handled by the RTU, remember **to disable strategy execution** during the Initial Load.
+
+This will avoid to perform additional MongoDB queries made by the strategies to generate projection changes records.
 :::
 
 :::tip Execution Time
-An initial load of `6.000.000 records` took around _10 minutes_, which is approximately a rate of `60k message/minute`: for this message rate, up until 70% of CPU from a single MongoDb core was used.  
+An initial load of `6.000.000 records` took around _10 minutes_, which is approximately a rate of `60k message/minute`: for this message rate, up until 70% of CPU from a single MongoDB core was used.  
 :::
 
 ### What should be the required resources to perform a Single View Refresh?
@@ -80,7 +84,7 @@ On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), 
 :::tip Execution Time
 The time generation is **strictly dependent** on the number of projections that are needed to compute all the fields of a single view. 
 
-On a single view having three projections and custom functions, a refresh operation involving 16k projection changes records required _5 minutes_, which is approximately a rate of `1k single view/minute`, using up until the 80% of a single MongoDb core.
+On a single view having three projections and custom functions, a refresh operation involving 16k projection changes records required _5 minutes_, which is approximately a rate of `1k single view/minute`, using up until the 80% of a single MongoDB core.
 :::
 
 On an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture), projection changes collection is removed in favour of trigger topics, so Fast Data will use less database resources.
@@ -107,7 +111,7 @@ A RTU having two projections with strategies enabled, can reach up until an inge
 
 * CPU:
   * `200m` request
-  * `400m` limit
+  * `600m` limit
 * Memory:
   * `150MiB` request
   * `350MiB` limit
@@ -132,11 +136,11 @@ This issue can be seen only with a huge amount of data: before releasing your se
 
 When a strategies retrieves a huge number of projection identifiers, it may happen that the ingestion rate of the RTU decreases: this may increase the lag of your application, which may be critical in case there are some real-time boundaries.
 
-In this case, consider using an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture) and move the strategies to the [Single View Trigger Generator (SVTG)](/fast_data/single_view_trigger_generator.md): in this way, the Real Time Updater just stores projections on MongoDb to produce a pr-update message, that will be processed by the SVTG.
+In this case, consider using an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture) and move the strategies to the [Single View Trigger Generator (SVTG)](/fast_data/single_view_trigger_generator.md): in this way, the Real Time Updater just stores projections on MongoDB to produce a pr-update message, that will be processed by the SVTG.
 
 ### How should I set the resource limits of the Single View Creator (SVC)?
 
-On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), the SVC aggregates single view into records by reading projection changes documents and querying the mongodb database multiple times: based on the complexity of this strategy and the number of projections involved, this could require a variable range of replicas and resources to use.
+On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), the SVC aggregates single view into records by reading projection changes documents and querying the MongoDB database multiple times: based on the complexity of this strategy and the number of projections involved, this could require a variable range of replicas and resources to use.
 
 :::tip Use case
 
