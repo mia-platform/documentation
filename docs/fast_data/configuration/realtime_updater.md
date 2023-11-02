@@ -422,14 +422,16 @@ When the Real-Time Updater receives a Primary Key update, it triggers two differ
 1. the deletion of the old record with the old Primary Key
 2. the creation of a new record with the updated content and the updated Primary Key
 
-:::note
+:::caution
+Mind that these two actions create two `pr-update` messages when the emission of Projection Update is enabled
+:::
+
 In order to handle a Primary Key update, the Real-Time Updater needs to receive the following data:
 - a positional information about the current operation
 - the data values before the update
 - the data values after the update
 
 More details about the configuration of these fields can be found inside each Kafka message format paragraph in this page.
-:::
 
 :::danger
 The Kafka message format based on the _IBM InfoSphere Data Replication for DB2_ CDC does not support the Primary Key update.
