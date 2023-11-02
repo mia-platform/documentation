@@ -51,11 +51,22 @@ Inside the General Settings tab you can:
 
 #### RBAC Storage
 
-RBAC is configured by design to load Roles and Bindings from MongoDB. In order to properly configure MongoDB connection string and collection names head to the **General Settings** tab and change the values in the RBAC Storage card.  
+RBAC is configured by design to load Roles and Bindings from MongoDB. In order to properly configure MongoDB connection string and collection names head to the **General Settings** tab and change the values in the RBAC Storage card. 
+
+For MongoDB connection you can decide whether to use variable interpolation or retrieving the value from a Secret; this second approach is far more secure and can be easily set up from the edit modal
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '400px'}}>
+
+![RBAC Storage with Secret](img/authorization-rbac-storage-from-secret.png)
+
+  </div>
+</div>
+
+:::info
 These values are set by default to `{{MONGODB_URL}}`, `rbac-bindings` and `rbac-roles`. Feel free to change the names to better suite your
 naming conventions and standards.  
 
-:::info
 You have to provide the collection names you wish to use in your project, when you save the configuration the new collections will be created and will be visible in the **MongoDB CRUD** section.
 :::
 
@@ -102,6 +113,7 @@ It is possible to add new manual route to register a permission for a group of p
 :::
 
 During or after the creation of a manual route, you will also be able to associate to it a **Rows Filter** or a **Response Filter**, described in depth in their dedicated sections:
+
 - [**Rows filtering**](https://rond-authz.io/docs/policy-integration#rows-filtering)
 - [**Response filtering**](https://rond-authz.io/docs/policy-integration#response-filtering)
 
@@ -136,7 +148,6 @@ Paths to resolve
 - GET /foo/bar   --> permission1 (Rule1)
 - GET /foo/bar/  --> permission2 (Rule2)
 - POST /foo/bar/ --> permission3 (Rule2)
-
 ```
 
 ## How to write a policy
@@ -146,7 +157,7 @@ Please, refer to [Rönd documentation](https://rond-authz.io/docs/policy-integra
 
 ## How to test your policies
 The Permission policy testing framework also leverages Open Policy Agent technology and so, in order to write valid tests, 
-you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/).
+you have to write rego code (you can read more about it in the [Rego Testing documentation](https://www.openpolicyagent.org/docs/latest/policy-testing/)).
 
 From the ***Policies tab***, click on the ***Edit policies*** button to open the policy editor.  
 The policy editor is made of three areas:
@@ -157,6 +168,7 @@ The policy editor is made of three areas:
 ### Test Simple Policy
 
 Let's test the example policy from the [Rönd documentation](https://rond-authz.io/docs/policy-integration#example-of-a-policy):  
+
 ```rego
 package policies
 
@@ -192,6 +204,7 @@ It is still possible to save your permissions if you have no test implemented, h
 ### Test Filters Policy
 
 Let's test another example of policy from the [Rönd documentation](https://rond-authz.io/docs/policy-integration#rbac-policies-for-permission-evaluation), this time using the Row Filtering:
+
 ```rego
 package policies
 
@@ -201,8 +214,10 @@ filter_projects_example {
     resource._id == bindings.resource.resourceId
 }
 ```
+
 In order to test this filter policy we need to provide some additional data to both the `input` and the `data.resources` fields.  
 We can do this by just mocking these fields with some testing values:
+
 ```rego
 package policies
 
