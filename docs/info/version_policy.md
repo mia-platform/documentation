@@ -34,7 +34,7 @@ Release | Release Date |  End of Life Date
 -------| -------|-------
 v11| May 2023 | End of 2024
 v10| October 2022 | May 2024
-v9| April 2022 | End of 2023
+v9| April 2022 | November 2023
 v8| October 2021 | May 2023
 v7| February 2021 | October 2022
 v6| September 2020 | April 2022
