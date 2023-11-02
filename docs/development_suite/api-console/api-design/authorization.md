@@ -53,7 +53,7 @@ Inside the General Settings tab you can:
 
 RBAC is configured by design to load Roles and Bindings from MongoDB. In order to properly configure MongoDB connection string and collection names head to the **General Settings** tab and change the values in the RBAC Storage card. 
 
-For MongoDB connection you can decide whether to use variable interpolation or retrieving the value from a Secret; this second approach is far more secure and can be easily set up from the edit modal
+For MongoDB connection you can decide whether to use variable interpolation or retrieve the value from a Secret; the second approach is much more secure and can be easily set up from the edit modal
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '400px'}}>
