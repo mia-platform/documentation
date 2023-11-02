@@ -4,12 +4,12 @@ title: Single View Trigger Generator
 sidebar_label: Single View Trigger Generator
 ---
 
-The Single View Trigger Generator is a new component of the Fast Data architecture. Its introduction allows splitting the import phase
-from [strategies](/fast_data/the_basics.md#strategies) execution, which are currently handled both by the [Real-Time Updater](/fast_data/realtime_updater.md).
+The Single View Trigger Generator (SVTG) is another component of the Fast Data architecture that can be employed in the event-driver architectures.
+Its introduction allows splitting the import phase from [strategies](/fast_data/the_basics.md#strategies) execution, which are currently handled both by the [Real-Time Updater](/fast_data/realtime_updater.md).
 
 Here below a diagram showing how the Single View Trigger Generator service integrates with Fast Data flow is provided:
 
-![Fast data lifecycle with Single View Trigger Generator](img/svtg-fd-arch.svg)
+![Fast data lifecycle with Single View Trigger Generator](img/fastdata-architecture-alternative-event-driven.svg)
 
 In this particular Fast Data configuration, Real-Time Updater is set to not execute strategies, but to rather emit a [Projection Update event](/fast_data/inputs_and_outputs.md#projection-update-message) (`pr-update`) for each modified projection.  
 The Single View Trigger Generator reacts to these events executing the corresponding strategy. The strategy produces one or more identifiers of the Single View that needs to be updated.

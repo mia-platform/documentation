@@ -17,8 +17,8 @@ For an overview of which are Real-Time Updater's features, it is possible to rea
 <!--TODO: add page describing the differences between PS and RTU-->
 
 :::danger
-Projection Storer plugin does not support the Fast Data [standard architecture](/fast_data/architecture.md#standard-architecture).
-However, it supports all the others architecture where Projection Records Updates messages are emitted by the service as
+Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture).
+However, it supports all the others architecture where [Projection Record Updates](/fast_data/inputs_and_outputs.md#projection-update-message) messages are emitted by the service as
 triggers for the Fast Data downstream components. This means that, in order to use the Projection Storer, it will
 be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) plugin to actually trigger the generation of Single Views.
 :::
@@ -124,7 +124,7 @@ in the `dataSourceAdapter` configuration.
 
 Here is described the interface of the custom message adapter function:
 
-**Input**
+##### Adapter Input
 
 - `message` → a map representing the ingestion message. It contains the following properties:
   - `key` → `ByteArray` (Kotlin) / `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic  
@@ -133,7 +133,7 @@ Here is described the interface of the custom message adapter function:
 - `primaryKeys` → `List<String>` → the list of fields that compose the primary key identifier for that specific projection
 - `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
 
-**Output**
+##### Adapter Output
 
 - `operation` → the identifier of the operation applied on the record, which can be `I` (insertion), `U` (update) or `D` (deletion)
 - `key` → an object/map that contains the primary key fields for the record matching their value
@@ -162,7 +162,7 @@ fun messageAdapter(message: Map<String, Any>?, primaryKeys: List<String>, logger
   logger.debug("key: $key")
 
   return mapOf(
-    "operation" to (if (payload.isNullOrEmpty()) { "D" } else "I"),
+    "operation" to (if (payload.isNullOrEmpty()) { "D" } else { "I" }),
     "key" to key,
     "before" to null,
     "after" to payload,
@@ -491,8 +491,8 @@ this list, so that it is possible to uniquely connect records of different proje
 
 :::caution
 Primary keys array **must** contain the names of the fields that are found on the ingestion event document. In case
-`targetField` property is employed in the fields mapping section to rename the primary key fields that will be
-stored in the projection record, then the service will properly forward the updated list when it emits the corresponding
+the `targetField` property is employed to rename a field belonging to the projection primary key, before
+storing it in the projection record, then the service will properly forward the updated list when it emits the corresponding
 projection-record update events.
 :::
 
@@ -872,3 +872,173 @@ projections:
 </details>
 
 ## Migration Guide
+
+In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime_updater.md) into the one
+needed by a Projection Storer service. To support the migration operations, a small command-line interface is available,
+which translates most of the main settings
+
+:::caution
+Migrating a Real-Time Updater is subjected to certain constraints on the Console and services version, which are reported in the table below:
+
+| Mia-Platform Console | Real-Time Updater | Projection Storer |
+|:--------------------:|:-----------------:|:-----------------:|
+|      >= v12.0.0      |       v7.x.y      |       v1.x.y      |
+
+Before starting the migration procedure it is strongly recommended to first upgrade the Console version to the v12, since
+it provides additional features for managing both Real-Time Updater and Projection Storer services within Fast Data configurator.
+:::
+
+### Requirements
+
+In order to proceed with the migration process it is necessary to have:
+
+- the permissions to download `api-console-config.json` and `fastdata-config.json` configuration files within your project configurations repository
+- access to the Mia-Platform internal npm registry
+- locally installed [`nodejs`](https://nodejs.org/), so that it is possible to install and exploit the command-line interface dedicated to migrate services configurations.
+
+  The cli can be installed with the following command:
+  ```shell
+  npm i -g @mia-platform-internal/projection-storer-migration
+  ```
+  
+### Migration Process
+
+First, let's open in Console the project that contains the Real-Time Updater service that should be migrated to a Projection Storer.
+From there, it is easily possible to access the project configuration, which are stored within your Company's git provider,
+using the link in the top-right corner of Mia-Platform Console interface:
+
+![Open Git Provider](../img/ps_migration/00_open_git_provider.png)
+
+Once the project configuration files are visible, navigate within the repository and locate at root level the following
+configuration files:
+
+- `api-console-config.json`
+- `fastdata-config.json`
+
+Please, download them into a selected folder where to generate the new configuration files. For example, the folder may be named `<project-name>-real-time-updater-migration`.
+
+Now it is possible to employ the provided command-line interface to generate Projection Storer configurations matching the
+ones of existing Real-Time Updater. To achieve so, open a terminal on your computer, navigate to the folder where configuration files
+mentioned above were downloaded and execute the following command:
+
+```shell
+rtu-to-ps project -cc <filepath-to-api-console-config> \
+  -fdc <filepath-to-fast-data-config> \
+  -s <name-system-of-records>
+  -r <name-service-to-migrate-linked-to-system-of-records> \
+```
+
+:::info
+`rtu-to-ps` is the program name of the command-line interface that have been installed earlier, as explained in the [requirements](#requirements) section.
+
+To learn more about its features, it is possible to launch the cli using the `--help` flag.
+:::
+
+Considering a real-life example, let's suppose that `api-console-config.json` and `fastdata-config.json` are available in the folder
+where the cli is launched, the selected System of Record is `inventory` and the Real-Time Updater to migrate is named `fast-data-inventory-realtime-updater`.
+
+Consequently, the cli should be launched as follows:
+
+```shell
+rtu-to-ps project -cc api-console-config.json \
+  -fdc fastdata-config.json \
+  -s inventory \
+  -r fast-data-inventory-realtime-updater
+```
+
+Upon it execution, the cli outputs a series of details regarding generated files, where to find them, possible warnings
+and how to handle generated configs in order to configure a Projection Storer.
+
+Focusing on the execution ouput, a new folder `out` should have been created. The output folder can be customized using the `-o` flag of the cli.
+Within this folder it should be possible to find another folder named as the selected service, where the reference to Real-Time Updater has been replaced
+with the one to Projection Storer. Below is reported the expected structure of the generated folder:
+
+```shell
+out
+└── fast-data-inventory-projection-storer
+    ├── castFunctions                       # folder found only when at least a custom cast function has been defined
+    │   └── castToTitleCase.js
+    ├── messageAdapter.js                   # file found only when a custom message adapter has been previously defined
+    ├── ps-config.json
+    └── service.env
+```
+
+where:
+
+- `service.env` → is the environment file containing all the environment variables need by the service
+- `ps-config.json` → contains the main configuration of a Projection Storer service
+- **[optional]** `messageAdapter.js` → this file can be found **only** when a custom message adapter has been previously associated to the Real-Time Updater to be migrated.
+Represents the custom implementation employed by the existing Real-Time Updater, which can be adapted to be employed within the Projection Storer service 
+- **[optional]** `castFunctions` → this folder can be found **only** when at least one custom cast function was defined in the project. Within the folder can be found
+the implementation of each custom cast function, which can be loaded also in the Projection Storer service
+
+Then, these generated files can be employed either for configuring a new Projection Storer in Mia-Platform Console,
+which would replace the existing Real-Time Updater, or for setting up a Projection Storer in your environment.   
+
+:::caution
+Extracted user-defined functions, such as the message adapter or the custom cast functions may need to be slightly adjusted before using them in a Projection Storer service.
+In particular, Projection Storer:
+
+- expects for the custom message adapter the same signature that is employed in the Real-Time Updater. However, the expected return object is **different** due to different underlying implementation. Therefore,
+it is recommended to read the [output paragraph](/fast_data/configuration/projection_storer.md#adapter-output) in Message Adapter section to properly update your custom message adapter implementation
+- expects that custom cast function do not receive as input parameter the `logger`. It is **requested** that the implementation of those custom function is updated to remove the logger and
+obtain a working user-defined function. More details on custom cast functions implementation can be found in the [cast function](/fast_data/configuration/projection_storer.md#cast-functions-and-additional-cast-functions) section
+:::
+
+#### Replace existing Real-Time Updater service in Mia-Platform Console 
+
+Below are reported all the steps necessary to set-up a Projection Storer that could replace the corresponding Real-Time Updater.
+
+1. In the project of interest, where the existing Real-Time Updater can be found, open the Marketplace section, search for _Projection Storer_ plugin and create a new service, as shown in the figure:
+
+   ![Projection Storer Marketplace](../img/ps_migration/02_plugin_marketplace.png)
+
+   When the Projection Storer plugin is created, it already contains the proper set of environment variables. 
+
+2. Once the service is created, navigate to the Fast Data Configurator (Projections section) and select the system of records that contains the Real-Time Updater to be replaced.
+In the submenu, please select the _Services_ tab, as displayed below:
+
+   ![Open Services section](../img/ps_migration/03_sor_service.png)
+
+3. After entering the services section, the first action to be carried out is to detach from the System Of Record the existing Real-Time Updater service.
+In this manner, the projections that were associated to such service are now free to be assigned to other services.
+
+   ![Detach Real-Time Updater from SoR](../img/ps_migration/04_detach_rtu.png)
+
+4. Then, the next step is to attach to the System of Record the newly created Projection Storer plugin, so that it can be configured from the Fast Data configurator
+   
+   ![Attach Projection-Storer to SoR](../img/ps_migration/05_attach_ps.png)
+
+5. Eventually, after attaching the Projection Storer, click on the _edit microservice_ button and start configuring its properties. Here, in case it has been
+followed the previous guide on how to generate a Projection Storer configurator starting from an existing Real-Time Updater, it is possible to just copy and adjust where needed
+the pieces of the main configuration file.
+
+   ![Configure Projection Storer](../img/ps_migration/06_configure_ps.png)
+
+   In particular:
+   - **Projections** to be managed by the service can be directly selected in Console from the drop-down menu. This allows to automatically generate the projections configuration needed by the Projection Storer
+   - **Enable Soft Delete** value can be found under `settings` property of the main Projection Storer configuration file
+   - **Consumer configuration** value can be copied and adjusted from `consumer` property of the generated main Projection Storer configuration file (`ps-config.json`)
+   - **Producer configuration** value can be copied and adjusted from `producer` property of the generated main Projection Storer configuration file (`ps-config.json`)
+   - **Storage configuration** value can be copied and adjusted from `storage` property of the generated main Projection Storer configuration file (`ps-config.json`)
+
+
+6. Finally, please verify whether configured message adapter corresponds to the intended one (found under `settings` property).
+In case the selected message adapter is **custom**, then please verify that the user-defined implementation adhere to the expected configuration explained [here](#message-adapter).
+
+   ![Custom Message Adapter](../img/ps_migration/07_custom_message_adapter.png)
+
+
+:::caution
+As explained earlier, Projection Storer service is in charge only of importing, clean, filter and validate change events as projection records.
+Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator),
+which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.md) can be found an explanation on how to configure it.
+
+In case the System Of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
+the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since
+Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/architecture.md#event-driven-architecture).
+
+A detailed explanation of how the Single View Trigger Generator service should be introduced and how to migrate Fast Data
+from _stardard_ to _event-driven_ architecture is provided [here](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator)
+:::
+
