@@ -532,10 +532,6 @@
         {
           "id": "development_suite/user-settings/feature-preview",
           "type": "doc"
-        },
-        {
-          "id": "development_suite/user-settings/feature-toggle",
-          "type": "doc"
         }
       ],
       "label": "User settings",
@@ -1269,6 +1265,10 @@
         },
         {
           "id": "self_hosted/synchronize-users",
+          "type": "doc"
+        },
+        {
+          "id": "self_hosted/feature-toggle",
           "type": "doc"
         }
       ]

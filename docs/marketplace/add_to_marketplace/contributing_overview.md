@@ -18,7 +18,7 @@ However, a Company might want to have its own internal Marketplace, fulfilled al
 
 To achieve this, a Company Owner or a Project Administrator can create new Company-related components **from the CMS** by specifying their Company's identifier in the `tenantId` field. These items will be visible only to those who are part of that specific Company. This means that, inside the Marketplace of that specific Company, users of that Company will have visibility of both Company-related and public Marketplace components.
 
-Company Owners and Project Administrators can create, delete and update those Markeplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
+Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
 ### Deciding whether to create a private or public Marketplace item
@@ -188,7 +188,7 @@ To use the templates provided by Mia-Platform, you can contact your referent to 
 In fact, during service creation, it is possible to access the service documentation by clicking on `View documentation` button, which will appear only if the `documentation` field has been filled correctly.  
 Two properties must be specified inside `documentation`:  
   - `type`, currently only two types exist:
-    - `markdown`: represents a markdown file (with `.md` file extension), for example, a `README.md` file inside of a Git repository.
+    - `markdown`: represents a markdown file (with `.md` file extension), for example, a `README.md` file inside a Git repository.
     - `externalLink`: represents a link to an external website page, for example to Mia Platform documentation.
   - `url`, contains the URL where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).  
 
