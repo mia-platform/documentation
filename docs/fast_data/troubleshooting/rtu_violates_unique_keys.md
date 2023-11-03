@@ -10,7 +10,7 @@ The Real-Time Updater violates unique keys on MongoDB. This usually happens when
 
 ## Cause
 
-The RTU was executing a compaction of the messages having the same id, resulting in keeping only the insert messages, hence violating the unique key when trying to apply the update on the projections.
+The Real-Time Updater is designed to handle the case where a record is deleted and then inserted again with the same key. However, if the collection has a secondary unique index that differs from the primary key one, the RTU will violate the unique key constraint, causing the service to repeatedly restart.
 
 ## Solution
 
