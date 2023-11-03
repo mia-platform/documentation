@@ -98,12 +98,13 @@ The Project creation process is divided into three phases:
 
     <TabItem value="azure-devops" label="Azure DevOps">
 
-      It must be in the form `<ORGANIZATION_NAME>/<PROJECT_NAME>/_git/configurations` where:
+      It must be in the form `<ORGANIZATION_NAME>/<PROJECT_NAME>/_git/<REPO_NAME>` where:
       - `<ORGANIZATION_NAME>` is the name of your Azure DevOps organization.
       It must be already created on your Azure Devops account and the service account used by the Console needs to have access to it.
       - `<PROJECT_NAME>` is the name of the Azure DevOps project where the Console will create the `configurations` repo.
       If it is not already present in the Azure DevOps organization it will be created by the Console.
       However, in this case the service account used by the Console need to have the permission to create new projects in the organization.
+      - `REPO_NAME` is the name where you want to store the configurations of your project, usually named `configurations`
       
       For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
       then you can use **`mia-platform-devops/Test/_git/configurations`** as Git repo path.  
