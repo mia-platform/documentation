@@ -306,23 +306,9 @@
           "collapsed": true,
           "items": [
             {
-              "collapsed": true,
-              "items": [
-                {
-                  "id": "development_suite/api-console/advanced-section/dev-console-config/advanced_name_core",
-                  "type": "doc"
-                },
-                {
-                  "id": "development_suite/api-console/advanced-section/dev-console-config/replicas",
-                  "type": "doc"
-                },
-                {
-                  "id": "development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs",
-                  "type": "doc"
-                }
-              ],
               "label": "Console Configuration",
-              "type": "category"
+              "type": "doc",
+              "id": "development_suite/api-console/advanced-section/dev-console-config"
             },
             {
               "collapsed": true,
@@ -379,8 +365,12 @@
               "type": "doc"
             }
           ],
-          "label": "Advanced configuration",
-          "type": "category"
+          "label": "Advanced Mode",
+          "type": "category",
+          "link": {
+            "id": "development_suite/api-console/advanced-section/advanced-section",
+            "type": "doc"
+          }
         }
       ],
       "label": "Design your projects",

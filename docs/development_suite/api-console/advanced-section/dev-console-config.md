@@ -1,8 +1,43 @@
 ---
-id: custom-ca-certs
-title:  How to add custom CA certs to core services
-sidebar_label: CA certs to core services
+id: dev-console-config
+title:  Console Configuration
+sidebar_label: Console Configuration
 ---
+
+In the sub-section `api-console-config` there's an empty `core-service.json` that can override the information of your micro-service.
+
+## Change the name of core services
+
+If you want to change the name of a service you will need to compile a json file with the structure similar to the one shown below:
+
+```
+{
+    "ag-1": {
+        "type": "core",
+        "name": "ag-1",
+        "key": "api-gateway"
+    },
+    "microservice-gateway-1": {
+        "type": "core",
+        "name": "microservice-gateway-1",
+        "key": "microservice-gateway"
+    }
+}
+```
+where:
+
+* **type**: is the type of the services
+
+* **name**: is the name you wanna give to your service
+
+* **key**: is the real name of the service
+
+:::warning
+Watch out!
+Remember to delete old services and related files: service, deployment and any config map
+:::
+
+## Add custom CA certs to core services
 
 In an enterprise environment, to encrypt SSL connections, there could be a set of custom certificates signed by one or more trusted certificates.
 By following this guide you'll be able to provide one or more trusted certificates in PEM format in a single file for the **core** services managed by the Console.
@@ -61,3 +96,18 @@ This feature is enabled only for `cms-backend` and `v1-adapter` core services. O
 :::warning
 This feature is enabled for all environments. If it is not required to add custom ca certs, for example for a test environment, you must add a secret with an empty `additional-ca.pem` file content.
 :::
+
+## Change the Number of Replicas
+
+To change the number of replicas of a service you need to edit the file in the advanced Section: `core-services.json.` and add the key **replicas** and value the number of replica.
+
+For example, to configure auth service with 5 replicas, the configuration to be provided is as follows:
+
+```json
+"auth-service": {
+        "type": "core",
+        "name": "auth-service",
+        "key": "auth-service",
+        "replicas": 5
+    }
+```
