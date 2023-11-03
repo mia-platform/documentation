@@ -12,7 +12,7 @@ For example, you could replicate Scenario 2 as in the following schema:
 
 However, this replication brings some problems:
 - The authentication service is replicated in every project. This is a waste of resources but it can also lead to problems when the service need to be updated for some projects
-- In such architecture, it is likely that a service of one project need to call services of other projects. In this case, the token resolution call would be unnecessary repeated.  
+- In such architecture, it is likely that a service of one project need to call services of other projects. In this case, the token resolution call would be needlessly repeated.  
 - You may want to centralize the Ingresses management in a single namespace of your cluster. In this way it is easier to verify which are all the FQDNs connected to your Kubernetes clusters.
 
 Therefore, we recommend to introduce in your architecture an `Edge Gateway` project that will be the entry point of all the incoming requests to your company and where you will centralize the token resolution flow.
@@ -31,11 +31,12 @@ Each project contains the following microservices:
 2. [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md): Mia-Platform plugin
 3. The microservice connected to the endpoint
 
-The picture above illustrates the auth flow at runtime:
+The picture above illustrates the API calls at runtime:  
+
 1. The client, be it a web application or backend software, need to implement the authentication flow required by the IDP to obtain a valid token. With this token, the client will be able to call the endpoints of your project.
 2. The client calls the endpoint of your project, including the valid token in the request. Usually this token is placed in the `Authorization` header but it can be placed in other headers or cookies.
-3. The API Gateway of the `Edge Gateway` project calls the `Authorization Service`. Since the endpoint permissions will be set in 
-4. To do so, the Authorization Service requests to the Authentication Service to resolve the token
+3. The API Gateway of the `Edge Gateway` project calls the `Authorization Service`
+4. To do so, the `Authorization Service` requests to the `Authentication Manager` to resolve the token
 5. The Authentication Service resolves the token contacting the external IDP and returns the user payload to the Authorization Service that can now check if the user belongs to the authorized groups 
 6. If the verification performed by the Authentication Service is successful, then the API Gateway forwards the API call the right microservice of the project. Note that the target microservice will receive the following additional headers that could be useful for their business logic:
   
