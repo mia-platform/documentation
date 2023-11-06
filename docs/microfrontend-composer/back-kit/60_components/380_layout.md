@@ -333,7 +333,7 @@ The following configuration for the Layout component
     ],
     "head": {
       "favIconUrl": "https://www.mia-platform.eu/static/img/favicon/apple-icon-60x60.png",
-      "title": "Backoffice"
+      "title": "Frontend"
     }
   }
 }

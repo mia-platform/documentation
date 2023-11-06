@@ -4,7 +4,7 @@ title: Microfrontend Composer architecture
 sidebar_label: Architecture
 ---
 
-Given their remarkable degree of flexibility backoffice applications are usually composed of multiple moving parts that interacts with each other and with external systems. 
+Given their remarkable degree of flexibility, frontend applications are usually composed of multiple moving parts that interacts with each other and with external systems. 
 
 The following sections are intended to give the reader a general idea of the actors involved and their connections.
 
@@ -15,8 +15,8 @@ The following sections are intended to give the reader a general idea of the act
 Being composed at runtime, Mia-Platform Microfrontend Composer needs a couple of configuration files to build your frontend application. These files can be easily generated using the low-code/no-code configurator provided by the Console, and then served through a microservice called [Middleware](https://micro-lc.io/add-ons/backend/middleware) that acts both as web server and configurations provider for the Microfrontend Composer. 
 
 The service can be easily deployed using one of two [marketplace applications](/marketplace/applications/mia_applications.md):
-- [Microfrontend Composer](/runtime_suite_applications/backoffice/10_overview.md), which will deploy only one pod loading the needed resources from a CDN, or
-- [Microfrontend Composer On Prem](/runtime_suite_applications/backoffice-on-prem/10_overview.md), which will deploy all the needed resources to avoid cross origin fetching.
+- [Microfrontend Composer](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md), which will deploy only one pod loading the needed resources from a CDN, or
+- [Microfrontend Composer On Prem](/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/10_overview.md), which will deploy all the needed resources to avoid cross origin fetching.
 
 ## How Microfrontend Composer works at runtime
 

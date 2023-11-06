@@ -24,7 +24,7 @@ for further references, check out the [micro-lc documentation](https://micro-lc.
 
 The only limitation, left to the user to check, is not to define the same webcomponent twice or more from different libraries. This might happen when different composable pages have different versions of the same library. The Configurator will not complain but errors might arise when the final website is deployed.
 
-The default configuration of the Configurator section, once the [application](/runtime_suite_applications/backoffice/10_overview.md) is added to your Console project, on the branch you're currently working on, is preset to use the components library [@micro-lc/bk-web-components](https://www.jsdelivr.com/package/npm/@micro-lc/bk-web-components), which is well-suited to visualize data through tables, cards and galleries.
+The default configuration of the Configurator section, once the [application](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md) is added to your Console project, on the branch you're currently working on, is preset to use the components library [@micro-lc/bk-web-components](https://www.jsdelivr.com/package/npm/@micro-lc/bk-web-components), which is well-suited to visualize data through tables, cards and galleries.
 
 To improve your UX/UI experience, or even to just add some custom business logic, you can bring your own components to the table and use them in the Configurator section.
 
@@ -101,7 +101,7 @@ location / {
 or maybe proxy-reversed to another service by applying the following configuration to your API gateway
 
 ```nginx
-location /backoffice-web-components/ {
+location /web-components/ {
   if ($request_method = 'OPTIONS') {
     add_header                    'Access-Control-Allow-Origin' '*';
     add_header                    'Access-Control-Allow-Methods' 'GET';
@@ -127,7 +127,7 @@ such request must be **unauthenticated**. Then a successful 200 or 204 reply mus
 
 The authorization service must be instructed to serve resources by including an API key matching the `Secret` header.
 
-Once the API key secret is set up, the _Backoffice Configurations_ section of the Mia-Platform Console must be instructed with advanced options in the [Source Maps](/microfrontend-composer/composer/30_configurator_settings.md#source-maps) section. A resource must thus include custom headers to perform the request:
+Once the API key secret is set up, the _Microfrontend Composer_ section of the Mia-Platform Console must be instructed with advanced options in the [Source Maps](/microfrontend-composer/composer/30_configurator_settings.md#source-maps) section. A resource must thus include custom headers to perform the request:
 
 1. add a resource in the _Source Map_ tab of the _Configurator Settings_ modal
 2. edit the resource as a JSON file

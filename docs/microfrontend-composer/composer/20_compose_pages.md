@@ -93,7 +93,7 @@ Data shape is defined by `dataSchema` shared property, that can be edited in a n
 
 From the first tab you can configure in a no-code fashion the components that **renders something** on the page (as opposed to the merely logical components configurable in the [connectors & adapters](#connectors--adapters) tab).
 
-This section works just as the layout tab of Backoffice Configurator. The **left menu** allows viewing, selecting, and hiding the custom components composing the page, the **live central preview** shows how the final page will look like, and from the **right menu** components properties can be consulted and edited.
+This section works just as the layout tab: the **left menu** allows viewing, selecting, and hiding the custom components composing the page, the **live central preview** shows how the final page will look like, and from the **right menu** components properties can be consulted and edited.
 
 For more technical insights, visit the [Layout section](./10_structure.md#layout) where all the behaviors are explained in deep.
 

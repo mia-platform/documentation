@@ -18,7 +18,7 @@ sidebar_label: Plugin navigation
 
 
 
-`Backoffice` is a set of micro-frontend plugins. An orchestrator of micro-frontends should provide a mechanism for page/plugin navigation.
+Microfrontend Composer is a set of micro-frontend plugins. An orchestrator of micro-frontends should provide a mechanism for page/plugin navigation.
 
 In this regard `Back-Kit` provides a set of `webcomponents` which can handle navigation main features given that the micro-frontend orchestrator is
 actively listening the [pushState][window.history.push] / [replaceState][window.history.replace] events.

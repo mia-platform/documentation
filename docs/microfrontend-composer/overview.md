@@ -51,4 +51,4 @@ In many businesses, backoffice applications play a pivotal role in ensuring smoo
 The world of web design and user experience is vast, encompassing legacy systems and newer, more dynamic interfaces. With Mia-Platform Microfrontend Composer, you can integrate these seemingly disparate elements. Whether it's an older system that's not easily updatable or a new-age micro-frontend, everything finds its place in the cohesive environment orchestrated by micro-lc. Plus, with the readily available templates in Mia-Platform Marketplace, kickstarting your micro-frontend development with mainstream frontend frameworks becomes a breeze.
 
 ## Prerequisites
-To use the configurator, the [Microfrontend Composer application](/runtime_suite_applications/backoffice/10_overview.md) needs to be deployed in your project from the marketplace.
+To use the configurator, the [Microfrontend Composer application](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md) needs to be deployed in your project from the marketplace.

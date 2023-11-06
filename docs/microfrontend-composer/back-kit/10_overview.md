@@ -77,7 +77,7 @@ Back-Kit library provides a full set of [W3C Web Components](https://www.w3.org/
 </div>
 ```
 
-Packed within a configuration file, a set of components creates a **layout** that can be plugged in a rendering engine, for instance a `composition` feature like the one provided by Mia-Platform Backoffice.
+Packed within a configuration file, a set of components creates a **layout** that can be plugged in a rendering engine, for instance a `composition` feature like the one provided by Mia-Platform Microfrontend Composer.
 
 At runtime, when a customized configuration is injected, components are enriched with properties. Properties may be component-specific or related to the `composer`. Indeed, components can receive properties concerning an **authenticated user** and/or a **communication channel**. Such channel is paramount to realize an event-driven communication amongst web components which in return provides isolation for each of them.
 
