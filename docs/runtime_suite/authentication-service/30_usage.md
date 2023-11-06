@@ -708,3 +708,5 @@ If you set the `EXPOSE_METRICS` environment variable to `true`, the service will
 | Metric Name | Description |
 | ----------- | ----------- |
 | `http_request_duration_seconds` | The duration of the HTTP requests, in seconds |
+
+It is possible to customize the metrics prefix by setting the `NAMESPACED_METRICS_PREFIX` environment variable. The default value is `authentication_service`.
