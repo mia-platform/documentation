@@ -92,7 +92,29 @@ location / {
   }
 
   add_header                      'Access-Control-Allow-Origin' '*';
+
+  # 👇 for webserver => looks inside the root folder
   try_files                       $uri $uri/index.html /index.html =404;
+}
+```
+
+or maybe proxy-reversed to another service by applying the following configuration to your API gateway
+
+```nginx
+location /backoffice-web-components/ {
+  if ($request_method = 'OPTIONS') {
+    add_header                    'Access-Control-Allow-Origin' '*';
+    add_header                    'Access-Control-Allow-Methods' 'GET';
+    add_header                    'Access-Control-Allow-Headers' 'secret';
+    add_header                    'Content-Type' 'text/plain; charset=utf-8';
+    add_header                    'Content-Length' 0;
+    return                        204;
+  }
+
+  add_header                      'Access-Control-Allow-Origin' '*';
+
+  # 👇 notice the proxy pass statement
+  proxy_pass                      http://$proxy_name$proxy_url;
 }
 ```
 
@@ -104,6 +126,12 @@ When a browser is instructed to fetch a resource (`GET` method) including a cust
 such request must be **unauthenticated**. Then a successful 200 or 204 reply must be issued and your Configurator will perform the actual fetch including custom headers.
 
 The authorization service must be instructed to serve resources by including an API key matching the `Secret` header.
+
+Once the API key secret is set up, the _Backoffice Configurations_ section of the Mia-Platform Console must be instructed with advanced options in the [Source Maps](/microfrontend-composer/composer/30_configurator_settings.md#source-maps) section. A resource must thus include custom headers to perform the request:
+
+1. add a resource in the _Source Map_ tab of the _Configurator Settings_ modal
+2. edit the resource as a JSON file
+3. add a key `headers` with the required custom header (see the image below)
 
 ### Configure **Mia-Platform Console** to support preflight requests
 

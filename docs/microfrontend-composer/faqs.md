@@ -6,7 +6,7 @@ sidebar_label: FAQs
 
 ## Components
 
-### How can I add a new page to and show it in the navigation menu?
+### How can I add a new page and show it in the navigation menu?
 
 :::caution
 The information regarding the menu are valid only if you are using the [`bk-layout`](/microfrontend-composer/back-kit/60_components/380_layout.md) component.
@@ -44,6 +44,16 @@ Columns of the table are defined by it's
 A modal will open with a code editor you can use to edit the property. Now you just need to add a new entry to the `properties` object as explained in the [official documentation](/microfrontend-composer/back-kit/30_page_layout.md#data-schema).
 
 Once you have done, click the _Save_ button. The modal will close, and the table will display the new column.
+
+### How can I change parts of the configuration based on user's groups and permissions?
+
+Microfrontend Composer [suppports](https://micro-lc.io/add-ons/backend/middleware#acl-application) the usage of ACL expressions in configurations to omit sections based on logical expressions evaluated against user's groups and permissions.
+
+:::info
+An ALC expression is a combination of groups, permissions and JavaScript operators like `groups.admin && permissions.api.users.get`.
+:::
+
+ACL expressions can be [added](/microfrontend-composer/composer/10_structure.md#acl-expression) to each object in the configurations regardless of the nesting level. If an object has the special property `aclExpression`, the server will evaluate it and remove the object altogether in case of a *falsy* outcome.
 
 ### How can I use an Angular micro-frontend as parcel?
 
