@@ -53,6 +53,20 @@ Please follow the [Authentication Session signing](./30_authentication_provider.
 
 This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./20_general_settings.md#optional-telemetry-configurations).
 
+#### Introduction of Mia-Platform Company
+
+Since this version, a Mia-Platform Company will be created during the installation of the Console. Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
+
+The value `.Values.configurations.miaPlatformDefaultCompanyId` is required.
+When installing a fresh instance of the Console or while upgrading from a previous version, a new company will be created with the given value only if not already existing.
+
+:::warning
+
+You can also set this value to an already existing company, but be aware that this Company will be used also for installation internal purposes.
+For this reason we strongly suggest to prefer a dedicated Company.
+
+:::
+
 ## v11 - version upgrades
 
 ### Upgrade from v11.5.x to v11.6.0

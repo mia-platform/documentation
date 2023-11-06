@@ -74,6 +74,7 @@ mia-console:
     filesStorageType: "mongodb"
     filesBucketName: "<GRIDFS_COLLECTION_NAME>" # gridFS collection name
     multitinenantNamespace: ""
+    miaPlatformDefaultCompanyId: "mia-platform" # the ID of the default Mia-Platform company
     serviceAccountAuthProvider:
       rsaPrivateKeyId: "PRIVATE KEY ID"
       rsaPrivateKeyPass: "PRIVATE KEY PASSPHRASE"
