@@ -238,7 +238,14 @@ So, at the end we will have the first Single View Creator with the first `aggreg
 
 ### Delete
 
-For the delete we offer the `delete` pre-configured strategy which [Hard deletes](https://www.becomebetterprogrammer.com/soft-delete-vs-hard-delete/#Hard_Delete) the Projection record when the Base Projection gets deleted. If you need a more complex deleting strategy we encourage you to take a look to the [Custom functions](#custom-functions) section.
+The available strategies for the delete are the following:
+
+- **delete**: [Hard deletes](https://en.wiktionary.org/wiki/hard_deletion) the Single View record. This is the default method.
+- **virtualDelete**: [Soft deletes](https://en.wiktionary.org/wiki/soft_deletion) the Single View, setting the `__STATUS__` property to `DELETED`.
+
+The delete operation of a Single View (either hard, soft or custom) happens when the Base Projection record gets deleted.
+
+If you need a more complex deleting strategy we encourage you to take a look to the [Custom functions](#custom-functions) section.
 
 ### Custom functions
 
