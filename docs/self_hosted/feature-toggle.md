@@ -4,7 +4,7 @@ title: Feature Toggle
 sidebar_label: Feature Toggle
 ---
 
-The console offers a section called [Feature Preview](/development_suite/user-settings/feature-preview.md) in the User section. The section allows to activate features that are still in preview by enabling a toggle.
+The console offers a section called [Feature Preview](/development_suite/user-settings/feature-preview.md) in the Project Settings and User section. These sections allows to activate features that are still in preview by enabling a toggle.
 
 ![feature preview](../development_suite/user-settings/img/enabling-feature-preview.png)
 
