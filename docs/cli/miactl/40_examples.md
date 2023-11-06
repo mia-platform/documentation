@@ -8,13 +8,13 @@ sidebar_label: Examples
 You can have one or more context locally for interacting with one or more installation fo Mia-Platform Console. Below
 you can find some examples on how to create multiple contexts and then selecting one of them.
 
-Create a Context for a company on the cloud instance:
+Create a Context for a Company on the cloud instance:
 
 ```sh
 miactl context set paas-company --company-id <your-company-id>
 ```
 
-Create a Context for specific project in a company on the cloud instance:
+Create a Context for specific Project in a Company on the cloud instance:
 
 ```sh
 miactl context set paas-project --company-id <your-company-id> --project-id <your-project-id>
@@ -40,13 +40,13 @@ miactl context use paas-project
 
 ## List Projects
 
-The list project command will list all project that the current user can access in the selected company:
+The `list project` command will list all Projects that the current user can access in the selected Company:
 
 ```sh
 miactl project list
 ```
 
-Or you can set a different company via flag:
+Or you can set a different Company via flag:
 
 ```sh
 miactl project list --company-id <your-company-id>
@@ -54,20 +54,20 @@ miactl project list --company-id <your-company-id>
 
 ## Deploy Project
 
-The deploy command allow you to trigger a new deploy pipeline for the current project in the project. The only
-argument needed is the environment id that you want to deploy:
+The deploy command allows you to trigger a new deploy pipeline for the current Environment in the Project. The only
+argument needed is the Environment ID that you want to deploy:
 
 ```sh
 miactl deploy development --revision main
 ```
 
-Additionally if your context don’t contain the project id you can select it via a flag:
+Additionally, if your context doesn’t contain the Project ID, you can select it via a flag:
 
 ```sh
 miactl deploy development --project-id <your-project-id> --revision main
 ```
 
-You can customize the way your project is deployed:
+You can customize the way your Project is deployed:
 
 ```sh
 miactl deploy development --no-semver --revision tags/v1.0.0

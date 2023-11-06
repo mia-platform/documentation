@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v6.0.1 - 2023-10-20
+
+### Changes
+- update @mia-platform/lc39 lib to v7.0.2 to fix the "fastify.close is not a function" error
+
 ## v6.0.0 - 2023-05-11
 
 ### BREAKING CHANGES
@@ -237,7 +242,7 @@ This version contains a bug when it's configured a required env var with a defau
 - Update @mia-platform/lc39 2.2.2 -> 3.1.0.
 
     This update bring this breaking change:
-    * Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../..(/getting-started/guidelines/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js)
+    * Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../getting-started/guidelines/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js)
 
 ### Added
 

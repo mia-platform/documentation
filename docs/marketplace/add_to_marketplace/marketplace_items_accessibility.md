@@ -11,31 +11,43 @@ You can contribute to the Mia-Platform Marketplace with the Marketplace items of
 
 Both methods will be explained in the following paragraphs.
 
-## Use the CMS to make your Marketplace item accessible to others
+## Use the CMS to make your Marketplace item accessible to other Companies
 
-To make a Marketplace item of your Company accessible to other Companies, you first need to create it in the CMS. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so.  
+To make a Marketplace item of your Company accessible to other Companies, you first need to create it in the CMS. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so.
+
 Once you have created your Marketplace item in the CMS, you can make it accessible to other companies by editing its `visibility` property. Specifically, set the `allTenants` property inside the `visibility` object to "true".  
 After editing, the visibility property should look like this:
 
 ```json
-{
+...
+"visibility": {
     "allTenants": true
 }
+...
 ```
 
-If the repository where your Marketplace item is located is freely accessible (open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
+Depending on whether the item is hosted on a public or private repository, you may have to perform additional actions, as described here below.
 
-Otherwise, in order to grant access to other Companies, you should provide them with a **Provider** that has the required permissions to access your Marketplace item repository and make it accessible to other Companies.
+### Open Source item
 
-First, you need to connect to your Company the Provider you want to use for this purpose, by using the Mia-Platform Console. Detailed instructions on how to connect a Provider for Marketplace purposes can be found on [this page](/development_suite/set-up-infrastructure/configure-provider.mdx#connect-a-provider-for-marketplace).  
+If the repository where your Marketplace item is located is public and freely accessible (open source), then you have completed the process, and your marketplace item can now be accessed and used by other Companies!
+
+### Item hosted on a private repository
+
+To allow the Console to access the private repository, you need to create a **Provider for Marketplace**, in which you will specify the credentials to access the Git Provider. Follow [these steps](/console/company-configuration/providers/configure-marketplace-provider.mdx) to learn how to create it.
+
+The Provider has to be created in the same Company where the item is created (defined in the property `companyId` of the item).
 
 :::info
-Remember to set the accessibility of the Provider in the "**Provider Details**" step or by editing the existing Provider, in order to make it accessible by other Companies.
+
+Please note that, in order for the Marketplace resources to be visible to other Companies, yor need to enable the *Allow access to all the Companies* switch, as explained [here](/console/company-configuration/providers/configure-marketplace-provider.mdx#step-2-provider-details).  
+This allows the Console to access Marketplace items resources when they are created within a Project belonging to any Company.
+
 :::
 
-After creating and connecting your Provider, you can return to the CMS and edit the `providerId` property (using the providerId of the Provider you have previously connected in the step before) of the Marketplace item that you want to publish.
+After creating and connecting your Provider, locate it in the Providers section of the CMS and take note of the `providerId`; go back to the CMS and edit the Marketplace item that you want to publish, and set to it the property `providerId` with the value you copied from the provider.
 
-After completing the previous step, your Marketplace item should be available to any Company!
+From this moment, your new Marketplace item should be available to any Company!
 
 ## Open an issue on Mia-Platform Github community page
 

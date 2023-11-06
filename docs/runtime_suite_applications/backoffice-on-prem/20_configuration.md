@@ -9,7 +9,7 @@ service if you want to deploy a new resource or link an existing one.
 The available resources will be:
 
 - [`micro-lc`](https://www.micro-lc.io) javascript bundle at `/micro-lc/micro-lc.production.js` (and relative assets)
-- [`back-kit`](../../microfrontend-composer/back-kit/10_overview.md) javascript bundles under `/back-kit`
+- [`back-kit`](/business_suite/backoffice/10_overview.md) javascript bundles under `/back-kit`
 - the frontend `index.html` entrypoint at `/backoffice`
 - configurations at `/micro-lc-configurations`
 

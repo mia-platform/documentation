@@ -1,5 +1,5 @@
 const createRedirects = require("./createRedirects");
-
+const createEditUrl = require("./createEditUrl");
 async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
 
@@ -247,6 +247,7 @@ async function createConfig() {
                 dark: 'dark'
               }
             }],
+            editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "current",
             versions: {

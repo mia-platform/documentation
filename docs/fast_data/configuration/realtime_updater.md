@@ -1,7 +1,7 @@
 ---
 id: realtime_updater
 title: Real-Time Updater Configuration
-sidebar_label: Real Time Updater
+sidebar_label: Real-Time Updater
 ---
 
 Real-Time Updater is the service in charge of keeping up-to-date the projections with the data sent by the connected system.   
@@ -17,57 +17,66 @@ Here below, instead, all the configurations the service accepts are explained.
 | LOG_LEVEL | &check; | defines the logger level | - |
 | MONGODB_URL | &check; | defines the mongodb URL to contact | - |
 | PROJECTIONS_DATABASE_NAME | &check; | defines the name of the projections' database | - |
-| PROJECTIONS_CHANGES_COLLECTION_NAME | &check; | defines the name of the projections changes collection | - |
-| PROJECTIONS_CHANGES_ENABLED| - | defines whether you want to generate projections changes| true |
 | LC | &check; | defines the lc39 HTTP port | - |
-| STRATEGIES_MAX_EXEC_TIME_MS | &check; | defines the maximum time for which a strategy is executed | - |
-| KAFKA_BROKERS | &check; | defines the Kafka brokers | - |
-| KAFKA_GROUP_ID | &check; | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.real-time-updater'}```) | - | KAFKA_SASL_USERNAME | &check;| defines the Kafka SASL username | - |
-| KAFKA_SASL_PASSWORD | &check; | defines the Kafka SASL password | - |
 | LIVENESS_INTERVAL_MS | &check; | defines the liveness interval in milliseconds | - |
-| INVARIANT_TOPIC_MAP | &check; | defines an object that maps the topic to the projection | - |
-| KAFKA_USE_LATEST_DEQUEUE_STRATEGY | - | defines latest dequeue strategy or not | - |
-| KAFKA_ADAPTER_FOLDER | - | defines the path to the Kafka adapter folder | - |
-| CAST_FUNCTIONS_FOLDER | - | defines the path to the cast-functions folder | - |
-| MAP_TABLE_FOLDER | - | defines the path to the map table folder | - |
-| STRATEGIES_FOLDER | - | defines the path to the strategies' folder | - |
-| USE_AUTOMATIC_STRATEGIES | &check; | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Records to automatically update in the service | false | 
+| KAFKA_BROKERS | &check; | defines the Kafka brokers | - |
+| KAFKA_GROUP_ID | &check; | defines the Kafka group id (it is suggested to use a syntax like ```{tenant}.{environment}.{projectName}.{system}.real-time-updater```) | - 
 | KAFKA_SASL_MECHANISM | - | defines the authentication mechanism. It can be one of: ```plain```, ```scram-sha-256```, ```scram-sha-512```, ```oauthbearer```. | plain |
+| KAFKA_SASL_USERNAME | &check; | defines the Kafka SASL username | - |
+| KAFKA_SASL_PASSWORD | &check; | defines the Kafka SASL password | - |
 | KAFKA_SASL_OAUTH_BASE_URL | - | In case of ```oauthbearer``` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_PATH | - | In case of ```oauthbearer``` mechanism, it defines the path of the endpoint for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_GRANT_TYPE | -  | In case of ```oauthbearer``` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type ```password``` is supported | password |
 | KAFKA_SASL_OAUTH_CLIENT_ID | - | In case of ```oauthbearer``` mechanism, it defines the client id for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_CLIENT_SECRET | - | In case of ```oauthbearer``` mechanism, it defines the client secret for fetching the OAuth2 token. | - |
 | KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS | - | In case of ```oauthbearer``` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute) | 60000 |
+| SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real-Time Updater | - |
+| PROJECTIONS_CHANGES_ENABLED| - | defines whether you want to generate projections changes| true |
+| PROJECTIONS_CHANGES_COLLECTION_NAME | &check; | defines the name of the projections changes collection | - |
+| INVARIANT_TOPIC_MAP | &check; | defines an object that maps the topic to the projection. | - |
+| CAST_FUNCTIONS_FOLDER | - | defines the path to the cast-functions folder | - |
+| MAP_TABLE_FOLDER | - | defines the path to the map table folder | - |
+| STRATEGIES_FOLDER | - | defines the path to the strategies' folder | - |
+| USE_AUTOMATIC_STRATEGIES | &check; | When `true` the Real-Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema | false | 
+| STRATEGIES_MAX_EXEC_TIME_MS | &check; | defines the maximum time for which a strategy is executed | - |
 | USE_UPSERT | - | defines whether to use [upsert](#upsert) or not when performing insert and update operations. | true |
-| KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic |
-| KAFKA_PROJECTION_CHANGES_FOLDER | - | path where has been mounted the ```kafkaProjectionChanges.json``` configuration (v3.4.0 or above). | - |
-| GENERATE_KAFKA_PROJECTION_CHANGES | - | defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above). | false |
-| KAFKA_CONSUMER_MAX_WAIT_TIME | - | defines the maximum waiting time of Kafka Consumer for new data in batch. | 500 |
+| KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the 
+[Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic |
+| KAFKA_ADAPTER_FOLDER | - | defines the path to the Kafka adapter folder containing the custom message adapter, if required | - |
+| GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. | false |
+| KAFKA_PROJECTION_UPDATES_FOLDER | - | path to the folder that contains the file ```kafkaProjectionUpdates.json```, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above). | - |
 | COMMIT_MESSAGE_LOGGING_INTERVAL | - | specify the interval in ms of logging the info that messages have been committed. | 3000 |
+| KAFKA_CONSUMER_MAX_WAIT_TIME | - | defines the maximum waiting time of Kafka Consumer for new data in batch. | 500 |
 | KAFKA_CONNECTION_TIMEOUT_MS | - | Time in milliseconds to wait for a successful connection. | 10000 |
 | KAFKA_SESSION_TIMEOUT_MS | - | Timeout in milliseconds used to detect failures. | 30000 |
 | KAFKA_HEARTBEAT_INTERVAL_MS | - | The expected time in milliseconds between heartbeats to the consumer coordinator. | 3000 |
+| KAFKA_USE_LATEST_DEQUEUE_STRATEGY | - | defines latest dequeue strategy or not | - |
 | FORCE_CHECK_ON_OFFSET | - | Force check that incoming message has offset greater or equal than the one of the projection to update. | true |
-| KAFKA_PROJECTION_UPDATES_FOLDER | - | path to the folder that contains the file ```kafkaProjectionUpdates.json```, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above). | - |
-| GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the realtime updater should send a message of update every time it writes the projection to Mongo. | false |
 | CA_CERT_PATH | - | the path to the CA certificate, which should include the file name as well, e.g. ```/home/my-ca.pem``` | - |
-| SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real Time Updater | - |
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
 | USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
 
+### Multiple services to the same System of Records
+
+From version `11.7.0` of the Console it is possible to have a single System of Records attached to multiple Real-Time Updater. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
+
+:::caution
+Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will
+actually update those projections.
+:::
+
+:::info
+One projection can be evaluated by only one service.
+:::
+
 ### Usage of the Low Code
 
-The Low Code features of the Real Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service Config Maps .
+The Low Code features of the Real-Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service Config Maps .
 
 Also, it allows the possibility to fully configure the service with the usage of JSON files, as example for the [ER Schema](#er-schema-configuration) and the [Projection Changes Schema](#projection-changes-schema) 
 
 :::info
-You can quickly convert a System of Records from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to true. Then, you should follow the next steps to set up your Fast Data Low Code project properly.
-:::
-
-:::warning
-When you create a new configmap, remember to use the same Mount Path of your environment variables `STRATEGIES_FOLDER`, `ER_SCHEMA_FOLDER`, `PROJECTION_CHANGES_FOLDER`
+You can quickly convert a System of Records from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to _true_. Then, you should follow the next steps to set up your Fast Data Low Code project properly.
 :::
 
 ## How data is managed on MongoDB
@@ -80,7 +89,7 @@ When the Real-Time Updater deletes a document, it actually makes a **virtual del
 
 When performing Insert and Update operations, Real-Time Updater will perform an upsert operation as default. This means that if the document matching the key of the message does not exist, it will be created; otherwise, if it already exists, it will just be updated. 
 
-If you want to change this behavior, you can set the environment variable `USE_UPSERT` of the Real-Time Updater to false. Doing so, for the Insert operation the service will fail to insert documents that already exist, causing the service to stop. For the Update operation it will fail when trying to update non-existing documents, causing the service to stop.
+If you want to change this behavior, you can set the environment variable `USE_UPSERT` of the Real-Time Updater to _false_. Doing so, for the Insert operation the service will fail to insert documents that already exist, causing the service to stop. For the Update operation it will fail when trying to update non-existing documents, causing the service to stop.
 
 ## Configuration files
 
@@ -91,18 +100,18 @@ The Real-Time Updater accepts the following configurations:
 In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real-Time Updater.
 
-Since a Real Time Updater is connected to one System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, between one of the following three options (further details in the paragraphs below):
+Since one or multiple Real-Time Updater services could be connected to a System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, 
+between one of the following options (further details in the paragraphs below):
 - `DB2`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
 - `Golden Gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) type CDC;
 - `Debezium`, based on the [Debezium](https://debezium.io/documentation/reference/2.1/tutorial.html) type CDC;
 - `Custom`, in case you need a completely customized message adapter (you'll be requested to write the implementation code); 
 
-When the System of Records has been created, saving the configuration will automatically create a new Real Time Updater service, which can be viewed in the _Microservices_ section of the console.
+The selection will be applied to every Real-Time Updater service attached (or to any service that will be attached in the future) to ensure that those service will be expecting messages in the correct type.
 
-In case you need to change the type of adapter to use in the Real Time Updater, you can easily do that from the System of Records page in the _Projection_ section of the console: after selecting your System (the same one associated to the Real Time Updater), click on the _Real Time Updater_ tab, then select the adapter type you want to use.
+In case you need to change the type of adapter to use in the Real-Time Updater, you can easily do that from the System of Records page in the _Projection_ section of the console: after selecting your System, click on the _Message Format_ tab, then select the adapter type you want to use.
 
-Another option that you should be aware of when thinking about the format of your Kafka messages is the "upsert" or "insert".
-By default, the real-time-updater will perform upsert operations, but you can optionally decide to perform inserts that will fail if the document already exists, instead of updating it.
+![Message Format page](./img/message-format.png)
 
 #### IBM InfoSphere Data Replication for DB2
 
@@ -115,14 +124,14 @@ The message should include the following properties:
 - `offset`: it is the offset of the Kafka message.
 
 :::info
-It is important to note that whenever the ingestion message is not a *delete* operation the `value` of the message must contain all the fields of the projection, including the primary keys also present in the `key`, so the Real Time Updater can process the message properly.
+It is important to note that whenever the ingestion message is not a *delete* operation the `value` of the message must contain all the fields of the projection, including the primary keys also present in the `key`, so the Real-Time Updater can process the message properly.
 :::
 
 These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
 
 To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#ibm-infosphere-data-replication-for-db2) .
 
-:::warning
+:::caution
 This Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
 :::
 
@@ -142,7 +151,7 @@ The Debezium kafka message adapter is meant to accept Debezium generated kafka m
 - **after**: optional value that indicates the data values after the operation execution
 - **op**: optional value that indicates the type of operation, `c` for create/insert, `u` for update and `d` for delete
 
-These are the main properties used by the adapter and the Real Time Updater but you can have other properties like `ts_ms` or `source` depending on which DB is Debezium working with.
+These are the main properties used by the adapter and the Real-Time Updater but you can have other properties like `ts_ms` or `source` depending on which DB is Debezium working with.
 
 Debezium has also some "special" events which are handled in their own way:
 - **Snapshot**: Snapshot events are messages that indicate the state of the DB up until that point in time. This messages are sent when the connector does not find any offsets from where to start processing, therefore they are handled as normal insert messages.
@@ -155,7 +164,7 @@ To see the message's structure specification and some examples go to the [Inputs
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages. 
 
-To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
+To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real-Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
 
 - **offset**: the offset of the Kafka message
 - **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
@@ -209,31 +218,36 @@ The `primaryKeys` is an array of strings which are the primary keys of the proje
 
 The ER Schema, defined with a `erSchema.json` file, defines the relationship between tables and projections. [On the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md), you can find a deep explanation of how ER Schema configuration works.
 
-You can update the ER Schema in the page of the Real-Time Updater, in the _ConfigMaps & Secrets_ page.
+You can update the ER Schema in the page of the Real-Time Updater, in the _ConfigMaps & Secrets_ page. 
 
 :::info
-When a new Real-Time Updater is generated, a base `erSchema.json` file is generated with the following content:
+The ER Schema ConfigMap is created after the service is attached to a System of Records for the first time. It will include base `erSchema.json` file is generated with the following content:
 ```json
 { 
   "version": "1.0.0", 
   "config": { } 
 }
 ```
+
 This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated with this microservice to work properly.
 :::  
-
-::: caution
-When creating a Low Code System of Records, its service will have a link to the `er-schema` config map. If other microservices already had this config map they will share it with the new Real-Time Updater. If you do not make changes to the default config maps of the Real-Time Updater services you will have all of them sharing the same ER Schema. But if you need a different `er-schema` (e.g. you have created a new Real-Time Updater configured to a different system of records), then you have to unlink the `er-schema` folder and create a new config map with its unique identifier and create a new `erSchema.json` file in it.
-:::
 
 ### Projection Changes Schema
 
 The `projectionChangesSchema.json` config map defines the paths for the strategy to generate the projection changes identifier. Differently from the Manual Configuration, the projection changes configurations are described with a JSON file aimed to reduce the developing effort.
 
 :::caution
-When a new Real-Time Updater is generated, a base `projectionChangesSchema.json` file is generated with the same content of the `erSchema.json` file. Despite this configuration will not throw any error during the deployment, the file must be customized according to the related projections.
-:::
+The Projection Changes Schema ConfigMap is created after the service is attached to a System of Records for the first time. 
+It will include base `projectionChangesSchema.json` file is generated with the following content:
+```json
+{ 
+  "version": "1.0.0", 
+  "config": { } 
+}
+```
 
+This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated with this microservice to work properly.
+:::
 
 For more information please refer to the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) dedicated page.
 
@@ -246,23 +260,25 @@ In this folder you have all the generated [Cast Functions](/fast_data/configurat
 
 The mount path used for these configurations is: `/home/node/app/configurations/mapTableFolder`.  
 Two mappings will be placed in this folder: one between cast functions and fields and another one between strategies and projections.
-This configuration is read-only since it's configured automatically based on the projections and strategies you configure from the Fast Data section of the Console.
+This configuration is read-only since it's configured automatically based on the projections of the System of Records included in the attached service 
+and the strategies you configure from the Fast Data section of the Console.
 
 ### Kafka Projection Changes configuration
+
+:::caution
+This feature is *deprecated* and will be removed in future versions of the Real-Time Updater service. In case you need the service to send events to Kafka, 
+follow the configuration of [Kafka Projection Updates](#kafka-projection-updates-configuration).
+:::
 
 Projection changes are saved on Mongo, but from version v3.4.0 and above, you can send them to Kafka as well.
 
 This feature enables you to send the projection changes to a topic Kafka you want to. This is useful if you want to have a history of the projection changes thanks to the Kafka retention of messages.
 You can also make your own custom logic when a projection change occurs by setting a Kafka consumer attached to the topic Kafka you set.
 
-:::info
-This feature is available from the version v3.4.0 or above of the service
-:::
-
 To do that, you need to set two environment variables:
 
-- `KAFKA_PROJECTION_CHANGES_FOLDER`: path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).
 - `GENERATE_KAFKA_PROJECTION_CHANGES`: defines whether the projection changes have to be sent to Kafka too or not. Default is `false`(v3.4.0 or above).
+- `KAFKA_PROJECTION_CHANGES_FOLDER`: path where has been mounted the `kafkaProjectionChanges.json` configuration (v3.4.0 or above).
 
 You have to create a *configuration* with the same path as the one defined by the environment variable `KAFKA_PROJECTION_CHANGES_FOLDER`.
 Then, you have to create a configuration file `kafkaProjectionChanges.json` inside that configuration. The configuration is a json file like the following one:
@@ -372,7 +388,7 @@ To allow the Single View Creator to read from the Projection Changes, the collec
 Whenever the Real-Time Updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
 
 :::info
-This feature has been introduced since version v3.5.0 of the real time updater
+This feature has been introduced since version v3.5.0 of the Real-Time updater
 :::
 
 To activate this feature you need to set the following environment variables:
@@ -380,12 +396,12 @@ To activate this feature you need to set the following environment variables:
 - `GENERATE_KAFKA_PROJECTION_UPDATES`: defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. Default is `false`
 
 :::info
-From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
+From `v10.2.0` of Mia-Platform Console, a configuration for Kafka Projection Updates is automatically generated when creating a new Real-Time Updater and saving the configuration. Further information about the automatic generation can be found inside the [Projection page](/fast_data/configuration/projections.md#pr-update-topic). If you prefer to create a custom configuration, please use the following guide.
 :::
 
 You need to create a configuration with the same path as the one you set in `KAFKA_PROJECTION_UPDATES_FOLDER`. Then, you have to create a configuration file `kafkaProjectionUpdates.json` inside that configuration.
 
-:::warning
+:::caution
 To prevent possible conflicts with the automatically created configuration, please set the `KAFKA_PROJECTION_UPDATES_FOLDER` to a value different from the default `/home/node/app/kafkaProjectionUpdates` path.
 :::
 
@@ -406,16 +422,18 @@ When the Real-Time Updater receives a Primary Key update, it triggers two differ
 1. the deletion of the old record with the old Primary Key
 2. the creation of a new record with the updated content and the updated Primary Key
 
-:::note
+:::caution
+Mind that these two actions create two `pr-update` messages when the emission of Projection Update is enabled
+:::
+
 In order to handle a Primary Key update, the Real-Time Updater needs to receive the following data:
 - a positional information about the current operation
 - the data values before the update
 - the data values after the update
 
 More details about the configuration of these fields can be found inside each Kafka message format paragraph in this page.
-:::
 
-:::warning
+:::danger
 The Kafka message format based on the _IBM InfoSphere Data Replication for DB2_ CDC does not support the Primary Key update.
 :::
 
@@ -526,7 +544,7 @@ Example:
 
 ### Prevent projection to be overwritten
 
-During a rebalancing or a massive initial load with multiple replicas of the real time updater, a batch of old messages that have not been committed yet could be read by the real time updater. In fact, Kafka ensures that messages are received, in order, at least once.
+During a rebalancing or a massive initial load with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
 To prevent that old messages that have already updated the projection, overwrite the projection again, the environment variable `FORCE_CHECK_ON_OFFSET` is set by default to `true`.
 
@@ -538,7 +556,7 @@ At the moment this variable is set to `true` by default, but you can turn it off
 
 ### Kafka group rebalancing behavior
 
-If a Kafka group rebalancing happens after a projection has already been updated, projection changes will be generated anyway and the Real Time updater will still try to commit though.
+If a Kafka group rebalancing happens after a projection has already been updated, projection changes will be generated anyway and the Real-Time updater will still try to commit though.
 
 :::note
 This behavior has been introduced from v4.0.0 and above. In previous versions instead, a rebalancing check was made after each operation, and when it happened, the service would stop without generating any projection change.
@@ -565,7 +583,7 @@ As explained [here](/fast_data/configuration/single_views.md#single-view-patch),
 This feature is supported from version `7.1.4` of the Real-Time Updater
 :::
 
-When the Real Time Updater encounters an error while consuming an ingestion message it will just pause the topic's consumption of that message, instead of crashing. This feature is disabled by default, to enable it use the <code>PAUSE_TOPIC_CONSUMPTION_ON_ERROR</code> environment variable.
+When the Real-Time Updater encounters an error while consuming an ingestion message it will just pause the topic's consumption of that message, instead of crashing. This feature is disabled by default, to enable it use the <code>PAUSE_TOPIC_CONSUMPTION_ON_ERROR</code> environment variable.
 
 To use this feature make sure you have properly configured your alerts in your grafana dashboards so you can quickly detect pauses on topics' consumption and act on the problematic message to resume the consumption.
 The ideal for that would be to set up some alerts based on the <code>kafka_consumergroup_lag</code> metric exposed by the <code>kafka-exporter</code> service configured in your project.

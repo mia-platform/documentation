@@ -614,7 +614,11 @@
     "addedOn": "2023-08-29"
   },
   "/docs/tutorial/demo_project/overview":  {
-    "destination": "/docs/overview/mia_platform_overview",
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2023-08-29"
+  },
+  "/docs/overview/mia_platform_overview": {
+    "destination": "/docs/getting-started/mia-platform-overview",
     "addedOn": "2023-08-29"
   },
   "/docs/development_suite/identity-and-access-management/overview":  {
@@ -687,10 +691,6 @@
   },
   "/docs/tutorial/authorization/authorization_tutorial":  {
     "destination": "/docs/getting-started/tutorials/protect-your-endpoints-with-policies",
-    "addedOn": "2023-09-18"
-  },
-  "/docs/how_to/company/manage-cluster":  {
-    "destination": "/docs/getting-started/handbooks/company/connect-and-manage-cluster",
     "addedOn": "2023-09-18"
   },
   "/docs/tutorial/design_overview/":  {
@@ -824,5 +824,109 @@
   "/docs/runtime_suite/payment-gateway-manager/recurrent_payments":  {
     "destination": "/docs/runtime_suite/payment-gateway-manager/how_it_works",
     "addedOn": "2023-09-18"
+  },
+  "/docs/how_to/company/manage-cluster": {
+    "destination": "/docs/development_suite/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2023-09-18"
+  },
+  "/docs/getting-started/handbooks/company/connect-and-manage-cluster": {
+    "destination": "/docs/development_suite/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2023-09-25"
+  },
+  "/docs/development_suite/clusters-management/clusters-overview-setup": {
+    "destination": "/docs/development_suite/clusters-management/cluster-setup",
+    "addedOn": "2023-09-25"
+  },
+  "/docs/development_suite/clusters-management/vendors-runtime-services": {
+    "destination": "/docs/development_suite/clusters-management/overview",
+    "addedOn": "2023-09-28"
+  },
+  "/docs/getting_started/video_pills/video_pills": {
+    "destination": "/docs/getting-started/videos/",
+    "addedOn": "2023-09-28"
+  },
+  "/docs/business_suite/backoffice/data_flow": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/plugin_example": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/plugin_navigation": {
+    "destination": "/docs/business_suite/backoffice/flows/plugin_navigation",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/adapters": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/buttons": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/clients": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_manipulation": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_querying": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/data_visaulization": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/misc": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/business_suite/backoffice/components/typography": {
+    "destination": "/docs/business_suite/backoffice/overview",
+    "addedOn": "2023-09-29"
+  },
+  "/docs/runtime_suite_applications/secure-apigateway/overview": {
+    "destination": "/docs/runtime_suite_applications/secure-api-gateway/overview",
+    "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite_applications/secure-apigateway/configuration": {
+    "destination": "/docs/runtime_suite_applications/secure-api-gateway/configuration",
+    "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite_applications/secure-apigateway/changelog": {
+    "destination": "/docs/runtime_suite_applications/secure-api-gateway/changelog",
+    "addedOn": "2023-10-05"
+  },
+  "/docs/runtime_suite/identification-router/overview":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/overview",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/changelog":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/changelog",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/runtime_suite/identification-router/configuration":  {
+    "destination": "/docs/runtime_suite/flow-manager-router/configuration",
+    "addedOn": "2023-09-27"
+  },
+  "/docs/development_suite/set-up-infrastructure/providers-management": {
+    "destination": "/docs/console/company-configuration/providers/overview",
+    "addedOn": "2023-10-11"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/overview": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/overview",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/changelog": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/changelog",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/configuration": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/configuration",
+    "addedOn": "2023-10-24"
   }
 }

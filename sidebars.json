@@ -6,11 +6,13 @@
     },
     {
       "collapsed": true,
+      "type": "category",
+      "label": "Company Configuration",
+      "link": {
+        "id": "development_suite/company/overview",
+        "type": "doc"
+      },
       "items": [
-        {
-          "id": "development_suite/company/overview",
-          "type": "doc"
-        },
         {
           "id": "development_suite/company/create",
           "type": "doc"
@@ -24,18 +26,49 @@
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "development_suite/clusters-management/clusters-overview-setup",
+            "id": "development_suite/clusters-management/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/clusters-management/vendors-runtime-services",
+              "id": "development_suite/clusters-management/cluster-setup",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/clusters-management/connect-and-manage-cluster",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "development_suite/set-up-infrastructure/providers-management",
+          "collapsed": true,
+          "type": "category",
+          "label": "Providers",
+          "link": {
+            "id": "console/company-configuration/providers/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "console/company-configuration/providers/management",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/marketplace",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/project-configuration",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/api-reference",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "console/company-configuration/project-default-configuration",
           "type": "doc"
         },
         {
@@ -65,9 +98,7 @@
             }
           ]
         }
-      ],
-      "label": "Company Configuration",
-      "type": "category"
+      ]
     },
     {
       "label": "Project Configuration",
@@ -161,6 +192,10 @@
         },
         {
           "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+          "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/docker-registry-configuration",
           "type": "doc"
         }
       ]
@@ -526,6 +561,10 @@
           "type": "doc"
         }
       ]
+    },
+    {
+      "id": "development_suite/user-feedback/give-feedback",
+      "type": "doc"
     }
   ],
   "microfrontendComposer": [
@@ -827,20 +866,39 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/monitoring/dashboards/consumer_groups",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/monitoring/dashboards/projection_changes",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/monitoring/dashboards/single_views",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/monitoring/dashboards/unmapped_fields",
-          "type": "doc"
+          "type": "category",
+          "label": "Dashboards",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "fast_data/monitoring/dashboards/bucket_storage_support",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/debezium_cdc",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/kafka_messages",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/projection_changes",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/real_time_updater",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/single_views",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/unmapped_fields",
+              "type": "doc"
+            }
+          ]
         }
       ],
       "label": "Monitoring",
@@ -859,6 +917,10 @@
         },
         {
           "id": "fast_data/troubleshooting/pr_update_topics_overwritten",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/troubleshooting/rtu_violates_unique_keys",
           "type": "doc"
         }
       ],
@@ -892,6 +954,10 @@
       },
       "items": [
         {
+          "id": "getting-started/tutorials/microservice-from-docker-image",
+          "type": "doc"
+        },
+        {
           "id": "getting-started/tutorials/microservice-hello-world",
           "type": "doc"
         },
@@ -905,6 +971,10 @@
         },
         {
           "id": "getting-started/tutorials/create-a-custom-microservice",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/microservice-with-metrics",
           "type": "doc"
         },
         {
@@ -962,6 +1032,10 @@
             {
               "id": "getting-started/tutorials/backoffice/microfrontends",
               "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/backoffice/auth0-integration",
+              "type": "doc"
             }
           ]
         }
@@ -989,15 +1063,19 @@
           "type": "doc"
         },
         {
+          "id": "getting-started/handbooks/console/endpoints",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/handbooks/microservice-ports",
+          "type": "doc"
+        },
+        {
           "id": "getting-started/handbooks/traefik/traefik-handbook",
           "type": "doc"
         },
         {
           "id": "getting-started/handbooks/crud-service/crud-oss-usage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/company/connect-and-manage-cluster",
           "type": "doc"
         }
       ]
@@ -1089,6 +1167,10 @@
   "governance": [
     {
       "id": "infrastructure/infrastructure_overview",
+      "type": "doc"
+    },
+    {
+      "id": "infrastructure/private-clusters",
       "type": "doc"
     },
     {
@@ -1193,10 +1275,12 @@
           "label": "Install Mia-Platform Console",
           "type": "category",
           "collapsed": true,
-          "items": [{
-            "dirName": "self_hosted/installation-chart",
-            "type": "autogenerated"
-          }]
+          "items": [
+            {
+              "dirName": "self_hosted/installation-chart",
+              "type": "autogenerated"
+            }
+          ]
         },
         {
           "id": "self_hosted/synchronize-users",
@@ -1238,11 +1322,18 @@
       "label": "Make your Marketplace items available to others"
     },
     {
+      "id": "marketplace/add_to_marketplace/change_marketplace_item_visibility",
+      "type": "doc",
+      "label": "Change Marketplace Items Visibility"
+    },
+    {
       "collapsed": true,
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite_applications"
-      }],
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "runtime_suite_applications"
+        }
+      ],
       "label": "Applications",
       "type": "category",
       "link": {
@@ -1258,10 +1349,12 @@
         "type": "doc"
       },
       "collapsed": true,
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite"
-      }]
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "runtime_suite"
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -1339,10 +1432,12 @@
     {
       "type": "category",
       "label": "Libraries List",
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite_libraries"
-      }]
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "runtime_suite_libraries"
+        }
+      ]
     },
     {
       "label": "Tools",
@@ -1365,10 +1460,12 @@
     {
       "type": "category",
       "label": "Tools List",
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite_tools"
-      }]
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "runtime_suite_tools"
+        }
+      ]
     }
   ],
   "releaseNotes": [
@@ -1386,11 +1483,43 @@
       },
       "items": [
         {
+          "id": "release-notes/v11.7.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.7.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.6.3",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.6.2",
+          "type": "doc"
+        },
+        {
           "id": "release-notes/v11.6.1",
           "type": "doc"
         },
         {
           "id": "release-notes/v11.6.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.6",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.5",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.4",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v11.5.3",
           "type": "doc"
         },
         {

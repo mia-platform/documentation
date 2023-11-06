@@ -99,7 +99,7 @@ To link a strategy to your Single View, once you entered the [`Strategies`](/fas
 You can link a strategy as low code only if the system it belongs to is low code as well. If you choose to link the strategy as low code, instead of its main function file name, the `__automatic__` marker will be used.
 
 :::warning
-Once you have linked some strategies to a Single View Creator in low code mode, if you try to change the Real Time Updater making it manual, you will not be allowed to save.
+Once you have linked some strategies to a Single View Creator in low code mode, if you try to change the Real-Time Updater making it manual, you will not be allowed to save.
 :::
 
 If you choose to use manual strategies, each listed manual projection must be linked to a file without the extension `.js` which is the entry point of your **strategy function**.

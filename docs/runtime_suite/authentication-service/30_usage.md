@@ -557,4 +557,136 @@ In order to validate the webhook, Okta sends a GET request on the webhook url wi
 
 ### Security Configuration
 In order to secure these endpoints from unwanted requests (that will end up in users being added to the CRUD collection), you need to secure the Endpoint (for instance using an API Key).
+
+::: warning
+
 Remember to keep the API Key secure and to share it only with who is going to consume the webhook!
+
+:::
+
+## JWT Token signing algorithms
+
+Since v3.6.0 the service provides two methods for the token signing.
+
+### Symmetric signing algorithm HS256 (default)
+
+:::warning
+
+The symmetric signing algorithm is used by default for retrocompatibility reasons.
+For new service setups, the usage of an asymmetric algorithm is strongly encouraged.
+
+:::
+
+By default, the service uses the symmetric signing algorithm `HS256` to sign the token. The signing key is provided by means of the `MIA_JWT_TOKEN_SIGN_KEY` env variable.
+
+::: tip 
+
+It is suggested to generate and use an HMAC of least of 512 bytes, for example with the following command:
+
+```sh
+openssl rand -base64 512
+```
+
+:::
+
+### Asymmetric signing algorithm RSA256
+
+The service supports the asymmetric signing algorithm RSA256.
+
+Firstly you need to set the `MIA_JWT_TOKEN_SIGNING_METHOD` env to `RS256`.
+
+Then you need to setup the RSA key pair as explained in the following section.
+
+#### RSA key setup
+
+An RSA key is a type of asymmetric cryptographic key used in public-key cryptography. In an RSA key pair, there are two keys: a **public key** and a **private key**.  
+The public key can be freely distributed and is used to encrypt messages that can only be decrypted with the private key. The private key, on the other hand, is kept secret and is used to decrypt the messages that have been encrypted with the public key.
+
+#### Creation
+
+This service accepts a **private RSA key** to sign the generated JWT (JSON Web Token).
+NIST recommends at least 2048-bit keys for RSA. An RSA key length of at least 3072 bits should be used if security is required beyond 2030.
+In this guide, we will use a key of 4096 bits.
+
+To generate a new private key, you could run:
+
+```sh
+openssl genrsa -out ./private.key 4096
+```
+The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD` environment variable.
+You could run the following command to generate the key with password:
+
+```sh
+ssh-keygen -t rsa -b 4096 -m PEM -f private.key
+```
+
+Enter a password when required.
+
+After the creation, you have the private key stored in the file `private.key` in the current folder. Set the `MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD` env accordingly to allow the service to decrypt the private key.
+
+#### Deploy with mlp
+
+If you use [*mlp*](../../runtime_suite_tools/mlp/overview), the Mia-Platform deploy CLI tool, to release custom secrets add these lines to the `mlp.yaml` file in your project:
+
+```yaml
+secrets:
+  - name: "authentication-service-private-key"
+    when: "always"
+    data:
+      - from: "literal"
+        key: "private.key"
+        value: "{{PRIVATE_KEY}}"
+```
+
+The `name` is at your discretion; make sure to avoid collisions.
+
+The `PRIVATE_KEY` secret variable must be populated with the `./private.key` file contents.
+
+#### Deploy the secret with Kubernetes
+
+You should set the key as volume from secret in the `authentication-service` service, or in the namespace where the service is deployed.
+
+Refer to the [related Kubernetes doc](https://kubernetes.io/docs/concepts/configuration/secret/)
+
+#### Service configuration
+
+To use the private key you generated early, you have to follow these steps:
+- set the `MIA_JWT_TOKEN_SIGNING_METHOD` to `RS256`
+- set the `MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH` to the file name of the mounted private key.
+- choose an arbitrary `kid` to the private key (e.g. an UUIDv4), and set it to the `MIA_JWT_TOKEN_PRIVATE_KEY_KID`. It will be used to generate a public key, and also included as `kid` claim in JWT tokens signed with this key.
+
+#### Public Key Endpoint
+
+Endpoint Signature: `GET /.well-known/jwks.json`
+
+As per the [OpenID Connect specs](https://openid.net/specs/openid-connect-discovery-1_0-21.html), the Authentication service exposes this endpoint to obtain an object that contains an array of valid JWK values in its `keys` field. 
+Those JWKs could be used to verify the signature of the JWT that is presented by a client to another service.
+
+:::info
+
+At the moment, you can configure only one Private Key. For this reason, the endpoint will always return one public key, calculated from the given private key.
+
+:::
+
+Example cURL request:
+
+```shell
+curl 'https://example.org/authn/.well-known/jwks.json'
+```
+
+Example response:
+
+```json
+{
+  "keys": [
+    {
+      "kid": "keyA",
+      "use": "sig",
+      "kty": "RSA",
+      "alg": "RSA256",
+      "n": "sR6WjRHDNXgzBTgYr-ayhSlxdt65FIrhTytZN9dZczDC8Uqt6Cynstq3eoAfLcrxKAyj4X3J4TRxSEOL78WUisLAADHU6oEsqeuB97kVN4PcPnd63H3naOiLioc2-9L1TtUMVB4H6G5ZkKQAgrwjpHSztJF0iYaXOQhEcBlCynltuEVuyK96tvnDVqXCfhsSFweP7KorcfMj4YYj5OT2ADlAFzBQ2qppd9BpJidHGD6auCsI7vjmNCEq49v9UOiQs2XbjN-ddr9nvNBBK5bVtjGkfUPNt6uAV1AWMboVjobcAnDH2AD8W--3JUl1ffguC_fsHpPjrNoH0hCbPFfEb2YK2DX1vKhYKX3u199gc4B1q0l1JTs8AJcFbf7d63FKa6O-5V97fLK9lJYd8adF8NZiJlXjFCR-LmAYmjxmsBmByImEenEzDxuuubitSWFt47L9eGV9eY7zmnD0FV_jbwXYCcod4R46vnjabzpUcnd3VqiruUwnquHNGgj2yJpT7CMCHpK9dVlMUY8cWIfYXn4si_RrRp_E2EIkWKkSyplBWMjIK_KhjuSi_YOYNSg3OKXOGmYMcCxXUnwPIIW5n-MdbO6WC8bqhpLU1_XisfaL-V8jEOjAs0dQ9dQyvvP9ckrC753FGARXtdqwnyb2d3r3r3cLh-eQo05TyLqHoEk",
+      "e": "AQAB"
+    }
+  ]
+}
+```

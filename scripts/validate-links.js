@@ -59,7 +59,8 @@ const linkToCheck = (link) => {
 }
 
 const checkLink = (link) => {
-    const [path] = link.split('#');
+    const [pathWithQs] = link.split('#');
+    const [path] = pathWithQs.split('?')
     const pathToCheck = `${docsFolder}/docs${path}`;
     let errors = [];
 

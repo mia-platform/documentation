@@ -44,6 +44,10 @@ If you use a template in which some attachments are listed, they will be merged 
 will be sent.)
 :::
 
+- **emailCarbonCopies** - `array of strings`: list of email addresses that should be included as carbon copies (CC). Any invalid email addresses will be ignored. Available since version 1.4.0.
+
+- **emailBlindCarbonCopies** - `array of strings`: list of email addresses that should be included as blind carbon copies (BCC). Any invalid email addresses will be ignored. Available since version 1.4.0.
+
 ### Response
 
 #### Exceptions
@@ -76,6 +80,35 @@ will contain a list of those failures, with a brief explanation of the error, if
 }
 ```
 
+## POST /saga/send
+
+With this API you can send a new message to your users through different channels directly with a Flow manager command. You should avoid calling this endpoint in a different way.
+
+### Body
+
+It has the same structure of a [Flow Manager command][flow-manager-command].
+
+### Response
+
+#### Exceptions
+
+If something goes wrong during the request, the response will have a `4xx` or `5xx` status code and the following payload:
+
+```json
+{
+  "statusCode": "400",
+  "error": "Bad request",
+  "message": "Exception description"
+}
+```
+Moreover, if enabled by [configuration][service-configuration], it sends an event with `failEventlabel` as messageLabel and empty messagePayload. 
+
+#### Success
+
+A successful response (status code `200`) with an empty body is issued if the process of messages sending starts without errors.
+
+Moreover, if enabled by [configuration][service-configuration], it sends an event with `successEventlabel` as messageLabel and empty messagePayload. 
 
 [message-interpolation]: ./10_overview.md#messages-interpolation
 [service-configuration]: ./20_configuration.md#service-configuration
+[flow-manager-command]: ../../runtime_suite/flow-manager-service/configuration#sending-commands-1

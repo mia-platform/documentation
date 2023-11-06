@@ -57,7 +57,7 @@ Once you click the `Create field` button, a form is prompted where you should in
 It's **mandatory** to set at least one Primary Key for each Projection. Otherwise, you will not be able to save your configuration.
 
 :::info
-When the `Real Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
+When the `Real-Time Updater` deletes a projection document, it actually makes a **virtual delete** instead of real document deletion. This means that the document is actually kept in the database, but the `__STATE__` field (one of the default fields of the CRUD Service is set to `DELETED`.
 :::
 
 #### Generate projection fields from data sample
@@ -206,7 +206,7 @@ When you click continue, the console will generate the new configuration for the
 
 ## Expose projections through API
 
-You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real Time Updater service).
+You can expose a projection through API, only with `GET` method (the data in the projection are modifiable only by the Real-Time Updater service).
 
 To expose the Fast Data projection, [create an Endpoint](/development_suite/api-console/api-design/endpoints.md) with type `Fast Data Projection` linked to the desired projection.
 

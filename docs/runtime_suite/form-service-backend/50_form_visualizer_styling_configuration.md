@@ -117,7 +117,7 @@ You also need to expose a new endpoint using the same name defined in the config
 
 :::info
 
-The [Mia-Backoffice](../../microfrontend-composer/overview.md) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../../runtime_suite/files-service/configuration) instance in your project and update the Mia-Backoffice configuration to use it's [File Manager](../../microfrontend-composer/back-kit/60_components/250_file_manager.md) client.
+The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../../runtime_suite/files-service/configuration) instance in your project and update the Mia-Backoffice configuration to use it's [File Manager](/business_suite/backoffice/60_components/250_file_manager.md) client.
 
 :::
 

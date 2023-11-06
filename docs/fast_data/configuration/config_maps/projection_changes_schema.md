@@ -8,7 +8,7 @@ sidebar_label: Projection Changes Schema
 
 The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/glossary.mdx)
 to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
-by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
+by the [Real-Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
 
 ## Configuration Properties
 
