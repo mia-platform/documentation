@@ -59,7 +59,7 @@ Open the file **local-replies.yml** and write the following configuration:
   headers_to_add:
   - header:
       key: "Location"
-      value: "/web-login"
+      value: "/web-login?redirect=%REQ(X-ENVOY-ORIGINAL-PATH?:PATH)%"
     append: false
 - listener_name: frontend
   filter:
