@@ -264,7 +264,7 @@ and meta
 ```json
 {
   "metaData": {
-    "fileOwner": "Adnrew"
+    "fileOwner": "Andrew"
   }
 }
 ```
@@ -306,9 +306,6 @@ triggers a DELETE call to `/avatar.jpg`
 
 | property      | attribute | type                             | default | description                                      |
 | ------------- | --------- | -------------------------------- | ------- | ------------------------------------------------ |
-| `basePath`    | -         | string                           | -       | the URL base path to which to send HTTP requests |
-| `headers`     | -         | {[key: string]: string}          | -       | headers to add when an HTTP request is sent      |
-| `credentials` | -         | 'include'\|'omit'\|'same-origin' | -       | credentials policy to apply to HTTP requests     |
 | `basePath`    | -         | string                           | -       | the URL base path to which to send HTTP requests |
 | `headers`     | -         | {[key: string]: string}          | -       | headers to add when an HTTP request is sent      |
 | `credentials` | -         | 'include'\|'omit'\|'same-origin' | -       | credentials policy to apply to HTTP requests     |

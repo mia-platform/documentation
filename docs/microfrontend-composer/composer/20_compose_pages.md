@@ -1,7 +1,7 @@
 ---
 id: compose_pages
 title: Compose pages
-sidebar_label: Compose Pages
+sidebar_label: Compose pages
 ---
 The pages of type [_compose_](./10_structure.md#page-type) can be configured in a **dedicated section** accessible via _edit page_ option in pages [context menu](./10_structure.md#edit-page).
 

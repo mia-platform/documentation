@@ -1,7 +1,7 @@
 ---
 id: configurator_settings
 title: Configurator settings
-sidebar_label: Configurator Settings
+sidebar_label: Configurator settings
 ---
 These settings are only related to the Console plugin itself and will not affect your runtime environment. 
 
@@ -75,4 +75,4 @@ The URL called should be one of a valid NPM package containing a `package.json` 
 }
 ```
 
-Templates should be JSON files following [this schema](https://raw.githubusercontent.com/micro-lc/back-kit/main/packages/engine/schemas/template.schema.json). 
+Templates should be JSON files following [this schema](https://raw.githubusercontent.com/micro-lc/back-kit/main/packages/engine/schemas/template.schema.json).

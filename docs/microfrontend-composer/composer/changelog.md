@@ -3,6 +3,17 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.5.0] - 2023-10-20
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.4`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.2`
+
+### Added
+
+- Added support for table visualization of components properties of type array
+
 ## [1.4.0] - 2023-10-06
 
 ### Added
