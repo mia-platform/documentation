@@ -928,5 +928,17 @@
   "/docs/runtime_suite_templates/identification-provider-adapter/configuration": {
     "destination": "/docs/runtime_suite_templates/application-service-adapter/configuration",
     "addedOn": "2023-10-24"
+  },
+  "/docs/development_suite/api-console/advanced-section/dev-console-config/advanced_name_core": {
+    "destination": "/docs/development_suite/api-console/advanced-section/advanced-section",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/development_suite/api-console/advanced-section/dev-console-config/replicas": {
+    "destination": "/docs/development_suite/api-console/advanced-section/dev-console-config",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs": {
+    "destination": "/docs/development_suite/api-console/advanced-section/dev-console-config",
+    "addedOn": "2023-11-07"
   }
 }
