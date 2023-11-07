@@ -237,7 +237,7 @@ existing functions:
 - `castToObject` → parse a JSON object represented as string into a JSON object 
 - `castToArrayOfObject` → parse a JSON array represented as string into a JSON array
 
-Whenever these functions do not cover a particular use case, it is possible configure additional _user-defined functions_
+Whenever these functions do not cover a particular use case, it is possible to configure additional _user-defined functions_
 as custom cast functions. These cast functions can be implemented either in Kotlin or Javascript, each of them written in
 their own file. When the files containing the _user-defined functions_ are loaded, the service will search within them
 for a function named as the key name in the configuration. The function with such name **must** exist otherwise the service will
