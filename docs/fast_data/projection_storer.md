@@ -25,6 +25,27 @@ changes via projection record update events.
 When Fast Data is configured adopting [Event-Driven architecture](/fast_data/architecture.md#event-driven-architecture),
 the Projection Storer can be employed as a drop-in replacement of Real-Time Updater service.
 
+Below is provided a brief comparison table between the two services:
+
+| Features                                |        Projection Storer         |        Real-Time Updater         |
+|-----------------------------------------|:--------------------------------:|:--------------------------------:|
+| architectures                           |           Event-Driven           |      Standard, Event-Driven      |
+| supported consumers                     |              Kafka*              |              Kafka*              |
+| supported producers                     |              Kafka*              |              Kafka*              |
+| supported storage systems               |             MongoDB              |             MongoDB              |
+| projection filtering/casting/validation |                ✔                 |                ✔                 |
+| consumer and producer independence      |                ✔                 |                ❌                 |
+| strategy execution                      |                ❌                 |                ✔                 |
+| projections updates generation          |                ✔                 |                ✔                 |
+| hard/soft delete                        |                ✔                 |                ✔                 |
+| predefined message adapter              | `db2`, `golden-gate`, `debezium` | `db2`, `golden-gate`, `debezium` |
+| custom message adapter                  |                ✔                 |                ✔                 |
+| predefined cast functions               |                ✔                 |                ✔                 |
+| custom cast functions                   |                ✔                 |                ✔                 |
+
+\* Fast Data can be plugged to any Event Streaming Platform that support Kafka Protocols. For example, it is also compatible
+with [Azure Event Hubs for Apache Kafka](https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-kafka-overview). 
+
 ### Projection Storer Configurations
 
 To learn more about Projection Storer configuration, it is possible to read the details in the following [page](/fast_data/configuration/projection_storer.md).  
