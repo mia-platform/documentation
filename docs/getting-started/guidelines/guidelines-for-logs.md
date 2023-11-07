@@ -7,7 +7,7 @@ The objective of these guidelines is to guarantee uniformity between the logs fr
 
 ## Log Parsers
 
-Every micro-service from the Marketplace comes with an [annotation](/development_suite/api-console/api-design/services.md#annotations-configuration) called `mia-platform.eu/log-type`: this annotation allows log collection and processing
+Every microservice from the Marketplace comes with an [annotation](/development_suite/api-console/api-design/services.md#annotations-configuration) called `mia-platform.eu/log-type`: this annotation allows log collection and processing
 from your Kubernetes cluster to the ELK Stack.
 
 Mia-Platform Console provides a series of log parsers that can be used as annotations and at runtime provides information to the loggin stack to parse and process fields of your service logs.
