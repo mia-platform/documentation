@@ -73,7 +73,9 @@ An initial load of `6.000.000 records` took around _10 minutes_, which is approx
 
 ### What should be the required resources to perform a Single View Refresh?
 
-The **Single View Refresh** is an operation performed to update all the projection changes of a single view: this activity is needed during the first release of a single view and every time a new feature is released in the environment, since it will start the aggregation pipeline of the [**Single-View Creator**. (**SVC**)](/fast_data/single_view_creator.md)
+The **Single View Refresh** is an operation performed to update all the projection changes of a single view: this activity is needed during the first release of a single view and every time its data structure will be changed.
+
+This action will start for each projection changes record updated the aggregation pipeline of the [**Single-View Creator**. (**SVC**)](/fast_data/single_view_creator.md).
 
 On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), this means that the database will perform operations on:
 
