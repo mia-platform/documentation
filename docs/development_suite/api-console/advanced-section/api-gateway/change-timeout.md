@@ -1,6 +1,6 @@
 ---
 id: change-timeout
-title:  Change timeout
+title:  "Advanced API Gateway: Change timeout"
 sidebar_label: Change timeout
 ---
 ## Timeout definitions

@@ -1,6 +1,6 @@
 ---
 id: timeouts
-title: 'Use Case: Timeouts'
+title: 'Envoy Use Case: Timeouts'
 sidebar_label: 'Use Case: Timeouts'
 ---
 

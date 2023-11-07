@@ -1,8 +1,37 @@
 ---
-id: custom-ca-certs
-title:  How to add custom CA certs to core services
-sidebar_label: CA certs to core services
+id: api-console-configuration
+title:  Advanced API Console Configuration
+sidebar_label: API Console Configuration
 ---
+
+In the sub-section `api-console-config` there's an empty file called `core-service.json`, that can override the information of core microservices.
+
+## Change the name of core services
+
+If you want to change the name of a service you need to add an entry with a structure similar to the one shown below
+
+```json
+{
+  "microservice-gateway-1": {
+    "type": "core",
+    "name": "microservice-gateway-1",
+    "key": "microservice-gateway"
+  }
+}
+```
+where:
+
+* **type**: is the type of the services
+
+* **name**: is the name you wanna give to your service
+
+* **key**: is the real name of the service
+
+:::warning Watch out!
+Once the new name has been applied, remember to delete the old service's files from the `configuration/` folder: service, deployment and any config map.
+:::
+
+## Add custom CA certs to core services
 
 In an enterprise environment, to encrypt SSL connections, there could be a set of custom certificates signed by one or more trusted certificates.
 By following this guide you'll be able to provide one or more trusted certificates in PEM format in a single file for the **core** services managed by the Console.
@@ -61,3 +90,20 @@ This feature is enabled only for `cms-backend` and `v1-adapter` core services. O
 :::warning
 This feature is enabled for all environments. If it is not required to add custom ca certs, for example for a test environment, you must add a secret with an empty `additional-ca.pem` file content.
 :::
+
+## Change the Number of Replicas
+
+To change the number of replicas of a service you need to edit the file in the advanced Section: `core-services.json.` and add the key **replicas** and value the number of replica.
+
+For example, to configure the `microservice-gateway` with 5 replicas, the configuration to be provided is as follows:
+
+```json
+{
+  "microservice-gateway": {
+    "type": "core",
+    "name": "microservice-gateway",
+    "key": "microservice-gateway",
+    "replicas": 5
+  }
+}
+```
