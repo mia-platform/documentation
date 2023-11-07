@@ -10,18 +10,13 @@ In the sub-section `api-console-config` there's an empty `core-service.json` tha
 
 If you want to change the name of a service you will need to compile a json file with the structure similar to the one shown below:
 
-```
+```json
 {
-    "ag-1": {
-        "type": "core",
-        "name": "ag-1",
-        "key": "api-gateway"
-    },
-    "microservice-gateway-1": {
-        "type": "core",
-        "name": "microservice-gateway-1",
-        "key": "microservice-gateway"
-    }
+  "microservice-gateway-1": {
+    "type": "core",
+    "name": "microservice-gateway-1",
+    "key": "microservice-gateway"
+  }
 }
 ```
 where:
@@ -101,13 +96,13 @@ This feature is enabled for all environments. If it is not required to add custo
 
 To change the number of replicas of a service you need to edit the file in the advanced Section: `core-services.json.` and add the key **replicas** and value the number of replica.
 
-For example, to configure auth service with 5 replicas, the configuration to be provided is as follows:
+For example, to configure the `microservice-gateway` with 5 replicas, the configuration to be provided is as follows:
 
 ```json
-"auth-service": {
-        "type": "core",
-        "name": "auth-service",
-        "key": "auth-service",
-        "replicas": 5
-    }
+"microservice-gateway": {
+  "type": "core",
+  "name": "microservice-gateway",
+  "key": "microservice-gateway",
+  "replicas": 5
+}
 ```
