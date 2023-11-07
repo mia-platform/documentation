@@ -72,7 +72,7 @@ These products are the backbone of Mia-Platform, and constitute the main solutio
 
 These components contribute to the realization of some specific tasks within your products. They are available through Mia-Platform Marketplace, and they are:
 
-- [Mia-Platform Backoffice](/business_suite/backoffice/10_overview.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
+- [Mia-Platform Backoffice](/microfrontend-composer/what-is.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
 - [Mia-Platform External Developer Portal](/runtime_suite/api-portal/10_overview.md): a complete access point to your companies’ APIs for your partners and providers, containing live and testable API documentation and allowing standardization in the methods of use.
 - [Mia-Platform Flow Manager](/runtime_suite/flow-manager-service/10_overview.md): a saga orchestrator, capable to manage flows structured by using the architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach.
 
