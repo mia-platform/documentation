@@ -50,9 +50,12 @@ You will need to valorize the fields contained in the angle brackets (`<>`):
 - **middleware-namespace:** The nama of the namespace where the middleware has been created
 - **tls-secret:** the name of the secret containing the tls certificate
 
-Note: you need to include the middleware `ingress-controller-hsts-headers` to allow clients to upgrade the connection to https.
-
-Note 2: The label `app.kubernetes.io/instance: "ingress-controller"` is necessary in this resources to let Traefik discover them.
+:::info
+You need to include the middleware `ingress-controller-hsts-headers` to allow clients to upgrade the connection to https.
+:::
+:::info
+The label `app.kubernetes.io/instance: "ingress-controller"` is necessary in this resources to let Traefik discover them.
+:::
 
 This configuration need to be put in the intended Environment configuration folder of your project, it differs between *Base projects* and *Kustomize projects*.
 - **Base project:** The resource needs to be saved in the path `configuration/<environmentId>/<resource.yaml>`.
@@ -78,7 +81,9 @@ spec:
 ```
 Above an example of Middleware. (to make it work, this specific middleware also needs a secret with the credentials [[1](https://doc.traefik.io/traefik/middlewares/http/basicauth/)])
 
-Note: Also in middlewares the label `app.kubernetes.io/instance: "ingress-controller"` is needed. 
+:::info
+Also in middlewares the label `app.kubernetes.io/instance: "ingress-controller"` is needed. 
+:::
 
 ## TLS Configuration
 
@@ -132,6 +137,70 @@ In the production cluster, and:
 
 In the development cluster.
 
+## Managing multiple DNS records
 
+If you want multiple access points for the users to the API exposed in your Project, you can create a new DNS record pointing to another IP exposed by Traefik. 
 
+This configuration is useful if you want to achieve, for example:
+- a set of APIs exposed only inside the Kubernetes Cluster - by creating Traefik's new IP as private;
+- different DNSs for managing different access points based on the clients - achieving multichannel API management.
 
+To achieve this result, you need to add a new entry into the `routes` array, specifying the new host that will receive calls. An example of configuration is below:
+
+```yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: default-ingress
+  labels:
+    app.kubernetes.io/instance: "ingress-controller"
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`<host-1>`)
+      middlewares:
+        - name: ingress-controller-hsts-headers
+          namespace: mia-platform
+        - name: "<middleware-name>"
+          namespace: <middleware-namespace>
+      kind: Rule
+      services:
+        - name: api-gateway
+          port: 8080
+    - match: Host(`<host-2>`)
+      middlewares:
+        - name: ingress-controller-hsts-headers
+          namespace: mia-platform
+        - name: "<middleware-name>"
+          namespace: <middleware-namespace>
+      kind: Rule
+      services:
+        - name: api-gateway
+          port: 8081
+  tls:
+    secretName: <tls-secret>
+```
+
+In the example, Traefik will forward requests to the `api-gateway` to the appropriate port based on the host that has been called.
+
+### Managing API Exposition
+
+With the multiple DNS configuration, you can rely on Rules to decide to not expose specific APIs to unwanted DNS (check [Traefik Rules](https://doc.traefik.io/traefik/routing/routers/#rule)).
+
+To achieve this result, you need to update the `match` condition of the `route` entry as the following example:
+
+```yaml
+match: Host(`<host-1>`) && !Path(`/api/v1`)
+```
+
+In the example above, you are requesting Traefik to block the requests for the API exposed via the URI `/api/v1` when the host of the request is `<host-1>`.
+In this way, you are ensuring that the `/api/v1` will only be served if the called host is different from the one defined in the rules.
+
+:::caution
+The management of the API exposition will be available directly from the Mia-Platform Console in the following versions of the Products via the `Listeners` feature!
+
+Be aware that this feature will only be available if you are using the [Envoy API Gateway](/docs/runtime_suite/envoy-api-gateway/overview). 
+
+If you are using the [Nginx API Gateway](/docs/runtime_suite/api-gateway/overview), or you want to edit the hosts used for exposing the APIs from your Project, you will need to manually edit the `default.ingressroute.yml` file.
+:::
