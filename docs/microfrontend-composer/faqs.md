@@ -95,7 +95,7 @@ For example:
 
 ### How can I change the route under which the frontend is exposed?
 
-When starting from the application (whether it is the [classic one](/runtime_suite_applications/backoffice/10_overview.md) or the [on prem one](/runtime_suite_applications/backoffice-on-prem/10_overview.md)), the frontend is exposed under `/mfe-application`. The steps to change this endpoint are the following.
+When starting from the application (whether it is the [classic one](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md) or the [on prem one](/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/10_overview.md)), the frontend is exposed under `/mfe-application`. The steps to change this endpoint are the following.
 
 1. Delete `/mfe-application` endpoint and create the new one, which **must have** _Rewrite Base Path_ set to `/public`.
 2. Open the Configurator, and navigate to the _Webserver Configuration_ tab.
@@ -104,7 +104,7 @@ When starting from the application (whether it is the [classic one](/runtime_sui
 
 ### How can I change the route under which frontend configurations are exposed?
 
-When starting from the application (whether it is the [classic one](/runtime_suite_applications/backoffice/10_overview.md) or the [on prem one](/runtime_suite_applications/backoffice-on-prem/10_overview.md)), frontend configuration files are exposed under `/micro-lc-configurations`. The steps to change this endpoint are the following.
+When starting from the application (whether it is the [classic one](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md) or the [on prem one](/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/10_overview.md)), frontend configuration files are exposed under `/micro-lc-configurations`. The steps to change this endpoint are the following.
 
 1. Delete `/micro-lc-configurations` endpoint and create the new one, which **must have** _Rewrite Base Path_ set to `/configurations`.
 2. Open the Configurator, and navigate to the _Webserver Configuration_ tab.
@@ -113,7 +113,7 @@ When starting from the application (whether it is the [classic one](/runtime_sui
 
 ### How can I serve a static file through the frontend webserver?
 
-When starting from the application (whether it is the [classic one](/runtime_suite_applications/backoffice/10_overview.md) or the [on prem one](/runtime_suite_applications/backoffice-on-prem/10_overview.md)), all the frontend related resources are served by a single service, called `micro-lc`. 
+When starting from the application (whether it is the [classic one](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md) or the [on prem one](/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/10_overview.md)), all the frontend related resources are served by a single service, called `micro-lc`. 
 
 This service comes with four config maps, three of which are readonly and editable only thought the Configurator. The fourth one, `micro-lc-assets`, instead is open and it's content is exposed under `//mfe-application/assets` (unless you have [changed the endpoint](#how-can-i-change-the-route-under-which-the-frontend-is-exposed)), which means the the service **will serve any file** you mount in this directory.
 

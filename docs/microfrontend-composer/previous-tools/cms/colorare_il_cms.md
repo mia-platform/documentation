@@ -209,7 +209,7 @@ the default value applied at build time.
 
 :::caution
 If you specify the url of a custom logo, please keep in mind that it has to be reachable from the same host of your CMS.
-We, therefore, recommend uploading the desired image in the [File service](/runtime_suite/files-service/configuration).
+We, therefore, recommend uploading the desired image in the [File service](/runtime_suite/files-service/configuration.mdx).
 :::
 
 ### Configure the Console
@@ -217,7 +217,7 @@ We, therefore, recommend uploading the desired image in the [File service](/runt
 1. **CRUD - `cmstheme` creation**
    
    The first thing to do is to create a CRUD named `cmstheme` where you can store your custom theme configurations. You
-   can follow [these steps](/development_suite/api-console/api-design/crud_advanced) to create your CRUD using the
+   can follow [these steps](/development_suite/api-console/api-design/crud_advanced.md) to create your CRUD using the
    following data:
     - **name**: `cmstheme`
     - **properties**: 
@@ -237,7 +237,7 @@ We, therefore, recommend uploading the desired image in the [File service](/runt
          - `color-search-text`: String (Optional)
          - `color-button`: String (Optional)
 
-    You can create the fields importing this <a download target="_blank" href="/docs_files_to_download/cmsthemeConfig.json">JSON file</a> and following [this guide](/development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json).
+    You can create the fields importing this <a download target="_blank" href="/docs_files_to_download/cmsthemeConfig.json">JSON file</a> and following [this guide](/development_suite/api-console/api-design/crud_advanced.md#how-to-create-the-fields-of-your-crud-by-importing-a-json).
          
 
 2. **Endpoint - create the `/cms-theme` endpoint**
@@ -248,7 +248,7 @@ We, therefore, recommend uploading the desired image in the [File service](/runt
 
   The CMS will call the `GET -/cms-theme/` to receive an array of configurations. If you want to filter the results
   of this call and return to the CMS the desired one, you may attach a
-  [PRE decorator](/development_suite/api-console/api-design/decorators) to this endpoint.
+  [PRE decorator](/development_suite/api-console/api-design/decorators.md) to this endpoint.
 
   :::note
   If the endpoint returns to the CMS an array with multiple elements, the first one will be applied.

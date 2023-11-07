@@ -13,7 +13,7 @@ Following the requirements to integrate this  functionality:
 
 * access to the API Console into the desired project;
 * a custom frontend already Dockerized;
-* basic knowledge about the Console [backoffice proxy name](/development_suite/api-console/advanced-section/api-gateway/how-to#request-from-the-frontend---port-8080) and [backoffice proxy url](development_suite/api-console/advanced-section/api-gateway/how-to#how-to-forward-a-request-to-another-url) customizations.
+* basic knowledge about the Console [backoffice proxy name](/development_suite/api-console/advanced-section/api-gateway/how-to.md#request-from-the-frontend---port-8080) and [backoffice proxy url](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-forward-a-request-to-another-url) customizations.
 
 Note that this guideline is base on the Console version 5 and CMS version 7.x.x
 

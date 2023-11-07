@@ -307,7 +307,7 @@ on it, you can view, apply, modify, and delete all the saved filters.
 #### How to enable the feature
 
 To enable this feature in your CMS you have to
-[create a CRUD](/development_suite/api-console/api-design/crud_advanced) named
+[create a CRUD](/development_suite/api-console/api-design/crud_advanced.md) named
 `cmsfilters` with the following properties (all not required and not nullable):
 
 * `collection` (String)
