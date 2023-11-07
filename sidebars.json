@@ -918,6 +918,10 @@
         {
           "id": "fast_data/faq/failure_handling_fast_data",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/bootstrapping-fast-data",
+          "type": "doc"
         }
       ],
       "label": "FAQ",
