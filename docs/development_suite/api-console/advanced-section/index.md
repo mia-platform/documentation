@@ -23,5 +23,5 @@ The resources are grouped in several categories containing files, such as:
 * [auth0-client](/development_suite/api-console/advanced-section/auth0-client/configuration.md): edit the configuration of the [Auth0 Client plugin](/runtime_suite/auth0-client/10_overview_and_usage.md).
 
 :::caution
-Advanced area is accessible if you have loaded your project in API Console both from a branch or from a tag. If you have loaded it from a tag, it will be in read-only mode and you will not be able to save any edit to advanced files.
+Advanced area is accessible if you have loaded your project in Console both from a branch or from a tag. If you have loaded it from a tag, it will be in read-only mode and you will not be able to save any edit to advanced files.
 :::
