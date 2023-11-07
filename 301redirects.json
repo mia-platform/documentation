@@ -934,11 +934,11 @@
     "addedOn": "2023-11-07"
   },
   "/docs/development_suite/api-console/advanced-section/dev-console-config/replicas": {
-    "destination": "/docs/development_suite/api-console/advanced-section/dev-console-config",
+    "destination": "/docs/development_suite/api-console/advanced-section/api-console-configuration",
     "addedOn": "2023-11-07"
   },
   "/docs/development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs": {
-    "destination": "/docs/development_suite/api-console/advanced-section/dev-console-config",
+    "destination": "/docs/development_suite/api-console/advanced-section/api-console-configuration",
     "addedOn": "2023-11-07"
   }
 }

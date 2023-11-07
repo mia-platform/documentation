@@ -1,6 +1,6 @@
 ---
 id: request-size
-title: Change the maximum size of requests
+title: "Advanced API Gateway: Requests Size"
 sidebar_label: Requests size
 ---
 ## How Controlling Request Sizes

@@ -308,7 +308,7 @@
             {
               "label": "Console Configuration",
               "type": "doc",
-              "id": "development_suite/api-console/advanced-section/dev-console-config"
+              "id": "development_suite/api-console/advanced-section/api-console-configuration"
             },
             {
               "collapsed": true,

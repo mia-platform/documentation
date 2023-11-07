@@ -15,7 +15,7 @@ To change all the advanced settings, you have to access to the Console and go to
 
 The resources are grouped in several categories containing files, such as:
 
-* [api-console-config](/development_suite/api-console/advanced-section/dev-console-config.md): gives the opportunity to edit parameters about core services;
+* [api-console-config](/development_suite/api-console/advanced-section/api-console-configuration.md): gives the opportunity to edit parameters about core services;
 * [api-gateway](/development_suite/api-console/advanced-section/api-gateway/how-to.md): add custom NGINX directives to the API Gateway
 * [api-gateway-envoy](/development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md): add extensions to the API Gateway based on Envoy.
 * [swagger-aggregator](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md): edit the configuration of the [Swagger Aggregator plugin](/runtime_suite/swagger-aggregator/10_overview.md);

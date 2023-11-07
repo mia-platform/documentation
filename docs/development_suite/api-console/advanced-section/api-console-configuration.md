@@ -1,14 +1,14 @@
 ---
-id: dev-console-config
-title:  Console Configuration
-sidebar_label: Console Configuration
+id: api-console-configuration
+title:  Advanced API Console Configuration
+sidebar_label: API Console Configuration
 ---
 
-In the sub-section `api-console-config` there's an empty `core-service.json` that can override the information of your micro-service.
+In the sub-section `api-console-config` there's an empty file called `core-service.json`, that can override the information of core microservices.
 
 ## Change the name of core services
 
-If you want to change the name of a service you will need to compile a json file with the structure similar to the one shown below:
+If you want to change the name of a service you need to add an entry with a structure similar to the one shown below
 
 ```json
 {
@@ -27,9 +27,8 @@ where:
 
 * **key**: is the real name of the service
 
-:::warning
-Watch out!
-Remember to delete old services and related files: service, deployment and any config map
+:::warning Watch out!
+Once the new name has been applied, remember to delete the old service's files from the `configuration/` folder: service, deployment and any config map.
 :::
 
 ## Add custom CA certs to core services
@@ -99,10 +98,12 @@ To change the number of replicas of a service you need to edit the file in the a
 For example, to configure the `microservice-gateway` with 5 replicas, the configuration to be provided is as follows:
 
 ```json
-"microservice-gateway": {
-  "type": "core",
-  "name": "microservice-gateway",
-  "key": "microservice-gateway",
-  "replicas": 5
+{
+  "microservice-gateway": {
+    "type": "core",
+    "name": "microservice-gateway",
+    "key": "microservice-gateway",
+    "replicas": 5
+  }
 }
 ```
