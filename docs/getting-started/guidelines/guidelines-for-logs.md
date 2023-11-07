@@ -7,15 +7,76 @@ The objective of these guidelines is to guarantee uniformity between the logs fr
 
 ## Log Parsers
 
-When configuring a custom service you can select a _Log Parser_. Each log parser supports a specific logging format, but they all share the same purpose: allowing log collection and processing
+Every microservice from the Marketplace comes with an [annotation](/development_suite/api-console/api-design/services.md#annotations-configuration) called `mia-platform.eu/log-type`: this annotation allows log collection and processing
 from your Kubernetes cluster to the ELK Stack.
 
-Mia-Platform Console provides a series of log parsers that can be selected from the Console and will be used to properly parse and process your service logs:
+Mia-Platform Console provides a series of log parsers that can be used as annotations and at runtime provides information to the loggin stack to parse and process fields of your service logs.
 
-- `mia-json`: processes all logs as JSON, parsing all the keys to store them;
-- `mia-nginx`: a custom Nginx parser;
-- `mia-plain`: a plain text parser;
-- _Not Collected_: prevents all logs from the Kubernetes Pod to be collected and processed.
+This information are available in the [Microservice configuration card](/development_suite/api-console/api-design/services.md#microservice-configuration) and will change accordingly the aforementioned annotation.
+
+![Log Parsers](img/log-parsers.png)
+
+Possible parsers are:
+
+- `mia-json`: parse log lines as JSON data structures, including nested fields.
+
+  <details><summary>Example:</summary>
+  <p>
+  A possible log that can be parsed is:
+  
+  ```json
+  {"level":30,"time":1531171074631,"msg":"hello world","pid":657,"hostname":"example.com"}
+  ```
+
+  This log will be parsed into the following fields:
+
+  * `level`: 30
+  * `time`: 1531171074631
+  * `msg`: `hello world`
+  * `pid`: 657
+  * `hostname`: `example.com`
+
+  </p>
+  </details>
+
+- `mia-nginx`: parse log lines from our [API Gateway based on NGINX](/runtime_suite/api-gateway/10_overview.md) having the following format:
+
+  ```
+  <remoteAddress> <remoteHostname> [<time>] "<requestMethod> <requestURL> HTTP/<requestHTTPVersion>" <statusCode> <responseSize> "<HTTPReferer>" "<userAgent>" - <responseTime> - <reqId>
+  ```
+  where `time` is in the format `%Y-%m-%dT%H:%M:%S%z`.
+  <details><summary>Example:</summary>
+  <p>
+  A possible log that can be accepted by the parser is:
+  
+  ```
+  1.1.1.1 example.com [2023-10-30T15:47:07+00:00] "GET / HTTP/1.1" 404 323 "-" "Some browser" - 0.002 - my_unique_request_id
+  ```
+
+  This log will be parsed into the following fields:
+  * `remoteAddress`: `1.1.1.1`
+  * `remoteHostname`: `example.com`
+  * `time`: `2023-10-30T15:47:07+00:00`
+  * `requestMethod`: `GET`
+  * `requestURL`: `/`
+  * `requestHTTPVersion`: `1.1`
+  * `statusCode`: `404`
+  * `responseSize`: 323
+  * `HTTPReferer`: `-`
+  * `userAgent`: `Some browser`
+  * `responseTime`: 0.002
+  * `reqId`: `my_unique_request_id`
+
+  </p>
+  </details>
+
+- `mia-plain`: does not parse any information contained in log lines.
+
+:::caution
+Any log produced by the application that is not following this format will be stored but **NOT** indexed into logging fields. 
+
+To not collect logs from a micro-service, you can specify `Not Collected` as log parser.
+:::
 
 ## JSON Logging format
 
@@ -63,9 +124,9 @@ It is important to put in logs the right information that can be used to track o
 Avoid, under any circumstance, to insert any private or sensitive value that can lead to privacy-related issues or incidents.
 :::
 
-### Mandatory Fields
+### Best Practices
 
-In each log, the following fields have to be always present:
+In each log, the following fields should always be present:
 
 | Name    | Type   | Indexed |Description                                                                      |
 | ------- | ------ | ------- |-------------------------------------------------------------------------------- |
@@ -79,7 +140,7 @@ The `reqId` field is extremely useful to trace operations following a single re
 However, if the concept of request tracing is not applicable, you can ignore it.
 :::
 
-### Mandatory Logs
+### Track Requests
 
 Each service exposing APIs must necessarily generate the logs shown in the table below, specifying the following fields in addition to the mandatory field specified above.
 
