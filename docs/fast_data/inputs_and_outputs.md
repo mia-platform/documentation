@@ -329,6 +329,10 @@ Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 **Description**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
+#### Message format v1.0.0
+
+This version of Projection Record update is emitted by [Real-Time Updater](/fast_data/realtime_updater.md).
+
 <details><summary>AsyncApi specification</summary>
 <p>
 
@@ -488,6 +492,192 @@ Example:
       "key":{
         "ID_USER":"ebc12dc8-939b-447e-88ef-6ef0b802a487"
       }
+    }
+  }
+}
+```
+</p>
+</details>
+
+#### Message format v2.0.0
+
+This version of Projection Record update is emitted by [Projection Storer](/fast_data/projection_storer.md).
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Projection Update Event
+  version: 2.0.0
+channels:
+  pr-update:
+    publish:
+      message:
+        name: Projection Record Update event
+        payload:
+          type: object
+          required:
+            - header
+            - key
+            - value
+          properties:
+            headers:
+              type: object
+              required:
+                - messageSchema
+              properties:
+                messageSchema:
+                  type: object
+                  required:
+                    - type
+                    - version
+                  properties:
+                    type:
+                      type: string
+                      description: type of messsage (`pr-update`, `sv-update`)
+                    version:
+                      const: v2.0.0
+                      description: version of the message format (v2.0.0)
+                context:
+                  type: object
+                  properties:
+                    ingestion:
+                      type: object
+                      properties:
+                        topic:
+                          type: string
+                          example: gt.fd-test.DEV.inventory.customers.ingestion
+                        partitionID:
+                          type: string
+                          example: 3
+                        offset:
+                          type: number
+                          example: 9001
+                        timestamp:
+                          type: string
+                          format: date-time
+                        pollTimestamp:
+                          type: string
+                          format: date-time
+            key:
+              type: object
+              description: JSON object representation of the projection record identifier (fields that uniquely identify the records)
+              additionalProperties: true
+              example: {
+                "customer_id": "24567",
+                "fiscal_code": "99b81998-dd90-4bc8-8aea-62399f414d26"
+              }
+            value:
+              type: object
+              required:
+                - operation
+                - storageNamespace
+                - primaryKeys
+              properties:
+                operation:
+                  type: object
+                  description: metadata regarding the operation that triggered this event
+                  required:
+                    - type
+                    - timestamp
+                  properties:
+                    type:
+                      type: string
+                      description: the type of operation applied on the projection's record
+                      enum:
+                        - INSERT
+                        - UPDATE
+                        - DELETE
+                    timestamp:
+                      type: string
+                      description: ISO8601 string marking the time when correspoding ingestion event has been processed
+                      format: date-time
+                source:
+                  type: string
+                  description: system of record name
+                  example: inventory
+                storageNamespace:
+                  type: string
+                  description: the projection name adopted on the storage system where the projection
+                    record related to this has been stored - e.g. collection name on MongoDB database
+                  example: pr_customers
+                primaryKeys:
+                  type: array
+                  description: list of field names that compose the unique identifier of the projection
+                    record
+                  items:
+                    type: string
+                  example: [ "customer_id", "fiscal_code" ]
+                before:
+                  type: object
+                  nullable: true
+                  additionalProperties: true
+                  description: the content as JSON object of the projection record before the operation
+                    occurred - it may not be set
+                  example: null
+                after:
+                  type: object
+                  nullable: true
+                  additionalProperties: true
+                  description: the content as JSON object of the projection record after the operation
+                    occurred - it may not be set
+                  example: {
+                    "customer_id": "24567",
+                    "fiscal_code": "99b81998-dd90-4bc8-8aea-62399f414d26",
+                    "first_name": "Lara",
+                    "last_name": "Croft",
+                    "age": 28
+                  }
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Insert operation</summary>
+<p>
+
+```json
+{
+  "headers": {
+    "messageSchema": {
+      "type": "string",
+      "version": "v2.0.0"
+    },
+    "context": {
+      "ingestion": {
+        "topic": "gt.fd-test.DEV.inventory.customers.ingestion",
+        "partitionID": 3,
+        "offset": 9001,
+        "timestamp": "2019-08-24T14:15:22Z",
+        "pollTimestamp": "2019-08-24T14:15:22Z"
+      }
+    }
+  },
+  "key": {
+    "customer_id": "24567",
+    "fiscal_code": "99b81998-dd90-4bc8-8aea-62399f414d26"
+  },
+  "value": {
+    "operation": {
+      "type": "INSERT",
+      "timestamp": "2019-08-24T14:15:22Z"
+    },
+    "source": "inventory",
+    "storageNamespace": "pr_customers",
+    "primaryKeys": [
+      "customer_id",
+      "fiscal_code"
+    ],
+    "before": null,
+    "after": {
+      "customer_id": "24567",
+      "fiscal_code": "99b81998-dd90-4bc8-8aea-62399f414d26",
+      "first_name": "Lara",
+      "last_name": "Croft",
+      "age": 28
     }
   }
 }

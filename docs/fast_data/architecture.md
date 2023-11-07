@@ -29,7 +29,7 @@ It is up to you to decide whether to make it execute any of these, based on the 
 ### Projection Storer (PS)
 
 Projection Storer service is an alternative to the Real-Time Updater that can be employed when configuring Fast Data event-driven architectures. Its goal is to ingest, clean and filter change events, transforming them into projections records to be stored onto the storage system (e.g. database).
-It maintains the same interface of Real-Time Updater, that is it consumes [ingestion events](/fast_data/inputs_and_outputs#ingestion-message) and emits  [pr-update events](/fast_data/inputs_and_outputs.md#projection-update-message) once it has stored projection records on the storage system.
+It maintains the same interface of Real-Time Updater, that is it consumes [ingestion events](/fast_data/inputs_and_outputs.md#ingestion-message) and emits  [pr-update events](/fast_data/inputs_and_outputs.md#projection-update-message) once it has stored projection records on the storage system.
 
 Compared to the Real-Time Updated it offers an overhaul and improved configuration experience and enhanced performances. When starting new Fast Data projects, it is strongly recommended to deploy this service instead of the Real-Time Updater. Furthermore, whenever possible, it is advised to migrate existing Fast Data configuration toward the use of an event-driven architectures and replace Real-Time Updater services with Projection Storer ones.
 
