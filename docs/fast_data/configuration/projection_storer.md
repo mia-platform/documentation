@@ -8,12 +8,14 @@ Projection Storer is the service in charge of constantly keeping up-to-date proj
 that are received from the associated System of Records. Once modifications are stored to the database, the service
 triggers downstream components with the proper mechanism, so that Single Views can be regenerated with latest data. 
 
+:::info
 This service partially overlap with the concerns of Real-Time Updater plugin, in particular converting in near real-time
 change events into projections records. Nonetheless, it has been designed to offer a more streamlined configuration experience,
 improved performances and higher reliability.
 
 For an overview of which are Real-Time Updater's features, it is possible to read the introduction documentation [here](/fast_data/realtime_updater.md), whereas
 [here](/fast_data/projection_storer.md) can be found a brief introduction to Projection Storer service.
+:::
 
 :::danger
 Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture).
