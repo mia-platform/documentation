@@ -200,7 +200,7 @@ In this way, you are ensuring that the `/api/v1` will only be served if the call
 :::caution
 The management of the API exposition will be available directly from the Mia-Platform Console in the following versions of the Products via the `Listeners` feature!
 
-Be aware that this feature will only be available if you are using the [Envoy API Gateway](/docs/runtime_suite/envoy-api-gateway/overview). 
+Be aware that this feature will only be available if you are using the [Envoy API Gateway](/runtime_suite/envoy-api-gateway/overview.md). 
 
-If you are using the [Nginx API Gateway](/docs/runtime_suite/api-gateway/overview), or you want to edit the hosts used for exposing the APIs from your Project, you will need to manually edit the `default.ingressroute.yml` file.
+If you are using the [Nginx API Gateway](/runtime_suite/api-gateway/10_overview.md), or you want to edit the hosts used for exposing the APIs from your Project, you will need to manually edit the `default.ingressroute.yml` file.
 :::
