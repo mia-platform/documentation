@@ -81,9 +81,9 @@ In this section you can choose the general configurations of your page.
 
 * *TablePush* instead is the perfect table for push notification or to send notifications to customers. Next to the table you will always find a push button to inject the content to your customers.
 
-* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to do so, find how to do it at the following [link](./conf_cms#1-configure-the-card).
+* *Card* each item will be represented similar to a card. To be able to view the card it will be necessary to configure it, to do so, find how to do it at the following [link](/microfrontend-composer/previous-tools/cms/conf_cms.md#1-configure-the-card).
 
-* *Gallery* is instead the perfect representation for images. Follow the [link](./conf_cms.md#9-configure-the-gallery) to see how to configure it.
+* *Gallery* is instead the perfect representation for images. Follow the [link](/microfrontend-composer/previous-tools/cms/conf_cms.md#9-configure-the-gallery) to see how to configure it.
 
 **Base Query**: in this field you can apply a visibility filter to your page. You can write a [MongoDB query](https://docs.mongodb.com/manual/tutorial/query-documents/) and using all types of [operators](https://docs.mongodb.com/manual/reference/operator/query/#query-selectors). This field is not required.
 :::tip Base query example

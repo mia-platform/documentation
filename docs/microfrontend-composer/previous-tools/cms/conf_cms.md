@@ -374,7 +374,7 @@ In the example we have therefore:
 
 :::info
 You can easily configure notifies directly from Console.  
-Check out the [related section](./config_cms.md#configure-the-general-settings) to know how do it
+Check out the [related section](/microfrontend-composer/previous-tools/cms/config_cms.md#configure-the-general-settings) to know how do it
 :::
 
 The notifications in the side menu allow you to display the number of elements that satisfy a condition in the notification form.
@@ -403,7 +403,7 @@ In the example, the notification shows the number of delayed elements in the cur
 
 :::info
 You can configure the highlights directly from Console.  
-Check out the [related section](./config_cms.md#configure-the-general-settings) to know how do it
+Check out the [related section](/microfrontend-composer/previous-tools/cms/config_cms.md#configure-the-general-settings) to know how do it
 :::
 
 The highlights allow you to highlight rows in the tables. You have to define an object inside the `cmsProperties` key as explain following. A highlight is an object composed of three parameters:
