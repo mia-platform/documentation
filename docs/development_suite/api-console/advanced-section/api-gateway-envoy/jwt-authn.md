@@ -1,6 +1,6 @@
 ---
 id: jwt-authn
-title: 'Use Case: JWT Authentication'
+title: 'Envoy Use Case: JWT Authentication'
 sidebar_label: 'Use Case: JWT Authentication'
 ---
 

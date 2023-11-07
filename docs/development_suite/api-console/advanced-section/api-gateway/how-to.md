@@ -1,6 +1,6 @@
 ---
 id: how-to
-title:  API Gateway - How to?
+title:  "Advanced API Gateway: How to?"
 sidebar_label: How To
 ---
 

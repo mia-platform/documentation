@@ -1,6 +1,6 @@
 ---
 id: websockets
-title: 'Use Case: WebSockets'
+title: 'Envoy Use Case: WebSockets'
 sidebar_label: 'Use Case: WebSockets'
 ---
 
