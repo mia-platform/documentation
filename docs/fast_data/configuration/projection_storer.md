@@ -32,7 +32,7 @@ be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_
 
 ## Configuration File
 
-In the following sections are described each configuration file section. It is important to notice that Fast Data configurator
+In the following sections, each configuration file section is described. It is important to note that Fast Data configurator
 will provide the option to configure the service without manually writing the file.
 
 ### Service Settings
