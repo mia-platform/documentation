@@ -15,7 +15,7 @@ In the form is also present a switch field with title 'File compatible with Exce
 
 The submission of the form will trigger the download of the CSV file containing the export of the form schemas' data.
 
-In order to open the `ck-export-form` in a Backoffice, a configuration is needed to configure a button to emit the custom event `export-form`. An example configuration follows: 
+In order to open the `ck-export-form` in a Microfrontend Composer, a configuration is needed to configure a button to emit the custom event `export-form`. An example configuration follows: 
 
 ```
 {

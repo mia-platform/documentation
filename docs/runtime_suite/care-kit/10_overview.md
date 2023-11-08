@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 The Care-kit service provides a set of [W3C Web Components](https://www.w3.org/TR/components-intro/).
 
-This components are designed to be used inside a [Backoffice](../../business_suite/backoffice/overview) configuration. 
+This components are designed to be used inside Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview) configuration. 
 
 ## Cake kit components
 

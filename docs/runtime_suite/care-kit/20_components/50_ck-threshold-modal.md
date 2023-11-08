@@ -17,7 +17,7 @@ In addition to the form, the `ck-threshold-modal` also includes a section where 
 
 Once the form is submitted, the threshold fields are used to patch the relative therapy/monitoring threshold sections.
 
-In order to open the `ck-threshold-modal` in a Backoffice, a configuration is needed to configure a button to emit the custom event `threshold-modal`. An example configuration follows: 
+In order to open the `ck-threshold-modal` in a Microfrontend Composer, a configuration is needed to configure a button to emit the custom event `threshold-modal`. An example configuration follows: 
 
 ```
 {

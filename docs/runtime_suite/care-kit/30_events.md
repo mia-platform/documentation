@@ -3,7 +3,7 @@ id: events
 title: Events
 sidebar_label: Events
 ---
-Events follows the `Event` type of backoffice:
+Events follows the `Event` type of [back-kit](../../microfrontend-composer/back-kit/events):
 
 ```typescript
 type Event<P, M> = {
