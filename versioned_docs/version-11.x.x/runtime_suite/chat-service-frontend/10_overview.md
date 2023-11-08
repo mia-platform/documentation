@@ -1,0 +1,52 @@
+---
+id: overview
+title: Chat Service Frontend
+sidebar_label: Overview
+---
+The Chat Service Frontend is a Mia-Platform plugin that uses the [Stream React Library](https://getstream.io/chat/docs/sdk/react/) to provide a custom micro-frontend to chat with users registered on a target application. 
+
+The functionalities included are:
+
+- Displaying a graphical interface for messaging between users
+
+- Customizing the interface to suit the client needs and including it in a custom application
+
+- Handling custom actions related to the messaging services based on the user permissions configured through the backend service or the [Stream Dashboard](https://dashboard.getstream.io/) 
+
+- Configuring the interface to be used as a [micro-lc plugin](https://microlc.io/documentation/docs/micro-lc/plugin_configuration#qiankun-plugin) into the Mia-Platform Backoffice Application
+
+This frontend application aims to be used as a white-label service to be configured in any business context needing a chat messaging system and a web interface for interacting with it, such as an in-app web view or a back office customer support channel. 
+
+## How it works
+
+The Chat service frontend implementation is given as a Single Page Application rendering the [Stream Chat UI](https://getstream.io/chat/demos/messaging/), where authorization credentials, permission rules and custom theming options come from data retrieved through an endpoint configured on an instance
+[Chat Service Backend](../../runtime_suite/chat-service-backend/overview_and_usage).
+
+The service capabilities are reached through the wrapping of the Stream react components given in the Stream react library and the implementation of custom components, both configurable from the backend side of the application.
+
+The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Mia-Platform Backoffice Application](../../runtime_suite_applications/backoffice/overview) and the [Authentication Service](../../runtime_suite/authentication-service/overview).
+
+The expected data for the application to connect the messaging provider are served from the backend at the endpoint `GET /chat/config?clientType=web`, and structured as specified in the given signature:
+
+```json
+{
+  ...
+    "authentication": {
+        "userId": string // The auth0 id of the authenticated user (with the *'auth0-'* prefix of the id removed),
+        "userToken": string // the Steam token needed for authenticate the user
+        "apiKey": string // The Stream secret key needed  connect the service
+    }, 
+  ...
+}
+```
+
+Other options are passed through the same endpoint configuring the application's appearance and features.
+For them integration of the application as a Backoffice plugin and the offered customization options, refer to the [configuration](./20_configuration.md) and [customization](./30_customization.md) sections.
+
+
+## Further details
+
+Follow the pages below to know more about the *Form Service Frontend*:
+
+- [Setup the service](./20_configuration.md)
+- [Custom theming and application's options](./30_customization.md)
