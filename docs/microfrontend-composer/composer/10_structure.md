@@ -139,7 +139,7 @@ Different properties will have different means of editing – depending on the t
 
 ![Right menu modal](img/structure_layout-right-menu-modal.png)
 
-Some properties will be marked as **Shared**. This means that it is possible to assign them a common reusable property of the same type. In order to do so, create a Shared Property in the [Shared Properties](20_compose_pages.md#shared-properties) section.
+Some properties will be marked as **Shared**. This means that it is possible to assign them a common reusable property of the same type. In order to do so, create a Shared Property in the [Shared Properties](./20_compose_pages.md#shared-properties) section.
 
 ![Shared Property](img/structure_layout-shared-property.png)
 
