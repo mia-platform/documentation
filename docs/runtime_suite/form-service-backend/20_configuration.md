@@ -276,7 +276,7 @@ When you export the form data to a CSV, the CSV file includes all the fields ava
 
 :::
 
-When you export form data by calling the `GET /visualizer/forms/export` endpoint, you can configure the **Form Service Backend** to resolve the value of a CSV column through a CRUD lookup. For example, you may want to replace the form schema ID with the name of the form as shown in the Backoffice.
+When you export form data by calling the `GET /visualizer/forms/export` endpoint, you can configure the **Form Service Backend** to resolve the value of a CSV column through a CRUD lookup. For example, you may want to replace the form schema ID with the name of the form as shown in the Microfrontend Composer.
 
 To configure the lookup you must assign to the `exportLookups` field an object value, whose properties correspond to the names of the CSV columns you want to perform the lookup on (`formSchemaId` in the example above). Remember, you must use the colum name exactly as it appears on the CSV, so for nested fields you should use the `outerField.innerField` notation.
 

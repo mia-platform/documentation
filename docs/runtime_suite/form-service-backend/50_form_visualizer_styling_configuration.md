@@ -93,7 +93,7 @@ The form service frontend supports only:
 
 We recommend checking the output of styled form templates on the form visualizer to confirm their full functionality. Note that using global styles selectors in the loaded stylesheets may lead to unexpected changes in styles of components out of the scope of the form-service microfrontend application.
 
-As an example, applying in your css stylesheet a global rule for modifying the font family in use, will modify the native font family used in the backoffice aside menu component.
+As an example, applying in your css stylesheet a global rule for modifying the font family in use, will modify the native font family used in the Microfrontend Composer aside menu component.
 
 ```css
 * {
@@ -117,7 +117,7 @@ You also need to expose a new endpoint using the same name defined in the config
 
 :::info
 
-The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../../runtime_suite/files-service/configuration) instance in your project and update the Mia-Backoffice configuration to use it's [File Manager](../../business_suite/backoffice/60_components/250_file_manager.md) client.
+Mia-Platform [Microfrontend Composer](../../microfrontend-composer/back-kit/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../../runtime_suite/files-service/configuration) instance in your project and update Microfrontend Composer configuration to use it's [File Manager](../../microfrontend-composer/back-kit/components/file_manager) client.
 
 :::
 
