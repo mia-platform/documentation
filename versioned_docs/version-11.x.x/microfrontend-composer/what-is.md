@@ -1,5 +1,5 @@
 ---
-id: what-is-backoffice
+id: what-is
 title:  What is Mia-Platform Backoffice
 sidebar_label: What is Mia-Platform Backoffice
 ---

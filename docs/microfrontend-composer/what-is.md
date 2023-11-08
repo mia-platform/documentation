@@ -1,6 +1,6 @@
 ---
 id: what-is
-title:  What is Mia-Platform Microfrontend Composer
+title: What is Mia-Platform Microfrontend Composer
 sidebar_label: What is Microfrontend Composer
 ---
 

@@ -559,7 +559,7 @@
   ],
   "cms": [
     {
-      "id": "business_suite/what-is-backoffice",
+      "id": "microfrontend-composer/what-is",
       "type": "doc"
     },
     {
