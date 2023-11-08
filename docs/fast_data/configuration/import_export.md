@@ -57,3 +57,7 @@ In both cases, microservices associated to each resource (such as Real-Time Upda
 :::info
 Some Fast Data resources, such as Projections, can be imported as a reference only in projects that are using the Single View Trigger Generator architecture. Please check your services before importing the resources.
 :::
+
+:::info
+At the moment, nested imported resources are not exported. e.g. when exporting an ER schema imported by reference which contains a collection imported by reference as well, the collection will not be exported. 
+:::
