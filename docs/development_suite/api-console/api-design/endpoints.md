@@ -204,10 +204,9 @@ If your project has the microservice-gateway disabled, the configuration of the 
 :::
 
 :::caution
-
 - Due to an issue with microservice-gateway, content-type: `application/x-www-form-urlencoded` is converted to JSON.
 - Due to another issue with microservice-gateway, if binary data (e.g. PDF files) passes through this service it could be wrongly encoded, resulting in corrupted files.
-  :::
+:::
 
 ### Manage advanced endpoint parameters
 

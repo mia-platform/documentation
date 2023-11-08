@@ -1,6 +1,6 @@
 ---
 id: configuration
-title:   Configure the Auth0 Client
+title:   Advanced Auth0 Client Configuration
 sidebar_label: Auth0 Client
 ---
 The file for this extension is **/config-extension/auth0-client/config.json**.

@@ -916,5 +916,401 @@
   "/docs/development_suite/set-up-infrastructure/providers-management": {
     "destination": "/docs/console/company-configuration/providers/overview",
     "addedOn": "2023-10-11"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/overview": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/overview",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/changelog": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/changelog",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/configuration": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/configuration",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/development_suite/api-console/advanced-section/dev-console-config/advanced_name_core": {
+    "destination": "/docs/development_suite/api-console/advanced-section/advanced-section",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/development_suite/api-console/advanced-section/dev-console-config/replicas": {
+    "destination": "/docs/development_suite/api-console/advanced-section/api-console-configuration",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs": {
+    "destination": "/docs/development_suite/api-console/advanced-section/api-console-configuration",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/runtime_suite_applications/backoffice/overview": {
+    "destination": "/docs/runtime_suite_applications/microfrontend-composer-toolkit/overview",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/runtime_suite_applications/backoffice/configuration": {
+    "destination": "/docs/runtime_suite_applications/microfrontend-composer-toolkit/configuration",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/runtime_suite_applications/backoffice/changelog": {
+    "destination": "/docs/runtime_suite_applications/microfrontend-composer-toolkit/changelog",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/runtime_suite_applications/backoffice-on-prem/overview": {
+    "destination": "/docs/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/overview",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/runtime_suite_applications/backoffice-on-prem/configuration": {
+    "destination": "/docs/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/configuration",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/runtime_suite_applications/backoffice-on-prem/changelog": {
+    "destination": "/docs/runtime_suite_applications/microfrontend-composer-on-prem-toolkit/changelog",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/changelog": {
+    "destination": "/docs/microfrontend-composer/composer/changelog",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/compose_pages": {
+    "destination": "/docs/microfrontend-composer/composer/compose_pages",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/configurator_settings": {
+    "destination": "/docs/microfrontend-composer/composer/configurator_settings",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/external_components/bundling": {
+    "destination": "/docs/microfrontend-composer/external_components/bundling",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/external_components/manifest": {
+    "destination": "/docs/microfrontend-composer/external_components/manifest",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/external_components/summary": {
+    "destination": "/docs/microfrontend-composer/external_components/overview",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/faqs": {
+    "destination": "/docs/microfrontend-composer/faqs",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/overview": {
+    "destination": "/docs/microfrontend-composer/composer/structure",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice-configurator/structure": {
+    "destination": "/docs/microfrontend-composer/composer/structure",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/actions": {
+    "destination": "/docs/microforntend-composer/back-kit/actions",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/changelog": {
+    "destination": "/docs/microforntend-composer/back-kit/changelog",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/add_filter_button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/add_filter_button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/add_new_button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/add_new_button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/antd_theme_manager": {
+    "destination": "/docs/microforntend-composer/back-kit/components/antd_theme_manager",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/atlas_dashboard": {
+    "destination": "/docs/microforntend-composer/back-kit/components/atlas_dashboard",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/auto_refresh": {
+    "destination": "/docs/microforntend-composer/back-kit/components/auto_refresh",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/breadcrumbs": {
+    "destination": "/docs/microforntend-composer/back-kit/components/breadcrumbs",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/bulk_actions_button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/bulk_actions_button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/bulk_delete_button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/bulk_delete_button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/calendar": {
+    "destination": "/docs/microforntend-composer/back-kit/components/calendar",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/card": {
+    "destination": "/docs/microforntend-composer/back-kit/components/card",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/chip": {
+    "destination": "/docs/microforntend-composer/back-kit/components/chip",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/confirmation_modal": {
+    "destination": "/docs/microforntend-composer/back-kit/components/confirmation_modal",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/crud_client": {
+    "destination": "/docs/microforntend-composer/back-kit/components/crud_client",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/crud_export": {
+    "destination": "/docs/microforntend-composer/back-kit/components/crud_export",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/crud_export_client": {
+    "destination": "/docs/microforntend-composer/back-kit/components/crud_export_client",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/crud_lookup_client": {
+    "destination": "/docs/microforntend-composer/back-kit/components/crud_lookup_client",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/dropdown_button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/dropdown_button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/dynamic_form_card": {
+    "destination": "/docs/microforntend-composer/back-kit/components/dynamic_form_card",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/dynamic_form_drawer": {
+    "destination": "/docs/microforntend-composer/back-kit/components/dynamic_form_drawer",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/dynamic_form_modal": {
+    "destination": "/docs/microforntend-composer/back-kit/components/dynamic_form_modal",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/dynamic_title": {
+    "destination": "/docs/microforntend-composer/back-kit/components/dynamic_title",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/expandable_filters": {
+    "destination": "/docs/microforntend-composer/back-kit/components/expandable_filters",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/export_modal": {
+    "destination": "/docs/microforntend-composer/back-kit/components/export_modal",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/file_manager": {
+    "destination": "/docs/microforntend-composer/back-kit/components/file_manager",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/file_picker_drawer": {
+    "destination": "/docs/microforntend-composer/back-kit/components/file_picker_drawer",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/file_picker_modal": {
+    "destination": "/docs/microforntend-composer/back-kit/components/file_picker_modal",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/file_service_client": {
+    "destination": "/docs/microforntend-composer/back-kit/components/file_service_client",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/filter_drawer": {
+    "destination": "/docs/microforntend-composer/back-kit/components/filter_drawer",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/filters_manager": {
+    "destination": "/docs/microforntend-composer/back-kit/components/filters_manager",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/footer_&_item_state": {
+    "destination": "/docs/microforntend-composer/back-kit/components/footer_&_item_state",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/form_card": {
+    "destination": "/docs/microforntend-composer/back-kit/components/form_card",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/form_drawer": {
+    "destination": "/docs/microforntend-composer/back-kit/components/form_drawer",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/form_modal": {
+    "destination": "/docs/microforntend-composer/back-kit/components/form_modal",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/form_wizard": {
+    "destination": "/docs/microforntend-composer/back-kit/components/form_wizard",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/gallery": {
+    "destination": "/docs/microforntend-composer/back-kit/components/gallery",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/import_modal": {
+    "destination": "/docs/microforntend-composer/back-kit/components/import_modal",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/layout": {
+    "destination": "/docs/microforntend-composer/back-kit/components/layout",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/layout_container": {
+    "destination": "/docs/microforntend-composer/back-kit/components/layout_container",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/layout_swap": {
+    "destination": "/docs/microforntend-composer/back-kit/components/layout_swap",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/list": {
+    "destination": "/docs/microforntend-composer/back-kit/components/list",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/loading_animation": {
+    "destination": "/docs/microforntend-composer/back-kit/components/loading_animation",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/navigation_back_arrow": {
+    "destination": "/docs/microforntend-composer/back-kit/components/navigation_back_arrow",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/notification_center": {
+    "destination": "/docs/microforntend-composer/back-kit/components/notification_center",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/notifications": {
+    "destination": "/docs/microforntend-composer/back-kit/components/notifications",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/pagination": {
+    "destination": "/docs/microforntend-composer/back-kit/components/pagination",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/pdf_viewer": {
+    "destination": "/docs/microforntend-composer/back-kit/components/pdf_viewer",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/refresh_button": {
+    "destination": "/docs/microforntend-composer/back-kit/components/refresh_button",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/search_bar": {
+    "destination": "/docs/microforntend-composer/back-kit/components/search_bar",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/state_adapter": {
+    "destination": "/docs/microforntend-composer/back-kit/components/state_adapter",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/table": {
+    "destination": "/docs/microforntend-composer/back-kit/components/table",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/tabs": {
+    "destination": "/docs/microforntend-composer/back-kit/components/tabs",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/title": {
+    "destination": "/docs/microforntend-composer/back-kit/components/title",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/components/url_parameters_adapter": {
+    "destination": "/docs/microforntend-composer/back-kit/components/url_parameters_adapter",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/core_concepts": {
+    "destination": "/docs/microforntend-composer/back-kit/core_concepts",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/events": {
+    "destination": "/docs/microforntend-composer/back-kit/events",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/flows/file_management": {
+    "destination": "/docs/microforntend-composer/back-kit/flows/file_management",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/flows/lookups": {
+    "destination": "/docs/microforntend-composer/back-kit/flows/lookups",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/flows/nested_objects": {
+    "destination": "/docs/microforntend-composer/back-kit/flows/nested_objects",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/flows/plugin_navigation": {
+    "destination": "/docs/microforntend-composer/back-kit/flows/plugin_navigation",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/overview": {
+    "destination": "/docs/microforntend-composer/back-kit/overview",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/backoffice/page_layout": {
+    "destination": "/docs/microforntend-composer/back-kit/page_layout",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/cms_configuration/conf_cms": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/conf_cms",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/cms_configuration/config_analytics": {
+    "destination": "/docs/microfrontend-composer/previous-tools/analytics/config_analytics",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/cms_configuration/config_cms": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/config_cms",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/colorare_il_cms": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/colorare_il_cms",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/conf_analytics": {
+    "destination": "/docs/microfrontend-composer/previous-tools/conf_analytics",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/custom-frontends-integration-CMS": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/custom-frontends-integration-CMS",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/data-visualization": {
+    "destination": "/docs/microfrontend-composer/use-cases/data-visualization",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/guide_cms": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/guide_cms",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/overview": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/overview",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/overview-business-suite": {
+    "destination": "/docs/microfrontend-composer/previous-tools/overview-business-suite",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/timeline": {
+    "destination": "/docs/microfrontend-composer/use-cases/timeline",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/update_cms": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/update_cms",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/video-pills": {
+    "destination": "/docs/microfrontend-composer/previous-tools/cms/video-pills",
+    "addedOn": "2023-11-07"
+  },
+  "/docs/business_suite/what-is-backoffice": {
+    "destination": "/docs/microfrontend-composer/what-is",
+    "addedOn": "2023-11-07"
   }
 }
