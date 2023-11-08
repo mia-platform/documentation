@@ -5,7 +5,7 @@ sidebar_label: Overview
 ---
 The Payment Integration Hub application builds a single interface to connect multiple payment gateways with only a few clicks and allows you to manage quickly and easily **payments** and **refunds**, guarantee transaction **consistency** and possible remediation in a **secure** and **compliant** way, in fact it does not save any data related to the payment method.
 
-It is also available a white label front-end with **adaptive checkout** and a ready to use [backoffice](../../business_suite/backoffice/overview) to perform **actions** on the transactions and customizable **dashboards** for monitoring all payments KPI. 
+It is also available a white label front-end with **adaptive checkout** and a ready to use [backoffice](../../microfrontend-composer/overview.md) to perform **actions** on the transactions and customizable **dashboards** for monitoring all payments KPI. 
 
 ## Application Architecture
 
@@ -21,7 +21,7 @@ The Payment Integration Hub is composed by:
     - the [Messaging Service](../../runtime_suite/messaging-service/overview) and [Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage) used to notify the user about the outcome of payment;
     - the **Frullino Service** handles payment pending by periodically checking their status of through the provider and updates the payment state accordingly;
     - the **payment front end** provides a UI to accompany the end user to complete the payment with the chosen method with the related **back end for front end**;
-    - the [Backoffice](../../business_suite/backoffice/overview) allows to perform actions on payments.
+    - the [Backoffice](../../microfrontend-composer/overview.md) allows to perform actions on payments.
 
 Other platform plugins are included in order to enable some side functionalities.
 
