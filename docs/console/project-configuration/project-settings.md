@@ -46,7 +46,7 @@ This card presents an overview of which Git Provider, Secret Manager, and CI/CD 
 
 ## Workload & Runtime
 
-The "Workload & Runtime" tab shows information about the Project workload and runtime through 4 cards: "Microservices", "Image Pull Secret", "Runtime Settings", and "Security Features".
+The "Workload & Runtime" tab shows information about the Project workload and runtime through 5 cards: "Microservices", "Image Pull Secret", "Deployment options", "Runtime", and "Security Features".
 
 ### Microservices
 
@@ -68,12 +68,24 @@ An imagePullSecret is a Kubernetes entity used to authenticate and authorize acc
 
 This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add image pull secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
 
-### Runtime settings
+### Deployment options
+
+This card allows users to manage some options regarding the Project deployment. In particular: 
+
+- **Deployment strategy**: specifies whether the Project deployment follows a [GitOps-based approach](/development_suite/deploy/gitops-based/index.md) or a [pipeline-based approach](/development_suite/deploy/pipeline-based/index.md).
+    - **Pull mode** implies the Project is connected with a GitOps tool, which "pulls" the updated configuration directly from the Project repository.
+    :::info
+    This strategy is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) enabled.
+    :::
+    - **Push mode** means that a CI/CD pipeline is run in order to push changes to the target environment.
+
+- **Runner Tool**: specifies the command line deployment tool used by the Project. This option is not available for projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The runner tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or a custom tool. In order to use mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
+
+### Runtime
 
 ![runtime settings](./img/settings-runtime-settings.png)
 
 This card shows and gives the user the ability to change some runtime settings. Specifically:
-- **Runner Tool**: specifies the command line deployment tool used by the Project. Either one of "mlp" and "Other tool". In the case of mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
 - **Monitoring**: tags specifying the different supported monitoring systems.
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
