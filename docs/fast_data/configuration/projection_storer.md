@@ -376,8 +376,8 @@ The following Kafka Consumer properties cannot be customized by the user, since 
 | `type`          | `string` | &check;  | `kafka` |
 | `configuration` | `object` | &check;  |         |
 
-Describe which type of consumer and its configuration properties the service should employ to trigger change 
-as input events. Currently only Kafka (and platforms adopting Kafka APIs) is supported as consumer.
+Describe which type of producer and its configuration properties the service should employ to trigger projection update 
+as output events. Currently only Kafka (and platforms adopting Kafka APIs) is supported as producer.
 
 #### Kafka Configuration
 
