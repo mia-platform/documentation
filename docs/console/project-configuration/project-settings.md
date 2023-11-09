@@ -70,27 +70,42 @@ This card shows the user, in the form of a table, the list of names that will be
 
 ### Deployment options
 
-This card allows users to manage some options regarding the Project deployment. In particular: 
+This card allows users to manage some options regarding the Project deployment.
+
+![runtime settings](./img/settings-deployment-options.png)
 
 - **Deployment strategy**: specifies whether the Project deployment follows a [GitOps-based approach](/development_suite/deploy/gitops-based/index.md) or a [pipeline-based approach](/development_suite/deploy/pipeline-based/index.md).
+
+  :::info
+  The choice of the deployment strategy is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) enabled. Standard Projects only support a pipeline-based deployment strategy.
+  :::
     - **Pull mode** implies the Project is connected with a GitOps tool, which "pulls" the updated configuration directly from the Project repository.
-    :::info
-    This strategy is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) enabled.
-    :::
+
     - **Push mode** means that a CI/CD pipeline is run in order to push changes to the target environment.
 
-- **Runner Tool**: specifies the command line deployment tool used by the Project. This option is not available for projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The runner tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or another custom tool. 
-    :::info
-    In order to use mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled
-    :::
+- **Pipeline runner**: specifies the command line deployment tool used by the Project. This option is not available for Projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The chosen tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or another custom tool. 
+  :::info
+  In order to use `mlp`, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled.
+  :::
 
-The above information can be edited by clicking on the "Edit" button, which will open a modal where you can modify the deployment strategy and runner tool. Upon clicking "Save changes", the information will be updated.
+The above information can be edited by clicking on the "Edit" button, which will open a modal where you can modify the Project deployment strategy and pipeline runner. Upon clicking "Save changes", the information will be updated.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
+![edit deployment options](./img/settings-edit-deployment-options.png)
+
+  </div>
+</div>
+
 
 ### Runtime
 
+This card gives the user the ability to view and change some runtime settings. 
+
 ![runtime settings](./img/settings-runtime-settings.png)
 
-This card gives the user the ability to view and change some runtime settings. Specifically, the **Monitoring** tags allow you to choose between the different supported monitoring systems.
+Specifically, the **Monitoring** tags allow you to choose between the different supported monitoring systems.
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
@@ -151,14 +166,14 @@ This is a **BETA** feature and, as such, is currently under active development. 
 
 If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md), users will see a card that illustrates the required steps to perform the migration.
 
- ![Workflow migration card](./img/workflow-migration-card.png)
+ ![Workflow migration card](./img/settings-workflow-migration-card.png)
 
  There are some necessary [manual adjustments](/development_suite/set-up-infrastructure/enhanced-project-workflow.md#migrating-your-projects) to be made to ensure everything works fine after the migration is completed. The user will be asked to confirm that all steps have been addressed before continuing. 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '700px'}}>
 
-![Workflow migration modal](./img/workflow-migration-modal.png)
+![Workflow migration modal](./img/settings-workflow-migration-modal.png)
 
   </div>
 </div>
