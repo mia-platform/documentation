@@ -907,7 +907,7 @@ In order to proceed with the migration process it is necessary to have:
 ### Migration Process
 
 First, let's open in Console the project that contains the Real-Time Updater service that should be migrated to a Projection Storer.
-From there, it is easily possible to access the project configuration, which are stored within your Company's git provider,
+From there, access the project configuration stored within your Company's git provider,
 using the link in the top-right corner of Mia-Platform Console interface:
 
 ![Open Git Provider](../img/ps_migration/00_open_git_provider.png)
