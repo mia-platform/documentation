@@ -39,7 +39,7 @@ will provide the option to configure the service without manually writing the fi
 
 ### Service Settings
 
-Here are described the parameters intrinsic to service that specify its behaviors. An example of service configuration
+Here are described the parameters intrinsic to the service that specify its behaviors. An example of service configuration
 can be the following one:
 
 ```json
