@@ -113,7 +113,7 @@ containing the custom message adapter function. For example:
 
 ```json
 "dataSourceAdapter": {
-  "type":  "custom "
+  "type":  "custom"
   "filepath": "/app/extensions/messageAdapter.kt"
 }
 ```
