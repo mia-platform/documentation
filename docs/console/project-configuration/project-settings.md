@@ -79,9 +79,10 @@ This card allows users to manage some options regarding the Project deployment.
   :::info
   The choice of the deployment strategy is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) enabled. Standard Projects only support a pipeline-based deployment strategy.
   :::
-    - **Pull mode** implies the Project is connected with a GitOps tool, which "pulls" the updated configuration directly from the Project repository.
+  
+    - In **Pull mode**, through a GitOps tool connection, Project configurations saved on the Git repository are always consistent with the Project’s Runtime configurations
 
-    - **Push mode** means that a CI/CD pipeline is run in order to push changes to the target environment.
+    - In **Push mode**, updates and changes to applications or configurations are initiated and directly pushed from a CI/CD pipeline to the target environment
 
 - **Pipeline runner**: specifies the command line deployment tool used by the Project. This option is not available for Projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The chosen tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or another custom tool. 
   :::info
