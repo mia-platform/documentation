@@ -34,16 +34,6 @@ Another benefit is that **the cluster does not need to be accessed directly**, r
 
 Moreover, in push-based deployment models, pipelines often require access to credentials to authenticate with the cluster and make changes. Storing credentials within pipelines increases the risk of inadvertent exposure or misuse. In GitOps, **credentials are typically configured within the GitOps tool** which often resides on the cluster itself and has specific authorization rules that are not shared with the pipeline code and context.
 
-## Export and review configuration files
-
-When using **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you will have the possibility to export and download the files in `tag.gz` format, or to review them directly inside the browser.
-
-![ExportAndReview](../img/export-and-review-files.png)
-
-While reviewing the files, you can select the one you view to open from the menu on the left. You can see the file content full-screen by clicking the top-right button with four outgoing arrows.
-
-![Review](../img/review-configuration-files.png)
-
 ## Example GitOps tool configuration
 
 * [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md)

@@ -53,7 +53,7 @@ You can also scale services manually writing yourself the configuration.
 You have to enable the horizontal auto-scaling of the services managed by the Console, setting the environment variable `ENABLE_HPA` to `true` for the production environments. Then create the hpa files in configuration folder, inside the `configurations/{environment_name}` directory. The horizontal auto-scaling is entrusted to  [HPA Kubernetes resource](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/).
 
 :::info
-Check out [this page](/development_suite/api-console/advanced-section/dev-console-config/replicas.md) for manually set the number of replicas of a Platform Services  
+Check out [this page](/development_suite/api-console/advanced-section/api-console-configuration.md#change-the-number-of-replicas) for manually set the number of replicas of a Platform Services  
 :::
 
 The resource that is taken into consideration is the use of CPU. If the value ​​exceeds the threshold expressed as a percentage, the system will create a new instance of the pod to divide the load. The instance will come deleted after a period of time when all available instances remain below the set threshold.

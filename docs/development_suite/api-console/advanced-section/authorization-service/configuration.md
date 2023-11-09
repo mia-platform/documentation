@@ -1,6 +1,6 @@
 ---
 id: configuration
-title:  Configure the Authorization Service
+title:  Advanced Authorization Service Configuration
 sidebar_label: Authorization Service
 ---
 ## How to write authorization extension

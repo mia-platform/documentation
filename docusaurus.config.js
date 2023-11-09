@@ -1,5 +1,5 @@
 const createRedirects = require("./createRedirects");
-
+const createEditUrl = require("./createEditUrl");
 async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
 
@@ -46,7 +46,7 @@ async function createConfig() {
           {
             label: "Products",
             position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal)",
+            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
             type: "dropdown",
             items: [{
                 type: 'doc',
@@ -62,9 +62,9 @@ async function createConfig() {
               },
               {
                 type: 'doc',
-                docId: "business_suite/what-is-backoffice",
-                label: "Backoffice",
-                activeBaseRegex: "(docs|docs/\\d.x)/business_suite"
+                docId: "microfrontend-composer/what-is",
+                label: "Microfrontend Composer",
+                activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
               },
               {
                 type: 'doc',
@@ -247,6 +247,7 @@ async function createConfig() {
                 dark: 'dark'
               }
             }],
+            editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "current",
             versions: {

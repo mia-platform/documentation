@@ -127,7 +127,7 @@ For further configuration of the microservices you can refer to the dedicated do
 - [Files-Service](../../runtime_suite/files-service/configuration)
 - [Messaging Service](../../runtime_suite/messaging-service/overview): use version 1.5.0 or above
 - [SMTP Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage)
-- [Data-Visualization](../../business_suite/data-visualization)
+- [Data-Visualization](../../microfrontend-composer/use-cases/data-visualization.md)
 - [Analytics](../../runtime_suite/mongodb-reader/configuration)
 
 ## View

@@ -24,7 +24,7 @@ To do this, we pass 8080 as a value using the default variable `HTTP_PORT` withi
 
 Our microservice needs to accept this variable from the environment and use it to set up the port on which it listens.  
   
-This variable is also utilized by the service to attempt connecting to health [probes](/development_suite/api-console/api-design/microservice-runtime-resources.md#probes)  
+This variable is also utilized by the service to attempt connecting to health [probes](/development_suite/api-console/api-design/microservice-runtime-resources.md#liveness--readiness-probes)  
   
 ![Microservice Ports](img/microservice-ports-1.png)
 

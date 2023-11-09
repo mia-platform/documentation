@@ -6,7 +6,18 @@ sidebar_label: Make your Marketplace items available to other Companies
 
 ## Enabling the visibility to all Companies
 
-You can make a Marketplace item accessible to other companies by editing its `visibility` property. Specifically, the `allTenants` property inside the `visibility` object must be set to "true".  
+* (recommended) Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
+* Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
+
+Both methods will be explained in the following paragraphs.
+
+## Marketplace item visibility
+
+### Accessibility to other Companies
+
+To make a Marketplace item of your Company accessible to other Companies, you first need to create it in the CMS. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so.
+
+Once you have created your Marketplace item in the CMS, you can make it accessible to other companies by editing its `visibility` property. Specifically, set the `allTenants` property inside the `visibility` object to "true".  
 After editing, the visibility property should look like this:
 
 ```json
