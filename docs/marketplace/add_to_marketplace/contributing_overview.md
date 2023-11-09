@@ -58,6 +58,20 @@ When creating a new Marketplace item, you always need to set the `tenantId` rela
 
 You can also contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
 
+:::caution
+
+Not setting the `tenantId` is no longer supported and deprecated.
+Elements without `tenantId` will be public even if the `visibility.public` field is not set.
+
+This behavior might change in the next Console releases.
+
+If you have any item without the `tenantId` property set, we recommend to do the following:
+- set the `tenantId` to any of your companies;
+- set the `visibility` field according to your needs. See the [related doc](./marketplace_items_accessibility.md#marketplace-item-visibility) for more information on this point.
+
+:::
+
+
 ## Marketplace items
 
 A Marketplace **Item** (also referred to as **Component**) is the basic unit of the Marketplace and represents a software resource available for use within Mia-Platform Projects.
@@ -173,7 +187,8 @@ Here below are listed all the properties that you can provide for each microserv
 - **`defaultDocumentationPath`**: the APIs documentation path.
 - **`defaultResources`**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
 - **`visibility`**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
-  - **`allTenants`**: a boolean that indicates whether your service should be visible to all other tenants, making it accessible if set to `true`.
+  - **`allTenants`**: a boolean that indicates whether your service should be visible to all other Companies, making it accessible if set to `true`.
+  - **`public`**: a boolean that indicates wether the Marketplace item is public and visible also to not logged in users.
 - **`providerId`**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
 
 :::caution

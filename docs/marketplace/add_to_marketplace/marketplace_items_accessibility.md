@@ -50,3 +50,17 @@ This allows the Console to access Marketplace items resources when they are crea
 After creating and connecting your Provider, locate it in the Providers section of the CMS and take note of the `providerId`; go back to the CMS and edit the Marketplace item that you want to publish, and set to it the property `providerId` with the value you copied from the provider.
 
 From this moment, your new Marketplace item should be available to any Company!
+
+### Public Visibility
+
+To make a Marketplace item accessible to the public, i.e. any user that access the Console, even if not authenticated, you can set the `visibility.public` field to `true`. The default value is `false`, meaning that an item will not be exposed to the public.
+
+:::caution
+
+By default, for retrocompatibility reasons Marketplace items without the `tenantId` are exposed to the public, regardless of the presence of the `visibility.public` field.
+
+Since v12.x.x, the `tenantId` field is mandatory, the upgrade script will take care of adding a default `tenantId` to Mia-Platform supported Marketplace items.
+
+If you have any Marketplace item owned by you please remember to add a `tenantId` to it after the upgrade, as the script will only add it to Mia-Platform maintained items.
+
+:::
