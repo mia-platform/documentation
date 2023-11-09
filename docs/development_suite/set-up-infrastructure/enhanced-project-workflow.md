@@ -71,7 +71,7 @@ The following features are still in development and will be available in future 
 As of today, some **Project customizations** can be performed only through the backoffice:
 
 - The repository default branch can be changed by updating the `repository.configurationBranch` property.
-- The Project deploy strategy (useful to configure whether your Project is supposed to use a [Pipeline-based](/development_suite/deploy/pipeline-based/index.md) or [GitOps-based](/development_suite/deploy/gitops-based/index.md) deployment approach) can be found in the `deploy.strategy` field for the global configuration that is inherited by all environments; to add environment specific settings you can patch the `environments[_].deploy.strategy`.
+- The setting of environment-specific deployment strategies can be configured by patching the `environments[_].deploy.strategy` property of the Project. At Project level (inherited by all Project environments), it can already be configured in the Project Settings page.
 
 In the future, these properties will be managed in the Console, inside the [Project Settings](/console/project-configuration/project-settings.md) page.
 
@@ -85,29 +85,30 @@ With the first release of this new Workflow, existing Projects will require a mi
 
 ## Activating the feature
 
+The Enhanced Project Workflow can be activated by the user when [creating a new Project](/console/project-configuration/create-a-project.mdx#creation-process). There are different possible scenarios in the Project creation process:
+- The Company requires that all new Projects are created with the Enhanced Workflow. This means that during the Project creation process the Enhanced Workflow will be the only available workflow option.
+- The Company lets users choose if they want to adopt the Enhanced Workflow on the new Project or keep using the standard one.
+- The Company does not support the creation of Projects with the Enhanced Workflow: new Projects will keep using the standard one.
+
+If you want to ensure that all Projects in your Company, old and new ones, adopt the Enhanced Workflow, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. This feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment.
+
+Instead, to allow users to decide if they want to create a new Project with the Enhanced Workflow or not, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle at Company level.If this feature toggle is disabled, it means that the Company does not support the creation of Projects that use the Enhanced Workflow.
+
+In the end of the Project creation process, if the Enhanced Workflow option has beed selected, the result is the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Project level.
+
 :::info
-In order to activate the feature on a Project or Company, please open a service request and ask for the support of a Mia-Platform referent.
-:::
-
-The Enhanced Project Workflow can be activated by enabling two different feature toggles. This operation can be performed by your Mia-Platform referent, who will choose the option that most fits your needs. 
-
-The `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment. It can be enabled for a single Project or for an entire Company, which means all projects in the Company, old and new ones, will adopt the new workflow.
-
-If you already have a Company with some projects, and you do not wish to migrate them to the new approach just yet, you can choose the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle, to be activated on the Company. This feature toggle makes sure that all new projects in the Company will be created with the new workflow, while leaving the existing ones untouched. 
-
-:::note
-If both feature toggles are enabled, `ENABLE_CONF_GENERATION_ON_DEPLOY` will prevail.
+If you want to activate the Enhanced Workflow on an already existing Project, follow the guide in the next section instead.
 :::
 
 ## Migrating your projects
 
-The migration process for an existing Project is currently completely manual and impacts several entities.  
-The process can be summarized with the following steps:
+The migration process for an existing Project can be performed in the [Enhanced Workflow card](/console/project-configuration/project-settings.md#enhanced-workflow) in the Advanced section of the Project Settings page. Confirming the action in the dedicated modal will result in the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle for the Project.
+
+In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
 
  - Git repository structure clean-up
  - Feature activation
  - Default revision setup and adjustment of a few Project Settings
-
 
 ### Git Repository adjustments
 
@@ -206,12 +207,7 @@ Here is a list of the files and directories that can be  deleted:
   - `variables`
   - `overlays/:env/variables.env`
 
-
-### Feature Activation
-
-To activate the feature, follow the instructions in the [dedicated section](#activating-the-feature). If you wish to activate the feature on a single Project, proceed with enabling the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle on the specific Project rather than on the whole Company.
-
-### Project Settings configuration
+### Default revision configuration
 
 After activating the Feature, ensure to configure the new **default revision** field from the [Project Settings](/console/project-configuration/project-settings.md) selecting one of the already existing branches (namely Revisions).
 
@@ -222,8 +218,4 @@ This revision will be an empty configuration if no other `main` branch was previ
 
 ## Pull-based deployment strategy
 
-If you want the Project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment), its configuration must contain the `strategy` property set to `pull` (the value for push-based deployments is `push`). Based on the selected strategy, the `runnerTool` may take different values. 
-
-:::note
-For now, the deployment strategy can only be set from the backoffice. Please ask the support of your Mia-Platform referent to change it.
-:::
+If you want the Project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment), you can select it in the [Deployment options card](/console/project-configuration/project-settings.md#deployment-options) in the Workload & Runtime section of the Project Settings page.
