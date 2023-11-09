@@ -79,14 +79,18 @@ This card allows users to manage some options regarding the Project deployment. 
     :::
     - **Push mode** means that a CI/CD pipeline is run in order to push changes to the target environment.
 
-- **Runner Tool**: specifies the command line deployment tool used by the Project. This option is not available for projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The runner tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or a custom tool. In order to use mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
+- **Runner Tool**: specifies the command line deployment tool used by the Project. This option is not available for projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The runner tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or another custom tool. 
+    :::info
+    In order to use mlp, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled
+    :::
+
+The above information can be edited by clicking on the "Edit" button, which will open a modal where you can modify the deployment strategy and runner tool. Upon clicking "Save changes", the information will be updated.
 
 ### Runtime
 
 ![runtime settings](./img/settings-runtime-settings.png)
 
-This card shows and gives the user the ability to change some runtime settings. Specifically:
-- **Monitoring**: tags specifying the different supported monitoring systems.
+This card gives the user the ability to view and change some runtime settings. Specifically, the **Monitoring** tags allow you to choose between the different supported monitoring systems.
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
@@ -137,8 +141,32 @@ This card presents an overview of the features in early access that can be activ
 
 ## Advanced
 
-The "Advanced" tab allows the user to visualize advanced information and perform sensitive operations, through a single card called "Advanced actions".
+The "Advanced" tab allows the user to visualize advanced information and perform sensitive operations.
 
-![advanced actions](./img/settings-advanced-actions.png)
+### Enhanced Workflow
+
+:::caution
+This is a **BETA** feature and, as such, is currently under active development. Please pay attention using it.
+:::
+
+If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md), users will see a card that illustrates the required steps to perform the migration.
+
+ ![Workflow migration card](./img/workflow-migration-card.png)
+
+ There are some necessary [manual adjustments](/development_suite/set-up-infrastructure/enhanced-project-workflow.md#migrating-your-projects) to be made to ensure everything works fine after the migration is completed. The user will be asked to confirm that all steps have been addressed before continuing. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
+![Workflow migration modal](./img/workflow-migration-modal.png)
+
+  </div>
+</div>
+
+ Once the migration is complete, users can start working with the Enhanced Workflow.
+
+### Advanced actions
 
 The only action that can be taken at the moment is to delete the Project itself. You can find a detailed description of the deletion flow [here](/console/project-configuration/delete-a-project.md).
+
+![advanced actions](./img/settings-advanced-actions.png)
