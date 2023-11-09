@@ -8,7 +8,7 @@ There are three main methods to create, modify and delete Marketplace items:
 
 * (recommended) Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 * Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
-* (deprecated) Use the [CMS](/business_suite/guide_cms.md).
+* (deprecated) Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md).
 
 ## How to use `miactl` to manage the Marketplace
 
