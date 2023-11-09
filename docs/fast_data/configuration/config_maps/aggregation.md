@@ -729,11 +729,13 @@ Clicking on a field will open a drawer to the right side of the panel that allow
 
 ![Detail of a field not mapped](../../img/no_code_aggregation/field_not_mapped.png)
 
-The _Dependency_ select field will include a list of existing dependencies (on top) and all the other dependencies that can be connected (based on the conditions included inside the ER Schema). 
+The _Dependency_ selection field will include a list of existing dependencies (on top) and all the other dependencies that can be connected (based on the conditions included inside the ER Schema). 
 
 Selecting a dependency will update the state of the _Set Path_ button and its label: if the dependency already exists, the label will inform the user that a "Path is set", indicating that the Aggregation already includes all the necessary dependencies (from the base projection - thus that dependency linked to the Projection Changes document via the `_identifier` condition) and it's already possible to select the field to complete the mapping: the _Field_  select field will now be available and the list will contain all the fields that can be used for the mapping.
 
 The selection will automatically create the mapping. This can be noted also by the fact that all the warnings next to the name of the field will disappear.
+
+![Detail of a dependency field](../../img/no_code_aggregation/dependency_field_detail.png)
 
 ### Automatic generation of dependencies via Path
 
@@ -784,6 +786,11 @@ When clicking the button, the already mentioned modal will appear but with a pla
 A click on the button `Add dependency` will open the same form used to create regular dependencies, but with the important difference to have only starting projections included in the configuration of the parent field and to have only _One To Many_ conditions, necessary to map the array of objects.
 
 Once the selection is completed, the modal will remain open to allow the user to add more dependencies that might be used to map the fields inside the array of objects.
+
+:::info
+The term `path` refers to the route followed to reach the dependencies from which to retrieve the data to populate the fields of the single view.
+The available paths are based on the ER schema that you must have previously defined in the _Projection_ section of the console and associated with the _Single View Creator No Code_ service. Since a projection can have various relationships, there could be multiple paths to reach the same dependency.
+:::
 
 ### Advanced Mode
 
