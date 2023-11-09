@@ -505,7 +505,7 @@ projection-record update events.
 |-----------------|----------|----------|---------|
 | `fieldsMapping` | `object` | &check;  |         |
 
-This projection configuration property describe which fields of in the incoming record are interested. Indeed, not all
+This projection configuration property describes which fields of in the incoming record should be extracted and stored. Indeed, not all
 the fields of those documents coming from the System Of Records may be necessary to construct the projection. From this,
 here it is applied a _"projection"_ (filter) operation on the names of the record fields.  
 For each of these fields of interest of this projection it is necessary to configure the following two settings:
