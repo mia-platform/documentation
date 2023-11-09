@@ -90,9 +90,11 @@ The Enhanced Project Workflow can be activated by the user when [creating a new 
 - The Company lets users choose if they want to adopt the Enhanced Workflow on the new Project or keep using the standard one.
 - The Company does not support the creation of Projects with the Enhanced Workflow: new Projects will keep using the standard one.
 
+:::info
 If you want to ensure that all Projects in your Company, both old and new ones, adopt the Enhanced Workflow, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. This feature toggle activates the new versioning system and the generation of Kubernetes configurations at the time of deployment.
 
 Instead, to allow users to decide if they want to create a new Project with the Enhanced Workflow or not, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle at Company level. If this feature toggle is disabled at Company level, it means that the creation of Projects using the Enhanced Workflow is not supported by that Company.
+:::
 
 In the end of the Project creation process, if the Enhanced Workflow option has been selected, the result is the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Project level.
 
