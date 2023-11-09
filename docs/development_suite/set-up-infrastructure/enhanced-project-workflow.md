@@ -94,7 +94,7 @@ If you want to ensure that all Projects in your Company, old and new ones, adopt
 
 Instead, to allow users to decide if they want to create a new Project with the Enhanced Workflow or not, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CREATE_PROJECT_WITH_SAVE_CONFIG_ON_DEPLOY` feature toggle at Company level.If this feature toggle is disabled, it means that the Company does not support the creation of Projects that use the Enhanced Workflow.
 
-In the end of the Project creation process, if the Enhanced Workflow option has beed selected, the result is the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Project level.
+In the end of the Project creation process, if the Enhanced Workflow option has been selected, the result is the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Project level.
 
 :::info
 If you want to activate the Enhanced Workflow on an already existing Project, follow the guide in the next section instead.
