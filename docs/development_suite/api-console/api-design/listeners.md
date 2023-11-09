@@ -48,7 +48,18 @@ Container Ports associated to Listeners cannot be deleted. To delete them firstl
 
 ### Exposing an Endpoint on the Listener
 
-Once the new Listener has been created, it can be selected from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) within the Endpoint detail page of the project.
+There are two ways to expose an Endpoint on the Listener:
+- selecting the desired Listener from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) within the Endpoint detail page of the project
+- selecting the desired Listener from the specific [Endpoints table](/development_suite/api-console/api-design/listeners.md#endpoints-overview).
+
+
+### Listeners overview for Endpoints
+
+This table provides an overview of which Endpoint is exposed by which Listeners.  
+It is possible to edit this configuration by just selecting the desired Listener for the desired Endpoint. 
+
+![listeners-api-gateway-container-ports](img/listeners/endpoints-listeners-table.png)
+
 
 ### Configure the Kubernetes Ingress Controller
 
