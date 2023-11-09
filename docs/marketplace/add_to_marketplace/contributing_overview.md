@@ -447,7 +447,10 @@ For more information regarding release stages, take a look at the [items lifecyc
   "description": "Provide MongoDB aggregation pipelines as REST API.",
   "type": "plugin",
   "categoryId": "database",
-  "supportedBy": "mia-platform",
+  "tenantId": "my-tenant",
+  "visibility": {
+    "allTenants": true
+  },
   "image": [
     {
       "_id": "5db0105743875a0011618815",
@@ -561,7 +564,10 @@ For more information regarding release stages, take a look at the [items lifecyc
   "description": "Use this application to set up your Developer Portal in a few clicks.",
   "type": "application",
   "categoryId": "dev-portal",
-  "supportedBy": "mia-platform",
+  "tenantId": "my-tenant",
+  "visibility": {
+    "allTenants": true
+  },  
   "image": [
     {
       "_id": "5db0105743875a0011618815",

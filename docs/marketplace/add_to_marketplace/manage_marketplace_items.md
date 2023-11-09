@@ -47,6 +47,7 @@ The file contents will probably look like this:
   "name": "My Awesome Service",
   "itemId": "my-awesome-service",
   "repositoryUrl": "https://git.example.org/awesome-service",
+  "tenantId": "my-tenant",
   "resources": {
     "services": {
       "api-portal": {
