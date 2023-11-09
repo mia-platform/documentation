@@ -67,7 +67,7 @@ This behavior might change in the next Console releases.
 
 If you have any item without the `tenantId` property set, we recommend to do the following:
 - set the `tenantId` to any of your companies;
-- set the `visibility` field according to your needs. See the [related doc](./marketplace_items_accessibility.md#marketplace-item-visibility) for more information on this point.
+- set the `visibility` field according to your needs. See the [related doc](/marketplace/add_to_marketplace/marketplace_items_accessibility.md#marketplace-item-visibility) for more information on this point.
 
 :::
 
