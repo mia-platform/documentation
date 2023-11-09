@@ -33,7 +33,7 @@ Based on how the ingestion system is set up, the format can be one of three poss
 * [Debezium](#debezium)
 
 You can also specify a [custom adapter](/fast_data/configuration/realtime_updater.md#custom) to handle any other message formats you need.
-This format is always configurable in the System of Records page on the console, on the _Real-Time Updater_ tab.
+This format is always configurable in the System of Record page on the console, on the _Real-Time Updater_ tab.
 
 Here's the AsyncApi specification of the message and some examples of the different formats.
 
@@ -397,7 +397,7 @@ channels:
                   description: Projection's name
                   type: string
                 source:
-                  description: Name of the System of Records
+                  description: Name of the System of Record
                   type: string
                 primaryKeys:
                   description: Array of the primary key field names
@@ -405,6 +405,7 @@ channels:
                 before:
                   type: object
                   description: Value of the MongoDB record **before** the changes have been applied. In case of a insert operation this field is not defined
+                    **Note:** this field is always set to `null` when message adapter is set to `db2`
                   additionalProperties: true
                 after:
                   type: object
@@ -616,6 +617,7 @@ channels:
                   additionalProperties: true
                   description: the content as JSON object of the projection record before the operation
                     occurred - it may not be set
+                    **Note:** this field is always set to `null` when message adapter is set to `db2`
                   example: null
                 after:
                   type: object

@@ -5,8 +5,8 @@ sidebar_label: Projection Storer
 ---
 
 Projection Storer is the service in charge of constantly keeping up-to-date projections records with respect to change events
-that are received from the associated System of Records. Once modifications are stored to the database, the service
-triggers downstream components with the proper mechanism, so that Single Views can be regenerated with latest data. 
+received from the associated System of Record. Once modifications are saved to the storage system, the service
+triggers downstream components with the proper mechanism, so that Single Views can be regenerated with the latest data. 
 
 :::info
 This service partially overlap with the concerns of Real-Time Updater plugin, in particular converting in near real-time
@@ -309,8 +309,11 @@ fun mapToAddressType(value: Any, fieldName: String): String? {
 //       the key associated to the file containing it
 function castToTitleCase(value, fieldName) {
   const str = value.toString()
+
+  // NOTE: a basic logger can be accesses via internal binding
+  logger.debug(`incoming value: ${value}`)
   
-  str[0].toUpperCase() + str.slice(1).toLowerCase()
+  return str[0].toUpperCase() + str.slice(1).toLowerCase()
 }
 ```
 
@@ -418,8 +421,8 @@ which are its configuration properties. Currently only MongoDB is supported as s
 
 When MongoDB is selected as a storage system for the Projection Storer service, it requires the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/)
 and the _name_ of the database the service will connect to. The database name is not necessary in case it is already
-specified in the connection string, although it would be recommended to set it in case the connection string is shared
-among multiple 
+specified in the connection string, although it is recommended to set it in case the connection string is shared
+with other services.
 
 This is an example of storage configuration when `mongodb` is selected as type:
 
@@ -488,16 +491,11 @@ records of this projection will be saved.
 |---------------|------------|----------|---------|
 | `primaryKeys` | `string[]` | &check;  |         |
 
-It is the list of fields names that identifies a record for this projection. The names contained in this list are relative
-to the fields of the source record contained in the ingestion event. There should always be at least one name in
-this list, so that it is possible to uniquely connect records of different projections among them.
-
-:::caution
-Primary keys array **must** contain the names of the fields that are found on the ingestion event document. In case
-the `targetField` property is employed to rename a field belonging to the projection primary key, before
-storing it in the projection record, then the service will properly forward the updated list when it emits the corresponding
-projection-record update events.
-:::
+It is the list of fields names that uniquely identify a record for this projection. The names contained in this list are relative
+to the fields of the source record, which are the ones contained in the ingestion event.  
+There should always be at least one name in this list, so that it is possible to uniquely connect records of different projections among them.
+Moreover, the projection key allows Fast Data system to ensure events ordering, so that changes over the same record are processed in
+the order they occur.
 
 #### Fields Mapping
 
@@ -506,15 +504,22 @@ projection-record update events.
 | `fieldsMapping` | `object` | &check;  |         |
 
 This projection configuration property describes which fields of in the incoming record should be extracted and stored. Indeed, not all
-the fields of those documents coming from the System Of Records may be necessary to construct the projection. From this,
+the fields of those documents coming from the System Of Record may be necessary to construct the projection. From this,
 here it is applied a _"projection"_ (filter) operation on the names of the record fields.  
 For each of these fields of interest of this projection it is necessary to configure the following two settings:
 
 - `targetField` → the name for this specific field to be employed when storing the projection record on the storage system.
-It can potentially be different from the original name, although by default the system tend to match the name from the
+It can potentially be different from the original name, although by default the configuration system tend to match the name from the
 incoming document with the one saved on the projections storage system to avoid possible confusion.
 - `castFunction` → the identifier of the function to be applied on the value of this field. For a reference of possible
 values that this property can get, please refer to [cast functions](/fast_data/configuration/projection_storer.md#cast-functions-and-additional-cast-functions) section.
+
+:::caution
+Since `targetField` property may lead to a renaming of a property on the projection record, it is important
+to notice that configuration in `primaryKeys` property described above **must** contain the names of the fields
+that are found on the _ingestion event_ document, not the ones saved in the storage system.
+The service will then properly forward the updated list when it emits the corresponding projection-record update events.
+:::
 
 ---
 
@@ -982,7 +987,7 @@ which would replace the existing Real-Time Updater, or for setting up a Projecti
 Extracted user-defined functions, such as the message adapter or the custom cast functions may need to be slightly adjusted before using them in a Projection Storer service.
 In particular, Projection Storer:
 
-- support both Real-Time Updater and its own custom message adapter definition. In fact, when the output of existing adapters is mapped internally to the newer one.  
+- supports both Real-Time Updater and its own custom message adapter definition. In fact, when the output of existing adapters is mapped internally to the newer one.  
   However, it is recommended to review existing implementation to reflect the newer return type, as explained in the [output paragraph](/fast_data/configuration/projection_storer.md#adapter-output).
   This allows to have a greater control over the details provided to the Projection Storer
 - expects that custom cast function do not receive as input parameter the `logger`. It is **requested** that the implementation of those custom function is updated to remove the logger and
@@ -999,7 +1004,7 @@ Below are reported all the steps necessary to set-up a Projection Storer that co
 
    When the Projection Storer plugin is created, it already contains the proper set of environment variables. 
 
-2. Once the service is created, navigate to the Fast Data Configurator (Projections section) and select the system of records that contains the Real-Time Updater to be replaced.
+2. Once the service is created, navigate to the Fast Data Configurator (Projections section) and select the system of record that contains the Real-Time Updater to be replaced.
 In the submenu, please select the _Services_ tab, as displayed below:
 
    ![Open Services section](../img/ps_migration/02_sor_service.png)

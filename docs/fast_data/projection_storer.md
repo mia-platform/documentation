@@ -5,7 +5,7 @@ sidebar_label: Projection Storer
 ---
 
 Projection Storer is one of the Fast Data components, which it acts as an entrypoint to the system. Its role is to ingest change events coming from the
-origin system ([System of Records](/fast_data/the_basics.md#system-of-records-sor)) and process them by cleaning, filtering,
+origin system ([System of Record](/fast_data/the_basics.md#system-of-records-sor)) and process them by cleaning, filtering,
 validating and eventually storing them as raw data for the system.
 
 The service consumes Kafka messages as [_ingestion events_](/fast_data/inputs_and_outputs.md#ingestion-message) and for each
@@ -22,8 +22,10 @@ supported, recognized and handled correctly by downstream components.
 Projection Storer features partially overlap with the ones of [Real-Time Updater](/fast_data/realtime_updater.md) service. In fact,
 Projection Storer implements a comparable processing logic for consuming ingestion events, storing projection records and notifying
 changes via projection record update events.  
-When Fast Data is configured adopting [Event-Driven architecture](/fast_data/architecture.md#event-driven-architecture),
-the Projection Storer can be employed as a drop-in replacement of Real-Time Updater service.
+When Fast Data is configured adopting [Event-Driven architecture](/fast_data/architecture.md#event-driven-architecture), the Projection Storer can be employed as a drop-in
+replacement of Real-Time Updater service.
+
+Nonetheless, when compared to the Real-Time Updater, Projection Storer offers an overhauled and simpler configuration experience and an increased processing throughput.
 
 Below is provided a brief comparison table between the two services:
 
