@@ -949,7 +949,7 @@ rtu-to-ps project -cc api-console-config.json \
   -r fast-data-inventory-realtime-updater
 ```
 
-Upon it execution, the cli outputs a series of details regarding generated files, where to find them, possible warnings
+Upon its execution, the cli outputs a series of details regarding generated files, where to find them, possible warnings
 and how to handle generated configs in order to configure a Projection Storer.
 
 Focusing on the command output, a new folder `out` should have been created. The output folder can be customized using the `-o` flag of the cli.
