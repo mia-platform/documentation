@@ -55,11 +55,11 @@ can be the following one:
 }
 ```
 
-#### System Of Records
+#### System Of Record
 
 | Property          | Type     | Required | Default |
 |-------------------|----------|----------|---------|
-| `systemOfRecords` | `string` | -        |         |
+| `systemOfRecord`  | `string` | -        |         |
 
 It is the data source identifier (a name) describing from which system the service is importing data.
 
