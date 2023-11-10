@@ -92,7 +92,7 @@ Here is an example of the Inventory System plugin config file:
     "itemId" : "inventory-system",
     "description" : "The Inventory System takes charge of a perfect inventory organization.",
     "type" : "plugin",
-    "categoryId": "",
+    "categoryId": "extracategory",
     "image" : {
         "localPath": "../../../images/inventory_system.png"
     },
