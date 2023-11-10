@@ -733,6 +733,10 @@
       "type": "doc"
     },
     {
+      "id": "fast_data/projection_storer",
+      "type": "doc"
+    },
+    {
       "id": "fast_data/single_view_creator",
       "type": "doc"
     },
@@ -797,6 +801,10 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "id": "fast_data/configuration/projection_storer_config",
+          "type": "doc"
         },
         {
           "id": "fast_data/configuration/realtime_updater",
