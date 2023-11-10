@@ -26,7 +26,7 @@ For a thorough explanation on supported Providers and how to configure them in t
 
 ### Creation of the repository
 
-Imagine you already have some Marketplace items and their relative file manifest, ready to be deployed to the Console.
+Imagine you already have some Marketplace items and their related file manifests, ready to be deployed to the Console.
 
 Create a repository on your Git Provider, and add the item files following this structure:
 
@@ -125,12 +125,7 @@ Here is an example of the Inventory System plugin config file:
             }
         }
     },
-    "tenantId" : "acme-company",
-    "supportedBy" : "Acme-Company",
-    "visibility" : {
-        "public" : false,
-        "allTenants": true
-    }
+    "tenantId" : "acme-company"
 }
 ```
 
@@ -223,7 +218,7 @@ Let's now assume that a developer spots a mistake in the plugin description. Sim
 
 ![Declarative-CJ-fix-MR](img/declarative_fix_mr.png)
 
-After a maintainer merges the changes, a new pipeline is run, this time resulting in an Update of the item:
+After a maintainer merges the changes, a new pipeline is triggered, leading to an update of the item.
 
 ![Declarative-CJ-fix-Pipeline-Log](img/declarative_fix_pipeline_log.png)
 
@@ -233,7 +228,7 @@ From now on, the Marketplace item will be available in the Console:
 
 ![Inventory-System](img/inventory_system.png)
 
-Users of the Console can create and add this plugin in the Console Projects.
+Console users can create and add this plugin to their Console projects.
 
 ### Item Deletion
 
