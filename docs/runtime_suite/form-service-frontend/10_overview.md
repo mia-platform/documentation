@@ -83,6 +83,9 @@ When the `_v` parameter is specified, the form is set to `readOnly` mode. This m
 #### Form data retrieve drafts support
 From `version 1.6.0` the Form-Service Frontend supports the possibility to retrieve form drafts. When calling the `GET /visualizer/{id}` endpoint is possible to specify the `_status` parameter. This parameter will be passed to the Form-Service Backend that, if configured properly, will retrieve the draft version of the requested form data.
 
+#### Form Availability and Expiration date support
+From `version 1.10.0` the Form Service enables the configuration of availability and expiration dates for forms via the `builder`. If either of these dates is defined and the relevant conditions are met, the form's `visualizer` will trigger an error message, preventing the form from being presented. You can customize the error message displayed for expired forms through the [configmap in the Form Service Backend](../form-service-backend/configuration).
+
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:
