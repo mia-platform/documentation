@@ -50,8 +50,8 @@ The following are the expected stages along a Marketplace component lifecycle:
 
 * **Coming soon**: implementation has just started, these components cannot be used yet (users can still be informed about the existence of a new component)
 
-* **Preview**: first usable release, components may include bugs and be subject to undocumented breaking changes
+* **Preview**: first usable release, components may include bugs and be subjected to undocumented breaking changes
 
-* **Beta**: implementation is complete, these components won't be subject to any undocumented breaking change but may still include bugs (hence they must be used with caution)
+* **Beta**: implementation is complete, these components won't be subjected to any undocumented breaking change but may still include bugs (hence they must be used with caution)
 
 * **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.

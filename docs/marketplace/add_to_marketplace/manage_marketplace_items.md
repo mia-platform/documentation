@@ -17,6 +17,12 @@ First of all, you need to setup `miactl`, as explained in the [dedicated doc](/c
 
 With the `miactl marketplace` subcommands, you can perform several actions, described here below.
 
+:::tip
+
+If you need to handle many Marketplace items, we suggest the adoption of a [Declarative Approach](/marketplace/add_to_marketplace/declarative_marketplace.md).
+
+:::
+
 ### Create an item 
 
 :::info

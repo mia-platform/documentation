@@ -1393,11 +1393,16 @@
         "id": "marketplace/add_to_marketplace/marketplace_items_accessibility",
         "type": "doc"
       },
-        {
-          "id": "marketplace/add_to_marketplace/change_marketplace_item_visibility",
-          "type": "doc",
-          "label": "Change Marketplace Items Visibility"
-        }
+      {
+        "id": "marketplace/add_to_marketplace/change_marketplace_item_visibility",
+        "type": "doc",
+        "label": "Change Marketplace Items Visibility"
+      },
+      {
+        "id": "marketplace/add_to_marketplace/declarative_marketplace",
+        "type": "doc",
+        "label": "Marketplace Declarative Approach"
+      }
     ]
     },
     {
