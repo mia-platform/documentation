@@ -10,13 +10,13 @@ on which service is compatible with the others, which versions should be skipped
 ## Latest Stable Services Version
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
-|:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.6       |             3.1.2             |        6.2.2        |
+| :---------------: | :---------------------------: | :-----------------: |
+|       7.5.6       |             3.1.3             |        6.2.2        |
 
 ## Compatibility Matrix
 
 | Real-Time Updater | Single View Trigger Generator | Single View Creator |
-|:-----------------:|:-----------------------------:|:-------------------:|
+| :---------------: | :---------------------------: | :-----------------: |
 |  \>=5.0.0 <7.0.0  |               ❌               |       >=5.2.0       |
 |      >=7.0.0      |            >=3.0.0            |       >=5.6.5       |
 
@@ -26,7 +26,7 @@ on which service is compatible with the others, which versions should be skipped
 ### Minimum Services Version
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
-|:-----------------:|:-----------------------------:|:-------------------:|
+| :---------------: | :---------------------------: | :-----------------: |
 |       7.4.0       |             3.0.0             |        5.6.5        |
 
 :::caution
@@ -37,8 +37,8 @@ is `v7.5.4`
 ### Recommended Services Version
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
-|:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.6       |             3.1.2             |        6.2.2        |
+| :---------------: | :---------------------------: | :-----------------: |
+|       7.5.6       |             3.1.3             |        6.2.2        |
 
 ## Projection Storer Support
 
@@ -50,22 +50,22 @@ the final aggregated Single View.
 ### Minimum Services Version
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
-|:-----------------:|:-----------------------------:|:-------------------:|
-|       1.0.0       |             3.1.2             |        6.2.2        |
+| :---------------: | :---------------------------: | :-----------------: |
+|       1.0.0       |             3.1.3             |        6.2.2        |
 
 
 ### Recommended Services Version
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
-|:-----------------:|:-----------------------------:|:-------------------:|
-|       1.0.0       |             3.1.2             |        6.2.2        |
+| :---------------: | :---------------------------: | :-----------------: |
+|       1.0.0       |             3.1.3             |        6.2.2        |
 
 ## Bucket Storage Support
 
 ### Recommended Services Version
 
 | Ingestion Storer | Ingestion Reloader |
-|:----------------:|:------------------:|
+| :--------------: | :----------------: |
 |      1.5.1       |       1.4.1        |
 
 ## Versions With Known issues
