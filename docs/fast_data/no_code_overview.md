@@ -78,7 +78,7 @@ To configure a `Single View Key` you just need to enter the Single View Creator 
 
 Using the *Single View Creator Low Code* and its No Code capabilities you can also define the `ER Schema` for the service simply by choosing one of the configured ER Schema for the System Of Record on which the service insists. For a deeper understanding of how the No Code ER Schema works visit the [dedicated page](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code).
 
-The Single View Creator Low code offers powerful No Code capabilities also regarding the `aggregation` of the Single View.
+The Single View Creator Low Code offers powerful No Code capabilities also regarding the `aggregation` of the Single View.
 By accessing the service configurations you have the possibility to configure your aggregation by defining for each Single View field the source and the path to retreive the data based on the ER Schema you have previously defined. To delve deeper with No Code aggregation capabilities read the [dedicated documentation page](/fast_data/configuration/config_maps/aggregation.md#use-the-no-code).
 
 
