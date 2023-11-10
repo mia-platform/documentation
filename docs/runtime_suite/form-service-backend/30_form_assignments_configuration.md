@@ -43,7 +43,7 @@ The properties of the `formAssignmentsCrud` object are the following:
 
 :::info
 
-Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview) can be used to update this array and assign a form template to specific users.
+The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to update this array and assign a form template to specific users.
 
 :::
 
@@ -87,7 +87,7 @@ Here an example:
       "label": "Administrator"
     },
     {
-      "id": "accounting",
+      "group": "accounting",
       "label": "Accountant"
     }
   ]
