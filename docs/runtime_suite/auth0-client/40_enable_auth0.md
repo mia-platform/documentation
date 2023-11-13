@@ -11,24 +11,27 @@ sidebar_label: Enable Auth0
 
 2. Delete the configuration files of the disabled services;
 
-3. Log into the console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from scratch as an extension. To configure auth0-client, visit [its configuration page](./20_configuration.md). Configure also the env variables (`REDIS_HOSTS` is required).
+3. Log into the Console, go to the Design Section -> Advanced section and create the `auth0-client` configuration from scratch as an extension. To configure auth0-client, visit [its configuration page](./20_configuration.md). Configure also the env variables (`REDIS_HOSTS` is required).
 
 4. Link correctly client-type and client-key to use the correct auth0 client.
 
 5. Configure auth0 correctly from auth0 dashboard:
-    * add rules to inject user metadata in id token:
+    * add action to inject user metadata in id token:
 
       ```js
-      function (user, context, callback) {
-        const namespace = configuration.MIA_NAMESPACE;
-        if (!user.app_metadata) {
-          console.warn("WARNING: user.app_metadata is empty");
-          return callback(null, user, context);
+      exports.onExecutePostLogin = async (event, api) => {
+        const { user, secrets} = event;
+        const { MIA_NAMESPACE } = secrets;
+        const { app_metadata, user_metadata } = user;
+
+        if (!app_metadata) {
+          console.warn('WARNING: user.app_metadata is empty');
+          return;
         }
-        context.idToken[namespace + 'app_metadata'] = user.app_metadata;
-        context.idToken[namespace + 'user_metadata'] = user.user_metadata;
-        return callback(null, user, context);
-      }
+
+        api.idToken.setCustomClaim(`${MIA_NAMESPACE}app_metadata`, app_metadata);
+        api.idToken.setCustomClaim(`${MIA_NAMESPACE}user_metadata`, user_metadata);
+      };
       ```
 
       MIA_NAMESPACE is a key written as `customClaimsNamespaces` in `auth0 client` configuration. e.g. `https://mia-platform.eu/`

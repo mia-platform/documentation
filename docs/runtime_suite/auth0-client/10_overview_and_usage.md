@@ -13,7 +13,7 @@ Moreover, it handles users through the auth0 users management api.
 
 A Grant-Type property let you define a method from which your application can gain Access Tokens, for a more detailed explanation follow the official [auth0 documentation](https://auth0.com/docs/applications/application-grant-types).
 
-To setup, firstly, you must have a working tenant on Auth0, where your application has enabled different database's connections (e.g. **Username-Password-Authentication**). Then, in the advanced settings of your application, you should enable `Password` in `Grant Types`. You have to add the necessary **Rules**, see [Config Auth0](./30_configure_auth0.md).
+To setup, firstly, you must have a working tenant on Auth0, where your application has enabled different database's connections (e.g. **Username-Password-Authentication**). Then, in the advanced settings of your application, you should enable `Password` in `Grant Types`. You have to add the necessary **Action**, see [Config Auth0](./30_configure_auth0.md).
 
 In Tenant Setting, at **API Authorization Settings** you set a Default Directory and a Default Audience, which is the name of the connection to be use for Password Grant exchanges.
 
