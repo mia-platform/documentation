@@ -85,7 +85,7 @@ From this section it is possible to configure: _Listeners_, _Security_, _Documen
 ![Endpoint settings card - Listeners](img/listeners/endpoint-configure-listeners.png)
 
 This section lets you define from which Listener your Endpoint should be exposed.  
-Keep in mind that you must expose and Endpoint with _at least_ one Listener.
+Keep in mind that you must expose an Endpoint with _at least_ one Listener.
 
 ### Manage the security of your endpoints
 

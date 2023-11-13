@@ -9,20 +9,20 @@ sidebar_label: Create Listeners
 From the Design area you can manage your Listeners and control where your Endpoints are exposed. This means that you can map Endpoints to different Listeners, which will make them available on different exposed domains.
 
 :::info
-Currently only Projects using configured with an [**Envoy API Gateway**](/runtime_suite/envoy-api-gateway/overview.md) can access the Listeners feature.
+Currently only Projects configured with an [**Envoy API Gateway**](/runtime_suite/envoy-api-gateway/overview.md) can access the Listeners feature.
 :::
 
 ## What is a Listener
 
-A Listener is a logical entity configured on your API Gateway that checks for incoming connection requests directed to your cluster.  
-Each listener is mapped to a single port and defines rules to route incoming requests from external clients to a resource in your cluster, such as a specific microservice, exposed through endpoints.
+A Listener is a logical entity configured on your API Gateway that checks for incoming connection requests directed to your Project namespace.  
+Each listener is mapped to a single port and defines rules to route incoming requests from external clients to a resource in your namespace, such as a specific microservice, exposed through endpoints.
 
 This page describes the features of a Listener and how to configure these from the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Console.
 
 
 ## Create a Listener
 
-Follow these three steps in order to create a new Listener and make an Endpoint reachable from outside the Console:
+There are three main steps needed to make an Endpoint reachable from outside the Console:
 - Create the new Listener resource
 - Expose the Endpoint on the Listener
 - Configure the [Kubernetes Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to make the new exposed port reachable
@@ -32,7 +32,7 @@ Follow these three steps in order to create a new Listener and make an Endpoint 
 To create a new listener, just click the **Add Listener** button and specify its `name` and `port`. Both fields must be unique in the Project. 
 
 Optionally, during listener creation, you can define whether to:
-- **select the listener** by default when creating a new endpoint
+- **set the listener as default**, so that it is pre-selected when creating new endpoints. This comes in handy if you think you will use the listener to expose many new endpoints. You can always de-select it if needed.
 - **expose all existing endpoints** on that listener
 
 ![create-listener](img/listeners/create-listener.png)
@@ -68,7 +68,7 @@ In order to receive incoming requests from the newly exposed API Gateway port, i
 :::info
 For example, if your Kubernetes cluster is configured to use [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress/) as Ingress Controller provider, you may need to define a new [IngressRoute](https://doc.traefik.io/traefik/providers/kubernetes-crd/).
 
-For more details on configuring a new IngressRoute, please refer to [this guide](/paas/traefik.md#expose-an-endpoint).
+For more details on configuring a new `IngressRoute`, please refer to [this guide](/paas/traefik.md#expose-an-endpoint).
 :::
 
 ## Edit a Listener
