@@ -61,7 +61,9 @@ When clicking on the `Next` button, all of the Fast Data resources contained ins
 ![Import modal with resources selection](./img/fast_data_ie_import_select.png)
 
 Fast Data resources can be imported in two ways:
+
 1) as a reference: the resources will be referenced inside the current project configuration and displayed in read-only mode. It will be possible to access their data but the resources will not be editable. A `Reference` label will be added to their name inside the Fast Data section: when hovering it, a popover will display information about the exporting source project, branch and time.
+
 2) as a resource: the resources will be copied inside the current project configuration and displayed as if they were created directly inside the current project. It will be possible to access and edit their data.
 
 In both cases, an error message will be displayed if some of the imported resources have the same name of resources or references already existing inside the project current configuration.
