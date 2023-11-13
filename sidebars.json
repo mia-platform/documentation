@@ -776,6 +776,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/configuration/import_export",
+          "type": "doc"
+        },
+        {
           "type": "category",
           "label": "Config Maps",
           "collapsed": false,
