@@ -16,7 +16,7 @@ The following resources can be exported:
 - Custom cast functions (assigned to a Projection field)
 - ER schemas
 - Single Views
-- System of Record (with all or some of their Projections)
+- Systems of Record (with all or some of their Projections)
 
 The feature can be accessed by clicking on the `Import / Export` button, placed on the top right bar of the Systems of Record and Single Views pages. After clicking on the button, it will be possible to open the `Import` or `Export` modals.
 
