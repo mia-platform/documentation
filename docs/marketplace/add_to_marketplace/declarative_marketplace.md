@@ -178,6 +178,9 @@ apply-marketplace:
     - miactl context set new-context --company-id $COMPANY_ID --endpoint $CONSOLE_ENDPOINT --auth-name new-auth
     - miactl context use new-context
     - miactl marketplace apply -f ./resources
+
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 :::caution
