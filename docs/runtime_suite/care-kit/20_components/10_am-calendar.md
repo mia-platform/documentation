@@ -36,13 +36,13 @@ The components can be utilized in two different modes.
 
 The "availability mode" is used to show the availabilities and exceptions of a single resource. The calendar in this configuration will show the events of type availability and exceptions. The appointments are not displayed in this mode.
 
-When the calendar is set in availability mode the events are fetched through the back kit web component [bk-crud-client](/business_suite/backoffice/60_components/100_crud_client.md).
+When the calendar is set in availability mode the events are fetched through the back kit web component [bk-crud-client](/microfrontend-composer/back-kit/60_components/100_crud_client.md).
 
-Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](/business_suite/backoffice/60_components/540_url_parameters_adapter.md).
+Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](/microfrontend-composer/back-kit/60_components/540_url_parameters_adapter.md).
 
-To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](/business_suite/backoffice/60_components/300_filters_manager.md). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
+To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](/microfrontend-composer/back-kit/60_components/300_filters_manager.md). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
 
-Click on an event calendar will trigger the emission of a [select-data](/business_suite/backoffice/70_events.md#selected-data) event which contains in the payload the data of the event clicked.
+Click on an event calendar will trigger the emission of a [select-data](/microfrontend-composer/back-kit/70_events.md#selected-data) event which contains in the payload the data of the event clicked.
 
 This mode is compatible with version 1.x  of the appointment manager backend.
 
@@ -70,7 +70,7 @@ All the action buttons present in the appointment detail modal are performed usi
 
 This mode is compatible with version 2.x  of the appointment manager backend.
 
-It is possible to filter the resource and the events shown by the calendar. The component in "appointment mode" listen to [change-query events](../../../business_suite/backoffice/events#change-query) and applies the filters inside tge change-query event payload to the events and resources displayed by the calendar. Only on the events' properties declared in the `filterProperties` property the filering is applied. The same `filterProperties` property is present inside the `resourceConfig` object and used to declare the resource properties eligible for filtering. 
+It is possible to filter the resource and the events shown by the calendar. The component in "appointment mode" listen to [change-query events](../../../microfrontend-composer/back-kit/70_events.md#change-query) and applies the filters inside tge change-query event payload to the events and resources displayed by the calendar. Only on the events' properties declared in the `filterProperties` property the filering is applied. The same `filterProperties` property is present inside the `resourceConfig` object and used to declare the resource properties eligible for filtering. 
 
 Here can be found an example <a download target="_blank" href="/docs_files_to_download/care-kit/appointments.json">configuration</a>.
 
@@ -255,16 +255,16 @@ ResourceDetails = {
 
 | event | action | emits | on error |
 |-------|--------|-------|----------|
-|[display-data](../../../business_suite/backoffice/events#display-data)|receives data to display| - | - |
+|[display-data](../../../microfrontend-composer/back-kit/70_events.md#display-data)|receives data to display| - | - |
 
 ## Emits
 
 | event | description |
 |-------|-------------|
-|[change-query](../../../business_suite/backoffice/events#change-query)| used to updated the filters in availability mode|
-|[add-new](../../../business_suite/backoffice/events#add-new)| trigger for the opening of the component used to add a new event|
-|[add-new-external](../../../business_suite/backoffice/events#add-new-external)| trigger for the opening of the appointment detail modal in read-only mode |
-|[deleteData](../../../business_suite/backoffice/events#delete-data)| notifies the request for deletion of event|
-|[require-confirm](../../../business_suite/backoffice/events#require-confirm)| trigger for the opening of the confirmation modal before deleting an appointment |
-|[selected-data](../../../business_suite/backoffice/events#selected-data)| notifies about the click on an event|
-|[update-data](../../../business_suite/backoffice/events#update-data)| trigger for the opening of the component to modify the appointment in the clicked slot|
+|[change-query](../../../microfrontend-composer/back-kit/70_events.md#change-query)| used to updated the filters in availability mode|
+|[add-new](../../../microfrontend-composer/back-kit/70_events.md#add-new)| trigger for the opening of the component used to add a new event|
+|[add-new-external](../../../microfrontend-composer/back-kit/70_events.md#add-new-external)| trigger for the opening of the appointment detail modal in read-only mode |
+|[deleteData](../../../microfrontend-composer/back-kit/70_events.md#delete-data)| notifies the request for deletion of event|
+|[require-confirm](../../../microfrontend-composer/back-kit/70_events.md#require-confirm)| trigger for the opening of the confirmation modal before deleting an appointment |
+|[selected-data](../../../microfrontend-composer/back-kit/70_events.md#selected-data)| notifies about the click on an event|
+|[update-data](../../../microfrontend-composer/back-kit/70_events.md#update-data)| trigger for the opening of the component to modify the appointment in the clicked slot|

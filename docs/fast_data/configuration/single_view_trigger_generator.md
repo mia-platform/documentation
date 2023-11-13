@@ -4,10 +4,6 @@ title: Single View Trigger Generator
 sidebar_label: Single View Trigger Generator
 ---
 
-:::caution
-This Plugin is a BETA Plugin and, as such, is currently under active development. Pay attention using it.
-:::
-
 The Single View Trigger Generator has 3 fundamental parts:
 
 - The consumption of pr-update messages
@@ -25,14 +21,12 @@ When creating the service from the marketplace the following environment variabl
 :::
 
 | Name                             | Required | Description                                                                                                                                                                                             | Default value |
-| -------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+|----------------------------------|----------|---------------------------------------------------------------------------------------------- |---------------|
 | LOG_LEVEL                        | &check;  | Level to use for logging; to choose from: error, fatal, warn, info, debug, trace, silent                                                                                                                | silent        |
 | MONGODB_URL                      | &check;  | MongoDB URL where the projections are stored                                                                                                                                                            | -             |
 | MONGODB_NAME                     | &check;  | MongoDB Database name where the projections are stored                                                                                                                                                  | -             |
 | EVENT_STORE_CONFIG_PATH          | &check;  | Path to the [Event Store Config](#event-store-config) file                                                                                                                                              | -             |
 | EVENT_STORE_TARGET               | &check;  | Kafka topic to send the `sv-trigger` messages or MongoDB collection to save the `pc` records                                                                                                            | -             |
-| CA_CERT_PATH                     | -        | The path to the CA certificate, which should include the file name as well, e.g. /home/my-ca.pem                                                                                                        | -             |
-| READ_TOPIC_FROM_BEGINNING        | -        | If true the consumer will start reading messages from topics from the beginning, instead of the message with the latest committed offset. This will happen only the first time connecting to the topic. | false         |
 | SINGLE_VIEW_NAME                 | &check;  | The name of the Single View                                                                                                                                                                             | -             |
 | KAFKA_PROJECTION_UPDATES_FOLDER  | &check;  | Path to the [Kafka Projection Updates](#kafka-projection-updates) folder                                                                                                                                | -             |
 | ER_SCHEMA_FOLDER                 | &check;  | Path to the [ER Schema](#er-schema) folder                                                                                                                                                              | -             |
@@ -83,7 +77,7 @@ The `Event Store Config` is a JSON file containing the configuration of the cons
   "producer": {
     "<kafka | mongo>": {
       // Kafka or mongo producer configuration (see below)
-    },
+    }
   }
 }
 ```
@@ -102,81 +96,123 @@ At the moment you can only configure your consumer with kafka which will read `p
 ```json
 {
   "type": "object",
-  "required": ["brokers", "consumerGroupId"],
+  "required": [
+    "brokers",
+    "consumerGroupId"
+  ],
   "properties": {
     "brokers": {
-      "type": "string",
+      "type": "string"
     },
     "consumerGroupId": {
-      "type": "string",
+      "type": "string"
     },
     "consumeFromBeginning": {
       "type": "boolean",
-      "default": false,
+      "description": "specify whether the consumer group should start to consume from the beginning of the topic whenever the group id is created for the first time",
+      "default": false
     },
     "ssl": {
-      "type": "boolean",
+      "description": "https://kafka.js.org/docs/configuration#ssl",
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "ca": {
+              "type": "string",
+              "description": "path to the file containing the CA certificate in PEM format"
+            },
+            "key": {
+                "type": "string",
+              "description": "path to the file containing the client private key in PEM format"
+            },
+            "passphrase": {
+              "type": "string",
+              "description": "password necessary to unlock the private key"
+            },
+            "cert": {
+              "type": "string",
+              "description": "path to the file containing the client certificate in PEM format"
+            }
+          }
+        }
+      ]
     },
     "sasl": {
       "type": "object",
       "properties": {
         "mechanism": {
           "type": "string",
-          "enum": ["plain", "scram-sha-256", "scram-sha-512"],
+          "enum": [
+            "plain",
+            "scram-sha-256",
+            "scram-sha-512"
+          ]
         },
         "username": {
-          "type": "string",
+          "type": "string"
         },
         "password": {
-          "type": "string",
-        },
-      },
+          "type": "string"
+        }
+      }
     },
     "clientId": {
-      "type": "string",
+      "type": "string"
     },
     "connectionTimeout": {
-      "type": "number",
+      "type": "number"
     },
     "authenticationTimeout": {
-      "type": "number",
+      "type": "number"
     },
     "reauthenticationThreshold": {
-      "type": "number",
+      "type": "number"
     },
     "requestTimeout": {
-      "type": "number",
+      "type": "number"
     },
     "enforceRequestTimeout": {
-      "type": "boolean",
+      "type": "boolean"
     },
     "retry": {
       "type": "object",
       "properties": {
         "maxRetryTime": {
-          "type": "number",
+          "type": "number"
         },
         "initialRetryTime": {
-          "type": "number",
+          "type": "number"
         },
         "factor": {
-          "type": "number",
+          "type": "number"
         },
         "multiplier": {
-          "type": "number",
+          "type": "number"
         },
         "retries": {
-          "type": "number",
-        },
-      },
+          "type": "number"
+        }
+      }
     },
     "logLevel": {
       "type": "string",
-      "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"],
-    },
-  },
+      "enum": [
+        "NOTHING",
+        "ERROR",
+        "WARN",
+        "INFO",
+        "DEBUG"
+      ]
+    }
+  }
 }
 ```
+
 </p>
 </details>
 
@@ -194,12 +230,12 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
   "required": ["url", "dbName"],
   "properties": {
     "url": {
-      "type": "string",
+      "type": "string"
     },
     "dbName": {
-      "type": "string",
-    },
-  },
+      "type": "string"
+    }
+  }
 }
 ```
 </p>
@@ -214,69 +250,96 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
   "required": ["brokers"],
   "properties": {
     "brokers": {
-      "type": "string",
+      "type": "string"
     },
     "ssl": {
-      "type": "boolean",
+      "description": "https://kafka.js.org/docs/configuration#ssl",
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "ca": {
+              "type": "string",
+              "description": "path to the file containing the CA certificate in PEM format"
+            },
+            "key": {
+              "type": "string",
+              "description": "path to the file containing the client private key in PEM format"
+            },
+            "passphrase": {
+              "type": "string",
+              "description": "password necessary to unlock the private key"
+            },
+            "cert": {
+              "type": "string",
+              "description": "path to the file containing the client certificate in PEM format"
+            }
+          }
+        }
+      ]
     },
     "sasl": {
       "type": "object",
       "properties": {
         "mechanism": {
           "type": "string",
-          "enum": ["plain", "scram-sha-256", "scram-sha-512"],
+          "enum": ["plain", "scram-sha-256", "scram-sha-512"]
         },
         "username": {
-          "type": "string",
+          "type": "string"
         },
         "password": {
-          "type": "string",
-        },
-      },
+          "type": "string"
+        }
+      }
     },
     "clientId": {
-      "type": "string",
+      "type": "string"
     },
     "connectionTimeout": {
-      "type": "number",
+      "type": "number"
     },
     "authenticationTimeout": {
-      "type": "number",
+      "type": "number"
     },
     "reauthenticationThreshold": {
-      "type": "number",
+      "type": "number"
     },
     "requestTimeout": {
-      "type": "number",
+      "type": "number"
     },
     "enforceRequestTimeout": {
-      "type": "boolean",
+      "type": "boolean"
     },
     "retry": {
       "type": "object",
       "properties": {
         "maxRetryTime": {
-          "type": "number",
+          "type": "number"
         },
         "initialRetryTime": {
-          "type": "number",
+          "type": "number"
         },
         "factor": {
-          "type": "number",
+          "type": "number"
         },
         "multiplier": {
-          "type": "number",
+          "type": "number"
         },
         "retries": {
-          "type": "number",
-        },
-      },
+          "type": "number"
+        }
+      }
     },
     "logLevel": {
       "type": "string",
-      "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"],
-    },
-  },
+      "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"]
+    }
+  }
 }
 ```
 </p>

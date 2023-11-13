@@ -44,7 +44,7 @@ The creation of the System of Records is one of the No Code steps of the Fast Da
 The Real-Time Updater Low Code needs some configurations:
 
 - [erSchema.json](/fast_data/configuration/config_maps/erSchema.md) configuration: useful to define the interconnection between projections
-- The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
+- The [projectionChangeSchema.json](/fast_data/configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
 
