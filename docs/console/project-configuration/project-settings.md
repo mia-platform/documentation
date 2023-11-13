@@ -85,9 +85,6 @@ This card allows users to manage some options regarding the Project deployment.
     - In **Push mode**, updates and changes to applications or configurations are initiated and directly pushed from a CI/CD pipeline to the target environment
 
 - **Pipeline runner**: specifies the command line deployment tool used by the Project. This option is not available for Projects that adopt a "Pull" deployment strategy, where no pipeline runner is needed. The chosen tool can either be [Mia-Platform LaunchPad (MLP)](https://github.com/mia-platform/mlp), or another custom tool. 
-  :::info
-  In order to use `mlp`, it is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled.
-  :::
 
 The above information can be edited by clicking on the "Edit" button, which will open a modal where you can modify the Project deployment strategy and pipeline runner. Upon clicking "Save changes", the information will be updated.
 
