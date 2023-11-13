@@ -40,7 +40,7 @@ This component is meant to allow multiple configurations to live within the same
 
 A simple instance would be a user which might want to explore multiple details connected with its user but persisted on different entities.
 
-Since a backend resource, like a database collection/table, is mostly mapped 1:1 on a `Backoffice` plugin using a single client, like the [CRUD Client][bk-crud-client], it is recommendable to use different plugins to render different collections.
+Since a backend resource, like a database collection/table, is mostly mapped 1:1 on a Microfrontend Composer plugin using a single client, like the [CRUD Client][bk-crud-client], it is recommendable to use different plugins to render different collections.
 For those cases falling outside the previous scope a layout that can be switched might come in handy.
 <!-- For those cases falling outside the previous scope, for instance a customer which might want to check simultaneously both its purchases and its current shopping cart which,
 if the latter is persisted, are definitively stored on different places, a layout that can be switched might come in handy. -->
