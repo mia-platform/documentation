@@ -966,6 +966,10 @@
         {
           "id": "fast_data/faq/bootstrapping-fast-data",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/import_export_faq",
+          "type": "doc"
         }
       ],
       "label": "FAQ",
