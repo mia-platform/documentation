@@ -24,7 +24,7 @@ The Chat service frontend implementation is given as a Single Page Application r
 
 The service capabilities are reached through the wrapping of the Stream react components given in the Stream react library and the implementation of custom components, both configurable from the backend side of the application.
 
-The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Mia-Platform Backoffice Application](../../runtime_suite_applications/backoffice/overview) and the [Authentication Service](../../runtime_suite/authentication-service/overview).
+The data served from the backend allows so the direct connection with the external Stream Chat provider through secured endpoints and websocket connections, granting at the same time interoperability with other Mia-platform Services such as the [Mia-Platform Backoffice Application](../../runtime_suite_applications/microfrontend-composer-toolkit/overview) and the [Authentication Service](../../runtime_suite/authentication-service/overview).
 
 The expected data for the application to connect the messaging provider are served from the backend at the endpoint `GET /chat/config?clientType=web`, and structured as specified in the given signature:
 
