@@ -13,11 +13,11 @@ The Projection storer is a partial replacement for the RTU since it processes ev
 ## Who executes the strategies now?
 
 The strategy execution is now done by the Single View Trigger Generator.
-To know exactly how to include it in your already existing Fast Data project check out this [step by step](/docs/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator) section.
+To know exactly how to include it in your already existing Fast Data project check out this [step by step](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator) section.
 Furthermore, the Single View Trigger Generator introduces a whole new approach on the [Projection Changes](/fast_data/configuration/realtime_updater.md#projection-changes) which used to be stored only on MongoDB. The SVTG gives you the option of sending the Projection Changes through Apache Kafka with a whole new format called Single View Trigger. To know more check out the [comparison between the two](/fast_data/single_view_trigger_generator.md).
 
 ## How can I migrate my current architecture to the event-driven one?
 
-The first step is to replace the Real-Time updater with the Projection Storer, you can follow step by step [this guide](/docs/fast_data/configuration/projection_storer.md#migration-guide) and use our migration utility that allows you to convert you current configuration into one the Projection Storer understands.
+The first step is to replace the Real-Time updater with the Projection Storer, you can follow step by step [this guide](/fast_data/configuration/projection_storer.md#migration-guide) and use our migration utility that allows you to convert you current configuration into one the Projection Storer understands.
 
-Once the PS is ready, you have to set up the Single View Trigger service. Then again you can follow [this short guide](/docs/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator) to migrate everthing easily.
+Once the PS is ready, you have to set up the Single View Trigger service. Then again you can follow [this short guide](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator) to migrate everthing easily.
