@@ -64,7 +64,7 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 
 In order to evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Projection Storer](/fast_data/projection_storer.md) or Real-Time Updater. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
-<!-- TODO: Screenshot of the Services tab with more than one service for SoR users -->
+![Services in System of Record configuration page](./img/system-services.png)
 
 Please remember that, after attaching a Real-Time Updater to the Systems of Record, you must select the projections that the service should evaluate to ensure the service updates those projections. To do that, you can use to the table in the _Projections attached to services_ section to search the projection and attach to a specific service. Otherwise, you can access to the service configuration page by clicking to the button next to the service name and configure the list of projections from there.
 

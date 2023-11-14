@@ -210,8 +210,7 @@ The ER Schema defines the relationship between projections. [On the dedicated pa
 
 Your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop-down menu where you can select one of the ER Schemas already configured on the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
 
-<!-- TODO: Update screenshot -->
-![ER Schema selection with No Code](../img/single-view-detail-selection-er-schema.png)
+![ER Schema selection with No Code](./img/er-schema-selection.png)
 
 After selecting an ER Schema, the next configuration save will generate the Config Map of the ER Schema JSON taken from the one configured in the canvas. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
 
