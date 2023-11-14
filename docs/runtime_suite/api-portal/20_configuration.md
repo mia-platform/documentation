@@ -49,7 +49,7 @@ This procedure allows you to manually add the various services and endpoints nee
 2. Add the **Swagger Aggregator** plugin to the project via the "Microservices" section;
 3. Add the **API Gateway** plugin to the project via the "Microservices" section;
 4. Add a new endpoint with base path `/documentations/api-portal`, type `Microservice`, and linked to the `api-portal` service via the "Endpoints" section;
-5. Configure the newly created endpoint as described in step 2 of the [configuration procedure](#1-creating-a-new-api-documentation-aggregator-application-recommended) following the creation of the API Documentation Aggregator application.
+5. Configure the newly created endpoint as described in the [configuration procedure](#1-creating-a-new-api-documentation-aggregator-application-recommended) following the creation of the API Documentation Aggregator application.
 
 :::note
 Take a look at the "Environment Variables" tab of the API Portal service, and make sure the HTTP_PORT where the web server is exposed is properly set, with value `8080`.
