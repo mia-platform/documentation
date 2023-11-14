@@ -44,7 +44,6 @@ First, create your Single View and attach a _Single View Creator Service_ to it 
 
 Within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured. Next, select the _Single View Trigger Generator_ tab. Here, you can choose a Single View Trigger Generator from the available services. After selecting it, you can modify the configuration of two configMaps: the _Projection Changes Schema_ and the _Kafka Projection Updates_.
 
-<!-- TODO: Update the screenshot -->
 ![Single View Trigger Generator configuration page](./img/svtg-configuration.png)
 
 Any updates to these configurations will be reflected in the service config maps after saving the configuration.

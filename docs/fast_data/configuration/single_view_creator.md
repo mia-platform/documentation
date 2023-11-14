@@ -461,7 +461,7 @@ async function deleteSingleViewFunction(
 
 It is possible to configure the upsert strategy and the delete strategy on the related tab inside the configuration page of the Single View Creator attached to the Single View
 
-<!-- TODO: Screenshot of the Upsert/Delete Strategy tab goes here -->
+![Upsert-Delete Strategy configuration page](./img/upsert-delete-strategy.png)
 
 You can select between the three available options for the upsert strategy (_Update_, _Replace_ or _Custom_) and for the delete strategy (_Delete_, _Virtual Delete_ or _Custom_).
 
