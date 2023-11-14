@@ -17,8 +17,7 @@ Currently only Projects configured with an [**Envoy API Gateway**](/runtime_suit
 A Listener is a logical entity configured on your API Gateway that checks for incoming connection requests directed to your Project namespace.  
 Each listener is mapped to a single port and defines rules to route incoming requests from external clients to a resource in your namespace, such as a specific microservice, exposed through endpoints.
 
-This page describes the features of a Listener and how to configure these from the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) of the Console.
-
+This page describes the features of a Listener and how to configure them from the **Listeners** section of the [Design area](/development_suite/api-console/api-design/overview.md) in Console.
 
 ## Create a Listener
 
@@ -26,6 +25,8 @@ There are three main steps needed to make an Endpoint reachable from outside the
 - Create the new Listener resource
 - Expose the Endpoint on the Listener
 - Configure the [Kubernetes Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) to make the new exposed port reachable
+
+Continue reading through the following sections for a more detailed guide on how to perform them.
 
 ### Defining the Listener 
 
@@ -39,7 +40,6 @@ Optionally, during listener creation, you can define whether to:
 
 Creating a new Listener means opening the relative container port on the API Gateway too. This step is automated and in fact you can find the new port under the Container Ports section of the API Gateway.  
 
-
 :::caution
 Container Ports associated to Listeners cannot be deleted. To delete them firstly delete the Listener and then you can delete the port.
 :::
@@ -49,17 +49,15 @@ Container Ports associated to Listeners cannot be deleted. To delete them firstl
 ### Exposing an Endpoint on the Listener
 
 There are two ways to expose an Endpoint on the Listener:
-- selecting the desired Listener from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) within the Endpoint detail page of the project
-- selecting the desired Listener from the specific [Endpoints table](/development_suite/api-console/api-design/listeners.md#endpoints-overview).
+- selecting the desired Listener from the [Listener Settings section](/development_suite/api-console/api-design/endpoints.md#listeners) within the Endpoint detail page of the Project
+- selecting the desired Listener from the specific [Endpoints table](/development_suite/api-console/api-design/listeners.md#endpoints-list-with-their-listener-relations) within Listeners section
 
+### Endpoints list with their listener relations
 
-### Listeners overview for Endpoints
-
-This table provides an overview of which Endpoint is exposed by which Listeners.  
-It is possible to edit this configuration by just selecting the desired Listener for the desired Endpoint. 
+The Endpoints tab contains a table that provides an overview of which Endpoint is exposed by which Listeners.  
+It is possible to edit this configuration by simply selecting the desired Listener for the desired Endpoint.
 
 ![listeners-api-gateway-container-ports](img/listeners/endpoints-listeners-table.png)
-
 
 ### Configure the Kubernetes Ingress Controller
 
@@ -83,7 +81,6 @@ Make sure to modify the Kubernetes Ingress Controller accordingly.
 :::
 
 ![edit-listener](img/listeners/edit-listener.png)
-
 
 ## Delete a Listener
 
