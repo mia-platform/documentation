@@ -16,5 +16,5 @@ These are the scenarios you can find in this tutorial:
 - [Scenario 1: Use static API Keys](/getting-started/tutorials/architecture/auth/static-api-key.md)
 - [Scenario 2: Integrate an external Identity Provider](/getting-started/tutorials/architecture/auth/external-idp.md)
 - [Scenario 3: Integrate an external Identity Provider but manage session and user groups within your project](/getting-started/tutorials/architecture/auth/external-idp-internal-session.md)
-- [Scenario 4: Centralize the authentication in a multi-projects context](/getting-started/tutorials/architecture/auth/multiple-projects.md)
+- [Scenario 4: Centralize the authentication in a multi-projects context](/getting-started/tutorials/architecture/auth/multiple-projects.mdx)
 - [Scenario 5: Use multiple edge gateways](/getting-started/tutorials/architecture/auth/multiple-edge-gateways.md)
