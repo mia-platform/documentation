@@ -776,6 +776,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/configuration/import_export",
+          "type": "doc"
+        },
+        {
           "type": "category",
           "label": "Config Maps",
           "collapsed": false,
@@ -961,6 +965,10 @@
         },
         {
           "id": "fast_data/faq/bootstrapping-fast-data",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/import_export_faq",
           "type": "doc"
         }
       ],
