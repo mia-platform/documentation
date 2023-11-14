@@ -34,8 +34,7 @@ In order to introduce the Single View Trigger Generator in the Fast Data flow it
 #### Real-Time Updater
 
 :::tip
-<!-- TODO: add link to PS migration guide -->
-You can now replace your Real-Time Updater with the new Projection Storer following [this guide](/fast_data/faq/architecture_migration.md)
+You can now replace your Real-Time Updater with the new Projection Storer following [this guide](/docs/fast_data/configuration/projection_storer.md#migration-guide)
 :::
 
 - set environment variable `GENERATE_KAFKA_PROJECTION_UPDATES` to `true` to enable the production of `pr-update` events
