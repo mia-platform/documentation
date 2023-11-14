@@ -11,8 +11,8 @@ on which service is compatible with the others, which versions should be skipped
 
 ### Services Changelogs
 
-- [Real-Time Updater](/runtime_suite/real-time-updater/changelog.md)
-- [Projection Storer](/runtime_suite/projection-storer/changelog.md)
+- Real-Time Updater
+- Projection Storer
 - [Single View Trigger Generator](/runtime_suite/single-view-trigger-generator/changelog.md)
 - [Single View Creator](/runtime_suite/single-view-creator/changelog.md)
 
