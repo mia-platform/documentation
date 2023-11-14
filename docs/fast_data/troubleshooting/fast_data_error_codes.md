@@ -15,7 +15,7 @@ Coming soon
 
 ### Projection Storer
 
-In case of any doubt, please refer to service documentation, which can be found [here](/fast_data/configuration/projection_storer_config.md).
+In case of any doubt, please refer to service documentation, which can be found [here](/fast_data/configuration/projection_storer.md).
 
 | Error Code  | Category        | Cause                                                                             | Action                                                                                                                                                                                                                                                                                                                                                                                                             |
 |-------------|-----------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
