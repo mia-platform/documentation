@@ -286,6 +286,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/api-console/api-design/listeners",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/authorization",
           "type": "doc"
         },
