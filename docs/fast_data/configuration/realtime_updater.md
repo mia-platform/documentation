@@ -62,17 +62,19 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 
 ## Attach to System of Records
 
-Starting from version `11.7.0` of the Console, it is now possible to attach one or more Real-Time Updater services to a System of Records. The _System of Records_ page features a tab where you can attach one or more services and specify which projections of the System should be evaluated by each Real-Time Updater.
+In order to evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Projection Storer](/fast_data/projection_storer.md) or Real-Time Updater. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
-:::caution
-Please remember that, after attaching a Real-Time Updater to the System of Records, you must select the projections that the service should evaluate (selecting all of them is possible) to ensure the service updates those projections. Additionally, note that each projection can be evaluated by only one service.
+<!-- TODO: Screenshot of the Services tab with more than one service for SoR users -->
+
+Please remember that, after attaching a Real-Time Updater to the Systems of Record, you must select the projections that the service should evaluate to ensure the service updates those projections. To do that, you can use to the table in the _Projections attached to services_ section to search the projection and attach to a specific service. Otherwise, you can access to the service configuration page by clicking to the button next to the service name and configure the list of projections from there.
+
+:::info
+Additionally, note that each projection can be evaluated by only one service.
 :::
 
 When a service is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
 
-Furthermore, the environment variables `SYSTEM_OF_RECORDS` and `KAFKA_MESSAGE_ADAPTER` (and, if applicable, `KAFKA_ADAPTER_FOLDER`) will be automatically updated upon saving the configuration. These variables are not manually editable because they are managed exclusively from the System of Records configuration module.
-
-Should you need to manually configure the Real-Time Updater, you can detach the module by clicking the "Detach microservice" button from the service page within the System of Records module and saving the configuration. This will make the environment variables and configuration maps editable again.
+Furthermore, the environment variables `SYSTEM_OF_RECORDS`, `INVARIANT_TOPIC_MAP` and `KAFKA_MESSAGE_ADAPTER` (and, if applicable, `KAFKA_ADAPTER_FOLDER`) will be automatically updated upon saving the configuration. These variables are not manually editable because they are managed exclusively from the System of Records configuration module.
 
 ### Usage of the Low Code
 
@@ -339,9 +341,13 @@ When a message about `registry-json` happens, the projection changes will be sav
 
 If the environment variable `PROJECTIONS_CHANGES_ENABLED`, you will be required to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
 
-If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (max 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection for you. This collection can be modified by you in any moment.
+If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (a text of maximum 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection for you if it doesn't exist yet. This collection can be customized by you in any moment after.
 
-If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service.
+If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service
+
+:::info
+If you wish to delete a Real-Time Updater or change the desired name of the Projection Changes collection, please remember that the existing CRUD collection will not be automatically removed. You have to do it manually from the _MongoDB CRUD_ section.
+:::
 
 In any case, your collection is supposed to have the following fields (apart from the default ones):
 
