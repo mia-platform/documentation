@@ -206,15 +206,15 @@ When you click continue, the console will generate the new configuration for the
 
 ## Attach services
 
-A System of Record can be attached to one of more supported services (either a [Real-Time Updater](/fast_data/realtime_updater.md) or a [Projection Storer](/fast_data/projection_storer.md)) to allow Projections to be updated with the data received from Change Data Capture systems. However, to work properly, the projections must be attached to a service.
+A System of Record can be attached to one of more supported services (either a [Real-Time Updater](/fast_data/realtime_updater.md) or a [Projection Storer](/fast_data/projection_storer.md)) to allow Projections to be updated with the data received from Change Data Capture systems. However, to work as intended, the projections must be attached to a service.
 
-In order to do so, when accessing to the System of Record page, the tab _Services_ will allow to include the service (or the services) and to attach the Projections of the System of Record to them.
-
+In order to do so, when accessing to the System of Record page, the tab _Services_ will allow to include the service (or the services) and attach the Projections of the System of Record to them.
+		
 ![Services in System of Record configuration page](./img/system-services.png)
-
+		
 From the table inside the _Projections attached to services_ card you can review all the projections included in the System of Record, and identify the service that will evaluate the ingestion topics.
-
-You can modify the service attached by clicking on the button to the right side of the projection name: this will open a dialog that will allow you to pick a service among those attached to the System of Record.
+		
+You can modify the service attached by clicking on the button to the right side of the projection name: this will open a dialog that allow you to pick a service among those already attached to the System of Record.
 
 Otherwise, you can open the configuration page of the service, accessible by clicking of the edit button in the table the _System of Record services_ card. This will redirect the user to a new page where can review all the information regarding the Real-Time Updater or the Projection Storer, including the possibility to select all the projections (still available) to be managed by the selected service.
 

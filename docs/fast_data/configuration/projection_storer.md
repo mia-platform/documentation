@@ -34,17 +34,17 @@ be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_
 
 ## Attach to System of Records
 
-In order to evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Real-Time Updater](/fast_data/realtime_updater.md) or Projection Storer. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
+To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Real-Time Updater](/fast_data/realtime_updater.md) or Projection Storer. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
 ![Services in System of Record configuration page](./img/system-services.png)
 
-Please remember that, after attaching a Projection Storer to the Systems of Record, you must select the projections that the service should evaluate to ensure the service updates those projections. To do that, you can use to the table in the _Projections attached to services_ section to search the projection and attach to a specific service. Otherwise, you can access to the service configuration page by clicking to the button next to the service name and configure the list of projections from there.
+Please remember that after attaching a Projection Storer to the Systems of Record, you must select the projections the service should evaluate to ensure the service updates those projections. To do that, you can use the table in the _Projections attached to services_ section to search the projection and attach it to a specific service. Otherwise, you can access the service configuration page by clicking on the button next to the service name and configure the list of projections from there.
 
 :::info
 Additionally, note that each projection can be evaluated by only one service.
 :::
 
-A click to the "Edit configuration" button in the row of the Projection Storer will lead to a page where user can configure the Projection Storer.
+A click on the "Edit configuration" button in the row of the Projection Storer will lead to a page where the user can configure the Projection Storer.
 
 ![Projection Storer configuration page](./img/projection-storer.png)
 
@@ -55,7 +55,7 @@ The page will contain the following configurations:
 - a code editor to configure the [Producer configuration](#producer) of the service
 - a code editor to configure the [Storage configuration](#storage) of the service
 
-All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and update at any change in the service or the System of Records.
+All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Records.
 
 ## Configuration File
 
