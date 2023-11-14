@@ -6,7 +6,7 @@ sidebar_label: Make your Marketplace items available to other Companies
 
 You can contribute to the Mia-Platform Marketplace with the Marketplace items of your Company, by deciding to make them accessible also to other Companies. This section will guide you on how to do so, offering two main methods:
 
-* (recommended) Use the [CMS](/business_suite/guide_cms.md) to make your Marketplace item accessible to other Companies.
+* (recommended) Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
 * Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
 
 Both methods will be explained in the following paragraphs.

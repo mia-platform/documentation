@@ -1,0 +1,138 @@
+---
+id: configuration
+title: Configuration
+sidebar_label: Configuration
+---
+The pharma-ecommerce-backend requires the configuration of some environment variables alongside the configuration of some support CRUD collections in the Mia-Platform Console.
+
+## Environment variables
+
+The pharma-ecommerce-backend microservice can be configured using the following environment variables. Please note that such configuration applies to all current supported and possible supported providers.
+
+| Name | Required | Description | Default |
+|------|----------|-------------|---------|
+| **ACTIVE_PROVIDERS** | Yes | Comma separated values containing the pharma e-commerce supported providers, such as `pharmaPrime` | `none` |
+| **CRUD_SERVICE** | No | The name of the microservice dedicated to CRUDs operations | `crud-service` |
+| **MIA_USER_ID_HEADER_NAME** | No | The name of the header containing the logged user id used to identify different users. It enables to perform operations on their resources such as adding or deleting items to their shopping carts | `miauserid` |
+| **MIA_USERS_CRUD_ENDPOINT** | No | The CRUD endpoint that stores the users' personal data required for processing the pharma e-commerce purchases | `/users` |
+| **MIA_ORDERS_CRUD_ENDPOINT** | No | The CRUD endpoint that stores the pharma e-commerce orders made by registered users | `/pharma-ecommerce-orders` |
+| **ORDERS_MAX_COUNTER** | No | Max number of iterations allowed for the creation of a random order `customOrderId` saved alongside other order information in the **MIA_ORDERS_CRUD_ENDPOINT** CRUD  | `100` |
+| **PRESCRIPTION_MANAGER** | No | The name of your project microservice that will be used to handle drug prescriptions | `prescription-manager` |
+| **DOWNLOAD_PRESCRIPTION_PDF_ENDPOINT** | No | The endpoint of your **prescription-manager-service** that allows the download of a PDF of a prescription | `/prescriptions/download` |
+| **PRESCRIPTION_ENDPOINT** | No | The endpoint of your **prescription-manager-service** that allows the retrieval of a previously stored prescription that will be used to create a new shopping cart with the same items | `/prescriptions/items` |
+
+:::warning
+Currently, the **Pharma Ecommerce Backend** supports only `pharmaPrime` as providers and thus must be included in the **ACTIVE_PROVIDERS** environment variable.
+:::
+
+:::info
+More details about the **prescription-manager** required interface are detailed in the following [section](#prescription-manager). This microservice is completely optional and required only if the `GET /cart` endpoint is called with the `prescriptionId` query parameter and the `POST /cart/products` body contains the `prescriptionId`.
+:::
+
+Further environment variables are required for specific providers.
+
+### PharmaPrime
+
+| Name | Required | Description | Default |
+|------|----------|-------------|---------|
+| **PHARMAPRIME_BASE_PATH** | Yes | Base path of the `pharmaPrime` provider APIs | `none` |
+| **PHARMAPRIME_PARTNER_TOKEN** | Yes | The partner token released from Pharma Prime required for authenticated API calls to the provider endpoints | `none` |
+| **LANGUAGE** | No | The [language code][language-codes] used by the pharma e-commerce provider to fetch items or single items in a specific language | `it-IT` |
+| **DEFAULT_LATITUDE** | No | The user default location latitude that is used to retrieve available products from the e-commerce | `45.464664` |
+| **DEFAULT_LONGITUDE** | No | The user default location longitude that is used to retrieve available products from the e-commerce | `9.188540` |
+
+:::info
+To obtain a **PHARMAPRIME_PARTNER_TOKEN** and a **PHARMAPRIME_BASE_PATH** you can contact [Pharma Prime support][pharma-prima-support-email].
+:::
+
+:::info
+The **DEFAULT_LATITUDE** and **DEFAULT_LONGITUDE** points to Piazza della Repubblica, Rome.
+:::
+
+## CRUDs
+
+The microservice requires the following CRUD collections to store user's information and placed order to a specific provider.
+
+### Users CRUD collection
+
+The **Pharma Ecommerce Backend** requires a CRUD containing the users. The collection can have any name you want, as long as you specify
+the correct endpoint name in the `MIA_USERS_CRUD_ENDPOINT` [environment variable](#environment-variables).
+
+The users' collection needs the following service-specific fields:
+
+- **email (required)** - `string`: the user's email;
+- **authUserId** - `string`: the auth service user id associated to a specific user;
+- **firstName (required)** - `string`: the user's first name;
+- **lastName (required)** - `string`: the user's last name;
+- **phoneNumber (required)** - `string`: the user's phone number;
+- **fiscalCode (required)** - `string`: the user's fiscal code.
+
+The minimum required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/pharma-e-commerce-backend/users_fields.json">example json file</a>.
+
+:::warning
+If you want to use the **Pharma Ecommerce Backend** in conjunction with the [User Manager Service][ums-overview-link], you will also need to add the service required specified in the [service configuration][ums-config-link].
+:::
+
+### Orders CRUD collection
+
+The **Pharma Ecommerce Backend** requires a CRUD for storing the user's orders made to different providers. This collection can have any name you want, as long as you specify
+the correct endpoint name in the `MIA_ORDERS_CRUD_ENDPOINT` [environment variable](#environment-variables).
+
+The orders' collection stores the information of an order placed to a pharma e-commerce provider and needs the following service-specific fields:
+
+- **userId (required)** - `object id`: the user id that is performing the order, it's the `_id` from the users' CRUD collection;
+- **provider (required)** - `string`: the order's provider identifier;
+- **subtotal** - `number`: the order cost (without shipping costs);
+- **shippingCosts** - `number`: the order's shipping costs;
+- **status (required)** - `string`: the order current status;
+- **customOrderId (required)** - `string`: an order that is different from the order id given by a pharma e-commerce provider during the creation of an order;
+- **orderId (required)** - `string`: this property stores the specific provider order id.
+
+The required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/pharma-e-commerce-backend/pharma_ecommerce_orders_fields.json">example json file</a>.
+
+:::warning
+Currently, the only supported `provider` is `pharmaPrime`.
+:::
+
+:::info
+An order total cost is computed adding the `subtotal` to the `shippingCosts`.
+:::
+
+## Prescription Manager
+
+The Prescription Manager is an optional service that works alongside the **Pharma Ecommerce Backend** and allows the storage and management of medicine prescriptions. In particular, this service allows:
+
+- to re-create a user's shopping cart with the same items of a previously stored prescription;
+- to create an order for medicines that require a prescription using an already saved prescription PDF file.
+
+This microservice should have the endpoints specified in the **DOWNLOAD_PRESCRIPTION_PDF_ENDPOINT** and **PRESCRIPTION_ENDPOINT** [environment variables](#environment-variables). We assume the previous default endpoints are used to describe the required endpoints of a prescription manager microservice.
+
+### GET /prescriptions/download/:id
+
+This endpoint should return the PDF file of the prescription, specified by id, as a stream.
+
+### GET /prescriptions/items/:id
+
+This endpoint should return a prescription by id as an array of prescription items ids.
+
+```json
+[
+  "medicine_id_1",
+  "medicine_id_2"
+]
+```
+
+:::warning
+Any other endpoint you need to implement in the **prescription-manager** for managing the prescriptions creation and other functionalities, such as prescriptions storage and retrieval, is up to you.
+:::
+
+:::tip
+We advise to leverage the [CRUD Service][crud-service-overview] and the [Files Service][files-service-overview] for storing prescription details and prescription PDF files.
+:::
+
+[language-codes]: https://httpwg.org/specs/rfc9110.html#field.accept-language
+[ums-overview-link]: ../../runtime_suite/user-manager-service/overview
+[ums-config-link]: ../../runtime_suite/user-manager-service/configuration
+[pharma-prima-support-email]: mailto:support@pharmaprime.it
+[crud-service-overview]: ../../runtime_suite/crud-service/overview_and_usage
+[files-service-overview]: ../../runtime_suite/files-service/configuration
