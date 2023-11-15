@@ -17,12 +17,13 @@ const command = `git ls-tree -r --name-only HEAD docs -z | TZ=UTC xargs -0n1 -I_
      !seen[$0]++ { print date,$0 }
 '`*/
 
-const files = execSync(command, { encoding: 'utf-8' });
+const files = execSync(command, {encoding: 'utf-8'});
 const newLinks = files.split('\n');
 
 const homepageLinks = newLinks.map(page => {
     if(page !== '') {
-        const [date, hour, timezone, link] = page.split(" ");
+        const info = page.split(" ");
+        const link = info[3];
         const content = fs.readFileSync(link, {encoding: 'utf8'});
         const head = fm(content);
         const {id, title} = {...head.attributes};
@@ -37,7 +38,7 @@ const homepageLinks = newLinks.map(page => {
             url
         }
     } else {
-        console.log("Error on: ", page);
+        // console.log("Error on: ", page);
         return null;
     }
 }).filter(u => u !== null).filter(u => blacklist.every(s => !u.title.toLowerCase().includes(s.toLowerCase())));

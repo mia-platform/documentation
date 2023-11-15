@@ -16,6 +16,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {useWindowSize} from "@docusaurus/theme-common";
 
 import styles from "./styles.module.css";
+import PropTypes from "prop-types";
 
 const features = [
   {
@@ -104,12 +105,9 @@ const recentLinks = {
       "Do you wish to stay updated on the latest changes and additions to our documentation? Please refer to the links below."
 }
 
-
 function Home() {
   const context = useDocusaurusContext();
   const {siteConfig = {}} = context;
-
-
 
   const [showHexagons, setHexagonsShown] = useState(false);
 
@@ -162,12 +160,14 @@ function Home() {
                         return <Feature key={idx} {...props} />
                       } else {
                         const {title, description, links} = props;
-                        return <HowToBox
-                            key={idx}
-                            description={description}
-                            links={links}
-                            title={title}
-                        />
+                        return (
+                            <HowToBox
+                              description={description}
+                              key={idx}
+                              links={links}
+                              title={title}
+                            />
+                        );
                       }
                     })}
                   </div>
@@ -189,6 +189,13 @@ function Home() {
       </main>
     </Layout>
   );
+}
+
+Home.propTypes = {
+  description: PropTypes.string,
+  links: PropTypes.arrayOf(PropTypes.object),
+  title: PropTypes.string,
+  type: PropTypes.string
 }
 
 export default Home;

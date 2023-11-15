@@ -8,12 +8,16 @@
     "url": "/development_suite/set-up-infrastructure/enhanced-project-workflow"
   },
   {
-    "title": "Projection Storer Configuration",
-    "url": "/fast_data/configuration/projection_storer_config"
-  },
-  {
     "title": "Fast Data Low Code/ No Code Overview",
     "url": "/fast_data/no_code_overview"
+  },
+  {
+    "title": "Microservice Monitoring",
+    "url": "/development_suite/api-console/api-design/microservice-monitoring"
+  },
+  {
+    "title": "Projection Storer Configuration",
+    "url": "/fast_data/configuration/projection_storer_config"
   },
   {
     "title": "Single View Trigger Generator",
@@ -32,7 +36,7 @@
     "url": "/fast_data/configuration/projections"
   },
   {
-    "title": "Indexes",
+    "title": "Fast Data Indexes",
     "url": "/fast_data/configuration/indexes"
   },
   {
@@ -40,7 +44,7 @@
     "url": "/fast_data/configuration/config_maps/singleViewKey"
   },
   {
-    "title": "Import / Export",
+    "title": "Fast Data Import / Export",
     "url": "/fast_data/faq/import_export_faq"
   },
   {
@@ -62,10 +66,6 @@
   {
     "title": "Ingestion Reloader plugin",
     "url": "/runtime_suite/ingestion-reloader/configuration"
-  },
-  {
-    "title": "Microservice Monitoring",
-    "url": "/development_suite/api-console/api-design/microservice-monitoring"
   },
   {
     "title": "Project Settings",
@@ -136,10 +136,6 @@
     "url": "/release-notes/versions"
   },
   {
-    "title": "Mia-Platform v12",
-    "url": "/release-notes/v12-overview"
-  },
-  {
     "title": "Aggregation Configuration",
     "url": "/fast_data/configuration/config_maps/aggregation"
   },
@@ -152,7 +148,7 @@
     "url": "/runtime_suite_applications/scoring-manager/backoffice"
   },
   {
-    "title": "Configuration",
+    "title": "Payment Integration Hub Configuration",
     "url": "/runtime_suite_applications/payment-integration-hub/configuration"
   },
   {

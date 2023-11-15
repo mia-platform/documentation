@@ -9,14 +9,14 @@ import links from "./links.json";
 function LastPagesLink({title, url}) {
     return (
         <div className={clsx("col col--12", "howToLink", styles.howToLink)}>
-            -<a href={url}> {title}</a>
+            {'-'} <a href={`/docs/preview${url}`}>{title}</a>
         </div>
     );
 }
 
 LastPagesLink.propTypes = {
-    href: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 }
 
 function LastPages({title, description}) {
