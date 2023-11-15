@@ -1,0 +1,8 @@
+.howToLinkBox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.howToLink {
+    padding: 0 !important;
+}

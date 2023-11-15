@@ -39,6 +39,10 @@ In order to introduce the Single View Trigger Generator in the Fast Data flow it
 
 Additional details on how to configure the Real-Time Updater to produce Projection Update events can be found in the [service configuration page](/fast_data/configuration/realtime_updater.md#kafka-projection-updates-configuration).
 
+:::tip
+We advise you to replace your Real-Time Updater with the new Projection Storer following [this guide](/fast_data/configuration/projection_storer.md#migration-guide) since it provides a better fit for the [event-driven architecture](/fast_data/architecture.md#event-driven-architecture)
+:::
+
 #### Single View Creator
 
 :::note
@@ -64,6 +68,5 @@ An in-depth explanation on how to configure the service is provided in the [dedi
 
 Currently it is necessary to manually manage the Single View Trigger Generator config maps from the microservices section of Console, since it does not cover its configuration yet.
 
-:::info
 It is also important to notice that the Single View Trigger Generator couples up with a specific Single View and not with the System of Records. Consequently, for each configured Single View Creator it is necessary to introduce a Single View Trigger Generator.
-:::
+
