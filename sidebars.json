@@ -964,7 +964,11 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/faq/failure_handling_fast_data",
+          "id": "fast_data/faq/failure_handling",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/architecture_migration",
           "type": "doc"
         },
         {

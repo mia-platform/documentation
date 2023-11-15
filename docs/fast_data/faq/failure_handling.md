@@ -1,5 +1,5 @@
 ---
-id: failure_handling_fast_data
+id: failure_handling
 title: Failure handling
 sidebar_label: Failure handling
 ---
