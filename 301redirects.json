@@ -79,6 +79,10 @@
     "destination": "/docs/fast_data/configuration/cast_functions",
     "addedOn": "2022-10-01"
   },
+  "/docs/fast_data/import_export": {
+    "destination": "/docs/fast_data/configuration/import_export",
+    "addedOn": "2022-10-01"
+  },
   "/docs/fast_data/single_view":  {
     "destination": "/docs/fast_data/configuration/single_views",
     "addedOn": "2022-10-01"

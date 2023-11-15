@@ -286,6 +286,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/api-console/api-design/listeners",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/authorization",
           "type": "doc"
         },
@@ -776,6 +780,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/configuration/import_export",
+          "type": "doc"
+        },
+        {
           "type": "category",
           "label": "Config Maps",
           "collapsed": false,
@@ -961,6 +969,10 @@
         },
         {
           "id": "fast_data/faq/bootstrapping-fast-data",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/import_export_faq",
           "type": "doc"
         }
       ],
@@ -1313,6 +1325,10 @@
         },
         {
           "id": "self_hosted/synchronize-users",
+          "type": "doc"
+        },
+        {
+          "id": "self_hosted/feature-toggle",
           "type": "doc"
         }
       ]

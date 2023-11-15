@@ -32,6 +32,31 @@ be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_
 | HTTP_PORT        | -        | defines the service HTTP port where status and metrics endpoints are exposed                              | 3000               |
 | CONFIG_FILE_PATH | -        | defines the file path where the service configuration is found (it can either be a `json` or `yaml` file) | `conf/config.json` |
 
+## Attach to System of Records
+
+To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Real-Time Updater](/fast_data/realtime_updater.md) or Projection Storer. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
+
+![Services in System of Record configuration page](./img/system-services.png)
+
+Please remember that after attaching a Projection Storer to the Systems of Record, you must select the projections the service should evaluate to ensure the service updates those projections. To do that, you can use the table in the _Projections attached to services_ section to search the projection and attach it to a specific service. Otherwise, you can access the service configuration page by clicking on the button next to the service name and configure the list of projections from there.
+
+:::info
+Additionally, note that each projection can be evaluated by only one service.
+:::
+
+A click on the "Edit configuration" button in the row of the Projection Storer will lead to a page where the user can configure the Projection Storer.
+
+![Projection Storer configuration page](./img/projection-storer.png)
+
+The page will contain the following configurations:
+- the Projections to be managed by the Projection Storer
+- a check to enable the _Soft Delete_ (in case of a delete message received from CDC, the projection will be updated with the `__STATE__` set to `DELETED`)
+- a code editor to configure the [Consumer configuration](#consumer) of the service
+- a code editor to configure the [Producer configuration](#producer) of the service
+- a code editor to configure the [Storage configuration](#storage) of the service
+
+All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Records.
+
 ## Configuration File
 
 In the following sections, each configuration file section is described. It is important to note that Fast Data configurator
@@ -208,6 +233,16 @@ function extractKey(obj, wantedKeys) {
             .map(keyEntry => [keyEntry, obj[keyEntry]])
     )
 }
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater 
+try {
+    // export function for Real-Time Updater
+    module.exports = messageAdapter
+} catch(error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
+}
 ```
 
 </p>
@@ -314,6 +349,16 @@ function castToTitleCase(value, fieldName) {
   logger.debug(`incoming value: ${value}`)
   
   return str[0].toUpperCase() + str.slice(1).toLowerCase()
+}
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater 
+try {
+    // export function for Real-Time Updater
+    module.exports = castToTitleCase
+} catch(error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
 }
 ```
 

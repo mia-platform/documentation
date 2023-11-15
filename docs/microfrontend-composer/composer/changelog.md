@@ -3,6 +3,39 @@ id: changelog
 title: Changelog
 sidebar_label: CHANGELOG
 ---
+## [1.6.0] - 2023-11-10
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.7`
+- `@dnd-kit/core` to `^6.1.0`
+- `@dnd-kit/modifiers` to `^7.0.0`
+- `@dnd-kit/sortable` to `^8.0.0`
+- `@dnd-kit/utilities` to `^3.2.2`
+- `@mia-platform-internal/reactord` to `^9.10.1`
+- `@micro-lc/middleware` to `^3.0.5`
+- `flag-icons` to `^6.13.2`
+- `rc-util` to `^5.38.1`
+- `rc-virtual-list` to `^3.11.3`
+- `react-router-dom` to `^6.18.0`
+- `monaco-editor` to `^0.44.0`
+- Dev dependencies updated
+
+### Changed
+
+- Renamed product to `Microfrontend Composer`
+- Changed doc links
+- Hashed build entrypoint `index.js` and `css` files
+
+### Fixed
+
+- Editors correctly hints and validates content against schemas
+- `aclExpression` property is now supported by editors schema validation
+
+### Added
+
+- Added support for console "single card layout" mode with "router.json".
+
 ## [1.5.0] - 2023-10-20
 
 ### Versioning

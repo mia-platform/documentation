@@ -60,18 +60,21 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR            | -        | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error)                                                                                                                                                                                                                | false    |
 | USE_POS_AS_COUNTER                          | -        | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.                                            | true     |
 
-### Multiple services to the same System of Records
+## Attach to System of Records
 
-From version `11.7.0` of the Console it is possible to have a single System of Records attached to multiple Real-Time Updater. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
+To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Projection Storer](/fast_data/projection_storer.md) or Real-Time Updater. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
-:::caution
-Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will
-actually update those projections.
-:::
+![Services in System of Record configuration page](./img/system-services.png)
+
+Please remember that, after attaching a Real-Time Updater to the Systems of Record, you must select the projections that the service should evaluate to ensure the service updates those projections. To do that, you can use to the table in the _Projections attached to services_ section to search the projection and attach to a specific service. Otherwise, you can access to the service configuration page by clicking to the button next to the service name and configure the list of projections from there.
 
 :::info
-One projection can be evaluated by only one service.
+Additionally, note that each projection can be evaluated by only one service.
 :::
+
+When a service is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
+
+Furthermore, the environment variables `SYSTEM_OF_RECORDS`, `INVARIANT_TOPIC_MAP` and `KAFKA_MESSAGE_ADAPTER` (and, if applicable, `KAFKA_ADAPTER_FOLDER`) will be automatically updated upon saving the configuration. These variables are not manually editable because they are managed exclusively from the System of Records configuration module.
 
 ### Usage of the Low Code
 
@@ -332,11 +335,21 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.projection-change` as well.
 
-## Custom Projection Changes Collection
+## Projection Changes Collection
 
-You can choose to use a collection you have already created in the CRUD section.  
+[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
 
-In order to do that, your collection is supposed to have the following fields (apart from the default ones):
+If the environment variable `PROJECTIONS_CHANGES_ENABLED`, you will be required to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
+
+If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (a text of maximum 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection for you if it doesn't exist yet. This collection can be customized by you in any moment after.
+
+If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service.
+
+:::info
+If you wish to delete a Real-Time Updater or change the desired name of the Projection Changes collection, please remember that the existing CRUD collection will not be automatically removed. You have to do it manually from the _MongoDB CRUD_ section.
+:::
+
+In any case, your collection is supposed to have the following fields (apart from the default ones):
 
 ```json
 [
@@ -380,8 +393,6 @@ You need to add the following index fields:
 
 - *name* `identifier`, *order* `ASCENDENT`
 - *name* `type`, *order* `ASCENDENT`
-
-After that, you need to set your collection as the one to be used by the Real-Time Updater. To do so, set the name of the collection you want to use as value of the `PROJECTIONS_CHANGES_COLLECTION_NAME` environment variable of the service.
 
 :::note
 To allow the Single View Creator to read from the Projection Changes, the collection name should also be set in the `PROJECTIONS_CHANGES_COLLECTION` environment variable of your Single View Creator service. 
