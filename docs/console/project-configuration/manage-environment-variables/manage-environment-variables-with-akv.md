@@ -16,8 +16,6 @@ The current version of the Console can only acquire key-value pairs (aka secrets
 
 You can directly manage the secrets stored in Key Vault using the web interface of your Key Vault instance. The exclusive role of Console is to retrieve these secrets during deployment and subsequently supply them to your runtime environment in the format of Kubernetes Secrets.
 
-<!-- The management of the secrets stored in Key Vault is done directly from the web interface of your Key Vault instance, the Console is responsible for solely fetching the secrets at deploy time and providing them to your runtime environment in the form of Kubernetes Secrets. -->
-
 To correctly configure a Key Vault in your project follow these steps:
 
 1. [Install the `external-secrets` operator](https://external-secrets.io/) in the Kubernetes cluster where your project will be deployed
@@ -77,7 +75,7 @@ Once the Key Vault instance is configured, we are now ready to set up the Consol
 
 ### Azure Key Vault provider
 
-In order to connect to the Azure Key Vault instance you have to create a provider. In the provider creation modal, select the `Azure Key Vault` type when prompted, then fill the fields as described in the [providers management page](/development_suite/set-up-infrastructure/configure-provider.mdx#connect-a-provider)
+In order to connect to the Azure Key Vault instance you have to create a provider. In the provider creation modal, select the `Azure Key Vault` type when prompted, then fill the fields as described in the [providers management page](/console/company-configuration/providers/configure-provider.mdx#connect-a-provider)
 
 :::warning
 Please notice that each provider is linked to an Azure Key Vault store, we advice to setup at least two providers for each project, one for production data and another for noprod data, each associated with the respective environment of the project.
