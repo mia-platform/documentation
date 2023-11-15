@@ -12,6 +12,8 @@ The current version of the Console can only acquire key-value pairs (aka secrets
 
 You can directly manage the secrets stored in Key Vault using the web interface of your Key Vault instance. The exclusive role of the Console is to retrieve the secrets keys from Key Vault and then create the respective Kubernetes configuration files to enable the external secrets operator to deploy the associated Kubernetes Secrets on the cluster.
 
+![Azure Key Vault workflow](/img/akv-workflow.png)
+
 To correctly configure a Key Vault in your project follow these steps:
 
 1. [Install the `external-secrets` operator](https://external-secrets.io/) in the Kubernetes cluster where your project will be deployed
