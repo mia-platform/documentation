@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  background: linear-gradient(90deg, #6BCBA3 0%, #5FB1FF 100.77%);
+  background: linear-gradient(90deg, #5FB1FF 0%, #6BCBA3 100.77%);
   border-radius: 4px;
   margin: calc(var(--ifm-global-spacing) / 2) !important;
   padding-right: 0px !important;
