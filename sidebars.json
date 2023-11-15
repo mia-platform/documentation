@@ -1326,6 +1326,10 @@
         {
           "id": "self_hosted/synchronize-users",
           "type": "doc"
+        },
+        {
+          "id": "self_hosted/feature-toggle",
+          "type": "doc"
         }
       ]
     },

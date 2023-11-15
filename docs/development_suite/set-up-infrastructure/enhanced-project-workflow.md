@@ -94,9 +94,10 @@ In the end of the Project creation process, if the Enhanced Workflow option has 
 If you want to activate the Enhanced Workflow on an already existing Project, follow the guide in the next section instead.
 :::
 
-## Migrating your Projects
 
-The migration process for an existing Project can be performed in the [Enhanced Workflow card](/console/project-configuration/project-settings.md#enhanced-workflow) in the Advanced section of the Project Settings page. Confirming the action in the dedicated modal will result in the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle for the Project.
+If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/self_hosted/feature-toggle.md).
+## Migrating your projects
+
 
 In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
 
