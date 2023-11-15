@@ -10,6 +10,12 @@ const blacklist = [
 
 
 const command = `git ls-tree -r --name-only HEAD docs -z | TZ=UTC xargs -0n1 -I_ git --no-pager log -1 --date=iso-local --format="%ad _" -- _ | grep -E '.*\\.(md|mdx)' | sort -r`
+/*const command = `git log main --pretty=%x0a%ci --name-only --diff-filter=A | grep -E '.*\\.(md|mdx)' \\
+| awk '
+     /^$/        { dateline=!dateline; next }
+     dateline    { date=$0; next }
+     !seen[$0]++ { print date,$0 }
+'`*/
 
 const files = execSync(command, { encoding: 'utf-8' });
 const newLinks = files.split('\n');
