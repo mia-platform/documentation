@@ -50,7 +50,7 @@ The following table shows the providers currently supported by the Console, grou
          <td>vault</td>
       </tr>
       <tr>
-         <td><img src="/img/vault.png" width="15" height="15"/> Azure Key Vault</td>
+         <td><img src="/img/azure-key-vault.png" width="15" height="15"/> Azure Key Vault</td>
          <td>azure-key-vault</td>
       </tr>
       <tr>
