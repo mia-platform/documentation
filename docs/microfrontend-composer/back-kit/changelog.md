@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.7] - 2023-11-10
+
+### Added
+
+- `bk-crud-client` emits `count-data` and `display-data` events separately, as soon as needed data is fetched from the backend
+
+## [1.4.6] - 2023-11-07
+
+### Fixes
+
+- `bk-pagination` component handles case of element count being equal to 0
+
 ## [1.4.5] - 2023-11-02
 
 ### Added
