@@ -99,7 +99,7 @@ If you already have a Company with some projects, and you do not wish to migrate
 If both feature toggles are enabled, `ENABLE_CONF_GENERATION_ON_DEPLOY` will prevail.
 :::
 
-To see more detail about how to activate the feature toggles you can read [this reference](/self_hosted/feature-toggle.md).
+If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/self_hosted/feature-toggle.md).
 ## Migrating your projects
 
 The migration process for an existing Project is currently completely manual and impacts several entities.  
