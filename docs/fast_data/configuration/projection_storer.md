@@ -233,6 +233,16 @@ function extractKey(obj, wantedKeys) {
             .map(keyEntry => [keyEntry, obj[keyEntry]])
     )
 }
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater 
+try {
+    // export function for Real-Time Updater
+    module.exports = messageAdapter
+} catch(error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
+}
 ```
 
 </p>
@@ -339,6 +349,16 @@ function castToTitleCase(value, fieldName) {
   logger.debug(`incoming value: ${value}`)
   
   return str[0].toUpperCase() + str.slice(1).toLowerCase()
+}
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater 
+try {
+    // export function for Real-Time Updater
+    module.exports = castToTitleCase
+} catch(error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
 }
 ```
 
