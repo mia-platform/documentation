@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 6.9.2 - 2023-10-25
+
+### Fixed
+
+- add optional chaining to allow not to specify `pipeline` field in `$lookup` views when `enabledLookup` is set
+
+### Changed
+
+- upgrade `tap` to `v18.5.2`
+- updated NodeJS version in Dockerfile to v18.18.2
+
 ## 6.9.1 - 2023-09-08
 
 ### Fixed

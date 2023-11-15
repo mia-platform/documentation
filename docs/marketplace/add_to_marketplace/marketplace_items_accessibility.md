@@ -6,7 +6,7 @@ sidebar_label: Make your Marketplace items available to other Companies
 
 You can contribute to the Mia-Platform Marketplace with the Marketplace items of your Company, by deciding to make them accessible also to other Companies. This section will guide you on how to do so, offering two main methods:
 
-* (recommended) Use the [CMS](/business_suite/guide_cms.md) to make your Marketplace item accessible to other Companies.
+* (recommended) Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
 * Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
 
 Both methods will be explained in the following paragraphs.
@@ -34,13 +34,13 @@ If the repository where your Marketplace item is located is public and freely ac
 
 ### Item hosted on a private repository
 
-To allow the Console to access the private repository, you need to create a **Provider for Marketplace**, in which you will specify the credentials to access the Git Provider. Follow [these steps](/development_suite/set-up-infrastructure/configure-provider.mdx#connect-a-provider-for-marketplace) to learn how to create it.
+To allow the Console to access the private repository, you need to create a **Provider for Marketplace**, in which you will specify the credentials to access the Git Provider. Follow [these steps](/console/company-configuration/providers/configure-marketplace-provider.mdx) to learn how to create it.
 
 The Provider has to be created in the same Company where the item is created (defined in the property `companyId` of the item).
 
 :::info
 
-Please note that, in order for the Marketplace resources to be visible to other Companies, yor need to enable the *Allow access to all the Companies* switch, as explained [here](/development_suite/set-up-infrastructure/configure-provider.mdx#step-2-provider-details-1). 
+Please note that, in order for the Marketplace resources to be visible to other Companies, yor need to enable the *Allow access to all the Companies* switch, as explained [here](/console/company-configuration/providers/configure-marketplace-provider.mdx#step-2-provider-details).  
 This allows the Console to access Marketplace items resources when they are created within a Project belonging to any Company.
 
 :::

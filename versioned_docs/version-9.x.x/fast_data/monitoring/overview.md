@@ -32,9 +32,9 @@ We assume you already have Grafana up and running, and you are familiar with its
 
 There are three Dashboards ready to use:
 
-1. [Consumer Groups](./dashboards/consumer_groups.md)
-2. [Projection Changes](./dashboards/projection_changes.md)
-3. [Single Views](./dashboards/single_views.md)
+1. [Consumer Groups](/fast_data/monitoring/dashboards/consumer_groups.md)
+2. [Projection Changes](/fast_data/monitoring/dashboards/projection_changes.md)
+3. [Single Views](/fast_data/monitoring/dashboards/single_views.md)
 
 More details on what information they provide in their specific pages.
 

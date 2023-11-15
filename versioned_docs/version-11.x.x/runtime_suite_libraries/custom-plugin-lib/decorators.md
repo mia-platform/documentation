@@ -1,0 +1,125 @@
+---
+id: decorators
+title: Add decorators
+sidebar_label: Decorators
+---
+Decorators are particular endpoint that a microservice can expose. Using the DevOps console you can manage your decorators and link them to your endpoint routes. Check out [decorators documentation](../../development_suite/api-console/api-design/decorators) for further detail on their usage and management.
+
+Decorators allow you to perform custom actions upon specific API handler invocations. There are three types of decorators:
+
+* **PRE**: invoked *before* the configured route handler.
+* **POST**: invoked *after* the successful execution of configured route handler (a 2xx status code is returned).
+* **CATCH**: invoked after the failure of the configured route handler (any other error status code, 4xx or 5xx).
+
+You can add a decorator with these methods:
+
+* ```addPreDecorator(path, handler)```
+* ```addPostDecorator(path, handler)```
+
+whose arguments are, in order:
+
+* `path` - the route path (e.g.,`/status /alive`).
+* `handler`- function that contains the actual behavior. It must respect the same interface defined in the
+documentation of the handlers of [fastify](https://www.fastify.io/docs/latest/Routes/#routes-config).
+
+## PRE decorators
+
+```js
+const customService = require('@mia-platform/custom-plugin-lib')()
+
+module.exports = customService(async function handler(service) {
+service.addPreDecorator('/checkwho', function checkWhoHandler(request) {
+  const defaultWho = 'John Doe'
+    const body = request.getOriginalRequestBody()
+    const { who } = body
+    const newBody = {
+      ...body,
+      who: who || request.getUserId() || defaultWho,
+    }
+    // Set original request with retrieved data, the target microservice will receive your newly defined body.
+    return request.changeOriginalRequest().setBody(newBody)
+  })
+}) 
+```
+
+The first parameter of the handler function is [Request](https://www.fastify.io/docs/latest/Request/). The request is decorated as the `addRawCustomPlugin` method, in addition, with the following methods:
+
+* `getOriginalRequest()` - returns the original request.
+* `getOriginalRequestMethod()` - returns the original request HTTP method.
+* `getOriginalRequestPath()` - returns the path of the original request.
+* `getOriginalRequestHeaders()` - returns the headers of the original request.
+* `getOriginalRequestQuery()` - returns the querystring of the original request.
+* `getOriginalRequestBody()` - returns the body of the original request.
+* `changeOriginalRequest()`- returns a builder object with following methods:
+  * `setBody(newBody)` - modify the body of the original request.
+  * `setHeaders(newHeaders)` - modify the headers of the original request.
+  * `setQuery(newPath)` - modify the querystring of the original request.
+* `leaveOriginalRequestUnmodified()` - leave the original request unmodified .
+
+## POST and CATCH decorators
+
+```js
+...
+/*
+    POST decorator
+*/
+service.addPostDecorator('/notify', function notifyHandler(request) {
+  // Get "notifications" setting from the request querystring
+  const { notifications } = request.getOriginalRequestQuery()
+    if(!notifications)  {
+      // It's not necessary to send notification
+      // leave the original response unmodified
+      return req.leaveOriginalResponseUnmodified()
+    }
+    
+    const notifier = new Notifier()
+    // Try to send a notification
+    const response = await notifier.send({ text: `${who} says: ${mymsg}`})
+    // Adds to original response body the time of notification send
+    return request.changeOriginalResponse().setBody(
+        { ...req.getOriginalRequestBody(),notifySendedAt:new Date() }
+    )
+
+/*
+    CATCH decorator
+*/
+service.addPostDecorator('/catch', function exceptionHandler(request) {
+  return request.changeOriginalResponse()
+                .setBody({msg:"Error"})
+                .setStatusCode(500)
+}) 
+```
+
+Even in this case the first parameter of the handler function is [Request](https://www.fastify.io/docs/latest/Request/). The request is decorated as the `addRawCustomPlugin` method, in addition, with the following methods:
+
+* `getOriginalRequest()` - returns the original request.
+* `getOriginalRequestMethod()` - returns the original request method.
+* `getOriginalRequestPath()` - returns the path of the original request.
+* `getOriginalRequestHeaders()` - returns the headers of the original request.
+* `getOriginalRequestQuery()` - returns the querystring of the original request.
+* `getOriginalRequestBody()` - returns the body of the original request.
+
+Related to the original response:
+
+* `getOriginalResponseBody()` - returns the body of the original response.
+* `getOriginalResponseHeaders()` - returns the headers of the original response.
+* `getOriginalResponseStatusCode()` - returns the status code of the original response.
+* `changeOriginalResponse()`- returns a builder object with following methods:
+  * `setBody(newBody)` - modify the body of the original response.
+  * `setHeaders(newHeaders)` - modifies the headers of the original response.
+  * `setStatusCode(newCode)` - changes the status code of the original response.
+* `leaveOriginalResponseUnmodified()` - leaves the original response unmodified.
+
+## Abort chain
+
+To abort the decorator chain, you can call on the `request` the method:
+
+ `abortChain(finalStatusCode, finalBody, finalHeaders)`
+
+ whose arguments are, in order
+
+* `finalStatusCode` - the final returned status code.
+* `finalBody` - the final returned body.
+* `finalHeaders` - the final returned headers.
+
+> **_More examples?_** Go [here](https://github.com/mia-platform/custom-plugin-lib/blob/master/examples/advanced/index.js) to see another decorators implementations.
