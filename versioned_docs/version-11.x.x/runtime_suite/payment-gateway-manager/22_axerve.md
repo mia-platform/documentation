@@ -1,0 +1,240 @@
+---
+id: axerve
+title: Axerve
+sidebar_label: Axerve
+---
+In this page you will find the required information to perform REST calls related to the Axerve payment provider.
+
+| Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
+|----------------|---------|--------|------------------------|---------------------|
+| `credit-cards` | ✓       | ✓      |                        | ✓                   | 
+| `applepay`     | ✓       | ✓      |                        |                     | 
+| `googlepay`    | ✓       | ✓      |                        |                     | 
+| `pay-pal `     | ✓       | ✓      |                        | ✓                   | 
+| `satispay`     | ✓       | ✓      |                        |                     | 
+
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✓       |
+
+## Endpoints
+
+Every Axerve endpoint has this prefix path `/v3/axerve`.
+
+### Pay
+
+`POST /{payment-method}/pay`
+
+This endpoint allows to execute payments via the Axerve payment provider.
+
+You can always define the following optional fields in `providerData`:
+```jsonc
+{
+  [...]
+  "providerData": {
+    [...]
+    "buyerName": "string",
+    "buyerEmail": "string",
+    "serverRedirect": "string"
+  }
+}
+```
+
+#### Payment Token
+
+The following payment methods:
+- `credit-cards`
+- `applepay`
+- `googlepay`
+
+requires the `token` field to be specified inside the `providerData` object.
+```jsonc
+{
+  [...]
+  "providerData": {
+    [...]
+    "token": "string"
+  }
+}
+```
+
+
+##### Credit Card token
+
+This token can be obtained performig an HTTP request to the Axerve's Shop API `POST - /shop/token` as described in the 
+[documentation](https://api.axerve.com/#post-shop-token).
+
+##### Apple Pay token
+
+This token is a string representation of the JSON below:
+
+```json
+{
+  "paymentData": {
+    "data": "string",
+    "signature": "string",
+    "version": "string",
+    "header": {
+      "ephemeralPublicKey": "string",
+      "publicKeyHash": "string",
+      "transactionId": "string"
+    }
+  },
+  "transactionIdentifier": "string",
+  "paymentMethod": {
+    "network": "string",
+    "type": "string",
+    "displayName": "string"
+  }
+}
+```
+
+Few steps are required in order to obtain a payment dictionary compliant to the structure expected above.
+After making a `PKPaymentRequest` using Apple's PassKit framework, you can retrieve the `PKPayment` object from the
+`PKPaymentAuthorizationViewController` didAuthorizePayment completion callback.
+
+1. Create a Foundation object from the given `payment.token.paymentData` data:
+
+    ```objective-c
+    NSData *paymentData = payment.token.paymentData;
+    NSError *serializationError = nil;
+
+    id dict = [NSJSONSerialization JSONObjectWithData:paymentData options:NSJSONReadingFragmentsAllowed error:&serializationError];
+    // error handling with serializationError
+    ```
+
+2. Create the payment method dictionary:
+
+    ```objective-c
+    // ...
+    NSDictionary *paymentMethodDictionary = @{
+        @"network": payment.token.paymentMethod.network,
+        @"type": [NSNumber numberWithUnsignedLongLong:payment.token.paymentMethod.type],
+        @"displayName":payment.token.paymentMethod.displayName
+    };
+    // ...
+    ```
+
+3. Create the payment information dictionary and convert it as JSON data:
+
+    ```objective-c
+    // ...
+    NSError *dataWritingError = nil;
+    NSDictionary *paymentDictionary = @{
+        @"paymentData":dict,
+        @"transactionIdentifier":payment.token.transactionIdentifier,
+        @"paymentMethod":paymentMethodDictionary
+    };
+
+    NSData *data = [NSJSONSerialization dataWithJSONObject:paymentDictionary options:NSJSONWritingFragmentsAllowed error:&dataWritingError];
+    // error handling with dataWritingError
+    ```
+
+4. Initialize a NSString with the data to be used as token to be provided to the `/pay` endpoint:
+
+    ```objective-c
+    // ...
+    NSString *paymentDataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    // ...
+    ```
+   
+For more information visit [Axerve's documentation](https://docs.axerve.com/en/payments/alternative-payments/apple-pay).
+
+#### Google Pay token
+
+This token is a string representation of the JSON below:
+
+```json
+{
+    "signature": "string",
+    "protocolVersion": "string",
+    "signedMessage": "string"
+}
+```
+
+The most simple way to obtain that token data is via the front-end Google Pay libraries. For more information visit 
+[Axerve's documentation](https://docs.axerve.com/en/payments/alternative-payments/google-pay).
+
+### Refund
+
+`POST /refund`
+
+This endpoint allows to refund an already executed payment via the Axerve provider.
+
+The request body does not require any provider-specific data.
+
+### Subscription
+
+#### Start
+
+`POST /subscription/start`
+
+This endpoint allows to create a new subscription and the related first payment via the Axerve provider.
+
+It required the same fields inside `providerData` object as the *pay* request. 
+Another mandatory field is the `authenticationAmount` field that define the maximum amount that can be requested at each payment.
+Below an example of the `providerData` object needed:
+```jsonc
+{
+    [...]
+    "providerData": {
+        "token": "string",
+        "authenticationAmount": Int,
+        "buyerName": "string",
+        "buyerEmail": "string",
+        "serverRedirect": "string"
+    }
+}
+```
+The `subscriptionInfo.interval` field accept the following values:
+- `DAY`
+
+#### Pay
+
+`POST /subscription/pay`
+
+This endpoint allows to create a new payment related to the subscription defined by the `subscriptionToken` via the Axerve provider.
+
+It required the `token` field inside the `subscriptionInfo` object.
+
+### Status
+
+`GET /status?paymentId={paymentId}`
+
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
+
+### Check
+
+`GET /check?paymentId={paymentId}`
+This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId` and also to send a notification to the external service as specified by `PAYMENT_CALLBACK_URL` environment variable.
+
+### Pay By Link
+
+`POST /pay-by-link`
+
+The request body does not require any provider-specific data.
+
+### Callback
+
+`POST /callback`
+This endpoint should only be called by Axerve.
+
+### Utility
+
+#### Payment Tokenization
+
+`POST /utility/payment/token`
+
+This endpoint allows to tokenize a payment request, it creates in the system of the provider a payment token using the Axerve create endpoint. For more details on Axerve APIs please read the [documentation](https://api.axerve.com/#payment-api)
+
+In order to tokenize a payment we need a request body as below:
+
+```json
+{
+  "shopLogin": "shopLoginId",
+  "amount": "100",
+  "shopTransactionId": "transactionId",
+  "currency": "EUR"
+}
+```
+The API will return a single string with the payment token of the payment just created.
