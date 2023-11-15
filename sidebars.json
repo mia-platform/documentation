@@ -1062,24 +1062,24 @@
           ]
         },
         {
-          "label": "Backoffice",
+          "label": "Microfrontend Composer",
           "type": "category",
           "collapsed": true,
           "items": [
             {
-              "id": "getting-started/tutorials/backoffice/basics",
+              "id": "getting-started/tutorials/microfrontend-composer/basics",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/backoffice/templates",
+              "id": "getting-started/tutorials/microfrontend-composer/templates",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/backoffice/microfrontends",
+              "id": "getting-started/tutorials/microfrontend-composer/microfrontends",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/backoffice/auth0-integration",
+              "id": "getting-started/tutorials/microfrontend-composer/auth0-integration",
               "type": "doc"
             }
           ]

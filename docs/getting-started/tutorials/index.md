@@ -32,9 +32,9 @@ Welcome to the Tutorials page! This page contains a series of tutorials guides d
 
 
 ### **Backoffice**
-- **Backoffice Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/getting-started/tutorials/backoffice/basics.mdx).
-- **Backoffice Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/getting-started/tutorials/backoffice/templates.mdx).
-- **Backoffice Microfrontends**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/getting-started/tutorials/backoffice/microfrontends.mdx).
+- **Backoffice Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
+- **Backoffice Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
+- **Backoffice Microfrontends**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx).
 
 ## How to Use This Page
 

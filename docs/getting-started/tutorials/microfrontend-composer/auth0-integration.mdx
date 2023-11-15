@@ -1,15 +1,15 @@
 ---
 id: auth0-integration
-title: Integration with Auth0
-sidebar_label: Backoffice Integration with Auth0
+title: Microfrontend Composer Integration with Auth0
+sidebar_label: Microfrontend Composer Integration with Auth0
 ---
 
-# Mia-Platform Backoffice Integration with Auth0
+# Mia-Platform Microfrontend Composer Integration with Auth0
 
-In this tutorial, we will guide you through the process of securing Mia-Platform Backoffice using Auth0 as your Identity Provider. In particular, we will see how to:
-- protect the Mia-Platform Backoffice with the Auth0 login page;
-- create, delete and manage both Auth0 users and users' groups from dedicated pages on Mia-Platform Backoffice;
-- use the ACLs feature of Mia-Platform Backoffice to display to the user only the subset of pages and components they are authorized to access.
+In this tutorial, we will guide you through the process of securing Mia-Platform Microfrontend Composer using Auth0 as your Identity Provider. In particular, we will see how to:
+- protect the Mia-Platform Microfrontend Composer with the Auth0 login page;
+- create, delete and manage both Auth0 users and users' groups from dedicated pages on Mia-Platform Microfrontend Composer;
+- use the ACLs feature of Mia-Platform Microfrontend Composer to display to the user only the subset of pages and components they are authorized to access.
 
 ## What We Will Build
 
@@ -17,15 +17,15 @@ Throughout this tutorial, we will:
 
 - [Create the necessary Microservices](#create-the-necessary-microservices)
 - [Configure the Microservices and Auth0](#configure-the-microservices-and-auth0)
-- [Configure the Backoffice application](#configure-the-backoffice-application)
+- [Configure the Microfrontend Composer application](#configure-the-microfrontend-composer-application)
 - [Configure the authentication process](#configure-the-authentication-process)
-- [Save and Deploy the Backoffice](#save-and-deploy)
-- [Create a user using Backoffice](#create-a-user-using-backoffice)
+- [Save and Deploy the Microfrontend Composer](#save-and-deploy)
+- [Create a user using Microfrontend Composer](#create-a-user-using-microfrontend-composer)
 
 ## Prerequisites
 
-Before starting this tutorial, you should be familiar with the concepts of the [Mia-Platform Backoffice](/microfrontend-composer/overview.md).
-We also recommend to complete the [Backoffice Tutorial Basics](/getting-started/tutorials/backoffice/basics.mdx).
+Before starting this tutorial, you should be familiar with the concepts of the [Mia-Platform Microfrontend Composer](/microfrontend-composer/overview.md).
+We also recommend to complete the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
 
 ## Create the necessary Microservices
 
@@ -93,7 +93,7 @@ Once the tenant configuration is completed you should have created:
 
 On Auth0 beware to set the following logout url:
 ```
-https://your-backoffice-project.mia-platform.eu/web-login
+https://your-microfrontend-composer-project.mia-platform.eu/web-login
 ```
 
 Now, you can configure the `auth0-client` service. It accepts the following environment variables:
@@ -142,7 +142,7 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
 ```
 In order to complete this configuration you have to define the following **Public Variables**:
 * `AUTH0_NAMESPACE`: the namespace of your tenant on Auth0 (i.e. https://tenant-name.eu.auth0.com/)
-* `AUTH0_CALLBACK_URL`: the url already defined during Auth0 configuration (i.e. https://your-backoffice-project.mia-platform.eu/web-login/callback)
+* `AUTH0_CALLBACK_URL`: the url already defined during Auth0 configuration (i.e. https://your-microfrontend-composer-project.mia-platform.eu/web-login/callback)
 * `AUTH0_CONNECTION`: `Username-Password-Authentication`, the default Auth0 database
 * `MIA_NAMESPACE`: the namespace you already set in the Rules configuration on Auth0
 
@@ -369,8 +369,8 @@ Then you have to add new endpoints and modify some of the existing ones (beware 
 * add the `/users` endpoint linked to `user-manager-service`
 * add the `/ums-configurations` endpoint linked to `ums-configurations` CRUD path
 
-## Configure the Backoffice application
-Now that you have configured all the microservices you need to follow these last steps to configure the Backoffice to enable the creation of Auth0 users.
+## Configure the Microfrontend Composer application
+Now that you have configured all the microservices you need to follow these last steps to configure the Microfrontend Composer to enable the creation of Auth0 users.
 
 ### Create the pages
 
@@ -389,7 +389,7 @@ First of all, you need to create the pages to handle **users** and `user-manager
 
 ### Link the pages with the CRUD collections
 
-Now you can link the Backoffice pages with the CRUD collections.
+Now you can link the Microfrontend Composer pages with the CRUD collections.
 For `users`:
 1. Select the configuration for the new `users` just created.
 2. Click on `Advanced` tab.
@@ -681,9 +681,9 @@ For `ums-configurations`:
 }
 ```
 
-### Add the pages to the Backoffice
+### Add the pages to the Microfrontend Composer
 
-Then you can add the newly created pages to the Backoffice menu:
+Then you can add the newly created pages to the Microfrontend Composer menu:
 1. Click on the `Layout` tab.
 2. Select `Layout` from the left-side menu.
 3. Click on the `Edit property` button under the `Menu Items` section on the right-side menu.
@@ -699,7 +699,7 @@ Then you can add the newly created pages to the Backoffice menu:
 
 ### Define the ACLs
 
-With the **ACL Expressions** you've just set, users outside `groups.admin` will see these pages in the left-side menu of the Backoffice, but will receive a 404 status code page.
+With the **ACL Expressions** you've just set, users outside `groups.admin` will see these pages in the left-side menu of the Microfrontend Composer, but will receive a 404 status code page.
 In order to hide them the newly created pages, you need to add the ACLs in your advanced configuration:
 1. Click on `Advanced` tab.
 2. Add this expression `"aclExpression": "groups.admin"` under `layout > content > properties > menuItems` as property of `auth0-users` and `ums-configurations` applications.
@@ -716,13 +716,13 @@ Then you have to set the user menu:
 3. Click on the `Edit property` button under the `Login and user context menu` section on the right-side menu, under the `Advanced Properties`.
 4. On the opened modal click fill the `User Context URL` with the value `/userinfo`
 5. Click on the `Add property` button related to `Logout` section.
-6. Fill the `Redirect Url` with `/logout?redirect=/web-login?redirect=/backoffice`.
+6. Fill the `Redirect Url` with `/logout?redirect=/web-login?redirect=/microfrontend-composer`.
 7. Click on the `Save` button.
 
 ## Configure the authentication process
 
-In order to protect your Backoffice you need to follow these steps:
-1. Go to Endpoints, select `/backoffice` and check the `Authentication required` checkbox under the `Endpoint settings`
+In order to protect your Microfrontend Composer you need to follow these steps:
+1. Go to Endpoints, select `/microfrontend-composer` and check the `Authentication required` checkbox under the `Endpoint settings`
 2. Set the following variables on `Authentication Service`:
   - `USERINFO_URL`: http://user-manager-service/userinfo
   - `AUTHORIZATION_HEADERS_TO_PROXY`: cookie,authorization,client-type
@@ -745,14 +745,14 @@ After that, you have finally completed the configuration of the authentication p
 
 With all the configurations in place, save your changes and then deploy. For further details on the deploy command, consult the [Console Handbook](/getting-started/handbooks/project/usage.md).
 
-![Backoffice Homepage](img/auth0_07-homepage.png)
+![Microfrontend Composer Homepage](img/auth0_07-homepage.png)
 
-## Create a user using Backoffice
+## Create a user using Microfrontend Composer
 In order to create your first user you need to create a configuration. To do that:
 1. Click on `Configurations` page.
 2. Click on `Add new` button.
 3. Fill the form with the following parameters:
-![Backoffice Page Composer](img/auth0_08-create-config.png)
+![Microfrontend Composer Page Composer](img/auth0_08-create-config.png)
 4. Click on `Create` button and `Confirm` on the warning modal.
 
 Now it's possible to create the first user:
@@ -761,15 +761,15 @@ Now it's possible to create the first user:
 3. Fill the form with the `Name` and `Email` of your first user and using `user` as `Group`.
 4. Click on `Create` button and `Confirm` on the warning modal.
 
-Congratulations! You have successfully created your first user using the backoffice.
-If you try to access the Backoffice with this new user you won't see the users management pages that are protected with the ACLs created in the previous steps.
+Congratulations! You have successfully created your first user using the microfrontend-composer.
+If you try to access the Microfrontend Composer with this new user you won't see the users management pages that are protected with the ACLs created in the previous steps.
 Now if you delete the created user it will be blocked on Auth0 and marked as `TRASH` inside the CRUD collection.
 
-## Backoffice Tutorials
+## Microfrontend Composer Tutorials
 
-In this tutorial, you've learned how to set up the integration between Backoffice and Auth0 and to create Auth0 users using the Backoffice.
+In this tutorial, you've learned how to set up the integration between Microfrontend Composer and Auth0 and to create Auth0 users using the Microfrontend Composer.
 
 Also, make sure to check out:
-* The [Backoffice Basics Tutorial ](/getting-started/tutorials/backoffice/basics.mdx) where we demonstrate how to create a new Backoffice and how to create a new Backoffice Page using the Backoffice Table Template.
-* In the [Backoffice Templates Tutorial](/getting-started/tutorials/backoffice/templates.mdx), explore how to configure various page types with the Backoffice Page Composer and an iFrame Page.
-* The [Backoffice Microfrontends Tutorial](/getting-started/tutorials/backoffice/microfrontends.mdx) provides guidance on configuring a Microfrontend using Angular or React, and its integration into the Backoffice.
+* The [Microfrontend Composer Basics Tutorial ](/getting-started/tutorials/microfrontend-composer/basics.mdx) where we demonstrate how to create a new Microfrontend Composer and how to create a new Microfrontend Composer Page using the Microfrontend Composer Table Template.
+* In the [Microfrontend Composer Templates Tutorial](/getting-started/tutorials/microfrontend-composer/templates.mdx), explore how to configure various page types with the Microfrontend Composer Page Composer and an iFrame Page.
+* The [Microfrontend Composer Microfrontends Tutorial](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx) provides guidance on configuring a Microfrontend using Angular or React, and its integration into the Microfrontend Composer.

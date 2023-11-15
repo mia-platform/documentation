@@ -1,50 +1,50 @@
 ---
 id: basics
-title: Backoffice Tutorial Basics
-sidebar_label: Backoffice Tutorial Basics
+title: Microfrontend Composer Tutorial Basics
+sidebar_label: Microfrontend Composer Tutorial Basics
 ---
 
-# Mia-Platform Backoffice Tutorial
+# Mia-Platform Microfrontend Composer Tutorial
 
-In this tutorial, we will install and configure the Mia-Platform Backoffice, customize its visual appearance, and create our first sample page with a table. This page will be connected to real data through the CRUD service. Consider this guide as your starting point to explore all the capabilities of the Mia-Platform Backoffice.
+In this tutorial, we will install and configure the Mia-Platform Microfrontend Composer, customize its visual appearance, and create our first sample page with a table. This page will be connected to real data through the CRUD service. Consider this guide as your starting point to explore all the capabilities of the Mia-Platform Microfrontend Composer.
 
 ## What We Will Build
 
 Throughout this tutorial, we will:
 
 - [Set Up the Microservices](#setup-the-microservices)
-- [Customize the Backoffice Appearance](#customize-the-backoffice-appearance)
-- [Create a Backoffice Table Page](#create-a-backoffice-table-page)
-- [Connect the Page to the Backoffice Menu](#connect-the-page-with-the-backoffice-menu)
-- [Save and Deploy the Backoffice](#save-and-deploy)
+- [Customize the Microfrontend Composer Appearance](#customize-the-microfrontend-composer-appearance)
+- [Create a Microfrontend Composer Table Page](#create-a-microfrontend-composer-table-page)
+- [Connect the Page to the Microfrontend Composer Menu](#connect-the-page-with-the-microfrontend-composer-menu)
+- [Save and Deploy the Microfrontend Composer](#save-and-deploy)
 
 ## Prerequisites
 
-Before starting, you should be familiar with the [Mia-Platform Backoffice](/microfrontend-composer/what-is.md) concepts and have the following:
+Before starting, you should be familiar with the [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md) concepts and have the following:
 
 - A CRUD microservice already created, follow the [CRUD Tutorial](/getting-started/tutorials/rest-api-for-crud-on-data.mdx) if needed.
 
 ## Setup the Microservices
 
-You can install the Backoffice using either the Application or the individual microservices. For this tutorial, we will use the Application.
+You can install the Microfrontend Composer using either the Application or the individual microservices. For this tutorial, we will use the Application.
 
 1. Go to Applications and click on the `Create New Application` button.
-2. Search for `Backoffice` and click on the card.
-![Backoffice Application Marketplace](img/basics_01-search-backoffice-application.png)
+2. Search for `Microfrontend Composer` and click on the card.
+![Microfrontend Composer Application Marketplace](img/basics_01-search-microfrontend-composer-application.png)
 3. Follow the wizard, selecting if you want to install new microservices or use existing ones.
 4. At the end, click the `Create` button and then save the new Application.
-![Backoffice Application Wizard](img/basics_02-create-backoffice-application.png)
+![Microfrontend Composer Application Wizard](img/basics_02-create-microfrontend-composer-application.png)
 
-## Customize the Backoffice Appearance
+## Customize the Microfrontend Composer Appearance
 
-Next, navigate to the Backoffice Configuration to manage all settings. Here you can customize the appearance, navigation menu, add new pages, connect to APIs, and manage all configurations.
+Next, navigate to the Microfrontend Composer Configuration to manage all settings. Here you can customize the appearance, navigation menu, add new pages, connect to APIs, and manage all configurations.
 
 ### Customizing Appearance
 
-1. Click on the `Configurations` button in the left menu under the `Backoffice` section.
-![Backoffice Configuration Button](img/basics_03-backoffice-configuration-button.png)
+1. Click on the `Configurations` button in the left menu under the `Microfrontend Composer` section.
+![Microfrontend Composer Configuration Button](img/basics_03-microfrontend-composer-configuration-button.png)
 2. Go to the `Layout` tab, then click on the `Layout` button to view the configuration.
-![Backoffice Layout](img/basics_04-backoffice-layout-page.png)
+![Microfrontend Composer Layout](img/basics_04-microfrontend-composer-layout-page.png)
 3. Inside the `Layout` section, use the no-code features to customize appearance. Preview your changes in the center of the page.
 
 ### Specific Customizations
@@ -53,7 +53,7 @@ You can further customize the following settings:
 
 * **Visualization Mode**: Use `Fixed Sidebar` to show the menu on the left side.
 * **Logo Settings**:
-  * **URL**: Define the Backoffice logo with a URL.
+  * **URL**: Define the Microfrontend Composer logo with a URL.
   * **Alternative Text**: Set `Mia-Platform` as alternative text.
   * **On Click Href**: Use `./home/` as the URL when clicked.
   * **URL Configuration**: Click to open a modal where you can specify the type (`string`) and URL for the logo (`https://www.mia-platform.eu/static/img/basics_logo.svg`).
@@ -61,13 +61,13 @@ You can further customize the following settings:
 Under the `Advanced Properties`, you can customize additional settings:
 
 * **Help Menu URL**: Define `https://www.docs.mia-platform.eu/` as the URL for the help link, displaying a question mark icon in the header.
-* **Head Configuration**: Customize the Backoffice head configuration, setting `Mia-Platform Backoffice` as title and `https://www.mia-platform.eu/static/img/basics_favicon/apple-icon-60x60.png` as favicon.
+* **Head Configuration**: Customize the Microfrontend Composer head configuration, setting `Mia-Platform Microfrontend Composer` as title and `https://www.mia-platform.eu/static/img/basics_favicon/apple-icon-60x60.png` as favicon.
 
-## Create a Backoffice Table Page
+## Create a Microfrontend Composer Table Page
 
 Now we can create a new page that will display data from the CRUD microservice. To initiate the creation, click on the `Pages` tab followed by the `Create New Page` button.
 
-![Backoffice Create New Page](img/basics_05-backoffice-create-new-page.png)
+![Microfrontend Composer Create New Page](img/basics_05-microfrontend-composer-create-new-page.png)
 
 Within the modal, you'll have options to:
 * `Page Type`: Designate the type of the page. For this example, select `Compose`.
@@ -75,12 +75,12 @@ Within the modal, you'll have options to:
 * `Path`: Define the path for the page. This too should be unique. We'll set it as `./products`.
 
 :::info
-Every URI in the Backoffice is linked to the Backoffice base path. For instance, the home page is represented by `./home/`.
+Every URI in the Microfrontend Composer is linked to the Microfrontend Composer base path. For instance, the home page is represented by `./home/`.
 :::
 
 Upon navigating to the wizard's second step, you can outline additional page properties.
 
-![Backoffice Create New Page Wizard](img/basics_06-backoffice-create-new-page-wizard.png)
+![Microfrontend Composer Create New Page Wizard](img/basics_06-microfrontend-composer-create-new-page-wizard.png)
 
 In this section:
 * `Input mode`: This determines the page's input model. We'll choose `External`.
@@ -142,17 +142,17 @@ Now, the CRUD data can be exposed using an endpoint named `products`.
 
 ### Customize the Table Page
 
-Within the `Pages` tab, located under the `Backoffice` section, you'll find the `Products` page we recently created. Click on the `Compose` button (placed on the left of the "Edit" button) to access the page composer.
+Within the `Pages` tab, located under the `Microfrontend Composer` section, you'll find the `Products` page we recently created. Click on the `Compose` button (placed on the left of the "Edit" button) to access the page composer.
 
 #### CRUD connector
 
 Before diving into table customization and its associated forms for insertion and updates, specify the CRUD connector for data reading and writing. Click on the `Connectors & Adapters` followed by `CRUD Client` on the left panel.
 
-![Backoffice Page Composer](img/basics_07-backoffice-crud-connector.png)
+![Microfrontend Composer Page Composer](img/basics_07-microfrontend-composer-crud-connector.png)
 
 On the right, input the `CRUD Service Base Path` to set the CRUD microservice endpoint, opting for `(/v2/products)`. Click `Generate Schema` to automatically construct the microservice's schema.
 
-![Backoffice Page Composer](img/basics_08-backoffice-crud-connector-schema.png)
+![Microfrontend Composer Page Composer](img/basics_08-microfrontend-composer-crud-connector-schema.png)
 
 Given the CRUD Schema, this modal displays all CRUD fields. Generate the schema by clicking `Save`.
 
@@ -160,11 +160,11 @@ Given the CRUD Schema, this modal displays all CRUD fields. Generate the schema 
 
 Navigate back to the layout page via the `Layout` tab to modify the table schema. The preview showcases a default schema generated earlier. This tutorial, however, will limit display to `name`, `price`, and `description` fields. Adjust the schema by clicking `Main`, then `Table` on the left panel.
 
-![Backoffice Page Composer](img/basics_09-backoffice-page-composer.png)
+![Microfrontend Composer Page Composer](img/basics_09-microfrontend-composer-page-composer.png)
 
 Within the right panel's `Basic Properties`, select `Edit Property` under the `Data Schema` label. Here, customize the data schema for the page. Since we're focusing on the `name`, `price`, and `description` fields, remove all extraneous ones like _id, creatorId, createdAt, updaterId, updatedAt, and \_\_STATE\_\_. Toggle on `Use custom value` to edit the schema.
 
-![Backoffice Page Composer Data Schema](img/basics_10-backoffice-page-composer-data-schema.png)
+![Microfrontend Composer Page Composer Data Schema](img/basics_10-microfrontend-composer-page-composer-data-schema.png)
 
 To exclusively display the `name`, `price`, and `description` fields, apply this schema:
 
@@ -193,7 +193,7 @@ To exclusively display the `name`, `price`, and `description` fields, apply this
 
 If all is ok, we can click on the `Save` button to save the schema and then check the table preview that now show only the `name`, `price` and `description` fields.
 
-![Backoffice Page Composer Data Schema](img/basics_11-backoffice-table-page-with-data-schema.png)
+![Microfrontend Composer Page Composer Data Schema](img/basics_11-microfrontend-composer-table-page-with-data-schema.png)
 
 ### Edit the Forms Schema
 
@@ -201,11 +201,11 @@ Now we can edit the insert and update form schema to show only the `name`, `pric
 
 To modify the form schema in the `Layout` tab on the left panel we can click on the `Main` button and then on the `Form Modal` button.
 
-![Backoffice Page Composer](img/basics_12-backoffice-page-composer-form.png)
+![Microfrontend Composer Page Composer](img/basics_12-microfrontend-composer-page-composer-form.png)
 
 On the right panel, in the `Basic Properties` section, we can click on the `Edit Property` under the `Data Schema` label. To change the default schema, we can enable the `Use custom value` and then we can edit the schema.
 
-![Backoffice Page Composer Data Schema](img/basics_13-backoffice-page-composer-form-data-schema.png)
+![Microfrontend Composer Page Composer Data Schema](img/basics_13-microfrontend-composer-page-composer-form-data-schema.png)
 
 In this case, we want to show only the `name`, `price` and `description` fields in the insert and update form so we can remove all the other fields (creatorId, createdAt, updaterId, updatedAt and \_\_STATE\_\_). About the `_id` field, we can remove it from the insert form (using the `hiddenOnInsert` property in `formOptions` object) because it is an auto-generated field, but we can show it in the update form using the `readOnlyOnUpdate` property in `formOptions` object.
 
@@ -244,11 +244,11 @@ To export the data in the table, you need to specify the export functionality in
 
 Specify the `CRUD Service Base Path` by using the same endpoint as the CRUD connector (`/v2/products`). Next, click on the `Edit Property` under the `Data Schema` label to specify the export schema. For this example, you would want to export only the `_id`, `name`, `price`, and `description` fields, so you can reuse the schema created for the form.
 
-![Backoffice Page Composer Data Schema](img/basics_14-backoffice-page-composer-export-schema.png)
+![Microfrontend Composer Page Composer Data Schema](img/basics_14-microfrontend-composer-page-composer-export-schema.png)
 
 In this step, you'll also need to activate the `Use custom value` option to modify the schema.
 
-![Backoffice Page Composer Data Schema](img/basics_15-backoffice-page-composer-export-schema-edit.png)
+![Microfrontend Composer Page Composer Data Schema](img/basics_15-microfrontend-composer-page-composer-export-schema-edit.png)
 
 Below is the schema suitable for the Export functionality:
 
@@ -286,23 +286,23 @@ It's now time to give the page a personal touch by modifying the title and tab l
 
 Go to the `Layout` tab on the left panel and click on the `Header` button, followed by the `Title` button. On the right panel, modify the title using the input box under the `Content` label. For this guide, we'll use `Products` as the title.
 
-![Backoffice Page Composer](img/basics_16-backoffice-page-composer-title.png)
+![Microfrontend Composer Page Composer](img/basics_16-microfrontend-composer-page-composer-title.png)
 
 To update the tab label, click on the `Tabs` button located on the left panel under the `Header` button. Then, on the right panel, click `Edit Property` under the `Tabs` label. In the appearing modal, select the `Edit` option.
 
-![Backoffice Page Composer](img/basics_17-backoffice-page-composer-tab-label.png)
+![Microfrontend Composer Page Composer](img/basics_17-microfrontend-composer-page-composer-tab-label.png)
 
 Now, you can modify the tab properties. For our example, change the `Title` input to `All`.
 
-![Backoffice Page Composer](img/basics_18-backoffice-page-composer-tab-label-edit.png)
+![Microfrontend Composer Page Composer](img/basics_18-microfrontend-composer-page-composer-tab-label-edit.png)
 
-## Connect the Page with the Backoffice Menu
+## Connect the Page with the Microfrontend Composer Menu
 
 You're now ready to link the page to the menu. Go back to the `Layout` tab, click on the `Layout` button on the left, and then select `Edit Property` under the `Menu Items` label. In the modal that appears, choose `Edit` for the sole item in the list, and then modify:
 * `id` to `products`
 * `label` to `Products`
 
-![Backoffice Page Composer](img/basics_19-backoffice-page-composer-menu-item.png)
+![Microfrontend Composer Page Composer](img/basics_19-microfrontend-composer-page-composer-menu-item.png)
 
 To set the new page as the default, go to the `Settings` tab. In the left panel, click on the `URIs` button and then, in the `Default URL`, input the new page path (`./products`).
 
@@ -314,12 +314,12 @@ All the URLs in the configuration are relative to the page path. So, if you're r
 
 With all the configurations in place, save your changes and then deploy. For further details on the deploy command, consult the [Console Handbook](/getting-started/handbooks/project/usage.md).
 
-![Backoffice Page Composer](img/basics_20-backoffice-table-page-output.png)
+![Microfrontend Composer Page Composer](img/basics_20-microfrontend-composer-table-page-output.png)
 
-## Backoffice Tutorials
+## Microfrontend Composer Tutorials
 
-In this tutorial, you've learned how to set up the Backoffice and create a new Table Page using the Backoffice Page Composer.
+In this tutorial, you've learned how to set up the Microfrontend Composer and create a new Table Page using the Microfrontend Composer Page Composer.
 
 Also, make sure to check out:
-* In the [Backoffice Templates Tutorial](/getting-started/tutorials/backoffice/templates.mdx), explore how to configure various page types with the Backoffice Page Composer and an iFrame Page.
-* The [Backoffice Microfrontends Tutorial](/getting-started/tutorials/backoffice/microfrontends.mdx) provides guidance on configuring a Microfrontend using Angular or React, and its integration into the Backoffice.
+* In the [Microfrontend Composer Templates Tutorial](/getting-started/tutorials/microfrontend-composer/templates.mdx), explore how to configure various page types with the Microfrontend Composer Page Composer and an iFrame Page.
+* The [Microfrontend Composer Microfrontends Tutorial](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx) provides guidance on configuring a Microfrontend using Angular or React, and its integration into the Microfrontend Composer.

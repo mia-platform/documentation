@@ -1,0 +1,125 @@
+---
+id: microfrontends
+title: Microfrontend Composer Tutorial Microfrontends
+sidebar_label: Microfrontend Composer Tutorial Microfrontend
+---
+
+# Mia-Platform Microfrontend Composer Microfrontend Tutorial
+
+Welcome to this tutorial on the Mia-Platform Microfrontend Composer. In this module, we'll delve into how to integrate two microfrontends: one in Angular and the other in React, into your microfrontend-composer. After the integration, we'll demonstrate how to add their pages to the menu, building upon what was learned in the [Microfrontend Composer Basics Tutorial](/getting-started/tutorials/microfrontend-composer/basics.mdx).
+
+## What We Will Build
+
+In this tutorial, we will create Microfrontend Composer pages using the microfrontends:
+
+- Create a new Microfrontend Composer page using an [Angular microfrontend](#angular-microfrontend).
+- Create a new Microfrontend Composer page using a [React microfrontend](#react-microfrontend).
+
+## Prerequisites
+
+Before starting this tutorial, we need to be familiar with the concepts of the [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md) and have completed:
+* The [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
+* The [Microfrontend Composer Tutorial Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
+
+## Angular Microfrontend
+
+### Create a new Angular Microfrontend
+
+To create a new Angular microfrontend, we will use the `micro-lc Angular 14 Template` provided by the Mia-Platform Marketplace.
+
+In the `Microservice` section of the Mia-Platform Console, click on `Create a Microservice`, then select `From Marketplace` and search for `micro-lc Angular 14 Template`.
+
+![Create a new Microservice](img/microfrontends_01-search-angular-microservice.png)
+
+Install the microservice and expose it using an Endpoint.
+
+![Create a new Microservice](img/microfrontends_02-expose-angular-microservice.png)
+
+### Create a new Microfrontend Composer Page using the Angular Microfrontend
+
+To create a new Microfrontend Composer page using the Angular microfrontend, we will use the `Microfrontend Composer Configuration`. In the `Pages` section, create a new page by clicking on the `Create New Page` button.
+
+In the first wizard step, choose the `Page type`. In this case, select the `Micro-Frontend` option.
+Provide an `id` for the page. For this example, we will use `angular`, then provide a `Page rendering route`, using `./angular`.
+
+![Create a new Microfrontend Composer Page using the Angular Microfrontend](img/microfrontends_03-create-angular-page.png)
+
+In the second wizard step, provide an `HTML` entrypoint. Use `{{your_address}}/angular` (the same address created in the endpoint step) and make sure that the `Inject base` field is flagged.
+Click on the `Save` button, and you will be redirected to the Microfrontend Composer page.
+
+![Create a new Microfrontend Composer Page using the Angular Microfrontend](img/microfrontends_04-create-angular-page-advanced.png)
+
+The last step is to add the `zone.js` library to our `index.html`. Inside the Microfrontend Composer Configuration, navigate to the `Webserver Configuration` tab and click on the `Entry Point` button on the left panel.
+Add the `zone.js` library to the `head` section, after the `<title>` tag in the `index.html` file.
+
+```html
+    <script
+        nonce="**CSP_NONCE**"
+        src="https://cdn.jsdelivr.net/npm/zone.js@0.13.0/dist/zone.min.js"
+    ></script>
+```
+![Add zone.js in Microfrontend Composer Webserver Configuration](img/microfrontends_05-add-zone-js.png)
+
+### Add a new menu item to the Microfrontend Composer Menu
+
+Now we can connect the page to the menu. To do that, return to the `Layout` tab and click on the `Layout` button on the left panel.
+
+In the right panel, click on `Edit Property` under the `Menu Items` section. Then click on the `Add Item` button and provide a `Label` and a `Id` for the menu item.
+
+![Add a new menu item to the Microfrontend Composer Menu](img/microfrontends_06-add-menu-item.png)
+
+Now save the configuration and deploy. Check the [Save and Deploy](#save-and-deploy) section for more information.
+
+The output of the Angular page should look similar to the following:
+
+![Angular Microfrontend Output](img/microfrontends_07-angular-output.png)
+
+## React Microfrontend
+
+### Create a new React Microfrontend
+
+To create a new React microfrontend, we will use the `micro-lc React Template` provided by the Mia-Platform Marketplace.
+
+In the `Microservice` section of the Mia-Platform Console, click on `Create a Microservice`, then select `From Marketplace` and search for `micro-lc React Template`.
+
+![Create a new Microservice](img/microfrontends_08-search-react-microservice.png)
+
+Install the microservice and expose it using an Endpoint.
+
+![Create a new Microservice](img/microfrontends_09-expose-react-microservice.png)
+
+### Create a new Microfrontend Composer Page using the React Microfrontend
+
+Now we can create a new Microfrontend Composer page using the React microfrontend. This process is the same as with the Angular microfrontend. Use the `Microfrontend Composer Configuration`, in the `Pages` section, create a new page by clicking on the `Create New Page` button.
+
+In the first wizard step, choose the `Page type`. In this case, select the `Micro-Frontend` option.
+Provide an `id` for the page. For this example, we will use `react`, then provide a `Page rendering route`, using `./react`.
+
+![Create a new Microfrontend Composer Page using the React Microfrontend](img/microfrontends_10-create-react-page.png)
+
+In the second wizard step, provide an `HTML` entrypoint. Use `{{your_address}}/react` (the same address created in the endpoint step) and make sure that the `Inject base` field is flagged.
+Click on the `Save` button and you will be redirected to the Microfrontend Composer page.
+
+![Create a new Microfrontend Composer Page using the React Microfrontend](img/microfrontends_11-create-react-page-advanced.png)
+
+### Add a new menu item to the Microfrontend Composer Menu
+
+Now we can connect the page to the menu. To do that, return to the `Layout` tab and click on the `Layout` button on the left panel.
+
+In the right panel, click on `Edit Property` under the `Menu Items` section. Then click on the `Add Item` button and provide a `Label` and a `Id` for the menu item.
+
+![Add a new menu item to the Microfrontend Composer Menu](img/microfrontends_12-add-menu-item.png)
+
+Now save the configuration and deploy. Check the [Save and Deploy](#save-and-deploy) section for more information.
+
+The output of the React page should look similar to the following:
+
+![React Microfrontend Output](img/microfrontends_13-react-output.png)
+
+## Microfrontend Composer Tutorials
+
+In this tutorial, we learned how to create new Microfrontend Composer Pages using Microfrontends.
+
+Also, make sure to check out:
+* The [Microfrontend Composer Templates Tutorial](/getting-started/tutorials/microfrontend-composer/templates.mdx) where we explain how to configure other types of pages using the Microfrontend Composer Page Composer and an iFrame Page.
+* The [Microfrontend Composer Basics Tutorial ](/getting-started/tutorials/microfrontend-composer/basics.mdx) where we demonstrate how to create a new Microfrontend Composer and how to create a new Microfrontend Composer Page using the Microfrontend Composer Table Template.
