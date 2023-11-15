@@ -4,7 +4,8 @@ title: Architecture migration
 sidebar_label: Architecture migration
 ---
 
-As you know, the current architecture of the Fast Data is composed of two main services, the [Real-Time Updater](/fast_data/realtime_updater.md) and the [Single View Creator](/fast_data/single_view_creator.md). We are introducing two new additions to our core services, the [Projection Storer](/fast_data/realtime_updater.md) and the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) used on what we called the [event-driven architecture](/fast_data/architecture.md#event-driven-architecture) of the Fast Data.
+The [standard architecture](/fast_data/architecture.md#standard-architecture) of the Fast Data is composed of two main services, the [Real-Time Updater](/fast_data/realtime_updater.md) and the [Single View Creator](/fast_data/single_view_creator.md). 
+The new [event-driven architecture](/fast_data/architecture.md#event-driven-architecture) instead is composed by two new additions that replace the Real-Time Updater: the [Projection Storer](/fast_data/realtime_updater.md) and the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md).
 
 ## What's the purpose of the Projection Storer?
 
