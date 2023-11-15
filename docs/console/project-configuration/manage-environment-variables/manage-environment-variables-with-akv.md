@@ -10,7 +10,7 @@ sidebar_label: Manage Environment Variables with Azure Key Vault
 The current version of the Console can only acquire key-value pairs (aka secrets) from Key Vault.
 :::
 
-You can directly manage the secrets stored in Key Vault using the web interface of your Key Vault instance. The exclusive role of Console is to retrieve these secrets during deployment and subsequently supply them to your runtime environment in the format of Kubernetes Secrets.
+You can directly manage the secrets stored in Key Vault using the web interface of your Key Vault instance. The exclusive role of the Console is to retrieve the secrets keys from Key Vault and then create the respective Kubernetes configuration files to enable the external secrets operator to deploy the respective Kubernetes Secrets on the cluster.
 
 To correctly configure a Key Vault in your project follow these steps:
 
