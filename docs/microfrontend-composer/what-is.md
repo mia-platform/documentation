@@ -1,6 +1,6 @@
 ---
 id: what-is
-title:  What is Mia-Platform Microfrontend Composer
+title: What is Mia-Platform Microfrontend Composer
 sidebar_label: What is Microfrontend Composer
 ---
 
@@ -8,7 +8,7 @@ Mia-Platform Microfrontend Composer is an innovative solution that goes beyond t
 
 This tool is an evolution of Mia-Platform's previous CMS, offering advanced capabilities to craft content management systems (CMS) and bespoke user interfaces. Users have the freedom to compose pages using components from the back-kit library or integrate their own components.
 
-With an intuitive graphical interface, Mia-Platform's "???" section allows everyone, from experts to beginners, to configure microfrontends in a no-code manner. This simplifies and speeds up application development and ensures the creation of engaging, user-friendly interfaces.
+With an intuitive graphical interface, Mia-Platform's Microfrontend Composer section allows everyone, from experts to beginners, to configure microfrontends in a no-code manner. This simplifies and speeds up application development and ensures the creation of engaging, user-friendly interfaces.
 
 ## Why You Need Mia-Platform Microfrontend Composer
 
@@ -28,7 +28,7 @@ Whether you're designing a traditional backoffice application or exploring new f
 
 - **Component Customization**: The back-kit library offers a wide array of components, such as tables, forms, buttons, image previews, and calendars. While these components cover most needs, you can also extend them or integrate your custom components.
 
-- **Simplified Configuration**: Thanks to the "???" interface, users can easily configure backoffice instances in a no-code fashion. Using page templates, complex pages can be created in a few clicks, combining tables, data insertion buttons, search filters, and navigation buttons.
+- **Simplified Configuration**: Thanks to the Microfrontend Composer interface, users can easily configure backoffice instances or internal apps in a no-code fashion. Using page templates, complex pages can be created in a few clicks, combining tables, data insertion buttons, search filters, and navigation buttons.
 
 ## How Mia-Platform Microfrontend Composer Can Impact Your Business
 

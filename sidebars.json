@@ -62,6 +62,21 @@
               "type": "doc"
             },
             {
+              "collapsed": true,
+              "type": "category",
+              "label": "Extension Providers",
+              "link": {
+                "id": "console/company-configuration/providers/extension-providers",
+                "type": "doc"
+              },
+              "items": [
+                {
+                  "id": "console/company-configuration/providers/extensions/orchestrator-generator",
+                  "type": "doc"
+                }
+              ]
+            },
+            {
               "id": "console/company-configuration/providers/api-reference",
               "type": "doc"
             }
@@ -268,6 +283,10 @@
         },
         {
           "id": "development_suite/api-console/api-design/endpoints",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/api-console/api-design/listeners",
           "type": "doc"
         },
         {
@@ -718,6 +737,10 @@
       "type": "doc"
     },
     {
+      "id": "fast_data/projection_storer",
+      "type": "doc"
+    },
+    {
       "id": "fast_data/single_view_creator",
       "type": "doc"
     },
@@ -757,6 +780,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/configuration/import_export",
+          "type": "doc"
+        },
+        {
           "type": "category",
           "label": "Config Maps",
           "collapsed": false,
@@ -782,6 +809,10 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "id": "fast_data/configuration/projection_storer_config",
+          "type": "doc"
         },
         {
           "id": "fast_data/configuration/realtime_updater",
@@ -938,6 +969,10 @@
         },
         {
           "id": "fast_data/faq/bootstrapping-fast-data",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/import_export_faq",
           "type": "doc"
         }
       ],
@@ -1291,6 +1326,10 @@
         {
           "id": "self_hosted/synchronize-users",
           "type": "doc"
+        },
+        {
+          "id": "self_hosted/feature-toggle",
+          "type": "doc"
         }
       ]
     },
@@ -1487,7 +1526,7 @@
   ],
   "releaseNotes": [
     {
-      "id": "release-notes/v11-overview",
+      "id": "release-notes/v12-overview",
       "type": "doc"
     },
     {
@@ -1500,103 +1539,7 @@
       },
       "items": [
         {
-          "id": "release-notes/v11.7.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.7.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.6.3",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.6.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.6.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.6.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.6",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.5",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.4",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.3",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.5.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.4.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.4.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.4.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.3.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.2.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.2.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.1.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.1.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.1.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.0.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.0.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.0.0",
+          "id": "release-notes/v12.0.0",
           "type": "doc"
         }
       ]
