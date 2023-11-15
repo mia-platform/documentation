@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  background: linear-gradient(110deg, #002F5A 7.97%, #1F7E56 94.36%);
-  border-radius: 8px;
+  background: linear-gradient(90deg, #6BCBA3 0%, #5FB1FF 100.77%);
+  border-radius: 4px;
   margin: calc(var(--ifm-global-spacing) / 2) !important;
   padding-right: 0px !important;
   max-width:  calc(var(--ifm-col-width) - var(--ifm-global-spacing)) !important;
