@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "11.6.1",
+  "version": "11.7.1",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -20,16 +20,16 @@
     "build-subtitle": "node ./scripts/parse-subtitle.js"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.1",
-    "@docusaurus/plugin-client-redirects": "2.4.1",
-    "@docusaurus/preset-classic": "2.4.1",
+    "@docusaurus/core": "2.4.3",
+    "@docusaurus/plugin-client-redirects": "2.4.3",
+    "@docusaurus/preset-classic": "2.4.3",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.0.0",
-    "cspell": "^7.3.5",
+    "cspell": "^7.3.8",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
-    "mermaid": "^10.4.0",
+    "mermaid": "^10.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-youtube": "^10.1.0",
@@ -49,8 +49,8 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.22.15",
-    "@swc/core": "^1.3.84",
-    "eslint": "^8.49.0",
+    "@swc/core": "^1.3.96",
+    "eslint": "^8.52.0",
     "eslint-plugin-react": "7.33.2",
     "prop-types": "^15.8.1"
   },

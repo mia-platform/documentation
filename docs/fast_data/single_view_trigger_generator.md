@@ -4,18 +4,17 @@ title: Single View Trigger Generator
 sidebar_label: Single View Trigger Generator
 ---
 
-:::caution
-This Plugin is a BETA Plugin and, as such, is currently under active development. Pay attention using it.
-:::
-
-The Single View Trigger Generator is a new component of the Fast Data architecture. Its introduction allows splitting the import phase
-from [strategies](/fast_data/the_basics.md#strategies) execution, which are currently handled both by the [Real Time Updater](/fast_data/realtime_updater.md).
+The Single View Trigger Generator (SVTG) is another component of the Fast Data architecture that can be employed in the [Event-Driven](/fast_data/architecture.md#event-driven-architecture) architectures.
+Its introduction allows splitting the data import phase (ingesting data from topics) from [strategies](/fast_data/the_basics.md#strategies) execution,
+which in the [Standard](/fast_data/architecture.md#standard-architecture) architecture are both handled by the [Real-Time Updater](/fast_data/realtime_updater.md).
 
 Here below a diagram showing how the Single View Trigger Generator service integrates with Fast Data flow is provided:
 
-![Fast data lifecycle with Single View Trigger Generator](img/svtg-fd-arch.svg)
+![Fast data lifecycle with Single View Trigger Generator](img/fastdata-architecture-alternative-event-driven.svg)
 
-In this particular Fast Data configuration, Real-Time Updater is set to not execute strategies, but to rather emit a [Projection Update event](/fast_data/inputs_and_outputs.md#projection-update-message) (`pr-update`) for each modified projection.  
+In this particular Fast Data configuration, Real-Time Updater is set to not execute strategies, but to rather emit a [Projection Update event](/fast_data/inputs_and_outputs.md#projection-update-message) (`pr-update`) for each modified projection.
+Similarly, a [Projection Storer](/fast_data/projection_storer.md) service can be configured instead of a Real-Time Updater one to ingest change events and emit Projection Update events.
+
 The Single View Trigger Generator reacts to these events executing the corresponding strategy. The strategy produces one or more identifiers of the Single View that needs to be updated.
 This information is then passed over to the downstream component through [Single View Trigger events](/fast_data/inputs_and_outputs.md#single-view-trigger-message) (`sv-trigger`) or [Projection changes](/fast_data/inputs_and_outputs.md#projection-changes) (`pc`).  
 Eventually, the [Single View Creator](/fast_data/single_view_creator.md) consumes these events triggering the corresponding logic for aggregating the interested Single View.
@@ -52,7 +51,7 @@ In case the topic does not already exist, we recommend adopting our [naming conv
 
 ### Single View Trigger vs Projection Changes
 
-From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real Time Updater](/fast_data/configuration/realtime_updater.md#projection-changes).
+From version `3.0.0` the Single View Trigger Generator can also produce Projection Changes (`pc`) on MongoDB, just like the [Real-Time Updater](/fast_data/configuration/realtime_updater.md#projection-changes).
 
 `sv-trigger` messages are sent and consumed on Event Streaming Platforms making the full cycle of Fast Data completely event driven. This offers a greater separation of concers since it means that business data like Projections and Single Views will be on your DB, while all the events that make Fast Data work will be on your Event Streaming Platform.
 

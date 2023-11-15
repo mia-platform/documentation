@@ -59,7 +59,7 @@ Triggers a 'change password' event in the authentication service.
 In case of Auth0, a change password email will be sent to the user.
 
 :::note
-Since this endpoint is exposed as a `POST`, it can be used as an 'action' in the [Mia-Backoffice](../../business_suite/backoffice/overview).
+Since this endpoint is exposed as a `POST`, it can be used as an 'action' in the [Mia-Backoffice](../../microfrontend-composer/overview.md).
 :::
 
 #### Body

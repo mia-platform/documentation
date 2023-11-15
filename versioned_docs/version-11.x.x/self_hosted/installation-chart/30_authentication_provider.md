@@ -1,0 +1,112 @@
+---
+id: authentication_provider
+title: Authentication Provider
+sidebar_label: Authentication Provider
+---
+In order to authenticate users Mia-Platform Console requires a connection to an Identity Provider that is in charge of authenticate users.
+
+## Supported Authentication Providers
+
+Any `OAuth2` compliant Identity Provider is supported, however Mia-Platform Console provides specific integrations with most IDPs, here is a comprehensive list, each provider identified by an id that can be used during configuration:
+
+  * Okta (`okta`)
+  * Keycloak (`keycloak`)
+  * GitLab (`gitlab`)
+  * GitHub (`github`)
+  * Microsoft (`microsoft`)
+  * Bitbucket (`bitbucket`)
+
+
+:::info
+For provider not listed here, you can use the `generic` authentication provider to configure your own.
+:::
+
+## Configure your Authentication Provider
+
+To connect Mia-Platform Console with your Authentication Provider you have to setup the `authProviders` configuration.
+
+:::warning
+Please bear in mind that the `authProviders` field is a required field, you can't install Mia-Platform Console without configuring at least one Authentication Provider.
+:::
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `name` | string | A unique name for the provider |  | ❌ |
+| `type` | string | The type of provider, one of `okta`, `gitlab`, `github`, `microsoft`, `bitbucket`, `keycloak`, `generic` |  | ❌ |
+| `baseUrl` | string | The url of the git provider |  | ❌ |
+| `apiBaseUrl` | string | The url of the git provider API andpoint | value of `baseUrl` | ✅ |
+| `label` | string | The label to be shown to the final user |  | ❌ |
+| `clientId` | string | The client Id for authentication |  | ❌ |
+| `clientSecret` | string | The client secret for authentication |  | ❌ |
+| `authPath` | string | The path for the authentication API |  | ✅ |
+| `authUrl` | string | The full url for the authentication API | value of `apiBaseUrl/authPath` | ✅ |
+| `tokenPath` | string | The path for retrieving the user token  |  | ✅ |
+| `tokenUrl` | string | The full url for retrieving the user token | value of `apiBaseUrl/tokenPath` | ✅ |
+| `userInfoPath` | string | The path for retrieving the user data |  | ✅ |
+| `userInfoUrl` | string | The full url for retrieving the user data | value of `apiBaseUrl/userInfoPath` | ✅ |
+| `userSettingsURL` | string | The full url to the API endpoint for requesting the user data | empty string | ✅ |
+| `skipRefreshProviderTokenOnMiaTokenRefresh`| boolean | Skip refresh the provider token when the console one is expired | `true` | ✅ |
+| `cmsClientId` | string | The client Id for CMS authentication | value of `clientId` | ✅ |
+| `cmsClientSecret` | string | The client secret for CMS authentication | value of `clientSecret` | ✅ |
+| `additionalScopes` | string[] | The additional scope for the provider | [] | ✅ |
+| `genericProviderOidcKeys` | object | The keys that must be extracted from the provider response, only available for `generic` auth provider type |  | ✅ |
+
+## Logout flow
+
+You can configure the Console to logout the user from the Identity Provider when the user logs out from the Console itself. In oder to do so, you have to set one of the following properties:
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `logoutUrl` | string | The full URL to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list  | empty string | ✅ |
+| `logoutUrlPath` | string | The path to append to the API endpoint to perform a logout from an OIDC compliant provider. If you are configuring a `generic` provider, make also sure to add `openid` to the `additionalScopes` list | empty string | ✅ |
+
+In case you set the `logoutUrlPath`, it will be appended to the Identity Provider base URL.
+
+:::info
+
+Please note that you may need to allow the redirect URL to the homepage of the Console and to the homepage of the CMS login site inside the Identity Provider configuration.
+
+The urls are the following:
+- `<CONSOLE-BASE-URL>/`
+- `<CONSOLE-CMS-BASE-URL>/web-login`
+
+Consult the documentation of your Identity Provider to know how to configure the redirect URLs.
+
+:::
+
+## Session signing
+
+Even though the authentication is resolved by a third party, the sessions provided by Mia-Platform Console to its users are signed by the console itself, to be able to properly sign the Console requires a few additional configurations:
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+|`jwtTokenSignKey`| string | A JWT signing key, `HMAC` of 512 bytes, used by the Mia-Platform console to generate the authentication JWT for the user login |  | ❌ |
+|`tokenPassphrase`| string | An `HMAC` string of 128 bytes for authentication purpose, used to encrypt the JWT generated by the Mia-Platform console |  | ❌ |
+
+:::info
+If you are in doubt on how to generate such values, you can use the `openssl rand` command, for instance use `openssl rand -hex 512` for the `jwtTokenSignKey` and `openssl rand -hex 128` for the `tokenPassphrase`.
+:::
+
+## Expose synchronization webhooks
+
+If you want to control user creation and deletion from an external Identity Provider you can use the `enableUserSynchronizationWebhooks` configuration flag
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+|`enableUserSynchronizationWebhooks`| boolean | Activates webhooks for automatic user synchronization with external Identity providers |  | ✅ |
+
+To know more about user synchronization with an Identity Provider, visit the [dedicated documentation page](../../self_hosted/synchronize-users).
+
+## Additional Authentication Clients
+
+:::warning
+This feature is **deprecated** and will be removed with v10 of the Mia-Platform Console Installation Chart!
+:::
+
+With the `additionalAuthenticationClients` you can set up more providers by defining a list of object with the following properties:
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `app` | string | A unique name for the app |  | ❌ |
+| `isWebsiteApp` | boolean | Handle the website session or returns a jwt token in header |  | ❌ |
+| `providers` | [array](#auth-providers) | The providers configuration for authentication |  | ❌ |

@@ -20,7 +20,7 @@ In particular, you need to have already set up your Console and configured these
   To create a company, please refer to the [create company guide](/development_suite/company/create.md).
 
 - **Git Provider**: the Git Provider is the resource that will be used by the Console to correctly retrieve the third-party service configurations needed by your projects.
-  You can create a Git Provider for your company by following the procedure described [here](/development_suite/set-up-infrastructure/configure-provider.mdx).
+  You can create a Git Provider for your company by following the procedure described [here](/console/company-configuration/providers/configure-provider.mdx).
 
 - **Template**: a template is a repository with pre-filled configurations. Each company can have one or more templates.
   The template allows you to pre-fill resources in your Project and start similar projects with the same configurations.
@@ -43,6 +43,7 @@ The Project creation process is divided into three phases:
    * **Company** (_required_): the company that you want to create your Project into, selected from a list of pre-configured companies. As mentioned before, selecting a specific company allows you to keep the same configuration for different projects;
    * **Project name** (_required_): the name of your Project. It will be shown in the Project card in the Home section of the Console;
    * **Description**: the description of your Project. It will be shown in the Project card in the Home section of the Console.
+   * **Project workflow**: you can specify whether to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) or keep using the standard one.
 
 <br/>
 
@@ -50,7 +51,7 @@ The Project creation process is divided into three phases:
 
   ![create-project-2](./img/create-project-2.png)
 
-   * **Git provider**: one of the supported Git Provider types. Check out the complete list of [supported providers](/development_suite/set-up-infrastructure/configure-provider.mdx);
+   * **Git provider**: one of the supported Git Provider types. Check out the complete list of [supported providers](/console/company-configuration/providers/overview.md);
 
     :::caution
     At least one Git Provider must be configured at the company level in order to create the Project.
@@ -135,6 +136,9 @@ The Project creation process is divided into three phases:
       - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
 
    * **Template** (_required_): the template used by your Project, selected from a list of pre-configured templates. It adds pre-filled configurations to your Project.
+
+   * **CI/CD Tool**: one of the CI/CD providers [configured for the specified Company](/console/company-configuration/providers/configure-provider.mdx).
+    ![create-project-2-ci-cd](./img/create-project-2-ci-cd-provider.png)
 
 <br/>
 
