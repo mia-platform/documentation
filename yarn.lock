@@ -7553,6 +7553,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"front-matter@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "front-matter@npm:4.0.2"
+  dependencies:
+    js-yaml: ^3.13.1
+  checksum: a5b4c36d75a820301ebf31db0f677332d189c4561903ab6853eaa0504b43634f98557dbf87752e09043dbd2c9dcc14b4bcf9151cb319c8ad7e26edb203c0cd23
+  languageName: node
+  linkType: hard
+
 "fs-extra@npm:^10.0.0, fs-extra@npm:^10.1.0":
   version: 10.1.0
   resolution: "fs-extra@npm:10.1.0"
@@ -9800,6 +9809,7 @@ __metadata:
     cspell: ^7.3.8
     eslint: ^8.52.0
     eslint-plugin-react: 7.33.2
+    front-matter: ^4.0.2
     klaw: ^4.1.0
     mdx-mermaid: ^v1.3.2
     medium-zoom: ^1.0.8
