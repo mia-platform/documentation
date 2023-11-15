@@ -17,7 +17,8 @@
     "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
     "check-redirects": "node ./scripts/check-permanent-redirects.js",
-    "build-subtitle": "node ./scripts/parse-subtitle.js"
+    "build-subtitle": "node ./scripts/parse-subtitle.js",
+    "generate-last-edited": "node scripts/last-pages-edited.js "
   },
   "dependencies": {
     "@docusaurus/core": "2.4.3",

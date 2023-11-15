@@ -1,5 +1,17 @@
 [
   {
+    "title": "The Real-Time Updater violates unique keys",
+    "url": "/fast_data/troubleshooting/rtu_violates_unique_keys"
+  },
+  {
+    "title": "Real-Time Updater Configuration",
+    "url": "/fast_data/configuration/realtime_updater"
+  },
+  {
+    "title": "Usage",
+    "url": "/runtime_suite/files-service/usage"
+  },
+  {
     "title": "Endpoints",
     "url": "/getting-started/handbooks/console/endpoints"
   },
@@ -282,10 +294,6 @@
   {
     "title": "Single Views Configuration",
     "url": "/fast_data/configuration/single_views"
-  },
-  {
-    "title": "Real-Time Updater Configuration",
-    "url": "/fast_data/configuration/realtime_updater"
   },
   {
     "title": "Projections Configuration",
@@ -1038,10 +1046,6 @@
   {
     "title": "Braintree",
     "url": "/runtime_suite/payment-gateway-manager/braintree"
-  },
-  {
-    "title": "Usage",
-    "url": "/runtime_suite/files-service/usage"
   },
   {
     "title": "CRUD Service",
