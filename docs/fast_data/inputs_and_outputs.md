@@ -1196,12 +1196,12 @@ Example:
 {
   "_id": "64426177a879bbfec4eaed0f",
   "portfolioOrigin": "food-delivery",
-  "svType": "sv_customers",
+  "type": "sv_customers",
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "type": "NO_SV_GENERATED",
-  "message": "Unexpected error: No Single View record generated",
+  "errorType": "NO_SV_GENERATED",
+  "errorMessage": "Unexpected error: No Single View record generated",
   "createdAt": "2022-05-20T10:25:35.656Z",
   "updatedAt": "2022-05-20T10:25:35.656Z",
   "resolutionMethod": "AGGREGATION"
