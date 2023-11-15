@@ -14,7 +14,7 @@ This feature is supported from version vX.Y.Z upward
 The current version of the Console can only acquire key-value pairs (aka secrets) from Key Vault.
 :::
 
-You can directly manage the secrets stored in Key Vault using the web interface of your Key Vault instance. The Console's exclusive role is to retrieve these secrets during deployment and subsequently supply them to your runtime environment in the format of Kubernetes Secrets.
+You can directly manage the secrets stored in Key Vault using the web interface of your Key Vault instance. The exclusive role of Console is to retrieve these secrets during deployment and subsequently supply them to your runtime environment in the format of Kubernetes Secrets.
 
 <!-- The management of the secrets stored in Key Vault is done directly from the web interface of your Key Vault instance, the Console is responsible for solely fetching the secrets at deploy time and providing them to your runtime environment in the form of Kubernetes Secrets. -->
 
