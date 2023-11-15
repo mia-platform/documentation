@@ -76,6 +76,7 @@ Libraries already included as dependencies:
 * fs
 * split2
 * mississippi
+* nanoid
 
 :::warning
 Warning! You have to create the function file from the Console, not from the project repository.
