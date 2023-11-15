@@ -41,13 +41,17 @@ The following table shows the providers currently supported by the Console, grou
          <td>bitbucket</td>
       </tr>
       <tr>
-         <td rowspan="2"><strong>Secret Manager</strong></td>
+         <td rowspan="3"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
          <td>gitlab</td>
       </tr>
       <tr>
          <td><img src="/img/vault.png" width="15" height="15"/> Vault</td>
          <td>vault</td>
+      </tr>
+      <tr>
+         <td><img src="/img/vault.png" width="15" height="15"/> Azure Key Vault</td>
+         <td>azure-key-vault</td>
       </tr>
       <tr>
          <td rowspan="4"><strong>CI/CD Tool</strong></td>
