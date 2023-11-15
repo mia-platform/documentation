@@ -140,6 +140,25 @@ For credentials of the type "OAuth2":
 - **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server.
 
 </TabItem>
+<TabItem value="client-credentials" label="Client credentials">
+
+For credentials of the type "Client credentials":
+
+- **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
+- **Client ID** (*required*): public client identifier;
+- **Client secret** (*required*): the shared secret, known only to the client and the authorization server.
+- **Scope**: an optional scope to restrict the generated token permissions
+
+</TabItem>
+<TabItem value="client-credentials-certificate" label="Client credentials certificate">
+
+For credentials of the type "Client credentials certificate":
+- **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
+- **Client ID** (*required*): public client identifier;
+- **Private key** (*required*): the PEM-encoded private key whose certificate has been registered against the authorization service;
+- **Scope**: an optional scope to restrict the generated token permissions
+
+</TabItem>
 </Tabs>
 
 :::info
@@ -155,11 +174,13 @@ Credentials entered at this stage, for security reasons, will never again be sho
 
 Depending on the provider selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each provider:
 
-| Credentials Type  | Providers                                                             |
-| ----------------- |:---------------------------------------------------------------------:|
-| Token             | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins               |
-| M2M               | Vault                                                                 |
-| OAuth2            | Jenkins                                                               |
+| Credentials Type               | Providers                                                                |
+| ------------------------------ |:------------------------------------------------------------------------:|
+| Token                          | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins, Azure Key Vault |
+| M2M                            | Vault                                                                    |
+| OAuth2                         | Jenkins                                                                  |
+| Client Credentials             | Azure Key Vault                                                          |
+| Client Credentials Certificate | Azure Key Vault                                                          |
 
 :::caution Assign the right scope to your credentials
 Make sure, when generating credentials on the respective provider sites, to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
