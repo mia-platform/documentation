@@ -45,6 +45,7 @@ Available flags for the command:
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
+- `--environment`, to set the environment scope for the command
 
 ### use
 
@@ -222,7 +223,7 @@ environment associated to a given Project.
 Usage:
 
 ```sh
-miactl runtime list RESOURCE-TYPE ENVIRONMENT [flags]
+miactl runtime list RESOURCE-TYPE [flags]
 ```
 
 Available flags for the command:
@@ -233,6 +234,7 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
+- `--environment`, to set the environment scope for the command
 
 ### events
 
@@ -242,7 +244,7 @@ given environment.
 Usage:
 
 ```sh
-miactl runtime events ENVIRONMENT RESOURCE-NAME [flags]
+miactl runtime events RESOURCE-NAME [flags]
 ```
 
 Available flags for the command:
@@ -253,6 +255,7 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
+- `--environment`, to set the environment scope for the command
 
 ### create job
 
@@ -261,7 +264,7 @@ The `runtime create job` subcommand allows you to manually create a job from a c
 Usage:
 
 ```sh
-miactl runtime create job ENVIRONMENT [flags]
+miactl runtime create job [flags]
 ```
 
 Available flags for the command:
@@ -273,6 +276,28 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
+- `--environment`, to set the scope for the command
+
+### logs
+
+The `runtime logs` subcommand allows you to fetch or stream logs for a given regex of services
+
+Usage:
+
+```sh
+miactl runtime logs  POD-QUERY [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--environment`, to set the environment scope for the command
+- `--follow`, to keep open the stream and see the logs live as they will be produced
 
 ## marketplace
 
