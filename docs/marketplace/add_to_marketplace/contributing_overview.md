@@ -244,6 +244,7 @@ Therefore an application will include a **resources** field with the following s
   "endpoints": {},
   "collections": {},
   "unsecretedVariables": {},
+  "listeners": {},
 }
 ```
 
@@ -356,6 +357,17 @@ Here below are listed all the properties that must be provided for each public v
 
 - **productionEnv**: value to be used in production environments
 - **noProductionEnv**: value to be used in no production environments
+
+#### Configure Listeners
+
+The **listeners** field of an application is an Object where the object `key` is the name of the listener and the value is an object made of the following properties:
+
+- **name**: the name of the listener (same as the `key` of the Object)
+- **port**: the port that listener will be listening to
+- **description**: optional description for the listener
+- **selectedByDefault**: whether new Endpoints should be exposed on this listener or not
+- **ownedBy**: an Object made of the `componentIds` array. This array includes component ids of services that supports listeners and created by the same application template 
+
 
 ## Best Practices!
 
@@ -714,6 +726,375 @@ For more information regarding release stages, take a look at the [components li
       "COMPONENTS_VERSION": {
         "productionEnv": "0.10.4",
         "noProductionEnv": "latest"
+      }
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+
+<details><summary>Example Application with Envoy and Listeners</summary>
+<p>
+
+```json
+{
+  "name": "API Documentation Aggregator",
+  "description": "This application groups the plugins API Portal and Swagger Aggregator in order to aggregate the individual Open APIs of all the microservices and show them through a graphical interface.",
+  "type": "application",
+  "categoryId": "devportal",
+  "supportedBy": "Mia-Platform",
+  "image": [
+    {
+      "_id": "5db0105743875a0011618815",
+      "name": "Dev Portal.png",
+      "file": "image.png",
+      "size": 1532,
+      "location": "/path/to/your/image.png",
+      "sync": 0,
+      "trash": 0
+    }
+  ],
+  "supportedByImage": [
+    {
+      "_id": "5db0106143875a0011618816",
+      "name": "MiaPlatform.png",
+      "file": "imageSupport.png",
+      "size": 139694,
+      "location": "/path/to/your/imageSupport.png",
+      "sync": 0,
+      "trash": 0
+    }
+  ],
+  "services": {
+    "api-portal": {
+      "defaultEnvironmentVariables": [
+        {
+          "name": "HTTP_PORT",
+          "value": "8080"
+        }
+      ],
+      "defaultLogParser": "mia-nginx",
+      "defaultDocumentationPath": "",
+      "description": "Use Mia-Platform core API Portal to expose the swagger documentation of your development services in one unique place.",
+      "dockerImage": "nexus.mia-platform.eu/api-portal/website:1.16.6",
+      "name": "api-portal",
+      "repositoryUrl": "https://git.tools.mia-platform.eu/platform/api-portal/website",
+      "type": "plugin",
+      "componentId": "api-portal",
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80,
+          "to": 8080,
+          "protocol": "TCP"
+        }
+      ]
+    },
+    "swagger-aggregator": {
+      "name": "swagger-aggregator",
+      "dockerImage": "nexus.mia-platform.eu/core/swagger-aggregator:3.5.1",
+      "defaultEnvironmentVariables": [
+        {
+          "name": "HTTP_PORT",
+          "value": "3000"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "value": "{{LOG_LEVEL}}"
+        },
+        {
+          "name": "TRUSTED_PROXIES",
+          "value": "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+        },
+        {
+          "name": "CONFIG_FILE_PATH",
+          "value": "/home/node/app/configs/config.json"
+        }
+      ],
+      "type": "plugin",
+      "description": "Use Mia-Platform core Swagger Aggregator to aggregate the individual swaggers of all the microservices indicated in the configuration file.",
+      "componentId": "swagger-aggregator",
+      "defaultDocumentationPath": "",
+      "repositoryUrl": "https://git.tools.mia-platform.eu/platform/core/swagger-aggregator",
+      "mapEnvVarToMountPath": {
+        "swagger-aggregator-config": {
+          "type": "file",
+          "envName": "CONFIG_FILE_PATH"
+        }
+      },
+      "defaultConfigMaps": [
+        {
+          "name": "swagger-aggregator-config",
+          "mountPath": "/home/node/app/configs",
+          "files": [],
+          "viewAsReadOnly": true
+        }
+      ],
+      "containerPorts": [
+        {
+          "name": "http",
+          "from": 80,
+          "to": 3000,
+          "protocol": "TCP"
+        }
+      ]
+    },
+    "api-gateway": {
+      "name": "api-gateway",
+      "type": "plugin",
+      "description": "Envoy API Gateway to route requests to the correct service and verify the need of authentication",
+      "image": "api-gateway-envoy-plugin.png",
+      "dockerImage": "envoyproxy/envoy:v1.26.2",
+      "componentId": "api-gateway-envoy",
+      "documentation": {
+        "type": "externalLink",
+        "url": "https://docs.mia-platform.eu/docs/runtime_suite/envoy-api-gateway/overview"
+      },
+      "defaultDocumentationPath": "",
+      "publishOnMiaDocumentation": false,
+      "defaultArgs": [
+        "-c",
+        "/etc/envoy/envoy.json",
+        "-l",
+        "{{LOG_LEVEL}}",
+        "--log-format",
+        "{\"level\":\"%l\",\"time\":\"%Y-%m-%dT%T.%fZ\",\"scope\":\"%n\",\"message\":\"%j\"}",
+        "--drain-time-s",
+        "50"
+      ],
+      "defaultLogParser": "mia-json",
+      "defaultEnvironmentVariables": [],
+      "defaultResources": {
+        "memoryLimits": {
+          "max": "250Mi",
+          "min": "150Mi"
+        },
+        "cpuLimits": {
+          "min": "150m",
+          "max": "200m"
+        }
+      },
+      "defaultProbes": {
+        "liveness": {
+          "port": "frontend",
+          "path": "/healthz",
+          "initialDelaySeconds": 15,
+          "periodSeconds": 20
+        },
+        "readiness": {
+          "port": "frontend",
+          "path": "/healthz",
+          "initialDelaySeconds": 5,
+          "periodSeconds": 10
+        }
+      },
+      "containerPorts": [
+        {
+          "name": "frontend",
+          "from": 8080,
+          "to": 8080
+        },
+        {
+          "name": "backoffice",
+          "from": 8081,
+          "to": 8081
+        },
+        {
+          "name": "admin",
+          "from": 9901,
+          "to": 9901
+        }
+      ],
+      "execPreStop": [
+        "bash",
+        "-c",
+        "echo -e 'POST /drain_listeners?graceful HTTP/1.1\r\nHost: localhost:9901\r\n\r' > /dev/tcp/localhost/9901 && sleep 55s"
+      ],
+      "defaultTerminationGracePeriodSeconds": 60,
+      "defaultConfigMaps": [
+        {
+          "name": "api-gateway-envoy-config",
+          "mountPath": "/etc/envoy",
+          "files": [],
+          "viewAsReadOnly": true,
+          "link": {
+            "targetSection": "endpoints"
+          }
+        }
+      ]
+    }
+  },
+  "endpoints": {
+    "/documentations/api-portal": {
+      "allowUnknownRequestContentType": true,
+      "allowUnknownResponseContentType": true,
+      "defaultBasePath": "/documentations/api-portal",
+      "defaultPathRewrite": "/",
+      "description": "",
+      "forceMicroserviceGatewayProxy": false,
+      "public": true,
+      "routes": {
+        "GET/": {
+          "acl": {
+            "inherited": false,
+            "value": "true"
+          },
+          "allowUnknownRequestContentType": {
+            "inherited": true
+          },
+          "allowUnknownResponseContentType": {
+            "inherited": true
+          },
+          "backofficeAcl": {
+            "inherited": true
+          },
+          "id": "GET/",
+          "path": "/",
+          "postDecorators": [],
+          "preDecorators": [],
+          "public": {
+            "inherited": false,
+            "value": true
+          },
+          "secreted": {
+            "inherited": true
+          },
+          "showInDocumentation": {
+            "inherited": true
+          },
+          "verb": "GET"
+        },
+        "GET/api/swagger/": {
+          "acl": {
+            "inherited": false,
+            "value": "true"
+          },
+          "allowUnknownRequestContentType": {
+            "inherited": true
+          },
+          "allowUnknownResponseContentType": {
+            "inherited": true
+          },
+          "backofficeAcl": {
+            "inherited": true
+          },
+          "id": "GET/api/swagger/",
+          "path": "/api/swagger/",
+          "postDecorators": [],
+          "preDecorators": [],
+          "public": {
+            "inherited": true
+          },
+          "secreted": {
+            "inherited": true
+          },
+          "showInDocumentation": {
+            "inherited": true
+          },
+          "verb": "GET"
+        }
+      },
+      "secreted": false,
+      "service": "api-portal",
+      "showInDocumentation": true,
+      "tags": [
+        "api-docs"
+      ],
+      "type": "custom"
+    },
+    "/documentations/api-portal/api": {
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "defaultBasePath": "/documentations/api-portal/api",
+      "defaultPathRewrite": "/",
+      "description": "",
+      "forceMicroserviceGatewayProxy": false,
+      "public": true,
+      "secreted": false,
+      "service": "swagger-aggregator",
+      "showInDocumentation": true,
+      "tags": [
+        "api-docs"
+      ],
+      "type": "custom"
+    },
+    "/documentations/openapi": {
+      "allowUnknownRequestContentType": false,
+      "allowUnknownResponseContentType": false,
+      "defaultBasePath": "/documentations/openapi",
+      "defaultPathRewrite": "/openapi",
+      "description": "",
+      "forceMicroserviceGatewayProxy": false,
+      "public": true,
+      "secreted": false,
+      "service": "swagger-aggregator",
+      "showInDocumentation": true,
+      "tags": [
+        "api-docs"
+      ],
+      "type": "custom"
+    },
+    "/documentations/swagger": {
+      "allowUnknownRequestContentType": true,
+      "allowUnknownResponseContentType": true,
+      "defaultBasePath": "/documentations/swagger",
+      "defaultPathRewrite": "/swagger",
+      "description": "",
+      "forceMicroserviceGatewayProxy": false,
+      "public": true,
+      "routes": {
+        "GET/": {
+          "acl": {
+            "inherited": false,
+            "value": "true"
+          },
+          "allowUnknownRequestContentType": {
+            "inherited": true
+          },
+          "allowUnknownResponseContentType": {
+            "inherited": true
+          },
+          "backofficeAcl": {
+            "inherited": true
+          },
+          "id": "GET/",
+          "path": "/",
+          "postDecorators": [],
+          "preDecorators": [],
+          "public": {
+            "inherited": true
+          },
+          "secreted": {
+            "inherited": true
+          },
+          "showInDocumentation": {
+            "inherited": true
+          },
+          "verb": "GET"
+        }
+      },
+      "secreted": false,
+      "service": "swagger-aggregator",
+      "showInDocumentation": true,
+      "tags": [
+        "api-docs"
+      ],
+      "type": "custom"
+    }
+  },
+  "listeners": {
+    "frontend": {
+      "name": "frontend",
+      "port": "8080",
+      "selectedByDefault": true,
+      "description": "Default listener for frontend API",
+      "ownedBy": {
+        "componentIds": [
+          "api-gateway-envoy"
+        ]
       }
     }
   }

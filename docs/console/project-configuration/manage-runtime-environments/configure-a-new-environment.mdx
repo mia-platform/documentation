@@ -134,40 +134,8 @@ Within the `kustomization.yaml` file you can declare paths to granularly patch s
 :::
 
 :::info Configure Ingress Route
-If you are a PaaS client or use Traefik, you will need to configure a third file called `default.ingressroute.yml`, which is needed to expose the project endpoint.
-Below is an example of a `default.ingressroute.yml` configuration file:
-
-```yaml
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: default-ingress
-  labels:
-    app.kubernetes.io/instance: "ingress-controller"
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`<host-1>`)
-      middlewares:
-        - name: "ingress-controller-hsts-headers"
-          namespace: mia-platform
-      kind: Rule
-      services:
-        - name: api-gateway
-          port: 8080
-    - match: Host(`<host-2>`)
-      middlewares:
-        - name: "ingress-controller-hsts-headers"
-          namespace: mia-platform
-      kind: Rule
-      services:
-        - name: api-gateway
-          port: 8081
-```
-
-The project exposes the services listed in the `services` section via the hosts specified in the `match` clause (hosts are usually composed - for PaaS clients -
-of `projectId` and a suffix given by Mia-Platform). In the above example, the `api-gateway` service will be exposed on two hosts.
+If you are a PaaS client or use Traefik, you will need to configure a third file called `default.ingressroute.yml`, which is needed to expose services deployed in your project.
+More information about the IngressRoute configuration can be found [here](/paas/traefik.md).
 
 :::
 

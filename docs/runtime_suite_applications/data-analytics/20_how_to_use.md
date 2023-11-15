@@ -43,7 +43,7 @@ In order to do this you have to edit the `configurations.json`  of `micro-lc-bac
 
 Make sure that `pluginurl` is correctly configured with the desired dashboard to be shown.
 
-For more details: [Application | Mia-Platform Documentation](../../runtime_suite_applications/backoffice/overview)
+For more details: [Application | Mia-Platform Documentation](../../runtime_suite_applications/microfrontend-composer-toolkit/overview)
 
 ## Active Users Chart
 

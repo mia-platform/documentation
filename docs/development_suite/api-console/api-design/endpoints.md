@@ -78,7 +78,14 @@ For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal
 
 ## Endpoint settings
 
-This card possibly includes 4 tabs: _Security_, _Documentation_, _Microservice Gateway_ and _Advanced_.
+From this section it is possible to configure: _Listeners_, _Security_, _Documentation_, _Microservice Gateway_ and _Advanced_ settings for the Endpoint.
+
+### Listeners
+
+![Endpoint settings card - Listeners](img/listeners/endpoint-configure-listeners.png)
+
+This section lets you define from which Listener your Endpoint should be exposed.  
+Keep in mind that you must expose an Endpoint with _at least_ one Listener.
 
 ### Manage the security of your endpoints
 
