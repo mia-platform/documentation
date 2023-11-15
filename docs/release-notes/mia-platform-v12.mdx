@@ -76,7 +76,7 @@ Observed naming differences explained by this timing variance.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ap6BKyWxQpk?si=uqBnS_EvkQnLCVbd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## A New look and feel for Console
+## A New Look and Feel for Console
 
 We renewed the navigation of Mia-Platform Console, to make it even more developer-friendly. The design is engineered to reduce cognitive load, cut distraction points, increase focus and streamline navigation within the Mia-Platform Console.
 
@@ -85,23 +85,6 @@ This feature is in Preview and is exclusively available for SaaS users. Activate
 :::
 
 IMAGE 
-
-## Manual Launch Of CronJobs
-
-Users with permissions can now trigger CronJobs for immediate execution directly from the Runtime area.
-This is very helpful when you made some changes and the cronjob is scheduled to run on a non-working hour.
-Learn more [here](#).
-
-## Envoy API Gateway Listeners Management
-
-In Projects using Envoy API Gateway, Mia-Platform Console allows you to easily configure endpoint exposure on the desired hosts without having to manually specify it in the YAML file.
-
-For more information, [go to the documentation](/preview/development_suite/api-console/api-design/listeners.md).
-
-IMAGE
-
-###  Marketplace management through CLI
-Thanks to [Miactl (Mia-Platform CLI)](https://docs.mia-platform.eu/docs/cli/miactl/overview), it is possible to manage items in the company Marketplace without having to use the CMS.
 
 ## Manage Event Webhook From UI
 
@@ -115,11 +98,26 @@ Watch the video or learn more [here](#).
 Manage public providers for each company, basic information about projects, and user groups for more granular permissions.
 Learn more [here](#).
 
+## Envoy API Gateway Listeners Management
+
+In Projects using Envoy API Gateway, Mia-Platform Console allows you to easily configure endpoint exposure on the desired hosts without having to manually specify it in the YAML file.
+
+For more information, [go to the documentation](/preview/development_suite/api-console/api-design/listeners.md).
+
+IMAGE
+
+## Manual Launch Of CronJobs
+
+Launch immediate executions of CronJobs directly from the Runtime area of the Console.  
+Once launched, you will see the created Job and the relative Pod in the dedicated resource sections of the Runtime area.
+
+For more information, [go to the documentation](/development_suite/monitoring/resources/cronjobs.md#manually-launching-a-cronjob).
+
 ## Client Credentials as cluster auth for AKS
 
 Via Mia-Platform Console, it is now possible to add Azure Kubernetes Service (AKS) clusters with client credentials authentication.
 Learn more [here](#).
 
-## How to update to Mia-Platform v12
+###  Internal Company Marketplace management through miactl
 
-Please contact your Mia-Platform referent.
+Thanks to [miactl (Mia-Platform CLI)](/cli/miactl/overview.md), you can manage the items of your Internal Company Marketplace without the need to use the CMS!
