@@ -100,6 +100,7 @@ When a participant is added through any of the [`users` custom fields][users], a
 If the `isUserAvailable` property is set to `true` in the configuration file, it is possible to fetch further information about the participants. Such information are fields that can be specified in the environment variable `PARTICIPANT_USER_PROPERTIES` as a comma-separated list. These fields will populate the property `userProperties` inside each participant.
 
 For example if `PARTICIPANT_USER_PROPERTIES` is set to `firstName,lastName` then the appointment will look like this:
+
 ```json
 {
   "patients": ["patient1"],
@@ -451,7 +452,7 @@ This endpoint may have the following side effects.
 
 When a participant is added or removed through any of the [`users` custom fields][users], the `participants` fields is updated according to the following rules:
 
-- if a user is added, a new participant is added to the `participants` field, with the given `id` and `type` and the default values specified in the corresponding user category for the `status`, `required` and `acceptanceRequired` fields;
+- if a user is added, a new participant is added to the `participants` field, with the appropriate `id` and `type` and the default values specified in the corresponding user category for the `status`, `required` and `acceptanceRequired` fields;
 - if a user is removed, the corresponding participant, identified by the `id` and `type` fields, is removed from the `participants` field.
 
 #### Sending messages

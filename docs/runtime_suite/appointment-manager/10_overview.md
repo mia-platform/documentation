@@ -388,8 +388,8 @@ Using the previous example, the configuration file for the service involving one
 ```json
 {
   "users": {
-    "doctor": {...},
-    "patients": {...}
+    "doctor": {},
+    "patients": {}
   }
 }
 ```
@@ -400,30 +400,79 @@ These categories can contain additional properties that are useful only when usi
 
 #### Participant status
 
-If you set the `isParticipantStatusAvailable` to `true`, the `participants` field stores, for any user in the configured attributes, some additional information:
+If you set the [`isParticipantStatusAvailable` configuration field][is-participant-status-available] to `true`, for each participant, you can track some additional information:
 
 - `status`: if the user (tentatively) accepted or declined the appointment;
 - `required`: if the user is required to attend the appointment;
 - `acceptanceRequired`: if the user is expected to explicitly accept or decline the appointment.
 
-This field is fully managed by the AM and updated automatically every time a participant is added or removed from the appointment through [`users` custom fields][users].
+In addition, by setting the [`isUserAvailable` configuration field][is-user-available] to `true`, you can also add to each participant additional user properties, that you may need or want when displaying the appointment, like the first and last name, from a [users CRUD][crud-users].
 
-This field is available in read only thorugh the API, therefore you can only set its value by configuring the defaults in the [`users` configuration field][participant-status]. Here's an example of a configuration for doctors and patients:
+This field is fully managed by the AM and updated automatically every time a participant is added or removed from the appointment through the [`users` custom fields][users].
+
+This field is available in read only thorugh the API, therefore you can only set its value by configuring the default value of each field in the [`users` configuration field][participant-status].
+
+Each user can update its own participation status by sending a request to the [`PATCH /appointments/:id/status`][patch-appointment-participant-status].
+
+For example, if we had configured the AM with two custom user fields:
+
+- `doctor`: the doctor accepts the appointment by default (`status`) and is required (`required`);
+- `patients`: a list of patients, each one is required (`required`), acceptance status is unknown (`status`) and an explicit acceptance is required (`acceptanceRequired`);
+
+and two user properties to add to each participant:
+
+- first name (`firstName`);
+- last name (`lastName`);
+
+an appointment looking like this:
 
 ```json
 {
-  "users": {
-    "doctor": {
+  "doctor": "dr.juliana.dunam",
+  "patients": ["walter.white", "mark.greene"]
+}
+```
+
+would result in a `participants` field looking like this:
+
+```json
+{
+  "doctor": "dr.juliana.dunam",
+  "patients": ["walter.white", "mark.greene"],
+  "participants": [
+    {
+      "id": "dr.juliana.dunam",
+      "type": "doctor",
       "status": "accepted",
       "required": true,
-      "acceptanceRequired": true
+      "userProperties": {
+        "firstName": "Juliana",
+        "lastName": "Dunam"
+      }
     },
-    "patients": {
+    {
+      "id": "walter.white",
+      "type": "patients",
       "status": "needs-action",
       "required": true,
-      "acceptanceRequired": false
+      "acceptanceRequired": true,
+      "userProperties": {
+        "firstName": "Walter",
+        "lastName": "White"
+      }
+    },
+    {
+      "id": "mark.greene",
+      "type": "patients",
+      "status": "needs-action",
+      "required": true,
+      "acceptanceRequired": true,
+      "userProperties": {
+        "firstName": "Mark",
+        "lastName": "Greene"
+      }
     }
-  }
+  ]
 }
 ```
 
@@ -650,8 +699,11 @@ The test suite covers the following operations:
 [users]: ./20_configuration.md#users "`users` | Service configuration | Configuration"
 [participant-status]: ./20_configuration.md#participant-status "Participant status | `users` | Service configuration | Configuration"
 [is-participant-status-available]: ./20_configuration.md#isparticipantstatusavailable "`isParticipantStatusAvailable` | Service configuration | Configuration"
+[is-user-available]: ./20_configuration.md#isuseravailable
 [environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
 [reminders-threshold]: ./20_configuration.md#reminderthresholdms "reminderThresholdMs | Service configuration | Configuration"
 [crud-appointments]: ./20_configuration.md#appointments-crud-collection "Appointments CRUD collection | CRUD collections | Configuration"
+[crud-users]: ./20_configuration.md#users-crud-collection
 
 [usage]: ./30_usage.md "Usage page"
+[patch-appointment-participant-status]: ./30_usage.md#patch-appointmentsidstatus
