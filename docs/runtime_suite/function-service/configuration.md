@@ -78,6 +78,14 @@ Libraries already included as dependencies:
 * mississippi
 * nanoid
 
+:::info
+In order to import the nanoid library you need to use the library "fix-esm". Following an example
+:::
+
+```javascript
+const { nanoid } = require('fix-esm').require('nanoid')
+```
+
 :::warning
 Warning! You have to create the function file from the Console, not from the project repository.
 :::
