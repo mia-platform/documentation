@@ -1320,5 +1320,21 @@
   "/docs/business_suite/what-is-backoffice": {
     "destination": "/docs/microfrontend-composer/what-is",
     "addedOn": "2023-11-07"
+  },
+  "/docs/getting-started/tutorials/backoffice/basics": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/basics",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/tutorials/backoffice/templates": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/templates",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/tutorials/backoffice/microfrontends": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/microfrontends",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/tutorials/backoffice/auth0-integration": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/auth0-integration",
+    "addedOn": "2023-11-16"
   }
 }
