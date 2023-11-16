@@ -921,15 +921,10 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "type": "generated-index",
-            "title": "Auth Architecture ",
-            "slug": "/getting-started/tutorials/architecture/auth"
+            "type": "doc",
+            "id": "getting-started/tutorials/architecture/auth/intro"
           },
           "items": [
-            {
-              "id": "getting-started/tutorials/architecture/auth/intro",
-              "type": "doc"
-            },
             {
               "id": "getting-started/tutorials/architecture/auth/static-api-key",
               "type": "doc"
@@ -944,10 +939,6 @@
             },
             {
               "id": "getting-started/tutorials/architecture/auth/multiple-projects",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/architecture/auth/enterprise-architecture",
               "type": "doc"
             }
           ]

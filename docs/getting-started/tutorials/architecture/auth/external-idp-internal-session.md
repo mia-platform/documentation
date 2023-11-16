@@ -7,12 +7,12 @@ sidebar_label: External Identity Provider with internal user management
 This scenario is a slight modification of the previous-one: you keep your external Identity Provider (IDP) but the user will be linked to a custom session, and you can optionally manage the user groups within your project using a dedicated CRUD collection.
 
 :::info
-This version is more complex than the one defined in the [Scenario 2: Integrate an external Identity Provider](/getting-started/tutorials/architecture/auth/external-idp.md), and it is only useful if you want to handle yourself the token generation and the data of the users, using the external IdP only to validate the users credentials.
+This version is more complex than the one defined in the [Scenario 2: Integrate an external Identity Provider](/getting-started/tutorials/architecture/auth/external-idp.md), and it is only useful if you need to handle within your project both the token generation and users data. So, in thi scenario, you will use the external IdP only to validate the users credentials.
 :::
 
 ## Definition
 
-To do so, we need to introduce in the architecture the [`Authentication Service`](/runtime_suite/authentication-service/10_overview.md) plugin. Note that, this time, it is a Mia-Platform plugin rather than a custom microservice as in Scenario 2. This imposes a limitations on the presented architecture: your external Identity Provider must be supported by the Authentication Service plugin (see [the list of supported IDPs](/runtime_suite/authentication-service/10_overview.md)) otherwise this scenario is not applicable.
+This architecture uses the [`Authentication Service`](/runtime_suite/authentication-service/10_overview.md) plugin. Note that, this time, it is a Mia-Platform plugin rather than a custom microservice as in Scenario 2. This imposes a limitations on the presented architecture: your external Identity Provider must be supported by the Authentication Service plugin (see [the list of supported IDPs](/runtime_suite/authentication-service/10_overview.md)) otherwise this scenario is not applicable.
 
 The involved microservices of the flow at runtime are:
 1. `API Gateway`: Mia-Platform plugin available in [Nginx](/runtime_suite/api-gateway/10_overview.md) or [Envoy](/runtime_suite/envoy-api-gateway/overview.md)
