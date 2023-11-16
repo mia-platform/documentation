@@ -69,18 +69,24 @@ mia-console:
         logoutUrlPath: "/logout"
         skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
     redisHost: "<REDIS_HOST>" # optional: default is "redis.default.svc.cluster.local:6379". If installed with this chart, set it to "redis:6379"
-    jwtTokenSignKey: "<JWT_TOKEN_SIGN_KEY>" # A JWT signing key, HMAC of 512 bytes
-    tokenPassphrase: "<PROVIDER_TOKEN_PASS_PHRASE>" # An HMAC string of 128 bytes for authentication purpose
+    
     mongodbUrl: "<MONGODB_URL>" # url for the mongodb connection for the console
     filesStorageType: "mongodb"
     filesBucketName: "<GRIDFS_COLLECTION_NAME>" # gridFS collection name
     multitinenantNamespace: ""
+    miaPlatformDefaultCompanyId: "mia-platform" # the ID of the default Mia-Platform company
     serviceAccountAuthProvider:
       rsaPrivateKeyId: "PRIVATE KEY ID"
       rsaPrivateKeyPass: "PRIVATE KEY PASSPHRASE"
       clientIdSalt: "CLIENT SALT"
       rsaPrivateKeyBase64: |
         "BASE64_PrivateKey"
+    userAccountAuthProvider:
+      tokenPassphrase: "<PROVIDER_TOKEN_PASS_PHRASE>" # An HMAC string of 128 bytes for authentication purpose
+      jwtTokenPrivateKeyBase64: |
+        "BASE64_PrivateKey"
+      jwtTokenPrivateKeyPassword: "PRIVATE KEY PASSPHRASE"
+      jwtTokenPrivateKeyKid: "PRIVATE KEY ID"
     servicesImagePullSecrets:
       - "<SERVICE_PULL_SECRET>" # array of image pull secret to pull your custom services
     defaultCoreResources:

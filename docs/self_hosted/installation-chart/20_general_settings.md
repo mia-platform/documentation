@@ -112,7 +112,13 @@ mia-console:
 |:----:|:----:|:-----------:|:-------:|:--------:|
 |`configurations.enableClustersAndEnvironmentsManagement`| boolean | Enables Clusters and Environments management | `true` | ✅ |
 |`configurations.projectTemplateArchiveUrl`| string | New project template url |  | ✅ |
-|`configurations.enablePrometheusMetrics`| boolean | enable prometheus to collect metrics. This is a beta feature and could have breaking changes. | `false` | ✅ |
 |`configurations.enableRuntimeServiceClusterSelection`| boolean | Enable selection from supported runtime providers during cluster setup, if you disable it you will have to manually fill all the required information | `true` | ✅ |
 |`configurations.enableBackofficeConfigurator`| boolean | Enable Backoffice Configurator | `true` | ✅ |
 |`configurations.enableFlowManager`| boolean | Enable Flow Manager | `true` | ✅ |
+
+### Optional telemetry configurations
+
+|`configurations.enablePrometheusMetrics`| boolean | enable prometheus to collect metrics. This is a beta feature and could have breaking changes. | `false` | ✅ |
+|`configurations.telemetry.tracing.enabled`| boolean | enable opentelemetry to collect tracing. This is an experimental feature and could have breaking changes. | `false` | ✅ |
+|`configurations.telemetry.tracing.address`| string | opentelemetry server address. At the moment, it is only supported a zipkin server. | `false` | ✅ |
+|`configurations.telemetry.tracing.port`| number | opentelemetry server port. At the moment, it is only supported a zipkin server. | `false` | ✅ |
