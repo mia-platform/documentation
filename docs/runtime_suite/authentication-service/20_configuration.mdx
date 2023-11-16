@@ -42,6 +42,8 @@ The environment variables needed by the service are:
 - **MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH** (_optional_): required if  **MIA_JWT_TOKEN_SIGNING_METHOD** is RS256, the file name of the mounted private key, without extension.
 - **MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD** (_optional_): The password of the private key. Required only if the private key is password protected.
 - **MIA_JWT_TOKEN_PRIVATE_KEY_KID** (_optional_): required if  **MIA_JWT_TOKEN_SIGNING_METHOD** is RSA256, the kid of the current private key.
+- **EXPOSE_METRICS** (_optional_, default: `false`): if `true`, the service will expose Prometheus metrics on the `/-/metrics` endpoint.
+- **NAMESPACED_METRICS_PREFIX** (_optional_, default: `authentication_service`): the prefix to be used for the Prometheus metrics.
 
 ## Configurations file
 

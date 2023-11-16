@@ -18,9 +18,9 @@ API Signature: `GET /authorize`
 The `/authorize` endpoint is useful for the login flow with grant type `authorization_code`.
 
 The authorization endpoint accepts the following **query parameters**:
+
 - **appId**: the `APP_ID` key from the [configurations file](./20_configuration.mdx#configurations-file)
 - **providerId**: the `PROVIDER_ID` key from the configuration file, under the corresponding `APP_ID`
-
 
 An example curl:
 
@@ -36,9 +36,7 @@ Example of redirect URL:
 https://app.example.com/callback?code={{CODE}}&state={{STATE}}
 ```
 
-
 Your application should then implement the logic to call the [POST /oauth/token with authorization_code grant type](#authorization-code-grant-type) with the information passed in the above query string, as per the [Authorization Code Grant OAuth2 flow](https://oauth.net/2/grant-types/authorization-code/).
-
 
 :::tip
 
@@ -70,18 +68,15 @@ This parameter may become required in the next releases of the service.
 
 :::
 
-
 #### Client generated state
 
 :::info
 
 This feature is turned off by default for retrocompatibility reasons, but its usage is strongly encouraged.
 
-
 To enable this feature, you need to set the config parameter variable `authorizeStateRequired` to `true`, in each app where you need it.
 
 :::
-
 
 To achieve a better level of security, the client should take charge of the process of the state generation.
 This enables protection against CSRF attacks, as documented [here](https://www.rfc-editor.org/rfc/rfc6749#section-10.12).
@@ -97,10 +92,10 @@ The client must follow these steps:
     ```sh
     curl --request GET 'https://app.example.com/authorize?appId={{APP_ID}}&providerId={{PROVIDER_ID}}&state=<some-hard-to-guess-string>'
     ```
+
 - Once the redirect URL is called, the client must check that the state in the redirect URL querystring matches the one it generated at the first step. If it doesn't, the client must refuse to proceed in the token request.
 
-- If the state validation check succeeds, the client can now obtain a token by calling the `/oauth/token` endpoint, as described in the [related section](#get-token).
-
+- If the state validation check succeeds, the client can now obtain a token by calling the `/oauth/token` endpoint, as described in the [related section](#get-jwt-token).
 
 ### Get JWT Token
 
@@ -121,7 +116,6 @@ The body of the request, in JSON format, is composed of the following fields:
 
 These fields are usually retrieved from the redirect url query string.
 
-
 The endpoint will return a JSON object with *accessToken*, *refreshToken* and *expiresAt*.
 
 ```json
@@ -134,21 +128,23 @@ The endpoint will return a JSON object with *accessToken*, *refreshToken* and *e
 
 #### Web site cookie configuration
 
-If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return two session cookies: 
+If you are using a website client, you can set the `isWebsiteApp` field to `true` in the service configuration; this way, the token API will return two session cookies:
+
 - a cookie named *sid*, that contains the access token as value
 - a cookie named *refresh_token*, that contains the refresh token as value
 
 The cookies have the following default configuration:
 
-    * HttpOnly: `true`
-    * Secure: `true`
-    * Path: `/`
-    * SameSite: `Lax`
+- HttpOnly: `true`
+- Secure: `true`
+- Path: `/`
+- SameSite: `Lax`
 
 You can further customize the cookie response by adding the `sidCookieCustomAttributes` and/or the `refreshCookieCustomAttributes` to the service configuration, at application level.
 In particular, you can change the `SameSite` attribute to `Strict`, and set the `Domain` and the `Path` attributes to a value of your choice.
 
 Here is an example snippet of the configuration:
+
 ```json
 ... 
     "isWebsiteApp": true,
@@ -177,6 +173,7 @@ For security reasons, you cannot change the other attributes of the cookie, and 
 The authentication service generates a JWT Token compliant with the [RFC 7519 specification](https://www.rfc-editor.org/rfc/rfc7519).
 
 In particular, the service populates the standard claims:
+
 - `exp` with the expiration date as unix timestamp
 - `iat` with the issuance date as unix timestamp
 - `sub` with the `userId`, which is the Mongo Id of the user CRUD document
@@ -214,6 +211,7 @@ Along with the above mentioned standard claims, the token contains a custom clai
     }
 }
 ```
+
 The data are populated from the user CRUD collection. The `providerUserId` and the `metadata` fields are included and populated only if configured, as explained [here](#custom-claims).
 
 ### Refresh token
@@ -231,6 +229,7 @@ curl --location --request POST 'https://app.example.com/refreshtoken' \
     "refreshToken": {{refreshToken}}
 }'
 ```
+
 Under the hood, the authentication service will call the provider refresh token endpoint, and then it will refresh its token.
 
 The response is the same as the `/oauth/token`:
@@ -247,7 +246,7 @@ In case the `isWebsiteApp` application flag is `true`, the `/refreshtoken` also 
 
 #### Skip provider refresh token
 
-If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request. 
+If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request.
 The refresh token on the provider will only be issued if the validation fails.
 
 ### Logout
@@ -258,7 +257,7 @@ This API takes charge of logging out the user, clearing the access token and the
 
 On server side, the tokens are deleted from Redis.
 
-The request should contain the access token in the `Authorization` header and/or the *sid* and *refresh_token* cookies. 
+The request should contain the access token in the `Authorization` header and/or the *sid* and *refresh_token* cookies.
 It also accepts a request with only the *refresh_token* set: in this case it only deletes the session associated to the given refresh token from Redis, since the access token is already expired.
 
 When `isWebsiteApp` flag is set to true, both the *sid* and *refresh_token* cookies are unset, by means of a `Set-Cookie` response header with expiration dates set in the past.
@@ -269,8 +268,9 @@ Depending on whether you added the `logoutUrl` parameter in the service configur
 
 ##### No `logoutUrl` parameter
 
-If you did not add the `logoutUrl` parameter to the provider configuration, the endpoint will redirect the user to the specified 
-`redirect` query parameter. You can configure the frontend of your web application to redirect to the `/logout` endpoint of the provider.
+If you did not add the `logoutUrl` parameter to the provider configuration, the endpoint will redirect
+the user to the specified `redirect` query parameter. You can configure the frontend of your web
+application to redirect to the `/logout` endpoint of the provider.
 
 As a result, the user will be signed out from both the provider and the application.
 
@@ -280,7 +280,8 @@ As a result, the user will be signed out from both the provider and the applicat
 
 This behavior works only with the OIDC compliant providers. Please refer to your specific provider documentation to check if it is supported.
 
-The following providers have no support for this feature: 
+The following providers have no support for this feature:
+
 - Bitbucket Server
 - Github
 - Gitlab
@@ -294,6 +295,7 @@ If you use a generic provider you have the responsibility to check for the OIDC 
 :::
 
 When called with the `logoutUrl` parameter set in the service configuration, the endpoint will append to it a query string, with the following parameters:
+
 - `post_logout_redirect_uri`: it is set to the `redirect` query parameter, if present. Otherwise, it is not set.
 - `id_token_hint`: it is set to the `id_token`, retrieved from the provider during login, and stored in the backend session along with the access token.
 
@@ -305,23 +307,23 @@ API Signature: `GET /userinfo`
 
 The `/userinfo` endpoint returns the contents of the `user` claim of the JWT Token.
 
-See the [related section](#jwt-token) for more information on how the JWT Token is built and how you can personalize it to achieve a customized userinfo response.
+See the [related section](#get-jwt-token) for more information on how the JWT Token is built and how you can personalize it to achieve a customized userinfo response.
 
 You can contact the endpoint in this way:
+
 ```sh
 curl --location --request GET 'https://app.example.com/userinfo' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer <access_token>'
 ```
 
-
 ### Custom claims
 
 If you need to have additional custom claims in the `user` claim of the token and, as a consequence, in the userinfo response, you have to include the  `customTokenClaims` object in the app configuration.
 
 The object contains the following fields:
-- `includeProviderUserId`, if set to `true` the `providerUserId` will be included in the `user` claim, and populated with the user id of the provider. The default behavior is not to include the field.
 
+- `includeProviderUserId`, if set to `true` the `providerUserId` will be included in the `user` claim, and populated with the user id of the provider. The default behavior is not to include the field.
 - `metadataFieldsToInclude`,  an array of strings. If it contains at least one element, a  `metadata` object is added to the `user` claim and populated with the specified fields taken from the corresponding `metadata` object of the CRUD user collection.
 
 As an example, consider a user collection like the following:
@@ -345,6 +347,7 @@ As an example, consider a user collection like the following:
     }
 }
 ```
+
 The authentication service can be configured as follows:
 
 ```json
@@ -449,6 +452,7 @@ This endpoint has the same response of the [userinfo](#user-info), with in addit
 - **userId**: the provider id of the current user
 
 An example of response:
+
 ```json
 {
     "userId": "63cacfa530a2a89a7f057dce",
@@ -476,7 +480,7 @@ You can use the `/tokeninfo` endpoint as `USERINFO_URL` in the authorization ser
 
 :::caution
 
-This API is intended to be used by a privileged user (e.g. an administrator or a customer service operator) or application. Make sure to expose it with a proper authorization config. 
+This API is intended to be used by a privileged user (e.g. an administrator or a customer service operator) or application. Make sure to expose it with a proper authorization config.
 
 :::
 
@@ -485,6 +489,7 @@ API Signature: `DELETE /sessions`
 This is an admin feature that revokes all sessions of the specified user. This is useful when the user is being blocked or deleted on the provider side.
 
 You can contact the endpoint this way:
+
 ```sh
 curl --location --request DELETE 'https://app.example.com/sessions/:userId' \
 --header 'Accept: application/json' \
@@ -504,7 +509,7 @@ An example of response:
 
 :::caution
 
-This API is intended to be used by a privileged user (e.g. an administrator or a customer service operator) or application (e.g. a cronjob). Make sure to expose it with a proper authorization config. 
+This API is intended to be used by a privileged user (e.g. an administrator or a customer service operator) or application (e.g. a cronjob). Make sure to expose it with a proper authorization config.
 
 :::
 
@@ -526,10 +531,11 @@ In case of success, the endpoint will return a 204 No Content response.
 
 ### Cleanup a specific users queue
 
-The endpoint can receive also as a query params a specific userID. 
+The endpoint can receive also as a query params a specific userID.
 In this case, only the session of the specified user are cleaned up.
 
 Here is an example:
+
 ```sh
 curl --location --request DELETE 'https://app.example.com/expired-sessions/:userId`' \
 --header 'Accept: application/json' \
@@ -553,9 +559,11 @@ The webhook is made of 2 endpoints:
 - **POST** `/webhooks/apps/:appId/providers/:providerId/user` used to handle the user activation
 
 ### Validate the Webhook (Okta)
+
 In order to validate the webhook, Okta sends a GET request on the webhook url with a specific header `x-okta-verification-challenge` and expects to receive in response the same value of the header.
 
 ### Security Configuration
+
 In order to secure these endpoints from unwanted requests (that will end up in users being added to the CRUD collection), you need to secure the Endpoint (for instance using an API Key).
 
 ::: warning
@@ -579,7 +587,7 @@ For new service setups, the usage of an asymmetric algorithm is strongly encoura
 
 By default, the service uses the symmetric signing algorithm `HS256` to sign the token. The signing key is provided by means of the `MIA_JWT_TOKEN_SIGN_KEY` env variable.
 
-::: tip 
+::: tip
 
 It is suggested to generate and use an HMAC of least of 512 bytes, for example with the following command:
 
@@ -613,6 +621,7 @@ To generate a new private key, you could run:
 ```sh
 openssl genrsa -out ./private.key 4096
 ```
+
 The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD` environment variable.
 You could run the following command to generate the key with password:
 
@@ -651,6 +660,7 @@ Refer to the [related Kubernetes doc](https://kubernetes.io/docs/concepts/config
 #### Service configuration
 
 To use the private key you generated early, you have to follow these steps:
+
 - set the `MIA_JWT_TOKEN_SIGNING_METHOD` to `RS256`
 - set the `MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH` to the file name of the mounted private key.
 - choose an arbitrary `kid` to the private key (e.g. an UUIDv4), and set it to the `MIA_JWT_TOKEN_PRIVATE_KEY_KID`. It will be used to generate a public key, and also included as `kid` claim in JWT tokens signed with this key.
@@ -659,7 +669,7 @@ To use the private key you generated early, you have to follow these steps:
 
 Endpoint Signature: `GET /.well-known/jwks.json`
 
-As per the [OpenID Connect specs](https://openid.net/specs/openid-connect-discovery-1_0-21.html), the Authentication service exposes this endpoint to obtain an object that contains an array of valid JWK values in its `keys` field. 
+As per the [OpenID Connect specs](https://openid.net/specs/openid-connect-discovery-1_0-21.html), the Authentication service exposes this endpoint to obtain an object that contains an array of valid JWK values in its `keys` field.
 Those JWKs could be used to verify the signature of the JWT that is presented by a client to another service.
 
 :::info
@@ -690,3 +700,13 @@ Example response:
   ]
 }
 ```
+
+## Service Metrics
+
+If you set the `EXPOSE_METRICS` environment variable to `true`, the service will expose the `/-/metrics` endpoint, which returns the following metrics:
+
+| Metric Name | Description |
+| ----------- | ----------- |
+| `http_request_duration_seconds` | The duration of the HTTP requests, in seconds |
+
+It is possible to customize the metrics prefix by setting the `NAMESPACED_METRICS_PREFIX` environment variable. The default value is `authentication_service`.
