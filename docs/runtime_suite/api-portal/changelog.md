@@ -8,6 +8,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.16.10 - 2023-11-16
+
+### Fixed
+
+- ci to build image
+
+### Changed
+
+- API Portal Configuration doc updated
+
+## 1.16.9 - 2023-11-16
+
+### Fixed
+
+- remove bad `base` tag in `index.html`
+
+## 1.16.8 - 2023-10-24
+
+### Fixed
+
+- ci to build image
+
 ## 1.16.7 - 2023-10-6
 
 ### Updated
