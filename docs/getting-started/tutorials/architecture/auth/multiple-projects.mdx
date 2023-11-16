@@ -8,6 +8,7 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 ## Definition
+
 In this scenario, we present the case where your architecture is composed by multiple Mia-Platform projects. Of course, you could think to treat each project as an independent entity and replicate, in each project, one of the scenarios presented so far.
 
 For example, you could replicate [Scenaior 2](/getting-started/tutorials/architecture/auth/external-idp.md) as in the following schema:
@@ -39,10 +40,12 @@ The picture above illustrates the steps of the auth flow:
 1. The client, be it a web application or backend software, need to implement the authentication flow required by the IdP to obtain a valid token. With this token, the client will be able to call the endpoints of your project.
 2. The client calls the endpoint of your project, including the valid token in the request. Usually this token is placed in the `Authorization` header but it can be placed in other headers or cookies.
 3. The `API Gateway` of the `Edge Gateway` project calls the `Authorization Service` which, in turn, calls the `Authentication Manager` to resolve the token on the external IdP  
+   
    :::note
    We suggest to avoid adding the user group expressions in the `Authorization Service` of the Edge Gateway but configuring them in the `Authorization Service` of the project.  
    In this way the project teams are autonomous in configuring the right group expression to secure their APIs.
    :::
+
 5. The `Authentication Manager` resolves the token contacting the external IdP and returns the user payload to the `Authorization Service`
 6. The `API Gateway` of the `Edge Gateway` forwards the HTTP request to tha `API Gateway` of right project. The request is decorated with the following HTTP header:
   
@@ -55,28 +58,34 @@ The picture above illustrates the steps of the auth flow:
 8. If the verification performed by the `Authentication Service` is successful, then the `API Gateway` forwards the original HTTP request the right microservice of the project.
 
 ## Tutorial steps
+
 In the following tutorial we will specify all the steps to replicate the scenario depicted in the image above, i.e. an architecture with:
 - 2 projects, `Project 1` and `Project 2`
 - an `Edge Gateway`
 - an external IdP
 
 ### Edge Gateway configuration
+
 1. Create the `Edge Gateway` project following the [project creation documentation](/console/project-configuration/create-a-project.mdx)
 2. Configure one [cross-project proxy](/development_suite/api-console/api-design/proxy.md#type-cross-projects) for each project
 3. Create one endpoint for each cross-project proxy
+
   :::note
   When choosing the name of the endpoints consider that it will be the base path that will included in all the requests directed to a microservice of the project.  
   A possible naming convention could be `<HOST>/<project-name>/<endpoint>`
   :::
+
 4. Configure the `API Gateway` to forward the HTTP headers resulting from the authentication flow (`Miauserid`, `Miausergroups`, `Miauserproperties`) to the projects' `API Gateway`
     - Follow [this guide](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-manage-authorization-in-a-multi-gateway-architecture) if you have Nginx API Gateway
     - Follow [this guide](/development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn.md) if you have Envoy API Gateway
 5. Create an authentication manager as described in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md)
 
 ### Projects Configuration
+
 :::note
 We suppose that you have already created an API Gateway in your project and you already have some endpoints you want to securly expose through the Edge Gateway.
 :::
+
 1. Create the [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md) plugin from Marketplace
     - This step can be done as described in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md)
     - The only important difference is that the `Authorization Service` must be configured in ["Trust Mia Headers" mode](/runtime_suite/authorization-service/30_usage.md#trust-mia-platform-user-headers) by setting the `TRUST_MIA_USER_HEADERS` environment variable to `true`

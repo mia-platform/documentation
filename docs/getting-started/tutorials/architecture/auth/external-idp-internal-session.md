@@ -32,6 +32,7 @@ Once, your client has obtained the token following the above flow, the authentic
 Indeed, as you can notice from the picture above, the token resolution is performed directly from the Authentication Service rather than the Identity Provider.  
 
 ## Tutorial steps
+
 To setup this flow you need to:
 - configure some Mia-Platform plugins from the Marketplace
 - add some endpoints to your project
@@ -125,6 +126,7 @@ We suppose that you have already created an API Gateway in your project and you 
 
 
 ### Configuration with the Secure API Gateway application
+
 To speed up the process, you can use the [Secure API Gateway application](/runtime_suite_applications/secure-apigateway/overview.md), modifying it a little after the creation.
 
 This is because the application uses Auth0 as a default IdP, so:
