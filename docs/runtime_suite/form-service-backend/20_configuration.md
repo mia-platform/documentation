@@ -54,7 +54,7 @@ The Form Service Configuration is a JSON object with the following root properti
 | **formDraftsCrud**        | `string`   | No       | `/form-drafts`     | [form drafts CRUD endpoint](#form-drafts-crud-endpoint-parameter-formdraftscrud)         | The endpoint used by the **Form Service Backend** to perform CRUD operations on drafts.                                                                                                                                                                                             |
 | **formMetadata**          | `Object[]` | No       | -                  | [form metadata](#form-metadata-parameters-formmetadata)                                | The additional metadata shown in the Form Builder and required by the CRUD to save the Forms created with the Form Builder.                                                                                                                                                         |
 | **formSubmitUrls**        | `Object[]` | No       | -                  | [form submit urls](#form-submit-urls-parameters-formsubmiturls)                          | Contains the list of URLs that can be used to perform Form submission. The Form Builder will show the available URLs if the array is provided, otherwise a text field will be shown to allow user to provide the URL.                                                               |
-| **formVisualizerOptions** | `Object`   | No       | -                  | [form visualizer](#form-visualizer-options-parameters-formvisualizeroptions)                    | This object contains the Form Visualizer options. In particular it defines the interval between autosaves and the lookups to perform when exporting form data. If the autosave interval is not defined, it is set to a default value (10 seconds) by the **Form Service Frontend**. |
+| **formVisualizerOptions** | `Object`   | No       | -                  | [form visualizer](#form-visualizer-options-parameters-formvisualizeroptions)                    | This object contains the Form Visualizer Frontend options. Specifically, it allows you to define a value for configurable properties in the Form Service Frontend (such as the autosave time range, export options...). Note: these options do not affect Form.io properties. |
 | **formBuilderOptions**    | `Object`   | No       | -                  | [form builder](#form-builder-options-parameters-formbuilderoptions)                          | this object contains the Form Builder options to customize the Form Builder interface such as the components available to the user and the fields shown in their settings.       
 | **formBuilderCustomProperties**    | `Object`   | No       | -                  | [form builder](#form-builder-custom-properties-parameters-formBuilderCustomProperties)                          | this object contains customization properties for the fields in the builder that are not strictly related to the form.io builder.                                                                                                  |
 | **defaultClientType**     | `string`   | No       | -                  |                                                                           | Contains (from version `1.2.0`) the default client type that will be forwarded to other platform services when the client type header is not provided from the frontend service (defaults to `formService`).
@@ -214,7 +214,7 @@ More details on the submit URLs APIs can be found at [this page](./40_submit_url
 
 ### Form Visualizer Options parameters (`formVisualizerOptions`)
 
-This part of the configuration object allows the customization of the Form Visualizer, in particular the value of the inteval in milliseconds between autosaves (must be between 1 second and 48 hours) and the lookups to perform when exporting form data.
+This part of the configuration object allows the customization of the Form Visualizer.
 
 Here you can find an example of a *formVisualizerOptions* object:
 
@@ -251,6 +251,12 @@ Here you can find an example of a *formVisualizerOptions* object:
   ]
 }
 ```
+
+:::note
+
+The value of the auto save interval must be set in milliseconds (from 1 second to 48 hours)
+
+:::
 
 :::note
 
