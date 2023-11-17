@@ -44,7 +44,7 @@ Whether you're in the business of constructing internal tools, unique dashboards
 
 ### Microfrontend Composer Applications
 
-In many businesses, microfrontend composer applications play a pivotal role in ensuring smooth operations. These applications handle the internal processes and tasks that aren't seen by the customers but are vital for the organization's functioning. Mia-Platform Microfrontend Composer offers an optimal environment to create and manage these critical applications with precision and ease.
+In many businesses, Microfrontend Composer applications play a pivotal role in ensuring smooth operations. These applications handle the internal processes and tasks that aren't seen by the customers but are vital for the organization's functioning. Mia-Platform Microfrontend Composer offers an optimal environment to create and manage these critical applications with precision and ease.
 
 ### Micro-Frontends & iFrame Integration
 

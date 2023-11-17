@@ -64,7 +64,7 @@ The variables are:
 - `$original_request_uri` :  request uri prefix
 - `$proxy_name` : destination service hostname
 
-### Request from the Microfrontend Composer - port 8081
+### Request from the Backoffice (CMS) - port 8081
 
 Action:
 
@@ -132,7 +132,7 @@ The variables are:
 - `$request_uri` : It's the request uri
 - `$proxy_url` : It's the url where you want to proxy through
 
-**Request from the Microfrontend Composer (port: 8081)**
+**Request from the Backoffice (CMS) (port: 8081)**
 
 ### maps-proxyBackofficeUrl
 

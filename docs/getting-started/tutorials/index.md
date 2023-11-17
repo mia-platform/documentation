@@ -32,9 +32,9 @@ Welcome to the Tutorials page! This page contains a series of tutorials guides d
 
 
 ### **Microfrontend Composer**
-- **Microfrontend Composer Basics**: Understanding the basic functionalities of the microfrontend composer. [Go to Microfrontend Composer Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
-- **Microfrontend Composer Templates**: Learning to use templates in the microfrontend composer. [Go to Microfrontend Composer Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
-- **Microfrontend Composer Microfrontends Management**: Delving into microfrontends in the microfrontend composer. [Go to Microfrontend Composer Microfrontends](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx).
+- **Microfrontend Composer Basics**: Understanding the basic functionalities of the Microfrontend Composer. [Go to Microfrontend Composer Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
+- **Microfrontend Composer Templates**: Learning to use templates in the Microfrontend Composer. [Go to Microfrontend Composer Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
+- **Microfrontends Management**: Delving into the microfrontends management using Microfrontend Composer application. [Go to Microfrontends Management](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx).
 
 ## How to Use This Page
 
