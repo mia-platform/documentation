@@ -622,16 +622,23 @@ To generate a new private key, you could run:
 openssl genrsa -out ./private.key 4096
 ```
 
-The service also supports private keys with password. The password provided to the algorithm that generates the private key must be set as value for the `MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD` environment variable.
-You could run the following command to generate the key with password:
+The service also supports password protected private keys.
+To encrypt a private key, firstly generate a random string to be used a password, for example with this command:
 
 ```sh
-ssh-keygen -t rsa -b 4096 -m PEM -f private.key
+openssl rand -base64 256
 ```
 
-Enter a password when required.
+You can now protect the `private.key` with the password using the following command:
 
-After the creation, you have the private key stored in the file `private.key` in the current folder. Set the `MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD` env accordingly to allow the service to decrypt the private key.
+```sh
+openssl rsa -aes128 -in privkey.pem -out privkey.pem  -traditional
+```
+
+Enter the password when required.
+
+The private key is encrypted and stored in the same `private.key` file, which is overwritten.
+Set the generated password to the env `MIA_JWT_TOKEN_PRIVATE_KEY_PASSWORD` to allow the service to decrypt and use the private key.
 
 #### Deploy with mlp
 
