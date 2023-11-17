@@ -1051,6 +1051,33 @@
           "type": "doc"
         },
         {
+          "label": "Auth Architecture",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "type": "doc",
+            "id": "getting-started/tutorials/architecture/auth/intro"
+          },
+          "items": [
+            {
+              "id": "getting-started/tutorials/architecture/auth/static-api-key",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/architecture/auth/external-idp",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/architecture/auth/external-idp-internal-session",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/architecture/auth/multiple-projects",
+              "type": "doc"
+            }
+          ]
+        },
+        {
           "label": "Fast Data",
           "type": "category",
           "collapsed": true,
