@@ -252,6 +252,7 @@ async function createConfig() {
               current: {
                 label: "12.x (Preview)",
                 path: "preview",
+                banner: "none"
               },
               "11.x.x": {
                 label: "11.7.1",
