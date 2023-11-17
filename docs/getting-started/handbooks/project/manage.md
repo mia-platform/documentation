@@ -54,7 +54,7 @@ In this step, an overview of the configuration of your project environments is p
 - **Environment name**: the name given to your environment;
 - **Environment ID**: the human-readable ID set to your environment;
 - **Host**: the host which exposes documentation and APIs;
-- **Backoffice Host**: the host which exposes CMS and backoffice APIs;
+- **Microfrontend Composer Host**: the host which exposes CMS and Microfrontend Composer APIs;
 - **Cluster Host**: the IP of the Kubernetes cluster where the project will be deployed;
 - **Namespace**: the namespace taken from Kubernetes;
 - **Description**: the description of your environment.

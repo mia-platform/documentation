@@ -42,9 +42,9 @@ Perhaps you need a CMS, one that’s malleable to your every whim and requiremen
 
 Whether you're in the business of constructing internal tools, unique dashboards, or intricate UIs, Mia-Platform Microfrontend Composer is your canvas, and your imagination is the limit.
 
-### Backoffice Applications
+### Microfrontend Composer Applications
 
-In many businesses, backoffice applications play a pivotal role in ensuring smooth operations. These applications handle the internal processes and tasks that aren't seen by the customers but are vital for the organization's functioning. Mia-Platform Microfrontend Composer offers an optimal environment to create and manage these critical applications with precision and ease.
+In many businesses, microfrontend composer applications play a pivotal role in ensuring smooth operations. These applications handle the internal processes and tasks that aren't seen by the customers but are vital for the organization's functioning. Mia-Platform Microfrontend Composer offers an optimal environment to create and manage these critical applications with precision and ease.
 
 ### Micro-Frontends & iFrame Integration
 

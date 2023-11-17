@@ -38,7 +38,7 @@ If you put **0** as value, then any size of body request will be accepted.
   client_max_body_size 10m;
   ```
 
-### How can you change only the Backoffice request size?
+### How can you change only the Microfrontend Composer request size?
 
 1. Go to **Section: api-gateway/backoffice-root-location-extension.conf**
 
@@ -48,7 +48,7 @@ If you put **0** as value, then any size of body request will be accepted.
   client_max_body_size 16k;
   ```
 
-  In this case you'll change the maximum request size to `16KiB` only for the endpoints of the Backoffice Application.
+  In this case you'll change the maximum request size to `16KiB` only for the endpoints of the Microfrontend Composer Application.
 
 
 ### How can you change only the request size of a specific root?

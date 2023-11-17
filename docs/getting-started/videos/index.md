@@ -14,7 +14,7 @@ Welcome to the video page! This page contains a series of video guides designed 
 * **Connecting Cluster**: A step-by-step guide to connect your cluster. [Go to connecting-cluster.mdx](/getting-started/videos/connecting-cluster.mdx).
 * **Feature Preview**: An overview of the upcoming features. [Go to feature-preview.mdx](/getting-started/videos/feature-preview.mdx).
 * **M2M Auth**: Everything you need to know about M2M authentication. [Go to m2m-auth.mdx](/getting-started/videos/m2m-auth.mdx).
-* **Backoffice**: How to navigate and effectively use the backoffice interface. [Go to backoffice.mdx](/getting-started/videos/backoffice.mdx).
+* **Microfrontend Composer**: How to navigate and effectively use the microfrontend composer interface. [Go to backoffice.mdx](/getting-started/videos/backoffice.mdx).
 * **Runtime Area**: A detailed guide on the runtime area and how to use it. [Go to runtime-area.mdx](/getting-started/videos/runtime-area.mdx).
 * **Providers**: An overview of the various available providers and how to integrate them. [Go to providers.mdx](/getting-started/videos/providers.mdx).
 * **Fast Data, No Code**: A guide to handle your data without the need to write code. [Go to fast-data-no-code.mdx](/getting-started/videos/fast-data-no-code.mdx).
