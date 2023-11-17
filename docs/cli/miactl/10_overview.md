@@ -16,6 +16,7 @@ The `miactl` CLI functionalities can be summarized within its main subcommands:
 - `project`: view and manage the Projects of a specific Company
 - `serviceaccount`: create new service accounts for your Company
 - `runtime`: view and manage resources that are deployed on the runtime associated with the Project
+- `marketplace`: view and manage the Marketplace resources that are available for your Company
 
 ## Guides
 
