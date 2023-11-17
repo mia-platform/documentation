@@ -12,7 +12,7 @@ This service exposes several APIs, useful to upload, delete or download the file
 
 The routes can be prefixed by passing the --prefix option at startup.
 
-### **Upload**: `POST /` 
+### **Upload**: `POST /`
 With a multipart request containing the file to upload. The file will be stored on the configured backend, and the file information will be stored on MongoDB.
 
 <Tabs>
@@ -69,7 +69,7 @@ value-1
 
 </Tabs>
 
-As it is possible to notice: 
+As it is possible to notice:
 
 - The first part is a `*.pdf` file named `my-file-1.pdf`
 
@@ -78,7 +78,7 @@ As it is possible to notice:
 Continuing the example above, once the file is stored, the respective document in the `files` collection might be something like this:
 
 ```json
-{ 
+{
   //Basic file data
   "_id" : "61c32e38e67eb6fc92ed50b9",
   "name" : "my-file-1.pdf",
@@ -91,12 +91,12 @@ Continuing the example above, once the file is stored, the respective document i
   //Specific metadata for the file
   "key-1": "value-1"
 }
-``` 
+```
 
 :::info
 In the example described above, to be able to upload the additional metadata `key-1`, it is important to add a [caster file](./configuration#caster-file) and to specify its path in the environment variable `ADDITIONAL_FUNCTION_CASTER_FILE_PATH`.
 Without specifying a caster file, every additional metadata will be ignored.
-:::  
+:::
 
 :::caution
 At the moment, the file part must be the last one of the multipart. Any other part that follows the file part won't be considered.
@@ -116,9 +116,9 @@ In case of success, the response is a JSON with the following fields.
 * size: size in bytes of the uploaded file.
 * location: the URL that can be used to download the file using the same service that performed the upload.
 
-### **Upload many**: `POST /bulk` 
+### **Upload many**: `POST /bulk`
 
-With a `multipart/form-data` request containing all the files to upload and the respective metadata. 
+With a `multipart/form-data` request containing all the files to upload and the respective metadata.
 All the files will be stored on the configured backend, and the files information will be stored on the configured CRUD.
 The order of the files inside the multipart is not important and files can have the same `filename` field. <br/>
 The upload of multiple files is handled as an **atomic operation**, meaning that either all files are stored correctly or none of them are.
@@ -246,7 +246,7 @@ At the moment, as stated earlier, the upload of multiple files at once is handle
 In the case of success, a list with stored files' data is returned.<br/>
 In the event of an error while storing one of the files, the service ensures that none file is stored, and an error is returned to the caller.
 
-Continuing the last example of upload, in the case of success, the service answers with `200` and the following `application/json` response: 
+Continuing the last example of upload, in the case of success, the service answers with `200` and the following `application/json` response:
 
 ```json
 [
@@ -258,7 +258,7 @@ Continuing the last example of upload, in the case of success, the service answe
     "location": "/v2/files/download/02aa2106-661d-4fcc-9299-c72884ad0f28.pdf",
     "anAdditionalProperty": "a_string_value",
     "anotherAdditionalProperty": 34.12
-  } 
+  }
 ]
 ```
 
@@ -269,7 +269,7 @@ Consider consulting the Open API definition of the service to get more informati
 
 To download a single file that was previously uploaded, specifying its `file` field.
 
-#### Query parameters 
+#### Query parameters
 - `download=1`: to download the file as an attachment.
 - `downloadWithOriginalName=1`: to download the file with its original name as attachment.
 - `useOriginalName=1`: to get the file with its original name.
@@ -297,7 +297,7 @@ At the moment the download of multiple files is handled as an atomic operation, 
 
 ### **Get files list**: `GET /files/`
 
-To get the list of files metadata managed by the Files Service in a bucket; the API supports pagination via query parameters.
+Get a list of files metadata managed by the Files Service in the bucket; the API supports pagination via query parameters.
 
 Please note that this API is available from `v2.7.0`
 
@@ -308,6 +308,111 @@ Please note that this API is available from `v2.7.0`
 - `dateFrom`: date value used to filter the files. Files older than this value will not be shown.
 
 In the multi-bucket configuration, the scope parameter should be added to the path to select the specific bucket instance on which to operate (`GET /scopeValue/files/`, where `scopeValue` is the name of the scope).
+
+#### Response
+
+List of file metadata objects as retrieved from the Crud Service that match query parameters (if present).
+
+### **Get files list**: `PATCH /:filename/metadata`
+
+This API allow to modify the metadata of a specific file. Only custom metadata fields, set with a caster file, can be modified.
+
+Please note that this API is available from `v2.10.0`
+
+The body must be a JSON containing the new values you want to set to the metadata.
+
+:::caution
+
+The endpoint only modifies custom metadata fields defined in the caster file `additionalPropertiesValidator`.
+The other fields won't be modified, and silently ignored if added to the body.
+
+:::
+
+:::warning
+
+Make sure to always specify all the metadata fields if you want to modify only some of them.
+Any field not specified may be removed.
+
+:::
+
+In the multi-bucket configuration, the scope parameter should be added to the path to select the specific bucket instance on which to operate (`PATCH /scopeValue/:filename/metadata`, where `scopeValue` is the name of the scope).
+
+#### Example
+
+Consider a configuration with the following caster file:
+```js
+'use strict'
+
+module.exports = function caster(doc) {
+  return {
+      metadata: {
+        tags: (doc.tags || '').split(','),
+        authorId: doc.authorId || undefined,
+        ownerId: doc.ownerId || undefined,
+      }
+  }
+}
+
+module.exports.additionalPropertiesValidator = {
+  tags: { type: 'string' },
+  authorId: { type: 'string' },
+  ownerId: { type: 'string' },
+}
+```
+
+The collection contains this document:
+
+```json
+{
+  "_id" : "61c32e38e67eb6fc92ed50b9",
+  "name" : "my-file-1.pdf",
+  "file" : "078b04fa-6935-4686-ac5c-75f6b1ff5401.txt",
+  "size" : 768,
+  "location" : "/v2/files/download/078b04fa-6935-4686-ac5c-75f6b1ff5401.txt",
+  "__STATE__" : "PUBLIC",
+  "creatorId" : "public",
+  "updaterId" : "public",
+  "metadata": {
+    "authorId": "someOldVal",
+    "ownerId": "someOtherOldVal",
+    "tags": "some,tags"
+  }
+}
+```
+
+
+You can update the `authorId` and the `ownerId` with the following http call:
+
+```bash
+curl http://my-files-service/filesMetadata \
+    -X PATCH \
+    -raw-data '{
+       "authorId": "someNewValue",
+       "ownerId": "someOtherNewValue"
+     }'
+```
+
+In this case, the object returned by the caster function will replace the specified `metadata` CRUD field. For this reason, any field not specified in the body will **be undefined** in the resulting document.
+The endpoint will return `204 No Content` in case of successful operation.
+
+This is the resulting document after the PATCH:
+```json
+{
+  "_id" : "61c32e38e67eb6fc92ed50b9",
+  "name" : "my-file-1.pdf",
+  "file" : "078b04fa-6935-4686-ac5c-75f6b1ff5401.txt",
+  "size" : 768,
+  "location" : "/v2/files/download/078b04fa-6935-4686-ac5c-75f6b1ff5401.txt",
+  "__STATE__" : "PUBLIC",
+  "creatorId" : "public",
+  "updaterId" : "public",
+  "metadata": {
+    "authorId": "someNewValue",
+    "ownerId": "someOtherNewValue"
+  }
+}
+```
+
 
 #### Response
 

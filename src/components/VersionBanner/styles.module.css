@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  background-color: var(--ifm-color-primary);
+  background: linear-gradient(90deg, #5FB1FF 0%, #6BCBA3 100.77%);
+  border-radius: 4px;
   margin: calc(var(--ifm-global-spacing) / 2) !important;
   padding-right: 0px !important;
   max-width:  calc(var(--ifm-col-width) - var(--ifm-global-spacing)) !important;
   box-shadow: 0 3px 6px #2d354417, 8px 4px 4px rgba(11,33,74,0.03);
   min-height: 130px;
   overflow: hidden;
-  border-radius: 2px;
   color: white;
   font-family: var(--ifm-font-family-Inter);
 }

@@ -8,6 +8,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.7.0 - 08-11-2023
+
+### Added
+
+- add prom metrics for http requests duration
+
+## 3.6.1 - 2023-10-13
+
+### Fixed
+
+- fix: MIA_JWT_TOKEN_SIGN_KEY is mandatory only when signing method is HS256
+
+## 3.6.0 - 2023-10-13
+
+### Added
+
+- Add support to asymmetric signing key with RS256 algorithm
+
+## 3.5.0 - 2023-10-09
+
+### Fixed
+
+- handle some unhandled errors in logout logic
+
+### Added
+
+- migrate internal crud implementation to Mia-Platform [Go Crud Library](https://github.com/mia-platform/go-crud-service-client)
+- add support for Redis Sentinel
+
+### Updated
+
+-  update libs, fix breaking changes of golang-jwt and logrus
+
 ## 3.4.0 - 14-09-2023
 
 ### Added

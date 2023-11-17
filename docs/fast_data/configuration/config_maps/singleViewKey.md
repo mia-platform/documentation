@@ -96,11 +96,15 @@ It is possible to include more relationships between fields
 
 ## Using the No Code
 
-From version `11.3.0` of the console, your project might be enabled to configure the Single View Key with the No Code feature included in the _Single View_ section. This feature allows the selection of the fields from the available fields defined in the Single View data model and the fields available from the Base Projection.
+Your project might be enabled to configure the Single View Key with the No Code feature included in the _Single View_ section. This feature allows the selection of the fields from the available fields defined in the Single View data model and the fields available from the Base Projection.
 
 The feature is included in the _Single View_ section. After selecting the Single View and then the Single View Creator attached, the _Settings_ tab will contain a card that recaps the information regarding the current Single View Key configured.
 
 ![Recap of the configured Single View Key](../../img/no_code_single_view_key/single_view_key_card.png)
+
+:::info
+Before to configure the Single View Key, the [ER Schema](/fast_data/configuration/config_maps/erSchema.md) and the [Aggregation](/fast_data/configuration/config_maps/aggregation.md) must be configured as well.
+:::
 
 A click on the `Edit` button will open a modal that allows the user to add more relationships with the help of two fields:
 - the first field, to the left, can be populated with one of the available fields defined in the Single View data model.
