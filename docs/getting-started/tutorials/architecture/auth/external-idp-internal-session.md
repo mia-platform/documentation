@@ -12,7 +12,7 @@ This version is more complex than the one defined in the [Scenario 2](/getting-s
 
 ## Definition
 
-This architecture uses the [`Authentication Service`](/runtime_suite/authentication-service/10_overview.md) plugin. Note that, this time, it is a Mia-Platform plugin rather than a custom microservice as in Scenario 2. This imposes a limitations on the presented architecture: your external Identity Provider must be supported by the Authentication Service plugin (see [the list of supported IdPs](/runtime_suite/authentication-service/10_overview.md)) otherwise this scenario is not applicable.
+This architecture uses the [`Authentication Service`](/runtime_suite/authentication-service/10_overview.md) plugin. Note that, this time, it is a Mia-Platform plugin rather than a custom microservice as in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md). This imposes a limitations on the presented architecture: your external Identity Provider must be supported by the Authentication Service plugin (see [the list of supported IdPs](/runtime_suite/authentication-service/10_overview.md)) otherwise this scenario is not applicable.
 
 ![Scenario3](img/auth-scenario3.png)
 
@@ -32,6 +32,7 @@ Once, your client has obtained the token following the above flow, the authentic
 Indeed, as you can notice from the picture above, the token resolution is performed directly from the Authentication Service rather than the Identity Provider.  
 
 ## Tutorial steps
+
 To setup this flow you need to:
 - configure some Mia-Platform plugins from the Marketplace
 - add some endpoints to your project
@@ -132,7 +133,7 @@ This is because the application uses Auth0 as a default IdP, so:
 - if you want to use another Oauth2 compliant IdP:
   - start by creating the `crud-service` and the `authentication-service` as in the manual configuration
   - install the application, modifying the `auth0-client` with the `authentication-service` in the wizard
-  - change the environment variables of the `authorization-service` following the [tutorial of the 'external IdP' scenario](/getting-started/tutorials/architecture/auth/external-idp.md#tutorial-steps)
+  - change the environment variables of the `authorization-service` as described in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md#tutorial-steps)
   - remove the unnecessary environment variables specific of Auth0
   - the application will take care of creating:
     - api-gateway
@@ -145,16 +146,16 @@ This is because the application uses Auth0 as a default IdP, so:
 You can divide the authentication flow in 3 step from the user point of view:
 - the user is redirected to the IdP page
 - the user inserts their credentials and the IdP will generate a unique code
-  - the server will use the code to verify the user through the IdP, creating a session for the user
-- the user use the session to make an authorized call
+  - the server will use the code to verify the user through the IdP, creating a token for the user's session
+- the user uses the token to make an authorized call
 
-This flow follows the standard Oauth2: you can read more about its specifications [here](https://www.oauth.com/), or more specific [here](https://www.oauth.com/oauth2-servers/authorization/).
+This flow follows the OAuth2 standard: you can read more about its specifications [here](https://www.oauth.com/), or more specific [here](https://www.oauth.com/oauth2-servers/authorization/).
 
 ### Step 1: Redirect to IdP page
 
 ![Phase1](img/auth_scenario3_phase1.png)
 
-The first thing you will need to do is to redirect your user to this URL:   
+The client web application must redirect the user to this URL:   
 ```text
 https://<MY-HOST>/authorize?appId=<app>&providerId=<provider>&redirect=/
 ``` 
@@ -164,10 +165,10 @@ where:
 - `redirect` is the path to witch you want to be redirected to after the successful flow
 
 :::warning
-You need to pass all of the above query parameters to make the flow complete successfully.
+The client must pass all of the above query parameters to make the flow complete successfully.
 :::
 
-You can do it manually or use a script of the API Gateway that will redirect your user to this location every time it encounters a 401 error.  
+You can let your client application do it or you can use a script of the API Gateway that will redirect your user to this location every time it encounters a 401 error.  
 To do so, please follow [this guide](/runtime_suite_applications/secure-api-gateway/20_configuration.md#api-gateway).
 
 The result of the `/authorize` request will be an HTTP 302 with the location of your IdP, passing a generated `state` as a query parameter.
@@ -176,7 +177,7 @@ The result of the `/authorize` request will be an HTTP 302 with the location of 
 
 ![Phase2](img/auth_scenario3_phase2.png)
 
-Using the IdP form, the user will insert their credentials and press the 'Login' button: after the successful sign in the IdP will redirect the user's browser to this URL:
+Using the IdP login page, the user will submit their credentials and, after the successful sign in, the IdP will redirect the user's browser to this URL:
 ```text
 https://<MY-HOST>/web-login/oauth/callback?state=X&code=Y
 ```
@@ -184,31 +185,29 @@ where:
 - `state` is the value previously passed to the IdP
 - `code` is a new value created by the IdP representing the user
 
-At this point the web page will call this URL:
+This endpoints points to the `Login Site` plugin and returns an HTML page that will perform an HTTP POST request to the following URL passing the `state` and the `code` in the request body.
 ```text
 https://<MY-HOST>/oauth/token
 ```
-passing the `state` and the `code` received via query parameter from the IdP.
 
-The `authentication-service` will check the `state` and use the `code` to verify the user through the IdP, creating a session for the user and saving it on Redis and MongoDB.
+The `authentication-service` handles this request by checking the `state` and by using the `code` to verify the user through the IdP. The token session returned by the IdP is saved on Redis and MongoDB.
 
-After this operation the `authentication-service` will create a session cookie (hence the `isWebsiteApp: true` set before) as a JWT with the following claims:
-- id, name and email from the IdP  
-- all the other attributes (groups included) from the Mongo collection
-  - they must be defined as custom claims for the JWT, following this [doc](/runtime_suite/authentication-service/30_usage.md#custom-claims) and taking a look at the examples
+After this operation, the `authentication-service` will create a session cookie (hence the `isWebsiteApp: true` set before) as a JWT with the following claims:
+- `id`, `name` and `email` taken from the IdP  
+- all the other attributes (`groups` included) from the CRUD collection. If you need to include custom attributes in the user claim, check this [documentation](/runtime_suite/authentication-service/30_usage.md#custom-claims) to understand how to congigure both the CRUD collection and the `Authorization Service`
 
 The JWT is finally signed and returned to the user via the `/oauth/token` response, that will have:
 - status code: 200
 - `location` header equals to the one defined in the `/authorize` request
 - cookie: `sid=<JWT>`
 
-As a last step, the browser will redirect the location to the one specified (the homepage as an example).
+As a last step, the browser will redirect to the location specified by the client web application during Step 1 in the `redirect` query parameter (e.g. the homepage).
 
 ### Step 3: API usage as logged-in user
 
 ![Phase3](img/auth_scenario3_phase3.png)
 
-With the cookie `sid` the user can be authenticated and authorized to access the other APIs you are protecting (have a look [here](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) to know how to protect you APIs).
+With the cookie `sid` the user can be authenticated and authorized to access the other APIs you are protecting (have a look [here](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) to know how to protect your APIs).
 
 The request is paused by API Gateways, that will request if the user is authenticated to access the resource to the `authorization-service`.
 
@@ -220,6 +219,4 @@ As you can see here, no more calls are made to authenticate the user: if the JWT
 
 After checking the reply of the `/userinfo`, the `authorization-service` will validate the user.
 
-THe API Gateway can now forward the request correctly to the backend, with the benefit of having custom headers containing the user information.
-
-The link between can be explored further by looking at this [doc](/runtime_suite/authentication-service/30_usage.md#integration-with-the-authorization-service).
+The API Gateway can now forward the request correctly to the backend, with the benefit of having custom headers containing the user information.

@@ -35,9 +35,11 @@ The picture above illustrates the steps of the auth flow:
 
 
 ## Tutorial steps
+
 :::note
 We suppose that you have already created an API Gateway in your project and you already have some endpoints you want to secure.
 :::
+
 In order to implement the flow depicted above, you can perform the following steps on Mia-Platform Console:
 1. Create the `Authentication Manager` custom microservice
     - Click on `Microservices`
