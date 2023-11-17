@@ -4,7 +4,7 @@ title: Integrate an external Identity Provider but manage session and user group
 sidebar_label: External Identity Provider with internal user management
 ---
 
-This scenario is a slight modification of [Scenaior 2](/getting-started/tutorials/architecture/auth/external-idp.md). You still have an external Identity Provider (IdP) but the token used by the client is produced within your project so that you can manage the user groups within your project using a dedicated CRUD collection. Therefore, in this scenario, you will use the external IdP only to validate the users credentials.
+This scenario is a slight modification of [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md). You still have an external Identity Provider (IdP) but the token used by the client is produced within your project so that you can manage the user groups within your project using a dedicated CRUD collection. Therefore, in this scenario, you will use the external IdP only to validate the users credentials.
 
 :::info
 This version is more complex than the one defined in the [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md), and it is only useful if you really need to handle within your project both the token generation and users data. 
