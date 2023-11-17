@@ -24,7 +24,7 @@ The calendar is able to represent three kind if events: availabilities, exceptio
 ![exception](../img/flagged-appointment.png)
 ![exception](../img/appointment.png)
 
-For more information regarding the type of events read the [appointment manager documentation](https://jquense.github.io/react-big-calendar/examples/?path=/story/about-big-calendar--page).
+For more information regarding the type of events read the [appointment manager documentation][appointment-manager].
 
 ## Modes
 
@@ -44,7 +44,7 @@ To improve performance not all the events are loaded in the calendar at the same
 
 Click on an event calendar will trigger the emission of a [select-data](../../microfrontend-composer/back-kit/events#selected-data) event which contains in the payload the data of the event clicked.
 
-This mode is compatible with version 1.x  of the appointment manager backend.
+This mode is compatible with version 1.x  of the [appointment manager backend][appointment-manager].
 
 Here can be found an example <a download target="_blank" href="/docs_files_to_download/care-kit/availabilities.json">configuration</a>.
 
@@ -62,13 +62,13 @@ When `singleResource` is set to true the resource header will not be shown. To l
 
 The resources and the events in the calendar must share a common property used by the calendar to display the events in the correct resource sections. If a event is not associated to any resource it is not displayed in the calendar.
 
-In appointment mode, the events are not fetched using `bk-crud-client` like in availability mode, but they are fetched from the endpoint configured in the property `calendarEndpoint` (this endpoint should coincide with the GET /calendar of the appointment manager backend). Not using the `bk-crud-client` to fetch the events allows us to filter the events using the `bk-filters-manager`. The filtering on the time range of events loaded is executed internally to the component. The web components computes the start and end date of the range as in availability mode and than adds them as query parameter to `calendarEndpoint` call.
+In appointment mode, the events are not fetched using `bk-crud-client` like in availability mode, but they are fetched from the endpoint configured in the property `calendarEndpoint` (this endpoint should coincide with the GET /calendar of the [appointment manager backend][appointment-manager]). Not using the `bk-crud-client` to fetch the events allows us to filter the events using the `bk-filters-manager`. The filtering on the time range of events loaded is executed internally to the component. The web components computes the start and end date of the range as in availability mode and than adds them as query parameter to `calendarEndpoint` call.
 
 Clicking on a slot will make appear a draggable window containing some information about the slot clicked. A slot can be in 3 different states: available, booked, and unavailable. Depending on the state the action button present in the footer allows the user to book an appointment, change or delete an appointment, or visualize the information of the appointment in the selected slot. Unavailable slots and exception are not clickable in this configuration.
 
-All the action buttons present in the appointment detail modal are performed using back-kit events. For this reason, it is needed in the page a `bk-crud-client` configured with the appointment manager appointment endpoint as URL.
+All the action buttons present in the appointment detail modal are performed using back-kit events. For this reason, it is needed in the page a `bk-crud-client` configured with the [appointment manager][appointment-manager] appointment endpoint as URL.
 
-This mode is compatible with version 2.x  of the appointment manager backend.
+This mode is compatible with version 2.x  of the [appointment manager backend][appointment-manager].
 
 It is possible to filter the resource and the events shown by the calendar. The component in "appointment mode" listen to [change-query events](../../microfrontend-composer/back-kit/events#change-query) and applies the filters inside tge change-query event payload to the events and resources displayed by the calendar. Only on the events' properties declared in the `filterProperties` property the filering is applied. The same `filterProperties` property is present inside the `resourceConfig` object and used to declare the resource properties eligible for filtering. 
 
@@ -89,10 +89,10 @@ In the same dropdown menu is present the time zoom option that allows the user t
 | `appointmentConfig`                | [AppointmentConfig](#appointmentconfig) | false |            | Object that contains the name of the appointments properties used to populate booked slot and the draggable modal                                                                                                                            |
 | `appointmentMode`                  | boolean | false | false      | Boolean the define which calendar mode is in use. If false the calendar is in availability mode, if true in appointment mode                                                                                                                 |
 | `modalFooterVisible`               | boolean | false | true       | Boolean the define if the modal with the appointment detail has the footer with the actions buttons                                                                                                                                          |
-| `appointmentManagerUrl`            | string | false | -          | The base path of the appointment manager                                                                                                                                                                                                     |
+| `appointmentManagerUrl`            | string | false | -          | The base path of the [appointment manager][appointment-manager]                                                                                                                                                                                                     |
 | `calendarEndpoint`                 | string | false | -          | The endpoint used to fetched the events in appointment mode                                                                                                                                                                                  |
 | `updateParticipantsStatusEndpoint` | string | false | -          | The endpoint used to set the user's participation status for a certain event                                                                                                                                                                 |
-| `currentUserIdFieldName`           | string | false | sub        | The userinfo property field name to be matched with to determine the particpation status for any event (**N.B.** this property must be properly set if the  Appointment Manager if congigured with the `isParticipantStatusAvailable` flag.) |
+| `currentUserIdFieldName`           | string | false | sub        | The userinfo property field name to be matched with to determine the particpation status for any event (**N.B.** this property must be properly set if the  [Appointment Manager][appointment-manager] if configured with the `isParticipantStatusAvailable` flag.) |
 | `date`                             | string | false | new Date() | The date on which the calendar is on load                                                                                                                                                                                                    |
 | `height`                           | string | false | '75vh'     | css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height]                                                                                                               |
 | `filterProperties`                 | string[] | false | []         | List of availabilities' properties on which filters can be applied                                                                                                                                                                           |
@@ -271,3 +271,6 @@ ResourceDetails = {
 |[require-confirm](../../microfrontend-composer/back-kit/events#require-confirm)| trigger for the opening of the confirmation modal before deleting an appointment |
 |[selected-data](../../microfrontend-composer/back-kit/events#selected-data)| notifies about the click on an event|
 |[update-data](../../microfrontend-composer/back-kit/events#update-data)| trigger for the opening of the component to modify the appointment in the clicked slot|
+
+
+[appointment-manager]: ../../runtime_suite/appointment-manager/overview
