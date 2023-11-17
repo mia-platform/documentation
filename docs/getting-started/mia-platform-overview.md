@@ -28,7 +28,7 @@ Mia-Platform products are built **by developers for developers**, and you can [a
 - Monitor runtime resources usage and optimize them;
 - Expose all the APIs through an API Gateway of your choice, in an easy and secure way;
 - Leverage a Data Fabric solution to govern the entire **data lifecycle**. Project data from your legacy systems and create single views - i.e. unified views of a subset of data with a specific purpose - to reduce access latency, and increase data availability;
-- Create and evolve an entire **Microfrontend Composer application** in a few clicks using the low-code features to read and write your data.
+- Create and evolve an entire **Microfrontend Composer application** like a backoffice application (and much more)* in a few clicks using the low-code features to read and write your data.
 
 ## Why Mia-Platform?
 
