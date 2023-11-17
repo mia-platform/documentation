@@ -36,7 +36,7 @@ To setup this flow you need to:
 - configure some Mia-Platform plugins from the Marketplace
 - add some endpoints to your project
 
-In the following, we present both a manual way of doing it and a faster procedure using the [`Secure API Gateway`](/runtime_suite_applications/secure-apigateway/overview.md) application.
+In the following, we present both a manual way of doing it and a faster procedure using the [`Secure API Gateway`](/runtime_suite_applications/secure-api-gateway/10_overview.md) application.
 
 ### Manual configuration
 
@@ -125,7 +125,7 @@ We suppose that you have already created an API Gateway in your project and you 
 
 
 ### Configuration with the Secure API Gateway application
-To speed up the process, you can use the [Secure API Gateway application](/runtime_suite_applications/secure-apigateway/overview.md), modifying it a little after the creation.
+To speed up the process, you can use the [Secure API Gateway application](/runtime_suite_applications/secure-api-gateway/10_overview.md), modifying it a little after the creation.
 
 This is because the application uses Auth0 as a default IdP, so:
 - if you want to use Auth0, then the application is ready to use, you don't need to do anything else.
@@ -168,7 +168,7 @@ You need to pass all of the above query parameters to make the flow complete suc
 :::
 
 You can do it manually or use a script of the API Gateway that will redirect your user to this location every time it encounters a 401 error.  
-To do so, please follow [this guide](/runtime_suite_applications/secure-apigateway/configuration.md#api-gateway).
+To do so, please follow [this guide](/runtime_suite_applications/secure-api-gateway/20_configuration.md#api-gateway).
 
 The result of the `/authorize` request will be an HTTP 302 with the location of your IdP, passing a generated `state` as a query parameter.
 
