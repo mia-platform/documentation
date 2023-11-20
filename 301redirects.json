@@ -1336,5 +1336,9 @@
   "/docs/getting-started/tutorials/backoffice/auth0-integration": {
     "destination": "/docs/getting-started/tutorials/microfrontend-composer/auth0-integration",
     "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/videos/backoffice": {
+    "destination": "docs/getting-started/videos/microfrontend-composer",
+    "addedOn": "2023-11-20"
   }
 }
