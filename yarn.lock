@@ -9722,10 +9722,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"medium-zoom@npm:^1.0.8":
-  version: 1.0.8
-  resolution: "medium-zoom@npm:1.0.8"
-  checksum: b65be8546ab255936271e15a17524677808774140199e58c4dc0bae131b504a13e481c4f483ca8a862d32636dd4996bd7ed0a005c1f6213c3c764aa03fbbc48e
+"medium-zoom@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "medium-zoom@npm:1.1.0"
+  checksum: c58ea2d3335c3b5d4625b4fa70d09925e35d2eb15e9906f41586e7016aa3059ca9b01656ae6d35e70219c7e3e94dda0e9528cd354fcd2f6614231b529654b0b9
   languageName: node
   linkType: hard
 
@@ -9811,7 +9811,7 @@ __metadata:
     front-matter: ^4.0.2
     klaw: ^4.1.0
     mdx-mermaid: ^v1.3.2
-    medium-zoom: ^1.0.8
+    medium-zoom: ^1.1.0
     mermaid: ^10.6.0
     prop-types: ^15.8.1
     react: ^17.0.2
