@@ -164,6 +164,145 @@ If you want to enable any mechanism that uses Kafka in the Single View Creator, 
 - `KAFKA_SASL_MECHANISM`
 :::
 
+## Attaching a Service to a Single View
+
+To simplify the configuration of the Single View Creator service, you can attach a service previously created from the marketplace to a Single View.
+
+Here's how you can do it:
+
+1. In the _Microservices_ section, create your _Single View Creator Low Code_ service.
+2. Create your Single View and update it with all the required configurations.
+3. Attach the _Single View Creator Service_ to the Single View from the dedicated configuration page located within the _Single View Creators_ tab.
+
+:::info
+You can attach more than one _Single View Creator Service_ to a Single View, and each service will have its own configuration and operate independently.
+
+You can attach as many services as you need, but remember that you can attach one service to only one Single View.
+:::
+
+After selecting a _Single View Creator Service_, you can access the configuration page and set up the following:
+
+- The _ER Schema_
+- The _Aggregation_
+- Add a _Validator_ file
+- The _Upsert/Delete Strategy_;
+- The _Single View Key_ (from the _Settings_ tab)
+- The _Single View Trigger Generator_ (more information in the [related page](/fast_data/configuration/single_view_trigger_generator.md#attach-a-service-to-a-single-view))
+
+Any updates to these configurations will be reflected in the service's configuration maps once you save the changes.
+
+:::warning
+When a Single View Trigger Generator is attached to a Single View, the _ER Schema_, _Aggregation_, _Single View Key_, and the _Validator_ (if present) will become "read-only."
+
+If you prefer to manually configure these services, you can detach the service in the _Single View Creator_ tab by clicking the detach icon in the Single View Creators table.
+:::
+
+## Consuming from Kafka
+
+As you can see, the Single View Creator lets you configure what channel is used as input through the `PROJECTIONS_CHANGES_SOURCE` environment variable. The default channel is MongoDB for the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) but this might not always be what you need. The service gives you the alternative to listen from Apache Kafka instead, this can be useful in two different cases:
+
+- You want to use the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to produce [`sv-trigger`](/fast_data/inputs_and_outputs.md#single-view-trigger-message) messages.
+- You want to configure the [Single View Patch](#single-view-patch) cycle which reads [`pr-update`](/fast_data/inputs_and_outputs.md#projection-update-message) messsages from the Real-Time Updater.
+
+In both of the cases you have to configure all the required environment variables related to kafka. First you need to configure the `KAFKA_BROKERS` and `KAFKA_GROUP_ID`, then you probably need to configure your authentication credentials with `KAFKA_SASL_MECHANISM`, `KAFKA_SASL_USERNAME` and `KAFKA_SASL_PASSWORD`.
+
+Once this is done remember to set the `PROJECTIONS_CHANGES_SOURCE` environment variable to `KAFKA` and to check out the configuration page of the system you need to complete the necessary steps.
+
+## Single View Key
+
+The Single View Key is the Single View Creator part which identifies the Single View document that needs to be updated as consequence of the event that the service has consumed. 
+
+To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/singleViewKey.md).
+
+## ER Schema
+
+The ER Schema defines the relationship between projections. [On the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md), you can find a deep explanation of how ER Schema configuration works and how to configure it.
+
+### Selecting an ER Schema with the No Code
+
+Your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop-down menu where you can select one of the ER Schemas already configured on the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
+
+![ER Schema selection with No Code](./img/er-schema-selection.png)
+
+After selecting an ER Schema, the next configuration save will generate the Config Map of the ER Schema JSON taken from the one configured in the canvas. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
+
+:::info
+It is also possible to select the ER Schema from the _Settings_ tab, inside the _General_ card.
+
+Please remember that changing the ER Schema will cause the reset of the [Aggregation configuration](/fast_data/configuration/config_maps/aggregation.md).
+:::
+
+## Aggregation
+
+The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
+
+To have more information on how to configure the Aggregation, please visit the [related section](/fast_data/configuration/config_maps/aggregation.md).
+
+:::note
+Since version `v5.0.0` of the Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a Single View with the `__STATE__` field set from the aggregation will update the Single View to that state (among the other changes).   
+This means, for instance, that if you set the `__STATE__` value to `DRAFT` in the `aggregation.json` in Low Code mode (or in the `pipeline.js` in Manual mode), the Single View updated will have the `__STATE__` field set to `DRAFT`.
+Previously, the `__STATE__` field you returned was ignored, and the Single View would always have the `__STATE__` value set to `PUBLIC`.
+:::
+
+ ### Automatic generation of the Aggregation
+
+ The Aggregation Configuration can be automatically generated started from an already existing ER Schema. This feature is accessible inside the page of the Single View Creator attached to your Single View (from the _Single View_ section select the Single View and, from the _Single View Creators_ tab select the service attached with the Aggregation to edit), by clicking on the dedicated button as you can see in the picture below. 
+
+![automatic generation of Aggregation](../img/aggregation-automatic-generation.png)
+
+It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is a projection that contains the fields that are going to be used as the identifiers for the Single View.
+
+:::info
+In case your project might have enabled the No Code Aggregation: in this case the Automatic generation feature is included in the _Settings_ tab of the Single View Creator page.
+:::
+
+:::warning
+The generated file will have a basic structure but it may not contain all the relationships needed or the desired structure, so please modify it to match the desired needs before using it.
+:::
+
+## Validator
+
+The validation of a Single View determines what to do with the current update. If the Single View is determined as "non-valid", the delete function will be called. Otherwise, if the result of the validation is positive, it will be updated or inserted in the Single Views collection, through the upsert function. Delete function and upsert function will be explained in the next paragraph.
+
+For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be updated or inserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
+
+By default, the validator always returns true. So we accept all kinds of Single Views, but, if you need it, you can set your own custom validator.
+
+```js
+// (logger: BasicLogger, singleView: Document) => Boolean
+function singleViewValidator(logger, singleView) {
+  ... checks on singleView
+
+  // returns a boolean
+  return validationResult
+}
+```
+
+:::warning
+When the update of an existing Single View is triggered and the validation has a negative outcome, the Single View won't be updated, and instead it will be deleted.
+:::.
+
+### Plugin
+
+It is possible to add and modify the validation in your Single View Creator configuration accessing to the _Validator_ tab of the Single View Creator attached to a Single View: it will show an editor where it will be possible to modify the validator. If the function does not exist yet, a placeholder will allow you to create a new validator function that will include a function that will always return _true_, ready to be modified according to your needs.
+
+In any case, the function should follow this structure:
+
+```js title="validator.js"
+module.exports = function validator(logger, singleView) {
+  ... custom validation logic on singleView
+
+  // returns a boolean
+  return customValidationResult
+}
+```
+
+### Template
+
+The `startCustom` function accepts a function in the configuration object called `validator`, which is the validation function.
+
+The input fields of the validation function are the logger and the Single View, while the output is a boolean containing the result of the validation.
+
 ## Upsert and Delete Strategies
 
 The Single View Creator provides different ways to handle the upsert and delete of Single View records through the `UPSERT_STRATEGY` and `DELETE_STRATEGY` environment variables.
@@ -175,6 +314,7 @@ The available strategies for the upsert are the following:
 
 - **replace**: Replaces the whole Single View record that matches the Single View Key with the new record from the aggregation. This is the default method.
 - **update**: Updates or inserts the Single View record but does not replace it, meaning that any other properties that are not present in the `aggregation.json` will not be removed.
+- **custom**: A completed customized logic to perform the upsert of the Single View document, better explained in the [section below](#custom-functions).
 
 #### Replace vs Update
 
@@ -250,7 +390,14 @@ So, at the end we will have the first Single View Creator with the first `aggreg
 
 ### Delete
 
-For the delete we offer the `delete` pre-configured strategy which [Hard deletes](https://www.becomebetterprogrammer.com/soft-delete-vs-hard-delete/#Hard_Delete) the Projection record when the Base Projection gets deleted. If you need a more complex deleting strategy we encourage you to take a look to the [Custom functions](#custom-functions) section.
+The available strategies for the delete are the following:
+
+- **delete**: [Hard deletes](https://en.wiktionary.org/wiki/hard_deletion) the Single View record. This is the default method.
+- **virtualDelete**: [Soft deletes](https://en.wiktionary.org/wiki/soft_deletion) the Single View, setting the `__STATUS__` property to `DELETED`.
+
+The delete operation of a Single View (either hard, soft or custom) happens when the Base Projection record gets deleted.
+
+If you need a more complex deleting strategy we encourage you to take a look to the [Custom functions](#custom-functions) section.
 
 ### Custom functions
 
@@ -286,6 +433,8 @@ async function upsertSingleViewFunction(
   singleViewKey)
 {
   logger.trace('Upserting Single View...')
+
+  // Here goes your custom upsert logic
   const oldSingleView = await singleViewCollection.findOne(singleViewKey)
 
   await singleViewCollection.replaceOne(
@@ -307,6 +456,8 @@ async function deleteSingleViewFunction(
   singleViewKey)
 {
   logger.trace('Deleting Single View...')
+
+  // Here goes your custom delete logic
   const oldSingleView = await singleViewCollection.findOne(singleViewKey)
 
   if (oldSingleView !== null) {
@@ -327,42 +478,15 @@ async function deleteSingleViewFunction(
 
 #### Plugin
 
-Add a config map to your service and put the Javascript files into it. These files should contain the custom function you want to use as upsert or delete function. 
+It is possible to configure the upsert strategy and the delete strategy on the related tab inside the configuration page of the Single View Creator attached to the Single View
 
-For instance:
+![Upsert-Delete Strategy configuration page](./img/upsert-delete-strategy.png)
 
-```js title="myDeleteFunction.js"
-module.exports = async function myDeleteFunction(
-  logger,
-  singleViewCollection,
-  singleViewKey)
-{
-  logger.trace('Checking if it can be deleted...')
-  const oldSingleView = await singleViewCollection.findOne(singleViewKey)
+You can select between the three available options for the upsert strategy (_Update_, _Replace_ or _Custom_) and for the delete strategy (_Delete_, _Virtual Delete_ or _Custom_).
 
-  // my custom logic
-  // do something...
+In case the _Custom_ options is selected for the upsert and/or the delete strategy, an editor will appear just below with the existing configuration (if there's one) or a template code.
 
-  if (oldSingleView !== null) {
-    
-    try {
-      await singleViewCollection.deleteOne(singleViewKey)
-    } catch (ex) {
-      logger.error(`Error during Single View delete: ${ex}`)
-    }
-  }
-
-  logger.trace('Single view deletion procedure terminated')
-  return {
-    old: oldSingleView,
-    new: null,
-  }
-}
-```
-
-Let's suppose that I put this file in a config map mounted on path `/home/node/app/my-functions`. Then, in order to use that, I need to set the `DELETE_STRATEGY` environment variable to `/home/node/app/my-functions/myDeleteFunction.js`. 
-
-The same logic can be applied to upsert function, but setting the file path to the environment variable `UPSERT_STRATEGY`.
+After saving the configuration, the selected strategies will be applied to the related environment variables `UPSERT_STRATEGY` and `DELETE_STRATEGY`. The eventually needed custom functions will be automatically included in a config map.
 
 #### Template
 
@@ -378,102 +502,6 @@ const resolvedOnStop = singleViewCreator.startCustom({
   deleteSingleView: deleteSV,
 })
 ```
-
-## Single View Key
-
-The Single View Key is the Single View Creator part which identifies the Single View document that needs to be updated as consequence of the event that the service has consumed. 
-
-To have more information on how to configure the Single View Key, please visit the [related section](/fast_data/configuration/config_maps/singleViewKey.md).
-
-## ER Schema
-
-The ER Schema defines the relationship between projections. [On the dedicated page in the Config Map section](/fast_data/configuration/config_maps/erSchema.md), you can find a deep explanation of how ER Schema configuration works and how to configure it.
-
-### Selecting an ER Schema with the No Code
-
-Your project might have enabled the possibility to configure ER Schemas with a No Code feature. In that case, the configuration section (where you usually would write the ER Schema) will show a drop-down menu where you can select one of the ER Schemas already configured on the [_ER Schemas page_](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code). 
-
-![ER Schema selection with No Code](../img/single-view-detail-selection-er-schema.png)
-
-After selecting an ER Schema, the next configuration save will generate the Config Map of the ER Schema JSON taken from the one configured in the canvas. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
-
-:::info
-Starting from version `11.3.0`, it is also possible to select the ER Schema from the _Settings_ tab, inside the _General_ card.
-
-Please remember that changing the ER Schema will cause the reset of the [Aggregation configuration](/fast_data/configuration/config_maps/aggregation.md).
-:::
-
-## Aggregation
-
-The Aggregation is the Single View Creator part which aggregates Projections data and generates the Single View that is going to be updated. 
-
-To have more information on how to configure the Aggregation, please visit the [related section](/fast_data/configuration/config_maps/aggregation.md).
-
-:::note
-Since version `v5.0.0` of the Single View Creator service and `v12.0.0` of the `@mia-platform-internal/single-view-creator-lib`, returning a Single View with the `__STATE__` field set from the aggregation will update the Single View to that state (among the other changes).   
-This means, for instance, that if you set the `__STATE__` value to `DRAFT` in the `aggregation.json` in Low Code mode (or in the `pipeline.js` in Manual mode), the Single View updated will have the `__STATE__` field set to `DRAFT`.
-Previously, the `__STATE__` field you returned was ignored, and the Single View would always have the `__STATE__` value set to `PUBLIC`.
-:::
-
- ### Automatic generation of the Aggregation
-
- The Aggregation Configuration can be automatically generated started from an already existing ER Schema. This feature is accessible inside the page of the Single View Creator attached to your Single View (from the _Single View_ section select the Single View and, from the _Single View Creators_ tab select the service attached with the Aggregation to edit), by clicking on the dedicated button as you can see in the picture below. 
-
-![automatic generation of Aggregation](../img/aggregation-automatic-generation.png)
-
-It is necessary to specify the base Projection from which the aggregation shall be generated. The base Projection is a projection that contains the fields that are going to be used as the identifiers for the Single View.
-
-:::info
-From version `11.3.0` of the console, your project might have enabled the No Code Aggregation: in this case the Automatic generation feature is included in the _Settings_ tab of the Single View Creator page.
-:::
-
-:::warning
-The generated file will have a basic structure but it may not contain all the relationships needed or the desired structure, so please modify it to match the desired needs before using it.
-:::
-
-## Validator
-
-The validation of a Single View determines what to do with the current update. If the Single View is determined as "non-valid", the delete function will be called. Otherwise, if the result of the validation is positive, it will be updated or inserted in the Single Views collection, through the upsert function. Delete function and upsert function will be explained in the next paragraph.
-
-For this reason, the validation procedure should not be too strict, since a Single View declared as "invalid" would not be updated or inserted to the database. Rather, the validation is a check operation to determine if the current Single View should be handled with the upsert or delete functions.
-
-
-By default, the validator always returns true. So we accept all kinds of Single Views, but, if you need it, you can set your own custom validator.
-
-```js
-// (logger: BasicLogger, singleView: Document) => Boolean
-function singleViewValidator(logger, singleView) {
-  ... checks on singleView
-
-  // returns a boolean
-  return validationResult
-}
-```
-
-:::warning
-When the update of an existing Single View is triggered and the validation has a negative outcome, the Single View won't be updated, and instead it will be deleted.
-:::
-
-### Plugin
-
-Since version `v3.5.0`, it is possible to specify a custom validator function inside the configuration folder (`CONFIGURATION_FOLDER`).
-
-The file must be named `validator.js` and must export a function that will take as arguments the same as the default validator explained above.
-
-```js title="validator.js"
-module.exports = function validator(logger, singleView) {
-  ... custom validation logic on singleView
-
-  // returns a boolean
-  return customValidationResult
-}
-```
-
-### Template
-
-The `startCustom` function accepts a function in the configuration object called `validator`, which is the validation function.
-
-The input fields of the validation function are the logger and the Single View, while the output is a boolean containing the result of the validation.
 
 ## Error handling
 

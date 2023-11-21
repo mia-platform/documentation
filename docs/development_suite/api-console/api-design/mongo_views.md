@@ -91,7 +91,7 @@ To ensure the proper functioning of endpoint exposure, it's important to careful
 
 The CMS offers a fast and intuitive way to visualize a MongoDB View's information without the need of manually sending http requests.
 
-To see a MongoDB View's content from the CMS you will need to [create a new CMS Page](/business_suite/cms_configuration/config_cms.md#how-to-create-a-page) from the CMS section of the console. In the first step (Menu configuration) of the creation form you want to select as `Endpoint` the previously created endpoint connected to your view. Now in the second step (CMS Settings) you will notice there are two disabled options, the `Enable delete` and the `Avoid the creation of new elements`.
+To see a MongoDB View's content from the CMS you will need to [create a new CMS Page](/microfrontend-composer/previous-tools/cms/config_cms.md#how-to-create-a-page) from the CMS section of the console. In the first step (Menu configuration) of the creation form you want to select as `Endpoint` the previously created endpoint connected to your view. Now in the second step (CMS Settings) you will notice there are two disabled options, the `Enable delete` and the `Avoid the creation of new elements`.
 
 ![Create CMS page step 2 form](img/cms-mongo-view-second-step-screenshot.png)
 

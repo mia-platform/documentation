@@ -4,12 +4,14 @@ title: Change Marketplace Items Visibility
 sidebar_label: Change Marketplace Items Visibility
 ---
 
-The Marketplace is an essential tool within the development platform, designed to empower developers with maximum autonomy in their development activities. As such, it offers a vast library of ready-to-use components that are highly dynamic. Consequently, there may arise a need for an item that initially started as a public asset within the Marketplace to be restricted for use by a single Company. In the opposite scenario, an item that began as private for exclusive use by one Company may need to become publicly available to all Companies.
+The Marketplace is an essential tool within the Development Platform, designed to empower developers with maximum autonomy in their development activities. As such, it offers a vast library of ready-to-use components that are highly dynamic. Consequently, there may arise a need for an item that initially started as a public asset within the Marketplace to be restricted for use by a single Company. In the opposite scenario, an item that began as private for exclusive use by one Company may need to become publicly available to all Companies.
 
 This guide aims to assist the reader in transforming Marketplace items concerning their visibility within Companies: from public to private, or vice versa, from private to public.
 
 :::info
+
 To create a Marketplace item, whether it's private or public, please follow [this](/marketplace/add_to_marketplace/contributing_overview.md) dedicated guide.
+
 :::
 
 ### Porting an existing item to the Private Marketplace
@@ -27,6 +29,8 @@ For porting a Marketplace item from public to private, the procedure is very sim
 Once this procedure is completed, and the item is effectively available on the public Marketplace, you can proceed with retiring the private item. This involves removing the Item Configuration and its related configurations such as repositories and pipelines.
 
 :::caution
+
 The repositories and pipelines should only be deleted if they have not been reused in defining the new item in the public Marketplace.
+
 :::
 

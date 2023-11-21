@@ -79,6 +79,10 @@
     "destination": "/docs/fast_data/configuration/cast_functions",
     "addedOn": "2022-10-01"
   },
+  "/docs/fast_data/import_export": {
+    "destination": "/docs/fast_data/configuration/import_export",
+    "addedOn": "2022-10-01"
+  },
   "/docs/fast_data/single_view":  {
     "destination": "/docs/fast_data/configuration/single_views",
     "addedOn": "2022-10-01"
@@ -889,6 +893,10 @@
     "destination": "/docs/business_suite/backoffice/overview",
     "addedOn": "2023-09-29"
   },
+  "/docs/marketplace/compatibility_matrices/mongo_compatibility_matrix": {
+    "destination": "/docs/plugins/mia-platform-plugins",
+    "addedOn": "2023-09-02"
+  },
   "/docs/runtime_suite_applications/secure-apigateway/overview": {
     "destination": "/docs/runtime_suite_applications/secure-api-gateway/overview",
     "addedOn": "2023-10-05"
@@ -916,5 +924,17 @@
   "/docs/development_suite/set-up-infrastructure/providers-management": {
     "destination": "/docs/console/company-configuration/providers/overview",
     "addedOn": "2023-10-11"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/overview": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/overview",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/changelog": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/changelog",
+    "addedOn": "2023-10-24"
+  },
+  "/docs/runtime_suite_templates/identification-provider-adapter/configuration": {
+    "destination": "/docs/runtime_suite_templates/application-service-adapter/configuration",
+    "addedOn": "2023-10-24"
   }
 }

@@ -24,7 +24,7 @@ function HowToBox({title, description, links}) {
   links = links || [];
 
   return (
-    <div className={clsx("col col--8", featureStyle.feature, styles.howToBox)}>
+    <div className={clsx("col col--12", featureStyle.feature, styles.howToBox)}>
       <h3>{title}</h3>
       <p>{description}</p>
       <div className={styles.howToLinkBox}>

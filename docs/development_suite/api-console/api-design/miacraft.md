@@ -22,7 +22,7 @@ All the icons shown correspond to a specific type of microservice except for the
 | ![service-icon](img/service-icon.png) | Microservices which type is “core” |
 | ![custom-service-icon](img/custom-service-icon.png) | Microservices which type is “custom”|
 | ![crud-icon](img/crud-icon.png) | [CRUD](/development_suite/api-console/api-design/crud_advanced.md)|
-| ![cms-site-icon](img/cms-site-icon.png) | [CMS Site](/business_suite/guide_cms.md)|
+| ![cms-site-icon](img/cms-site-icon.png) | [CMS Site](/microfrontend-composer/previous-tools/cms/guide_cms.md)|
 
 
 ## Main functionalities
