@@ -120,6 +120,35 @@ This feature is available from Form Service Backend v1.2.2.
 
 In addition, you have to also add to your CRUD properties for the additional Form metadata, defined in [form metadata parameters](#form-metadata-parameters-formmetadata) section.
 
+<details>
+<summary>This example show how to use the formVisualizerOptions parameter in the form_schema collection to specify the language for the visualizer in the Form Service Frontend.</summary>
+
+```json
+"formVisualizerOptions": {
+  "language": "it",
+  "i18n": {
+    "it": {
+      "next": "Avanti",
+      "previous": "Indietro",
+      "submit": "Conferma",
+      "error": "Si prega di correggere gli errori seguenti prima di inviare.",
+      "invalid_date": "{{field}} non è una data valida.",
+      "invalid_email": "{{field}} deve essere un indirizzo email valido.",
+      "invalid_regex": "{{field}} non corrisponde al modello {{regex}}.",
+      "mask": "{{field}} non corrisponde alla maschera.",
+      "max": "{{field}} non può essere maggiore di {{max}}.",
+      "maxLength": "{{field}} deve essere più breve di {{length}} caratteri.",
+      "min": "{{field}} non può essere inferiore a {{min}}.",
+      "minLength": "{{field}} deve essere più lungo di {{length}} caratteri.",
+      "pattern": "{{field}} non corrisponde al modello {{pattern}}",
+      "required": "{{field}} è obbligatorio"
+    }
+  }
+}
+```
+
+</details>
+
 ### Form Schema map CRUD endpoint parameter (`formSchemaMapCrud`)
 
 This CRUD endpoint is used by the **Form Service Backend** to link form data (submitted with a Form Visualizer) to their form schemas, created with the Form Builder. The default value is `/form-schema-map`.

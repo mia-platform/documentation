@@ -107,7 +107,7 @@ To support the **Form Assignments** you need to update the **form_schemas** CRUD
 
 ### form_schemas
 
-This CRUD described in this service [configuration](./20_configuration.md/#create-required-cruds) must be updated with additional properties:
+This CRUD described in this service [configuration](./20_configuration.md/#form_schemas) must be updated with additional properties:
 
 - **isEditable**, of type *boolean*, which defines if a form submission can be updated by the user who submitted it in the first place;
 - **isPrivate**, of type *boolean*, which specifies if a form template can be displayed to every user, or instead it needs to be assigned to enable the form access;
