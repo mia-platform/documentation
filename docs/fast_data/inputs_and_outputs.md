@@ -1396,8 +1396,8 @@ Example:
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "errorType": "SINGLE_VIEW_AGGREGATION_MAX_TIME",
-  "errorMessage": "Aggregation exceeding configured time limit",
+  "errorType": "NO_SV_GENERATED",
+  "errorMessage": "Unexpected error: No Single View record generated",
   "createdAt": "2022-05-20T10:25:35.656Z",
   "updatedAt": "2022-05-20T10:25:35.656Z",
   "resolutionMethod": "AGGREGATION"
