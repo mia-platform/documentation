@@ -753,6 +753,10 @@
       "type": "doc"
     },
     {
+      "id": "fast_data/control_plane",
+      "type": "doc"
+    },
+    {
       "id": "fast_data/glossary",
       "type": "doc"
     },
