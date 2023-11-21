@@ -1126,8 +1126,8 @@ Examples:
     "retry": {
       "attempts": 5,
       "lastError": {
-        "message": "Unexpected error: No Single View record generated",
-        "type": "NO_SV_GENERATED"
+        "type": "SINGLE_VIEW_AGGREGATION_MAX_TIME",
+        "message": "Aggregation exceeding configured time limit"
       }
     },
     "change": {
