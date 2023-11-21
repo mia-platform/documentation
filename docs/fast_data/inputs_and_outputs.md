@@ -1306,8 +1306,6 @@ Example:
 </p>
 </details>
 
-<!-- TODO: update the format -->
-
 ### Single View Error
 
 **Channel**: MongoDB
@@ -1326,8 +1324,9 @@ Example:
   "type": "object",
   "required": [
     "portfolioOrigin",
-    "svType",
     "type",
+    "errorType",
+    "errorMessage",
     "identifier",
     "resolutionMethod"
   ],
@@ -1336,7 +1335,7 @@ Example:
       "type": "string",
       "description": "Equivalent to the SINGLE_VIEWS_PORTFOLIO_ORIGIN env var of the Single View Creator that generated the error"
     },
-    "svType": {
+    "type": {
       "type": "string",
       "description": "Name of the Single View"
     },
@@ -1344,19 +1343,20 @@ Example:
       "type": "object",
       "description": "Identifier of the Projection Changes that should match with the Single View Keys fields or the identifierQueryMapping ones from the aggregation.json"
     },
-    "type": {
+    "errorType": {
       "type": "string",
       "enum": [
         "NO_SV_GENERATED",
         "VALIDATION_ERROR",
-        "MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE",
-        "ERROR_SEND_SVC_EVENT"
+        "UNKNOWN_ERROR",
+        "ERROR_SEND_SVC_EVENT",
+        "SINGLE_VIEW_AGGREGATION_MAX_TIME"
       ],
-      "description": "String describing the cause of the error"
+      "description": "The cause of the error"
     },
-    "message": {
+    "errorMessage": {
       "type": "string",
-      "description": "Description of the error"
+      "description": "Further description of the error"
     },
     "resolutionMethod": {
       "type": "string",
@@ -1396,8 +1396,8 @@ Example:
   "identifier": {
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
-  "errorType": "NO_SV_GENERATED",
-  "errorMessage": "Unexpected error: No Single View record generated",
+  "errorType": "SINGLE_VIEW_AGGREGATION_MAX_TIME",
+  "errorMessage": "Aggregation exceeding configured time limit",
   "createdAt": "2022-05-20T10:25:35.656Z",
   "updatedAt": "2022-05-20T10:25:35.656Z",
   "resolutionMethod": "AGGREGATION"
