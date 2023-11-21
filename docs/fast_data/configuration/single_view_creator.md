@@ -505,21 +505,21 @@ const resolvedOnStop = singleViewCreator.startCustom({
 
 ## Error handling
 
-When generating a Single View, every error that occurs is saved in MongoDB, with a format that satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console. 
-The fields of the error messages when they are first created are:
-
-- `_id`: a unique identifier of the record, automatically generated
-- `portfolioOrigin`: a value concerning the origin of the error, defaults to `UNKNOWN_PORTFOLIO_ORIGIN`
-- `type`: the Single View type
-- `identifier`: the id of the projection changes
-- `errorType`: the error details
-- `createdAt`: the time of creation
-- `creatorId`: set to `single-view-creator`
-- `__STATE__`: set to `PUBLIC`
-- `updaterId`: set to `single-view-creator`
-- `updatedAt`: the time of creation
-
+When generating a Single View, every error that occurs is saved in MongoDB following the [Single View Error](/fast_data/inputs_and_outputs.md#single-view-error) format which satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console.
 It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](/development_suite/api-console/api-design/crud_advanced.md#indexes).
+
+Errors are categorized with a code that you will find in the `errorType` property of the Single View Error record.
+These are the currently emitted codes:
+
+| Code                             | Description                                                                                                                                                           | Retryable |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
+| NO_SV_GENERATED                  | Happens when the aggregation pipeline **unexpectedly** does not find the base projection record and thus returns empty                                                |  &cross;  |
+| VALIDATION_ERROR                 | Happens when the result of an aggregation does not pass the validation defined by the user in the `validator.js`                                                      |  &cross;  |
+| ERROR_SEND_SVC_EVENT             | Happens when sending a Kafka message when aggregation is successful                                                                                                   |  &cross;  |
+| SINGLE_VIEW_AGGREGATION_MAX_TIME | Happens when aggregation pipeline takes too long and goes over the maximum established time defined on the `SINGLE_VIEWS_MAX_PROCESSING_MINUTES` environment variable |  &check;  |
+| UNKNOWN_ERROR                    | Happens with an unexpected error, such as a connection error with Apache Kafka or MongoDB                                                                             |  &check;  |
+
+Notice the column retryable indicates which types of errors are sent to the retry queue when the [Single View Retry](#single-view-retry) system is enabled.
 
 ## CA certs
 
