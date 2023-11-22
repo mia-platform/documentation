@@ -15,6 +15,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.0.0 2023-11-21
+
+### BREAKING CHANGES
+The fix that requires setting the properties specified in the form builder even when a checkbox is not checked has made it mandatory to configure various properties in the `form_schemas` collection. For further details, please refer to the documentation.
+
+### Changed
+
+- Make form modal messages (availability and expiration) translatable
+- Update the FormDatePicker in order to avoid past date selection
+
+### Added
+
+- Make the expiration message customizable for each form.
+- Support form start date
+
+### Fixed
+
+- Fixed isEditable default value
+- Fixed the builder call that retrieves templates and improved the builder UI.
+
 ## 1.9.2 2023-09-13
 
 ### Fixed
