@@ -154,6 +154,12 @@ service.addHook('onClose', async() => {
 
 If you do not want to use Kafka in the Single View Creator, you can just not set the environment variable *KAFKA_CLIENT_ID* or *KAFKA_BROKERS*. If one of them is missing, Kafka will not be configured by the service (requires *single-view-creator-lib* `v9.1.0` or higher)
 
+:::note
+
+If you want to enable the communication between the Single View Creator and the [Runtime Management](/docs/fast_data/runtime_management.mdx) the variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` must be set.
+
+:::
+
 ## Attaching a Service to a Single View
 
 To simplify the configuration of the Single View Creator service, you can attach a service previously created from the marketplace to a Single View.
