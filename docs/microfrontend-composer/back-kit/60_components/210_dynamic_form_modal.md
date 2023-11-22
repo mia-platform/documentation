@@ -110,8 +110,7 @@ Particularly, but not limited to, every field supports a set of [options][form-o
         },
         "price": {
           "type": "number"
-        },
-        ...
+        }
       }
     }
   }
@@ -204,14 +203,12 @@ The `actions` property can be structured as an array of objects, where each obje
       },
       {
         ... // insert-mode action 2
-      },
-      ...
+      }
     ],
     select: [
       {
         ... // update-mode action 1
-      },
-      ...
+      }
     ]
   }
 }
@@ -225,8 +222,7 @@ or
     },
     {
       ... // action 2
-    },
-    ...
+    }
   ]
 }
 ```
@@ -240,7 +236,12 @@ Actions support [dynamic configurations] and are injected with the [default cont
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"}
+      }
+    },
     "actions": [
       {
         "closeAfter": false,
@@ -331,7 +332,6 @@ The provided value for `customLabels` property is merged with the component defa
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
     "customLabels": {
       "create": {
         "title": {
@@ -583,7 +583,12 @@ A Dynamic Form Modal instance configured like:
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"}
+      }
+    },
     "onSuccess": {
       "type": "file-download",
       "config": {
@@ -615,7 +620,12 @@ downloads a file form "/latest-report" path on successful form submission, while
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"}
+      }
+    },
     "onSuccess": {
       "type": "push",
       "config": {
@@ -627,8 +637,6 @@ downloads a file form "/latest-report" path on successful form submission, while
 ```
 The example is a Dynamic Form Modal that, after successful submission, navigates to a path that depends on the response of the linked operation (data update or create).
 
-
-
 ### Example: Adding extra buttons to footer
 
 A Dynamic Form Modal that were provided with an `actions` property like:
@@ -636,7 +644,12 @@ A Dynamic Form Modal that were provided with an `actions` property like:
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"}
+      }
+    },
     "actions": {
       "insert": [
         {
@@ -645,7 +658,7 @@ A Dynamic Form Modal that were provided with an `actions` property like:
             "type": "http",
             "config": {
               "url": "/orders",
-              "method": "GET"Further details on how Back-Kit components can be composed to handle file fields are available in the [specific section][file-management].
+              "method": "GET"
             }
           }
         }
@@ -687,7 +700,12 @@ The Dynamic Form Modal can [request confirmation](#confirmation-dialog-on-save-a
   {
     "tag": "bk-dynamic-form-modal",
     "properties": {
-      ...
+      "dataSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {"type": "string"}
+        }
+      },
       "requireConfirm": true
     }
   }
@@ -700,7 +718,12 @@ The Dynamic Form Modal can [request confirmation](#confirmation-dialog-on-save-a
   {
     "tag": "bk-dynamic-form-modal",
     "properties": {
-      ...
+      "dataSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {"type": "string"}
+        }
+      },
       "requireConfirm": {
         "title": {
           "it": "Richiesta conferma",
@@ -718,7 +741,12 @@ The Dynamic Form Modal can [request confirmation](#confirmation-dialog-on-save-a
   {
     "tag": "bk-dynamic-form-modal",
     "properties": {
-      ...
+      "dataSchema": {
+        "type": "object",
+        "properties": {
+          "_id": {"type": "string"}
+        }
+      },
       "requireConfirm": {
         "onSave": {
           "content": {
@@ -746,7 +774,12 @@ For instance:
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"}
+      }
+    },
     "customLabels": {
       "create": {
         "title": {
@@ -804,7 +837,12 @@ For instance:
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"}
+      }
+    },
     "customLabels": {
       "title": {
         "en": "Order",
@@ -816,50 +854,6 @@ For instance:
 ```
 
 The specified title will be applied to the modal independently of the operating mode.
-
-### Example: Lookup Queries
-
-A Dynamic Form Modal configured like the following
-```json
-{
-  "tag": "bk-dynamic-form-modal",
-  "properties": {
-    ...
-    "basePath": "/orders",
-    "lookupQueries": {
-      "dishes": {
-        "calories": {
-          "$lt": 300
-        }
-      }
-    }
-  }
-}
-```
-fetches options for field "dishes" from `orders/lookup/dishes` with the additional condition that "calories" field of dishes collection should be lower than 300, expressed in the query parameters of the request.
-
-Dynamic queries are also available, being provided with [form context](#dynamic-context):
-```json
-{
-  "tag": "bk-dynamic-form-modal",
-  "properties": {
-    ...
-    "basePath": "/orders",
-    "lookupQueries": {
-      "dishes": {
-        "calories": {
-          "$lt": "{{rawObject maxCalories}}" // rawObject can be used to prevent numeric values from being stringified
-        }
-      }
-    }
-  }
-}
-```
-in this case, form field "maxCalories" is used to dynamically compute the additional query to use when fetching options for "dishes" lookup field.
-
-:::info
-In the previous example, [helper][helpers] `rawObject` is used to avoid numeric values from being stringified
-:::
 
 ### Example: Working with views
 
@@ -886,6 +880,61 @@ The Dynamic Form Modal should be provided with a value for the `basePath` proper
 - being "rider" an `object` field with `lookup` format, is rendered as a select field
 - options for "rider" select field are dynamically fetched from `/orders-view/lookup/rider`
 
+### Example: Lookup Queries
+
+A Dynamic Form Modal configured like the following
+```json
+{
+  "tag": "bk-dynamic-form-modal",
+  "properties": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "dishes": { "type": "array", "format": "lookup" },
+        "maxCalories": { "type": "number" }
+      }
+    },
+    "basePath": "/orders",
+    "lookupQueries": {
+      "dishes": {
+        "calories": {
+          "$lt": 300
+        }
+      }
+    }
+  }
+}
+```
+fetches options for field "dishes" from `orders/lookup/dishes` with the additional condition that "calories" field of dishes collection should be lower than 300, expressed in the query parameters of the request.
+
+Dynamic queries are also available, being provided with [form context](#dynamic-context):
+```json
+{
+  "tag": "bk-dynamic-form-modal",
+  "properties": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "dishes": { "type": "array", "format": "lookup" },
+        "maxCalories": { "type": "number" }
+      }
+    },
+    "basePath": "/orders",
+    "lookupQueries": {
+      "dishes": {
+        "calories": {
+          "$lt": "{{rawObject maxCalories}}" // rawObject can be used to prevent numeric values from being stringified
+        }
+      }
+    }
+  }
+}
+```
+in this case, form field "maxCalories" is used to dynamically compute the additional query to use when fetching options for "dishes" lookup field.
+
+:::info
+In the previous example, [helper][helpers] `rawObject` is used to avoid numeric values from being stringified
+:::
 
 ### Example: Conditionally disable a field
 
@@ -895,7 +944,16 @@ Let us assume a Dynamic Form Modal to be configured like the following:
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "items": {"type": "array"},
+        "budget": {"type": "number"},
+        "totalPrice": {"type": "number"},
+        "isGift": {"type": "boolean"},
+        "status": {"type": "string", "enum": ["Available", "OutOfStock"]}
+      }
+    },
     "conditionalOptions": [
       {
         "property": "items",
@@ -951,7 +1009,33 @@ Let us assume a Dynamic Form Modal to be configured like the following:
 {
   "tag": "bk-dynamic-form-modal",
   "properties": {
-    ...
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "object",
+          "dataSchema": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "countryName": {"type": "string"}
+            }
+          }
+        },
+        "country": {"type": "string"},
+        "dishes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "calories": {"type": "number"}
+            }
+          }
+        },
+        "maxCalories": {"type": "number"}
+      }
+    },
     "conditionalValues": [
       {
         "property": "city",
@@ -1130,24 +1214,24 @@ type Condition = {
 
 ### Listens to
 
-| event | action |
-|-------|--------|
-| [add-new] | opens the modal to create a new item, potentially applying default fields from data schema or data provided in the payload of the event |
-| [selected-data] | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event |
-| [nested-navigation-state/push] | updates internal representation of the current navigation path by adding one step |
-| [nested-navigation-state/back] | updates internal representation of the current navigation path by removing the specified number of steps |
-| [nested-navigation-state/display] | updates internal representation of the current navigation and closes the modal |
-| [success] | notifies correct data update as a result of form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onSuccess` property via `response` keyword. |
-| [error] | notifies that something went wrong during form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onFail` property via `response` keyword. |
+| event                             | action                                                                                                                                                                                          |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [add-new]                         | opens the modal to create a new item, potentially applying default fields from data schema or data provided in the payload of the event                                                         |
+| [selected-data]                   | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event                                                                               |
+| [nested-navigation-state/push]    | updates internal representation of the current navigation path by adding one step                                                                                                               |
+| [nested-navigation-state/back]    | updates internal representation of the current navigation path by removing the specified number of steps                                                                                        |
+| [nested-navigation-state/display] | updates internal representation of the current navigation and closes the modal                                                                                                                  |
+| [success]                         | notifies correct data update as a result of form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onSuccess` property via `response` keyword. |
+| [error]                           | notifies that something went wrong during form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onFail` property via `response` keyword.      |
 
 ### Emits
 
 
 | event                   | description                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------- |
-| configurable event    | properties such as `onFail`, `onSuccess` or `actions` allow to emit custom events |
-| [require-confirm]       | triggered when trying to close the modal with unsaved data                       |
+| configurable event      | properties such as `onFail`, `onSuccess` or `actions` allow to emit custom events |
+| [require-confirm]       | triggered when trying to close the modal with unsaved data                        |
 | [create-data]           | requests data creation                                                            |
 | [update-data]           | requests data update                                                              |
-| [create-data-with-file]  | requests data creation and file upload                                            |
+| [create-data-with-file] | requests data creation and file upload                                            |
 | [update-data-with-file] | requests data update and file upload                                              |

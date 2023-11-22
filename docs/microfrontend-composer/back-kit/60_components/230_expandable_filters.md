@@ -203,11 +203,10 @@ Assuming the Expandable Filters to be configured like:
 }
 ```
 
-and the following query parameter to be included in the current plugin:
+and the following query parameter to be included in the URL of the current plugin:
 
 ```json
 {
-  ...,
   "filters": [
     {"property": "name", "operator": "equal", "value": "test"},
     {"property": "price", "operator": "less", "value": 10},
@@ -231,21 +230,21 @@ then a [change-query] event will be emitted with filters:
 }
 ```
 
-Filter on field `orderedAt` is not emitted since the filter operator `less` does not correspond to the one specified for the property inside `filtersConfig` (`between`).
+Filter on field "orderedAt" is not emitted since the filter operator `less` does not correspond to the one specified for the property inside `filtersConfig` (`between`).
 
 ## API
 
 ### Properties & Attributes
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-| `dataSchema` | - | [ExtendedJSONSchema7Definition][data-schema] | - | data-schema describing the fields of the collection to query |
-| `filtersConfig` | - | [FiltersConfig](#filtersconfig)[] | - | lists the filters to include in the component |
-| `openByDefault` | `open-by-default` | boolean | false | whether to show the component by default |
-| `liveSearchTimeout` | `live-search-timeout` | number | 5000 | lookup live-search timeout |
-| `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | max items to fetch on regex live search |
-| `readFromUrl` | `read-from-url` | boolean | false | whether filters from URL should be read and applied at bootstrap time |
-| `basePath` | - | string | - | endpoint to use to fetch lookup options |
+| property               | attribute                 | type                                         | default | description                                                           |
+| ---------------------- | ------------------------- | -------------------------------------------- | ------- | --------------------------------------------------------------------- |
+| `dataSchema`           | -                         | [ExtendedJSONSchema7Definition][data-schema] | -       | data-schema describing the fields of the collection to query          |
+| `filtersConfig`        | -                         | [FiltersConfig](#filtersconfig)[]            | -       | lists the filters to include in the component                         |
+| `openByDefault`        | `open-by-default`         | boolean                                      | false   | whether to show the component by default                              |
+| `liveSearchTimeout`    | `live-search-timeout`     | number                                       | 5000    | lookup live-search timeout                                            |
+| `liveSearchItemsLimit` | `live-search-items-limit` | number                                       | 10      | max items to fetch on regex live search                               |
+| `readFromUrl`          | `read-from-url`           | boolean                                      | false   | whether filters from URL should be read and applied at bootstrap time |
+| `basePath`             | -                         | string                                       | -       | endpoint to use to fetch lookup options                               |
 
 #### FiltersConfig
 

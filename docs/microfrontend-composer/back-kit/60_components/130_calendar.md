@@ -99,16 +99,16 @@ Default filters names are:
 
 ```json
 {
-  "name": ..., // `filtersName.start` or "bk-calendar-start-date-filter"
+  "name": ..., // value of property `filtersName.start`, or "bk-calendar-start-date-filter"
   "operator": "lessEqual",
   "property": "startDate",
-  "value": ...
+  "value": "2021-09-20T00:00:00.000Z"
 },
 {
-  "name": ..., // `filtersName.end` or "bk-calendar-end-date-filter"
+  "name": ..., // value of property `filtersName.end`, or "bk-calendar-end-date-filter"
   "operator": "greaterEqual",
   "property": "endDate",
-  "value": ...
+  "value": "2021-09-13T00:00:00.000Z"
 }
 ```
 
@@ -146,7 +146,7 @@ Filters on `startDate` and `endDate` properties can be hidden by the Filters Man
   "tag": "bk-filters-manager",
   "properties": {
     "dataSchema": {
-      ...
+      "title": {"type": "string"},
       "startDate": {
         "type": "string",
         "format": "data-time",
@@ -190,13 +190,13 @@ emits [add-filter] events with payload:
   "name": "Start filter",
   "operator": "lessEqual",
   "property": "startDate",
-  "value": ...
+  "value": "2021-09-20T00:00:00.000Z"
 },
 {
   "name": "End filter",
   "operator": "greaterEqual",
   "property": "endDate",
-  "value": ...
+  "value": "2021-09-13T00:00:00.000Z"
 }
 ```
 
@@ -214,7 +214,6 @@ Assuming the current user information to be representable with an object like:
   "role": "Admin",
   "name": "Steven",
   "email": "steven@test.com"
-  ...
 }
 ```
 
@@ -237,7 +236,7 @@ emits [add-new] events with payload:
 ```json
 {
   "email": "steven@test.com",
-  ...
+  "price": 120
 }
 ```
 
@@ -272,8 +271,7 @@ emits [add-new] events with payload:
 
 ```json
 {
-  "userId": "id-1",
-  ...
+  "userId": "id-1"
 }
 ```
 

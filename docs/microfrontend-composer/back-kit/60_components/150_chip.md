@@ -78,7 +78,6 @@ The following configuration renders a Table component with a "status" column whi
     "dataSchema": {
       "type": "object",
       "properties": {
-        ...
         "status": {
           "type": "string",
           "enum": ["on", "loading", "off"],

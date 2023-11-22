@@ -80,7 +80,6 @@ If the button clicked on the "collection" plugin provides a special key `__BK_IN
 
 ```javascript
 window.history.state = {
-  ...,
   __BK_INIT: [
     {
       label: "add-new",
@@ -96,9 +95,9 @@ in the previous example `EventBus` will pipe an `add-new` event with the given `
 
 ```json
 {
-  ...,
+  "tag": "bk-button",
   "properties": {
-    ...
+    "content": "Add new item",
     "action": {
       "type": "push",
       "config": {
@@ -127,28 +126,23 @@ order
 // orders-list.json
 
 {
-  ...,
   {
     "tag": "bk-table",
     "properties": {
       "dataSchema": {
         "type": "object",
         "properties": {
-          "orderId": { "type": "string" },
-          ...,
+          "orderId": { "type": "string" }
         }
       }
     }
   },
-  ...,
   {
     "tag": "bk-add-new-button"
   },
-  ...,
   {
     "tag": "bk-form-drawer",
     "properties": {
-      ...,
       "dataSchema": "<as above>",
       "afterFinishEvents": {
         "data": {
@@ -166,7 +160,8 @@ order
 }
 ```
 
-On form submission, if the creation POST is, successful a context is provided with the HTTP response context to the [afterFinishEvents].\
+On form submission, if the creation POST is, successful a context is provided with the HTTP response context to the [afterFinishEvents].
+
 According to the configuration shown above a `pushState` is called and navigation to `/order-details/<new id>` is handled by the micro-frontend orchestrator.
 
 On landing onto `order-details` plugin, we should focus on the following config
@@ -175,7 +170,6 @@ On landing onto `order-details` plugin, we should focus on the following config
 // order-details.json
 
 {
-  ...,
   {
     "tag": "bk-url-parameters",
     "properties": {
@@ -184,17 +178,17 @@ On landing onto `order-details` plugin, we should focus on the following config
       "redirectUrl": "/orders-list"
     }
   },
-  ...,
   {
     "tag": "bk-state-adapter"
   },
-  ...,
   {
     "tag": "bk-form-drawer",
     "properties": {
-      ...,
       "dataSchema": {
-        "orderId": { "type": "string" },
+        "type": "object",
+        "properties": {
+          "orderId": { "type": "string" }
+        }
       }
     }
   }

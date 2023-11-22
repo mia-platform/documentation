@@ -133,7 +133,8 @@ For instance:
 {
   "type": "http",
   "config": {
-    ...
+    "url": "/orders",
+    "method": "GET",
     "config": {
       "headers": {"foo": "bar"},
       "params": {
@@ -141,7 +142,6 @@ For instance:
       },
       "downloadAsFile": true
     }
-    ...
   }
 }
 ```
@@ -162,10 +162,10 @@ Field `config.triggeredBy` has a double function:
   {
     "type": "http",
     "config": {
-      ...
+      "url": "/profile-picture",
+      "method": "GET",
       "config": {
         "downloadAsFile": true
-        ...
       }
     }
   }
@@ -619,7 +619,6 @@ The first (top-level) action
     "url": "/endpoint",
     "method": "GET"
   }
-  ...
 }
 ```
 is executed first, and results in a GET call.
@@ -712,7 +711,6 @@ Assuming all actions to be successful, this action results in the following step
       "method": "GET",
       "triggeredBy": "data_1"
     }
-    ...
   }
   ```
   is executed, resulting in a GET call to the endpoint `/url-1`.
@@ -726,14 +724,12 @@ Assuming all actions to be successful, this action results in the following step
   the `onSuccess` action
   ```json
   {
-    ...
     "type": "http",
     "config": {
       "url": "/url-2/{{data_1.field}}",
       "method": "GET",
       "triggeredBy": "data_2"
-    },
-    ...
+    }
   }
   ```
   is executed - having access to the response of the previous call through the key `data_1`. This results in a second GET call, this time to the endpoint `/url-2/foo`. The dynamic url value `/url-2/{{data_1.field}}` can be correctly resolved using the response of the previous call.
@@ -747,7 +743,6 @@ Assuming all actions to be successful, this action results in the following step
   the `onSuccess` hook of the second action
   ```json
   {
-    ...
     "type": "event",
     "config": {
       "events": {
@@ -758,7 +753,6 @@ Assuming all actions to be successful, this action results in the following step
         }
       }
     }
-    ...
   }
   ```
   is executed, resulting in an event being emitted, with label `add-new` and payload:

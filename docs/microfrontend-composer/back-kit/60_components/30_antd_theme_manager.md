@@ -95,15 +95,33 @@ Theming variables would be initialized to:
 
 ```jsonc
 {
-  "primaryColor": "#43FA54", // retrieved from response of `/theme-info`
-  "infoColor": "#F9C939", // set to provided value
-  "successColor": "#46C872", // retrieved from response of `/theme-info`
-  "errorColor": "#25B864", // retrieving from response of `/theme-info` failed, set to provided default
-  "processingColor": "#1890FF", // retrieving from response of `/theme-info` failed, set to default value of `processingColor`
+  "primaryColor": "#43FA54",
+  "infoColor": "#F9C939",
+  "successColor": "#46C872",
+  "errorColor": "#25B864",
+  "processingColor": "#1890FF",
   "warningColor": "#FAAD14",
-  "fontFamily": "..."
+  "fontFamily": "'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue',  'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
 }
 ```
+
+Particularly:
+
+- **primaryColor** is retrieved from the response of the GET call to `/theme-info`
+
+- **infoColor** is set to the value provided in the configuration
+
+- **successColor** is retrieved from the response of the GET call to `/theme-info`
+
+- **errorColor** cannot be retrieved from the response of the GET call to `/theme-info`, so is set to the provided default in the configuration
+
+- **processingColor** cannot be retrieved from the response of the GET call to `/theme-info`, so is set to the default value of the `processingColor` property
+
+- **warningColor** is set to the default value of the `warningColor` property
+
+- **fontFamily** is set to the default value of the `fontFamily` property
+
+
 
 ## API
 

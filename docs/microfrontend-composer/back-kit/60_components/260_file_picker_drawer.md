@@ -144,8 +144,7 @@ A File Picker Drawer configured like the following:
       "avatar": {
         "type": "object",
         "format": "file"
-      },
-      ...
+      }
     }
   }
 }
@@ -164,8 +163,7 @@ upon receiving to a [link-file-to-record] event with the following payload and m
       "file": "file.jpg",
       "size": 3992,
       "location": "/v2/files/download/file.jpg"
-    },
-    ...
+    }
   },
   "meta": {
     "property": "avatar"
@@ -190,8 +188,7 @@ This request is signaled by emitting the [update-data-with-file], like:
     },
   },
   "meta": {
-    "property": ["avatar"],
-    ...
+    "property": ["avatar"]
   }
 
 }
@@ -225,4 +222,4 @@ A component like the [File Manager][bk-file-manager] should pick up on this even
 | event                   | description                                                                                      |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
 | [update-data-with-file] | updates data by uploading a new file and patching the dataset with its storage location metadata |
-| [update-data]           | requests data update after unlinking the file to the record                                              |
+| [update-data]           | requests data update after unlinking the file to the record                                      |
