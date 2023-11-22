@@ -15,6 +15,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] 2023-11-21
+
+### BREAKING CHANGES
+The fix that requires setting the properties specified in the form builder even when a checkbox is not checked has made it mandatory to configure various properties in the `form_schemas` collection. For further details, please refer to the documentation.
+
 ## Added
 
 - Support form start date
