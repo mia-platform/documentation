@@ -54,7 +54,7 @@ To ensure a smooth setup and operation of Runtime Management, make sure you've c
 
 This step alone grants the proper functioning of the frontend and backend of Runtime Management. However, if you want to enable the communication with one or more runtimes of Fast Data, follow the next steps.
 
-2. **Set Up Fast Data Environment in Console:** naturally, you need to have a Fast Data environment in the Console, defining all the possible microservices you may need and their runtime configurations. In particular, be sure to set the three environment variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` for the Single View Creator, to enable the communication with the Runtime Management. Check the Single View Creator [Environment Variables section](./configuration/single_view_creator.md#environment-variables) for further details.
+2. **Set Up Fast Data Environment in Console:** naturally, you need to have a Fast Data environment in the Console, defining all the possible microservices you may need and their runtime configurations. In particular, be sure to set the three environment variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` for the Single View Creator, to enable the communication with the Runtime Management. Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator.md#environment_variables) for further details.
 
 3. **Create a Kafka topic:** create a Kafka topic dedicated to receiving action commands. This ensures seamless communication between Runtime Management and the Fast Data microservices. We suggest using a single partitioned topic.
 
@@ -76,7 +76,7 @@ To see how to send a command, check the [Sending a command](#sending-a-command) 
 
 The frontend is divided into two sections: a form on the left and a log panel on the right. The form allows you to specify the details of the command you want to send, while the log panel displays the log of the command sent.
 
-![Control Plane UI](img/runtime_management/runtime_manag_initial_screen.png)
+![Control Plane UI](img/runtime_management/runtime_management_initial_screen.png)
 
 <Tabs>
 
@@ -110,7 +110,7 @@ Before you initiate a command using Runtime Management, take a moment to underst
 3. **Runtime Selection (optional):** Select the target runtime environment for executing the selected action.
 4. **Submit:** Press the submit button to send a Kafka message representing the action command to the dedicated topic.
 
-![Control Plane action command](img/runtime_management/runtime_manag_request_with_parameters.png)
+![Control Plane action command](img/runtime_management/runtime_management_request_with_parameters.png)
 
 This straightforward process allows you to seamlessly communicate your command to the Fast Data microservices.
 
@@ -118,7 +118,7 @@ This straightforward process allows you to seamlessly communicate your command t
 
 Any errors that occur during the execution of a command are displayed in the log panel. The Monaco editor panel on the right displays the log of the sent command, providing visibility into the executed actions. It also shows any possible errors that could arise during the process.
 
-![Control Plane error log](img/runtime_management/runtime_manag_error_log.png)
+![Control Plane error log](img/runtime_management/runtime_management_error_log.png)
 
 ---
 

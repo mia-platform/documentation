@@ -156,7 +156,7 @@ If you do not want to use Kafka in the Single View Creator, you can just not set
 
 :::note
 
-If you want to enable the communication between the Single View Creator and the [Runtime Management](/docs/fast_data/runtime_management.mdx) the variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` must be set.
+If you want to enable the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management.mdx) the variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` must be set.
 
 :::
 
