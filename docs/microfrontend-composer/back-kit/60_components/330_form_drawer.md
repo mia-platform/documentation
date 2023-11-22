@@ -98,8 +98,7 @@ Particularly, but not limited to, every field supports a set of [options][form-o
         },
         "price": {
           "type": "number"
-        },
-        ...
+        }
       }
     }
   }
@@ -242,7 +241,6 @@ Such labels can be scoped based on whether the form is in [edit or create mode](
 {
   "tag": "bk-form-drawer",
   "properties": {
-    ...
     "customLabels": {
       "create": {
         "title": {
@@ -292,7 +290,6 @@ For instance, the following is a valid configuration of `customLabels`:
 {
   "tag": "bk-form-drawer",
   "properties": {
-    ...
     "customLabels": {
       "create": {
         "title": {
@@ -330,22 +327,22 @@ This is accomplished by emitting either a [create-data-with-file] or an [update-
 ### Properties & Attributes
 
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`afterFinishEvents`| - |ConfigurableEvents| - |events or state push to concatenate after successful finish action has been performed |
-|`allowAutoDisableDeps`|`allow-auto-disable-deps`|boolean|false|if true, dependent lookup and multilookup select fields are automatically disabled in case of no options |
-|`customMessageOnAbsentLookup`| - |[LocalizedText][localized-text]| - |override lookup value in case lookup is not resolved due to lack of data |
-|`dataCustomActions`| - |DrawerDataActionConfig[]|[]|list of actions to render per row|
-|`liveSearchTimeout`|`live-search-timeout`|number|5000|live-search timeout|
-| `rootElementSelector` | `root-element-selector` | string | - | Selector to specify where the container should be appended |
-| `dataSchema` | - | [ExtendedJSONSchema7Definition][data-schema] | - | Data schema describing the fields of the collection to filter |
-| `readonlyOnView` | `read-only-on-view` | boolean | false | Upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit |
-| `editorHeight` | `editor-height` | string \| number | - | Height of the object/array editor field |
-| `allowNavigation` | `allow-navigation` | boolean \| 'show-editor' | true | When true, objects and arrays are displayed as a clickable label which allows navigating to nested objects and arrays if a dataSchema is specified. When 'show-editor', the navigation is allowed, and the object/array fields are displayed in a JSON editor. When false, the navigation is not allowed, and the object/array fields are displayed in a JSON editor |
-| `width` | - | string \| number | - | Width of the drawer |
-| `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | Max items to fetch on regex live search |
-| `customLabels` | - | [CustomLabels](#customlabels) \| {insert: CustomLabels, update: CustomLabels} | - | Custom localized texts shown as title and CTA button label |
-| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| {onSave: RequireConfirmOpts, onSave: RequireConfirmOpts} | false | Whether or not the component should request confirmation before closing and/or before saving |
+| property                      | attribute                 | type                                                                                                             | default | description                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `afterFinishEvents`           | -                         | ConfigurableEvents                                                                                               | -       | events or state push to concatenate after successful finish action has been performed                                                                                                                                                                                                                                                                                |
+| `allowAutoDisableDeps`        | `allow-auto-disable-deps` | boolean                                                                                                          | false   | if true, dependent lookup and multilookup select fields are automatically disabled in case of no options                                                                                                                                                                                                                                                             |
+| `customMessageOnAbsentLookup` | -                         | [LocalizedText][localized-text]                                                                                  | -       | override lookup value in case lookup is not resolved due to lack of data                                                                                                                                                                                                                                                                                             |
+| `dataCustomActions`           | -                         | DrawerDataActionConfig[]                                                                                         | []      | list of actions to render per row                                                                                                                                                                                                                                                                                                                                    |
+| `liveSearchTimeout`           | `live-search-timeout`     | number                                                                                                           | 5000    | live-search timeout                                                                                                                                                                                                                                                                                                                                                  |
+| `rootElementSelector`         | `root-element-selector`   | string                                                                                                           | -       | Selector to specify where the container should be appended                                                                                                                                                                                                                                                                                                           |
+| `dataSchema`                  | -                         | [ExtendedJSONSchema7Definition][data-schema]                                                                     | -       | Data schema describing the fields of the collection to filter                                                                                                                                                                                                                                                                                                        |
+| `readonlyOnView`              | `read-only-on-view`       | boolean                                                                                                          | false   | Upon marking this prop as true, on selecting a record, the form will be displayed as readonly, with no possibility to edit                                                                                                                                                                                                                                           |
+| `editorHeight`                | `editor-height`           | string \| number                                                                                                 | -       | Height of the object/array editor field                                                                                                                                                                                                                                                                                                                              |
+| `allowNavigation`             | `allow-navigation`        | boolean \| 'show-editor'                                                                                         | true    | When true, objects and arrays are displayed as a clickable label which allows navigating to nested objects and arrays if a dataSchema is specified. When 'show-editor', the navigation is allowed, and the object/array fields are displayed in a JSON editor. When false, the navigation is not allowed, and the object/array fields are displayed in a JSON editor |
+| `width`                       | -                         | string \| number                                                                                                 | -       | Width of the drawer                                                                                                                                                                                                                                                                                                                                                  |
+| `liveSearchItemsLimit`        | `live-search-items-limit` | number                                                                                                           | 10      | Max items to fetch on regex live search                                                                                                                                                                                                                                                                                                                              |
+| `customLabels`                | -                         | [CustomLabels](#customlabels) \| {insert: CustomLabels, update: CustomLabels}                                    | -       | Custom localized texts shown as title and CTA button label                                                                                                                                                                                                                                                                                                           |
+| `requireConfirm`              | -                         | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| {onSave: RequireConfirmOpts, onSave: RequireConfirmOpts} | false   | Whether or not the component should request confirmation before closing and/or before saving                                                                                                                                                                                                                                                                         |
 
 
 #### RequireConfirmOpts
@@ -377,24 +374,24 @@ where [LocalizedText][localized-text] is either a string or an object mapping la
 
 ### Listens to
 
-| event | action |
-|-------|--------|
-| [add-new] | opens the drawer to create a new item, potentially applying default fields from data schema or data provided in the payload of the event |
-| [selected-data] | opens the drawer to edit a selected item, filling in its fields from the data provided in the payload of the event |
-| [nested-navigation-state/push] | updates internal representation of the current navigation path by adding one step |
-| [nested-navigation-state/back] | updates internal representation of the current navigation path by removing the specified number of steps |
-| [nested-navigation-state/display] | updates internal representation of the current navigation and closes the drawer |
-| [success] | notifies correct data update as a result of form submission |
-| [error] | notifies that something went wrong during form submission |
+| event                             | action                                                                                                                                   |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [add-new]                         | opens the drawer to create a new item, potentially applying default fields from data schema or data provided in the payload of the event |
+| [selected-data]                   | opens the drawer to edit a selected item, filling in its fields from the data provided in the payload of the event                       |
+| [nested-navigation-state/push]    | updates internal representation of the current navigation path by adding one step                                                        |
+| [nested-navigation-state/back]    | updates internal representation of the current navigation path by removing the specified number of steps                                 |
+| [nested-navigation-state/display] | updates internal representation of the current navigation and closes the drawer                                                          |
+| [success]                         | notifies correct data update as a result of form submission                                                                              |
+| [error]                           | notifies that something went wrong during form submission                                                                                |
 
 ### Emits
 
 
-| event                   | description                                                                        |
-| ----------------------- | ---------------------------------------------------------------------------------- |
-| configurable event    | property `afterFinishEvents` allows to emit custom events                          |
-| [require-confirm]       | triggered when trying to submit the form accordingly to property `requireConfirm`  |
-| [create-data]           | requests data creation                                                             |
-| [update-data]           | requests data update                                                               |
-| [create-data-with-file] | requests data creation and file upload                                             |
-| [update-data-with-file] | requests data update and file upload                                               |
+| event                   | description                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| configurable event      | property `afterFinishEvents` allows to emit custom events                         |
+| [require-confirm]       | triggered when trying to submit the form accordingly to property `requireConfirm` |
+| [create-data]           | requests data creation                                                            |
+| [update-data]           | requests data update                                                              |
+| [create-data-with-file] | requests data creation and file upload                                            |
+| [update-data-with-file] | requests data update and file upload                                              |

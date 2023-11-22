@@ -93,12 +93,20 @@ If the data looks like:
     "products": [
       "Green Shoes"
     ]
-  },
-  ...
+  }
 ]
 ```
 
-the List renders strings: "Blue Pants", "Red Shirt", "Gray Socks"
+the rendered data by the List can be represented by an array as:
+
+```json
+[
+  ["Blue Pants"],
+  ["Red Shirt"],
+  ["Gray Socks"]
+]
+```
+
 
 ## API
 

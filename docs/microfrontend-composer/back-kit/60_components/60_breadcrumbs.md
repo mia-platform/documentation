@@ -102,18 +102,16 @@ A Breadcrumbs component configured like:
 }
 ```
 
-upon receiving two [nested-navigation-state/push] events with the following payload:
+upon receiving two [nested-navigation-state/push] events with payload including `selectedKey` property like:
 
 ```json
 {
-  ...,
   "selectedKey": "product"
 }
 ```
 and
 ```json
 {
-  ...,
   "selectedKey": "colors"
 }
 ```

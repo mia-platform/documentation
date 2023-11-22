@@ -413,7 +413,7 @@ For instance, the following configuration for the Gallery:
 {
   "tag": "bk-gallery",
   "properties": {
-    ...
+    "thumbnailSource": "image.url",
     "onImageClick": {
       "type": "event",
       "config": {

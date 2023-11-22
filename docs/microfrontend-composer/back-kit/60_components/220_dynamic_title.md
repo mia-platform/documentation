@@ -69,8 +69,7 @@ that receives a [display-data] event with payload
       "name": "Steve Grobb",
       "email": "sgrobb@test.com",
       "budget": 2000
-    },
-    ...
+    }
   ]
 }
 ```

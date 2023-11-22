@@ -100,7 +100,14 @@ To configure the CRUD Export Client, properties `basePath`, `exportInternalUrl`,
   "properties": {
     "basePath": "/export",
     "exportInternalUrl": "http://crud-service/customers/export",
-    "dataSchema": {...}
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"},
+        "__STATE__": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    }
   }
 }
 ```
@@ -123,7 +130,14 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint.
   "properties": {
     "basePath": "/export",
     "exportInternalUrl": "http://crud-service/customers/export",
-    "dataSchema": {...},
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"},
+        "__STATE__": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    },
     "streamSaverIFrameSrc": "/back-kit/{{BACK_KIT_VERSION}}/export-service-worker.html"
   }
 }
@@ -149,30 +163,30 @@ Add to `bk-notifications` the following error trigger
 
 ### Properties & Attributes
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`basePath`|-|string|-|the URL base path to which to send HTTP requests|
-|`headers`|-|{[key: string]: string}|-|headers to add when an HTTP request is sent|
-|`credentials`|-|'include'\|'omit'\|'same-origin'|-|credentials policy to apply to HTTP requests|
-|`exportInternalUrl`|`export-internal-url`|string| - |url to be called internally to get `jsonl` formatted data |
-|`primaryKey`|`primary-key`|string|'_id'|primary key to filter selected data when `selected only export` option is enabled|
-|`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |
-|`dataSchema`| - |[ExtendedJSONSchema7Definition][data-schema]| - |data-schema describing the fields structure of the CRUD collection |
+| property               | attribute                 | type                                         | default | description                                                                       |
+| ---------------------- | ------------------------- | -------------------------------------------- | ------- | --------------------------------------------------------------------------------- |
+| `basePath`             | -                         | string                                       | -       | the URL base path to which to send HTTP requests                                  |
+| `headers`              | -                         | {[key: string]: string}                      | -       | headers to add when an HTTP request is sent                                       |
+| `credentials`          | -                         | 'include'\|'omit'\|'same-origin'             | -       | credentials policy to apply to HTTP requests                                      |
+| `exportInternalUrl`    | `export-internal-url`     | string                                       | -       | url to be called internally to get `jsonl` formatted data                         |
+| `primaryKey`           | `primary-key`             | string                                       | '_id'   | primary key to filter selected data when `selected only export` option is enabled |
+| `streamSaverIFrameSrc` | `stream-saver-iframe-src` | string                                       | -       | location where stream saver service worker files are served                       |
+| `dataSchema`           | -                         | [ExtendedJSONSchema7Definition][data-schema] | -       | data-schema describing the fields structure of the CRUD collection                |
 
 ### Listens to
 
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[export-data]|opens a new export transaction|[export-data/awaiting-config]| - |
-|[export-data/user-config]|according to config, triggers an export|[success]|[error]|
-|[count-data]|notifies on how many items would be exported on `filtered` export option| - | - |
-|[select-data-bulk]|keeps track of items selections to prompt `selected` export option configuration| - | - |
-|[change-query]|stores current collection filtering| - | - |
+| event                     | action                                                                           | emits                         | on error |
+| ------------------------- | -------------------------------------------------------------------------------- | ----------------------------- | -------- |
+| [export-data]             | opens a new export transaction                                                   | [export-data/awaiting-config] | -        |
+| [export-data/user-config] | according to config, triggers an export                                          | [success]                     | [error]  |
+| [count-data]              | notifies on how many items would be exported on `filtered` export option         | -                             | -        |
+| [select-data-bulk]        | keeps track of items selections to prompt `selected` export option configuration | -                             | -        |
+| [change-query]            | stores current collection filtering                                              | -                             | -        |
 
 ### Emits
 
-| event | description |
-|-------|-------------|
-|[export-data/awaiting-config]|registers a transaction and awaits for user configs|
-|[success]|notifies successful data export|
-|[error]|contains error message when something goes wrong|
+| event                         | description                                         |
+| ----------------------------- | --------------------------------------------------- |
+| [export-data/awaiting-config] | registers a transaction and awaits for user configs |
+| [success]                     | notifies successful data export                     |
+| [error]                       | contains error message when something goes wrong    |

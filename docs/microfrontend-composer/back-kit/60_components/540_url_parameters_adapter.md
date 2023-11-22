@@ -53,7 +53,6 @@ By default, the same mask is applied to both the `pathname` and the `search` sec
 
 ```json
 {
-  ...
   "tag": "bk-url-parameters",
   "properties": {
     "urlMask": {
@@ -71,7 +70,6 @@ If property `excludeWildcards` is true, matches coming from wildcards are exclud
 
 ```json
 {
-  ...
   "tag": "bk-url-parameters",
   "properties": {
     "urlMask": "/order-details/(.*)/:_id",
@@ -110,7 +108,6 @@ Assuming the URL to be "/order-details/test-id", then the URL Parameters Adapter
 With such configuration for the URL Parameters Adapter:
 ```json
 {
-  ...
   "tag": "bk-url-parameters",
   "properties": {
     "urlMask": {
@@ -179,13 +176,13 @@ the following event is emitted:
 ### Properties & Attributes
 
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`waitTime`| `wait-time` |number|500|wait time before initialization event, in milliseconds|
-|`urlMask`| `url-mask` |[UrlMask][url-mask]| - | url mask to apply to the current path to extract dynamic parameters |
-|`eventLabel`|`event-label`|string|'change-query'|label of the event that will be dispatched as result|
-|`redirectUrl`|`redirect-url`|string| - |optional parameter that contains the url to redirect when urlMask does not completely match|
-|`excludeWildcards`|`exclude-wildcards`|boolean| false |whether or not matches from wildcards (`(.*)`) should be excluded from event payload|
+| property           | attribute           | type                | default        | description                                                                                 |
+| ------------------ | ------------------- | ------------------- | -------------- | ------------------------------------------------------------------------------------------- |
+| `waitTime`         | `wait-time`         | number              | 500            | wait time before initialization event, in milliseconds                                      |
+| `urlMask`          | `url-mask`          | [UrlMask][url-mask] | -              | url mask to apply to the current path to extract dynamic parameters                         |
+| `eventLabel`       | `event-label`       | string              | 'change-query' | label of the event that will be dispatched as result                                        |
+| `redirectUrl`      | `redirect-url`      | string              | -              | optional parameter that contains the url to redirect when urlMask does not completely match |
+| `excludeWildcards` | `exclude-wildcards` | boolean             | false          | whether or not matches from wildcards (`(.*)`) should be excluded from event payload        |
 
 ### Listens to
 
@@ -193,6 +190,6 @@ This component listens to no event.
 
 ### Emits
 
-| event | description |
-|-------|-------------|
-|configurable event|generic event based on its properties ([change-query][change-query] by default)|
+| event              | description                                                                     |
+| ------------------ | ------------------------------------------------------------------------------- |
+| configurable event | generic event based on its properties ([change-query][change-query] by default) |

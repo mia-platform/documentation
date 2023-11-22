@@ -162,8 +162,7 @@ A File Picker Modal can configured like the following:
       "avatar": {
         "type": "object",
         "format": "file"
-      },
-      ...
+      }
     }
   }
 }
@@ -182,8 +181,7 @@ upon receiving to a [link-file-to-record] event with the following payload and m
       "file": "file.jpg",
       "size": 3992,
       "location": "/v2/files/download/file.jpg"
-    },
-    ...
+    }
   },
   "meta": {
     "property": "avatar"
@@ -206,8 +204,7 @@ This request is signaled by emitting the [update-data-with-file], like:
     },
   },
   "meta": {
-    "property": ["avatar"],
-    ...
+    "property": ["avatar"]
   }
 
 }
@@ -225,7 +222,21 @@ A File Picker Modal can be configured like the following:
 {
   "tag": "bk-file-picker-modal",
   "properties": {
-    "dataSchema": {...},
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "object",
+          "format": "file"
+        }
+      }
+    },
     "previewUploadedFiles": "fetch"
   }
 }
@@ -249,13 +260,19 @@ If a response is received in the form of a [fetched-files] event, such as:
 {
   "files": [
     {
-      "_id": "file-id",
-      "name": "fileName.jpg",
-      "file": "file.jpg",
+      "_id": "avatar-img-id",
+      "name": "avatar-img-name.jpg",
+      "file": "avatar-img.jpg",
       "size": 3992,
-      "location": "/v2/files/download/file.jpg"
+      "location": "/v2/files/download/avatar-img.jpg"
     },
-    ...
+    {
+      "_id": "avatar-img2-id",
+      "name": "avatar-img2-mame.jpg",
+      "file": "avatar-img2.jpg",
+      "size": 2412,
+      "location": "/v2/files/download/avatar-img2.jpg"
+    },
   ]
 }
 ```
@@ -272,7 +289,6 @@ Selecting a file establishes a link between the chosen file and the field being 
 | property               | attribute                | type                                         | default | description                                              |
 | ---------------------- | ------------------------ | -------------------------------------------- | ------- | -------------------------------------------------------- |
 | `dataSchema`           | -                        | [ExtendedJSONSchema7Definition][data-schema] | -       | data schema describing the fields of the collection      |
-| `mask`                 | `mask`                   | boolean                                      | true    | whether to mask or not the modal                         |
 | `rootElementSelector`  | `root-element-selector`  | string                                       | -       | root element to append the modal to                      |
 | `width`                | `width`                  | number                                       | 500     | width of the modal                                       |
 | `previewUploadedFiles` | `preview-uploaded-files` | "none" \| "preview" \| "fetch"               | "none"  | allows to preview uploaded files and files from a bucket |

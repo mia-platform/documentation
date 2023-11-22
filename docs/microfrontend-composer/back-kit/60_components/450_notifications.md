@@ -130,7 +130,13 @@ With a configuration like the following,
   {
     "tag": "bk-crud-client",
     "properties": {
-      ...
+      "basePath": "/base-path",
+      "dataSchema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        }
+      }
     }
   }
 }
@@ -143,7 +149,6 @@ when a `create-data` event is emitted:
 
   ```json
   {
-    ...
     "triggeredBy": "create-data"
   }
   ```
@@ -214,7 +219,7 @@ In the following configuration, a Button component is configured to perform an H
   {
     "tag": "bk-button",
     "properties": {
-      ...
+      "content": "Get Orders",
       "action": {
         "type": "http",
         "config": {

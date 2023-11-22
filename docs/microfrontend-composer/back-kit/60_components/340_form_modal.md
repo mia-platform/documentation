@@ -106,8 +106,7 @@ Particularly, but not limited to, every field supports a set of [options][form-o
         },
         "price": {
           "type": "number"
-        },
-        ...
+        }
       }
     }
   }
@@ -259,7 +258,6 @@ Such labels can be scoped based on whether the form is in [edit or create mode](
 {
   "tag": "bk-form-modal",
   "properties": {
-    ...
     "customLabels": {
       "create": {
         "title": {
@@ -309,7 +307,6 @@ For instance, the following is a valid configuration of `customLabels`:
 {
   "tag": "bk-form-modal",
   "properties": {
-    ...
     "customLabels": {
       "create": {
         "title": {

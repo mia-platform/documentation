@@ -182,7 +182,6 @@ Assuming a plugin to include the following components:
       "dataSchema": {
         "type": "object",
         "properties": {
-          ...
           "name": {
             "type": "string"
           },
@@ -212,7 +211,6 @@ Assuming a plugin to include the following components:
       "dataSchema": {
         "type": "object",
         "properties": {
-          ...
           "name": {
             "type": "string"
           },
@@ -235,7 +233,6 @@ Assuming a plugin to include the following components:
       "dataSchema": {
         "type": "object",
         "properties": {
-          ...
           "name": {
             "type": "string"
           },
@@ -254,7 +251,6 @@ The payload of such event could look like:
 
 ```json
 {
-  ...
   "name": "Alexander",
   "image": ... // profile.jpg
 }
@@ -317,7 +313,6 @@ The resulting object is injected in the payload of an [create-data] event, like:
 
 ```json
 {
-  ...
   "name": "Alexander",
   "image": {
     "_id": "fileId7212704772008143",
@@ -366,8 +361,7 @@ And the components to be configured like:
     "properties": {
       "thumbnailSource": "location",
       "titleSource": "name",
-      "subTitleSource": "file",
-      ...
+      "subTitleSource": "file"
     }
   }
   ```
