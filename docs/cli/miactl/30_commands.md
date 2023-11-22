@@ -409,3 +409,21 @@ miactl marketplace apply -f myFantasticGoTemplates
   -f, --file stringArray   paths to JSON/YAML files or folder of files containing a Marketplace item definition
   -h, --help               help for apply
 ```
+
+### list-versions (ALPHA)
+
+:::warning
+
+This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
+
+:::
+
+List all the available versions of a specific Marketplace item.
+
+#### Synopsis
+
+The flag `--item-id` or `-i` accepts the `itemId` of the Item.
+
+```
+miactl marketplace list-versions -i some-item
+```
