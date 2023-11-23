@@ -594,24 +594,6 @@ Example:
 
 </Tabs>
 
-## Architecture
-
-_Control Plane_ is implemented in `Node.js` 20.x, utilizing multi-threading via the [Worker API](https://nodejs.org/docs/latest-v20.x/api/worker_threads.html).
-
-The main thread runs the HTTP server, exposing:
-
-- Control JSON-RPC interface
-- Frontend endpoint
-- Metrics
-- Probes
-
-The worker thread implements:
-
-- Database client (MongoDB)
-- Pub/Sub producer (Kafka)
-
-![Internal Structure of Control Plane](img/internals.v0.svg)
-
 ### Compatibility Matrix
 
 Ensure compatibility with external services using the following matrix. Initially, only the persistence layer is required to be available at startup, as configured runtimes can be zero.

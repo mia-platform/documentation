@@ -6,34 +6,67 @@ sidebar_label: Control Plane
 
 # Control Plane
 
-_Control Plane_ is a microservice designed to manage a _Fast Data_ runtime deployment. It allows to alter, store, and reset a runtime state of a k8s deployment,
-specifically the state of microservices composing Mia-Platform _Fast Data_ solution.
+_Control Plane_ is a specialized microservice designed to manage the runtime deployment of _Fast Data_ within a Kubernetes environment. Its core functionality includes the ability to alter, store, and reset the runtime state of microservices that constitute the Mia-Platform _Fast Data_ solution.
 
 ## Overview
 
-_Control Plane_ is made of two parts:
+![Control Plane Architecture](img/arch.v0.svg)
 
-1. an **HTTP controller**
-2. a **state adapter**
+The diagram above illustrates the architecture of _Control Plane_, showcasing the interaction between its components and their roles in managing the runtime environment.
+It mainly consists of two integral components:
 
-The **HTTP controller** is a webserver exposing a [json-rpc 2.0](https://www.jsonrpc.org/specification) compliant API to instruct the runtime to reach a desired state required by the API client.
-For instance, _Fast Data_ microservices spawn _Kafka_ consumers: a desired state of such services could be `pausing` or, subsequently `restarting`,
-the consumption of messages by such consumers on a given _Kafka_ consumer.
+1. **[HTTP Controller](#http-controller)**
+2. **[State Adapter](#state-adapter)**
 
-_Control Plane_ persists the current runtime state of a _Fast Data_ deployment via the **state adapter**.
+This separation of responsibilities ensures effective communication and control over the state of microservices, providing a robust and adaptable solution for runtime management within a Kubernetes environment.
 
-![control plane arch](img/arch.v0.svg)
+### HTTP Controller
 
-The **state adapter**:
+The **HTTP Controller** serves as a web server, exposing a [JSON-RPC 2.0](https://www.jsonrpc.org/specification) compliant API. This API allows clients to instruct the runtime to achieve a desired state, crucial for the smooth operation of the Mia-Platform _Fast Data_ solution.
 
-1. listens to commands invoked by the client through the `json-rpc` interface,
-2. compares the parameters provided in the call with the latest state available from the persistence source,
-3. patches the current persistence state with the next desired state, and
-4. stores it back to the persistence service
+For example, when dealing with _Fast Data_ microservices that spawn _Kafka_ consumers, a desired state could be to `pause` or subsequently `restart` the consumption of messages by these consumers on a specific _Kafka_ topic.
 
-Meanwhile, **in another thread**, polls or streams the persistence source and
-sends updates to the `state channel` pub/sub channel.
+### State Adapter
 
-Streaming the currently desidered state is a task completely independent from storing the desired state.
+The **State Adapter** is responsible for persisting the current runtime state of a _Fast Data_ deployment. Its workflow involves:
 
-Using multitenant resources to publish changes and persist state, _Control Plane_ is suitable to control microservices within its deployment namespace but also deployed in other namespaces.
+1. Listening to commands invoked by clients through the `JSON-RPC` interface.
+2. Comparing the parameters provided in the call with the latest state available from the persistence source.
+3. Patching the current persistence state with the next desired state.
+4. Storing the updated state back to the persistence service.
+
+Simultaneously, in another thread, the State Adapter polls or streams the persistence source and sends updates to the `state channel` pub/sub channel.
+
+Streaming the currently desired state is a task completely independent of storing the desired state. This separation of concerns enhances the flexibility and efficiency of runtime management.
+
+Using multitenant resources to publish changes and persist state, _Control Plane_ is not only suitable for controlling microservices within its deployment namespace but can also extend its control to microservices deployed in other namespaces.
+
+### Architecture Details
+
+_Control Plane_ is implemented in `Node.js` 20.x, utilizing multi-threading via the [Worker API](https://nodejs.org/docs/latest-v20.x/api/worker_threads.html).
+
+The main thread runs the HTTP server, exposing:
+
+- Control JSON-RPC interface
+- Frontend endpoint
+- Metrics
+- Probes
+
+The worker thread implements:
+
+- Database client (MongoDB)
+- Pub/Sub producer (Kafka)
+
+![Internal Structure of Control Plane](img/internals.v0.svg)
+
+:::note
+
+For detailed configuration, refer to the specific [documentation page](./20_configuration.mdx).
+
+:::
+
+:::note
+
+For a better explanation of how the runtime communication works, read the [Fast Data Runtime Management documentation](../../fast_data/runtime_management.mdx).
+
+:::
