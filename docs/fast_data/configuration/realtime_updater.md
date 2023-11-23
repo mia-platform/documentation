@@ -46,10 +46,12 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 | KAFKA_HEARTBEAT_INTERVAL_MS                 | -        | The expected time in milliseconds between heartbeats to the consumer coordinator.                                                                                                                                                                                                                                                                                                                                                                       | 3000     |
 | KAFKA_ADAPTER_FOLDER                        | -        | defines the path to the Kafka adapter folder                                                                                                                                                                                                                                                                                                                                                                                                            | -        |
 | KAFKA_PROJECTION_CHANGES_FOLDER             | -        | path where has been mounted the ```kafkaProjectionChanges.json``` configuration (v3.4.0 or above).                                                                                                                                                                                                                                                                                                                                                      | -        |
-| KAFKA_PROJECTION_UPDATES_FOLDER             | -        | path to the folder that contains the file ```kafkaProjectionUpdates.json```, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above).                                                                                                                                                                                                                                                         | -        |
+| KAFKA_PROJECTION_UPDATES_FOLDER             | -        | mount path of the [Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) config map.                                                                                                                                                                                                                                             | -        |
 | CAST_FUNCTIONS_FOLDER                       | -        | defines the path to the cast-functions folder                                                                                                                                                                                                                                                                                                                                                                                                           | -        |
 | MAP_TABLE_FOLDER                            | -        | defines the path to the map table folder                                                                                                                                                                                                                                                                                                                                                                                                                | -        |
-| STRATEGIES_FOLDER                           | -        | defines the path to the strategies' folder                                                                                                                                                                                                                                                                                                                                                                                                              | -        |
+| STRATEGIES_FOLDER                           | -        | defines the path to the strategies folder                                                                                                                                                                                                                                                                                                                                                                                                              | -        |
+| ER_SCHEMA_FOLDER                    | -        | Mount path of the [ER Schema](/fast_data/configuration/config_maps/erSchema.md) config map.                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -                   |
+| PROJECTION_CHANGES_SCHEMA_FOLDER                    | -        | Mount path of the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) config map.                                                                                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
 | INVARIANT_TOPIC_MAP                         | &check;  | defines an object that maps the topic to the projection                                                                                                                                                                                                                                                                                                                                                                                                 | -        |
 | USE_UPSERT                                  | -        | defines whether to use [upsert](#upsert) or not when performing insert and update operations.                                                                                                                                                                                                                                                                                                                                                           | true     |
 | USE_AUTOMATIC_STRATEGIES                    | &check;  | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Records to automatically update in the service                                                                                                                                                                                                              | false    | 
@@ -72,9 +74,21 @@ Please remember that, after attaching a Real-Time Updater to the Systems of Reco
 Additionally, note that each projection can be evaluated by only one service.
 :::
 
-When a service is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
+### Read only Environment Variables 
 
-Furthermore, the environment variables `SYSTEM_OF_RECORDS`, `INVARIANT_TOPIC_MAP` and `KAFKA_MESSAGE_ADAPTER` (and, if applicable, `KAFKA_ADAPTER_FOLDER`) will be automatically updated upon saving the configuration. These variables are not manually editable because they are managed exclusively from the System of Records configuration module.
+When a system of record is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
+
+The following variables will be managed by the Fast Data Section and cannot be changed from the micro-service section:
+* `KAFKA_MESSAGE_ADAPTER`
+* `INVARIANT_TOPIC_MAP`
+* `SYSTEM_OF_RECORDS`
+* `CAST_FUNCTIONS_FOLDER`
+* `MAP_TABLE_FOLDER`
+* `STRATEGIES_FOLDER`
+* `KAFKA_ADAPTER_FOLDER`
+* `ER_SCHEMA_FOLDER`
+* `PROJECTION_CHANGES_SCHEMA_FOLDER`
+* `KAFKA_PROJECTION_UPDATES_FOLDER`
 
 ### Usage of the Low Code
 
@@ -238,6 +252,15 @@ The ER Schema ConfigMap is created after the service is attached to a System of 
 
 This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated with this microservice to work properly.
 :::  
+
+:::tip Shared ER Schema
+
+If you have already [attached an ER Schema to a Single View Creator](/fast_data/configuration/single_view_creator.md#selecting-an-er-schema-with-the-no-code), you can re-use it in the Real-Time Updater configuration too.
+
+By deleting the default one and [add an existing Config Map](/development_suite/api-console/api-design/services.md#shared-configmaps) corresponding to the one of the Er Schema, changes made to an Er Schema will be reflected also in the Real-Time Updater. 
+
+Remember to use the same mount path defined in the `ER_SCHEMA_FOLDER` environment variable.  
+:::
 
 ### Projection Changes Schema
 
