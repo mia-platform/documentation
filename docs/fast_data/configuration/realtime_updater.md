@@ -255,7 +255,7 @@ This is an empty configuration: the Real-Time Updater Microservice could be depl
 
 :::tip Shared ER Schema
 
-If you have already [attached an ER Schema to a Single View Creator](/fast_data/configuration/single_view_creator.md#selecting-an-er-schema-with-the-no-code), you can re-use it in the Real-Time Updater configuration too.
+If you have already [attached an ER Schema to a Single View Creator](/fast_data/configuration/single_view_creator/plugin.md#selecting-an-er-schema-with-the-no-code), you can re-use it in the Real-Time Updater configuration too.
 
 By deleting the default one and [add an existing Config Map](/development_suite/api-console/api-design/services.md#shared-configmaps) corresponding to the one of the Er Schema, changes made to an Er Schema will be reflected also in the Real-Time Updater. 
 

@@ -823,8 +823,31 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/single_view_creator",
-          "type": "doc"
+          "label": "Single View Creator",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "fast_data/configuration/single_view_creator/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "fast_data/configuration/single_view_creator/plugin",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/single_view_creator/template",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/single_view_creator/patch",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/single_view_creator/upsert_delete_strategies",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "fast_data/configuration/single_view_trigger_generator",
@@ -967,6 +990,10 @@
     {
       "collapsed": true,
       "items": [
+        {
+          "id": "fast_data/faq/parallel_svc",
+          "type": "doc"
+        },
         {
           "id": "fast_data/faq/failure_handling",
           "type": "doc"

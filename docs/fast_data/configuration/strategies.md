@@ -173,7 +173,7 @@ This information are valid only when using a [Real-Time Updater](/fast_data/conf
 
 Each strategy is associated with a **type**, which usually (and by default) corresponds to the name of the Single View for which it is configured. When using a Real-Time Updater with Projection Changes, this type should match the one declared in the `TYPE` environment variable of the Single View Creator(s) associated with the Single View. The reason is that, behind the hood, the strategy type is written in the Projection Changes record by the Real-Time Updater and the Single View Creators will discern which records to process based on it.
 
-There may be scenarios in which you want two Single View Creators associated with the same Single View to process Projection Changes records with different types. This may happen, for example, to isolate a critical flow in which one projection concurring in a Single View is updated much more often than the others needing a dedicated set of services to ensure maximum efficiency.
+There may be scenarios in which you want two Single View Creators associated with the same Single View to process Projection Changes records with different types (as explained [here](/fast_data/faq/parallel_svc.md)). This may happen, for example, to isolate a critical flow in which one projection concurring in a Single View is updated much more often than the others needing a dedicated set of services to ensure maximum efficiency.
 
 To achieve this separation, one can use the **Type field** of the strategies table in the Single View details page to associate a specific type to a subset of strategies.
 

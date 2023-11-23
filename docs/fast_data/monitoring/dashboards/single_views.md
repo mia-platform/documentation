@@ -16,5 +16,5 @@ This dashboard focuses on the [Single View Trigger Generator](/fast_data/single_
 To discover all the features you can download the dashboard's json <a download target="_blank" href="/docs_files_to_download/dashboards/single-views.json">**here**</a> and import it on your Grafana portal.
 
 :::note
-To use this dashboard you'll need to configure and deploy a [Single View Creator](/fast_data/configuration/single_view_creator.md) and/or a [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md). Also, don't forget to check out the [Fast Data Services metrics](/fast_data/monitoring/overview.md#fast-data-services-metrics) section.
+To use this dashboard you'll need to configure and deploy a [Single View Creator](/fast_data/configuration/single_view_creator/index.md) and/or a [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md). Also, don't forget to check out the [Fast Data Services metrics](/fast_data/monitoring/overview.md#fast-data-services-metrics) section.
 :::

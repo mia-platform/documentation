@@ -62,10 +62,10 @@ If you already have Single View Creator services linked, you can add more by cli
 ![Fast Data link Single View Creator](../img/single-view-detail-add-another-svc.png)
 
 :::info
-In the [Marketplace](/marketplace/overview_marketplace.md), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](/fast_data/configuration/single_view_creator.md).
+In the [Marketplace](/marketplace/overview_marketplace.md), you can find a template and two plugins that can help you in configuring all the **Single View Creator** services that you need. You can find more information [here](/fast_data/configuration/single_view_creator/index.md).
 :::
 
-Once a Single View Creator is linked, if it's configured as Low Code, then its [Low Code configuration](/fast_data/configuration/single_view_creator.md) files are shown in a dedicated card. Click on the Edit button to edit them.
+Once a Single View Creator is linked, if it's configured as Low Code, then its [Low Code configuration](/fast_data/configuration/single_view_creator/plugin.md) files are shown in a dedicated card. Click on the Edit button to edit them.
 
 ![Fast Data edit Low Code configuration](../img/single-view-detail-edit-configuration.png)
 
@@ -187,7 +187,7 @@ To prevent this problem, a new infrastructure has been designed:
 The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
 This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.
 
-To understand how to configure both services click on them: [Real-Time Updater](/fast_data/configuration/realtime_updater.md#single-view-patch) and [Single View Creator](/fast_data/configuration/single_view_creator.md#single-view-patch). 
+To understand how to configure both services click on them: [Real-Time Updater](/fast_data/configuration/realtime_updater.md#single-view-patch) and [Single View Creator](/fast_data/configuration/single_view_creator/patch.md). 
 
 ## Technical limitation
 
