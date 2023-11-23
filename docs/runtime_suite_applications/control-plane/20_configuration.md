@@ -12,7 +12,7 @@ The environment variables allow to control basic functionalities:
 
 ## Config Map
 
-The Config Map is `json` file which must be compliant with the relative schema. Below a description of the schema and an example.
+The Config Map is a `json` file which must be compliant with the relative schema. Below a description of the schema and an example.
 
 <details><summary>ConfigMap Schema</summary>
 <p>
