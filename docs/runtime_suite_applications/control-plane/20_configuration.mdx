@@ -1,0 +1,627 @@
+---
+id: configuration
+title: Control Plane - Configuration
+sidebar_label: Configuration
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Configuration
+
+_Configuration of Control Plane_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+
+## Environment Variables
+
+Control Plane can be customized using the following environment variables:
+
+- **HTTP_PORT (default: 3000):** This variable determines the TCP port where the **HTTP controller** binds its listener.
+- **LOG_LEVEL (default: `info`):** Specify the centralized application log level, choosing from options such as `debug`, `error`, `fatal`, `info`, `silent`, `trace`, or `warn`.
+- **FD_CONTROL_PLANE_CONFIGURATION_FILEPATH (default: `~/.fd/control-plane/configuration.json`):** Set the location of the configuration file.
+
+## Config Map
+
+The Config Map is a JSON file that must adhere to a specific schema. Below, we outline the schema and provide an example.
+
+<details><summary>ConfigMap Schema</summary>
+<p>
+
+```json
+{
+    "type": "object",
+    "title": "Control Plane Configuration",
+    "description": "Json schema for the control-plane configuration file. File is by default loaded at **~/.fd/control-plane/configuration.json**. Default location can be configured using the environment variable **FD\\_CONTROL_PLANE\\_CONFIGURATION\\_FILEPATH**.",
+    "examples": [
+        {
+            "runtimes": {
+                "runtime-1": {
+                    "channels": {
+                        "state": {
+                            "type": "kafka",
+                            "configuration": {
+                                "bootstrap.servers": "localhost:9094",
+                                "allow.auto.create.topics": "true"
+                            },
+                            "producer": {
+                                "topic": "state"
+                            }
+                        }
+                    }
+                }
+            },
+            "persistence": {
+                "type": "mongodb",
+                "configuration": {
+                    "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+                },
+                "collection": {
+                    "name": "runtime-state"
+                }
+            }
+        },
+        {
+            "runtimes": {
+                "runtime-1": {
+                    "channels": {
+                        "state": {
+                            "type": "kafka",
+                            "configuration": {
+                                "bootstrap.servers": "localhost:9094",
+                                "allow.auto.create.topics": "true"
+                            },
+                            "producer": {
+                                "topic": "state"
+                            }
+                        }
+                    }
+                },
+                "runtime-2": {
+                    "channels": {
+                        "state": {
+                            "type": "kafka",
+                            "configuration": {
+                                "bootstrap.servers": "{{KAFKA_BROKERS}}",
+                                "client.id": "fd-tests.{{ENVIRONMENT_TO_DEPLOY}}.new-rtu-atm-0004-consumer",
+                                "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"{{KAFKA_SASL_USERNAME}}\" password=\"{{KAFKA_SASL_PASSWORD}}\"",
+                                "sasl.mechanism": "SCRAM-SHA-256",
+                                "security.protocol": "SASL_SSL"
+                            },
+                            "producer": {
+                                "topic": "state"
+                            }
+                        }
+                    }
+                }
+            },
+            "persistence": {
+                "type": "mongodb",
+                "configuration": {
+                    "url": "{{MONGODB_URL}}"
+                },
+                "collection": {
+                    "name": "state-collection"
+                }
+            },
+            "settings": {
+                "server": {
+                    "prefix": "/control-plane/",
+                    "apis": {
+                        "controllers": {
+                            "fast-data": "/my-awesome-controller"
+                        }
+                    },
+                    "website": {
+                        "url": "/__frontend/"
+                    }
+                }
+            }
+        }
+    ],
+    "required": [
+        "persistence",
+        "runtimes"
+    ],
+    "properties": {
+        "runtimes": {
+            "examples": [
+                {
+                    "runtime-1": {
+                        "channels": {
+                            "state": {
+                                "type": "kafka",
+                                "configuration": {
+                                    "bootstrap.servers": "localhost:9094",
+                                    "allow.auto.create.topics": "true"
+                                },
+                                "producer": {
+                                    "topic": "state"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "object",
+            "description": "A key-value object representing runtime instances controlled by this control-plane. Key is a unique name that corresponds with the persistence unique identifier for the current desired state of a given runtime. Runtimes contain communication channel from and to deployed microservices.",
+            "minProperties": 1,
+            "additionalProperties": {
+                "type": "object",
+                "title": "Runtime",
+                "required": [
+                    "channels"
+                ],
+                "properties": {
+                    "channels": {
+                        "description": "Communication channels from and to deployed microservices composing this runtime",
+                        "type": "object",
+                        "required": [
+                            "state"
+                        ],
+                        "properties": {
+                            "state": {
+                                "description": "Channel from control-plane to runtime deployed microservices used to convey the next desired state of the runtime. Used primarily to switch on and off service features.",
+                                "title": "StateChannel",
+                                "oneOf": [
+                                    {
+                                        "description": "Kafka client configuration for consumer, producer, or admin client",
+                                        "title": "KafkaConnection",
+                                        "examples": [
+                                            {
+                                                "type": "kafka",
+                                                "configuration": {
+                                                    "bootstrap.servers": "localhost:9092,localhost:9094",
+                                                    "auto.offset.reset": "earliest"
+                                                },
+                                                "producer": {
+                                                    "topic": "state-topic"
+                                                }
+                                            }
+                                        ],
+                                        "type": "object",
+                                        "required": [
+                                            "producer",
+                                            "configuration"
+                                        ],
+                                        "properties": {
+                                            "type": {
+                                                "const": "kafka"
+                                            },
+                                            "configuration": {
+                                                "type": "object",
+                                                "description": "Kafka driver configurations. See <https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html>",
+                                                "required": [
+                                                    "bootstrap.servers"
+                                                ],
+                                                "properties": {
+                                                    "bootstrap.servers": {
+                                                        "type": "string",
+                                                        "description": "A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. See <https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html#bootstrap-servers>"
+                                                    },
+                                                    "client.id": {
+                                                        "type": "string"
+                                                    },
+                                                    "security.protocol": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "PLAINTEXT",
+                                                            "SSL",
+                                                            "SASL_PLAINTEXT",
+                                                            "SASL_SSL"
+                                                        ]
+                                                    },
+                                                    "sasl.mechanism": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "PLAIN",
+                                                            "SCRAM-SHA-256",
+                                                            "SCRAM-SHA-512",
+                                                            "OAUTHBEARER"
+                                                        ]
+                                                    },
+                                                    "sasl.username": {
+                                                        "type": "string"
+                                                    },
+                                                    "sasl.password": {
+                                                        "type": "string"
+                                                    },
+                                                    "sasl.jaas.config": {
+                                                        "type": "string"
+                                                    },
+                                                    "sasl.login.callback.handler.class": {
+                                                        "type": "string"
+                                                    },
+                                                    "session.timeout.ms": {
+                                                        "type": "integer"
+                                                    },
+                                                    "auto.offset.reset": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "earliest",
+                                                            "latest"
+                                                        ]
+                                                    },
+                                                    "allow.auto.create.topics": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "true",
+                                                            "false"
+                                                        ],
+                                                        "default": "false"
+                                                    },
+                                                    "enable.auto.commit": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "true",
+                                                            "false"
+                                                        ],
+                                                        "default": "true"
+                                                    }
+                                                },
+                                                "additionalProperties": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "producer": {
+                                                "description": "Kafka producer specific configuration",
+                                                "type": "object",
+                                                "required": [
+                                                    "topic"
+                                                ],
+                                                "properties": {
+                                                    "topic": {
+                                                        "description": "The name of the topic to send messages to",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "request": {
+                                "description": "reserved keyword",
+                                "title": "RequestChannel",
+                                "$comment": "TBD: channel used by slave replicas to mirror user requests to master"
+                            },
+                            "feedback": {
+                                "description": "reserved keyword",
+                                "title": "FeedbackChannel",
+                                "$comment": "TBD: channel used by runtime to inform control-plane of its status"
+                            }
+                        }
+                    },
+                    "configuration": {
+                        "description": "reserved keyword",
+                        "$comment": "TBD: here the fast-data config for the selected runtime"
+                    }
+                }
+            }
+        },
+        "persistence": {
+            "description": "Configuration of the persistence layer where control-plane stores the next desired state for each configured runtime. The client is also used to stream changes to the state channels of each given runtime.",
+            "examples": [
+                {
+                    "type": "mongodb",
+                    "configuration": {
+                        "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+                    },
+                    "collection": {
+                        "name": "runtime-state"
+                    }
+                }
+            ],
+            "oneOf": [
+                {
+                    "title": "MongodbConnection",
+                    "type": "object",
+                    "description": "interface of a mongodb connection which is generally accepted by fast-data",
+                    "required": [
+                        "collection",
+                        "configuration"
+                    ],
+                    "properties": {
+                        "type": {
+                            "const": "mongodb"
+                        },
+                        "configuration": {
+                            "description": "Mongodb driver configurations.",
+                            "type": "object",
+                            "required": [
+                                "url"
+                            ],
+                            "properties": {
+                                "url": {
+                                    "description": "Mongodb connection string.",
+                                    "type": "string"
+                                },
+                                "database": {
+                                    "description": "Mongodb database to override default inferred by connection string.",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "collection": {
+                            "type": "object",
+                            "required": [
+                                "name"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "updates": {
+                                    "type": "object",
+                                    "description": "When mongodb connection is direct, instead of a collection `watch` <https://www.mongodb.com/docs/manual/reference/method/db.collection.watch/>, the persistence layer polls the collection with a given `updates.millis` interval",
+                                    "properties": {
+                                        "millis": {
+                                            "default": 2000,
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "Mongodb collection fine tunings."
+                        }
+                    }
+                }
+            ]
+        },
+        "settings": {
+            "examples": [
+                {
+                    "server": {
+                        "prefix": "/control-plane/"
+                    }
+                }
+            ],
+            "type": "object",
+            "title": "Settings",
+            "description": "Control-plane general settings.",
+            "properties": {
+                "server": {
+                    "description": "HTTP server settings.",
+                    "type": "object",
+                    "title": "ServerConfig",
+                    "properties": {
+                        "prefix": {
+                            "description": "Specifies the endpoint prefix for the HTTP server. All endpoints will be exposed under this prefix. For example, if the prefix is set to '/api/', the endpoint '/users' will be accessible as '/api/users'.",
+                            "type": "string",
+                            "pattern": "^/([^#?]+/)?$",
+                            "default": "/"
+                        },
+                        "apis": {
+                            "type": "object",
+                            "description": "Configurations for api endpoints",
+                            "properties": {
+                                "probes": {
+                                    "description": "Configurations for probes and metrics that are exposed by the service to allow k8s to perform healthcheck",
+                                    "type": "object",
+                                    "properties": {
+                                        "prefix": {
+                                            "description": "Specifies the probes prefix. It is appended to the overall HTTP server prefix, if any.",
+                                            "type": "string",
+                                            "pattern": "^/([^#?]+/)?$",
+                                            "default": "/-/"
+                                        },
+                                        "metrics": {
+                                            "description": "GET-only endpoint exposing Prometheus compliant metrics",
+                                            "type": "string",
+                                            "pattern": "^/([^#?]+/?)?$",
+                                            "default": "/metrics"
+                                        },
+                                        "readiness": {
+                                            "description": "Readiness probe returning either 200 or 503",
+                                            "type": "string",
+                                            "pattern": "^/([^#?]+/?)?$",
+                                            "default": "/ready"
+                                        },
+                                        "healthcheck": {
+                                            "description": "Health probe returning either 200 or 503",
+                                            "type": "string",
+                                            "pattern": "^/([^#?]+/?)?$",
+                                            "default": "/healthz"
+                                        }
+                                    }
+                                },
+                                "controllers": {
+                                    "description": "Configurations for controller apis",
+                                    "type": "object",
+                                    "properties": {
+                                        "prefix": {
+                                            "description": "Specifies the controllers prefix. It is appended to the overall HTTP server prefix, if any.",
+                                            "type": "string",
+                                            "pattern": "^/([^#?]+/)?$",
+                                            "default": "/"
+                                        },
+                                        "fast-data": {
+                                            "description": "JsonRPC endpoint that receives commands to alter a runtime state. Commands must conform with the <a href=\"https://git.tools.mia-platform.eu/platform/fast-data/control-plane/control-plane/-/blob/main/schemas/jsonrpc-request-2.0.schema.json\" target=\"_blank\">Json RPC</a>.",
+                                            "type": "string",
+                                            "pattern": "^/([^#?]+/?)?$",
+                                            "default": "/fast-data"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "website": {
+                            "description": "Configurations for the website static endpoint",
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "description": "Endpoint that serves the frontend static files",
+                                    "type": "string",
+                                    "pattern": "^/([^#?]+/)?$",
+                                    "default": "/website/"
+                                },
+                                "root": {
+                                    "description": "Folder where static files are located",
+                                    "type": "string",
+                                    "pattern": "^\\.?/([^#?]+/?)?$",
+                                    "default": "./website"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+</p>
+</details>
+
+<details><summary>Example of ConfigMap</summary>
+<p>
+
+```json
+{
+  "runtimes": {
+    "runtime-1": {
+      "channels": {
+        "state": {
+          "type": "kafka",
+          "configuration": {
+            "bootstrap.servers": "localhost:9094",
+            "allow.auto.create.topics": "true"
+          },
+          "producer": {
+            "topic": "state"
+          }
+        }
+      }
+    }
+  },
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+    },
+    "collection": {
+      "name": "runtime-state"
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+<Tabs>
+
+<TabItem value="persistence" label="Persistence" default>
+
+### Persistence
+
+This section configures the layer of runtime state persistence where Control Plane stores the next desired state for each configured runtime.
+The client is also used to stream changes to the state channels of each given runtime.
+It must point to a `MongoDB` collection, available in a [`replicaSet` enabled database](https://www.mongodb.com/docs/manual/replication/). Available interfaces include:
+
+- `MongoDB` client
+
+Example:
+
+```json
+{
+    "type": "mongodb",
+    "configuration": {
+        "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+    },
+    "collection": {
+        "name": "runtime-state"
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="settings" label="Settings">
+
+### Settings
+
+The overall setup of Control Plane is tuned in the Settings object, allowing you to configure **HTTP controller** routes, including:
+
+- APIs
+  - Fast Data control endpoint
+  - Metrics
+  - Probes
+- Frontend/Website
+
+Example:
+
+```json
+{
+  "server": {
+    "prefix": "/control-plane/",
+    "website": {
+      "url": "/"
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="runtimes" label="Runtimes">
+
+### Runtimes
+
+A key-value object representing runtime instances controlled by this control-plane.
+Key is a unique name that corresponds with the persistence unique identifier for the current desired state of a given runtime.
+Runtimes contain communication channel from and to deployed microservices.
+For each deployed runtime, this section configures the communication channel that the Control Plane uses to dispatch the next desired state.
+Available interfaces are:
+
+- `Kafka` producer
+
+Example:
+
+```json
+{
+    "type": "kafka",
+    "configuration": {
+        "bootstrap.servers": "localhost:9092,localhost:9094",
+        "auto.offset.reset": "earliest"
+    },
+    "producer": {
+        "topic": "state-topic"
+    }
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+## Architecture
+
+_Control Plane_ is implemented in `Node.js` 20.x, utilizing multi-threading via the [Worker API](https://nodejs.org/docs/latest-v20.x/api/worker_threads.html).
+
+The main thread runs the HTTP server, exposing:
+
+- Control JSON-RPC interface
+- Frontend endpoint
+- Metrics
+- Probes
+
+The worker thread implements:
+
+- Database client (MongoDB)
+- Pub/Sub producer (Kafka)
+
+![Internal Structure of Control Plane](img/internals.v0.svg)
+
+### Compatibility Matrix
+
+Ensure compatibility with external services using the following matrix. Initially, only the persistence layer is required to be available at startup, as configured runtimes can be zero.
+
+| Control Plane | MongoDB | Kafka |
+|:-------------:|:-------:|:-----:|
+|      0.x      |  >=5    | >=3.5 |
+
+### Runtime Communication
+
+Communications to/from runtimes are facilitated through a Kafka topic.
+
+
