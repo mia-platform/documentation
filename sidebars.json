@@ -7,6 +7,83 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Configure Marketplace Components",
+          "items": [
+            {
+              "id": "getting-started/tutorials/microservice-hello-world",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/api-portal",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/rest-api-for-crud-on-data",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/create-a-custom-microservice",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/microservice-with-metrics",
+              "type": "doc"
+            },
+            {
+              "id": "getting-started/tutorials/flow-manager",
+              "type": "doc"
+            },
+            {
+              "label": "Auth Architecture",
+              "type": "category",
+              "collapsed": true,
+              "link": {
+                "type": "doc",
+                "id": "getting-started/tutorials/architecture/auth/intro"
+              },
+              "items": [
+                {
+                  "id": "getting-started/tutorials/architecture/auth/static-api-key",
+                  "type": "doc"
+                },
+                {
+                  "id": "getting-started/tutorials/architecture/auth/external-idp",
+                  "type": "doc"
+                },
+                {
+                  "id": "getting-started/tutorials/architecture/auth/external-idp-internal-session",
+                  "type": "doc"
+                },
+                {
+                  "id": "getting-started/tutorials/architecture/auth/multiple-projects",
+                  "type": "doc"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "getting-started/tutorials/microservice-from-docker-image",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/set-requests-limits-of-a-microservice",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/protect-your-endpoints-with-policies",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Company Configuration",
       "link": {
         "id": "development_suite/company/overview",
@@ -590,6 +667,29 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "collapsed": true,
+      "label": "Tutorials",
+      "items": [
+        {
+          "id": "getting-started/tutorials/microfrontend-composer/basics",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/microfrontend-composer/templates",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/microfrontend-composer/microfrontends",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/microfrontend-composer/auth0-integration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "id": "microfrontend-composer/architecture",
       "type": "doc"
     },
@@ -723,6 +823,25 @@
     {
       "id": "fast_data/no_code_overview",
       "type": "doc"
+    },
+    {
+      "type": "category",
+      "label": "Tutorials",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "getting-started/tutorials/fast-data/low-code",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/fast-data/bucket-storage-support",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/fast-data/migration",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/inputs_and_outputs",
@@ -998,128 +1117,8 @@
       "type": "doc"
     },
     {
-      "collapsed": true,
-      "label": "Tutorials",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "getting-started/tutorials/tutorials"
-      },
-      "items": [
-        {
-          "id": "getting-started/tutorials/microservice-from-docker-image",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/microservice-hello-world",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/api-portal",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/rest-api-for-crud-on-data",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/create-a-custom-microservice",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/microservice-with-metrics",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/set-requests-limits-of-a-microservice",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/protect-your-endpoints-with-policies",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/flow-manager",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/design-overview",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/project-template-integrated-with-jenkins",
-          "type": "doc"
-        },
-        {
-          "label": "Auth Architecture",
-          "type": "category",
-          "collapsed": true,
-          "link": {
-            "type": "doc",
-            "id": "getting-started/tutorials/architecture/auth/intro"
-          },
-          "items": [
-            {
-              "id": "getting-started/tutorials/architecture/auth/static-api-key",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/architecture/auth/external-idp",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/architecture/auth/external-idp-internal-session",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/architecture/auth/multiple-projects",
-              "type": "doc"
-            }
-          ]
-        },
-        {
-          "label": "Fast Data",
-          "type": "category",
-          "collapsed": true,
-          "items": [
-            {
-              "id": "getting-started/tutorials/fast-data/low-code",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/fast-data/bucket-storage-support",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/fast-data/migration",
-              "type": "doc"
-            }
-          ]
-        },
-        {
-          "label": "Microfrontend Composer",
-          "type": "category",
-          "collapsed": true,
-          "items": [
-            {
-              "id": "getting-started/tutorials/microfrontend-composer/basics",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/microfrontend-composer/templates",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/microfrontend-composer/microfrontends",
-              "type": "doc"
-            },
-            {
-              "id": "getting-started/tutorials/microfrontend-composer/auth0-integration",
-              "type": "doc"
-            }
-          ]
-        }
-      ]
+      "type": "doc",
+      "id": "getting-started/tutorials/tutorials"
     },
     {
       "collapsed": true,
@@ -1132,6 +1131,10 @@
       "items": [
         {
           "id": "getting-started/handbooks/project/manage",
+          "type": "doc"
+        },
+        {
+          "id": "getting-started/tutorials/design-overview",
           "type": "doc"
         },
         {
@@ -1392,6 +1395,17 @@
     {
       "id": "marketplace/overview_marketplace",
       "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "id": "getting-started/tutorials/project-template-integrated-with-jenkins",
+          "type": "doc"
+        }
+      ]
     },
     {
       "collapsed": true,
