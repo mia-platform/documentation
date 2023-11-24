@@ -56,7 +56,7 @@ which is applied to each document retrieved by the last step of the strategy pat
 ## Custom Functions
 
 :::caution
-Please note that this feature is **only** supported by the <ins>Single View Trigger Generator</ins>, **not** the <ins>Real-Time Updater</ins>.
+Please note that this feature is **only** supported by <ins>Single View Trigger Generator</ins> service, whereas <ins>Real-Time Updater</ins> does **not** handle it.
 :::
 
 It's possible to use custom functions in each path that requires additional operations not provided by the ER Schema. 
