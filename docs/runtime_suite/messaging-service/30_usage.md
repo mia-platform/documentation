@@ -55,6 +55,8 @@ will be sent.)
 
 - **emailBlindCarbonCopies** - `array of strings`: list of email addresses that should be included as blind carbon copies (BCC). Any invalid email addresses will be ignored. Available since version 1.4.0.
 
+- **emailSender** - `string`: email address of the message sender. This value overwrites the email set in the service configuration.
+
 ### Response
 
 #### Exceptions

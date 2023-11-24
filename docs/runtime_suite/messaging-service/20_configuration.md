@@ -179,6 +179,7 @@ If you set an alphanumeric sender ID and choose a name that is too generic (e.g.
     - **emailAttachments** - `string` or `string array`
     - **emailCarbonCopies** - `string` or `string array`
     - **emailBlindCarbonCopies** - `string` or `string array`
+    - **emailSender** - `string`
   - **serviceUrl** - `string`: URL of the Flow Manager Service. Required if you want to send events back.
   - **successEventLabel** - `string`: event label. Required if you want to send an event in case of successful notification.
   - **failEventLabel** - `string`: event label. Required if you want to send an event in case of failed notification.
