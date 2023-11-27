@@ -25,13 +25,21 @@ This is an indicative list. For up to date information about the latest versions
         <th>6.0</th>
     </tr>
     <tr>
-        <td rowspan="2"><a href="../../runtime_suite/crud-service/overview_and_usage">CRUD Service</a></td>
-        <td>v6.9.3</td>
+        <td rowspan="3"><a href="../../runtime_suite/crud-service/overview_and_usage">CRUD Service</a></td>        
+        <td>v6.1.0</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+    </tr>
+    <tr>
+        <td>v5.0.0</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v3.1.1</td>
@@ -43,12 +51,12 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="2"><a href="../../fast_data/realtime_updater">Real-Time Updater</a></td>
-        <td>v7.5.6</td>
+        <td>v5.0.2</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
-        <td>✅</td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v4.0.0</td>
@@ -65,7 +73,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
-        <td>✅</td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v3.0.0</td>
@@ -180,7 +188,7 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="2">MongoDB Query Exporter</td>
-        <td>v1.0.0</td>
+        <td>>= v1.0.0</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
