@@ -3,7 +3,7 @@ id: mongo_compatibility_matrix
 title: MongoDB Compatibility Matrix
 sidebar_label: MongoDB Compatibility Matrix
 ---
-In this page, the Marketplace components compatibility matrix for MongoDB support has been listed.a
+In this page, the Marketplace components compatibility matrix for MongoDB support has been listed.
 
 <table>
     <tr><td>MongoDB</td><td></td><td>4.0</td><td>4.2</td><td>4.4</td><td>5.0</td></tr>
