@@ -515,7 +515,7 @@ These are the currently emitted codes:
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
 | NO_SV_GENERATED                  | Happens when the aggregation pipeline **unexpectedly** does not find the base projection record and thus returns empty                                                |  &cross;  |
 | VALIDATION_ERROR                 | Happens when the result of an aggregation does not pass the validation defined by the user in the `validator.js`                                                      |  &cross;  |
-| ERROR_SEND_SVC_EVENT             | Happens when sevice fails to send a Kafka message to notify a successful aggregation                                                                                                   |  &cross;  |
+| ERROR_SEND_SVC_EVENT             | Happens when service fails to send a Kafka message to notify a successful aggregation                                                                                                   |  &cross;  |
 | SINGLE_VIEW_AGGREGATION_MAX_TIME | Happens when aggregation pipeline takes too long and goes over the maximum established time defined on the `SINGLE_VIEWS_MAX_PROCESSING_MINUTES` environment variable |  &check;  |
 | UNKNOWN_ERROR                    | Happens with an unexpected error, such as a connection error with Apache Kafka or MongoDB                                                                             |  &check;  |
 
