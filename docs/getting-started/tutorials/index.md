@@ -18,8 +18,8 @@ In the preliminary section you will find a list Handbooks that explains how to e
 
 ### **Console and Marketplace Components**
 - **Project Handbook**: Comprehensive guide for project management. [Go to Project Handbook](/getting-started/handbooks/project/manage.md).
-- **Hello World**: Getting started with microservices. [Go to Hello World](/getting-started/tutorials/microservice-hello-world.mdx).
-- **API Portal Tutorial**: Deep dive into the API portal and its functionalities. [Go to API Portal Tutorial](/getting-started/tutorials/api-portal.mdx).
+- **Hello World**: Getting started with microservices. [Go to Hello World](/console/tutorials/microservice-hello-world.mdx).
+- **API Portal Tutorial**: Deep dive into the API portal and its functionalities. [Go to API Portal Tutorial](/console/tutorials/api-portal.mdx).
 - **Quick REST API**: Grasping the principles and best practices of RESTful APIs. [Go to Quick REST API](/getting-started/tutorials/rest-api-for-crud-on-data.mdx).
 - **Custom Microservices Tutorial**: Best practices and insights on building microservices using Node.js. [Go to Custom Microservices Tutorial](/getting-started/tutorials/create-a-custom-microservice.mdx).
 

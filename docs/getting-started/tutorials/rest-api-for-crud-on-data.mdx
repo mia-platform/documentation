@@ -38,15 +38,15 @@ Better to have:
 - Some familiarity with **API** and **REST** concepts. More information about API is available [here](/getting-started/guidelines/rest-api-vademecum.md).
 
 :::info
-If you have already done the [previous tutorial](/getting-started/tutorials/microservice-hello-world.mdx), you can skip the rest of the section and directly start the tutorial.
+If you have already done the [previous tutorial](/console/tutorials/configure-marketplace-components/microservice-hello-world.mdx), you can skip the rest of the section and directly start the tutorial.
 :::
 
 Before starting, we will assume that, you already have a clean project in Mia-Platform Console. In order to know how to create a project on Mia-Platform Console, read [this guide](/console/project-configuration/create-a-project.mdx).
 
 The project must:
 
-1. Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
-1. Have an [ingress route](/paas/traefik.md) with `api-gateway` as `service`;
+1. Be integrated with a [deploy pipeline](/infrastructure/self-hosted/pipeline-configuration.md);
+1. Have an [ingress route](/infrastructure/paas/traefik.md) with `api-gateway` as `service`;
 1. Have an [API Gateway](/runtime_suite/api-gateway/10_overview.md) or a [Envoy API Gateway](/runtime_suite/envoy-api-gateway/overview.md) in your project;
 1. Have a properly configured [API Portal](/runtime_suite/api-portal/10_overview.md) and [Swagger Aggregator](/runtime_suite/swagger-aggregator/10_overview.md).
 
@@ -186,7 +186,7 @@ You can import fields during the creation phase of a new CRUD Collection, by cli
 In order to make CRUD operations on the newly created collection available from outside the project, we will now **add an endpoint**.
 
 :::tip
-If you don't know how to do it take a look at the [first tutorial](/getting-started/tutorials/microservice-hello-world.mdx#expose-the-hello-world-microservice-api)
+If you don't know how to do it take a look at the [first tutorial](/console/tutorials/configure-marketplace-components/microservice-hello-world.mdx#expose-the-hello-world-microservice-api)
 :::
 
 The parameters to set for the endpoint are the following ones:

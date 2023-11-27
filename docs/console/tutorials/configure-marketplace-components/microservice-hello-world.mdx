@@ -4,7 +4,7 @@ title: Hello World Microservice
 sidebar_label: Hello World Microservice
 ---
 
-import VideoBox from "./../../../src/components/VideoBox";
+import VideoBox from "../../../../src/components/VideoBox";
 
 In this tutorial we are going create and expose to the outside of the cluster a service using Mia-Platform Console. The service will simply reply to an HTTP request with an "Hello World" message.
 
@@ -25,8 +25,8 @@ Before starting, we will assume that, you already have a clean project in Mia-Pl
 
 The project must:
 
-- Be integrated with a [deploy pipeline](/development_suite/deploy/pipeline-configuration.md);
-- Have an [ingress route](/paas/traefik.md) with "api-gateway" as `service`.
+- Be integrated with a [deploy pipeline](/infrastructure/self-hosted/pipeline-configuration.md);
+- Have an [ingress route](/infrastructure/paas/traefik.md) with "api-gateway" as `service`.
 - Be aware of your project domains. If the project links has been configured, you can find them in the "Environments" section of the "Project Overview" area, under the "Application" column.
 
 :::tip

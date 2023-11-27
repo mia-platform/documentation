@@ -15,11 +15,11 @@
           "label": "Configure Marketplace Components",
           "items": [
             {
-              "id": "getting-started/tutorials/microservice-hello-world",
+              "id": "console/tutorials/configure-marketplace-components/microservice-hello-world",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/api-portal",
+              "id": "console/tutorials/configure-marketplace-components/api-portal",
               "type": "doc"
             },
             {
@@ -1265,11 +1265,11 @@
           "type": "doc"
         },
         {
-          "id": "infrastructure/paas/security/security-measures",
+          "id": "infrastructure/paas/security-measures",
           "type": "doc"
         },
         {
-          "id": "infrastructure/paas/security/secret-scanning",
+          "id": "infrastructure/paas/secret-scanning",
           "type": "doc"
         },
         {
@@ -1286,39 +1286,39 @@
           "collapsed": true,
           "items": [
             {
-              "id": "infrastructure/paas/runtime",
+              "id": "infrastructure/paas/tools/runtime",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/message-broker",
+              "id": "infrastructure/paas/tools/message-broker",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/docker-registry",
+              "id": "infrastructure/paas/tools/docker-registry",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/traefik",
+              "id": "infrastructure/paas/tools/traefik",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/cert-manager",
+              "id": "infrastructure/paas/tools/cert-manager",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/grafana",
+              "id": "infrastructure/paas/tools/grafana",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/kube-green",
+              "id": "infrastructure/paas/tools/kube-green",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/telepresence",
+              "id": "infrastructure/paas/tools/telepresence",
               "type": "doc"
             },
             {
-              "id": "infrastructure/paas/mtls",
+              "id": "infrastructure/paas/tools/mtls",
               "type": "doc"
             }
           ]
