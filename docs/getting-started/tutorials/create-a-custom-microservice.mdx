@@ -25,7 +25,7 @@ Before starting, we will assume that, you already have a clean project in Mia-Pl
 The project must:
 
 - Be integrated with a [deploy pipeline](/infrastructure/self-hosted/pipeline-configuration.md);
-- Have an [ingress route](/infrastructure/paas/traefik.md) with "api-gateway" as `service`;
+- Have an [ingress route](/infrastructure/paas/tools/traefik.md) with "api-gateway" as `service`;
 - Be aware of have configured your project domain to be called. If the project links have been configured, you can find them in the "Environments" section of the "Project Overview" area, under the "Application" column;
 - Have a properly configured API Portal.
 - Have a properly configured CRUD Service.
@@ -64,7 +64,7 @@ Firstly, open your project, and create the following [MongoDB CRUD](/development
   </details>
 
 :::info
-You don't know how to import CRUD schema? Give a look [here](/getting-started/tutorials/rest-api-for-crud-on-data.mdx#option-2-import-crud-collection)
+You don't know how to import CRUD schema? Give a look [here](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx#option-2-import-crud-collection)
 :::
 
 ## Expose CRUD endpoints
@@ -84,7 +84,7 @@ Once the collections have been created, they need to be exposed through an [Endp
    - **CRUD Base Path**: in the dropdown menu, select `/orders`.
 
 :::info
-You don't know how to import CRUD schema? Give a look [here](/getting-started/tutorials/rest-api-for-crud-on-data.mdx#expose-the-crud-using-an-endpoint)
+You don't know how to import CRUD schema? Give a look [here](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx#expose-the-crud-using-an-endpoint)
 :::
 
 ## Create the Microservice from a Marketplace template

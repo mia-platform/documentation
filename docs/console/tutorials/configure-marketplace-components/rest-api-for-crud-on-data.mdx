@@ -4,7 +4,7 @@ title: REST API for CRUD on data
 sidebar_label: REST API for CRUD on data
 ---
 
-import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
+import SourceCodeBlock from "./../../../../src/components/SourceCodeBlock";
 
 # REST API for CRUD on data
 
@@ -46,7 +46,7 @@ Before starting, we will assume that, you already have a clean project in Mia-Pl
 The project must:
 
 1. Be integrated with a [deploy pipeline](/infrastructure/self-hosted/pipeline-configuration.md);
-1. Have an [ingress route](/infrastructure/paas/traefik.md) with `api-gateway` as `service`;
+1. Have an [ingress route](/infrastructure/paas/tools/traefik.md) with `api-gateway` as `service`;
 1. Have an [API Gateway](/runtime_suite/api-gateway/10_overview.md) or a [Envoy API Gateway](/runtime_suite/envoy-api-gateway/overview.md) in your project;
 1. Have a properly configured [API Portal](/runtime_suite/api-portal/10_overview.md) and [Swagger Aggregator](/runtime_suite/swagger-aggregator/10_overview.md).
 
@@ -178,7 +178,7 @@ In order to import the fields from a file, we must:
 Once you have created all the fields, remember to **save** the changes!
 
 :::tip
-You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the [image](/getting-started/tutorials/rest-api-for-crud-on-data.mdx#create-a-new-crud-collection).
+You can import fields during the creation phase of a new CRUD Collection, by clicking on the "Import fields from file" button, as you can see in the [image](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx#create-a-new-crud-collection).
 :::
 
 ## Expose the CRUD using an endpoint
