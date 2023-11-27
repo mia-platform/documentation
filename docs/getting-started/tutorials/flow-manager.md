@@ -737,7 +737,7 @@ In this tutorial, we will focus on how to add persistency using a CRUD service.
 
 ### Create a CRUD for persistency
 
-To create a CRUD service you can follow [this](/getting-started/tutorials/rest-api-for-crud-on-data.mdx) tutorial.
+To create a CRUD service you can follow [this](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx) tutorial.
 As data schema please import this <a download target="_blank" href="/docs_files_to_download/flow-manager-service/saga-collection.json">schema</a>.
 
 Remember to create a **unique index** for the collection on the `sagaId` field and to set the **default state** for new documents to `PUBLIC`.

@@ -44,7 +44,7 @@ The factors which affect the Mia-Platform business continuity are both planned (
 
 In order to guarantee the business continuity for applications deployed in Mia-Platform PaaS, in case of **planned events**, bear in mind the following guidelines:
 
-- The delivery pipeline has to be up-to-date and with no error notifications. Visit our page about [how to setup a pipeline](../self-hosted/pipeline-configuration.md) for more details;
+- The delivery pipeline has to be up-to-date and with no error notifications. Visit our page about [how to setup a pipeline](/infrastructure/self-hosted/pipeline-configuration.md) for more details;
 - The microservices should be replicated at least twice (each replica on a different node). Visit our page about [how to configure replicas](/development_suite/api-console/api-design/replicas.md);
 - If there are NON-backward-compatible updates, all the applications must be successfully tested using the latest version;
 - A roll-back plan to the previous version of the application should be available in case of errors;

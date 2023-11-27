@@ -95,7 +95,7 @@ If you want to activate the Enhanced Workflow on an already existing Project, fo
 :::
 
 
-If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/self_hosted/feature-toggle.md).
+If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/infrastructure/self-hosted/feature-toggle.md).
 ## Migrating your projects
 
 

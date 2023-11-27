@@ -14,7 +14,7 @@ The Mia-Platform Console installation Chart is a Helm Chart that helps you insta
 
 ## System Requirements and Dependencies
 
-To install Mia-Platform Console make sure you meet the necessary installation requirements, you can find all the information you may need in the [Self-Hosted installation requirements documentation page](../../self_hosted/self_hosted_requirements).
+To install Mia-Platform Console make sure you meet the necessary installation requirements, you can find all the information you may need in the [Self-Hosted installation requirements documentation page](/infrastructure/self-hosted/self-hosted-requirements.md).
 
 Before starting with the installation make sure you have also addressed these requirements:
 

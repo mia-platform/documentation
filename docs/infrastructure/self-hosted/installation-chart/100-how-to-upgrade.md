@@ -54,11 +54,11 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](./30_authentication_provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
-This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./20_general_settings.md#optional-telemetry-configurations).
+This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](/infrastructure/self-hosted/installation-chart/20-general-settings.md#optional-telemetry-configurations).
 
 #### Introduction of Mia-Platform Company
 
@@ -82,7 +82,7 @@ This version introduces the possibility to create Jobs from CronJobs, and to del
 
 Therefore, the Kubernetes Service Account set up on the clusters managed by your Console instance needs some specific permissions.
 
-If during the [Cluster Preparation](../../development_suite/clusters-management/cluster-setup#cluster-preparation) you chose the Automatic procedure, just make sure that you have been provided at least the `v2.18.0` Mia-Platform Helm Chart.
+If during the [Cluster Preparation](/development_suite/clusters-management/cluster-setup.mdx#cluster-preparation) you chose the Automatic procedure, just make sure that you have been provided at least the `v2.18.0` Mia-Platform Helm Chart.
 
 Otherwise, if you manually configure your cluster connections, in the `ClusterRole` bound to the Console Kubernetes Service Account, add the `create` and `delete` verbs to the `jobs` resource, along with the already present `get` and `list`:
 

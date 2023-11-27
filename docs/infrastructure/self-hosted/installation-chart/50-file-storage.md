@@ -24,7 +24,7 @@ The bucket is named by default as `files-bucket`; if you want to change the buck
 
 ## MongoDB specific configurations
 
-There are no specific configurations for MongoDB integration since the connection string is obtained via the `configurations.mongodbUrl` configuration value; more information can be found [here](./40_mongodb_configurations_and_encryption.md#mongodb-configuration).
+There are no specific configurations for MongoDB integration since the connection string is obtained via the `configurations.mongodbUrl` configuration value; more information can be found [here](./40-mongodb-configurations-and-encryption.md#mongodb-configuration).
 
 ## AWS S3 specific configurations
 
