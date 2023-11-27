@@ -26,7 +26,7 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="3"><a href="../../runtime_suite/crud-service/overview_and_usage">CRUD Service</a></td>        
-        <td>v6.1.0</td>
+        <td>v6.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -34,7 +34,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
     </tr>
     <tr>
-        <td>v5.0.0</td>
+        <td>v5.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -42,7 +42,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-        <td>v3.1.1</td>
+        <td>v3.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -51,15 +51,15 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="2"><a href="../../fast_data/realtime_updater">Real-Time Updater</a></td>
-        <td>v5.0.2</td>
+        <td>v5.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
-        <td>❌</td>
+        <td>✅</td>
     </tr>
     <tr>
-        <td>v4.0.0</td>
+        <td>v4.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -152,8 +152,8 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-        <td rowspan="2"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
-        <td>v2.3.2</td>
+        <td rowspan="3"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
+    <td>>= v2.9.0</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -161,7 +161,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
     </tr>
     <tr>
-        <td>v2.1.0</td>
+        <td>>= v2.3.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -169,8 +169,8 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-        <td>Notification Manager</td>
-        <td>v2.0.0</td>
+        <td><a href="../../runtime_suite/push-notification-manager/configuration">Notification Manager</a></td>
+        <td>v2.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -178,17 +178,8 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
     </tr>
     <tr>
-        <td>Node.js Custom Plugin Mongo Example</td>
-        <td>-</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
-        <td>✅</td>
-    </tr>
-    <tr>
-        <td rowspan="2">MongoDB Query Exporter</td>
-        <td>>= v1.0.0</td>
+        <td rowspan="2"><a href="https://github.com/raffis/mongodb-query-exporter" target="_blank">MongoDB Query Exporter</a></td>
+        <td>v1.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
