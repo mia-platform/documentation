@@ -1,5 +1,5 @@
 ---
-id: secret_scanning
+id: secret-scanning
 title: Secret Scanning
 sidebar_label: Secret scanning
 ---

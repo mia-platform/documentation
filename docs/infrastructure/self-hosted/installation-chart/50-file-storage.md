@@ -1,5 +1,5 @@
 ---
-id: file_storage
+id: file-storage
 title: File Storage Management
 sidebar_label: File Storage
 ---

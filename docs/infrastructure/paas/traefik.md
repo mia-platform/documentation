@@ -10,7 +10,7 @@ But what can you do exactly with Traefik?
 - Configure various middlewares, such as basic authentication for specific pages, forwards or whitelists;
 - Set up TLS connections with a simple configuration.
 
-To configure TLS capabilities in the PaaS, you can check our Cert-Manager [Documentation](/paas/cert-manager.md).
+To configure TLS capabilities in the PaaS, you can check our Cert-Manager [Documentation](./cert-manager.md).
 
 
 In order to configure the routing to your services, you need to create a DNS records pointing to the public IP address exposed by Traefik. Once the DNS is set up correctly, you can start writing Traefik configuration files to set up the rest.

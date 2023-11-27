@@ -1,5 +1,5 @@
 ---
-id: general_settings
+id: general-settings
 title: General Settings
 sidebar_label: General Settings
 ---

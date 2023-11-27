@@ -6,7 +6,7 @@ sidebar_label: Feature Toggle
 
 The console offers a section called [Feature Preview](/development_suite/user-settings/feature-preview.md) in the Project Settings and User section. These sections allow to activate features that are still in preview by enabling a toggle.
 
-![feature preview](../development_suite/user-settings/img/enabling-feature-preview.png)
+![feature preview](../../development_suite/user-settings/img/enabling-feature-preview.png)
 
 ## List of features preview
 In the CMS, inside the Feature table under the Configuration group, are listed all the available features that can be bound to a scope.

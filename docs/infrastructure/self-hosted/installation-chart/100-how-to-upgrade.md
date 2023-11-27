@@ -1,5 +1,5 @@
 ---
-id: how_to_upgrade
+id: how-to-upgrade
 title: How to Upgrade
 sidebar_label: How To Upgrade
 ---

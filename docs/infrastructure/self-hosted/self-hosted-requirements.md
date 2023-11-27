@@ -1,5 +1,5 @@
 ---
-id: self_hosted_requirements
+id: self-hosted-requirements
 title: Self-Hosted installation requirements
 sidebar_label: System requirements
 ---

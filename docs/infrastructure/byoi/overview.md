@@ -42,3 +42,7 @@ There are few prerequisites to accomplish in order to connect Mia-Platform conso
 
 - K8s, Git Providers and CI/CD tools must be reachable directly from Mia-Platform Console (Console’s NAT is `34.76.112.223/32`)
 - If the customer has pre-existent network policies, these must not impact namespaces managed by Mia-Platform Console.
+
+## Manage Private Clusters
+
+To know how to manage privite runtime clusters using BYOI model check the [dedicated documentation page](../self-hosted/private-clusters.mdx).

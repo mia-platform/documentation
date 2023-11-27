@@ -1,5 +1,5 @@
 ---
-id: first_user_and_company_creation
+id: first-user-and-company-creation
 title: Finalize Console installation and create the first entities
 sidebar_label: First User and Company Creation
 ---

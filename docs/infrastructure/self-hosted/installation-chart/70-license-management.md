@@ -1,5 +1,5 @@
 ---
-id: license_management
+id: license-management
 title: License management and tracking
 sidebar_label: License Management
 ---

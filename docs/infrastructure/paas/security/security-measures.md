@@ -1,5 +1,5 @@
 ---
-id: security_measures
+id: security-measures
 title: Security Measures
 sidebar_label: Security measures
 ---

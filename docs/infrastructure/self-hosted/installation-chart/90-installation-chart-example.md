@@ -1,5 +1,5 @@
 ---
-id: installation_chart_example
+id: installation-chart-example
 title: Installation Chart Example
 sidebar_label: Installation Chart Example
 ---

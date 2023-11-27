@@ -1,5 +1,5 @@
 ---
-id: self_hosted_runtime_requirements
+id: self-hosted-runtime-requirements
 title: Self-Hosted runtime installation requirements
 sidebar_label: System requirements for applications runtime
 ---
