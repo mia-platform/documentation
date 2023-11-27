@@ -152,7 +152,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-        <td rowspan="3"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
+        <td rowspan="2"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
     <td>>= v2.9.0</td>
         <td>✅</td>
         <td>✅</td>
