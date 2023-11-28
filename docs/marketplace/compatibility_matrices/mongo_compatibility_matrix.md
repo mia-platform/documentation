@@ -118,7 +118,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-    <td rowspan="2"><a href="../../getting-started/tutorials/flow-manager">Flow Manager</a></td>
+    <td rowspan="2"><a href="../../console/tutorials/configure-marketplace-components/flow-manager">Flow Manager</a></td>
         <td>v2.3.0</td>
         <td>✅</td>
         <td>✅</td>
