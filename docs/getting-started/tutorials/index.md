@@ -10,7 +10,7 @@ Welcome to the Tutorials page! This page contains a selection of tutorials guide
 
 ## Tutorials and Guides by Category
 
-In the preliminary section you will find a list Handbooks that explains how to execute recurring actions. Have a quick look at it before starting. Don't worry too much about them, you will find the link to the correct paragraph of the handbooks while exectuing the tutorials too.
+In the preliminary section you will find a list Handbooks that explains how to execute recurring actions. Have a quick look at it before starting. Don't worry too much about them, you will find the link to the correct paragraph of the handbooks while executing the tutorials too.
 
 ### **Preliminary**
 - **Project Usage Handbook**: Navigating and making the most out of the console. [Go to Project Usage Handbook](/getting-started/handbooks/project/usage.md).
