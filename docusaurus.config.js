@@ -154,7 +154,7 @@ async function createConfig() {
           },
           {
             label: "Blog",
-            href: "https://blog.mia-platform.eu/en",
+            href: "https://mia-platform.eu/blog/",
           },
           {
             label: "Events",

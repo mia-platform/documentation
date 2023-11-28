@@ -78,7 +78,8 @@ To correctly configure the CRUD Lookup Client, properties `dataSchema` and `base
             "lookupValue": "_id"
           }
         },
-        ...
+        "_id": {"type": "string"},
+        "__STATE__": {"type": "string"}
       }
     }
   },
@@ -112,7 +113,6 @@ Let's say the data-schema looks like:
 ```json
 {
   "$defs": {
-    ...,
     "city": {
       "type": "string",
       "lookupOptions": {
@@ -202,7 +202,6 @@ A CRUD Lookup Client configured like the following:
     "dataSchema": {
       "type": "object",
       "properties": {
-        ...
         "cityId": {
           "type": "string",
           "format": "lookup",
@@ -216,9 +215,9 @@ A CRUD Lookup Client configured like the following:
                 "operator": "equal",
                 "value": "{{pathnameParams.params.id}}"
               }
-            ],
+            ]
           }
-        },
+        }
       }
     }
   }

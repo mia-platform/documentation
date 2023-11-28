@@ -131,8 +131,7 @@ Furthermore, it is also possible to perform basic arithmetic operations on date 
   - `value`: the base value (`$today` keyword is supported)
   - `offset`: number representing how much to add / subtract from the `value`
   - `operation`: whether to add or subtract the `offest` to the `value`
-  - `unit`: unit of measure of the `offset` ('day', 'week', 'month', ...)
-
+  - `unit`: unit of measure of the `offset`. Accepted values are: 'year', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'
 
 ### Emitting custom Events
 

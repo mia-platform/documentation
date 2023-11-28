@@ -190,7 +190,6 @@ upon listening to a `download-file` event with payload
 and meta
 ```json
 {
-  ...
   "showInViewer": true
 }
 ```
@@ -205,7 +204,6 @@ attempts to download the file and, on success, emits a [show-in-viewer] event wi
 If meta were:
 ```json
 {
-  ...
   "showInViewer": true
 }
 ```
@@ -213,7 +211,6 @@ If meta were:
 attempts to download the file and, on success, emits a [show-in-viewer] event with payload
 ```json
 {
-  ...
   "showInViewer": "skip-checks"
 }
 ```

@@ -102,7 +102,14 @@ which can be useful when it has to embed children which bubble events up to the 
     "disable-shadow-dom":""
   },
   "properties": {
-    ...
+    "content": {
+      "$default": {
+        ... // first plugin
+      },
+      "currentBasket": {
+        ... // second plugin
+      }
+    }
   }
 }
 ```
