@@ -1394,6 +1394,11 @@
       "type": "doc"
     },
     {
+      "label": "Compatibility Matrices",
+      "id": "marketplace/compatibility_matrices/mongo_compatibility_matrix",
+      "type": "doc"
+    },
+    {
       "collapsed": true,
       "type": "category",
       "label": "Marketplace Items",
