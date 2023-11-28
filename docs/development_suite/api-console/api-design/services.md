@@ -100,7 +100,7 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 Finally to create the Microservice push **create**.
 
 :::info
-For a step-by-step guide on creating a microservice using a Docker image, refer to the [dedicated tutorial](/getting-started/tutorials/microservice-from-docker-image.md).
+For a step-by-step guide on creating a microservice using a Docker image, refer to the [dedicated tutorial](/console/tutorials/microservice-from-docker-image.md).
 :::
 
 ## Manage Microservices

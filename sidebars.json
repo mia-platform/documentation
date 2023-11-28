@@ -27,15 +27,15 @@
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/create-a-custom-microservice",
+              "id": "console/tutorials/configure-marketplace-components/create-a-custom-microservice",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/microservice-with-metrics",
+              "id": "console/tutorials/configure-marketplace-components/microservice-with-metrics",
               "type": "doc"
             },
             {
-              "id": "getting-started/tutorials/flow-manager",
+              "id": "console/tutorials/configure-marketplace-components/flow-manager",
               "type": "doc"
             },
             {
@@ -44,23 +44,23 @@
               "collapsed": true,
               "link": {
                 "type": "doc",
-                "id": "getting-started/tutorials/architecture/auth/intro"
+                "id": "console/tutorials/configure-marketplace-components/auth-architecture/intro"
               },
               "items": [
                 {
-                  "id": "getting-started/tutorials/architecture/auth/static-api-key",
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
                   "type": "doc"
                 },
                 {
-                  "id": "getting-started/tutorials/architecture/auth/external-idp",
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
                   "type": "doc"
                 },
                 {
-                  "id": "getting-started/tutorials/architecture/auth/external-idp-internal-session",
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
                   "type": "doc"
                 },
                 {
-                  "id": "getting-started/tutorials/architecture/auth/multiple-projects",
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
                   "type": "doc"
                 }
               ]
@@ -68,15 +68,15 @@
           ]
         },
         {
-          "id": "getting-started/tutorials/microservice-from-docker-image",
+          "id": "console/tutorials/microservice-from-docker-image",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/set-requests-limits-of-a-microservice",
+          "id": "console/tutorials/set-requests-limits-of-a-microservice",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/protect-your-endpoints-with-policies",
+          "id": "console/tutorials/protect-your-endpoints-with-policies",
           "type": "doc"
         }
       ]

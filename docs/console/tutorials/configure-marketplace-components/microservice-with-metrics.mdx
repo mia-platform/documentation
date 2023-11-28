@@ -4,7 +4,7 @@ title: Add metrics to your custom Microservice
 sidebar_label: Add metrics to your Microservice
 ---
 
-import VideoBox from "./../../../src/components/VideoBox";
+import VideoBox from "./../../../../src/components/VideoBox";
 
 In this tutorial we are going to add custom metrics to a custom micro-service, that will be later collected by a monitoring system like the _Prometheus Operator_. 
 
@@ -12,7 +12,7 @@ These metrics will then be available in [Grafana](/infrastructure/paas/tools/gra
 
 ## Pre-Requisites
 
-Before starting, we assume that you have already created the `shipping-cost` microservice from the [Create a custom Microservice tutorial](/getting-started/tutorials/create-a-custom-microservice.mdx).
+Before starting, we assume that you have already created the `shipping-cost` microservice from the [Create a custom Microservice tutorial](/console/tutorials/configure-marketplace-components/create-a-custom-microservice.mdx).
 
 :::info
 Since there can be different libraries to handle custom metrics, we will consider the library provided by [our Nodes.js service launcher lc39](https://github.com/mia-platform/lc39/blob/master/docs/main-entrypoint.md#prometheus-metrics), used by the [Node.js Template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/).

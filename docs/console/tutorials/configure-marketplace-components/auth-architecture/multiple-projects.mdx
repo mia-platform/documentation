@@ -11,7 +11,7 @@ import TabItem from "@theme/TabItem";
 
 In this scenario, we present the case where your architecture is composed by multiple Mia-Platform projects. Of course, you could think to treat each project as an independent entity and replicate, in each project, one of the scenarios presented so far.
 
-For example, you could replicate [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md) as in the following schema:
+For example, you could replicate [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md) as in the following schema:
 ![Scenario 4](./img/auth-scenario4.png)
 
 However, this replication brings some problems:
@@ -78,7 +78,7 @@ In the following tutorial we will specify all the steps to replicate the scenari
 4. Configure the `API Gateway` to forward the HTTP headers resulting from the authentication flow (`Miauserid`, `Miausergroups`, `Miauserproperties`) to the projects' `API Gateway`
     - Follow [this guide](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-manage-authorization-in-a-multi-gateway-architecture) if you have Nginx API Gateway
     - Follow [this guide](/development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn.md) if you have Envoy API Gateway
-5. Create an authentication manager as described in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md)
+5. Create an authentication manager as described in [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
 
 ### Projects Configuration
 
@@ -87,14 +87,14 @@ We suppose that you have already created an API Gateway in your project and you 
 :::
 
 1. Create the [`Authorization Service`](/runtime_suite/authorization-service/10_overview.md) plugin from Marketplace
-    - This step can be done as described in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md)
+    - This step can be done as described in [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
     - The only important difference is that the `Authorization Service` must be configured in ["Trust Mia Headers" mode](/runtime_suite/authorization-service/30_usage.md#trust-mia-platform-user-headers) by setting the `TRUST_MIA_USER_HEADERS` environment variable to `true`
-2. Secure your endpoint as described in [Scenario 2](/getting-started/tutorials/architecture/auth/external-idp.md)
+2. Secure your endpoint as described in [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md)
 
 ### Centralize API Keys in the Edge Gateway
 
 You can optionally choose to centralize in the Edge Gateway all the API keys.
-1. Define your API Keys in the `Edge Gateway` as described in [Scenario 1](/getting-started/tutorials/architecture/auth/static-api-key.md)
+1. Define your API Keys in the `Edge Gateway` as described in [Scenario 1](/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key.md)
 2. Apply advanced configurations on the `API Gateway` of the `Edge Gateway` project 
 
 <Tabs
