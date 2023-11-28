@@ -74,7 +74,14 @@ In the latter case set `streamSaverIFrameSrc` to the resource endpoint.
   "tag": "bk-export",
   "properties": {
     "basePath": "/orders/export",
-    "dataSchema": {...},
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"},
+        "__STATE__": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    },
     "streamSaverIFrameSrc": "/back-kit/{{BACK_KIT_VERSION}}/export-service-worker.html",
   }
 }
@@ -95,26 +102,26 @@ Otherwise, a result event is emitted right after the download request has been i
 
 ### Properties & Attributes
 
-| property | attribute | type | default | description |
-|----------|-----------|------|---------|-------------|
-|`basePath`|-|string|-|the URL base path to which to send HTTP requests|
-|`headers`|-|{[key: string]: string}|-|headers to add when an HTTP request is sent|
-|`credentials`|-|'include'\|'omit'\|'same-origin'|-|credentials policy to apply to HTTP requests|
-|`dataSchema`| - |[ExtendedJSONSchema7Definition][data-schema]| - |data-schema describing which field to retrieve from CRUD collection |
-|`nativeDownload`|`native-download`|boolean| - |when `true` it skips frontend blob parsing and uses browser native download API |
-|`shouldIncludeProjections`|`should-include-projections`|boolean|false|should append projection when exporting from CRUD service |
-|`streamSaverIFrameSrc`|`stream-saver-iframe-src`|string| - |location where stream saver service worker files are served |
+| property                   | attribute                    | type                                         | default | description                                                                     |
+| -------------------------- | ---------------------------- | -------------------------------------------- | ------- | ------------------------------------------------------------------------------- |
+| `basePath`                 | -                            | string                                       | -       | the URL base path to which to send HTTP requests                                |
+| `headers`                  | -                            | {[key: string]: string}                      | -       | headers to add when an HTTP request is sent                                     |
+| `credentials`              | -                            | 'include'\|'omit'\|'same-origin'             | -       | credentials policy to apply to HTTP requests                                    |
+| `dataSchema`               | -                            | [ExtendedJSONSchema7Definition][data-schema] | -       | data-schema describing which field to retrieve from CRUD collection             |
+| `nativeDownload`           | `native-download`            | boolean                                      | -       | when `true` it skips frontend blob parsing and uses browser native download API |
+| `shouldIncludeProjections` | `should-include-projections` | boolean                                      | false   | should append projection when exporting from CRUD service                       |
+| `streamSaverIFrameSrc`     | `stream-saver-iframe-src`    | string                                       | -       | location where stream saver service worker files are served                     |
 
 ### Listens to
 
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|[change-query]|updates internal representation of current query| - | - |
-|[export-data]|triggers data export| - | - |
+| event          | action                                           | emits | on error |
+| -------------- | ------------------------------------------------ | ----- | -------- |
+| [change-query] | updates internal representation of current query | -     | -        |
+| [export-data]  | triggers data export                             | -     | -        |
 
 ### Emits
 
-| event | description |
-|-------|-------------|
-|[success]|notifies successful export if `nativeDownload` property is false|
-|[error]|contains error messages when something goes wrong|
+| event     | description                                                      |
+| --------- | ---------------------------------------------------------------- |
+| [success] | notifies successful export if `nativeDownload` property is false |
+| [error]   | contains error messages when something goes wrong                |

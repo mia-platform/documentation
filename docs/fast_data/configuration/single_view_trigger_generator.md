@@ -36,19 +36,23 @@ When creating the service from the marketplace the following environment variabl
 
 ## Attaching a Service to a Single View
 
-To simplify the configuration of the Single View Trigger Generator service, you can attach a previously created Single View Trigger Generator service from the marketplace to a Single View.
+To simplify the configuration of the Single View Trigger Generator service, you can attach a previously created Single View Trigger Generator service from the marketplace to a Single View. Here's how to do it:
 
-Here's how to do it:
+* create your Single View and attach a _Single View Creator Service_ to it [from the dedicated configuration page](/fast_data/configuration/single_view_creator.md#attach_to_single_view). This is necessary because the Single View Trigger Generator can work with only one Single View Creator Service.
+* within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured.
+* in the _Single View Trigger Generator_ tab, you can choose a Single View Trigger Generator from the available services. 
 
-First, create your Single View and attach a _Single View Creator Service_ to it [from the dedicated configuration page](/fast_data/configuration/single_view_creator.md#attach_to_single_view). This is necessary because the Single View Trigger Generator can work with only one Single View Creator Service.
-
-Within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured. Next, select the _Single View Trigger Generator_ tab. Here, you can choose a Single View Trigger Generator from the available services. After selecting it, you can modify the configuration of two configMaps: the _Projection Changes Schema_ and the _Kafka Projection Updates_.
+Once the service has been attached, you can manage the content of the [_Projection Changes Schema config map_](/fast_data/configuration/config_maps/projection_changes_schema.md) and the [_Kafka Projection Updates config map_](/fast_data/configuration/config_maps/kafka_projection_updates.md).
 
 ![Single View Trigger Generator configuration page](./img/svtg-configuration.png)
 
 Any updates to these configurations will be reflected in the service config maps after saving the configuration.
 
-Additionally, when a service is attached to a Single View, the _ER Schema_ config map will be automatically updated to match the _ER Schema_ applied to the associated Single View Creator. Also, the environment variable `SINGLE_VIEW_NAME` will be set automatically to the name of the Single View.
+:::tip Shared ER Schema
+Additionally, when a service is attached to a Single View, the _ER Schema_ config map will be shared between the Single View Creator and the Single View Trigger Generator. 
+
+Also, the environment variable `SINGLE_VIEW_NAME` will be set automatically to the name of the Single View.
+:::
 
 :::warning
 When a Single View Trigger Generator is attached to a Single View, the environment variable `SINGLE_VIEW_NAME` will be set to "read-only" mode, as well as the config maps for the _ER Schema_, _Projection Changes Schema_, and _Kafka Projection Updates_.

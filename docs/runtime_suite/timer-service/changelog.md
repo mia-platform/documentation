@@ -15,19 +15,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 2.1.2 - 17-12-2021
+## [2.1.3] - 2023-11-21
+
+### Versioning
+
+- Updated Node to v20
+- Dev dependencies updates
+
+### Fixed
+
+- Swagger is now compliant with OpenApi specification
+
+## [2.1.2] - 17-12-2021
 
 ### Fixed
 
 - REST output mode validation schema now accept also `get` and `delete` HTTP methods,
   so that events triggers can now be created with those methods.
 
-## 2.1.1 - 23-11-2021
+## [2.1.1] - 23-11-2021
 
 ### Fixed
 - The crudStorage list function now sorts the expirations by expirationDate
 
-## 2.1.0 - 17-11-2021
+## [2.1.0] - 17-11-2021
 
 ### Added
 - **GET** and **DELETE** methods added to REST _outputMode_
@@ -35,31 +46,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - now the payload is not required anymore and has a default value of `{}`
 
-
 ### Updated
 
 - custom-plugin-lib: v4.2.0
 
-## 2.0.3 - 22-06-2021
+## [2.0.3] - 22-06-2021
 
 ### Added
 
 - Added `port` parameter to specify the port for the REST call.
 - Fixed deserialization error on rest replies with status code 204 or non-JSON reply.
 
-## 2.0.2 - 2021-03-04
+## [2.0.2] - 2021-03-04
 
 ### Updated
 
 - custom-plugin-lib: v2.3.0
 
-## 2.0.0 - 2020-10-02
+## [2.0.0] - 2020-10-02
 
 **BREAKING CHANGE**
 
 - updated custom-plugin-lib dependency to 2.0.3. The update is breaking since it's bringing up lc39 v3.x with the newer logging format.
 
-## 1.1.0
+## [1.1.0]
 
 ### Added
 The service, when an expiration occurs, tries to publish based on the outputMode defined into the expiration JSON and, if the publish function fails, it simply ignores it and another publish attempt will be done at the next activation.
@@ -100,7 +110,7 @@ The risk of this behavior is an infinite loop in case of invalid output mode.
   ...
   ```
 
-## 1.0.0
+## [1.0.0]
 
 ### Added
 

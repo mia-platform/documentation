@@ -60,7 +60,6 @@ The `label`s of the array entries are joined with the specified string in `joinD
 ```json
 {
   "visualizationOptions": {
-    ...
     "joinDelimiter": "<delimiter>"
   }
 }
@@ -72,7 +71,6 @@ Property `template` in the [visualization options][visualization-options] of the
 ```json
 {
   "visualizationOptions": {
-    ...
     "joinDelimiter": "{{label}}"
   }
 }
@@ -121,8 +119,7 @@ A Dynamic Form Modal configured like the following
     "dataSchema": {
       "type": "object",
       "properties": {
-        "dishes": {"type": "array", "format": "lookup"},
-        ...
+        "dishes": {"type": "array", "format": "lookup"}
       }
     },
     "basePath": "/orders",
@@ -147,8 +144,7 @@ Dynamic queries are also available:
       "type": "object",
       "properties": {
         "maxCalories": {"type": "number"},
-        "dishes": {"type": "array", "format": "lookup"},
-        ...
+        "dishes": {"type": "array", "format": "lookup"}
       }
     },
     "basePath": "/orders",
@@ -259,8 +255,7 @@ with data like:
     "customer": {
       "value":"id-customer-12", "label": "Kevin"
     }
-  },
-  ...
+  }
 ]
 ```
 
@@ -268,8 +263,7 @@ renders a table which can be represented by an array like:
 ```json
 [
   ["Sarah", "2 Elements", "Alejandro, Susanna", "Marco"],
-  ["Bruce", "3 Elements", "Simon", "Kevin"],
-  ...
+  ["Bruce", "3 Elements", "Simon", "Kevin"]
 ]
 ```
 
@@ -368,8 +362,7 @@ which might return options like:
     "value": "lione",
     "label": "Lione",
     "stateId": "france"
-  },
-  ...
+  }
 ]
 ```
 limiting therefore the available options to be coherent with the specified condition in `conditionalValues`.

@@ -31,9 +31,10 @@ In the preliminary section you will find a list Handbooks that explains how to e
 
 
 ### **Microfrontend Composer**
-- **Microfrontend Composer Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/microfrontend-composer/tutorials/basics.mdx).
-- **Microfrontend Composer Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/microfrontend-composer/tutorials/templates.mdx).
-- **Microfrontends Managements**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/microfrontend-composer/tutorials/microfrontends.mdx).
+
+- **Microfrontend Composer Basics**: Understanding the basic functionalities of the backoffice. [Go to Microfrontend Composer Basics](/microfrontend-composer/tutorials/basics.mdx).
+- **Microfrontend Composer Templates**: Learning to use templates in the backoffice. [Go to Microfrontend Composer Templates](/microfrontend-composer/tutorials/templates.mdx).
+- **Microfrontends Managements**: Delving into microfrontends in the backoffice. [Go to Microfrontends Management](/microfrontend-composer/tutorials/microfrontends.mdx).
 
 ## How to Use This Page
 

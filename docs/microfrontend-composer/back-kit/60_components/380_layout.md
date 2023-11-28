@@ -426,8 +426,7 @@ and assuming the data fetched from `/user-info` is
 {
   "name": "Sarah Cyprus",
   "image": "https://logos.test/img/avatar-1.png",
-  "role": "admin",
-  ...
+  "role": "admin"
 }
 ```
 

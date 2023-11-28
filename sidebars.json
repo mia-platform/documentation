@@ -1173,7 +1173,7 @@
       },
       "items": [
         {
-          "id": "getting-started/videos/backoffice",
+          "id": "getting-started/videos/microfrontend-composer",
           "type": "doc"
         },
         {
@@ -1394,6 +1394,11 @@
   "marketplace": [
     {
       "id": "marketplace/overview_marketplace",
+      "type": "doc"
+    },
+    {
+      "label": "Compatibility Matrices",
+      "id": "marketplace/compatibility_matrices/mongo_compatibility_matrix",
       "type": "doc"
     },
     {

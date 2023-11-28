@@ -128,8 +128,7 @@ For instance:
     "origin": [
       {"floor": "0", "room": "100", "people": []},
       {"floor": "1", "room": "200", "people": [{"name": "Bruce"}, {"name": "Will"}]},
-      {"floor": "1", "room": "201", "people": [{"name": "Robert"}]},
-      ...
+      {"floor": "1", "room": "201", "people": [{"name": "Robert"}]}
     ],
     "selectedKey": "people",
     "rowIndex": 1,
@@ -418,8 +417,7 @@ Assuming a dataset to have items:
         "calories": 20
       }
     ]
-  },
-  ...
+  }
 ]
 ```
 
@@ -479,17 +477,14 @@ and a the following components to be included in the page:
       }
     }
   }
+  ```
 
 - a [Pagination][bk-pagination] component
   ```json
   {
-    "tag": "bk-pagination",
-    "properties": {
-      "dataSchema": {
-        ...
-      }
-    }
+    "tag": "bk-pagination"
   }
+  ```
 
 - a [CRUD Client][bk-crud-client] component
   ```json
@@ -501,6 +496,7 @@ and a the following components to be included in the page:
       }
     }
   }
+  ```
 
 
 and assuming the Table to be currently rendering the "ingredients" nested field
@@ -571,11 +567,10 @@ The Breadcrumbs listens to the `display-data`, and consequently emits a [nested-
 // payload of the nested-navigation-state/push
 {
   "data": [
-      {"name": "Chicken","calories": 500},
-      {"name": "Potatoes", "calories": 450},
-      {"name": "Olive Oil", "calories": 20}
-    ],
-  ...
+    {"name": "Chicken","calories": 500},
+    {"name": "Potatoes", "calories": 450},
+    {"name": "Olive Oil", "calories": 20}
+  ]
 }
 ```
 
