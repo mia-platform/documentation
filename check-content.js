@@ -19,7 +19,7 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_tools/*",
   "microfrontend-composer/back-kit/*",
   "microfrontend-composer/composer/*",
-  "self_hosted/installation-chart/*",
+  "infrastructure/self-hosted/installation-chart/*",
   "getting-started/videos/*",
   "getting-started/videos/subtitle/*",
   "standalone-resources/*"
