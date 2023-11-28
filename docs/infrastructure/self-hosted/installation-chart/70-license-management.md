@@ -15,7 +15,7 @@ Mia-Platform Console comes with a self-managed license tracking mechanism, that 
 The data is collected by querying the cluster directly for information in a time period specified within this configuration in the `scheduleEveryMinutes` field.
 
 :::info
-In order to reach the Kubernetes clusters the license tracking system will use the service accounts configured in your Company for each Cluster; make sure these service account have the following permissions described [here](../../development_suite/clusters-management/cluster-setup#cluster-preparation).
+In order to reach the Kubernetes clusters the license tracking system will use the service accounts configured in your Company for each Cluster; make sure these service account have the following permissions described [here](/development_suite/clusters-management/cluster-setup.mdx#cluster-preparation).
 :::
 
 :::note

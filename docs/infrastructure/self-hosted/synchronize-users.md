@@ -4,7 +4,7 @@ title: Synchronize users with an Identity Provider
 sidebar_label: Synchronize Users
 ---
 
-The Console uses external Identity Providers to manage user identities and authentication; configuration details can be found in the Console Installation documentation section dedicated to the [Authentication Provider](./installation-chart/30-authentication-provider.md#supported-authentication-providers).
+The Console uses external Identity Providers to manage user identities and authentication; configuration details can be found in the Console Installation documentation section dedicated to the [Authentication Provider](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md#supported-authentication-providers).
 
 The list of supported providers is:
 
@@ -23,10 +23,10 @@ If you want to synchronize users between the Identity Provider and the Console, 
 POST /api/webhooks/apps/console/providers/:providerId/user
 ```
 
-Where `providerId` must be set based on the [`authProvider.name` configuration field](./installation-chart/30-authentication-provider.md#configure-your-authentication-provider) set in the installation chart
+Where `providerId` must be set based on the [`authProvider.name` configuration field](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md#configure-your-authentication-provider) set in the installation chart
 
 :::info
-Webhooks **are not** exposed by default, to make them available check-out [user synchronization activation flag](./installation-chart/30-authentication-provider.md#expose-synchronization-webhooks).
+Webhooks **are not** exposed by default, to make them available check-out [user synchronization activation flag](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md#expose-synchronization-webhooks).
 :::
 
 :::caution

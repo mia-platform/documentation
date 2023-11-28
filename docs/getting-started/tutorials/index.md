@@ -23,23 +23,17 @@ In the preliminary section you will find a list Handbooks that explains how to e
 - **Quick REST API**: Grasping the principles and best practices of RESTful APIs. [Go to Quick REST API](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx).
 - **Custom Microservices Tutorial**: Best practices and insights on building microservices using Node.js. [Go to Custom Microservices Tutorial](/console/tutorials/configure-marketplace-components/create-a-custom-microservice.mdx).
 
-If you want to learn more about Mia-Platform Console and Marketplace Components, you can finde the complete list of tutorials in the [dedicated section](/products/console/tutorials).
-
 
 ### **Fast Data**
 - **Fast Data Low Code Tutorial**: Diving deep into fast data functionalities. [Go to Fast Data Low Code Tutorial](/fast_data/tutorials/low-code.mdx).
 - **Bucket Storage Support Tutorial**: Understanding bucket storage in fast data. [Go to Bucket Storage Support Tutorial](/fast_data/tutorials/bucket-storage-support.mdx).
 - **Fast Data Migration**: Understanding how to migrate Fast Data. [Go to Fast Data Migration](/fast_data/tutorials/migration.md).
 
-If you want to learn more about Mia-Platform Fast Data, you can finde the complete list of tutorials in the [dedicated section](/products/fast-data/tutorials).
-
 
 ### **Microfrontend Composer**
 - **Backoffice Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/microfrontend-composer/tutorials/basics.mdx).
 - **Backoffice Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/microfrontend-composer/tutorials/templates.mdx).
 - **Backoffice Microfrontends**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/microfrontend-composer/tutorials/microfrontends.mdx).
-
-If you want to learn more about Mia-Platform Fast Data, you can finde the complete list of tutorials in the [dedicated section](/products/microfrontend-composer/tutorials).
 
 ## How to Use This Page
 

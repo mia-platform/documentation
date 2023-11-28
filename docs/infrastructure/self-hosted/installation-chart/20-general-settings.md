@@ -13,7 +13,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This document describes the required values that you will have to configure to work properly.
 
 :::info
-More specific configurations, such as those for the [Authentication Providers](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md), [Client-Side Database Encryption](40-mongodb-configurations-and-encryption.md), [File Storage](/infrastructure/self-hosted/installation-chart/50-file-storage.md) and [Email Connectivity](/infrastructure/self-hosted/installation-chart/60-email-setup.md) are described in separate documents.
+More specific configurations, such as those for the [Authentication Providers](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md), [Client-Side Database Encryption](/infrastructure/self-hosted/installation-chart/40-mongodb-configurations-and-encryption.md), [File Storage](/infrastructure/self-hosted/installation-chart/50-file-storage.md) and [Email Connectivity](/infrastructure/self-hosted/installation-chart/60-email-setup.md) are described in separate documents.
 
 If you want to fine tune resources for specific services the proper documentation can be found in [this page](/infrastructure/self-hosted/installation-chart/25-service-specific-configurations.md).
 :::
@@ -64,7 +64,7 @@ Mia-Platform Console allows user to create custom Service Accounts to perform m2
 
 ### How to generate secret values
 
-For any doubt check out the [Client Credentials guide](../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
+For any doubt check out the [Client Credentials guide](/runtime_suite/client-credentials/30_jwt_keys.md) which provides useful examples.
 
 * `rsaPrivateKeyBase64`:
   * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`
