@@ -1230,8 +1230,16 @@ Example:
 
 #### Message format v2.0.0
 
+:::note
+Version `v2.0.0` of Single Update event is available starting from version `v6.1.0` of Single View Creator plugin. 
+:::
+
 This version of Single View Update event is emitted when service environment variable `SV_UPDATE_VERSION` is set to `v2.0.0`.
 In future major releases, this will become the default message format.
+
+An important feature of this new message format is the fact that it is compatible with Projection Update events. In this manner
+`sv-update` events regarding the generation of a Single View can be employed to start computing the trigger for another Single View,
+fundamentally enabling daisy-chaining the creation of two or more Single View.
 
 <details><summary>AsyncApi specification</summary>
 <p>
