@@ -6,7 +6,7 @@ sidebar_label: Bucket Storage Support
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import SourceCodeBlock from "./../../../../src/components/SourceCodeBlock";
+import SourceCodeBlock from "./../../../src/components/SourceCodeBlock";
 
 The Bucket Storage Support enables storing messages flowing through a channel into an external storage system,
 such as a [Google Cloud Storage bucket](https://cloud.google.com/storage) or any bucket compatible with [Amazon AWS S3](https://aws.amazon.com/s3/) interface.
@@ -73,7 +73,7 @@ An _ingestion topic_ is a queue from your Kafka broker that represents the data 
 
 The messages sent to this queue are not bound to a specific format: the _Ingestion Storer_ will create text files containing line-separated json messages stringified.
 
-Once the microservices are configured, we can start to overwrite the `application.yaml` configuration of the _Ingestion Storer_ to define the _ingestion topics_. Lets the consider the Registry Projection [from the Fast Data tutorial](/getting-started/tutorials/fast-data/low-code.mdx#registry-projection). Here's the basic configuration that you will have to provide:
+Once the microservices are configured, we can start to overwrite the `application.yaml` configuration of the _Ingestion Storer_ to define the _ingestion topics_. Lets the consider the Registry Projection [from the Fast Data tutorial](/fast_data/tutorials/low-code.mdx#registry-projection). Here's the basic configuration that you will have to provide:
 
 
 ```yaml

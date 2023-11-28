@@ -27,17 +27,17 @@ If you want to learn more about Mia-Platform Console and Marketplace Components,
 
 
 ### **Fast Data**
-- **Fast Data Low Code Tutorial**: Diving deep into fast data functionalities. [Go to Fast Data Low Code Tutorial](/getting-started/tutorials/fast-data/low-code.mdx).
-- **Bucket Storage Support Tutorial**: Understanding bucket storage in fast data. [Go to Bucket Storage Support Tutorial](/getting-started/tutorials/fast-data/bucket-storage-support.mdx).
-- **Fast Data Migration**: Understanding how to migrate Fast Data. [Go to Fast Data Migration](/getting-started/tutorials/fast-data/migration.md).
+- **Fast Data Low Code Tutorial**: Diving deep into fast data functionalities. [Go to Fast Data Low Code Tutorial](/fast_data/tutorials/low-code.mdx).
+- **Bucket Storage Support Tutorial**: Understanding bucket storage in fast data. [Go to Bucket Storage Support Tutorial](/fast_data/tutorials/bucket-storage-support.mdx).
+- **Fast Data Migration**: Understanding how to migrate Fast Data. [Go to Fast Data Migration](/fast_data/tutorials/migration.md).
 
 If you want to learn more about Mia-Platform Fast Data, you can finde the complete list of tutorials in the [dedicated section](/products/fast-data/tutorials).
 
 
 ### **Microfrontend Composer**
-- **Backoffice Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
-- **Backoffice Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
-- **Backoffice Microfrontends**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx).
+- **Backoffice Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/microfrontend-composer/tutorials/basics.mdx).
+- **Backoffice Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/microfrontend-composer/tutorials/templates.mdx).
+- **Backoffice Microfrontends**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/microfrontend-composer/tutorials/microfrontends.mdx).
 
 If you want to learn more about Mia-Platform Fast Data, you can finde the complete list of tutorials in the [dedicated section](/products/microfrontend-composer/tutorials).
 

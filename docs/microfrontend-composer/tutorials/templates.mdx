@@ -6,7 +6,7 @@ sidebar_label: Microfrontend Composer Tutorial Templates
 
 # Mia-Platform Microfrontend Composer Templates Tutorial
 
-In this tutorial, we will explore the world of ready-to-use page templates within the Mia-Platform Microfrontend Composer. These templates serve as potent tools, enabling us to craft intricate pages with ease. Leveraging the insights gained from the [Microfrontend Composer Basics Tutorial](/getting-started/tutorials/microfrontend-composer/basics.mdx), we will delve into harnessing the full potential of these templates to enhance the efficiency and effectiveness of our page implementation. Get ready to uncover an innovative approach that accelerates the creation process.
+In this tutorial, we will explore the world of ready-to-use page templates within the Mia-Platform Microfrontend Composer. These templates serve as potent tools, enabling us to craft intricate pages with ease. Leveraging the insights gained from the [Microfrontend Composer Basics Tutorial](/microfrontend-composer/tutorials/basics.mdx), we will delve into harnessing the full potential of these templates to enhance the efficiency and effectiveness of our page implementation. Get ready to uncover an innovative approach that accelerates the creation process.
 
 
 ## What We Will Build
@@ -22,7 +22,7 @@ Each of these templates offers unique capabilities, and we'll walk you through t
 
 ## Prerequisites
 
-Before diving into this tutorial, it's essential to have a grasp of the fundamental concepts of the [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md) and to have completed the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx). This foundational knowledge will ensure a smoother understanding of the upcoming content.
+Before diving into this tutorial, it's essential to have a grasp of the fundamental concepts of the [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md) and to have completed the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx). This foundational knowledge will ensure a smoother understanding of the upcoming content.
 
 
 ## Setup an iFrame Page
@@ -66,7 +66,7 @@ To create a new Microfrontend Composer page using the Microfrontend Composer Cal
 
 ### Setting Up the CRUD Collection
 
-Before creating a new Microfrontend Composer page using the Calendar View Template, you need to set up a CRUD collection named "calendar" as the data source. You can follow the same procedure outlined in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#create-crud-to-read-and-write-table-data) tutorial. Define the following data schema for the collection:
+Before creating a new Microfrontend Composer page using the Calendar View Template, you need to set up a CRUD collection named "calendar" as the data source. You can follow the same procedure outlined in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#create-crud-to-read-and-write-table-data) tutorial. Define the following data schema for the collection:
 
 * **title**: Type - string, Required - true
 * **startDate**: Type - Date, Required - true
@@ -147,7 +147,7 @@ Navigate to the `Connectors & Adapter` section:
 Now return to the `Layout` tab. Here you can:
 
 - View the preview of the `Calendar View` page.
-- Personalize the page title and the tab label, as previously learned in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#personalize-the-page). For example, use `Calendar View` as the page title and `Calendar` as the tab label.
+- Personalize the page title and the tab label, as previously learned in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#personalize-the-page). For example, use `Calendar View` as the page title and `Calendar` as the tab label.
 
 If you wish to remove the `Export` button from the page:
 
@@ -156,7 +156,7 @@ If you wish to remove the `Export` button from the page:
 
 ![Create New Page](img/templates_10-microfrontend-composer-page-calendar-remove-export.png)
 
-Before proceeding, connect the page to the menu using the same steps explained in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#connect-the-page-to-the-menu). Use `calendar` as the `id` and `Calendar` as the `label`.
+Before proceeding, connect the page to the menu using the same steps explained in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#connect-the-page-to-the-menu). Use `calendar` as the `id` and `Calendar` as the `label`.
 
 To test the new page, save the configuration and deploy the changes by following the [save and deploy process](#save-and-deploy).
 
@@ -168,7 +168,7 @@ Below is the result:
 
 ### Setup the CRUD Collection
 
-Before creating a new Microfrontend Composer page using the Microfrontend Composer Picture Gallery Template, you need to set up a CRUD collection named `gallery` as a data source. Follow the same procedure outlined in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#create-crud-to-read-and-write-table-data) to create this collection. Here's the required data schema:
+Before creating a new Microfrontend Composer page using the Microfrontend Composer Picture Gallery Template, you need to set up a CRUD collection named `gallery` as a data source. Follow the same procedure outlined in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#create-crud-to-read-and-write-table-data) to create this collection. Here's the required data schema:
 
 - `file`: Represents a `RawObject` and is `required`.
 - `title`: Represents a `string` and is `required`.
@@ -213,7 +213,7 @@ Now, let's expose the CRUD data using an endpoint called `gallery`.
 
 The `File Service` can support various file storage services, such as `AWS S3` and `Google Cloud Storage`. However, in this example, we'll use `MongoDB` as the file storage service.
 
-To achieve this, we need to create a new CRUD collection called `files` to store the files. Follow the same procedure outlined in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#create-crud-to-read-and-write-table-data) to create this collection. Here's the required data schema:
+To achieve this, we need to create a new CRUD collection called `files` to store the files. Follow the same procedure outlined in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#create-crud-to-read-and-write-table-data) to create this collection. Here's the required data schema:
 
 - `name`: Represents a `string` and is `required`.
 - `file`: Represents a `string` and is `required`.
@@ -344,7 +344,7 @@ In the `Pages` tab within the `Microfrontend Composer` section, you will see the
 
 Configure the page as follows:
 - Update the `Page Title` to `Gallery`.
-- Update the tab Label to `All` using the same steps from the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#personalize-the-page).
+- Update the tab Label to `All` using the same steps from the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#personalize-the-page).
 - Remove the `Export` button from the page using the steps from the Setup the Calendar View Page section of this tutorial.
 
 In the `Connectors & Adapter` tab, configure the Gallery connector:
@@ -355,7 +355,7 @@ In the `Connectors & Adapter` tab, configure the Gallery connector:
 ![Create New Page](img/templates_19-microfrontend-composer-gallery-connector.png)
 
 As in previous steps, keep only the `file`, `title`, and `description` fields.
-Refer to the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#crud-connector) for detailed instructions on configuring the `Gallery` connector.
+Refer to the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#crud-connector) for detailed instructions on configuring the `Gallery` connector.
 
 ![Create New Page](img/templates_20-microfrontend-composer-gallery-connector-schema.png)
 
@@ -405,7 +405,7 @@ Finally, configure the `Data Schema` for the `Form Modal` component:
 }
 ```
 
-Now we can create a new menu item for the `Gallery` page. To do that, follow the same steps used in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#add-menu-item) using the `Gallery` page id.
+Now we can create a new menu item for the `Gallery` page. To do that, follow the same steps used in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#add-menu-item) using the `Gallery` page id.
 
 After that, save the configuration and deploy. Refer to the [Console Handbook](/getting-started/handbooks/project/usage.md) for more information about the deploy command.
 
@@ -432,7 +432,7 @@ To create a new Microfrontend Composer page using the Microfrontend Composer Sho
 In the `Pages` tab within the `Microfrontend Composer` section, you will see the newly created `detail` page. Click on the `Compose` button to open the page composer.
 
 Configure the page as follows:
-- Update the `Page Title` to `Detail` using the same steps from the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx#personalize-the-page).
+- Update the `Page Title` to `Detail` using the same steps from the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx#personalize-the-page).
 
 ![Create New Page](img/templates_24-microfrontend-composer-detail-page.png)
 
@@ -462,7 +462,7 @@ Here's how the `Detail` page looks:
 
 To connect the `Detail` page with the `Products` page, follow these steps:
 
-1. Ensure the `Products` page is configured as done in the [Microfrontend Composer Tutorial Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
+1. Ensure the `Products` page is configured as done in the [Microfrontend Composer Tutorial Basics](/microfrontend-composer/tutorials/basics.mdx).
 2. In the `Pages` tab, click on the `Compose` button for the `Products` page.
 3. In the left panel, click on `Main` and then click on the `Table` button.
 4. In the right panel, open the `Advanced Properties` and click on the `Edit Property` under the label `Custom Actions`.
@@ -499,5 +499,5 @@ Clicking on the `Detail` button in one of the rows of the table will redirect yo
 In this tutorial, we learned how to create new Microfrontend Composer Pages using the Microfrontend Composer Compose Template or an iFrame.
 
 Also, make sure to check out:
-- The [Microfrontend Composer Microfrontends Tutorial](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx), where you can learn how to configure a Microfrontend with Angular or React and how to use it in the Microfrontend Composer.
-- The [Microfrontend Composer Basics Tutorial](/getting-started/tutorials/microfrontend-composer/basics.mdx), which covers how to create a new Microfrontend Composer and how to create a new Microfrontend Composer Page using the Microfrontend Composer Table Template.
+- The [Microfrontend Composer Microfrontends Tutorial](/microfrontend-composer/tutorials/microfrontends.mdx), where you can learn how to configure a Microfrontend with Angular or React and how to use it in the Microfrontend Composer.
+- The [Microfrontend Composer Basics Tutorial](/microfrontend-composer/tutorials/basics.mdx), which covers how to create a new Microfrontend Composer and how to create a new Microfrontend Composer Page using the Microfrontend Composer Table Template.

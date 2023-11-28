@@ -672,19 +672,19 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "getting-started/tutorials/microfrontend-composer/basics",
+          "id": "microfrontend-composer/tutorials/basics",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/microfrontend-composer/templates",
+          "id": "microfrontend-composer/tutorials/templates",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/microfrontend-composer/microfrontends",
+          "id": "microfrontend-composer/tutorials/microfrontends",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/microfrontend-composer/auth0-integration",
+          "id": "microfrontend-composer/tutorials/auth0-integration",
           "type": "doc"
         }
       ]
@@ -830,15 +830,15 @@
       "collapsed": true,
       "items": [
         {
-          "id": "getting-started/tutorials/fast-data/low-code",
+          "id": "fast_data/tutorials/low-code",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/fast-data/bucket-storage-support",
+          "id": "fast_data/tutorials/bucket-storage-support",
           "type": "doc"
         },
         {
-          "id": "getting-started/tutorials/fast-data/migration",
+          "id": "fast_data/tutorials/migration",
           "type": "doc"
         }
       ]
@@ -1402,7 +1402,7 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "getting-started/tutorials/project-template-integrated-with-jenkins",
+          "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
           "type": "doc"
         }
       ]
