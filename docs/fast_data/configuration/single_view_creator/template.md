@@ -4,6 +4,10 @@ title: Single View Creator Template
 sidebar_label: Template
 ---
 
+:::caution Deprecated
+The Single View Creator Template has been **deprecated** in favour of the [Single View Creator Plugin](/fast_data/configuration/single_view_creator/plugin.md), which supports both [Low Code and No Code features](/fast_data/no_code_overview.md).
+:::
+
 Search in the [Marketplace](/marketplace/overview_marketplace.md) for a `Single View Creator - Template` and create it.
 Then go to the microservice page of the newly created Single View Creator and set the correct values to the environment variables containing a placeholder. 
 Click on the repository link in the microservice page and clone on your computer the repository.
@@ -91,8 +95,7 @@ The input fields of the validation function are the logger and the Single View, 
 ```js
 // (logger: BasicLogger, singleView: Document) => Boolean
 function singleViewValidator(logger, singleView) {
-  ... checks on singleView
-
+  // ... checks on singleView
   // returns a boolean
   return validationResult
 }
