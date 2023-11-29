@@ -101,7 +101,7 @@ For each of them, therefore, the permissions inherited from the Company role ass
 | Create Jobs on this specific Environment          | `console.environment.k8s.job.create`           |       |          |           | ✅         |                       |               |
 | Restart pods on this specific Environment         | `console.environment.k8s.pod.delete`           |       |          |           | ✅         |                       |               |
 | Manage dashboards on any Project Environment      | `console.project.environment.dashboard.manage` |       |          |           |            | ✅                    |               |
-| Manage dashboards on a specific Environment       | `console.environment.dashboard.manage`         |       |          |           | ✅         |                       |               |
+| Manage dashboards on this specific Environment       | `console.environment.dashboard.manage`         |       |          |           | ✅         |                       |               |
 | Manage identities for this Project                | `console.project.users.manage`                 |       |          |           |            | ✅                    |               |
 | Delete a single Project                           | `console.project.delete`                       |       |          |           |            |                       |               |
 
