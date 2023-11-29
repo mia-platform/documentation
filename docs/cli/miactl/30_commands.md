@@ -222,10 +222,30 @@ Available flags for the command:
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 
+### api-resources
+
+The `runtime api-resources` subcommand allows you to list all the currently supported resources that you can use on
+the `list` command.
+
+Usage:
+
+```sh
+miactl runtime api-resources [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+
 ### list RESOURCE-TYPE
 
 The `runtime list` subcommand allows you to list all resources of a specific type that are running for the
 environment associated to a given Project.
+
+Use `miactl runtime api-resources` for a complete list of currently supported resources.
 
 Usage:
 
@@ -287,7 +307,11 @@ Available flags for the command:
 
 ### logs
 
-The `runtime logs` subcommand allows you to fetch or stream logs for a given regex of services
+The `runtime logs` subcommand allows you to fetch or stream logs of running pods in the current context using a
+regex query.
+
+You can write any regex compatible with RE2 excluding -C. The regex than will be used to filter down the list of
+pods available in the current context and then the logs of all their containers will be displayed.
 
 Usage:
 
@@ -353,10 +377,17 @@ Delete a Marketplace item
 
 #### Synopsis
 
-Delete a single Marketplace item by its ID
+Delete a single Marketplace item
+
+You need to specify either:
+- the itemId and the version, respectively  (recommended)
+- the ObjectID of the item with the flag object-id
+
+Passing the ObjectID is expected only when dealing with deprecated Marketplace items missing the itemId and/or version fields.
+Otherwise, it is preferable to pass the tuple itemId-version.
 
 ```
-miactl marketplace delete resource-id [flags]
+miactl marketplace delete --item-id some-item --version '1.0.0'
 ```
 
 ### apply
