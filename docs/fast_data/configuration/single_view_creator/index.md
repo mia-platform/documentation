@@ -68,7 +68,7 @@ We strongly recommend using the plugin. The template is supposed to be used only
 | SV_UPDATE_VERSION                   | -        | (v6.2.1 or higher) Define which version of the `sv-update` event should be emitted by the service. Accepted values are `v1.0.0` and `v2.0.0`. By default, for retro-compatibility, version `v1.0.0` is employed                                                                                                                                                                                                                                                                                                             | v1.0.0              |
 
 :::caution
-If you want to enable any mechanism that uses Kafka in the Single View Creator, like the [Single View Patch](/fast_data/configuration/single_view_creator.md#single-view-patch), remember to declare the following environment variables: 
+If you want to enable any mechanism that uses Kafka in the Single View Creator, like the [Single View Patch](/fast_data/configuration/single_view_creator/patch.md), remember to declare the following environment variables: 
 
 - `KAFKA_BROKERS` (required)
 - `KAFKA_CLIENT_ID` (required)
@@ -128,76 +128,3 @@ First thing you need to do to enable the mechanism is to define the `KAFKA_SV_RE
 The messages sent to that topic have the [Single View Trigger](/fast_data/inputs_and_outputs.md#single-view-trigger-message) format, that's why, if you are already listening to Single View Trigger messages on Kafka as the main input of the service you can re-use the same exact topic.
 
 To customize the system we also offer you the environment variables `KAFKA_SV_RETRY_MAX_ATTEMPTS` and `KAFKA_SV_RETRY_DELAY`. Check them out on the [Environment Variables](#environment-variables) table.
-
-## Read from multiple databases
-
-To read data from multiple databases you need to leverage on custom function from the mapping configuration.  
-First of all, you need to create a config map and we suggest creating at least two files: one for the database connection and the other for custom functions.
-
-The connection file could be like the following:
-
-```javascript
-// secondDB.js
-const { MongoClient } = require('mongodb');
-
-const url = '{{MONGODB_URL_2}}';
-const client = new MongoClient(url);
-
-let connected = false
-
-module.exports = async function (){
-    if (!connected) {
-        await client.connect();
-        connected = true
-    }
-    return client
-}
-```
-
-The above code uses the database driver and exports a function to retrieve the connected client.  
-This module works like a singleton, indeed the client is created once and the state, e.g. the `connected` variable, lives for the entire duration of the Node.js process (remember that `require` a module is always evaluated once by Node.js).  
-Because this is a config map, the `{{MONGODB_URL_2}}` will be interpolated at deploy time. Remember to set it up in the environment variables section.
-
-
-Then in a custom function file, you can retrieve the connected client and use it for reading data:
-
-```javascript
-// fieldFromSecondDB.js
-const getClient = require('./secondDB.js')
-
-module.exports = async function (logger, db, dependenciesMap){
-    const client = await getClient()
-    return client.db().collection('collection').findOne();
-}
-```
-
-Finally, you can use the custom function in the mapping configuration:
-
-```json
-{
-   "version":"1.1.0",
-   "config":{
-      "SV_CONFIG":{
-         "dependencies":{
-            "PEOPLE":{
-               "type":"projection",
-               "on":"_identifier"
-            },
-            "MARRIAGE":{
-               "type":"projection",
-               "on":"PEOPLE_TO_MARRIAGE"
-            },
-            "PEOPLE":{
-               "type":"projection",
-               "on":"MARRIAGE_b_TO_PEOPLE"
-            }
-         },
-         "mapping":{
-            "name":"PEOPLE.name",
-            "marriedWith":"PEOPLE.name",
-            "fieldFromSecondDB":"__fromFile__[fieldFromSecondDB]"
-         }
-      }
-   }
-}
-```

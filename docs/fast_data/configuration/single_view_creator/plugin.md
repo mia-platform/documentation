@@ -143,4 +143,106 @@ In case the _Custom_ options is selected for the upsert and/or the delete strate
 
 After saving the configuration, the selected strategies will be applied to the related environment variables `UPSERT_STRATEGY` and `DELETE_STRATEGY`. The eventually needed custom functions will be automatically included in a config map.
 
+## Read from multiple databases
+
+The plugin is instructed to read projections from one database.
+
+If you need to read data from multiple databases, you need to leverage [on custom function from the mapping configuration](/fast_data/configuration/config_maps/aggregation.md#mapping).  
+
+First of all, you need [to create a custom function](/fast_data/configuration/config_maps/aggregation.md#advanced-mode) to handle the connection to the second database. 
+
+```js title=secondMongoDB.js
+const { MongoClient } = require('mongodb')
+
+module.exports = () => {
+  const dbConnection = {
+    secondMongoClient: null, /** @param {MongoClient} */
+    secondMongoDb: null /** @param {mongodb.Db} */
+  }
+  const {MONGODB_URL_2, MONGODB_NAME_2} = process.env
+
+  const callback = async(logger) => {
+    if (!dbConnection.secondMongoClient) {
+      logger.info('starting connection to second db')
+      dbConnection.secondMongoClient = new MongoClient(MONGODB_URL_2)
+      await dbConnection.secondMongoClient.connect()
+      dbConnection.secondMongoDb = secondMongoClient.db(MONGODB_NAME_2)
+    }
+
+    return dbConnection
+  }
+
+  return callback
+}
+
+```
+
+The above module uses the database driver and exports a function to retrieve the connected client.  
+
+This module works like a singleton: indeed the client is created once and the state, e.g. the `dbConnection` variable, lives for the entire duration of the Node.js process (remember that `require` a module is always evaluated once by Node.js).  
+
+:::tip process.env
+Remember to set the process variables `MONGODB_URL_2` and `MONGODB_NAME_2`  up in the environment variables section.
+:::
+
+Then, in a custom file linked to a field, you can use the second connection to read data:
+
+```js title=fieldFromSecondDB.js
+
+const secondMongoDB = require('./secondMongoDB.js')
+const getSecondMongoDB = secondMongoDB()
+
+module.exports = async function (logger, db, dependenciesMap){
+    const { secondMongoClient, secondMongoDb } = await getSecondMongoDB()
+    try {
+      return secondMongoDb.collection('my-collection').findOne({/** */})
+    } catch(err) {
+      logger.error(err, 'something wrong happened with mongo db. closing connection...')
+      await secondMongoClient.close()
+      throw error
+    }
+    
+}
+```
+
+:::caution Handling second connection
+If some unexpected error happens during the execution of your custom function, remember to properly manage the closing of the second db connection, to avoid leaving open connections to the MongoDB instance. 
+:::
+
+
+
+<details><summary>Final Configuration</summary>
+When you have to apply the second database connection to the aggregation file, you need to define just the custom field function.
+
+```json title=aggregation.json
+{
+   "version":"1.1.0",
+   "config":{
+      "SV_CONFIG":{
+         "dependencies":{
+            "PEOPLE":{
+               "type":"projection",
+               "on":"_identifier"
+            },
+            "MARRIAGE":{
+               "type":"projection",
+               "on":"PEOPLE_TO_MARRIAGE"
+            },
+            "PEOPLE":{
+               "type":"projection",
+               "on":"MARRIAGE_b_TO_PEOPLE"
+            }
+         },
+         "mapping":{
+            "name":"PEOPLE.name",
+            "marriedWith":"PEOPLE.name",
+            "fieldFromSecondDB":"__fromFile__[fieldFromSecondDB.js]"
+         }
+      }
+   }
+}
+```
+</details>
+
+
 
