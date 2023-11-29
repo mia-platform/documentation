@@ -14,37 +14,36 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 ## Environment variables
 
-| Name                                      | Required                              | Default             | Description                                                                                                                                                  |
-|-------------------------------------------|---------------------------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **HTTP_PORT**                             | No                                    | 3000                | The port exposed by the service.                                                                                                                             |
-| **LOG_LEVEL**                             | No                                    | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                    |
-| **PROTOTYPES_CONFIG_FILE_PATH**           | Yes                                   | -                   | Path of the config map file containing the prototypes.                                                                                                       |
-| **CRUD_SERVICE_URL**                      | No                                    | http://crud-service | HTTP(S) URL of the CRUD service.                                                                                                                             |
-| **MESSAGING_SERVICE**                     | No                                    | `disabled`          | If you want to use the Messaging Service via `kafka` or `http` (`disabled` by default).                                                                      |
-| **MESSAGING_SERVICE_URL**                 | If `MESSAGING_SERVICE` is `http`      | -                   | HTTP(S) URL of the Messaging Service.                                                                                                                        |
-| **KAFKA_BROKERS_LIST**                    | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_CLIENT_ID**                       | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_GROUP_ID**                        | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_COMMANDS_TOPIC_NAME**             | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_EVENTS_TOPIC_NAME**               | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_AUTH_METHOD**                     | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_SASL_USERNAME**                   | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **KAFKA_SASL_PASSWORD**                   | If `MESSAGING_SERVICE` is `kafka`     | -                   |                                                                                                                                                              |
-| **MONITORINGS_CRUD_NAME**                 | No                                    | monitorings         | Name of the CRUD collection containing the monitorings.                                                                                                      |
-| **THERAPIES_CRUD_NAME**                   | No                                    | therapies           | Name of the CRUD collection containing the therapies.                                                                                                        |
-| **DETECTIONS_CRUD_NAME**                  | No                                    | detections          | Name of the CRUD collection containing the detections.                                                                                                       |
-| **DETECTIONS_GRACE_PERIOD**               | No                                    | 30                  | Number of days after the end of a therapy or monitoring during which adherence and compliance are still updated (in case the patient submit detections late) |
-| **DETECTIONS_TIME_ZONE**                  | No                                    | UTC                 | Default detections time zone. Must be a valid [IANA time zone][iana-time-zones].                                                             |
-| **CRON_SCHEDULE**                         | No                                    | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `DETECTIONS_TIME_ZONE` time zone.                                           |
-| **VALIDATION_SERVICE**                    | No                                    | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                          |
-| **VALIDATION_SERVICE_URL**                | If `VALIDATION_SERVICE` is `external` | -                   | HTTP(S) URL of the external validation service.                                                                                                              |
-| **DEFAULT_ADHERENCE_STATUS**              | Yes                                   | -                   | Default value for adherenceStatus                                                                                                                            |
-| **DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY** | Yes                                   | -                   | Default value for adherenceToleranceFrequency                                                                                                                |
-| **DEFAULT_ADHERENCE_TOLERANCE_TIME**      | Yes                                   | -                   | Default value for adherenceToleranceTime                                                                                                                     |
-| **DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE**  | Yes                                   | -                   | Default value for adherenceMinimumPercentage                                                                                                                 |
-| **DEFAULT_COMPLIANCE_STATUS**             | Yes                                   | -                   | Default value for adherenceStatus                                                                                                                            |
-| **DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE** | Yes                                   | -                   | Default value for complianceMinimumPercentage                                                                                                                |
-| **MAX_PATIENT_ACTIVE_PLANS**              | No                                    | -                   | Maximum number of active therapies or monitorings associated to the same prototype for each patient.                                                         |
+| Name                                      | Required | Default             | Description                                                                                                                                                  |
+|-------------------------------------------|----------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **HTTP_PORT**                             | No       | 3000                | The port exposed by the service.                                                                                                                             |
+| **LOG_LEVEL**                             | No       | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                    |
+| **PROTOTYPES_CONFIG_FILE_PATH**           | Yes      | -                   | Path of the config map file containing the prototypes.                                                                                                       |
+| **CRUD_SERVICE_URL**                      | No       | http://crud-service | HTTP(S) URL of the CRUD service.                                                                                                                             |
+| **KAFKA_BROKERS_LIST**                    | No       | -                   |                                                                                                                                                              |
+| **KAFKA_CLIENT_ID**                       | No       | -                   |                                                                                                                                                              |
+| **KAFKA_GROUP_ID**                        | No       | -                   |                                                                                                                                                              |
+| **KAFKA_COMMANDS_TOPIC_NAME**             | No       | -                   |                                                                                                                                                              |
+| **KAFKA_EVENTS_TOPIC_NAME**               | No       | -                   |                                                                                                                                                              |
+| **KAFKA_AUTH_METHOD**                     | No       | -                   |                                                                                                                                                              |
+| **KAFKA_SASL_USERNAME**                   | No       | -                   |                                                                                                                                                              |
+| **KAFKA_SASL_PASSWORD**                   | No       | -                   |                                                                                                                                                              |
+| **MONITORINGS_CRUD_NAME**                 | No       | monitorings         | Name of the CRUD collection containing the monitorings.                                                                                                      |
+| **THERAPIES_CRUD_NAME**                   | No       | therapies           | Name of the CRUD collection containing the therapies.                                                                                                        |
+| **DETECTIONS_CRUD_NAME**                  | No       | detections          | Name of the CRUD collection containing the detections.                                                                                                       |
+| **DETECTIONS_GRACE_PERIOD**               | No       | 30                  | Number of days after the end of a therapy or monitoring during which adherence and compliance are still updated (in case the patient submit detections late) |
+| **DETECTIONS_TIME_ZONE**                  | No       | UTC                 | Default detections time zone. Must be a valid [IANA time zone][iana-time-zones].                                                                             |
+| **CRON_SCHEDULE**                         | No       | `0 0 * * *`         | Cron schedule for the computation of the adherence and compliance metrics in the `DETECTIONS_TIME_ZONE` time zone.                                           |
+| **VALIDATION_SERVICE**                    | No       | integrated          | If TMM should use the integrated or an external validation service to check thresholds (admitted values: `integrated`, `external`).                          |
+| **VALIDATION_SERVICE_URL**                | No       | -                   | HTTP(S) URL of the external validation service. If `VALIDATION_SERVICE` is `external`.                                                                       |
+| **DEFAULT_ADHERENCE_STATUS**              | Yes      | -                   | Default value for adherenceStatus                                                                                                                            |
+| **DEFAULT_ADHERENCE_TOLERANCE_FREQUENCY** | Yes      | -                   | Default value for adherenceToleranceFrequency                                                                                                                |
+| **DEFAULT_ADHERENCE_TOLERANCE_TIME**      | Yes      | -                   | Default value for adherenceToleranceTime                                                                                                                     |
+| **DEFAULT_ADHERENCE_MINIMUM_PERCENTAGE**  | Yes      | -                   | Default value for adherenceMinimumPercentage                                                                                                                 |
+| **DEFAULT_COMPLIANCE_STATUS**             | Yes      | -                   | Default value for adherenceStatus                                                                                                                            |
+| **DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE** | Yes      | -                   | Default value for complianceMinimumPercentage                                                                                                                |
+| **MAX_PATIENT_ACTIVE_PLANS**              | No       | -                   | Maximum number of active therapies or monitorings associated to the same prototype for each patient.                                                         |
+| **NOTIFICATION_MANAGER_URL**              | No       | -                   | HTTP(S) URL of the notification manager.                                                                                                                     |
 
 ## Prototypes definition
 
@@ -332,11 +331,12 @@ If you use the integrated validation service, field names in the `value` object 
 
 ## Thresholds validation
 
-By default, the TMM validates an detection against the thresholds using the integrated service. If you want to use an external service to run custom validations, you need to perform the following steps:
+By default, the TMM does not validate detections against the thresholds. If you want to use the integrated validation or an external service to run custom validations, you need to perform the following steps:
 
-- deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below][external-validation-service-api];
-- set the TMM **VALIDATION_SERVICE** [environment variable][environment-variables] to `external`;
-- set the TMM **VALIDATION_SERVICE_URL** [environment variable][environment-variables] to the HTTP(s) address of your service (both public and internal cluster URLs will work).
+- set the TMM **VALIDATION_SERVICE** [environment variable][environment-variables] to `internal` or `external`;
+- if you are using an external service:
+  - deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below][external-validation-service-api];
+  - set the TMM **VALIDATION_SERVICE_URL** [environment variable][environment-variables] to the HTTP(s) address of your service (both public and internal cluster URLs will work).
 
 ### External Validation Service API
 
@@ -363,7 +363,7 @@ If an error occurs during the validation process, the endpoint should return the
 
 :::info
 
-The TMM forwards the response of the validation service to the messaging service in order to notify the physician if the detection exceeded one or more thresholds.
+The TMM forwards the response of the validation service to the Notification Manager service in order to notify the physician if the detection exceeded one or more thresholds.
 Therefore, in the template of the notification message you can refer any information available in the response of the external validation service.
 The integrated validation service produces an identical response, so the template will work exactly the same, no matter which service you use.
 
@@ -373,13 +373,13 @@ The integrated validation service produces an identical response, so the templat
 
 :::danger
 
-This section describes the integration with a future version of the messaging service, which is currently under development. The information may not reflect the final specifications of the service and may be subject to breaking changes.
+This section describes the integration with a future version of the Notification Manager service, which is currently under development. The information may not reflect the final specifications of the service and may be subject to breaking changes.
 
 :::
 
-To send notifications to patients and physicians you need to set the `MESSAGING_SERVICE_URL` [environment variable][environment-variables] and configure the events, channels, recipients, ... directly in the messaging service (see the component documentation for more details).
+To send notifications to patients and physicians you need to set the `NOTIFICATION_MANAGER_URL` [environment variable][environment-variables] and configure the events, channels, recipients, ... directly in the Notification Manager service (see the component documentation for more details).
 
-The TMM currently generates the following events you can refer in the configuration of the messaging service:
+The TMM currently generates the following events you can refer in the configuration of the Notification Manager service:
 
 - `TMM/ThresholdExceeded/v1` is the event generated when a detection exceeds one or more monitoring thresholds.
 
