@@ -6,19 +6,10 @@ import styles from "./styles.module.css";
 import featureStyle from "../Feature/styles.module.css";
 import links from "./links.json";
 
-function buildSortBy(order) {
-    return (a, b) => {
-        if (order.indexOf(a) < 0 && order.indexOf(b) < 0) { return 0 }
-        if (order.indexOf(a) < 0) { return 1 }
-        if (order.indexOf(b) < 0) { return -1 }
-        return order.indexOf(a) - order.indexOf(b)
-    }
-}
-
-function buildFindMatchingCategory() {
+function buildFindMatchingCategory(defaultCategory) {
     return ({url}) => {
         const matchingCategory = links.categories.find(({prefix}) => url.startsWith(prefix))
-        return matchingCategory?.title || 'Others'
+        return matchingCategory?.title || defaultCategory
     }
 }
 function LastPagesLink({title, url}) {
@@ -37,23 +28,28 @@ LastPagesLink.propTypes = {
 function LastPages({title, description}) {
     const pagesToShow = links.pages.slice(0, 23);
     const categoriesOrder = links.categories.map(({title}) => title)
-    const pagesByCategory = Object.groupBy(pagesToShow, buildFindMatchingCategory())
+    const defaultCategory = 'Others'
+    const pagesByCategory = Object.groupBy(pagesToShow, buildFindMatchingCategory(defaultCategory))
     return (
         <div className={clsx("col col--12", featureStyle.feature, styles.howToBox)}>
             <h3>{title}</h3>
             <p>{description}</p>
             <div className={styles.howToLinkBox}>
                 {
-                    Object.keys(pagesByCategory)
-                        .sort(buildSortBy(categoriesOrder))
-                        .map((title, categoryId)=> {
-                            const linksComponents =  pagesByCategory[title].map((props, idx) => (<LastPagesLink key={idx} {...props} />))
-                            return linksComponents.length > 0 ? (
+                    categoriesOrder
+                        .concat(defaultCategory)
+                        .map((title, categoryId) => {
+                            const pagesOfCurrentCategory = pagesByCategory[title]
+                            if (!pagesOfCurrentCategory) {
+                                return
+                            }
+                            const linksComponents = pagesOfCurrentCategory.map((props, idx) => (<LastPagesLink key={idx} {...props} />))
+                            return (
                                 <div className={clsx("row", styles.howToCategoryBox)} key={categoryId}>
                                     <h4>{title}</h4>
                                     {linksComponents}
                                 </div>
-                            ): undefined
+                            )
                         })
                 }
             </div>
