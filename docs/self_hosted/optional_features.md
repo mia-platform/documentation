@@ -26,6 +26,6 @@ When the feature is enabled in the Console, users are presented with a banner as
 
 Hence, this feature is activated on a per-user basis.
 
-Once a preference has been expressed, the banner will be hidden, but the user can change this preference at any time from the [User Preferences section](../development_suite/user-settings/user-preferences).
+Once a preference has been expressed, the banner will be hidden, but the user can change this preference at any time from the [User Preferences section](../development_suite/user-settings/user-preferences.md).
 
 Google Analytics helps Mia-Platform improving the Console, by understanding how users interact with the platform.
