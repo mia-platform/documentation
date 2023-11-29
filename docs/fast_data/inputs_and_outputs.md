@@ -1106,7 +1106,7 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 #### Message format v1.0.0
 
-This version of Single View Update event is emitted by default in Single View Creator version `v6`.
+This version of Single View Update event is emitted by default in Single View Creator version `v6.x.x`.
 
 <details><summary>AsyncApi specification</summary>
 <p>
