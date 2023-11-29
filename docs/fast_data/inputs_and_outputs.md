@@ -537,7 +537,10 @@ channels:
                   properties:
                     type:
                       type: string
-                      description: type of messsage (`pr-update`, `sv-update`)
+                      description: type of message
+                      enum:
+                        - pr-update
+                        - sv-update
                     version:
                       const: v2.0.0
                       description: version of the message format (v2.0.0)
