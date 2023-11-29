@@ -1,20 +1,24 @@
 {
   "categories": [
     {
+      "title": "Getting Started",
+      "prefixes": ["/getting-started"]
+    },
+    {
       "title": "Console",
-      "prefix": "/runtime_suite"
+      "prefixes": ["/runtime_suite", "/development_suite", "/console"]
     },
     {
       "title": "Marketplace",
-      "prefix": "/marketplace"
+      "prefixes": ["/marketplace"]
     },
     {
       "title": "Fast Data",
-      "prefix": "/fast_data"
+      "prefixes": ["/fast_data"]
     },
     {
       "title": "Microfrontend Composer",
-      "prefix": "/microfrontend-composer"
+      "prefixes": ["/microfrontend-composer"]
     }
   ],
   "pages": [
