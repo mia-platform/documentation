@@ -75,7 +75,11 @@ This step alone grants the proper functioning of the frontend and backend of Run
   defining all the possible microservices you may need and their runtime configurations. In particular, be sure to set the three environment variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` for the Single View Creator, to enable the communication with the Runtime Management. Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator.md#environment_variables) for further details.
 
 3. **Create a Kafka topic:** create a Kafka topic dedicated to receiving action commands.
-  This ensures seamless communication between Runtime Management and the Fast Data microservices. We suggest using a single partitioned topic.
+  This ensures seamless communication between Runtime Management and Fast Data microservices.
+  
+  :::tip
+  We suggest using a single-partitioned topic.
+  :::
 
 4. **Configure Control Plane Application:** populate the Config Map of the Control Plane application with details regarding your runtime environment.
 
