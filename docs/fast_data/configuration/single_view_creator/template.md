@@ -6,7 +6,7 @@ sidebar_label: Template
 
 :::caution Deprecated
 The Single View Creator Template has been **deprecated** in favour of the [Single View Creator Plugin](/fast_data/configuration/single_view_creator/plugin.md), which supports both [Low Code and No Code features](/fast_data/no_code_overview.md).
-We strongly suggest not to use the Single View Creator Template
+We strongly suggest not to use the Single View Creator Template.
 :::
 
 Search in the [Marketplace](/marketplace/overview_marketplace.md) for a `Single View Creator - Template` and create it.
