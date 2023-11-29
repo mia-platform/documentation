@@ -976,18 +976,36 @@ channels:
           properties:
             key:
               type: object
-              description: Identifier of the Single View or the Projection (depending on the value.type)
+              description: Identifier of the Single View
               additionalProperties: true
             value:
               type: object
               required:
+                - singleViewIdentifier
                 - __internal__kafkaInfo
                 - change
               properties:
+                singleViewName:
+                  type: string
+                  description: Name of the Single View
                 singleViewIdentifier:
                   type: object
-                  description: Identifier of the Single View just like the Projection Changes Identifier. Mind that this field will be set only in case of type aggregation and not patch
+                  description: Identifier of the Single View just like the Projection Changes Identifier
                   additionalProperties: true
+                retry:
+                  type: object
+                  properties:
+                    lastError:
+                      type: object,
+                      description: Details of the last error that made the aggregation fail
+                      properties:
+                        type:
+                          type: string
+                        message:
+                          type: string
+                    attempts:
+                      type: number
+                      description: Number of times the aggreation of the Single View has been retried
                 change:
                   type: object
                   description: Contains information about the projection record that triggered the strategy
@@ -1034,7 +1052,7 @@ channels:
 </p>
 </details>
 
-Example:
+Examples:
 
 <details><summary>Trigger message</summary>
 <p>
@@ -1046,8 +1064,71 @@ Example:
   },
   "value": {
     "type": "aggregation",
+    "singleViewName": "sv_books",
     "singleViewIdentifier": {
       "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "change": {
+      "data": {
+        "__STATE__": "PUBLIC",
+        "__internal__counter": 1685118744745,
+        "__internal__counterType": "timestamp",
+        "__internal__kafkaInfo": {
+          "key": {
+            "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+          },
+          "offset": "151",
+          "partition": 0,
+          "timestamp": "2023-05-26T16:32:24.745Z",
+          "topic": "some.ingestion.topic"
+        },
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H",
+        "bio": "episode lover, designer",
+        "name": "Caitlyn",
+        "surname": "Hettinger",
+        "timestamp": "2023-05-26T16:32:24.745Z",
+        "updatedAt": "2023-05-26T16:32:24.845Z"
+      },
+      "projectionIdentifier": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "projectionName": "authors"
+    },
+    "__internal__kafkaInfo": {
+      "key": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "offset": "151",
+      "partition": 0,
+      "timestamp": "2023-05-26T16:32:24.745Z",
+      "topic": "some.ingestion.topic"
+    }
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Trigger message with retries</summary>
+<p>
+
+```json
+{
+  "key": {
+    "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+  },
+  "value": {
+    "type": "aggregation",
+    "singleViewName": "sv_books",
+    "singleViewIdentifier": {
+      "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "retry": {
+      "attempts": 5,
+      "lastError": {
+        "type": "SINGLE_VIEW_AGGREGATION_MAX_TIME",
+        "message": "Aggregation exceeding configured time limit"
+      }
     },
     "change": {
       "data": {
@@ -1244,8 +1325,9 @@ Example:
   "required": [
     "portfolioOrigin",
     "type",
-    "identifier",
     "errorType",
+    "errorMessage",
+    "identifier",
     "resolutionMethod"
   ],
   "properties": {
@@ -1266,10 +1348,15 @@ Example:
       "enum": [
         "NO_SV_GENERATED",
         "VALIDATION_ERROR",
-        "MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE",
-        "ERROR_SEND_SVC_EVENT"
+        "UNKNOWN_ERROR",
+        "ERROR_SEND_SVC_EVENT",
+        "SINGLE_VIEW_AGGREGATION_MAX_TIME"
       ],
-      "description": "String describing the cause of the error"
+      "description": "The cause of the error"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Further description of the error"
     },
     "resolutionMethod": {
       "type": "string",
@@ -1310,6 +1397,7 @@ Example:
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
   "errorType": "NO_SV_GENERATED",
+  "errorMessage": "Unexpected error: No Single View record generated",
   "createdAt": "2022-05-20T10:25:35.656Z",
   "updatedAt": "2022-05-20T10:25:35.656Z",
   "resolutionMethod": "AGGREGATION"
