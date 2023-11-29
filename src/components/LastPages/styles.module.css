@@ -8,5 +8,9 @@
 }
 
 .howToCategoryBox{
-    margin-bottom: 14px;
+    margin-left: 0px;
+    margin-bottom: 8px;
 }
+.howToCategoryBox > h4 {
+    margin-bottom: 4px;
+  }
