@@ -22,31 +22,24 @@ With Runtime Management, users gain the ability to govern several different aspe
 Currently, this mechanism is supported only in the Single View Creator.
 :::
 
-### Key Features and Benefits
+### Key Benefits
 
-- **Flexible Control:** govern the execution of Fast Data microservices with fine-grained control, allowing for strategic management of the runtime environment.
+The major benefits of Runtime Management are an **improved performance and consistency** and a **flexible control** over the Fast Data runtime.
 
-- **Enhanced Performance and Consistency:** utilize Runtime Management to optimize performance and ensure data consistency. 
-      For example, start the ingestion of a massive data system into the Fast Data environment. Only after the ingestion process is complete, 
-      initiate the processing of updates from the Real Time Updater (and the Single View Trigger Generator if active) to generate Single Views. 
-      This sequential approach enhances performance and data consistency.
+#### Enhanced Performance and Consistency
 
-- **Strategic Ingestion:** achieve better performance and consistency of data by strategically managing the ingestion process, aligning it with the broader data processing pipeline.
+Use Runtime Management to optimize performance and ensure data consistency. 
+For example, start the ingestion of a massive data system into the Fast Data environment. Only after the ingestion process is complete, 
+initiate the processing of updates from the Real Time Updater (and the Single View Trigger Generator if active) to generate Single Views. 
 
-### Useful Scenarios
+#### Flexible Control
 
-Explore the diverse scenarios where Runtime Management can bring significant benefits to your Fast Data deployment:
+Govern the execution of Fast Data microservices with fine-grained control, allowing for strategic management of the runtime environment in various scenarios:
 
-- **Optimizing Data Processing Pipelines:** Pause the Single View Creator during high-load data ingestion to ensure optimal system performance. 
-      Resume processing once the ingestion is complete to generate views efficiently.
-- **Sequencing Real-Time and Batch Processing:** Use Runtime Management to sequence the execution of real-time and batch processing components.
-      Pause real-time processing during large batch ingestion, then resume for a balanced data processing approach.
-- **Performance Testing and Simulation:** Simulate different scenarios for performance testing by pausing and resuming microservices.
-      Observe system behavior under various conditions to identify bottlenecks and optimize resource allocation.
-- **Data Consistency Assurance:** Maintain data consistency by pausing the Single View Creator during critical updates to underlying databases.
-      Resume processing after updates to ensure Single Views reflect the most recent and accurate data.
 - **Strategic Resource Allocation:** Dynamically allocate resources by pausing and resuming microservices based on workload and resource availability.
       Efficiently utilize computing resources and prioritize critical processes during peak demand.
+- **Performance Testing and Simulation:** Simulate different scenarios for performance testing by pausing and resuming microservices.
+      Observe system behavior under various conditions to identify bottlenecks and optimize resource allocation.
 - **Enhanced System Reliability:** Gracefully handle unexpected situations or system maintenance by pausing specific microservices.
       Resume operations post-maintenance to minimize downtime and enhance overall system reliability.
 
@@ -100,18 +93,18 @@ The form allows you to specify the details of the command you want to send, whil
 
 ![Control Plane UI](img/runtime_management/runtime_management_initial_screen.png)
 
-<Tabs>
+            <Tabs>
 
-<TabItem value="control-plane-ui-left" label="Left Side" default>
+                  <TabItem value="control-plane-ui-left" label="Left Side" default>
 
 #### Form Section
   - ***Method*:** Choose between `Pause` and `Resume` commands.
   - ***Resource name*:** Enter the name of a specific resource to pause or resume (for example, the name of a Single View).
   - ***Runtime*:** Select a target runtime environment name on which to execute the command.
 
-</TabItem>
+                  </TabItem>
 
-<TabItem value="control-plane-ui-right" label="Right Side">
+                  <TabItem value="control-plane-ui-right" label="Right Side">
 
 #### Log Panel
   After submitting the form, a Kafka message representing the command is sent to the topic.
@@ -120,9 +113,9 @@ The form allows you to specify the details of the command you want to send, whil
 
   At the top, two buttons allow you to prettify the text being logged and to clear it.
 
-</TabItem>
+                  </TabItem>
 
-</Tabs>
+            </Tabs>
 
 ### Sending a command
 
