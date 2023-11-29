@@ -196,7 +196,3 @@ In your custom files (e.g. `fast-data-files`) you can import only the node modul
 - [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
 - [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
 - [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
-
-:::caution
-It is used the node version 14.
-:::

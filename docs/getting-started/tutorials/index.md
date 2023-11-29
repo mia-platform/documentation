@@ -31,10 +31,10 @@ Welcome to the Tutorials page! This page contains a series of tutorials guides d
 
 
 
-### **Backoffice**
-- **Backoffice Basics**: Understanding the basic functionalities of the backoffice. [Go to Backoffice Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
-- **Backoffice Templates**: Learning to use templates in the backoffice. [Go to Backoffice Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
-- **Backoffice Microfrontends**: Delving into microfrontends in the backoffice. [Go to Backoffice Microfrontends](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx).
+### **Microfrontend Composer**
+- **Microfrontend Composer Basics**: Understanding the basic functionalities of the Microfrontend Composer. [Go to Microfrontend Composer Basics](/getting-started/tutorials/microfrontend-composer/basics.mdx).
+- **Microfrontend Composer Templates**: Learning to use templates in the Microfrontend Composer. [Go to Microfrontend Composer Templates](/getting-started/tutorials/microfrontend-composer/templates.mdx).
+- **Microfrontends Management**: Delving into the microfrontends management using Microfrontend Composer application. [Go to Microfrontends Management](/getting-started/tutorials/microfrontend-composer/microfrontends.mdx).
 
 ## How to Use This Page
 
