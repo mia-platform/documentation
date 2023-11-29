@@ -60,7 +60,7 @@ Using the No Code feature you can define the relationships between your Fast Dat
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator.md).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator/plugin.md).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 

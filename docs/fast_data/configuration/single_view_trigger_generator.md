@@ -38,7 +38,7 @@ When creating the service from the marketplace the following environment variabl
 
 To simplify the configuration of the Single View Trigger Generator service, you can attach a previously created Single View Trigger Generator service from the marketplace to a Single View. Here's how to do it:
 
-* create your Single View and attach a _Single View Creator Service_ to it [from the dedicated configuration page](/fast_data/configuration/single_view_creator.md#attach_to_single_view). This is necessary because the Single View Trigger Generator can work with only one Single View Creator Service.
+* create your Single View and attach a _Single View Creator Service_ to it [from the dedicated configuration page](/fast_data/configuration/single_view_creator/index.md#attach_to_single_view). This is necessary because the Single View Trigger Generator can work with only one Single View Creator Service.
 * within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured.
 * in the _Single View Trigger Generator_ tab, you can choose a Single View Trigger Generator from the available services. 
 

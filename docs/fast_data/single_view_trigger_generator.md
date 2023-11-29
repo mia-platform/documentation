@@ -49,7 +49,7 @@ We advise you to replace your Real-Time Updater with the new Projection Storer f
 The following steps are only required if you choose to [generate `sv-trigger` messages](/fast_data/configuration/single_view_trigger_generator.md#event-store-config) over Projection changes
 :::
 
-- Configure the service to consume from Kafka (see the [Consuming from Kafka](/fast_data/configuration/single_view_creator.md#consuming-from-kafka) section)
+- Configure the service to consume from Kafka (see the [Consuming from Kafka](/fast_data/configuration/single_view_creator/index.md#consuming-from-kafka) section)
 - Set environment variable `KAFKA_PROJECTION_CHANGES_TOPICS` to the topic of the event streaming platform on which the Single View Trigger Generator service will publish the `sv-trigger` events.
 In case the topic does not already exist, we recommend adopting our [naming convention](/fast_data/inputs_and_outputs.md#single-view-trigger-message) for defining the topic name.
 
