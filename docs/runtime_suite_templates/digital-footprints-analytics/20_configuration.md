@@ -17,5 +17,5 @@ The service requires the following environment variables:
 - **CLIENTTYPE_HEADER_KEY**: key of respective Mia header,
 - **BACKOFFICE_HEADER_KEY**: key of respective Mia header,
 - **MICROSERVICE_GATEWAY_SERVICE_NAME**: key of respective Mia header,
-- **FIDO_URL**: URL of the Fido service,
-- **APIKEY_FIDO**: Api key of the Fido service client,
+- **TRUSTFULL_URL**: URL of the Trustfull service,
+- **APIKEY**: Api key of the Trustfull service client
