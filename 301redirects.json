@@ -1445,10 +1445,6 @@
     "destination": "docs/infrastructure/paas/secret-scanning",
     "addedOn": "2023-11-28"
   },
-  "/docs/info/mia_service_level_agreement": {
-    "destination": "docs/infrastructure/paas/mia-service-level-agreement",
-    "addedOn": "2023-11-28"
-  },
   "/docs/paas/business_continuity": {
     "destination": "docs/infrastructure/paas/business-continuity",
     "addedOn": "2023-11-28"
