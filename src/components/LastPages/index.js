@@ -15,7 +15,7 @@ function buildFindMatchingCategory(defaultCategory) {
 function LastPagesLink({title, url}) {
     return (
         <div className={clsx("col col--12", "howToLink", styles.howToLink)}>
-            {'-'} <a href={`/docs/preview${url}`}>{title}</a>
+            {'-'} <a href={`/docs${url}`}>{title}</a>
         </div>
     );
 }
