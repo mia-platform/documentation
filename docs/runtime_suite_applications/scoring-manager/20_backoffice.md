@@ -15,7 +15,7 @@ The Scoring Manager provides already configured pages that allow to perform acti
 The pages are fully customizable, and they can be modified to implement a new functionalities and adapt to specific needs; for more details on how to configure the pages you can refer to [backoffice documentation](../../business_suite/microfrontend-composer/back-kit/overview).
 
 The complete configuration of all pages is available on [GitHub](https://github.com/Mia-FinTech/payment-backoffice#--backoffice-templates---payment).
-It is also possible to define them as templates in your own project following this [guide](../../microfrontend-composer/composer/backoffice-configurator/configurator_settings#template-sources), the URL to insert is `https://raw.githubusercontent.com/Mia-FinTech/scoring-backoffice/main/`.
+It is also possible to define them as templates in your own project following this [guide](../../preview/microfrontend-composer/composer/configurator_settings#template-sources), the URL to insert is `https://raw.githubusercontent.com/Mia-FinTech/scoring-backoffice/main/`.
 
 :::note
 The Backoffice is not included by default in the Scoring Manager Application.
