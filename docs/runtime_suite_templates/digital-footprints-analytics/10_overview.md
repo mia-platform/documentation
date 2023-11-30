@@ -1,6 +1,6 @@
 ---
 id: overview
-title: Fido Template
+title: Digital Footprints Analytics Template
 sidebar_label: Overview
 ---
 
@@ -10,18 +10,14 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-`Fido Template` is the best template to start creating a service in Kotlin, integrated with Fido APIs.
+`Digital Footprints Analytics Template` is the best template to start creating a service in Kotlin, integrated with Trustfull APIs.
+The template comes with a set of APIs already integrated with Trustfull systems.
 
-## Fido Integration
+### GET - /ping
 
-The template comes with a set of APIs already integrated with Fido systems.
+This API performs a get request to Trustfull system to check if the user is authenticated correctly. Client information is given by the environment variables `APIKEY`. The service calls the Fido API and returns its response.
 
-
-### GET - fido/ping
-
-This API performs a get request to Fido system to check if the user is authenticated correctly. Client information is given by the environment variables `APIKEY_FIDO`. The service calls the Fido API and returns its response.
-
-### GET - fido/{customerId}
+### GET - /{customerId}
 
 This API allows to retrieve a user that was previously data enriched/valuated or validated.
 
@@ -29,7 +25,7 @@ This API allows to retrieve a user that was previously data enriched/valuated or
 
 The caller must provide the path parameter `customerId` with the Id of the user performing the request.
 
-### POST - fido/phone
+### POST - /phone
 
 This API allows to combine phone validation, data enrichment of a user through the phone number.
 
@@ -123,7 +119,7 @@ Example:
 }
 ```
 
-### POST - fido/email
+### POST - /email
 
 This API allows to combine email validation, data enrichment of a user through the email address.
 
@@ -243,7 +239,7 @@ Example:
 }
 ```
 
-### POST - fido/device
+### POST - /device
 
 This API allows to search for information on the user's hardware device through the user agent of the browser.
 
@@ -305,7 +301,7 @@ Example:
 }
 ```
 
-### POST - fido/ip
+### POST - /ip
 
 This API allows to combine ip address validation, data enrichment and scoring of a user through the ip address.
 
@@ -384,7 +380,7 @@ Example:
 }
 ```
 
-### POST - fido/name
+### POST - /name
 
 This API allows to combine name validation, data enrichment and scoring of a user through the first name and the last name.
 
@@ -436,7 +432,7 @@ Example:
 }
 ```
 
-### POST - fido/
+### POST - /
 
 This API allows to combine multiple type of validation, data enrichment and scoring of a user in a single endpoint.
 
