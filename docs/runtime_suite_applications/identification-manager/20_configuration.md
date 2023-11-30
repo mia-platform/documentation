@@ -27,7 +27,7 @@ The [flow manager router](../../runtime_suite/flow-manager-router/overview) mana
 
 ## Identification Provider Adapter
 
-With the [Application service adapter template](../../preview/runtime_suite_templates/application-service-adapter/overview) it is possible to quickly implement a new integration for a custom identification service.
+With the [Application service adapter template](../../runtime_suite_templates/application-service-adapter/overview) it is possible to quickly implement a new integration for a custom identification service.
 
 In general, the resulting microservice needs to expose an interface compatible with the [flow manager service](../../runtime_suite/flow-manager-service/overview) and provide a correct mapping of the extracted data as described in the [previous section](./10_overview.md). 
 
