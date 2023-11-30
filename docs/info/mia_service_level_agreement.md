@@ -1,5 +1,5 @@
 ---
-id: mia-service-level-agreement
+id: mia_service_level_agreement
 title: Mia-Platform Service Level Agreement (SLA)
 sidebar_label: Service Level Agreement
 ---
