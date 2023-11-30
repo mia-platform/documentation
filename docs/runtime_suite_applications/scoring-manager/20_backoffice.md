@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Scoring Manager provides already configured pages that allow to perform actions on scoring processes and includes customizable dashboards to monitor custom KPIs.
 
-The pages are fully customizable, and they can be modified to implement a new functionalities and adapt to specific needs; for more details on how to configure the pages you can refer to [backoffice documentation](../../business_suite/backoffice/overview).
+The pages are fully customizable, and they can be modified to implement a new functionalities and adapt to specific needs; for more details on how to configure the pages you can refer to [backoffice documentation](../../microfrontend-composer/overview).
 
 The complete configuration of all pages is available on [GitHub](https://github.com/Mia-FinTech/payment-backoffice#--backoffice-templates---payment).
 It is also possible to define them as templates in your own project following this [guide](../../microfrontend-composer/composer/configurator_settings#template-sources), the URL to insert is `https://raw.githubusercontent.com/Mia-FinTech/scoring-backoffice/main/`.
