@@ -504,6 +504,10 @@ Example:
 
 This version of Projection Record update is emitted by [Projection Storer](/fast_data/projection_storer.md).
 
+:::note
+Version `v2.0.0` of Projection Record update event is recognized by Single View Creator plugin (for SV Patch functionality) starting from version `v6.1.0`.
+:::
+
 <details><summary>AsyncApi specification</summary>
 <p>
 
@@ -1315,7 +1319,7 @@ Example:
 #### Message format v2.0.0
 
 :::note
-Version `v2.0.0` of Single Update event is available starting from version `v6.1.0` of Single View Creator plugin. 
+Version `v2.0.0` of Single Update event is available starting from version `v6.3.0` of Single View Creator plugin. 
 :::
 
 This version of Single View Update event is emitted when service environment variable `SV_UPDATE_VERSION` is set to `v2.0.0`.
