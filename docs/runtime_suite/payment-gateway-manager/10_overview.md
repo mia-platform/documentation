@@ -36,7 +36,7 @@ Some providers may require additional fields, in which case they will be wrapped
 | Satispay   |                    |          |           |        | ✓        |          |       |
 | Scalapay   |                    |          |           |        |          | ✓        |       |
 | Soisy      |                    |          |           |        |          |          | ✓     |
-| Stripe     | ✓                  |          |           |        |          |          |       |
+| Stripe     | ✓                  |          |           | ✓      |          |          |       |
 
 ::: note
 Regarding Credit/Debit Cards, supported payment circuits are:

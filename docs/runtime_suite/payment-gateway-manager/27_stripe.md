@@ -15,6 +15,7 @@ In this page you will find the required information to perform REST calls relate
 | Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
 |----------------|---------|--------|------------------------|---------------------|
 | `credit-cards` | ✓       | ✓      | ✓                      |                     | 
+| `pay-pal`      | ✓       | ✓      | ✓                      |                     |
 
 |              | Enabled |
 |--------------|---------|
@@ -30,7 +31,16 @@ Every Stripe endpoint has this prefix path `/v3/stripe`
 
 This endpoint allows to execute payments via the Stripe payment provider.
 
-The request body does **not** require any additional data, thus the `providerData` field can be omitted.
+You can always define the following optional fields in `providerData`:
+```jsonc
+{
+  [...]
+  "providerData": {
+    "productName": "string",
+    "buyerEmail": "string",
+  }
+}
+```
 
 The payment response can have the following result codes:
 - **REDIRECT_TO_URL**: the payment was successfully submitted for settlement
@@ -52,11 +62,19 @@ The request body does not require any provider-specific data.
 
 This endpoint allows to start a new subscription via the Stripe provider.
 
-The request body does **not** require any additional data, thus the `providerData` field can be omitted.
+You can always define the following optional fields in `providerData`:
+```jsonc
+{
+  [...]
+  "providerData": {
+    "productName": "string",
+    "buyerEmail": "string",
+  }
+}
+```
 
 The `subscriptionInfo.interval` field accept the following values:
 - `MONTH`
-
 
 #### Expire
 
@@ -82,7 +100,7 @@ The request body does not require any provider-specific data.
 
 ### Callback
 
-`GET /callback`
+`POST /callback`
 This endpoint should only be called by Stripe.
 
 ## Stripe Dashboard Configuration
@@ -95,3 +113,4 @@ Some configurations are needed on the provider dashboard in order to be able to 
     - checkout.session.expired
     - invoice.payment_failed
     - invoice.payment_succeeded
+    - charge.refund.updated

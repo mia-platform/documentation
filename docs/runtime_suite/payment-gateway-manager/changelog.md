@@ -15,6 +15,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.2.0 - 29/11/2023
+
+### Updated
+
+- Payments Library to v1.0.5
+- Custom Plugin Quarkus to v1.0.1
+- update dependency com.adyen:adyen-java-api-library to v21.6.0
+- Quarkus v3.2.8.Final
+
+### Added
+
+- Ignore unknown properties on scalapay responses
+- metadata and action optional fields to PaymentStatus
+- Stripe optional providerData
+- Stripe supports PayPal
+
+### Fixed
+
+- fix Axerve recurrence details parsing for first payment
+- Subscriptions flow
+
+### Added
+- Ignore unknown properties on scalapay responses
+
 ## 3.1.0 - 12/09/2023
 
 ### Added
@@ -48,7 +72,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Scalapay callback supported payment status extended with `pending`, `partially_refunded` and `refunded_not_charged`
 
-## 2.9.0 - 05/12/2022
+## 2.10.2-quarkus & 2.10.2-ktor - 28/09/2023
+
+### update
+- ignore unknown status from scalapay response
+
+## 2.10.1-quarkus & 2.10.1-ktor - 11/07/2023
+
+### Fixed
+- /saga/pay for Google Pay payments
+- date format jackson deserialization of recordedAt capture date for scalapay
+
+## 2.10.0-quarkus & 2.10.0-ktor - 15/02/2023
+
+### Changed
+- Changed /pay reply with additional (optional) metadata field
+
+### Added
+- Flow Manager Service (REST) integration
+  - /saga/payment-methods API to retrieve available payment methods given a saga (Adaptive checkout)
+  - /saga/pay, /saga/confirm and /saga/refund APIs for Flow Manager communication
+  - Events to be sent to Flow Manager when enabled
+- Status endpoint for Apple Pay payments
+- Status endpoint for Google Pay payments
+- Status endpoint for credit cards payments
+- Status endpoint for PayPal payments
+- Stripe payment provider (quarkus)
+
+## 2.9.0-quarkus & 2.9.0-ktor - 05/12/2022
+
+::: warning
+From version 2.9.0 the framework used is changed from ktor to quarkus.
+Until version 3.0.0 will be available both framework, and you can choose the framework you prefer by adding the related suffix to the tag name.
+:::
 
 ### Added
 
@@ -58,7 +114,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Amount zero for recurrents payments
+- Amount zero for recurrent payments
 
 ## 2.8.1 - 09/11/2022
 
@@ -74,7 +130,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Support of Paypal refund with Gestpay (Axerve) provider
+- Support of PayPal refund with Gestpay (Axerve) provider
 
 ### Fixed
 

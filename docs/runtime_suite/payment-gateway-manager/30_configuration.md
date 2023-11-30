@@ -20,8 +20,6 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 * **HTTP_PORT**
 * **ENABLED_PROVIDERS** (required): comma separated list of payment providers enabled at runtime
 * **PAYMENT_CALLBACK_URL** (required): URL used to notify other services about a payment transaction result
-* **PGM_PUBLIC_URL** (required): URL where this service is exposed 
-(e.g. `http://my-domain/payment-gateway-manager`)
 * **FLOW_MANAGER_URL**: url of the Flow Manager service. If set, Flow Manager related features are enabled
 * **SAGA_CRUD_URL** (required if FLOW_MANAGER_URL is set): url of the saga CRUD collection
 * **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH**: path to config map defining available payment methods based on rules
@@ -154,6 +152,14 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 
 ## Provider Specific Environment Variables
 
+### Adyen
+
+* **ADYEN_IS_TEST** (required): can be "true" or "false". Specifies whether the PGM should point to Adyen Test or Live environment.
+* **ADYEN_PRIVATE_KEY** (required): [API Key](https://docs.adyen.com/development-resources/api-credentials) header for authentication on Adyen.
+* **ADYEN_LIVE_URL** (required conditionally): [Live URL prefix](https://docs.adyen.com/development-resources/api-credentials) for Adyen requests, used only in the Live environment.
+* **ADYEN_MERCHANT_ACCOUNT** (required): the Adyen merchant account to point to.
+* **ADYEN_HMAC_KEY** (required): [HMAC signature](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures) to verify the notification authenticity.
+
 ### Axerve
 
 * **AXERVE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Axerve Sandbox or Production environment.
@@ -185,25 +191,19 @@ user after completing a payment via the Satispay mobile app
 * **SCALAPAY_API_KEY** (required)
 * **SCALAPAY_SUCCESS_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a successful transaction. (Overridable via request body)
 * **SCALAPAY_FAILURE_REDIRECT_URL** (required): address to which the buyer will be directed at the end of a failed transaction. (Overridable via request body)
+* **PGM_PUBLIC_URL**: URL where this service is exposed (e.g. `https://my-domain/payment-gateway-manager`)
 
 ### Soisy
 
 * **SOISY_SHOP_ID** (required)
 * **SOISY_PARTNER_KEY** (required): X-Auth-Token header for authentication on Soisy.
 * **SOISY_BASE_URL** (required): Base URL of the Soisy provider.
+* **PGM_PUBLIC_URL**: URL where this service is exposed (e.g. `https://my-domain/payment-gateway-manager`)
 
 ### Stripe
 
 * **STRIPE_BASE_URL** (required): Base URL of the Stripe provider.
 * **STRIPE_PRIVATE_KEY** (required): Stripe API private key.
-
-### Adyen
-
-* **ADYEN_IS_TEST** (required): can be "true" or "false". Specifies whether the PGM should point to Adyen Test or Live environment.
-* **ADYEN_PRIVATE_KEY** (required): [API Key](https://docs.adyen.com/development-resources/api-credentials) header for authentication on Adyen.
-* **ADYEN_LIVE_URL** (required conditionally): [Live URL prefix](https://docs.adyen.com/development-resources/api-credentials) for Adyen requests, used only in the Live environment. 
-* **ADYEN_MERCHANT_ACCOUNT** (required): the Adyen merchant account to point to.
-* **ADYEN_HMAC_KEY** (required): [HMAC signature](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures) to verify the notification authenticity.
 
 ### External service
 
