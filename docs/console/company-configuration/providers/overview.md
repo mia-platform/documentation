@@ -73,4 +73,4 @@ The following table shows the providers currently supported by the Console, grou
    </tbody>
 </table>
 
-The supported version of the services are present in [this table](/self_hosted/self_hosted_requirements.md#software-and-hardware-prerequisites).
+The supported version of the services are present in [this table](/infrastructure/self-hosted/self-hosted-requirements.md#software-and-hardware-prerequisites).

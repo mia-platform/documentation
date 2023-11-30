@@ -32,7 +32,7 @@ Example of a mlp.yaml file:
 
 ### Step 3
 The last step is to setup a pipeline. 
-For detailed information follow this link [Pipeline setup](/development_suite/deploy/pipeline-configuration.md)
+For detailed information follow this link [Pipeline setup](/infrastructure/self-hosted/pipeline-configuration.md)
 
 For building and pushing images to a private registry it can be created a docker job.
 

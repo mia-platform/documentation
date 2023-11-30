@@ -277,7 +277,7 @@ You must be in the _Runtime_ section of the Console to perform this action.
 
 For more information on monitoring the infrastructure please see the [dedicated](/development_suite/monitoring/introduction.md) page.
 
-For more information about monitoring CPU and memory using Grafana please see the _Set Requests and Limits of a Microservice_ [tutorial](/getting-started/tutorials/set-requests-limits-of-a-microservice.mdx#monitoring-cpu-and-memory-usage).
+For more information about monitoring CPU and memory using Grafana please see the _Set Requests and Limits of a Microservice_ [tutorial](/console/tutorials/set-requests-limits-of-a-microservice.mdx#monitoring-cpu-and-memory-usage).
 
 You can also set the Console homepage to show environment metrics by using the [Metrics homepage](/development_suite/overview-dev-suite.md#metrics-homepage).
 
