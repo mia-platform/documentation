@@ -15,7 +15,7 @@ The template comes with a set of APIs already integrated with Trustfull systems.
 
 ### GET - /ping
 
-This API performs a get request to Trustfull system to check if the user is authenticated correctly. Client information is given by the environment variables `APIKEY`. The service calls the Fido API and returns its response.
+This API performs a get request to Trustfull system to check if the user is authenticated correctly. Client information is given by the environment variables `APIKEY`. The service calls the Trustfull API and returns its response.
 
 ### GET - /{customerId}
 
