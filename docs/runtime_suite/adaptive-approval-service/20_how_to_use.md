@@ -68,3 +68,11 @@ When this endpoint is called, the service performs the following steps:
 2. sort the rules by the `priority` field in descending order
 3. compares the payload with the rules found
 4. returns the data defined in the first verified rule; if no rule is verified then a 404 is returned
+
+The expected request body has the following schema:
+```jsonc
+{
+    "type": { "type": "string" },
+    "data": { "type": "object" }
+}
+```

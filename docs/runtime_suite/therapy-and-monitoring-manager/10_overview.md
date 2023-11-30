@@ -386,7 +386,7 @@ The integrated validation system currently supports the following threshold vali
 }
 ```
 
-- *numeric range* (`between`, `notBetween`): allows you to specify a minimum and maximum value, and if the actual detection property has a value inside (when using the `between` operator) or outside (when using the `notBetween` operator) that range, the threshold is considered exceeded;
+- *numeric range* (`between`, `notBetween`): allows you to specify a minimum and maximum value, and if the actual detection property has a value inside (when using the `between` operator) or outside (when using the `notBetween` operator) that range, the threshold is considered exceeded. Values at the limits of the specified range exceed the threshold, like when using the `lte` and the `gte` operators;
 
 ```json
 {
@@ -426,6 +426,19 @@ If you are using an external validation system and want that system to be respon
 
 :::
 
+## Functional test
+
+A collection of tests for the integration  with the [Notification Manager][notification-manager-doc] has been implemented in Postman. The test suite and its environment variables can be downloaded from the following links: <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/integration_tests_with_notification_manager.postman_collection.json">test suite</a>, <a download target="_blank" href="/docs_files_to_download/therapy-and-monitoring-manager/integration_tests_with_notification_manager.postman_environment.json">environment</a>.
+
+The test suite covers the following requests:
+
+- Creation of a Therapy: `POST /therapies/`
+- Update of an Therapy: `PATCH /therapies/:id`
+- Deletion of a Therapy: `DELETE /therapies/:id`
+- Creation of a Monitoring: `POST /monitorings/`
+- Update of an Monitoring: `PATCH /monitorings/:id`
+- Deletion of a Monitoring: `DELETE /monitorings/:id`
+- Creation of a Detection: `POST /detections/`
 
 [thresholds]: #thresholds "Thresholds | Overview"
 

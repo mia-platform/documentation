@@ -187,6 +187,75 @@ The following table summarizes which environment variable contains the default v
 | complianceStatus            | DEFAULT_COMPLIANCE_STATUS             |
 | complianceMinimumPercentage | DEFAULT_COMPLIANCE_MINIMUM_PERCENTAGE |
 
+If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the handler sends a request to the `POST /notification-events/` endpoint of the Notification Manager, including the following information in the request body:
+
+- **key** (string, required)*: the identifier for the newly created therapy or monitoring.
+- **name** (string, required)*: the event name, which is `TMM/TherapyCreated/v1` for therapies and `TMM/MonitoringCreated/v1` for monitorings.
+- **payload** (object, required)*: the request body.
+
+Here are two examples of events related to a new therapy and monitoring created respectively.
+
+```json
+{
+  "key": "f81f1bad-6e6f-49c0-b3d6-1494cfe2853f",
+  "name": "TMM/TherapyCreated/v1",
+  "payload": {
+    "planName": "Drug therapy",
+    "prototypeId": "medication",
+    "directives": {
+      "drugName": "Aspirin 500mg",
+      "drugDosage": "500mg/day"
+    },
+    "startDate": "2022-06-01",
+    "endDate": "2022-06-15",
+    "doctorId": "auth0|doctorId",
+    "patientId": "auth0|patientId",
+    "each": ["day"],
+    "hours": ["10"],
+    "adherenceStatus": "enabled",
+    "adherenceToleranceTime": 1,
+    "adherenceMinimumPercentage": 90,
+    "complianceStatus": "enabled",
+    "complianceMinimumPercentage": 90,
+  }
+}
+```
+
+```json
+{
+  "key": "dd486151-9b53-4fd4-b7d6-74c5c6dfbba5",
+  "name": "TMM/MonitoringCreated/v1",
+  "payload": {
+    "planName": "Blood pressure monitoring",
+    "prototypeId": "bloodPressure",
+    "notes": "Takes the blood pressure twice a day",
+    "startDate": "2022-06-01",
+    "endDate": "2022-06-15",
+    "doctorId": "auth0|doctorId",
+    "patientId": "auth0|patientId",
+    "each": ["day"],
+    "times": 2,
+    "adherenceStatus": "enabled",
+    "adherenceToleranceFrequency": 1,
+    "adherenceMinimumPercentage": 90,
+    "complianceStatus": "enabled",
+    "complianceMinimumPercentage": 90,
+    "thresholds": [
+      {
+        "propertyName": "minimumBloodPressure",
+        "thresholdOperator": "between",
+        "thresholdValue": [60, 100]
+      },
+      {
+        "propertyName": "maximumBloodPressure",
+        "thresholdOperator": "between",
+        "thresholdValue": [100, 140]
+      }
+    ],
+  }
+}
+```
+
 ### `PATCH /<therapies|monitorings>/:id`
 
 Update an existing therapy or monitoring plan identified by the `:id` path parameter. These endpoints are a proxy to the CRUD `PATCH /:id` endpoint.
@@ -275,6 +344,13 @@ These endpoints return 400 and a body with the structure shown below if one of f
 }
 ```
 
+If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the handler will send a request to the `POST /notification-events/` endpoint of the Notification Manager, including the following information in the request body:
+- **key**(*string*): the identifier for the updated therapy or monitoring.
+- **name**(*string*):  the event name, which is `TMM/TherapyUpdated/v1` for therapies and `TMM/MonitoringUpdated/v1` for monitorings.
+- **payload**(*object*):
+  - <**originalTherapy**||**originalMonitoring**>(*object*): The original therapy  or monitoring (before the update).
+  - <**currentTherapy**||**currentMonitoring**>(*object*): The updated therapy or monitoring (after the update).
+
 ### `DELETE /<therapies|monitorings>/:id`
 
 Delete an existing therapy or monitoring plan identified by the `:id` path parameter. These endpoints are a proxy to the CRUD `DELETE /:id` endpoint.
@@ -295,6 +371,11 @@ Detections represent tasks performed by the patient and are related to therapies
 | isCompliant | Yes                 | It indicates if the detection is compliant to what the physician has descripted in the plan. This value is submitted by the patient. |
 | doctorId               | No                  | Identifier of the doctor that creates the detection. Note that the doctor that creates the detection can be different from the physician that created the monitoring or therapy plan. |
 | patientId              | Yes                 | Identifier of the patient that creates the detection. |
+
+If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the handler will send a request to the `POST /notification-events/` endpoint of the Notification Manager, including the following information in the request body:
+- **key** (string): the identifier of the deleted therapy or monitoring.
+- **name** (string): the event name, which is `TMM/TherapyDeleted/v1` for therapies and `TMM/MonitoringDeleted/v1` for monitorings.
+- **payload**(*object*): the deleted therap or monitoring.
 
 ### `GET /detections/`
 
@@ -318,7 +399,10 @@ These endpoints return 200 and the number of detections matching the query.
 
 ### `POST /detections/`
 
-Insert a new detection in the CRUD and call the validation service to check if the detection exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable][environment-variables] is set, send a notification to the physician through the messaging service.
+Insert a new detection in the CRUD and performs the following operations:
+
+- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds;
+- if the [`NOTIFICATION_MANAGER_URL` environment variable][environment-variables] is set, send a notification to the physician through the Notification Manager service.
 
 This endpoint is a proxy to the CRUD `POST /` endpoint.
 
@@ -371,7 +455,10 @@ This endpoint returns 400 and a body with the structure shown below if the detec
 
 ### `PATCH /detections/:id`
 
-Update an existing detection identified by the `:id` path parameter and, if the value has changed, call the validation service to check if the detection exceeds any of the monitoring thresholds; if so, and the `MESSAGING_SERVICE_URL` [environment variable][environment-variables] is set, send a notification to the physician through the messaging service.
+Update an existing detection identified by the `:id` path parameter and performs the following operations:
+
+- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds;
+- if the [`NOTIFICATION_MANAGER_URL` environment variable][environment-variables] is set, send a notification to the physician through the Notification Manager service.
 
 This endpoint is a proxy to the CRUD `PATCH /:id` endpoint.
 
