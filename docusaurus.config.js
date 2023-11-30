@@ -247,24 +247,20 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "11.x.x",
+            lastVersion: "current",
             versions: {
               current: {
-                label: "12.x (Preview)",
-                path: "preview",
+                label: "12.x (Current)",
+                path: "",
                 banner: "none"
               },
               "11.x.x": {
-                label: "11.7.1",
-                path: "",
+                label: "11.7.x",
+                path: "11.x",
               },
               "10.x.x": {
                 label: "10.9.x",
                 path: "10.x",
-              },
-              "9.x.x": {
-                label: "9.5.x",
-                path: "9.x",
               },
             },
             async sidebarItemsGenerator({
