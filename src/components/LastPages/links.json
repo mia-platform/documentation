@@ -38,14 +38,30 @@
     {
       "url": "/cli/miactl/examples",
       "title": "miactl CLI Examples"
-    },
+        },
     {
       "url": "/console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
       "title": "Manage Environment Variables with Azure Key Vault"
     },
     {
+      "url": "/console/tutorials/configure-marketplace-components/auth-architecture/intro",
+      "title": "Tutorial: Auth Architecture Introduction"
+    },
+    {
+      "url": "/console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
+      "title": "Tutorial: Integrate an external Identity Provider"
+    },
+    {
+      "url": "/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
+      "title": "Tutorial: Centralize the authentication in a multi-projects architecture"
+    },
+    {
       "url": "/development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
       "title": "Envoy Use Case: JWT Authentication"
+    },
+    {
+      "url": "/development_suite/api-console/api-design/listeners",
+      "title": "Create Listeners"
     },
     {
       "url": "/fast_data/configuration/config_maps/projection_changes_schema",
@@ -68,19 +84,11 @@
       "title": "Bootstrapping Fast Data"
     },
     {
-      "url": "/getting-started/tutorials/architecture/auth/external-idp",
-      "title": "Tutorial: Integrate an external Identity Provider"
+      "url": "/getting-started/tutorials",
+      "title": "Tutorials"
     },
     {
-      "url": "/getting-started/tutorials/architecture/auth/intro",
-      "title": "Tutorial: Auth Architecture Introduction"
-    },
-    {
-      "url": "/getting-started/tutorials/architecture/auth/multiple-projects",
-      "title": "Tutorial: Centralize the authentication in a multi-projects architecture"
-    },
-    {
-      "url": "/getting-started/tutorials/microfrontend-composer/basics",
+      "url": "/microfrontend-composer/tutorials/basics",
       "title": "Microfrontend Composer Tutorial Basics"
     },
     {
@@ -89,7 +97,7 @@
     },
     {
       "url": "/marketplace/add_to_marketplace/contributing_overview",
-      "title": " Contributing to the Marketplace"
+      "title": "Contributing to the Marketplace"
     },
     {
       "url": "/marketplace/compatibility_matrices/mongo_compatibility_matrix",
@@ -97,7 +105,7 @@
     },
     {
       "url": "/microfrontend-composer/overview",
-      "title": " Microfrontend Composer overview"
+      "title": "Microfrontend Composer overview"
     },
     {
       "url": "/release-notes/v12-overview",
@@ -112,6 +120,14 @@
       "title": "Rules Service Overview"
     },
     {
+      "url": "/runtime_suite/adaptive-approval-service/how_to_use",
+      "title": "How to use"
+    },
+    {
+      "url": "/runtime_suite/adaptive-approval-service/configuration",
+      "title": "Configuration"
+    },
+    {
       "url": "/runtime_suite/api-gateway/overview",
       "title": "API Gateway Overview"
     },
@@ -124,19 +140,19 @@
       "title": "API Portal Overview"
     },
     {
-      "url": "/self_hosted/installation-chart/how_to_upgrade",
-      "title": "How to Upgrade your self-hosed Console"
-    },
-    {
-      "url": "/self_hosted/installation-chart/overview",
+      "url": "/infrastructure/self-hosted/installation-chart/overview",
       "title": "Installation Chart Overview"
     },
     {
-      "url": "/self_hosted/installation-chart/general_settings",
+      "url": "/infrastructure/self-hosted/installation-chart/how-to-upgrade",
+      "title": "How to Upgrade your self-hosed Console"
+    },
+    {
+      "url": "/infrastructure/self-hosted/installation-chart/general-settings",
       "title": "Installation Chart General Settings"
     },
     {
-      "url": "/self_hosted/installation-chart/installation_chart_example",
+      "url": "/infrastructure/self-hosted/installation-chart/installation-chart-example",
       "title": "Installation Chart Example"
     }
   ]

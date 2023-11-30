@@ -16,12 +16,80 @@
     "title": "Examples"
   },
   {
+    "url": "/console/company-configuration/providers/overview",
+    "title": "Providers Overview"
+  },
+  {
+    "url": "/console/project-configuration/docker-registry-configuration",
+    "title": "Docker Registry Configuration"
+  },
+  {
     "url": "/console/project-configuration/environment-variables-introduction",
     "title": " Environment Variables Introduction"
   },
   {
     "url": "/console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
     "title": "Manage Environment Variables with Azure Key Vault"
+  },
+  {
+    "url": "/console/project-configuration/manage-runtime-environments/configure-a-new-environment",
+    "title": "Configure a New Environment"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/api-portal",
+    "title": "API portal documentation"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
+    "title": "Integrate an external Identity Provider but manage session and user groups within your project"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
+    "title": "Integrate an external Identity Provider"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/intro",
+    "title": "Auth Architecture Introduction"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
+    "title": "Centralize the authentication in a multi-projects architecture"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
+    "title": "Use static API Keys"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/create-a-custom-microservice",
+    "title": "Create a custom Microservice"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/flow-manager",
+    "title": "Flow Manager"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/microservice-hello-world",
+    "title": "Hello World Microservice"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/microservice-with-metrics",
+    "title": "Add metrics to your custom Microservice"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data",
+    "title": "REST API for CRUD on data"
+  },
+  {
+    "url": "/console/tutorials/microservice-from-docker-image",
+    "title": "Create a Microservice from a Docker Image"
+  },
+  {
+    "url": "/console/tutorials/protect-your-endpoints-with-policies",
+    "title": "Protect your endpoints with policies"
+  },
+  {
+    "url": "/console/tutorials/set-requests-limits-of-a-microservice",
+    "title": "Set Requests and Limits of a Microservice"
   },
   {
     "url": "/development_suite/api-console/advanced-section/api-gateway-envoy/extensions",
@@ -32,16 +100,88 @@
     "title": "Envoy Use Case: JWT Authentication"
   },
   {
+    "url": "/development_suite/api-console/api-design/endpoints",
+    "title": "Create Endpoints"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/listeners",
+    "title": "Create Listeners"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/public_variables",
+    "title": "Public Variables"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/services",
+    "title": "Configure your Services"
+  },
+  {
+    "url": "/development_suite/set-up-infrastructure/enhanced-project-workflow",
+    "title": "Enhanced Project Workflow"
+  },
+  {
+    "url": "/fast_data/configuration/cast_functions",
+    "title": "Cast Functions Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/config_maps/aggregation",
+    "title": "Aggregation Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/config_maps/erSchema",
+    "title": "ER Schema Configuration"
+  },
+  {
     "url": "/fast_data/configuration/config_maps/projection_changes_schema",
     "title": "Projection Changes Schema Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/indexes",
+    "title": "Indexes"
+  },
+  {
+    "url": "/fast_data/configuration/overview",
+    "title": "Configuration Overview"
+  },
+  {
+    "url": "/fast_data/configuration/projections",
+    "title": "Projections Configuration"
   },
   {
     "url": "/fast_data/configuration/realtime_updater",
     "title": "Real-Time Updater Configuration"
   },
   {
+    "url": "/fast_data/configuration/overview",
+    "title": "Single View Creator Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/patch",
+    "title": "Single View Patch"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/plugin",
+    "title": "Single View Creator Plugin"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/template",
+    "title": "Single View Creator Template"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/upsert_delete_strategies",
+    "title": "Upsert and Delete Strategies"
+  },
+  {
     "url": "/fast_data/configuration/single_view_trigger_generator",
     "title": "Single View Trigger Generator"
+  },
+  {
+    "url": "/fast_data/configuration/single_views",
+    "title": "Single Views Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/strategies",
+    "title": "Strategies Configuration"
   },
   {
     "url": "/fast_data/connectors/overview_connectors",
@@ -56,36 +196,60 @@
     "title": "Fast Data Versioning"
   },
   {
+    "url": "/fast_data/faq/parallel_svc",
+    "title": "Have multiple single view creator for one single view"
+  },
+  {
+    "url": "/fast_data/inputs_and_outputs",
+    "title": "Inputs and Outputs"
+  },
+  {
+    "url": "/fast_data/monitoring/dashboards/single_views",
+    "title": "Single Views"
+  },
+  {
+    "url": "/fast_data/no_code_overview",
+    "title": "Fast Data Low Code/ No Code Overview"
+  },
+  {
+    "url": "/fast_data/single_view_creator",
+    "title": "Single View Creator"
+  },
+  {
+    "url": "/fast_data/single_view_trigger_generator",
+    "title": "Single View Trigger Generator"
+  },
+  {
+    "url": "/fast_data/tutorials/bucket-storage-support",
+    "title": "Bucket Storage Support"
+  },
+  {
+    "url": "/fast_data/tutorials/low-code",
+    "title": "Fast Data Low Code"
+  },
+  {
+    "url": "/fast_data/tutorials/migration",
+    "title": "Mia-Platform Fast Data Migration"
+  },
+  {
+    "url": "/getting-started/handbooks/console/project-development",
+    "title": "Project Development"
+  },
+  {
+    "url": "/getting-started/handbooks/crud-service/crud-oss-usage",
+    "title": "CRUD OSS Usage"
+  },
+  {
+    "url": "/getting-started/handbooks/project/usage",
+    "title": "Project Usage Handbook"
+  },
+  {
     "url": "/getting-started/mia-platform-overview",
     "title": "Mia-Platform Overview"
   },
   {
-    "url": "/getting-started/tutorials/architecture/auth/external-idp-internal-session",
-    "title": "Integrate an external Identity Provider but manage session and user groups within your project"
-  },
-  {
-    "url": "/getting-started/tutorials/architecture/auth/external-idp",
-    "title": "Integrate an external Identity Provider"
-  },
-  {
-    "url": "/getting-started/tutorials/architecture/auth/intro",
-    "title": "Auth Architecture Introduction"
-  },
-  {
-    "url": "/getting-started/tutorials/architecture/auth/multiple-projects",
-    "title": "Centralize the authentication in a multi-projects architecture"
-  },
-  {
-    "url": "/getting-started/tutorials/architecture/auth/static-api-key",
-    "title": "Use static API Keys"
-  },
-  {
     "url": "/getting-started/tutorials",
     "title": "Tutorials"
-  },
-  {
-    "url": "/getting-started/tutorials/microfrontend-composer/basics",
-    "title": "Microfrontend Composer Tutorial Basics"
   },
   {
     "url": "/getting-started/videos",
@@ -96,12 +260,164 @@
     "title": "Microfrontend Composer Video"
   },
   {
+    "url": "/infrastructure/byoi/byoi-overview",
+    "title": "Mia-Platform Bring Your Own Infrastructure"
+  },
+  {
+    "url": "/infrastructure/infrastructure_overview",
+    "title": " Mia-Platform Infrastructure overview"
+  },
+  {
+    "url": "/infrastructure/paas/business-continuity",
+    "title": " Business Continuity and Disaster Recovery"
+  },
+  {
+    "url": "/infrastructure/paas/maintenance",
+    "title": "Mia-Platform PaaS Maintenance"
+  },
+  {
+    "url": "/infrastructure/paas/overview",
+    "title": "Mia-Platform PaaS"
+  },
+  {
+    "url": "/infrastructure/paas/secret-scanning",
+    "title": "Secret Scanning"
+  },
+  {
+    "url": "/infrastructure/paas/security-measures",
+    "title": "Security Measures"
+  },
+  {
+    "url": "/infrastructure/paas/tools/cert-manager",
+    "title": " Cert-Manager"
+  },
+  {
+    "url": "/infrastructure/paas/tools/docker-registry",
+    "title": " Docker Registry"
+  },
+  {
+    "url": "/infrastructure/paas/tools/grafana",
+    "title": " Grafana"
+  },
+  {
+    "url": "/infrastructure/paas/tools/kube-green",
+    "title": " Kube-Green"
+  },
+  {
+    "url": "/infrastructure/paas/tools/message-broker",
+    "title": " Message Broker"
+  },
+  {
+    "url": "/infrastructure/paas/tools/mtls",
+    "title": " mTLS"
+  },
+  {
+    "url": "/infrastructure/paas/tools/runtime",
+    "title": " Runtime"
+  },
+  {
+    "url": "/infrastructure/paas/tools/telepresence",
+    "title": "Telepresence"
+  },
+  {
+    "url": "/infrastructure/paas/tools/traefik",
+    "title": " Traefik"
+  },
+  {
+    "url": "/infrastructure/self-hosted/feature-toggle",
+    "title": "Feature Toggle"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/how-to-upgrade",
+    "title": "How to Upgrade"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/general-settings",
+    "title": "General Settings"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/service-specific-configurations",
+    "title": "Service Specific Configuration"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/authentication-provider",
+    "title": "Authentication Provider"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/mongodb-configurations-and-encryption",
+    "title": "MongoDB Configurations and Encryption"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/marketplace",
+    "title": "Marketplace"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/file-storage",
+    "title": "File Storage Management"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/email-setup",
+    "title": "Email Setup"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/license-management",
+    "title": "License management and tracking"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/first-user-and-company-creation",
+    "title": "Finalize Console installation and create the first entities"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/installation-chart-example",
+    "title": "Installation Chart Example"
+  },
+  {
+    "url": "/infrastructure/self-hosted/pipeline-configuration",
+    "title": "How to setup a Pipeline "
+  },
+  {
+    "url": "/infrastructure/self-hosted/private-clusters",
+    "title": " Private clusters"
+  },
+  {
+    "url": "/infrastructure/self-hosted/ranges-and-quotas",
+    "title": "Configure Limit Ranges and Resource Quotas"
+  },
+  {
+    "url": "/infrastructure/self-hosted/self-hosted-requirements",
+    "title": "Self-Hosted installation requirements"
+  },
+  {
+    "url": "/infrastructure/self-hosted/self-hosted-runtime-requirements",
+    "title": "Self-Hosted runtime installation requirements"
+  },
+  {
+    "url": "/infrastructure/self-hosted/synchronize-users",
+    "title": "Synchronize users with an Identity Provider"
+  },
+  {
+    "url": "/infrastructure/self-hosted/third-party-integrations/deployment-tools",
+    "title": " Deployment tools"
+  },
+  {
+    "url": "/infrastructure/self-hosted/troubleshooting",
+    "title": "Troubleshooting"
+  },
+  {
     "url": "/marketplace/add_to_marketplace/contributing_overview",
     "title": " Contributing to the Marketplace"
   },
   {
     "url": "/marketplace/compatibility_matrices/mongo_compatibility_matrix",
     "title": "MongoDB Compatibility Matrix"
+  },
+  {
+    "url": "/marketplace/tutorials/project-template-integrated-with-jenkins",
+    "title": "Create a project template integrated with Jenkins"
   },
   {
     "url": "/microfrontend-composer/back-kit/overview",
@@ -372,6 +688,22 @@
     "title": " Microfrontend Composer overview"
   },
   {
+    "url": "/microfrontend-composer/tutorials/auth0-integration",
+    "title": "Microfrontend Composer Integration with Auth0"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/basics",
+    "title": "Microfrontend Composer Tutorial Basics"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/microfrontends",
+    "title": "Microfrontend Composer Tutorial Microfrontends"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/templates",
+    "title": "Microfrontend Composer Templates"
+  },
+  {
     "url": "/release-notes/v12-overview",
     "title": "Mia-Platform v12"
   },
@@ -410,6 +742,22 @@
   {
     "url": "/runtime_suite/api-portal/configuration",
     "title": "API Portal Configuration"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/overview",
+    "title": "Appointment Manager"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/configuration",
+    "title": "Appointment Manager configuration"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/usage",
+    "title": "Appointment Manager Usage"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/performance",
+    "title": "Requests and limits"
   },
   {
     "url": "/runtime_suite/authentication-service/overview",
@@ -560,6 +908,22 @@
     "title": "The Flow manager client"
   },
   {
+    "url": "/runtime_suite/form-service-frontend/overview",
+    "title": "Form Service Frontend"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/form_assignments",
+    "title": "Form assignments"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/form_visualizer_styling",
+    "title": "Form visualizer styling"
+  },
+  {
     "url": "/runtime_suite/http-proxy-manager/overview",
     "title": "Proxy Manager"
   },
@@ -574,6 +938,18 @@
   {
     "url": "/runtime_suite/ingestion-reloader/configuration",
     "title": "Ingestion Reloader plugin"
+  },
+  {
+    "url": "/runtime_suite/integration-test-service/overview",
+    "title": "Integration Tests Service"
+  },
+  {
+    "url": "/runtime_suite/integration-test-service/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/integration-test-service/usage",
+    "title": "Usage"
   },
   {
     "url": "/runtime_suite/invoice-service/overview",
@@ -612,6 +988,18 @@
     "title": "Messaging Service Usage"
   },
   {
+    "url": "/runtime_suite/mia-fhir-adapter/overview_and_usage",
+    "title": "FHIR Adapter"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-adapter/files_management",
+    "title": "File Management"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-adapter/configuration",
+    "title": "Configuration"
+  },
+  {
     "url": "/runtime_suite/mia-fhir-server/overview_and_usage",
     "title": "Mia FHIR Server"
   },
@@ -646,6 +1034,18 @@
   {
     "url": "/runtime_suite/mongodb-reader/acl",
     "title": "ACL"
+  },
+  {
+    "url": "/runtime_suite/o3-dicom-service/overview",
+    "title": "DICOM Service"
+  },
+  {
+    "url": "/runtime_suite/o3-dicom-service/api_overview",
+    "title": "APIs Overview"
+  },
+  {
+    "url": "/runtime_suite/o3-dicom-service/configuration",
+    "title": "Configuration"
   },
   {
     "url": "/runtime_suite/payment-gateway-manager/overview",
@@ -840,6 +1240,18 @@
     "title": "APIs"
   },
   {
+    "url": "/runtime_suite/teleconsultation-service-backend/overview",
+    "title": "Teleconsultation Service Backend"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-backend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-backend/usage",
+    "title": "Usage"
+  },
+  {
     "url": "/runtime_suite/teleconsultation-service-frontend/overview",
     "title": "Teleconsultation Service Frontend"
   },
@@ -888,6 +1300,18 @@
     "title": "Timer Service Usage"
   },
   {
+    "url": "/runtime_suite/user-manager-service/overview",
+    "title": "User Manager Service"
+  },
+  {
+    "url": "/runtime_suite/user-manager-service/configuration",
+    "title": "User Manager Service configuration"
+  },
+  {
+    "url": "/runtime_suite/user-manager-service/usage",
+    "title": "User Manager Usage"
+  },
+  {
     "url": "/runtime_suite_applications/bucket-storage-support---gcp/overview",
     "title": "Overview"
   },
@@ -908,6 +1332,18 @@
     "title": "Overview"
   },
   {
+    "url": "/runtime_suite_applications/dev_portal/api_documentation_configuration",
+    "title": "API Documentation Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/identification-manager/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/identification-manager/configuration",
+    "title": "Configuration"
+  },
+  {
     "url": "/runtime_suite_applications/payment-integration-hub/overview",
     "title": "Overview"
   },
@@ -925,6 +1361,26 @@
   },
   {
     "url": "/runtime_suite_applications/payment-integration-hub/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/scoring-manager/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/scoring-manager/backoffice",
+    "title": "Backoffice"
+  },
+  {
+    "url": "/runtime_suite_applications/scoring-manager/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/secure-api-gateway/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/secure-api-gateway/configuration",
     "title": "Configuration"
   },
   {
@@ -1005,10 +1461,26 @@
   },
   {
     "url": "/runtime_suite_templates/digital-footprints-analytics/overview",
-    "title": "Fido Template"
+    "title": "Digital Footprints Analytics Template"
   },
   {
     "url": "/runtime_suite_templates/digital-footprints-analytics/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/faire.ai-adapter/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_templates/faire.ai-adapter/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/modefinance-adapter/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_templates/modefinance-adapter/configuration",
     "title": "Configuration"
   },
   {
@@ -1066,53 +1538,5 @@
   {
     "url": "/runtime_suite_tools/mlp/hydrate",
     "title": "hydrate Command"
-  },
-  {
-    "url": "/self_hosted/installation-chart/how_to_upgrade",
-    "title": "How to Upgrade"
-  },
-  {
-    "url": "/self_hosted/installation-chart/overview",
-    "title": "Overview"
-  },
-  {
-    "url": "/self_hosted/installation-chart/general_settings",
-    "title": "General Settings"
-  },
-  {
-    "url": "/self_hosted/installation-chart/service_specific_configurations",
-    "title": "Service Specific Configuration"
-  },
-  {
-    "url": "/self_hosted/installation-chart/authentication_provider",
-    "title": "Authentication Provider"
-  },
-  {
-    "url": "/self_hosted/installation-chart/mongodb_configurations_and_encryption",
-    "title": "MongoDB Configurations and Encryption"
-  },
-  {
-    "url": "/self_hosted/installation-chart/marketplace",
-    "title": "Marketplace"
-  },
-  {
-    "url": "/self_hosted/installation-chart/file_storage",
-    "title": "File Storage Management"
-  },
-  {
-    "url": "/self_hosted/installation-chart/email_setup",
-    "title": "Email Setup"
-  },
-  {
-    "url": "/self_hosted/installation-chart/license_management",
-    "title": "License management and tracking"
-  },
-  {
-    "url": "/self_hosted/installation-chart/first_user_and_company_creation",
-    "title": "Finalize Console installation and create the first entities"
-  },
-  {
-    "url": "/self_hosted/installation-chart/installation_chart_example",
-    "title": "Installation Chart Example"
   }
 ]
