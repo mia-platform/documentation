@@ -175,10 +175,7 @@ function Home() {
                 </div>
                 <div className="col col--4">
                   <div className="row">
-                    <LastPages
-                        description={recentLinks.description}
-                        title={recentLinks.title}
-                    />
+                    TBC
                   </div>
                 </div>
 
