@@ -365,6 +365,24 @@ Get a Marketplace item
 
 #### Synopsis
 
+##### Stable version
+
+Get a single Marketplace item
+
+You need to specify the ObjectID of the item with the flag object-id
+
+```bash
+miactl marketplace get --object-id object-id [FLAGS]...
+```
+
+##### Alpha version
+
+:::warning
+
+This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
+
+:::
+
 Get a single Marketplace item
 
 You need to specify either:
@@ -384,6 +402,24 @@ Delete a Marketplace item
 
 #### Synopsis
 
+##### Stable version
+
+Delete a single Marketplace item
+
+You need to specify the ObjectID of the item with the flag object-id
+
+```bash
+miactl marketplace get --object-id object-id [FLAGS]...
+```
+
+#### ALPHA version
+
+:::warning
+
+This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
+
+:::
+
 Delete a single Marketplace item
 
 You need to specify either:
@@ -393,7 +429,7 @@ You need to specify either:
 Passing the ObjectID is expected only when dealing with deprecated Marketplace items missing the itemId and/or version fields.
 Otherwise, it is preferable to pass the tuple companyId-itemId-version.
 
-```
+```bash
 miactl marketplace delete { --item-id item-id --version version } | --object-id object-id [flags]...
 ```
 
