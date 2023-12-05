@@ -88,6 +88,30 @@ Here can be found an example <a download target="_blank" href="/docs_files_to_do
 Through the setting button in the top right it is possible to filter out the events based on their type. In other words it is possible to hide the exceptions, the availability, or both types of event.
 In the same dropdown menu is present the time zoom option that allows the user to zoom in the calendar. This feature is especially useful when very short events are present. The default zoom is 1 hour. It is possible to zoom in up to 10 minutes.
 
+### Appointment participants
+
+If the appointment manager is configured to support [user participants](../../runtime_suite/appointment-manager/overview#user-participants), appointments slots will have a custom appearance to show the status of the current logged user and the other appointment attendants, as shown in figure:
+
+![appointment-ap](../img/appointment_participants.png)
+
+The status of a slot is inferred from its participants acceptance status, with the following rules:
+
+- The slot is said to be **AVAILABLE** if it has not yet been booked by anyone
+- The slot is said to be **BOOKED** if it has been booked from someone and is no longer available to be booked by someone else. 
+- The slot is set to **ACCEPTED** if the current logged user has confirmed its participation in the appointment.
+- The slot is said to be **DECLINED** if the current logged user has declined its participation in the appointment. 
+- The slot is said to be **NOT_CONFIRMED** if the current user has not yet confirmed or declined the appointment. 
+- The slot is said to be **ABANDONED** if all participants in the related appointment have declined their participation.
+  The slot is said to be **CANCELLED** if an exception overlaps the related availability and the related appointment in inaccessible
+
+Hovering the parent slot displays the appointment status in the tooltip and modal, as well as an option to configure the appointment participation for the logged user.
+
+:::caution
+
+For the participant status to be correctly shown, please ensure the calendar is set to work in [Appointment Mode](#Appointment mode) and the AppointmentConfig _**currentUserFieldName**_ and _**updateParticipantsStatusEndpoint**_ properties are properly configured, as well the Resource config to be set to **_currentUser_**=true.
+
+:::
+
 ## Properties & Attributes
 
 | property                           | type | required | default    | description                                                                                                                                                                                                                                  |
