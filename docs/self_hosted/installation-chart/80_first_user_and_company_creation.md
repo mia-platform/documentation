@@ -26,7 +26,8 @@ First of all you need to designate the first Super User, to do so you need to ha
 {
   "bindingId": "super-users",
   "subjects": ["<_id of the user you want to be super user>"],
-  "roles": ["console-super-user"]
+  "roles": ["console-super-user"],
+  "__STATE__": "PUBLIC"
 }
 ```
 
