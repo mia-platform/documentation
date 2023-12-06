@@ -1520,5 +1520,13 @@
   "/docs/infrastructure/third-party-integrations/deployment-tools": {
     "destination": "/docs/infrastructure/self-hosted/third-party-integrations/deployment-tools",
     "addedOn": "2023-11-28"
+  },
+  "/development_suite/api-console/api-design/marketplace/": {
+    "destination": "/docs/marketplace/overview_marketplace",
+    "addedOn": "2023-12-06"
+  },
+  "/development_suite/api-console/api-design/services/": {
+    "destination": "/docs/development_suite/api-console/api-design/services/",
+    "addedOn": "2023-12-06"
   }
 }
