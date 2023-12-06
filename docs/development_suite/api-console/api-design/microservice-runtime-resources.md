@@ -8,12 +8,13 @@ The _Runtime Card_ contains settings that will be used at Runtime by the underly
 
 ![runtime-section](img/Runtime-card.png)
 
-## Liveness & Readiness Probes
+## Probes
 
-In a micro-service, two different kind of probes can be exposed:
+In a micro-service, three different kind of probes can be exposed:
 
 * **Readiness**: tells the cluster orchestrator when a micro-service can accept traffic; 
 * **Liveness**: tells the cluster orchestrator if a micro-service is up-and-running.
+* **Startup**: tells the cluster orchestrator if a micro-service has been completely booted.
 
 To learn more about probes, please refer to the [Kubernetes official API documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes).
 
