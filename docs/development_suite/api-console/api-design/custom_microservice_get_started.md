@@ -51,7 +51,7 @@ Following the steps for the creation of an endpoint:
     * **description**: the endpoint description
  4. Click on the `Create` button and your endpoint will be created
 
-### 3. Deploy the project
+### 3. Save the project
 
 Finally it's time to save our configuration, so:
 
