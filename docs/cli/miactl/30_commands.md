@@ -344,7 +344,7 @@ All the subcommands inherit the following flags:
       --context string                 the name of the miactl context to use
       --endpoint string                the address and port of the Mia-Platform Console server
       --insecure-skip-tls-verify       if true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
-      --verbose                        increase the verbosity of the cli output
+  -v  --verbose                        increase the verbosity of the cli output
 ```
 
 ### list
