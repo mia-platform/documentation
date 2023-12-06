@@ -32,4 +32,7 @@ This components are designed to be used inside Mia-Platform [Microfrontend Compo
   - [ck-chart](20_components/70_ck-chart.md)
   - [ck-layout-select](20_components/80_ck-layout-select.md)
 
+### Notification Card Component
+  - [ck-notification-card](20_90_ck-notification-card.md) 
+
 Some of the components work using custom events. For info on the custom events see [here](30_events.md)
