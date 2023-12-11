@@ -101,7 +101,7 @@ Property `helpMenu` accepts an object with key `helpHref`. The Layout uses it to
 
 The Layout fetches information about the currently logged user by calling the endpoint specified in property `userInfoUrl`.
 
-A user-menu can be rendered inside Layout, by configuring property `userMenu`. The user menu allows to log-out and displays information about he logged user.
+A user-menu can be rendered inside Layout, by configuring property `userMenu`. The user menu allows to log-out and displays information about the logged user. The menu trigger can be configured using the property `userMenuTrigger` that accepts `hover` or `click` as value.
 
 `userMenu` accepts keys:
 - `logout`: object with keys `url`, `method`, `redirectUrl` representing the call to execute to log-out
@@ -440,17 +440,18 @@ Loggin out can be performed from the user-menu, which performs a POST call to en
 
 ### Properties & Attributes
 
-| property       | attribute       | type                     | default          | description                                         |
-| -------------- | --------------- | ------------------------ | ---------------- | --------------------------------------------------- |
-| userInfoUrl    | user-info-url   | string                   | -                | URL called in GET to retrieve user data             |
-| mode           | mode            | [Mode](#mode)            | "overlaySideBar" | controls how the menu is visualized                 |
-| logo           | -               | [Logo](#logo)            | -                | logo to be visualized in the menu                   |
-| menuItems      | -               | [MenuItem](#menuitems)[] | -                | describes the items in the menu                     |
-| helpMenu       | -               | [HelpMenu](#helpmenu)    | -                | controls the help button on the menu                |
-| userMenu       | -               | [UserMenu](#usermenu)    | -                | controls the user information section of the menu   |
-| head           | -               | [Head](#head)            | -                | controls tab visualization options                  |
-| sideBarWidth   | side-bar-width  | number                   | 200              | Width of the sidebar in pixels, if applicable       |
-| collapsedWidth | collapsed-width | number                   | 80               | Width of collapsed sidebar in pixels, if applicable |
+| property        | attribute       | type                     | default          | description                                         |
+| --------------- | --------------- | ------------------------ | ---------------- | --------------------------------------------------- |
+| userInfoUrl     | user-info-url   | string                   | -                | URL called in GET to retrieve user data             |
+| mode            | mode            | [Mode](#mode)            | "overlaySideBar" | controls how the menu is visualized                 |
+| logo            | -               | [Logo](#logo)            | -                | logo to be visualized in the menu                   |
+| menuItems       | -               | [MenuItem](#menuitems)[] | -                | describes the items in the menu                     |
+| helpMenu        | -               | [HelpMenu](#helpmenu)    | -                | controls the help button on the menu                |
+| userMenu        | -               | [UserMenu](#usermenu)    | -                | controls the user information section of the menu   |
+| userMenuTrigger | -               | `hover` \| `click`       | "hover"          | controls the user menu trigger                      |
+| head            | -               | [Head](#head)            | -                | controls tab visualization options                  |
+| sideBarWidth    | side-bar-width  | number                   | 200              | Width of the sidebar in pixels, if applicable       |
+| collapsedWidth  | collapsed-width | number                   | 80               | Width of collapsed sidebar in pixels, if applicable |
 
 
 #### Mode

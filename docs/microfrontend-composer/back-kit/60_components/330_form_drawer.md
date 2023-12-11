@@ -387,11 +387,11 @@ where [LocalizedText][localized-text] is either a string or an object mapping la
 ### Emits
 
 
-| event                   | description                                                                       |
-| ----------------------- | --------------------------------------------------------------------------------- |
-| configurable event      | property `afterFinishEvents` allows to emit custom events                         |
-| [require-confirm]       | triggered when trying to submit the form accordingly to property `requireConfirm` |
-| [create-data]           | requests data creation                                                            |
-| [update-data]           | requests data update                                                              |
-| [create-data-with-file] | requests data creation and file upload                                            |
-| [update-data-with-file] | requests data update and file upload                                              |
+| event                   | description                                                                                                             |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| configurable event      | property `afterFinishEvents` allows to emit custom events                                                               |
+| [require-confirm]       | triggered when trying to close the modal with unsaved data. `requireConfirm` property allows to customize this behavior |
+| [create-data]           | requests data creation                                                                                                  |
+| [update-data]           | requests data update                                                                                                    |
+| [create-data-with-file] | requests data creation and file upload                                                                                  |
+| [update-data-with-file] | requests data update and file upload                                                                                    |

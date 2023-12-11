@@ -1,7 +1,7 @@
 ---
 id: file_management
 title: File Management
-sidebar_label: File Management
+sidebar_label: File management
 ---
 
 <!--
