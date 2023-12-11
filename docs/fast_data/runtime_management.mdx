@@ -16,7 +16,9 @@ This component lets you dynamically manage the execution of Fast Data, offering 
 
 To facilitate these operations, it provides a user-friendly web interface and robust backend functionalities.
 
-With Runtime Management, users gain the ability to govern several different aspects of the Fast Data runtime.
+By ***Runtime Environment*** we mean a set of microservices that are deployed in a specific Console environment and that are configured to communicate with each other.
+There could be multiple Runtime Environments in a single Console environment or among different ones.
+With Runtime Management, users gain the ability to govern several different aspects of a Fast Data runtime.
 
 :::note
 Currently, this mechanism is supported only in the Single View Creator.
@@ -60,25 +62,37 @@ To ensure a smooth setup and operation of Runtime Management, make sure you've c
 1. **Set Up the persistence environment:** ensure that you have configured a persistence environment (e.g., MongoDB) for Runtime Management to store its state.
   Make sure that the persistence environment is accessible from the Control Plane application and insert its connection configuration in the Config Map of the Control Plane.
 
+  :::tip
+  You can connect to any MongoDB instance.
+  If your are using Mia-Platform Console in PaaS, you can request a MongoDB Database managed by Mia-Platform by opening a proper Service Request.
+  Before opening a Service Request, check if a MongoDB Database was already provided for you or your team during Company creation or Project creation phases.
+  :::
+
 This step alone grants the proper functioning of the frontend and backend of Runtime Management. However, if you want to enable the communication with one or more runtimes of Fast Data, follow the next steps.
 
 2. **Set Up Fast Data Environment in Console:** naturally, you need to have a Fast Data environment in the Console,
-  defining all the possible microservices you may need and their runtime configurations. In particular, be sure to set the three environment variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` for the Single View Creator, to enable the communication with the Runtime Management. Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator.md#environment_variables) for further details.
+  defining all the possible microservices you may need and their runtime configurations.
+  In particular, be sure to set the three environment variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` for the Single View Creator,
+  to enable the communication with the Runtime Management.
+  Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator.md#environment_variables) for further details.
 
-3. **Create a Kafka topic:** create a Kafka topic dedicated to receiving action commands.
+  :::tip
+  For an overview of the Fast Data architecture and what services can be deployed, check the [Architecture](/fast_data/architecture.md) page or consult the [Fast Data Tutorial](/getting-started/tutorials/fast-data/low-code.mdx) for a step-by-step guide on how to create a Fast Data environment.
+  :::
+
+3. **Create a Kafka topic:** create a Kafka topic dedicated to receiving action commands on your Kafka cluster.
   This ensures seamless communication between Runtime Management and Fast Data microservices.
   
   :::tip
-  We suggest using a single-partitioned topic.
+  We suggest using a single-partitioned topic. We also recommend giving the topic a name that is easy to identify and share among all microservices inside a runtime environment.
+  In fact, we suggest using a unique topic for each runtime environment.
   :::
 
 4. **Configure Control Plane Application:** populate the Config Map of the Control Plane application with details regarding your runtime environment.
 
-:::note
-
-For a detailed explanation on how to configure the Control Plane application and its ConfigMap, check the [Control Plane application documentation](/runtime_suite_applications/control-plane/10_overview.md).
-
-:::
+  :::note
+  For a detailed explanation on how to configure the Control Plane application and its ConfigMap, check the [Control Plane application documentation](/runtime_suite_applications/control-plane/10_overview.md).
+  :::
 
 ## Interacting with the Frontend
 
