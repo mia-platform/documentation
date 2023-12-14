@@ -12,7 +12,11 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The web component is based on the external component `react-big-calendar`, [here is the documentation for more information](https://jquense.github.io/react-big-calendar/examples/?path=/story/about-big-calendar--page).
 
-The web component has been created as the front-end counterpart of the [appointment-manager](../../appointment-manager/overview) microservice to be used in a Microfrontend Composer configuration.
+The web component has been created as the front-end counterpart of the [appointment-manager][appointment-manager] microservice to be used in a Microfrontend Composer configuration.
+
+:::caution
+The web-component has been implemented to work with the [appointment-manager][appointment-manager] set in [full mode](../../runtime_suite/appointment-manager/configuration). 
+:::
 
 ## Events type
 
@@ -65,7 +69,7 @@ A resource is the entity which time is managed through the calendar.
 
 The resources are displayed in the top row of the calendar. The components accept the property [resourceConfig](#resourceconfig) the contains the main configuration options regarding the resources. In particular, `resourceConfig` contains the property resourcesEndpoint which is where you must configure the endpoint from which the resources are fetched.
 It is possible to set the calendar to work with only one resource by setting the property `singleResource` of `resourceConfig` true.
-When `singleResource` is set to true the resource header will not be shown. To let the calendar to properly fetch the inforamation regarding the single resource selected its `resourceId` must be in the page href. Ex. http://host/pluginName/`resourceId`. If the `resourceConfig` property `currentuser` is also set to true the `resourceId` used will be the one of the logged user.
+When `singleResource` is set to true the resource header will not be shown. To let the calendar to properly fetch the inforamation regarding the single resource selected its `resourceId` must be in the page href. Ex. http://host/pluginName/`resourceId`. It is possible to specify how to retrieve the resourceId in href through the `resourceConfig`'s `urlMask` property.  If the `resourceConfig` property `currentUser` is also set to true the `resourceId` used will be the one of the logged user.
 
 The resources and the events in the calendar must share a common property used by the calendar to display the events in the correct resource sections. If a event is not associated to any resource it is not displayed in the calendar.
 
@@ -107,32 +111,50 @@ The status of a slot is inferred from its participants acceptance status, with t
 Hovering the parent slot displays the appointment status in the tooltip and modal, as well as an option to configure the appointment participation for the logged user.
 
 :::caution
-
 For the participant status to be correctly shown, please ensure the calendar is set to work in [Appointment Mode](#Appointment mode) and the AppointmentConfig _**currentUserFieldName**_ and _**updateParticipantsStatusEndpoint**_ properties are properly configured, as well the Resource config to be set to **_currentUser_**=true.
+:::
 
+### Permissions 
+
+If the `permissions` property is set to true in the component configuration, the actions that the user is able to perform interacting with a slot or appointment are limited by the permission indicated respectively in the property `slotPermissions` and `appointmentPermissions`. 
+The component reads for each slot the `slotPermissions` property, which should be an array of strings containing the permissions that the user has for that specific slot.
+The valid permissions for a slot are the following: 
+
+- **CREATE** &rarr; Permission to create an appointment. If the permission is not granted, in the draggable window the creation button will not be present.
+
+Likewise, the `appointmentPermissions` property of each appointment contains the array of permissions that the user has for that specific appointment.
+The valid permissions for an appointment are the following: 
+
+- **VIEW** &rarr; Permission to visualize the appointment's details. If the permission is not granted, in the draggable window the edit button will not be present. 
+- **DELETE** &rarr; Permission to delete an appointment.  If the permission is not granted, in the draggable window the delete button will not be present. 
+- **EDIT** &rarr; Permission to edit an appointment. If the permission is not granted, the edit button will send the event to open the appointment detail modal in read-only mode. If the VIEW permission is not granted, the EDIT permission will not have any effect since will not be possible to open the detail modal.
+
+:::caution
+The `slotPermissions` and `appointmentPermissions` properties are not added to slots and appointments by the [appointment-manager][appointment-manager]. The property should be computed and added to the appointment object by [Rönd][rond] or a middleware service that manipulates the response of the [appointment-manager's][appointment-manager] `GET /calendar/` endpoint.
 :::
 
 ## Properties & Attributes
 
-| property                           | type | required | default    | description                                                                                                                                                                                                                                  |
-|------------------------------------|------|----------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `addressProperty`                  | string | false | address    | Name of the event property that contains the location of the event. If present it is shown in the modal detail popover                                                                                                                       |
-| `appointmentConfig`                | [AppointmentConfig](#appointmentconfig) | false |            | Object that contains the name of the appointments properties used to populate booked slot and the draggable modal                                                                                                                            |
-| `appointmentMode`                  | boolean | false | false      | Boolean the define which calendar mode is in use. If false the calendar is in availability mode, if true in appointment mode                                                                                                                 |
-| `modalFooterVisible`               | boolean | false | true       | Boolean the define if the modal with the appointment detail has the footer with the actions buttons                                                                                                                                          |
-| `appointmentManagerUrl`            | string | false | -          | The base path of the [appointment manager][appointment-manager]                                                                                                                                                                                                     |
-| `calendarEndpoint`                 | string | false | -          | The endpoint used to fetched the events in appointment mode                                                                                                                                                                                  |
-| `updateParticipantsStatusEndpoint` | string | false | -          | The endpoint used to set the user's participation status for a certain event                                                                                                                                                                 |
-| `currentUserIdFieldName`           | string | false | sub        | The userinfo property field name to be matched with to determine the particpation status for any event (**N.B.** this property must be properly set if the  [Appointment Manager][appointment-manager] if configured with the `isParticipantStatusAvailable` flag.) |
-| `date`                             | string | false | new Date() | The date on which the calendar is on load                                                                                                                                                                                                    |
-| `height`                           | string | false | '75vh'     | css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height]                                                                                                               |
-| `filterProperties`                 | string[] | false | []         | List of availabilities' properties on which filters can be applied                                                                                                                                                                           |
-| `popoverConfig`                    | [EventBoxPopoverConfig](#eventboxpopoverconfig) | false | -          | Object that contains the name of the properties used to populate the popover that appears when an event is hovered                                                                                                                           |
-| `resourceConfig`                   | [ResourceConfig](#resourceconfig) | false | -          | Object that contains the name of the resource properties used to populate the header containing the resource information and the endpoint from which the resources are fetched                                                               |
-| `resourceId`                       | string | false | resourceId | Provides a unique identifier for each resource in the resources array. Each event should have the same property to be shown in its calendar resource column                                                                                  |
-| `reminderMilliseconds`             | number | false | 90000      | Number of milliseconds before the booked appointment that the reminder is sent                                                                                                                                                               |
-| `slotConfig`                       | [SlotConfig](#slotconfig) | - | -          | Object that contains the name of the appointments properties used to populate free slot and the draggable modal                                                                                                                              |
-| `view`                             | 'month' \| 'week' \| 'day'      | false                                                                                                                                                                                                                                        | week | The current view value of the calendar. Determines the visible 'view'  |
+| property | type | required | default | description |
+|----------|------|----------|---------|-------------|
+| `addressProperty` | string | false | address | Name of the event property that contains the location of the event. If present it is shown in the modal detail popover |
+| `appointmentConfig` | [AppointmentConfig](#appointmentconfig) | false | - | Object that contains the name of the appointments properties used to populate booked slot and the draggable modal |
+| `appointmentMode` | boolean | false | false | Boolean the define which calendar mode is in use. If false the calendar is in availability mode, if true in appointment mode |
+| `modalFooterVisible` | boolean | false | true | Boolean the define if the modal with the appointment detail has the footer with the actions buttons |
+| `appointmentManagerUrl` | string | false | - | The base path of the [appointment manager][appointment-manager] |
+| `calendarEndpoint` | string | false | - | The endpoint used to fetched the events in appointment mode |
+| `updateParticipantsStatusEndpoint` | string | false | - | The endpoint used to set the user's participation status for a certain event |
+| `currentUserIdFieldName` | string | false | sub | The userinfo property field name to be matched with to determine the particpation status for any event (**N.B.** this property must be properly set if the  [Appointment Manager][appointment-manager] if configured with the `isParticipantStatusAvailable` flag.) |
+| `date` | string | false | new Date() | The date on which the calendar is on load |
+| `height` | string | false | '75vh'     | css-height the calendar should occupy in the page as described here: [https://developer.mozilla.org/en-US/docs/Web/CSS/height] |
+| `filterProperties` | string[] | false | [] | List of availabilities' properties on which filters can be applied |
+| `popoverConfig` | [EventBoxPopoverConfig](#eventboxpopoverconfig) | false | - | Object that contains the name of the properties used to populate the popover that appears when an event is hovered |
+| `resourceConfig` | [ResourceConfig](#resourceconfig) | false | - | Object that contains the name of the resource properties used to populate the header containing the resource information and the endpoint from which the resources are fetched |
+| `resourceId` | string | false | resourceId | Provides a unique identifier for each resource in the resources array. Each event should have the same property to be shown in its calendar resource column |
+| `reminderMilliseconds` | number | false | 90000 | Number of milliseconds before the booked appointment that the reminder is sent |
+| `slotConfig` | [SlotConfig](#slotconfig) | - | - | Object that contains the name of the appointments properties used to populate free slot and the draggable modal |
+| `view` | 'month' \| 'week' \| 'day' | false | week | The current view value of the calendar. Determines the visible 'view'  |
+| `permissions` | boolean | false | false | If set to true, the user interaction with an appointment are delimited by his/her permissions defined in the appointment's `permissions` property  |
 
 ## Custom types
 
@@ -305,3 +327,4 @@ ResourceDetails = {
 
 
 [appointment-manager]: ../../runtime_suite/appointment-manager/overview
+[rond]: https://rond-authz.io/
