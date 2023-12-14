@@ -16,6 +16,10 @@ In a micro-service, three different kind of probes can be exposed:
 * **Liveness**: tells the cluster orchestrator if a micro-service is up-and-running.
 * **Startup**: tells the cluster orchestrator if a micro-service has been completely booted.
 
+  :::info
+  Startup Probe configuration will be available from mid-January 2024.
+  :::
+
 To learn more about probes, please refer to the [Kubernetes official API documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes).
 
 
