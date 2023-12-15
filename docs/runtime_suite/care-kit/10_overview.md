@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Care-kit service provides a set of [W3C Web Components](https://www.w3.org/TR/components-intro/).
 
-This components are designed to be used inside Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview) configuration. 
+This components are designed to be used inside Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview.md) configuration. 
 
 ## Cake kit components
 

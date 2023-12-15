@@ -23,7 +23,7 @@ If `type` is set to `measurement`,  monitoring prototypes will be fetched. The s
 
 Submitting the form will trigger the post of the therapy/monitoring.
 
-The web-component also listens to the [selected-data](../../microfrontend-composer/back-kit/events#selected-data) event. Upon receiving a `select-data` event, the `ck-add-plan-modal` opens in edit mode. For the modal to open correctly, the payload of the event must contain a valid `prototypeId` and the `_id` of the plan that has to be edited. If the modal was opened in edit mode, the submitting of the form will trigger the patch of the selected plan.
+The web-component also listens to the [selected-data](../../../microfrontend-composer/back-kit/70_events.md#selected-data) event. Upon receiving a `select-data` event, the `ck-add-plan-modal` opens in edit mode. For the modal to open correctly, the payload of the event must contain a valid `prototypeId` and the `_id` of the plan that has to be edited. If the modal was opened in edit mode, the submitting of the form will trigger the patch of the selected plan.
 
 To fetch the prototypes and submitting the `tmmBasePath` property has to be set to the endpoint that expose the `Therapy and Monitoring Manger`.
 
@@ -84,7 +84,7 @@ In order to open the `ck-add-plan-modal` in a Microfrontend Composer, a configur
 | event | action | emits | on error |
 |-------|--------|-------|----------|
 |add-plan-modal| Triggers the opening or the closing of the modal. | - | - |
-|[selected-data](../../microfrontend-composer/back-kit/events#selected-data)| Triggers the opening of the modal in edit mod | add-plan-modal | - |
+|[selected-data](../../../microfrontend-composer/back-kit/70_events.md#selected-data)| Triggers the opening of the modal in edit mod | add-plan-modal | - |
 
 ## Emits
 

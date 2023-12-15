@@ -34,7 +34,7 @@ The response of the endpoint is used to populate the `series` property of the hi
 :::
 
 
-It is possible to filter the data shown in the chart, since the `ck-chart` web-component listens to the [change-query](../../microfrontend-composer/back-kit/events#change-query) event. The `filters` property of every `change-query` event and `chart-filters` event is stringified and attached to the data endpoint as the `filters` query parameter. It is up to the backend service to parse the filters and return the filtered data.
+It is possible to filter the data shown in the chart, since the `ck-chart` web-component listens to the [change-query](../../../microfrontend-composer/back-kit/70_events.md#change-query) event. The `filters` property of every `change-query` event and `chart-filters` event is stringified and attached to the data endpoint as the `filters` query parameter. It is up to the backend service to parse the filters and return the filtered data.
 
 Properties `urlMask` and `idKeys` are used to retrieve paramters from the URL. `idKeys` is the array of dynamic value keys mapped in the `urlMask`. For example, if the URL is `/dashboard/14alGw/example/JJ09nr` where `14alGw` and `JJ09nr` are the paramters to be extracted for the URL, the `urlMask` will be `/dashboard/:<key1>/example/:<key2>` and `idKeys` will be `[<key1>, <key2>]`. The parameters extracted from the URL are added to the query parameters with the associated key. 
 
