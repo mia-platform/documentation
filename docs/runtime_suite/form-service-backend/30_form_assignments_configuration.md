@@ -50,7 +50,7 @@ The properties of the `formAssignmentsCrud` object are the following:
 
 :::info
 
-The [Mia-Backoffice](../../business_suite/backoffice/overview) can be used to update this array and assign a form template to specific users.
+The [Mia-Backoffice](../../microfrontend-composer/back-kit/overview) can be used to update this array and assign a form template to specific users.
 
 :::
 
