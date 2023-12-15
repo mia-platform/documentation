@@ -22,15 +22,20 @@ The web-component has been implemented to work with the [appointment-manager][ap
 
 The calendar is able to represent three kind if events: availabilities, exceptions and appointments.
 
-**Availability**: Availability events are divided in slots. Each slot represents the time range that the user can book. Tha availability cannot start and end in different days. It is possible to create a periodic availability.
+**Availability**: Availability event represents the range of time in which a resource is available. The availability cannot start and end in different days, but it is possible to create periodic (daily, weekly, monthly) availability.
+At the creation of an availability, the user can decide if the availability contains or does not contain slots. If the availability event is created with slots the event is divided in multiple time ranges. Each slot defines the availability's time range that the user can book. 
 
 ![availability](../img/availability.png)
+
+ If the availability is created without slots, the availability is displayed as a single event on the calendar. An appointment can be booked with any duration inside the start time and end time of the availability.
+
+![immediate availability](../img/immediate_availablity.png)
 
 **Exception**: Exception events represent when the resource is not available. Exceptions can span multiple days, but cannot be periodic
 
 ![exception](../img/exception.png)
 
-**Appointment**: Appointment are usually represented inside an availability's slot Appointment events represent the booking of a slot. If exception is created on top of an appointment the appointment event is shown in red in the calendar and must be rescheduled. If the availability containing an appointment is delete or edited to not contain a previous appointment, the appointment will be flagged and shown as an independent event.
+**Appointment**: Appointment are usually represented inside an availability. Appointment events represent the booking of a slot. If exception is created on top of an appointment the appointment event is shown in red in the calendar and must be rescheduled. If the availability containing an appointment is delete or edited to not contain a previous appointment, the appointment will be flagged and shown as an independent event.
 
 ![exception](../img/flagged-appointment.png)
 ![exception](../img/appointment.png)
@@ -43,7 +48,7 @@ The components can be utilized in two different modes.
 
 ### Availability Mode
 
-![availability_mode](../img/availability_mode.png)
+![availability_mode](../img/availability_mode_2.png)
 
 The "availability mode" is used to show the availabilities and exceptions of a single resource. The calendar in this configuration will show the events of type availability and exceptions. The appointments are not displayed in this mode.
 
