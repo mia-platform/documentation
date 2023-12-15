@@ -1,14 +1,10 @@
 ---
-id: control_plane
-title: Control Plane
-sidebar_label: Control Plane
+id: overview
+title: Overview
+sidebar_label: Overview
 ---
 
-# Control Plane
-
 _Control Plane_ is a specialized microservice designed to manage the runtime deployment of _Fast Data_ within a Kubernetes environment. Its core functionality includes the ability to alter, store, and reset the runtime state of microservices that constitute the Mia-Platform _Fast Data_ solution.
-
-## Overview
 
 ![Control Plane Architecture](img/arch.v0.svg)
 
