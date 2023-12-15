@@ -15,6 +15,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.4.0] 2023-12-14
+
+### Updated
+
+- updated to `@mia-platform-internal/single-view-creator-lib@14.10.0`:
+  - support for Control Plane `resume` and `pause` commands (`@mia-platform-internal/single-view-creator-lib@14.10.0`)
+  - introduction of sv-retry mechanism (`@mia-platform-internal/single-view-creator-lib@14.9.0`)
+  
 ## [6.3.0] 2023-11-24
 
 ### Updated
