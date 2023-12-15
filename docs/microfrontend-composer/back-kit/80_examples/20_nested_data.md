@@ -167,7 +167,7 @@ It listens to the `display-data` event, and consequently emits [nested-navigatio
 The [Pagination][bk-pagination] and the [Breadcrumbs][bk-breadcrumbs] components should be included in the plugin configuration for the [Table][bk-table] component to work properly while editing nested fields.
 :::
 
-An example of how nested data can be edited with a form component and a Table is [available][example-editing-nested-data].
+An example of how nested data can be edited with a form component and a Table is [available](#example-editing-nested-data).
 
 ## Limitations: filtering
 

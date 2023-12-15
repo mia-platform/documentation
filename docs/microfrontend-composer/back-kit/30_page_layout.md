@@ -36,8 +36,8 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [available-operators]: ./70_events.md#add-filter
 [display-data]: ./70_events.md#display-data
 
-[lookups-from-views]: ./80_flows/40_lookups.md
-[nested-data]: ./80_Flows/20_Nested_Objects.md
+[lookups-from-views]: ./80_examples/40_lookups.md
+[nested-data]: ./80_examples/20_nested_data.md
 
 
 

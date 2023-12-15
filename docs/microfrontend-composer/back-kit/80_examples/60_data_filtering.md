@@ -16,6 +16,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 [filters]: ../40_core_concepts.md#filters
 
+[bk-crud-client]: ../60_components/100_crud_client.md
 [bk-filters-manager]: ../60_components/300_filters_manager.md
 [bk-filter-drawer]: ../60_components/290_filter_drawer.md
 [bk-add-filter-button]: ../60_components/10_add_filter_button.md
@@ -30,7 +31,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 Several Back-kit components are designed to interact with a dataset. Data should be fetched by a client component from a backend resource.
 
-The [CRUD Client][bk-curd-client] component is designed to interact with [Mia Platform CRUD Service][crud-service]. The CRUD Client fetches data from a collection of the CRUD Service, and propagates it to other components as payload of a [display-data] event.
+The [CRUD Client][bk-crud-client] component is designed to interact with [Mia Platform CRUD Service][crud-service]. The CRUD Client fetches data from a collection of the CRUD Service, and propagates it to other components as payload of a [display-data] event.
 
 The CRUD Client fetches data by performing an HTTP request to the CRUD Service.
 Particularly, its internal state holds a representation of the query that it uses to fetch data.

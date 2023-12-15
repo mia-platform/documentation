@@ -370,11 +370,11 @@ which might return options like:
 limiting therefore the available options to be coherent with the specified condition in `conditionalValues`.
 
 :::info
-This example features the [Dynamic Form Modal][bk-dynamic-form-modal]. However, the [Dynamic Form Drawer][bk-dynamic-form-drawer] and the [Dynamic Form Card][bk-dynamic-form-vard] could be configured in the same way to obtain the same result.
+This example features the [Dynamic Form Modal][bk-dynamic-form-modal]. However, the [Dynamic Form Drawer][bk-dynamic-form-drawer] and the [Dynamic Form Card][bk-dynamic-form-card] could be configured in the same way to obtain the same result.
 :::
 
 :::info
 Notice that field "stateId" should be included in the values returned for the "city" field. This can be achieved through proper configuration of the aggregation pipeline that is used to build the underlying [writable view][writable-views].
-Components [Dynamic Form Modal][bk-dynamic-form-modal], [Dynamic Form Drawer][bk-dynamic-form-drawer], [Dynamic Form Card][bk-dynamic-form-vard] always carry in their internal representation of the form values the whole lookup object, although only the label is displayed.
+Components [Dynamic Form Modal][bk-dynamic-form-modal], [Dynamic Form Drawer][bk-dynamic-form-drawer], [Dynamic Form Card][bk-dynamic-form-card] always carry in their internal representation of the form values the whole lookup object, although only the label is displayed.
 This is why, in the example, `conditionalValues` may reference the "stateId" key in the value of the "city" field.
 :::
