@@ -7,8 +7,6 @@ sidebar_label: Runtime Management
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-
 # Runtime Management
 
 Runtime Management is a tool in the Fast Data environment for achieving better control over the Fast Data microservices during runtime.
@@ -74,10 +72,10 @@ This step alone grants the proper functioning of the frontend and backend of Run
   defining all the possible microservices you may need and their runtime configurations.
   In particular, be sure to set the three environment variables `CONTROL_PLANE_ACTIONS_TOPIC`, `CONTROL_PLANE_KAFKA_GROUP_ID`, and `READ_TOPIC_FROM_BEGINNING` for the Single View Creator,
   to enable the communication with the Runtime Management.
-  Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator.md#environment_variables) for further details.
+  Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator/index.md#environment_variables) for further details.
 
   :::tip
-  For an overview of the Fast Data architecture and what services can be deployed, check the [Architecture](/fast_data/architecture.md) page or consult the [Fast Data Tutorial](/getting-started/tutorials/fast-data/low-code.mdx) for a step-by-step guide on how to create a Fast Data environment.
+  For an overview of the Fast Data architecture and what services can be deployed, check the [Architecture](/fast_data/architecture.md) page or consult the [Fast Data Tutorial](/fast_data/tutorials/low-code.mdx) for a step-by-step guide on how to create a Fast Data environment.
   :::
 
 3. **Create a Kafka topic:** create a Kafka topic dedicated to receiving action commands on your Kafka cluster.
@@ -107,18 +105,18 @@ The form allows you to specify the details of the command you want to send, whil
 
 ![Control Plane UI](img/runtime_management/runtime_management_initial_screen.png)
 
-            <Tabs>
+<Tabs>
 
-                  <TabItem value="control-plane-ui-left" label="Left Side" default>
+<TabItem value="control-plane-ui-left" label="Left Side" default>
 
 #### Form Section
   - ***Method*:** Choose between `Pause` and `Resume` commands.
   - ***Resource name*:** Enter the name of a specific resource to pause or resume (for example, the name of a Single View).
   - ***Runtime*:** Select a target runtime environment name on which to execute the command.
 
-                  </TabItem>
+</TabItem>
 
-                  <TabItem value="control-plane-ui-right" label="Right Side">
+<TabItem value="control-plane-ui-right" label="Right Side">
 
 #### Log Panel
   After submitting the form, a Kafka message representing the command is sent to the topic.
@@ -127,9 +125,9 @@ The form allows you to specify the details of the command you want to send, whil
 
   At the top, two buttons allow you to prettify the text being logged and to clear it.
 
-                  </TabItem>
+</TabItem>
 
-            </Tabs>
+</Tabs>
 
 ### Sending a command
 
