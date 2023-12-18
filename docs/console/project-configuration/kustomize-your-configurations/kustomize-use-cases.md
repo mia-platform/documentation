@@ -147,5 +147,5 @@ patches:
 With the example above, the `istio-proxy` container will be added to deployments with **all the specified labels and annotations**.
 
 :::info
-In case of On-Premise installation, you can [add default labels and annotations](/marketplace/add_to_marketplace/contributing_overview.md#common-to-microservice-items-plugins-templates-examples) to the items since you have the full control of the Marketplace.
+You can apply labels to microservices inside the Design section of the Mia-Platform Console, or, in case of Self-Hosted installation, you can [set default labels](/marketplace/add_to_marketplace/contributing_overview.md#common-to-microservice-items-plugins-templates-examples) to the microservices created from Marketplace.
 :::
