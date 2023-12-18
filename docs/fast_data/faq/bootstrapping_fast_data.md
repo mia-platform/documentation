@@ -10,7 +10,7 @@ In particular, it lists some of the minimum resources in terms of CPU or RAM tha
 
 :::info Before you start
 
-Fast Data solution can either be installed in a [PaaS](/paas/overview.md) or [Self-Hosted](/self_hosted/self_hosted_requirements.md) setup. The goal of this guide is to provide best practices that are independent of the infrastructure.
+Fast Data solution can either be installed in a [PaaS](/infrastructure/paas/overview.md) or [Self-Hosted](/infrastructure/self-hosted/self-hosted-requirements.md) setup. The goal of this guide is to provide best practices that are independent of the infrastructure.
 
 The level of details of the following answers assumes that you have basic knowledge about the aforementioned components. 
 :::
