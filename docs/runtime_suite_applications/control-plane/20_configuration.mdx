@@ -15,10 +15,11 @@ _Configuration of Control Plane_ is a straightforward process that involves sett
 
 Control Plane can be customized using the following environment variables:
 
-- **HTTP_PORT (default: 3000):** This variable determines the TCP port where the **HTTP controller** binds its listener.
-- **LOG_LEVEL (default: `info`):** Specify the centralized application log level, choosing from options such as `debug`, `error`, `fatal`, `info`, `silent`, `trace`, or `warn`.
-- **FD_CONTROL_PLANE_CONFIGURATION_FILEPATH (default: `~/.fd/control-plane/configuration.json`):** Set the location of the configuration file.
-
+| Name                                    | Required | Description                                                                                                                                                               | Default Value                              |
+|-----------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| HTTP_PORT                               | -        | This variable determines the TCP port where the  ** HTTP controller **  binds its listener.                                                                               | 3000                                       |
+| LOG_LEVEL                               | -        | Specify the centralized application log level, choosing from options such as  ` debug ` ,  ` error ` ,  ` fatal ` ,  ` info ` ,  ` silent ` ,  ` trace ` , or  ` warn ` . | `info`                                     |
+| FD_CONTROL_PLANE_CONFIGURATION_FILEPATH | -        | Set the location of the configuration file.                                                                                                                               | ` ~/.fd/control-plane/configuration.json ` |
 ## Config Map
 
 The Config Map is a JSON file that must adhere to a specific schema. Below, we outline the schema and provide an example.
@@ -477,31 +478,44 @@ The Config Map is a JSON file that must adhere to a specific schema. Below, we o
 
 ```json
 {
-  "runtimes": {
-    "runtime-1": {
-      "channels": {
-        "state": {
-          "type": "kafka",
-          "configuration": {
-            "bootstrap.servers": "localhost:9094",
-            "allow.auto.create.topics": "true"
-          },
-          "producer": {
-            "topic": "state"
-          }
+    "runtimes": {
+        "runtime-1": {
+            "channels": {
+                "state": {
+                    "type": "kafka",
+                    "configuration": {
+                        "bootstrap.servers": "localhost:9094",
+                        "allow.auto.create.topics": "true"
+                    },
+                    "producer": {
+                        "topic": "state"
+                    }
+                }
+            }
         }
-      }
-    }
-  },
-  "persistence": {
-    "type": "mongodb",
-    "configuration": {
-      "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
     },
-    "collection": {
-      "name": "runtime-state"
+    "persistence": {
+        "type": "mongodb",
+        "configuration": {
+            "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+        },
+        "collection": {
+            "name": "runtime-state"
+        }
+    },
+    "settings": {
+        "server": {
+            "prefix": "/control-plane/",
+            "apis": {
+                "controllers": {
+                    "fast-data": "/my-awesome-controller"
+                }
+            },
+            "website": {
+                "url": "/__frontend/"
+            }
+        }
     }
-  }
 }
 ```
 
