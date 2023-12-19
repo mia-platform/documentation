@@ -487,7 +487,7 @@ Now the Real-Time Updater properly support Debezium CDC change events with and w
 
 ### Added
 
-- configuration of kafka_sasl_mechanism with enviroment variable 
+- configuration of kafka_sasl_mechanism with environment variable 
 
 ## [1.0.0] 2021-02-11
 
