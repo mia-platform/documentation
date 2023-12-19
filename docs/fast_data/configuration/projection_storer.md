@@ -285,10 +285,7 @@ function messageAdapter(message, primaryKeys, logger) {
     return {
         operation: payload ? 'U' : 'D',
         key: keyObject,
-        // in case of delete operation, since the record's before value
-        // is not known in this adapter example, the logic assign the record key
-        // as a placeholder, so that downstream components can use it for their processing
-        before: payload ? null : keyObject,
+        before: null,
         after: payload
     }
 }
