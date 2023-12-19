@@ -66,6 +66,18 @@ We strongly recommend using the plugin. The template is supposed to be used only
 | USE_UPDATE_MANY_SV_PATCH            | -        | Use the MongoDB ```updateMany``` operation instead of the ```findOneAndUpdate``` with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: ```SEND_BA_TO_KAFKA```, ```KAFKA_BA_TOPIC```, ```SEND_SV_UPDATE_TO_KAFKA```, ```KAFKA_SV_UPDATE_TOPIC```, ```ADD_BEFORE_AFTER_CONTENT```, ```KAFKA_SVC_EVENTS_TOPIC``` | false               |
 | KAFKA_CONSUMER_MAX_WAIT_TIME_MS     | -        | (v6.2.1 or higher) The maximum amount of time in milliseconds the server will block before answering the fetch request if there isn't sufficient data to immediately satisfy the requirement given by minBytes [1 byte]                                                                                                                                                                                                                                                                                                     | 500                 |
 | SV_UPDATE_VERSION                   | -        | (v6.2.1 or higher) Define which version of the `sv-update` event should be emitted by the service. Accepted values are `v1.0.0` and `v2.0.0`. By default, for retro-compatibility, version `v1.0.0` is employed                                                                                                                                                                                                                                                                                                             | v1.0.0              |
+| CONTROL_PLANE_ACTIONS_TOPIC         | -        | Topic where the Single View Creator expects to receive the action commands of `pause` and `resume`.                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
+| CONTROL_PLANE_KAFKA_GROUP_ID        | -        | The Kafka Consumer Group Identifier for the action commands client.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
+
+
+:::note
+
+Setting up both the variable `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` enables the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management.mdx).
+This means that the Single View Creator will receive and execute the commands from the latter.
+Check the [Runtime Management](#runtime-management) section of this page for more information.
+
+:::
+
 
 :::caution
 If you want to enable any mechanism that uses Kafka in the Single View Creator, like the [Single View Patch](/fast_data/configuration/single_view_creator/patch.md), remember to declare the following environment variables: 
@@ -128,3 +140,17 @@ First thing you need to do to enable the mechanism is to define the `KAFKA_SV_RE
 The messages sent to that topic have the [Single View Trigger](/fast_data/inputs_and_outputs.md#single-view-trigger-message) format, that's why, if you are already listening to Single View Trigger messages on Kafka as the main input of the service you can re-use the same exact topic.
 
 To customize the system we also offer you the environment variables `KAFKA_SV_RETRY_MAX_ATTEMPTS` and `KAFKA_SV_RETRY_DELAY`. Check them out on the [Environment Variables](#environment-variables) table.
+
+## Runtime Management
+
+:::info
+This feature is supported from version `6.4.0` of the Single View Creator
+:::
+
+By specifying the environment variables `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` you enable the Single View Creator to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management.mdx).
+
+By design, every service interacting with the Control Plane starts up in a paused state, unless a `resume` command that can apply to the specific service is already present in the topic. Therefore, when the Single View Creator starts up, the aggregation process will not start automatically. In this case, you just need to send a `resume` command to the resource name (namely, the Single View name) managed by the Single View Creator.
+
+:::tip
+Read the [Interacting with the Frontend](/fast_data/runtime_management.mdx#interacting-with-the-frontend) section of the Runtime Management documentation page to learn more about the Control Plane and how to use it.
+:::
