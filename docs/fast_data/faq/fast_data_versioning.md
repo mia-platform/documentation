@@ -11,8 +11,8 @@ on which service is compatible with the others, which versions should be skipped
 
 ### Services Changelogs
 
-- Real-Time Updater
-- Projection Storer
+- [Real-Time Updater](/runtime_suite/real-time-updater/changelog.md)
+- [Projection Storer](/runtime_suite/projection-storer/changelog.md)
 - [Single View Trigger Generator](/runtime_suite/single-view-trigger-generator/changelog.md)
 - [Single View Creator](/runtime_suite/single-view-creator/changelog.md)
 
@@ -20,7 +20,7 @@ on which service is compatible with the others, which versions should be skipped
 
 | Real-Time-Updater | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.x       |       1.0.x       |             3.1.x             |        6.2.x        |
+|       7.5.x       |       1.0.x       |             3.1.x             |        6.4.x        |
 
 ### Compatibility Matrix
 
