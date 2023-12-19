@@ -72,7 +72,9 @@ We strongly recommend using the plugin. The template is supposed to be used only
 
 :::note
 
-Setting up both the variable `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` enables the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management.mdx). This means that the Single View Creator will receive and execute the commands from the latter.
+Setting up both the variable `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` enables the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management.mdx).
+This means that the Single View Creator will receive and execute the commands from the latter.
+Check the [Control Plane](#control-plane) section of this page for more information.
 
 :::
 
@@ -138,3 +140,17 @@ First thing you need to do to enable the mechanism is to define the `KAFKA_SV_RE
 The messages sent to that topic have the [Single View Trigger](/fast_data/inputs_and_outputs.md#single-view-trigger-message) format, that's why, if you are already listening to Single View Trigger messages on Kafka as the main input of the service you can re-use the same exact topic.
 
 To customize the system we also offer you the environment variables `KAFKA_SV_RETRY_MAX_ATTEMPTS` and `KAFKA_SV_RETRY_DELAY`. Check them out on the [Environment Variables](#environment-variables) table.
+
+## Control Plane
+
+:::info
+This feature is supported from version `6.4.0` of the Single View Creator
+:::
+
+By specifying the environment variables `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` you enable the Single View Creator to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management.mdx).
+
+By design, every service interacting with the Control Plane starts up in a paused state, unless a `resume` command that can apply to the specific service is already present in the topic. Therefore, when the Single View Creator starts up, the aggregation process will not start automatically. In this case, you just need to send a `resume` command to the resource name (namely, the Single View name) managed by the Single View Creator.
+
+:::tip
+Read the [Interacting with the Frontend](/fast_data/runtime_management.mdx#interacting-with-the-frontend) section of the Runtime Management documentation page to learn more about the Control Plane and how to use it.
+:::
