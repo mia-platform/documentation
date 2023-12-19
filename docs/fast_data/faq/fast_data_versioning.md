@@ -68,6 +68,18 @@ the final aggregated Single View.
 |:-----------------:|:-----------------------------:|:-------------------:|
 |       1.0.1       |             3.1.4             |        6.4.0        |
 
+
+### Runtime Management Support
+
+With the introduction of Fast Data Control Plane, it is possible to send specific commands to manage services behavior
+at runtime. In the table below is described which service versions support being controlled by Fast Data Control Plane.
+
+### Compatibility Matrix
+
+| Control Plane | Real-Time Updater | Projection Storer | Single View Trigger Generator | Single View Creator |
+|:-------------:|:-----------------:|:-----------------:|:-----------------------------:|:-------------------:|
+|     1.0.0     |         ❌         |         ❌         |               ❌               |       >=6.4.0       |
+
 ## Bucket Storage Support
 
 ### Services Changelogs
