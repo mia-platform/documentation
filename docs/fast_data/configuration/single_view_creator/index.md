@@ -74,7 +74,7 @@ We strongly recommend using the plugin. The template is supposed to be used only
 
 Setting up both the variable `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` enables the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management.mdx).
 This means that the Single View Creator will receive and execute the commands from the latter.
-Check the [Control Plane](#runtime-management) section of this page for more information.
+Check the [Runtime Management](#runtime-management) section of this page for more information.
 
 :::
 
