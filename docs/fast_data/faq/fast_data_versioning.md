@@ -66,7 +66,7 @@ the final aggregated Single View.
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       1.0.0       |             3.1.4             |        6.4.0        |
+|       1.0.1       |             3.1.4             |        6.4.0        |
 
 ## Bucket Storage Support
 
