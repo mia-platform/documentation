@@ -74,7 +74,7 @@ We strongly recommend using the plugin. The template is supposed to be used only
 
 Setting up both the variable `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` enables the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management.mdx).
 This means that the Single View Creator will receive and execute the commands from the latter.
-Check the [Control Plane](#control-plane) section of this page for more information.
+Check the [Control Plane](#runtime-management) section of this page for more information.
 
 :::
 
@@ -141,7 +141,7 @@ The messages sent to that topic have the [Single View Trigger](/fast_data/inputs
 
 To customize the system we also offer you the environment variables `KAFKA_SV_RETRY_MAX_ATTEMPTS` and `KAFKA_SV_RETRY_DELAY`. Check them out on the [Environment Variables](#environment-variables) table.
 
-## Control Plane
+## Runtime Management
 
 :::info
 This feature is supported from version `6.4.0` of the Single View Creator
