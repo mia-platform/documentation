@@ -50,7 +50,7 @@ The properties of the `formAssignmentsCrud` object are the following:
 
 :::info
 
-The Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview.md) can be used to update this array and assign a form template to specific users.
+The Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview) can be used to update this array and assign a form template to specific users.
 
 :::
 
