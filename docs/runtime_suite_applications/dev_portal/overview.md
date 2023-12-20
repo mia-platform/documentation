@@ -55,7 +55,7 @@ The portal we offer consists of the following sections
 - _[Marketplace](/runtime_suite_applications/dev_portal/marketplace_management.md)_: as showcase for your services; you can use it to sell them;
 - _[API Portal](/runtime_suite/api-portal/10_overview.md)_: to display your Open API specification documents.
 
-In addition, we provide a dedicated [product](/business_suite/backoffice/10_overview.md) in order to manage all the _Marketplace_ content, as:
+In addition, we provide a dedicated [product](/microfrontend-composer/what-is.md) in order to manage all the _Marketplace_ content, as:
 - **_Components_**: The list of the components that you want to make available through the _Marketplace_;
 - **_Categories_**: the categories in which group your components;
 - **_Requests_**: the access requests to your components;

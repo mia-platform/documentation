@@ -19,4 +19,10 @@ Some specific examples of common scenarios when you should consider using enviro
 
 ## Variables providers
 
-Environment variables are stored in external services that the Console can interact with. The supported services are [Gitlab](https://gitlab.com) and [Vault](https://www.vaultproject.io/). To use one service or another some configuration must be done at the project level.
+Environment variables are stored in external services that the Console can interact with. The supported services are:
+
+- [Gitlab](https://gitlab.com) 
+- [Vault](https://www.vaultproject.io/)
+- [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault)
+
+To use one service or another some configuration must be done at the project level.

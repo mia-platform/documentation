@@ -1,0 +1,1542 @@
+[
+  {
+    "url": "/cli/miactl/overview",
+    "title": "miactl CLI"
+  },
+  {
+    "url": "/cli/miactl/setup",
+    "title": "Setup"
+  },
+  {
+    "url": "/cli/miactl/commands",
+    "title": "Commands"
+  },
+  {
+    "url": "/cli/miactl/examples",
+    "title": "Examples"
+  },
+  {
+    "url": "/console/company-configuration/providers/overview",
+    "title": "Providers Overview"
+  },
+  {
+    "url": "/console/project-configuration/docker-registry-configuration",
+    "title": "Docker Registry Configuration"
+  },
+  {
+    "url": "/console/project-configuration/environment-variables-introduction",
+    "title": " Environment Variables Introduction"
+  },
+  {
+    "url": "/console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
+    "title": "Manage Environment Variables with Azure Key Vault"
+  },
+  {
+    "url": "/console/project-configuration/manage-runtime-environments/configure-a-new-environment",
+    "title": "Configure a New Environment"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/api-portal",
+    "title": "API portal documentation"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
+    "title": "Integrate an external Identity Provider but manage session and user groups within your project"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
+    "title": "Integrate an external Identity Provider"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/intro",
+    "title": "Auth Architecture Introduction"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
+    "title": "Centralize the authentication in a multi-projects architecture"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
+    "title": "Use static API Keys"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/create-a-custom-microservice",
+    "title": "Create a custom Microservice"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/flow-manager",
+    "title": "Flow Manager"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/microservice-hello-world",
+    "title": "Hello World Microservice"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/microservice-with-metrics",
+    "title": "Add metrics to your custom Microservice"
+  },
+  {
+    "url": "/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data",
+    "title": "REST API for CRUD on data"
+  },
+  {
+    "url": "/console/tutorials/microservice-from-docker-image",
+    "title": "Create a Microservice from a Docker Image"
+  },
+  {
+    "url": "/console/tutorials/protect-your-endpoints-with-policies",
+    "title": "Protect your endpoints with policies"
+  },
+  {
+    "url": "/console/tutorials/set-requests-limits-of-a-microservice",
+    "title": "Set Requests and Limits of a Microservice"
+  },
+  {
+    "url": "/development_suite/api-console/advanced-section/api-gateway-envoy/extensions",
+    "title": "Envoy API Gateway: Advanced Configuration"
+  },
+  {
+    "url": "/development_suite/api-console/advanced-section/api-gateway-envoy/jwt-authn",
+    "title": "Envoy Use Case: JWT Authentication"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/endpoints",
+    "title": "Create Endpoints"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/listeners",
+    "title": "Create Listeners"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/public_variables",
+    "title": "Public Variables"
+  },
+  {
+    "url": "/development_suite/api-console/api-design/services",
+    "title": "Configure your Services"
+  },
+  {
+    "url": "/development_suite/set-up-infrastructure/enhanced-project-workflow",
+    "title": "Enhanced Project Workflow"
+  },
+  {
+    "url": "/fast_data/configuration/cast_functions",
+    "title": "Cast Functions Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/config_maps/aggregation",
+    "title": "Aggregation Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/config_maps/erSchema",
+    "title": "ER Schema Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/config_maps/projection_changes_schema",
+    "title": "Projection Changes Schema Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/indexes",
+    "title": "Indexes"
+  },
+  {
+    "url": "/fast_data/configuration/overview",
+    "title": "Configuration Overview"
+  },
+  {
+    "url": "/fast_data/configuration/projections",
+    "title": "Projections Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/realtime_updater",
+    "title": "Real-Time Updater Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/overview",
+    "title": "Single View Creator Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/patch",
+    "title": "Single View Patch"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/plugin",
+    "title": "Single View Creator Plugin"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/template",
+    "title": "Single View Creator Template"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_creator/upsert_delete_strategies",
+    "title": "Upsert and Delete Strategies"
+  },
+  {
+    "url": "/fast_data/configuration/single_view_trigger_generator",
+    "title": "Single View Trigger Generator"
+  },
+  {
+    "url": "/fast_data/configuration/single_views",
+    "title": "Single Views Configuration"
+  },
+  {
+    "url": "/fast_data/configuration/strategies",
+    "title": "Strategies Configuration"
+  },
+  {
+    "url": "/fast_data/connectors/overview_connectors",
+    "title": "Connectors Overview"
+  },
+  {
+    "url": "/fast_data/faq/bootstrapping_fast_data",
+    "title": "Bootstrapping Fast Data"
+  },
+  {
+    "url": "/fast_data/faq/fast_data_versioning",
+    "title": "Fast Data Versioning"
+  },
+  {
+    "url": "/fast_data/faq/parallel_svc",
+    "title": "Have multiple single view creator for one single view"
+  },
+  {
+    "url": "/fast_data/inputs_and_outputs",
+    "title": "Inputs and Outputs"
+  },
+  {
+    "url": "/fast_data/monitoring/dashboards/single_views",
+    "title": "Single Views"
+  },
+  {
+    "url": "/fast_data/no_code_overview",
+    "title": "Fast Data Low Code/ No Code Overview"
+  },
+  {
+    "url": "/fast_data/single_view_creator",
+    "title": "Single View Creator"
+  },
+  {
+    "url": "/fast_data/single_view_trigger_generator",
+    "title": "Single View Trigger Generator"
+  },
+  {
+    "url": "/fast_data/tutorials/bucket-storage-support",
+    "title": "Bucket Storage Support"
+  },
+  {
+    "url": "/fast_data/tutorials/low-code",
+    "title": "Fast Data Low Code"
+  },
+  {
+    "url": "/fast_data/tutorials/migration",
+    "title": "Mia-Platform Fast Data Migration"
+  },
+  {
+    "url": "/getting-started/handbooks/console/project-development",
+    "title": "Project Development"
+  },
+  {
+    "url": "/getting-started/handbooks/crud-service/crud-oss-usage",
+    "title": "CRUD OSS Usage"
+  },
+  {
+    "url": "/getting-started/handbooks/project/usage",
+    "title": "Project Usage Handbook"
+  },
+  {
+    "url": "/getting-started/mia-platform-overview",
+    "title": "Mia-Platform Overview"
+  },
+  {
+    "url": "/getting-started/tutorials",
+    "title": "Tutorials"
+  },
+  {
+    "url": "/getting-started/videos",
+    "title": "Videos"
+  },
+  {
+    "url": "/getting-started/videos/microfrontend-composer",
+    "title": "Microfrontend Composer Video"
+  },
+  {
+    "url": "/infrastructure/byoi/byoi-overview",
+    "title": "Mia-Platform Bring Your Own Infrastructure"
+  },
+  {
+    "url": "/infrastructure/infrastructure_overview",
+    "title": " Mia-Platform Infrastructure overview"
+  },
+  {
+    "url": "/infrastructure/paas/business-continuity",
+    "title": " Business Continuity and Disaster Recovery"
+  },
+  {
+    "url": "/infrastructure/paas/maintenance",
+    "title": "Mia-Platform PaaS Maintenance"
+  },
+  {
+    "url": "/infrastructure/paas/overview",
+    "title": "Mia-Platform PaaS"
+  },
+  {
+    "url": "/infrastructure/paas/secret-scanning",
+    "title": "Secret Scanning"
+  },
+  {
+    "url": "/infrastructure/paas/security-measures",
+    "title": "Security Measures"
+  },
+  {
+    "url": "/infrastructure/paas/tools/cert-manager",
+    "title": " Cert-Manager"
+  },
+  {
+    "url": "/infrastructure/paas/tools/docker-registry",
+    "title": " Docker Registry"
+  },
+  {
+    "url": "/infrastructure/paas/tools/grafana",
+    "title": " Grafana"
+  },
+  {
+    "url": "/infrastructure/paas/tools/kube-green",
+    "title": " Kube-Green"
+  },
+  {
+    "url": "/infrastructure/paas/tools/message-broker",
+    "title": " Message Broker"
+  },
+  {
+    "url": "/infrastructure/paas/tools/mtls",
+    "title": " mTLS"
+  },
+  {
+    "url": "/infrastructure/paas/tools/runtime",
+    "title": " Runtime"
+  },
+  {
+    "url": "/infrastructure/paas/tools/telepresence",
+    "title": "Telepresence"
+  },
+  {
+    "url": "/infrastructure/paas/tools/traefik",
+    "title": " Traefik"
+  },
+  {
+    "url": "/infrastructure/self-hosted/feature-toggle",
+    "title": "Feature Toggle"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/how-to-upgrade",
+    "title": "How to Upgrade"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/general-settings",
+    "title": "General Settings"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/service-specific-configurations",
+    "title": "Service Specific Configuration"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/authentication-provider",
+    "title": "Authentication Provider"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/mongodb-configurations-and-encryption",
+    "title": "MongoDB Configurations and Encryption"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/marketplace",
+    "title": "Marketplace"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/file-storage",
+    "title": "File Storage Management"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/email-setup",
+    "title": "Email Setup"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/license-management",
+    "title": "License management and tracking"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/first-user-and-company-creation",
+    "title": "Finalize Console installation and create the first entities"
+  },
+  {
+    "url": "/infrastructure/self-hosted/installation-chart/installation-chart-example",
+    "title": "Installation Chart Example"
+  },
+  {
+    "url": "/infrastructure/self-hosted/pipeline-configuration",
+    "title": "How to setup a Pipeline "
+  },
+  {
+    "url": "/infrastructure/self-hosted/private-clusters",
+    "title": " Private clusters"
+  },
+  {
+    "url": "/infrastructure/self-hosted/ranges-and-quotas",
+    "title": "Configure Limit Ranges and Resource Quotas"
+  },
+  {
+    "url": "/infrastructure/self-hosted/self-hosted-requirements",
+    "title": "Self-Hosted installation requirements"
+  },
+  {
+    "url": "/infrastructure/self-hosted/self-hosted-runtime-requirements",
+    "title": "Self-Hosted runtime installation requirements"
+  },
+  {
+    "url": "/infrastructure/self-hosted/synchronize-users",
+    "title": "Synchronize users with an Identity Provider"
+  },
+  {
+    "url": "/infrastructure/self-hosted/third-party-integrations/deployment-tools",
+    "title": " Deployment tools"
+  },
+  {
+    "url": "/infrastructure/self-hosted/troubleshooting",
+    "title": "Troubleshooting"
+  },
+  {
+    "url": "/marketplace/add_to_marketplace/contributing_overview",
+    "title": " Contributing to the Marketplace"
+  },
+  {
+    "url": "/marketplace/compatibility_matrices/mongo_compatibility_matrix",
+    "title": "MongoDB Compatibility Matrix"
+  },
+  {
+    "url": "/marketplace/tutorials/project-template-integrated-with-jenkins",
+    "title": "Create a project template integrated with Jenkins"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/page_layout",
+    "title": "Page layout"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/core_concepts",
+    "title": "Core concepts"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/actions",
+    "title": "Actions"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/crud_client",
+    "title": "CRUD Client"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/add_filter_button",
+    "title": "Add Filter Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/crud_export",
+    "title": "CRUD Export"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/crud_export_client",
+    "title": "CRUD Export Client"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/calendar",
+    "title": "Calendar"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/card",
+    "title": "Card"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/chip",
+    "title": "Chip"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/confirmation_modal",
+    "title": "Confirmation Modal"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/crud_lookup_client",
+    "title": "Crud Lookup Client"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/dropdown_button",
+    "title": "Dropdown Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/dynamic_form_card",
+    "title": "Dynamic Form Card"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/dynamic_form_drawer",
+    "title": "Dynamic Form Drawer"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/add_new_button",
+    "title": "Add New Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/dynamic_form_modal",
+    "title": "Dynamic Form Modal"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/dynamic_title",
+    "title": "Dynamic Title"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/expandable_filters",
+    "title": "Expandable Filters"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/export_modal",
+    "title": "Export Modal"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/file_manager",
+    "title": "File Manager"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/file_picker_drawer",
+    "title": "File Picker Drawer"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/file_picker_modal",
+    "title": "File Picker Modal"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/file_service_client",
+    "title": "File Service Client"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/filter_drawer",
+    "title": "Filter Drawer"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/filters_manager",
+    "title": "Filters Manager"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/antd_theme_manager",
+    "title": "Antd Theme Manager"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/footer_&_item_state",
+    "title": "Footer & Item State"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/form_card",
+    "title": "Form Card"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/form_drawer",
+    "title": "Form Drawer"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/form_modal",
+    "title": "Form Modal"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/form_wizard",
+    "title": "Form Wizard"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/gallery",
+    "title": "Gallery"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/import_modal",
+    "title": "Import Modal"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/layout",
+    "title": "Layout"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/layout_container",
+    "title": "Layout Container"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/layout_swap",
+    "title": "Layout Swap"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/atlas_dashboard",
+    "title": "Atlas Dashboard"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/list",
+    "title": "List"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/loading_animation",
+    "title": "Loading Animation"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/navigation_back_arrow",
+    "title": "Navigation Back Arrow"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/notification_center",
+    "title": "Notification Center"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/notifications",
+    "title": "Notifications"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/pagination",
+    "title": "Pagination"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/pdf_viewer",
+    "title": "Pdf Viewer"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/refresh_button",
+    "title": "Refresh Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/search_bar",
+    "title": "Search Bar"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/state_adapter",
+    "title": "State Adapter"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/auto_refresh",
+    "title": "Auto Refresh"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/table",
+    "title": "Table"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/tabs",
+    "title": "Tabs"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/title",
+    "title": "Title"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/url_parameters_adapter",
+    "title": "URL Parameters Adapter"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/breadcrumbs",
+    "title": "Breadcrumbs"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/bulk_actions_button",
+    "title": "Bulk Actions Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/bulk_delete_button",
+    "title": "Bulk Delete Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/60_components/button",
+    "title": "Button"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/events",
+    "title": "Back-Kit Events"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/80_flows/file_management",
+    "title": "File Management"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/80_flows/nested_objects",
+    "title": "Nested Data"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/80_flows/plugin_navigation",
+    "title": "Plugin Navigation"
+  },
+  {
+    "url": "/microfrontend-composer/back-kit/80_flows/lookups",
+    "title": "Lookup fields - Working with writable views"
+  },
+  {
+    "url": "/microfrontend-composer/composer/structure",
+    "title": "Frontend structure"
+  },
+  {
+    "url": "/microfrontend-composer/composer/compose_pages",
+    "title": "Compose pages"
+  },
+  {
+    "url": "/microfrontend-composer/composer/configurator_settings",
+    "title": "Configurator settings"
+  },
+  {
+    "url": "/microfrontend-composer/overview",
+    "title": " Microfrontend Composer overview"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/auth0-integration",
+    "title": "Microfrontend Composer Integration with Auth0"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/basics",
+    "title": "Microfrontend Composer Tutorial Basics"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/microfrontends",
+    "title": "Microfrontend Composer Tutorial Microfrontends"
+  },
+  {
+    "url": "/microfrontend-composer/tutorials/templates",
+    "title": "Microfrontend Composer Templates"
+  },
+  {
+    "url": "/release-notes/v12-overview",
+    "title": "Mia-Platform v12"
+  },
+  {
+    "url": "/release-notes/v12.0.0",
+    "title": "Version 12.0.0 Release Notes"
+  },
+  {
+    "url": "/runtime_suite/acl-service/overview",
+    "title": "ACL Service"
+  },
+  {
+    "url": "/runtime_suite/adaptive-approval-service/overview",
+    "title": "Rules Service"
+  },
+  {
+    "url": "/runtime_suite/adaptive-approval-service/how_to_use",
+    "title": "How to use"
+  },
+  {
+    "url": "/runtime_suite/adaptive-approval-service/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/api-gateway/overview",
+    "title": "API Gateway"
+  },
+  {
+    "url": "/runtime_suite/api-gateway/configuration",
+    "title": "Api Gateway Configuration"
+  },
+  {
+    "url": "/runtime_suite/api-portal/overview",
+    "title": "API Portal"
+  },
+  {
+    "url": "/runtime_suite/api-portal/configuration",
+    "title": "API Portal Configuration"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/overview",
+    "title": "Appointment Manager"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/configuration",
+    "title": "Appointment Manager configuration"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/usage",
+    "title": "Appointment Manager Usage"
+  },
+  {
+    "url": "/runtime_suite/appointment-manager/performance",
+    "title": "Requests and limits"
+  },
+  {
+    "url": "/runtime_suite/authentication-service/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite/authentication-service/configuration",
+    "title": "Authentication Service Configuration"
+  },
+  {
+    "url": "/runtime_suite/authentication-service/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/authorization-service/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite/authorization-service/configuration",
+    "title": "Authorization service"
+  },
+  {
+    "url": "/runtime_suite/authorization-service/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/chat-service-backend/overview_and_usage",
+    "title": "Chat Service Backend"
+  },
+  {
+    "url": "/runtime_suite/chat-service-backend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/client-credentials/configuration",
+    "title": "Client Credentials"
+  },
+  {
+    "url": "/runtime_suite/client-credentials/usage",
+    "title": "Client Credentials Usage"
+  },
+  {
+    "url": "/runtime_suite/client-credentials/jwt_keys",
+    "title": "Generate JWT Keys"
+  },
+  {
+    "url": "/runtime_suite/cron-scheduler/overview",
+    "title": "Cron Scheduler"
+  },
+  {
+    "url": "/runtime_suite/crud-service/overview_and_usage",
+    "title": "CRUD Service"
+  },
+  {
+    "url": "/runtime_suite/crud-service/configuration",
+    "title": "CRUD Service Configuration"
+  },
+  {
+    "url": "/runtime_suite/crud-service/encryption_configuration",
+    "title": "Encryption configuration"
+  },
+  {
+    "url": "/runtime_suite/crud-service/performance_overview",
+    "title": "Requests and limits"
+  },
+  {
+    "url": "/runtime_suite/crud-service/writable_views",
+    "title": "Writable Views"
+  },
+  {
+    "url": "/runtime_suite/crud-service/usage_best_practices",
+    "title": "Usage Best Practices"
+  },
+  {
+    "url": "/runtime_suite/csv-connector-plugin/configuration",
+    "title": "CSV Fast Data Connector"
+  },
+  {
+    "url": "/runtime_suite/csv-connector-plugin/usage",
+    "title": "CSV Fast Data Connector Usage"
+  },
+  {
+    "url": "/runtime_suite/doctor-service/configuration",
+    "title": "Doctor Service"
+  },
+  {
+    "url": "/runtime_suite/doctor-service/usage",
+    "title": "Doctor Service Usage"
+  },
+  {
+    "url": "/runtime_suite/export-service/overview",
+    "title": "Export Service"
+  },
+  {
+    "url": "/runtime_suite/export-service/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/faire.ai-insights-platform/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite/faire.ai-insights-platform/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/faire.ai-insights-platform/apis",
+    "title": "APIs"
+  },
+  {
+    "url": "/runtime_suite/files-service/configuration",
+    "title": "Files Service"
+  },
+  {
+    "url": "/runtime_suite/files-service/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-router/overview",
+    "title": "Flow Manager Router"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-router/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-service/overview",
+    "title": "Flow Manager"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-service/how_it_works",
+    "title": "How does the Flow Manager work?"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-service/configuration",
+    "title": "Flow Manager Configuration"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-service/model_your_first_flow",
+    "title": "Model your First Flow"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-service/performance_overview",
+    "title": "Scalability performances"
+  },
+  {
+    "url": "/runtime_suite/flow-manager-service/flow_manager_client",
+    "title": "The Flow manager client"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/overview",
+    "title": "Form Service Frontend"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/form_assignments",
+    "title": "Form assignments"
+  },
+  {
+    "url": "/runtime_suite/form-service-frontend/form_visualizer_styling",
+    "title": "Form visualizer styling"
+  },
+  {
+    "url": "/runtime_suite/http-proxy-manager/overview",
+    "title": "Proxy Manager"
+  },
+  {
+    "url": "/runtime_suite/http-proxy-manager/how_to_use",
+    "title": "How to use"
+  },
+  {
+    "url": "/runtime_suite/http-proxy-manager/configuration",
+    "title": "Proxy Manager"
+  },
+  {
+    "url": "/runtime_suite/ingestion-reloader/configuration",
+    "title": "Ingestion Reloader plugin"
+  },
+  {
+    "url": "/runtime_suite/integration-test-service/overview",
+    "title": "Integration Tests Service"
+  },
+  {
+    "url": "/runtime_suite/integration-test-service/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/integration-test-service/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/invoice-service/overview",
+    "title": "PDF Invoice Service"
+  },
+  {
+    "url": "/runtime_suite/invoice-service/configuration",
+    "title": "PDF Invoice Service Configuration"
+  },
+  {
+    "url": "/runtime_suite/invoice-service/usage",
+    "title": "PDF Invoice Service Usage"
+  },
+  {
+    "url": "/runtime_suite/jwt-token-validator/overview_and_usage",
+    "title": "JWT Token Validator"
+  },
+  {
+    "url": "/runtime_suite/kafka2rest-service/overview",
+    "title": "Kafka to REST (Kafka2Rest)"
+  },
+  {
+    "url": "/runtime_suite/kafka2rest-service/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/messaging-service/overview",
+    "title": "Messaging Service"
+  },
+  {
+    "url": "/runtime_suite/messaging-service/configuration",
+    "title": "Messaging Service configuration"
+  },
+  {
+    "url": "/runtime_suite/messaging-service/usage",
+    "title": "Messaging Service Usage"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-adapter/overview_and_usage",
+    "title": "FHIR Adapter"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-adapter/files_management",
+    "title": "File Management"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-adapter/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-server/overview_and_usage",
+    "title": "Mia FHIR Server"
+  },
+  {
+    "url": "/runtime_suite/mia-fhir-server/configuration",
+    "title": "Mia FHIR Server Configuration"
+  },
+  {
+    "url": "/runtime_suite/microservice-gateway/overview",
+    "title": "Microservice Gateway"
+  },
+  {
+    "url": "/runtime_suite/microservice-gateway/configuration",
+    "title": "Microservice Gateway configuration"
+  },
+  {
+    "url": "/runtime_suite/microservice-gateway/performance_overview",
+    "title": "Microservice Gateway performance"
+  },
+  {
+    "url": "/runtime_suite/mongo2kafka/configuration",
+    "title": "MongoStream2Kafka"
+  },
+  {
+    "url": "/runtime_suite/mongodb-reader/configuration",
+    "title": "MongoDB Reader"
+  },
+  {
+    "url": "/runtime_suite/mongodb-reader/filtering",
+    "title": "Filtering"
+  },
+  {
+    "url": "/runtime_suite/mongodb-reader/acl",
+    "title": "ACL"
+  },
+  {
+    "url": "/runtime_suite/o3-dicom-service/overview",
+    "title": "DICOM Service"
+  },
+  {
+    "url": "/runtime_suite/o3-dicom-service/api_overview",
+    "title": "APIs Overview"
+  },
+  {
+    "url": "/runtime_suite/o3-dicom-service/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/overview",
+    "title": "Payment Gateway Manager"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/how_it_works",
+    "title": "How does it work?"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/adyen",
+    "title": "Adyen"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/axerve",
+    "title": "Axerve"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/braintree",
+    "title": "Braintree"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/satispay",
+    "title": "Satispay"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/scalapay",
+    "title": "Scalapay"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/soisy",
+    "title": "Soisy"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/stripe",
+    "title": "Stripe"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/external",
+    "title": "External Integration"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/flow_manager_integration",
+    "title": "Payment Saga APIs - Flow Manager Integration"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/adaptive_checkout",
+    "title": "Adaptive Checkout"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/overview",
+    "title": "Payment Gateway Manager"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/how_it_works",
+    "title": "How does it work?"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/braintree",
+    "title": "Braintree"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/applepay",
+    "title": "Apple Pay"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/stripe",
+    "title": "Stripe"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/recurrent_payments",
+    "title": "Recurrent Payments"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/payment-gateway-manager/90_v2/flow_manager_integration",
+    "title": "Flow Manager Integration"
+  },
+  {
+    "url": "/runtime_suite/pdf-service/overview",
+    "title": "PDF Service"
+  },
+  {
+    "url": "/runtime_suite/pdf-service/configuration",
+    "title": "PDF Service Configuration"
+  },
+  {
+    "url": "/runtime_suite/pdf-service/usage",
+    "title": "PDF Service Usage"
+  },
+  {
+    "url": "/runtime_suite/pdf-service/performance",
+    "title": "Requests and limits"
+  },
+  {
+    "url": "/runtime_suite/pharma-e-commerce-backend/overview",
+    "title": "Pharma Ecommerce Backend"
+  },
+  {
+    "url": "/runtime_suite/pharma-e-commerce-backend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/pharma-e-commerce-backend/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/proxy-google-fhir/overview",
+    "title": "Proxy Google FHIR"
+  },
+  {
+    "url": "/runtime_suite/proxy-google-fhir/configuration",
+    "title": "Proxy Google FHIR Configuration"
+  },
+  {
+    "url": "/runtime_suite/push-notification-manager/configuration",
+    "title": "Mail Notifications Manager"
+  },
+  {
+    "url": "/runtime_suite/push-notification-manager/usage",
+    "title": "Mail Notifications Manager Usage"
+  },
+  {
+    "url": "/runtime_suite/push-notification-sender/overview",
+    "title": "Push Notification Sender"
+  },
+  {
+    "url": "/runtime_suite/push-notification-sender/configuration",
+    "title": "Push Notification Sender"
+  },
+  {
+    "url": "/runtime_suite/rest2kafka-service/overview",
+    "title": "REST to Kafka (Rest2Kafka)"
+  },
+  {
+    "url": "/runtime_suite/rest2kafka-service/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/ses-mail-notification-service/configuration",
+    "title": "SES Mail Notification Service"
+  },
+  {
+    "url": "/runtime_suite/ses-mail-notification-service/usage",
+    "title": "Mail Service Usage"
+  },
+  {
+    "url": "/runtime_suite/single-view-creator/configuration",
+    "title": "Single View Creator plugin"
+  },
+  {
+    "url": "/runtime_suite/single-view-trigger-generator/configuration",
+    "title": "Single View Trigger Generator plugin"
+  },
+  {
+    "url": "/runtime_suite/sms-service/overview",
+    "title": "SMS Service"
+  },
+  {
+    "url": "/runtime_suite/sms-service/configuration",
+    "title": "SMS Service"
+  },
+  {
+    "url": "/runtime_suite/sms-service/usage",
+    "title": "SMS Service Usage"
+  },
+  {
+    "url": "/runtime_suite/sql-db-reader/configuration_and_usage",
+    "title": "SQL DB Reader"
+  },
+  {
+    "url": "/runtime_suite/sql-invoker/configuration_and_usage",
+    "title": "SQL Invoker"
+  },
+  {
+    "url": "/runtime_suite/swagger-aggregator/overview",
+    "title": "Swagger Aggregator"
+  },
+  {
+    "url": "/runtime_suite/swagger-aggregator/configuration",
+    "title": "Swagger Aggregator Configuration"
+  },
+  {
+    "url": "/runtime_suite/swagger-aggregator/apis",
+    "title": "APIs"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-backend/overview",
+    "title": "Teleconsultation Service Backend"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-backend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-backend/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-frontend/overview",
+    "title": "Teleconsultation Service Frontend"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-frontend/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/teleconsultation-service-frontend/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/temporary-password-generator/overview",
+    "title": "Temporary Password Generator"
+  },
+  {
+    "url": "/runtime_suite/temporary-password-generator/how_to_use",
+    "title": "How to use"
+  },
+  {
+    "url": "/runtime_suite/temporary-password-generator/configuration",
+    "title": "Temporary Password Generator"
+  },
+  {
+    "url": "/runtime_suite/therapy-and-monitoring-manager/overview",
+    "title": "Therapy and Monitoring Manager"
+  },
+  {
+    "url": "/runtime_suite/therapy-and-monitoring-manager/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite/therapy-and-monitoring-manager/usage",
+    "title": "Usage"
+  },
+  {
+    "url": "/runtime_suite/timer-service/overview",
+    "title": "Timer Service"
+  },
+  {
+    "url": "/runtime_suite/timer-service/configuration",
+    "title": "Timer Service Configuration"
+  },
+  {
+    "url": "/runtime_suite/timer-service/usage",
+    "title": "Timer Service Usage"
+  },
+  {
+    "url": "/runtime_suite/user-manager-service/overview",
+    "title": "User Manager Service"
+  },
+  {
+    "url": "/runtime_suite/user-manager-service/configuration",
+    "title": "User Manager Service configuration"
+  },
+  {
+    "url": "/runtime_suite/user-manager-service/usage",
+    "title": "User Manager Usage"
+  },
+  {
+    "url": "/runtime_suite_applications/bucket-storage-support---gcp/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/bucket-storage-support---gcp/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/bucket-storage-support---s3/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/bucket-storage-support---s3/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/csv-connector/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/dev_portal/api_documentation_configuration",
+    "title": "API Documentation Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/identification-manager/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/identification-manager/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/payment-integration-hub/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/payment-integration-hub/payment_saga",
+    "title": "Payment Saga"
+  },
+  {
+    "url": "/runtime_suite_applications/payment-integration-hub/subscription_saga",
+    "title": "Subscription Saga"
+  },
+  {
+    "url": "/runtime_suite_applications/payment-integration-hub/backoffice_payment",
+    "title": "Backoffice Payments Pages"
+  },
+  {
+    "url": "/runtime_suite_applications/payment-integration-hub/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/scoring-manager/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/scoring-manager/backoffice",
+    "title": "Backoffice"
+  },
+  {
+    "url": "/runtime_suite_applications/scoring-manager/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_applications/secure-api-gateway/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_applications/secure-api-gateway/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/apidoc",
+    "title": "API documentation"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/custom_service",
+    "title": "Custom Service"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/decorators",
+    "title": "Add decorators"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/http_client",
+    "title": "Call the other services on the Platform project"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/logging",
+    "title": "Logging"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/routes",
+    "title": "Declare routes"
+  },
+  {
+    "url": "/runtime_suite_libraries/custom-plugin-lib/testing",
+    "title": "Testing"
+  },
+  {
+    "url": "/runtime_suite_libraries/flow-manager-client/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_libraries/flow-manager-client/setup",
+    "title": "Setup"
+  },
+  {
+    "url": "/runtime_suite_libraries/kafka-healthchecker/overview",
+    "title": "Kafka HealthChecker"
+  },
+  {
+    "url": "/runtime_suite_libraries/kafka-healthchecker/usage",
+    "title": "Kafka HealthChecker Usage"
+  },
+  {
+    "url": "/runtime_suite_libraries/kafka-healthchecker/setup",
+    "title": "Kafka HealthChecker Setup"
+  },
+  {
+    "url": "/runtime_suite_libraries/lc39/cli-flags",
+    "title": "CLI Flags"
+  },
+  {
+    "url": "/runtime_suite_libraries/lc39/development-affordance",
+    "title": "Development Affordance"
+  },
+  {
+    "url": "/runtime_suite_libraries/lc39/logging",
+    "title": "Logging"
+  },
+  {
+    "url": "/runtime_suite_libraries/lc39/main-entrypoint",
+    "title": "Main Entrypoint"
+  },
+  {
+    "url": "/runtime_suite_libraries/lc39/service-options",
+    "title": "Service Options"
+  },
+  {
+    "url": "/runtime_suite_templates/application-service-adapter/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_templates/application-service-adapter/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/digital-footprints-analytics/overview",
+    "title": "Digital Footprints Analytics Template"
+  },
+  {
+    "url": "/runtime_suite_templates/digital-footprints-analytics/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/faire.ai-adapter/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_templates/faire.ai-adapter/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/modefinance-adapter/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_templates/modefinance-adapter/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/node.js-template/overview",
+    "title": "Node.js Template"
+  },
+  {
+    "url": "/runtime_suite_templates/node.js-template/walkthrough",
+    "title": "Node.js Template Walkthrough"
+  },
+  {
+    "url": "/runtime_suite_templates/premium-valuation-avm/overview",
+    "title": "Prelios Typescript Template"
+  },
+  {
+    "url": "/runtime_suite_templates/premium-valuation-avm/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_templates/premium-valuation-avm/walkthrough",
+    "title": "Node.js Template Walkthrough"
+  },
+  {
+    "url": "/runtime_suite_templates/verifiable-credential-generator/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_templates/verifiable-credential-generator/configuration",
+    "title": "Configuration"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/overview",
+    "title": "Overview"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/setup",
+    "title": "Setup"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/options",
+    "title": "options Command"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/interpolate",
+    "title": "interpolate Command"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/generate",
+    "title": "generate Command"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/deploy",
+    "title": "deploy Command"
+  },
+  {
+    "url": "/runtime_suite_tools/mlp/hydrate",
+    "title": "hydrate Command"
+  }
+]

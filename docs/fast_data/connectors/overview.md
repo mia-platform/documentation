@@ -50,6 +50,10 @@ This approach has already been tested, verified and it is working in production 
 
 Change Data Capture systems described above publish change events in one of the [formats supported by Fast Data](/fast_data/inputs_and_outputs.md#data-change-message). When another CDC system is employed it is important to either verify that such component can produce compatible messages or provide a [_custom message adapter_](/fast_data/configuration/realtime_updater.md#custom) to the Fast Data Real-Time Updater component. In this way Fast Data can easily process change events employing user-defined formats.
 
+:::danger
+When configuring any CDC you have to bear in mind that Fast Data needs the whole record in every message sent. This may look worse storage-wise but it allows the microservices to save precious time on MongoDB queries that would otherwise slow down the process considerably.
+:::
+
 ### Managed Debezium CDC
 
 [Debezium](https://debezium.io/) is an open-source distributed platform for change data capture. It can be either deployed as a Kafka Connector on the Kafka Connect framework, when employing [Apache Kafka](https://kafka.apache.org/) as event streaming platform or as a standalone service.
