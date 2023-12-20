@@ -10,6 +10,8 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+[handlebars-syntax]: https://handlebarsjs.com/guide/expressions.html
+
 [localized-text]: ./40_core_concepts.md#localization-and-i18n
 [dynamic-configurations]: ./40_core_concepts.md#dynamic-configuration
 [helpers]: ./40_core_concepts.md#helpers
@@ -33,7 +35,7 @@ Actions are generally composed of a triple: `<type, config, hooks>`.
 - `config` defines the operations that the computed callback performs,
 - `hooks` allows to specify further actions that are to be chained to the current one at specific times or under specific conditions.
 
-Some components provide properties that accept such actions as value. Each action is compiled to a callback that can be triggered by the components, possibly providing some data as input (or `context`). Different components may provide different context to their actions, which can be utilized to specify [dynamic action configurations][dynamic-configurations], using [handlebars syntax][handlebars-syntax](https://handlebarsjs.com/guide/expressions.html).
+Some components provide properties that accept such actions as value. Each action is compiled to a callback that can be triggered by the components, possibly providing some data as input (or `context`). Different components may provide different context to their actions, which can be utilized to specify [dynamic action configurations][dynamic-configurations], using [handlebars syntax][handlebars-syntax].
 
 ## Types of actions
 

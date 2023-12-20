@@ -160,31 +160,31 @@ type WizardStepSchema = {
 
 Each such element maps to a step of the wizard as follows:
 
-| property | description |
-|----------|-------------|
-| `keys` | fields to display in the step |
-| `labels` | [localized labels][localized-text] with the text to show |
-| `asForm` | whether to visualize a single nested object as a form or a single nested array as an accordion of forms. Ignored if the step includes more than one field. Defaults to true. |
+| property | description                                                                                                                              |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `keys`   | fields to display in the step                                                                                                            |
+| `labels` | [localized labels][localized-text] with the text to show                                                                                 |
+| `asForm` | whether to visualize nested objects as a form, or nested arrays as an accordion of forms. Step must include one field. Defaults to true. |
 
 If a step meets the following requirements:
   - only includes one field
   - the field is of type `object` or `array` and has a property `dataSchema`
-  - `asForm` is set to true (default)
+  - `asForm` is set to true (as per default)
 
 Then the field will be displayed as a form in case of an `object` field, or as an accordion of forms in case of an `array` field.
 
 `labels` are mapped to displayed text as follows:
 
-| key | description |
-|----------|-------------|
-| `wizardNext` | Button for going to next step |
-| `wizardPrevious` | Button for going back to previous step |
-| `wizardAddNew` | Button for adding a new element to an array, when displayed as an accordion |
-| `wizardSubmit` | Button for submitting the form in the final step |
-| `stepperTitle` | Title of the stepper component |
-| `stepperSubtitle` | Subtitle of the stepper component |
-| `accordionHeader` | Title of the accordion panel. An incremental is automatically added as panels are added to the accordion |
-| `accordionEmptyComponent` | Text to display when the accordion is empty |
+| key                       | description                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `wizardNext`              | Button for going to next step                                                                            |
+| `wizardPrevious`          | Button for going back to previous step                                                                   |
+| `wizardAddNew`            | Button for adding a new element to an array, when displayed as an accordion                              |
+| `wizardSubmit`            | Button for submitting the form in the final step                                                         |
+| `stepperTitle`            | Title of the stepper component                                                                           |
+| `stepperSubtitle`         | Subtitle of the stepper component                                                                        |
+| `accordionHeader`         | Title of the accordion panel. An incremental is automatically added as panels are added to the accordion |
+| `accordionEmptyComponent` | Text to display when the accordion is empty                                                              |
 
 ### Dynamic Context
 
@@ -386,8 +386,8 @@ A Form Wizard configured like the following:
 }
 ```
 
-results in a wizard with two steps.
-  - the first step displays a form with fields "name", "color". Note that "color" is note displayed as a separate form with fields "red", "green" and "blue", but rather as a default object field - which consists of a text editor
+results in a wizard with two steps:
+  - the first step displays a form with fields "name", "color". Note that "color" is **not** displayed as a separate form, but rather as a default object field - which consists of a text editor
   - the second step displays an accordion of forms, each one with fields "shape", "size"
 
 Note that custom labels are specified for both steps.
@@ -499,20 +499,20 @@ type Condition = {
 |-------|--------|
 | [add-new] | opens the modal to create a new item, potentially applying default fields from data schema or data provided in the payload of the event |
 | [selected-data] | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event |
-| [nested-navigation-state/push] | updates internal representation of the current navigation path by adding one step. The wizard is disabled if the user navigated inside a nested field. |
-| [nested-navigation-state/back] | updates internal representation of the current navigation path by removing the specified number of steps. The wizard is disabled if the user navigated inside a nested field. |
-| [nested-navigation-state/display] | updates internal representation of the current navigation and closes the modal. The wizard is disabled if the user navigated inside a nested field. |
+| [nested-navigation-state/push] | updates internal representation of the current navigation path by adding one step. The wizard is disabled if the user navigated inside a nested field, and renders a single form with fields of the visualized nested object. |
+| [nested-navigation-state/back] | updates internal representation of the current navigation path by removing the specified number of steps. The wizard is disabled if the user navigated inside a nested field, and renders a single form with fields of the visualized nested object. |
+| [nested-navigation-state/display] | updates internal representation of the current navigation and closes the modal. The wizard is disabled if the user navigated inside a nested field, and renders a single form with fields of the visualized nested object. |
 | [success] | notifies correct data update as a result of form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onSuccess` property via `response` keyword. |
 | [error] | notifies that something went wrong during form submission. Payload holds the response of the associated HTTP call and is accessible by action in `onFail` property via `response` keyword. |
 
 ### Emits
 
 
-| event                   | description                                                                       |
-| ----------------------- | --------------------------------------------------------------------------------- |
-| configurable event    | properties such as `onFail`, `onSuccess` or `actions` allow to emit custom events |
-| [require-confirm]       | triggered when trying to close the modal with unsaved data                       |
-| [create-data]           | requests data creation                                                            |
-| [update-data]           | requests data update                                                              |
-| [create-data-with-file]  | requests data creation and file upload                                            |
-| [update-data-with-file] | requests data update and file upload                                              |
+| event                   | description                                                                                                             |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| configurable event      | properties such as `onFail`, `onSuccess` or `actions` allow to emit custom events                                       |
+| [require-confirm]       | triggered when trying to close the modal with unsaved data. `requireConfirm` property allows to customize this behavior |
+| [create-data]           | requests data creation                                                                                                  |
+| [update-data]           | requests data update                                                                                                    |
+| [create-data-with-file] | requests data creation and file upload                                                                                  |
+| [update-data-with-file] | requests data update and file upload                                                                                    |

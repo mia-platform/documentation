@@ -1,7 +1,7 @@
 ---
-id: nested_objects
+id: nested_data
 title: Nested Data
-sidebar_label: Nested Objects
+sidebar_label: Nested data
 ---
 
 <!--
@@ -167,7 +167,7 @@ It listens to the `display-data` event, and consequently emits [nested-navigatio
 The [Pagination][bk-pagination] and the [Breadcrumbs][bk-breadcrumbs] components should be included in the plugin configuration for the [Table][bk-table] component to work properly while editing nested fields.
 :::
 
-An example of how nested data can be edited with a form component and a Table is [available][example-editing-nested-data].
+An example of how nested data can be edited with a form component and a Table is [available](#example-editing-nested-data).
 
 ## Limitations: filtering
 
@@ -334,6 +334,7 @@ then the rendered table can be represented by an array as:
 
 ```json
 [
+  ["difficulty", "ingredients"]
   ["medium", "3 Elements"],
   ["easy", "2 Elements"]
 ]
@@ -350,10 +351,10 @@ This corresponds to emitting a [nested-navigation-state/push] event with payload
 ```json
 {
   "data": [
-      {"name": "Chicken","calories": 500},
-      {"name": "Potatoes", "calories": 600},
-      {"name": "Olive Oil", "calories": 20}
-    ],
+    {"name": "Chicken","calories": 500},
+    {"name": "Potatoes", "calories": 600},
+    {"name": "Olive Oil", "calories": 20}
+  ],
   "origin": {
     "difficulty": "medium",
     "ingredients": [
@@ -461,7 +462,7 @@ and a the following components to be included in the page:
     "tag": "bk-dynamic-form-modal",
     "properties": {
       "dataSchema": {
-        ...
+        ... // like bk-table
       }
     }
   }
@@ -473,7 +474,7 @@ and a the following components to be included in the page:
     "tag": "bk-breadcrumbs",
     "properties": {
       "dataSchema": {
-        ...
+        ... // like bk-table
       }
     }
   }
@@ -492,7 +493,7 @@ and a the following components to be included in the page:
     "tag": "bk-breadcrumbs",
     "properties": {
       "dataSchema": {
-        ...
+        ... // like bk-table
       }
     }
   }
@@ -503,6 +504,7 @@ and assuming the Table to be currently rendering the "ingredients" nested field
 
 ```json
 [
+  ["name", "calories"] // table header
   ["Chicken","500"],
   ["Potatoes", "600"],
   ["Olive Oil", "20"]
@@ -531,7 +533,7 @@ Assuming the field to decrease the "calories" field to 450 and submit, then the 
 }
 ```
 
-Notice how the whole "starting" field is sent as payload of the event.
+Notice how the whole "ingredients" field is sent as payload of the event.
 The [CRUD Client][bk-crud-client] might be included in the page and perform an HTTP request to update the data item in question.
 
 If the data is correctly updated, the CRUD Client fetches the newly updated data and propagates it through a [display-data] event.
@@ -567,7 +569,7 @@ The Breadcrumbs listens to the `display-data`, and consequently emits a [nested-
 // payload of the nested-navigation-state/push
 {
   "data": [
-    {"name": "Chicken","calories": 500},
+    {"name": "Chicken", "calories": 500},
     {"name": "Potatoes", "calories": 450},
     {"name": "Olive Oil", "calories": 20}
   ]
@@ -592,7 +594,8 @@ the Pagination component listens to this event and informs the Table on what por
 corresponding to the Table rendering:
 ```json
 [
-  ["Chicken","500"],
+  ["name", "calories"] // table header
+  ["Chicken", "500"],
   ["Potatoes", "450"],
   ["Olive Oil", "20"]
 ]
@@ -602,7 +605,7 @@ corresponding to the Table rendering:
 Notice how the Pagination and the Breadcrumbs components are both needed when updating nested data.
 :::
 
-By default, the Table rendered an action to delete a data row inside nested field.
+By default, the Table renders an action to delete a data row inside nested field.
 Clicking the action of the first row, for instance, emits an `update-data` event with payload:
 
 ```json

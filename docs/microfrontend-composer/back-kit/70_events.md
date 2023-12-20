@@ -986,7 +986,7 @@ Updates multiple data state (__STATE__ or _st) in a dataset
 
 ### Upload File
 
-Requests the upload of a file and carries its data. [File][file]
+Requests the upload of a file and carries its data.
 
 - Label: `upload-file`
 - Payload: [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) object

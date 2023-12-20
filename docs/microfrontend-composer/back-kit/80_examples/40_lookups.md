@@ -26,6 +26,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [bk-form-card]: ../60_components/320_form_card.md
 [bk-form-drawer]: ../60_components/330_form_drawer.md
 [bk-crud-lookup-client]: ../60_components/170_crud_lookup_client.md
+[bk-table]: ../60_components/510_table.md
 
 [modal-lookup-queries]: ../60_components/210_dynamic_form_modal.md#lookupqueries
 [modal-conditional-fields]: ../60_components/210_dynamic_form_modal.md#conditional-fields
@@ -95,7 +96,7 @@ The Dynamic Form Modal, Drawer, Card can be configured in a way to cover feature
 
 - `lookupQueries`
 
-  `lookupQueries` should not be specified inside `lookupOptions` in the data-schema, but rather as a [property of the form component][modal-lookup-queries], which maps each lookup field to additional queries to append to the call to fetch options.
+  `lookupQueries` should **not** be specified inside `lookupOptions` in the data-schema, but rather as a [property of the form component][modal-lookup-queries], which maps each lookup field to additional queries to append to the call to fetch options.
   
   An [example](#example-setting-up-extra-queries-to-fetch-lookup-options) is available showing how to configure the property `lookupQueries` of the Dynamic Form Modal.
 
@@ -108,61 +109,6 @@ The Dynamic Form Modal, Drawer, Card can be configured in a way to cover feature
 
 
 ## Examples
-
-### Example: Setting up extra queries to fetch lookup options
-
-A Dynamic Form Modal configured like the following
-```json
-{
-  "tag": "bk-dynamic-form-modal",
-  "properties": {
-    "dataSchema": {
-      "type": "object",
-      "properties": {
-        "dishes": {"type": "array", "format": "lookup"}
-      }
-    },
-    "basePath": "/orders",
-    "lookupQueries": {
-      "dishes": {
-        "calories": {
-          "$lt": 300
-        }
-      }
-    }
-  }
-}
-```
-fetches options for field "dishes" from `orders/lookup/dishes` with the additional condition that "calories" field of dishes collection should be lower than 300, expressed in the query parameters of the request.
-
-Dynamic queries are also available:
-```json
-{
-  "tag": "bk-dynamic-form-modal",
-  "properties": {
-    "dataSchema": {
-      "type": "object",
-      "properties": {
-        "maxCalories": {"type": "number"},
-        "dishes": {"type": "array", "format": "lookup"}
-      }
-    },
-    "basePath": "/orders",
-    "lookupQueries": {
-      "dishes": {
-        "calories": {
-          "$lt": "{{rawObject maxCalories}}" // rawObject can be used to prevent numeric values from being stringified
-        }
-      }
-    }
-  }
-}
-```
-in this case, form field "maxCalories" is used to dynamically compute the additional query to use when fetching options for "dishes" lookup field.
-
-:::info
-In the previous example, [`rawObject` helper][rawobject] is used to avoid numeric values from being stringified
-:::
 
 ### Example: Submitting writable views with a form component
 
@@ -183,7 +129,7 @@ The following example shows a configuration of the Dynamic Form Modal designed t
   }
 }
 ```
-- being "rider" an `object` field with `lookup` format, is rendered as a select field
+- being "rider" an `object` field with `lookup` format, it is rendered as a select field inside the form
 - options for "rider" select field are dynamically fetched from `/orders-view/lookup/rider`
 
 ### Example: Showing lookup fields in the Table
@@ -262,10 +208,66 @@ with data like:
 renders a table which can be represented by an array like:
 ```json
 [
+  ["name", "dishes", "riders", "customer"], // header
   ["Sarah", "2 Elements", "Alejandro, Susanna", "Marco"],
   ["Bruce", "3 Elements", "Simon", "Kevin"]
 ]
 ```
+
+### Example: Setting up extra queries to fetch lookup options
+
+A Dynamic Form Modal configured like the following
+```json
+{
+  "tag": "bk-dynamic-form-modal",
+  "properties": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "dishes": {"type": "array", "format": "lookup"}
+      }
+    },
+    "basePath": "/orders",
+    "lookupQueries": {
+      "dishes": {
+        "calories": {
+          "$lt": 300
+        }
+      }
+    }
+  }
+}
+```
+fetches options for field "dishes" from `orders/lookup/dishes` with the additional condition that "calories" field of dishes collection should be lower than 300, expressed in the query parameters of the request.
+
+Dynamic queries are also available:
+```json
+{
+  "tag": "bk-dynamic-form-modal",
+  "properties": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "maxCalories": {"type": "number"},
+        "dishes": {"type": "array", "format": "lookup"}
+      }
+    },
+    "basePath": "/orders",
+    "lookupQueries": {
+      "dishes": {
+        "calories": {
+          "$lt": "{{rawObject maxCalories}}" // rawObject can be used to prevent numeric values from being stringified
+        }
+      }
+    }
+  }
+}
+```
+in this case, form field "maxCalories" is used to dynamically compute the additional query to use when fetching options for "dishes" lookup field.
+
+:::info
+In the previous example, [`rawObject` helper][rawobject] is used to avoid numeric values from being stringified
+:::
 
 ### Example: Specifying lookup dependencies
 
@@ -292,7 +294,7 @@ renders a table which can be represented by an array like:
         "property": "city",
         "query": {
           "city.stateId": {
-            "$eq": "state.value"
+            "$eq": "{{state.value}}"
           }
         }
       }
@@ -368,11 +370,11 @@ which might return options like:
 limiting therefore the available options to be coherent with the specified condition in `conditionalValues`.
 
 :::info
-The example features the [Dynamic Form Modal][bk-dynamic-form-modal], but the [Dynamic Form Drawer][bk-dynamic-form-drawer] and the [Dynamic Form Card][bk-dynamic-form-vard] could be configured in the same way to obtain the same result.
+This example features the [Dynamic Form Modal][bk-dynamic-form-modal]. However, the [Dynamic Form Drawer][bk-dynamic-form-drawer] and the [Dynamic Form Card][bk-dynamic-form-card] could be configured in the same way to obtain the same result.
 :::
 
 :::info
 Notice that field "stateId" should be included in the values returned for the "city" field. This can be achieved through proper configuration of the aggregation pipeline that is used to build the underlying [writable view][writable-views].
-Components [Dynamic Form Modal][bk-dynamic-form-modal], [Dynamic Form Drawer][bk-dynamic-form-drawer], [Dynamic Form Card][bk-dynamic-form-vard] always carry in their internal representation of the form values the whole lookup object, although only the label is displayed.
+Components [Dynamic Form Modal][bk-dynamic-form-modal], [Dynamic Form Drawer][bk-dynamic-form-drawer], [Dynamic Form Card][bk-dynamic-form-card] always carry in their internal representation of the form values the whole lookup object, although only the label is displayed.
 This is why, in the example, `conditionalValues` may reference the "stateId" key in the value of the "city" field.
 :::
