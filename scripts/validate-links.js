@@ -12,7 +12,8 @@ const excludePath = (path) => {
         'docs/runtime_suite_tools',
         'docs/runtime_suite_applications',
         'docs/self_hosted/installation-chart',
-        'docs/business_suite',
+        'docs/microfrontend-composer/back-kit',
+        'docs/microfrontend-composer/composer',
         'docs/cli'
     ];
 
@@ -59,7 +60,8 @@ const linkToCheck = (link) => {
 }
 
 const checkLink = (link) => {
-    const [path] = link.split('#');
+    const [pathWithQs] = link.split('#');
+    const [path] = pathWithQs.split('?')
     const pathToCheck = `${docsFolder}/docs${path}`;
     let errors = [];
 

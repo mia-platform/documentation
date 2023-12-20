@@ -8,7 +8,7 @@ sidebar_label: Projection Changes Schema
 
 The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/glossary.mdx)
 to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
-by the [Real Time Updater](/fast_data/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
+by the [Real-Time Updater](/fast_data/configuration/realtime_updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
 
 ## Configuration Properties
 
@@ -47,14 +47,22 @@ The Projection Changes Schema is made of the following fields:
 </details>
 
 :::note
-All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed
+All the keys in uppercase are values that you must change depending on your data, while the keys in lowercase are keywords that should not be changed.
 :::
 
 In some cases you may want a finer control over the creation of the projection changes identifier. Such control can be achieved within service configuration providing a _custom function_,
 which is applied to each document retrieved by the last step of the strategy path (in this case records extracted from `BASE_PROJECTION` collection).
-The custom function file can be loaded as a config map of the service, while in the `projectionChangesSchema` configuration file
-each path that requires using a custom function should specify as identifier the `__fromFile__[<filename>]` keyword,
-where within squared brackets is provided the filename containing the custom function.
+
+## Custom Functions
+
+:::caution
+Please note that this feature is **only** supported by <ins>Single View Trigger Generator</ins> service, whereas <ins>Real-Time Updater</ins> does **not** handle it.
+:::
+
+It's possible to use custom functions in each path that requires additional operations not provided by the ER Schema. 
+
+To define a custom function, you should specify as identifier the `__fromFile__[<filename>]` keyword,
+where within squared brackets is provided the filename containing the custom function: the function provided must be created in a config map, that has been mounted in the same path as the one defined in the [environment variable `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`](/fast_data/configuration/single_view_trigger_generator.md#environment-variables).
 
 
 <details><summary>Projection Changes Configuration with function loading</summary>
@@ -79,7 +87,7 @@ where within squared brackets is provided the filename containing the custom fun
 </p>
 </details>
 
-As you can see, in this example we're referencing a file called `myCustomFunction.js`. This file needs to a be a Javascript file exporting a default async generator function with the following parameters:
+As you can see, in this example we're referencing a file called `myCustomFunction.js`. This file needs to a be a Javascript file exporting a default [async generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator) with the following parameters:
 
 - `strategyContext`: strategy context object composed of two properties:
   - `logger`: [Pino](https://github.com/pinojs/pino) logger to print out useful service logs

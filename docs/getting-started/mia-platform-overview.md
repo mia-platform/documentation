@@ -28,7 +28,7 @@ Mia-Platform products are built **by developers for developers**, and you can [a
 - Monitor runtime resources usage and optimize them;
 - Expose all the APIs through an API Gateway of your choice, in an easy and secure way;
 - Leverage a Data Fabric solution to govern the entire **data lifecycle**. Project data from your legacy systems and create single views - i.e. unified views of a subset of data with a specific purpose - to reduce access latency, and increase data availability;
-- Create and evolve an entire **backoffice application** in a few clicks using the low-code features to read and write your data.
+- Create and evolve an entire **Microfrontend Composer application** like a backoffice application (and much more)* in a few clicks using the low-code features to read and write your data.
 
 ## Why Mia-Platform?
 
@@ -72,7 +72,7 @@ These products are the backbone of Mia-Platform, and constitute the main solutio
 
 These components contribute to the realization of some specific tasks within your products. They are available through Mia-Platform Marketplace, and they are:
 
-- [Mia-Platform Backoffice](/business_suite/backoffice/10_overview.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
+- [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
 - [Mia-Platform External Developer Portal](/runtime_suite/api-portal/10_overview.md): a complete access point to your companies’ APIs for your partners and providers, containing live and testable API documentation and allowing standardization in the methods of use.
 - [Mia-Platform Flow Manager](/runtime_suite/flow-manager-service/10_overview.md): a saga orchestrator, capable to manage flows structured by using the architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach.
 

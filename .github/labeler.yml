@@ -1,0 +1,17 @@
+fast-data:
+  - docs/fast_data/*
+
+microfrontend-composer:
+  - docs/microfrontend-composer/*
+
+cli:
+  - docs/cli/*
+
+marketplace:
+  - docs/runtime_suite/*
+
+crud-service:
+  - docs/runtime_suite/crud-service/*
+
+release-note:
+  - docs/release-notes/*

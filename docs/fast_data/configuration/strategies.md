@@ -150,16 +150,35 @@ For example, in this folder:
                       |-- myFn2.js
 ```
 
-The file included in Real Time Updater service will be `myFn1.js` and `myFn2.js`.
+The file included in Real-Time Updater service will be `myFn1.js` and `myFn2.js`.
 
 The folder `fast-data-files` must be created at the root level of the configuration repository of your project.
 
 To enable the continuous integration, you could start a pipeline checking for changes inside the `fast-data-files` folder and triggers test, lint and others useful scripts.
 
-## Technical limitation
+### Technical limitation
 
 In your custom files (e.g. `fast-data-files`) you can import only the node modules present in the following list:
 
 - [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
 - [mongodb](https://mongodb.github.io/node-mongodb-native/4.15/)
 - [ramda](https://ramdajs.com/docs/)
+
+
+## Strategies type
+
+:::warning
+This information are valid only when using a [Real-Time Updater](/fast_data/configuration/realtime_updater.md) with **Projection Changes**.
+:::
+
+Each strategy is associated with a **type**, which usually (and by default) corresponds to the name of the Single View for which it is configured. When using a Real-Time Updater with Projection Changes, this type should match the one declared in the `TYPE` environment variable of the Single View Creator(s) associated with the Single View. The reason is that, behind the hood, the strategy type is written in the Projection Changes record by the Real-Time Updater and the Single View Creators will discern which records to process based on it.
+
+There may be scenarios in which you want more than one Single View Creator associated with the same Single View, to process Projection Changes records with different types (as explained [here](/fast_data/faq/parallel_svc.md)): this may happen, for example, to isolate a critical flow in which one projection concurring in a Single View is updated much more often than the others, needing a dedicated set of services to ensure maximum efficiency.
+
+To achieve this separation, one can use the **Type field** of the strategies table in the Single View details page to associate a specific type to a subset of strategies.
+
+![Strategies table](./img/strategies-table.png)
+
+:::caution
+For the flow to work correctly, the types declared in the strategies table should match the type of at least one of the Single View Creators associated with the Single View, and viceversa.
+:::

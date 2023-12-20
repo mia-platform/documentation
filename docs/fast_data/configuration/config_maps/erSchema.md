@@ -4,10 +4,10 @@ title: ER Schema Configuration
 sidebar_label: ER Schema
 ---
 
-In this document we guide you through the configuration of the ER Schema (`erSchema.json`), one of the configuration files required by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc), [Real Time Updater](/fast_data/architecture.md#real-time-updater-rtu) and [Single View Trigger Generator](/fast_data/architecture.md#single-view-trigger-generator-svtg) in a low-code situation.
+In this document we guide you through the configuration of the ER Schema (`erSchema.json`), one of the configuration files required by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc), [Real-Time Updater](/fast_data/architecture.md#real-time-updater-rtu) and [Single View Trigger Generator](/fast_data/architecture.md#single-view-trigger-generator-svtg) in a low-code situation.
 
 :::tip
-If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/getting-started/tutorials/fast-data/low-code.mdx)
+If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/fast_data/tutorials/low-code.mdx)
 :::
 
 ## Overview
@@ -158,7 +158,7 @@ Conditions can also use [MongoDB Query and Projection Operators](https://www.mon
 
 Normally when we write an ER Schema we think about declaring a condition in only one direction but this is not enough.
 
-The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator.md#aggregation).
+The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/plugin.md#aggregation).
 As you may know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
 
 <details><summary>ER Schema Configuration with Strategy and Aggregation</summary>
@@ -223,7 +223,7 @@ You can decide to open an existing ER Schema or to create a new one. In both cas
 
 - the right side includes a collapsible panel, which shows the information about a collection or condition, if selected, or the list of collections included in the Console configuration and not already added to the ER Schema: you can click on one of them to view the related details. You can also drag each collection to the canvas by yourself. This is useful if you need to include multiple collections when creating your ER Schema.
 
-- the left side includes another collapsible panel, which shows a code editor with the current ER Schema configuration, in JSON format. You can also edit the ER Schema from there, and every update will be reflected immediately in the canvas. This JSON object is the exact ER Schema that will be used in Fast Data services and it has the same structure as the ER Schema available in the [Low Code configuration](/fast_data/configuration/single_view_creator.md).
+- the left side includes another collapsible panel, which shows a code editor with the current ER Schema configuration, in JSON format. You can also edit the ER Schema from there, and every update will be reflected immediately in the canvas. This JSON object is the exact ER Schema that will be used in Fast Data services and it has the same structure as the ER Schema available in the [Low Code configuration](/fast_data/configuration/single_view_creator/plugin.md).
 
 ### Adding collections to the ER Schema
 
@@ -349,7 +349,7 @@ This panel, visible by clicking on the `</>` icon, opens and closes a Code Edito
 
 It is also possible to interact with the content of the Code Editor, like adding or removing lines. Updating the ER Schema from the Code Editor will reflect automatically in the canvas.
 
-Also, the Code Panel allows you to copy and paste your schema into an external file. You might want to use this feature to test the ER Schema with the [Fast Data Low Code Test Template application](/fast_data/configuration/single_views.md#how-to-test-low-code-configurations). You can also export the content to the ER Schema Config Map used by the [Real Time Updater](/fast_data/configuration/realtime_updater.md#er-schema-configuration) and the [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md), or you can just use it to create another ER Schema as well.
+Also, the Code Panel allows you to copy and paste your schema into an external file. You might want to use this feature to test the ER Schema with the [Fast Data Low Code Test Template application](/fast_data/configuration/single_views.md#how-to-test-low-code-configurations). You can also export the content to the ER Schema Config Map used by the [Real-Time Updater](/fast_data/configuration/realtime_updater.md#er-schema-configuration) and the [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md), or you can just use it to create another ER Schema as well.
 
 ### Error management
 

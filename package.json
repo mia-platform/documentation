@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "11.6.2",
+  "version": "12.0.14",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -17,19 +17,20 @@
     "validate-links": "node ./scripts/validate-links.js",
     "build-redirects": "node ./scripts/build-permanent-redirects.js",
     "check-redirects": "node ./scripts/check-permanent-redirects.js",
-    "build-subtitle": "node ./scripts/parse-subtitle.js"
+    "build-subtitle": "node ./scripts/parse-subtitle.js",
+    "generate-last-edited": "node scripts/last-pages-edited.js "
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.1",
-    "@docusaurus/plugin-client-redirects": "2.4.1",
-    "@docusaurus/preset-classic": "2.4.1",
+    "@docusaurus/core": "2.4.3",
+    "@docusaurus/plugin-client-redirects": "2.4.3",
+    "@docusaurus/preset-classic": "2.4.3",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.0.0",
-    "cspell": "^7.3.5",
+    "cspell": "^8.1.2",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
-    "mermaid": "^10.4.0",
+    "mermaid": "^10.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-youtube": "^10.1.0",
@@ -48,11 +49,15 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.22.15",
-    "@swc/core": "^1.3.84",
-    "eslint": "^8.49.0",
+    "@babel/eslint-parser": "^7.23.3",
+    "@swc/core": "^1.3.99",
+    "eslint": "^8.52.0",
     "eslint-plugin-react": "7.33.2",
-    "prop-types": "^15.8.1"
+    "front-matter": "^4.0.2",
+    "git-list-updated": "^1.2.1",
+    "git-tag": "^0.2.0",
+    "prop-types": "^15.8.1",
+    "semver-utils": "^1.1.4"
   },
   "packageManager": "yarn@3.5.1"
 }
