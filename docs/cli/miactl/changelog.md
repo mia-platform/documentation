@@ -15,6 +15,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] - 2023-12-20
+
+### Added
+
+- `company iam list` command
+- `company iam list users` command
+- `company iam list groups` command
+- `company iam list serviceaccounts` command
+- marketplace apply: add version to multipart request metadata if present in the item
+- add command `miactl marketplace list-versions`
+- mark as alpha the features:
+  - `marketplace list-versions`
+  - `marketplace get` with `--itemId` and `--version` flags
+  - `marketplace delete` with `--itemId` and `--version` flags
+- verbose log for all the remote HTTP requests
+
+### Changed
+
+- help text of version command
+- marketplace apply: consider both itemId and version for duplicate check
+- marketplace apply: silently ignore files with invalid extension rather than throwing error
+- update go version to 1.21.4
+- update oauth2 to v0.15.0
+- update exp to v0.0.0-20231127185646-65229373498e
+- modified `miactl marketplace delete` command to accept either the `objectId` or a `companyId`-`itemId`-`version`
+	tuple that identifies the item to be deleted.
+- modified `miactl marketplace get` command to accept either the `objectId` or a `companyId`-`itemId`-`version` tuple
+	that identifies the item to be retrieved.
+
+### Fixed
+
+- `runtime logs` now is working correctly for pods with more than one container
+
+### BREAKING
+
+- `miactl marketplace delete` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
+- `miactl marketplace get` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
+
 ## [0.9.0] - 2023-11-15
 
 ### Added
@@ -141,7 +179,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.9.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/mia-platform/miactl/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/mia-platform/miactl/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/mia-platform/miactl/compare/v0.6.1...v0.7.0
