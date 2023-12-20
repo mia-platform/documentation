@@ -329,3 +329,7 @@ ResourceDetails = {
 |[require-confirm](../../../microfrontend-composer/back-kit/70_events.md#require-confirm)| trigger for the opening of the confirmation modal before deleting an appointment |
 |[selected-data](../../../microfrontend-composer/back-kit/70_events.md#selected-data)| notifies about the click on an event|
 |[update-data](../../../microfrontend-composer/back-kit/70_events.md#update-data)| trigger for the opening of the component to modify the appointment in the clicked slot|
+
+
+[appointment-manager]: ../../runtime_suite/appointment-manager/overview
+[rond]: https://rond-authz.io/
