@@ -1528,5 +1528,21 @@
   "/development_suite/api-console/api-design/services/": {
     "destination": "/docs/development_suite/api-console/api-design/services/",
     "addedOn": "2023-12-06"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/file_management": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/file_management",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/lookups": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/lookups",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/nested_objects": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/nested_data",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/plugin_navigation": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/plugin_navigation",
+    "addedOn": "2023-12-20"
   }
 }
