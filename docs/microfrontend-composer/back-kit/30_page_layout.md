@@ -14,6 +14,11 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 [micro-lc]: https://micro-lc.io/docs
 [microlc-custom-headers]: https://micro-lc.io/add-ons/backend/middleware/#headers
+[controlled components]: https://reactjs.org/docs/forms.html#controlled-components
+[JSON-schema]: https://json-schema.org/specification.html
+[JSON-schema-7]: https://json-schema.org/understanding-json-schema/reference/type.html
+[dayjs]: https://day.js.org/
+[parsing/formatting syntax]: https://day.js.org/docs/en/parse/string-format
 
 [mia-platform-crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
 [writable-views]: /runtime_suite/crud-service/50_writable_views.md
@@ -63,7 +68,7 @@ Most common initial states provide initial pagination, components to be focused,
 
 Bootstrapping a page entails three main phases:
 
-1. components read the URL parsing properties related to their initial state. Components then evolves without changing properties becoming React-alike [controlled components](https://reactjs.org/docs/forms.html#controlled-components)
+1. components read the URL parsing properties related to their initial state. Components then evolves without changing properties becoming React-alike [controlled components]
 2. components modify their internal state and, if needed, emit an event
 3. a single component, the bootstrap manager, typically the [crud-client], is then tasked with awaiting events triggered by applying the initial state. Such component must have a debounce time after which it ends bootstrapping whether it received bootstrap events.
 
@@ -79,7 +84,7 @@ Components **must be aware of an existing data schema** which instructs on what 
 Back-Kit components pass the data schema to components via the tag property `dataSchema`.
 :::
 
-A data schema is thus encoded as a [JSON-schema](https://json-schema.org/specification.html) with several extensions to keep track of what rendering components might need.
+A data schema is thus encoded as a [JSON-schema] with several extensions to keep track of what rendering components might need.
 
 The outer structure requires a data schema to be an `object`, containing an `object` of `properties` that could in return be marked as `required`
 
@@ -163,7 +168,7 @@ A `label` is either a `string` or a [LocalizedText][localized-text] and provides
 
 An `order` is number that allow to customize the order in which items are rendered by data visualization components.
 
-A `type` is a [JSON-schema version 7 type](https://json-schema.org/understanding-json-schema/reference/type.html).
+A `type` is a [JSON-schema version 7 type][JSON-schema-7].
 
 ### Formats
 
@@ -171,11 +176,11 @@ On top of types, extra information can be passed to better understand how a prop
 
 | type         | formats                                                                                                            |
 | ------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `string`     | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, `lookup` (__deprecated__), `editor` |
+| `string`     | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, <s>`lookup`</s> (__deprecated__), `editor` |
 | `number`     | `date`, `date-time`, `time` , `currency`                                                                           |
 | `integer`    | -                                                                                                                  |
 | `object`     | `file`, `localized-text`, `geopoint`, `lookup`                                                                     |
-| `array`      | `file`, `multilookup` (__deprecated__), `geopoint`, `lookup`                                                       |
+| `array`      | `file`, <s>`multilookup`</s> (__deprecated__), `geopoint`, `lookup`                                                       |
 | `boolean`    | -                                                                                                                  |
 | `form-addon` | `link`, `title`, `subtitle`                                                                                        |
 | `null`       | -                                                                                                                  |
@@ -200,7 +205,7 @@ For instance:
 }
 ```
 
-When `type` is set to `string` or `number` and the format is set to one of `date`, `date-time`, `time`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs](https://day.js.org/) library and its [parsing/formatting syntax](https://day.js.org/docs/en/parse/string-format). If `type` is `number` the datum is expected to be a `long` epoch time, and will be converted onto the client/browser according to the timezone specified in `dateOptions.timeZone` (as a TZ database name, for instance "Europe/Rome"), or else as the client/browser timezone. Array of dates are also supported. In this case, the datum can be configured using the `items` key. For instance:
+When `type` is set to `string` or `number` and the format is set to one of `date`, `date-time`, `time`, the extra key `dateOptions` is available and holds a `displayFormat` property which allows customization of date visualization format. Back-Kit components handles dates and timestamps using [dayjs] library and its [parsing/formatting syntax]. If `type` is `number` the datum is expected to be a `long` epoch time, and will be converted onto the client/browser according to the timezone specified in `dateOptions.timeZone` (as a TZ database name, for instance "Europe/Rome"), or else as the client/browser timezone. Array of dates are also supported. In this case, the datum can be configured using the `items` key. For instance:
 
 ```json
 {
@@ -223,18 +228,20 @@ Please note that the date fields are saved in ISO 8601 format, so it's up to the
 
 When `type` is set to `object` and format is `localized-text`, table expects a [localized object][localized-text] and will render the closest language key, i.e. on language `en-US` it will render either `en-US` if available or `en` as a fallback.
 
-Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
+Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating longitude and latitude; similarly, `object` fields must contain a field "coordinates" with the longitude and latitude values.
 
 :::caution
 `Geopoint` fields within Form components, such as the [Dynamic Form Modal][bk-dynamic-form-modal] or the [Dynamic Form Drawer][bk-dynamic-form-drawer], are rendered using the [leaflet][leaflet] library.
-To ensure correct visualization of these fields, it is necessary to update the [Content Security Policy (CSP)][csp] for HTTP calls, allowing the needed retrieval of CSS files and images. The following CSP rules should be appended:
+To ensure correct visualization of these fields, it is necessary to update the [Content Security Policy (CSP)][csp] for HTTP calls, allowing the needed retrieval of CSS files and images.ù
+The following CSP rules should be appended:
 
 ```
 style-src https://unpkg.com/leaflet@1.8.0/
 img-src data:
 ```
 
-For example, if the plugin orchestration is managed by [micro-lc][micro-lc] (version 2 or higher), additional CSP rules [can be configured][microlc-custom-headers] in its backend thorugh property `publicHeadersMap`. For instance:
+For example, if the plugin orchestration is managed by [micro-lc][micro-lc] (version 2 or higher), additional CSP rules [can be configured][microlc-custom-headers] in its backend thorugh property `publicHeadersMap`.
+For instance:
 
 ```json
 {
@@ -281,6 +288,7 @@ For instance:
   }
 }
 ```
+
 :::info
 In some components, such as the [Table][bk-table], `{{args.[0]}}` corresponds to the value of the current datum.
 :::
@@ -307,6 +315,7 @@ For instance, the Dynamic Form Modal, Drawer, Card provide ways to interact with
   }
 }
 ```
+
 :::info
 Setting key `uniqueItems` to true validates that no item of the array is entered more than once.
 :::
@@ -327,8 +336,7 @@ Setting key `uniqueItems` to true validates that no item of the array is entered
 }
 ```
 
-Interaction with array fields having items of type "object" or "array" is supported by Back-kit components,
-just like object fields that include a data-schema themselves.
+Interaction with array fields having items of `type` `object` or `array` that include a data-schema themselves is supported by Back-kit components.
 More details can be found in [the dedicated section][nested-data].
 
 ```json
@@ -503,20 +511,21 @@ Data visualization and `CRUD` operations might also need a UI component to simpl
 }
 ```
 
-| options            | type                            | description                                                             |
-| ------------------ | ------------------------------- | ----------------------------------------------------------------------- |
-| `disabled`         | boolean                         | whether the property is disabled within the form component              |
-| `hidden`           | boolean                         | whether the property is shown within the form component                 |
-| `placeholder`      | [LocalizedText][localized-text] | placeholder for the component                                           |
-| `readOnly`         | boolean                         | whether the property can be edited                                      |
-| `hiddenOnUpdate`   | boolean                         | whether the property is shown within the form component on update       |
-| `hiddenOnInsert`   | boolean                         | whether the property is shown within the form component on insert       |
-| `readOnlyOnUpdate` | boolean                         | whether the property can be edited on update                            |
-| `readOnlyOnInsert` | boolean                         | whether the property can be edited on insert                            |
-| `disabledOnUpdate` | boolean                         | whether the property is disabled within the form component on update    |
-| `disabledOnInsert` | boolean                         | whether the property is disabled within the form component on update    |
-| `showFileInViewer` | boolean                         | whether clicking the file property requests to open the file in browser |
-| `template`         | [LocalizedText][localized-text] | template of how to visualize the value in the field                     |
+| options            | type                             | description                                                             |
+| ------------------ | -------------------------------- | ----------------------------------------------------------------------- |
+| `disabled`         | boolean                          | whether the property is disabled within the form component              |
+| `hidden`           | boolean                          | whether the property is shown within the form component                 |
+| `placeholder`      | [LocalizedText][localized-text]  | placeholder for the component                                           |
+| `readOnly`         | boolean                          | whether the property can be edited                                      |
+| `hiddenOnUpdate`   | boolean                          | whether the property is shown within the form component on update       |
+| `hiddenOnInsert`   | boolean                          | whether the property is shown within the form component on insert       |
+| `readOnlyOnUpdate` | boolean                          | whether the property can be edited on update                            |
+| `readOnlyOnInsert` | boolean                          | whether the property can be edited on insert                            |
+| `disabledOnUpdate` | boolean                          | whether the property is disabled within the form component on update    |
+| `disabledOnInsert` | boolean                          | whether the property is disabled within the form component on update    |
+| `showFileInViewer` | boolean                          | whether clicking the file property requests to open the file in browser |
+| `template`         | [LocalizedText][localized-text]  | template of how to visualize the value in the field                     |
+| `geopointFormat`   | ["lat", "lon"] \| ["lon", "lat"] | how to interpret the value of `geopoint` fields                         |
 
 ### Filters Options
 

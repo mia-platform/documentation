@@ -11,6 +11,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 [files-service]: /runtime_suite/files-service/configuration.mdx
+[file]: https://developer.mozilla.org/en-US/docs/Web/API/File
 
 
 
@@ -989,7 +990,7 @@ Updates multiple data state (__STATE__ or _st) in a dataset
 Requests the upload of a file and carries its data.
 
 - Label: `upload-file`
-- Payload: [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) object
+- Payload: [`File`][file] object
 
 ### Uploaded File
 

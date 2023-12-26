@@ -11,6 +11,14 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 [handlebars-syntax]: https://handlebarsjs.com/guide/expressions.html
+[RequestInit]: https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html
+[XMLHTTPRequest]: https://developer.mozilla.org/docs/Web/API/XMLHttpRequest
+[window-history-push]: https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+[window-history-replace]: https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState
+[window-open]: https://developer.mozilla.org/en-US/docs/Web/API/Window/open
+[window-location-replace]: https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
+[window-history-back]: https://developer.mozilla.org/en-US/docs/Web/API/History/back
+[accept-syntax]: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
 
 [localized-text]: ./40_core_concepts.md#localization-and-i18n
 [dynamic-configurations]: ./40_core_concepts.md#dynamic-configuration
@@ -124,7 +132,7 @@ type HttpClientConfig = Omit<RequestInit, 'method'> & {
 }
 ```
 
-Where [RequestInit](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.requestinit.html) refers to the standard Typescript interface.
+Where [RequestInit] refers to the standard Typescript interface.
 
 Actions of type `http` allow to perform REST calls.
 
@@ -234,9 +242,9 @@ type FileUploadAction = {
 }
 ```
 
-Actions of type `file-upload` perform a file upload post. The native upload dialog of the browser is used, allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using [XMLHTTPRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest) facility, and the file is appended to a brand new FormData using the key "file", unless overridden by the `fileFormKey` property.
+Actions of type `file-upload` perform a file upload post. The native upload dialog of the browser is used, allowing the user to pick a file from local file system. Once a file is picked, an automatic `POST` is performed by using [XMLHTTPRequest] facility, and the file is appended to a brand new FormData using the key "file", unless overridden by the `fileFormKey` property.
 
-Property `accept` can be used to restrict the type of files that the user can select for the upload, following the [syntax](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) that is used by the `input` element.
+Property `accept` can be used to restrict the type of files that the user can select for the upload, following the [syntax][accept-syntax] that is used by the `input` element.
 
 Field `config.triggeredBy` has a double function:
 - it is injected in the meta field of events `eventBusCancel`, `eventBusSuccess`, `eventBusError` that may be emitted as a consequence of the action. This may be useful, for instance, with components such as the [Notifications][bk-notifications], in order to display notification messages upon success/failure of the action.
@@ -265,7 +273,7 @@ type PushAction = {
 }
 ```
 
-Actions of type `push` execute a [window.history.push](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) call, that allows navigation to the specified url.
+Actions of type `push` execute a [window.history.push][window-history-push] call, that allows navigation to the specified url.
 
 ### Navigation - replace
 
@@ -289,7 +297,7 @@ type ReplaceAction = {
 }
 ```
 
-Actions of type `replace` execute a [window.history.replace](https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState) call, that allows navigation to the specified url.
+Actions of type `replace` execute a [window.history.replace][window-history-replace] call, that allows navigation to the specified url.
 
 
 ### Navigation - href
@@ -316,7 +324,7 @@ type HrefAction = {
 }
 ```
 
-Actions of type `href` execute a [window.open](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) or a [window.location.replace](https://developer.mozilla.org/en-US/docs/Web/API/Location/replace) call (depending on the value of `target`), that allows navigation to the specified url.
+Actions of type `href` execute a [window.open][window-open] or a [window.location.replace][window-location-replace] call (depending on the value of `target`), that allows navigation to the specified url.
 
 The `onFinish` hook is only available if `config.target` is not "_self".
 
@@ -336,7 +344,7 @@ type GoBack = {
 }
 ```
 
-Actions of type `go-back` execute a [window.history.back](https://developer.mozilla.org/en-US/docs/Web/API/History/back) call, that allows navigation to the last page in `window.history` stack.
+Actions of type `go-back` execute a [window.history.back][window-history-back] call, that allows navigation to the last page in `window.history` stack.
 
 ### Copy to Clipboard
 
@@ -380,7 +388,7 @@ Actions of type `copy` allow to copy data to clipboard. They require input data 
 `config.path` is the path to apply to the data source, in javascript notation, to reach the data to copy to clipboard. In case the data is not of type string, it is automatically stringified.
 
 :::info
-If the copied value is an object or an array, [helper `rawObject`](./40_core_concepts.md#rawobject) should be used when using references to the forwarded data into [chained actions](#action-chaining). For instance:
+If the copied value is an object or an array, [helper `rawObject`][rawobject] should be used when using references to the forwarded data into [chained actions](#action-chaining). For instance:
 ```json
 {
   "type": "copy",
@@ -458,7 +466,7 @@ results in "defaultValue" being copied to clipboard.
 
 ## Dynamic configurations
 
-Actions support [dynamic configurations][dynamic-configurations] using [handlebars syntax](https://handlebarsjs.com/guide/expressions.html). Data provided as input (`context`) to the actions callbacks is used to resolve dynamic configurations. Custom [helpers] are also supported.
+Actions support [dynamic configurations][dynamic-configurations] using [handlebars syntax][handlebars-syntax]. Data provided as input (`context`) to the actions callbacks is used to resolve dynamic configurations. Custom [helpers] are also supported.
 
 Components that support actions have the responsibility to provide context upon executing them. For instance, the [Table][bk-table] supports actions through property [customActions][customactions], adding buttons at the end of each table row, to which provides the corresponding row in form of an object as context.
 

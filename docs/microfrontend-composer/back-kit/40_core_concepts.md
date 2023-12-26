@@ -10,6 +10,33 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+[ISO 639-1 codes]: https://www.loc.gov/standards/iso639-2/php/code_list.php
+[handlebars-syntax]: https://handlebarsjs.com/guide/expressions.html
+[path-to-regexp]: https://github.com/pillarjs/path-to-regexp
+[fontawesome]: https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free
+
+[mongo-like]: https://www.mongodb.com/docs/manual/reference/operator/query/
+[SiftJS]: https://github.com/crcn/sift.js
+[$in]: https://www.mongodb.com/docs/manual/reference/operator/query/in/#mongodb-query-op.-in
+[$nin]: https://www.mongodb.com/docs/manual/reference/operator/query/nin/#mongodb-query-op.-nin
+[$exists]: https://www.mongodb.com/docs/manual/reference/operator/query/exists/#mongodb-query-op.-exists
+[$gte]: https://www.mongodb.com/docs/manual/reference/operator/query/gte/#mongodb-query-op.-gte
+[$gt]: https://www.mongodb.com/docs/manual/reference/operator/query/gt/#mongodb-query-op.-gt
+[$lte]: https://www.mongodb.com/docs/manual/reference/operator/query/lte/#mongodb-query-op.-lte
+[$lt]: https://www.mongodb.com/docs/manual/reference/operator/query/lt/#mongodb-query-op.-lt
+[$eq]: https://www.mongodb.com/docs/manual/reference/operator/query/eq/#mongodb-query-op.-eq
+[$ne]: https://www.mongodb.com/docs/manual/reference/operator/query/ne/#mongodb-query-op.-ne
+[$mod]: https://www.mongodb.com/docs/manual/reference/operator/query/mod/#mongodb-query-op.-mod
+[$all]: https://www.mongodb.com/docs/manual/reference/operator/query/all/#mongodb-query-op.-all
+[$and]: https://www.mongodb.com/docs/manual/reference/operator/query/and/#mongodb-query-op.-and
+[$or]: https://www.mongodb.com/docs/manual/reference/operator/query/or/#mongodb-query-op.-or
+[$nor]: https://www.mongodb.com/docs/manual/reference/operator/query/nor/#mongodb-query-op.-nor
+[$not]: https://www.mongodb.com/docs/manual/reference/operator/query/not/#mongodb-query-op.-not
+[$size]: https://www.mongodb.com/docs/manual/reference/operator/query/size/#mongodb-query-op.-size
+[$type]: https://www.mongodb.com/docs/manual/reference/operator/query/type/#mongodb-query-op.-type
+[$regex]: https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex
+[$elemMatch]: https://www.mongodb.com/docs/manual/reference/operator/query/elemMatch/#mongodb-query-op.-elemMatch
+
 [data-schema]: ./30_page_layout.md#data-schema
 
 [change-query]: ./70_events.md#change-query
@@ -18,7 +45,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## Localization and i18n
 
-Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind of typography can be easily internationalized by passing a `LocalizedString` (or `LocalizedText`) object containing specific translations according to [ISO 639-1 codes](https://www.loc.gov/standards/iso639-2/php/code_list.php).
+Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind of typography can be easily internationalized by passing a `LocalizedString` (or `LocalizedText`) object containing specific translations according to [ISO 639-1 codes].
 
 ```json
 {
@@ -38,7 +65,7 @@ Fields that support i18n are marked through this guide as taking either `string`
 
 Many components allow the user to build *dynamic configurations*. Such configurations are really helpful when an event needs to be aware of situation-specific data, such as, while clicking a button onto a given table row, the event must be intertwined with data of that row.
 
-To achieve dynamic configurations logic, Back-Kit components use [handlebars syntax](https://handlebarsjs.com/guide/expressions.html) and embed a web component property to register a handlebar template. By default, a string is parsed by the handlebar parser without making any changes to it if no `{{}}`-syntax is present.
+To achieve dynamic configurations logic, Back-Kit components use [handlebars syntax][handlebars-syntax] and embed a web component property to register a handlebar template. By default, a string is parsed by the handlebar parser without making any changes to it if no `{{}}`-syntax is present.
 
 For instance, any Back-Kit component is aware of an authenticated user, if any, using the property `currentUser`. When `currentUser` has property `email` with value `my-mail@mail.com`, a configuration such
 
@@ -57,7 +84,7 @@ would be equivalent to
 
 ### Helpers
 
-Custom helpers to be used in conjunction with [handlebars](https://handlebarsjs.com/guide/expressions.html) are provided, most components that allow dynamic configurations support them.
+Custom helpers to be used in conjunction with [handlebars][handlebars-syntax] are provided, most components that allow dynamic configurations support them.
 
 #### rawObject
 
@@ -171,7 +198,7 @@ the above example is equivalent to:
 
 ### Extracting data from URL - UrlMask
 
-Some components may expose properties that allow to configure a `urlMask`. This leverages [path-to-regexp](https://github.com/pillarjs/path-to-regexp) syntax to convert a string input (or `mask`) into a regular expression to be matched against the current URL, allowing to extract information from it, making it availbale in dynamic configurations.
+Some components may expose properties that allow to configure a `urlMask`. This leverages [path-to-regexp] syntax to convert a string input (or `mask`) into a regular expression to be matched against the current URL, allowing to extract information from it, making it availbale in dynamic configurations.
 
 `urlMask`s allow to specify masks for the `pathname` and `search` fields of `window.location`.
 
@@ -249,7 +276,7 @@ A basic external href link rendering in a browser new tab can be implemented as
 
 Property `href` can either be absolute or relative, `target` can be picked amongst `_blank`, `_self`, `_parent`, `_top`: most commonly either an href renders into the same window with `_self` or it opens a new tab with `_blank`.
 
-The `icon` properties allow to attach a [Fontawesome fas or far icon](https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=regular,solid&m=free) when the link is rendered by a component which support this interface.
+The `icon` properties allow to attach a [Fontawesome fas or far icon][fontawesome] when the link is rendered by a component which support this interface.
 
 A web component that contains state or data might implement [dynamic configurations](#dynamic-configuration). In this case the `href` can be enriched with query parameters that are bound to the internal state of the component with which the user is interacting. Suppose the user with email `my-mail@mail.com` is in session, then the following link
 
@@ -306,28 +333,28 @@ type FilterOperator = |
 
 Some components allow to filter data based on inline queries - that is, queries that are directly applied to the data in the state of the component, no call to the backend is performed.
 
-The supported syntax for inline queries is [mongo-like](https://www.mongodb.com/docs/manual/reference/operator/query/), and their implementation is based on the [SiftJS](https://github.com/crcn/sift.js) library.
+The supported syntax for inline queries is [mongo-like], and their implementation is based on the [SiftJS] library.
 
 Supported operators are:
-  - [$in](https://www.mongodb.com/docs/manual/reference/operator/query/in/#mongodb-query-op.-in)
-  - [$nin](https://www.mongodb.com/docs/manual/reference/operator/query/nin/#mongodb-query-op.-nin)
-  - [$exists](https://www.mongodb.com/docs/manual/reference/operator/query/exists/#mongodb-query-op.-exists)
-  - [$gte](https://www.mongodb.com/docs/manual/reference/operator/query/gte/#mongodb-query-op.-gte)
-  - [$gt](https://www.mongodb.com/docs/manual/reference/operator/query/gt/#mongodb-query-op.-gt)
-  - [$lte](https://www.mongodb.com/docs/manual/reference/operator/query/lte/#mongodb-query-op.-lte)
-  - [$lt](https://www.mongodb.com/docs/manual/reference/operator/query/lt/#mongodb-query-op.-lt)
-  - [$eq](https://www.mongodb.com/docs/manual/reference/operator/query/eq/#mongodb-query-op.-eq)
-  - [$ne](https://www.mongodb.com/docs/manual/reference/operator/query/ne/#mongodb-query-op.-ne)
-  - [$mod](https://www.mongodb.com/docs/manual/reference/operator/query/mod/#mongodb-query-op.-mod)
-  - [$all](https://www.mongodb.com/docs/manual/reference/operator/query/all/#mongodb-query-op.-all)
-  - [$and](https://www.mongodb.com/docs/manual/reference/operator/query/and/#mongodb-query-op.-and)
-  - [$or](https://www.mongodb.com/docs/manual/reference/operator/query/or/#mongodb-query-op.-or)
-  - [$nor](https://www.mongodb.com/docs/manual/reference/operator/query/nor/#mongodb-query-op.-nor)
-  - [$not](https://www.mongodb.com/docs/manual/reference/operator/query/not/#mongodb-query-op.-not)
-  - [$size](https://www.mongodb.com/docs/manual/reference/operator/query/size/#mongodb-query-op.-size)
-  - [$type](https://www.mongodb.com/docs/manual/reference/operator/query/type/#mongodb-query-op.-type)
-  - [$regex](https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex)
-  - [$elemMatch](https://www.mongodb.com/docs/manual/reference/operator/query/elemMatch/#mongodb-query-op.-elemMatch)
+  - [$in]
+  - [$nin]
+  - [$exists]
+  - [$gte]
+  - [$gt]
+  - [$lte]
+  - [$lt]
+  - [$eq]
+  - [$ne]
+  - [$mod]
+  - [$all]
+  - [$and]
+  - [$or]
+  - [$nor]
+  - [$not]
+  - [$size]
+  - [$type]
+  - [$regex]
+  - [$elemMatch]
 
 Most components allow queries to include [dynamic values](#dynamic-configuration). If that is the case, it is the components responsibility to ensure that sufficient context is provided to resolve the query.
 

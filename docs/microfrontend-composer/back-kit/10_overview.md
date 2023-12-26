@@ -10,6 +10,9 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+[W3C-web-components]: https://www.w3.org/TR/components-intro/
+[rxjs ReplaySubject]: https://rxjs.dev/api/index/class/ReplaySubject
+
 [bootstrap]: ./30_page_layout.md#bootstrap-aka-initial-state-injection
 
 [add-filter-button]: ./60_components/10_add_filter_button.md
@@ -75,7 +78,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 
 
-Back-Kit library provides a full set of [W3C Web Components](https://www.w3.org/TR/components-intro/).
+Back-Kit library provides a full set of [W3C Web Components][W3C-web-components].
 
 ```html
 <div>
@@ -190,7 +193,7 @@ In order to correctly configure a Back-Kit application, it is important to under
 
 Events are the only mean of communication available to components, no direct/imperative call is performed among components.
 
-Events are emitted/listened to via a **communication channel** such as the `eventBus` (an instance of [rxjs ReplaySubject](https://rxjs.dev/api/index/class/ReplaySubject)).
+Events are emitted/listened to via a **communication channel** such as the `eventBus` (an instance of [rxjs ReplaySubject]).
 
 Components interfacing with a given event, either **listen to** it or **emit** it. In the latter case, it requires the page to be aware, for instance, of a *loading* event, or that is *sending* data, whereas the former is referred to event-driven behavior where the component reacts to something that happened elsewhere.
 
