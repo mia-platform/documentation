@@ -1754,16 +1754,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/cspell-bundled-dicts@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/cspell-bundled-dicts@npm:8.1.2"
+"@cspell/cspell-bundled-dicts@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/cspell-bundled-dicts@npm:8.3.1"
   dependencies:
     "@cspell/dict-ada": ^4.0.2
-    "@cspell/dict-aws": ^4.0.0
-    "@cspell/dict-bash": ^4.1.2
-    "@cspell/dict-companies": ^3.0.28
+    "@cspell/dict-aws": ^4.0.1
+    "@cspell/dict-bash": ^4.1.3
+    "@cspell/dict-companies": ^3.0.29
     "@cspell/dict-cpp": ^5.0.10
-    "@cspell/dict-cryptocurrencies": ^4.0.0
+    "@cspell/dict-cryptocurrencies": ^5.0.0
     "@cspell/dict-csharp": ^4.0.2
     "@cspell/dict-css": ^4.0.12
     "@cspell/dict-dart": ^2.0.3
@@ -1771,15 +1771,15 @@ __metadata:
     "@cspell/dict-docker": ^1.1.7
     "@cspell/dict-dotnet": ^5.0.0
     "@cspell/dict-elixir": ^4.0.3
-    "@cspell/dict-en-common-misspellings": ^1.0.2
+    "@cspell/dict-en-common-misspellings": ^2.0.0
     "@cspell/dict-en-gb": 1.1.33
-    "@cspell/dict-en_us": ^4.3.12
+    "@cspell/dict-en_us": ^4.3.13
     "@cspell/dict-filetypes": ^3.0.3
     "@cspell/dict-fonts": ^4.0.0
     "@cspell/dict-fsharp": ^1.0.1
     "@cspell/dict-fullstack": ^3.1.5
     "@cspell/dict-gaming-terms": ^1.0.4
-    "@cspell/dict-git": ^2.0.0
+    "@cspell/dict-git": ^3.0.0
     "@cspell/dict-golang": ^6.0.5
     "@cspell/dict-haskell": ^4.0.1
     "@cspell/dict-html": ^4.0.5
@@ -1788,64 +1788,64 @@ __metadata:
     "@cspell/dict-k8s": ^1.0.2
     "@cspell/dict-latex": ^4.0.0
     "@cspell/dict-lorem-ipsum": ^4.0.0
-    "@cspell/dict-lua": ^4.0.2
+    "@cspell/dict-lua": ^4.0.3
     "@cspell/dict-makefile": ^1.0.0
     "@cspell/dict-node": ^4.0.3
-    "@cspell/dict-npm": ^5.0.13
-    "@cspell/dict-php": ^4.0.4
-    "@cspell/dict-powershell": ^5.0.2
+    "@cspell/dict-npm": ^5.0.14
+    "@cspell/dict-php": ^4.0.5
+    "@cspell/dict-powershell": ^5.0.3
     "@cspell/dict-public-licenses": ^2.0.5
-    "@cspell/dict-python": ^4.1.10
+    "@cspell/dict-python": ^4.1.11
     "@cspell/dict-r": ^2.0.1
-    "@cspell/dict-ruby": ^5.0.1
+    "@cspell/dict-ruby": ^5.0.2
     "@cspell/dict-rust": ^4.0.1
     "@cspell/dict-scala": ^5.0.0
-    "@cspell/dict-software-terms": ^3.3.11
-    "@cspell/dict-sql": ^2.1.2
+    "@cspell/dict-software-terms": ^3.3.15
+    "@cspell/dict-sql": ^2.1.3
     "@cspell/dict-svelte": ^1.0.2
     "@cspell/dict-swift": ^2.0.1
     "@cspell/dict-typescript": ^3.1.2
     "@cspell/dict-vue": ^3.0.0
-  checksum: ecd051ee5bebd1295d8736fe8934b5c331110e87fe806f122a9cd5501a749c9554cf314786717493f8bb8caf80c700d599b765990d9f16cb78df0d3fdc82427e
+  checksum: f04b5f4c28105adf1a4ad494b7d924bb90acaebba28748a701c9dcd5c3d2d15976031617c92b4a9142ececd899e0988a1acdbbf0f392bb73468beb36a216ed43
   languageName: node
   linkType: hard
 
-"@cspell/cspell-json-reporter@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/cspell-json-reporter@npm:8.1.2"
+"@cspell/cspell-json-reporter@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/cspell-json-reporter@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-types": 8.1.2
-  checksum: 957be92193b53bbcaee103059f0227df0233c31ff96d2bcbbcf07f9b62ada3bf8949f555631f158acf2926400ea83b50f4f6bde362df810ee7c465ec4afd8462
+    "@cspell/cspell-types": 8.3.1
+  checksum: 0b45c42ecd178de2cc60528c43414e5b43c1df9a3512a942440b7551c14320a9a776e26196d688a11cf8c64306e3809503f3da19c299926768852ee90cd3dc19
   languageName: node
   linkType: hard
 
-"@cspell/cspell-pipe@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/cspell-pipe@npm:8.1.2"
-  checksum: 3a33dfb62c72770c5a7204ee2cc8a45f2149c89904e41a10f1f6f29ec9f7d6aad7513d3441442702ac1d42c53dc62966344838fe116fa8f6ec51a3399d2e1dcb
+"@cspell/cspell-pipe@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/cspell-pipe@npm:8.3.1"
+  checksum: 4e18469c99161e27798458d8001da2aff1e2a21bd3ce615a59ea73c675c69657b4912adf9303148a8b68a5319e68d2ebe125a0e407598c16acf42134c105423e
   languageName: node
   linkType: hard
 
-"@cspell/cspell-resolver@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/cspell-resolver@npm:8.1.2"
+"@cspell/cspell-resolver@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/cspell-resolver@npm:8.3.1"
   dependencies:
     global-directory: ^4.0.1
-  checksum: df92e44ae65382b837cab946b6a2af0e4d2db68a6c77faa8147cb4dd0eb1a90ca114977e69732ff41cf825fed609f365b028d7fc690f904999f0e2c51abc7a21
+  checksum: ea0f07e1252c19dcb1da88d756d59cbd811e785c6d95cf8c8fb7f6c0cabae8d2f6105631823353b7e97c3c900eeb8ff9a9b03e57ceed6e6889ccb173c10a1e4a
   languageName: node
   linkType: hard
 
-"@cspell/cspell-service-bus@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/cspell-service-bus@npm:8.1.2"
-  checksum: 5d162e768d3f6c7368bbcb6a7cc00dd784e06cd8c8d007115e68ba6b04b351ec304f890ea1ead23ad5cbaf2dfd97be675b0b24663f056a85b2c572e2c0d2a691
+"@cspell/cspell-service-bus@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/cspell-service-bus@npm:8.3.1"
+  checksum: 363c1ed1789a4e3d9d34c5c6c26ca145c1dbcba0abef28d31ffc3ff4e201edae703dcce9d200f1f1ee33fd1ead1edf4ecd64e29b0e8238f607f68cea2150d829
   languageName: node
   linkType: hard
 
-"@cspell/cspell-types@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/cspell-types@npm:8.1.2"
-  checksum: 00d657db96a81f44e234208ee677997658008e1b13f0ea97950d6e027f68d16456fe3c724d821ddd58cb1b9a53b873da2eb5d3575ead58b20ef488366ec44524
+"@cspell/cspell-types@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/cspell-types@npm:8.3.1"
+  checksum: 9c0d6daf926cf4e5cd8928987287b7aaadf91712eea5205180f82aabe8e3682ac308fa01bc035a1b8e8fe59d450eb766c6b4a2418ff75b599d132a2588b8bb9a
   languageName: node
   linkType: hard
 
@@ -1856,24 +1856,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-aws@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@cspell/dict-aws@npm:4.0.0"
-  checksum: ed8714bda04fa983abb5571f66d46252dc8125b717beff7043fb9b09af97e335712132248555a90008e0bebd2cfa9cca6945d96ea2f03fc36c1826e9fde981a3
+"@cspell/dict-aws@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@cspell/dict-aws@npm:4.0.1"
+  checksum: 8445468151205fdfc51993ebc329e3a210a1628069971f973fb87c4d32cbb33676b32a370021efe0863ef63414632c8edf025ba7d296e932a93f3b05ba6193fc
   languageName: node
   linkType: hard
 
-"@cspell/dict-bash@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "@cspell/dict-bash@npm:4.1.2"
-  checksum: 2fc6acd6c74c245a7e0c6596f7ae2189569134dff9e95e0f9562812a1e39bbc2c2b39325e8494aba1367b2849656fd3abe6985afc5c51157044c2683b220ba70
+"@cspell/dict-bash@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "@cspell/dict-bash@npm:4.1.3"
+  checksum: 4ba66c76c144d4c7ea1dd0fb92dfb0d7fd1e43a106a73fc7e9010b4a5c276aa4ef791c7161f56bf911356e3667ba043ee63271c1ffc485d9f8712553770e3ea9
   languageName: node
   linkType: hard
 
-"@cspell/dict-companies@npm:^3.0.28":
-  version: 3.0.28
-  resolution: "@cspell/dict-companies@npm:3.0.28"
-  checksum: 91b164223a8314811780c43d2bf079589a4872ff952ea070a5138724a6a27c0145236744eba85b7d7d466a355330393542eff36dd5bb2535898cd46a7dbba228
+"@cspell/dict-companies@npm:^3.0.29":
+  version: 3.0.29
+  resolution: "@cspell/dict-companies@npm:3.0.29"
+  checksum: ba2ee3fc7942ff932316038dc2a59b0edcf48321d9f31b75e1858637bd51be9b00bdafc2f3b70fa9d7e78cfbd016e08ef782cdf50bfc76b51e1bf22b1340e286
   languageName: node
   linkType: hard
 
@@ -1884,10 +1884,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-cryptocurrencies@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@cspell/dict-cryptocurrencies@npm:4.0.0"
-  checksum: c565a660b62a5ab2d597abaaef7f277cfba05e0617064dd526aadf9ba64306ab16f9fa4adf5ad8b3e79310cf127f737e5f876d4424efa7da65e403817f4e184c
+"@cspell/dict-cryptocurrencies@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@cspell/dict-cryptocurrencies@npm:5.0.0"
+  checksum: 116e7f117b59ea4c9fa7ae1c3b47fc963e050448d43e059fb93731a256881ee262420edd5b9701ffe88af3d5e95b0337fc99b4dde1b0283ee0aaed45b23e281e
   languageName: node
   linkType: hard
 
@@ -1947,10 +1947,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-en-common-misspellings@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@cspell/dict-en-common-misspellings@npm:1.0.2"
-  checksum: 6f818f9fe3b76ae3d0c71c109d3543f01607ffbd605d9ecb0b6884e6ffa795adba25fd1206b1c85c089d4ffaab20171f5aa803de49a8eadf2bc5b7f5c326917c
+"@cspell/dict-en-common-misspellings@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@cspell/dict-en-common-misspellings@npm:2.0.0"
+  checksum: 977aac18d737d88e4cdca0771b664078a2d8cde1a0313696882581e67cb1acbf1f6a3923c1ee3f05878cfe3ad6f063a2e451f33e7df61cd1e0eb5de425bb4f2d
   languageName: node
   linkType: hard
 
@@ -1961,10 +1961,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-en_us@npm:^4.3.12":
-  version: 4.3.12
-  resolution: "@cspell/dict-en_us@npm:4.3.12"
-  checksum: 93eb88ab34e6a36bf9cd48b51d92d77e1228ae5fd08840a2363db72d676e56b923bebb62709af5e666abcd23b9338c3b78c0aeafde954635852841a0c96a14cd
+"@cspell/dict-en_us@npm:^4.3.13":
+  version: 4.3.13
+  resolution: "@cspell/dict-en_us@npm:4.3.13"
+  checksum: 4fc0d8458f3760a436956870742207214c73ae97da294117cae4fa8cf174b40dd6d237f8cb5d1bd4d8f82e3bfbd98cf885a9d79da1823f354d92a2724090a4f2
   languageName: node
   linkType: hard
 
@@ -2003,10 +2003,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-git@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@cspell/dict-git@npm:2.0.0"
-  checksum: eb3985f1f8717ad4e41e146f1b011e0476d7625ab1ebee55364575b727323300773a89a8dd5a20466c74c57b7d2678e0c92446453bd484a44203be737bc07964
+"@cspell/dict-git@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@cspell/dict-git@npm:3.0.0"
+  checksum: 97b6da58c93108bae0867515f790d84728f0bce580cc8ad6f0f5f63b2c81eaf6d084d543d99b693ff4d7fbea2413ff068c3e4811fc107820d243da2c06d381fa
   languageName: node
   linkType: hard
 
@@ -2066,10 +2066,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-lua@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@cspell/dict-lua@npm:4.0.2"
-  checksum: 570e45e4430fa3b07759dcc4fcaf75995bd1f3c5f335496de67963177da692e89c84fb08f5b5547a582049dee64c768e81294edd4f047dee31807261e85f6f30
+"@cspell/dict-lua@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "@cspell/dict-lua@npm:4.0.3"
+  checksum: eee20135a4f0620302c5feeb50485f59af93c24b64eb2081a9e2096a106ce33ae565d6d92607582b44c9f17c8a091d82fbcb443ebae9b77f8512b0d66a703c3b
   languageName: node
   linkType: hard
 
@@ -2087,24 +2087,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-npm@npm:^5.0.13":
-  version: 5.0.13
-  resolution: "@cspell/dict-npm@npm:5.0.13"
-  checksum: 1f25136c4272838811216cb42cc565d7dbe9fe2ede87977ff05150b84ae39a4a36c8ed62ca7a9ce88b98e45d622281a8ac842b5d8d0dd1faf354e0ce73fcc0ef
+"@cspell/dict-npm@npm:^5.0.14":
+  version: 5.0.14
+  resolution: "@cspell/dict-npm@npm:5.0.14"
+  checksum: 791a23e8b6a726d77a9098f25b582e6a511be699f878526a036f9f0ec08ccf0c2082ec53a5ee056b59d3a22fe5f21e8e3d11e5c839a10e17cb919c8c71f74537
   languageName: node
   linkType: hard
 
-"@cspell/dict-php@npm:^4.0.4":
-  version: 4.0.4
-  resolution: "@cspell/dict-php@npm:4.0.4"
-  checksum: ad835552eaf48bbd01c6c4cfb2fd56aeae027d4aabd2c8984129bf3e7e3dd66941c90d877a3f7cae1e7ab6e713089bd4ac49fb674e7cb8e5b741fe63d922ad71
+"@cspell/dict-php@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "@cspell/dict-php@npm:4.0.5"
+  checksum: 017375f8a08f93872672b9d14c885b3114ea1b82cb8a4375029c7e71dcb303b82bf684fc84df3cbd8d74b9d1e74c80234280605ef8ca26a7972d99bbf15b14f9
   languageName: node
   linkType: hard
 
-"@cspell/dict-powershell@npm:^5.0.2":
-  version: 5.0.2
-  resolution: "@cspell/dict-powershell@npm:5.0.2"
-  checksum: 0591920546caa6965fe1238fe43aa9a9d714594d7149225bebfb0157a337d741603f52f39b2265131d20612617cfccf5da92e04491824d4c395ec664eca98076
+"@cspell/dict-powershell@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "@cspell/dict-powershell@npm:5.0.3"
+  checksum: 18eac3be8545b3df110bf867bd6285b11d7e67da037e00c9bc1376c5e322092bc1d925375a09df8b7420a6a35847aa20558610ffb491763eb82949f3af764e1d
   languageName: node
   linkType: hard
 
@@ -2115,12 +2115,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-python@npm:^4.1.10":
-  version: 4.1.10
-  resolution: "@cspell/dict-python@npm:4.1.10"
+"@cspell/dict-python@npm:^4.1.11":
+  version: 4.1.11
+  resolution: "@cspell/dict-python@npm:4.1.11"
   dependencies:
     "@cspell/dict-data-science": ^1.0.11
-  checksum: 67e210815e1ccdfda6c005e82174b93ee39b94c166e5e8971e2900850166c2bfe583edc01c263862fff3edcffd9324bc83a6260075ac7cfce2f366b94eab7154
+  checksum: cdfc493d3a260887dc31b115ab880849895522c4a0c0d4fe379a2e42ebf41f0724f02f778629e3e972fc6fa93e6d7bc7892e4b26b3b6fbf72399cf5d3b67585b
   languageName: node
   linkType: hard
 
@@ -2131,10 +2131,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-ruby@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@cspell/dict-ruby@npm:5.0.1"
-  checksum: 2d85495b28cb7ea05b85cf3091f8f03f8a51968d532ebb0fc41ea9f8ba31915d66c8a8a2c6146a080f88ef3445a43ae972cf549ec522b2f63bfb8cb11adf8289
+"@cspell/dict-ruby@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@cspell/dict-ruby@npm:5.0.2"
+  checksum: c2006bcc808448b1eef146eb4b6b74388113c50334206191a9fe5817fb13669482ecd114f7bbd397562ad2e19a9683266ff396f48c6ce282f6445c2cfa8e82c7
   languageName: node
   linkType: hard
 
@@ -2152,17 +2152,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dict-software-terms@npm:^3.3.11":
-  version: 3.3.11
-  resolution: "@cspell/dict-software-terms@npm:3.3.11"
-  checksum: a5a3af9fbb6e9b087536ea213128161c9e597e70297672f311a53c8ef9e9821b44d04ff30721cf6a718728e3b242cc767dc4ee8e0dce4ddb3530366adff28d99
+"@cspell/dict-software-terms@npm:^3.3.15":
+  version: 3.3.15
+  resolution: "@cspell/dict-software-terms@npm:3.3.15"
+  checksum: 9330671db945e53f8c9632c1da56919247ce0617a7eb847fb874307509dba73c3931d22d6b985d67b68216d80b79567d526be3e600d254539bf7438af9d1b430
   languageName: node
   linkType: hard
 
-"@cspell/dict-sql@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "@cspell/dict-sql@npm:2.1.2"
-  checksum: fffa66d7f3412b559be7d0acd711504b6b3b78a0380ba4e46b397e54d4754305b398e2e931965016aa6ca3c25e4a056c11974d58fbb7b78afd6d38660a2ede0b
+"@cspell/dict-sql@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@cspell/dict-sql@npm:2.1.3"
+  checksum: a435812cc697d4c453f11efa49962992150702518e49808381ea34548b8a8ed81432a10cca36682007912b013c28e9ce3c6c183341c6cde58c8af0eef25cddc3
   languageName: node
   linkType: hard
 
@@ -2194,19 +2194,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/dynamic-import@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/dynamic-import@npm:8.1.2"
+"@cspell/dynamic-import@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/dynamic-import@npm:8.3.1"
   dependencies:
     import-meta-resolve: ^4.0.0
-  checksum: 38a74cb2e1b7c72dc39ce64b7a35e111abeced5a419f3f21f40dc37b749cfee31e029a830719bcbef803d0c74984ea989a7c70bf947a9deee10e3b395803f67c
+  checksum: 5d8ea840186d1730b6b78d4ffa09fd0000932559fdfd10564c130fbe405aec0a88bf6156eda118a41041c5dafee05acc8fdaf6b2a190972ac50d3033fe2a68cf
   languageName: node
   linkType: hard
 
-"@cspell/strong-weak-map@npm:8.1.2":
-  version: 8.1.2
-  resolution: "@cspell/strong-weak-map@npm:8.1.2"
-  checksum: f207df04080fd36c8631903ab5bf109666b4fc03300f5079c2bcb2d78b20969671825d6a093426d2e45841dd117a4fe038696d4b171a20fa563f40602de49b31
+"@cspell/strong-weak-map@npm:8.3.1":
+  version: 8.3.1
+  resolution: "@cspell/strong-weak-map@npm:8.3.1"
+  checksum: b85a0b7e01b590efbc433c6a8d3b66c7bf670385e52cd39c35c204ea805fabbe264ca2e6f0e8b2b1624e22a9d3411d9f0a4b46fd1ee1ea915e96c981a9b94a5b
   languageName: node
   linkType: hard
 
@@ -5572,130 +5572,130 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cspell-config-lib@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-config-lib@npm:8.1.2"
+"cspell-config-lib@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-config-lib@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-types": 8.1.2
+    "@cspell/cspell-types": 8.3.1
     comment-json: ^4.2.3
     yaml: ^2.3.4
-  checksum: b900591e9464acd75292706edfd4ad4815479866dfdf2fcacbcb5db349ec2c5118ff79411e3c0badeec64cc9fd312cd8803670c6138da7e3fc06fbc49ca1f30d
+  checksum: bfadca9ad2503e0bc44ddac229ec64f07909073198f663bad50d9be30b7ef0a621227fde55c96b7a308d1afbb2fa295d32352c52a712a2968da44d7f5519da08
   languageName: node
   linkType: hard
 
-"cspell-dictionary@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-dictionary@npm:8.1.2"
+"cspell-dictionary@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-dictionary@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-pipe": 8.1.2
-    "@cspell/cspell-types": 8.1.2
-    cspell-trie-lib: 8.1.2
+    "@cspell/cspell-pipe": 8.3.1
+    "@cspell/cspell-types": 8.3.1
+    cspell-trie-lib: 8.3.1
     fast-equals: ^5.0.1
     gensequence: ^6.0.0
-  checksum: cf0acbc060819a652a017b82bae7ce7ba4840a6a064b25e902c594a0be6892e6a19ac48aef59e3bcb3ec4a4795ff63cc46408eefa9c1b530b839af19bb012565
+  checksum: fe2804ed6a8152505955831e8d14ea73b55c82f2a5629a149c39f039663cff1b306561fd86e7c5da2a88f71785b5f98c74e4fd57e071652b6934231a50bbeec7
   languageName: node
   linkType: hard
 
-"cspell-gitignore@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-gitignore@npm:8.1.2"
+"cspell-gitignore@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-gitignore@npm:8.3.1"
   dependencies:
-    cspell-glob: 8.1.2
+    cspell-glob: 8.3.1
     find-up-simple: ^1.0.0
   bin:
     cspell-gitignore: bin.mjs
-  checksum: ff7b0c6a403c2518c2866d7cd093bd33f8c9549e2417eb9d4ab30be1e7b73d834df1db3b4027515780b01e82b189a60b2b68239be161877d69636bdabf319a79
+  checksum: 264c5d6b4b82469913225e808c277c3f2e1482113bf1e33f024c80a09fca87ce9a739425ca69aa8f977f8d669b5a46ccf3605e51617f8177c7c4e7dd62d17851
   languageName: node
   linkType: hard
 
-"cspell-glob@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-glob@npm:8.1.2"
+"cspell-glob@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-glob@npm:8.3.1"
   dependencies:
     micromatch: ^4.0.5
-  checksum: 7a36c5159fc46227b54cbb15865f6764ac2ea9d01ed0371a27359142ba44952a9ed5e3bf538ec09493803ebd8b1960974eac0b6f1fdcba70702e8fc60e9b0de5
+  checksum: a33777e9798ecc5be2680fea682597f9506a90d6bf31636bf1447a3e2f701679517bf8c8edd34417b68457d8ae576ebb901b4fbb2f78fd0dd9454a9c5046eab0
   languageName: node
   linkType: hard
 
-"cspell-grammar@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-grammar@npm:8.1.2"
+"cspell-grammar@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-grammar@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-pipe": 8.1.2
-    "@cspell/cspell-types": 8.1.2
+    "@cspell/cspell-pipe": 8.3.1
+    "@cspell/cspell-types": 8.3.1
   bin:
     cspell-grammar: bin.mjs
-  checksum: db5bdb5295171ecaf3e0eb936800aaec98b609532c89fa08de108d9921d7d89df54c4d152ffebfd946bf108267f4a10d45e256fcc75a8c16dfaf83c5ec73537a
+  checksum: eec382f5f07b10b2a8c4ebd7997a8200447ef4fde3d5592f661bf29d68d289072785d32cd9b77c748ba8fc4c3beed7615d21eabf1d2def044f504b8cf5db6572
   languageName: node
   linkType: hard
 
-"cspell-io@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-io@npm:8.1.2"
+"cspell-io@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-io@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-service-bus": 8.1.2
-  checksum: 7ae570908e026782097593e127836b46120c5c68e7e982812e329806d0a9b144ec5b34b12895c8109f3b2ff59977a0f26c1bf1214c543f4c0d18d92851db14e1
+    "@cspell/cspell-service-bus": 8.3.1
+  checksum: 0ec8d8e1db882de81dc8b6fb743755181bb87fd600ffc66152abdcfbda990fded2e614b44d310a91bfb7b9ae3abe6bc067fa8ce07ab6e924ef3808fe81fef743
   languageName: node
   linkType: hard
 
-"cspell-lib@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-lib@npm:8.1.2"
+"cspell-lib@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-lib@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-bundled-dicts": 8.1.2
-    "@cspell/cspell-pipe": 8.1.2
-    "@cspell/cspell-resolver": 8.1.2
-    "@cspell/cspell-types": 8.1.2
-    "@cspell/dynamic-import": 8.1.2
-    "@cspell/strong-weak-map": 8.1.2
+    "@cspell/cspell-bundled-dicts": 8.3.1
+    "@cspell/cspell-pipe": 8.3.1
+    "@cspell/cspell-resolver": 8.3.1
+    "@cspell/cspell-types": 8.3.1
+    "@cspell/dynamic-import": 8.3.1
+    "@cspell/strong-weak-map": 8.3.1
     clear-module: ^4.1.2
     comment-json: ^4.2.3
     configstore: ^6.0.0
-    cspell-config-lib: 8.1.2
-    cspell-dictionary: 8.1.2
-    cspell-glob: 8.1.2
-    cspell-grammar: 8.1.2
-    cspell-io: 8.1.2
-    cspell-trie-lib: 8.1.2
+    cspell-config-lib: 8.3.1
+    cspell-dictionary: 8.3.1
+    cspell-glob: 8.3.1
+    cspell-grammar: 8.3.1
+    cspell-io: 8.3.1
+    cspell-trie-lib: 8.3.1
     fast-equals: ^5.0.1
     gensequence: ^6.0.0
     import-fresh: ^3.3.0
     resolve-from: ^5.0.0
     vscode-languageserver-textdocument: ^1.0.11
     vscode-uri: ^3.0.8
-  checksum: a9edd1ea9a0f4e6b3402823e4113bf2df296d2f36ff3dc205b2aff911eb7a5098fc043ccc4b1224c575ec1409e596bcbe295d07b39929a082ae54e0123126ce7
+  checksum: 89b5882a241fb848e63148d44a4f760944a0dda5bfb1f413a7e40cecd61ed792fb969f252b484171c9046b3879e504dd6fbde1a54ea338eb814aeda355f24f14
   languageName: node
   linkType: hard
 
-"cspell-trie-lib@npm:8.1.2":
-  version: 8.1.2
-  resolution: "cspell-trie-lib@npm:8.1.2"
+"cspell-trie-lib@npm:8.3.1":
+  version: 8.3.1
+  resolution: "cspell-trie-lib@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-pipe": 8.1.2
-    "@cspell/cspell-types": 8.1.2
+    "@cspell/cspell-pipe": 8.3.1
+    "@cspell/cspell-types": 8.3.1
     gensequence: ^6.0.0
-  checksum: 852eb5e11eaee7f38d98dbb3b4974480f22ce40a66259d3987f880fd4663e757c8155244bc58c2b25816f686f539ed427bf52370e3d23f8897f51a9a4739fcea
+  checksum: 60d0df190ab8b2e63c41bfc67b6e50371abce454cc0f98178e94b0b2395f0f3726a230018f4820344226e31b1f97b8205adbf637bf117e62783c5aea82e0c47c
   languageName: node
   linkType: hard
 
-"cspell@npm:^8.1.2":
-  version: 8.1.2
-  resolution: "cspell@npm:8.1.2"
+"cspell@npm:^8.3.1":
+  version: 8.3.1
+  resolution: "cspell@npm:8.3.1"
   dependencies:
-    "@cspell/cspell-json-reporter": 8.1.2
-    "@cspell/cspell-pipe": 8.1.2
-    "@cspell/cspell-types": 8.1.2
-    "@cspell/dynamic-import": 8.1.2
+    "@cspell/cspell-json-reporter": 8.3.1
+    "@cspell/cspell-pipe": 8.3.1
+    "@cspell/cspell-types": 8.3.1
+    "@cspell/dynamic-import": 8.3.1
     chalk: ^5.3.0
     chalk-template: ^1.1.0
     commander: ^11.1.0
-    cspell-gitignore: 8.1.2
-    cspell-glob: 8.1.2
-    cspell-io: 8.1.2
-    cspell-lib: 8.1.2
+    cspell-gitignore: 8.3.1
+    cspell-glob: 8.3.1
+    cspell-io: 8.3.1
+    cspell-lib: 8.3.1
     fast-glob: ^3.3.2
     fast-json-stable-stringify: ^2.1.0
-    file-entry-cache: ^7.0.2
+    file-entry-cache: ^8.0.0
     get-stdin: ^9.0.0
     semver: ^7.5.4
     strip-ansi: ^7.1.0
@@ -5703,7 +5703,7 @@ __metadata:
   bin:
     cspell: bin.mjs
     cspell-esm: bin.mjs
-  checksum: c2dfabe3b3a6275c313679dc2dcfb48a5295160f9fc565748af4beb9e98758b47f5450b61996daad5f02b1be2eceea14755330891579a77fd89b32f37734c0ed
+  checksum: aff00f5e2901aac004408943b4faa2d40a5ed6fd2d39e3d75858f20a436217df7b5a325300a54ed246b0f37e70fc940eab44901f7c84291d1eebd45425dbeede
   languageName: node
   linkType: hard
 
@@ -7446,12 +7446,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-entry-cache@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "file-entry-cache@npm:7.0.2"
+"file-entry-cache@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "file-entry-cache@npm:8.0.0"
   dependencies:
-    flat-cache: ^3.2.0
-  checksum: 283c674fc26bed1c44e74cf25c2640c813e222ea30a2536404b53511ca311d4a2502ee8145a01aecd12b9a910eb4162364776be27a9683e8447332054e9d712f
+    flat-cache: ^4.0.0
+  checksum: f67802d3334809048c69b3d458f672e1b6d26daefda701761c81f203b80149c35dea04d78ea4238969dd617678e530876722a0634c43031a0957f10cc3ed190f
   languageName: node
   linkType: hard
 
@@ -7545,7 +7545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flat-cache@npm:^3.0.4, flat-cache@npm:^3.2.0":
+"flat-cache@npm:^3.0.4":
   version: 3.2.0
   resolution: "flat-cache@npm:3.2.0"
   dependencies:
@@ -7553,6 +7553,17 @@ __metadata:
     keyv: ^4.5.3
     rimraf: ^3.0.2
   checksum: e7e0f59801e288b54bee5cb9681e9ee21ee28ef309f886b312c9d08415b79fc0f24ac842f84356ce80f47d6a53de62197ce0e6e148dc42d5db005992e2a756ec
+  languageName: node
+  linkType: hard
+
+"flat-cache@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "flat-cache@npm:4.0.0"
+  dependencies:
+    flatted: ^3.2.9
+    keyv: ^4.5.4
+    rimraf: ^5.0.5
+  checksum: 744d5f111aeecdfb963faab7089230c737a90c325137251b4fe144fd76932e19738a861e356c5ee828bb310592b42a1da667912d74d0403f1f4ef75be8bfdbac
   languageName: node
   linkType: hard
 
@@ -7913,7 +7924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2, glob@npm:^10.3.10":
+"glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:^10.3.7":
   version: 10.3.10
   resolution: "glob@npm:10.3.10"
   dependencies:
@@ -9415,7 +9426,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^4.5.3":
+"keyv@npm:^4.5.3, keyv@npm:^4.5.4":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
   dependencies:
@@ -9944,7 +9955,7 @@ __metadata:
     "@staticdeploy/cli": ^0.15.5
     "@swc/core": ^1.3.99
     clsx: ^2.0.0
-    cspell: ^8.1.2
+    cspell: ^8.3.1
     eslint: ^8.52.0
     eslint-plugin-react: 7.33.2
     front-matter: ^4.0.2
@@ -12402,6 +12413,17 @@ __metadata:
   bin:
     rimraf: bin.js
   checksum: 87f4164e396f0171b0a3386cc1877a817f572148ee13a7e113b238e48e8a9f2f31d009a92ec38a591ff1567d9662c6b67fd8818a2dbbaed74bc26a87a2a4a9a0
+  languageName: node
+  linkType: hard
+
+"rimraf@npm:^5.0.5":
+  version: 5.0.5
+  resolution: "rimraf@npm:5.0.5"
+  dependencies:
+    glob: ^10.3.7
+  bin:
+    rimraf: dist/esm/bin.mjs
+  checksum: d66eef829b2e23b16445f34e73d75c7b7cf4cbc8834b04720def1c8f298eb0753c3d76df77325fad79d0a2c60470525d95f89c2475283ad985fd7441c32732d1
   languageName: node
   linkType: hard
 
