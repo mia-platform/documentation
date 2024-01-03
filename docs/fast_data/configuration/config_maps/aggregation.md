@@ -749,8 +749,11 @@ In the example above, there are more ways to reach from _pr_registry_ to _pr_dis
 
 Click on `Next` will move to the next step of the modal where the user will be prompted to select the condition for each step of the path.
 
-<!-- TODO: Update image (screenshot not present yet) -->
 ![Condition choices in selected path](../img/no_code_aggregation/condition_selection_in_path.png)
+
+:::info
+To help to identify the correct condition, inside every _Select a condition_ dropdown there will be an "**i**" icon on the right side: moving the mouse over this icon will show the query of the condition.
+:::
 
 After selecting a condition for each step, a click on the `Save` button will automatically create a dependency for each step of the selected path. The mapping can continue since the _Field_ select will be enabled and the value can be selected.
 
