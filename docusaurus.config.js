@@ -107,7 +107,7 @@ async function createConfig() {
       footer: {
         style: "dark",
         links: [{
-          title: "Mia-Platform",
+          title: "Mia-Care P4SaMD",
           items: [{
             label: "How to install",
             to: "/docs/info/how_to_install",
@@ -142,32 +142,28 @@ async function createConfig() {
           title: "Company",
           items: [{
             label: "Website",
-            href: "https://mia-platform.eu",
+            href: "https://mia-care.io",
           },
           {
             label: "About",
-            href: "https://mia-platform.eu/company/about-us/",
-          },
-          {
-            label: "Mission & Vision",
-            href: "https://mia-platform.eu/mission-vision/",
+            href: "https://mia-care.io/about-us/",
           },
           {
             label: "Blog",
-            href: "https://mia-platform.eu/blog/",
+            href: "https://mia-care.io/blog/",
           },
           {
-            label: "Events",
-            href: "https://mia-platform.eu/resources/events/",
+            label: "Newsroom",
+            href: "https://mia-care.io/newsroom/",
           },
           {
             label: "Privacy Policy",
-            href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+            href: "https://mia-care.io/wp-content/uploads/2021/07/Mia-Care_Privacy_Policy_EN.pdf",
           },
           ],
         },
         {
-          title: "Core Platform",
+          title: "Mia-Platform",
           items: [{
             label: "Mia-Platform Console",
             href: "https://mia-platform.eu/platform/console/",
@@ -181,20 +177,16 @@ async function createConfig() {
             href: "https://mia-platform.eu/platform/console/fast-data",
           },
           {
-            label: "Release Notes",
-            to: "/docs/release-notes/versions",
+            label: "Mia-Platform Release Notes",
+            to: "https://docs.mia-platform.eu/docs/release-notes/versions",
           },
           ],
         },
         {
           title: "Developer Resources",
           items: [{
-            label: "Status Page",
+            label: "Mia-Platform Status Page",
             href: "https://status.console.cloud.mia-platform.eu"
-          },
-          {
-            label: "Guidelines",
-            to: "/docs/getting-started/guidelines/",
           },
           {
             label: "Library",
@@ -202,7 +194,7 @@ async function createConfig() {
           },
           {
             label: "GitHub",
-            href: "https://github.com/mia-platform",
+            href: "https://github.com/mia-care",
           },
           {
             label: "GitHub Marketplace",
@@ -220,18 +212,10 @@ async function createConfig() {
             label: "Community",
             to: "https://github.com/mia-platform/community/discussions",
           },
-          {
-            label: 'FAQ',
-            to: '/docs/getting-started/faqs'
-          },
-          {
-            label: "Getting Started",
-            to: "/docs/getting-started/mia-platform-overview",
-          },
           ],
         },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Mia-Care srl. All rights reserved. Built with Docusaurus.`,
       }
     },
     presets: [
