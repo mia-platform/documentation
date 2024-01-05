@@ -39,6 +39,33 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## v12 - version upgrades
 
+### Upgrade from v12.0.1 to v12.1.0
+
+#### New backoffice configuration
+
+In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 3 services (`cms-backend`, `cms-site` and `v1-adapter`).
+This means that you can remove any configuration related to cms from your `values.yaml` file.
+
+You can remove configuration related to:
+
+- `cmsBackendService`
+- `cmsSite`
+- `v1Adapter`
+
+And add backoffice configuration, something like:
+
+```yaml
+backoffice:
+  deploy:
+    resources:
+      requests:
+        memory: "250Mi"
+        cpu: "100m"
+      limits:
+        memory: "250Mi"
+        cpu: "250m"
+```
+
 ### Upgrade from last v11 to v12.0.0
 
 #### User JWT with asymmetric signing key

@@ -26,8 +26,6 @@ All of the following values are root values for the `mia-console` chart values.
 | `authenticationService` | [Service Conf](#service-conf) | The configurations for the Authentication Service |  | ✅ |
 | `authorizationService` | [Service Conf](#service-conf) | The configurations for the Authorization Service |  | ✅ |
 | `backendService` | [Service Conf](#service-conf) | The configurations for the Console Backend Service |  | ✅ |
-| `cmsBackendService` | [Service Conf](#service-conf) | The configurations for the CMS Backend Service |  | ✅ |
-| `cmsSite` | [Service Conf](#service-conf) | The configurations for the CMS website Service |  | ✅ |
 | `crudService` | [Service Conf](#service-conf) | The configurations for the CRUD Service |  | ✅ |
 | `deployService` | [Service Conf](#service-conf) | The configurations for the Deploy Service |  | ✅ |
 | `environmentsVariables` | [Service Conf](#service-conf) | The configurations for the Environment Variables Service |  | ✅ |
@@ -36,7 +34,6 @@ All of the following values are root values for the `mia-console` chart values.
 | `loginSite` | [Service Conf](#service-conf) | The configurations for the Login website Service |  | ✅ |
 | `notificationProvider` | [Service Conf](#service-conf) | The configurations for the Notification Provider Service |  | ✅ |
 | `swaggerAggregator` | [Service Conf](#service-conf) | The configurations for the Swagger Aggregator Service |  | ✅ |
-| `v1Adapter` | [Service Conf](#service-conf) | The configurations for the v1 Adapter Service |  | ✅ |
 | `websites` | [Service Conf](#service-conf) | The configurations for the Console website Service |  | ✅ |
 | `miaCraftBff` | [Service Conf](#service-conf) | The configurations for the mia-craft backend for frontend |  | ✅ |
 | `rbacManagerBff` | [Service Conf](#service-conf) | The configurations for the rbac-manager backend for frontend to handle users and iam |  | ✅ |
@@ -47,6 +44,7 @@ All of the following values are root values for the `mia-console` chart values.
 | `featureToggleService` | [Service Conf](#service-conf) | The configurations for the feature toggle service |  | ✅ |
 | `licenseManager` | [Service Conf](#service-conf) | The configurations for the license manager service |  | ✅ |
 | `exportService` | [Service Conf](#service-conf) | The configurations for the Export service external service | `{ service: { annotations: {} } }` | ✅ |
+| `backoffice` | [Annotation Conf](#service-conf)| The configurations for Backoffice service |  | ✅ |
 | `rbac` | [Annotation Conf](#annotations-conf)| The configurations for the RBAC resources |  | ✅ |
 
 ### Service Conf

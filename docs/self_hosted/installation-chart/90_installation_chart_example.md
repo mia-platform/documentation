@@ -192,26 +192,6 @@ mia-console:
           memory: "300Mi"
           cpu: "500m"
 
-  cmsBackendService:
-    deploy:
-      resources:
-        requests:
-          memory: "50Mi"
-          cpu: "20m"
-        limits:
-          memory: "200Mi"
-          cpu: "250m"
-
-  cmsSite:
-    deploy:
-      resources:
-        requests:
-          cpu: "10m"
-          memory: "20Mi"
-        limits:
-          cpu: "10m"
-          memory: "25Mi"
-
   crudService:
     deploy:
       resources:
@@ -430,16 +410,6 @@ mia-console:
           memory: "300Mi"
           cpu: "300m"
 
-  v1Adapter:
-    deploy:
-      resources:
-        requests:
-          memory: "100Mi"
-          cpu: "100m"
-        limits:
-          memory: "300Mi"
-          cpu: "300m"
-
   websites:
     deploy:
       resources:
@@ -449,4 +419,14 @@ mia-console:
         limits:
           cpu: "150m"
           memory: "25Mi"
+
+  backoffice:
+    deploy:
+      resources:
+        requests:
+          memory: "250Mi"
+          cpu: "100m"
+        limits:
+          memory: "250Mi"
+          cpu: "250m"
 ```
