@@ -6,7 +6,7 @@ const renderSvg = function (options) {
   options = options || {};
   return (
     <div className={Classes.logoBox}>
-      <img src="/img/logo.png" />
+      <img src="img/logo.png" />
     </div>
   );
 };
