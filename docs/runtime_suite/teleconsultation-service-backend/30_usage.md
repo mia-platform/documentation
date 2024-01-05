@@ -18,7 +18,13 @@ This service has been develop based on the assumption that the user authenticati
 
 In Kaleyra there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
-The **Teleconsultation Service Backend** accepts, as body parameters for some routes, a **start_date** and an **end_date** to calculate the max duration of a teleconsultation.
+The **Teleconsultation Service Backend** accepts, alternatively, as body parameters to create or modify a room:
+- **start_date** and **end_date**, to calculate the max duration of a teleconsultation.
+- **start_date** and **duration_in_seconds**
+
+:::warning
+The duration, calculated as described above, must be at least 5 minutes.
+:::
 
 :::note
 If the `UNLIMITED_TELECONSULTATION` variable is set to `true` in the service configuration, the room has unlimited duration. Otherwise, the duration is calculated as previously described.
@@ -42,7 +48,7 @@ The service will create a kaleyra room only if all participants' data is specifi
 #### Body parameters
 
 ##### participants (required) 
-**Type**: `array of string` (only accepted if the service is configured to interact with auth0) or `object`
+**Type**: `array of string` (only accepted if the service is configured to interact with auth0) or `object`<br />
 **Description**: The list of participants to the call. If a list of string is provided, each element of the array needs to be an auth0's user id of the participant. If an object is provided, you must specify:
 - the expected `number` of participants;
 - an array of participants' `data`, containing, for each participant:
@@ -60,20 +66,30 @@ If a user has multiple roles, the higher role will be selected automatically.
 Example: ```['user1_auth0_id', 'user2_auth0_id', ...]```
 
 ##### start_date (required)
-Type: `Date`
-Description: The starting date of an appointment.
+**Type**: `Date`<br />
+**Description**: The starting date of an appointment.
 This date is used in combination with the end_date in order to calculate the duration of a teleconsultation.
-The date follow the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
+The date follows the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
 
 Example: ```2022-02-22T15:30:00.000Z```
 
-##### end_date (required)
-Type: `Date`
-Description: The starting date of an appointment.
+##### Duration field
+
+Only one of the following fields is required and can be specified.
+
+##### end_date
+**Type**: `Date`<br />
+**Description**: The ending date of an appointment.
 This date is used in combination with the start_date in order to calculate the duration of a teleconsultation.
-The date follow the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
+The date follows the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
 
 Example: ```2022-02-22T16:30:00.000Z```
+
+##### duration_in_seconds
+**Type**: `Integer`<br />
+**Description**: The duration in seconds of an appointment.
+
+Example: ```3600```
 
 <br />
 
@@ -109,6 +125,7 @@ curl -X POST "https://my_project_url/teleconsultation" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -130,6 +147,7 @@ curl -X POST "https://my_project_url/teleconsultation" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -156,8 +174,19 @@ curl -X POST "https://my_project_url/teleconsultation" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
+     }'
+```
+
+With duration_in_seconds field:
+```
+curl -X POST "https://my_project_url/teleconsultation" \
+     -d '{
+         "participants": ['user1_auth0_id', 'user2_auth0_id', 'user3_auth0_id'],
+         "start_date": "2022-02-22T15:30:00.000Z",
+         "duration_in_seconds": 3600
      }'
 ```
 
@@ -227,6 +256,7 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -248,6 +278,7 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -274,10 +305,22 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
 ```
+
+With duration_in_seconds field:
+```
+curl -X PATCH "https://my_project_url/teleconsultation" \
+     -d '{
+         "participants": ['user1_auth0_id', 'user2_auth0_id', 'user3_auth0_id'],
+         "start_date": "2022-02-22T15:30:00.000Z",
+         "duration_in_seconds": 3600
+     }'
+```
+
 ### POST /teleconsultation/:roomId/participants/data
 
 Pushes a new teleconsultation participant in the `participants.data` array of the teleconsultation instance having id equal to roomId.
