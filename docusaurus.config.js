@@ -29,7 +29,7 @@ async function createConfig() {
       colorMode: {
         // "light" | "dark"
         defaultMode: "light",
-        disableSwitch: false,
+        disableSwitch: true,
       },
       navbar: {
         hideOnScroll: false,
