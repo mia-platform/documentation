@@ -1,9 +1,0 @@
-[
-    {"name":"name","type":"string","required":true,"nullable":false,"description":"the name of the form"},
-    {"name":"formSubmitUrl","type":"string","required":true,"nullable":false,"description":"the URL to call on form submission"},
-    {"name":"formSchema","type":"RawObject","required":true,"nullable":false,"description":"the JSON schema of the form"},
-    {"name":"formVisualizerOptions","type":"RawObject","required":false,"nullable":false,"description":"the options used by the form visualizer"},
-    {"name": "isEditable","type":"boolean","required":false,"nullable":true,"description":"defines if a form submission can be updated"},
-    {"name": "isPrivate","type":"boolean","required":false,"nullable":true,"description":"specifies if a form template can be displayed to every user"},
-    {"name": "enabledUserGroups","type":"Array_string","required":false,"nullable":true,"description":"user groups that will have 'view only' access of the submitted data"}
-]

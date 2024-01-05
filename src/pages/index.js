@@ -60,7 +60,7 @@ function Home() {
     >
       <Fragment>
         <div className={styles.container}>
-          {showHexagons && <Hexagons />}
+          {/* {showHexagons && <Hexagons />} */}
           <header style={styles.header}>
             <div className={clsx("hero hero--primary", styles.heroBanner)}>
               <div className="container">

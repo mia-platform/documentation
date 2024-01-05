@@ -29,6 +29,7 @@ async function createConfig() {
       colorMode: {
         // "light" | "dark"
         defaultMode: "light",
+        disableSwitch: false,
       },
       navbar: {
         hideOnScroll: false,
@@ -238,21 +239,6 @@ async function createConfig() {
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "current",
-            versions: {
-              current: {
-                label: "12.x (Current)",
-                path: "",
-                banner: "none"
-              },
-              "11.x.x": {
-                label: "11.7.x",
-                path: "11.x",
-              },
-              "10.x.x": {
-                label: "10.9.x",
-                path: "10.x",
-              },
-            },
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
               defaultSidebarItemsGenerator,
