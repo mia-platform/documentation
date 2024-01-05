@@ -5,15 +5,15 @@ async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
 
   return {
-    title: "Mia-Platform Documentation",
-    tagline: "Learn how Mia-Platform can help you to develop your business",
-    url: "https://docs.mia-platform.eu",
+    title: "Mia-Care Documentation",
+    tagline: "Learn how Mia-Care can help you to develop SaMD",
+    url: "https://docs.mia-care.eu",
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: 'throw',
     favicon: "img/favicon.ico",
-    organizationName: "Mia-Platform", // Usually your GitHub org/user name.
-    projectName: "Mia-Platform", // Usually your repo name.
+    organizationName: "Mia-Care", // Usually your GitHub org/user name.
+    projectName: "Mia-Care", // Usually your repo name.
     themeConfig: {
       prism: {
         additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],
@@ -23,7 +23,7 @@ async function createConfig() {
         placeholder: "Search for terms, features and more...",
         apiKey: "...",
         appId: "...",
-        indexName: "mia-platform-docs",
+        indexName: "mia-care-docs",
         contextualSearch: true,
       },
       colorMode: {
@@ -32,8 +32,14 @@ async function createConfig() {
       },
       navbar: {
         hideOnScroll: false,
-        title: "Mia-Platform Docs",
-        logo: {alt: "Mia_Platform logo", src: "img/logo.png"},
+        title: "Mia-Care Docs",
+        logo: {
+          alt: "Mia-Care logo",
+          src: "img/logo.png",
+          width: 120,
+          height: 32,
+          style: {padding: '2px 5px' }
+        },
         items: [{
           type: 'doc',
           docId: "intro/getting_started",
