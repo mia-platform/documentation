@@ -23,79 +23,15 @@ const features = [
     type: "feature",
     title: "Getting Started",
     icon: "rocket",
-    toUrl: "/docs/getting-started/mia-platform-overview",
-    description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`,
+    toUrl: "/docs/intro/getting-started",
+    description: `Start to learn the main concepts of Mia-Care P4SaMD and how to use to develop SaMD`,
   },
   {
     type: "feature",
     title: "Console",
     icon: "console",
-    toUrl: "/docs/development_suite/overview-dev-suite",
+    toUrl: "https://docs.mia-platform.eu/",
     description: `Start to use only one platform to design and manage the full-cycle of your DevOps`,
-  },
-  {
-    type: "feature",
-    title: "Learn to build what you want",
-    icon: "learn",
-    toUrl: "/docs/getting-started/videos/",
-    description: `Read our tutorials, follow walkthroughs and learn how to decouple your
-        IT systems from your channels and develop modern cloud-native
-        applications.`,
-  },
-  {
-    type: "feature",
-    title: "What's new?",
-    icon: "new",
-    description: "Discover new cool features, updates and bug fixes",
-    links: [
-      {
-        icon: "releaseNotes",
-        href: "/docs/release-notes/versions",
-        label: "Read the release notes",
-      },
-      {
-        icon: "globe",
-        target: "_blank",
-        href: "https://mia-platform.eu/mia-platform-v12/",
-        label: "Discover Mia-Platform v12 🎉",
-      },
-    ],
-  },
-  {
-    type: "howTo",
-    title: "How can I?",
-    description:
-        "Check out the following topics to learn how to build, deploy, debug and monitor your services with Mia-Platform",
-    links: [
-      {
-        label: "Create services",
-        href: "/docs/development_suite/api-console/api-design/services",
-      },
-      {
-        label: "Expose services",
-        href: "/docs/development_suite/api-console/api-design/endpoints",
-      },
-      {
-        label: "Store data in a CRUD",
-        href: "/docs/development_suite/api-console/api-design/crud_advanced",
-      },
-      {
-        label: "Deploy my configurations",
-        href: "/docs/development_suite/deploy/deploy",
-      },
-      {
-        label: "Take advantage of a ready-to-use service",
-        href: "/docs/marketplace/overview_marketplace",
-      },
-      {
-        label: "Monitor infrastructure",
-        href: "/docs/development_suite/monitoring/introduction",
-      },
-      {
-        label: "Create Public Variables",
-        href: "/docs/development_suite/api-console/api-design/public_variables",
-      },
-    ],
   }
 ];
 
@@ -143,14 +79,14 @@ function Home() {
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
-              {<div className="row">
+              {/* {<div className="row">
               <VersionBanner
                 link="/docs/release-notes/v12-overview"
                 majorVersion="12"
                 subTitle="Click here and learn about the new features in this new v12."
                 title="Mia-Platform v12 is now Generally Available"
               />
-              </div>}
+              </div>} */}
 
               <div className="row">
                 <div className="col col--8">

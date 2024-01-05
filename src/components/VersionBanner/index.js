@@ -12,12 +12,12 @@ const STORAGE_VERSION_BANNER_DISMISS_KEY = 'custom.versionBanner{{majorVersion}}
 const BannerContent = ({isDesktop, title, subtitle}) => {
   return (
     <>
-      {
+      {/* {
         isDesktop &&
           <div className={styles.imgBox}>
             <img src="/img/tuna-logo.png"/>
           </div>
-      }
+      } */}
       <div className={styles.titlesBox}>
           <span className={styles.title}>{title}</span>
           <span className={styles.subTitle}>{subtitle}</span>
