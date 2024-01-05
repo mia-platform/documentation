@@ -12,7 +12,8 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## Installation
 
-`miactl` can be installed in different ways, you can choose the one that better fits your needs and the operating system you are using:
+`miactl` can be installed in different ways, you can choose the one that better fits your needs and the operating system
+you are using:
 
 - [Linux and MacOs](#linux-and-macos)
   - [Homebrew](#homebrew)
@@ -110,7 +111,8 @@ we suggest the [binary installation](#binary-download) since it's the most strai
 Due to some technical restriction, it is not possible to login with a browser when using WSL.
 For this reason, we need to [setup a service account](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication).
 
-Once you have created it, you need to use the [`miactl context auth` command](./30_commands.md#auth) to setup authentication.
+Once you have created it, you need to use the [`miactl context auth` command](./30_commands.md#auth) to setup
+authentication.
 
 You are now ready to use `miactl`.
 
@@ -167,6 +169,18 @@ miactl completion fish > ~/.config/fish/completions/miactl.fish
 
 After done this you must restart your shell environment or launch `exec fish` for reloading the configurations and
 enable the autocompletion.
+
+## Setup Authorization Provider
+
+If you are not using the cloud offering of Mia-Platform Console, the on premise installation must be properly configured
+to enable the correct functionality of the login via user account.
+
+You must add the following URL `http://localhost:53535/oauth/callback` as a valid callback to your provider for enabling
+the cli to correctly receive the login data. If you are not able to do it, please ask one of the administrator of your
+chosen provider to do the changes.
+
+If you plan to use the cli only with service accounts you don’t have to do anything because the login flow will happen
+only via APIs.
 
 [Homebrew]: https://brew.sh "The Missing Package Manager for macOS (or Linux)"
 [Golang]: https://go.dev "Build simple, secure, scalable systems with Go"

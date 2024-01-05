@@ -12,10 +12,15 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.10.0] - 2023-12-20
+
+### BREAKING
+
+- `miactl marketplace delete` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
+- `miactl marketplace get` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
 
 ### Added
 
@@ -47,11 +52,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `runtime logs` now is working correctly for pods with more than one container
-
-### BREAKING
-
-- `miactl marketplace delete` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
-- `miactl marketplace get` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
 
 ## [0.9.0] - 2023-11-15
 
