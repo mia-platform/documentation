@@ -1,4 +1,0 @@
-[
-    {"name":"formDataId","type":"string","required":true,"nullable":false,"description":"the id of the form data saved in the formSubmitUrl CRUD endpoint"},
-    {"name":"formSchemaId","type":"string","required":true,"nullable":false,"description":"the id of the form schema in the form_schemas CRUD"}
-]

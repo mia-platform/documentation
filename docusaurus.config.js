@@ -5,15 +5,15 @@ async function createConfig() {
   const mdxMermaid = await import('mdx-mermaid')
 
   return {
-    title: "Mia-Platform Documentation",
-    tagline: "Learn how Mia-Platform can help you to develop your business",
-    url: "https://docs.mia-platform.eu",
+    title: "Mia-Care Documentation",
+    tagline: "Learn how Mia-Care can help you to develop SaMD",
+    url: "https://docs.mia-care.eu",
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: 'throw',
     favicon: "img/favicon.ico",
-    organizationName: "Mia-Platform", // Usually your GitHub org/user name.
-    projectName: "Mia-Platform", // Usually your repo name.
+    organizationName: "Mia-Care", // Usually your GitHub org/user name.
+    projectName: "Mia-Care", // Usually your repo name.
     themeConfig: {
       prism: {
         additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],
@@ -21,71 +21,78 @@ async function createConfig() {
       image: "img/documentation-link-preview.png",
       algolia: {
         placeholder: "Search for terms, features and more...",
-        apiKey: "602a752c6342891e2488bea38b0d9292",
-        appId: "58NJDUVYVW",
-        indexName: "mia-platform-docs",
+        apiKey: "...",
+        appId: "...",
+        indexName: "mia-care-docs",
         contextualSearch: true,
       },
       colorMode: {
         // "light" | "dark"
         defaultMode: "light",
+        disableSwitch: true,
       },
       navbar: {
         hideOnScroll: false,
-        title: "Mia-Platform Docs",
-        logo: {alt: "Mia_Platform logo", src: "img/logo.png"},
+        title: "Mia-Care Docs",
+        logo: {
+          alt: "Mia-Care logo",
+          src: "img/logo.png",
+          width: 120,
+          height: 32,
+          style: {padding: '2px 5px' }
+        },
         items: [{
           type: 'doc',
-          docId: "getting-started/mia-platform-overview",
+          docId: "intro/getting_started",
           label: "Getting Started",
           position: "left",
           activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
         },
-        {
-          label: "Products",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
-          type: "dropdown",
-          items: [{
-            type: 'doc',
-            docId: "development_suite/overview-dev-suite",
-            label: "Console",
-            activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
-          },
-          {
-            type: 'doc',
-            docId: "fast_data/what_is_fast_data",
-            label: "Fast Data",
-            activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
-          },
-          {
-            type: 'doc',
-            docId: "microfrontend-composer/what-is",
-            label: "Microfrontend Composer",
-            activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
-          },
-          {
-            type: 'doc',
-            docId: "marketplace/overview_marketplace",
-            label: "Marketplace",
-            activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
-          }
-          ]
-        },
-        {
-          label: "Infrastructure",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
-          type: "doc",
-          docId: "infrastructure/infrastructure_overview"
-        },
-        {
-          type: 'doc',
-          docId: "release-notes/versions",
-          label: "Release Notes",
-          position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
-        },
+        // {
+        //   label: "Products",
+        //   position: "left",
+        //   activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
+        //   type: "dropdown",
+        //   items: [{
+        //     type: 'doc',
+        //     docId: "development_suite/overview-dev-suite",
+        //     label: "Console",
+        //     activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
+        //   },
+        //   {
+        //     type: 'doc',
+        //     docId: "fast_data/what_is_fast_data",
+        //     label: "Fast Data",
+        //     activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
+        //   },
+        //   {
+        //     type: 'doc',
+        //     docId: "microfrontend-composer/what-is",
+        //     label: "Microfrontend Composer",
+        //     activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
+        //   },
+        //   {
+        //     type: 'doc',
+        //     docId: "marketplace/overview_marketplace",
+        //     label: "Marketplace",
+        //     activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
+        //   }
+        //   ]
+        // },
+        // {
+        //   label: "Infrastructure",
+        //   position: "left",
+        //   activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
+        //   type: "doc",
+        //   docId: "infrastructure/infrastructure_overview"
+        // },
+        // {
+        //   type: 'doc',
+        //   docId: "release-notes/versions",
+        //   label: "Release Notes",
+        //   position: "left",
+        //   activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
+        // },
         {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
           position: "left",
@@ -96,18 +103,18 @@ async function createConfig() {
           position: "left",
           label: "Community"
         },
-        {
-          type: "docsVersionDropdown",
-          position: "right",
-          dropdownItemsBefore: [],
-          dropdownItemsAfter: []
-        }
+        // {
+        //   type: "docsVersionDropdown",
+        //   position: "right",
+        //   dropdownItemsBefore: [],
+        //   dropdownItemsAfter: []
+        // }
         ],
       },
       footer: {
         style: "dark",
         links: [{
-          title: "Mia-Platform",
+          title: "Mia-Care P4SaMD",
           items: [{
             label: "How to install",
             to: "/docs/info/how_to_install",
@@ -142,32 +149,28 @@ async function createConfig() {
           title: "Company",
           items: [{
             label: "Website",
-            href: "https://mia-platform.eu",
+            href: "https://mia-care.io",
           },
           {
             label: "About",
-            href: "https://mia-platform.eu/company/about-us/",
-          },
-          {
-            label: "Mission & Vision",
-            href: "https://mia-platform.eu/mission-vision/",
+            href: "https://mia-care.io/about-us/",
           },
           {
             label: "Blog",
-            href: "https://mia-platform.eu/blog/",
+            href: "https://mia-care.io/blog/",
           },
           {
-            label: "Events",
-            href: "https://mia-platform.eu/resources/events/",
+            label: "Newsroom",
+            href: "https://mia-care.io/newsroom/",
           },
           {
             label: "Privacy Policy",
-            href: "https://mia-platform.eu/img/Privacy_Policy_Website_EN.pdf",
+            href: "https://mia-care.io/wp-content/uploads/2021/07/Mia-Care_Privacy_Policy_EN.pdf",
           },
           ],
         },
         {
-          title: "Core Platform",
+          title: "Mia-Platform",
           items: [{
             label: "Mia-Platform Console",
             href: "https://mia-platform.eu/platform/console/",
@@ -181,20 +184,16 @@ async function createConfig() {
             href: "https://mia-platform.eu/platform/console/fast-data",
           },
           {
-            label: "Release Notes",
-            to: "/docs/release-notes/versions",
+            label: "Mia-Platform Release Notes",
+            to: "https://docs.mia-platform.eu/docs/release-notes/versions",
           },
           ],
         },
         {
           title: "Developer Resources",
           items: [{
-            label: "Status Page",
+            label: "Mia-Platform Status Page",
             href: "https://status.console.cloud.mia-platform.eu"
-          },
-          {
-            label: "Guidelines",
-            to: "/docs/getting-started/guidelines/",
           },
           {
             label: "Library",
@@ -202,7 +201,7 @@ async function createConfig() {
           },
           {
             label: "GitHub",
-            href: "https://github.com/mia-platform",
+            href: "https://github.com/mia-care",
           },
           {
             label: "GitHub Marketplace",
@@ -220,18 +219,10 @@ async function createConfig() {
             label: "Community",
             to: "https://github.com/mia-platform/community/discussions",
           },
-          {
-            label: 'FAQ',
-            to: '/docs/getting-started/faqs'
-          },
-          {
-            label: "Getting Started",
-            to: "/docs/getting-started/mia-platform-overview",
-          },
           ],
         },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Mia srl. All rights reserved. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Mia-Care srl. All rights reserved. Built with Docusaurus.`,
       }
     },
     presets: [
@@ -248,21 +239,6 @@ async function createConfig() {
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "current",
-            versions: {
-              current: {
-                label: "12.x (Current)",
-                path: "",
-                banner: "none"
-              },
-              "11.x.x": {
-                label: "11.7.x",
-                path: "11.x",
-              },
-              "10.x.x": {
-                label: "10.9.x",
-                path: "10.x",
-              },
-            },
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
               defaultSidebarItemsGenerator,
