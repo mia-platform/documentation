@@ -295,6 +295,67 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 
+#### edit user
+
+The `company iam edit user` subcommand allows you to edit the role associated to a user in your Company.
+
+Usage:
+
+```sh
+miactl company iam edit user [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--user-id`, the id of the user to edit
+- `--role`, the new Company role of the user
+
+#### edit serviceaccount
+
+The `company iam edit serviceaccount` subcommand allows you to edit the role associated to a service account in
+your Company.
+
+Usage:
+
+```sh
+miactl company iam edit serviceaccount [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--service-account-id`, the id of the service account to edit
+- `--role`, the new Company role of the service account
+
+#### edit group
+
+The `company iam edit group` subcommand allows you to edit the role associated to a group in your Company.
+
+Usage:
+
+```sh
+miactl company iam edit group [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--group-id`, the id of the group to edit
+- `--role`, the new Company role of the group
+
 ## project
 
 This command allows you to manage `miactl` Projects.
