@@ -185,6 +185,12 @@ user after completing a payment via the Satispay mobile app
 * **BRAINTREE_PRIVATE_KEY** (required): Braintree API private key.
 * **BRAINTREE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Braintree Sandbox or Production environment.
 
+### Nexi
+
+* **NEXI_BASE_URL** (required): address to Nexi API base url. Currently, there are 2 environment, staging and production.
+* **NEXI_API_KEY** (required): api key for authenticating Nexi requests.
+* **NEXI_CALLBACK_URL** (required): address to which Nexi will send webhooks.
+
 ### Scalapay
 
 * **SCALAPAY_BASE_PATH** (required): Address to Scalapay base path. Scalapay has three different environments, integration, staging and production.
