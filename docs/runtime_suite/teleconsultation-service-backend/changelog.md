@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] 2024-01-09
+
+- Node version updated to lts/hydrogen
+- Added support for video call background image upload and use, and support for language management
+
+### Added
+
+- Added `duration_in_seconds` to POST and PATCH /teleconsultation body
+- Added room details as stored on Kaleyra in the API `GET /teleconsultation/:id`
+
 ## [1.5.1] 2023-10-04
 
 - Added `TELECONSULTATION_DELETE_UPLOADS` environment variable to enable deletion of files uploaded in a room

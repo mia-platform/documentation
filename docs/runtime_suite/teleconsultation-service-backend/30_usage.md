@@ -403,6 +403,25 @@ If no one of the participants is a `plus` user the service returns the following
 
 Retrieves the custom teleconsultation url for the requesting user.
 
+:::note
+Available from version 1.6.0
+:::
+
+Retrieves the detail of a teleconsultation room usage, as stored on Kaleyra ([reference](https://developers.kaleyra.io/reference/video-room-get)).
+
+#### Query parameters
+
+##### useBackground (optional)
+
+**Type**: `boolean`
+**Description**: Set to true, if required to use background within the virtual meeting
+
+
+##### language (optional)
+
+**Type**: `string`
+**Description**: Specify the language of the virtual room. By default, it uses the default company language. Supports `it` and `en`.
+
 **Request**
 ```
 curl -X GET "https://my_project_url/teleconsultation/room_xyz"
@@ -438,12 +457,28 @@ if no errors occur, you will get a response like this:
       "fullName": "Luigi Bianchi"
     },
     ...
-  ]
+  ],
+  "details": {
+    "recording": "none",
+    "recordingStatus": "stopped",
+    "callType": "audio_only",
+    "description": "text",
+    "status": "NOT_RUNNING",
+    "disabled": true,
+    "creationDate": "2023-12-22T13:36:48.164Z",
+    "durationInSeconds": 3600,
+    "durationUsedInSeconds": 1200,
+    "live": true
+  }
 } 
 ```
 
 <br/>
 
+It supports 2 optional query parameters `useBackground` and `language`. When `useBackground` is set to `true` it returns
+the room url with the default background enabled. When `language` is `it` or `en` it return the room url with the
+specified language set, otherwise the default `language` for the company is used. See `POST /settings/background-image`
+and `PATCH /settings/update` to manage the upload and update of the background images for the company.
 ### DELETE /teleconsultation/:roomId
 
 Deletes a teleconsultation on Kaleyra and set the state of that teleconsultation on CRUD to TRASH.
@@ -546,5 +581,104 @@ In case the service is not able to get user authentication from the request head
 401: { "error": "Unauthorized user" } 
 ```
 
+
+### POST /settings/background-image
+
+:::note
+Available from version 1.6.0
+:::
+
+Uploads the image specified by virtual_background for the company. 
+
+#### Body parameters
+
+##### virtual_background 
+
+**Type**: `binary`
+**Description**: File containing the image to be used as background of the virtual room. Maximum 10 MB.
+
+
+**Example POST Request:**
+```
+curl -X POST "https://my_project_url/settings/background-image" \
+--header 'apikey: your_api_key' \
+--header 'content-type: multipart/form-data; boundary=multipart-boundary' \
+--form virtual_background=your_path_to_file'
+```
+
+#### Response
+
+In case the operation is successful, a 200 status code will be returned alongside with an object containing the following fields:
+
+Example Response:
+```
+200: {
+	"virtual_background": {
+		"background_alias":,
+		"url",
+		"creation_date",
+	}
+}
+```
+
+In case the service is not able to get user authentication from the request headers, a 401 response will be returned.
+
+```
+401: { "error": "Unauthorized user" } 
+```
+
+
+### PATCH /settings/update
+
+:::note
+Available from version 1.6.0
+:::
+
+Updates the default background image for the company, specified by the body parameter `background_alias`
+
+#### Body parameters
+
+##### background_alias
+
+**Type**: `string`
+**Description**: Refers to the alias of the background image that is returned by the POST call when uploading the image.
+
+
+**Example PATCH Request:**
+```
+curl -X PATCH "https://my_project_url/settings/update" \
+--header 'apikey: your_api_key' \
+--data '{
+"background_alias":"3e4d0683d78be3a884b7a60028644f57"
+}'
+```
+
+#### Response
+
+In case the operation is successful, a 200 status code will be returned alongside with an object containing the following fields:
+
+Example Response:
+```
+200: {
+	"company": {
+		"name",
+		"default_language",
+		"default_background": {
+			"alias",
+			"url",
+			"creation_date"
+		},
+		"end_call_redirect_url": "",
+		"user_details_provider_url": "",
+		"end_call_redirect_timeout_ms": 5000
+	}
+}
+```
+
+In case the service is not able to get user authentication from the request headers, a 401 response will be returned.
+
+```
+401: { "error": "Unauthorized user" } 
+```
 
 [environment-variables]: ./20_configuration.md#environment-variables

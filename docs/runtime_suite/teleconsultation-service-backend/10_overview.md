@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](../../runtime_suite/teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
 
-The teleconsultation service uses the [SaaS Kaleyra Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.).
+The teleconsultation service uses the [SaaS Kaleyra Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.). It provides also supports image background management and language management (only `it` and `en` are supported at the moment). 
 
 The **Teleconsultation Service Backend** allows you to handle all the necessary operations (create, update, delete), on the teleconsultations. The Back End uses the [RESTful APIs](https://docs.bandyer.com/Bandyer-RESTAPI/) provided by Kaleyra.
 
@@ -31,6 +31,10 @@ In order to use Kaleyra's services, Kaleyra has to provide you the BANDYER_API_S
 A company has several customizable parameters, like theme, languages, virtual background, etc.
 
 For additional information about company customization, please follow [this link](https://docs.bandyer.com/Bandyer-RESTAPI/?shell#customization).
+:::
+
+:::warning
+At the moment, only the italian and the english language are fully supported by Kaleyra.
 :::
 
 #### User
@@ -64,3 +68,5 @@ The **Teleconsultation Service Backend** service exposes the APIs listed in the 
 | `GET /teleconsultation/:teleconsultationId`                    | 1.0.0                    | Return all data required to instantiate a teleconsultation UI and start the call.         |
 | `DELETE /teleconsultation/:teleconsultationId/uploads`         | 1.5.0                    | Delete all files uploaded by the participants during a teleconsultation.                  |
 | `POST /credentials`                                            | 1.4.0                    | Return a valid accessToken for clients using SDK authentication.                          |
+| `POST /settings/background-image`                              | 1.6.0      
+| `PATCH /settings/update`                                       | 1.6.0
