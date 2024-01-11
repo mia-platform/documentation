@@ -153,11 +153,6 @@
           "type": "doc"
         },
         {
-          "id": "console/handbooks/crud-oss-usage",
-          "type": "doc"
-        },
-
-        {
           "id": "console/handbooks/traefik-handbook",
           "type": "doc"
         }
@@ -1436,6 +1431,17 @@
       "items": [
         {
           "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Handbooks",
+      "items": [
+        {
+          "id": "marketplace/handbooks/crud-oss-usage",
           "type": "doc"
         }
       ]

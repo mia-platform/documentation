@@ -12,7 +12,7 @@ Welcome to the handbooks section! Here, you'll find comprehensive guides designe
 
 - **Project Development in Console**: Learn how to develop projects effectively in the console. [Go to project-development.mdx](/console/handbooks/project-development.mdx).
 - **Connect and Manage Cluster**: Step-by-step guide on connecting and managing clusters. [Go to connect-and-manage-cluster.md](/development_suite/clusters-management/connect-and-manage-cluster.mdx).
-- **CRUD Service OSS Usage**: Delve into how to use the CRUD service with OSS. [Go to crud-oss-usage.mdx](/console/handbooks/crud-oss-usage.mdx).
+- **CRUD Service OSS Usage**: Delve into how to use the CRUD service with OSS. [Go to crud-oss-usage.mdx](/marketplace/handbooks/crud-oss-usage.mdx).
 - **Traefik Handbook**: Comprehensive insights into Traefik. [Go to traefik-handbook.mdx](/console/handbooks/traefik-handbook.mdx).
 
 ## How to Use This Section

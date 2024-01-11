@@ -1544,5 +1544,97 @@
   "/docs/microfrontend-composer/back-kit/flows/plugin_navigation": {
     "destination": "/docs/microfrontend-composer/back-kit/examples/plugin_navigation",
     "addedOn": "2023-12-20"
+  },
+  "/docs/getting-started/handbooks/project/manage": {
+    "destination": "/docs/console/handbooks/project-manage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/tutorials/design-overview": {
+    "destination": "/docs/console/handbooks/design-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/project/usage": {
+    "destination": "/docs/console/handbooks/project-usage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/console/project-development": {
+    "destination": "/docs/console/handbooks/project-development",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/console/endpoints": {
+    "destination": "/docs/console/handbooks/endpoints",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/microservice-ports": {
+    "destination": "/docs/console/handbooks/microservice-ports",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/traefik/traefik-handbook": {
+    "destination": "/docs/console/handbooks/traefik-handbook",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/crud-service/crud-oss-usage": {
+    "destination": "/docs/marketplace/handbooks/crud-oss-usage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/microfrontend-composer": {
+    "destination": "/docs/microfrontend-composer/videos/microfrontend-composer",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/bucket-storage": {
+    "destination": "/docs/fast_data/videos/bucket-storage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/connecting-cluster": {
+    "destination": "/docs/console/videos/connecting-cluster",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/fast-data-no-code": {
+    "destination": "/docs/fast_data/videos/fast-data-no-code",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/feature-preview": {
+    "destination": "/docs/console/videos/feature-preview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/m2m-auth": {
+    "destination": "/docs/console/videos/m2m-auth",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/providers": {
+    "destination": "/docs/console/videos/providers",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/runtime-area": {
+    "destination": "/docs/console/videos/runtime-area",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/video-pills": {
+    "destination": "/docs/console/videos/marketplace-components/node-microservice",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/guidelines": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/git-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/rest-api-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/microservice-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/docker-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/guidelines-for-logs": {
+    "destination": "/docs/development_suite/api-console/api-design/guidelines-for-logs",
+    "addedOn": "2024-01-11"
   }
 }
