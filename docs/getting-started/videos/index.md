@@ -22,7 +22,7 @@ Welcome to the video page! This page contains a series of video guides designed 
 
 ### Miscellaneous
 * **Create a Node Microservice**: Learn how to to **create a Node.js microservice** in 1 minute. [Go to node-microservice.mdx](/console/videos/marketplace-components/node-microservice.mdx).
-* **CRUD Service**: Learn how to **create a MongoDB [CRUD](/development_suite/api-console/api-design/crud_advanced.md) in only one minute** [Go to crud-service.mdx](/console/videos/marketplace-components/crud-service.mdx).
+* **CRUD Service**: Learn how to create a MongoDB CRUD in only one minute. [Go to crud-service.mdx](/console/videos/marketplace-components/crud-service.mdx).
 
 ## How to Use This Page
 
