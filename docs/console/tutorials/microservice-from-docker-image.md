@@ -26,8 +26,8 @@ The project must:
 
 Better to have:
 
-- Some familiarity with **API** and **REST** concepts. More information about API is available [here](/getting-started/guidelines/rest-api-vademecum.md).
-- Basic **Docker** knowledge. More information about Docker is available [here](/getting-started/guidelines/docker-vademecum.md)
+- Some familiarity with **API** and **REST** concepts.
+- Basic **Docker** knowledge.
 
 :::tip
 If your are using a Mia-Platform Console in PaaS and the project has been created using the "Mia-Platform Basic Project Template", the project is already configured as needed.
@@ -125,11 +125,11 @@ To sum up, the services we are going to deploy are:
 - The "delivery-service" microservice;
 - The API gateway with the endpoint configurations.
 
-We can now deploy the project! If you do not know how to do it, take a quick look at [Mia-Platform handbook](/getting-started/handbooks/project/usage.md#deploy-changes) first.
+We can now deploy the project! If you do not know how to do it, take a quick look at [Mia-Platform handbook](/console/handbooks/project-usage.md#deploy-changes) first.
 
 A pipeline will be triggered by the Console to start the deploy of your project.
 
-At the end of the pipeline, go to the _Runtime_ section and wait for your pod to be ready. If you do not know how to do it, take a quick look at [Mia-Platform handbook](/getting-started/handbooks/project/usage.md#monitor-runtime-system) first.
+At the end of the pipeline, go to the _Runtime_ section and wait for your pod to be ready. If you do not know how to do it, take a quick look at [Mia-Platform handbook](/console/handbooks/project-usage.md#monitor-runtime-system) first.
 
 Now we are ready to test the endpoint!
 Replace `<project-domain>` with the correct one and try it:

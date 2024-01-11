@@ -25,7 +25,7 @@ Before starting this tutorial, you need to be familiar with the concepts of Comm
 For the technical part of this tutorial, an up-and-running Kafka cluster is required.
 Also Javascript and Mia-Platform dev libraries knowledge is needed if you want to implement external services interacting with Flow Manager using the Mia-Platform [Flow Manager Client](/runtime_suite_libraries/flow-manager-client/overview.md).
 
-You can apply the configurations in this tutorial in a new branch on the Console. To see how to create a new branch please see [here](/getting-started/handbooks/project/usage.md#create-a-new-branch).
+You can apply the configurations in this tutorial in a new branch on the Console. To see how to create a new branch please see [here](/console/handbooks/project-usage.md#create-a-new-branch).
 
 The project you want to use to reproduce the steps includes a [swagger-aggregator](/runtime_suite/swagger-aggregator/10_overview.md), an [api-portal](/runtime_suite/api-portal/10_overview.md), an [api-gateway](/runtime_suite/api-gateway/10_overview.md) and a [crud-service](/runtime_suite/crud-service/10_overview_and_usage.md)
 
@@ -933,7 +933,7 @@ To create and endpoint please follow these steps:
 
 We have completed all the configurations necessary for the correct execution of the Flow Manager service and to interact with it.
 
-You can now [save](/getting-started/handbooks/project/usage.md#save-changes) your configuration and [deploy](/getting-started/handbooks/project/usage.md#deploy-changes) to your preferred environment.
+You can now [save](/console/handbooks/project-usage.md#save-changes) your configuration and [deploy](/console/handbooks/project-usage.md#deploy-changes) to your preferred environment.
 
 ## Interact
 

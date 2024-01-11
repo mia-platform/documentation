@@ -13,11 +13,11 @@ Welcome to the Tutorials page! This page contains a selection of tutorials guide
 In the preliminary section you will find a list Handbooks that explains how to execute recurring actions. Have a quick look at it before starting. Don't worry too much about them, you will find the link to the correct paragraph of the handbooks while executing the tutorials too.
 
 ### **Preliminary**
-- **Project Usage Handbook**: Navigating and making the most out of the console. [Go to Project Usage Handbook](/getting-started/handbooks/project/usage.md).
+- **Project Usage Handbook**: Navigating and making the most out of the console. [Go to Project Usage Handbook](/console/handbooks/project-usage.md).
 
 
 ### **Console and Marketplace Components**
-- **Project Handbook**: Comprehensive guide for project management. [Go to Project Handbook](/getting-started/handbooks/project/manage.md).
+- **Project Handbook**: Comprehensive guide for project management. [Go to Project Handbook](/console/handbooks/project-manage.md).
 - **Hello World**: Getting started with microservices. [Go to Hello World](/console/tutorials/configure-marketplace-components/microservice-hello-world.mdx).
 - **API Portal Tutorial**: Deep dive into the API portal and its functionalities. [Go to API Portal Tutorial](/console/tutorials/configure-marketplace-components/api-portal.mdx).
 - **Quick REST API**: Grasping the principles and best practices of RESTful APIs. [Go to Quick REST API](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx).
