@@ -7,8 +7,8 @@ async function createConfig() {
   return {
     title: "Mia-Care Documentation",
     tagline: "Learn how Mia-Care can help you to develop SaMD",
-    url: "https://mia-care.github.io",
-    baseUrl: "/documentation",
+    url: "https://docs.mia-care.io",
+    baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: 'throw',
     favicon: "img/favicon.ico",

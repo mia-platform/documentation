@@ -1,8 +1,8 @@
 <div align="center">
 
-# Welcome to Mia-Platform documentation
+# Welcome to Mia-Care documentation
 
-In this repository you can find the official [Mia-Platform][mia-website] Documentation.
+In this repository you can find the official [Mia-Care][mia-website] Documentation.
 
 [![Documentation](https://img.shields.io/badge/Documentation-%2326A570.svg?style=for-the-badge&logo=readthedocs&logoColor=white)][mia-docs]
 [![Join the Community](https://img.shields.io/badge/Join_the_Community-%231DA1F2.svg?style=for-the-badge&logo=readthedocs&logoColor=white)][mia-community]
@@ -73,6 +73,6 @@ Read related [contribution guide](/CONTRIBUTING.md#how-can-i-contribute).
 
 
 [nvm]: https://github.com/creationix/nvm
-[mia-website]: http://mia-platform.eu
-[mia-docs]: https://docs.mia-platform.eu
+[mia-website]: http://mia-care.io
+[mia-docs]: https://docs.mia-care.io
 [mia-community]: https://github.com/mia-platform/community/discussions
