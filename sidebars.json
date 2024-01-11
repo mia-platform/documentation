@@ -949,6 +949,10 @@
         },
         {
           "id": "fast_data/videos/bucket-storage",
+          "type": "doc"
+        }
+      ]
+    },
     {
       "id": "fast_data/inputs_and_outputs",
       "type": "doc"
@@ -1258,65 +1262,6 @@
       "id": "getting-started/tutorials/tutorials"
     },
     {
-      "collapsed": true,
-      "label": "Handbooks",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "getting-started/handbooks/handbooks"
-      },
-      "items": [
-        {
-          "id": "getting-started/handbooks/project/manage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/design-overview",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/project/usage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/console/project-development",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/console/endpoints",
-          "type": "doc"
-        },
-          "type": "doc"
-        },
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/crud-service/crud-oss-usage",
-          "type": "doc"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "label": "Videos",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "getting-started/videos/videos"
-      },
-      "items": [
-        {
-          "id": "getting-started/videos/microfrontend-composer",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/bucket-storage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/connecting-cluster",
-          "type": "doc"
-        },
       "type": "doc",
       "id": "getting-started/handbooks/handbooks"
     },
