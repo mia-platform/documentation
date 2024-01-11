@@ -22,6 +22,8 @@ The Auth0-Client service accepts the following environment variables:
 - __SESSION_SCOPE__: defines the scope of the session
 - __REDIS_MODE__: defines the redis mode (normal or sentinel) (default: normal)
 - __REDIS_MASTER_NAME__: defines the redis master name
+- __REDIS_USERNAME__: defines the redis username to be used for authentication
+- __REDIS_PASSWORD__: defines the redis password to be used for authentication
 - __REDIS_HOSTS__ (__required__): defines the redis hosts
 - __ORIGINAL_PROTOCOL_HEADER__ (__required__): defines the original protocol header
 - __SERVICE_CONFIG_FILE_NAME__ (__required__): defines the service config name

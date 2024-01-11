@@ -15,7 +15,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.3.2 - 10-01-2024
+
+### Added
+
+- support for Redis username and password when using standalone mode
+
 ## 3.3.1 - 16-12-2022
+
 ## Added
 
 - Possibility to configure SameSite cookie
