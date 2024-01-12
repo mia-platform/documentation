@@ -39,7 +39,7 @@ Some providers may require additional fields, in which case they will be wrapped
 | Soisy     |                    |          |           |        |          |          | ✓     |
 | Stripe    | ✓                  |          |           | ✓      |          |          |       |
 
-::: note
+:::note
 Regarding Credit/Debit Cards, supported payment circuits are:
 - Visa
 - Mastercard

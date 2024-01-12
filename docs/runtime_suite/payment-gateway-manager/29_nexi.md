@@ -14,7 +14,11 @@ In this page you will find the required information to perform REST calls relate
 
 | Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
 |----------------|---------|--------|------------------------|---------------------|
-| `credit-cards` | ✓       | ✓      | ✓                      |                     | 
+| `credit-cards` | ✓       | ✓      |                        |                     | 
+
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✗       |
 
 ## Endpoints
 

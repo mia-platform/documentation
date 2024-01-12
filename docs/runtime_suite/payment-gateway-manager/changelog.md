@@ -107,7 +107,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 2.9.0-quarkus & 2.9.0-ktor - 05/12/2022
 
-::: warning
+:::warning
 From version 2.9.0 the framework used is changed from ktor to quarkus.
 Until version 3.0.0 will be available both framework, and you can choose the framework you prefer by adding the related suffix to the tag name.
 :::
