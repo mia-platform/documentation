@@ -21,6 +21,8 @@ Moreover, it's possible to search the checkpoints over a field, using the search
 
 The timeline viewer plugin is served over the `/` GET endpoint. Additional parameters needs to be attached over the `/#/` fragment identifier. 
 
+[The timeline can be embedded into the microfrontend-composer as an iFrame](/microfrontend-composer/tutorials/templates.mdx#setup-an-iframe-page).
+
 ### Resources
 
 This plugin requires that the checkpoints displayed has to be exposed on a dedicated micro-service over the endpoint `/:resource/json`, where `:resource` is the name of the data set that will be rendered by the timeline. 
