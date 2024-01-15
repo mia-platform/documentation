@@ -23,7 +23,7 @@ All the events triggered by the Console share some common properties:
 
 ### Project Created
 
-This event will be triggered when a project is created successfully.
+This event will be triggered when a Project is created successfully.
 
 <Tabs>
 <TabItem value="project-created-table" label="Event Payload" default>
@@ -91,7 +91,7 @@ This event will be triggered when a microservice is successfully generated from 
 
 :::note
 The event is triggered as soon as the service's repository is successfully created,
-hence there is no guarantee that the service will be found in the project configuration, yet.
+hence there is no guarantee that the service will be found in the Project configuration, yet.
 :::
 
 <Tabs>
@@ -103,7 +103,7 @@ hence there is no guarantee that the service will be found in the project config
 | `tenantId`      | `string` | The identifier of the Company the service belongs to                                         |
 | `projectId`     | `string` | The identifier of the Project the service belongs to                                         |
 | `repositoryURL` | `string` | The URL of the repository that hosts the service code                                        |
-| `serviceName`   | `string` | The name of the service inside the project configuration                                     |
+| `serviceName`   | `string` | The name of the service inside the Project configuration                                     |
 | `templateId`    | `string` | The identifier of the template in the Console marketplace from which the service was created |
 
 </TabItem>
@@ -152,9 +152,10 @@ hence there is no guarantee that the service will be found in the project config
 </TabItem>
 </Tabs>
 
+
 ### Tag Created
 
-This event will be triggered when a project is successfully tagged from console.
+This event will be triggered when a Project is successfully tagged from Console.
 
 <Tabs>
 <TabItem value="tag-created-table" label="Event Payload" default>
@@ -163,14 +164,13 @@ This event will be triggered when a project is successfully tagged from console.
 | -------------------- | -------- | ---------------------------------------------------------------------- |
 | `tenantId`           | `string` | The identifier of the Company the service belongs to                   |
 | `projectId`          | `string` | The identifier of the Project the service belongs to                   |
-| `tagName`            | `string` | The name of the tag created from the console                           |
+| `tagName`            | `string` | The name of the tag created from the Console                           |
 | `ref`                | `string` | The ref of the tag                                                     |
-| `message`            | `string` | The message of the tag compiled from the console                       |
-| `releaseDescription` | `string` | The release description of the tag compiled from the console           |
-| `project`            | `object` | [The project metadata](#project) (ideally, the whole project resource) |
+| `message`            | `string` | The message of the tag compiled from the Console                       |
+| `releaseDescription` | `string` | The release description of the tag compiled from the Console           |
+| `project`            | `object` | [The Project metadata](#project) (ideally, the whole Project resource) |
 
 </TabItem>
-
 <TabItem value="example" label="Example">
 
 ```json
@@ -182,17 +182,16 @@ This event will be triggered when a project is successfully tagged from console.
     "projectId": "0000000000000001",
     "tagName": "v1.0.0",
     "ref": "af132fr",
-    "message": "tag message compiled from the console",
-    "releaseDescription": "release description compiled from the console",
+    "message": "tag message compiled from the Console",
+    "releaseDescription": "release description compiled from the Console",
 
-    // See the project metadata below
+    // See the Project metadata below
     "project": {...} 
   }
 }
 ```
 
 </TabItem>
-
 <TabItem value="json-schema" label="JSON Schema">
 
 ```json
@@ -220,23 +219,446 @@ This event will be triggered when a project is successfully tagged from console.
 ```
 
 </TabItem>
-
 </Tabs>
 
-### Entities
 
-#### Project
+### User added to Company
+
+This event will be triggered when a user is successfully added to a Company, either directly or indirectly through a group.
+
+<Tabs>
+<TabItem value="company-user-added-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                          |
+|-------------|----------|--------------------------------------------------------------------------------------|
+| `companyId` | `string` | The identifier of the Company to which the user was added                            |
+| `userId`    | `string` | The user identifier                                                                  |
+| `email`     | `string` | The user email                                                                       |
+| `roleId`    | `string` | The identifier of the role assigned to the user                                      |
+| `groupId`   | `string` | The identifier of the group through which the user was added to the Company (if any) |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "company_user_added",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "roleId": "guest",
+    "groupId": "group1"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "company_user_added",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "description": "The identifier of the Company to which the user was added"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user was added to the Company (if any)"
+        },
+      },
+      "required": ["companyId", "userId", "email", "roleId"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### User Company role edited
+
+This event will be triggered when a user role changes within a Company, either directly or indirectly through a group.
+
+<Tabs>
+<TabItem value="company-user-edited-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                                      |
+|-------------|----------|--------------------------------------------------------------------------------------------------|
+| `companyId` | `string` | The identifier of the Company to which the user belongs                                          |
+| `userId`    | `string` | The user identifier                                                                              |
+| `email`     | `string` | The user email                                                                                   |
+| `roleId`    | `string` | The identifier of the role assigned to the user                                                  |
+| `groupId`   | `string` | The identifier of the group through which the user role was modified within the Company (if any) |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "company_user_edited",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "roleId": "guest",
+    "groupId": "group1"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "company_user_edited",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "description": "The identifier of the Company to which the user belongs"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user role was modified within the Company (if any)"
+        },
+      },
+      "required": ["companyId", "userId", "email", "roleId"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### User removed from Company
+
+This event will be triggered when a user is removed from a Company, either directly or indirectly through a group.
+
+<Tabs>
+<TabItem value="company-user-removed-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                              |
+|-------------|----------|------------------------------------------------------------------------------------------|
+| `companyId` | `string` | The identifier of the Company from which the user was removed                            |
+| `userId`    | `string` | The user identifier                                                                      |
+| `email`     | `string` | The user email                                                                           |
+| `groupId`   | `string` | The identifier of the group through which the user was removed from the Company (if any) |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "company_user_removed",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "groupId": "group1"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "company_user_removed",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "description": "The identifier of the Company from which the user was removed"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user was removed from the Company (if any)"
+        },
+      },
+      "required": ["companyId", "userId", "email"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### User added to Project
+
+This event will be triggered when a user is successfully added to a Project, either directly or indirectly through a group.
+
+<Tabs>
+<TabItem value="project-user-added-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                          |
+|-------------|----------|--------------------------------------------------------------------------------------|
+| `companyId` | `string` | The identifier of the Company to which the user belongs                              |
+| `projectId` | `string` | The identifier of the Project to which the user was added                            |
+| `userId`    | `string` | The user identifier                                                                  |
+| `email`     | `string` | The user email                                                                       |
+| `roleId`    | `string` | The identifier of the role assigned to the user                                      |
+| `groupId`   | `string` | The identifier of the group through which the user was added to the Project (if any) |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "project_user_added",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "projectId": "my-project-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "roleId": "guest",
+    "groupId": "group1"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "project_user_added",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "description": "The identifier of the Company to which the user belongs"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "The identifier of the Project to which the user was added"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user was added to the Project (if any)"
+        },
+      },
+      "required": ["companyId", "projectId", "userId", "email", "roleId"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### User removed from Project
+
+This event will be triggered when a user is removed from a Project, either directly or indirectly through a group.
+
+<Tabs>
+<TabItem value="project-user-removed-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                              |
+|-------------|----------|------------------------------------------------------------------------------------------|
+| `companyId` | `string` | The identifier of the Company to which the user belongs                                  |
+| `projectId` | `string` | The identifier of the Project from which the user was removed                            |
+| `userId`    | `string` | The user identifier                                                                      |
+| `email`     | `string` | The user email                                                                           |
+| `groupId`   | `string` | The identifier of the group through which the user was removed from the Project (if any) |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "project_user_removed",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "projectId": "my-project-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "groupId": "group1"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "project_user_removed",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "description": "The identifier of the Company to which the user belongs"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "The identifier of the Project from which the user was removed"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user was removed from the Project (if any)"
+        },
+      },
+      "required": ["companyId", "userId", "email"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+## Entities
+
+### Project
 
 <Tabs>
 <TabItem value="project-table" label="Entity">
 
 |        Property        |   Type   |                                         Description                                          |
 | ---------------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `_id`                  | `string` | The unique identifier of project created                                                      |
-| `configurationGitPath` | `string` | The path where project persist in git repository                                             |
+| `_id`                  | `string` | The unique identifier of Project created                                                      |
+| `configurationGitPath` | `string` | The path where Project persist in git repository                                             |
 | `defaultBranch`        | `string` | The default branch of git repository                                                         |
-| `description`          | `string` | The project description                                                                      |
-| `environments`         | `array`  | The project environments, where project can be released                                      |
+| `description`          | `string` | The Project description                                                                      |
+| `environments`         | `array`  | The Project environments, where Project can be released                                      |
 | `name`                 | `string` | The identifier of the template in the Console marketplace from which the service was created |
 | `projectId`            | `string` | The human readable identifier of the Project that was created                                |
 | `repository`           | `object` | The git repository information                                                               |
@@ -244,7 +666,6 @@ This event will be triggered when a project is successfully tagged from console.
 | `tenantId`             | `string` | The human readable identifier of the Company the service belongs to                          |
 
 </TabItem>
-
 <TabItem  value="project-example" label="Example">
 
 ```json
@@ -342,12 +763,11 @@ This event will be triggered when a project is successfully tagged from console.
 ```
 
 </TabItem>
-
 <TabItem value="project-schema" label="JSON Schema">
 
 ```json 
 {
-  "description": "The project metadata (ideally, the whole project resource)",
+  "description": "The Project metadata (ideally, the whole Project resource)",
   "type": "object",
   "properties": {
     "_id": { "type": "string" },
@@ -453,5 +873,4 @@ This event will be triggered when a project is successfully tagged from console.
 ```
 
 </TabItem>
-
 </Tabs>
