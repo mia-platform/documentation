@@ -1,5 +1,5 @@
 ---
-id: self_hosted_cms
+id: cms
 title: CMS
 sidebar_label: CMS
 ---

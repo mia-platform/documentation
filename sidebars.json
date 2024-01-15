@@ -1388,6 +1388,10 @@
           ]
         },
         {
+          "id": "infrastructure/self-hosted/cms",
+          "type": "doc"
+        },
+        {
           "id": "infrastructure/self-hosted/synchronize-users",
           "type": "doc"
         },
