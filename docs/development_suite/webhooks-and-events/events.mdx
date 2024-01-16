@@ -6,6 +6,7 @@ sidebar_label: Console Events
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Tag from '@theme/Tag';
 
 Events allow users to be notified when certain operations are performed in the Console.
 
@@ -18,7 +19,6 @@ All the events triggered by the Console share some common properties:
 | `eventName`      | `string` | The name of the event, usually in the form of `subject_action` |
 | `eventTimestamp` | `number` | The timestamp of the event emission                            |
 | `payload`        | `object` | Contains the event-specific payload                            |
-
 
 
 ### Project Created
@@ -222,9 +222,13 @@ This event will be triggered when a Project is successfully tagged from Console.
 </Tabs>
 
 
-### User added to Company
+### User added to Company <small><Tag label={'v12.1.0'} /></small>
 
 This event will be triggered when a user is successfully added to a Company, either directly or indirectly through a group.
+
+:::note
+The event trigger gives no guarantee that the user did not already have access to the Company, because they may be associated with it through other (direct or group) bindings.
+:::
 
 <Tabs>
 <TabItem value="company-user-added-table" label="Event Payload" default>
@@ -305,9 +309,13 @@ This event will be triggered when a user is successfully added to a Company, eit
 </Tabs>
 
 
-### User Company role edited
+### User Company role edited <small><Tag label={'v12.1.0'} /></small>
 
 This event will be triggered when a user role changes within a Company, either directly or indirectly through a group.
+
+:::note
+The event trigger gives no guarantee that the user does not have additional (even higher) roles on the Company, because they may be associated with it through other (direct or group) bindings.
+:::
 
 <Tabs>
 <TabItem value="company-user-edited-table" label="Event Payload" default>
@@ -388,9 +396,13 @@ This event will be triggered when a user role changes within a Company, either d
 </Tabs>
 
 
-### User removed from Company
+### User removed from Company <small><Tag label={'v12.1.0'} /></small>
 
 This event will be triggered when a user is removed from a Company, either directly or indirectly through a group.
+
+:::note
+The event trigger gives no guarantee that the user no longer has access to the Company from which they were removed, because they may be associated with it through other (direct or group) bindings.
+:::
 
 <Tabs>
 <TabItem value="company-user-removed-table" label="Event Payload" default>
@@ -469,9 +481,13 @@ This event will be triggered when a user is removed from a Company, either direc
 </Tabs>
 
 
-### User added to Project
+### User added to Project <small><Tag label={'v12.1.0'} /></small>
 
 This event will be triggered when a user is successfully added to a Project, either directly or indirectly through a group.
+
+:::note
+The event trigger gives no guarantee that the user did not already have access to the Project, because they may be associated with it through other (direct or group) bindings.
+:::
 
 <Tabs>
 <TabItem value="project-user-added-table" label="Event Payload" default>
@@ -558,9 +574,13 @@ This event will be triggered when a user is successfully added to a Project, eit
 </Tabs>
 
 
-### User removed from Project
+### User removed from Project <small><Tag label={'v12.1.0'} /></small>
 
 This event will be triggered when a user is removed from a Project, either directly or indirectly through a group.
+
+:::note
+The event trigger gives no guarantee that the user no longer has access to the Project from which they were removed, because they may be associated with it through other (direct or group) bindings.
+:::
 
 <Tabs>
 <TabItem value="project-user-removed-table" label="Event Payload" default>
