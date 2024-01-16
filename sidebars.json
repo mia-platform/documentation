@@ -1647,6 +1647,10 @@
       ]
     },
     {
+      "id": "release-notes/stable-versions",
+      "type": "doc"
+    },
+    {
       "id": "release-notes/roadmap",
       "type": "doc"
     },
