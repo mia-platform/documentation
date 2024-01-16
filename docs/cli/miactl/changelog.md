@@ -15,6 +15,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] - 2024-01-15
+
+### BREAKING
+
+- move serviceaccount commads under `company iam add`
+
+### Added
+
+- `company iam add user` command
+- `company iam edit user` command
+- `company iam add group` command
+- `company iam add group-member` command
+- `company iam edit serviceaccount` command
+- `company iam edit group` command
+- `company iam remove user` command
+- `company iam remove group` command
+- `company iam remove serviceaccount` command
+- `company iam remove group-member` command
+
+### Changed
+
+- the company iam list commands now return the id of the entities as well
+- update go version to 1.21.5
+- update logr to v1.4.1
+- update uuid to 1.5.0
+- update exp to v0.0.0-20231219180239-dc181d75b848
+
+### Fixed
+
+- remove conflicting shortand flag `-v` from `miactl marketplace delete` command
+- creation of basic auth service account
+
 ## [0.10.0] - 2023-12-20
 
 ### BREAKING
@@ -179,7 +211,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.10.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.11.0...HEAD
+[0.11.0]: https://github.com/mia-platform/miactl/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/mia-platform/miactl/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/mia-platform/miactl/compare/v0.7.0...v0.8.0
