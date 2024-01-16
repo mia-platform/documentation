@@ -30,8 +30,9 @@ Put a valid URL in the *PAYMENT_CALLBACK_URL* environment variable.
 In order to complete the configuration of the `Payment Front End` you have to set the following environment variables:
 - `CSP_HEADER`: list of content security policy to include
 - `PROJECT_HOST`: host of the current project, as Public variable
+- `VITE_DEMO_API_KEY`: api key used to protect PGM BFF service
 
-Based on the payments method or provider enabled you have to set specific variables:
+Based on the payment methods or providers enabled you have to set specific variables:
 
 - Axerve
   - `VITE_AXERVE_API_KEY`
@@ -105,11 +106,13 @@ In order to complete the configuration of the `Back End for Front End` you have 
 - `PGM_URL`: payment gateway manager url
 - `INVOICE_SERVICE_URL`: invoice service url
 - `FILES_SERVICE_URL`: file service url
-- `SAGA_CRUD_URL`: saga collection url
+- `SUBSCRIPTION_HANDLER_SERVICE`: subscription handler service url
+- `ADAPTIVE_CHECKOUT_URL`: adaptive approval service url
+- `SAGA_CRUD_URL`: transaction saga collection url
 - `INVOICE_CRUD_URL`: invoice collection url
-- `SUBSCRIPTION_HANDLER_SERVICE`: subscription handler url
-- `PAY_BY_LINK_PROVIDER`: enabled provider for `PAY_BY_LINK` payments
 - `USERS_CRUD_URL`: users collection url
+- `SAGA_SUBSCRIPTION_CRUD_URL`: subscription saga collection url
+- `PAY_BY_LINK_PROVIDER`: enabled provider for `PAY_BY_LINK` payments
 - `APPLEPAY_CERTIFICATE_PASSWORD`
 - `APPLEPAY_CERTIFICATE_FILE`: read the official [documentation](https://developer.apple.com/documentation/apple_pay_on_the_web/configuring_your_environment) to learn how to create it
 
@@ -121,7 +124,7 @@ checks the actual status through the provider and updates the payment state acco
 The following environment variables are customizable:
 - `PGM_URL`: payment gateway manager url
 - `FLOW_MANAGER_URL`: flow manager service url
-- `CRUD_SERVICE_URL`: crud service collection url. In order to perform custom query (e.g. if payment is in a specific state or if it is made with a subset of providers), you have to define a MongoDB View
+- `CRUD_SERVICE_URL`: crud service view url. In order to perform custom query (e.g. if payment is in a specific state or if it is made with a subset of providers), you have to update the related MongoDB View
 - `REDIS_HOST`: Redis installation URL
 - `THREAD_NUMBER`: the number of payments the service can check in parallel
 - `FRULLINO_RUNNING_INTERVAL_CRON`: how often the service performs the check
@@ -134,17 +137,18 @@ For further configuration of the microservices you can refer to the dedicated do
 - [Files-Service](../../runtime_suite/files-service/configuration)
 - [Messaging Service](../../runtime_suite/messaging-service/overview): use version 1.5.0 or above
 - [SMTP Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage)
+- [Adaptive Approval Service](../../runtime_suite/adaptive-approval-service/configuration)
 - [Data-Visualization](../../microfrontend-composer/use-cases/data-visualization.md)
 - [Analytics](../../runtime_suite/mongodb-reader/configuration)
 
-## View
+## MongoDB Views
 
-The user could perform the additional steps reported below in order to create MongoDB views that enable to exploit the ready to use [backoffice pages related to payments](./40_backoffice_payment.md).
+The user should perform the additional steps reported below in order to create MongoDB views that enable to exploit the ready to use [backoffice pages related to payments](./40_backoffice_payment.md).
 1. Setup aggregation of `transactions_saga_view` as follows.
-  - create a new aggregation view on MongoDB Views section called `transactions_saga_view`
-  - choose `transactions_saga` as starting collection
-  - create `transactions_saga_view` schema as the schema below
-  - paste the following pipeline and fields
+    - create a new aggregation view on MongoDB Views section called `transactions_saga_view`
+    - choose `transactions_saga` as starting collection
+    - create `transactions_saga_view` schema as the schema below
+    - paste the following pipeline and fields
     <details>
       <summary>Pipeline</summary>
 
@@ -410,6 +414,8 @@ The user could perform the additional steps reported below in order to create Mo
         },
         "buyerName": "$metadata.additionalData.buyer.name",
         "buyerEmail": "$metadata.additionalData.buyer.email",
+        "buyerPhone": "$metadata.additionalData.buyer.phone",
+        "notificationChannels": "$metadata.additionalData.notificationChannels",
         "channel": "$metadata.additionalData.channel",
         "date": "$createdAt",
         "history": {
@@ -496,7 +502,7 @@ The user could perform the additional steps reported below in order to create Mo
         }
       }
     }
-  ]
+    ]
     ```
     </details>
 
@@ -604,6 +610,20 @@ The user could perform the additional steps reported below in order to create Mo
         "sensitivityValue": 0
       },
       {
+        "name": "buyerPhone",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0
+      },
+      {
+        "name": "notificationChannels",
+        "type": "string",
+        "required": false,
+        "nullable": false,
+        "sensitivityValue": 0
+      },
+      {
         "name": "channel",
         "type": "string",
         "required": false,
@@ -692,16 +712,16 @@ The user could perform the additional steps reported below in order to create Mo
     </details>
 
 2. Create endpoint for the MongoDB view previously created `transactions_saga_view`
-  - Create a new endpoint on the endpoint section `/transactions-saga-view`
-  - Choose MongoDB view as type
-  - Choose MongoDB view base path as `/transactions-saga-view`
+    - Create a new endpoint on the endpoint section `/transactions-saga-view`
+    - Choose MongoDB view as type
+    - Choose MongoDB view base path as `/transactions-saga-view`
 
 3. Setup aggregation of `subscriptions_saga_view` as follows.
-  - create a new aggregation view on MongoDB Views section called `subscriptions_saga_view`
-  - choose `subscriptions_saga` as starting collection
-  - create `subscriptions_saga_view` schema as the schema below
-  - paste the following pipeline and fields
-  <details>
+    - create a new aggregation view on MongoDB Views section called `subscriptions_saga_view`
+    - choose `subscriptions_saga` as starting collection
+    - create `subscriptions_saga_view` schema as the schema below
+    - paste the following pipeline and fields
+    <details>
       <summary>Pipeline</summary>
 
     ```json
@@ -1046,7 +1066,7 @@ The user could perform the additional steps reported below in order to create Mo
         }
       }
     }
-  ]
+    ]
     ```
     </details>
 
@@ -1208,332 +1228,74 @@ The user could perform the additional steps reported below in order to create Mo
         "nullable":true,
         "sensitivityValue":0
     }
-  ]
+    ]
     ```
     </details>
 
 4. Create endpoint for the MongoDB view previously created `subscriptions_saga_view`
-  - Create a new endpoint on the endpoint section `/subscriptions-saga-view`
-  - Choose MongoDB view as type
-  - Choose MongoDB view base path as `/subscriptions-saga-view`
+    - Create a new endpoint on the endpoint section `/subscriptions-saga-view`
+    - Choose MongoDB view as type
+    - Choose MongoDB view base path as `/subscriptions-saga-view`
 
-5. Setup aggregation of `adaptive_checkout_view` as follows.
-  - create a new aggregation view on MongoDB Views section called `adaptive_checkout_view`
-  - choose `adaptive_checkout` as starting collection
-  - create `adaptive_checkout_view` schema as the schema below
-  - paste the following pipeline and fields
-  <details>
+5. Setup aggregation of `payment_pending_view` as follows.
+    - create a new aggregation view on MongoDB Views section called `payment_pending_view`
+    - choose `transactions_saga` as starting collection
+    - create `payment_pending_view` schema as the schema below
+    - paste the following pipeline and fields
+    <details>
       <summary>Pipeline</summary>
 
     ```json
     [
-    {
-      "$match": {
-        "__STATE__": "PUBLIC"
-      }
-    },
-    {
-      "$project": {
-        "__STATE__": "$__STATE__",
-        "createdAt": "$createdAt",
-        "updatedAt": "$updatedAt",
-        "creatorId": "$creatorId",
-        "updaterId": "$updaterId",
-        "priority": "$priority",
-        "ruleId": "$ruleId",
-        "amount": "$amount",
-        "enabledMethods": {
-          "$map": {
-            "input": "$enabledMethods",
-            "as": "m",
-            "in": {
-              "paymentMethod": {
-                "$switch": {
-                  "branches": [
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "applepay"
-                        ]
-                      },
-                      "then": "Apple Pay"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "credit-cards"
-                        ]
-                      },
-                      "then": "Credit Card"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "googlepay"
-                        ]
-                      },
-                      "then": "Google Pay"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "pay-pal"
-                        ]
-                      },
-                      "then": "PayPal"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "safecharge"
-                        ]
-                      },
-                      "then": "SafeCharge"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "satispay"
-                        ]
-                      },
-                      "then": "Satispay"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "scalapay"
-                        ]
-                      },
-                      "then": "Scalapay"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "soisy"
-                        ]
-                      },
-                      "then": "Soisy"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.paymentMethod",
-                          "stripe"
-                        ]
-                      },
-                      "then": "Stripe"
-                    }
-                  ],
-                  "default": "$$m.paymentMethod"
-                }
-              },
-              "provider": {
-                "$switch": {
-                  "branches": [
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "adyen"
-                        ]
-                      },
-                      "then": "Adyen"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "braintree"
-                        ]
-                      },
-                      "then": "Braintree"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "axerve"
-                        ]
-                      },
-                      "then": "Axerve"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "safecharge"
-                        ]
-                      },
-                      "then": "SafeCharge"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "satispay"
-                        ]
-                      },
-                      "then": "Satispay"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "scalapay"
-                        ]
-                      },
-                      "then": "Scalapay"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "soisy"
-                        ]
-                      },
-                      "then": "Soisy"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "unicredit"
-                        ]
-                      },
-                      "then": "Unicredit"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$m.provider",
-                          "stripe"
-                        ]
-                      },
-                      "then": "Stripe"
-                    }
-                  ],
-                  "default": "$$m.provider"
-                }
-              },
-              "index": {
-                "$indexOfArray": [
-                  "$enabledMethods",
-                  "$$m"
-                ]
-              }
-            }
-          }
-        },
-        "matchInValues": {
-          "$map": {
-            "input": "$matchInValues",
-            "as": "miv",
-            "in": {
-              "key": {
-                "$switch": {
-                  "branches": [
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$miv.key",
-                          "metadata.additionalData.productsCategory"
-                        ]
-                      },
-                      "then": "Product Category"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$miv.key",
-                          "metadata.additionalData.channel"
-                        ]
-                      },
-                      "then": "Channel"
-                    },
-                    {
-                      "case": {
-                        "$eq": [
-                          "$$miv.key",
-                          "metadata.buyer.type"
-                        ]
-                      },
-                      "then": "User Type"
-                    }
-                  ],
-                  "default": "$$miv.key"
-                }
-              },
-              "values": {
-                "$reduce": {
-                  "input": "$$miv.values",
-                  "initialValue": "",
-                  "in": {
-                    "$cond": {
-                      "if": {
-                        "$eq": [
-                          "$$value",
-                          ""
-                        ]
-                      },
-                      "then": {
-                        "$concat": [
-                          "$$value",
-                          "$$this"
-                        ]
-                      },
-                      "else": {
-                        "$concat": [
-                          "$$value",
-                          ",",
-                          "$$this"
-                        ]
-                      }
-                    }
-                  }
-                }
-              },
-              "index": {
-                "$indexOfArray": [
-                  "$matchInValues",
-                  "$$miv"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "$set": {
-        "amount": {
-          "min": {
-            "$divide": [
-              {
-                "$toDouble": "$amount.min"
-              },
-              100
+      {
+        "$match": {
+          "__STATE__": "PUBLIC",
+          "metadata.provider": {
+            "$in": [
+              "axerve",
+              "braintree",
+              "satispay",
+              "scalapay",
+              "soisy",
+              "stripe"
             ]
           },
-          "max": {
-            "$divide": [
+          "currentState": {
+            "$in": [
+              "PAYMENT_PENDING"
+            ]
+          },
+          "$expr": {
+            "$and": [
               {
-                "$toDouble": "$amount.max"
+                "$gte": [
+                  "$updatedAt",
+                  {
+                    "$dateSubtract": {
+                      "startDate": "$$NOW",
+                      "unit": "second",
+                      "amount": 86400
+                    }
+                  }
+                ]
               },
-              100
+              {
+                "$lte": [
+                  "$updatedAt",
+                  {
+                    "$dateSubtract": {
+                      "startDate": "$$NOW",
+                      "unit": "second",
+                      "amount": 60
+                    }
+                  }
+                ]
+              }
             ]
           }
         }
       }
-    }
-  ]
+    ]
     ```
     </details>
 
@@ -1542,88 +1304,204 @@ The user could perform the additional steps reported below in order to create Mo
 
     ```json
     [
-    {
-        "name":"_id",
-        "description":"_id",
-        "type":"ObjectId",
-        "required":true,
-        "nullable":false
-    },
-    {
-        "name":"creatorId",
-        "description":"creatorId",
-        "type":"string",
-        "required":true,
-        "nullable":false
-    },
-    {
-        "name":"createdAt",
-        "description":"createdAt",
-        "type":"Date",
-        "required":true,
-        "nullable":false
-    },
-    {
-        "name":"updaterId",
-        "description":"updaterId",
-        "type":"string",
-        "required":true,
-        "nullable":false
-    },
-    {
-        "name":"updatedAt",
-        "description":"updatedAt",
-        "type":"Date",
-        "required":true,
-        "nullable":false
-    },
-    {
-        "name":"__STATE__",
-        "description":"__STATE__",
-        "type":"string",
-        "required":true,
-        "nullable":false
-    },
-    {
-        "name":"priority",
-        "type":"number",
-        "required":true,
-        "nullable":false,
-        "sensitivityValue":0
-    },
-    {
-        "name":"amount",
-        "type":"RawObject",
-        "required":false,
-        "nullable":true,
-        "sensitivityValue":0
-    },
-    {
-        "name":"enabledMethods",
-        "type":"Array_RawObject",
-        "required":false,
-        "nullable":true,
-        "sensitivityValue":0
-    },
-    {
-        "name":"matchInValues",
-        "type":"Array_RawObject",
-        "required":false,
-        "nullable":true,
-        "sensitivityValue":0
-    },
-    {
-        "name":"ruleId",
-        "type":"string",
-        "required":true,
-        "nullable":false,
-        "sensitivityValue":0
-    }
-  ]
+      {
+        "name": "_id",
+        "description": "_id",
+        "type": "ObjectId",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "creatorId",
+        "description": "creatorId",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "createdAt",
+        "description": "createdAt",
+        "type": "Date",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "updaterId",
+        "description": "updaterId",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "updatedAt",
+        "description": "updatedAt",
+        "type": "Date",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "__STATE__",
+        "description": "__STATE__",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "sagaId",
+        "description": "",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "metadata",
+        "type": "RawObject",
+        "required": true,
+        "nullable": false,
+        "sensitivityValue": 0,
+        "encryptionEnabled": false,
+        "encryptionSearchable": false,
+        "schema": {
+          "properties": {
+            "shopTransactionID": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "paymentMethod": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string"
+            },
+            "isRecurrent": {
+              "type": "boolean"
+            },
+            "recurrenceDetails": {
+              "type": "object"
+            },
+            "subscriptionId": {
+              "type": "string"
+            },
+            "buyer": {
+              "type": "object"
+            },
+            "providerData": {
+              "type": "object"
+            },
+            "paymentID": {
+              "type": "string"
+            },
+            "sessionToken": {
+              "type": "string"
+            },
+            "paymentToken": {
+              "type": "string"
+            },
+            "additionalData": {
+              "type": "object",
+              "properties": {
+                "channel": {
+                  "type": "string"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "itemId": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "quantity": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "refundDetails": {
+              "type": "object"
+            },
+            "payRequestData": {
+              "type": "object"
+            },
+            "refundRequestData": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      {
+        "name": "isFinal",
+        "description": "",
+        "type": "boolean",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "currentState",
+        "description": "",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "latestEvent",
+        "description": "",
+        "type": "RawObject",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "associatedEntityId",
+        "description": "",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "events",
+        "description": "",
+        "type": "Array_string",
+        "required": false,
+        "nullable": false
+      },
+      {
+        "name": "history",
+        "description": "",
+        "type": "RawObject",
+        "required": false,
+        "nullable": false
+      },
+      {
+        "name": "businessStateId",
+        "description": "",
+        "type": "string",
+        "required": true,
+        "nullable": false
+      },
+      {
+        "name": "businessStateDescription",
+        "description": "",
+        "type": "string",
+        "required": false,
+        "nullable": false
+      }
+    ]
     ```
     </details>
 
-6. Create endpoint for the MongoDB view previously created `adaptive-checkout-view`
-  - Create a new endpoint on the endpoint section `/adaptive-checkout-view`
-  - Choose MongoDB view as type
-  - Choose MongoDB view base path as `/adaptive-checkout-view`
+:::note
+There is no reason to expose the `payment_pending_view` with an endpoint because it is used by a BackEnd service.
+:::

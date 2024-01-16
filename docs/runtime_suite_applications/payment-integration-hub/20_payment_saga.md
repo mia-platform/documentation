@@ -17,7 +17,7 @@ Leveraging the flexibility of the Flow Manager the application provides a ready 
 ## Default Configuration
 The default configuration of the payment saga is described in the image below:
 
-![Machine Definition](img/machine-definition-v3.1.png)
+![Machine Definition](img/machine-definition-v3.2.png)
 
 ### Business States
 The business states of the saga describe the overall state of the payment, ignoring the technical status of the system:
@@ -53,7 +53,7 @@ The technical states of the saga describe all the necessary steps to perform pay
 The microservices that interact with the payment saga are the following:
 - **Payment Gateway Manager**: receive all the commands needed to perform relevant actions and sent events regarding the outcome of the payment
 - **Subscription Handler**: send request for the creation of new payment related to a subscription
-- **Payment BFF**: create a new payment requested from a frontend application
+- **PGM BFF**: create a new payment requested from a frontend application
 - **Frullino Service** triggers the events of `paymentExecutedByTheSystem` and `paymentFailedByTheSystem` and automatically update payment status
 
 ## CRUD Collection
