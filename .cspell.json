@@ -342,7 +342,8 @@
     "Noto",
     "Segoe",
     "kotlinx",
-    "Dynatrace"
+    "Dynatrace",
+    "logr"
   ],
   "dictionaries": [
     "softwareTerms",
