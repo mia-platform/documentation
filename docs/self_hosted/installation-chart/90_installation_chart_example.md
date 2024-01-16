@@ -100,15 +100,9 @@ mia-console:
       apiGateway:
         memoryLimitMin: "5Mi"
         memoryLimitMax: "25Mi"
-      microserviceGateway:
-        memoryLimitMin: "50Mi"
-        memoryLimitMax: "300Mi"
       crudService:
         memoryLimitMin: "70Mi"
         memoryLimitMax: "250Mi"
-      authorizationService:
-        memoryLimitMin: "20Mi"
-        memoryLimitMax: "80Mi"
     crudEncryption: # ../../runtime_suite/crud-service/encryption_configuration
       keyVaultNamespace: "<dbname.collectionname>" # set to the collection you wish to use as encryption key vault.
       kmsProvider: "gcp|local" # set to gcp or local based on your desired KMS

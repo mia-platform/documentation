@@ -83,7 +83,6 @@ To fine tune resources configurations for services directly generated from Mia-P
 |:----:|:----:|:-----------:|:------------------------------------------------------------------------------------------------:|:--------:|
 | `apiGateway` | object | The default RAM request and limit for API Gateway inside projects | `{ memoryLimitMin: "5Mi", memoryLimitMax: "25Mi" }` | ❌ |
 | `crudService` | object | The default RAM request and limit for CRUD Service inside projects | `{ memoryLimitMin: "70Mi", memoryLimitMax: "250Mi" }` | ❌ |
-| `realTimeUpdater` | object | The default RAM request and limit for RealTime updater inside projects | `{ memoryLimitMin: "80Mi", memoryLimitMax: "250Mi", cpuLimitMin: "150m", cpuLimitMax: "600m" }` | ✅ |
 
 ### Examples
 
@@ -92,11 +91,9 @@ mia-console:
   configurations:
     ...
     defaultCoreResources:
-      realTimeUpdater:
+      apiGateway:
         memoryLimitMin: "100Mi"
         memoryLimitMax: "300Mi"
-        cpuLimitMin: "200m"
-        cpuLimitMax: "700m"
 ```
 
 ## Additional optional configurations
