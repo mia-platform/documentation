@@ -84,6 +84,84 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "Videos",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Marketplace Components",
+          "items": [
+            {
+              "id": "console/videos/marketplace-components/node-microservice",
+              "type": "doc"
+            },
+            {
+              "id": "console/videos/marketplace-components/crud-service",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "console/videos/connecting-cluster",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/feature-preview",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/m2m-auth",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/providers",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/runtime-area",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Handbooks",
+      "items": [
+        {
+          "id": "console/handbooks/project-manage",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/project-usage",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/project-development",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/design-overview",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/microservice-ports",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/endpoints",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/traefik-handbook",
+          "type": "doc"
+        }
+      ]
+    },
+
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Company Configuration",
       "link": {
         "id": "development_suite/company/overview",
@@ -340,6 +418,10 @@
             },
             {
               "id": "development_suite/api-console/api-design/microservice-monitoring",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/guidelines-for-logs",
               "type": "doc"
             }
           ],
@@ -639,10 +721,7 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": [
-          "use-cases",
-          "guides"
-        ],
+        "keywords": ["use-cases", "guides"],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -685,6 +764,17 @@
         },
         {
           "id": "microfrontend-composer/tutorials/auth0-integration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "label": "Videos",
+      "items": [
+        {
+          "id": "microfrontend-composer/videos/microfrontend-composer",
           "type": "doc"
         }
       ]
@@ -839,6 +929,21 @@
         },
         {
           "id": "fast_data/tutorials/migration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Videos",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/videos/fast-data-no-code",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/videos/bucket-storage",
           "type": "doc"
         }
       ]
@@ -1152,125 +1257,12 @@
       "id": "getting-started/tutorials/tutorials"
     },
     {
-      "collapsed": true,
-      "label": "Handbooks",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "getting-started/handbooks/handbooks"
-      },
-      "items": [
-        {
-          "id": "getting-started/handbooks/project/manage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/tutorials/design-overview",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/project/usage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/console/project-development",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/console/endpoints",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/microservice-ports",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/traefik/traefik-handbook",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/handbooks/crud-service/crud-oss-usage",
-          "type": "doc"
-        }
-      ]
+      "type": "doc",
+      "id": "getting-started/handbooks/handbooks"
     },
     {
-      "collapsed": true,
-      "label": "Videos",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "getting-started/videos/videos"
-      },
-      "items": [
-        {
-          "id": "getting-started/videos/microfrontend-composer",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/bucket-storage",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/connecting-cluster",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/fast-data-no-code",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/feature-preview",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/m2m-auth",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/providers",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/runtime-area",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/videos/video-pills",
-          "type": "doc"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
-      "label": "Guidelines",
-      "type": "category",
-      "link": {
-        "type": "doc",
-        "id": "getting-started/guidelines/guidelines"
-      },
-      "items": [
-        {
-          "id": "getting-started/guidelines/git-vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/guidelines/rest-api-vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/guidelines/microservice-vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/guidelines/docker-vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "getting-started/guidelines/guidelines-for-logs",
-          "type": "doc"
-        }
-      ]
+      "id": "getting-started/videos/videos",
+      "type": "doc"
     },
     {
       "id": "getting-started/faqs",
@@ -1439,6 +1431,17 @@
       "items": [
         {
           "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Handbooks",
+      "items": [
+        {
+          "id": "marketplace/handbooks/crud-oss-usage",
           "type": "doc"
         }
       ]

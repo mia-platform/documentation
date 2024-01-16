@@ -1,5 +1,5 @@
 ---
-id: manage
+id: project-manage
 title: Project Manage Handbook
 sidebar_label: Project Manage Handbook
 ---
