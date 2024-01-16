@@ -65,7 +65,7 @@ const features = [
     type: "howTo",
     title: "How can I?",
     description:
-        "Check out the following topics to learn how to build, deploy, debug and monitor your services with Mia-Platform",
+      "Check out the following topics to learn how to build, deploy, debug and monitor your services with Mia-Platform",
     links: [
       {
         label: "Create services",
@@ -96,13 +96,69 @@ const features = [
         href: "/docs/development_suite/api-console/api-design/public_variables",
       },
     ],
-  }
+  },
+  {
+    type: "howTo",
+    title: "Useful resources",
+    description:
+      "Here you can find some useful resources to discover Mia-Platform.",
+    links: [
+      {
+        label: "🌐 Visit our Website",
+        href: "https://mia-platform.eu/",
+      },
+      {
+        label: "🚀 Book a free Demo",
+        href: "https://contact.mia-platform.eu/ask-for-a-demo-mia-platform"
+      },
+      {
+        label: "🏅 Discover some Success cases",
+        href: "https://mia-platform.eu/resources/case-history/",
+      },
+      {
+        label: "📝 Read our Blog",
+        href: "https://blog.mia-platform.eu/en",
+      },
+      {
+        label: "📚 Explore our Library",
+        href: "https://resources.mia-platform.eu/en/library",
+      },
+      {
+        label: "📨 Subscribe to monthly Newsletter",
+        href: "https://resources.mia-platform.eu/en/newsletter-general-subscription",
+      },
+      {
+        label: "💻 Follow us on Github",
+        href: "https://github.com/mia-platform",
+      },
+      {
+        label: "💼 Follow us on LinkedIn",
+        href: "https://www.linkedin.com/company/mia-platform/"
+      },
+      {
+        label: "📸 Follow us on Instagram",
+        href: "https://www.instagram.com/miaplatform/"
+      },
+      {
+        label: "💬 Follow us on X",
+        href: "https://twitter.com/MiaPlatform"
+      },
+      {
+        label: "📹 Follow us on YouTube",
+        href: "https://www.youtube.com/channel/UCWEgCxRmFgHgCwV3ntZ2hvA"
+      },
+      {
+        label: "👥 Join our team",
+        href: "https://mia-platform.eu/careers/"
+      },
+    ],
+  },
 ];
 
 const recentLinks = {
   title: "Latest Documentation Updates",
   description:
-      "Do you wish to stay updated on the latest changes and additions to our documentation? Please refer to the links below."
+    "Do you wish to stay updated on the latest changes and additions to our documentation? Please refer to the links below."
 }
 
 function Home() {
@@ -144,12 +200,12 @@ function Home() {
           <section className={styles.features}>
             <div className="container">
               {<div className="row">
-              <VersionBanner
-                link="/docs/release-notes/v12-overview"
-                majorVersion="12"
-                subTitle="Click here and learn about the new features in this new v12."
-                title="Mia-Platform v12 is now Generally Available"
-              />
+                <VersionBanner
+                  link="/docs/release-notes/v12-overview"
+                  majorVersion="12"
+                  subTitle="Click here and learn about the new features in this new v12."
+                  title="Mia-Platform v12 is now Generally Available"
+                />
               </div>}
 
               <div className="row">
@@ -161,12 +217,12 @@ function Home() {
                       } else {
                         const {title, description, links} = props;
                         return (
-                            <HowToBox
-                              description={description}
-                              key={idx}
-                              links={links}
-                              title={title}
-                            />
+                          <HowToBox
+                            description={description}
+                            key={idx}
+                            links={links}
+                            title={title}
+                          />
                         );
                       }
                     })}
@@ -176,8 +232,8 @@ function Home() {
                 <div className="col col--4">
                   <div className="row">
                     <LastPages
-                        description={recentLinks.description}
-                        title={recentLinks.title}
+                      description={recentLinks.description}
+                      title={recentLinks.title}
                     />
                   </div>
                 </div>
