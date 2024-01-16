@@ -4,7 +4,7 @@ title: Mia-Platform stable versions
 sidebar_label: Stable versions
 ---
 
-A **stable release** is a version that has been thoroughly tested and is therefore as reliable as possible. It does not include all the latest new features of a beta release.
+A **stable release** is a version that has been thoroughly tested and is therefore as reliable as possible.
 
 Versions labeled as _stable_ are particularly suitable for on-premise updates and installations.
 
@@ -25,7 +25,7 @@ Here you can find the list of stable versions, with their guaranteed maintenance
 
 |  Quarter  | Stable Version |      Start MTW       |       End MTW        |
 |-----------|----------------|----------------------|----------------------|
-| Q1 - 2024 |    v12.0.X     | _January 18th, 2024_ |  _April 18th, 2024_  |
-| Q2 - 2024 |     _TBD_      |  _April 18th, 2024_  |  _July 20th, 2024_   |
-| Q3 - 2024 |     _TBD_      |  _July 20th, 2024_   | _October 17th, 2024_ |
-| Q4 - 2024 |     _TBD_      | _October 17th, 2024_ | _January 16th, 2025_ |
+| Q1 - 2024 |    v12.0.X     | _January 18th, 2024_ |  _mid-April, 2024_  |
+| Q2 - 2024 |     _TBD_      |  _mid-April, 2024_  |  _mid-July, 2024_   |
+| Q3 - 2024 |     _TBD_      |  _mid-July, 2024_   | _mid-October, 2024_ |
+| Q4 - 2024 |     _TBD_      | _mid-October, 2024_ | _mid-January, 2025_ |
