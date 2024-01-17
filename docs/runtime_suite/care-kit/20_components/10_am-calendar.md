@@ -1,7 +1,7 @@
 ---
 id: am-calendar
 title: am-calendar
-sidebar_label: Am-calendar
+sidebar_label: Am calendar
 ---
 
 <!--

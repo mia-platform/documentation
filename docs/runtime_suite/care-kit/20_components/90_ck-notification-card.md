@@ -1,7 +1,7 @@
 ---
 id: ck-notification-card
 title: ck-notification-card
-sidebar_label: Ck-notification-card
+sidebar_label: Ck notification card
 ---
 
 <!--

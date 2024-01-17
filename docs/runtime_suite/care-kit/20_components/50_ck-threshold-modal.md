@@ -1,7 +1,7 @@
 ---
 id: ck-threshold-modal
 title: ck-threshold-modal
-sidebar_label: Ck-threshold-modal
+sidebar_label: Ck threshold modal
 ---
 
 <!--

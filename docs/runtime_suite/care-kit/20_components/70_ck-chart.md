@@ -1,7 +1,7 @@
 ---
 id: ck-chart
 title: ck-chart
-sidebar_label: Ck-chart
+sidebar_label: Ck chart
 ---
 
 <!--

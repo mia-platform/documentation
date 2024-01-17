@@ -1,7 +1,7 @@
 ---
 id: ck-form-export
 title: ck-export-form
-sidebar_label: Ck-form-export
+sidebar_label: Ck form export
 ---
 
 <!--

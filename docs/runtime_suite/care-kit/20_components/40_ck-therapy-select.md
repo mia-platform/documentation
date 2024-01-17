@@ -1,7 +1,7 @@
 ---
 id: ck-therapy-select
 title: ck-therapy-select
-sidebar_label: Ck-therapy-select
+sidebar_label: Ck therapy select
 ---
 
 <!--

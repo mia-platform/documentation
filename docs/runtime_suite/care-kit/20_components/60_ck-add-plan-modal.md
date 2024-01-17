@@ -1,7 +1,7 @@
 ---
 id: ck-add-plan-modal
 title: ck-add-plan-modal
-sidebar_label: Ck-add-plan-modal
+sidebar_label: Ck add plan modal
 ---
 
 <!--

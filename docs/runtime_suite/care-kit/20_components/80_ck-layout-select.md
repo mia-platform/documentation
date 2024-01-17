@@ -1,7 +1,7 @@
 ---
 id: ck-layout-select
 title: ck-layout-select
-sidebar_label: Ck-layout-select
+sidebar_label: Ck layout select
 ---
 
 <!--

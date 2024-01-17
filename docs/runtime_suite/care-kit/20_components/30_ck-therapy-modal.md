@@ -1,7 +1,7 @@
 ---
 id: ck-therapy-modal
 title: ck-therapy-modal
-sidebar_label: Ck-therapy-modal
+sidebar_label: Ck therapy modal
 ---
 
 <!--
