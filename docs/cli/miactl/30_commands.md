@@ -398,7 +398,7 @@ Available flags for the command:
 
 #### remove serviceaccount
 
-The `company iam remove serviceaccount` subcommand allows you to removeo a service account in your Company.
+The `company iam remove serviceaccount` subcommand allows you to remove a service account in your Company.
 
 Usage:
 
