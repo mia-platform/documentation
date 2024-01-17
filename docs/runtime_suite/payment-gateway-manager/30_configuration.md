@@ -166,6 +166,30 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 * **AXERVE_API_KEY** (required)
 * **AXERVE_SHOP_LOGIN** (required)
 
+### Braintree
+
+* **BRAINTREE_MERCHANT_ID** (required): string that identifies the used merchant id.
+* **BRAINTREE_MERCHANT_ACCOUNT_ID** (required): string that identifies the used merchant account id.
+* **BRAINTREE_PUBLIC_KEY** (required): Braintree API public key.
+* **BRAINTREE_PRIVATE_KEY** (required): Braintree API private key.
+* **BRAINTREE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Braintree Sandbox or Production environment.
+
+### FlowPay
+
+* **FLOWPAY_API_BASE_URL** (required): Base URL of the APIs to differentiate between Sandbox and Production.
+* **FLOWPAY_CORE_BASE_URL** (required): Base URL of the Core functionalities, such as obtain the Access Token, to differentiate between Sandbox and Production.
+* **FLOWPAY_CHECKOUT_BASE_URL** (required): Base URL of the Checkout page, it is used to redirect the user to complete the payment.
+* **FLOWPAY_CLIENT_ID** (required): Client ID of the FlowPay application.
+* **FLOWPAY_CLIENT_SECRET** (required): Client Secret of the FlowPay application.
+* **FLOWPAY_PUBLIC_KEY** (required): Public Key to verify the [Webhooks signature](https://docs.flowpay.it/#section/Webhooks/Signature.
+* **FLOWPAY_CALLBACK_URL** (required): Address to which Flowpay will send webhooks.
+
+### Nexi
+
+* **NEXI_BASE_URL** (required): address to Nexi API base url. Currently, there are 2 environment, staging and production.
+* **NEXI_API_KEY** (required): api key for authenticating Nexi requests.
+* **NEXI_CALLBACK_URL** (required): address to which Nexi will send webhooks.
+
 ### Satispay
 
 * **SATISPAY_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Satispay Staging or Production environment.
@@ -176,20 +200,6 @@ The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the fol
 * **SATISPAY_AFTER_BUY_MOBILE_REDIRECT_URL** (required): url-scheme that will be used by iOS/Android to redirect the 
 user after completing a payment via the Satispay mobile app
 * **SATISPAY_CALLBACK_URL** (required): URL for transaction status verification of satispay
-
-### Braintree
-
-* **BRAINTREE_MERCHANT_ID** (required): string that identifies the used merchant id.
-* **BRAINTREE_MERCHANT_ACCOUNT_ID** (required): string that identifies the used merchant account id.
-* **BRAINTREE_PUBLIC_KEY** (required): Braintree API public key.
-* **BRAINTREE_PRIVATE_KEY** (required): Braintree API private key.
-* **BRAINTREE_IS_SANDBOX** (required): can be "true" or "false". Specifies whether the PGM should point to Braintree Sandbox or Production environment.
-
-### Nexi
-
-* **NEXI_BASE_URL** (required): address to Nexi API base url. Currently, there are 2 environment, staging and production.
-* **NEXI_API_KEY** (required): api key for authenticating Nexi requests.
-* **NEXI_CALLBACK_URL** (required): address to which Nexi will send webhooks.
 
 ### Scalapay
 
