@@ -1,7 +1,7 @@
 ---
 id: service-options
 title: Service Options
-sidebar_label: Service-options
+sidebar_label: Service options
 ---
 
 <!--

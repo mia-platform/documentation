@@ -1,7 +1,7 @@
 ---
 id: cli-flags
 title: CLI Flags
-sidebar_label: Cli-flags
+sidebar_label: Cli flags
 ---
 
 <!--
