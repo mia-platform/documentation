@@ -108,6 +108,44 @@ The following query parameters can be appended to the GET
 Upon receiving a [fetch-files] event, the File Service Client triggers a GET to `/files`, appending query parameters as specified in the payload of the event.
 
 
+### Rerouting HTTP requests
+
+Property `reroutingRules` allows to reroute HTTP calls based on the their pathname and HTTP method.
+
+`reroutingRules` is an shaped like an array of objects with keys `from` and `to`.
+  - key `from` allows to specify two strings that are matched against the url pathname and HTTP method of the request
+  - key `to` allows to specify a string, being the URL pathname to which the request is redirected
+
+Each emitted HTTP request is matched against all rules using its `from` key. The request is rerouted to the value specified in the `to` key of first macthing rule.
+Requests that match no rule are not redirected.
+
+:::info
+If key `from` of an entry of `reroutingRules` is a string, all HTTP methods will be matched.
+:::
+
+The regular expression specified in the `from` key of an entry of `reroutingRules` may include groups, which can be referenced in the `to` key using the character "$" and the index of the group or its name.
+
+```json
+{
+  "reroutingRules": [
+    {
+      "from": {
+        "url": "/files/",
+        "method": "POST"
+      },
+      "to": "/upload-file/"
+    },
+    {
+      "from": {
+        "url": "/files/download/([^/]+)",
+        "method": "GET"
+      },
+      "to": "/download/$1"
+    }
+  ]
+}
+```
+
 ## Examples
 
 ### Example: Download File
@@ -141,7 +179,7 @@ triggers a GET call to `/files/download/avatar.jpg` with query parameters
 
 The File Service Client allows to configure the query parameters to be included in the HTTP call that is performed to download a file through property `queryParams`.
 
-A File Service Client configured like the following
+A File Service Client configured like the following:
 ```json
 {
   "tag": "bk-file-client",
@@ -219,6 +257,7 @@ the File Service Client would directly emit the `show-in-viewer` event, without 
 
 ### Example: Fetch File List
 
+A File Service Client configured like the following:
 ```json
 {
   "tag": "bk-file-client",
@@ -247,6 +286,7 @@ triggers a GET call to `/file-service/files/` with query parameters identical to
 
 ### Example: Upload File
 
+A File Service Client configured like the following:
 ```json
 {
   "tag": "bk-file-client",
@@ -285,6 +325,7 @@ triggers a POST call to `/files/` with a multipart body translation to the paylo
 
 ### Example: Delete File
 
+A File Service Client configured like the following:
 ```json
 {
   "tag": "bk-file-client",
@@ -304,16 +345,56 @@ upon listening to a [delete-file] event with payload
 triggers a DELETE call to `/avatar.jpg`
 
 
+
+### Example: Reroute HTTP Requests
+
+A File Service Client configured like the following:
+
+```json
+{
+  "tag": "bk-file-client",
+  "properties": {
+    "basePath": "/files",
+    "reroutingRules": [
+      {
+        "from": {
+          "url": "/files/download/([^/]+)",
+          "method": "GET"
+        },
+        "to": "/download/$1"
+      },
+      {
+        "from": {
+          "url": "/files/",
+          "method": "POST"
+        },
+        "to": "/upload-file/"
+      }
+    ]
+  }
+}
+```
+
+requests to download a file form the path "/download/" instead of the default "/files/download/", and to upload a file from the path "/upload-file/" instead of the default "/files/".
+
+The HTTP request triggered to download a file would normally be a GET call against the "/files/download/name-of-the-file" path.
+This call matches the first entry of `reroutingRules`; therefore, it is rerouted to "/download/name-of-the-file".
+Notice how the "$" character can be used in the target path to reference groups captured in the regular expression specified inside `from.url`.
+
+The HTTP request to upload a file would normally be a POST call directed to "/files/". Such a request is intercepted by the second rule specified in `reroutingRules` and redirected to "/upload-file/".
+
+
 ## API
 
 ### Properties & Attributes
 
-| property      | attribute | type                             | default | description                                      |
-| ------------- | --------- | -------------------------------- | ------- | ------------------------------------------------ |
-| `basePath`    | -         | string                           | -       | the URL base path to which to send HTTP requests |
-| `headers`     | -         | {[key: string]: string}          | -       | headers to add when an HTTP request is sent      |
-| `credentials` | -         | 'include'\|'omit'\|'same-origin' | -       | credentials policy to apply to HTTP requests     |
-| `queryParams` | -         | [QueryParams](#queryparams)      | {"download": 1,"downloadWithOriginalName": 1, "useOriginalName": 1} | query parameters to be passed to the Files Service, according to [its interface][query-params] |
+| property         | attribute | type                              | default                                                             | description                                                                                    |
+| ---------------- | --------- | --------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `basePath`       | -         | string                            | -                                                                   | the URL base path to which to send HTTP requests                                               |
+| `headers`        | -         | {[key: string]: string}           | -                                                                   | headers to add when an HTTP request is sent                                                    |
+| `credentials`    | -         | 'include'\|'omit'\|'same-origin'  | -                                                                   | credentials policy to apply to HTTP requests                                                   |
+| `queryParams`    | -         | [QueryParams](#queryparams)       | {"download": 1,"downloadWithOriginalName": 1, "useOriginalName": 1} | query parameters to be passed to the Files Service, according to [its interface][query-params] |
+| `reroutingRules` | -         | [ReroutingRule](#reroutingrule)[] | -                                                                   | rules to redirect HTTP request to new routes                                                   |
 
 #### QueryParams
 
@@ -322,6 +403,15 @@ interface QueryParams {
   download: 0 | 1
   downloadWithOriginalName: 0 | 1
   useOriginalName: 0 | 1
+}
+```
+
+#### ReroutingRule
+
+```typescript
+type ReroutingRule = {
+  from: string | { url: string, method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' }
+  to: string
 }
 ```
 

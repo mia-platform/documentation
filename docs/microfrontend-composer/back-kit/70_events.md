@@ -97,118 +97,177 @@ For instance an `upload-file` event looks like:
 }
 ```
 
+
 ## A
 
 ### Add Filter
 
-Delivers data to add a new filter
+delivers data to add a new filter
+
 
 - Label: `add-filter`
 - Payload:
-  ```typescript
-  {
-    operator:
-      | "equal"
-      | "exists"
-      | "notEqual"
-      | "greater"
-      | "greaterEqual"
-      | "less"
-      | "lessEqual"
-      | "regex"
-      | "includeSome"
-      | "includeAll"
-      | "includeExactly"
-      | "notIncludeAny"
-      | "between"
-      | "notBetween"
-      | "hasLengthEqual"
-      | "hasLengthGreaterEqual"
-      | "hasLengthLessEqual"
-    property: string
-    value: string | number | boolean | any[]
-    applied?: boolean
-    name: string
-  }
-  ```
+
+```typescript
+{
+  operator:
+    | "equal"
+    | "exists"
+    | "notEqual"
+    | "greater"
+    | "greaterEqual"
+    | "less"
+    | "lessEqual"
+    | "regex"
+    | "includeSome"
+    | "includeAll"
+    | "includeExactly"
+    | "notIncludeAny"
+    | "between"
+    | "notBetween"
+    | "hasLengthEqual"
+    | "hasLengthGreaterEqual"
+    | "hasLengthLessEqual"
+  property: string
+  value: string | number | boolean | any[]
+  applied?: boolean
+  name: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    hash: string
-  }
-  ```
+
+```typescript
+{
+  hash: string
+}
+```
 
 ### Add New
 
-Notifies adding a new item
+notifies adding a new item
+
 
 - Label: `add-new`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+```
 
 ### Add New External
 
-Notifies adding a new item on an external collection
+notifies adding a new item on an external collection
+
 
 - Label: `add-new-external`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+```
+
+
 
 ## B
 
 ### Bulk update - Boolean and Enums
 
-Allows to modify enums or boolean values from an array of items
+allows to modify enums or boolean values from an array of items
+
 
 - Label: `bulk-update`
 - Payload:
-  ```typescript
-  {
-    data: {
-      [key: string]: any
-    }[]
-    changes: {
-      [key: string]: string | boolean
-    }[]
-  }
-  ```
+
+```typescript
+{
+  data: {
+    [key: string]: any
+  }[]
+  changes: {
+    [key: string]: string | boolean
+  }[]
+}
+```
+
+
 
 ## C
 
 ### Cancel
 
-Notifies operation abort via a given transactionId
+notifies operation abort via a given transactionId
+
 
 - Label: `event-bus-cancel`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  transactionId: string
+}
+```
 
 ### Change Filter
 
-Delivers data on an edited filter
+delivers data on an edited filter
+
 
 - Label: `change-filter`
 - Payload:
-  ```typescript
-  {
+
+```typescript
+{
+  operator:
+    | "equal"
+    | "notEqual"
+    | "greater"
+    | "greaterEqual"
+    | "less"
+    | "lessEqual"
+    | "regex"
+    | "includeSome"
+    | "includeAll"
+    | "includeExactly"
+    | "notIncludeAny"
+    | "between"
+    | "hasLengthEqual"
+    | "hasLengthGreaterEqual"
+    | "hasLengthLessEqual"
+  property: string
+  value: string | number | boolean | any[]
+  applied?: boolean
+  name: string
+}
+```
+
+### Change Query
+
+requires a modification of the currently viewed dataset (filtering, sorting, paging)
+
+
+- Label: `change-query`
+- Payload:
+
+```typescript
+{
+  characteristic?: string
+  pageNumber?: number
+  pageSize?: number
+  search?: string
+  sortDirection?: SortDirection
+  sortProperty?: string
+  filters?: {
     operator:
       | "equal"
       | "notEqual"
@@ -229,540 +288,644 @@ Delivers data on an edited filter
     value: string | number | boolean | any[]
     applied?: boolean
     name: string
-  }
-  ```
-
-### Change Query
-
-Requires a modification of the currently viewed dataset (filtering, sorting, paging)
-
-- Label: `change-query`
-- Payload:
-  ```typescript
-  {
-    characteristic?: string
-    pageNumber?: number
-    pageSize?: number
-    search?: string
-    sortDirection?: SortDirection
-    sortProperty?: string
-    filters?: {
-      operator:
-        | "equal"
-        | "notEqual"
-        | "greater"
-        | "greaterEqual"
-        | "less"
-        | "lessEqual"
-        | "regex"
-        | "includeSome"
-        | "includeAll"
-        | "includeExactly"
-        | "notIncludeAny"
-        | "between"
-        | "hasLengthEqual"
-        | "hasLengthGreaterEqual"
-        | "hasLengthLessEqual"
-      property: string
-      value: string | number | boolean | any[]
-      applied?: boolean
-      name: string
-    }[]
-  }
-  ```
+  }[]
+}
+```
 
 ### Close Modal
 
-Closes a modal
+closes a modal
+
 
 - Label: `close-modal`
 - Payload:
-  ```typescript
-  {
-    modalId: string
-  }
-  ```
+
+```typescript
+{
+  modalId: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    sessionId?: string
-  }
-  ```
+
+```typescript
+{
+  sessionId?: string
+}
+```
 
 ### Count Data
 
-Sends count and pagination of current dataset
+sends count and pagination of current dataset
+
 
 - Label: `count-data`
 - Payload:
-  ```typescript
-  {
-    total: number
-    pageSize: number
-    pageNumber: number
-  }
-  ```
+
+```typescript
+{
+  total: number
+  pageSize: number
+  pageNumber: number
+}
+```
 
 ### Create Data
 
-Notifies the request for creation of a new item and carries its value
+notifies the request for creation of a new item and carries its value
+
 
 - Label: `create-data`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+```
 
 ### Create Data With File
 
-Create data that have one or more files within their properties, the current file property is set into meta
+create data that have one or more files within their properties,
+ the current file property is set into meta
+
 
 - Label: `create-data-with-file`
 - Payload:
-  ```typescript
-  {
-    data: {
-      [key: string]: any
-    }
+
+```typescript
+{
+  data: {
+    [key: string]: any
   }
-  ```
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    property: string
-  }
-  ```
+
+```typescript
+{
+  property: string
+}
+```
+
+
 
 ## D
 
 ### Delete Data
 
-Notifies the request for deletion of an item
+notifies the request for deletion of an item
+
 
 - Label: `delete-data`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  | {
-    [key: string]: any
-  }[]
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+| {
+  [key: string]: any
+}[]
+```
 
 ### Delete File
 
-Notifies that a given file, identified by its unique id, must be deleted
+notifies that a given file, identified by its unique id, must be deleted
+
 
 - Label: `delete-file`
 - Payload:
-  ```typescript
-  {
-    file: string
-  }
-  ```
+
+```typescript
+{
+  file: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  transactionId: string
+}
+```
 
 ### Deleted File
 
-Notifies that a given file was deleted, carries a transaction ID to rollback
+notifies that a given file was deleted, carries a transaction ID to rollback
+
 
 - Label: `deleted-file`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  transactionId: string
+}
+```
 
 ### Display Data
 
-Carries a dataset
+carries a dataset
+
 
 - Label: `display-data`
 - Payload:
-  ```typescript
-  {
-    data: any
-  }
-  ```
+
+```typescript
+{
+  data: any
+}
+```
 
 ### Download File
 
-Notifies that a given file must be downloaded. Payload could be either the file identifier or a structure that contains it. In the latter case, the object property to find the file must be set into the meta. It carries transaction ID to rollback. Allows to request in-browser view of the file.
+notifies that a given file must be downloaded. Payload could be either the file identifier or a structure that contains it. In the latter case, the object property to find the file must be set into the meta. It carries transaction ID to rollback. Allows to request in-browser view of the file.
+
 
 - Label: `download-file`
 - Payload:
-  ```typescript
-  {
-    file?: string
-    [key: string]: any
-  }
-  ```
+
+```typescript
+{
+  file?: string
+  [key: string]: any
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId?: string
-    property?: string
-    showInViewer?: boolean | "skip-checks"
-  }
-  ```
+
+```typescript
+{
+  transactionId?: string
+  property?: string
+  showInViewer?: boolean | "skip-checks"
+}
+```
 
 ### Downloaded File
 
-Notifies that a given file was downloaded, carries a transaction ID to rollback
+notifies that a given file was downloaded, carries a transaction ID to rollback
+
 
 - Label: `downloaded-file`
 - Payload:
-  ```typescript
-  {
-    file: string
-  }
-  ```
+
+```typescript
+{
+  file: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  transactionId: string
+}
+```
 
 ### Duplicate Data
 
-Notifies the request for duplication of an item and carries its value
+notifies the request for duplication of an item and carries its value
+
 
 - Label: `duplicate-data`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+```
+
+
 
 ## E
 
 ### Error
 
-Notifies a generic error event
+notifies a generic error event
+
 
 - Label: `error`
 - Payload:
-  ```typescript
-  {
-    error: any
-  }
-  ```
+
+```typescript
+{
+  error: any
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    triggeredBy: string
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  triggeredBy: string
+  transactionId: string
+}
+```
 
 ### Export Data
 
-Raised when the export button is clicked
+raised when the export button is clicked
+
 
 - Label: `export-data`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
 
 ### Export Data - Request Config
 
-Prompts for export configuration payload
+prompts for export configuration payload
+
 
 - Label: `awaiting-for-export-configuration`
 - Payload:
-  ```typescript
-  {
-    total?: number
-    selected?: number
-    columns: {
-      label: string
-      value: T
-    }[]
-  }
-  ```
+
+```typescript
+{
+  total?: number
+  selected?: number
+  columns: {
+    label: string
+    value: T
+  }[]
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId?: string
-  }
-  ```
+
+```typescript
+{
+  transactionId?: string
+}
+```
 
 ### Export Data - User Config
 
-Sends user configuration payload to perform export
+sends user configuration payload to perform export
+
 
 - Label: `export-user-config`
 - Payload:
-  ```typescript
-  {
-    exportType: "json" | "csv" | "html" | "xlsx"
-    csvSeparator?: "COMMA" | "SEMICOLON"
-    filters: "all" | "filtered" | "selected"
-    columns: string[]
-  }
-  ```
+
+```typescript
+{
+  exportType: "json" | "csv" | "html" | "xlsx"
+  csvSeparator?: "COMMA" | "SEMICOLON"
+  filters: "all" | "filtered" | "selected"
+  columns: string[]
+  columnName: "id" | "label"
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId?: string
-  }
-  ```
+
+```typescript
+{
+  transactionId?: string
+}
+```
+
+
 
 ## F
 
+### Fetch Files
+
+notifies to requests to fetch files
+
+
+- Label: `fetch-files`
+- Payload:
+
+```typescript
+{
+  limit?: string | number
+  page?: string | number
+  dateFrom?: string
+}
+```
+
+- Meta:
+
+```typescript
+{
+  transactionId?: string
+}
+```
+
+### Fetched Files
+
+carries result of files fetching operation
+
+
+- Label: `fetched-files`
+- Payload:
+
+```typescript
+{
+  files: {
+    [key: string]: unknown
+  }[]
+}
+```
+
+- Meta:
+
+```typescript
+{
+  transactionId?: string
+}
+```
+
 ### Filter
 
-Notifies opening of UI component that handles form creation
+notifies opening of UI component that handles form creation
+
 
 - Label: `filter`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
+
+
 
 ## H
 
 ### Http Delete
 
-Notifies the request for permanent deletion of an item
+notifies the request for permanent deletion of an item
+
 
 - Label: `http-delete`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  | {
-    [key: string]: any
-  }[]
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+| {
+  [key: string]: any
+}[]
+```
+
+
 
 ## I
 
 ### Import Data
 
-Notifies the request for an import of data from a file
+raised when the import button is clicked
+
 
 - Label: `import-data`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
 
 ### Import Data - User Config
 
-Send the configuration payload to perform an import
+sends user configuration payload to perform import
 
-- Label: `import-data/user-config`
+
+- Label: `import-user-config`
 - Payload:
-  ```typescript
-  {
-    file: File
-    encoding?: 'utf8' | 'ucs2' | 'utf16le' | 'latin1' | 'ascii' | 'base64' | 'hex'
-    delimiter?: string
-    escape?: string
-  }
-  ```
+
+```typescript
+{
+  file: File
+  encoding?: "utf8" | "ucs2" | "utf16le" | "latin1" | "ascii" | "base64" | "hex"
+  delimiter?: string
+  escape?: string
+}
+```
+
+
 
 ## L
 
 ### Layout Change
 
-Requires a layout change from `bk-layout-container`
+requires a layout change from `bk-layout-container`
+
 
 - Label: `layout-change`
 - Payload:
-  ```typescript
-  {
-    layout: string
-  }
-  ```
+
+```typescript
+{
+  layout: string
+}
+```
 
 ### Link File To Record
 
-Sends file upload data
+sends file upload data
+
 
 - Label: `link-file-to-record`
 - Payload:
-  ```typescript
-  {
-    data: {
-      [key: string]: any
-    }
+
+```typescript
+{
+  data: {
+    [key: string]: any
   }
-  ```
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    property: string
-  }
-  ```
+
+```typescript
+{
+  property: string
+}
+```
 
 ### Loading Data
 
-Notifies whether dataset is loading or not. It also advices that a dataset may be inbound
+notifies whether dataset is loading or not.
+ It also advices that a dataset may be inbound
+
 
 - Label: `loading-data`
 - Payload:
-  ```typescript
-  {
-    loading: boolean
-  }
-  ```
+
+```typescript
+{
+  loading: boolean
+}
+```
 
 ### Lookup Data
 
-Carries lookup data information and dataset
+carries lookup data information and dataset
+
 
 - Label: `lookup-data`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any[]
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any[]
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    dataOrigin?: string
-  }
-  ```
+
+```typescript
+{
+  dataOrigin?: string
+}
+```
 
 ### Lookup Live Found
 
-Fired when options for a Select form input are found
+fired when options for a Select form input are found
+
 
 - Label: `lookup-live-found`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any[]
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any[]
+}
+```
 
 ### Lookup Live Searching
 
-Fired upon searching on a Select form input
+fired upon searching on a Select form input
+
 
 - Label: `lookup-live-searching`
 - Payload:
-  ```typescript
-  {
-    property: string
-    input: string
-  }
-  ```
+
+```typescript
+{
+  property: string
+  input: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    limit: number
-    input: {
-      [key: string]: any[]
-    }
-    currentValues?: any[]
-    keys?: string[]
+
+```typescript
+{
+  limit: number
+  input: {
+    [key: string]: any[]
   }
-  ```
+  currentValues?: any[]
+  keys?: string[]
+}
+```
+
+
 
 ## N
 
 ### Nested Navigation State - Display
 
-Displays data or a slice of data
+displays data or a slice of data
+
 
 - Label: `display-state`
 - Payload:
-  ```typescript
-  Array<{
-    data: Record<string, any>[]
-    from?: number
-    to?: number
-  }>
-  ```
+
+```typescript
+Array<{
+  data: Record<string, any>[]
+  from?: number
+  to?: number
+  sort?: number[]
+}>
+```
 
 - Meta:
-  ```typescript
-  {
-    keys?: string[]
-  }
-  ```
+
+```typescript
+{
+  keys?: string[]
+}
+```
 
 ### Nested Navigation State - Go Back
 
-Goes back an arbitrary number of levels of nesting
+goes back an arbitrary number of levels of nesting
+
 
 - Label: `back-state`
 - Payload:
-  ```typescript
-  {
-    steps?: number
-  }
-  ```
+
+```typescript
+{
+  steps?: number
+}
+```
 
 ### Nested Navigation State - Push
 
-Adds a new level of nesting
+adds a new level of nesting
+
 
 - Label: `push-state`
 - Payload:
-  ```typescript
-  {
-    data: Record<string, any>[]
-    origin: Record<string, any>
-    selectedKey?: string
-  }
-  ```
+
+```typescript
+{
+  data: Record<string, any>[]
+  origin: Record<string, any>
+  selectedKey?: string
+}
+```
+
+
 
 ## O
 
 ### Open Modal
 
-Opens a modal
+opens a modal
+
 
 - Label: `open-modal`
 - Payload:
-  ```typescript
-  {
-    modalId: string
-  }
-  ```
+
+```typescript
+{
+  modalId: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    sessionId?: string
-  }
-  ```
+
+```typescript
+{
+  sessionId?: string
+}
+```
+
+
 
 ## R
 
@@ -770,252 +933,297 @@ Opens a modal
 
 Signals that a certain action requires confirmation to be performed
 
+
 - Label: `require-confirm`
 - Payload:
-  ```typescript
-  {
-    cancelText?: LocalizedText
-    content?: LocalizedText
-    okText?: LocalizedText
-    onCancel?: () => {}
-    onOk?: () => {}
-    title?: LocalizedText
-    configOk?: {
-      tag: string
-      properties?: Record<string, any>
-      children?: string | ReactNode
-    }
-    configCancel?: {
-      tag: string
-      properties?: Record<string, any>
-      children?: string | ReactNode
-    }
+
+```typescript
+{
+  cancelText?: LocalizedText
+  content?: LocalizedText
+  okText?: LocalizedText
+  onCancel?: () => {}
+  onOk?: () => {}
+  title?: LocalizedText
+  configOk?: {
+    tag: string
+    properties?: Record<string, any>
+    children?: string | ReactNode
   }
-  ```
+  configCancel?: {
+    tag: string
+    properties?: Record<string, any>
+    children?: string | ReactNode
+  }
+}
+```
+
+
 
 ## S
 
 ### Search Lookups
 
-Notifies that all lookups having `excludeFromSearch` set to false should be searched against a value
+notifies that all lookups having `excludeFromSearch` set to false should be searched against a value
+
 
 - Label: `search-lookups`
 - Payload:
-  ```typescript
-  {
-    input: string
-  }
-  ```
+
+```typescript
+{
+  input: string
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    limit: number
-  }
-  ```
+
+```typescript
+{
+  limit: number
+}
+```
 
 ### Search Lookups Found
 
-Fired when values from a text search for lookups are found
+fired when values from a text search for lookups are found
+
 
 - Label: `search-lookups-found`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any[]
-  }
-  ```
+
+```typescript
+{
+  [key: string]: any[]
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    input: string
-  }
-  ```
+
+```typescript
+{
+  input: string
+}
+```
 
 ### Selected Data
 
-Notifies that a single datum has been selected from a dataset
+notifies that a single datum has been selected from a dataset
+
 
 - Label: `selected-data`
 - Payload:
-  ```typescript
-  {
-    data: {
-      [key: string]: any
-    }
+
+```typescript
+{
+  data: {
+    [key: string]: any
   }
-  ```
+}
+```
 
 ### Selected Data Bulk
 
-Notifies data selection in a dataset
+notifies data selection in a dataset
+
 
 - Label: `selected-data-bulk`
 - Payload:
-  ```typescript
-  {
-    data: Array<{
-      [key: string]: any
-    }>
-  }
-  ```
+
+```typescript
+{
+  data: Array<{
+    [key: string]: any
+  }>
+}
+```
 
 ### Show In Viewer
 
-Notifies the request for starting/updating the visualization of a PDF file
+notifies the request for starting/updating the visualization of a PDF file
+
 
 - Label: `show-in-viewer`
 - Payload:
-  ```typescript
-  {
-    show: boolean
-    url: string
-  }
-  ```
+
+```typescript
+{
+  show: boolean
+  url: string
+}
+```
 
 ### Submit Form - Request
 
-Requests submission of form
+requests submission of form
+
 
 - Label: `submit-form-request`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
 
 - Meta:
-  ```typescript
-  {
-    openingEvent: string
-    formId: string
-  }
-  ```
+
+```typescript
+{
+  openingEvent: string
+  formId: string
+}
+```
 
 ### Submit Form - Success
 
-Notifies correct submission of form
+notifies correct submission of form
+
 
 - Label: `submit-form-success`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId?: string
-  }
-  ```
+
+```typescript
+{
+  transactionId?: string
+}
+```
 
 ### Success
 
-Notifies a successful action
+notifies a successful action
+
 
 - Label: `success`
 - Payload:
-  ```typescript
-  {}
-  ```
+
+```typescript
+{}
+```
 
 - Meta:
-  ```typescript
-  {
-    triggeredBy: string
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  triggeredBy: string
+  transactionId: string
+}
+```
+
+
 
 ## U
 
 ### Update Data
 
-Notifies the request for creation of a new item and carries its value
+notifies the request for creation of a new item and carries its value
+
 
 - Label: `update-data`
 - Payload:
-  ```typescript
-  {
-    [key: string]: any
-  }
-  | {
-    [key: string]: any
-  }[]
-  ```
+
+```typescript
+{
+  [key: string]: any
+}
+| {
+  [key: string]: any
+}[]
+```
 
 - Meta:
-  ```typescript
-  {
-    transactionId: string
-  }
-  ```
+
+```typescript
+{
+  transactionId: string
+}
+```
 
 ### Update Data With File
 
-Update data that have one or more files within their properties, the current file property is set into meta
+update data that have one or more files within their properties,
+the current file property is set into meta
+
 
 - Label: `update-data-with-file`
 - Payload:
-  ```typescript
-  {
-    data: {
-      [key: string]: any
-    }
+
+```typescript
+{
+  data: {
+    [key: string]: any
   }
-  ```
+}
+```
 
 - Meta:
-  ```typescript
-  {
-    property: string
-  }
-  ```
+
+```typescript
+{
+  property: string
+}
+```
 
 ### Update State Bulk
 
-Updates multiple data state (__STATE__ or _st) in a dataset
+updates multiple data state (__STATE__ or _st) in a dataset
+
 
 - Label: `update-state-bulk`
 - Payload:
-  ```typescript
-  {
-    rows: any[]
-    newState: string
-  }
-  ```
+
+```typescript
+{
+  rows: any[]
+  newState: string
+}
+```
 
 ### Upload File
 
-Requests the upload of a file and carries its data.
+requests the upload of a file and carries its data.
+
 
 - Label: `upload-file`
-- Payload: [`File`][file] object
+- Payload:
+
+```typescript
+
+```
 
 ### Uploaded File
 
-Returns file upload metadata, typically when storing on an external service like [files-service]
+returns file upload metadata, typically when storing on an external service like [files-service](../../runtime_suite/files-service/configuration)
+
 
 - Label: `uploaded-file`
 - Payload:
-  ```typescript
-  {
-    _id: string
-    name: string
-    file: string
-    size: number
-    location: string
-  }
-  ```
+
+```typescript
+{
+  _id: string
+  name: string
+  file: string
+  size: number
+  location: string
+}
+```
 
 ### Using Form Container
 
-Notifies that a form container with given ID is currently in use
+notifies that a form container with given ID is currently in use
+
 
 - Label: `using-form-container`
 - Payload:
-  ```typescript
-  {
-    id: string
-  }
-  ```
+
+```typescript
+{
+  id: string
+}
+```

@@ -236,10 +236,53 @@ In each of these scenarios, the outcome of the operation is broadcast to all com
 
 For further details on how each route works, refer to the [CRUD Service documentation][crud-service-endpoints].
 
+### Rerouting HTTP requests
+
+Property `reroutingRules` allows to reroute HTTP calls based on the their pathname and HTTP method.
+
+`reroutingRules` is an shaped like an array of objects with keys `from` and `to`.
+  - key `from` allows to specify two strings that are matched against the url pathname and HTTP method of the request
+  - key `to` allows to specify a string, being the URL pathname to which the request is redirected
+
+Each emitted HTTP request is matched against all rules using its `from` key. The request is rerouted to the value specified in the `to` key of first macthing rule.
+Requests that match no rule are not redirected.
+
+:::info
+If key `from` of an entry of `reroutingRules` is a string, all HTTP methods will be matched.
+:::
+
+The regular expression specified in the `from` key of an entry of `reroutingRules` may include groups, which can be referenced in the `to` key using the character "$" and the index of the group or its name.
+
+```json
+{
+  "reroutingRules": [
+    {
+      "from": {
+        "url": "^/orders/$",
+        "method": "GET"
+      },
+      "to": "/orders-list/"
+    },
+    {
+      "from": {
+        "url": "^/orders/count$",
+        "method": "GET"
+      },
+      "to": "/orders-count/"
+    },
+    {
+      "from": "^/orders/import$",
+      "to": "^/orders-import$"
+    }
+  ]
+}
+```
+
+
+
 ## Examples
 
 ### Example: Data Fetching
-<!-- TODO -->
 
 A CRUD Client configured like the following
 
@@ -598,12 +641,60 @@ The CRUD Client supports various way of [deleting data](#data-deletion), dependi
   }
   ```
 
+
+### Example: Reroute HTTP Requests
+
+A CRUD Client configured like the following
+
+```json
+{
+  "tag": "bk-crud-client",
+  "properties": {
+    "basePath": "/orders",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {"type": "string"},
+        "__STATE__": {"type": "string"},
+        "name": {"type": "string"}
+      }
+    },
+    "reroutingRules": [
+      {
+        "from": {
+          "url": "^/orders/$",
+          "method": "GET"
+        },
+        "to": "/list/"
+      },
+      {
+        "from": {
+          "url": "^/orders/([^/]+)$",
+          "method": "PATCH"
+        },
+        "to": "/update/$1"
+      }
+    ]
+  }
+}
+```
+
+fetches data from the path "/list/" instead of the default "/orders/", and requests the update of an item by calling the path "/update/" instead of the default "/orders/".
+
+The HTTP request triggered by receiving a [change-query] event would normally be a GET call against the "/" path, which is appended to the `basePath` "/orders", resulting in a GET request against "/orders/".
+This call matches the first entry of `reroutingRules`; therefore, it is rerouted to "/list/".
+
+The HTTP request to perform a PATCH against the CRUD Service would normally be directed to "/orders/id-of-the-order". Such a request is intercepted by the second rule specified in `reroutingRules` and redirected to "/update/id-of-the-order".
+Notice how the "$" character can be used in the target path to reference groups captured in the regular expression specified inside `from.url`.
+
+
 <!-- TODO
 ### Example: Data import
 receiving an event like this
 ...
 triggers a request like this
 ... -->
+
 
 
 ## API
@@ -615,6 +706,7 @@ triggers a request like this
 | `basePath`                  | -                              | string                                       | -                             | the URL base path to which to send HTTP requests                                                                                                                                  |
 | `headers`                   | -                              | {[key: string]: string}                      | -                             | headers to add when an HTTP request is sent                                                                                                                                       |
 | `credentials`               | -                              | 'include'\|'omit'\|'same-origin'             | -                             | credentials policy to apply to HTTP requests                                                                                                                                      |
+| `reroutingRules`            | -                              | [ReroutingRule](#reroutingrule)[]            | -                             | rules to redirect HTTP request to new routes                                                                                                                                      |
 | `appendTrailingSlash`       | `append-trailing-slash`        | boolean                                      | true                          | should append a trailingSlash to URLs                                                                                                                                             |
 | `bootstrapTimeout`          | `bootstrap-timeout`            | number                                       | 1000                          | value in ms before default bootstrap starts and no `change-query` was received                                                                                                    |
 | `dataSchema`                | -                              | [ExtendedJSONSchema7Definition][data-schema] | -                             | data-schema describing which field to retrieve from CRUD collection                                                                                                               |
@@ -624,7 +716,17 @@ triggers a request like this
 | `shouldIncludeProjections`  | `should-include-projections`   | boolean                                      | true                          | should append projection when exporting from CRUD service                                                                                                                         |
 | `keepPageCount`             | `keep-page-count`              | boolean                                      | false                         | should attempt to stay on current page after successful CRUD operation                                                                                                            |
 | `reflectToUrl`              | `reflect-to-url`               | boolean                                      | true                          | on internal state update, should reflect internal state on URL                                                                                                                    |
+| `baseSortProperty`          | `base-sort-property`           | string                                       | -                             | field to use as additional sorting criteria when fetching data. It is appended to `_s` search parameter                                                                           |
 
+
+#### ReroutingRule
+
+```typescript
+type ReroutingRule = {
+  from: string | { url: string, method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' }
+  to: string
+}
+```
 
 ### Listens to
 
@@ -647,5 +749,5 @@ triggers a request like this
 | [loading-data][loading-data] | raise awareness of incoming data                                                                                                                                                                                                |
 | [display-data][display-data] | contains data organized according with `dataSchema` property                                                                                                                                                                    |
 | [count-data][count-data]     | sends a `PATCH` to the `CRUD` service base path on `state` endpoint, if `enableDefinitiveDelete` is `true` it sends a `DELETE`, response contains the `total` amount of document retrieved and the collection pagination offset |
-| [error][error]               | contains http error messages when something goes wrong                                                                                                                                                                          |
-| [success][success]           | notifies a successful http request                                                                                                                                                                                              |
+| [error][error]               | contains HTTP error messages when something goes wrong                                                                                                                                                                          |
+| [success][success]           | notifies a successful HTTP request                                                                                                                                                                                              |
