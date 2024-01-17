@@ -1,5 +1,5 @@
 ---
-id: general-settings
+id: general_settings
 title: General Settings
 sidebar_label: General Settings
 ---
@@ -13,9 +13,9 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This document describes the required values that you will have to configure to work properly.
 
 :::info
-More specific configurations, such as those for the [Authentication Providers](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md), [Client-Side Database Encryption](/infrastructure/self-hosted/installation-chart/40-mongodb-configurations-and-encryption.md), [File Storage](/infrastructure/self-hosted/installation-chart/50-file-storage.md) and [Email Connectivity](/infrastructure/self-hosted/installation-chart/60-email-setup.md) are described in separate documents.
+More specific configurations, such as those for the [Authentication Providers](30_authentication_provider.md), [Client-Side Database Encryption](40_mongodb_configurations_and_encryption.md), [File Storage](50_file_storage.md) and [Email Connectivity](60_email_setup.md) are described in separate documents.
 
-If you want to fine tune resources for specific services the proper documentation can be found in [this page](/infrastructure/self-hosted/installation-chart/25-service-specific-configurations.md).
+If you want to fine tune resources for specific services the proper documentation can be found in [this page](25_service_specific_configurations.md).
 :::
 
 ## Runtime, Storage and Networking configurations
@@ -36,7 +36,7 @@ If you want to fine tune resources for specific services the proper documentatio
 |`configurations.consoleUrl`| string | The URL where the console will be exposed |  | ❌ |
 |`configurations.cmsUrl`| string | The URL where the console CMS will be exposed |  | ❌ |
 |`configurations.repositoryHostname`| string | The hostname of the docker repository where the services docker image will be uploaded || ❌ |
-|`configurations.mongodbUrl`| string | The connection url to a mongodb server or cluster, more info can be found [here](/infrastructure/self-hosted/installation-chart/40-mongodb-configurations-and-encryption.md#mongodb-configuration) |  | ❌ |
+|`configurations.mongodbUrl`| string | The connection url to a mongodb server or cluster, more info can be found [here](./40_mongodb_configurations_and_encryption.md#mongodb-configuration) |  | ❌ |
 
 #### Optional
 
@@ -64,7 +64,7 @@ Mia-Platform Console allows user to create custom Service Accounts to perform m2
 
 ### How to generate secret values
 
-For any doubt check out the [Client Credentials guide](/runtime_suite/client-credentials/30_jwt_keys.md) which provides useful examples.
+For any doubt check out the [Client Credentials guide](../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
 
 * `rsaPrivateKeyBase64`:
   * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`
@@ -83,7 +83,6 @@ To fine tune resources configurations for services directly generated from Mia-P
 |:----:|:----:|:-----------:|:------------------------------------------------------------------------------------------------:|:--------:|
 | `apiGateway` | object | The default RAM request and limit for API Gateway inside projects | `{ memoryLimitMin: "5Mi", memoryLimitMax: "25Mi" }` | ❌ |
 | `crudService` | object | The default RAM request and limit for CRUD Service inside projects | `{ memoryLimitMin: "70Mi", memoryLimitMax: "250Mi" }` | ❌ |
-| `realTimeUpdater` | object | The default RAM request and limit for RealTime updater inside projects | `{ memoryLimitMin: "80Mi", memoryLimitMax: "250Mi", cpuLimitMin: "150m", cpuLimitMax: "600m" }` | ✅ |
 
 ### Examples
 
@@ -92,11 +91,9 @@ mia-console:
   configurations:
     ...
     defaultCoreResources:
-      realTimeUpdater:
+      apiGateway:
         memoryLimitMin: "100Mi"
         memoryLimitMax: "300Mi"
-        cpuLimitMin: "200m"
-        cpuLimitMax: "700m"
 ```
 
 ## Additional optional configurations

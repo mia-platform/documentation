@@ -1,5 +1,5 @@
 ---
-id: email-setup
+id: email_setup
 title: Email Setup
 sidebar_label: Email Setup
 ---
