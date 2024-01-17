@@ -1,7 +1,7 @@
 ---
 id: how-to-upgrade
 title: How to Upgrade
-sidebar_label: How-To-Upgrade
+sidebar_label: How To Upgrade
 ---
 
 <!--

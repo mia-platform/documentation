@@ -1,7 +1,7 @@
 ---
 id: mongodb-configurations-and-encryption
 title: MongoDB Configurations and Encryption
-sidebar_label: MongoDB-Configurations-and-Encryption
+sidebar_label: MongoDB Configurations and Encryption
 ---
 
 <!--

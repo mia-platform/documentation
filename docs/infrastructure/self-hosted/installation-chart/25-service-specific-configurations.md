@@ -1,7 +1,7 @@
 ---
 id: service-specific-configurations
 title: Service Specific Configuration
-sidebar_label: Service-Specific-Configurations
+sidebar_label: Service Specific Configurations
 ---
 
 <!--
