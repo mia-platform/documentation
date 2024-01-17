@@ -1,7 +1,7 @@
 ---
-id: mongodb_configurations_and_encryption
+id: mongodb-configurations-and-encryption
 title: MongoDB Configurations and Encryption
-sidebar_label: MongoDB Configurations and Encryption
+sidebar_label: MongoDB-Configurations-and-Encryption
 ---
 
 <!--
@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## MongoDB Configuration
 
-As mentioned in the [General Settings page](./20_general_settings.md), to connect with MongoDB, Mia-Platform Console only needs the connection string provided using the `configurations.mongodbUrl` configuration.
+As mentioned in the [General Settings page](./20_General_Settings.md), to connect with MongoDB, Mia-Platform Console only needs the connection string provided using the `configurations.mongodbUrl` configuration.
 
 ### Cluster size
 

@@ -1,7 +1,7 @@
 ---
-id: how_to_upgrade
+id: how-to-upgrade
 title: How to Upgrade
-sidebar_label: How To Upgrade
+sidebar_label: How-To-Upgrade
 ---
 
 <!--
@@ -83,11 +83,11 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](./30_authentication_provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](./30_Authentication_Provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
-This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./20_general_settings.md#optional-telemetry-configurations).
+This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./20_General_Settings.md#optional-telemetry-configurations).
 
 #### Introduction of Mia-Platform Company
 
