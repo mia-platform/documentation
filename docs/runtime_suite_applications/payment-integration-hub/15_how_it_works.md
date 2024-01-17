@@ -60,7 +60,7 @@ The following sequence diagram shows how the email flow works.
 ### Subscription Flow
 
 In this flow the customer performs the following actions:
-- starts the subsciption clicking the *Subscribe* button on the white-label Frontend
+- starts the subscription clicking the *Subscribe* button on the white-label Frontend
 - performs the first payment as described in [Direct Payment Flow](#direct-payment-flow) section.
 
 We differentiate *Automatic* and *Manual* subscriptions depending on the client starting the subsequent payment flows:
