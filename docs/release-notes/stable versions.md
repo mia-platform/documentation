@@ -4,7 +4,7 @@ title: Mia-Platform stable versions
 sidebar_label: Stable versions
 ---
 
-A **stable release** is a version that has been thoroughly tested and is therefore as reliable as possible.
+A **stable release** is version that is as reliable as possible and on which a defined maintenance time window (MTW) is guaranteed.
 
 Versions labeled as _stable_ are particularly suitable for on-premise updates and installations.
 
@@ -21,7 +21,11 @@ Once a new stable release is announced, it is suggested to upgrade to the new st
 
 ## Stable versions list
 
-Here you can find the list of stable versions, with their guaranteed maintenance time windows (MTW):
+Here you can find the list of stable versions, with their guaranteed maintenance time windows (MTW).
+
+:::info
+As the transition period from one MTW to the next approaches, more precise dates for the closing of the first and the opening of the next will be reported in the following table.
+:::
 
 |  Quarter  | Stable Version |      Start MTW       |       End MTW        |
 |-----------|----------------|----------------------|----------------------|
