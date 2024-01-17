@@ -16,7 +16,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Fixed
+
 - improved behavior of error notification in builder when saving or updating form
+
+- fixed error handler in style assets loader
 
 ## 2.0.1 2023-12-15
 
