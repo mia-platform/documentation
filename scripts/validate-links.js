@@ -11,10 +11,10 @@ const excludePath = (path) => {
         'docs/runtime_suite_libraries',
         'docs/runtime_suite_tools',
         'docs/runtime_suite_applications',
-        'docs/self_hosted/installation-chart',
+        'docs/infrastructure/self-hosted/installation-chart',
         'docs/microfrontend-composer/back-kit',
         'docs/microfrontend-composer/composer',
-        'docs/cli'
+        'docs/cli',
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
