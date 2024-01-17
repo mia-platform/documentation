@@ -142,7 +142,7 @@ The body of the request, in JSON format, is composed of the following fields:
     "username": "{{USERNAME}}",
     "password": "{{PASSWORD}}",
     "appId": "{{APP_ID}}",
-    "providerId": "{{PROVIDER_ID}}
+    "providerId": "{{PROVIDER_ID}}"
 }
 ```
 
