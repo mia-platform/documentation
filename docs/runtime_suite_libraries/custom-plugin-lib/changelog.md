@@ -255,7 +255,7 @@ This version contains a bug when it's configured a required env var with a defau
 - Update @mia-platform/lc39 2.2.2 -> 3.1.0.
 
     This update bring this breaking change:
-    * Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](/development_suite/api-console/api-design/guidelines-for-logs.md). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js)
+    * Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../development_suite/api-console/api-design/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js)
 
 ### Added
 
