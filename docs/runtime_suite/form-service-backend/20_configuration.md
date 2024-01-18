@@ -26,7 +26,7 @@ The default config has only the *formSchemasCrud*, *formSchemaMapCrud* and *form
 To configure the **Form Service Backend** service with the Console, follow these steps:
 
 1. Create the service Form Service Backend, available as ready-to-use plugin in the Marketplace;
-2. Add a [custom configuration](../../development_suite/api-console/api-design/services#custom-configuration):
+2. Add a [custom configuration](/development_suite/api-console/api-design/services#custom-configuration):
    - select the configuration *Type* as ConfigMap;
    - insert the configuration *Name*;
    - specify the *Runtime Mount Path* (e.g. `/home/node/app/form-service`).
@@ -169,7 +169,7 @@ In addition (`from Form Service Backend v1.1.1`), you can add the following opti
 
 - **options**, of type *object*, to save an additional `JSON` of options to further customize the visualization of a submitted form in the Form Visualizer. The available options can be found in the [form.io documentation](https://help.form.io/developers/form-renderer#form-renderer-options).
 
-The options can be updated for example updated with a [POST decorator](../../development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) after the submission of a new form.
+The options can be updated for example updated with a [POST decorator](/development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) after the submission of a new form.
 
 :::caution
 
@@ -236,7 +236,7 @@ The user of the Form Builder will see a dropdown menu with the specified options
 
 :::caution
 
-The *submit urls* can be either provided with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
+The *submit urls* can be either provided with the [CRUD Service](/runtime_suite/crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
 
 - `GET /{id}`: to return the submitted data of a form by ID;
 - `GET /export`: to return all the submitted forms data as newline-delimited JSON;
@@ -308,7 +308,7 @@ There is a default value for `messageToBeShownOnExpiredForm` which is `This form
 
 :::
 
-When you export the form data to a CSV, the CSV file includes all the fields available in the current version of the form schema. If you want to include additional fields available in the response of the `GET /export` endpoint, you must add the field names in this configuration options. These fields are mapped to CSV columns before the form data in the exact same order as they are provided in the configuration. If the form data is stored in a CRUD collection, you may want to include [its predefined properties](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties).
+When you export the form data to a CSV, the CSV file includes all the fields available in the current version of the form schema. If you want to include additional fields available in the response of the `GET /export` endpoint, you must add the field names in this configuration options. These fields are mapped to CSV columns before the form data in the exact same order as they are provided in the configuration. If the form data is stored in a CRUD collection, you may want to include [its predefined properties](/runtime_suite/crud-service/overview_and_usage#predefined-collection-properties).
 
 #### Export lookups (`exportLookups`)
 
@@ -323,7 +323,7 @@ When you export form data by calling the `GET /visualizer/forms/export` endpoint
 To configure the lookup you must assign to the `exportLookups` field an object value, whose properties correspond to the names of the CSV columns you want to perform the lookup on (`formSchemaId` in the example above). Remember, you must use the colum name exactly as it appears on the CSV, so for nested fields you should use the `outerField.innerField` notation.
 
 Each lookup must have the following properties:
-- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage);
+- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](/runtime_suite/crud-service/overview_and_usage);
 - **lookupKey**: the data source field to perform the lookup on, searching for the record matching the column value;
 - **lookupValue**: the value to replace the column value with, must be a string with placeholders enclosed between double curly braces; each placeholder must refer a data source field and will be evaluated at runtime and replaced with the corresponding value.
 
@@ -557,11 +557,11 @@ From version `1.9.0` it is possible to add other properties for customizing the 
 
 ### Default client type parameter (`defaultClientType`)
 
-From version `1.2.0` the service checks if the `CLIENTTYPE_HEADER_KEY` [environment variable](../../development_suite/api-console/api-design/services#environment-variable-configuration) is already available in the request's headers. If missing, this parameter allows the customization of the client type that will be forwarded to other platform services. The default value is `formService`.
+From version `1.2.0` the service checks if the `CLIENTTYPE_HEADER_KEY` [environment variable](/development_suite/api-console/api-design/services#environment-variable-configuration) is already available in the request's headers. If missing, this parameter allows the customization of the client type that will be forwarded to other platform services. The default value is `formService`.
 
 :::caution
 
-An [API Key](../../development_suite/api-console/api-design/api-key) with the default value (or a value of your choice) must be created and enabled in the Console in order to ensure the service's functionality.
+An [API Key](/development_suite/api-console/api-design/api-key) with the default value (or a value of your choice) must be created and enabled in the Console in order to ensure the service's functionality.
 
 :::
 
@@ -571,11 +571,11 @@ All the following CRUD collections are required.
 
 ### form_schemas
 
-In order to perform CRUD operations on the forms created with the Form Service, we recommend to [create a CRUD](../../development_suite/api-console/api-design/crud_advanced) named `form_schemas`.
+In order to perform CRUD operations on the forms created with the Form Service, we recommend to [create a CRUD](/development_suite/api-console/api-design/crud_advanced) named `form_schemas`.
 
 The required properties (specified in the [form schemas CRUD endpoint parameter](#form-schemas-crud-endpoint-parameter-formschemascrud) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_schemas_crud_fields.json">json file</a>. If any, you need to also add the additional [form metadata parameters](#form-metadata-parameters-formmetadata).
 
-You also need to expose a new endpoint `/form-schemas` following [this guide](../../development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formSchemasCrud* parameter accordingly.
+You also need to expose a new endpoint `/form-schemas` following [this guide](/development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formSchemasCrud* parameter accordingly.
 The type of this endpoint is `CRUD`.
 
 ### form_schema_map
@@ -594,7 +594,7 @@ The required properties (specified in the [form drafts CRUD endpoint parameter](
 
 If you want to use the default value of the *formDraftsCrud* you need to expose this CRUD with the `/form-drafts` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
-Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../../runtime_suite/form-service-frontend/configuration).
+Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](/runtime_suite/form-service-frontend/configuration).
 
 ## Other configurations
 

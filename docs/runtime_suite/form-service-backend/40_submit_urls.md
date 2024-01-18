@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The *submit URLs* can be either provided with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
+The *submit URLs* can be either provided with the [CRUD Service](/runtime_suite/crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
 
 - `GET /{id}`
 - `POST /`
@@ -57,7 +57,7 @@ Each property of the `data` object is related to a component of the form.
 ```
 
 ## GET /export route
-The `GET /export` route returns the submitted data of the forms matching the query parameters and must be compatible with the API of the endpoint of the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage). Specifically, this endpoint must support filtering data using the `_q` query parameter or any form data field.
+The `GET /export` route returns the submitted data of the forms matching the query parameters and must be compatible with the API of the endpoint of the [CRUD Service](/runtime_suite/crud-service/overview_and_usage). Specifically, this endpoint must support filtering data using the `_q` query parameter or any form data field.
 
 This endpoint must return a list of JSON objects in [newline delimited JSON](http://ndjson.org/) format.
 

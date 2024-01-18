@@ -10,11 +10,11 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The Form Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Form Service Frontend](../../runtime_suite/form-service-frontend/overview).
+The Form Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Form Service Frontend](/runtime_suite/form-service-frontend/overview).
 
 ## How it works
 
-The **Form Service Backend** works with the **Form Service Frontend** that provides the **Form Builder** and **Form Visualizer** UI. Further information about the frontend routes are available [here](../../runtime_suite/form-service-frontend/overview#how-it-works). 
+The **Form Service Backend** works with the **Form Service Frontend** that provides the **Form Builder** and **Form Visualizer** UI. Further information about the frontend routes are available [here](/runtime_suite/form-service-frontend/overview#how-it-works). 
 
 The backend service exposes the following APIs:
 
@@ -37,7 +37,7 @@ The backend service exposes the following APIs:
 - `POST /visualizer/forms/draft/{formId}`: if formId is undefined it saves a form and its draft, otherwise it  saves the draft of the form;
 - `GET /visualizer/forms/export` (*version 1.7.0 or later required*): it returns a CSV containing the forms data based on a given schema and created in a given period;
 
-These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS). Discover more about the frontend integration [here](../../runtime_suite/form-service-frontend/configuration#integration-with-micro-lc-and-headless-cms).
+These endpoints are defined in the **Form Service Backend** and are called by the **Form Service Frontend** plugin (regardless being integrated in micro-lc or Headless CMS). Discover more about the frontend integration [here](/runtime_suite/form-service-frontend/configuration#integration-with-micro-lc-and-headless-cms).
 
 #### Form data versioning support
 
@@ -49,7 +49,7 @@ Let us suppose that the `submit_url` has been set to `http://microservice/resour
 
 :::
 
-In order to obtain form data versioning, the calls to the **Form-Service Frontend** must be done including the `_v` parameter. See [here](../../runtime_suite/form-service-frontend/configuration#form-data-versioning-support) for Form-Service Frontend usage.
+In order to obtain form data versioning, the calls to the **Form-Service Frontend** must be done including the `_v` parameter. See [here](/runtime_suite/form-service-frontend/configuration#form-data-versioning-support) for Form-Service Frontend usage.
 
 #### Form draft support
 
@@ -129,7 +129,7 @@ You can configure the **Form Service Backend** to:
 
 - perform *lookups* on certain fields and replacing an existing value - for example a user or form schema IDs - with a more human-readable value (if, for any reason, a lookup on a form field fails, the service ignores the error and simply leaves the existing value unmodified);
 - configure some *redirects*, in particular when the `GET /export` endpoint and the submit URL targets different services and you want the Form Service, every time it encounters a submit URL as lookup data source, to automatically call a different endpoint to fetch lookup data, always appending `/export`); 
-- add some specific *fields* as columns at the beginning of the CSV before the fields derived from the form schema (if the forms are stored in a CRUD collection, you may want to include [its predefined properties](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties)).
+- add some specific *fields* as columns at the beginning of the CSV before the fields derived from the form schema (if the forms are stored in a CRUD collection, you may want to include [its predefined properties](/runtime_suite/crud-service/overview_and_usage#predefined-collection-properties)).
 
 Please take a look at the [Configuration section](./20_configuration.md#export-lookups-exportlookups) to understand how to configure fields, lookups and redirects.
 
