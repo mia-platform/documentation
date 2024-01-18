@@ -43,7 +43,6 @@ All of the following values are root values for the `mia-console` chart values.
 | `mailService` | [Service Conf](#service-conf) | The configurations for the mail service |  | ✅ |
 | `featureToggleService` | [Service Conf](#service-conf) | The configurations for the feature toggle service |  | ✅ |
 | `licenseManager` | [Service Conf](#service-conf) | The configurations for the license manager service |  | ✅ |
-| `exportService` | [Service Conf](#service-conf) | The configurations for the Export service external service | `{ service: { annotations: {} } }` | ✅ |
 | `backoffice` | [Annotation Conf](#service-conf)| The configurations for Backoffice service |  | ✅ |
 | `rbac` | [Annotation Conf](#annotations-conf)| The configurations for the RBAC resources |  | ✅ |
 

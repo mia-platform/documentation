@@ -43,7 +43,7 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 #### New backoffice configuration
 
-In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 3 services (`cms-backend`, `cms-site` and `v1-adapter`).
+In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 3 services (`cms-backend`, `cms-site`, `v1-adapter` and `exportService`).
 This means that you can remove any configuration related to cms from your `values.yaml` file.
 
 You can remove configuration related to:
@@ -51,6 +51,7 @@ You can remove configuration related to:
 - `cmsBackendService`
 - `cmsSite`
 - `v1Adapter`
+- `exportService`
 
 And add backoffice configuration, something like:
 

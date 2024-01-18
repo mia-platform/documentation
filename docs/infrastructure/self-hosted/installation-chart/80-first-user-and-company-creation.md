@@ -15,7 +15,7 @@ If you have configured everything you need and have deployed the Helm chart, you
 Now you might want to start creating the first Company and some initial Projects for your users to work on.
 
 :::info
-If the self-hosted Console installation is managed by Mia-Platform PaaS team, in order to serve Mia-Platform Console to your users, you will have a default installation with [Traefik](paas/traefik) and [Cert Manager](paas/cert-manager), if you need different tooling please contact your Mia-Platform referent.
+If the self-hosted Console installation is managed by Mia-Platform PaaS team, in order to serve Mia-Platform Console to your users, you will have a default installation with [Traefik](infrastructure/paas/tools/traefik) and [Cert Manager](infrastructure/paas/tools/cert-manager), if you need different tooling please contact your Mia-Platform referent.
 :::
 
 ## Designate a Super User
