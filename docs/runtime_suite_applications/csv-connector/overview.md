@@ -14,16 +14,16 @@ The CSV Fast Data Connector application enables fetching data from CSV files and
 
 ### Usage
 
-It is recommended to check the [documentation page](/runtime_suite/csv-connector-plugin/configuration) for the CSV Connector Plugin for detailed information on how to use the component.
+It is recommended to check the [documentation page](runtime_suite/csv-connector-plugin/configuration) for the CSV Connector Plugin for detailed information on how to use the component.
 
 :::caution
-Note that this application comes with no default ConfigMap for the CSV Connector, so one should be added manually. For detailed information on how to write a proper ConfigMap, please refer to the CSV Connector Plugin [documentation page](/runtime_suite/csv-connector-plugin/configuration).
+Note that this application comes with no default ConfigMap for the CSV Connector, so one should be added manually. For detailed information on how to write a proper ConfigMap, please refer to the CSV Connector Plugin [documentation page](runtime_suite/csv-connector-plugin/configuration).
 :::
 
 ### Microservices
 
 The application consists of the following three microservices:
 
-- [CRUD Service](/runtime_suite/crud-service/overview_and_usage);
-- [Files Service](/runtime_suite/files-service/configuration): manages the CSV files and provides the functionality to store them in multiple buckets, ensuring a clean environment.
-- [CSV Connector Plugin](/runtime_suite/csv-connector-plugin/configuration): the core service that fetches data from CSV files and delivers it with validation to the Fast Data, using the JSON schema to map the columns to projections.
+- [CRUD Service](runtime_suite/crud-service/overview_and_usage);
+- [Files Service](runtime_suite/files-service/configuration): manages the CSV files and provides the functionality to store them in multiple buckets, ensuring a clean environment.
+- [CSV Connector Plugin](runtime_suite/csv-connector-plugin/configuration): the core service that fetches data from CSV files and delivers it with validation to the Fast Data, using the JSON schema to map the columns to projections.
