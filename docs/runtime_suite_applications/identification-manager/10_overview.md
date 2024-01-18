@@ -22,8 +22,8 @@ In particular, the main functionalities delivered by this application are the fo
 
 ## How it works
 
-With the elements available in the [marketplace](../../marketplace/overview_marketplace) it is possible to define a set of different identification processes, each of them with their custom identification steps, in particular:
-1. Leveraging the flexibility of the [flow manager service](../../runtime_suite/flow-manager-service/overview) you can define:
+With the elements available in the [marketplace](/marketplace/overview_marketplace) it is possible to define a set of different identification processes, each of them with their custom identification steps, in particular:
+1. Leveraging the flexibility of the [flow manager service](/runtime_suite/flow-manager-service/overview) you can define:
     - the `main flow` contains the common steps between all the identification processes, e.g. creation of a verifiable credential, in particular:
         - there is only one `main flow` inside the application
         - the post identification steps are customizable
