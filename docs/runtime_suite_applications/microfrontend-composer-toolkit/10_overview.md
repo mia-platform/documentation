@@ -10,8 +10,8 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-In order to simplify the setup of [Microfrontend Composer](/microfrontend-composer/overview), this application available in the Marketplace will help you configure all the needed resources in a few clicks.
+In order to simplify the setup of [Microfrontend Composer](microfrontend-composer/overview), this application available in the Marketplace will help you configure all the needed resources in a few clicks.
 
 :::caution
-This application is meant to be used with the [Composer](/microfrontend-composer/composer/structure). For this reason, you will find that almost all the default config maps are _readonly_.
+This application is meant to be used with the [Composer](microfrontend-composer/composer/structure). For this reason, you will find that almost all the default config maps are _readonly_.
 :::

@@ -25,7 +25,7 @@ Four config maps are mounted on the config server with just enough to spawn a fu
 - `micro-lc-server-configuration` with the configuration file of the server itself, and
 - `micro-lc-assets` with any other static file you wish to serve.
 
-Apart from `micro-lc-assets`, the config maps are marked as readonly since they are meant to be managed through the [Microfrontend Composer](/microfrontend-composer/composer/structure) Console section.
+Apart from `micro-lc-assets`, the config maps are marked as readonly since they are meant to be managed through the [Microfrontend Composer](microfrontend-composer/composer/structure) Console section.
 
 The content of `micro-lc-static-files` and `micro-lc-assets` is exposed through `/mfe-application` endpoint, while configuration files (the content of `micro-lc-configurations`) is exposed through `/micro-lc-configurations` endpoint.
 
