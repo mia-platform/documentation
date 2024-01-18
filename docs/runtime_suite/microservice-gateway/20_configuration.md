@@ -13,7 +13,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This service can be added to your project by visiting Mia-Platform Marketplace and creating a new microservice from the Microservice Gateway plugin.
 
 :::info
-The Microservice Gateway supports custom CA certs. If you want to learn more about these certificates and how to configure them in your Microservice Gateway visit [this page](/development_suite/api-console/api-design/services#provide-a-ca-certificate-to-a-custom-service)
+The Microservice Gateway supports custom CA certs. If you want to learn more about these certificates and how to configure them in your Microservice Gateway visit [this page](development_suite/api-console/api-design/services#provide-a-ca-certificate-to-a-custom-service)
 :::
 
 ## Environment variables
@@ -102,6 +102,6 @@ The configuration must adhere to the following schema:
 ```
 
 In this configuration, you can specify:
-- the `router`, where you can define the basics of each [endpoint](/development_suite/api-console/api-design/endpoints#what-is-an-endpoint),
+- the `router`, where you can define the basics of each [endpoint](development_suite/api-console/api-design/endpoints#what-is-an-endpoint),
   and attach a [`pre` and `post` decorator](./10_overview.md#pre-and-post-hooks);
 - the `preDecorators` and `postDecorators`, where you define the behavior of each decorator.
