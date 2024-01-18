@@ -19,7 +19,7 @@ The following environment variables are expected by the service:
 - `VERIFIABLE_CREDENTIAL_CONFIG`: path where to read the configuration mapping file
 - `VERIFIABLE_CREDENTIAL_JWK`: JWK used to generate the JWT
 - `VERIFIABLE_CREDENTIAL_JWA`: JWA used to generrate the JWT
-- `FLOW_MANAGER_URL`: endpoint to [flow manager service](../../runtime_suite/flow-manager-service/overview)
+- `FLOW_MANAGER_URL`: endpoint to [flow manager service](/runtime_suite/flow-manager-service/overview)
 
 ## Verifiable Credentials Schema
 
