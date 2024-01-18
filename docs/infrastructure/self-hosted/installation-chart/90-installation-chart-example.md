@@ -103,7 +103,7 @@ mia-console:
       crudService:
         memoryLimitMin: "70Mi"
         memoryLimitMax: "250Mi"
-    crudEncryption: # /runtime_suite/crud-service/encryption_configuration
+    crudEncryption: # runtime_suite/crud-service/encryption_configuration
       keyVaultNamespace: "<dbname.collectionname>" # set to the collection you wish to use as encryption key vault.
       kmsProvider: "gcp|local" # set to gcp or local based on your desired KMS
       # use this configuration if you want to use locally managed master encryption key
