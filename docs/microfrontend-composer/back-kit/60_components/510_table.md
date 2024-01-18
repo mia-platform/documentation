@@ -1363,12 +1363,12 @@ The configuration leverages the [`rawObjectOrEmptyStr`][rawObjectOrEmptyStr] cus
             "configMap": {
               "": true,
               "$default": false
-            },
-            "action": {
-              "type": "file-download",
-              "config": {
-                "url": "/order/{{args.[1]._id}}/avatar"
-              }
+            }
+          },
+          "action": {
+            "type": "file-download",
+            "config": {
+              "url": "/order/{{args.[1]._id}}/avatar"
             }
           }
         }
