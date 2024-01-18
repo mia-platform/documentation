@@ -144,7 +144,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This version contains changes to the error objects.
 This new format can be breaking if your microservices are explicitly using the old error objects content.
 - This version requires at least v4.3.0 of crud service since we are using the query parameter `_rawp` in the
-user manager service (see [here](../../runtime_suite/crud-service/overview_and_usage#return-a-subset-of-properties) for further information).
+user manager service (see [here](/runtime_suite/crud-service/overview_and_usage#return-a-subset-of-properties) for further information).
 - The userinfo additional properties are now handled via the `USERINFO_ADDITIONAL_PROPERTIES` environment variable.
 Additional properties via configuration file are no longer available.
 
