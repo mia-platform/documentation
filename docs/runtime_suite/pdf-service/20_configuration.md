@@ -11,7 +11,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 This service relies on the existence of:
-- [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) connected to a MongoDB collection that will hold the HTML templates.
+- [CRUD Service](/runtime_suite/crud-service/overview_and_usage) connected to a MongoDB collection that will hold the HTML templates.
 
 ## Environment variables
 You must provide the following environment variables:
