@@ -26,7 +26,7 @@ It's also possible to set the `Editable form` field from the UI. An editable for
 
 ![Form Visualizer not editable](img/not-editable-form-visualizer.png)
 
-Other users can only view the submitted data in the **Form Visualizer** if their user group is selected from the `Submitted forms viewers` multi-picker. For more information about `groups` (i.e. `admin` `doctor` etc etc) check [here](../../runtime_suite/auth0-client/configuration) and [here](../../runtime_suite/auth0-client/configure_auth0#step-8-enable-your-first-user-to-access-cms). Read this [documentation](../../runtime_suite/auth0-client/enable_auth0#how-to-enable-auth0-as-an-identity-provider-in-your-project) to know how to enable Auth0 as an identity provider.
+Other users can only view the submitted data in the **Form Visualizer** if their user group is selected from the `Submitted forms viewers` multi-picker. For more information about `groups` (i.e. `admin` `doctor` etc etc) check [here](/runtime_suite/auth0-client/configuration) and [here](/runtime_suite/auth0-client/configure_auth0#step-8-enable-your-first-user-to-access-cms). Read this [documentation](/runtime_suite/auth0-client/enable_auth0#how-to-enable-auth0-as-an-identity-provider-in-your-project) to know how to enable Auth0 as an identity provider.
 
 :::info
 

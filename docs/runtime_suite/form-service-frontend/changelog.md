@@ -17,9 +17,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Fixed
 
-- improved behavior of error notification in builder when saving or updating form
-
 - fixed error handler in style assets loader
+
+## 2.0.2 2024-01-15
+
+## Fixed
+
+- improved behavior of error notification in builder when saving or updating form
 
 ## 2.0.1 2023-12-15
 
