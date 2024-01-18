@@ -50,12 +50,12 @@ In order to do this you have to edit the `configurations.json`  of `micro-lc-bac
 
 Make sure that `pluginurl` is correctly configured with the desired dashboard to be shown.
 
-For more details: [Application | Mia-Platform Documentation](../../runtime_suite_applications/backoffice/overview)
+For more details: [Application | Mia-Platform Documentation](/runtime_suite_applications/backoffice/overview)
 
 ## Active Users Chart
 
 To properly configure the active user counter, you must manually create a cronjob.
-In this regard you can follow the following guide: [Create and Manage Cronjobs.](../../development_suite/api-console/api-design/jobs-cronjob)
+In this regard you can follow the following guide: [Create and Manage Cronjobs.](/development_suite/api-console/api-design/jobs-cronjob)
 
 The cronjob is used to call the `Active User Updater` micro service, which communicates with `auth0-client` to get a list of active users and update the crud `active-users`.
 To do this, the cronjob needs to be able to make curl calls, so we need to use the following docker image [curlimages/curl](https://hub.docker.com/r/curlimages/curl).
