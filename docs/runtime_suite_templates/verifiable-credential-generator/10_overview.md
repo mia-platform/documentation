@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 Verifiable credential is an open standard for digital credentials and can be used to represent personal information; this kind of documents are usually generated during the final step of an identification process. 
 
-This template can be used as a starting point to implement a microservice for the verifiable credential generation, and can be used within the [identification manager application](/runtime_suite_applications/identification-manager/overview).
+This template can be used as a starting point to implement a microservice for the verifiable credential generation, and can be used within the [identification manager application](runtime_suite_applications/identification-manager/overview).
 
 The verifiable credential generated is then returned as a [JWT](https://www.rfc-editor.org/rfc/rfc7519).
 
@@ -22,7 +22,7 @@ This service communicates via REST by default, but it can also rely on KAFKA if 
 
 ## Endpoint
 
-The endpoint exposed is designed to be compatible with [REST flow manager service](/runtime_suite/flow-manager-service/overview), that means that responses are asynchronous. 
+The endpoint exposed is designed to be compatible with [REST flow manager service](runtime_suite/flow-manager-service/overview), that means that responses are asynchronous. 
 
 ### POST /generate
 
