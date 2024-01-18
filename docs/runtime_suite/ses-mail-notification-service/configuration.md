@@ -33,6 +33,7 @@ Here is a list of the variables used to configure the service:
 - SES_KEY (string)
 - SES_SECRET (string)
 - SES_REGION (string | default: `us-east-1`)
+- TRUSTED_PROXIES: (string)
 
 ### SMTP
 
@@ -44,12 +45,22 @@ SMTP authentication is ensured by default with the `login` method, which require
 Here is a list of the variables used to configure the service:
 
 - HOST (string),
-- PORT (number | default: 58)
+- PORT (number | default: 587)
 - AUTH_TYPE: `login`
 - AUTH_USER: (string)
 - AUTH_PASS: (string)
+- REJECT_UNAUTHORIZED: (boolean | default: true)
 - TLS_SECURE: (boolean | default: false)
 - TLS_IGNORE: (boolean | default: true)
+- TRUSTED_PROXIES: (string)
+- POOL_ENABLED: (boolean | default: false)
+- POOL_MAX_CONNECTIONS: (number | default: 5)
+- POOL_MAX_MESSAGES: (number | default: 100)
 
+:::info
+
+The variable `REJECT_UNAUTHORIZED` is used to set the tls option `rejectUnauthorized`. For further information, ha a look at [this page](https://nodemailer.com/smtp/#3-allow-self-signed-certificates)
+
+:::
 
 If you want to use Gmail, have a look at [this page](https://nodemailer.com/usage/using-gmail/).
