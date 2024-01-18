@@ -66,7 +66,7 @@ Triggers a 'change password' event in the authentication service.
 In case of Auth0, a change password email will be sent to the user.
 
 :::note
-Since this endpoint is exposed as a `POST`, it can be used as an 'action' in the Mia-Platform [Microfrontend Composer](/microfrontend-composer/overview).
+Since this endpoint is exposed as a `POST`, it can be used as an 'action' in the Mia-Platform [Microfrontend Composer](microfrontend-composer/overview).
 :::
 
 #### Body
@@ -159,7 +159,7 @@ This request accepts the following query parameter:
 
 :::note
 If a user is created only in the `users` CRUD collection, either with `authUserCreationDisabled` or `postponeAuthUserCreation` equal to true, there is no control on uniqueness based on username or email.
-You make these properties unique [indexes](/development_suite/api-console/api-design/crud_advanced#indexes) to enforce users with unique username or email in the `users` CRUD collection.
+You make these properties unique [indexes](development_suite/api-console/api-design/crud_advanced#indexes) to enforce users with unique username or email in the `users` CRUD collection.
 :::
 
 #### Response
