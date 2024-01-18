@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## MongoDB Configuration
 
-As mentioned in the [General Settings page](/infrastructure/self-hosted/installation-chart/20-general-settings.md), to connect with MongoDB, Mia-Platform Console only needs the connection string provided using the `configurations.mongodbUrl` configuration.
+As mentioned in the [General Settings page](./20-general-settings.md), to connect with MongoDB, Mia-Platform Console only needs the connection string provided using the `configurations.mongodbUrl` configuration.
 
 ### Cluster size
 
@@ -60,7 +60,7 @@ To activate encryption use the [`crudEncryption`](#crud-encryption) value inside
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `masterKey` | string | The master key value used for encryption | | ❌ |
 
-To generate the master key check out the official [documentation page](/runtime_suite/crud-service/30_encryption_configuration.md#how-to-generate-a-local-master-key-using-nodejs).
+To generate the master key check out the official [documentation page](../../../runtime_suite/crud-service/encryption_configuration#how-to-generate-a-local-master-key-using-nodejs).
 
 #### Examples
 
