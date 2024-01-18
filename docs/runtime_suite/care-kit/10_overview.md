@@ -12,17 +12,17 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Care-kit service provides a set of [W3C Web Components](https://www.w3.org/TR/components-intro/).
 
-This components are designed to be used inside Mia-Platform [Microfrontend Composer](/microfrontend-composer/overview) configuration. 
+This components are designed to be used inside Mia-Platform [Microfrontend Composer](microfrontend-composer/overview) configuration. 
 
 ## Cake kit components
 
-### [Appointment Manger](/runtime_suite/appointment-manager/overview) Web Components
+### [Appointment Manger](runtime_suite/appointment-manager/overview) Web Components
   - [am-calendar](20_components/10_am-calendar.md)
 
-### [Form Service](/runtime_suite/form-service-backend/overview) Web Components
+### [Form Service](runtime_suite/form-service-backend/overview) Web Components
   - [ck-export-form](20_components/20_ck-form-export.md)
 
-### [Therapy and Monitoring Manager](/runtime_suite/therapy-and-monitoring-manager/overview) Web Components
+### [Therapy and Monitoring Manager](runtime_suite/therapy-and-monitoring-manager/overview) Web Components
   - [ck-therapy-modal](20_components/30_ck-therapy-modal.md)
   - [ck-therapy-select](20_components/40_ck-therapy-select.md)
   - [ck-threshold-modal](20_components/50_ck-threshold-modal.md)

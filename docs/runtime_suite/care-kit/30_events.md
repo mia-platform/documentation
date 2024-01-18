@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-Events follows the `Event` type of [back-kit](/microfrontend-composer/back-kit/events):
+Events follows the `Event` type of [back-kit](microfrontend-composer/back-kit/events):
 
 ```typescript
 type Event<P, M> = {
