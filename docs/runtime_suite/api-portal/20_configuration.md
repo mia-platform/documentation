@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The **API Portal** microservice can be added to your project by visiting Mia-Platform [Marketplace](/marketplace/overview_marketplace). To configure it properly, there are essentially 2 ways.
+The **API Portal** microservice can be added to your project by visiting Mia-Platform [Marketplace](marketplace/overview_marketplace). To configure it properly, there are essentially 2 ways.
 
 ## 1. Creating a new API Documentation Aggregator application (recommended)
 
@@ -20,7 +20,7 @@ The creation of the application is divided into several steps, allowing the **Sw
 
 ![API Documentation Aggregator creation](./img/api-documentation-aggregator-creation.png)
 
-Once you have finished creating the application, you need to properly configure the endpoint `/documentations/api-portal`, which is needed to access the [Documentation Portal](/console/project-configuration/documentation-portal):
+Once you have finished creating the application, you need to properly configure the endpoint `/documentations/api-portal`, which is needed to access the [Documentation Portal](console/project-configuration/documentation-portal):
 
 - In the "Endpoint settings" card:
   * Under the "Security" tab, set the **User Group Permission** to `false`;
@@ -44,7 +44,7 @@ You can block unauthorized users to access the API Portal by checking `Authentic
 :::
 
 :::tip
-You can set up a login process by using the [Auth0 Client](/runtime_suite/auth0-client/overview_and_usage) plugin, that you can find in the [Marketplace](/marketplace/overview_marketplace).
+You can set up a login process by using the [Auth0 Client](runtime_suite/auth0-client/overview_and_usage) plugin, that you can find in the [Marketplace](marketplace/overview_marketplace).
 :::
 
 ## 2. Step-by-step manual configuration
@@ -54,7 +54,7 @@ This procedure allows you to manually add the various services and endpoints nee
 1. Add the **API Portal** plugin to the project via the "Microservices" section;
 2. Add the **Swagger Aggregator** plugin to the project via the "Microservices" section;
 3. Add the **API Gateway** plugin to the project via the "Microservices" section;
-4. [Create a new endpoint](/development_suite/api-console/api-design/endpoints) with base path `/documentations/api-portal`, type `Microservice`, and linked to the `api-portal` service via the "Endpoints" section;
+4. [Create a new endpoint](development_suite/api-console/api-design/endpoints) with base path `/documentations/api-portal`, type `Microservice`, and linked to the `api-portal` service via the "Endpoints" section;
 5. Configure the newly created endpoint as described in the [configuration procedure](#1-creating-a-new-api-documentation-aggregator-application-recommended) following the creation of the API Documentation Aggregator application.
 
 :::note
