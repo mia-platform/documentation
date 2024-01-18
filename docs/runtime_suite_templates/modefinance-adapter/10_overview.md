@@ -13,7 +13,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This template is meant to be the starting point to build a new typescript project to interact with [*Modefinance*](https://www.modefinance.com/en) APIs.
 
 ## Endpoints
-The endpoints exposed are designed to be compatible with either Kafka or REST [flow manager service](/runtime_suite/flow-manager-service/overview), that means the responses are asynchronous. 
+The endpoints exposed are designed to be compatible with either Kafka or REST [flow manager service](runtime_suite/flow-manager-service/overview), that means the responses are asynchronous. 
 
 The following events are sent by default by the service:
 - actionCompleted
