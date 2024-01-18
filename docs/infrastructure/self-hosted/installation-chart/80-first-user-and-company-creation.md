@@ -15,7 +15,7 @@ If you have configured everything you need and have deployed the Helm chart, you
 Now you might want to start creating the first Company and some initial Projects for your users to work on.
 
 :::info
-If the self-hosted Console installation is managed by Mia-Platform PaaS team, in order to serve Mia-Platform Console to your users, you will have a default installation with [Traefik](infrastructure/paas/tools/traefik) and [Cert Manager](infrastructure/paas/tools/cert-manager), if you need different tooling please contact your Mia-Platform referent.
+If the self-hosted Console installation is managed by Mia-Platform PaaS team, in order to serve Mia-Platform Console to your users, you will have a default installation with [Traefik](../../paas/tools/traefik) and [Cert Manager](../../paas/tools/cert-manager), if you need different tooling please contact your Mia-Platform referent.
 :::
 
 ## Designate a Super User
@@ -40,7 +40,7 @@ If you want to setup multiple Super User you can use the same binding and add mu
 Now that you have a Super User you can create your fist Company; Company creation can be done via API or via CMS
 
 :::info
-For further information head to the Company creation [documentation section](development_suite/company/create).
+For further information head to the Company creation [documentation section](../../../development_suite/company/create).
 :::
 
 ### Use Console API Portal
@@ -52,5 +52,5 @@ After you have created a Company you will be able to access it from Console at t
 :::info
 Some details such as default creation environments, templates etc are still not available within Mia-Platform Console and will require you to access the CMS for further configuration.
 
-You can find out more [here](development_suite/company/create#default-configuration-for-a-new-project)
+You can find out more [here](../../../development_suite/company/create#default-configuration-for-a-new-project)
 :::
