@@ -238,7 +238,7 @@ It follows an example of a valid configuration file.
 ```
 
 [e164]: https://www.twilio.com/docs/glossary/what-e164
-[files-service]: ../../runtime_suite/files-service/usage
+[files-service]: /runtime_suite/files-service/usage
 [kalyera-manage-numbers]: https://eu.kaleyra.io/numbers/manage
 [twilio-invalid-number]: https://www.twilio.com/docs/api/errors/21212
 [twilio-sender-id]: https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id
