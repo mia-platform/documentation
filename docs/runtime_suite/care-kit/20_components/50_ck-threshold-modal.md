@@ -10,15 +10,15 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The `ck-threshold-modal` web component is a modal specialized in adding/modify a threshold to an already existing[Therapy and Monitoring Manager](../../runtime_suite/therapy-and-monitoring-manager/overview) therapy/monitoring.
+The `ck-threshold-modal` web component is a modal specialized in adding/modify a threshold to an already existing[Therapy and Monitoring Manager](/runtime_suite/therapy-and-monitoring-manager/overview) therapy/monitoring.
 
 ![ck-threshold-modal](../img/ck-threshold-modal.png)
 ## Usage
 
-The web component consists of a form inside a modal with dynamically generated fields based on a [Therapy and Monitoring Manager prototype](../../runtime_suite/therapy-and-monitoring-manager/overview#prototypes). The component listens to the  [`therapy-config` event](../30_events.md#therapyconfig) emitted by [`ck-therapy-select` component](40_ck-therapy-select.md), which payload contains the `prototypeId`, the `planId`, and the `planType`. 
+The web component consists of a form inside a modal with dynamically generated fields based on a [Therapy and Monitoring Manager prototype](/runtime_suite/therapy-and-monitoring-manager/overview#prototypes). The component listens to the  [`therapy-config` event](../30_events.md#therapyconfig) emitted by [`ck-therapy-select` component](40_ck-therapy-select.md), which payload contains the `prototypeId`, the `planId`, and the `planType`. 
 
 To fetch the prototype that defines which fields are shown in the modal, the `prototypeId` is used. The fetching is done using the URL set in the `prototypePath` property. The `prototypePath` should be set to [Therapy and Monitoring Manager GET /prototypes/ endpoint](../../therapy-and-monitoring-manager/usage#get-prototypes). 
-Each [therapy/monitoring](../../runtime_suite/therapy-and-monitoring-manager/overview#therapies) contains the relative thresholds. To retrive the thresholds the `planId` and the `planType` received in the `therapy-config`event payload are combined with the `planBasePath` property to generate the endpoint used to fetch the right plan. The `planBasePath` should be set to [Therapy and Monitoring Manager](../../runtime_suite/therapy-and-monitoring-manager/overview) base path.
+Each [therapy/monitoring](/runtime_suite/therapy-and-monitoring-manager/overview#therapies) contains the relative thresholds. To retrive the thresholds the `planId` and the `planType` received in the `therapy-config`event payload are combined with the `planBasePath` property to generate the endpoint used to fetch the right plan. The `planBasePath` should be set to [Therapy and Monitoring Manager](/runtime_suite/therapy-and-monitoring-manager/overview) base path.
 
 In addition to the form, the `ck-threshold-modal` also includes a section where users can set notification preferences for new detections that do not comply with the set threshold. Notification settings are retrieved from the endpoint specified in the `notificationPath` property. If `notificationEnabled` is set to false, the notification section is not present.
 
