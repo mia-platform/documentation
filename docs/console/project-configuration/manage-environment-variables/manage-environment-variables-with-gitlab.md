@@ -26,6 +26,20 @@ It is possible to find it in the table of the Envs area.
 
 ![envs-table](../img/runtime-table-envs.png)
 
+:::info
+You can also define a global variable to be used as a default and define a specific variable for only one environment.  
+In this case only the specified environment will use its value, and the others will use the default value.
+
+When there are both a global variable and a specific one for an environment, the longest matching variable will be selected.
+
+E.g.  
+You have three environments: `TEST`, `PREPROD` and `PROD`.  
+You define these two variables: `MY_VAR = foo` and `PROD_MY_VAR = bar`  
+This is what the envs will receive:  
+- TEST: `foo`
+- PREPROD: `foo`
+- PROD: `bar`
+:::
 
 :::warning
 Remember! It is fundamental to define a prefix if you want to associate a variable to a particular environment, otherwise the variable will be considered global.
