@@ -32,5 +32,5 @@ sent to the user-defined implementation. In this manner, they can design their o
 
 ## [1.0.0] - 2023-11-09
 
-This is the initial release of Projection Storer service. A brief overview regarding the service can be found [here](/fast_data/projection_storer)
-while an in depth explanation describing how to configure the service can be found [here](/fast_data/configuration/projection_storer_config)
+This is the initial release of Projection Storer service. A brief overview regarding the service can be found [here](../fast_data/projection_storer)
+while an in depth explanation describing how to configure the service can be found [here](../fast_data/configuration/projection_storer_config)
