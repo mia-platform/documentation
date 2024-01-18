@@ -64,7 +64,7 @@ Mia-Platform Console allows user to create custom Service Accounts to perform m2
 
 ### How to generate secret values
 
-For any doubt check out the [Client Credentials guide](../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
+For any doubt check out the [Client Credentials guide](/runtime_suite/client-credentials/jwt_keys) which provides useful examples.
 
 * `rsaPrivateKeyBase64`:
   * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`

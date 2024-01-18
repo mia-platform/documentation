@@ -144,7 +144,7 @@ If you want to control user creation and deletion from an external Identity Prov
 |:----:|:----:|:-----------:|:-------:|:--------:|
 |`enableUserSynchronizationWebhooks`| boolean | Activates webhooks for automatic user synchronization with external Identity providers |  | ✅ |
 
-To know more about user synchronization with an Identity Provider, visit the [dedicated documentation page](../../infrastructure/self-hosted/synchronize-users).
+To know more about user synchronization with an Identity Provider, visit the [dedicated documentation page](/infrastructure/self-hosted/synchronize-users).
 
 ## Additional Authentication Clients
 
