@@ -15,6 +15,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.10.0 - 2023-12-06
+
+### Fixed
+
+- Update OAS from 2.0 to 3.0
+
+### Added
+
+- Add `PATCH /:filename/metadata`, to allow modification of files metadata
+
+### Fixed
+
+- Resolved an issue that was leading to the failure of integration tests.
+
 ## 2.9.3 - 2023-10-30
 
 ### Fixed

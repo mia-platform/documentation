@@ -112,6 +112,90 @@ Available flags for the command:
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--context`, to specify a different context from the currently selected one
 
+### iam
+
+The `company iam` subcommands are used for managing the RBAC permissions associated with a company. Only
+**Company Owners** can modify, add or remove RBAC authorization to the company.
+
+#### list
+
+The `company iam list` subcommand allows you to view the list of all the different identity associated with the Company
+specified in the current context. The output will show the **names**, **types** and **permissions** associated with
+them.
+
+Usage:
+
+```sh
+miactl company iam list [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
+##### users
+
+The `company iam list users` subcommand allows you to view the list of all users that have access to your company
+directly or via one or more groups.
+
+Usage:
+
+```sh
+miactl company iam list users [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
+##### groups
+
+The `company iam list groups` subcommand allows you to view the list of all groups that are available in your company.
+
+Usage:
+
+```sh
+miactl company iam list groups [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
+##### serviceaccounts
+
+The `company iam list serviceaccounts` subcommand allows you to view the list of all service accounts that are available
+in your company.
+
+Usage:
+
+```sh
+miactl company iam list serviceaccounts [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
 ## project
 
 This command allows you to manage `miactl` Projects.
@@ -222,10 +306,30 @@ Available flags for the command:
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 
+### api-resources
+
+The `runtime api-resources` subcommand allows you to list all the currently supported resources that you can use on
+the `list` command.
+
+Usage:
+
+```sh
+miactl runtime api-resources [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+
 ### list RESOURCE-TYPE
 
 The `runtime list` subcommand allows you to list all resources of a specific type that are running for the
 environment associated to a given Project.
+
+Use `miactl runtime api-resources` for a complete list of currently supported resources.
 
 Usage:
 
@@ -287,12 +391,16 @@ Available flags for the command:
 
 ### logs
 
-The `runtime logs` subcommand allows you to fetch or stream logs for a given regex of services
+The `runtime logs` subcommand allows you to fetch or stream logs of running pods in the current context using a
+regex query.
+
+You can write any regex compatible with RE2 excluding -C. The regex than will be used to filter down the list of
+pods available in the current context and then the logs of all their containers will be displayed.
 
 Usage:
 
 ```sh
-miactl runtime logs  POD-QUERY [flags]
+miactl runtime logs POD-QUERY [flags]
 ```
 
 Available flags for the command:
@@ -320,7 +428,7 @@ All the subcommands inherit the following flags:
       --context string                 the name of the miactl context to use
       --endpoint string                the address and port of the Mia-Platform Console server
       --insecure-skip-tls-verify       if true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
-      --verbose                        increase the verbosity of the cli output
+  -v  --verbose                        increase the verbosity of the cli output
 ```
 
 ### list
@@ -341,10 +449,35 @@ Get a Marketplace item
 
 #### Synopsis
 
-Get a single Marketplace item by its ID
+##### Stable version
 
+Get a single Marketplace item
+
+You need to specify the ObjectID of the item with the flag object-id
+
+```bash
+miactl marketplace get --object-id object-id [FLAGS]...
 ```
-miactl marketplace get resource-id [flags]
+
+##### Alpha version
+
+:::warning
+
+This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
+
+:::
+
+Get a single Marketplace item
+
+You need to specify either:
+- the companyId, itemId and version, via the respective flags (recommended). The company-id flag can be omitted if it is already set in the context.
+- the ObjectID of the item with the flag object-id
+
+Passing the ObjectID is expected only when dealing with deprecated Marketplace items missing the itemId and/or version fields.
+Otherwise, it is preferable to pass the tuple companyId-itemId-version.
+
+```bash
+miactl marketplace get { --item-id item-id --version version } | --object-id object-id [FLAGS]...
 ```
 
 ### delete
@@ -353,10 +486,35 @@ Delete a Marketplace item
 
 #### Synopsis
 
-Delete a single Marketplace item by its ID
+##### Stable version
 
+Delete a single Marketplace item
+
+You need to specify the ObjectID of the item with the flag object-id
+
+```bash
+miactl marketplace get --object-id object-id [FLAGS]...
 ```
-miactl marketplace delete resource-id [flags]
+
+#### ALPHA version
+
+:::warning
+
+This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
+
+:::
+
+Delete a single Marketplace item
+
+You need to specify either:
+- the companyId, itemId and version, via the respective flags (recommended). The company-id flag can be omitted if it is already set in the context.
+- the ObjectID of the item with the flag object-id
+
+Passing the ObjectID is expected only when dealing with deprecated Marketplace items missing the itemId and/or version fields.
+Otherwise, it is preferable to pass the tuple companyId-itemId-version.
+
+```bash
+miactl marketplace delete { --item-id item-id --version version } | --object-id object-id [flags]...
 ```
 
 ### apply
@@ -408,4 +566,22 @@ miactl marketplace apply -f myFantasticGoTemplates
 ```
   -f, --file stringArray   paths to JSON/YAML files or folder of files containing a Marketplace item definition
   -h, --help               help for apply
+```
+
+### list-versions (ALPHA)
+
+:::warning
+
+This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
+
+:::
+
+List all the available versions of a specific Marketplace item.
+
+#### Synopsis
+
+The flag `--item-id` or `-i` accepts the `itemId` of the Item.
+
+```
+miactl marketplace list-versions -i some-item
 ```

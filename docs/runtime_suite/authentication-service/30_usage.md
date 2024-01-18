@@ -55,7 +55,7 @@ In case you are using a web app this request can be urlmade directly from the br
 
 You can pass a redirect url to the request, by means of the `redirect` query string parameter. After a successful login, the `/oauth/token` endpoint will set the `Location` header to the specified url.
 
-If a request comes with no `redirect` query parameter, the `Location` header will be set to the `redirectUrlOnSuccessfullLogin` app setting parameter, if specified.
+If a request comes with no `redirect` query parameter, the `Location` header will be set to the `defaultRedirectUrlOnSuccessfulLogin` app setting parameter, if specified.
 
 In all other cases the `Location` header will not be set.
 

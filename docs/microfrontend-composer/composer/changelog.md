@@ -10,6 +10,28 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.7.0] - 2023-12-15
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.10`
+- `@mia-platform-internal/reactord` to `^10.1.0`
+- `flag-icons` to `^7.0.3`
+- `monaco-editor` to `^0.45.0`
+- `react-router-dom` to `^6.20.1`
+- Dev dependencies updated
+
+### Changed
+
+- Added possibility to write a custom endpoint when selecting configuration endpoint in compose application creation
+- Added possibility to write a custom endpoint when configuring components properties of type `mia/endpoints/crud` or `mia/endpoints/data-source`
+
+### Fixed
+
+- When renaming a page, its `meta` is now correctly renamed too
+- Pages `meta` is not correctly persisted when defining the first shared property
+- Property `aclExpression` of `oneOf` objects can now be edited correctly
+
 ## [1.6.0] - 2023-11-10
 
 ### Versioning

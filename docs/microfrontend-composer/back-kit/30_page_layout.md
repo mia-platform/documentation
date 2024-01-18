@@ -36,7 +36,8 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [available-operators]: ./70_events.md#add-filter
 [display-data]: ./70_events.md#display-data
 
-[lookups-from-views]: ./80_flows/40_lookups.md
+[lookups-from-views]: ./80_examples/40_lookups.md
+[nested-data]: ./80_examples/20_nested_data.md
 
 
 
@@ -181,7 +182,7 @@ On top of types, extra information can be passed to better understand how a prop
 
 The `format` may be picked by components to provide better UI rendering choices on a given `type`. Components such as the [Table][bk-table] or the [Dynamic Form Modal][bk-dynamic-form-modal] make extensive use of formats.
 
-When `type` is set to `string`, the extra key `enum` is available to specify available text entries. `enum` key accepts either an array of strings or an array of objects with keys `id`, `label`. `id` is the actual datum (thus should be a string), while `label` is its [i18n][localized-text] representation, supported by most components (such as the Table or the [Dynamic Form Modal][bk-dynamic-form-modal]).
+When `type` is set to `string`, the extra key `enum` is available to specify available text entries. `enum` key accepts either an array of strings or an array of objects with keys `id`, `label`. `id` is the actual datum (thus should be a string), while `label` is its [i18n][localized-text] representation, supported by most components (such as the Table or the Dynamic Form Modal).
 
 For instance:
 ```json
@@ -225,7 +226,6 @@ When `type` is set to `object` and format is `localized-text`, table expects a [
 Format `geopoint` for fields having `type` set to `array` or `object` allows to visualize geographical coordinates inside a map in forms. With this format, `array` fields must contain exactly two numeric values, indicating latitude and longitude; similarly, `object` fields must contain a field "coordinates" with the latitude and longitude values.
 
 :::caution
-
 `Geopoint` fields within Form components, such as the [Dynamic Form Modal][bk-dynamic-form-modal] or the [Dynamic Form Drawer][bk-dynamic-form-drawer], are rendered using the [leaflet][leaflet] library.
 To ensure correct visualization of these fields, it is necessary to update the [Content Security Policy (CSP)][csp] for HTTP calls, allowing the needed retrieval of CSS files and images. The following CSP rules should be appended:
 
@@ -256,7 +256,6 @@ For example, if the plugin orchestration is managed by [micro-lc][micro-lc] (ver
   }
 }
 ```
-
 :::
 
 Fields of format `currency` automatically display numeric values according to the specified `template` inside [visualizationOptions](#visualization-options) and [formatOptions](#form-options). By default the value is formatted according to the browser locale (eg the value 1000 will be displayed as `1,000` with english locale), but handlebars helper [nFormat][nformat] is also available.
@@ -282,9 +281,83 @@ For instance:
   }
 }
 ```
-:::note
+:::info
 In some components, such as the [Table][bk-table], `{{args.[0]}}` corresponds to the value of the current datum.
 :::
+
+Fields of type `array` may specify an `items` key, carrying information about its items.
+Some Back-kit components use the `items` key to provide dedicated ways to interact with the field.
+
+For instance, the Dynamic Form Modal, Drawer, Card provide ways to interact with arrays of strings or arrays of enumerations.
+
+```json
+{
+  "names": {
+    "type": "array",
+    "items": {
+      "type": "string"
+    }
+  },
+  "ids": {
+    "type": "array",
+    "uniqueItems": true, // -> invalidates entering the same item twice
+    "items": {
+      "type": "string"
+    }
+  }
+}
+```
+:::info
+Setting key `uniqueItems` to true validates that no item of the array is entered more than once.
+:::
+
+```json
+{
+  "cities": {
+    "type": "array",
+    "items": {
+      "type": "string",
+      "enum": [
+        {"label": "Rome", "id": "rm"},
+        {"label": "Paris", "id": "prs"},
+        {"label": "London", "id": "lnd"},
+      ]
+    }
+  }
+}
+```
+
+Interaction with array fields having items of type "object" or "array" is supported by Back-kit components,
+just like object fields that include a data-schema themselves.
+More details can be found in [the dedicated section][nested-data].
+
+```json
+{
+  "people": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"}
+      }
+    }
+  }
+}
+```
+
+```json
+{
+  "person": {
+    "type": "object",
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"}
+      }
+    }
+  }
+}
+```
 
 In order to avoid replication of settings within the same configuration, data schema also carries some component-specific visualization options and/or might require extra data to be fetched.
 
@@ -472,7 +545,7 @@ Extra options to be specified for querying the dataset should be configured in `
 ### Lookups (__DEPRECATED__)
 
 :::caution
-Startin from version 1.4.0 of Back-Kit components, the content of this paragraph is **deprecated**. Support to lookup fields has been integrated within the support for [Views][lookups-from-views].
+Starting from version 1.4.0 of Back-Kit components, the content of this paragraph is **deprecated**. Support to lookup fields has been integrated within the support for [Views][lookups-from-views].
 
 In order to aggregate data from multiple collections into one, [CRUD Service Views][writable-views] should be used.
 :::

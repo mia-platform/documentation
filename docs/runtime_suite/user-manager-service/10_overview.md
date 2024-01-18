@@ -18,8 +18,8 @@ The service can also handle user roles and permissions leveraging the integratio
 
 The combination of the authentication service with a CRUD collection brings the following advantages:
 - it supports the adoption of data encryption: properties can easily be encrypted in the [CRUD](../../runtime_suite/crud-service/encryption_configuration);
-- the [user management endpoints](./30_usage.md#User-Management) are CRUD-alike, thus the User Manager Service can be used by the [Mia-Backoffice](../../microfrontend-composer/overview.md)
-  as a CRUD collection (other endpoints can be used as actions from the Backoffice, e.g. the [reset password endpoint](./30_usage.md#POST-/users/change-password)).
+- the [user management endpoints](./30_usage.md#User-Management) are CRUD-alike, thus the User Manager Service can be used by the Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview)
+  as a CRUD collection (other endpoints can be used as actions from the Microfrontend Composer, e.g. the [reset password endpoint](./30_usage.md#POST-/users/change-password)).
 - the authentication service only contains authentication information (password, username, email), while all the user data is stored in the CRUD;
 - even if all the users are stored in a common CRUD collection, each user group make use of a different schema, stored in a
   [dedicated CRUD collection](./20_configuration.md#User-Manager-Configuration-CRUD-collection);

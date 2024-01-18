@@ -14,6 +14,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v7.0.3 - 2023-11-30
+
+### Added
+
+* add support to Node 20
+
+### Updated
+
+* upgrade dependencies
+
 ## v7.0.2 - 2023-10-09
 
 ### Fixed
@@ -311,7 +321,7 @@ Metrics options are changed. Below there are the main changes. For other configu
 ### BREAKING CHANGES
 
 - Dropped support to Node 8
-- Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../getting-started/guidelines/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js).
+- Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](/development_suite/api-console/api-design/guidelines-for-logs.md). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js).
 
 ### Added
 

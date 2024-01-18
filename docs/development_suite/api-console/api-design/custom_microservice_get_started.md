@@ -51,7 +51,7 @@ Following the steps for the creation of an endpoint:
     * **description**: the endpoint description
  4. Click on the `Create` button and your endpoint will be created
 
-### 3. Deploy the project
+### 3. Save the project
 
 Finally it's time to save our configuration, so:
 
@@ -71,9 +71,5 @@ In order to have our Microservice _up and running_ follow these steps:
 Now your Microservice should be _up and running_, you can check it calling the **/-/healthz** route. You should get a response like this:  
 ![image alt text](img/healthz_response.png).  
 The `status` property should be *OK*.
-
-:::note
-Check out the [Microservices vademecum](/getting-started/guidelines//microservice-vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for further details.
-:::
 
 Trough the [Log & monitoring section](/development_suite/monitoring/introduction.md) you can monitor the status of the related Microservice container

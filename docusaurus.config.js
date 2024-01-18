@@ -193,10 +193,6 @@ async function createConfig() {
             href: "https://status.console.cloud.mia-platform.eu"
           },
           {
-            label: "Guidelines",
-            to: "/docs/getting-started/guidelines/",
-          },
-          {
             label: "Library",
             href: "https://resources.mia-platform.eu/en/library",
           },
