@@ -124,10 +124,10 @@ In this case the `eq` function is provided by the [handlebars-helpers][handlebar
 [handlebars]: https://handlebarsjs.com/guide/#what-is-handlebars
 [handlebars-helpers]: https://github.com/helpers/handlebars-helpers
 
-[ses-mail-notification]: /runtime_suite/ses-mail-notification-service/configuration
-[sms-service]: /runtime_suite/sms-service/configuration
-[kafka2firebase]: /runtime_suite/kafka2firebase/overview
-[flow-manager]: /runtime_suite/flow-manager-service/overview
+[ses-mail-notification]: runtime_suite/ses-mail-notification-service/configuration
+[sms-service]: runtime_suite/sms-service/configuration
+[kafka2firebase]: runtime_suite/kafka2firebase/overview
+[flow-manager]: runtime_suite/flow-manager-service/overview
 
 [message-interpolation]: #messages-interpolation
 [crud-templates]: ./20_configuration.md#templates-crud

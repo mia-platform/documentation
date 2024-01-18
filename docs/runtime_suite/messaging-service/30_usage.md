@@ -120,4 +120,4 @@ Moreover, if enabled by [configuration][service-configuration], it sends an even
 
 [message-interpolation]: ./10_overview.md#messages-interpolation
 [service-configuration]: ./20_configuration.md#service-configuration
-[flow-manager-command]: /runtime_suite/flow-manager-service/configuration#sending-commands-1
+[flow-manager-command]: runtime_suite/flow-manager-service/configuration#sending-commands-1
