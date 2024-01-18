@@ -24,7 +24,7 @@ You can get a proxy calling these methods both on `Request` (the first argument 
     * `cert` - set a custom certificate to use for the requests
     * `key` - set a custom key to use for the requests
     * `ca` - set a custom ca to use for the requests
-    * `logger` - the Pino logger instance, it is used to log request (headers, payload and url) and response (headers, payload and status code) in trace level and error message if there is an error during the API call. If not passed, no log are printed. Keep in mind that headers, payload and url could contains sensitive information. If it is the case, do not pass the logger instance or use the redact options to hide the sensitive information ([read here](../../runtime_suite_libraries/lc39/service-options) for more information).
+    * `logger` - the Pino logger instance, it is used to log request (headers, payload and url) and response (headers, payload and status code) in trace level and error message if there is an error during the API call. If not passed, no log are printed. Keep in mind that headers, payload and url could contains sensitive information. If it is the case, do not pass the logger instance or use the redact options to hide the sensitive information ([read here](/runtime_suite_libraries/lc39/service-options) for more information).
     * `isMiaHeaderInjected` - a boolean value that identifies whether Mia's headers should be forwarded in the request. Default `true`.
     * `httpsAgent` - an instance of `require('https').Agent` that will be used for the requests, only if `cert`, `key` and `ca` are not configured.
 
@@ -97,7 +97,7 @@ async function tokenGeneration(request, response) {
 The methods below are deprecated: switch to use the `getHttpClient` method.
 :::
 
-* `getServiceProxy(options)` - returns a proxy  passing through the [Microservice Gateway](../../runtime_suite/microservice-gateway/overview).
+* `getServiceProxy(options)` - returns a proxy  passing through the [Microservice Gateway](/runtime_suite/microservice-gateway/overview).
   * `options` - is an object with the following optional fields:
     * `port` - an integer that identifies the port of the service to be queried
     * `protocol` - a string that identifies the protocol to use (only `http` and `https` are supported, the default value is `http`)
