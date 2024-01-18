@@ -16,9 +16,9 @@ In this section, you will learn how to configure the `client-credentials` servic
 
 ## Create the client collection
 
-This service uses a [crud-service](/runtime_suite/crud-service/overview_and_usage) collection to handle clients.
+This service uses a [crud-service](runtime_suite/crud-service/overview_and_usage) collection to handle clients.
 
-[Create a CRUD collection](/development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">these fields</a>, and import them into the Console (find out how to import fields [here](/development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
+[Create a CRUD collection](development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">these fields</a>, and import them into the Console (find out how to import fields [here](development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
 
 :::info
 We suggest that you create a unique index for the `clientId` field (which must not be duplicated).
