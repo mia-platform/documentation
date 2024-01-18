@@ -34,7 +34,7 @@ Pre and Post Hooks are reusable and convenient tools that can be used with the c
 
 Moreover, to standardize responses, conversion mapping and ACL can be used as standard architectures.
 
-If you want to understand how to set them on the Console, visit the [create decorators section](../../development_suite/api-console/api-design/decorators), while for suggestions about their performance, check the [performance overview section](./30_performance_overview.md#pre-and-post-hooks).
+If you want to understand how to set them on the Console, visit the [create decorators section](/development_suite/api-console/api-design/decorators), while for suggestions about their performance, check the [performance overview section](./30_performance_overview.md#pre-and-post-hooks).
 
 ### Service logging
 
