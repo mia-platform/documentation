@@ -117,7 +117,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - kafkaProjectionChanges configMap does not support `__lookup__` strategy type anymore since `pr-updates` events for `PATCH` operations are supported also by the Single View Creator
 - consequently, the service won't emit `sv-trigger` messages of type `patch`, in fact the property `type` has been removed from `sv-trigger` messages altogether 
-- kafka configuration is not passed through environment variables but through its own config map [`Input Output Config`](../../fast_data/configuration/single_view_trigger_generator#input-output-config)
+- kafka configuration is not passed through environment variables but through its own config map [`Input Output Config`](/fast_data/configuration/single_view_trigger_generator#input-output-config)
 - `TRIGGER_TOPIC` environment variable has been generalized and renamed to `EVENT_STORE_TARGET` to have meaning also with mongo collections 
 
 ## [2.0.1] 2023-04-14
