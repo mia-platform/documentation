@@ -12,24 +12,24 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Payment Integration Hub application builds a single interface to connect multiple payment gateways with just few clicks and allows you to manage quickly and easily **payments** and **refunds**, guarantee transaction **consistency** and possible remediation in a **secure** and **compliant** way, in fact it does not persist any data related to the payment methods.
 
-It is also available a white label front-end with **adaptive checkout** and a ready to use [backoffice](../../microfrontend-composer/overview.md) to perform **actions** on the transactions and customizable **dashboards** for monitoring all payments KPI. 
+It is also available a white label front-end with **adaptive checkout** and a ready to use [backoffice](/microfrontend-composer/overview.md) to perform **actions** on the transactions and customizable **dashboards** for monitoring all payments KPI. 
 
 ## Application Architecture
 
 ### Microservices
 
 The Payment Integration Hub is composed by:
-1. [Payment Gateway Manager](../../runtime_suite/payment-gateway-manager/overview) exposes an unique interface for all the payment methods enabled by different providers and implements all the payment related functionalities.
+1. [Payment Gateway Manager](/runtime_suite/payment-gateway-manager/overview) exposes an unique interface for all the payment methods enabled by different providers and implements all the payment related functionalities.
 2. **Subscription Handler** manages subscriptions and the creation of new payments.
-3. The **Payment saga** is used to orchestrate the above services; it is implemented with the [Flow Manager Service](../../runtime_suite/flow-manager-service/overview) and it is fully customizable.
-4. The **Subscription saga** is used to define the subscription life-cycle; it is implemented with the [Flow Manager Service](../../runtime_suite/flow-manager-service/overview) and it is fully customizable.
+3. The **Payment saga** is used to orchestrate the above services; it is implemented with the [Flow Manager Service](/runtime_suite/flow-manager-service/overview) and it is fully customizable.
+4. The **Subscription saga** is used to define the subscription life-cycle; it is implemented with the [Flow Manager Service](/runtime_suite/flow-manager-service/overview) and it is fully customizable.
 5. A set of microservices that implement some functionality to support the payment process:
-    - the [Invoice Service](../../runtime_suite/invoice-service/overview) generates an invoice of a payment in pdf format;
-    - the [Messaging Service](../../runtime_suite/messaging-service/overview) and [Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage) used to notify the user about the outcome of payment;
-    - the [Adaptive Approval Service](../../runtime_suite/adaptive-approval-service/overview) used to provide the adaptive checkout feature;
+    - the [Invoice Service](/runtime_suite/invoice-service/overview) generates an invoice of a payment in pdf format;
+    - the [Messaging Service](/runtime_suite/messaging-service/overview) and [Mail Notification Service](/runtime_suite/ses-mail-notification-service/usage) used to notify the user about the outcome of payment;
+    - the [Adaptive Approval Service](/runtime_suite/adaptive-approval-service/overview) used to provide the adaptive checkout feature;
     - the **Frullino Service** handles pending payments by periodically checking their status of through the provider and updates the payment state accordingly;
     - the **Payment Frontend** provides a UI to accompany the end user to complete the payment with the chosen method with the related **back end for front end**;
-    - the [Backoffice](../../microfrontend-composer/overview.md) allows to perform actions on payments.
+    - the [Backoffice](/microfrontend-composer/overview.md) allows to perform actions on payments.
 
 Other platform plugins are included in order to enable some side functionalities.
 
@@ -54,7 +54,7 @@ More details about the schema of the collection can be found in the dedicated [s
 
 #### Invoice
 An *invoices* collection will be included in the project and by default is used as database reference to retrieve and store the invoices generated.
-The following schema is used in the collection, designed to be compatible with [files-service](../../runtime_suite/files-service/configuration):
+The following schema is used in the collection, designed to be compatible with [files-service](/runtime_suite/files-service/configuration):
 - **name**: original file name
 - **file**: unique name of the file that should be used to retrieve it
 - **size**:  size in bytes of the invoice
@@ -62,15 +62,15 @@ The following schema is used in the collection, designed to be compatible with [
 - **sagaId**: the transaction saga id related to the invoice
 
 #### Rule
-A *rules* collection will be included in the project and by default is used as database reference to retrieve and store the Adaptive Checkout rules. The schema follows the one described by the [Adaptive Approval Service](../../runtime_suite/adaptive-approval-service/how_to_use).
+A *rules* collection will be included in the project and by default is used as database reference to retrieve and store the Adaptive Checkout rules. The schema follows the one described by the [Adaptive Approval Service](/runtime_suite/adaptive-approval-service/how_to_use).
 
 #### Users
 A *users* collection will be included in the project and by default is used as database reference to retrieve and store the user basic information.
-The collection can have any schema, as long as the [messaging-service](../../runtime_suite/messaging-service/configuration#service-configuration) is configured properly.
+The collection can have any schema, as long as the [messaging-service](/runtime_suite/messaging-service/configuration#service-configuration) is configured properly.
 
 #### Notification Templates
 A *Notification Template* collection will be included in the project and by default is used as database reference to retrieve and store the templates used to notify the user about the payment status.
-The schema follows the one described by the [messaging-service](../../runtime_suite/messaging-service/configuration#templates-crud).
+The schema follows the one described by the [messaging-service](/runtime_suite/messaging-service/configuration#templates-crud).
 
 #### Logo
 A *logo* collection will be included in the project and by default is used as database reference to retrieve the payment providers' logos which are displayed in the Backoffice.

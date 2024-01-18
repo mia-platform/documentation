@@ -19,7 +19,7 @@ In order to complete the configuration of the `Payment Gateway Manager` you have
 2. add the **required environment variables** depending on the chosen payment provider
 3. on `Public Variables` section set the **PROJECT_HOST** variable as host of the current project
 
-For further details on refer to the service's [configuration documentation](../../runtime_suite/payment-gateway-manager/configuration).
+For further details on refer to the service's [configuration documentation](/runtime_suite/payment-gateway-manager/configuration).
 
 :::warning
 Put a valid URL in the *PAYMENT_CALLBACK_URL* environment variable.
@@ -132,14 +132,14 @@ The following environment variables are customizable:
 ## Others
 
 For further configuration of the microservices you can refer to the dedicated documentation:
-- [Invoice-Service](../../runtime_suite/invoice-service/overview)
-- [Flow-Manager-Service](../../runtime_suite/flow-manager-service/overview)
-- [Files-Service](../../runtime_suite/files-service/configuration)
-- [Messaging Service](../../runtime_suite/messaging-service/overview): use version 1.5.0 or above
-- [SMTP Mail Notification Service](../../runtime_suite/ses-mail-notification-service/usage)
-- [Adaptive Approval Service](../../runtime_suite/adaptive-approval-service/configuration)
-- [Data-Visualization](../../microfrontend-composer/use-cases/data-visualization.md)
-- [Analytics](../../runtime_suite/mongodb-reader/configuration)
+- [Invoice-Service](/runtime_suite/invoice-service/overview)
+- [Flow-Manager-Service](/runtime_suite/flow-manager-service/overview)
+- [Files-Service](/runtime_suite/files-service/configuration)
+- [Messaging Service](/runtime_suite/messaging-service/overview): use version 1.5.0 or above
+- [SMTP Mail Notification Service](/runtime_suite/ses-mail-notification-service/usage)
+- [Adaptive Approval Service](/runtime_suite/adaptive-approval-service/configuration)
+- [Data-Visualization](/microfrontend-composer/use-cases/data-visualization.md)
+- [Analytics](/runtime_suite/mongodb-reader/configuration)
 
 ## MongoDB Views
 

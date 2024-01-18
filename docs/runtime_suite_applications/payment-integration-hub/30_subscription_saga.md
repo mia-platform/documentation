@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The Payment Integration Hub application includes a [Flow Manager Service](../../runtime_suite/flow-manager-service/overview) in order to manage the **subscription** life-cycle. 
+The Payment Integration Hub application includes a [Flow Manager Service](/runtime_suite/flow-manager-service/overview) in order to manage the **subscription** life-cycle. 
 
 Leveraging the flexibility of the Flow Manager the application provides a ready to use saga with all the states and commands needed in order to successfully manage a subscription. This saga can be modified as desired to meet specific requirements. 
 
