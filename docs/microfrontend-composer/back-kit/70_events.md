@@ -1198,7 +1198,7 @@ requests the upload of a file and carries its data.
 
 ### Uploaded File
 
-returns file upload metadata, typically when storing on an external service like [files-service](../../runtime_suite/files-service/configuration)
+returns file upload metadata, typically when storing on an external service like [files-service](/runtime_suite/files-service/configuration)
 
 
 - Label: `uploaded-file`
