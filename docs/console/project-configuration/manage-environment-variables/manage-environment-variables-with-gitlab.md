@@ -35,7 +35,7 @@ When there are both a global variable and a specific one for an environment, the
 E.g.  
 You have three environments: `TEST`, `PREPROD` and `PROD`.  
 You define these two variables: `MY_VAR = foo` and `PROD_MY_VAR = bar`  
-This is what the envs will receive:  
+This is what the environments will receive:  
 - TEST: `foo`
 - PREPROD: `foo`
 - PROD: `bar`
