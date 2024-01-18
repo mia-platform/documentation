@@ -21,8 +21,8 @@ The main functionalities delivered are the following:
 
 ## How it works
 
-With the elements available in the [marketplace](/marketplace/overview_marketplace) it is possible to define a set of different processes, each of them with their custom steps
-1. Leveraging the flexibility of the [flow manager service](/runtime_suite/flow-manager-service/overview) you can define:
+With the elements available in the [marketplace](marketplace/overview_marketplace) it is possible to define a set of different processes, each of them with their custom steps
+1. Leveraging the flexibility of the [flow manager service](runtime_suite/flow-manager-service/overview) you can define:
     - the `main flow` contains the common steps between all the scoring processes:
         - there is only one `main flow` inside the application
         - the extracted data are available in a standard format
