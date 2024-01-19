@@ -426,7 +426,7 @@ At the moment there's no endpoint exposed by the `client-credentials` service to
 Such an endpoint would be a simple proxy to the `PATCH /clients` endpoint of the `crud-service` that stores clients information in the first place.
 
 For this reason, in order to update client settings, it is recommended to use the `PATCH /clients` endpoint exposed by the `crud-service` that must be deployed together with the `client-credentials` service.
-The `crud-service` documentation is available [here](runtime_suite/crud-service/overview_and_usage).
+The `crud-service` documentation is available [here](../crud-service/overview_and_usage).
 
 ## Authentication methods
 
