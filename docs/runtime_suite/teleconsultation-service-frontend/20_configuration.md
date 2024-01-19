@@ -48,4 +48,4 @@ Mount your config map in the right place in order to override the default one, e
 
 
 [mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
-[teleconsultation-service-be]: runtime_suite/teleconsultation-service-backend/overview
+[teleconsultation-service-be]: ../teleconsultation-service-backend/overview

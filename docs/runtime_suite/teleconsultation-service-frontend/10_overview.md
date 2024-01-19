@@ -25,4 +25,4 @@ The frontend service exposes the following routes:
 
 [bandyer]: https://www.kaleyra.com/
 [bandyer-rest-api]: https://docs.bandyer.com/Bandyer-RESTAPI/
-[teleconsultation-service-be]: runtime_suite/teleconsultation-service-backend/overview
+[teleconsultation-service-be]: ../teleconsultation-service-backend/overview
