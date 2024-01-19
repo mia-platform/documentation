@@ -52,4 +52,4 @@ service.addPostDecorator('/notify', function notifyHandler(request) {
 ) 
 ```
 
-For further detail about logs can you see the [guidelines for logs](development_suite/monitoring/resources/pods#pod-logs).
+For further detail about logs can you see the [guidelines for logs](../../development_suite/monitoring/resources/pods#pod-logs).
