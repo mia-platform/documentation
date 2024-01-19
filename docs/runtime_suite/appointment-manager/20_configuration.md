@@ -727,11 +727,11 @@ Since the reminder service in turn requires the messaging service to send remind
 :::
 
 
-[crud-service-doc]: runtime_suite/crud-service/overview_and_usage "CRUD Service official documentation"
-[messaging-service-doc]: runtime_suite/messaging-service/overview "Messaging Service official documentation"
-[notification-manager-doc]: runtime_suite/messaging-service/overview "Notification Manager"
-[timer-service-doc]: runtime_suite/timer-service/overview "Timer Service official documentation"
-[teleconsultation-service-doc]: runtime_suite/teleconsultation-service-backend/overview "Teleconsultation Service official documentation"
+[crud-service-doc]: ../crud-service/overview_and_usage "CRUD Service official documentation"
+[messaging-service-doc]: ../messaging-service/overview "Messaging Service official documentation"
+[notification-manager-doc]: ../messaging-service/overview "Notification Manager"
+[timer-service-doc]: ../timer-service/overview "Timer Service official documentation"
+[teleconsultation-service-doc]: ../teleconsultation-service-backend/overview "Teleconsultation Service official documentation"
 [fhir-participation-status]: https://www.hl7.org/fhir/valueset-participationstatus.html
 
 [overview]: ./10_overview.md "Overview page"

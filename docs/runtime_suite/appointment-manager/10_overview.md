@@ -692,11 +692,11 @@ The test suite covers the following operations:
 - cancel multiple appointments (`POST /appointments/state`);
 
 
-[crud-service-doc]: runtime_suite/crud-service/overview_and_usage "CRUD Service"
-[messaging-service-doc]: runtime_suite/messaging-service/overview "Messaging Service"
-[notification-manager-doc]: runtime_suite/messaging-service/overview "Notification Manager"
-[timer-service-doc]: runtime_suite/timer-service/overview "Timer Service"
-[teleconsultation-service-be-doc]: runtime_suite/teleconsultation-service-backend/overview "Teleconsultation Service BE"
+[crud-service-doc]: ../crud-service/overview_and_usage "CRUD Service"
+[messaging-service-doc]: ../messaging-service/overview "Messaging Service"
+[notification-manager-doc]: ../messaging-service/overview "Notification Manager"
+[timer-service-doc]: ../timer-service/overview "Timer Service"
+[teleconsultation-service-be-doc]: ../teleconsultation-service-backend/overview "Teleconsultation Service BE"
 
 [overview-exceptions]: #exceptions "Exceptions | Overview"
 [nm-messages]: #notification-manager

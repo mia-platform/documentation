@@ -1275,10 +1275,10 @@ If one ore more slots are successfully found, you will receive a response with a
 
 [iana-time-zones]: https://www.iana.org/time-zones "IANA Time Zones"
 [iso-8601]: https://en.wikipedia.org/wiki/ISO_8601 "ISO 8601 - Wikipedia"
-[messaging-service-doc]: runtime_suite/messaging-service/overview "Messaging Service official documentation"
-[notification-manager-doc]: runtime_suite/messaging-service/overview "Notification Manager"
-[teleconsultation-participants]: runtime_suite/teleconsultation-service-backend/usage#participants-required "Required participants | Usage | Teleconsultation Service Backend"
-[timer-service-doc]: runtime_suite/timer-service/overview "Timer Service official documentation"
+[messaging-service-doc]: ../messaging-service/overview "Messaging Service official documentation"
+[notification-manager-doc]: ../messaging-service/overview "Notification Manager"
+[teleconsultation-participants]: ../teleconsultation-service-backend/usage#participants-required "Required participants | Usage | Teleconsultation Service Backend"
+[timer-service-doc]: ../timer-service/overview "Timer Service official documentation"
 
 [sending-messages]: ./10_overview.md#sending-messages "Sending messages | Overview"
 [setting-reminders]: ./10_overview.md#setting-reminders "Setting reminders | Overview"
