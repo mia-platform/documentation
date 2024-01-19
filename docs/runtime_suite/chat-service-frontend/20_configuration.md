@@ -19,7 +19,7 @@ In order to configure the Form Service with the Console you need to deploy two s
 Configure the **Chat Service Backend** following [this guide](https://git.tools.mia-platform.eu/mia-care/platform/plugins/chat-service-backend/-/blob/master/docs/20_configuration.md) before using the **Chat Service Frontend**.
 
 ## Integration
-Once configured the endpoints of the Form Service, you can use it as a micro-lc plugin following this [guide](https://microlc.io/documentation/docs/micro-lc/plugin_configuration) or as a CMS custom frontend following this [guide](microfrontend-composer/previous-tools/cms/custom-frontends-integration-CMS.md).
+Once configured the endpoints of the Form Service, you can use it as a micro-lc plugin following this [guide](https://microlc.io/documentation/docs/micro-lc/plugin_configuration) or as a CMS custom frontend following this [guide](../../microfrontend-composer/previous-tools/cms/custom-frontends-integration-CMS.md).
 
 ### Integration with micro-lc
 
