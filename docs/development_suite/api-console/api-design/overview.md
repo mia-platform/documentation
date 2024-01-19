@@ -134,7 +134,9 @@ Once the respective desired changes have been made, using the `Save Configuratio
   </div>
 </div>
 
-In this modal, you can specify the title of your commit along with additional informations. It's also possible to create a new branch along with the commit, which will contain the current configuration.  
+In this modal, you can specify the title of your commit along with a short description. 
+
+It's also possible to create a new branch along with the commit, which will contain the current configuration.  
 
 :::tip
 Additional information about the configuration may appear on the modal, highlightning potential warnings about your configuration.
