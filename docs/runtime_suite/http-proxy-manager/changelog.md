@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### BREAKING CHANGES
 
-- remove trailing slash to handle requests without path parameters. Using the following configuration and calling the path `/docs` the proxy-manager will call `https://docs.mia-platform.eu/docs` and no more `../`: 
+- remove trailing slash to handle requests without path parameters. Using the following configuration and calling the path `/docs` the proxy-manager will call `https://docs.mia-platform.eu/docs` and no more `../docs/`: 
 ```javascript
 {
   "targetBaseUrl": "https://docs.mia-platform.eu/docs",
@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### BREAKING CHANGES
 
 - `SERVICE_PREFIX` must match the following regex `^/[a-zA-Z0-9_-]+$`
-- remove entire `basePath` from request path and not only the first segment. Using the following configuration and calling the path `/mia/docs/fast-data` the proxy-manager will call `https://docs.mia-platform.eu/fast-data` and no more `../fast-data`:
+- remove entire `basePath` from request path and not only the first segment. Using the following configuration and calling the path `/mia/docs/fast-data` the proxy-manager will call `https://docs.mia-platform.eu/fast-data` and no more `../docs/fast-data`:
 ```javascript
 {
   "targetBaseUrl": "https://docs.mia-platform.eu/",
