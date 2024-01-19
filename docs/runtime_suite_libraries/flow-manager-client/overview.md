@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-This library simplifies the interaction between a generic microservice and the [Flow Manager](runtime_suite/flow-manager-service/overview) service.
+This library simplifies the interaction between a generic microservice and the [Flow Manager](../../runtime_suite/flow-manager-service/overview) service.
 
 ## Configuration
 
@@ -164,7 +164,7 @@ const client = new FMClientBuilder(pinoLogger, kafkaConfig)
 // expose metrics afterwards
 ```
 
-**Note:** users of [`custom-plugin-lib`](runtime_suite_libraries/custom-plugin-lib/apidoc)
+**Note:** users of [`custom-plugin-lib`](../custom-plugin-lib/apidoc)
 can directly expose the `getMetrics` function and find these metrics decorated
 in the service `customMetrics` object.
 
