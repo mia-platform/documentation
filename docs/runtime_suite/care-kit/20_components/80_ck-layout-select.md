@@ -14,7 +14,7 @@ The `ck-layout-select` web component is used to switch between layouts.
 
 ![ck-layout-select](../img/ck-layout-select.png)
 ## Usage
-The `ck-layout-select` component accepts in its layout property the list of layouts that will be shown in the select options. A layouts is a object with two properties: `key` and `label`. The `key` property is a string and it must containt the key that identifies the layout. The `label` property is of type [LocalizedText](../microfrontend-composer/back-kit/core_concepts#localization-and-i18n) and contatins the label that is used to display the layout in the select.
+The `ck-layout-select` component accepts in its layout property the list of layouts that will be shown in the select options. A layouts is a object with two properties: `key` and `label`. The `key` property is a string and it must containt the key that identifies the layout. The `label` property is of type [LocalizedText](../../../microfrontend-composer/back-kit/core_concepts#localization-and-i18n) and contatins the label that is used to display the layout in the select.
 
 The select of an options emits a `change/layout` event containing the `key` of the selected layout.
 
@@ -77,7 +77,7 @@ Layout = {
 | property | type | description |
 |----------|------|-------------|
 | `key` | string | The identifier of the string. |
-| `label` | [LocalizedText](../microfrontend-composer/back-kit/core_concepts#localization-and-i18n) | The label displayed in the select|
+| `label` | [LocalizedText](../../../microfrontend-composer/back-kit/core_concepts#localization-and-i18n) | The label displayed in the select|
 
 
 **Example**

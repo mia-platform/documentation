@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The `ck-export-form` web component is able to export in CSV format the data of the forms created through the [Form Service Frontend](../runtime_suite/form-service-frontend/overview) and [Form Service Backend](../runtime_suite/form-service-backend/overview).
+The `ck-export-form` web component is able to export in CSV format the data of the forms created through the [Form Service Frontend](../../form-service-frontend/overview) and [Form Service Backend](../../form-service-backend/overview).
 
 ## Usage
 
