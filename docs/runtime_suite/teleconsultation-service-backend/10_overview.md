@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](runtime_suite/teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
+The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](../teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
 
 The teleconsultation service uses the [SaaS Kaleyra Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.). It provides also supports image background management and language management (only `it` and `en` are supported at the moment). 
 
