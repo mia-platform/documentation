@@ -15,7 +15,7 @@ The configuration of the application is pretty straight forward. You just need t
 The available resources will be:
 
 - [`micro-lc`](https://www.micro-lc.io) javascript bundle at `/micro-lc/micro-lc.production.js` (and relative assets)
-- [`back-kit`](microfrontend-composer/back-kit/overview) javascript bundles under `/back-kit`
+- [`back-kit`](../../microfrontend-composer/back-kit/overview) javascript bundles under `/back-kit`
 - the frontend `index.html` entrypoint at `/mfe-application`
 - configurations at `/micro-lc-configurations`
 
@@ -32,7 +32,7 @@ Four config maps are mounted on the config server with just enough to spawn a fu
 - `micro-lc-server-configuration` with the configuration file of the server itself, and
 - `micro-lc-assets` with any other static file you wish to serve.
 
-Apart from `micro-lc-assets`, the config maps are marked as readonly since they are meant to be managed through the [Microfrontend Composer](microfrontend-composer/composer/structure) Console section.
+Apart from `micro-lc-assets`, the config maps are marked as readonly since they are meant to be managed through the [Microfrontend Composer](../../microfrontend-composer/composer/structure) Console section.
 
 :::caution
 Moreover `micro-ls-static-files` must preserve any local file already mounted.
