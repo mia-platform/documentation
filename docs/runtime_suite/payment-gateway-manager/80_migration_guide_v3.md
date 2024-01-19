@@ -27,7 +27,7 @@ In v3 APIs have been standardized cross-provider, thus you will always find:
 - `/v3/.../subscription/update/{subscriptionToken}`
 - `/v3/.../subscription/expire/{subscriptionToken}`
 
-These APIs share common body structures and query parameters as described [here](runtime_suite/payment-gateway-manager/how_it_works).
+These APIs share common body structures and query parameters as described [here](how_it_works).
 In case of provider-specific data, it can be put in the `providerData` body field. 
 Each provider has a dedicated documentation page where you can read more about it.
 
