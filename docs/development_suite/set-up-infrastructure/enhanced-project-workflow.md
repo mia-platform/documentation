@@ -23,9 +23,9 @@ The most relevant change in the Console behavior is that the Project logical sta
 
 This change also means that the Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**, while still maintaining consistency with the established workflows; to emphasize this, the following features have been renamed:
 - `branches` and `tags` become **`revisions`** and **`versions`**
-- the `commit history` becomes **`version history`**
+- the `commit history` becomes **`saving history`**
 
-To keep track of the Project evolution, user can create `versions` (similar to Git tags) that act as fixed snapshots of the configuration in a particular moment.
+To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its [saving history](#saving-history), which contains past snapshots of the Project configuration.
 
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
@@ -38,6 +38,19 @@ Versions can only be deleted by Project Administrators.
 :::
 
 ![Versions management page](img/versions-overview.png)
+
+### Saving history
+
+<!-- TODO: screenshot -->
+
+The saving history contains a list of snapshots of the Project configuration,created each time it has been saved, on a certain revision or version.
+
+It provides information on the date, author and message associated to each snapshot, together with the possibility to visually compare changes introduced in a certain snapshot with the previous one(s).
+
+There are two possible ways of comparing snapshots: 
+<!-- TODO: Precise names TBD -->
+- **Single change**: the user can compare changes between two adjacent snapshots in the history
+- **Multiple change**: the user can select two snapshots to compare, viewing the totality of changes applied to the configuration in that time range
 
 ### New deployment workflow
 
