@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-If you want to use the [Form assignments](runtime_suite/form-service-frontend/form_assignments) feature of the **Form Service Frontend**, version `1.2.0` (or above) of the **Form Service Backend** is required.
+If you want to use the [Form assignments](../form-service-frontend/form_assignments) feature of the **Form Service Frontend**, version `1.2.0` (or above) of the **Form Service Backend** is required.
 
 ## Form Service Backend Configuration
 
@@ -46,11 +46,11 @@ The properties of the `formAssignmentsCrud` object are the following:
 - **manualAssignmentsPropName**
   - *type*: string;
   - *required*: `true`;
-  - *description*: the name of the property that stores user IDs array. The form defined in the `formIdPropName` is assigned to the users contained in this array. These users will be able to submit data with the `/visualizer/fill-assignment/{assignmentId}` route of the [Form Service Frontend](runtime_suite/form-service-frontend/overview).
+  - *description*: the name of the property that stores user IDs array. The form defined in the `formIdPropName` is assigned to the users contained in this array. These users will be able to submit data with the `/visualizer/fill-assignment/{assignmentId}` route of the [Form Service Frontend](../form-service-frontend/overview).
 
 :::info
 
-The Mia-Platform [Microfrontend Composer](microfrontend-composer/overview) can be used to update this array and assign a form template to specific users.
+The Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview) can be used to update this array and assign a form template to specific users.
 
 :::
 
@@ -61,7 +61,7 @@ The Mia-Platform [Microfrontend Composer](microfrontend-composer/overview) can b
 
 :::info
 
-This array is designed to store IDs computed from another assignment property. For instance, it can be used to assign a questionnaire to users of a specific cluster (such as users in the same company or department). You can use a [PRE decorator](development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) to manipulate a `POST` or a `PATCH` of an assignment and update the `automaticAssignments` array accordingly.
+This array is designed to store IDs computed from another assignment property. For instance, it can be used to assign a questionnaire to users of a specific cluster (such as users in the same company or department). You can use a [PRE decorator](../../development_suite/api-console/api-design/plugin_baas_4#pre-and-post-decorators) to manipulate a `POST` or a `PATCH` of an assignment and update the `automaticAssignments` array accordingly.
 
 :::
 
@@ -102,11 +102,11 @@ Here an example:
 
 :::caution
 
-The Form Service doesn't provide any authentication or authorization system nor user management systems. Further information can be found [here](console/project-configuration/authorization-flow).
+The Form Service doesn't provide any authentication or authorization system nor user management systems. Further information can be found [here](../../console/project-configuration/authorization-flow).
 
 :::
 
-To see how user groups are rendered in the Form Builder UI check the [Form Service Frontend assignments](runtime_suite/form-service-frontend/form_assignments) documentation.
+To see how user groups are rendered in the Form Builder UI check the [Form Service Frontend assignments](../form-service-frontend/form_assignments) documentation.
 
 ## CRUDs update
 
@@ -122,11 +122,11 @@ This CRUD described in this service [configuration](./20_configuration.md/#form_
 
 ### form_assignments
 
-This CRUD enables the assignment of a form template to specific users. We recommend to [create a CRUD](development_suite/api-console/api-design/crud_advanced) named `form_assignments`.
+This CRUD enables the assignment of a form template to specific users. We recommend to [create a CRUD](../../development_suite/api-console/api-design/crud_advanced) named `form_assignments`.
 
 The required properties (specified in the [form assignments CRUD parameters](#form-assignments-crud-parameters) section) of the CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/form-service-backend/form_assignments_crud_fields.json">example json file</a>.
 
-You also need to expose a new endpoint `/form-assignments` following [this guide](development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formAssignmentsCrud* parameter accordingly. The type of this endpoint is `CRUD`.
+You also need to expose a new endpoint `/form-assignments` following [this guide](../../development_suite/api-console/api-design/endpoints). You can use a different name paying attention to change the *formAssignmentsCrud* parameter accordingly. The type of this endpoint is `CRUD`.
 
 ## Form assignments ACL
 
@@ -135,4 +135,4 @@ The **Form Visualizer** endpoints described in the [service overview](./10_overv
 - a user can access a private (`isPrivate` is true) form template only when assigned or has a group contained in the **form_schemas** *enabledUserGroups* array;
 - a user can update form submission only if the form template is editable (`isEditable` is true).
 
-Additional information can be found in the [Form assignments](runtime_suite/form-service-frontend/form_assignments) documentation of the **Form Service Frontend**.
+Additional information can be found in the [Form assignments](../form-service-frontend/form_assignments) documentation of the **Form Service Frontend**.
