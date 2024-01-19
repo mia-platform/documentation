@@ -138,8 +138,8 @@ We advise to leverage the [CRUD Service][crud-service-overview] and the [Files S
 :::
 
 [language-codes]: https://httpwg.org/specs/rfc9110.html#field.accept-language
-[ums-overview-link]: runtime_suite/user-manager-service/overview
-[ums-config-link]: runtime_suite/user-manager-service/configuration
+[ums-overview-link]: ../user-manager-service/overview
+[ums-config-link]: ../user-manager-service/configuration
 [pharma-prima-support-email]: mailto:support@pharmaprime.it
-[crud-service-overview]: runtime_suite/crud-service/overview_and_usage
-[files-service-overview]: runtime_suite/files-service/configuration
+[crud-service-overview]: ../crud-service/overview_and_usage
+[files-service-overview]: ../files-service/configuration
