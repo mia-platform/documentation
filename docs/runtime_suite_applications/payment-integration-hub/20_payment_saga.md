@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The Payment Integration Hub application includes a [Flow Manager Service](runtime_suite/flow-manager-service/overview) in order to manage the **payment** life-cycle. 
+The Payment Integration Hub application includes a [Flow Manager Service](../../runtime_suite/flow-manager-service/overview) in order to manage the **payment** life-cycle. 
 
 Leveraging the flexibility of the Flow Manager the application provides a ready to use saga with all the states and commands needed in order to successfully perform a payment and eventually any refund related to that. This saga can be modified as desired to meet specific requirements. 
 
@@ -60,7 +60,7 @@ The microservices that interact with the payment saga are the following:
 
 A *transactions_saga* collection will be included in the project and by default is used as database reference use to retrieve payments information.
 The application can use any MongoDB collection to retrieve payments information: for further details on how to configure the application refer to the dedicated [section](./50_configuration.md).
-The following schema is used in the collection, designed to be compatible with [payment gateway manager](runtime_suite/payment-gateway-manager/overview):
+The following schema is used in the collection, designed to be compatible with [payment gateway manager](../../runtime_suite/payment-gateway-manager/overview):
 - **sagaId**: the unique saga id of payment flow
 - **isFinal**: boolean to indicate if a state is final or not
 - **metadata**: object with information related to the payment
