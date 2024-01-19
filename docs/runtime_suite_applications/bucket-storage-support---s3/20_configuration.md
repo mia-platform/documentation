@@ -12,8 +12,8 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The configuration steps will let you create the Bucket Storage Support microservices to load and reload data from your bucket:
  
-* [Ingestion Storer](fast_data/bucket_storage_support/configuration/ingestion_storer_configuration)
-* [Ingestion Reloader](fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration)
+* [Ingestion Storer](../../fast_data/bucket_storage_support/configuration/ingestion_storer_configuration)
+* [Ingestion Reloader](../../fast_data/bucket_storage_support/configuration/ingestion_reloader_configuration)
 
 Also, the following microservices are added:
 
@@ -37,5 +37,5 @@ In addition to that, the following resources are created:
 
 After the application has been created, you still need to configure manually both bucket and kafka connections. You can refer to this sections:
 
-* [Bucket Connection Configuration](fast_data/bucket_storage_support/configuration/bucket_connection_configuration)
-* [Kafka Connection Configuration](fast_data/bucket_storage_support/configuration/kafka_connection_configuration)
+* [Bucket Connection Configuration](../../fast_data/bucket_storage_support/configuration/bucket_connection_configuration)
+* [Kafka Connection Configuration](../../fast_data/bucket_storage_support/configuration/kafka_connection_configuration)
