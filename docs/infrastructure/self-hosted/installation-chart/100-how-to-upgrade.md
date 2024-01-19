@@ -15,7 +15,7 @@ In order to upgrade Mia-Platform Console, all you need to do is to update the `m
 :::caution
 When upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v10 to v12 you must first upgrade to the latest v11 version.
 
-To find out how to upgrade your installation to the latest version of v11, visit the [following documentation](../../../11.x/self_hosted/installation-chart/how_to_upgrade).
+To find out how to upgrade your installation to the latest version of v11, visit the [following documentation](11.x/self_hosted/installation-chart/how_to_upgrade).
 :::
 
 ```yaml title="Chart.yaml" {9} showLineNumbers
