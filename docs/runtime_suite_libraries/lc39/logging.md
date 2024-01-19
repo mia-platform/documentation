@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The library generates logs following [Mia-Platform logging guidelines](development_suite/monitoring/resources/pods#pod-logs).
+The library generates logs following [Mia-Platform logging guidelines](../../development_suite/monitoring/resources/pods#pod-logs).
 
 For a json schema example check [test log schema file](https://github.com/mia-platform/lc39/blob/master/tests/log.schema.json)
 
