@@ -65,9 +65,9 @@ Note also that with `/` as micro-lc endpoint, the required endpoint must be `/st
 
 To use the Form Builder and the Form Visualizer in the Headless CMS the `cmsmenu` CRUD entries for the two frontend must have specific link values. Considering the usual example of the `/form-service` endpoint for the Form Service Frontend, the link for the Form Builder must be `/form-service/#/builder` and the link for the Form Visualizer must be `/form-service/#/visualizer/fill-form`.
 
-In addition, the `form_schemas` CRUD and *submit urls* CRUDs must be added as [CMS pages](microfrontend-composer/previous-tools/cms/config_cms#how-to-create-a-page) in order to access the configured form templates and submitted forms data.
+In addition, the `form_schemas` CRUD and *submit urls* CRUDs must be added as [CMS pages](../../microfrontend-composer/previous-tools/cms/config_cms#how-to-create-a-page) in order to access the configured form templates and submitted forms data.
 
-Finally, to edit a form template, visualize the resulting form and access the submitted forms data, [links](microfrontend-composer/previous-tools/cms/conf_cms#navigation-between-collection-with-link) to the previously integrated frontends must me added.
+Finally, to edit a form template, visualize the resulting form and access the submitted forms data, [links](../../microfrontend-composer/previous-tools/cms/conf_cms#navigation-between-collection-with-link) to the previously integrated frontends must me added.
 
 With a Form Builder frontend added with a `cmsmenu` entry named `Form Builder` and a CMS page hooked to the `form_schemas` CRUD, the required links can be added editing the `cmsProperties.json` file in the Advanced design sections of the console adding the following property:
 
