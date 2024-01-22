@@ -14,7 +14,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The following sections explain the details about the endpoints exposed from the **Teleconsultation Service Backend**.
 
-This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](../../runtime_suite/auth0-client/overview_and_usage).
+This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](../../runtime_suite/auth0-client/overview).
 
 In Kaleyra there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
@@ -463,7 +463,7 @@ Available from version 1.4.0
 :::
 
 :::note
-For this endpoint to work, it's necessary for the service to use [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
+For this endpoint to work, it's necessary for the service to use [auth0-client](../../runtime_suite/auth0-client/overview) as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
 :::
 
 Generate an access token and the Kaleyra id for the currently logged user accordingly to the [request authentication headers](../../runtime_suite/authorization-service/usage#headers-set-by-auth).
