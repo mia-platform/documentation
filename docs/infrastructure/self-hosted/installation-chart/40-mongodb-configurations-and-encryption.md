@@ -29,6 +29,8 @@ To enable this feature you need access to a KMS and provide the configurations d
 :::warning
 [Client-Side Field Level Encryption (`CSFLE`)](https://www.mongodb.com/docs/manual/core/csfle/) is only available when using MongoDB Enterprise license, if you have the Community license
 encryption is not enforced, therefore you'll have plain-text fields.
+
+Not enabling CSFLE in the on premise Console installation is considered a bad security practice and it should be avoided.
 :::
 
 
