@@ -1,0 +1,119 @@
+name: Build documentation
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "*"
+  pull_request:
+    branches:
+      - "main"
+jobs:
+  install:
+    name: Install and verify contents
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "yarn"
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+      - name: Install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+      - name: Check lint
+        run: yarn lint
+      - name: Check spell
+        run: yarn spellcheck
+      - name: Check content
+        run: yarn check-content
+      - name: Verify build
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: yarn build
+        if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
+
+  build:
+    needs: install
+    name: Build docker image
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+      - name: Build site
+        env:
+          NODE_ENV: "production"
+          INLINE_RUNTIME_CHUNK: "false"
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: yarn build
+      - name: Configure docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/mia-platform/documentation
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+          labels: |
+            org.opencontainers.image.documentation=https://mia-platform.eu
+            org.opencontainers.image.vendor=Mia-Platform
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Docker Login to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Prepare build cache
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-${{ hashFiles('nginx/permanent.redirects') }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
+            VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
+
+  deploy:
+    name: Deploy documentation preview
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    steps:
+      - uses: eic/trigger-gitlab-ci@v2
+        with:
+          url: https://git.tools.mia-platform.eu
+          project_id: ${{ vars.MIA_PLATFORM_DOCUMENTATION_GITLAB_PROJECT_ID }}
+          token: ${{ secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN }}
+          variables: |
+            ENVIRONMENT_TO_DEPLOY=PROD
+          ref_name: master
