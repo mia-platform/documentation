@@ -142,7 +142,7 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
           "description": "The sameSite field set the SameSite attribute of the clientType Set-Cookie HTTP response header. It allows you to declare if your cookie should be restricted to a first-party or same-site context.
           - \"Lax\": Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (i.e., when following a link).
           - \"Strict\": Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
-          - \"None\": Cookies will be sent in all contexts, i.e. in responses to both first-party and cross-site requests. If SameSite=None is set, the cookie Secure attribute must also be set (or the cookie will be blocked)."
+          - \"None\": Cookies will be sent in all contexts, i.e. in responses to both first-party and cross-site requests."
         },
       },
       "required": [
@@ -160,6 +160,9 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
 
 Clients are indexed by their client type name; please note that the default client is only used when there is no specified client in the request and the default client is configured.
 If a wrong/malicious/misconfigured client is being used in the request then the response will be immediately rejected with Unauthorized (401) status code.
+
+
+The `audience` field, if specified, must match the *Identifier* of the Auth0 [API Settings](https://auth0.com/docs/get-started/apis/api-settings#general-settings) of your Application.
 
 ## Example of configuration
 
@@ -218,7 +221,7 @@ The endpoints that support connections are the following:
 - `GET /authorize`: will select connection based on request, using specified default connection if none is provided;
 - `POST /oauth/token`: in a similar fashion to `/authorize` will use provided connection if supported otherwise it uses the default configured.
 - `GET /users`: will filter connections in original request based on _ManagementClient_ supported connection, if none is provided all supported connections are used by default;
-- `POST /user/:userId`: will use default connection from _ManagementClient_ if no connection is provided, otherwise will use the one provided (if supported).
+- `POST /users`: will use the default connection from _ManagementClient_ if no connection is provided, otherwise will use the one provided (if supported).
 - `GET /users/active`: will return a list of the active users at the time the call is made.
 - 
 ## Supported redis modes
@@ -252,7 +255,7 @@ Now you have to specify how to handle the 401 status. You have to redirect the u
 
 Go to the Design area, Advanced section, and then select `api-gateway`. Put the code below in the `server-extension.conf`.
 
-```
+```nginx
 error_page 401 = @error401;
 
 location @error401 {
@@ -271,7 +274,7 @@ Now you have to handle the routing of the request to the auth0-client and oauth-
 
 `maps-proxyName.before.map`
 
-```
+```nginx
 # Authentication
 ## Redirect to OAuth login site to proceed with login on frontend upstream.
 "~^(secreted|unsecreted)-(0|1)-GET-/authorize" "auth0-client";
@@ -283,7 +286,7 @@ Now you have to handle the routing of the request to the auth0-client and oauth-
 
 Put the following code into `auth.json` file of the authorization-service in order to open the routes declared above: 
 
-```
+```json
 {
   "/web-login": {
     "GET": {
@@ -346,7 +349,7 @@ Put the following code into `auth.json` file of the authorization-service in ord
 
 Finally, you need to configure auth0-client to be able to use it correctly:
 
-```
+```json
 {
     "clients": {
         "frontend": {
@@ -359,8 +362,7 @@ Finally, you need to configure auth0-client to be able to use it correctly:
                 "profile",
                 "email",
                 "website"
-            ],
-            "audience": ""
+            ]
         }
     },
     "defaultClient": "frontend",
