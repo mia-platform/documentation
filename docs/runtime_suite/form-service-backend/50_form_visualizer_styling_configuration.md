@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The [Form visualizer styling](../form-service-frontend/form_assignments) feature of the **Form Service Frontend** let you add custom *stylesheets* and *fonts* to form templates. It requires version `1.3.0` (or above) of the **Form Service Backend** because `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes have been updated to return the graphical assets associated to a form template alongside to its configuration.
+The [Form visualizer styling](../form-service-frontend/form_visualizer_styling) feature of the **Form Service Frontend** let you add custom *stylesheets* and *fonts* to form templates. It requires version `1.3.0` (or above) of the **Form Service Backend** because `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes have been updated to return the graphical assets associated to a form template alongside to its configuration.
 
 ## Form Service Backend Configuration
 
@@ -95,6 +95,13 @@ The form service frontend supports only:
   - *type*: string;
   - *required*: `true` with `resourceType` equal to `font`, `false` otherwise;
   - *description*: the [@font-face src format](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) of the uploaded font. The supported values are: `truetype`, `openformat`, `woff` and `woff2`.
+
+
+:::caution
+
+We recommend to add fonts directly in an uploaded `.css` file (insted of assigning them to the form as separated files) in order to avoid possible problems when loading the form.
+
+:::
 
 :::warning
 
