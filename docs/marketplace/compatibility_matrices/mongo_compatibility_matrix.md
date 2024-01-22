@@ -84,7 +84,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-        <td rowspan="2"><a href="../../runtime_suite/auth0-client/overview_and_usage">Auth0 Client</a></td>
+        <td rowspan="2"><a href="/runtime_suite/auth0-client/overview_and_usage">Auth0 Client</a></td>
         <td>v3.0.0</td>
         <td>✅</td>
         <td>✅</td>
