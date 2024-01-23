@@ -1,4 +1,4 @@
-name: Build documentation for dev environment
+name: Build documentation for PRODUCTION environment
 on:
   push:
     branches:
@@ -10,9 +10,6 @@ jobs:
     name: Install and verify contents
     runs-on: ubuntu-latest
     steps:
-      - name: Test echo
-        run: |
-          echo "Trigger: ${{ github.event_name }}"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Node
@@ -35,7 +32,7 @@ jobs:
         run: yarn spellcheck
       - name: Check content
         run: yarn check-content
-
+        
   build:
     needs: install
     name: Build docker image
@@ -98,7 +95,7 @@ jobs:
             VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
 
   deploy:
-    name: Deploy documentation preview
+    name: Deploy documentation
     needs: build
     runs-on: ubuntu-latest
     steps:
