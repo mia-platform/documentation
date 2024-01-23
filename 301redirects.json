@@ -1636,5 +1636,9 @@
   "/docs/getting-started/guidelines/guidelines-for-logs": {
     "destination": "/docs/development_suite/api-console/api-design/guidelines-for-logs",
     "addedOn": "2024-01-11"
+  },
+  "/docs/runtime_suite/auth0-client/overview_and_usage": {
+    "destination": "/docs/runtime_suite/auth0-client/overview",
+    "addedOn": "2024-01-22"
   }
 }
