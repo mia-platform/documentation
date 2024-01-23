@@ -1,4 +1,4 @@
-name: Build documentation for dev environment
+name: Build documentation for DEV environment
 on:
   push:
     branches:
