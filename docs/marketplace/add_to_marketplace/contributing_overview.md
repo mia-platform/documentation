@@ -449,15 +449,16 @@ Here are listed some useful advice to strengthen your items:
 
 From the CMS of the Console, users can associate items with a **release stage** label that will help users identify the maturity of the item.
 
-If you just started developing your item you can select the **coming soon** option to inform users about the imminent publication of your item.
-
-Alternatively, you can choose among the available labels of a Marketplace item lifecycle:
+The `releaseStage` field can have the following values
 
 - preview
 - beta
 - stable
+- deprecated
 
-For more information regarding release stages, take a look at the [items lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section.
+The field is not required: if not specified, no label will be shown on the item.
+
+Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section for details about each specific release stage.
 
 ## Marketplace Items Examples
 
