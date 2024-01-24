@@ -460,7 +460,7 @@ The `releaseStage` field can have the following values
 - stable
 - deprecated
 
-The field are not required: if not specified, no label will be shown on the item.
+The fields are not required: if not specified, no label will be shown on the item.
 
 :::info
 
