@@ -20,8 +20,10 @@ The Marketplace components types you can use include:
 
 :::info
 
-Templates and Example source code is open source software, and it is hosted on public Git repositories.
-Visit the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform-marketplace) to browse their source code.
+Mia-Platform supported Templates and Example source code is open source software, hosted on public Git repositories.
+You can visit the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform-marketplace) to browse the source code.
+
+Feel free to contribute by opening a Pull Request!
 
 :::
 
@@ -40,9 +42,9 @@ The results of your search will always appear organized by Category.
 
 ![new-examples](./img/marketplace.png)
 
-## Marketplace components lifecycle
+## Marketplace items lifecycle
 
-Each Marketplace component has a predetermined **development lifecycle**:
+Each Marketplace item has a predetermined **development lifecycle**:
 
 ![lifecycle-stages](./img/component-lifecycle-final.png)
 
@@ -55,3 +57,20 @@ The following are the expected stages along a Marketplace component lifecycle:
 * **Beta**: implementation is complete, these components won't be subject to any undocumented breaking change but may still include bugs (hence they must be used with caution)
 
 * **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.
+
+
+### Deprecated Items
+
+Sometimes, a Marketplace item may become deprecated. This typically occurs when a newer item replaces it with enhanced features, or when a better solution is provided by a new application. 
+
+![deprecated-service](./img/deprecated-service.png)
+
+In such cases, the maintainer may decide not to longer support the older item, meaning it will not receive any future updates.
+
+The item will be marked as **Deprecated**. While you can still use it if necessary, its functionality may be limited or outdated compared to current standards. The suggested alternative will be published in the deprecated item documentation
+
+:::caution
+
+It's important to consider the alternatives to a deprecated item. Using updated and supported items ensures better performance, security, and compatibility.
+
+:::
