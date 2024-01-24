@@ -58,6 +58,8 @@ The following are the expected stages along a Marketplace component lifecycle:
 
 * **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.
 
+* **Deprecated**: items may reach this state when support by maintainers is dropped. For more details consult the following section.
+
 
 ### Deprecated Items
 
