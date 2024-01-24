@@ -445,9 +445,13 @@ Here are listed some useful advice to strengthen your items:
 - **Test**: each service must have well-tested code;
 - **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
 
-## Release Stage of a new item
+## Release Stage of a new item and Coming Soon
 
 From the CMS of the Console, users can associate items with a **release stage** label that will help users identify the maturity of the item.
+
+There are 2 fields that define the release stage of an item: `comingSoon` and `releaseStage`.
+
+The `comingSoon` field is boolean, setting it to true will show the "Coming Soon" label and will prevent users to use the item.
 
 The `releaseStage` field can have the following values
 
@@ -457,6 +461,12 @@ The `releaseStage` field can have the following values
 - deprecated
 
 The field is not required: if not specified, no label will be shown on the item.
+
+:::info
+
+Setting both the `releaseStage` and the `comingSoon` fields is not permitted and would lead to inconsistencies; please set either field or none according to the item lifecycle status.
+
+:::
 
 Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section for details about each specific release stage.
 
