@@ -107,6 +107,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - run: echo "${{secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN}}"
       - uses: eic/trigger-gitlab-ci@v2
         with:
           url: https://git.tools.mia-platform.eu
