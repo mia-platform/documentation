@@ -23,10 +23,21 @@ This is an indicative list. For up to date information about the latest versions
         <th>4.4</th>
         <th>5.0</th>
         <th>6.0</th>
+        <th>7.0</th>
     </tr>
     <tr>
-        <td rowspan="3"><a href="../../runtime_suite/crud-service/overview_and_usage">CRUD Service</a></td>        
+        <td rowspan="4"><a href="../../runtime_suite/crud-service/overview_and_usage">CRUD Service</a></td>        
+        <td>v7.x.x</td>
+        <td>❌</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
         <td>v6.x.x</td>
+        <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -40,12 +51,14 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>❌</td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v3.x.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td>❌</td>
         <td>❌</td>
         <td>❌</td>
     </tr>
@@ -57,6 +70,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td>❌</td>
     </tr>
     <tr>
         <td>v4.x.x</td>
@@ -65,10 +79,41 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>❌</td>
         <td>❌</td>
+        <td>❌</td>
     </tr>
     <tr>
-        <td rowspan="2"><a href="../../runtime_suite/single-view-creator/configuration">Single View Creator</a></td>
-        <td>v3.5.1</td>
+        <td rowspan="1"><a href="../../fast_data/projection_storer">Projection Storer</a></td>
+        <td>v1.x.x</td>
+        <td>❌</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
+        <td rowspan="1"><a href="../../fast_data/single_view_trigger_generator">Single View Trigger Generator</a></td>
+        <td>v3.x.x</td>
+        <td>❌</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
+        <td rowspan="5"><a href="../../runtime_suite/single-view-creator/configuration">Single View Creator</a></td>
+        <td>v6.x.x</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
+        <td>v5.x.x</td>
+        <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -76,10 +121,29 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
+        <td>v4.x.x</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❌</td>
+    </tr>
+    <tr>
+        <td>v3.5.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❌</td>
+        <td>❌</td>
+    </tr>
+    <tr>
         <td>v3.0.0</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td>❌</td>
         <td>❌</td>
         <td>❌</td>
     </tr>
@@ -91,6 +155,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td></td>
     </tr>
     <tr>
         <td>v2.3.1</td>
@@ -99,6 +164,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
+        <td></td>
     </tr>
     <tr>
         <td rowspan="2"><a href="../../runtime_suite/mongodb-reader/configuration">MongoDB Reader</a></td>
@@ -108,6 +174,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td>❌</td>
     </tr>
     <tr>
     <td>v2.0.2</td>
@@ -116,10 +183,12 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>❌</td>
         <td>❌</td>
+        <td>❌</td>
     </tr>
     <tr>
     <td rowspan="2"><a href="../../console/tutorials/configure-marketplace-components/flow-manager">Flow Manager</a></td>
-        <td>v2.3.0</td>
+        <td>v2.6.0</td>
+        <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
@@ -133,6 +202,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>❌</td>
         <td>❌</td>
+        <td>❌</td>
     </tr>
     <tr>
     <td rowspan="2"><a href="../../runtime_suite/mongo2kafka/configuration">Mongo2Kafka</a></td>
@@ -142,6 +212,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td></td>
     </tr>
     <tr>
         <td>v1.1.1</td>
@@ -150,6 +221,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>❌</td>
         <td>❌</td>
+        <td></td>
     </tr>
     <tr>
         <td rowspan="2"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
@@ -159,6 +231,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td></td>
     </tr>
     <tr>
         <td>>= v2.3.x</td>
@@ -167,6 +240,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>❌</td>
         <td>❌</td>
+        <td></td>
     </tr>
     <tr>
         <td><a href="../../runtime_suite/push-notification-manager/configuration">Notification Manager</a></td>
@@ -176,6 +250,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td></td>
     </tr>
     <tr>
         <td rowspan="2"><a href="https://github.com/raffis/mongodb-query-exporter" target="_blank">MongoDB Query Exporter</a></td>
@@ -185,6 +260,7 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
+        <td></td>
     </tr>
     <tr>
         <td>v1.0.0-beta8</td>
@@ -193,5 +269,6 @@ This is an indicative list. For up to date information about the latest versions
         <td>✅</td>
         <td>❌</td>
         <td>❌</td>
+        <td></td>
     </tr>
 </table>
