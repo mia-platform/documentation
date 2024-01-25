@@ -63,7 +63,25 @@ This is an indicative list. For up to date information about the latest versions
         <td>❌</td>
     </tr>
     <tr>
-        <td rowspan="2"><a href="../../fast_data/realtime_updater">Real-Time Updater</a></td>
+        <td rowspan="4"><a href="../../fast_data/realtime_updater">Real-Time Updater</a></td>
+        <td>v7.x.x</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+    </tr>
+    <tr>
+        <td>v6.x.x</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❌</td>
+    </tr>
+    <tr>
         <td>v5.x.x</td>
         <td>✅</td>
         <td>✅</td>
