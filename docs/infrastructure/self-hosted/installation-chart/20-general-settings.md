@@ -114,8 +114,11 @@ mia-console:
 
 |                           Name                           |  Type   |                                                                      Description                                                                      | Default | Optional |
 | :------------------------------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :------: |
-| `configurations.enableClustersAndEnvironmentsManagement` | boolean |                                                     Enables Clusters and Environments management                                                      | `true`  |    ✅     |
-|        `configurations.projectTemplateArchiveUrl`        | string  |                                                               New project template url                                                                |         |    ✅     |
+| `configurations.enableFastData` | boolean | Enables Fast Data configurator | `true`  |    ✅     |
+| `configurations.enableDebugArea` | boolean | Enables debug area in Console | `true`  |    ✅     |
+| `configurations.enableMergeConfiguration` | boolean | Enables Merge Configuration | `true`  |    ✅     |
+| `configurations.enableClustersAndEnvironmentsManagement` | boolean |  Enables Clusters and Environments management | `true`  |    ✅     |
+| `configurations.projectTemplateArchiveUrl` | string | New project template url |         |    ✅     |
 |  `configurations.enableRuntimeServiceClusterSelection`   | boolean | Enable selection from supported runtime providers during cluster setup, if you disable it you will have to manually fill all the required information | `true`  |    ✅     |
 |      `configurations.enableBackofficeConfigurator`       | boolean |                                                            Enable Backoffice Configurator                                                             | `true`  |    ✅     |
 |            `configurations.enableFlowManager`            | boolean |                                                                  Enable Flow Manager                                                                  | `true`  |    ✅     |
