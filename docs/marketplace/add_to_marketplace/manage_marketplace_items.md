@@ -34,12 +34,16 @@ You need to have *Company Owner* or *Project Administrator* role at Company leve
 Imagine you are a software developer, working for the Company "Acme Corporation".
 
 You have developed a new service (for example a NodeJS service) 
-called "My Awesome Service", and you want it to be available in the Marketplace of your Company.
+called "My Awesome Service". The service is a plugin, i.e. users are only required to configure it and deploy it in their project.
+You now want it to be available in the Marketplace of your Company.
 
-First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component). 
+First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component).
 Save the file, for example as `myAwesomeService.json` file.
 
-The file contents will probably look like this:
+The file contents will look like this:
+<details>
+<summary>Click to expand <code>myAwesomeService.json</code></summary>
+
 ```json
 {
   "description": "My Awesome Service allows your project to do amazing stuff!",
@@ -95,6 +99,7 @@ The file contents will probably look like this:
       }
     }
   },
+  "supportedBy": "Acme Corporation Inc.",
   "supportedByImage": {
     "localPath": "./acmeCorporation.png"
   },
@@ -102,39 +107,161 @@ The file contents will probably look like this:
   "type": "plugin"
 }
 ```
+</details>
+
+You also want user to write services in your brand new programming language, `Acme.Js`.
+
+You want to provide a Template, which is a skeleton with a minimal setup: your users are required to write business code from scratch.
+
+To highlight the potentialities of `Acme.Js` and introduce your users to the new programming language, you also decide to provide a working example with minimal business code.
+
+Below you can see examples of the respective configuration files.
+
+<details>
+<summary>Click to expand <code>myAcmeJsTemplate.json</code></summary>
+
+```json
+{
+  "categoryId": "acmejs",
+  "description": "This template allows you to start setting up a service written in Acme.Js",
+  "documentation": {
+    "type": "markdown",
+    "url": "https://raw.githubusercontent.com/acme-corporation/Acme-Js-template/master/README.md"
+  },
+  "image": {
+    "localPath": "./acmeJsTemplate.png"
+  },  
+  "itemId": "acmejs-template",
+  "name": "Acme.Js Template",
+  "releaseStage": "",
+  "resources": {
+    "services": {
+      "acmejs-template": {
+        "archiveUrl": "https://github.com/acme-corporation/Acme-Js-template/archive/master.tar.gz",
+        "containerPorts": [
+          {
+            "from": 80,
+            "name": "http",
+            "protocol": "TCP",
+            "to": 8080
+          }
+        ],
+        "defaultEnvironmentVariables": [
+          {
+            "name": "HTTP_PORT",
+            "value": "8080",
+            "valueType": "plain"
+          }
+        ],
+        "defaultLogParser": "mia-nginx",
+        "description": "This template allows you to start setting up a service written in Acme.Js",
+        "name": "acmejs-template",
+        "type": "template"
+      }
+    }
+  },
+  "supportedBy": "Acme Corporation Inc.",
+  "supportedByImage": {
+    "localPath": "./acmeCorporation.png"
+  },
+  "tenantId": "acme-corporation",
+  "type": "example",
+  "visibility": {
+    "allTenants": false,
+    "public": true
+  }
+}
+```
+</details>
+
+<details>
+<summary>Click to expand <code>myAcmeJsExample.json</code></summary>
+
+```json
+{
+  "categoryId": "acmejs",
+  "description": "A simple Hello World example based on Acme Corporation Acme.Js Template.",
+  "documentation": {
+    "type": "markdown",
+    "url": "https://raw.githubusercontent.com/acme-corporation/Acme-Js-example/master/README.md"
+  },
+  "image": {
+    "localPath": "./acmeJsExample.png"
+  },
+  "itemId": "acme-js-example",
+  "name": "TypeScript Hello World Example",
+  "resources": {
+    "services": {
+      "acme-js-example": {
+        "archiveUrl": "https://github.com/acme-corporation/Acme-Js-example/archive/master.tar.gz",
+        "containerPorts": [
+          {
+            "from": 80,
+            "name": "http",
+            "protocol": "TCP",
+            "to": 3000
+          }
+        ],
+        "name": "acme-js-example",
+        "type": "example"
+      }
+    }
+  },
+  "supportedBy": "Acme Corporation Inc.",
+  "supportedByImage": {
+    "localPath": "./acmeCorporation.png"
+  },
+  "tenantId": "mia-platform",
+  "type": "example",
+  "visibility": {
+    "allTenants": false,
+    "public": true
+  }
+}
+```
+</details>
+
 
 Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exist and that their path is correct.
 
-To create the item on the Marketplace, open up a terminal in directory where the file `myAwesomeService.json` is and simply run this command:
+To create the items on the Marketplace, open up a terminal in directory where the files are places and run this command:
 
 ```sh
-miactl marketplace apply -f myAwesomeService.json
+miactl marketplace apply -f myAwesomeService.json -f myAcmeJsTemplate.json -f myAcmeJsExample.json
 ```
 
 This command will create the Marketplace item and upload the images along with it.
 
 A message will confirm the operation, returning some information as shown here below:
 ```
-1 of 1 items have been successfully applied:
+3 of 3 items have been successfully applied:
 
   ID                        ITEM ID             NAME                 STATUS   
 
-  65368hf0c91d871a87afbcbf  my-awesome-service  My Awesome Service   Inserted  
+  65368hf0c91d871a87afbcbf  my-awesome-service   My Awesome Service   Inserted  
+  65368hf0c91d871a87afvedc  acme-js-template     Acme.Js Template     Inserted  
+  65368hf0c91d871a87afdase  acme-js-example      Acme.Js Example      Inserted  
 ```
 
-After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of the item, use the `get` command: 
+After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of an item, use the `get` command:
 ```sh
 miactl marketplace get 65368hf0c91d871a87afbcbf > myAwesomeService.json
+
+miactl marketplace get 65368hf0c91d871a87afvedc > myAcmeJsTemplate.json
+
+miactl marketplace get 65368hf0c91d871a87afdase > myAcmeJsExample.json
 ```
 
 :::tip
 
 The local file fields won't be updated after the item creation.
-Make sure to always download a new copy afterwards to keep your local copy up to date.
+We recommend to always download a new copy afterwards to keep your local copy up to date.
 
 :::
 
-From now on, the service "My Awesome Service" will be visible as a clickable card inside the Internal Company Marketplace section of the Console.
+From now on, the items you created will be visible as a clickable card inside the Internal Company Marketplace section of the Console.
+
+For example, here is "My Awesome Service"'s card:
 
 ![awesome service](img/awesome_service.png)
 
