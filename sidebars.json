@@ -85,6 +85,10 @@
         {
           "id": "reports/changelogs",
           "type": "doc"
+        },
+        {
+          "id": "reports/soup",
+          "type": "doc"
         }
       ]
     },

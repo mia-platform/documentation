@@ -27,13 +27,13 @@ In the requirement collection phase of the project, each requirement can be repo
 ### Required fields
 * Summary
 * Fix Versions: is fundamental to collect all the requirements referring to a specific version of your software product. 
-* Desciption: plain text to describe the requirement
+* Description: plain text to describe the requirement
 * Components: to indicate the software item related to the requirement. See [Software Item](#software-item) section to find out more details
 * Input (functional/cybersecurity/privacy/infrastructure/design): the classification of requirement in
 
 ### Other fields
 * Labels: adding the *RCM* label to classify the requirement as Risk Control Measure
-* Attachment: can store file, images and others. At the moment, not visibile in P4SaMD dashboard
+* Attachment: can store file, images and others. At the moment, not visible in P4SaMD dashboard
 * Assignee: keeps track of the person who is in charge of the issue at that moment
 * Reporter: the user-account who opens the issue
 * Mock-up status: tracks the progress of the mock-up
@@ -53,7 +53,7 @@ In the requirement collection phase of the project, each requirement can be repo
 | *Test SaMD*            | Requirement SaMD *is tested by Test SaMD* | |
 | *Risk SaMD*            | Requirement SaMD *is affected by Risk* | In case of requirement which is a Risk Control Measure|
 
-A Requirement SaMD can assume those stati: 
+A Requirement SaMD can assume those states: 
 * DRAFT 
 * WAITING FOR APPROVAL
 * IN PROGRESS
@@ -63,7 +63,7 @@ A Requirement SaMD can assume those stati:
 
 ## Risks
 The Risk SaMD issues are meant to collect all the risks of the project, individuated during the risks analysis phase. 
-Initially inserted starting from the inteded use of the Medical Device, then they can be related to the specific Software Item (Component) which the risk refers to. 
+Initially inserted starting from the intended use of the Medical Device, then they can be related to the specific Software Item (Component) which the risk refers to. 
 
 ### Required fields
 * Summary: the title of the risk
@@ -89,7 +89,7 @@ Initially inserted starting from the inteded use of the Medical Device, then the
 ### Other fields
 * Risk Environment:
 * Risk Category
-* Linked Issues: used the *affect Requisement* binding to link the related RCM(s) which mitigate the risk
+* Linked Issues: used the *affect Requirement* binding to link the related RCM(s) which mitigate the risk
 * Assignee: keeps track of the person who is in charge of the issue at that moment
 * Reporter: tracks who opened the issue
 * Labels: arbitrary labels can be set for further risk classification
@@ -101,7 +101,7 @@ Initially inserted starting from the inteded use of the Medical Device, then the
 |-----------------|--------------|--------------|
 | *Requirement SaMD*            | Risk *affects Requirement* |  In case of requirement which is a Risk Control Measure |
 
-A Risk can assume those stati: 
+A Risk can assume those states: 
 * TO DO
 * MITIGATION NEEDED
 * ADDITIONAL MITIGATION NEEDED
@@ -116,8 +116,8 @@ The Test SaMD issues allow to keep track the verification and report the steps t
 
 ### Required fields
 * Summary: reporting the title of the test
-* Description: tracks the steps to be followed to execute the test and the expected results. In version P4SaMD 0.1.0, the desciption has to be plain text. 
-* Fix Versions: is fundamental to collect all the tests referring to a specific version of your software product. The test can refers to different project version, so  it's possibile to attribute more Fix versions in a test. 
+* Description: tracks the steps to be followed to execute the test and the expected results. In version P4SaMD 0.1.0, the description has to be plain text. 
+* Fix Versions: is fundamental to collect all the tests referring to a specific version of your software product. The test can refers to different project version, so  it's possible to attribute more Fix versions in a test. 
 * Components: to indicate the software item related to the test. See [Software Item](#software-item) section to find out more details
 * Test type: indicates the type of test based on IEC 62304 classification and additional labels
 ### Other fields
@@ -134,7 +134,7 @@ The Test SaMD issues allow to keep track the verification and report the steps t
 | *Requirement SaMD*            | Test SaMD *tests Requirement* |   |
 
 
-A Test SaMD can assume those stati, tracking the definition of test: 
+A Test SaMD can assume those states, tracking the definition of test: 
 * TO DO
 * IN PROGRESS
 * CLOSED
@@ -145,11 +145,11 @@ A Test SaMD can assume those stati, tracking the definition of test:
 ## Execution Test 
 The test issues allow to keep track the verification and report the steps to be executed by the tester. 
 To create an Execution test, click on the *automation* button next to the status button and select the *SaMD: Execution test - Creation* automation. At the end of the automation process, the new-created execution test will be linked properly with the reference Test SaMD. If it dows not appear automatically, please refresh the jira page to find it linked.   
-> It is important to check if the Fix Verisons reports the correct version of the product to be tested. The Test SaMD can collects multiple Fix Versions, while the Execution test refeers to a specific version so they need to report one and only one Fix Version.  
+> It is important to check if the Fix Versions reports the correct version of the product to be tested. The Test SaMD can collects multiple Fix Versions, while the Execution test refers to a specific version so they need to report one and only one Fix Version.  
 
 ### Required fields
 * Summary: reporting the title of the test
-* Description: tracks the steps to be followed to execute the test and the expected results. In version P4SaMD 0.1.0, the desciption has to be plain text. 
+* Description: tracks the steps to be followed to execute the test and the expected results. In version P4SaMD 0.1.0, the description has to be plain text. 
 * Fix Versions: is fundamental to report the tested version, just one Fix Version needs to be set in this field. 
 * Components: to indicate the software item related to the execution test. See [Software Item](#software-item) section to find out more details
 * Test type: indicates the type of test based on IEC 62304 classification and additional labels
@@ -170,7 +170,7 @@ To create an Execution test, click on the *automation* button next to the status
 | *Test SaMD*            | Execution Test *executes Test SaMD* |   |
 
 
-A Execution test can assume those stati, tracking the execution of the test: 
+A Execution test can assume those states, tracking the execution of the test: 
 * TO DO
 * IN PROGRESS
 * SUCCESS
@@ -206,7 +206,7 @@ The Change Request SaMD is the issue that reports a request of change, independe
 | *Requirement SaMD*            | Change SaMD *changes Requirement* |  keeps track of the requirement which is affected, deprecated or generated by the change |
  
 
-A Change can assume those stati, tracking the progression of a request of change for the product,  of the test: 
+A Change can assume those states, tracking the progression of a request of change for the product,  of the test: 
 * REPORTED
 * ANALYSIS
 * STAND-BY
@@ -217,11 +217,11 @@ A Change can assume those stati, tracking the progression of a request of change
 
 **Related Requirements**    
 The changes can be link to
-* 2 Requirements when one is no longer valid (status: DEPRECATED, Fix Versions: a previous one with respect to the Fix Version of the change) and the other one is new (status: not depracated, e.g. DRAFT and Fix Versions: the same of the current Change) 
+* 2 Requirements when one is no longer valid (status: DEPRECATED, Fix Versions: a previous one with respect to the Fix Version of the change) and the other one is new (status: not deprecated, e.g. DRAFT and Fix Versions: the same of the current Change) 
 * 1 new Requirement SaMD when the change add a requirement to the current version (Fix Versions: the same of the current Change) or 1 deprecated Requirement SaMD if the change deletes the requirement in the current version
 
 
 ## Automation
 ### SaMD: Execution test - Creation
-The automation clones a Test SaMD in a different type of iissue, Execution test. All the field are copied in the new issue, includinge the Fix Version. Please check the new-created issue, updateding, for instance, the Fix Version as stated in [Execution test](#execution-test) section. 
+The automation clones a Test SaMD in a different type of issue, Execution test. All the field are copied in the new issue, including the Fix Version. Please check the new-created issue, updateding, for instance, the Fix Version as stated in [Execution test](#execution-test) section. 
 
