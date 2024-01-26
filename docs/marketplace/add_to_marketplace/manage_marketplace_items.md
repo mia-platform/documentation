@@ -222,13 +222,13 @@ To highlight the potentialities of `Acme.Js` and introduce your users to the new
 
 Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exist and that their path is correct.
 
-To create the items on the Marketplace, open up a terminal in directory where the files are places and run this command:
+To create the items on the Marketplace, open up a terminal in directory where the files are placed and run this command:
 
 ```sh
 miactl marketplace apply -f myAwesomeService.json -f myAcmeJsTemplate.json -f myAcmeJsExample.json
 ```
 
-This command will create the Marketplace item and upload the images along with it.
+This command will create the Marketplace items and upload the images along with them.
 
 A message will confirm the operation, returning some information as shown here below:
 ```
