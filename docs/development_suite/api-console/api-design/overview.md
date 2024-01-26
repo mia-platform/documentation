@@ -155,7 +155,7 @@ To keep track of all changes made to the configuration, you may want to create a
 </div>
 
 :::caution
-Since tags are read-only, it is not possible to save changes starting from a tag. You can either:
+Since tags are read-only and unchangeable over time, it is not possible to save changes starting from a tag. You can either:
 * create a new branch using the tag as reference
 * on configuration saving, create a new branch
 :::
