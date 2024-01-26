@@ -111,7 +111,7 @@ The file contents will look like this:
 
 You also want users to write services in your brand new programming language, `Acme.Js`.
 
-You want to provide a Template, which is a skeleton with a minimal setup: your users are required to write business code from scratch.
+You want to provide a [Template](./templates/mia_templates), which is a skeleton with a minimal setup: your users are required to write business code from scratch.
 
 <details>
 <summary>Click to expand <code>myAcmeJsTemplate.json</code></summary>
