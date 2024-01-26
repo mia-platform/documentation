@@ -6,7 +6,7 @@ sidebar_label: Create templates
 
 Can't find a specific template? You can create a new one. Below you will find the suggested guidelines for the development of a template from which Console users can create microservices. 
 
-For specific information on how to build a Marketplace item and upload it to the Mia-Platform Console, head to the [Contributing Overview](../contributing_overview) documentation.
+For specific information on how to build a Marketplace item and upload it to the Mia-Platform Console, head to the [Contributing Overview](/marketplace/add_to_marketplace/contributing_overview.md) documentation.
 
 ## The target
 

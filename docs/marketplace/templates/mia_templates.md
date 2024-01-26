@@ -23,4 +23,4 @@ Mia-Platforms currently supports the following examples:
 
 You can also [build a template](/marketplace/templates/template_create.md) by yourself.
 
-Head to the [Contributing Overview](../add_to_marketplace/contributing_overview) for further information on how to create and upload it to the Marketplace.
+Head to the [Contributing Overview](/marketplace/add_to_marketplace/contributing_overview.md) for further information on how to create and upload it to the Marketplace.
