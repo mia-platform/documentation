@@ -109,13 +109,9 @@ The file contents will look like this:
 ```
 </details>
 
-You also want user to write services in your brand new programming language, `Acme.Js`.
+You also want users to write services in your brand new programming language, `Acme.Js`.
 
 You want to provide a Template, which is a skeleton with a minimal setup: your users are required to write business code from scratch.
-
-To highlight the potentialities of `Acme.Js` and introduce your users to the new programming language, you also decide to provide a working example with minimal business code.
-
-Below you can see examples of the respective configuration files.
 
 <details>
 <summary>Click to expand <code>myAcmeJsTemplate.json</code></summary>
@@ -173,6 +169,8 @@ Below you can see examples of the respective configuration files.
 }
 ```
 </details>
+
+To highlight the potentialities of `Acme.Js` and introduce your users to the new programming language, you also decide to provide a working example with minimal business code.
 
 <details>
 <summary>Click to expand <code>myAcmeJsExample.json</code></summary>
