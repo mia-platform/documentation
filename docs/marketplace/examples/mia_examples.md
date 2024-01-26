@@ -33,4 +33,4 @@ Mia-Platforms currently supports the following examples:
 
 Their code is open source, feel free to open a PR to contribute to any of them!
 
-If you want to create your own example, head to the [Contributing Overview](../contributing_overview) for further information.
+If you want to create your own example, head to the [Contributing Overview](../add_to_marketplace/contributing_overview) for further information.
