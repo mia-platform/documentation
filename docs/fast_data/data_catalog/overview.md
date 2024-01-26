@@ -5,14 +5,14 @@ sidebar_label: Overview
 ---
 
 :::caution
-Please notice that the information explained in the following page regarding the deployment of a Data Catalog Agent
-are valid only for projects adopting the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md).
+Please notice that the information explained in the following page, regarding the deployment of a Data Catalog Agent,
+are valid only for Console projects adopting the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md).
 
 The Data Catalog Agent can not be deployed in projects adopting the older Console workflow.
 :::
 
 A Mia-Platform Console Project can be configured to function as a Data Catalog, that is a centralized 
-location where it is possible to collect metadata regarding all the data assets of an organization.
+location where it is possible to collect metadata concerning all the data assets of an organization.
 Within the project it is possible to set up our Data Catalog Agent, which can be configured to connect to different sources,
 such as:
 
@@ -21,24 +21,24 @@ such as:
 - MySQL Database
 - Microsoft SQL Server Database
 
-This agent is in charge of extracting metadata regarding the different tables and data structures and forward to Mia-Platform
-Console for storing them in the dedicated project.
+This agent is in charge of extracting metadata regarding the several tables and data structures existing on configured
+sources (System of Record) and forward them to Mia-Platform Console for storing them in the dedicated project.
 Example of metadata are the tables' names, their fields' names and their corresponding type.
 
-Once the Data Catalog Agent has run for the first time and it has extracted at least one source, in the design section
-of the specific Console project, it will be possible to explore them under Data Catalog page,
+Once the Data Catalog Agent has run for the first time and it has extracted at least one System of Record, in the design section
+of the specific Console project, it will be possible to explore these set of System of Record under the Data Catalog page,
 which replaces the Projections page in this particular case.  
 Within this page, which is shown in the figure, it will be possible to see the list of System of Record that have
-been generated starting from the metadata extracted by the Data Catalog Agent from the different sources configured.
+been generated starting from the metadata extracted by the Data Catalog Agent.
 
 ![Data Catalog in System of Record page](../img/data_catalog_systems_view.png)
 
 Selecting a specific System of Record it is possible to observe which tables are associated to the system and for
-each table it is visible which fields compose it, along with the fields types and their properties.
+each table it is visible which fields compose it, alongside the fields types and their properties.
 
-As a user it will be then possible to edit fields _description_ and _GDPR regulation_ properties, which are retained upon saving
-the project. In addition, these user-defined properties are preserved across multiple metadata synchronizations performed by
-the Data Catalog Agent.
+As a user it will be then possible to edit _description_ and _GDPR regulation_ properties of each table fields, which are retained upon saving
+the project. These changes, executed on the _user-defined_ properties, are preserved across multiple metadata synchronizations performed by
+the Data Catalog Agent, so that the source systems can add or remove fields without affecting existing ones. 
 
 An example of table view is displayed in the figure below, which allows to edit description and GDPR regulation fields:
 
