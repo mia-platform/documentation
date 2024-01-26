@@ -80,7 +80,7 @@ In this case, you have not applied any local changes yet, but someone else has a
   </div>
 </div>
 
-By clicking the `Pull configuration` button, the project will be updated to the latest version.
+By clicking the `Pull configuration` button, the project configuration will be updated to the latest version.
 
 ### A remote commit has been performed and there are unsaved local changes
 
