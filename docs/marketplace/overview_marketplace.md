@@ -69,7 +69,7 @@ Sometimes, a Marketplace item may become deprecated. This typically occurs when 
 
 In such cases, the maintainer may decide not to longer support the older item, meaning it will not receive any future updates.
 
-The item will be marked as **Deprecated**. While you can still use it if necessary, its functionality may be limited or outdated compared to current standards. The suggested alternative will be published in the deprecated item documentation
+The item will be marked as **Deprecated**. While you can still use it if necessary, its functionality may be limited or outdated compared to current standards. The suggested alternative will be published in the deprecated item documentation.
 
 :::caution
 
