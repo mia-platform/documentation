@@ -29,7 +29,6 @@ The API Gateway service needs four configuration directories to work:
 - backoffice.d: This folder will be imported in the backend server statement and contains
     all the locations statement and header definitions and must proxy pass all the unhandled path to the frontend.
 
-../../runtime_suite/crud-service/overview_and_usage
 :::info
 Learn more from the [Advanced configuration](../../development_suite/api-console/advanced-section/api-gateway/how-to) and the [request-size](../../development_suite/api-console/advanced-section/api-gateway/request-size) section to custom configurations.
 :::

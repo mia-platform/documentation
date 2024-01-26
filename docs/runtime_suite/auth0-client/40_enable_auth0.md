@@ -22,7 +22,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 4. Link correctly client-type and client-key to use the correct auth0 client.
 
-5. Configure auth0 correctly from auth0 dashboard:
+5. Configure Auth0 correctly from Auth0 dashboard:
     * add action to inject user metadata in id token:
 
       ```js

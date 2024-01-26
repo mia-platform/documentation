@@ -34,7 +34,7 @@ This microservice will be responsible for the authentication part of the process
 
 ## Auth0 Client
 
-The [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) is added (if it does not already exist) in order to handle authentication and user management using Auth0 as identity provider.
+The [auth0-client](../../runtime_suite/auth0-client/overview) is added (if it does not already exist) in order to handle authentication and user management using Auth0 as identity provider.
 
 ### Endpoints
 

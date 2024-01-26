@@ -270,7 +270,7 @@ async function createConfig() {
                   const {
                     fileName
                   } = params
-                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
+                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview', '10-overview'].includes(fileName.toLowerCase())
                 },
               });
             },

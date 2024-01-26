@@ -28,17 +28,19 @@ Some providers may require additional fields, in which case they will be wrapped
 
 ## Supported Providers and Payment Methods
 
-| Provider   | Credit/Debit Cards | ApplePay | GooglePay | PayPal | Satispay | Scalapay | Soisy |
-|------------|--------------------|----------|-----------|--------|----------|----------|-------|
-| Axerve     | ✓                  | ✓        | ✓         | ✓      | ✓        |          |       |
-| Adyen      | ✓                  |          |           |        |          |          |       |
-| Braintree  |                    |          |           | ✓      |          |          |       |
-| Satispay   |                    |          |           |        | ✓        |          |       |
-| Scalapay   |                    |          |           |        |          | ✓        |       |
-| Soisy      |                    |          |           |        |          |          | ✓     |
-| Stripe     | ✓                  |          |           | ✓      |          |          |       |
+| Provider  | Credit/Debit Cards | ApplePay | GooglePay | PayPal | Satispay | Scalapay | Soisy | Wire Transfer |
+|-----------|--------------------|----------|-----------|--------|----------|----------|-------|---------------|
+| Axerve    | ✓                  | ✓        | ✓         | ✓      | ✓        |          |       |               |
+| Adyen     | ✓                  |          |           |        |          |          |       |               |
+| Braintree |                    |          |           | ✓      |          |          |       |               |
+| FlowPay   |                    |          |           |        |          |          |       | ✓             |
+| Nexi      | ✓                  |          |           |        |          |          |       |               |
+| Satispay  |                    |          |           |        | ✓        |          |       |               |
+| Scalapay  |                    |          |           |        |          | ✓        |       |               |
+| Soisy     |                    |          |           |        |          |          | ✓     |               |
+| Stripe    | ✓                  |          |           | ✓      |          |          |       |               |
 
-::: note
+:::note
 Regarding Credit/Debit Cards, supported payment circuits are:
 - Visa
 - Mastercard
@@ -53,6 +55,8 @@ Regarding Credit/Debit Cards, supported payment circuits are:
 | Axerve    | ✓      |           | Credit/Debit Cards, PayPal |
 | Adyen     | ✓      |           | Credit/Debit Cards         |
 | Braintree |        | ✓         | PayPal                     |
+| FlowPay   |        |           |                            |
+| Nexi      |        |           |                            |
 | Satispay  | ✓      |           |                            |
 | Scalapay  |        |           |                            |
 | Soisy     |        |           |                            |
@@ -65,6 +69,8 @@ Regarding Credit/Debit Cards, supported payment circuits are:
 | Axerve    | ✓           |
 | Adyen     | ✓           |
 | Braintree |             |
+| FlowPay   |             |
+| Nexi      |             |
 | Satispay  |             |
 | Scalapay  |             |
 | Soisy     |             |
