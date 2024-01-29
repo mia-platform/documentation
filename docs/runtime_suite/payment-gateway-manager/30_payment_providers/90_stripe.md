@@ -76,6 +76,17 @@ You can always define the following optional fields in `providerData`:
 The `subscriptionInfo.interval` field accept the following values:
 - `MONTH`
 
+#### Get Status
+
+`GET /subscription/status/{subscriptionToken}`
+
+This endpoint allows to get a subscription status. Available status are:
+- `PENDING`
+- `ACTIVE`
+- `PAST_DUE`
+- `EXPIRED`
+- `CANCELED`
+
 #### Expire
 
 `POST /subscription/expire/{subscriptionToken}?shopTransactionId={{shopTransactionId}}`

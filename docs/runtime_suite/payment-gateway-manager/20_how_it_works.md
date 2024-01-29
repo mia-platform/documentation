@@ -120,6 +120,7 @@ The following actions are available:
   - **start**: create a new subscription on the `provider`
   - **pay**: perform a new payment related to an already created subscription on the `provider`
 - **update**: update information related to the subscription
+- **get status**: get the subscription status
 - **expire**: expire a subscription
 
 An object `subscriptionInfo` needs to be included in the request in order to specify information about the subscription. 
@@ -150,7 +151,7 @@ On the response a **SubscriptionToken** is returned, that is the identifier to u
 Create a new subscription managed entirely by the `provider`.
 The `provider` will notify with a callback every change on the subscription.
 
-##### Request
+#### Request
 
 ```jsonc
 {
@@ -183,7 +184,7 @@ The `provider` will notify with a callback every change on the subscription.
 
 Create a new subscription on the `provider`.
 
-##### Request
+#### Request
 
 ```jsonc
 {
@@ -216,7 +217,7 @@ Create a new subscription on the `provider`.
 
 Create a new payment related to a subscription on the `provider`.
 
-##### Request
+#### Request
 
 ```jsonc
 {
@@ -247,7 +248,7 @@ Create a new payment related to a subscription on the `provider`.
 
 Update subscription information.
 
-##### Request
+#### Request
 
 ```jsonc
 {
@@ -270,6 +271,33 @@ Update subscription information.
     "result": "OK",
     "resultDescription": "Successful transaction",
     "subscriptionToken": "0987654321"
+}
+```
+
+### Get Status
+`GET /{provider}/subscription/status/{subscriptionToken}`
+
+Get the subscription status. Available status are:
+- `PENDING`: first payment to be executed
+- `ACTIVE`: last payment executed
+- `PAST_DUE`: last payment failed
+- `EXPIRED`: the subscription has reached the expiration date
+- `CANCELED`: the subscription has been manually canceled
+- `UNKNOWN`: the subscription status is unknown
+
+:::note
+The actual available status depend on the provider. It is always a subset of the list above.
+For more information visit the provider dedicated documentation page.
+:::
+
+#### Response
+
+```jsonc
+{
+    "status": "ACTIVE",
+    "subscriptionToken": "098764321",
+    "providerName": "stripe",
+    "metadata": {...} 
 }
 ```
 
@@ -396,7 +424,7 @@ Below, the interface exposed:
 * M2M Callback Transaction Status Verification: `GET /{external}/callback`
 * On-Demand Transaction Status Verification: `GET /{external}/check`
 
-More details about custom external integrations are available on the [dedicated section](./28_external.md).
+More details about custom external integrations are available on the [dedicated section](30_payment_providers/99_external).
 
 ## Payment Saga APIs - Flow Manager Integration
 

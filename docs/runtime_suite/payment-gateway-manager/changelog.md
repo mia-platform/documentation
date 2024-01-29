@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.5.0 - 26/01/2024
+
+### Added
+
+- API to get subscription status. Available for Adyen, Braintree, Satispay, Stripe and External Providers. 
+
+### Fixed
+
+- ScalaPay callback handles `approved` status
+
 ## 3.4.0 - 17/01/2024
 
 ### Added

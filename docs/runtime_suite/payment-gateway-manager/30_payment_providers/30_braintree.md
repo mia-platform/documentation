@@ -91,6 +91,18 @@ The `subscriptionInfo.interval` field accept the following values:
 
 This endpoint allows to update subscription info.
 
+#### Get Status
+
+`GET /subscription/status/{subscriptionToken}`
+
+This endpoint allows to get a subscription status. Available status are:
+- `PENDING`
+- `ACTIVE`
+- `PAST_DUE`
+- `EXPIRED`
+- `CANCELED`
+- `UNKNOWN`
+
 #### Expire
 
 `POST /subscription/expire/{subscriptionToken}?shopTransactionId={{shopTransactionId}}`
