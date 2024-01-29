@@ -460,6 +460,90 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 
+### iam
+
+The `project iam` subcommands are used for managing the RBAC permissions associated with a project. Only
+**Company Owners** and **Project Administrators** can modify, add or remove RBAC authorization for a project.
+
+#### list
+
+The `project iam list` subcommand allows you to view the list of all the different identity that has access to a
+project.
+
+Usage:
+
+```sh
+miactl project iam list [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+
+#### edit RESOURCE-NAME
+
+The `project iam edit` subcommand allows you to alternatevely update the role assigned to the current project or
+one of its environment for one of the different `IAM` entity types:
+
+- `group`
+- `service account`
+- `user`
+
+Usage:
+
+```sh
+miactl project edit [user|group|serviceaccount] [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--project-role`, the new role for the current project
+- `--entity-id`, the entity id to change
+- `--environment`, the environment where to change the role
+- `--environment-role`, the new role for the selected environment
+
+#### remove-role RESOURCE-NAME
+
+The `project iam remove-role` subcommand allows you to alternatevely delete the custom role assigned to one of the
+different `IAM` entity types for the project or one of its environments.
+
+Usage:
+
+```sh
+miactl project remove-role [user|group|serviceaccount] [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--entity-id`, the entity id to change
+- `--environment`, set the flag to the environment name for deleting the role for that environment
+
 ## deploy
 
 This command allows you to trigger the deploy pipeline for the selected Project.
