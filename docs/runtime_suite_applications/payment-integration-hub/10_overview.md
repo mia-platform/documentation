@@ -71,6 +71,3 @@ The collection can have any schema, as long as the [messaging-service](../../run
 #### Notification Templates
 A *Notification Template* collection will be included in the project and by default is used as database reference to retrieve and store the templates used to notify the user about the payment status.
 The schema follows the one described by the [messaging-service](../../runtime_suite/messaging-service/configuration#templates-crud).
-
-#### Logo
-A *logo* collection will be included in the project and by default is used as database reference to retrieve the payment providers' logos which are displayed in the Backoffice.
