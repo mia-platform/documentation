@@ -41,11 +41,15 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 [change-query]: ./70_events.md#change-query
 
+[bk-table]: ./60_components/520_table.md
+[bk-table-locale]: ./60_components/520_table.md#locale
+
+
 
 
 ## Localization and i18n
 
-Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind of typography can be easily internationalized by passing a `LocalizedString` (or `LocalizedText`) object containing specific translations according to [ISO 639-1 codes].
+Back-kit web components supports localization and internationalization. Component properties that in turn expose any kind of typography can be easily internationalized by passing a `LocalizedText` object containing specific translations according to [ISO 639-1 codes].
 
 ```json
 {
@@ -59,7 +63,32 @@ Back-kit web components supports localization and internationalization. Componen
 }
 ```
 
-Fields that support i18n are marked through this guide as taking either `string` or `LocalizedString` as input type.
+Fields that support i18n are marked through this guide as taking either `LocalizedText` as input type.
+
+Components allow to customize their copies through property `customLocale`, with support to internationalized strings.
+
+For instance:
+```json
+{
+  "tag": "bk-table",
+  "properties": {
+    "customLocale": {
+      "actionsTitle": {
+        "en": "Actions",
+        "it": ""
+      }
+    }
+  }
+}
+```
+
+:::info
+The example shows how to customize the title of the actions column of a [Table][bk-table].
+The list of available copies is availbale in the [dedicated section][bk-table-locale] of each component documentation.
+:::
+
+Not all copies need to be specified. Missing copies are set to their default value, if availbale, or else fallback to the english translation.
+
 
 ## Dynamic configuration
 

@@ -31,11 +31,11 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [crud-client]: ./60_components/100_crud_client.md
 [bk-dynamic-form-modal]: ./60_components/210_dynamic_form_modal.md
 [bk-dynamic-form-drawer]: ./60_components/200_dynamic_form_drawer.md
-[bk-form-modal]: ./60_components/340_form_modal.md
+[bk-form-modal]: ./60_components/350_form_modal.md
 [bk-crud-lookup-client]: ./60_components/170_crud_lookup_client.md
-[bk-form-drawer]: ./60_components/330_form_drawer.md
-[bk-table]: ./60_components/510_table.md
-[bk-filter-drawer]: ./60_components/290_filter_drawer.md
+[bk-form-drawer]: ./60_components/340_form_drawer.md
+[bk-table]: ./60_components/520_table.md
+[bk-filter-drawer]: ./60_components/300_filter_drawer.md
 
 [add-filter]: ./70_events.md#add-filter
 [available-operators]: ./70_events.md#add-filter

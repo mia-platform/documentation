@@ -26,10 +26,10 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [rawobject]: ./40_core_concepts.md#rawobject
 [template---configmap]: ./40_core_concepts.md#template---configmap
 
-[bk-notifications]: ./60_components/450_notifications.md
-[bk-table]: ./60_components/510_table.md
+[bk-notifications]: ./60_components/460_notifications.md
+[bk-table]: ./60_components/520_table.md
 [bk-crud-client]: ./60_components/100_crud_client.md
-[customactions]: ./60_components/510_table.md#configuring-actions-via-customactions
+[customactions]: ./60_components/520_table.md#configuring-actions-via-customactions
 
 [change-query]: ./70_events.md#change-query
 

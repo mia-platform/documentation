@@ -36,39 +36,40 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [dynamic-form-card]: ./60_components/190_dynamic_form_card.md
 [dynamic-form-drawer]: ./60_components/200_dynamic_form_drawer.md
 [dynamic-form-modal]: ./60_components/210_dynamic_form_modal.md
-[dynamic-title]: ./60_components/220_dynamic_title.md
-[expandable-filters]: ./60_components/230_expandable_filters.md
-[export-modal]: ./60_components/240_export_modal.md
-[file-manager]: ./60_components/250_file_manager.md
-[file-picker-drawer]: ./60_components/260_file_picker_drawer.md
-[file-picker-modal]: ./60_components/270_file_picker_modal.md
-[file-service-client]: ./60_components/280_file_service_client.md
-[filter-drawer]: ./60_components/290_filter_drawer.md
-[filters-manager]: ./60_components/300_filters_manager.md
-[footer-&-item-state]: ./60_components/310_footer_&_item_state.md
-[form-card]: ./60_components/320_form_card.md
-[form-drawer]: ./60_components/330_form_drawer.md
-[form-modal]: ./60_components/340_form_modal.md
-[form-wizard]: ./60_components/350_form_wizard.md
-[gallery]: ./60_components/360_gallery.md
-[import-modal]: ./60_components/370_import_modal.md
-[layout]: ./60_components/380_layout.md
-[layout-container]: ./60_components/390_layout_container.md
-[layout-swap]: ./60_components/400_layout_swap.md
-[list]: ./60_components/410_list.md
-[loading-animation]: ./60_components/420_loading_animation.md
-[navigation-back-arrow]: ./60_components/430_navigation_back_arrow.md
-[notification-center]: ./60_components/440_notification_center.md
-[notifications]: ./60_components/450_notifications.md
-[pagination]: ./60_components/460_pagination.md
-[pdf-viewer]: ./60_components/470_pdf_viewer.md
-[refresh-button]: ./60_components/480_refresh_button.md
-[search-bar]: ./60_components/490_search_bar.md
-[state-adapter]: ./60_components/500_state_adapter.md
-[table]: ./60_components/510_table.md
-[tabs]: ./60_components/520_tabs.md
-[title]: ./60_components/530_title.md
-[url-parameters-adapter]: ./60_components/540_url_parameters_adapter.md
+[dynamic-iframe]: ./60_components/220_dynamic_iframe.md
+[dynamic-title]: ./60_components/230_dynamic_title.md
+[expandable-filters]: ./60_components/240_expandable_filters.md
+[export-modal]: ./60_components/250_export_modal.md
+[file-manager]: ./60_components/260_file_manager.md
+[file-picker-drawer]: ./60_components/270_file_picker_drawer.md
+[file-picker-modal]: ./60_components/280_file_picker_modal.md
+[file-service-client]: ./60_components/290_file_service_client.md
+[filter-drawer]: ./60_components/300_filter_drawer.md
+[filters-manager]: ./60_components/310_filters_manager.md
+[footer-&-item-state]: ./60_components/320_footer_&_item_state.md
+[form-card]: ./60_components/330_form_card.md
+[form-drawer]: ./60_components/340_form_drawer.md
+[form-modal]: ./60_components/350_form_modal.md
+[form-wizard]: ./60_components/360_form_wizard.md
+[gallery]: ./60_components/370_gallery.md
+[import-modal]: ./60_components/380_import_modal.md
+[layout]: ./60_components/390_layout.md
+[layout-container]: ./60_components/400_layout_container.md
+[layout-swap]: ./60_components/410_layout_swap.md
+[list]: ./60_components/420_list.md
+[loading-animation]: ./60_components/430_loading_animation.md
+[navigation-back-arrow]: ./60_components/440_navigation_back_arrow.md
+[notification-center]: ./60_components/450_notification_center.md
+[notifications]: ./60_components/460_notifications.md
+[pagination]: ./60_components/470_pagination.md
+[pdf-viewer]: ./60_components/480_pdf_viewer.md
+[refresh-button]: ./60_components/490_refresh_button.md
+[search-bar]: ./60_components/500_search_bar.md
+[state-adapter]: ./60_components/510_state_adapter.md
+[table]: ./60_components/520_table.md
+[tabs]: ./60_components/530_tabs.md
+[title]: ./60_components/540_title.md
+[url-parameters-adapter]: ./60_components/550_url_parameters_adapter.md
 
 [events]: ./70_events.md
 [push-state]: ./70_events.md#nested-navigation-state---push
@@ -132,6 +133,7 @@ Available components in Back-Kit library are:
 - [Dynamic Form Card][dynamic-form-card]
 - [Dynamic Form Drawer][dynamic-form-drawer]
 - [Dynamic Form Modal][dynamic-form-modal]
+- [Dynamic Iframe][dynamic-iframe]
 - [Dynamic Title][dynamic-title]
 - [Expandable Filters][expandable-filters]
 - [Export Modal][export-modal]
