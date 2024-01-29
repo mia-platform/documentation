@@ -108,4 +108,4 @@ jobs:
           token: ${{ secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN }}
           variables: |
             ENVIRONMENT_TO_DEPLOY=PROD
-          ref_name: master
+          ref_name: prod
