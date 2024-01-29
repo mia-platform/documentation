@@ -39,6 +39,25 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## v12 - version upgrades
 
+### Upgrade from v12.1.0 to v12.X
+
+#### New management of image pull secrets
+
+In this version, it is possible to generate an image pull secret directly from the chart. To do it, you should configure the `imageCredentials` object in the `values.yaml` file.
+So, you can remove the `imagePullSecrets` object from the `values.yaml` file if you have only the secret to pull the image from the mia-platform registry. The field is still active, in the case you need more than one secret to pull images.
+It is be removed the `.Values.registryHost` field, which is moved to the `.Values.imageCredentials.registry` field (which default is the same as the `.Values.registryHost` value).
+
+An example of this configuration:
+
+```yaml
+imageCredentials:
+  registry: "nexus.mia-platform.eu"
+  name: "mia-platform-registry"
+  username: myUsername
+  password: myPassword
+  email: someone@mia-platform.eu
+```
+
 ### Upgrade from v12.0.1 to v12.1.0
 
 #### New backoffice configuration

@@ -24,8 +24,18 @@ If you want to fine tune resources for specific services the proper documentatio
 
 |            Name            |  Type   |          Description           | Default | Optional |
 | :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
-|     `imagePullSecrets`     |  array  | An array of `imagePullSecrets` |  `[]`   |    ✅     |
-| `podSecurityPolicyEnabled` | boolean |    Create the PSP resources    | `false` |    ✅     |
+|     `imageCredentials`     |  [pull secret credentials](#pull-secret-credentials) | An object to generate the image pull secrets |         |    ✅    |
+|     `imagePullSecrets`     |  array  | An array of `imagePullSecrets`               |  `[]`   |    ✅    |
+| `podSecurityPolicyEnabled` | boolean |    Create the PSP resources                  | `false` |    ✅    |
+
+#### Pull secret credentials
+
+|            Name            |  Type   |          Description           | Default | Optional |
+| :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
+|     `name`     |  string  | name of the generated image pull secrets. It will be set as imagePullSecret in all the charts workload |  |    ❌    |
+|     `username`     |  string  | Username to login to the container registry |  |    ❌    |
+|     `password`     |  string  | Password to login to the container registry |  |    ❌    |
+|      `email`       |  string  | Email of the user of the container registry |  |    ❌    |
 
 ### Storage connection configurations
 
