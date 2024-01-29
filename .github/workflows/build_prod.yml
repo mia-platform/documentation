@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - "prod"
+    pull_request:
+      - "prod"
     tags:
       - "*"
 jobs:
@@ -57,7 +59,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/mia-platform/documentation
+            ghcr.io/sfontana9/documentation
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
