@@ -146,7 +146,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       </tr>
       <tr>
          <td><strong>Redis Cache</strong></td>
-         <td><img src="/img/redis.png" width="15" height="15"/>Redis</td>
+         <td><img src="/img/redis.png" width="15" height="15"/> Redis</td>
          <td>&gt;= 6<br/>&lt;= 7</td>
          <td>2 cores</td>
          <td>2 GB</td>
