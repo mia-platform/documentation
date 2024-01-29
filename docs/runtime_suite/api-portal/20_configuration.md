@@ -44,7 +44,7 @@ You can block unauthorized users to access the API Portal by checking `Authentic
 :::
 
 :::tip
-You can set up a login process by using the [Auth0 Client](../auth0-client/overview_and_usage) plugin, that you can find in the [Marketplace](../../marketplace/overview_marketplace).
+You can set up a login process by using the [Auth0 Client](../auth0-client/overview) plugin, that you can find in the [Marketplace](../../marketplace/overview_marketplace).
 :::
 
 ## 2. Step-by-step manual configuration
