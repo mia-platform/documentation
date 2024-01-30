@@ -52,7 +52,7 @@ As if the previous benefits were not enough, there is already a set of **new fea
 
 And more features to come, such as:
 
-- Design save history with configuration compare within the Console
+- Saving history with comparison of saved configurations within Design Area
 - Project configuration import from a runtime
 - ...and more, check out the [roadmap section](#roadmap-and-future-improvements) for further information
 
