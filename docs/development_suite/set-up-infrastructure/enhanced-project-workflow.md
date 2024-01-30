@@ -7,11 +7,55 @@ sidebar_label: Enhanced Project Workflow
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-:::caution
-This is a **BETA** feature and, as such, is currently under active development. Pay attention using it.
+:::info
+This is a **BETA** feature and, as such, is currently under active development.
+
+It can be safely used but there may still be some missing features: check the [roadmap section](#roadmap-and-future-improvements) below to find out more.
 :::
 
-The **Enhanced Project Workflow** feature aims to provide a better developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
+The **Enhanced Project Workflow** feature aims at providing a better developer experience when working with Mia-Platform Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
+
+## Benefits of the Enhanced Workflow
+
+The technological changes underlying this new workflow provide improvements in both *user experience* and *development of future functionalities*; as such, there are several benefits of adopting the **Enhanced Project Workflow**:
+
+### Tailored orchestrator configurations
+
+By generating the orchestrator objects (e.g. *Kubernetes Deployment files*) at deploy time, the **generated configuration files can now be tailored for the selected environment**. 
+
+Generated configurations are still saved on your Git provider repository in different directories, based on the deployed environment.  
+You can review the configuration prior the commit by leveraging the [review feature](#kubernetes-configuration-review-and-export).
+
+### GitOps Support
+
+As mentioned, one of the most relevant features of the **Enhanced Project Workflow** is the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md) support.
+
+This means you can leverage Mia-Platform Console and **run deployments with your favorite GitOps tool** (e.g. [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md))
+
+### Faster Design and general performance improvements
+
+A great bottleneck in the Standard Project Workflow is the frequent interaction with the Git Provider during configuration management activities. **Moving away from such an architecture** and limiting the interactions only when they are truly needed (e.g. saving orchestrator configurations on git) **allowed us to provide a faster user experience**. 
+
+The Console Area that benefits the most from such performance improvements is the Design Area where, for example, **the average time** for loading a Project configuration has moved **from ~4s to ~200ms**.
+
+### Design advanced section featured in Merge
+
+The [Advanced section](/development_suite/api-console/advanced-section/index.md) in Design Area is featured in all stages of the workflow, and no longer needs a separate configuration management strategy. This means that you can safely use this section without worrying about duplicate commits or the inability to manage extensions during merge of configurations.
+
+### New features
+
+As if the previous benefits were not enough, there is already a set of **new features available only for Enhanced Project Workflow**:
+
+-  [GitOps deployment support](/development_suite/deploy/gitops-based/index.md)
+-  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx)
+-  [Configurations review and export](#kubernetes-configuration-review-and-export)
+
+And more features to come, such as:
+
+- Saving history with comparison of saved configurations within Design Area
+- Project configuration import from a runtime
+- Compare generated configuration files with last deployed configuration
+- ...and more, check out the [roadmap section](#roadmap-and-future-improvements) for further information
 
 ## Changes to the Console workflow
 
@@ -96,6 +140,7 @@ If you want to activate the Enhanced Workflow on an already existing Project, fo
 
 
 If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/infrastructure/self-hosted/feature-toggle.md).
+
 ## Migrating your projects
 
 
