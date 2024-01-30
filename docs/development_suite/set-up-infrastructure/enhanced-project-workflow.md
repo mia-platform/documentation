@@ -54,6 +54,7 @@ And more features to come, such as:
 
 - Saving history with comparison of saved configurations within Design Area
 - Project configuration import from a runtime
+- Compare generated configuration files with last deployed configuration
 - ...and more, check out the [roadmap section](#roadmap-and-future-improvements) for further information
 
 ## Changes to the Console workflow
