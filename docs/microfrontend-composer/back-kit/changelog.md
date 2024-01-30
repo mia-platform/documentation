@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- components allow to specify custom texts with `customLocale` property
 - `bk-dynamic-iframe` component is available
 - `bk-footer` has property `loadingOnStart`, controlling whether or not the component is initially in loading state
 

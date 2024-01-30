@@ -53,7 +53,7 @@ A Dynamic Iframe configured like the following
 
 ```json
 {
-  "tag": "bk-iframe-reroute",
+  "tag": "bk-dynamic-iframe",
   "properties": {
     "urlMask": {
       "search": "\\?:search"
