@@ -30,7 +30,7 @@ You can review the configuration prior the commit by leveraging the [review feat
 
 As mentioned one of the most relevant features of the **Enhanced Project Workflow** is the GitOps deployment strategy support.
 
-This means you can leverage Mia-Platform Console and **run deployments with your favourite GitOps tool** (e.g. [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md))
+This means you can leverage Mia-Platform Console and **run deployments with your favorite GitOps tool** (e.g. [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md))
 
 ### Faster Design and general performance improvements
 
