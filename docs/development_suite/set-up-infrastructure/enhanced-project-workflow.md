@@ -10,14 +10,14 @@ import TabItem from "@theme/TabItem"
 :::info
 This is a **BETA** feature and, as such, is currently under active development.
 
-It can be safely used but there may be still be some missing features, check the [roadmap section](#roadmap-and-future-improvements) below to find out more.
+It can be safely used but there may still be some missing features: check the [roadmap section](#roadmap-and-future-improvements) below to find out more.
 :::
 
 The **Enhanced Project Workflow** feature aims at providing a better developer experience when working with Mia-Platform Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
 
 ## Benefits of the Enhanced Workflow
 
-The technological changes underlying the new workflow allows for improvements in both *user experience* and *future feature development*, as such there are several benefits of adopting the **Enhanced Project Workflow**:
+The technological changes underlying this new workflow provide improvements in both *user experience* and *development of future functionalities*; as such, there are several benefits of adopting the **Enhanced Project Workflow**:
 
 ### Tailored orchestrator configurations
 
@@ -28,7 +28,7 @@ You can review the configuration prior the commit by leveraging the [review feat
 
 ### GitOps Support
 
-As mentioned one of the most relevant features of the **Enhanced Project Workflow** is the GitOps deployment strategy support.
+As mentioned, one of the most relevant features of the **Enhanced Project Workflow** is the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md) support.
 
 This means you can leverage Mia-Platform Console and **run deployments with your favorite GitOps tool** (e.g. [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md))
 
@@ -36,15 +36,15 @@ This means you can leverage Mia-Platform Console and **run deployments with your
 
 A great bottleneck in the Standard Project Workflow is the frequent interaction with the Git Provider during configuration management activities. **Moving away from such an architecture** and limiting the interactions only when they are truly needed (e.g. saving orchestrator configurations on git) **allowed us to provide a faster user experience**. 
 
-The section that benefits the most from such performance improvements is the Design section where, for example, **the average time** for loading a Project configuration has moved **from ~4s to ~200ms**.
+The Console Area that benefits the most from such performance improvements is the Design Area where, for example, **the average time** for loading a Project configuration has moved **from ~4s to ~200ms**.
 
 ### Design advanced section featured in Merge
 
-The Advanced tab in the Design section is featured in all the workflow steps as it won't need a separate configuration management strategy anymore. This means you can safely use this section without worrying about duplicated commits or the inability to merge.
+The [Advanced section](/development_suite/api-console/advanced-section/index.md) in Design Area is featured in all stages of the workflow, and no longer needs a separate configuration management strategy. This means that you can safely use this section without worrying about duplicate commits or the inability to manage extensions during merge of configurations.
 
 ### New features
 
-As if the previous benefits weren't enough there is already a set of new features only available for the **Enhanced Project Workflow**:
+As if the previous benefits were not enough, there is already a set of **new features available only for Enhanced Project Workflow**:
 
 -  [GitOps deployment support](/development_suite/deploy/gitops-based/index.md)
 -  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx)
