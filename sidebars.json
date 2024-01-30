@@ -398,6 +398,10 @@
             {
               "id": "development_suite/deploy/pipeline-based/configure-github-actions",
               "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-azure-pipelines",
+              "type": "doc"
             }
           ]
         },
