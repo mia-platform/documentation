@@ -100,7 +100,7 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 Finally to create the Microservice push **create**.
 
 :::info
-For a step-by-step guide on creating a microservice using a Docker image, refer to the [dedicated tutorial](/getting-started/tutorials/microservice-from-docker-image.md).
+For a step-by-step guide on creating a microservice using a Docker image, refer to the [dedicated tutorial](/console/tutorials/microservice-from-docker-image.md).
 :::
 
 ## Manage Microservices
@@ -153,7 +153,7 @@ In this section, you can manage the resources dedicated to your microservice:
   * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
 :::info
-  See more about the log parsers on the [guidelines](/getting-started/guidelines/guidelines-for-logs.md)
+  See more about the log parsers on the [guidelines](/development_suite/api-console/api-design/guidelines-for-logs.md)
 :::
 
 * **Args**: You can specify the arguments for the [command](https://kubernetes.io/docs/tasks/inject-data-application/_print/#define-a-command-and-arguments-when-you-create-a-pod) of your microservice container.  

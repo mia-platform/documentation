@@ -5,7 +5,7 @@ sidebar_label: Fast Data Low Code/ No Code Overview
 ---
 
 :::tip
-If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/getting-started/tutorials/fast-data/low-code.mdx)
+If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/fast_data/tutorials/low-code.mdx)
 :::
 
 The "Low Code" and "No Code" versions of Fast Data are the new standards that leverage the power of configurations to overcome coding complexity in Fast Data setup.
@@ -37,6 +37,10 @@ The Fast Data Low Code experience is basically composed by some steps with No Co
 
 The creation of the System of Records is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Records that, after saving the configuration inside the console, it is linked to a [Real-Time Updater Low Code](/fast_data/configuration/realtime_updater.md) microservice.
 
+:::info
+From version `11.7.0` of the Console, the Real-Time Updater service must be created manually installing the related plug-in from the Marketplace
+:::
+
 ### ER Schema definition and other Configmaps (Low Code/ No Code)
 
 #### Low Code
@@ -44,17 +48,19 @@ The creation of the System of Records is one of the No Code steps of the Fast Da
 The Real-Time Updater Low Code needs some configurations:
 
 - [erSchema.json](/fast_data/configuration/config_maps/erSchema.md) configuration: useful to define the interconnection between projections
-- The [projectionChangeSchema.json](/fast_data//configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
+- The [projectionChangeSchema.json](/fast_data/configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
 
-In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices.
+In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices as described in this [dedicated configuration page](/development_suite/api-console/api-design/services.md#shared-configmaps).
 
 #### No Code
 
-If this feature is enabled, you will be able to build an ER Schema using an interactive canvas without the use of code. You will still have the Low Code JSON editor if needed, and you can seamlessly switch editing between it and the No Code canvas. (Available on versions after 10.6.0)
+If this feature is enabled, you will be able to build an ER Schema using an interactive canvas without the use of code. You will still have the Low Code JSON editor if needed, and you can seamlessly switch editing between it and the No Code canvas. (Available on versions after 10.6.0).
+
+Using the No Code feature you can define the relationships between your Fast Data resources (Projections or Single Views) by using a simple and easy to use drag-and-drop interface as described [here](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code).
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator.md).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator/plugin.md).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 
@@ -63,6 +69,18 @@ Also, in this case, it is needed to configure some Config Maps:
 - aggregation.json: useful to define the aggregation and generate the single view's fields
 
 ![Singleviewlowcode](./img/singleviewlowcode.png)
+
+#### No Code
+
+If this feature is enabled, you will be able to configure the *Single View Key*, the *ER Schema* and the *Aggregation* by using a graphical interface directly from *Single View Creator Low Code* configuration page.
+
+To configure a `Single View Key` you just need to enter the Single View Creator Low Code setting page and from the dedicated section you can define a new Single View Key or edit the existing one just by choosing the `Single View Primary Field` and its `Projection Identifier`. For further information visit the [Single View Key No Code configuration page](/fast_data/configuration/config_maps/singleViewKey.md#using-the-no-code).
+
+Using the *Single View Creator Low Code* and its No Code capabilities you can also define the `ER Schema` for the service simply by choosing one of the configured ER Schema for the System Of Record on which the service insists. For a deeper understanding of how the No Code ER Schema works visit the [dedicated page](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code).
+
+The Single View Creator Low Code offers powerful No Code capabilities also regarding the `aggregation` of the Single View.
+By accessing the service configurations you have the possibility to configure your aggregation by defining for each Single View field the source and the path to retreive the data based on the ER Schema you have previously defined. To delve deeper with No Code aggregation capabilities read the [dedicated documentation page](/fast_data/configuration/config_maps/aggregation.md#use-the-no-code).
+
 
 ### Linking Strategies (No Code)
 

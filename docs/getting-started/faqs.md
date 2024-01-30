@@ -18,7 +18,7 @@ Verify it checking out the [dedicated page](/info/supported_browser.md).
 
 ### How Can I update the CMS?
 
-Check out this [page](/business_suite/update_cms.md) to know how to update your CMS
+Check out this [page](/microfrontend-composer/previous-tools/cms/update_cms.md) to know how to update your CMS
 
 ## Deploy
 
@@ -51,7 +51,7 @@ You can configure the **autoscaler** for your services directly by Console by [c
 
 We do not recommend this debugging practice, instead, you should always write good **tests** for your microservices. You can also run the microservice locally.
 
-Furthermore, [logs](/development_suite/monitoring/introduction.md) can help you to understand what your microservice is doing. The use of [logging level](/getting-started/guidelines/guidelines-for-logs.md#use-the-appropriate-logging-level) allows you to distinguish debug messages that you want to have only in no production environments from those that are useful to monitor the applicative state (errors, warnings, etc).
+Furthermore, [logs](/development_suite/monitoring/introduction.md) can help you to understand what your microservice is doing. The use of [logging level](/development_suite/api-console/api-design/guidelines-for-logs.md#use-the-appropriate-logging-level) allows you to distinguish debug messages that you want to have only in no production environments from those that are useful to monitor the applicative state (errors, warnings, etc).
 
 Consider that the Console allows you to quickly [deploy your microservices in a dedicated environment](/development_suite/deploy/overview.md#select-environment), so you can try online immediately.
 

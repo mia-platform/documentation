@@ -18,7 +18,7 @@ The first option uses the Low Code configuration, the second and third options u
 
 ### Single View Creator Configurations
 
-To know more about Single View Creator service Configurations you can go [here](/fast_data/configuration/single_view_creator.md).
+To know more about Single View Creator service Configurations you can go [here](/fast_data/configuration/single_view_creator/index.md).
 
 When a Single View Creator consumes events regarding a Single View to update, it needs to perform an aggregation to be able to upsert the Single View correctly. 
 

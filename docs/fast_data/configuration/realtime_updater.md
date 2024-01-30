@@ -10,68 +10,89 @@ Optionally, the service can generate several events so that your services can co
 For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/realtime_updater.md).   
 Here below, instead, all the configurations the service accepts are explained. 
 
+:::info
+The documentation regarding the Projection Storer can be found [here](/fast_data/configuration/projection_storer.md).
+:::
+
 ## Environment variables
 
-| Name | Required | Description | Default |
-|------|----------|-------------|---------|
-| LOG_LEVEL | &check; | defines the logger level | - |
-| MONGODB_URL | &check; | defines the mongodb URL to contact | - |
-| PROJECTIONS_DATABASE_NAME | &check; | defines the name of the projections' database | - |
-| LC | &check; | defines the lc39 HTTP port | - |
-| LIVENESS_INTERVAL_MS | &check; | defines the liveness interval in milliseconds | - |
-| KAFKA_BROKERS | &check; | defines the Kafka brokers | - |
-| KAFKA_GROUP_ID | &check; | defines the Kafka group id (it is suggested to use a syntax like ```{tenant}.{environment}.{projectName}.{system}.real-time-updater```) | - 
-| KAFKA_SASL_MECHANISM | - | defines the authentication mechanism. It can be one of: ```plain```, ```scram-sha-256```, ```scram-sha-512```, ```oauthbearer```. | plain |
-| KAFKA_SASL_USERNAME | &check; | defines the Kafka SASL username | - |
-| KAFKA_SASL_PASSWORD | &check; | defines the Kafka SASL password | - |
-| KAFKA_SASL_OAUTH_BASE_URL | - | In case of ```oauthbearer``` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token. | - |
-| KAFKA_SASL_OAUTH_PATH | - | In case of ```oauthbearer``` mechanism, it defines the path of the endpoint for fetching the OAuth2 token. | - |
-| KAFKA_SASL_OAUTH_GRANT_TYPE | -  | In case of ```oauthbearer``` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type ```password``` is supported | password |
-| KAFKA_SASL_OAUTH_CLIENT_ID | - | In case of ```oauthbearer``` mechanism, it defines the client id for fetching the OAuth2 token. | - |
-| KAFKA_SASL_OAUTH_CLIENT_SECRET | - | In case of ```oauthbearer``` mechanism, it defines the client secret for fetching the OAuth2 token. | - |
-| KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS | - | In case of ```oauthbearer``` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute) | 60000 |
-| SYSTEM_OF_RECORDS | &check; | the name of the system of records associated to the Real-Time Updater | - |
-| PROJECTIONS_CHANGES_ENABLED| - | defines whether you want to generate projections changes| true |
-| PROJECTIONS_CHANGES_COLLECTION_NAME | &check; | defines the name of the projections changes collection | - |
-| INVARIANT_TOPIC_MAP | &check; | defines an object that maps the topic to the projection. | - |
-| CAST_FUNCTIONS_FOLDER | - | defines the path to the cast-functions folder | - |
-| MAP_TABLE_FOLDER | - | defines the path to the map table folder | - |
-| STRATEGIES_FOLDER | - | defines the path to the strategies' folder | - |
-| USE_AUTOMATIC_STRATEGIES | &check; | When `true` the Real-Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema | false | 
-| STRATEGIES_MAX_EXEC_TIME_MS | &check; | defines the maximum time for which a strategy is executed | - |
-| USE_UPSERT | - | defines whether to use [upsert](#upsert) or not when performing insert and update operations. | true |
-| KAFKA_MESSAGE_ADAPTER | - | defines which Kafka message adapter to use. Its value can be either ```basic``` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the 
-[Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic |
-| KAFKA_ADAPTER_FOLDER | - | defines the path to the Kafka adapter folder containing the custom message adapter, if required | - |
-| GENERATE_KAFKA_PROJECTION_UPDATES | - | defines whether the Real-Time Updater should send a message of update every time it writes the projection to Mongo. | false |
-| KAFKA_PROJECTION_UPDATES_FOLDER | - | path to the folder that contains the file ```kafkaProjectionUpdates.json```, containing configurations of the topic where to send the updates to, mapped to each projection. (v5.3.0 or above). | - |
-| COMMIT_MESSAGE_LOGGING_INTERVAL | - | specify the interval in ms of logging the info that messages have been committed. | 3000 |
-| KAFKA_CONSUMER_MAX_WAIT_TIME | - | defines the maximum waiting time of Kafka Consumer for new data in batch. | 500 |
-| KAFKA_CONNECTION_TIMEOUT_MS | - | Time in milliseconds to wait for a successful connection. | 10000 |
-| KAFKA_SESSION_TIMEOUT_MS | - | Timeout in milliseconds used to detect failures. | 30000 |
-| KAFKA_HEARTBEAT_INTERVAL_MS | - | The expected time in milliseconds between heartbeats to the consumer coordinator. | 3000 |
-| KAFKA_USE_LATEST_DEQUEUE_STRATEGY | - | defines latest dequeue strategy or not | - |
-| FORCE_CHECK_ON_OFFSET | - | Force check that incoming message has offset greater or equal than the one of the projection to update. | true |
-| CA_CERT_PATH | - | the path to the CA certificate, which should include the file name as well, e.g. ```/home/my-ca.pem``` | - |
-| PAUSE_TOPIC_CONSUMPTION_ON_ERROR | - | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error) | false |
-| USE_POS_AS_COUNTER  | - | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.  | true |
+| Name                                        | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             | Default  |
+|---------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| LOG_LEVEL                                   | &check;  | defines the logger level                                                                                                                                                                                                                                                                                                                                                                                                                                | -        |
+| HTTP_PORT                                   | &check;  | defines the HTTP port where status and metrics routes are exposed                                                                                                                                                                                                                                                                                                                                                                                       | -        |
+| SYSTEM_OF_RECORDS                           | &check;  | the name of the system of records associated to the Real Time Updater                                                                                                                                                                                                                                                                                                                                                                                   | -        |
+| MONGODB_URL                                 | &check;  | defines the mongodb URL to contact                                                                                                                                                                                                                                                                                                                                                                                                                      | -        |
+| PROJECTIONS_DATABASE_NAME                   | &check;  | defines the name of the projections database                                                                                                                                                                                                                                                                                                                                                                                                            | -        |
+| PROJECTIONS_CHANGES_COLLECTION_NAME         | &check;  | defines the name of the projections changes collection                                                                                                                                                                                                                                                                                                                                                                                                  | -        |
+| PROJECTIONS_CHANGES_ENABLED                 | -        | defines whether you want to generate projections changes                                                                                                                                                                                                                                                                                                                                                                                                | true     |
+| GENERATE_KAFKA_PROJECTION_CHANGES           | -        | defines whether the projection changes have to be sent to Kafka too or not. (v3.4.0 or above).                                                                                                                                                                                                                                                                                                                                                          | false    |
+| GENERATE_KAFKA_PROJECTION_UPDATES           | -        | defines whether the realtime updater should send a message of update every time it writes the projection to Mongo.                                                                                                                                                                                                                                                                                                                                      | false    |
+| KAFKA_BROKERS                               | &check;  | defines the Kafka brokers                                                                                                                                                                                                                                                                                                                                                                                                                               | -        |
+| KAFKA_GROUP_ID                              | &check;  | defines the Kafka group id (it is suggested to use a syntax like ```{'{tenant}.{environment}.{projectName}.{system}.real-time-updater'}```)                                                                                                                                                                                                                                                                                                             | -        | KAFKA_SASL_USERNAME | &check;| defines the Kafka SASL username | - |
+| KAFKA_SASL_USERNAME                         | &check;  | defines the Kafka SASL username                                                                                                                                                                                                                                                                                                                                                                                                                         | -        |
+| KAFKA_SASL_PASSWORD                         | &check;  | defines the Kafka SASL password                                                                                                                                                                                                                                                                                                                                                                                                                         | -        |
+| KAFKA_SASL_MECHANISM                        | -        | defines the authentication mechanism. It can be one of: ```plain```, ```scram-sha-256```, ```scram-sha-512```, ```oauthbearer```.                                                                                                                                                                                                                                                                                                                       | plain    |
+| KAFKA_SASL_OAUTH_BASE_URL                   | -        | In case of ```oauthbearer``` mechanism, it defines the base URL of the endpoint for fetching the OAuth2 token.                                                                                                                                                                                                                                                                                                                                          | -        |
+| KAFKA_SASL_OAUTH_PATH                       | -        | In case of ```oauthbearer``` mechanism, it defines the path of the endpoint for fetching the OAuth2 token.                                                                                                                                                                                                                                                                                                                                              | -        |
+| KAFKA_SASL_OAUTH_GRANT_TYPE                 | -        | In case of ```oauthbearer``` mechanism, it defines the grant type for fetching the OAuth2 token. Only grant type ```password``` is supported                                                                                                                                                                                                                                                                                                            | password |
+| KAFKA_SASL_OAUTH_CLIENT_ID                  | -        | In case of ```oauthbearer``` mechanism, it defines the client id for fetching the OAuth2 token.                                                                                                                                                                                                                                                                                                                                                         | -        |
+| KAFKA_SASL_OAUTH_CLIENT_SECRET              | -        | In case of ```oauthbearer``` mechanism, it defines the client secret for fetching the OAuth2 token.                                                                                                                                                                                                                                                                                                                                                     | -        |
+| KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS | -        | In case of ```oauthbearer``` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)                                                                                                                                                                                                                                 | 60000    |
+| KAFKA_USE_LATEST_DEQUEUE_STRATEGY           | -        | defines whether to use `latest` strategy as auto offset reset when consumer group did not previously exists                                                                                                                                                                                                                                                                                                                                             | -        |
+| KAFKA_MESSAGE_ADAPTER                       | -        | defines which Kafka message adapter to use. Its value can be either```basic``` or `db2` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic    |
+| KAFKA_CONSUMER_MAX_WAIT_TIME                | -        | defines the maximum waiting time of Kafka Consumer for new data in batch.                                                                                                                                                                                                                                                                                                                                                                               | 500      |
+| KAFKA_CONNECTION_TIMEOUT_MS                 | -        | Time in milliseconds to wait for a successful connection.                                                                                                                                                                                                                                                                                                                                                                                               | 10000    |
+| KAFKA_SESSION_TIMEOUT_MS                    | -        | Timeout in milliseconds used to detect failures.                                                                                                                                                                                                                                                                                                                                                                                                        | 30000    |
+| KAFKA_HEARTBEAT_INTERVAL_MS                 | -        | The expected time in milliseconds between heartbeats to the consumer coordinator.                                                                                                                                                                                                                                                                                                                                                                       | 3000     |
+| KAFKA_ADAPTER_FOLDER                        | -        | defines the path to the Kafka adapter folder                                                                                                                                                                                                                                                                                                                                                                                                            | -        |
+| KAFKA_PROJECTION_CHANGES_FOLDER             | -        | path where has been mounted the ```kafkaProjectionChanges.json``` configuration (v3.4.0 or above).                                                                                                                                                                                                                                                                                                                                                      | -        |
+| KAFKA_PROJECTION_UPDATES_FOLDER             | -        | mount path of the [Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) config map.                                                                                                                                                                                                                                             | -        |
+| CAST_FUNCTIONS_FOLDER                       | -        | defines the path to the cast-functions folder                                                                                                                                                                                                                                                                                                                                                                                                           | -        |
+| MAP_TABLE_FOLDER                            | -        | defines the path to the map table folder                                                                                                                                                                                                                                                                                                                                                                                                                | -        |
+| STRATEGIES_FOLDER                           | -        | defines the path to the strategies folder                                                                                                                                                                                                                                                                                                                                                                                                              | -        |
+| ER_SCHEMA_FOLDER                    | -        | Mount path of the [ER Schema](/fast_data/configuration/config_maps/erSchema.md) config map.                                                                                                                                                                                                                                                                                                                                                                                                                                                                | -                   |
+| PROJECTION_CHANGES_SCHEMA_FOLDER                    | -        | Mount path of the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) config map.                                                                                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
+| INVARIANT_TOPIC_MAP                         | &check;  | defines an object that maps the topic to the projection                                                                                                                                                                                                                                                                                                                                                                                                 | -        |
+| USE_UPSERT                                  | -        | defines whether to use [upsert](#upsert) or not when performing insert and update operations.                                                                                                                                                                                                                                                                                                                                                           | true     |
+| USE_AUTOMATIC_STRATEGIES                    | &check;  | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Records to automatically update in the service                                                                                                                                                                                                              | false    | 
+| STRATEGIES_MAX_EXEC_TIME_MS                 | &check;  | defines the maximum time for which a strategy is executed                                                                                                                                                                                                                                                                                                                                                                                               | -        |
+| COMMIT_MESSAGE_LOGGING_INTERVAL             | -        | specify the interval in ms of logging the info that messages have been committed.                                                                                                                                                                                                                                                                                                                                                                       | 3000     |
+| FORCE_CHECK_ON_OFFSET                       | -        | Force check that incoming message has offset greater or equal than the one of the projection to update.                                                                                                                                                                                                                                                                                                                                                 | true     |
+| CA_CERT_PATH                                | -        | the path to the CA certificate, which should include the file name as well, e.g. ```/home/my-ca.pem```                                                                                                                                                                                                                                                                                                                                                  | -        |
+| PAUSE_TOPIC_CONSUMPTION_ON_ERROR            | -        | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error)                                                                                                                                                                                                                | false    |
+| USE_POS_AS_COUNTER                          | -        | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.                                            | true     |
 
-### Multiple services to the same System of Records
+## Attach to System of Records
 
-From version `11.7.0` of the Console it is possible to have a single System of Records attached to multiple Real-Time Updater. The _System of Records_ page will include a tab to attach one or more services and to select which projections of the System should be evaluated by each Real-Time Updater.
+To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Projection Storer](/fast_data/projection_storer.md) or Real-Time Updater. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
-:::caution
-Please remember, after attaching a Real-Time Updater to the System of Records, to select which projections have to be evaluated by the service (selecting all of them is possible) to make sure that the service will
-actually update those projections.
-:::
+![Services in System of Record configuration page](./img/system-services.png)
+
+Please remember that, after attaching a Real-Time Updater to the Systems of Record, you must select the projections that the service should evaluate to ensure the service updates those projections. To do that, you can use to the table in the _Projections attached to services_ section to search the projection and attach to a specific service. Otherwise, you can access to the service configuration page by clicking to the button next to the service name and configure the list of projections from there.
 
 :::info
-One projection can be evaluated by only one service.
+Additionally, note that each projection can be evaluated by only one service.
 :::
+
+### Read only Environment Variables 
+
+When a system of record is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
+
+The following variables will be managed by the Fast Data Section and cannot be changed from the micro-service section:
+* `KAFKA_MESSAGE_ADAPTER`
+* `INVARIANT_TOPIC_MAP`
+* `SYSTEM_OF_RECORDS`
+* `CAST_FUNCTIONS_FOLDER`
+* `MAP_TABLE_FOLDER`
+* `STRATEGIES_FOLDER`
+* `KAFKA_ADAPTER_FOLDER`
+* `ER_SCHEMA_FOLDER`
+* `PROJECTION_CHANGES_SCHEMA_FOLDER`
+* `KAFKA_PROJECTION_UPDATES_FOLDER`
 
 ### Usage of the Low Code
 
-The Low Code features of the Real-Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service Config Maps .
+The Low Code features of the Real-Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service config maps.
 
 Also, it allows the possibility to fully configure the service with the usage of JSON files, as example for the [ER Schema](#er-schema-configuration) and the [Projection Changes Schema](#projection-changes-schema) 
 
@@ -95,7 +116,7 @@ If you want to change this behavior, you can set the environment variable `USE_U
 
 The Real-Time Updater accepts the following configurations:
 
-### Kafka Adapters: Kafka messages format
+### Message Adapters
 
 In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real-Time Updater.
@@ -189,13 +210,13 @@ Inside configmap folder create your javascript file named `kafkaMessageAdapter.j
 The file should export a simple function with the following signature:
 
 ```js
-module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger) {
+module.exports = function messageAdapter(message, primaryKeys, logger) {
   const {
     value: valueAsBuffer, // type Buffer
     key: keyAsBuffer, // type Buffer
     timestamp: timestampAsString, // type string
     offset: offsetAsString, // type string
-  } = kafkaMessage
+  } = message
 
   // your adapting logic
 
@@ -209,7 +230,7 @@ module.exports = function kafkaMessageAdapter(kafkaMessage, primaryKeys, logger)
 }
 ```
 
-The `kafkaMessage` argument is the Kafka message as received from the `real-time-updater`.  
+The `message` argument is the Kafka message as received from the `real-time-updater`.  
 The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are of type *string*.
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
@@ -231,6 +252,15 @@ The ER Schema ConfigMap is created after the service is attached to a System of 
 
 This is an empty configuration: the Real-Time Updater Microservice could be deployed without pod restart, but this file must be modified according to the projections associated with this microservice to work properly.
 :::  
+
+:::tip Shared ER Schema
+
+If you have already [attached an ER Schema to a Single View Creator](/fast_data/configuration/single_view_creator/plugin.md#selecting-an-er-schema-with-the-no-code), you can re-use it in the Real-Time Updater configuration too.
+
+By deleting the default one and [add an existing ER Schema Config Map](/development_suite/api-console/api-design/services.md#shared-configmaps) with a mount path as the one provided in the `ER_SCHEMA_FOLDER` environment variable, changes made to an Er Schema will be reflected also in the Real-Time Updater. 
+
+While this solution provides reusability of other ER Schemas, **[is strongly suggested to use the No Code](/fast_data/configuration/config_maps/erSchema.md#use-the-no-code)**. 
+:::
 
 ### Projection Changes Schema
 
@@ -328,11 +358,21 @@ Example:
 
 When a message about `registry-json` happens, the projection changes will be saved on MongoDB, and it will be sent to the Kafka topic `my-tenant.development.my-database.sv-pointofsale.projection-change` as well.
 
-## Custom Projection Changes Collection
+## Projection Changes Collection
 
-You can choose to use a collection you have already created in the CRUD section.  
+[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
 
-In order to do that, your collection is supposed to have the following fields (apart from the default ones):
+If the environment variable `PROJECTIONS_CHANGES_ENABLED`, you will be required to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
+
+If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (a text of maximum 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection for you if it doesn't exist yet. This collection can be customized by you in any moment after.
+
+If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service.
+
+:::info
+If you wish to delete a Real-Time Updater or change the desired name of the Projection Changes collection, please remember that the existing CRUD collection will not be automatically removed. You have to do it manually from the _MongoDB CRUD_ section.
+:::
+
+In any case, your collection is supposed to have the following fields (apart from the default ones):
 
 ```json
 [
@@ -376,8 +416,6 @@ You need to add the following index fields:
 
 - *name* `identifier`, *order* `ASCENDENT`
 - *name* `type`, *order* `ASCENDENT`
-
-After that, you need to set your collection as the one to be used by the Real-Time Updater. To do so, set the name of the collection you want to use as value of the `PROJECTIONS_CHANGES_COLLECTION_NAME` environment variable of the service.
 
 :::note
 To allow the Single View Creator to read from the Projection Changes, the collection name should also be set in the `PROJECTIONS_CHANGES_COLLECTION` environment variable of your Single View Creator service. 

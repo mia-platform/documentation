@@ -1,0 +1,29 @@
+fast-data:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/fast_data/*
+
+microfrontend-composer:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/microfrontend-composer/*
+
+cli:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/cli/*
+
+marketplace:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/runtime_suite/*
+
+crud-service:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/runtime_suite/crud-service/*
+
+release-note:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/release-notes/*

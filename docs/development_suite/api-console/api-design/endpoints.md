@@ -6,7 +6,7 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/getting-started/tutorials/rest-api-for-crud-on-data.mdx).
+An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx).
 
 This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md).
 
@@ -78,7 +78,14 @@ For the CRUD endpoint it's not possible to set an internal Rewrite. The Internal
 
 ## Endpoint settings
 
-This card possibly includes 4 tabs: _Security_, _Documentation_, _Microservice Gateway_ and _Advanced_.
+From this section it is possible to configure: _Listeners_, _Security_, _Documentation_, _Microservice Gateway_ and _Advanced_ settings for the Endpoint.
+
+### Listeners
+
+![Endpoint settings card - Listeners](img/listeners/endpoint-configure-listeners.png)
+
+This section lets you define from which Listener your Endpoint should be exposed.  
+Keep in mind that you must expose an Endpoint with _at least_ one Listener.
 
 ### Manage the security of your endpoints
 
