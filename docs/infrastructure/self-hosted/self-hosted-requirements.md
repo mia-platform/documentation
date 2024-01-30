@@ -211,7 +211,7 @@ The following is an example architecture for the installation of the Mia-Platfor
 | GitLab                    | 14          | 1              | 8 core  | 32 GB   | 200 GB      |
 | GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
 | MongoDB Enterprise        | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
-| Redis                     | 7           | 3              | 2 core  | 1 GB    | 1 GB       |
+| Redis                     | 7           |                |         | 1 GB    | 1 GB       |
 | Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    |          |
 | Google Container Registry |   SaaS      |                |      |      |          |
 | Google Cloud Storage      |   SaaS      |                |      |      |          |
