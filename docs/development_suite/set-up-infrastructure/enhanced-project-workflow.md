@@ -140,10 +140,10 @@ Newly created Projects can start using the **Enhanced Project Workflow** from th
 
 
 When making this choice, make also sure the *Project Template* you wish to start from is already supporting the new folder structure required by the **Enhanced Project Workflow**.
-If not, you can still start from any template and after the project creation you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created project repository to [the new folder structure](#git-repository-adjustments).
+If not, you can still start from any template and after the Project creation you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created Project repository to [the new folder structure](#git-repository-adjustments).
 
 :::info
-After the project creation is completed, in the Project Settings, you will be able to select the *deployment strategy* between **Push** (for [Pipeline-based deployments](/development_suite/deploy/pipeline-based/index.md)) and **Pull** (for [GitOps-based deployments](/development_suite/deploy/gitops-based/index.md)).
+After the Project creation is completed, in the Project Settings, you will be able to select the *deployment strategy* between **Push** (for [Pipeline-based deployments](/development_suite/deploy/pipeline-based/index.md)) and **Pull** (for [GitOps-based deployments](/development_suite/deploy/gitops-based/index.md)).
 
 
   ![deployment strategy selection](./img/settings-deployment-strategy-edit.png)
@@ -163,11 +163,11 @@ Enabling the Workflow on an existing Project will not make any changes to the Pr
 <details>
 <summary>Enable the Workflow on a whole Company</summary>
 
-If you want to ensure that all Projects in your Company adopt the **Enhanced Project Workflow**, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature on the Company level disallows also to create new project without the Enhanced Workflow.
+If you want to ensure that all Projects in your Company adopt the **Enhanced Project Workflow**, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature on the Company level disallows also to create new Project without the Enhanced Workflow.
 
 </details>
 
-## Migrating your projects
+## Migrating your Projects
 
 
 In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
@@ -216,7 +216,7 @@ All the contents of the `environments` directory are generated from scratch each
 :::
 
 <br />
-The migration process for the git repository differs depending on whether the project is using kustomize or not.  
+The migration process for the git repository differs depending on whether the Project is using kustomize or not.  
 Follow the right section for your Project to correctly update the git repository:
 
 <Tabs
