@@ -13,6 +13,9 @@ The Data Catalog Agent can not be deployed in projects adopting the older Consol
 
 A Mia-Platform Console Project can be configured to work as a Data Catalog, that is a centralized 
 location where it is possible to collect metadata concerning all the data assets of an organization.
+:::tip
+The Mia-Platform Console Project can be configured to work as a Data Catalog if you configure a Data Catalog Agent in your project. Refer to the [documentation](/runtime_suite_templates/data-catalog/10_overview.md) to understand how to set it up.
+:::
 Within the project, it is possible to set up our Data Catalog Agent, which can be configured to connect to different sources,
 such as:
 
