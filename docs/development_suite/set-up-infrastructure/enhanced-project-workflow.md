@@ -139,7 +139,7 @@ Newly created Projects can start using the **Enhanced Project Workflow** from th
   ![create-project-1](./img/project-creation-switch.png)
 
 
-When making this choice, make also sure the *Project Template* you wish to start from is already supporting the new **Enhanced Project Workflow**.
+When making this choice, make also sure the *Project Template* you wish to start from is already supporting the new folder structure required by the **Enhanced Project Workflow**.
 If not, you can still start from any template and after the project creation you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created project repository to [the new folder structure](#git-repository-adjustments).
 
 :::info
