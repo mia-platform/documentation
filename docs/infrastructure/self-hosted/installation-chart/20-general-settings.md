@@ -32,10 +32,12 @@ If you want to fine tune resources for specific services the proper documentatio
 
 |            Name            |  Type   |          Description           | Default | Optional |
 | :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
-|     `name`     |  string  | name of the generated image pull secrets. It will be set as imagePullSecret in all the charts workload |  |    ❌    |
-|     `username`     |  string  | Username to login to the container registry |  |    ❌    |
-|     `password`     |  string  | Password to login to the container registry |  |    ❌    |
-|      `email`       |  string  | Email of the user of the container registry |  |    ❌    |
+|     `registry`     |  string  |  The host of the registry where to pull the images, useful when you want to download images from a proxy registry |  `nexus.mia-platform.eu`  |    ✅    |
+
+|     `name`     |  string  | name of the generated image pull secrets. It will be set as imagePullSecret in all the charts workload |  |    ✅    |
+|     `username`     |  string  | Username to login to the container registry |  |    ✅    |
+|     `password`     |  string  | Password to login to the container registry |  |    ✅    |
+|      `email`       |  string  | Email of the user of the container registry |  |    ✅    |
 
 ### Storage connection configurations
 
@@ -113,7 +115,6 @@ mia-console:
 |                 `nameOverride`                 | string  |Set up a value if you don’t want to use `mia-console`                                                                                                                                                                  |                                 |    ✅     |
 |               `fullnameOverride`               | string  |                                                                                                                                             Set up a value if you want to set a fixed name for the release and not using the generated one                                                                                                                                             |                                 |    ✅     |
 |                   `logLevel`                   | string  |                                                                                                                                                                                 The log level to setup                                                                                                                                                                                 |             `info`              |    ✅     |
-|                 `registryHost`                 | string  |                                                                                                                                    The host of the registry where to pull the images, useful when you want to download images from a proxy registry                                                                                                                                    |     `nexus.mia-platform.eu`     |    ✅     |
 |    `configurations.multitinenantNamespace`     | string  |                                                                                                                                                                            The multitenant partial hostname                                                                                                                                                                            | `multitenant.svc.cluster.local` |    ✅     |
 | `configurations.customServicesImagePullSecret` | string  |                                                                                                      The name of the `imagePullSecret` containing the credentials to the private docker repository (_deprecated_, we reccomend to use `configurations.servicesImagePullSecrets`)                                                                                                       |                                 |    ✅     |
 |   `configurations.servicesImagePullSecrets`    |  array  | The names of `imagePullSecret` containing the credentials to the private docker repositories that will be used to pull the images of all services of the projects, this key take precendence over `configurations.customServicesImagePullSecret`. You have to specify the secrets for both your own services and the ones handled by Console (e.g. cms-backend, crud-service, ecc...). |       `["nexus-gcloud"]`        |    ✅     |
