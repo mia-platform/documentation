@@ -125,21 +125,47 @@ With this feature Users will be able to not only review the configurations but a
 
 With the first release of this new Workflow, existing Projects will require a migration operation to be performed. With this improvement we ought to provide further assistance in the migration process to make it as easy and smooth as possible.
 
-## Activating the feature on new Projects
+## Activating the feature
 
-The Enhanced Project Workflow can be activated by the user on new Projects enabling the relative switch in the Project workflow card following the [project creation process](/console/project-configuration/create-a-project.mdx#creation-process).
-
-:::info
-If you want to ensure that all Projects in your Company adopt the Enhanced Workflow, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature on the Company level disallows also to create new project without the Enhanced Workflow.
-
-In the end of the Project creation process, if the Enhanced Workflow option has been selected, the result is the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Project level.
-
-:::info
-If you want to activate the Enhanced Workflow on an already existing Project, follow the guide in the next section instead.
+:::note
+The **Enhanced Project Workflow** can be activated by any user with administrative privileges on a Project.
 :::
 
+### New Projects
 
-If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/infrastructure/self-hosted/feature-toggle.md).
+Newly created Projects can start using the **Enhanced Project Workflow** from the very first moment of their life, simply by switching the Workflow selection during the [Project creation process](/console/project-configuration/create-a-project.mdx#creation-process).
+
+
+  ![create-project-1](./img/project-creation-switch.png)
+
+
+When making this choice, make also sure the *Project Template* you wish to start from is already supporting the new **Enhanced Project Workflow**.
+If not, you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created project repository to [the new folder structure](#git-repository-adjustments).
+
+:::info
+After the project creation is completed, in the Project Settings, you will be able to select the *deployment strategy* between **Push** (for [Pipeline-based deployments](/development_suite/deploy/pipeline-based/index.md)) and **Pull** (for [GitOps-based deployments](/development_suite/deploy/gitops-based/index.md)).
+
+
+  ![deployment strategy selection](./img/settings-deployment-strategy-edit.png)
+
+:::
+
+### Existing Projects
+
+To enable the **Enhanced Project Workflow** on an existing Project, head to the **Advanced** tab in the [**Project Settings**](/console/project-configuration/project-settings.md) page and press the *Convert to Enhanced Workflow* button.
+
+  ![deployment strategy selection](./img/settings-advanced-convert-button.png)
+
+:::caution
+Enabling the Workflow on an existing Project will not make any changes to the Project repository, make sure to follow the [migration guide](#migrating-your-projects) below before converting the Project to the new workflow.
+:::
+
+<details>
+<summary>Enable the Workflow on a whole Company</summary>
+
+If you want to ensure that all Projects in your Company adopt the **Enhanced Project Workflow**, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature on the Company level disallows also to create new project without the Enhanced Workflow.
+
+</details>
 
 ## Migrating your projects
 
