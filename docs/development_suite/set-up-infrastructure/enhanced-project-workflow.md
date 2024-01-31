@@ -140,7 +140,7 @@ Newly created Projects can start using the **Enhanced Project Workflow** from th
 
 
 When making this choice, make also sure the *Project Template* you wish to start from is already supporting the new **Enhanced Project Workflow**.
-If not, you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created project repository to [the new folder structure](#git-repository-adjustments).
+If not, you can still start from any template and after the project creation you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created project repository to [the new folder structure](#git-repository-adjustments).
 
 :::info
 After the project creation is completed, in the Project Settings, you will be able to select the *deployment strategy* between **Push** (for [Pipeline-based deployments](/development_suite/deploy/pipeline-based/index.md)) and **Pull** (for [GitOps-based deployments](/development_suite/deploy/gitops-based/index.md)).
