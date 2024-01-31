@@ -11,9 +11,9 @@ are valid only for Console projects adopting the [Enhanced Workflow](/developmen
 The Data Catalog Agent can not be deployed in projects adopting the older Console workflow.
 :::
 
-A Mia-Platform Console Project can be configured to function as a Data Catalog, that is a centralized 
+A Mia-Platform Console Project can be configured to work as a Data Catalog, that is a centralized 
 location where it is possible to collect metadata concerning all the data assets of an organization.
-Within the project it is possible to set up our Data Catalog Agent, which can be configured to connect to different sources,
+Within the project, it is possible to set up our Data Catalog Agent, which can be configured to connect to different sources,
 such as:
 
 - Oracle Database
@@ -33,13 +33,18 @@ been generated starting from the metadata extracted by the Data Catalog Agent.
 
 ![Data Catalog in System of Record page](../img/data_catalog_systems_view.png)
 
-Selecting a specific System of Record it is possible to observe which tables are associated to the system and for
-each table it is visible which fields compose it, alongside the fields types and their properties.
+:::note
+At the moment, if a project is configured to work with the Data Catalog, in the same Project will not be possible to configure anything regarding Fast Data.
+In the next releases, a dedicated section to handle the Data Catalog will be provided.
+:::
 
-As a user it will be then possible to edit _description_ and _GDPR regulation_ properties of each table fields, which are retained upon saving
+Selecting a specific System of Record it is possible to observe which tables are associated with the system and for
+each table it is visible which fields compose it, alongside the field types and their properties.
+
+As a user, it will be then possible to edit _description_ and _GDPR regulation_ properties of each table field, which are retained upon saving
 the project. These changes, executed on the _user-defined_ properties, are preserved across multiple metadata synchronizations performed by
-the Data Catalog Agent, so that the source systems can add or remove fields without affecting existing ones. 
+the Data Catalog Agent so that the source systems can add or remove fields without affecting existing ones. 
 
-An example of table view is displayed in the figure below, which allows to edit description and GDPR regulation fields:
+An example of a table view is displayed in the figure below, which allows to editing description and GDPR regulation fields:
 
 ![Data Catalog Table view page](../img/data_catalog_readonly_fields.png)
