@@ -40,11 +40,16 @@ All of the following values are root values for the `mia-console` chart values.
 | `rbacStandalone` | [Service Conf](#service-conf) | The configurations for a rbac service standalone |  | ✅ |
 | `tenantOverviewBff` | [Service Conf](#service-conf) | The configurations for the tenant overview service |  | ✅ |
 | `bindingsCleaner` | [Service Conf](#service-conf) | The configurations for the bindings cleaner cronjob |  | ✅ |
+| `configurationsCleaner` | [Service Conf](#service-conf) | The configurations for the configurations history cleaner cronjob |  | ✅ |
 | `mailService` | [Service Conf](#service-conf) | The configurations for the mail service |  | ✅ |
 | `featureToggleService` | [Service Conf](#service-conf) | The configurations for the feature toggle service |  | ✅ |
 | `licenseManager` | [Service Conf](#service-conf) | The configurations for the license manager service |  | ✅ |
-| `backoffice` | [Annotation Conf](#service-conf)| The configurations for Backoffice service |  | ✅ |
+| `backoffice` | [Service Conf](#service-conf)| The configurations for Backoffice service |  | ✅ |
+| `eventsManager` | [Service Conf](#service-conf)| The configurations for the events-manager service |  | ✅ |
+| `licenseMetricsGenerator` | [CronJob Conf](#cronjob-conf)| The configurations for the license metrics generator CronJob |  | ✅ |
 | `rbac` | [Annotation Conf](#annotations-conf)| The configurations for the RBAC resources |  | ✅ |
+| `updateScripts.marketplaceCategories` | [Job](#job)| The configurable part of the marketplace categories hook |  | ✅ |
+| `updateScripts.consoleVersionUpgrader` | [Job](#job)| The configurable part of the console-version-upgrader hook |  | ✅ |
 
 ### Service Conf
 
@@ -52,6 +57,13 @@ All of the following values are root values for the `mia-console` chart values.
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `deploy` | [Deployment Conf](#deployment-conf) | An object that describe the configurable part of a deployment |  | ❌ |
 | `service` | [Annotation Conf](#annotations-conf) | An object that describe the configurable part of a kubernetes service |  | ❌ |
+| `rbacSidecar` | [RBAC Sidecar Conf](#rbac-sidecar-conf) | An object that describe the configurable part of the RBAC Sidecar service |  | ❌ |
+
+### CronJob Conf
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `cronjob` | [CronJob](#cronjob) | An object that describe the configurable part of a cronjob |  | ❌ |
 
 ### Deployment Conf
 
@@ -65,6 +77,7 @@ All of the following values are root values for the `mia-console` chart values.
 | `tolerations` | array | A kubernetes tolerations array for the pod |  | ✅ |
 | `hpa` | [HPA Conf](#hpa) | A kubernetes hpa object to enable horizontal pod autoscaler |  | ✅ |
 | `podDisruptionBudget` | [PodDisruptionBudget](#poddisruptionbudget) | A kubernetes PodDisruptionBudget object |  | ✅ |
+| `podSecurityContext` | [Pod Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | A kubernetes pod security context object |  | ✅ |
 
 ### Docker Image
 
@@ -99,6 +112,36 @@ All of the following values are root values for the `mia-console` chart values.
 | `annotations` | object | A Kubernetes valid annotation object |  | ✅ |
 | `labels` | object | A Kubernetes valid labels object |  | ✅ |
 
+### RBAC Sidecar Conf
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `annotations` | object | A Kubernetes valid annotation object |  | ✅ |
+| `resources` | object | A Kubernetes valid resources object |  | ✅ |
+
+### CronJob
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `image` | [Docker Image](#docker-image) | The docker image configurations |  | ❌ |
+| `annotations` | [Annotation Conf](#annotations-conf)  |  |  | ✅ |
+| `resources` | object | A kubernetes resource object for the container |  | ✅ |
+| `affinity` | object | A kubernetes affinity object for the pod |  | ✅ |
+| `nodeSelector` | object | A kubernetes nodeSelector object for the pod |  | ✅ |
+| `tolerations` | array | A kubernetes tolerations array for the pod |  | ✅ |
+| `podSecurityContext` | [Pod Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | A kubernetes pod security context object |  | ✅ |
+
+### Job
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `image` | [Docker Image](#docker-image) | The docker image configurations |  | ❌ |
+| `annotations` | [Annotation Conf](#annotations-conf)  |  |  | ✅ |
+| `resources` | object | A kubernetes resource object for the container |  | ✅ |
+| `affinity` | object | A kubernetes affinity object for the pod |  | ✅ |
+| `nodeSelector` | object | A kubernetes nodeSelector object for the pod |  | ✅ |
+| `tolerations` | array | A kubernetes tolerations array for the pod |  | ✅ |
+| `podSecurityContext` | [Pod Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | A kubernetes pod security context object |  | ✅ |
 
 ### Examples
 

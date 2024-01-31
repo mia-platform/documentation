@@ -58,6 +58,12 @@ imageCredentials:
   email: someone@mia-platform.eu
 ```
 
+#### New security context
+
+In this version, we removed the Pod Security Policy support (since removed in K8s v1.25) and the `podSecurityPolicyEnabled` field.
+
+We also change the management of the security context. In this version, the security context are applied by default to all the pods, and it is possible to configure only the pod security context using the `defaultPodSecurityContext` field (to change all the pods security context) or the `podSecurityContext` field in each workload configuration (to change the security context of a specific pod).
+
 ### Upgrade from v12.0.1 to v12.1.0
 
 #### New backoffice configuration
