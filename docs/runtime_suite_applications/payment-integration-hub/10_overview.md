@@ -37,18 +37,18 @@ Other platform plugins are included in order to enable some side functionalities
 
 The following endpoints are exposed by default:
 - **/demo** exposes the frontend
-- **/pgm-bff** exposes the backend for frontend functionalities
+- **/** exposes the backend for frontend functionalities
 
 
 ### CRUD Collection
 
 #### Transaction Saga
-A *transactions_saga* collection will be included in the project and by default is used as database reference to retrieve payments information.
+A *fm_transactions* collection will be included in the project and by default is used as database reference to retrieve payments information.
 The application can use any MongoDB collection to retrieve payments information: for further details on how to configure the application refer to the dedicated [section](./50_configuration.md).
 More details about the schema of the collection can be found in the dedicated [section](./20_payment_saga.md).
 
 #### Subscription Saga
-A *subscription_saga* collection will be included in the project and by default is used as database reference to retrieve subscription information.
+A *fm_subscriptions* collection will be included in the project and by default is used as database reference to retrieve subscription information.
 The application can use any MongoDB collection to retrieve subscription information: for further details on how to configure the application refer to the dedicated [section](./50_configuration.md).
 More details about the schema of the collection can be found in the dedicated [section](./30_subscription_saga.md).
 
@@ -69,5 +69,5 @@ A *users* collection will be included in the project and by default is used as d
 The collection can have any schema, as long as the [messaging-service](../../runtime_suite/messaging-service/configuration#service-configuration) is configured properly.
 
 #### Notification Templates
-A *Notification Template* collection will be included in the project and by default is used as database reference to retrieve and store the templates used to notify the user about the payment status.
+A *notification_templates* collection will be included in the project and by default is used as database reference to retrieve and store the templates used to notify the user about the payment status.
 The schema follows the one described by the [messaging-service](../../runtime_suite/messaging-service/configuration#templates-crud).

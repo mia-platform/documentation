@@ -58,7 +58,7 @@ The microservices that interact with the payment saga are the following:
 
 ## CRUD Collection
 
-A *transactions_saga* collection will be included in the project and by default is used as database reference use to retrieve payments information.
+A *fm_transactions* collection will be included in the project and by default is used as database reference use to retrieve payments information.
 The application can use any MongoDB collection to retrieve payments information: for further details on how to configure the application refer to the dedicated [section](./50_configuration.md).
 The following schema is used in the collection, designed to be compatible with [payment gateway manager](../../runtime_suite/payment-gateway-manager/overview):
 - **sagaId**: the unique saga id of payment flow

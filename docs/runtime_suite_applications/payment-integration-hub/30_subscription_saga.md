@@ -43,7 +43,7 @@ The technical states of the saga describe all the necessary steps to describe th
 
 ## CRUD Collection
 
-A *subscription_saga* collection will be included in the project and by default is used as database reference use to retrieve subscription information:
+A *fm_subscriptions* collection will be included in the project and by default is used as database reference use to retrieve subscription information:
 - **sagaId**: the unique saga id of subscription flow
 - **isFinal**: boolean to indicate if a state is final or not
 - **metadata**: object with information related to the payment

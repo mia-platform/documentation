@@ -59,29 +59,29 @@ Further personalization is available modifying its ConfigMap, that has the schem
   "title": "title of the website",
   // path of the Frontend pages
   "pages": {
-    "home": "/payment/checkout",
-    "checkout": "/payment/checkout",
-    "subscription": "/payment/subscription",
-    "buyer": "/payment/buyer",
-    "pay": "/payment/pay",
-    "result": "/payment/result",
-    "error": "/payment/error",
-    "pending": "/payment/pending"
+    "home": "/demo/checkout",
+    "checkout": "/demo/checkout",
+    "subscription": "/demo/subscription",
+    "buyer": "/demo/buyer",
+    "pay": "/demo/pay",
+    "result": "/demo/result",
+    "error": "/demo/error",
+    "pending": "/demo/pending"
   },
   // endpoint that Frontend should call to perform actions
   "endpoint": {
-    "pay": "/pgm-bff/pay",
-    "paySubscription": "/pgm-bff/pay-recurrent",
-    "payPolling": "/pgm-bff/pay-polling",
-    "payByLink": "/pgm-bff/pay-by-link",
-    "downloadInvoice": "/pgm-bff/invoice-download",
+    "pay": "/pay",
+    "paySubscription": "/pay-recurrent",
+    "payPolling": "/pay-polling",
+    "payByLink": "/pay-by-link",
+    "downloadInvoice": "/invoice-download",
     "checkout": "/fm/saga",
-    "checkoutSubscription": "/pgm-bff/create",
-    "paymentDetail": "/pgm-bff/payment-info",
-    "paymentMethods": "/pgm-bff/payment-methods",
+    "checkoutSubscription": "/create",
+    "paymentDetail": "/payment-info",
+    "paymentMethods": "/payment/{id}/methods",
     "axerveCreditToken": "https://sandbox.gestpay.net/api/v1/shop/token",
-    "applePaySession": "/pgm-bff/apple-pay-session",
-    "paymentTokenization": "/pgm-bff/tokenization"
+    "applePaySession": "/apple-pay-session",
+    "paymentTokenization": "/tokenization"
   },
   "googlepay": {
     "environment": "TEST or PRODUCTION",
@@ -144,10 +144,10 @@ For further configuration of the microservices you can refer to the dedicated do
 ## MongoDB Views
 
 The user should perform the additional steps reported below in order to create MongoDB views that enable to exploit the ready to use [backoffice pages related to payments](./40_backoffice_payment.md).
-1. Setup aggregation of `transactions_saga_view` as follows.
-    - create a new aggregation view on MongoDB Views section called `transactions_saga_view`
-    - choose `transactions_saga` as starting collection
-    - create `transactions_saga_view` schema as the schema below
+1. Setup aggregation of `fm_transactions_view` as follows.
+    - create a new aggregation view on MongoDB Views section called `fm_transactions_view`
+    - choose `fm_transactions` as starting collection
+    - create `fm_transactions_view` schema as the schema below
     - paste the following pipeline and fields
     <details>
       <summary>Pipeline</summary>
@@ -627,15 +627,15 @@ The user should perform the additional steps reported below in order to create M
     ```
     </details>
 
-2. Create endpoint for the MongoDB view previously created `transactions_saga_view`
-    - Create a new endpoint on the endpoint section `/transactions-saga-view`
+2. Create endpoint for the MongoDB view previously created `fm_transactions_view`
+    - Create a new endpoint on the endpoint section `/fm-transactions-view`
     - Choose MongoDB view as type
-    - Choose MongoDB view base path as `/transactions-saga-view`
+    - Choose MongoDB view base path as `/fm-transactions-view`
 
-3. Setup aggregation of `subscriptions_saga_view` as follows.
-    - create a new aggregation view on MongoDB Views section called `subscriptions_saga_view`
-    - choose `subscriptions_saga` as starting collection
-    - create `subscriptions_saga_view` schema as the schema below
+3. Setup aggregation of `subscriptions_view` as follows.
+    - create a new aggregation view on MongoDB Views section called `subscriptions_view`
+    - choose `fm_subscriptions` as starting collection
+    - create `subscriptions_view` schema as the schema below
     - paste the following pipeline and fields
     <details>
       <summary>Pipeline</summary>
@@ -1062,14 +1062,14 @@ The user should perform the additional steps reported below in order to create M
     ```
     </details>
 
-4. Create endpoint for the MongoDB view previously created `subscriptions_saga_view`
-    - Create a new endpoint on the endpoint section `/subscriptions-saga-view`
+4. Create endpoint for the MongoDB view previously created `subscriptions_view`
+    - Create a new endpoint on the endpoint section `/subscriptions-view`
     - Choose MongoDB view as type
-    - Choose MongoDB view base path as `/subscriptions-saga-view`
+    - Choose MongoDB view base path as `/subscriptions-view`
 
 5. Setup aggregation of `payment_pending_view` as follows.
     - create a new aggregation view on MongoDB Views section called `payment_pending_view`
-    - choose `transactions_saga` as starting collection
+    - choose `fm_transactions` as starting collection
     - create `payment_pending_view` schema as the schema below
     - paste the following pipeline and fields
     <details>
