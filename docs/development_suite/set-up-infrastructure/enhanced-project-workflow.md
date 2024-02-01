@@ -104,31 +104,31 @@ This feature is available from the [Deploy Page](/development_suite/deploy/overv
 
 ## Best Practices
 
-With the **Enhanced Project Workflow** paradigm shift, working with the Console may require for some change habits change; this section will present you some best practices that may help with such change.
+With the **Enhanced Project Workflow** paradigm shift, working with the Console may require some habit changes; this section presents some best practices that may help with such change.
 
 ### Revision management
 
-Working with revisions in the Enhanced Workflow is not that different from working with branches in the Standard Workflow; revisions have their own history and can be deployed on different environments therefore patterns such as **Git Flow** or **Trunk-based development** can be applied to the **Enhanced Project Workflow** as well.
+Working with revisions in the Enhanced Workflow is not that different from working with branches in the Standard Workflow; revisions have their own history and can be deployed on different environments, therefore patterns such as **Git Flow** or **Trunk-based development** can be applied to the **Enhanced Project Workflow** as well.
 
 #### Trunk-based
 
-If you are **working in a small team**, in general, we advise to use **trunk-based development**, with a single revision that represents your Project state-of-the-art that gets versioned everytime a release is needed.
+If you are **working in a small team**, in general, we advise using **trunk-based development**, with a single revision that represents your Project's state-of-the-art that gets versioned every time a release is needed.
 
-Create new revision any time you need to make experiments or you are unsure about the changes you need to make but [*remember to merge*](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) them in the main trunk as soon as possible to prevent headaches in reconciling diverging revisions.
+Create new revisions any time you need to make experiments or you are unsure about the changes you need to make but [*remember to merge*](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) them in the main trunk as soon as possible to prevent headaches in reconciling diverging revisions.
 
 :::tip
-When a version is deployed a tag is created on Git. Such tag has a different name based on the target environment making it possible to verify configuration changes between different deployment of the same version!
+When a version is deployed a tag is created on Git. Such tag has a different name based on the target environment making it possible to verify configuration changes between different deployments of the same version!
 :::
 
 #### Git Flow
 
-If you are working in **larger teams** or need to make more **structured change reviews**, use instead **Git Flow**, create a revision for each environment your project has. The daily work will be done in the revision associated with the "lower" environment;
-each time changes can be promoted to a "higher" environment use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to bring changes to the revision associated with it.
+If you are working in **larger teams** or need to make more **structured change reviews**, use **Git Flow** instead and create a revision for each environment your project has. The daily work will be done in the revision associated with the "lower" environment;
+whenever changes can be promoted to a "higher" environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to bring those changes to the revision associated with it.
 
 :::tip
-In a project with two environments, development and production, make sure to have at least two revisions.
+In a project with two environments (e.g. development and production), make sure to have at least two revisions.
 
-Developers will make changes in the `development` revision and deploy such revision in the development environment; to promote changes in the production environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to bring them in the correct revision and finally deploy it to the production environment.
+Developers will make changes in the `development` revision and deploy such revision in the development environment; to promote changes to the production environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to incorporate them into the correct revision and finally deploy it to the production environment.
 :::
 
 ## Roadmap and future improvements
