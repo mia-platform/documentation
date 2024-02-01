@@ -39,8 +39,8 @@ export const GlossaryTable = ({entries}) => (
 )
 
 <GlossaryTable entries={[
-  {name: "Projection", description: "A Projection is a standardized representation of the data coming from the System of Records", alias: "pr", link: "./the_basics#projection"},
-  {name: "System of Records", description: "A System of Records is the data source providing the raw information to a Fast Data system", alias: "SoR", link: "./the_basics#system-of-records-sor"},
+  {name: "Projection", description: "A Projection is a standardized representation of the data coming from the System of Record", alias: "pr", link: "./the_basics#projection"},
+  {name: "System of Record", description: "A System of Record is the data source providing the raw information to a Fast Data system", alias: "SoR", link: "./the_basics#system-of-records-sor"},
   {name: "Single View", description: "A Single View is a document that aggregates data from many Projections, always available and updated in near real-time", alias: "sv", link: "./the_basics#single-view-sv"},
   {name: "Strategy", description: "Strategies are functions that retrieve the unique identifiers of the Single View that needs to be updated or created as consequence of the changes on the Projections", alias: "-", link: "./the_basics#strategies"},
   {name: "Single View Creator", description: "The service responsible for the creation, update and deletion of Single Views", alias: "SVC", link: "./architecture#single-view-creator-svc"},
@@ -49,8 +49,8 @@ export const GlossaryTable = ({entries}) => (
   {name: "Projection Update", description: "Kafka event that informs the listener that a Projection has been changed", alias: "pr-update", link: "./inputs_and_outputs#projection-update"},
   {name: "Projection Changes", description: "MongoDB or Kafka event that informs the listener that a Single View needs to be updated", alias: "pc", link: "./inputs_and_outputs#projection-change"},
   {name: "Single View Event", description: "Kafka message that informs the listener that a Single View has been successfully updated", alias: "svc-events", link: "./inputs_and_outputs#single-view-event"},
-  {name: "Change Data Capture (CDC)", description: "A system that reacts to change of data at some source (in our case the System of Records) by emitting an event", alias: "CDC", link: "./the_basics#change-data-capture-cdc"},
-  {name: "Cast function", description: "A function used to transform the data originally coming from the System of Records before it is saved in the Projection", alias: "-", link: "./the_basics#cast-function"},
+  {name: "Change Data Capture (CDC)", description: "A system that reacts to change of data at some source (in our case the System of Record) by emitting an event", alias: "CDC", link: "./the_basics#change-data-capture-cdc"},
+  {name: "Cast function", description: "A function used to transform the data originally coming from the System of Record before it is saved in the Projection", alias: "-", link: "./the_basics#cast-function"},
   {name: "Kafka adapter", description: "A function that transforms the ingested Kafka messages into a format that can be read by the the Real-Time Updater", alias: "-", link: "./configuration/realtime_updater#message-adapters"},
   {name: "Golden Gate Adapter", description: "A Kafka adapter containing before and after fields", alias: "-", link: "./configuration/realtime_updater#golden-gate"},
   {name: "DB2 Adapter", description: "The default Kafka adapter", alias: "-", link: "./configuration/realtime_updater#ibm-infosphere-data-replication-for-db2"},

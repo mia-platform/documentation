@@ -20,7 +20,7 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 |---------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | LOG_LEVEL                                   | &check;  | defines the logger level                                                                                                                                                                                                                                                                                                                                                                                                                                | -        |
 | HTTP_PORT                                   | &check;  | defines the HTTP port where status and metrics routes are exposed                                                                                                                                                                                                                                                                                                                                                                                       | -        |
-| SYSTEM_OF_RECORDS                           | &check;  | the name of the system of records associated to the Real Time Updater                                                                                                                                                                                                                                                                                                                                                                                   | -        |
+| SYSTEM_OF_RECORDS                           | &check;  | the name of the system of record associated to the Real Time Updater                                                                                                                                                                                                                                                                                                                                                                                   | -        |
 | MONGODB_URL                                 | &check;  | defines the mongodb URL to contact                                                                                                                                                                                                                                                                                                                                                                                                                      | -        |
 | PROJECTIONS_DATABASE_NAME                   | &check;  | defines the name of the projections database                                                                                                                                                                                                                                                                                                                                                                                                            | -        |
 | PROJECTIONS_CHANGES_COLLECTION_NAME         | &check;  | defines the name of the projections changes collection                                                                                                                                                                                                                                                                                                                                                                                                  | -        |
@@ -39,7 +39,7 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 | KAFKA_SASL_OAUTH_CLIENT_SECRET              | -        | In case of ```oauthbearer``` mechanism, it defines the client secret for fetching the OAuth2 token.                                                                                                                                                                                                                                                                                                                                                     | -        |
 | KAFKA_SASL_OAUTH_TOKEN_EXPIRATION_MARGIN_MS | -        | In case of ```oauthbearer``` mechanism, it defines time window before the actual expiration of the token during which the token will be considered expired (it is recommended to set this value not less than 1 minute)                                                                                                                                                                                                                                 | 60000    |
 | KAFKA_USE_LATEST_DEQUEUE_STRATEGY           | -        | defines whether to use `latest` strategy as auto offset reset when consumer group did not previously exists                                                                                                                                                                                                                                                                                                                                             | -        |
-| KAFKA_MESSAGE_ADAPTER                       | -        | defines which Kafka message adapter to use. Its value can be either```basic``` or `db2` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Records, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic    |
+| KAFKA_MESSAGE_ADAPTER                       | -        | defines which Kafka message adapter to use. Its value can be either```basic``` or `db2` (DB2 adapter), ```golden-gate```, ```debezium``` or ```custom```. This value can be changed only in the related System of Record, on the _Projections_ page. Any manual update from the Environment Variables table will be loss when saving. Further details on the [Kafka Adapters: Kafka messages format](#kafka-adapters-kafka-messages-format) paragraph. | basic    |
 | KAFKA_CONSUMER_MAX_WAIT_TIME                | -        | defines the maximum waiting time of Kafka Consumer for new data in batch.                                                                                                                                                                                                                                                                                                                                                                               | 500      |
 | KAFKA_CONNECTION_TIMEOUT_MS                 | -        | Time in milliseconds to wait for a successful connection.                                                                                                                                                                                                                                                                                                                                                                                               | 10000    |
 | KAFKA_SESSION_TIMEOUT_MS                    | -        | Timeout in milliseconds used to detect failures.                                                                                                                                                                                                                                                                                                                                                                                                        | 30000    |
@@ -54,7 +54,7 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 | PROJECTION_CHANGES_SCHEMA_FOLDER                    | -        | Mount path of the [Projection Changes Schema](/fast_data/configuration/config_maps/projection_changes_schema.md) config map.                                                                                                                                                                                                                                                                                                                                                                                                                                                           | -                   |
 | INVARIANT_TOPIC_MAP                         | &check;  | defines an object that maps the topic to the projection                                                                                                                                                                                                                                                                                                                                                                                                 | -        |
 | USE_UPSERT                                  | -        | defines whether to use [upsert](#upsert) or not when performing insert and update operations.                                                                                                                                                                                                                                                                                                                                                           | true     |
-| USE_AUTOMATIC_STRATEGIES                    | &check;  | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Records to automatically update in the service                                                                                                                                                                                                              | false    | 
+| USE_AUTOMATIC_STRATEGIES                    | &check;  | When `true` the Real Time Updater will work in Low Code mode, supporting the Config Maps of ER Schema and Projection Changes Schema, and allowing configuration of the associated System of Record to automatically update in the service                                                                                                                                                                                                              | false    | 
 | STRATEGIES_MAX_EXEC_TIME_MS                 | &check;  | defines the maximum time for which a strategy is executed                                                                                                                                                                                                                                                                                                                                                                                               | -        |
 | COMMIT_MESSAGE_LOGGING_INTERVAL             | -        | specify the interval in ms of logging the info that messages have been committed.                                                                                                                                                                                                                                                                                                                                                                       | 3000     |
 | FORCE_CHECK_ON_OFFSET                       | -        | Force check that incoming message has offset greater or equal than the one of the projection to update.                                                                                                                                                                                                                                                                                                                                                 | true     |
@@ -62,7 +62,7 @@ The documentation regarding the Projection Storer can be found [here](/fast_data
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR            | -        | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error)                                                                                                                                                                                                                | false    |
 | USE_POS_AS_COUNTER                          | -        | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.                                            | true     |
 
-## Attach to System of Records
+## Attach to System of Record
 
 To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Projection Storer](/fast_data/projection_storer.md) or Real-Time Updater. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
@@ -76,7 +76,7 @@ Additionally, note that each projection can be evaluated by only one service.
 
 ### Read only Environment Variables 
 
-When a system of record is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Records_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
+When a system of record is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Record_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
 
 The following variables will be managed by the Fast Data Section and cannot be changed from the micro-service section:
 * `KAFKA_MESSAGE_ADAPTER`
@@ -92,12 +92,12 @@ The following variables will be managed by the Fast Data Section and cannot be c
 
 ### Usage of the Low Code
 
-The Low Code features of the Real-Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Records (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service config maps.
+The Low Code features of the Real-Time Updater is available since version `4.2.0`. This means that any configuration update on the related System of Record (selection of the Message Adapter, any update of projections, their fields or the topic definitions) will be automatically reflected in the service config maps.
 
 Also, it allows the possibility to fully configure the service with the usage of JSON files, as example for the [ER Schema](#er-schema-configuration) and the [Projection Changes Schema](#projection-changes-schema) 
 
 :::info
-You can quickly convert a System of Records from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to _true_. Then, you should follow the next steps to set up your Fast Data Low Code project properly.
+You can quickly convert a System of Record from Manual to Low code by changing the `USE_AUTOMATIC_STRATEGIES` to _true_. Then, you should follow the next steps to set up your Fast Data Low Code project properly.
 :::
 
 ## How data is managed on MongoDB
@@ -121,7 +121,7 @@ The Real-Time Updater accepts the following configurations:
 In the Fast Data architecture CDC, iPaaS, APIs and sFTP publish messages on Kafka topic to capture change events. However, these messages could be written in different formats.
 The purpose of the Kafka adapter is allowing the correct reading of these messages in order to be properly consumed by the Real-Time Updater.
 
-Since one or multiple Real-Time Updater services could be connected to a System of Records, when creating a new System you will be asked to select the type of message adapter you want to use, 
+Since one or multiple Real-Time Updater services could be connected to a System of Record, when creating a new System you will be asked to select the type of message adapter you want to use, 
 between one of the following options (further details in the paragraphs below):
 - `DB2`, based on the [IBM InfoSphere Data Replication for DB2](https://www.ibm.com/docs/en/db2-for-zos/13?topic=getting-started-db2-zos) type CDC;
 - `Golden Gate`, based on the [Oracle GoldenGate](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/introduction-oracle-goldengate.htm#GGCON-GUID-EF513E68-4237-4CB3-98B3-2E203A68CBD4) type CDC;
@@ -130,7 +130,7 @@ between one of the following options (further details in the paragraphs below):
 
 The selection will be applied to every Real-Time Updater service attached (or to any service that will be attached in the future) to ensure that those service will be expecting messages in the correct type.
 
-In case you need to change the type of adapter to use in the Real-Time Updater, you can easily do that from the System of Records page in the _Projection_ section of the console: after selecting your System, click on the _Message Format_ tab, then select the adapter type you want to use.
+In case you need to change the type of adapter to use in the Real-Time Updater, you can easily do that from the System of Record page in the _Projection_ section of the console: after selecting your System, click on the _Message Format_ tab, then select the adapter type you want to use.
 
 ![Message Format page](./img/message-format.png)
 
@@ -185,7 +185,7 @@ To see the message's structure specification and some examples go to the [Inputs
 
 If you have Kafka Messages that do not match one of the formats above, you can create your own custom adapter for the messages. 
 
-To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real-Time Updater_ section of the related System of Records. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
+To make this work, you need to create a `Custom Kafka Message Adapter` inside _Real-Time Updater_ section of the related System of Record. The adapter must be a javascript function that converts Kafka messages as received from the Real-Time Updater to an object with a specific structure. This function must receives as arguments the Kafka message and the list of primary keys of the projection, and must return an object with the following properties:
 
 - **offset**: the offset of the Kafka message
 - **timestampDate**: an instance of `Date` of the timestamp of the Kafka message.
@@ -242,7 +242,7 @@ The ER Schema, defined with a `erSchema.json` file, defines the relationship bet
 You can update the ER Schema in the page of the Real-Time Updater, in the _ConfigMaps & Secrets_ page. 
 
 :::info
-The ER Schema ConfigMap is created after the service is attached to a System of Records for the first time. It will include base `erSchema.json` file is generated with the following content:
+The ER Schema ConfigMap is created after the service is attached to a System of Record for the first time. It will include base `erSchema.json` file is generated with the following content:
 ```json
 { 
   "version": "1.0.0", 
@@ -267,7 +267,7 @@ While this solution provides reusability of other ER Schemas, **[is strongly sug
 The `projectionChangesSchema.json` config map defines the paths for the strategy to generate the projection changes identifier. Differently from the Manual Configuration, the projection changes configurations are described with a JSON file aimed to reduce the developing effort.
 
 :::caution
-The Projection Changes Schema ConfigMap is created after the service is attached to a System of Records for the first time. 
+The Projection Changes Schema ConfigMap is created after the service is attached to a System of Record for the first time. 
 It will include base `projectionChangesSchema.json` file is generated with the following content:
 ```json
 { 
@@ -290,7 +290,7 @@ In this folder you have all the generated [Cast Functions](/fast_data/configurat
 
 The mount path used for these configurations is: `/home/node/app/configurations/mapTableFolder`.  
 Two mappings will be placed in this folder: one between cast functions and fields and another one between strategies and projections.
-This configuration is read-only since it's configured automatically based on the projections of the System of Records included in the attached service 
+This configuration is read-only since it's configured automatically based on the projections of the System of Record included in the attached service 
 and the strategies you configure from the Fast Data section of the Console.
 
 ### Kafka Projection Changes configuration
@@ -360,7 +360,7 @@ When a message about `registry-json` happens, the projection changes will be sav
 
 ## Projection Changes Collection
 
-[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Records](/fast_data/the_basics.md#system-of-records-sor).
+[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-records-sor).
 
 If the environment variable `PROJECTIONS_CHANGES_ENABLED`, you will be required to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
 

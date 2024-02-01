@@ -6,26 +6,26 @@ sidebar_label: Projections
 
 In this document we guide you through the configuration of [Projections](/fast_data/the_basics.md#projection) directly in the Console.
 
-## Create a System of Records
+## Create a System of Record
 
-To create a Projection, you should first of all create a System of Records, which is the data source that updates the Projection.
+To create a Projection, you should first of all create a System of Record, which is the data source that updates the Projection.
 
 To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Record` button.
 
-The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format). 
+The creation of a System of Record requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format). 
 
-![Create a System of Records](../img/create_system_of_record.png)
+![Create a System of Record](../img/create_system_of_record.png)
 
-The System of Records is then created.
+The System of Record is then created.
 
 :::note
 In case it is not possible to find the button `Create new System of Record`, it means that a project may have been configured
 to expose Systems of Record under the [Data Catalog](/fast_data/data_catalog/overview.md) feature, which allows to visualize them in a read-only fashion.
 :::
 
-## Delete a System of Records
+## Delete a System of Record
 
-To delete a System of Records, you have to click the `Delete` button in the bottom-right corner of the System of Records detail page.
+To delete a System of Record, you have to click the `Delete` button in the bottom-right corner of the System of Record detail page.
 
 :::warning
 The deletion is not allowed as long as you have at least one Projection inside the System, hence you need to delete all the Projections in a System before being able to delete it. 
@@ -33,9 +33,9 @@ The deletion is not allowed as long as you have at least one Projection inside t
 
 ## Create a Projection
 
-To create a new Projection, open the **Projections** section in the Fast Data group of Mia-Platform Console, then select an existing System of Records or [create a new one](#create-a-system-of-records).
+To create a new Projection, open the **Projections** section in the Fast Data group of Mia-Platform Console, then select an existing System of Record or [create a new one](#create-a-system-of-records).
 
-Inside the System of Records page click the `Create new Projection` button on the top-right corner of the page and insert a Projection Name for the new Projection inside the pop-up displayed. After that, the new Projection details page will be displayed.
+Inside the System of Record page click the `Create new Projection` button on the top-right corner of the page and insert a Projection Name for the new Projection inside the pop-up displayed. After that, the new Projection details page will be displayed.
 
 In order to finally create the new Projection, you will need to save the configuration.
 
@@ -129,7 +129,7 @@ tenantId.environmentId.systemId.projectionName.pr-update
 
 where `tenantId`, `environmentId`, `systemId` and `projectionName` are filled with the same values specified in the previous paragraph about ingestion topics.
 
-When a new Projection is created, the PR update topics values (for each Projection and for each environment) are added to the `FAST_DATA_PR_UPDATES_MAP_{SYSTEM_OF_RECORDS_NAME}` public variable, where `{SYSTEM_OF_RECORDS_NAME}` is filled with the capitalized name of the new Projection System of Records. For existing System of Records, if the public variable is not present it will be created when saving the configuration.
+When a new Projection is created, the PR update topics values (for each Projection and for each environment) are added to the `FAST_DATA_PR_UPDATES_MAP_{SYSTEM_OF_RECORDS_NAME}` public variable, where `{SYSTEM_OF_RECORDS_NAME}` is filled with the capitalized name of the new Projection System of Record. For existing System of Record, if the public variable is not present it will be created when saving the configuration.
 
 The content of the `FAST_DATA_PR_UPDATES_MAP_{SYSTEM_OF_RECORDS_NAME}` public variable is then added to the `kafkaProjectionUpdates.json` config map, used by the Real-Time Updater service inside the `KAFKA_PROJECTION_CHANGES_FOLDER` environment variable, which contains its folder path.
 
@@ -157,7 +157,7 @@ Every one of these timestamp fields has the format `yyyy-MM-ddTHH:mm:ss.SSS+ZZ:Z
 
 ## Import multiple projections from a DDL file
 
-Most DBMSes have some way of exporting the database schema, producing a DDL file that contains a sequence of statements like `CREATE_TABLE`, `ALTER_TABLE`, and `CREATE_INDEX`. With this kind of file, the Console can create multiple projections for a given System of Records, which creates a set of projections with the following information:
+Most DBMSes have some way of exporting the database schema, producing a DDL file that contains a sequence of statements like `CREATE_TABLE`, `ALTER_TABLE`, and `CREATE_INDEX`. With this kind of file, the Console can create multiple projections for a given System of Record, which creates a set of projections with the following information:
 
 * All the fields (both custom and default); the custom fields can only have type `number` or `string`. All the numeric types will be converted to `number`, every other SQL type will be converted to `string`.
 * All the indexes specified in the DDL, plus a primary key index that will be automatically generated if not already present.
@@ -170,7 +170,7 @@ To import projections from a DDL you need to go through three main steps, explai
 
 ### First Step
 
-In the first step, you need to go to the Design Area, Projections Section, and create or edit a System of Records. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process. On the first page, you will need to specify a topic pattern.
+In the first step, you need to go to the Design Area, Projections Section, and create or edit a System of Record. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process. On the first page, you will need to specify a topic pattern.
 
 The topic pattern is a template string that will be interpolated for each combination of environment and projection to generate the topic prefixes. The syntax used is the same of the intuitive [javascript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), with the following variables:
 

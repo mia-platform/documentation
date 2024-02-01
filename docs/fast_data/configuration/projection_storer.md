@@ -32,7 +32,7 @@ be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_
 | HTTP_PORT        | -        | defines the service HTTP port where status and metrics endpoints are exposed                              | 3000               |
 | CONFIG_FILE_PATH | -        | defines the file path where the service configuration is found (it can either be a `json` or `yaml` file) | `conf/config.json` |
 
-## Attach to System of Records
+## Attach to System of Record
 
 To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Real-Time Updater](/fast_data/realtime_updater.md) or Projection Storer. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
@@ -55,7 +55,7 @@ The page will contain the following configurations:
 - a code editor to configure the [Producer configuration](#producer) of the service
 - a code editor to configure the [Storage configuration](#storage) of the service
 
-All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Records.
+All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Record.
 
 ## Configuration File
 
@@ -552,7 +552,7 @@ instructs the service on how to transform each ingestion event into a projection
 | `prUpdate`  | `object` | &check;  |         |
 
 In this section are specified for each projection their input channel (_ingestion_), from which change events on the source
-system (System Of Records) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
+system (System Of Record) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
 to trigger Fast Data downstream components.
 
 ##### Ingestion
