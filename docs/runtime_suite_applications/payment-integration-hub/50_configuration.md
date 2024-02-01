@@ -149,6 +149,7 @@ The user should perform the additional steps reported below in order to create M
     - choose `fm_transactions` as starting collection
     - create `fm_transactions_view` schema as the schema below
     - paste the following pipeline and fields
+
     <details>
       <summary>Pipeline</summary>
 
@@ -637,6 +638,7 @@ The user should perform the additional steps reported below in order to create M
     - choose `fm_subscriptions` as starting collection
     - create `subscriptions_view` schema as the schema below
     - paste the following pipeline and fields
+
     <details>
       <summary>Pipeline</summary>
 
@@ -1072,6 +1074,7 @@ The user should perform the additional steps reported below in order to create M
     - choose `fm_transactions` as starting collection
     - create `payment_pending_view` schema as the schema below
     - paste the following pipeline and fields
+    
     <details>
       <summary>Pipeline</summary>
 
