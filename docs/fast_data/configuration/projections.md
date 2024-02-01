@@ -10,13 +10,18 @@ In this document we guide you through the configuration of [Projections](/fast_d
 
 To create a Projection, you should first of all create a System of Records, which is the data source that updates the Projection.
 
-To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Records` button.
+To do so, open the **Projections** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Record` button.
 
 The creation of a System of Records requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format). 
 
 ![Create a System of Records](../img/create_system_of_record.png)
 
 The System of Records is then created.
+
+:::note
+In case it is not possible to find the button `Create new System of Record`, it means that a project may have been configured
+to expose Systems of Record under the [Data Catalog](/fast_data/data_catalog/overview.md) feature, which allows to visualize them in a read-only fashion.
+:::
 
 ## Delete a System of Records
 
@@ -46,13 +51,13 @@ Once you click the `Create field` button, a form is prompted where you should in
 
 | Name          | Type          | Required | Description                                                                                                                                                  |
 |---------------|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name          | String        | &check;     | Name of the Projection Field. No spaces or special characters                                                                                                |
-| Description   | String        | -    | Description of the Field                                                                                                                                     |
-| Type          | Select        | &check;     | Type of the Field. one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint` |
-| Cast Function | Cast Function | &check;     | the possible Cast Function to select for the specified data type                                                                                             |
-| Required      | Checkbox      | &check;     | Set the field as required, default to false                                                                                                                  |
-| Nullable      | Checkbox      | &check;     | Declare field as nullable, default to false                                                                                                                  |
-| Primary Key   | Checkbox      | &check;     | Set the field as part of the primary key, default to false                                                                                                   |
+| Name          | String        | &check;  | Name of the Projection Field. No spaces or special characters                                                                                                |
+| Description   | String        | -        | Description of the Field                                                                                                                                     |
+| Type          | Select        | &check;  | Type of the Field. one of `String`, `Number`, `Boolean`, `Date`, `Object`, `Array of object`, `Array of number`, `Array of string`, `ObjectId` or `GeoPoint` |
+| Cast Function | Cast Function | &check;  | the possible Cast Function to select for the specified data type                                                                                             |
+| Required      | Checkbox      | &check;  | Set the field as required, default to false                                                                                                                  |
+| Nullable      | Checkbox      | &check;  | Declare field as nullable, default to false                                                                                                                  |
+| Primary Key   | Checkbox      | &check;  | Set the field as part of the primary key, default to false                                                                                                   |
 
 It's **mandatory** to set at least one Primary Key for each Projection. Otherwise, you will not be able to save your configuration.
 
