@@ -12,7 +12,6 @@ But what can you do exactly with Traefik?
 
 To configure TLS capabilities in the PaaS, you can check our Cert-Manager [Documentation](/infrastructure/paas/tools/cert-manager.md).
 
-
 In order to configure the routing to your services, you need to create a DNS records pointing to the public IP address exposed by Traefik. Once the DNS is set up correctly, you can start writing Traefik configuration files to set up the rest.
 
 ## Expose an endpoint
@@ -47,17 +46,17 @@ spec:
 You will need to valorize the fields contained in the angle brackets (`<>`):
 - **host:** the hostname that you want to expose (e.g. example.com) 
 - **middleware-name:** The name of the Traefik Middleware resource that you want to apply
-- **middleware-namespace:** The nama of the namespace where the middleware has been created
+- **middleware-namespace:** The name of the namespace where the middleware has been created
 - **tls-secret:** the name of the secret containing the tls certificate
 
 :::info
 You need to include the middleware `ingress-controller-hsts-headers` to allow clients to upgrade the connection to https.
 :::
 :::info
-The label `app.kubernetes.io/instance: "ingress-controller"` is necessary in this resources to let Traefik discover them.
+The label `app.kubernetes.io/instance: "ingress-controller"` is necessary in these resources to let Traefik discover them.
 :::
 
-This configuration need to be put in the intended Environment configuration folder of your project, it differs between *Base projects* and *Kustomize projects*.
+This configuration needs to be put in the intended Environment configuration folder of your project, it differs between *Base projects* and *Kustomize projects*.
 - **Base project:** The resource needs to be saved in the path `configuration/<environmentId>/<resource.yaml>`.
 - **Kustomize project:** The resource needs to be saved in the path `overlays/<environmentId>/<resource.yaml>`.
 

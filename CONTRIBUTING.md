@@ -138,7 +138,7 @@ Each tagged version has a dedicated folder:
 
 - `versioned_docs/version-<number version>`
 
-**The current  version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+**The current version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
 
 Eg.
 
