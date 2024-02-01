@@ -30,7 +30,7 @@ Example of metadata are the tables' names, their fields' names and their corresp
 
 Once the Data Catalog Agent has run for the first time and it has extracted at least one System of Record, in the design section
 of the specific Console project, it will be possible to explore these set of System of Record under the Data Catalog page,
-which replaces the Projections page in this particular case.  
+which replaces the Systems of Record page in this particular case.  
 Within this page, which is shown in the figure, it will be possible to see the list of System of Record that have
 been generated starting from the metadata extracted by the Data Catalog Agent.
 
