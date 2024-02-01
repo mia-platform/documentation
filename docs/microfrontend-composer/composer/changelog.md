@@ -10,6 +10,22 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.7.1] - 2024-01-29
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.13`
+- `@mia-platform-internal/reactord` to `^10.1.3`
+- `@micro-lc/middleware` to `^3.0.6`
+- `flag-icons` to `^7.1.0`
+- `monaco-yaml` to `^5.1.1`
+- `react-router-dom` to `^6.21.3`
+- Dev dependencies updated
+
+### Changed
+
+- Router.json adapted to new data model
+
 ## [1.7.0] - 2023-12-15
 
 ### Versioning
