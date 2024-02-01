@@ -71,7 +71,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/sfontana9/documentation
+            ghcr.io/mia-platform/documentation
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
@@ -113,12 +113,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN}}"
       - uses: eic/trigger-gitlab-ci@v2
         with:
           url: https://git.tools.mia-platform.eu
           project_id: ${{ vars.MIA_PLATFORM_DOCUMENTATION_GITLAB_PROJECT_ID }}
           token: ${{ secrets.MIA_PLATFORM_DOCUMENTATION_GITLAB_TOKEN }}
           variables: |
-            ENVIRONMENT_TO_DEPLOY=DEV
+            ENVIRONMENT_TO_DEPLOY=PROD
           ref_name: master
