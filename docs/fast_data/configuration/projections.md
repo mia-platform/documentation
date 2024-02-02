@@ -170,7 +170,7 @@ To import projections from a DDL you need to go through three main steps, explai
 
 ### First Step
 
-In the first step, you need to go to the Design Area, Projections Section, and create or edit a System of Record. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process. On the first page, you will need to specify a topic pattern.
+In the first step, you need to go to the Design Area, Systems of Record section, and create or edit a System of Record. Once there, in the top right corner you will find an import button, which will open a Modal that will guide you through the import process. On the first page, you will need to specify a topic pattern.
 
 The topic pattern is a template string that will be interpolated for each combination of environment and projection to generate the topic prefixes. The syntax used is the same of the intuitive [javascript template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), with the following variables:
 

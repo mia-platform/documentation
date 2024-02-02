@@ -1106,7 +1106,7 @@ Below are reported all the steps necessary to set-up a Projection Storer that co
 
    When the Projection Storer plugin is created, it already contains the proper set of environment variables. 
 
-2. Once the service is created, navigate to the Fast Data Configurator (Projections section) and select the System of Record that contains the Real-Time Updater to be replaced.
+2. Once the service is created, navigate to the Fast Data Configurator (Systems of Record section) and select the System of Record that contains the Real-Time Updater to be replaced.
 In the submenu, please select the _Services_ tab, as displayed below:
 
    ![Open Services section](../img/ps_migration/02_sor_service.png)
