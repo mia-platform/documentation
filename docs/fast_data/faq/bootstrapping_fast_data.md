@@ -53,7 +53,7 @@ This value can be set at the topic level with the parameter `min.insync.replicas
 
 ### What should be the required resources to perform an Initial Load?
 
-The **Initial Load** is a manual operation made at runtime to initialize the projection's records with the most recent copy of the whole dataset from the system of record linked to it.
+The **Initial Load** is a manual operation made at runtime to initialize the projection's records with the most recent copy of the whole dataset from the System of Record linked to it.
 
 This operation is carried out either the first time the system is boot up, when no records have ever been ingested, or whenever a schema change is deemed relevant enough to require reloading all the table content: for example, a new field is added to the schema of a table and it should be added retroactively to records that have already been ingested but that might not receive further updates in the future.
 

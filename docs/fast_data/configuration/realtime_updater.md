@@ -76,7 +76,7 @@ Additionally, note that each projection can be evaluated by only one service.
 
 ### Read only Environment Variables 
 
-When a system of record is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Record_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
+When a System of Record is attached to a Real-Time Updater, some of its config maps are automatically updated and set as read-only. These configurations are managed by the console. Any updates made to the _System of Record_ (e.g., adding, removing, or updating a projection, or modifying the Message Adapter) will trigger the update of these configuration maps upon saving the configuration.
 
 The following variables will be managed by the Fast Data Section and cannot be changed from the micro-service section:
 * `KAFKA_MESSAGE_ADAPTER`
