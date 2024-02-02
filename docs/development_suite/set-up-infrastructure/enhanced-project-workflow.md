@@ -114,7 +114,7 @@ Working with revisions in the Enhanced Workflow is not that different from worki
 
 If you are **working in a small team**, in general, we advise using **trunk-based development**, with a single revision that represents your Project's state-of-the-art that gets versioned every time a release is needed.
 
-Create new revisions any time you need to make experiments or you are unsure about the changes you need to make but [*remember to merge*](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) them in the main trunk as soon as possible to prevent headaches in reconciling diverging revisions.
+Create new revisions whenever you need to experiment or are unsure of the changes to be made, but [*remember to merge*](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) them in the main trunk as soon as possible to prevent headaches in reconciling diverging revisions.
 
 :::tip
 When a version is deployed a tag is created on Git. Such tag has a different name based on the target environment making it possible to verify configuration changes between different deployments of the same version!
