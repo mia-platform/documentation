@@ -31,8 +31,8 @@ When creating the service from the marketplace the following environment variabl
 | KAFKA_PROJECTION_UPDATES_FOLDER  | &check;  | Path to the [Kafka Projection Updates](#kafka-projection-updates) folder                                                                                                                                | -             |
 | ER_SCHEMA_FOLDER                 | &check;  | Path to the [ER Schema](#er-schema) folder                                                                                                                                                              | -             |
 | PROJECTION_CHANGES_SCHEMA_FOLDER | &check;  | Path to the [Projection Changes Schema](#projection-changes-schema) folder                                                                                                                              | -             |
-| MANUAL_STRATEGIES_FOLDER         | -        | Path to the custom strategies folder where the custom strategies scripts are stored                                                                                                                     | -             |
-| TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Path to the custom functions folder used in `__fromFile__` values                                                                                                                                       | ''            |
+| MANUAL_STRATEGIES_FOLDER         | -        | Absolute path of custom strategy functions folder. These functions are used in `__fromFile__` annotations inside the [Kafka Projection Updates Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.mdx)                                                                                                                   | -             |
+| TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Absolute path of custom functions folder. These functions are used in `__fromFile__` annotations inside the [Projection Changes Schema Configuration](/fast_data/configuration/config_maps/projection_changes_schema.md#custom-functions).                                                                                                                                      | -            |
 
 ## Attaching a Service to a Single View
 
@@ -42,7 +42,7 @@ To simplify the configuration of the Single View Trigger Generator service, you 
 * within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured.
 * in the _Single View Trigger Generator_ tab, you can choose a Single View Trigger Generator from the available services. 
 
-Once the service has been attached, you can manage the content of the [_Projection Changes Schema config map_](/fast_data/configuration/config_maps/projection_changes_schema.md) and the [_Kafka Projection Updates config map_](/fast_data/configuration/config_maps/kafka_projection_updates.md).
+Once the service has been attached, you can manage the content of the [_Projection Changes Schema config map_](/fast_data/configuration/config_maps/projection_changes_schema.md) and the [_Kafka Projection Updates config map_](/fast_data/configuration/config_maps/kafka_projection_updates.mdx).
 
 ![Single View Trigger Generator configuration page](./img/svtg-configuration.png)
 
@@ -60,7 +60,7 @@ When a Single View Trigger Generator is attached to a Single View, the environme
 If you prefer to manually configure these services, you can always detach the service in the _Single View Trigger Generator_ tab via the _Detach microservice_ button on the top-right side of the page. After saving the configuration, the environment variable and the config maps will be again editable from the _Microservices_ section.
 :::
 
-## config maps
+## Config Maps
 
 The service can use the following 3 config maps:
 
@@ -87,7 +87,7 @@ If you need more info on how to configure the `projectionChangesSchema.json` fil
 The Kafka Projection Updates config map contains the `kafkaProjectionUpdates.json` file which defines the topics from where to consume the [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) and the strategy to apply to each message.
 
 Remember to copy/paste the mount path into the `KAFKA_PROJECTION_UPDATES_FOLDER` environment variable so the service can read the file.
-If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
+If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.mdx) page.
 
 :::warning
 If you attach the service to a Single View, the _Kafka Projection Updates_ config map can be modified to support *only* automatic strategies.
