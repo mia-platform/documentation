@@ -1196,6 +1196,17 @@
       "collapsed": true,
       "items": [
         {
+          "id": "fast_data/data_catalog/overview_data_catalog",
+          "type": "doc"
+        }
+      ],
+      "label": "Data Catalog",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
           "id": "fast_data/troubleshooting/fast_data_error_codes",
           "type": "doc"
         },
