@@ -201,6 +201,10 @@ It takes no additional parameters.
 
 Auth0 Jobs endpoints are designed for bulk operation on the underlying tenant.
 
+:::info
+These endpoints are available from `v3.4.0`
+:::
+
 #### Bulk Import users
 
 Signature: `POST /users/import`
