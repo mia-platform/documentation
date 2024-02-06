@@ -490,7 +490,7 @@ Available flags for the command:
 
 #### edit RESOURCE-NAME
 
-The `project iam edit` subcommand allows you to alternatevely update the role assigned to the current project or
+The `project iam edit` subcommand allows you to alternatively update the role assigned to the current project or
 one of its environment for one of the different `IAM` entity types:
 
 - `group`
@@ -521,7 +521,7 @@ Available flags for the command:
 
 #### remove-role RESOURCE-NAME
 
-The `project iam remove-role` subcommand allows you to alternatevely delete the custom role assigned to one of the
+The `project iam remove-role` subcommand allows you to alternatively delete the custom role assigned to one of the
 different `IAM` entity types for the project or one of its environments.
 
 Usage:
@@ -718,11 +718,17 @@ List Marketplace items
 
 #### Synopsis
 
-List the Marketplace items that the current user can access.
+List the Marketplace items that the current user can access. 
 
+#### Usage
+
+```sh
+miactl marketplace list --company-id company-id [FLAGS]...
 ```
-miactl marketplace list [flags]
-```
+
+#### Flags
+
+*   `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Marketplace items from other companies.
 
 ### get
 
