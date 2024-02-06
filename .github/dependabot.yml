@@ -26,7 +26,7 @@ updates:
         - "patch"
       swc:
         patterns:
-        - "@swc"
+        - "@swc/*"
         - "swc-*"
         update-types:
         - "minor"
