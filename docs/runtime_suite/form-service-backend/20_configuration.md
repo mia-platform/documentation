@@ -36,6 +36,10 @@ To configure the **Form Service Backend** service with the Console, follow these
 
 The following sections provide a reference guide to all the available configuration options.
 
+:::warning
+At the moment, in order for the basic styling of the **Form Service Frontend** to work properly, the **Form Service Backend** endpoints must be exposed on the `/` (root) path. If the Form Service Backend is exposed on a different path that isn't `/` (i.e. `/my-path/...`), in order for the styling to work, a [path rewrite](../../development_suite/api-console/api-design/endpoints#about-rewrite-base-path) must be performed at the API Gateway level.
+:::
+
 ## Environment variables
 
 | Name                          | Required | Default           | Description                                                                                        |
