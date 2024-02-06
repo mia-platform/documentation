@@ -118,12 +118,16 @@ For more information in regards of the Auth0 Client advanced config checkout out
 :::
 
 
-## User management endpoints
+## Auth0 tenant management endpoints
 
-User management endpoints are designed to manage the users on the underlying Auth0 tenant.
+Auth0 tenant endpoints are designed to manage the underlying Auth0 tenant.
 Make sure to protect these endpoints and not to expose them unless strictly necessary.
 
-### Get active users
+### User Management endpoints
+
+This set of endpoints offer a CRUD interface over the users of the Auth0 tenant.
+
+#### Get active users
 
 The endpoint `GET /users/active` returns a list of the active users, for all clients, at the time the call is made.
 
@@ -143,13 +147,13 @@ An example of response:
 ]
 ```
 
-### Get Users
+#### Get Users
 
 The endpoint `GET /users` returns all the users of the current Auth0 connection.
 
 The response is paginated, and limited by default to 25 items. You can use the query parameters to paginate the output, see the next section for detailed information.
 
-#### Query string
+##### Query string
 
 The endpoint accepts a query string with the following parameters:
 - _l: CRUD-like limit, translated to Auth0 `per_page`; Defaults to 25, i.e. by default the first 25 users are shown.
@@ -161,7 +165,7 @@ The endpoint accepts a query string with the following parameters:
 - app_metadata.*: a series of properties starting with `app_metadata.`. They will be inserted into the `app_metadata` user properties, such as:
   - groups: a list of groups that users must have, these are searched using Auth0 `app_metadata` user property.
 
-### Create user
+#### Create user
 
 The endpoint `POST /users` can be used to create a new user.
 
@@ -173,7 +177,13 @@ You should instead implement the signup logic in another service, that takes car
 
 :::
 
-This API can be contacted with the same body accepted by Auth0 [POST /api/v2/users](https://auth0.com/docs/api/management/v2/users/post-users) API, with the only difference that the `connection` parameter is optional: if omitted will default on the `managementClient.defaultCreateUserConnection` configuration parameter.
+This API can be contacted with the same body accepted by Auth0 [POST /api/v2/users](https://auth0.com/docs/api/management/v2/users/post-users) API, with the only difference that the `connection` parameter is optional; when omitted it will default on the configured:
+- `managementClient.defaultManagementConnectionName` configuration parameter
+- `managementClient.defaultCreateUserConnection` configuration parameter (deprecated)
+
+If none of the above is defined, the api will throw an error.
+
+Refer to the [configuration schema](./20_configuration.md#configuration)
 
 ### Patch a user
 
@@ -181,8 +191,38 @@ The endpoint `PATCH /users/:userID` allows to patch a user.
 
 This API can be contacted with the same body accepted by Auth0 [PATCH /api/v2/users/{id}](https://auth0.com/docs/api/management/v2/users/patch-users-by-id) API.
 
-### Delete a user
+#### Delete a user
 
 The endpoint `DELETE /users/:userID` allows to delete a user.
 
 It takes no additional parameters.
+
+### Auth0 Jobs endpoints
+
+Auth0 Jobs endpoints are designed for bulk operation on the underlying tenant.
+
+#### Bulk Import users
+
+Signature: `POST /users/import`
+
+The API allows the bulk import of users. 
+
+The endpoint should be contacted with the same body of the [POST  /api/v2/jobs/users-imports](https://auth0.com/docs/api/management/v2/jobs/post-users-imports) Auth0 API, with these differences:
+- the `connection_id` parameter is not accepted: if defined, the API will throw an error
+- a `connection` parameter can be optionally added: it defines the connection name to be used, that must be defined as key of the `managementClient.supportedConnectionsMap` configuration parameter. If `connection` is not defined, it will default to the config parameter `managementClient.defaultManagementConnectionName`, if present, otherwise the API will throw an error.
+
+#### Get an import job details
+
+Signature `GET /users/import/status/:jobID`
+
+Allows to retrieve import job status.
+
+Returns the same body of Auth0 [GET /api/v2/jobs/{id}](https://auth0.com/docs/api/management/v2/jobs/get-jobs-by-id).
+
+#### Get an import job errors
+
+Signature `GET /users/import/status/:jobID/errors`
+
+Allows to retrieve import job errors.
+
+Returns the same body of Auth0 [GET /api/v2/jobs/{id}/errors](https://auth0.com/docs/api/management/v2/jobs/get-errors).
