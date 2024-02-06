@@ -34,7 +34,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-youtube": "^10.1.0",
-    "swc-loader": "^0.2.3"
+    "swc-loader": "^0.2.6"
   },
   "browserslist": {
     "production": [
