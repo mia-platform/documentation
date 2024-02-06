@@ -68,7 +68,7 @@ We also change the management of the security context. In this version, the secu
 
 #### New backoffice configuration
 
-In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 3 services (`cms-backend`, `cms-site`, `v1-adapter` and `exportService`).
+In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 4 services (`cms-backend`, `cms-site`, `v1-adapter` and `exportService`).
 This means that you can remove any configuration related to cms from your `values.yaml` file.
 
 You can remove configuration related to:
