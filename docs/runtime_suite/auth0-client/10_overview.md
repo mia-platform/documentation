@@ -20,7 +20,7 @@ Moreover, it handles users through the auth0 users management api.
 
 The *Auth0 Client* service functions as a token broker, interfacing between your frontend application and Auth0.
 
-Upon successful authentication with Auth0, we receive an authorization token which is securely stored and not shared with the frontend application.
+Upon successful authentication with Auht0, we receive an authorization token which is securely stored and not shared with the frontend application.
 
 Instead, a distinct, service-specific token is issued for user sessions. 
 
