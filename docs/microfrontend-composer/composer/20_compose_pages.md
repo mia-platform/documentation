@@ -52,7 +52,7 @@ A table page built to be connected with another page that provides further detai
 
 ![Master table template](img/compose-page_templates_master-table.png)
 
-The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details page configuring the table [`customActions` property](/microfrontend-composer/back-kit/60_components/520_table.md#configuring-actions-via-customactions).
+The page should be connected to a data source just like a [page with table](#page-with-table), and to the correct details page configuring the table [`customActions` property](/microfrontend-composer/back-kit/60_components/510_table.md#configuring-actions-via-customactions).
 
 ### Details page
 
@@ -60,7 +60,7 @@ A page built to display a detailed view of data (e.g., a single row of a table) 
 
 ![Details page template](img/compose-page_templates_details-page.png)
 
-The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_ section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be [properly configured](/microfrontend-composer/back-kit/60_components/550_url_parameters_adapter.md) to query data correctly.
+The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_ section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be [properly configured](/microfrontend-composer/back-kit/60_components/540_url_parameters_adapter.md) to query data correctly.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties).
 
