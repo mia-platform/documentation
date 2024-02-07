@@ -253,6 +253,153 @@ Analogously to the [Dynamic Form Modal][working-with-views], the Wizard Form is 
 Properties `conditionalOptions` and `conditionalValues` can be used to set-up custom form behavior that is conditional to the current state of the wizard, just like for the [Dynamic Form Modal][conditional-fields].
 
 
+### Locale
+
+The texts of the Form Wizard can be customized through the property `customLocale`, which accepts an object shaped like the following:
+
+```typescript
+type Locale = {
+  create: {
+    title: LocalizedText
+    ctaLabel: LocalizedText
+    unsavedChangesContent: LocalizedText
+    saveChangesContent: LocalizedText
+    wizardNext?: LocalizedText
+    wizardPrevious?: LocalizedText
+    wizardAddNew?: LocalizedText
+    stepperTitle?: LocalizedText
+    stepperSubtitle?: LocalizedText
+    accordionHeader?: LocalizedText
+    accordionEmptyLabel?: LocalizedText
+  }
+  update: {
+    title: LocalizedText
+    ctaLabel: LocalizedText
+    unsavedChangesContent: LocalizedText
+    saveChangesContent: LocalizedText
+    wizardNext?: LocalizedText
+    wizardPrevious?: LocalizedText
+    wizardAddNew?: LocalizedText
+    stepperTitle?: LocalizedText
+    stepperSubtitle?: LocalizedText
+    accordionHeader?: LocalizedText
+    accordionEmptyLabel?: LocalizedText
+  },
+  form: {
+    validationMessages:{
+      default: LocalizedText,
+      required: LocalizedText,
+      enum: LocalizedText,
+      whitespace: LocalizedText,
+      date:{
+        format: LocalizedText,
+        parse: LocalizedText,
+        invalid: LocalizedText
+      },
+      types:{
+        string: LocalizedText,
+        method: LocalizedText,
+        array: LocalizedText,
+        object: LocalizedText,
+        number: LocalizedText,
+        date: LocalizedText,
+        boolean: LocalizedText,
+        integer: LocalizedText,
+        float: LocalizedText,
+        regexp: LocalizedText,
+        email: LocalizedText,
+        url: LocalizedText,
+        hex: LocalizedText,
+        file: LocalizedText
+      },
+      string:{
+        len: LocalizedText,
+        min: LocalizedText,
+        max: LocalizedText,
+        range: LocalizedText
+      },
+      number:{
+        len: LocalizedText,
+        min: LocalizedText,
+        max: LocalizedText,
+        range: LocalizedText
+      },
+      array:{
+        len: LocalizedText,
+        min: LocalizedText,
+        max: LocalizedText,
+        range: LocalizedText,
+        unique: LocalizedText
+      },
+      pattern:{
+        mismatch: LocalizedText
+      }
+    },
+    datePicker: {
+      lang: {
+        locale: LocalizedText,
+        placeholder: LocalizedText,
+        rangePlaceholder: {
+          start: LocalizedText,
+          stop: LocalizedText
+        },
+        today: LocalizedText,
+        now: LocalizedText,
+        backToToday: LocalizedText,
+        ok: LocalizedText,
+        clear: LocalizedText,
+        month: LocalizedText,
+        year: LocalizedText,
+        timeSelect: LocalizedText,
+        dateSelect: LocalizedText,
+        monthSelect: LocalizedText,
+        yearSelect: LocalizedText,
+        decadeSelect: LocalizedText,
+        monthBeforeYear: 'true' | 'false',
+        previousMonth: LocalizedText,
+        nextMonth: LocalizedText,
+        previousYear: LocalizedText,
+        nextYear: LocalizedText,
+        previousDecade: LocalizedText,
+        nextDecade: LocalizedText,
+        previousCentury: LocalizedText,
+        nextCentury: LocalizedText
+      },
+      timePickerLocale:{
+        placeholder: LocalizedText
+      }
+    },
+    filePicker:{
+      drawerTitle: LocalizedText,
+      filePickerTitle: LocalizedText,
+      dragAndDropCaption: LocalizedText,
+      ctaLabel: LocalizedText
+    },
+    objectEditor:{
+      editorView: LocalizedText,
+      tableView: LocalizedText
+    },
+    editor:{
+      editorView: LocalizedText,
+      rawView: LocalizedText
+    },
+    geopoint:{
+      latitude: LocalizedText,
+      longitude: LocalizedText,
+      phLatitude: LocalizedText,
+      phLongitude: LocalizedText
+    },
+    element: LocalizedText,
+    elements: LocalizedText,
+    true: LocalizedText,
+    false: LocalizedText
+  }
+}
+```
+
+where [LocalizedText][localized-text] is either a string or an object mapping language acronyms to strings.
+
+
 ## Examples
 
 Configuration examples for the [Dynamic Form Modal][modal-examples] also apply to the Form Wizard.

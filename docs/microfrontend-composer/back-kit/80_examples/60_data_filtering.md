@@ -17,10 +17,10 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [filters]: ../40_core_concepts.md#filters
 
 [bk-crud-client]: ../60_components/100_crud_client.md
-[bk-filters-manager]: ../60_components/300_filters_manager.md
-[bk-filter-drawer]: ../60_components/290_filter_drawer.md
+[bk-filters-manager]: ../60_components/310_filters_manager.md
+[bk-filter-drawer]: ../60_components/300_filter_drawer.md
 [bk-add-filter-button]: ../60_components/10_add_filter_button.md
-[bk-expanded-filters]: ../60_components/230_expandable_filters.md
+[bk-expanded-filters]: ../60_components/240_expandable_filters.md
 
 [change-query]: ../70_events.md#change-query
 [display-data]: ../70_events.md#display-data
