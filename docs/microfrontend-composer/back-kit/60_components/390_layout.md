@@ -260,6 +260,20 @@ Type `HttpConfig` is a subset of the supported configuration for [Http Actions][
   - `config`: extra configurations, such as headers
 
 
+### Locale
+
+The texts of the Layout can be customized through the property `customLocale`, which accepts an object shaped like the following:
+
+```typescript
+type Locale = {
+  collapse: LocalizedText
+  logout: LocalizedText
+}
+```
+
+where [LocalizedText][localized-text] is either a string or an object mapping language acronyms to strings.
+
+
 ## Examples
 
 ### Example: Display a menu

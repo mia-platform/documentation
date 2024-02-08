@@ -15,6 +15,7 @@ updates:
         patterns:
         - "@docusaurus*"
         update-types:
+        - "major"
         - "minor"
         - "patch"
       eslint:
@@ -26,7 +27,7 @@ updates:
         - "patch"
       swc:
         patterns:
-        - "@swc"
+        - "@swc/*"
         - "swc-*"
         update-types:
         - "minor"

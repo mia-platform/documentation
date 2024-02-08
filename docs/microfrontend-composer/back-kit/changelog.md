@@ -15,6 +15,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.14] - 2024-01-28
+
+### Added
+
+- components allow to specify custom texts with `customLocale` property
+- `bk-dynamic-iframe` component is available
+- `bk-footer` has property `loadingOnStart`, controlling whether or not the component is initially in loading state
+
+### Fixes
+
+- `bk-dropdown` correctly displays icon specified in `iconId`
+- Fixed lookup deps query in `bk-crud-lookup-client`: spaces inserted by the user in the input field are kept in query
+- Fixed text-areas borders
+
+## [1.4.13] - 2024-01-17
+
+### Added
+
+- `bk-export-modal` component allows to specify whether to use field ids or field labels as column names in the exported file
+- `bk-crud-client` component allows to specify additional sorting property to be appended to `_s` search parameter
+- client components allow to specify rerouting rules for HTTP requests
+
+## [1.4.12] - 2024-01-10
+
+### Fixes
+
+- `bk-calendar` allows to open appointments details in "week" and "day" views
+
+## [1.4.11] - 2023-12-22
+
+### Added
+
+- `geopointFormat` option is available in data-schema `formOptions` to configure geopoint fields interpretation by Form components (`[latitude, longitude]` vs `[longitude, latitude]`)
+
 ## [1.4.10] - 2023-12-11
 
 ### Added
@@ -22,15 +56,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Form components provide specific field for plain string arrays and string arrays with enum
 - Label localization fallbacks to english if browser language is not supported
 - `bk-table` renders empty cell for undefined boolean fields
-- `bk-wizard-form` correctly submits data that include file fields in nested objects
 - added `userMenuTrigger` property to `bk-layout`
 
 ### Fixes
 
+- `bk-wizard-form` correctly submits data that include file fields in nested objects
 - `bk-form-wizard` component correctly allows custom title inside stepper
 - Action buttons in Dynamic Form components correctly perform event actions
 - `bk-layout` component correctly allows to scroll through menu items in `leftMenu` mode
-- From components correctly localizes read-only enum fields
+- Form components correctly localizes read-only enum fields
 - `bk-form-wizard` component holds value updates after failing validation
 - `bk-form-card` and `bk-dynamic-form-card` components correctly process file fields in initial values
 - `bk-form-card` components correctly enables submit button on data update
@@ -156,6 +190,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Manifest of component `bk-expanded-filters` includes property `readFromUrl`
 - Manifest of component `bk-file-picker-modal` is available
+
 
 ## [1.3.14] - 2023-06-15
 

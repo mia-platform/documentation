@@ -1,4 +1,4 @@
-name: Build documentation for DEV environment
+name: Build and deploy documentation
 on:
   push:
     branches:
@@ -27,7 +27,7 @@ jobs:
           cache: "yarn"
       - name: Cache Node Modules
         id: cache-node-modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
@@ -44,19 +44,19 @@ jobs:
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: yarn build
-        if:  github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request'
 
   build:
     needs: install
     name: Build docker image
-    if:  github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Cache Node Modules
         id: cache-node-modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
@@ -89,7 +89,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Prepare build cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}-${{ hashFiles('nginx/permanent.redirects') }}

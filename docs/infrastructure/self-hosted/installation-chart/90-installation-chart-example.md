@@ -15,8 +15,11 @@ nameOverride: "" # optional
 fullnameOverride: "" # optional
 
 mia-console:
-  imagePullSecrets:
-    - name: <PULL_SECRET_NAME> # array of image pull secret to pull Console services
+  imageCredentials:
+    name: <PULL_SECRET_NAME> # array of image pull secret to pull Console services
+    username: <CONTAINER_REGISTRY_USERNAME> # username of the user which download the image from the container registry
+    password: <CONTAINER_REGISTRY_PASSWORD> # password of the user which download the image from the container registry
+    email: <CONTAINER_REGISTRY_EMAIL> # email of the user which download the image from the container registry
 
   configurations:
     consoleUrl: "<CONSOLE_URL>"
