@@ -1,0 +1,237 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "dc-agent-item",
+  "examples": [
+    {
+      "ddlSchema": {
+        "properties": {
+          "FIRST_NAME": {
+            "nullable": true,
+            "size": 255,
+            "type": "VARCHAR2"
+          },
+          "ID": {
+            "primary": true,
+            "type": "NUMBER",
+            "unique": true
+          },
+          "INSERTED_ON": {
+            "primary": true,
+            "type": "TIMESTAMP(6)",
+            "unique": true
+          },
+          "LAST_NAME": {
+            "nullable": true,
+            "size": 255,
+            "type": "VARCHAR2"
+          }
+        }
+      },
+      "jsonSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "FIRST_NAME": {
+            "type": "string"
+          },
+          "ID": {
+            "type": "number"
+          },
+          "INSERTED_ON": {},
+          "LAST_NAME": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "books",
+      "source": {
+        "connection": {
+          "type": "odbc",
+          "vendor": "oracle",
+          "version": "Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production"
+        },
+        "name": "oracle19c_test"
+      },
+      "type": "model"
+    }
+  ],
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "ddlSchema",
+        "jsonSchema",
+        "name",
+        "source",
+        "type"
+      ],
+      "properties": {
+        "ddlSchema": {
+          "$ref": "#/definitions/ddl-schema"
+        },
+        "jsonSchema": {
+          "$ref": "#/definitions/json-schema"
+        },
+        "name": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/source-metadata"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "model"
+          ]
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "ddl-property": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "default": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "precision": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "primary": {
+          "type": "boolean"
+        },
+        "size": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "unique": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ddl-schema": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ddl-property"
+          }
+        }
+      }
+    },
+    "json-property": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/json-type"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "json-schema": {
+      "type": "object",
+      "required": [
+        "additionalProperties",
+        "properties",
+        "type"
+      ],
+      "properties": {
+        "additionalProperties": {
+          "type": "boolean"
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/json-property"
+          }
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "$ref": "#/definitions/json-type"
+        }
+      }
+    },
+    "json-type": {
+      "type": "string",
+      "enum": [
+        "null",
+        "boolean",
+        "number",
+        "integer",
+        "string",
+        "array",
+        "object"
+      ]
+    },
+    "source-connection-metadata": {
+      "type": "object",
+      "required": [
+        "type",
+        "vendor"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "source-metadata": {
+      "type": "object",
+      "required": [
+        "connection",
+        "name"
+      ],
+      "properties": {
+        "connection": {
+          "$ref": "#/definitions/source-connection-metadata"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

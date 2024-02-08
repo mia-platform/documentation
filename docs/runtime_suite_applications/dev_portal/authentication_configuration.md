@@ -258,7 +258,7 @@ During the creation of the **Dev Portal** application two instances of micro-lc 
 - `dev-portal-backoffice`
 
 Inside them you can find the `config.json` config-map file, where you can configure the page layout to show a user menu. Namely, you have to add the `userMenu` property
-to the `bk-layout` component inside of `layout` following the [official documentation](http://localhost:3000/docs/microfrontend-composer/back-kit/60_components/380_layout.md#user-menu).
+to the `bk-layout` component inside of `layout` following the [official documentation](http://localhost:3000/docs/microfrontend-composer/back-kit/60_components/390_layout.md#user-menu).
 
 Moreover, you possibly need to expose the `userinfo` and `logout` on the API Gateway, based on the authentication you used.
 
