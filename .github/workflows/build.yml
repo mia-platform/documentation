@@ -49,7 +49,7 @@ jobs:
   build:
     needs: install
     name: Build docker image
-    if:  github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
