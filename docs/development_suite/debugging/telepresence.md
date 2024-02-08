@@ -1,125 +1,108 @@
 ---
 id: telepresence
-title:  Debugging a single service with Telepresence
+title:  Debug a service with Telepresence
 sidebar_label: Debug a service
 ---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+To debug a microservice, reach the "Debug" area inside one of your projects.
+
 ## Debug Area
 
-In the Debug Area you can see the list of all the microservices developed with Mia-Platform Console.
+In the Debug Area, you can see the list of all the microservices developed with Mia-Platform Console.
 
 ![Img](img/debug-view.png)
 
-The real potential of this section lies in its connection with telepresence.
-Pressing the "Debug" button will in fact display a string to be pasted on your terminal that simulates the behavior of your microservice in a real context.
+The real potential of this section lies in its connection with [Telepresence](https://www.telepresence.io/).
 
-![Img](img/action-debug.png)
+Pressing the **"Debug"** button will display a string to be pasted on your terminal that simulates the behavior of your microservice in a real context.
 
-This will allow you to easily test and debug your microservice without compromising the production environments.
+![Img](img/debug-action.png)
+
+This will allow you to easily test and debug your microservice without compromising the replica running in the production environment.
 
 ## Introduction to Telepresence
 
-Telepresence is an open source tool that lets you run a single service locally, while connecting that service to a remote Kubernetes cluster. This lets developers working on multi-service applications to:
+Telepresence is an open-source tool that allows you to run a single service locally while connecting that service to a remote Kubernetes cluster. 
 
-1. Do fast local development of a single service, even if that service depends on other services in your cluster. Make a change to your service, save, and you can immediately see the new service in action.
+This lets developers working on multi-service applications to:
+
+1. Do fast local development of a single service, even if that service depends on other services in your cluster. Make a change to your service, save the changes, and you can immediately see the new service in action.
 
 2. Use any tool installed locally to test/debug/edit your service. For example, you can use a debugger or IDE!
 
 3. Make your local development machine operate as if it's part of your Kubernetes cluster. If you've got an application on your machine that you want to run against a service in the cluster -- it's easy to do.
 
-Telepresence works on both Mac OS X and Linux, with OS-native packages.
+### Installing Telepresence
 
-## Installing Telepresence
+Telepresence works on both Mac OS X, Windows, and Linux, with OS-native packages.
 
-### OS X
+Follow the [official guide](https://www.getambassador.io/docs/telepresence-oss/2.17/quick-start?os=gnu-linux) to install Telepresence on your machine, and, if necessary, in your cluster.
 
-On OS X you can install Telepresence by running the following:
+## Connect to a Kubernetes Cluster
 
+You can learn how to connect to your cluster using **Kubectl** by following this [guide](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl).
+
+If you are already familiar with the Kubectl tool, you will only need to [set the cluster context](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#store_info) correctly.
+
+#### For Example
+
+Here is an example configuration on how to setup your cluster context:
+```bash
+gcloud container clusters get-credentials [CLUSTER_NAME] --zone [ZONE] --project [PROJECT_NAME]
 ```
-
-brew cask install osxfuse
-brew install datawire/blackbird/telepresence
-
-```
-
-### Ubuntu 16.04 or later
-
-Run the following to install Telepresence:
-
-```
-curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | sudo bash
-sudo apt install --no-install-recommends telepresence
-
-```
-
-If you are running another Debian-based distribution that has Python 3.5 installable as python3, you may be able to use the Ubuntu 16.04 (Xenial) packages. The following works on Linux Mint 18.2 (Sonya) and Debian 9 (Stretch) by forcing the PackageCloud installer to access Xenial packages.
-
-```
-
-curl -sO https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh
-sudo env os=ubuntu dist=xenial bash script.deb.sh
-sudo apt install --no-install-recommends telepresence
-rm script.deb.sh
-
-```
-
-## Connect to a Kubernetes Cluster and start debugging the microservice
-
-Let's take an example on a test cluster
-
-### 1. Connect to your cluster
-
-```
-gcloud container clusters get-credentials your-credential --zone your-zone --project your-project
-```
-
 :::info
-If you don't have yet installed Google Cloud follow the steps at [this link](https://cloud.google.com/sdk/install)
+If you don't have yet installed Google Cloud follow the steps at [**this link**](https://cloud.google.com/sdk/install).
 :::
 
-### 2. Navigate in Kubernetes
 
-```
-kubens demo
-```
+## Debug your microservice
 
-## Node
+### Access to your local source directory
 
-### 3a. Access to your local source directory
+Move to the local repository of the microservice you wish to debug.
 
-```
-cd your-local-source-directory
-
+```bash
+cd [MICROSERVICE_REPOSITORY_NAME]
 ```
 
-### 4a. Run telepresence and start debugging your-service-node
+### Run Telepresence
 
-```
+Run the following command to connect to the cluster and intercept your microservice traffic using Telepresence.
 
-telepresence --swap-deployment your-service-node --expose 3000 --run npm start
+<Tabs>
+<TabItem value="node" label="Node" default>
 
-```
+  ```bash
+  telepresence connect --namespace [NAMESPACE] &&
+  telepresence intercept [MICROSERVICE_NAME] --port [PORT] -- [START_COMMAND]
+  ```
+</TabItem>
+<TabItem value="java" label="Java">
 
-## Java
+  ```bash
+  telepresence connect --namespace [NAMESPACE] && 
+  telepresence intercept [MICROSERVICE_NAME] --port [PORT] --env-json [ENV_JSON_FILE]
+  ```
 
-### 3b. Access to your local source directory
+<details>
+<summary>
+If you use IntelliJ IDE, the <b>EnvFile plugin</b> will be required to debug your microservice.
+</summary>
 
-```
-cd your-local-source-directory
+First, install the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile).
 
-```
+Then, Configure Intellij debug configurations with your JSON file.
 
-### 4b. Run telepresence and create env variables
+Finally, run IntelliJ "Debug" option.
 
-```
-telepresence --expose 3000  --swap-deployment your-service-java --env-json your-service-java.json
-```
-
-### 5b. Install envfile intellij plugin
-
-[At this link](https://plugins.jetbrains.com/plugin/7861-envfile)
-
-### 6b. Configure Intellij with your service Java JSON as debug configurations
+Here is an example on how to configure the env file inside IntelliJ:
 
 ![Img](img/java-intellij.png)
+</details>
+</TabItem>
+</Tabs>
 
-### 7b. Run debug intellij
+
