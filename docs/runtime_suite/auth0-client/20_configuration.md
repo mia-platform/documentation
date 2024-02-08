@@ -41,6 +41,9 @@ The following environment variables are to sync user metadata in a `user` collec
 
 The Auth0-Client service uses a single config map called `auth0-client-config` and the file, `config.json`, containing the configuration must follow this schema:
 
+<details>
+<summary>Click to expand the configuration JSON schema</summary>
+
 ```json
 {
   "type": "object",
@@ -61,32 +64,26 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
     },
     "managementClient": {
       "type": "object",
-      "properties": {
-        "auth0Url": {
-          "type": "string"
+      "anyOf": [
+        {
+          "$ref": "#/definitions/managementClientBaseProps"
         },
-        "clientId": {
-          "type": "string"
-        },
-        "clientSecret": {
-          "type": "string"
-        },
-        "supportedConnections": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "defaultCreateUserConnection": {
-          "type": "string"
+        {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/deprecatedManagementClientProps"
+            },
+            {
+              "$ref": "#/definitions/managementClientProps"
+            }
+          ]
         }
-      },
+      ],
       "required": [
         "auth0Url",
         "clientId",
         "clientSecret"
-      ],
-      "additionalProperties": false
+      ]
     },
     "auth0TenantUrl": {
       "type": "string"
@@ -138,12 +135,12 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
           "type": "string"
         },
         "sameSite": {
-          "enum": ["Lax", "Strict", "None"],
+          "enum": ["Lax", "None", "Strict"],
           "description": "The sameSite field set the SameSite attribute of the clientType Set-Cookie HTTP response header. It allows you to declare if your cookie should be restricted to a first-party or same-site context.
           - \"Lax\": Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (i.e., when following a link).
           - \"Strict\": Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
           - \"None\": Cookies will be sent in all contexts, i.e. in responses to both first-party and cross-site requests."
-        },
+        }
       },
       "required": [
         "auth0Url",
@@ -153,13 +150,87 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
         "scopes"
       ],
       "additionalProperties": false
+    },
+    "deprecatedManagementClientProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auth0Url": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        },
+        "supportedConnections": {
+          "type": "array",
+          "description": "DEPRECATED: use `supportedConnectionsMap` in combination with `defaultManagementConnectionName` instead",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultCreateUserConnection": {
+          "description": "DEPRECATED: use `defaultManagementConnectionName` in combination with `supportedConnectionsMap` instead",
+          "type": "string"
+        }
+      }
+    },
+    "managementClientProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auth0Url": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        },
+        "defaultManagementConnectionName": {
+          "type": "string"
+        },
+        "supportedConnectionsMap": {
+          "type": "object",
+          "description": "Maps the supported connection names to the respective connection IDs. Make sure they are correct from the auth0 dashboard",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "connectionId":{ "type": "string" }
+            },
+            "required": ["connectionId"]
+          }
+        }
+      }
+    },
+    "managementClientBaseProps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auth0Url": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "clientSecret": {
+          "type": "string"
+        }
+      }
     }
   }
 }
 ```
+</details>
 
 Clients are indexed by their client type name; please note that the default client is only used when there is no specified client in the request and the default client is configured.
-If a wrong/malicious/misconfigured client is being used in the request then the response will be immediately rejected with Unauthorized (401) status code.
+
+If a wrong/malicious/misconfigured client is being used in the request then the response will be rejected with Unauthorized (401) status code.
+
+Notice that the `managementClient` has 2 different possible configurations; the deprecated one does not allow the usage of bulk import APIs.
 
 
 The `audience` field, if specified, must match the *Identifier* of the Auth0 [API Settings](https://auth0.com/docs/get-started/apis/api-settings#general-settings) of your Application.

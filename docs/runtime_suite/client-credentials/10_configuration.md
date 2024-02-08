@@ -40,13 +40,13 @@ This service is configurable with the following environment variables:
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
 * **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
 * **MONGODB_CREDENTIALS_DATABASE_NAME**: the mongo db name which will include the `credentials` collection. If not set, it is taken from the MongoDB URL configured in `CREDENTIALS_MONGODB_URL` env var;
-* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private RSA key. [Click here](#RSA-key-management) to see how to create it;
+* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private RSA key. [Click here](#rsa-key-management) to see how to create it;
 * **PRIVATE_KEY_PASSWORD**: password to decrypt the RSA key, if it is encrypted with a password. If it is empty, RSA key is treated as a non protected RSA key;
 * **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string;
 * **MIA_JWT_ISSUER** (*required*): string containing the issuer to fill the JWT claims. During the login flow, it is added as *iss*;
 * **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated JWT, in seconds;
 * **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** (default to `false`): if audience is required in token request;
-* **ACCEPTED_AUDIENCES**: audience accepted by the service, if included in JWT `aud` claim;
+* **ACCEPTED_AUDIENCES**: comma-separated list of audiences accepted by the service, if included in JWT `aud` claim;
 * **OPENID_CONFIG_PATH**: string representing the path to the file contaning the OpenId Connect Configuration.
 * **REDIS_HOSTS** (*required*): redis host with port (default Redis port is 6379);
 - **REDIS_USERNAME** (*optional*): the username to authenticate to Redis (only supported for `REDIS_MODE=normal`);

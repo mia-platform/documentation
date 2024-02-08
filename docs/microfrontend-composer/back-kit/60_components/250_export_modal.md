@@ -56,6 +56,35 @@ The Export Modal allows the user to specify:
 Upon submitting the form, the Export Modal signals the need to export data accordingly with the specified options.
 A component like the [CRUD Export Client][bk-export-client] might pick up on the export request.
 
+### Locale
+
+The texts of the Export Modal can be customized through the property `customLocale`, which accepts an object shaped like the following:
+
+```typescript
+type Locale = {
+  modalTitle: LocalizedText
+  fileFormat: LocalizedText
+  fileFormatCSVOption: LocalizedText
+  fileFormatExcelOption: LocalizedText
+  items: LocalizedText
+  itemsAllOption: LocalizedText
+  itemsFilteredOption: LocalizedText
+  itemsSelectedOption: LocalizedText
+  columns: LocalizedText
+  columnsAllOption: LocalizedText
+  columnsCustomizedOption: LocalizedText
+  columnsCustomizedPlaceholeder: LocalizedText
+  csvSeparator: LocalizedText
+  csvSeparatorCommaOption: LocalizedText
+  csvSeparatorSemicolonOption: LocalizedText
+  okButton: LocalizedText
+  cancelButton: LocalizedText
+  columnsName: LocalizedText
+  columnNameIdOption: LocalizedText
+  columnNameLabelOption: LocalizedText
+}
+```
+
 ## API
 
 ### Properties & Attributes
