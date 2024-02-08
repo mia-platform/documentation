@@ -21,13 +21,13 @@ Pressing the **"Debug"** button will display a string to be pasted on your termi
 
 ![Img](img/debug-action.png)
 
-This will allow you to easily test and debug your microservice without compromising the replica running in the production environment.
+These commands will allow you to easily test and debug your microservice without compromising the replica running in the production environment.
 
 ## Introduction to Telepresence
 
 Telepresence is an open-source tool that allows you to run a single service locally while connecting that service to a remote Kubernetes cluster. 
 
-This lets developers working on multi-service applications to:
+This tool lets developers working on multi-service applications to:
 
 1. Do fast local development of a single service, even if that service depends on other services in your cluster. Make a change to your service, save the changes, and you can immediately see the new service in action.
 
@@ -37,7 +37,7 @@ This lets developers working on multi-service applications to:
 
 ### Installing Telepresence
 
-Telepresence works on both Mac OS X, Windows, and Linux, with OS-native packages.
+Telepresence works on Mac OS X, Windows, and Linux, with OS-native packages.
 
 Follow the [official guide](https://www.getambassador.io/docs/telepresence-oss/2.17/quick-start?os=gnu-linux) to install Telepresence on your machine, and, if necessary, in your cluster.
 
