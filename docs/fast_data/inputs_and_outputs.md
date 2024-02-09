@@ -504,6 +504,10 @@ Example:
 
 This version of Projection Record update is emitted by [Projection Storer](/fast_data/projection_storer.md).
 
+:::note
+Version `v2.0.0` of Projection Record update event is recognized by Single View Creator plugin (for SV Patch functionality) starting from version `v6.1.0`.
+:::
+
 <details><summary>AsyncApi specification</summary>
 <p>
 
@@ -537,7 +541,10 @@ channels:
                   properties:
                     type:
                       type: string
-                      description: type of messsage (`pr-update`, `sv-update`)
+                      description: type of message
+                      enum:
+                        - pr-update
+                        - sv-update
                     version:
                       const: v2.0.0
                       description: version of the message format (v2.0.0)
@@ -976,18 +983,36 @@ channels:
           properties:
             key:
               type: object
-              description: Identifier of the Single View or the Projection (depending on the value.type)
+              description: Identifier of the Single View
               additionalProperties: true
             value:
               type: object
               required:
+                - singleViewIdentifier
                 - __internal__kafkaInfo
                 - change
               properties:
+                singleViewName:
+                  type: string
+                  description: Name of the Single View
                 singleViewIdentifier:
                   type: object
-                  description: Identifier of the Single View just like the Projection Changes Identifier. Mind that this field will be set only in case of type aggregation and not patch
+                  description: Identifier of the Single View just like the Projection Changes Identifier
                   additionalProperties: true
+                retry:
+                  type: object
+                  properties:
+                    lastError:
+                      type: object,
+                      description: Details of the last error that made the aggregation fail
+                      properties:
+                        type:
+                          type: string
+                        message:
+                          type: string
+                    attempts:
+                      type: number
+                      description: Number of times the aggreation of the Single View has been retried
                 change:
                   type: object
                   description: Contains information about the projection record that triggered the strategy
@@ -1034,7 +1059,7 @@ channels:
 </p>
 </details>
 
-Example:
+Examples:
 
 <details><summary>Trigger message</summary>
 <p>
@@ -1046,8 +1071,71 @@ Example:
   },
   "value": {
     "type": "aggregation",
+    "singleViewName": "sv_books",
     "singleViewIdentifier": {
       "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "change": {
+      "data": {
+        "__STATE__": "PUBLIC",
+        "__internal__counter": 1685118744745,
+        "__internal__counterType": "timestamp",
+        "__internal__kafkaInfo": {
+          "key": {
+            "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+          },
+          "offset": "151",
+          "partition": 0,
+          "timestamp": "2023-05-26T16:32:24.745Z",
+          "topic": "some.ingestion.topic"
+        },
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H",
+        "bio": "episode lover, designer",
+        "name": "Caitlyn",
+        "surname": "Hettinger",
+        "timestamp": "2023-05-26T16:32:24.745Z",
+        "updatedAt": "2023-05-26T16:32:24.845Z"
+      },
+      "projectionIdentifier": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "projectionName": "authors"
+    },
+    "__internal__kafkaInfo": {
+      "key": {
+        "authorId": "7P3P9Pag59nxpOhfNMIweE0H"
+      },
+      "offset": "151",
+      "partition": 0,
+      "timestamp": "2023-05-26T16:32:24.745Z",
+      "topic": "some.ingestion.topic"
+    }
+  }
+}
+```
+</p>
+</details>
+
+<details><summary>Trigger message with retries</summary>
+<p>
+
+```json
+{
+  "key": {
+    "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+  },
+  "value": {
+    "type": "aggregation",
+    "singleViewName": "sv_books",
+    "singleViewIdentifier": {
+      "bookId": "29EMA5BtaKhM6fipPIRDJWec"
+    },
+    "retry": {
+      "attempts": 5,
+      "lastError": {
+        "type": "SINGLE_VIEW_AGGREGATION_MAX_TIME",
+        "message": "Aggregation exceeding configured time limit"
+      }
     },
     "change": {
       "data": {
@@ -1094,7 +1182,6 @@ Example:
 
 **Channel**: Apache Kafka
 
-
 **Topic naming convention**: `<tenant>.<environment>.<mongo-database>.<single-view-name>.sv-update`
 
 Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
@@ -1104,6 +1191,10 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 **Consumer**: Custom (whoever needs it)
 
 **Description**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
+
+#### Message format v1.0.0
+
+This version of Single View Update event is emitted by default in Single View Creator version `v6.x.x`.
 
 <details><summary>AsyncApi specification</summary>
 <p>
@@ -1225,6 +1316,222 @@ Example:
 </p>
 </details>
 
+#### Message format v2.0.0
+
+:::note
+Version `v2.0.0` of Single Update event is available starting from version `v6.3.0` of Single View Creator plugin. 
+:::
+
+This version of Single View Update event is emitted when service environment variable `SV_UPDATE_VERSION` is set to `v2.0.0`.
+In future major releases, this will become the default message format.
+
+An important feature of this new message format is the fact that it is compatible with Projection Update events. In this manner
+`sv-update` events regarding the generation of a Single View can be employed to start computing the trigger for another Single View,
+fundamentally enabling daisy-chaining the creation of two or more Single View.
+
+<details><summary>AsyncApi specification</summary>
+<p>
+
+```yaml
+asyncapi: 2.6.0
+info:
+  title: Single View Update API
+  version: 2.0.0
+channels:
+  sv-update:
+    publish:
+      message:
+        name: Single View Update event
+        payload:
+          type: object
+          required:
+            - header
+            - key
+            - value
+          properties:
+            headers:
+              type: object
+              required:
+                - messageSchema
+              properties:
+                messageSchema:
+                  type: object
+                  required:
+                    - type
+                    - version
+                  properties:
+                    type:
+                      type: string
+                      description: type of messsage
+                      enum:
+                        - sv-update
+                    version:
+                      const: v2.0.0
+                      description: version of the message format (v2.0.0)
+                context:
+                  type: object
+                  properties:
+                    ingestion:
+                      type: object
+                      properties:
+                        topic:
+                          type: string
+                          example: gt.fd-test.DEV.customers.sv-update
+                        partitionID:
+                          type: string
+                          example: 0
+                        offset:
+                          type: number
+                          example: 9001
+                        timestamp:
+                          type: string
+                          format: date-time
+                        pollTimestamp:
+                          type: string
+                          format: date-time
+            key:
+              type: object
+              description: JSON object representation of the Single View record identifier (fields that uniquely identify each record)
+              additionalProperties: true
+              example: {
+                "customerId": "24567",
+                "fiscalCode": "99b81998-dd90-4bc8-8aea-62399f414d26"
+              }
+            value:
+              type: object
+              required:
+                - operation
+                - storageNamespace
+                - primaryKeys
+              properties:
+                operation:
+                  type: object
+                  description: metadata regarding the CDC operation that triggered this event
+                  required:
+                    - type
+                    - timestamp
+                  properties:
+                    type:
+                      type: string
+                      description: the type of operation applied on the single view record
+                      enum:
+                        - INSERT
+                        - UPDATE
+                        - DELETE
+                    timestamp:
+                      type: string
+                      description: ISO8601 string marking the time when correspoding ingestion event has been processed
+                      format: date-time
+                source:
+                  type: string
+                  description: system of record name
+                  example: inventory
+                storageNamespace:
+                  type: string
+                  description: the name of the namespace on the storage system where the Single View record is saved - e.g. MongoDB collection name
+                  example: sv_customers
+                primaryKeys:
+                  type: array
+                  description: list of field names that compose the Single View record unique identifier
+                  items:
+                    type: string
+                  example: [ "customerId", "fiscalCode" ]
+                before:
+                  type: object
+                  nullable: true
+                  additionalProperties: true
+                  description: the content as JSON object of the Single View record before the operation occurred - it may not be set
+                  example: null
+                after:
+                  type: object
+                  nullable: true
+                  additionalProperties: true
+                  description: the content as JSON object of the Single View record after the operation occurred - it may not be set
+                  example: {
+                    "customerId": "24567",
+                    "fiscalCode": "99b81998-dd90-4bc8-8aea-62399f414d26",
+                    "firstName": "Lara",
+                    "lastName": "Croft",
+                    "age": 28,
+                    "orders": [
+                      {
+                        "name": "medi-kit",
+                        "price": {
+                          "amount": 10,
+                          "currency": "USD"
+                        },
+                        "quantity": 5,
+                        "date": "2023-11-27T10:23:00.579Z"
+                      }
+                    ]
+                  }
+```
+</p>
+</details>
+
+Example:
+
+<details><summary>Update message</summary>
+<p>
+
+```json
+{
+  "headers": {
+    "messageSchema": {
+      "type": "sv-update",
+      "version": "v2.0.0"
+    },
+    "context": {
+      "ingestion": {
+        "topic": "gt.fd-test.DEV.customers.sv-update",
+        "partitionID": 0,
+        "offset": 9001,
+        "timestamp": "2019-08-24T14:15:22Z",
+        "pollTimestamp": "2019-08-24T14:15:22Z"
+      }
+    }
+  },
+  "key": {
+    "customerId": "24567",
+    "fiscalCode": "99b81998-dd90-4bc8-8aea-62399f414d26"
+  },
+  "value": {
+    "operation": {
+      "type": "INSERT",
+      "timestamp": "2019-08-24T14:15:22Z"
+    },
+    "source": "inventory",
+    "storageNamespace": "sv_customers",
+    "primaryKeys": [
+      "customerId",
+      "fiscalCode"
+    ],
+    "before": null,
+    "after": {
+      "customerId": "24567",
+      "fiscalCode": "99b81998-dd90-4bc8-8aea-62399f414d26",
+      "firstName": "Lara",
+      "lastName": "Croft",
+      "age": 28,
+      "orders": [
+        {
+          "name": "medi-kit",
+          "price": {
+            "amount": 10,
+            "currency": "USD"
+          },
+          "quantity": 5,
+          "date": "2023-11-27T10:23:00.579Z"
+        }
+      ]
+    }
+  }
+}
+```
+</p>
+</details>
+
+
 ### Single View Error
 
 **Channel**: MongoDB
@@ -1244,8 +1551,9 @@ Example:
   "required": [
     "portfolioOrigin",
     "type",
-    "identifier",
     "errorType",
+    "errorMessage",
+    "identifier",
     "resolutionMethod"
   ],
   "properties": {
@@ -1266,10 +1574,15 @@ Example:
       "enum": [
         "NO_SV_GENERATED",
         "VALIDATION_ERROR",
-        "MORE_SVS_GENERATED_FROM_ONE_PROJECTION_CHANGE",
-        "ERROR_SEND_SVC_EVENT"
+        "UNKNOWN_ERROR",
+        "ERROR_SEND_SVC_EVENT",
+        "SINGLE_VIEW_AGGREGATION_MAX_TIME"
       ],
-      "description": "String describing the cause of the error"
+      "description": "The cause of the error"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Further description of the error"
     },
     "resolutionMethod": {
       "type": "string",
@@ -1310,6 +1623,7 @@ Example:
     "ID_USER": "ebc12dc8-939b-447e-88ef-6ef0b802a487"
   },
   "errorType": "NO_SV_GENERATED",
+  "errorMessage": "Unexpected error: No Single View record generated",
   "createdAt": "2022-05-20T10:25:35.656Z",
   "updatedAt": "2022-05-20T10:25:35.656Z",
   "resolutionMethod": "AGGREGATION"

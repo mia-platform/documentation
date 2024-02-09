@@ -8,17 +8,15 @@ Aside from the standard API Gateway features, the console provides the possibili
 
 Advanced extensions are divided by their scopes and can be edited in their corresponding file, contained in the `api-gateway-envoy` section:
 
-- `external-authorization.yaml`
-- `endpoints.yaml`
-- `clusters.yaml`
-- `request-headers.yaml`
-- `response-headers.yaml`
-- `rate-limiter.yaml`
-- `http-filters.yaml`
-- `listeners.yaml`
-- `on-request-scripts.yaml`
-- `on-response-scripts.yaml`
-- `patches.yaml`
+- [`listeners.yaml`](#listeners)
+- [`clusters.yaml`](#clusters)
+- [`endpoints.yaml`](#endpoints)
+- [`request-headers.yaml` or `response-headers.yaml`](#headers)
+- [`external-authorization.yaml`](#external-authorization)
+- [`rate-limiter.yaml`](#rate-limiter)
+- [`http-filters.yaml`](#http-filters)
+- [`on-request-scripts.yaml` or `on-response-scripts.yaml`](#lua-scripts)
+- [`patches.yaml`](#patching-arbitrary-listeners-properties)
 
 ## Available extensions
 
@@ -38,7 +36,7 @@ Listeners should be added to the `listeners.yaml` files. You can either add a ne
 
 The minimum valid listener configuration is the following:
 
-```yaml
+```yaml title=listeners.yaml
 - "@type": type.googleapis.com/envoy.config.listener.v3.Listener
   name: custom-listener
   address:
@@ -57,7 +55,7 @@ Similarly to listeners, clusters should be included in `clusters.yaml` and can b
 
 Here's an example of a valid cluster configuration:
 
-```yaml
+```yaml title=clusters.yaml
 - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
   name: my-upstream
   connect_timeout: 30s
@@ -82,7 +80,7 @@ This extension allows you to add or overwrite endpoints and routes in the `endpo
 
 The snippet below illustrates an example of a frontend `GET` route towards `my-upstream` with prefix rewrite. Remember to set the `timeout` property to `0s` to disable the default request timeout and enforce the global `stream_idle_timeout` ([learn more](/development_suite/api-console/advanced-section/api-gateway-envoy/timeouts.md)).
 
-```yaml
+```yaml title=endpoints.yaml
 - listener_name: frontend
   match:
     headers:
@@ -121,7 +119,7 @@ If you wish to overwrite an existing header, you need to specify the header in t
 
 Header configuration example:
 
-```yaml
+```yaml title=<request|response>-headers.yaml
 - listener_name: frontend
   header:
     key: my-header
@@ -137,7 +135,7 @@ With this extension, you can either add or customize your authorization service,
 
 For instance, the following snippet adds two custom headers (`custom-authz-header-1` and `custom-authz-header-2`) to our default frontend authorizer:
 
-```yaml
+```yaml title=external-authorization.yaml
 - listener_name: frontend
   name: envoy.filters.http.ext_authz
   typed_config:
@@ -202,7 +200,7 @@ If you are using the global rate limit service from our marketplace, you do not 
 
 A valid global rate limit filter with a custom gRPC service would look like this:
 
-```yaml
+```yaml title=rate-limiter.yaml
 - listener_name: frontend
   name: envoy.filters.http.ratelimit
   typed_config:
@@ -222,7 +220,7 @@ If the custom rate limit service is not already present, remember to create the 
 
 Local rate limit, on the other hand, can be created or customized as follows:
 
-```yaml
+```yaml title=rate-limiter.yaml
 - listener_name: frontend
   name: envoy.filters.http.local_ratelimit
   typed_config:
@@ -258,7 +256,7 @@ The local rate limit filter above enables and enforces rate limit on 100% of the
 
 Envoy is a largely extensible tool. In this sense, one of the most attractive features is the capability to hook custom LUA scripts on request and response manipulation. The console allows users to specify these custom scripts through two files: `on-request-scripts.yaml`, which contains scripts to be executed when Envoy processes a request, and `on-response-scripts.yaml` for responses manipulation. These two YAML files should include a list of objects having two properties: `listener_name`, which is the identifier of the listener to which the script will be added, and `body`, the script content. The user can specify more than one script for a listener, and they will be executed in the order in which they are listed, as in the following example:
 
-```yaml
+```yaml title=<on-request|on-response>-scripts.yaml
 - listener_name: frontend
   body: |
 print("First script")
@@ -327,7 +325,7 @@ The extension expects a YAML encoded list of objects. Every object contains a pr
 
 For example, the following patch will set the request timeout to `'30s'` on the `frontend` listener and will delete the `access_log` property:
 
-```yaml
+```yaml title=patches.yaml
 - listener_name: LISTENER
   'filter_chains.0.filters.0.typed_config.stream_idle_timeout': '30s'
   'filter_chains.0.filters.0.typed_config.access_log': null

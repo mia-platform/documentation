@@ -3,6 +3,7 @@ id: kustomize-use-cases
 title: Kustomize Use Cases
 sidebar_label: Kustomize Use Cases
 ---
+In this page you can see examples of how you can use Kustomize in order to manage some use cases.
 
 ### Patch replicas
 
@@ -128,7 +129,7 @@ When using `target`, the `metadata.name` of the patch will be ignored.
 Once deployed, you will see the two Deployment resources with an additional `istio-proxy` container.
 
 You can choose to add other conditions to find the targets to patch instead patching all deployments.
-For example you can patch only deployments with a specific label or annotation:
+For example, you can patch only deployments with a specific label or annotation:
 
 ```yaml
 # file: ./overlays/development/kustomization.yaml
@@ -143,4 +144,8 @@ patches:
     annotationSelector: myAnnotation=annotationValue,otherAnnotation=otherValue
 ```
 
-With the example above, the `istio-proxy` container will be add to deployments with **all the specified labels and annotations**.
+With the example above, the `istio-proxy` container will be added to deployments with **all the specified labels and annotations**.
+
+:::info
+You can apply labels to microservices inside the Design section of the Mia-Platform Console, or, in case of Self-Hosted installation, you can [set default labels](/marketplace/add_to_marketplace/contributing_overview.md#common-to-microservice-items-plugins-templates-examples) to the microservices created from Marketplace.
+:::

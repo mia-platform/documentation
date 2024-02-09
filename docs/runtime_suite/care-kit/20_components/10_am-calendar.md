@@ -38,9 +38,9 @@ The "availability mode" is used to show the availabilities and exceptions of a s
 
 When the calendar is set in availability mode the events are fetched through the back kit web component [bk-crud-client](/microfrontend-composer/back-kit/60_components/100_crud_client.md).
 
-Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](/microfrontend-composer/back-kit/60_components/540_url_parameters_adapter.md).
+Even though this calendar mode has been designed to display the events of only one resource, the event filtering is not performed by the component itself. To filter out the events for a specific property is suggested to pass the filtering property as a URL parameter and filter the data received from the backend utilizing the Backoffice component [bk-url-parameters](/microfrontend-composer/back-kit/60_components/550_url_parameters_adapter.md).
 
-To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](/microfrontend-composer/back-kit/60_components/300_filters_manager.md). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
+To improve performance not all the events are loaded in the calendar at the same time. In availability mode, the events are filtered sending [change-query](/microfrontend-composer/back-kit/60_components/310_filters_manager.md). If the calendar view is day or week the calendar loads events ranging from the first day of the previous week to the last day of the next week of the current visualized date. In month view the events from the previous month until the next one are loaded.
 
 Click on an event calendar will trigger the emission of a [select-data](/microfrontend-composer/back-kit/70_events.md#selected-data) event which contains in the payload the data of the event clicked.
 

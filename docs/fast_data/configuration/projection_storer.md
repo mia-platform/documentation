@@ -170,7 +170,7 @@ Here is described the interface of the custom message adapter function:
 - `after` → an object/map or `null`, which represents the record obtained after applying the change that triggered the ingestion event
 
 Taking into account the above details, it is possible to implement _user-defined functions_ either in Javascript or Kotlin.
-Below is provided an example for each supported programming language.
+Below are provided examples for each supported programming language.
 
 <details><summary>Custom Message Adapter Function (Kotlin - messageAdapter.kt)</summary>
 <p>
@@ -209,20 +209,37 @@ fun messageAdapter(message: Map<String, Any>?, primaryKeys: List<String>, logger
 ```javascript
 'use strict'
 
+/* Custom Ingestion Message (this is just an example of how logic can be customized)
+{
+    "data": { ... },
+    "delete": false
+}
+*/
+
 // NOTE: the message adapter entry point function must be named `messageAdapter`
 function messageAdapter(message, primaryKeys, logger) {
     const { value } = message
 
+    // in this adapter it is expected that payload is always set (never empty nor null)
     const payload = JSON.parse(value.toString())
-    const key = extractKey(payload, primaryKeys)
+    const key = extractKey(payload?.data, primaryKeys)
 
-    logger.debug(JSON.stringify(key))
+    logger.trace(JSON.stringify(key))
+
+    if (payload.delete) {
+        return {
+            operation: 'D',
+            key,
+            before: payload?.data,
+            after: undefined
+        }
+    }
 
     return {
-        operation: Boolean(payload) ? 'I' : 'D',
+        operation: 'I',
         key,
         before: undefined,
-        after: payload
+        after: payload?.data
     }
 }
 
@@ -233,16 +250,56 @@ function extractKey(obj, wantedKeys) {
             .map(keyEntry => [keyEntry, obj[keyEntry]])
     )
 }
+```
+
+</p>
+</details>
+
+<details><summary>Custom Message Adapter Function (Javascript - with empty payload management - messageAdapter.js)</summary>
+<p>
+
+```javascript
+'use strict'
+
+/* Custom Ingestion Message -> db2 like */
+
+// NOTE: the message adapter entry point function must be named `messageAdapter`
+function messageAdapter(message, primaryKeys, logger) {
+    const { value, key: keyAsString } = message
+
+    const keyObject = JSON.parse(keyAsString)
+    // please notice that value is Kotlin Buffer - to obtain its length,
+    // the length function should be employed. In addition, to ensure
+    // compatibility also with Real-Time Updater plugin, the following check has been added 
+    const valueLength = (typeof value?.length === "function")
+        ? value?.length()
+        : value?.length
+
+    // in this adapter it may happen that payload is either empty or null
+    const payload = (value && valueLength > 0)
+        ? JSON.parse(value.toString())
+        : null
+    
+    logger.trace('received message in custom message adapter')
+
+    return {
+        operation: payload ? 'U' : 'D',
+        key: keyObject,
+        before: null,
+        after: payload
+    }
+}
 
 // the following code allows to use the same custom function
-// in both the Projection Storer and the Real-Time Updater 
+// in both the Projection Storer and the Real-Time Updater
 try {
     // export function for Real-Time Updater
     module.exports = messageAdapter
-} catch(error) {
+} catch (error) {
     // ignore error when importing the custom function in the Projection Storer
     // since it exploits the function name
 }
+
 ```
 
 </p>

@@ -629,8 +629,8 @@
     "destination": "/docs/development_suite/identity-and-access-management",
     "addedOn": "2023-08-29"
   },
-  "docs/runtime_suite_applications/payment-integration-hub/30_configuration.md": {
-    "destination": "docs/runtime_suite_applications/payment-integration-hub/50_configuration.md",
+  "/docs/runtime_suite_applications/payment-integration-hub/30_configuration.md": {
+    "destination": "/docs/runtime_suite_applications/payment-integration-hub/50_configuration.md",
     "addedOn": "2023-09-08"
   },
   "/docs/development_suite/deploy/configure-github-actions":  {
@@ -1316,5 +1316,329 @@
   "/docs/business_suite/what-is-backoffice": {
     "destination": "/docs/microfrontend-composer/what-is",
     "addedOn": "2023-11-07"
+  },
+  "/docs/getting-started/tutorials/backoffice/basics": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/basics",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/tutorials/backoffice/templates": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/templates",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/tutorials/backoffice/microfrontends": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/microfrontends",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/tutorials/backoffice/auth0-integration": {
+    "destination": "/docs/getting-started/tutorials/microfrontend-composer/auth0-integration",
+    "addedOn": "2023-11-16"
+  },
+  "/docs/getting-started/videos/backoffice": {
+    "destination": "/docs/getting-started/videos/microfrontend-composer",
+    "addedOn": "2023-11-20"
+  },
+  "/docs/getting-started/tutorials/microservice-from-docker-image": {
+    "destination": "/docs/console/tutorials/microservice-from-docker-image",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/microservice-hello-world": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/microservice-hello-world",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/api-portal": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/api-portal",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/rest-api-for-crud-on-data": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-datal",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/create-a-custom-microservice": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/create-a-custom-microservice",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/microservice-with-metrics": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/microservice-with-metrics",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/set-requests-limits-of-a-microservice": {
+    "destination": "/docs/console/tutorials/set-requests-limits-of-a-microservice",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/protect-your-endpoints-with-policies": {
+    "destination": "/docs/console/tutorials/protect-your-endpoints-with-policies",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/flow-manager": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/flow-manager",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/project-template-integrated-with-jenkins": {
+    "destination": "/docs/marketplace/tutorials/project-template-integrated-with-jenkins",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/architecture/auth/intro": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/auth-architecture/intro",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/architecture/auth/static-api-key": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/architecture/auth/external-idp": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/architecture/auth/external-idp-internal-session": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/architecture/auth/multiple-projects": {
+    "destination": "/docs/console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/fast-data/low-code": {
+    "destination": "/docs/fast_data/tutorials/low-code",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/fast-data/bucket-storage-support": {
+    "destination": "/docs/fast_data/tutorials/bucket-storage-support",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/fast-data/migration": {
+    "destination": "/docs/fast_data/tutorials/migration",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/microfrontend-composer/basics": {
+    "destination": "/docs/microfrontend-composer/tutorials/basics",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/microfrontend-composer/templates": {
+    "destination": "/docs/microfrontend-composer/tutorials/templates",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/microfrontend-composer/microfrontends": {
+    "destination": "/docs/microfrontend-composer/tutorials/microfrontendss",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/getting-started/tutorials/microfrontend-composer/auth0-integration": {
+    "destination": "/docs/microfrontend-composer/tutorials/auth0-integration",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/infrastructure/private-clusters": {
+    "destination": "/docs/infrastructure/self-hosted/private-clusters",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/overview": {
+    "destination": "/docs/infrastructure/paas/overview",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/maintenance": {
+    "destination": "/docs/infrastructure/paas/maintenance",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/security/security_measures": {
+    "destination": "/docs/infrastructure/paas/security-measures",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/security/secret_scanning": {
+    "destination": "/docs/infrastructure/paas/secret-scanning",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/business_continuity": {
+    "destination": "/docs/infrastructure/paas/business-continuity",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/runtime": {
+    "destination": "/docs/infrastructure/paas/tools/runtime",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/message-broker": {
+    "destination": "/docs/infrastructure/paas/tools/message-broker",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/docker-registry": {
+    "destination": "/docs/infrastructure/paas/tools/docker-registry",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/traefik": {
+    "destination": "/docs/infrastructure/paas/tools/traefik",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/cert-manager": {
+    "destination": "/docs/infrastructure/paas/tools/cert-manager",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/grafana": {
+    "destination": "/docs/infrastructure/paas/tools/grafana",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/kube-green": {
+    "destination": "/docs/infrastructure/paas/tools/kube-green",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/telepresence": {
+    "destination": "/docs/infrastructure/paas/tools/telepresence",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/paas/mtls": {
+    "destination": "/docs/infrastructure/paas/tools/mtls",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/self_hosted/self_hosted_requirements": {
+    "destination": "/docs/infrastructure/self-hosted/self-hosted-requirements",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/self_hosted/self_hosted_runtime_requirements": {
+    "destination": "/docs/infrastructure/self-hosted/self-hosted-runtime-requirements",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/self_hosted/troubleshooting": {
+    "destination": "/docs/infrastructure/self-hosted/troubleshooting",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/development_suite/set-up-infrastructure/ranges-and-quotas": {
+    "destination": "/docs/infrastructure/self-hosted/ranges-and-quotas",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/development_suite/deploy/pipeline-configuration": {
+    "destination": "/docs/infrastructure/self-hosted/pipeline-configuration",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/self_hosted/installation-chart": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/self_hosted/synchronize-users": {
+    "destination": "/docs/infrastructure/self-hosted/synchronize-users",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/self_hosted/feature-toggle": {
+    "destination": "/docs/infrastructure/self-hosted/feature-toggle",
+    "addedOn": "2023-11-28"
+  },
+  "/docs/infrastructure/third-party-integrations/deployment-tools": {
+    "destination": "/docs/infrastructure/self-hosted/third-party-integrations/deployment-tools",
+    "addedOn": "2023-11-28"
+  },
+  "/development_suite/api-console/api-design/marketplace/": {
+    "destination": "/docs/marketplace/overview_marketplace",
+    "addedOn": "2023-12-06"
+  },
+  "/development_suite/api-console/api-design/services/": {
+    "destination": "/docs/development_suite/api-console/api-design/services/",
+    "addedOn": "2023-12-06"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/file_management": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/file_management",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/lookups": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/lookups",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/nested_objects": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/nested_data",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/microfrontend-composer/back-kit/flows/plugin_navigation": {
+    "destination": "/docs/microfrontend-composer/back-kit/examples/plugin_navigation",
+    "addedOn": "2023-12-20"
+  },
+  "/docs/getting-started/handbooks/project/manage": {
+    "destination": "/docs/console/handbooks/project-manage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/tutorials/design-overview": {
+    "destination": "/docs/console/handbooks/design-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/project/usage": {
+    "destination": "/docs/console/handbooks/project-usage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/console/project-development": {
+    "destination": "/docs/console/handbooks/project-development",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/console/endpoints": {
+    "destination": "/docs/console/handbooks/endpoints",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/microservice-ports": {
+    "destination": "/docs/console/handbooks/microservice-ports",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/traefik/traefik-handbook": {
+    "destination": "/docs/console/handbooks/traefik-handbook",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/handbooks/crud-service/crud-oss-usage": {
+    "destination": "/docs/marketplace/handbooks/crud-oss-usage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/microfrontend-composer": {
+    "destination": "/docs/microfrontend-composer/videos/microfrontend-composer",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/bucket-storage": {
+    "destination": "/docs/fast_data/videos/bucket-storage",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/connecting-cluster": {
+    "destination": "/docs/console/videos/connecting-cluster",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/fast-data-no-code": {
+    "destination": "/docs/fast_data/videos/fast-data-no-code",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/feature-preview": {
+    "destination": "/docs/console/videos/feature-preview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/m2m-auth": {
+    "destination": "/docs/console/videos/m2m-auth",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/providers": {
+    "destination": "/docs/console/videos/providers",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/runtime-area": {
+    "destination": "/docs/console/videos/runtime-area",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/videos/video-pills": {
+    "destination": "/docs/console/videos/marketplace-components/node-microservice",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/git-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/rest-api-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/microservice-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/docker-vademecum": {
+    "destination": "/docs/getting-started/mia-platform-overview",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/getting-started/guidelines/guidelines-for-logs": {
+    "destination": "/docs/development_suite/api-console/api-design/guidelines-for-logs",
+    "addedOn": "2024-01-11"
+  },
+  "/docs/runtime_suite/auth0-client/overview_and_usage": {
+    "destination": "/docs/runtime_suite/auth0-client/overview",
+    "addedOn": "2024-01-22"
   }
 }

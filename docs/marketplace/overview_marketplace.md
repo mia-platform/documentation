@@ -3,47 +3,48 @@ id: overview_marketplace
 title: The Marketplace
 sidebar_label: Why take advantage of the Marketplace?
 ---
-## Why always start from scratch
 
-The Mia-Platform Marketplace contains several code resources which help you develop your architecture faster.
+The Mia-Platform Marketplace contains several code resources that facilitate a faster and frictionless building of your architecture.
 
-In the Marketplace, you will be able to choose from a set of components (mostly powered and supported by Mia-Platform) to easily set up a single microservice or a bundle of resources **with predefined and tested functionalities**.
+In the Marketplace, you will be able to choose from a set of **items**, also called **components**, to easily set up a single microservice or a bundle of resources **with predefined and tested functionalities**.
 
-Marketplace components you can start from include:
+The Marketplace components types you can use include:
 
 * **[Plugin](/plugins/mia-platform-plugins.md)**: a ready-to-use Microservice.  
 
-* **[Template](/marketplace/templates/mia_templates.md)**: a base repository from which you can start to create a new Microservice.  
+* **[Template](/marketplace/templates/mia_templates.md)**: a base repository with some boilerplate code from which you can start to create a new Microservice.
 
-* **[Example](/marketplace/examples/mia_examples.md)**: a specific use-case, a ready-to-use model to create your Microservice.
+* **[Example](/marketplace/examples/mia_examples.md)**: a specific use-case, a ready-to-use model to create a new Microservice. On the contrary of the Template, an Example already contains some ready to use business logic code, that you can later modify to match your exact needs.
 
 * **[Application](/marketplace/applications/mia_applications.md)**: a bundle of resources including Plugins, Templates, and Examples, but also Endpoints, Collections, and Public Variables.
 
-* **Docker Image Name**: an existing Docker image of a Microservice (check out the [Create a service](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-a-docker-image) section for further information).
-
 :::info
-You can go deeper into the code of Templates and Examples by visiting the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform-marketplace).
+
+Mia-Platform supported Templates and Example source code is open source software, hosted on public Git repositories.
+You can visit the [Mia-Platform Marketplace GitHub page](https://github.com/mia-platform-marketplace) to browse the source code.
+
+Feel free to contribute by opening a Pull Request!
+
 :::
 
 ### Explore the Marketplace
 
-You can access the Mia-Platform Marketplace from the *Design area* of the *Console*, either when you are [creating a new microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template) or creating a new application.
+Mia-Platform Marketplace has two different entry points, both located in the *Design Area* of the Console.
 
-:::note
-In the first case, you will be able to filter by one of the following component types: Plugins, Templates, and Examples.
+To browse Marketplace Applications, head to the *Applications* section and click on the button *Create new Application*. 
+For more information see [the related page](/marketplace/applications/mia_applications.md).
 
-In the second case, you will only be able to see components of Application type.
-:::
+To browse Markeplace Plugins, Templates and Examples, go to the *Microservices* section and click on the button *Create a Microservice*, then click on the option **For Marketplace** of the dropdown menu.
 
-In both cases, you will be able to filter components by **category**, a property reflecting the purpose, the field, or the use-case a component is associated with (e.g. Data visualization).
+In both cases, you will be able to filter components by **Category**, a property reflecting the purpose, the field, or the use-case a component is associated with (e.g. Data visualization).
 
-The results of your search will always appear organized by category.
+The results of your search will always appear organized by Category.
 
 ![new-examples](./img/marketplace.png)
 
-## Marketplace components lifecycle
+## Marketplace items lifecycle
 
-Each Marketplace component has a predetermined **development lifecycle**:
+Each Marketplace item has a predetermined **development lifecycle**:
 
 ![lifecycle-stages](./img/component-lifecycle-final.png)
 
@@ -56,3 +57,22 @@ The following are the expected stages along a Marketplace component lifecycle:
 * **Beta**: implementation is complete, these components won't be subject to any undocumented breaking change but may still include bugs (hence they must be used with caution)
 
 * **Stable**: implementation is stable (bugs free). Consequently, this stage represents the period before the component's official release and its documentation in the release note.
+
+* **Deprecated**: items may reach this state when support by maintainers is dropped. For more details consult the following section.
+
+
+### Deprecated Items
+
+Sometimes, a Marketplace item may become deprecated. This typically occurs when a newer item replaces it with enhanced features, or when a better solution is provided by a new application. 
+
+![deprecated-service](./img/deprecated-service.png)
+
+In such cases, the maintainer may decide not to longer support the older item, meaning it will not receive any future updates.
+
+The item will be marked as **Deprecated**. While you can still use it if necessary, its functionality may be limited or outdated compared to current standards. The suggested alternative will be published in the deprecated item documentation.
+
+:::caution
+
+It's important to consider the alternatives to a deprecated item. Using updated and supported items ensures better performance, security, and compatibility.
+
+:::

@@ -1,0 +1,24 @@
+# configured according to https://github.com/marketplace/actions/labeler
+
+name: "Pull Request Labeler"
+
+on:
+  pull_request_target:
+    branches:
+      - "main"
+
+# note: to perform major update of labeler action, please follow this guide
+#       https://github.com/marketplace/actions/labeler#updating-major-version-of-the-labeler
+
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          sync-labels: true

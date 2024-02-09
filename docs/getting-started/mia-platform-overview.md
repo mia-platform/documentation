@@ -28,7 +28,7 @@ Mia-Platform products are built **by developers for developers**, and you can [a
 - Monitor runtime resources usage and optimize them;
 - Expose all the APIs through an API Gateway of your choice, in an easy and secure way;
 - Leverage a Data Fabric solution to govern the entire **data lifecycle**. Project data from your legacy systems and create single views - i.e. unified views of a subset of data with a specific purpose - to reduce access latency, and increase data availability;
-- Create and evolve an entire **backoffice application** in a few clicks using the low-code features to read and write your data.
+- Create and evolve an entire **Microfrontend Composer application** like a backoffice application (and much more)* in a few clicks using the low-code features to read and write your data.
 
 ## Why Mia-Platform?
 
@@ -72,7 +72,7 @@ These products are the backbone of Mia-Platform, and constitute the main solutio
 
 These components contribute to the realization of some specific tasks within your products. They are available through Mia-Platform Marketplace, and they are:
 
-- [Mia-Platform Backoffice](/microfrontend-composer/what-is.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
+- [Mia-Platform Microfrontend Composer](/microfrontend-composer/what-is.md): create custom CMSs, or generic User Interfaces, with the ability to compose custom pages, putting whatever web component coming from the back-kit library or from a custom component library.
 - [Mia-Platform External Developer Portal](/runtime_suite/api-portal/10_overview.md): a complete access point to your companies’ APIs for your partners and providers, containing live and testable API documentation and allowing standardization in the methods of use.
 - [Mia-Platform Flow Manager](/runtime_suite/flow-manager-service/10_overview.md): a saga orchestrator, capable to manage flows structured by using the architectural pattern named Saga Pattern and, in particular, the Command/Orchestration approach.
 
@@ -88,17 +88,3 @@ Along with the components above, you can also find Mia-Platform’s **open-sourc
 Mia-Platform is available for purchase in three different ways: SaaS, PaaS, and On-Premises.
 
 For further details on the distribution model, please refer to [this page](/infrastructure/overview.md).
-
-## More Resources
-
-To stay always up-to-date with the **latest product news**, please visit the [Release Note](/release-notes/versions.md) section. Also, feel free to jump into **our community**: explore the [open discussions on GitHub](https://github.com/mia-platform/community/discussions) and ask any questions you may have about our products.
-
-If you are curious about **what you can do with Mia-Platform**, take a look at what we already built with our customers and [explore all the success cases](https://mia-platform.eu/resources/case-history/).
-
-For an **overall understanding* of the underlying technologies, market trends, and related topics, please refer to our [Blog](https://blog.mia-platform.eu/en) and our [Library](https://resources.mia-platform.eu/en/library).
-
-For **fresh news and insights on the company**, subscribe to our [monthly newsletter](https://resources.mia-platform.eu/en/newsletter-general-subscription) and follow us on our social media ([GitHub](https://github.com/mia-platform), [LinkedIn](https://www.linkedin.com/company/mia-platform/), [Instagram](https://www.instagram.com/miaplatform/), [Twitter](https://twitter.com/MiaPlatform), [YouTube](https://www.youtube.com/channel/UCWEgCxRmFgHgCwV3ntZ2hvA)). If you wish to meet us in person and want to know where we will be, please visit the [events page](https://mia-platform.eu/resources/events/) on our website.
-
-Do you want to be part of Mia-Platform? Check out our [open positions](https://mia-platform.eu/careers/) and apply, we are hiring!
-
-Last but not least, we provide **free demos** of our products: if you are interested in seeing them in action, just go to [this page and book a free demo](https://contact.mia-platform.eu/ask-for-a-demo-mia-platform)!

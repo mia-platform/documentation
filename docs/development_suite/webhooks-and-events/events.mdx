@@ -20,10 +20,9 @@ All the events triggered by the Console share some common properties:
 | `payload`        | `object` | Contains the event-specific payload                            |
 
 
-
 ### Project Created
 
-This event will be triggered when a project is created successfully.
+This event will be triggered when a Project is created successfully.
 
 <Tabs>
 <TabItem value="project-created-table" label="Event Payload" default>
@@ -91,7 +90,7 @@ This event will be triggered when a microservice is successfully generated from 
 
 :::note
 The event is triggered as soon as the service's repository is successfully created,
-hence there is no guarantee that the service will be found in the project configuration, yet.
+hence there is no guarantee that the service will be found in the Project configuration, yet.
 :::
 
 <Tabs>
@@ -103,7 +102,7 @@ hence there is no guarantee that the service will be found in the project config
 | `tenantId`      | `string` | The identifier of the Company the service belongs to                                         |
 | `projectId`     | `string` | The identifier of the Project the service belongs to                                         |
 | `repositoryURL` | `string` | The URL of the repository that hosts the service code                                        |
-| `serviceName`   | `string` | The name of the service inside the project configuration                                     |
+| `serviceName`   | `string` | The name of the service inside the Project configuration                                     |
 | `templateId`    | `string` | The identifier of the template in the Console marketplace from which the service was created |
 
 </TabItem>
@@ -152,9 +151,10 @@ hence there is no guarantee that the service will be found in the project config
 </TabItem>
 </Tabs>
 
+
 ### Tag Created
 
-This event will be triggered when a project is successfully tagged from console.
+This event will be triggered when a Project is successfully tagged from Console.
 
 <Tabs>
 <TabItem value="tag-created-table" label="Event Payload" default>
@@ -163,14 +163,13 @@ This event will be triggered when a project is successfully tagged from console.
 | -------------------- | -------- | ---------------------------------------------------------------------- |
 | `tenantId`           | `string` | The identifier of the Company the service belongs to                   |
 | `projectId`          | `string` | The identifier of the Project the service belongs to                   |
-| `tagName`            | `string` | The name of the tag created from the console                           |
+| `tagName`            | `string` | The name of the tag created from the Console                           |
 | `ref`                | `string` | The ref of the tag                                                     |
-| `message`            | `string` | The message of the tag compiled from the console                       |
-| `releaseDescription` | `string` | The release description of the tag compiled from the console           |
-| `project`            | `object` | [The project metadata](#project) (ideally, the whole project resource) |
+| `message`            | `string` | The message of the tag compiled from the Console                       |
+| `releaseDescription` | `string` | The release description of the tag compiled from the Console           |
+| `project`            | `object` | [The Project metadata](#project) (ideally, the whole Project resource) |
 
 </TabItem>
-
 <TabItem value="example" label="Example">
 
 ```json
@@ -182,17 +181,16 @@ This event will be triggered when a project is successfully tagged from console.
     "projectId": "0000000000000001",
     "tagName": "v1.0.0",
     "ref": "af132fr",
-    "message": "tag message compiled from the console",
-    "releaseDescription": "release description compiled from the console",
+    "message": "tag message compiled from the Console",
+    "releaseDescription": "release description compiled from the Console",
 
-    // See the project metadata below
+    // See the Project metadata below
     "project": {...} 
   }
 }
 ```
 
 </TabItem>
-
 <TabItem value="json-schema" label="JSON Schema">
 
 ```json
@@ -220,23 +218,22 @@ This event will be triggered when a project is successfully tagged from console.
 ```
 
 </TabItem>
-
 </Tabs>
 
-### Entities
+## Entities
 
-#### Project
+### Project
 
 <Tabs>
 <TabItem value="project-table" label="Entity">
 
 |        Property        |   Type   |                                         Description                                          |
 | ---------------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `_id`                  | `string` | The unique identifier of project created                                                      |
-| `configurationGitPath` | `string` | The path where project persist in git repository                                             |
+| `_id`                  | `string` | The unique identifier of Project created                                                      |
+| `configurationGitPath` | `string` | The path where Project persist in git repository                                             |
 | `defaultBranch`        | `string` | The default branch of git repository                                                         |
-| `description`          | `string` | The project description                                                                      |
-| `environments`         | `array`  | The project environments, where project can be released                                      |
+| `description`          | `string` | The Project description                                                                      |
+| `environments`         | `array`  | The Project environments, where Project can be released                                      |
 | `name`                 | `string` | The identifier of the template in the Console marketplace from which the service was created |
 | `projectId`            | `string` | The human readable identifier of the Project that was created                                |
 | `repository`           | `object` | The git repository information                                                               |
@@ -244,7 +241,6 @@ This event will be triggered when a project is successfully tagged from console.
 | `tenantId`             | `string` | The human readable identifier of the Company the service belongs to                          |
 
 </TabItem>
-
 <TabItem  value="project-example" label="Example">
 
 ```json
@@ -342,12 +338,11 @@ This event will be triggered when a project is successfully tagged from console.
 ```
 
 </TabItem>
-
 <TabItem value="project-schema" label="JSON Schema">
 
 ```json 
 {
-  "description": "The project metadata (ideally, the whole project resource)",
+  "description": "The Project metadata (ideally, the whole Project resource)",
   "type": "object",
   "properties": {
     "_id": { "type": "string" },
@@ -453,5 +448,4 @@ This event will be triggered when a project is successfully tagged from console.
 ```
 
 </TabItem>
-
 </Tabs>

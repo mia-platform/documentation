@@ -19,54 +19,58 @@ The following table shows the providers currently supported by the Console, grou
       <tr>
          <th></th>
          <th><strong>Providers</strong></th>
-         <th><strong>`type` in data model</strong></th>
+         <th><strong><tt>type</tt> in data model</strong></th>
       </tr>
    </thead>
    <tbody>
       <tr>
          <td rowspan="4"><strong>Git Provider</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>gitlab</td>
+         <td><tt>gitlab</tt></td>
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub</td>
-         <td>github</td>
+         <td><tt>github</tt></td>
       </tr>
       <tr>
          <td><img src="/img/azure-repos.png" width="15" height="15"/> Azure Repos</td>
-         <td>azure-devops</td>
+         <td><tt>azure-devops</tt></td>
       </tr>
       <tr>
          <td><img src="/img/bitbucket-server.ico" width="15" height="15"/> Bitbucket Server</td>
-         <td>bitbucket</td>
+         <td><tt>bitbucket</tt></td>
       </tr>
       <tr>
-         <td rowspan="2"><strong>Secret Manager</strong></td>
+         <td rowspan="3"><strong>Secret Manager</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab</td>
-         <td>gitlab</td>
+         <td><tt>gitlab</tt></td>
       </tr>
       <tr>
          <td><img src="/img/vault.png" width="15" height="15"/> Vault</td>
-         <td>vault</td>
+         <td><tt>vault</tt></td>
+      </tr>
+      <tr>
+         <td><img src="/img/azure-key-vault.png" width="15" height="15"/> Azure Key Vault</td>
+         <td><tt>azure-key-vault</tt></td>
       </tr>
       <tr>
          <td rowspan="4"><strong>CI/CD Tool</strong></td>
          <td><img src="/img/gitlab.png" width="15" height="15"/> GitLab CI Runners</td>
-         <td>github-ci</td>
+         <td><tt>github-ci</tt></td>
       </tr>
       <tr>
          <td><img src="/img/github.png" width="15" height="15"/> GitHub Actions</td>
-         <td>github-actions</td>
+         <td><tt>github-actions</tt></td>
       </tr>
       <tr>
          <td><img src="/img/azure-pipelines.png" width="15" height="15"/> Azure Pipelines</td>
-         <td>azure-pipelines</td>
+         <td><tt>azure-pipelines</tt></td>
       </tr>
       <tr>
          <td><img src="/img/jenkins.png" width="15" height="15"/> Jenkins</td>
-         <td>jenkins</td>
+         <td><tt>jenkins</tt></td>
       </tr>
    </tbody>
 </table>
 
-The supported version of the services are present in [this table](/self_hosted/self_hosted_requirements.md#software-and-hardware-prerequisites).
+The supported version of the services are present in [this table](/infrastructure/self-hosted/self-hosted-requirements.md#software-and-hardware-prerequisites).

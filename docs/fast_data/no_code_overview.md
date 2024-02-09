@@ -5,7 +5,7 @@ sidebar_label: Fast Data Low Code/ No Code Overview
 ---
 
 :::tip
-If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/getting-started/tutorials/fast-data/low-code.mdx)
+If you want to try the Fast Data Low Code with a simple example, here's a step by step [tutorial](/fast_data/tutorials/low-code.mdx)
 :::
 
 The "Low Code" and "No Code" versions of Fast Data are the new standards that leverage the power of configurations to overcome coding complexity in Fast Data setup.
@@ -60,7 +60,7 @@ Using the No Code feature you can define the relationships between your Fast Dat
 
 ### Adding a Low Code Single View Creator (Low Code)
 
-The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator.md).
+The other fundamental component of your Fast Data Low Code project is the [Single View Creator Low Code](/fast_data/configuration/single_view_creator/plugin.md).
 You can create it from our Marketplace.
 Also, in this case, it is needed to configure some Config Maps:
 

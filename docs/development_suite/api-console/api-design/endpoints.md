@@ -6,7 +6,7 @@ sidebar_label: Create Endpoints
 
 ## What is an endpoint
 
-An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/getting-started/tutorials/rest-api-for-crud-on-data.mdx).
+An endpoint allows you to expose your CRUD, services, and proxies. To quickly create an endpoint linked to a CRUD, you can follow the steps described in [Design QuickStart page](/console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data.mdx).
 
 This page will delve into the endpoint types and configuration. The purpose of this page is to describe all the functionalities that you can find in the **Endpoints** section of the **Design** area of [Mia-Platform Console](/development_suite/overview-dev-suite.md).
 

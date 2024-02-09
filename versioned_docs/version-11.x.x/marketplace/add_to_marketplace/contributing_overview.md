@@ -134,6 +134,11 @@ Here below are listed all the properties that you can provide for each microserv
   - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
 - **defaultAnnotations**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation). The annotations that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
 - **defaultLabels**: the service labels, which can be used to categorize, group, and select your service. The labels that starts with `mia-platform.eu` are reserved, you are not allowed to use them.
+  The field is an array of objects that represent the labels. Each object has the following fields:
+  - `name`: the name of the label,
+  - `value`: the value of the label,
+  - `description`: description of the label,
+  - `readOnly`: boolean that represent if you can change the value of the label through the Console
 - **defaultDocumentationPath**: the APIs documentation path.
 - **defaultResources**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
 - **visibility**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.

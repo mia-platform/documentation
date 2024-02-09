@@ -8,6 +8,7 @@
     "reinit",
     "ABAC",
     "axerve",
+    "nexi",
     "Bianchi",
     "Boundarye",
     "Brotli",
@@ -57,6 +58,7 @@
     "hmac",
     "hsts",
     "htpasswd",
+    "iban",
     "imbonati",
     "infobox",
     "intellij",
@@ -342,7 +344,9 @@
     "Noto",
     "Segoe",
     "kotlinx",
-    "Dynatrace"
+    "Dynatrace",
+    "logr",
+    "ODBC"
   ],
   "dictionaries": [
     "softwareTerms",

@@ -154,7 +154,7 @@ async function createConfig() {
           },
           {
             label: "Blog",
-            href: "https://blog.mia-platform.eu/en",
+            href: "https://mia-platform.eu/blog/",
           },
           {
             label: "Events",
@@ -191,10 +191,6 @@ async function createConfig() {
           items: [{
             label: "Status Page",
             href: "https://status.console.cloud.mia-platform.eu"
-          },
-          {
-            label: "Guidelines",
-            to: "/docs/getting-started/guidelines/",
           },
           {
             label: "Library",
@@ -247,23 +243,20 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "11.x.x",
+            lastVersion: "current",
             versions: {
               current: {
-                label: "12.x (Preview)",
-                path: "preview",
+                label: "12.x (Current)",
+                path: "",
+                banner: "none"
               },
               "11.x.x": {
-                label: "11.7.1",
-                path: "",
+                label: "11.7.x",
+                path: "11.x",
               },
               "10.x.x": {
                 label: "10.9.x",
                 path: "10.x",
-              },
-              "9.x.x": {
-                label: "9.5.x",
-                path: "9.x",
               },
             },
             async sidebarItemsGenerator({
@@ -277,7 +270,7 @@ async function createConfig() {
                   const {
                     fileName
                   } = params
-                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
+                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview', '10-overview'].includes(fileName.toLowerCase())
                 },
               });
             },
