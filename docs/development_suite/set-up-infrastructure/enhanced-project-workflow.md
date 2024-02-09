@@ -87,12 +87,7 @@ Versions can only be deleted by Project Administrators.
 
 ![Revision History modal](img/revision-history.png)
 
-The revision history, accessible by clicking the related icon inside the branch selection area, contains a list of snapshots of the Project configuration,created each time it has been saved, on a certain revision or version. It also includes useful information such as the snapshot date, author, associated message, and any tags created with it.
-
-<!-- TODO: Improve the following section -->
-There are two possible ways of comparing snapshots: 
-- **Single change**: the user can compare changes between two adjacent snapshots in the history
-- **Multiple change**: the user can select two snapshots to compare, viewing the totality of changes applied to the configuration in that time range
+The revision history, accessible by clicking the related icon inside the branch selection area, contains a list of snapshots of the Project configuration, created each time it has been saved, on a certain revision or version. It also includes useful information such as the snapshot date, author, associated message, and any tags created with it. Moreover, the right-side button will show the differences between the selected snapshot and the previous one, in order to have a better understanding of the changes applied to the revision.
 
 ### New deployment workflow
 
