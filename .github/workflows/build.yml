@@ -1,13 +1,18 @@
-name: Build documentation
+name: Build and deploy documentation
 on:
   push:
     branches:
       - "main"
+      - "preview"
+      - "prod"
     tags:
       - "*"
   pull_request:
     branches:
       - "main"
+      - "preview"
+      - "prod"
+
 jobs:
   install:
     name: Install and verify contents
@@ -39,12 +44,12 @@ jobs:
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
         run: yarn build
-        if: ${{ !startsWith(github.ref, 'refs/tags/') && github.ref != format('refs/heads/{0}', github.event.repository.default_branch) }}
+        if: github.event_name == 'pull_request'
 
   build:
     needs: install
     name: Build docker image
-    if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -107,7 +112,6 @@ jobs:
     name: Deploy documentation preview
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     steps:
       - uses: eic/trigger-gitlab-ci@v2
         with:
