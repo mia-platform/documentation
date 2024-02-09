@@ -1,5 +1,7 @@
 <div align="center">
 
+ciao
+
 # Welcome to Mia-Platform documentation
 
 In this repository you can find the official [Mia-Platform][mia-website] Documentation.
