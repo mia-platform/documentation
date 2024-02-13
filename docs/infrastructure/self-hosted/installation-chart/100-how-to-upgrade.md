@@ -39,11 +39,36 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## v12 - version upgrades
 
+### Upgrade from v12.1.0 to v12.X
+
+#### New management of image pull secrets
+
+In this version, it is possible to generate an image pull secret directly from the chart. To do it, you should configure the `imageCredentials` object in the `values.yaml` file.
+So, you can remove the `imagePullSecrets` object from the `values.yaml` file if you have only the secret to pull the image from the mia-platform registry. The field is still active, in the case you need more than one secret to pull images.
+It is be removed the `.Values.registryHost` field, which is moved to the `.Values.imageCredentials.registry` field (which default is the same as the `.Values.registryHost` value).
+
+An example of this configuration:
+
+```yaml
+imageCredentials:
+  registry: "nexus.mia-platform.eu"
+  name: "mia-platform-registry"
+  username: myUsername
+  password: myPassword
+  email: someone@mia-platform.eu
+```
+
+#### New security context
+
+In this version, we removed the Pod Security Policy support (since removed in K8s v1.25) and the `podSecurityPolicyEnabled` field.
+
+We also change the management of the security context. In this version, the security context are applied by default to all the pods, and it is possible to configure only the pod security context using the `defaultPodSecurityContext` field (to change all the pods security context) or the `podSecurityContext` field in each workload configuration (to change the security context of a specific pod).
+
 ### Upgrade from v12.0.1 to v12.1.0
 
 #### New backoffice configuration
 
-In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 3 services (`cms-backend`, `cms-site`, `v1-adapter` and `exportService`).
+In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 4 services (`cms-backend`, `cms-site`, `v1-adapter` and `exportService`).
 This means that you can remove any configuration related to cms from your `values.yaml` file.
 
 You can remove configuration related to:
