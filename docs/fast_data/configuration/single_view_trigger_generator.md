@@ -118,7 +118,7 @@ The `Event Store Config` is a JSON file containing the configuration of the cons
 Mind that only one producer and consumer must be configured at a time so the service knows which kind to use. Providing more than one consumer or producer will fail the configmap validation and shut down the service at start up.
 :::
 
-**Consumers**
+#### Consumers
 
 At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification below.
 
@@ -248,7 +248,7 @@ At the moment you can only configure your consumer with kafka which will read `p
 </p>
 </details>
 
-**Producers**
+#### Producers
 
 For the producers you can choose between two options: Kafka or MongoDB ([`sv-trigger` vs. `pc`](/fast_data/single_view_trigger_generator.md#sv-trigger-vs-pc)).
 With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
@@ -376,6 +376,8 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
 ```
 </p>
 </details>
+
+#### Examples
 
 An example of a complete configuration would be:
 
