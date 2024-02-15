@@ -281,7 +281,7 @@ When the dataset of a collection has a high rate of **UPDATE/DELETE** operations
 The `GET /export` method exposed by each endpoint associated with a collection opens a data stream in `nd-json` format in the HTTP response. By using this method, the CRUD Service will open **only one cursor** to the MongoDB cluster, and the `ResultSet` will remain unaffected by concurrent **UPDATE/DELETE** operations.
 
 :::info
-[ndjson] is a format that ensures the streaming of data structures, where each record is processed individually and separated by a newline (`\n`) delimiter.
+ndjson is a format that ensures the streaming of data structures, where each record is processed individually and separated by a newline (`\n`) delimiter.
 
 To properly read this format, it is necessary to specify the header `"Accept: application/x-ndjson" `within the HTTP request. This header informs the server that the client expects the response to be in `nd-json` format.
 :::
