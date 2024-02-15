@@ -42,10 +42,6 @@ When exporting one or more ER schemas, a check will be performed on the potentia
 
 If a custom cast function is assigned to one or more Projection fields and the Projection is exported, the cast function will be exported as well.
 
-:::caution
-At the moment, nested imported resources are not exported. e.g. when exporting an ER schema imported by reference which contains a collection imported by reference as well, the collection will not be exported. 
-:::
-
 ## Import
 
 After clicking on the `Import` button, it will be possible to upload a `.json` file containing exported data inside a modal.
@@ -66,7 +62,7 @@ Fast Data resources can be imported in two ways:
 
 2) as a resource: the resources will be copied inside the current project configuration and displayed as if they were created directly inside the current project. It will be possible to access and edit their data.
 
-In both cases, an error message will be displayed if some of the imported resources have the same name of resources or references already existing inside the project current configuration.
+In both cases, an error message will be displayed if some of the imported resources have the same name of resources or references already existing inside the project current configuration. An edit button will be then displayed to allow the renaming of these resources, unless the resources, in turn, have already been exported from external projects.
 
 ![Import modal with error](./img/fast_data_ie_import_error.png)
 

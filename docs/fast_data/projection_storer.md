@@ -5,7 +5,7 @@ sidebar_label: Projection Storer
 ---
 
 Projection Storer is one of the Fast Data components, which it acts as an entrypoint to the system. Its role is to ingest change events coming from the
-origin system ([System of Record](/fast_data/the_basics.md#system-of-records-sor)) and process them by cleaning, filtering,
+origin system ([System of Record](/fast_data/the_basics.md#system-of-record-sor)) and process them by cleaning, filtering,
 validating and eventually storing them as raw data for the system.
 
 The service consumes Kafka messages as [_ingestion events_](/fast_data/inputs_and_outputs.md#ingestion-message) and for each

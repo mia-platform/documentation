@@ -32,7 +32,7 @@ be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_
 | HTTP_PORT        | -        | defines the service HTTP port where status and metrics endpoints are exposed                              | 3000               |
 | CONFIG_FILE_PATH | -        | defines the file path where the service configuration is found (it can either be a `json` or `yaml` file) | `conf/config.json` |
 
-## Attach to System of Records
+## Attach to System of Record
 
 To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Real-Time Updater](/fast_data/realtime_updater.md) or Projection Storer. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
@@ -55,7 +55,7 @@ The page will contain the following configurations:
 - a code editor to configure the [Producer configuration](#producer) of the service
 - a code editor to configure the [Storage configuration](#storage) of the service
 
-All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Records.
+All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Record.
 
 ## Configuration File
 
@@ -80,7 +80,7 @@ can be the following one:
 }
 ```
 
-#### System Of Record
+#### System of Record
 
 | Property          | Type     | Required | Default |
 |-------------------|----------|----------|---------|
@@ -552,7 +552,7 @@ instructs the service on how to transform each ingestion event into a projection
 | `prUpdate`  | `object` | &check;  |         |
 
 In this section are specified for each projection their input channel (_ingestion_), from which change events on the source
-system (System Of Records) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
+system (System of Record) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
 to trigger Fast Data downstream components.
 
 ##### Ingestion
@@ -606,7 +606,7 @@ the order they occur.
 | `fieldsMapping` | `object` | &check;  |         |
 
 This projection configuration property describes which fields of in the incoming record should be extracted and stored. Indeed, not all
-the fields of those documents coming from the System Of Record may be necessary to construct the projection. From this,
+the fields of those documents coming from the System of Record may be necessary to construct the projection. From this,
 here it is applied a _"projection"_ (filter) operation on the names of the record fields.  
 For each of these fields of interest of this projection it is necessary to configure the following two settings:
 
@@ -1034,8 +1034,8 @@ mentioned above were downloaded and execute the following command:
 ```shell
 rtu-to-ps project -cc <filepath-to-api-console-config> \
   -fdc <filepath-to-fast-data-config> \
-  -s <name-system-of-records>
-  -r <name-service-to-migrate-linked-to-system-of-records> \
+  -s <name-system-of-record>
+  -r <name-service-to-migrate-linked-to-system-of-record> \
 ```
 
 :::info
@@ -1106,12 +1106,12 @@ Below are reported all the steps necessary to set-up a Projection Storer that co
 
    When the Projection Storer plugin is created, it already contains the proper set of environment variables. 
 
-2. Once the service is created, navigate to the Fast Data Configurator (Projections section) and select the system of record that contains the Real-Time Updater to be replaced.
+2. Once the service is created, navigate to the Fast Data Configurator (Systems of Record section) and select the System of Record that contains the Real-Time Updater to be replaced.
 In the submenu, please select the _Services_ tab, as displayed below:
 
    ![Open Services section](../img/ps_migration/02_sor_service.png)
 
-3. After entering the services section, the first action to be carried out is to detach from the System Of Record the existing Real-Time Updater service.
+3. After entering the services section, the first action to be carried out is to detach from the System of Record the existing Real-Time Updater service.
 In this manner, the projections that were associated to such service are now free to be assigned to other services.
 
    ![Detach Real-Time Updater from SoR](../img/ps_migration/03_detach_rtu.png)
@@ -1145,7 +1145,7 @@ As explained earlier, Projection Storer service is in charge only of importing, 
 Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md),
 which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.md) can be found an explanation on how to configure it.
 
-In case the System Of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
+In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
 the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since
 Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/architecture.md#event-driven-architecture).
 
