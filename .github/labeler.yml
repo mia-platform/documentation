@@ -17,6 +17,8 @@ marketplace:
   - changed-files:
     - any-glob-to-any-file:
       - docs/runtime_suite/*
+  - head-branch:
+    - doc-aggregator/*
 
 crud-service:
   - changed-files:

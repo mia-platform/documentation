@@ -143,7 +143,7 @@ Path parameter can be specified with the `{param-name}` syntax and eventually fo
 - **clientId**: the client identifier used in case of OAuth2 authentication.
 - **clientSecret**: the client secret used in case of OAuth2 authentication.
 - **tokenIssuerUrl**: the authorization server url that has to be called to obtain an access token.
-- **tokenIssuerValidationUrl**: the authorization server url that has to be called to validate an access token.
+- **tokenIssuerValidationUrl**: the authorization server url that has to be called to validate an access token. This validation is performed at each API call. If not provided, the validation is skipped and the proxy only checks for token expiration.
 - **grantType**: the type of procedure used to retrieve an access token. At the moment, the service supports the following OAuth2 Grant Types:
   -  [*client_credentials*](https://oauth.net/2/grant-types/client-credentials/)
   -  [*password*](https://oauth.net/2/grant-types/password/)
@@ -152,10 +152,6 @@ Path parameter can be specified with the `{param-name}` syntax and eventually fo
 - **headersToProxy**: a list of headers that must be forwarded when calling the external service. The default behavior, triggered when this field is not provided, is to forward all the headers of original request. In case the list is empty, no header from original request is proxied.
 - **additionalHeaders**: a list of headers the must be added to the request when calling the external service, after authentication is successful.
 A use case of additionalHeaders is api keys management (e.g. x-api-key header).
-
-:::caution
-**tokenIssuerValidationUrl** and **tokenIssuerUrl** will be dismissed with the next major release.
-:::
 
 :::caution
 Path parameters inside **targetBaseUrl** and **basePath** are only allowed for the static configuration.

@@ -9,7 +9,7 @@ sidebar_label: FAQs
 ### How can I add a new page and show it in the navigation menu?
 
 :::caution
-The information regarding the menu are valid only if you are using the [`bk-layout`](/microfrontend-composer/back-kit/60_components/380_layout.md) component.
+The information regarding the menu are valid only if you are using the [`bk-layout`](/microfrontend-composer/back-kit/60_components/390_layout.md) component.
 :::
 
 The first step to add a new page to your frontend is to [create](/microfrontend-composer/composer/10_structure.md#create-new-page) it the _Pages_ tab of the Configurator.
@@ -24,7 +24,7 @@ Click the _Edit property_ button and in the modal that pops up click the _Add it
 
 ![Add item](img/faqs_add-new-menu-item_add-item.png)
 
-One clicked, a code editor will appear in the modal for you to write the [item configuration](/microfrontend-composer/back-kit/60_components/380_layout.md#application). Remember that the _id_ must match the identifier of your newly created page.
+One clicked, a code editor will appear in the modal for you to write the [item configuration](/microfrontend-composer/back-kit/60_components/390_layout.md#application). Remember that the _id_ must match the identifier of your newly created page.
 
 ![Item configuration](img/faqs_add-new-menu-item_item-configuration.png)
 
@@ -33,7 +33,7 @@ Once you have done, click the _Save_ button. The modal will close, and the new i
 ### How can I add a new column to a table?
 
 :::caution
-This information are valid only if you are using the [`bk-table`](/microfrontend-composer/back-kit/60_components/510_table.md) component.
+This information are valid only if you are using the [`bk-table`](/microfrontend-composer/back-kit/60_components/520_table.md) component.
 :::
 
 Columns of the table are defined by it's 

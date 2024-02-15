@@ -66,10 +66,14 @@ The following sections will highlight the changes made to the established Consol
 The most relevant change in the Console behavior is that the Project logical state will not be saved on your Git repository anymore. This results in significant **performance improvement** during the main Console workflows (especially in the [Design Area](/development_suite/api-console/api-design/overview.md)), since contacting the Git provider implied a considerable overhead that has now been completely removed.
 
 This change also means that the Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**, while still maintaining consistency with the established workflows; to emphasize this, the following features have been renamed:
-- `branches` and `tags` become **`revisions`** and **`versions`**
-- the `commit history` becomes **`version history`**
+- `Branches` and `Tags` become **`Revisions`** and **`Versions`**
+- the `Commit history` becomes **`Revision history`**
 
-To keep track of the Project evolution, user can create `versions` (similar to Git tags) that act as fixed snapshots of the configuration in a particular moment.
+To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its history by clicking the related icon inside the branch selection area.
+
+![Revision History modal](img/revision-history.png)
+
+The table includes a list of all snapshots of the project configuration created with each save, along with useful information such as the snapshot date, author, associated message, and any tags created with it.
 
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
@@ -101,6 +105,35 @@ The new deployment workflow also unlocks the possibility to adopt a **pull-based
 
 This workflow enables users to review and export generated configurations before these are even deployed to the cluster.  
 This feature is available from the [Deploy Page](/development_suite/deploy/overview.md#export-and-review-configuration-files) after selecting the revision to deploy.
+
+## Best Practices
+
+With the **Enhanced Project Workflow** paradigm shift, working with the Console may require some habit changes; this section presents some best practices that may help with such change.
+
+### Revision management
+
+Working with revisions in the Enhanced Workflow is not that different from working with branches in the Standard Workflow; revisions have their own history and can be deployed on different environments, therefore patterns such as **Git Flow** or **Trunk-based development** can be applied to the **Enhanced Project Workflow** as well.
+
+#### Trunk-based
+
+If you are **working in a small team**, in general, we advise using **trunk-based development**, with a single revision that represents your Project's state-of-the-art that gets versioned every time a release is needed.
+
+Create new revisions whenever you need to experiment or are unsure of the changes to be made, but [*remember to merge*](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) them in the main trunk as soon as possible to prevent headaches in reconciling diverging revisions.
+
+:::tip
+When a version is deployed a tag is created on Git. Such tag has a different name based on the target environment making it possible to verify configuration changes between different deployments of the same version!
+:::
+
+#### Git Flow
+
+If you are working in **larger teams** or need to make more **structured change reviews**, use **Git Flow** instead and create a revision for each environment your project has. The daily work will be done in the revision associated with the "lower" environment;
+whenever changes can be promoted to a "higher" environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to bring those changes to the revision associated with it.
+
+:::tip
+In a project with two environments (e.g. development and production), make sure to have at least two revisions.
+
+Developers will make changes in the `development` revision and deploy such revision in the development environment; to promote changes to the production environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to incorporate them into the correct revision and finally deploy it to the production environment.
+:::
 
 ## Roadmap and future improvements
 
@@ -166,7 +199,6 @@ If you want to ensure that all Projects in your Company adopt the **Enhanced Pro
 </details>
 
 ## Migrating your Projects
-
 
 In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
 
@@ -279,7 +311,3 @@ After activating the Feature, ensure to configure the new **default revision** f
 If no default revision is specified, the Console will use `main` as the default revision.
 This revision will be an empty configuration if no other `main` branch was previously created on the Project.
 :::
-
-## Pull-based deployment strategy
-
-If you want the Project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment), you can select it in the [Deployment options card](/console/project-configuration/project-settings.md#deployment-options) in the Workload & Runtime section of the Project Settings page.
