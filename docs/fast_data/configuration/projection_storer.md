@@ -1034,8 +1034,8 @@ mentioned above were downloaded and execute the following command:
 ```shell
 rtu-to-ps project -cc <filepath-to-api-console-config> \
   -fdc <filepath-to-fast-data-config> \
-  -s <name-system-of-records>
-  -r <name-service-to-migrate-linked-to-system-of-records> \
+  -s <name-system-of-record>
+  -r <name-service-to-migrate-linked-to-system-of-record> \
 ```
 
 :::info

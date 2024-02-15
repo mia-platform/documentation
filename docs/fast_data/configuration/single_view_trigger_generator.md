@@ -70,7 +70,7 @@ When creating the service from the marketplace the following config maps will be
 
 ### ER Schema
 
-The ER Schema config map contains the `erSchema.json` file which describes the relationships between each projection of the [System of Record](/fast_data/the_basics.md#system-of-records-sor).
+The ER Schema config map contains the `erSchema.json` file which describes the relationships between each projection of the [System of Record](/fast_data/the_basics.md#system-of-record-sor).
 
 Remember to copy/paste the mount path into the `ER_SCHEMA_FOLDER` environment variable so the service can read the file.
 To know more on how to configure the file please go to the [ER Schema](/fast_data/configuration/config_maps/erSchema.md) page.

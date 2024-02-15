@@ -30,7 +30,7 @@ An automation of the indexes based on the primary key fields is available in the
 
 ## Projection Changes
 
-[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-records-sor). Depending on the configuration, these collections might be automatically created or they can be [custom made](/fast_data/configuration/realtime_updater.md#projection_changes_collection).
+[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-record-sor). Depending on the configuration, these collections might be automatically created or they can be [custom made](/fast_data/configuration/realtime_updater.md#projection_changes_collection).
 
 To make the generation of Projection Changes as quick as possible the following indexes must be configured.
 

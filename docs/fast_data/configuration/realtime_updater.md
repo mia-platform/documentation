@@ -360,7 +360,7 @@ When a message about `registry-json` happens, the projection changes will be sav
 
 ## Projection Changes Collection
 
-[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-records-sor).
+[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-record-sor).
 
 If the environment variable `PROJECTIONS_CHANGES_ENABLED`, you will be required to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
 

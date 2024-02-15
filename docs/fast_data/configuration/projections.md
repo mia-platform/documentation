@@ -33,7 +33,7 @@ The deletion is not allowed as long as you have at least one Projection inside t
 
 ## Create a Projection
 
-To create a new Projection, open the **Systems of Record** section in the Fast Data group of Mia-Platform Console, then select an existing System of Record or [create a new one](#create-a-system-of-records).
+To create a new Projection, open the **Systems of Record** section in the Fast Data group of Mia-Platform Console, then select an existing System of Record or [create a new one](#create-a-system-of-record).
 
 Inside the System of Record page click the `Create new Projection` button on the top-right corner of the page and insert a Projection Name for the new Projection inside the pop-up displayed. After that, the new Projection details page will be displayed.
 
