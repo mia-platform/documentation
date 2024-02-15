@@ -52,7 +52,7 @@ Each property of the `data` object is related to a component of the form.
 ## GET /export route
 The `GET /export` route returns the submitted data of the forms matching the query parameters and must be compatible with the API of the endpoint of the [CRUD Service](../crud-service/overview_and_usage). Specifically, this endpoint must support filtering data using the `_q` query parameter or any form data field.
 
-This endpoint must return a list of JSON objects in [newline delimited JSON](http://ndjson.org/) format.
+This endpoint must return a list of JSON objects in [newline delimited JSON](https://en.wikipedia.org/wiki/JSON_streaming#Newline-delimited_JSON) format.
 
 ## POST route
 The `POST /` route saves the data of a new submitted form. 
