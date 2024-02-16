@@ -198,17 +198,55 @@ This records will be consumed by the [Single View Creator](/fast_data/single_vie
 
 If the environment variable `PROJECTIONS_CHANGES_ENABLED` is set to `true`, you have to include also the Projection Changes collection name (as a value of the environment variable `PROJECTIONS_CHANGES_COLLECTION_NAME`).
 
-If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (a text of maximum 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection for you if it doesn't exist yet. This collection can be customized by you in any moment after.
+If the name of the collection name will follow the convention for collection names defined in the Mia-Platform Console (a text of maximum 80 characters, only lowercase letters, number, underscores and hyphens, starting with a lowercase letter), then saving the configuration will automatically generate the collection in the _MongoDB CRUD_ section for you, if it doesn't exist yet. 
+
+This collection will contain all the default indexes and can be customized by you in any moment after.
 
 :::caution
-If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service.
-:::
-
-:::info
 If you wish to delete a Real-Time Updater or change the desired name of the Projection Changes collection, please remember that the existing CRUD collection will not be automatically removed. You have to do it manually from the _MongoDB CRUD_ section.
 :::
 
-In any case, your collection is supposed to have the following fields (apart from the default ones):
+
+### Changes Array
+
+Into each element of the `changes` array of the projection change document are inserted the information about the message that triggered the projection change:
+
+- `topic`: is the topic from which the Kafka message has been consumed
+- `partition`: is partition from which the Kafka message has been consumed
+- `offset`: is the offset of the message
+- `key`: is the key of the Kafka message
+- `timestamp`: is the timestamp of the message
+
+<details>
+<summary>Example PC Metadata</summary>
+<p>
+
+```json
+{
+    "type": "sv_pointofsale",
+    "identifier": {
+        "ID_USER": "123",
+    },
+    "changes": [{
+        "state": "NEW",
+        "topic": "my-topic.development.my-system.my-projection.ingestion",
+        "partition": 0,
+        "timestamp": "2021-11-19T16:22:07.031Z",
+        "offset": "14",
+        "key": {
+            "ID_USER": "123",
+        },
+    }],
+}
+```
+
+</p>
+</details>
+
+
+### Custom Projection Changes Collection
+
+If you're using a different pattern or you're using a public or secret environment variable, you will have to manually create a collection to configure its properties (indexes, schemas, etc.) and to potentially use it in with the CRUD Service.
 
 ```json
 [
@@ -250,39 +288,3 @@ The collection also needs to have the following indexes, to support the queries 
 :::note
 To allow the Single View Creator to read from the Projection Changes collection, its name should also be set in the `PROJECTIONS_CHANGES_COLLECTION` environment variable of your Single View Creator service. 
 :::
-
-### Changes Array
-
-Into each element of the `changes` array of the projection change document are inserted the information about the message that triggered the projection change:
-
-- `topic`: is the topic from which the Kafka message has been consumed
-- `partition`: is partition from which the Kafka message has been consumed
-- `offset`: is the offset of the message
-- `key`: is the key of the Kafka message
-- `timestamp`: is the timestamp of the message
-
-<details>
-<summary>Example PC Metadata</summary>
-<p>
-
-```json
-{
-    "type": "sv_pointofsale",
-    "identifier": {
-        "ID_USER": "123",
-    },
-    "changes": [{
-        "state": "NEW",
-        "topic": "my-topic.development.my-system.my-projection.ingestion",
-        "partition": 0,
-        "timestamp": "2021-11-19T16:22:07.031Z",
-        "offset": "14",
-        "key": {
-            "ID_USER": "123",
-        },
-    }],
-}
-```
-
-</p>
-</details>

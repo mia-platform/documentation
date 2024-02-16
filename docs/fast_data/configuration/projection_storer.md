@@ -983,7 +983,7 @@ projections:
 
 ## Migration Guide
 
-In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime_updater.md) into the one
+In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime_updater/index.md) into the one
 needed by a Projection Storer service. To support the migration operations, a small command-line interface is available,
 which translates most of the main settings
 

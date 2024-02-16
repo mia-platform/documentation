@@ -15,7 +15,7 @@ The Projection storer is a partial replacement for the RTU since it processes ev
 
 The strategy execution is now done by the Single View Trigger Generator.
 To know exactly how to include it in your already existing Fast Data project check out this [step by step](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator) section.
-Furthermore, the Single View Trigger Generator introduces a whole new approach on the [Projection Changes](/fast_data/configuration/realtime_updater.md#projection-changes) which used to be stored only on MongoDB. The SVTG gives you the option of sending the Projection Changes through Apache Kafka with a whole new format called Single View Trigger. To know more check out the [comparison between the two](/fast_data/single_view_trigger_generator.md).
+Furthermore, the Single View Trigger Generator introduces a whole new approach on the [Projection Changes](/fast_data/configuration/realtime_updater/index.md#projection-changes) which used to be stored only on MongoDB. The SVTG gives you the option of sending the Projection Changes through Apache Kafka with a whole new format called Single View Trigger. To know more check out the [comparison between the two](/fast_data/single_view_trigger_generator.md).
 
 ## How can I migrate my current architecture to the event-driven one?
 

@@ -128,7 +128,7 @@ The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
 
 
-## Kafka Projection Updates configuration
+## Kafka Projection Updates Configuration
 
 Whenever the Real-Time Updater performs a change on Mongo on a projection, you can choose to send a message to a Kafka topic as well, containing information about the performed change and, if possible, the state of the projection *before* and *after* the change and the document ID of the document involved in the change.
 

@@ -12,7 +12,7 @@ To create a Projection, you should first of all create a System of Record, which
 
 To do so, open the **Systems of Record** section in the Fast Data group of Mia-Platform Console. Then, select the `Create new System of Record` button.
 
-The creation of a System of Record requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format). 
+The creation of a System of Record requires you to insert a System ID, which is basically the name to recognize the System, and to choose the [Kafka message adapter](/fast_data/configuration/realtime_updater/configuration_files.md#kafka-adapters-kafka-messages-format). 
 
 ![Create a System of Record](../img/create_system_of_record.png)
 

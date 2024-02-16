@@ -35,7 +35,7 @@ The Fast Data Low Code experience is basically composed by some steps with No Co
 
 ### Creating a System of Record (No Code)
 
-The creation of the System of Record is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Record that, after saving the configuration inside the console, it is linked to a [Real-Time Updater Low Code](/fast_data/configuration/realtime_updater.md) microservice.
+The creation of the System of Record is one of the No Code steps of the Fast Data configuration. With few clicks, it is possible to create a System of Record that, after saving the configuration inside the console, it is linked to a [Real-Time Updater Low Code](/fast_data/configuration/realtime_updater/index.md) microservice.
 
 :::info
 From version `11.7.0` of the Console, the Real-Time Updater service must be created manually installing the related plug-in from the Marketplace
@@ -48,7 +48,7 @@ From version `11.7.0` of the Console, the Real-Time Updater service must be crea
 The Real-Time Updater Low Code needs some configurations:
 
 - [erSchema.json](/fast_data/configuration/config_maps/erSchema.md) configuration: useful to define the interconnection between projections
-- The [projectionChangeSchema.json](/fast_data/configuration/realtime_updater.md#projection-changes): useful to the system to know which single view needs to be updated
+- The [projectionChangeSchema.json](/fast_data/configuration/realtime_updater/index.md#projection-changes): useful to the system to know which single view needs to be updated
 
 In both cases, it is possible to write your file inside the console and if needed, you can share them with other microservices as described in this [dedicated configuration page](/development_suite/api-console/api-design/services.md#shared-configmaps).
 

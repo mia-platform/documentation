@@ -25,10 +25,10 @@ When a change occurs in the connected System, it sends a Kafka message to the in
 
 ### Real-Time Updater Configurations
 
-To know more about Real-Time Updater service Configurations you can go [here](/fast_data/configuration/realtime_updater.md)
+To know more about Real-Time Updater service Configurations you can go [here](/fast_data/configuration/realtime_updater/index.md)
 
 As previously stated, when a projection is updated, Real-Time Updater could perform one of the following operations after the update:
-- it could generate an event to inform of the update of a specific projection (this update will be sent to a Kafka topic, as explained in the [Real-Time Updater Low Code](/fast_data/configuration/realtime_updater.md#kafka-projection-updates-configuration))
+- it could generate an event to inform of the update of a specific projection (this update will be sent to a Kafka topic, as explained in the [Real-Time Updater Low Code](/fast_data/configuration/realtime_updater/configuration_files.md#kafka-projection-updates-configuration))
 - it could generate an event telling that a specific Single View needs to be updated after processing the algorithm called `strategy`. This event contains a reference to the identifier of the Single View document that have to be updated.
 
-For further information, you can refer to the [Real-Time Updater Configuration](/fast_data/configuration/realtime_updater.md) page.
+For further information, you can refer to the [Real-Time Updater Configuration](/fast_data/configuration/realtime_updater/index.md) page.
