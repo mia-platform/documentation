@@ -27,7 +27,10 @@ To do that, in the console, you will:
 ## Prerequisites
 
 Before starting this tutorial, you need to be familiar with the concepts of:
-* [Fast Data architecture](/fast_data/architecture.md), in particular:
+* basic knowledge about [Fast Data architecture](/fast_data/architecture.md), in particular:
+  * [Standard Architecture](/fast_data/architecture.md#standard-architecture)
+  * [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture)
+* familiarity with the concepts of: 
   * [Projections](/fast_data/configuration/projections.md)
   * [Single View](/fast_data/configuration/single_views.md)
   * [Strategies](/fast_data/configuration/strategies.md)
@@ -49,10 +52,10 @@ This microservice manages a Kafka consumer that will consume the data from the s
 In this tutorial, we can imagine a simple delivery platform where the data are the registry and the order of the customers.
 So, we will create a single System of Record with two projections (one for the registry and one for the order) attached to a single Real-Time Updater.
 
-### Create the System of Records
+### Create the System of Record
 
 :::caution
-Until `Console v11.7.0`, the _Real-Time Updater_ service was automatically created after saving the configuration on System of Records creation. 
+Until `Console v11.7.0`, the _Real-Time Updater_ service was automatically created when a System of Record was created <ins>only after saving the configuration</ins>. 
 
 If you're using a Console version lower than `v11.7.0`, you can skip the [System of Record Microservices section](#system-of-records-microservices) and just configure the [required environments variables](/fast_data/configuration/realtime_updater.md) of the micro-service.
 :::
@@ -60,22 +63,26 @@ If you're using a Console version lower than `v11.7.0`, you can skip the [System
 Before starting to create projections, we need to create the System of Record representing the source system we want to connect to.
 
 <details>
-  <summary><strong>SoR Creation Steps</strong></summary>
+  <summary>SoR Creation Steps</summary>
 <p>
 
 1. Open the page Projection in the Fast Data section of our left menu;
-2. Click on the button `Create new System of Records`:
-![Page System of Records](img/01-page-system-of-records.png)
-3. In the dialog, choose the name (which will act as an identifier of the System of Record, we will call it `delivery`) and the Kafka message format (choose the format you want to use for the messages sent on the Kafka topics) and then click on `Create`:
+2. Click on the button `Create new Systems of Record`:
 
-  ![Create System of Records](img/02-create-system-of-records.png)
-4. Now we can either start the projections or attach _SoR microservices_ inside this System of Records:
+![Page Systems of Record](img/01-page-systems-of-record.png)
+
+3. In the dialog, choose the name (which will act as an identifier of the System of Record, we will call it `delivery`) and the Kafka message format (in this case, we will use `Debezium`) and then click on `Create`:
+
+  ![Create Systems of Record](img/02-create-system-of-record.png)
+
+4. Now we can either start the projections or attach _SoR microservices_ inside this System of Record:
+
 ![Page Projections](img/03-page-projections.png)
 
 </p>
 </details>
 
-### System of Records Microservice
+### System of Record Microservice
 
 Once a system of record has been created, you'll need at least one _SoR microservice_ where projections will be assigned.
 
@@ -84,17 +91,17 @@ You can choose between two microservices: the [Real-Time Updater](/fast_data/rea
 Altought the two services have several differences, that we will see later during strategy handling, they have one shared feature: they read ingestion messages from Kafka topics to store them into the projections on MongoDB. 
 
 <details>
-<summary><strong>Projection Storer Setup</strong></summary>
+<summary>Projection Storer Setup</summary>
 <p>
 
-The first step is to create the microservice _Projection Storer_, that will be attached to the System of Records we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
+The first step is to create the microservice _Projection Storer_, that will be attached to the System of Record we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
 "Create a Microservice" button on the top-left corner to open the Marketplace and select our microservice.
 
 We can find it under the name of *Projection Storer*.
 
 ![Create Delivery PS](img/07-create-RTU.png)
 
-After selecting the _Projection Storer_ service, the only thing you need to choose is a unique name (we suggest _delivery-projection-storer_) and, eventually the description. Once clicked on the `Create` button, the service
+After selecting the _Projection Storer_ service, the only thing you need to choose is a unique name (we suggest `delivery-projection-storer`) and, eventually the description. Once clicked on the `Create` button, the service
 will be created and we will be redirected to the service page.
 
 Then, move to the `delivery` SoR and, in the `Services` section, attach the newly created service.
@@ -107,15 +114,15 @@ Once the service has been attached, you can click on the right arrow of the micr
 
 In this section, you can setup the following configurations:
 
-* [Kafka Consumer](/fast_data/configuration/projection_storer_config#consumer), which will be used to read [ingestion-messages](/fast_data/inputs_and_outputs.md#ingestion-message),
-* [Kafka Producer](/fast_data/configuration/projection_storer_config#producer), which will be used to generate [pr-update messages](/fast_data/inputs_and_outputs.md#projection-update-message),
-* [Storage Configuration](/fast_data/configuration/projection_storer_config#storage), which will contain the MongoDB connection where the database is located.
+* [Kafka Consumer](/fast_data/configuration/projection_storer.md#consumer), which will be used to read [ingestion-messages](/fast_data/inputs_and_outputs.md#ingestion-message),
+* [Kafka Producer](/fast_data/configuration/projection_storer.md#producer), which will be used to generate [pr-update messages](/fast_data/inputs_and_outputs.md#projection-update-message),
+* [Storage Configuration](/fast_data/configuration/projection_storer.md#storage), which will contain the MongoDB connection where the database is located.
 
 </p>
 </details>
 
 <details>
-<summary><strong>Real-Time Updater Setup</strong></summary>
+<summary>Real-Time Updater Setup</summary>
 <p>
 
 :::caution
@@ -124,16 +131,16 @@ From version `11.7.0` of the Console, the _Real-Time Updater_ service must be cr
 If you're using an older version, you can skip this paragraph since the service is automatically created when saving the configuration after creating the System of Record.
 :::
 
-The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Records we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
+The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Record we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
 `Create a Microservice` button on the top-left corner to open the Marketplace and find the microservice under the name of *Real-Time Updater*.
 
 ![Create Delivery RTU](img/07-create-RTU.png)
 
-After selecting the _Real-Time Updater_ service, the only thing you need to choose is a unique name (we suggest _fast-data-delivery-realtime-updater_) and, eventually the description. Once clicked on the "Create" button, the service
+After selecting the _Real-Time Updater_ service, the only thing you need to choose is a unique name (we suggest `fast-data-delivery-realtime-updater`) and, eventually the description. Once clicked on the "Create" button, the service
 will be created and we will be redirected to the service page. Now we need to configure all the parameters of the microservice. Here is an example of the fields that we need to configure:
 
 - `PROJECTIONS_DATABASE_NAME`: the name of the database that will be used to store the data of the Projections
-- `PROJECTIONS_CHANGES_COLLECTION_NAME`: the name of the collection that will be used to store the changes of the Projections (we suggest _fd-pc-delivery_)
+- `PROJECTIONS_CHANGES_COLLECTION_NAME`: the name of the collection that will be used to store the changes of the Projections (we suggest `fd-pc-delivery`)
 - `KAFKA_BROKERS`: the list of the kafka brokers that will be used to send the data to the Projections
 - `KAFKA_GROUP_ID`: the group id that will be used to consume the data from the source systems
 - `KAFKA_SASL_USERNAME`: the username that will be used to login to the kafka brokers
@@ -144,7 +151,7 @@ will be created and we will be redirected to the service page. Now we need to co
 The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater.md).
 :::
 
-The last step to finish the configuration of the System of Records is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
+The last step to finish the configuration of the System of Record is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
 have been attached yet and suggest you to select one from the list of compatible services.
 
 ![Attach Real-Time Updater](img/08-attach-RTU.png)
@@ -156,12 +163,13 @@ Then, we are ready to save the configuration.
 
 ## Projections
 
-Inside a System of Records page, we need to click on the `Create new Projection` button. A modal will open, allowing the user to choose the Projection name. Click on `Create` to create the Projection.
+Inside a System of Record page, we need to click on the `Create new Projection` button. A modal will open, allowing the user to choose the Projection name. Click on `Create` to create the Projection.
 
-![Create System of Records](img/04-create-projection.png)
+![Create Projection](img/04-create-projection.png)
 
 Once the projection is created, you will be automatically redirected to its dedicated page, where we can see the default CRUD data schema already configured.
-![Create System of Records](img/05-page-overview-projection.png)
+
+![Projection Overview](img/05-page-overview-projection.png)
 
 For this tutorial, we will create two projections: 
 
@@ -189,12 +197,12 @@ In this way, every value inside the payload received from the Source Systems wil
 
 At the bottom of the same page, we can also see the Kafka topics. There are two types of topics:
 
-* [Ingestion topic](/fast_data/inputs_and_outputs#ingestion-message):  will be used by the SoR microservice
+* [Ingestion topic](/fast_data/inputs_and_outputs.md#ingestion-message):  will be used by the SoR microservice
 to receive the data from the Source Systems so that the Projections will be updated on the target Database;
-* [PR Update topic](/fast_data/inputs_and_outputs#projection-update-message): will be used to notify when a projection has been updated.
+* [PR Update topic](/fast_data/inputs_and_outputs.md#projection-update-message): will be used to notify when a projection has been updated.
 
 
-![Create System of Records](img/05b-page-overview-projection-kafka.png)
+![Projection Topics](img/05b-page-overview-projection-kafka.png)
 
 :::caution
 The application does not create Kafka topics for you. If you decide to use a different Kafka topic name, please be sure the topic already exists and it is fully operational.
@@ -203,7 +211,7 @@ The Real-Time Updater, the service that receives the update from the source Syst
 The Kafka topic names can be changed over time, but please mind that their name must be __unique within your Kafka cluster__.
 :::
 
-### Assign to SoR Microservice
+### Link to Microservice
 
 Before receiving messages from the ingestion topic defined in the projection, you have to link it to a SoR microservice. 
 
@@ -220,21 +228,21 @@ Going back to the projection's page, you can see that the microservice linked to
 Here you can find the specifications about the projections we are going to use in this tutorial. 
 
 <details>
-  <summary> <strong>Registry</strong> </summary>
+  <summary> Registry </summary>
   <p>
 
 #### Fields
 
 
-| Field           | Type   | Required    | Primary Key    | Description                                                       |
-|-----------------|--------|-------------|----------------|-------------------------------------------------------------------|
-| **registry_id** | String |   &check;   |     &check;    | The registry ID.                                                  |
-| **name**        | String |      -      |        -       | The name of the customer to whom the registry refers.             |
-| **email**       | String |      -      |        -       | The email of the customer to whom the registry refers.            |
-| **phone**       | String |      -      |        -       | The phone of the customer to whom the registry refers.            |
-| **address**     | String |      -      |        -       | The address of the customer to whom the registry refers.          |
-| **city**        | String |      -      |        -       | The city of the customer to whom the registry refers.             |
-| **state**       | String |      -      |        -       | The State of the customer to whom the registry refers.            |
+| Field           | Type   |  Cast Functions      | Required    | Primary Key    | Description                                                       |
+|-----------------|--------|----------------------|-------------|----------------|-------------------------------------------------------------------|
+| `registry_id`   | String |    defaultIdentity   |   &check;   |     &check;    | The registry ID.                                                  |
+| `name`          | String |    defaultIdentity   |      -      |        -       | The name of the customer to whom the registry refers.             |
+| `email`         | String |    defaultIdentity   |      -      |        -       | The email of the customer to whom the registry refers.            |
+| `phone`         | String |    defaultIdentity   |      -      |        -       | The phone of the customer to whom the registry refers.            |
+| `address`       | String |    defaultIdentity   |      -      |        -       | The address of the customer to whom the registry refers.          |
+| `city`          | String |    defaultIdentity   |      -      |        -       | The city of the customer to whom the registry refers.             |
+| `state`         | String |    defaultIdentity   |      -      |        -       | The State of the customer to whom the registry refers.            |
 
 #### Topics
 
@@ -247,18 +255,18 @@ These are the suggested naming convention of topics defined in Kafka, where we e
 </details>
 
 <details>
-  <summary> <strong>Orders</strong> </summary>
+  <summary> Orders </summary>
   <p>
 
 #### Fields
 
-| Field           | Type   | Required | Primary Key | Description                                                    |
-|-----------------|--------|----------|-------------|----------------------------------------------------------------|
-| **order_id**    | String |  &check; |   &check;   | The order ID. Check this field as "Required" and "Primary Key".|
-| **name**        | String |    -     |     -       | The name of the product.                                       |
-| **price**       | Number |    -     |     -       | The price of the product.                                      |
-| **date**        | String |    -     |     -       | The date when the order was placed.                            |
-| **registry_id** | String |    -     |     -       | The registry ID of the customer who placed the order.          |
+| Field           | Type   |   Cast Function    | Required | Primary Key | Description                                                    |
+|-----------------|--------|--------------------|----------|-------------|----------------------------------------------------------------|
+| `order_id`      | String |  defaultIdentity   |  &check; |   &check;   | The order ID. Check this field as "Required" and "Primary Key".|
+| `name`          | String |  defaultIdentity   |    -     |     -       | The name of the product.                                       |
+| `price`         | Number |  defaultIdentity   |    -     |     -       | The price of the product.                                      |
+| `date`          | Date   |  defaultCastToDate |    -     |     -       | The date when the order was placed.                            |
+| `registry_id`   | String |  defaultIdentity   |    -     |     -       | The registry ID of the customer who placed the order.          |
 
 #### Topics
 
@@ -274,7 +282,7 @@ These are the suggested naming convention of topics defined in Kafka, where we e
 
 At this point, we have configured the microservice, we already have one system of record and two projections, but we need to expose the Projection endpoints. 
 
-### Create Endpoint
+### Create Endpoints
 
 :::tip
 It is not mandatory to expose the Projection endpoints to create, update and work with the Single View, but if you want to expose the raw data stored in the projection you need to create the endpoints.
@@ -297,14 +305,63 @@ Now it's time to [save](/console/handbooks/project-usage.md#save-changes) and [d
 
 After that, we can try to send a message to the _Kafka Ingestion Topics_ created in the previous steps, and we can see the data stored in the Projection using the APIs available in the [API Documentations](/console/project-configuration/documentation-portal.md).
 
+Since we have chosen `Debezium` as the format for our _SoR_, the ingestion message that we will send has to comply to [its specifications](/fast_data/inputs_and_outputs.md#debezium).
+
 <details>
-<summary><strong>Example Reponses</strong></summary>
+<summary>Ingestion Example</summary>
 <p>
 
-Following are example responses from the API Documentations for Registry and Order Projections after the Kafka messages have been successfully processed.
+We will add one registry and one order to our System of Record, respectively `reg-1` and `ord-1`.
 
-Here is the response for the Registry Projection after we created a customer with id `reg-1`.
-``` json
+This will mean sending the following ingestion messages to the ingestion topics, using a Kafka Producer:
+
+```json title=demo.development.delivery.registry.ingestion
+{
+  "key": {
+    "registry_id": "reg-1"
+  },
+  "value": {
+    "op": "c",
+    "before": null,
+    "after": {
+      "registry_id": "reg-1",
+      "address": "customer address",
+      "city": "customer city",
+      "email": "customer1@mail.com",
+      "name": "customer 1",
+      "phone": "customer phone",
+      "state": "customer state",
+    }
+  }
+}
+```
+
+```json title=demo.development.delivery.orders.ingestion
+{
+  "key": {
+    "order_id": "ord-1"
+  },
+  "value": {
+    "op": "c",
+    "before": null,
+    "after": {
+      "date": "2024-02-16T11:13:48.322Z",
+      "name": "order-1",
+      "order_id": "ord-1",
+      "price": 123,
+      "registry_id": "reg-1"
+    }
+  }
+}
+```
+
+:::tip
+If you don't have a direct access to your Kafka broker to produce messages, you can use a dedicated microservice such as [Rest2Kafka](/runtime_suite/rest2kafka-service/01_overview.md) to produce Kafka messages as REST request directly from MIA Console. 
+:::
+
+Once messages have been set, you can check from the API Documentations if both `registry` and `orders` projections have been updated successfully.
+
+``` json title="GET /registry"
 [
   {
     "_id": "63ceb97233241d6536c857e759c02",
@@ -322,17 +379,16 @@ Here is the response for the Registry Projection after we created a customer wit
 ]
 ```
 
-Here is the response for the Order Projection after we created an order with id `ord-1`.
-``` json
+```json title="GET /orders"
 [
   {
     "_id": "63cebcb6d65321231236c857e76b6ab",
     "__STATE__": "PUBLIC",
     "createdAt": "2023-01-23T16:58:30.201Z",
-    "date": "23/1/2023",
+    "date": "2024-02-16T11:13:48.322Z",
     "name": "order-1",
     "order_id": "ord-1",
-    "price": "123",
+    "price": 123,
     "registry_id": "reg-1",
     "updatedAt": "2023-01-23T16:58:30.201Z"
   }
@@ -374,10 +430,10 @@ It is important to also define the JSON Schema for the `orders` field of the Sin
 :::
 
 <details>
-<summary>orders json schema</summary>
+<summary>Json Schema for orders array</summary>
 <p>
 
-By clicking, the **Edit button** of the `orders` field, a right panel will show a JSON Schema editor, where you can place the following object:
+By clicking the **Edit button** of the `orders` field, a right panel will show a JSON Schema editor, where you can place the following object:
 
 ``` json
 {
@@ -441,8 +497,8 @@ Also, based on the connection channel where the microservice reads the projectio
 * kafka connection variables such as:
   * `KAFKA_BROKERS`: a comma-separated list of your Kafka brokers;
   * `KAFKA_SASL_USERNAME`, `KAFKA_SASL_PASSWORD` and `KAFKA_SASL_MECHANISM` if authentication needs to be performed
-  * `KAFKA_PROJECTION_CHANGES_TOPIC`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`
-  * `KAFKA_GROUP_ID`: name of the consumer group that will be used to subscribe to the topic from the `KAFKA_PROJECTION_CHANGES_TOPIC` variable
+  * `KAFKA_PROJECTION_CHANGES_TOPIC`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`;
+  * `KAFKA_GROUP_ID`: name of the consumer group that will be used to subscribe to the topic from the `KAFKA_PROJECTION_CHANGES_TOPIC` variable.
 
 </TabItem>
 <TabItem value="mongodb">
@@ -619,7 +675,7 @@ Here is a quick list of operations to execute to configure correctly the Single 
 * as `Single View Primary Field`, which is a field of the Single View, select `registryId`.
 * as `Projection Identifier`, which contains the value inside the `identifier` field of [the Projection Changes Schema](#projection-changes-schema),
 select `registry_id` (which is, for our example, the same name of the Base Projection `registry`).
-* you can review the updates by clicking the toggle "Advanced Mode" and, when you are sure everything is fine, click on **Save**.
+* you can review the updates by clicking the toggle **Advanced Mode** and, when you are sure everything is fine, click on **Save**.
 
 </TabItem>
 
@@ -638,6 +694,10 @@ By clicking the **Advanced Mode** toggle, we can edit directly the configuration
 The condition inside the `config` object is represented by:
 
 * `registryId` (from the Single View document): `registry_id` (obtained from the `identifier` field of the Projection Change document)
+
+:::tip
+To have an exhaustive explanation of how to configure the _Single View Key_ configuration with the **Low Code** feature, you can refer to the [specific documentation page](/fast_data/configuration/config_maps/singleViewKey.md).
+:::
 
 </TabItem>
 
@@ -760,6 +820,10 @@ Here's the Low-Code representation of the aggregation:
         - `name` is mapped to the field `name` from the `orders` projection.
         - `date` is mapped to the field `date` from the `orders` projection.
 
+:::tip
+To have an exhaustive explanation of how to configure an Aggregation with the **Low Code** feature, you can refer to the [specific documentation page](/fast_data/configuration/config_maps/aggregation.md).
+:::
+
 </TabItem>
 
 </Tabs>
@@ -803,7 +867,7 @@ We will see, for each architecture, what are the steps needed to enable strategi
 >
 <TabItem value="standard-architecture">
 
-Going into the _fast-data-delivery-realtime-updater_ microservice page, we have to configure the following resources:
+Going into the `fast-data-delivery-realtime-updater` microservice page, we have to configure the following resources:
 
 - The **ER Schema**, to understand how the records across several projections are linked with **paths**.
 - The **Projection Changes Schema**, which is a configuration that explains how to traverse this _paths_ in order to obtain a **Projection Change identifier**, the one that we have linked to the Single View Key
@@ -822,7 +886,7 @@ To re-use it in the _RTU_, we have to do the following steps in the `fast-data-d
   * choose `/home/node/app/erSchema` as mount path
 * once created the config map, you will see that it's shared among the _RTU_ and the _SVC_.
 
-![Link ER Schema](./img/38-link-erschema.png)
+![Link ER Schema](./img/38-link-er-schema.png)
 
 #### Projection Changes Schema
 
@@ -859,7 +923,7 @@ With this configuration, the Single View that we are going to create can be upda
 Finally, the `identifier` will map object will map a subset of fields into the `identifier` of the Projection Change record: in this case, we will map the field `registry_id` to the `registry_id` value of the base projection.
 
 :::tip
-You can find a more thorough explanation of the _Projection Changes Schema_ on the [dedicated page](/fast_data/configuration/config_maps/projection_changes_schema.md) of the documentation.
+You can find a detailed explanation of the _Projection Changes Schema_ configuration on the [dedicated page](/fast_data/configuration/config_maps/projection_changes_schema.md) of the documentation.
 :::
 
 #### Strategies
@@ -870,7 +934,7 @@ We can do this step by linking the strategies to the Single View. Go to the Sing
 
 ![Strategy Page](img/28-strategy-page.png)
 
-Now, we will choose the System Of Records `delivery` and the `registry` Projection.
+Now, we will choose the System of Record `delivery` and the `registry` Projection.
 
 ![Strategy Page](img/29-strategy-select-projection.png)
 
@@ -896,7 +960,80 @@ There, we can pick a name, in our case will be `single-view-trigger-generator-de
 
 Once the microservice has been, you can go to **ConfigMaps & Secrets** of the microservice and edit the configuration accordingly to the producer configuration, which can either be Kafka or MongoDB. For that, you can use as references [the examples provided by its dedicated section](/fast_data/configuration/single_view_trigger_generator.md#examples) and fill it with your connection parameters.  
 
-Also, you have to configure the required property `EVENT_STORE_TARGET`, which represents the 
+Also, you have to configure the required property `EVENT_STORE_TARGET`, which represents the target where the service will write the result of the strategies, which will be:
+
+* if the **SVC** reads _Projection Changes_ records from MongoDB, the projection changes collection, i.e. `fd-pc-delivery`;
+* if the **SVC** reads _Trigger Messages_ from Kafka, the trigger topic that has been already configured, i.e. `demo.development.delivery.order-history.trigger`.
+
+Then, you can go back to the single view section and attach the newly created **SVTG** in the **Single View Trigger Generator** section.
+
+![Create SVTG](img/41-svtg-config.png)
+
+The page will show the two configurations that are needed to setup strategies
+
+#### Kafka Projection Updates 
+
+This configuration instructs the microservice on which projections will be registered to the Kafka Consumer, and the type of strategies will be executed after receiving a `pr-update` message.
+
+```json title=kafkaProjectionUpdates.json 
+{
+  "registry": {
+    "updatesTopic": "demo.development.delivery.registry.pr-update",
+    "strategy": "__automatic__"
+  },
+  "orders": {
+    "updatesTopic": "demo.development.delivery.orders.pr-update",
+    "strategy": "__automatic__"
+  }
+}
+```
+
+For each projection, `registry` and `orders`, we are defining their `pr-update` topic (`demo.development.delivery.registry.pr-update` and `demo.development.delivery.orders.pr-update`, respectively) using the `updatesTopic`.
+
+Moreover, the `strategy` field is set to `__automatic__`, meaning that strategies defined in the next configuration, **Projection Changes Schema**, will be used.
+
+:::tip
+You can find a detailed explanation of the _Kafka Projection Updates_ configuration on the [dedicated page](/fast_data/configuration/config_maps/kafka_projection_updates.mdx) of the documentation.
+:::
+
+#### Projection Changes Schema
+
+The _Projection Changes Schema_ is a configuration that, for one or more single view, tells the RTU the possible paths that can be traversed in the ERSchema to obtain a base projection and generate a _Projection Change identifier_.
+
+Since there is only one link between `registry` and `orders`, we have to provide only one path using the following JSON object:
+
+```json title=projectionChangesSchema.json {4,7,11} showLineNumbers
+{
+  "version": "1.0.0",
+  "config": {
+    "order-history": {
+      "paths": [
+        {
+          "path": [ 
+            "order", 
+            "registry" 
+          ],
+          "identifier": {
+            "registry_id": "registry_id"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+With this configuration, the Single View that we are going to create can be updated with both of the following ways:
+
+- if we update the Projection `registry`, then we can read the `registry_id` directly from there.
+- if we update the Projection `orders`, we will search the related document inside the Projection `registry`, then we can read the `registry_id`.
+
+Finally, the `identifier` will map object will map a subset of fields into the `identifier` of the Projection Change record: in this case, we will map the field `registry_id` to the `registry_id` value of the base projection.
+
+:::tip
+You can find a detailed explanation of the _Projection Changes Schema_ configuration on the [dedicated page](/fast_data/configuration/config_maps/projection_changes_schema.md) of the documentation.
+:::
+
 </TabItem>
 </Tabs>
 
@@ -920,7 +1057,34 @@ Now we can [commit](/console/handbooks/project-usage.md#save-changes) our change
 
 You can now consume the order-history Single View using the APIs available in the [API Documentations](/console/project-configuration/documentation-portal.md).
 
-Here you can see the response for the order-history Single View for the same data we used for [testing the Projections](#testing-projection). We can see that `ord-1` order is exposed in the **orders** array for `reg-1` customer.
+Lets try to update the price of the order from `123` to `124`. First of all, you have to send an ingestion message to the `orders` projection.
+
+```json title=demo.development.delivery.orders.ingestion
+{
+  "key": {
+    "order_id": "ord-1"
+  },
+  "value": {
+    "op": "u",
+    "before": {
+      "date": "2024-02-16T11:13:48.322Z",
+      "name": "order-1",
+      "order_id": "ord-1",
+      "price": 123,
+      "registry_id": "reg-1"
+    },
+    "after": {
+      "date": "2024-02-16T11:13:48.322Z",
+      "name": "order-1",
+      "order_id": "ord-1",
+      "price": 124,
+      "registry_id": "reg-1"
+    }
+  }
+}
+```
+
+By making a GET request to the single view endpoint, we will see that the single view record related to `reg-1` has been generated and updated with the order `ord-1` having `124` as the current price.
 
 ``` json {6,12}
 [
@@ -935,9 +1099,9 @@ Here you can see the response for the order-history Single View for the same dat
     "orders": [
       {
         "id": "ord-1",
-        "price": "123",
+        "price": 124,
         "name": "order-1",
-        "date": "23/1/2023"
+        "date": "2024-02-16T11:13:48.322Z",
       }
     ]
   }
