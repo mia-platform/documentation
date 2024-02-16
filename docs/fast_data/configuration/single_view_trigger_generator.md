@@ -379,7 +379,11 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
 
 #### Examples
 
-An example of a complete configuration would be:
+Below you can find a list of example configurations, based on the two different types of producers.
+
+<details>
+<summary>Kafka Consumer with MongoDB Producer</summary>
+<p>
 
 ```json
 {
@@ -400,3 +404,35 @@ An example of a complete configuration would be:
   }
 }
 ```
+
+</p>
+</details>
+
+<details>
+<summary>Kafka Consumer with Kafka Producer</summary>
+<p>
+
+```json
+{
+  "consumer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "consumerGroupId": "group-id",
+      "consumeFromBeginning": true,
+      "logLevel": "NOTHING"
+    }
+  },
+  "producer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "logLevel": "NOTHING"
+    }
+  }
+}
+```
+
+</p>
+</details>
+
