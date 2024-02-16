@@ -1047,8 +1047,23 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/realtime_updater",
-          "type": "doc"
+          "label": "Real-Time Updater",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "fast_data/configuration/realtime_updater/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "fast_data/configuration/realtime_updater/configuration_files",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/realtime_updater/advanced_topics",
+              "type": "doc"
+            }
+          ]
         },
         {
           "label": "Single View Creator",
