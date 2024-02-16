@@ -13,7 +13,7 @@ The strategy functions can be created in the repository of the project configura
 In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
 Strategy files need to be created below a folder named `fast-data-files`, if your project does not have it, create it.
-In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Records.
+In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Record.
 
 For instance if you want to create a strategy function for the system `my-system` you need to create the following directory tree:
 
