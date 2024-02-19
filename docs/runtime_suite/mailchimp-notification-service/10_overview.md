@@ -10,20 +10,20 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The **Mailchimp/Mandrill Notification Service** is a microservice responsible to interact with Mailchimp and Mandrill for:
+The **Mailchimp/Mandrill Notification Service** is a microservice responsible for interacting with Mailchimp and Mandrill for:
 
 * **Sending transactional emails**: using Mailchimp defined email templates and Mandrill transactional APIs
 * **Interact with Mailchimp audiences**: subscription, deletion, user status update
 
 # 1) Sending transactional emails
-Transactional emails service is provided with 2 main endpoints:
+Transactional email service is provided with 2 main endpoints:
 
 * **Synchronous**: waits for Mailchimp/Mandrill to have actually queued the transactional email request
 
-* **Asynchronous**: fire and forget. The endpoint immediately returns, the request is sent to Mailchimp/Mandrill but the service will not wait for Mailchimp/Mandrill response
+* **Asynchronous**: fire and forget. The endpoint immediately returns, and the request is sent to Mailchimp/Mandrill but the service will not wait for Mailchimp/Mandrill response
 
 ## Synchronous transactional email send
-The service is provided through the endpoint `POST /transactional/send-template`.
+The service is provided through the `POST /transactional/send-template` endpoint.
 
 An example JSON body is presented below:
 ```
