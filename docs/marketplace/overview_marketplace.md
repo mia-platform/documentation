@@ -42,6 +42,12 @@ The results of your search will always appear organized by Category.
 
 ![new-examples](./img/marketplace.png)
 
+:::info
+
+You can contribute to the Mia-Platform Marketplace by creating and sharing your own items. Find out more about how to [Contributing to the Marketplace](/marketplace/add_to_marketplace/contributing_overview.md).
+
+:::
+
 ## Marketplace items lifecycle
 
 Each Marketplace item has a predetermined **development lifecycle**:
