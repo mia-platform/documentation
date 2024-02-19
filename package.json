@@ -26,7 +26,7 @@
     "@docusaurus/preset-classic": "2.4.3",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.1.0",
-    "cspell": "^8.3.2",
+    "cspell": "^8.4.0",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
