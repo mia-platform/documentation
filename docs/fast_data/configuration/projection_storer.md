@@ -154,10 +154,8 @@ Here is described the interface of the custom message adapter function:
 
 - `message` → a map representing the ingestion message. It contains the following properties:
   - `key`:
-    - `String` (Kotlin) → a string representation of the incoming message's key. A string is returned since it is not known a priori whether it will be possible to convert it as Map object in Kotlin
     - `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
   - `value`:
-    - `Map<String, Any>?` (Kotlin) → a Map object that contains the payload of the incoming message from the ingestion topic, where each property corresponds to one field of the payload object
     - `Buffer` (Javascript) → the raw value that contains the payload of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
 - `primaryKeys` → the list of field names that compose the primary key identifier for that specific projection
 - `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
@@ -169,39 +167,7 @@ Here is described the interface of the custom message adapter function:
 - `before` → an object/map or `null`, which represents the record before the last change occurred 
 - `after` → an object/map or `null`, which represents the record obtained after applying the change that triggered the ingestion event
 
-Taking into account the above details, it is possible to implement _user-defined functions_ either in Javascript or Kotlin.
-Below are provided examples for each supported programming language.
-
-<details><summary>Custom Message Adapter Function (Kotlin - messageAdapter.kt)</summary>
-<p>
-
-```kotlin
-package customMessageAdapter
-
-import org.slf4j.Logger
-
-// NOTE: the message adapter entry point function must be named `messageAdapter`
-fun messageAdapter(message: Map<String, Any>?, primaryKeys: List<String>, logger: Logger): Any {
-    val payload = message?.get("value") as? Map<*, *>?
-
-    val key = primaryKeys
-        .filter { payload?.containsKey(it) ?: false }
-        .associateWith { payload?.get(it) }
-
-    logger.debug("key: $key")
-
-    return mapOf(
-        "operation" to (if (payload.isNullOrEmpty()) { "D" } else { "I" }),
-        "key" to key,
-        "before" to null,
-        "after" to payload,
-    )
-}
-
-```
-
-</p>
-</details>
+Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
 
 <details><summary>Custom Message Adapter Function (Javascript - messageAdapter.js)</summary>
 <p>
@@ -268,7 +234,7 @@ function messageAdapter(message, primaryKeys, logger) {
     const { value, key: keyAsString } = message
 
     const keyObject = JSON.parse(keyAsString)
-    // please notice that value is Kotlin Buffer - to obtain its length,
+    // please notice that value is Buffer - to obtain its length,
     // the length function should be employed. In addition, to ensure
     // compatibility also with Real-Time Updater plugin, the following check has been added 
     const valueLength = (typeof value?.length === "function")
@@ -332,7 +298,7 @@ existing functions:
 - `castToArrayOfObject` → parse a JSON array represented as string into a JSON array
 
 Whenever these functions do not cover a particular use case, it is possible to configure additional _user-defined functions_
-as custom cast functions. These cast functions can be implemented either in Kotlin or Javascript, each of them written in
+as custom cast functions. These cast functions can be implemented either in Javascript, each of them written in
 their own file. When the files containing the _user-defined functions_ are loaded, the service will search within them
 for a function named as the key name in the configuration. The function with such name **must** exist otherwise the service will
 encounter a processing error.   
@@ -343,7 +309,6 @@ Here it is shown a possible example of configuring two custom cast functions:
 
 ```json
 "castFunctions": {
-  "mapToAddressType": "/app/extensions/mapToAddressType.kts",
   "castToTitleCase": "/app/extensions/castToTitleCase.js"
 }
 ```
@@ -359,37 +324,6 @@ to be transformed and the _field name_ represented as `string`. The output of th
 in the type expected by the data model for that specific field on which the cast function is applied.
 
 Below is provided an example of cast functions implementation, one for each supported programming language.
-
-<details><summary>Custom Cast Function (Kotlin - mapToAddressType.kts)</summary>
-<p>
-
-```kotlin
-package castFunctions
-
-val addressMapping = mapOf(
-  1 to "SHIPPING",
-  2 to "BILLING",
-  3 to "LIVING",
-)
-
-// NOTE: the name of the function must correspond to
-//       the key associated to the file containing it
-fun mapToAddressType(value: Any, fieldName: String): String? {
-  return when (value) {
-    is String -> addressMapping[value.toInt()]
-    is Int, is Long -> addressMapping[value]
-    else -> {
-      // NOTE: a basic logger can be accesses via internal binding
-      logger.debug("not an address type code: $value - fieldName: $fieldName")
-      
-      null
-    }
-  }
-}
-```
-
-</p>
-</details>
 
 <details><summary>Custom Cast Function (Javascript - castToTitleCase.js)</summary>
 <p>
