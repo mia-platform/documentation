@@ -193,6 +193,40 @@ You can leave `defaultIdentity` as a value for _Cast Function_ when entering the
 In this way, every value inside the payload received from the Source Systems will be saved in the database without further customizations.
 :::
 
+Here's the specification for both `registry` and `orders` projections.
+
+<details>
+  <summary> Registry Fields </summary>
+  <p>
+
+| Field           | Type   |  Cast Functions      | Required    | Primary Key    | Description                                                       |
+|-----------------|--------|----------------------|-------------|----------------|-------------------------------------------------------------------|
+| `registry_id`   | String |   `defaultIdentity`  |   &check;   |     &check;    | The registry ID.                                                  |
+| `name`          | String |   `defaultIdentity`  |      -      |        -       | The name of the customer to whom the registry refers.             |
+| `email`         | String |   `defaultIdentity`  |      -      |        -       | The email of the customer to whom the registry refers.            |
+| `phone`         | String |   `defaultIdentity`  |      -      |        -       | The phone of the customer to whom the registry refers.            |
+| `address`       | String |   `defaultIdentity`  |      -      |        -       | The address of the customer to whom the registry refers.          |
+| `city`          | String |   `defaultIdentity`  |      -      |        -       | The city of the customer to whom the registry refers.             |
+| `state`         | String |   `defaultIdentity`  |      -      |        -       | The State of the customer to whom the registry refers.            |
+
+</p>
+</details>
+
+<details>
+  <summary> Orders Fields</summary>
+  <p>
+
+| Field           | Type   |   Cast Function    | Required | Primary Key | Description                                                    |
+|-----------------|--------|--------------------|----------|-------------|----------------------------------------------------------------|
+| `order_id`      | String | `defaultIdentity`  |  &check; |   &check;   | The order ID. Check this field as "Required" and "Primary Key".|
+| `name`          | String | `defaultIdentity`  |    -     |     -       | The name of the product.                                       |
+| `price`         | Number | `defaultIdentity`  |    -     |     -       | The price of the product.                                      |
+| `date`          | Date   | `defaultCastToDate`|    -     |     -       | The date when the order was placed.                            |
+| `registry_id`   | String | `defaultIdentity`  |    -     |     -       | The registry ID of the customer who placed the order.          |
+
+</p>
+</details>
+
 ### Topics
 
 At the bottom of the same page, we can also see the Kafka topics. There are two types of topics:
@@ -211,6 +245,32 @@ The Real-Time Updater, the service that receives the update from the source Syst
 The Kafka topic names can be changed over time, but please mind that their name must be __unique within your Kafka cluster__.
 :::
 
+Here's the specification for both `registry` and `orders` projections.
+
+<details>
+  <summary> Registry Topics</summary>
+  <p>
+
+These are the suggested naming convention of topics defined in Kafka:
+
+* __Ingestion__: `demo.development.delivery.registry.ingestion` 
+* __Pr-Update__: `demo.development.delivery.registry.pr-update` 
+
+</p>
+</details>
+
+<details>
+  <summary> Orders Topics</summary>
+  <p>
+
+These are the suggested naming convention of topics defined in Kafka:
+
+* __Ingestion__: `demo.development.delivery.order.ingestion` 
+* __Pr-Update__: `demo.development.delivery.order.pr-update` 
+
+</p>
+</details>
+
 ### Link to Microservice
 
 Before receiving messages from the ingestion topic defined in the projection, you have to link it to a SoR microservice. 
@@ -222,61 +282,6 @@ Go back to the `Services` section of the `delivery` SoR, and select the microser
 In this particular case, both `registry` and `orders` will be linked to the same microservice.
 
 Going back to the projection's page, you can see that the microservice linked to it will appear under the `Microservice` card.
-
-### Specifications
-
-Here you can find the specifications about the projections we are going to use in this tutorial. 
-
-<details>
-  <summary> Registry </summary>
-  <p>
-
-#### Fields
-
-
-| Field           | Type   |  Cast Functions      | Required    | Primary Key    | Description                                                       |
-|-----------------|--------|----------------------|-------------|----------------|-------------------------------------------------------------------|
-| `registry_id`   | String |    defaultIdentity   |   &check;   |     &check;    | The registry ID.                                                  |
-| `name`          | String |    defaultIdentity   |      -      |        -       | The name of the customer to whom the registry refers.             |
-| `email`         | String |    defaultIdentity   |      -      |        -       | The email of the customer to whom the registry refers.            |
-| `phone`         | String |    defaultIdentity   |      -      |        -       | The phone of the customer to whom the registry refers.            |
-| `address`       | String |    defaultIdentity   |      -      |        -       | The address of the customer to whom the registry refers.          |
-| `city`          | String |    defaultIdentity   |      -      |        -       | The city of the customer to whom the registry refers.             |
-| `state`         | String |    defaultIdentity   |      -      |        -       | The State of the customer to whom the registry refers.            |
-
-#### Topics
-
-These are the suggested naming convention of topics defined in Kafka, where we expect to receive messages related to the update of projections:
-
-* __Ingestion__: `demo.development.delivery.registry.ingestion` 
-* __Pr-Update__: `demo.development.delivery.registry.pr-update` 
-
-</p>
-</details>
-
-<details>
-  <summary> Orders </summary>
-  <p>
-
-#### Fields
-
-| Field           | Type   |   Cast Function    | Required | Primary Key | Description                                                    |
-|-----------------|--------|--------------------|----------|-------------|----------------------------------------------------------------|
-| `order_id`      | String |  defaultIdentity   |  &check; |   &check;   | The order ID. Check this field as "Required" and "Primary Key".|
-| `name`          | String |  defaultIdentity   |    -     |     -       | The name of the product.                                       |
-| `price`         | Number |  defaultIdentity   |    -     |     -       | The price of the product.                                      |
-| `date`          | Date   |  defaultCastToDate |    -     |     -       | The date when the order was placed.                            |
-| `registry_id`   | String |  defaultIdentity   |    -     |     -       | The registry ID of the customer who placed the order.          |
-
-#### Topics
-
-These are the suggested naming convention of topics defined in Kafka, where we expect to receive messages related to the update of projections:
-
-* __Ingestion__: `demo.development.delivery.order.ingestion` 
-* __Pr-Update__: `demo.development.delivery.order.pr-update` 
-
-</p>
-</details>
 
 ## Release Projections
 
