@@ -130,9 +130,9 @@ An example input JSON body is presented below:
 
 The endpoint takes in input a JSON body as follows: 
 
-* `email`: email of the user for which membership to the audience (specified by `listId`) needs to be checked
+* `email`: The email of the user for which membership to the audience (specified by `listId`) needs to be checked
 
-* `listId`: newsletter list id. Can be found directly on Mailchimp after the audience creation or in the audience details (if audience already exists)
+* `listId`: newsletter list id. Can be found directly on Mailchimp after the audience creation or in the audience details (if the audience already exists)
 
 An example response JSON body is presented below:
 ```
