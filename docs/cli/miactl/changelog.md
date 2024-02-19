@@ -15,6 +15,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2024-02-05
+
+### Added
+
+- `project iam list` command
+- `project iam edit` command
+- `project iam remove-role` command
+- `--public` flag to `marketplace list` command
+
+### Changed
+
+- update go version to 1.21.6
+- update exp to v0.0.0-20240112132812-db7319d0e0e3
+- update oauth2 to v0.16.0
+- update sync to v0.6.0
+
+### Fixed
+
+- fixed typos
+
 ## [0.11.0] - 2024-01-15
 
 ### BREAKING
@@ -211,7 +231,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.11.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/mia-platform/miactl/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/mia-platform/miactl/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/mia-platform/miactl/compare/v0.8.0...v0.9.0

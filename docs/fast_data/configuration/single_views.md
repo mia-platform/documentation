@@ -28,7 +28,7 @@ The type fields supported are the same of the collection you can create in the [
 
 You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change) event occurs.
 
-A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Records through Projection Changes.
+A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Record through Projection Changes.
 
 ```shell
 system_1
@@ -104,7 +104,7 @@ Once you have linked some strategies to a Single View Creator in low code mode, 
 
 If you choose to use manual strategies, each listed manual projection must be linked to a file without the extension `.js` which is the entry point of your **strategy function**.
 
-Notice that the strategy file must be placed directly inside the directory with the name of the system of records, placing it inside a subfolder of this directory is not supported.
+Notice that the strategy file must be placed directly inside the directory with the name of the System of Record, placing it inside a subfolder of this directory is not supported.
 
 Example:
 

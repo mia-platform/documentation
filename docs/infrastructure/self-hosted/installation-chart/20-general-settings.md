@@ -24,8 +24,20 @@ If you want to fine tune resources for specific services the proper documentatio
 
 |            Name            |  Type   |          Description           | Default | Optional |
 | :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
-|     `imagePullSecrets`     |  array  | An array of `imagePullSecrets` |  `[]`   |    ✅     |
-| `podSecurityPolicyEnabled` | boolean |    Create the PSP resources    | `false` |    ✅     |
+|      `imageCredentials`     |  [pull secret credentials](#pull-secret-credentials) | An object to generate the image pull secrets |         |    ✅    |
+|      `imagePullSecrets`     |  array  | An array of `imagePullSecrets`               |  `[]`   |    ✅    |
+| `defaultPodSecurityContext` | [pod security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | Override all the default pod security context per each workload with custom configuration | `{"runAsNonRoot": true, "runAsUser": 10000, "runAsGroup": 11000, "fsGroup": 12000}` |    ✅    |
+
+#### Pull secret credentials
+
+|            Name            |  Type   |          Description           | Default | Optional |
+| :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
+|     `registry`     |  string  |  The host of the registry where to pull the images, useful when you want to download images from a proxy registry |  `nexus.mia-platform.eu`  |    ✅    |
+
+|     `name`     |  string  | name of the generated image pull secrets. It will be set as imagePullSecret in all the charts workload |  |    ✅    |
+|     `username`     |  string  | Username to login to the container registry |  |    ✅    |
+|     `password`     |  string  | Password to login to the container registry |  |    ✅    |
+|      `email`       |  string  | Email of the user of the container registry |  |    ✅    |
 
 ### Storage connection configurations
 
@@ -98,24 +110,28 @@ mia-console:
 
 ## Additional optional configurations
 
-|                      Name                      |  Type   |                                                                                                                                                                                      Description                                                                                                                                                                                       |             Default             | Optional |
+|                      Name                      |  Type   | Description |             Default             | Optional |
 | :--------------------------------------------: | :-----: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------: | :------: |
-|                 `nameOverride`                 | string  |                                                                                                                                                                 Set up a value if you don’t want to use `mia-console`                                                                                                                                                                  |                                 |    ✅     |
+|                 `nameOverride`                 | string  |Set up a value if you don’t want to use `mia-console`                                                                                                                                                                  |                                 |    ✅     |
 |               `fullnameOverride`               | string  |                                                                                                                                             Set up a value if you want to set a fixed name for the release and not using the generated one                                                                                                                                             |                                 |    ✅     |
 |                   `logLevel`                   | string  |                                                                                                                                                                                 The log level to setup                                                                                                                                                                                 |             `info`              |    ✅     |
-|                 `registryHost`                 | string  |                                                                                                                                    The host of the registry where to pull the images, useful when you want to download images from a proxy registry                                                                                                                                    |     `nexus.mia-platform.eu`     |    ✅     |
 |    `configurations.multitinenantNamespace`     | string  |                                                                                                                                                                            The multitenant partial hostname                                                                                                                                                                            | `multitenant.svc.cluster.local` |    ✅     |
 | `configurations.customServicesImagePullSecret` | string  |                                                                                                      The name of the `imagePullSecret` containing the credentials to the private docker repository (_deprecated_, we reccomend to use `configurations.servicesImagePullSecrets`)                                                                                                       |                                 |    ✅     |
 |   `configurations.servicesImagePullSecrets`    |  array  | The names of `imagePullSecret` containing the credentials to the private docker repositories that will be used to pull the images of all services of the projects, this key take precendence over `configurations.customServicesImagePullSecret`. You have to specify the secrets for both your own services and the ones handled by Console (e.g. cms-backend, crud-service, ecc...). |       `["nexus-gcloud"]`        |    ✅     |
 |   `configurations.publicVariablesFolderName`   | string  |                                                                                                                                                          The name of the folder in which all public variables will be stored                                                                                                                                                           |                                 |    ✅     |
 |  `configurations.deployServiceJenkinsRetryMs`  | integer |                                                                                                                                                    Controls Deploy Service Jenkins retries if no build is found (minimum value: 1)                                                                                                                                                     |                                 |    ✅     |
+|  `configurations.configurationsCleaner.maxConfigurationsRetentionNumber`  | integer | Max number of configurations per ref to be preserved (default 100, set to 0 to disable history cleanup)                                                                                                                                                   |                100                 |    ✅     |
+|  `configurations.configurationsCleaner.schedule`  | crontab |  Cleaner crontab schedule     |                   `0 8 * * *`              |    ✅     |
 
 ### Optional Feature Toggle configurations
 
 |                           Name                           |  Type   |                                                                      Description                                                                      | Default | Optional |
 | :------------------------------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :------: |
-| `configurations.enableClustersAndEnvironmentsManagement` | boolean |                                                     Enables Clusters and Environments management                                                      | `true`  |    ✅     |
-|        `configurations.projectTemplateArchiveUrl`        | string  |                                                               New project template url                                                                |         |    ✅     |
+| `configurations.enableFastData` | boolean | Enables Fast Data configurator | `true`  |    ✅     |
+| `configurations.enableDebugArea` | boolean | Enables debug area in Console | `true`  |    ✅     |
+| `configurations.enableMergeConfiguration` | boolean | Enables Merge Configuration | `true`  |    ✅     |
+| `configurations.enableClustersAndEnvironmentsManagement` | boolean |  Enables Clusters and Environments management | `true`  |    ✅     |
+| `configurations.projectTemplateArchiveUrl` | string | New project template url |         |    ✅     |
 |  `configurations.enableRuntimeServiceClusterSelection`   | boolean | Enable selection from supported runtime providers during cluster setup, if you disable it you will have to manually fill all the required information | `true`  |    ✅     |
 |      `configurations.enableBackofficeConfigurator`       | boolean |                                                            Enable Backoffice Configurator                                                             | `true`  |    ✅     |
 |            `configurations.enableFlowManager`            | boolean |                                                                  Enable Flow Manager                                                                  | `true`  |    ✅     |

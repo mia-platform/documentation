@@ -68,5 +68,5 @@ An in-depth explanation on how to configure the service is provided in the [dedi
 
 Currently it is necessary to manually manage the Single View Trigger Generator config maps from the microservices section of Console, since it does not cover its configuration yet.
 
-It is also important to notice that the Single View Trigger Generator couples up with a specific Single View and not with the System of Records. Consequently, for each configured Single View Creator it is necessary to introduce a Single View Trigger Generator.
+It is also important to notice that the Single View Trigger Generator couples up with a specific Single View and not with the System of Record. Consequently, for each configured Single View Creator it is necessary to introduce a Single View Trigger Generator.
 

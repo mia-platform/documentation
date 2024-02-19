@@ -345,7 +345,8 @@
     "Segoe",
     "kotlinx",
     "Dynatrace",
-    "logr"
+    "logr",
+    "ODBC"
   ],
   "dictionaries": [
     "softwareTerms",
