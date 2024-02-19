@@ -44,7 +44,7 @@ The results of your search will always appear organized by Category.
 
 :::info
 
-You can contribute to the Mia-Platform Marketplace by creating and sharing your own items. Find out more about how to [Contributing to the Marketplace](/marketplace/add_to_marketplace/contributing_overview.md).
+You can contribute to the Mia-Platform Marketplace by creating and sharing your own items. Find out more about how to [contribute to the Marketplace](/marketplace/add_to_marketplace/contributing_overview.md).
 
 :::
 
