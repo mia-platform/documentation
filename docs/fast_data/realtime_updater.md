@@ -9,9 +9,9 @@ The Real-Time Updater service consumes [kafka messages](https://kafka.apache.org
 A Real-Time Updater service is automatically created when you create a new System. After the new configuration has been saved, this service is visible as one of your services in the `Microservices` section.
 
 :::info
-From version `11.7.0` of the Console, the Real-Time Updater will not be automatically generated anymore but must be created beforehand in the _Microservices_ section, and after it must be attached to the System of Records containing the projections of your interest.
+From version `11.7.0` of the Console, the Real-Time Updater will not be automatically generated anymore but must be created beforehand in the _Microservices_ section, and after it must be attached to the System of Record containing the projections of your interest.
 
-This new feature will also include the possibility of using multiple Real-Time Updater services to the same System of Records, with different services attached to some projections to improve scalability and performance.
+This new feature will also include the possibility of using multiple Real-Time Updater services to the same System of Record, with different services attached to some projections to improve scalability and performance.
 :::
 
 ## Projection Update

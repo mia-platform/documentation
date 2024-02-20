@@ -109,7 +109,7 @@ jobs:
             VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
 
   deploy:
-    name: Deploy documentation preview
+    name: Deploy documentation trigger
     needs: build
     runs-on: ubuntu-latest
     steps:

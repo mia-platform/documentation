@@ -115,5 +115,5 @@ The [proxy endpoints](/development_suite/api-console/api-design/proxy.md) are ex
 You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.
 
 :::tip
-Checkout the [Mia service Node.js Library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) to know how to call the platform services with a proxy object
+Checkout the [Mia service Node.js Library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) to know how to call the platform services with a proxy object.
 :::
