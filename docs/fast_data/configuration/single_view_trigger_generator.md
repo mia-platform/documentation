@@ -251,6 +251,7 @@ At the moment you can only configure your consumer with kafka which will read `p
 #### Producers
 
 For the producers you can choose between two options: Kafka or MongoDB ([`sv-trigger` vs. `pc`](/fast_data/single_view_trigger_generator.md#sv-trigger-vs-pc)).
+
 With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
 
 <details><summary>MongoDB producer config JsonSchema</summary>
@@ -367,6 +368,15 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
         }
       }
     },
+    "compressionName": {
+      "type": "string",
+      "default": "none",
+      "enum": [
+        "gzip",
+        "snappy",
+        "none"
+      ]
+    },
     "logLevel": {
       "type": "string",
       "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"]
@@ -376,6 +386,16 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
 ```
 </p>
 </details>
+
+:::tip
+Starting from version `v3.1.6` of the SVTG, is possible to add into the Kafka producer configuration the property `compressionName`, to apply a particular encoding to `sv-trigger` messages. Allowed values are:
+
+* `gzip`
+* `snappy`
+* `none` (default, if no options are provided)
+
+While this option can be useful for messages having a large size, can increase the processing time due to the computational resources needed to apply the compression.
+:::
 
 #### Examples
 
@@ -428,6 +448,35 @@ Below you can find a list of example configurations, based on the two different 
       "brokers": "localhost:9092,localhost:9093",
       "clientId": "client-id",
       "logLevel": "NOTHING"
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+<details>
+<summary>Kafka Consumer with Kafka Producer having Snappy compression</summary>
+<p>
+
+```json
+{
+  "consumer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "consumerGroupId": "group-id",
+      "consumeFromBeginning": true,
+      "logLevel": "NOTHING"
+    }
+  },
+  "producer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "logLevel": "NOTHING",
+      "compressionName": "snappy"
     }
   }
 }

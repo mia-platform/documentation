@@ -8,7 +8,7 @@ The Single View Key is a configuration file used by the Single View Creator part
 
 ## Overview 
 
-The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime_updater.md) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
+The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime-updater/realtime-updater.md) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
 
 In case the following Projection Changes document has been received:
 ```json

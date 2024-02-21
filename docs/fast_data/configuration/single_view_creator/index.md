@@ -69,6 +69,8 @@ We strongly recommend using the plugin. The template is supposed to be used only
 | SV_UPDATE_VERSION                   | -        | (v6.2.1 or higher) Define which version of the `sv-update` event should be emitted by the service. Accepted values are `v1.0.0` and `v2.0.0`. By default, for retro-compatibility, version `v1.0.0` is employed                                                                                                                                                                                                                                                                                                             | v1.0.0              |
 | CONTROL_PLANE_ACTIONS_TOPIC         | -        | Topic where the Single View Creator expects to receive the action commands of `pause` and `resume`.                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
 | CONTROL_PLANE_KAFKA_GROUP_ID        | -        | The Kafka Consumer Group Identifier for the action commands client.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
+| KAFKA_PRODUCER_COMPRESSION                          | -        | Starting from `v6.5.0`, is possible to choose the type of compression that can be applied to `pr-update` messages. Possible values are: `gzip`, `snappy` or `none`                                     | `none`     |
+
 
 
 :::note
@@ -102,6 +104,19 @@ As you can see, the Single View Creator lets you configure what channel is used 
 In both of the cases you have to configure all the required environment variables related to kafka. First you need to configure the `KAFKA_BROKERS` and `KAFKA_GROUP_ID`, then you probably need to configure your authentication credentials with `KAFKA_SASL_MECHANISM`, `KAFKA_SASL_USERNAME` and `KAFKA_SASL_PASSWORD`.
 
 Once this is done remember to set the `PROJECTIONS_CHANGES_SOURCE` environment variable to `KAFKA` and to check out the configuration page of the system you need to complete the necessary steps.
+
+### Compression
+
+Kafka messages can be sent using a particular compression encoding. The SVC is configured to accept messages having the following encodings:
+
+* [Gzip](https://www.gnu.org/software/gzip/)
+* [Snappy](https://google.github.io/snappy/)
+
+This compression mechanisms can also be used by the microservice itself while producing kafka messages, by specifying, starting from version `v6.5.0`, the environment variable `KAFKA_PRODUCER_COMPRESSION`. Allowed values are `gzip`, `snappy` or `none`: if the variable has not been specified, `none` will be the default compression system used by the RTU.
+
+:::caution
+Compression and decompression algorithm will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications.
+:::
 
 ## Handling Connections with Self Signed Certificates 
 
