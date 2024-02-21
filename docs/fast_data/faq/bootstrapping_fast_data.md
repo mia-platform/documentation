@@ -97,7 +97,7 @@ On an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-archit
 If the execution of a strategy or the aggregation of a single view takes too much time, it means that maybe some index is missing in the collection involved. You should check that:
 
 * projections have all the queries covered by indexes;
-* the projection changes collection, if used, has [the required index](/fast_data/configuration/realtime_updater/index.md#custom-projection-changes-collection);
+* the projection changes collection, if used, has [the required index](/fast_data/configuration/realtime-updater/realtime-updater.md#custom-projection-changes-collection);
 * the single view collection has a unique index that is equal to the [Single View Key configuration](/fast_data/configuration/config_maps/singleViewKey.md).
 
 ## Fast Data Plugins
@@ -132,7 +132,7 @@ A good rule of thumb is to set an high percentage of CPU requests as threshold, 
 
 If the RTU goes on idle while performing strategies, it means that some query is not indexed and has triggered a collection scan on the MongoDB cluster.
 
-This issue can be seen only with a huge amount of data: before releasing your setting to a production environment, you have to check that all the projections have all the needed look-up indexes and the projections changes CRUD collection has [the required indexes](/fast_data/configuration/realtime_updater/index.md#custom-projection-changes-collection) set.
+This issue can be seen only with a huge amount of data: before releasing your setting to a production environment, you have to check that all the projections have all the needed look-up indexes and the projections changes CRUD collection has [the required indexes](/fast_data/configuration/realtime-updater/realtime-updater.md#custom-projection-changes-collection) set.
 
 ### Why the RTU is processing ingestion messages at slow rate?
 

@@ -10,9 +10,9 @@ The Real-Time Updater can be enhanced with additional features, that we can list
 
 ## Compression
 
-Kafka message can be sent using a particular compression encoding. In this section, you will find a list of compressions supported by the microservice. 
+Kafka messages can be sent using a particular compression encoding. In this section, you will find a list of compressions supported by the microservice. 
 
-This compression mechanisms can also be used by the microservice itself while producing kafka messages, by specifying, starting from version `v7.5.8`, the environment variable `PRODUCER_COMPRESSION`. Allowed values are `gzip`, `snappy` or `none`: if the variable has not been specified, `none` will be the default compression system used by the RTU.
+Also, this compression mechanisms can also be used by the microservice itself while producing kafka messages, by specifying, starting from version `v7.5.8`, the environment variable `PRODUCER_COMPRESSION`. Allowed values are `gzip`, `snappy` or `none`: if the variable has not been specified, `none` will be the default compression system used by the RTU.
 
 :::caution
 Compression and decompression algorithm will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications; on the other hand, it is well recommended for initial load procedures which tend to produce a huge amount of messages.

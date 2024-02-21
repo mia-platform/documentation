@@ -14,7 +14,7 @@ The CSV Connector can be used either as a kubernetes _**cronjob**_ or as a norma
 In both cases, it will ask the Files Service the list of all the files present in the bucket of input and process them, generating a Kafka message for the Fast Data for each line.
 When a file has been completely processed, it will get moved to the bucket of output.
 
-Kafka messages will be produced following the [message adapter DB2](../../fast_data/configuration/realtime_updater/configuration_files.md#kafka-adapters-kafka-messages-format) standard.
+Kafka messages will be produced following the [message adapter DB2](../../fast_data/configuration/realtime-updater/configuration-files.md#kafka-adapters-kafka-messages-format) standard.
 
 To change between the two execution modes, the **LAUNCH_MECHANISM** environment variable must have one of the following values: `cronjob` or `polling`.
 

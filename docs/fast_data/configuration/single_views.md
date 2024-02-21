@@ -187,7 +187,7 @@ To prevent this problem, a new infrastructure has been designed:
 The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
 This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.
 
-To understand how to configure both services click on them: [Real-Time Updater](/fast_data/configuration/realtime_updater/advanced_topics.md#single-view-patch) and [Single View Creator](/fast_data/configuration/single_view_creator/patch.md). 
+To understand how to configure both services click on them: [Real-Time Updater](/fast_data/configuration/realtime-updater/advanced-topics.md#single-view-patch) and [Single View Creator](/fast_data/configuration/single_view_creator/patch.md). 
 
 ## Technical limitation
 
