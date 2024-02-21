@@ -1051,7 +1051,7 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "fast_data/configuration/realtime-updater/overview",
+            "id": "fast_data/configuration/realtime-updater/real-time-updater",
             "type": "doc"
           },
           "items": [
