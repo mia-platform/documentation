@@ -99,7 +99,7 @@ The first step is to create the microservice _Projection Storer_, that will be a
 
 We can find it under the name of *Projection Storer*.
 
-![Create Delivery PS](img/07-create-RTU.png)
+![Create Delivery PS](img/07-create-PS.png)
 
 After selecting the _Projection Storer_ service, the only thing you need to choose is a unique name (we suggest `delivery-projection-storer`) and, eventually the description. Once clicked on the `Create` button, the service
 will be created and we will be redirected to the service page.
@@ -140,12 +140,12 @@ After selecting the _Real-Time Updater_ service, the only thing you need to choo
 will be created and we will be redirected to the service page. Now we need to configure all the parameters of the microservice. Here is an example of the fields that we need to configure:
 
 - `PROJECTIONS_DATABASE_NAME`: the name of the database that will be used to store the data of the Projections
-- `PROJECTIONS_CHANGES_COLLECTION_NAME`: the name of the collection that will be used to store the changes of the Projections (we suggest `fd-pc-delivery`)
-- `KAFKA_BROKERS`: the list of the kafka brokers that will be used to send the data to the Projections
-- `KAFKA_GROUP_ID`: the group id that will be used to consume the data from the source systems
-- `KAFKA_SASL_USERNAME`: the username that will be used to login to the kafka brokers
-- `KAFKA_SASL_PASSWORD`: the password that will be used to login to the kafka brokers
-- `KAFKA_SASL_MECHANISM`: the mechanism that will be used to login to the kafka brokers
+- `PROJECTIONS_CHANGES_COLLECTION_NAME`: the name of the collection that will be used to store the changes of the Projections; (we suggest `fd-pc-delivery`)
+- `KAFKA_BROKERS`: the list of the kafka brokers that will be used to send the data to the Projections;
+- `KAFKA_GROUP_ID`: the group id that will be used to consume the data from the source systems; (we suggest `demo.development.delivery.real-time-updater`)
+- `KAFKA_SASL_USERNAME`: the username that will be used to login to the kafka brokers;
+- `KAFKA_SASL_PASSWORD`: the password that will be used to login to the kafka brokers;
+- `KAFKA_SASL_MECHANISM`: the mechanism that will be used to login to the kafka brokers.
 
 :::info
 The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater.md).
@@ -410,11 +410,11 @@ A good approach is to store the data in Single Views dedicated to each channel a
 
 In this tutorial, our Single View is called `order-history` and we will create an object schema with the registry information and the orders information linked to the registry: this means that each document is an object that contains the registry information about the user and a list of orders made by the user.
 
-We need to open the `Single Views` page in the Fast Data section of our left menu, then click on the **Create new Single View** button, so that we can create a new Single View called `order-history`.
+We need to open the `Single Views` page in the Fast Data section of our left menu, then click on the **Create new Single View** button.
 
 ![Single View](img/19-single-view.png)
 
-Here, we can choose the name of the Single View.
+Here, we can choose the name of the Single View, that will be `order-history`.
 
 ![Create New Single View](img/20-create-single-view.png)
 
@@ -483,7 +483,8 @@ Now we need to configure all the parameters of the microservice, here is a set o
 
 - `SINGLE_VIEWS_COLLECTION`: should be the name of the single view which your single view creator is responsible for (we suggest `order-history`, the same name as the Single View we are going to create);
 - `SINGLE_VIEWS_PORTFOLIO_ORIGIN`: a representative name used in debugging and metrics to identify the source of any Single View update request (we suggest to use the name of the System of Record, `delivery`);
-- `TYPE`: identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update (also here we are going to call it `order-history`).
+- `TYPE`: identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update (also here we are going to call it `order-history`);
+- `SINGLE_VIEWS_ERRORS_COLLECTION`: a collection where the service will write errors that may happen during aggregation. (we suggest `order-history-errors`, [here](/fast_data/inputs_and_outputs.md#single-view-error) you can read about record format that will be stored)
 
 Also, based on the connection channel where the microservice reads the projection changes, additional environment variables needs to be set:
 
@@ -503,7 +504,7 @@ Also, based on the connection channel where the microservice reads the projectio
   * `KAFKA_BROKERS`: a comma-separated list of your Kafka brokers;
   * `KAFKA_SASL_USERNAME`, `KAFKA_SASL_PASSWORD` and `KAFKA_SASL_MECHANISM` if authentication needs to be performed
   * `KAFKA_PROJECTION_CHANGES_TOPIC`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`;
-  * `KAFKA_GROUP_ID`: name of the consumer group that will be used to subscribe to the topic from the `KAFKA_PROJECTION_CHANGES_TOPIC` variable.
+  * `KAFKA_GROUP_ID`: name of the consumer group that will be used to subscribe to and read messages from the topic from the `KAFKA_PROJECTION_CHANGES_TOPIC` variable (we can choose `demo.development.delivery.order-history.single-view-creator`).
 
 </TabItem>
 <TabItem value="mongodb">
@@ -648,6 +649,16 @@ The conditions will be interpolated into the `find` operation of a MongoDB query
 
 </Tabs>
 
+### Set the Base Projection
+
+Once the ER Schema has been set, we have to define what is the root from where we want to start the aggregation: we will refer to it as **Base Projection**, which represents the collection where the aggregation will start.
+
+By going back to the **Aggregation** tab, you'll be required to select a Base Projection which is the Projection from where the mapping will begin: in our tutorial, we select the Projection `registry` and click on **Set base projection**. After this, the Single View Data Model will show up to the left, ready for the configuration.
+
+![Order History Blank Aggregation](./img/42-aggregation-tab.png)
+
+Before configuring it, we have to specify what is the identifier of our single view records. 
+
 ### Single View Key
 
 The **Single View Key** represents the link between the identifier of the projection change and the Single View fields: this mapping will be executed at the beginning of the aggregation, to retrieve the **base projection** that will be used as a starting point to compute the single view.
@@ -731,10 +742,8 @@ The following explains how to configure an Aggregation using the **No Code** fea
 Please make sure that your project has activated this feature. You might need to ask your Project Administrator for it.
 :::
 
-Assuming that the ER Schema has already been selected (see previous paragraph), here is a list of steps to be executed to configure the Aggregation:
+Assuming that the ER Schema and the base projection have already been selected (see previous paragraphs), here is a list of steps to be executed to configure the Aggregation:
 
-* Selecting the **Aggregation** tab, you'll be required to select a Base Projection which is the Projection from where the mapping will begin:
-in our tutorial, we select the Projection `registry` and click on **Set base projection**. After this, the Single View Data Model will show up to the left, ready for the configuration.
 * Select the field `registryId`: a panel will open to the right where we can select the dependency `registry` and the field `registry_id`.
 * Select the field `name`: a panel will open to the right where we can select the dependency `registry` and the field `name`.
 * Select the field `city`: a panel will open to the right where we can select the dependency `registry` and the field `city`.
