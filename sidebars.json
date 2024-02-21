@@ -1051,16 +1051,16 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "fast_data/configuration/realtime_updater/overview",
+            "id": "fast_data/configuration/realtime-updater/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "fast_data/configuration/realtime_updater/configuration_files",
+              "id": "fast_data/configuration/realtime-updater/configuration-files",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/realtime_updater/advanced_topics",
+              "id": "fast_data/configuration/realtime-updater/advanced-topics",
               "type": "doc"
             }
           ]

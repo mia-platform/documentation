@@ -1,5 +1,5 @@
 ---
-id: advanced_topics
+id: advanced-topics
 title: Real-Time Updater Advanced Settings
 sidebar_label: Advanced Settings
 ---

@@ -1,5 +1,5 @@
 ---
-id: configuration_files
+id: configuration-files
 title: Real-Time Updater Configuration Files
 sidebar_label: Configuration Files
 ---
