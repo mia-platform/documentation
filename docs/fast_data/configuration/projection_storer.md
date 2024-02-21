@@ -154,9 +154,9 @@ Here is described the interface of the custom message adapter function:
 
 - `message` → a map representing the ingestion message. It contains the following properties:
   - `key`:
-    - `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
+    - `Buffer` → the raw message key of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
   - `value`:
-    - `Buffer` (Javascript) → the raw value that contains the payload of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
+    - `Buffer` → the raw value that contains the payload of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
 - `primaryKeys` → the list of field names that compose the primary key identifier for that specific projection
 - `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
 
@@ -169,7 +169,7 @@ Here is described the interface of the custom message adapter function:
 
 Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
 
-<details><summary>Custom Message Adapter Function (Javascript - messageAdapter.js)</summary>
+<details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
 <p>
 
 ```javascript
@@ -221,7 +221,7 @@ function extractKey(obj, wantedKeys) {
 </p>
 </details>
 
-<details><summary>Custom Message Adapter Function (Javascript - with empty payload management - messageAdapter.js)</summary>
+<details><summary>Custom Message Adapter Function (with empty payload management - messageAdapter.js)</summary>
 <p>
 
 ```javascript
@@ -323,9 +323,47 @@ Considering the implementation of these cast functions, they expect as input two
 to be transformed and the _field name_ represented as `string`. The output of the cast functions should be a single value
 in the type expected by the data model for that specific field on which the cast function is applied.
 
-Below is provided an example of cast functions implementation, one for each supported programming language.
+Below you can find several examples about implementation of cast functions.
 
-<details><summary>Custom Cast Function (Javascript - castToTitleCase.js)</summary>
+<details><summary>Custom Cast Function (mapToAddressType.js)</summary>
+<p>
+
+```javascript
+const addressMapping = {
+  1: "SHIPPING",
+  2: "BILLING",
+  3: "LIVING"
+};
+
+// NOTE: the name of the function must correspond to
+//       the key associated to the file containing it
+function mapToAddressType(value, fieldName) {
+  if (typeof value === 'string') {
+    return addressMapping[parseInt(value)];
+  } else if (typeof value === 'number') {
+    return addressMapping[value];
+  } else {
+    // NOTE: a basic logger can be accessed via internal binding
+    logger.debug(`not an address type code: ${value} - fieldName: ${fieldName}`);
+    return null;
+  }
+}
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater 
+try {
+    // export function for Real-Time Updater
+    module.exports = mapToAddressType
+} catch(error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
+}
+```
+
+</p>
+</details>
+
+<details><summary>Custom Cast Function (castToTitleCase.js)</summary>
 <p>
 
 ```javascript
