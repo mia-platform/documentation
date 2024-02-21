@@ -139,7 +139,7 @@ In this modal, you can specify the title of your commit along with a short descr
 It's also possible to create a new branch along with the commit, which will contain the current configuration.  
 
 :::tip
-Additional information about the configuration may appear on the modal, highlightning potential warnings about your configuration.
+Additional information about the configuration may appear on the modal, highlighting potential warnings about your configuration.
 :::
 
 ### Create Tag
