@@ -137,7 +137,7 @@ If `LIVE_TELECONSULTATION` is set to false, the period of time during which a pa
 
 ### Teleconsultation Service Configuration
 
-The Teleconsultation Service Configuration is a JSON object with 5 root properties.
+The Teleconsultation Service Configuration is a JSON object with 6 root properties.
 
 **1. privileges**
 
@@ -163,7 +163,17 @@ The Teleconsultation Service Configuration is a JSON object with 5 root properti
 -   _required_:  `false`;
 -   _description_: contains a field called _url_, which specify the url where the company logo is stored.
 
-**5. userIdPathInRequest**
+**5. groupsWithBrackgroundList**
+
+:::note
+Available from version 1.6.1 of the teleconsultation-backend service
+:::
+  
+-   _type_: array;
+-   _required_:  `false`;
+-   _description_: contains a list of strings referring to user groups for which a virtual background should be used. Follow [these instructions](./30_usage.md#post-settingsbackground-image) to configure a virtual background for the service.
+
+**6. userIdPathInRequest**
 
 -   _type_: array;
 -   _required_:  `false`;
@@ -185,6 +195,7 @@ The `JSON` file is structured like the following example:
     "light": {...},
     "dark": {...}
   },
+  "groupsWithBrackgroundList": [...]
   "companyLogo": {
     "url": ""
   }
