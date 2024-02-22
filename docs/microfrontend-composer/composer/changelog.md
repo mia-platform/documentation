@@ -10,6 +10,25 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.7.2] - 2024-02-12
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.15`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.3`
+- `@mia-platform-internal/reactord` to `^10.2.0`
+- `rc-virtual-list` to `^3.11.4`
+- `react-router-dom` to `^6.22.0`
+- Dev dependencies updated
+
+### Changed
+
+- Dynamic routes removed from router.json (Dynamic Sidebar implementation)
+
+### Fixed
+
+- Fixed edit page modal title copy
+
 ## [1.7.1] - 2024-01-29
 
 ### Versioning
