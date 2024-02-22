@@ -309,6 +309,7 @@ Here it is shown a possible example of configuring two custom cast functions:
 
 ```json
 "castFunctions": {
+  "mapToAddressType": "/app/extensions/mapToAddressType.js",
   "castToTitleCase": "/app/extensions/castToTitleCase.js"
 }
 ```
