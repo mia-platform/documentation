@@ -117,14 +117,16 @@ This version introduces the possibility to enable the OpenTelemetry tracing feat
 
 #### Introduction of Mia-Platform Company
 
-Since this version, a Mia-Platform Company will be created during the installation of the Console. Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
+Since this version, a Mia-Platform Company will be created during the installation of the Console. 
+Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
 
-The value `.Values.configurations.miaPlatformDefaultCompanyId` is required.
+The value `.Values.configurations.miaPlatformDefaultCompanyId` is required, it must be a `kebab-case` string free of spaces and UTF-8 characters.
 When installing a fresh instance of the Console or while upgrading from a previous version, a new company will be created with the given value only if not already existing.
 
-:::warning
+:::tip
 
-You can also set this value to an already existing company, but be aware that this Company will be used also for installation internal purposes.
-For this reason we strongly suggest to prefer a dedicated Company.
+We suggest to use the value `mia-platform` as default company ID, since it should be clear that it refers to Mia-Platform.
+
+However, please make sure that a tenant with the same name does not already exist: in such case we suggest to use a different name such as `mia-platform-internal` or similar.
 
 :::
