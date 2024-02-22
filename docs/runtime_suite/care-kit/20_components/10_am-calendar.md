@@ -144,6 +144,7 @@ The `slotPermissions` and `appointmentPermissions` properties are not added to s
 |----------|------|----------|---------|-------------|
 | `addressProperty` | string | false | address | Name of the event property that contains the location of the event. If present it is shown in the modal detail popover |
 | `appointmentConfig` | [AppointmentConfig](#appointmentconfig) | false | - | Object that contains the name of the appointments properties used to populate booked slot and the draggable modal |
+| `availabilityConfig` | [AvailabilityConfig](#availabilityconfig) | false | - | Object that contains the name of the availability properties used to populate slot and the draggable modal |
 | `appointmentMode` | boolean | false | false | Boolean the define which calendar mode is in use. If false the calendar is in availability mode, if true in appointment mode |
 | `modalFooterVisible` | boolean | false | true | Boolean the define if the modal with the appointment detail has the footer with the actions buttons |
 | `appointmentManagerUrl` | string | false | - | The base path of the [Appointment manager][appointment-manager] |
@@ -169,7 +170,7 @@ The `slotPermissions` and `appointmentPermissions` properties are not added to s
 {
   titleProperty: string[]
   ownerProperty: string
-  additionalProperty?: {property: string; label: Record<string, string> }[]
+  additionalProperty?: {property: string; label: Record<string, string>; type: string}[]
 }
 ```
 
@@ -191,7 +192,8 @@ The `slotPermissions` and `appointmentPermissions` properties are not added to s
       "label": {
         "it": "Prestazione",
         "en": "Performance"
-      }
+      },
+      "type": "string
     }
   ]
 }
@@ -281,6 +283,35 @@ ResourceDetails = {
 }
 ```
 
+### AvailabilityConfig
+
+```
+{
+  additionalProperty?: {property: string; label: Record<string, string>; type: string}[]
+}
+```
+
+| property | description |
+|----------|-------------|
+| `additionalProperty` |Array of the custom properties that are shown in the draggable modal that spawn when clicking a free slot. Each element of the array should contain a field property with the name of the custom property and an object label containing specific translations according to ISO 639-1 code. |
+
+**Example**
+
+```
+"availabilityConfig": {
+  "additionalProperty":[
+    {
+      "property": "slotDuration",
+      "label": {
+        "it": "Durata",
+        "en": "Duration"
+      },
+      "type": "number"
+    }
+  ]
+}
+```
+
 ### SlotConfig
 
 ```
@@ -306,7 +337,8 @@ ResourceDetails = {
       "label": {
         "it": "Prestazione",
         "en": "Performance"
-      }
+      },
+      "type": "string"
     }
   ]
 }
