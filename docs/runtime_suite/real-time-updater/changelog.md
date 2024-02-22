@@ -15,6 +15,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.5.8] 2024-02-13
+
+### Added
+
+* add `PRODUCER_COMPRESSION` environment variable, to enable the encoding of kafka pr-update messages with the following encoding standards:
+  - `snappy`
+  - `gzip`
+  - `none` (__default__ if no value has been provided)
+
+### Updated
+
+* `kafka-importer-lib` to `v7.x.x`
+
 ## [7.5.7] 2023-12-15
 
 ### Fixed
