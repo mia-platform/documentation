@@ -202,7 +202,9 @@ It takes no additional parameters.
 Auth0 Jobs endpoints are designed for bulk operation on the underlying tenant.
 
 :::info
-These endpoints are available from `v3.4.0`
+
+These endpoints are available from `v3.4.0`. To enable them, make sure that your configuration contains the `managementClient.supportedConnectionsMap`.
+
 :::
 
 #### Bulk Import users

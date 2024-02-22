@@ -32,8 +32,8 @@ The Auth0-Client service accepts the following environment variables:
 The following environment variables are to sync user metadata in a `user` collection on every token create/update:
 
 - __MONGO_DB_URL__: defines the mongoDB url
-- __USERS_DATABASE_NAME__: defines `users` database name
-- __USERS_COLLECTION_NAME__: defines `users` collection name
+- __USERS_DATABASE_NAME__: defines `users` MongoDB collection name
+- __USERS_COLLECTION_NAME__: defines `users` CRUD Collection name
 - __USERS_PROPERTIES_TO_SAVE__: defines `users` properties to save
 - __DELAY_SHUTDOWN_SECONDS__: defines the delay in seconds before shutting down (default: 10)
 
@@ -140,6 +140,9 @@ The Auth0-Client service uses a single config map called `auth0-client-config` a
           - \"Lax\": Cookies are not sent on normal cross-site subrequests (for example to load images or frames into a third party site), but are sent when a user is navigating to the origin site (i.e., when following a link).
           - \"Strict\": Cookies will only be sent in a first-party context and not be sent along with requests initiated by third party websites.
           - \"None\": Cookies will be sent in all contexts, i.e. in responses to both first-party and cross-site requests."
+        },
+        "authorizeStateRequired": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -235,6 +238,36 @@ Notice that the `managementClient` has 2 different possible configurations; the 
 
 The `audience` field, if specified, must match the *Identifier* of the Auth0 [API Settings](https://auth0.com/docs/get-started/apis/api-settings#general-settings) of your Application.
 
+### Authorize state parameter
+
+:::info
+
+This feature is turned off by default for retro-compatibility reasons, but its usage is strongly encouraged.
+
+
+To enable this feature, you need to set the config parameter variable `authorizeStateRequired` to `true`, under the `clientType` configuration of the `client`.
+
+NB: if the config parameter is not set, the `state` parameter will be ignored and generated internally, maintaining the current behavior.
+
+:::
+
+
+To achieve a better level of security, the client should take charge of the process of the state generation and subsequent check after the redirect.
+This enables protection against CSRF attacks, as documented [here](https://www.rfc-editor.org/rfc/rfc6749#section-10.12).
+
+The client must follow these steps:
+
+- Generate a random state string. The randomly generated string should be sufficiently hard to guess, as described [here](https://www.rfc-editor.org/rfc/rfc6749#section-10.10). For instance, an [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier) is compliant with this specification.
+
+- Save the state on the client application side (for example in local storage), making sure the location where it is saved it is only accessible by the client.
+
+- Call the `/authorize` endpoint, passing the `state` in the query string.
+
+- Once the redirect URL is called, the client must check that the state in the redirect URL querystring matches the one it generated at the first step. If it doesn't, the client must refuse to proceed in the token request.
+
+- If the state validation check succeeds, the client can now obtain a token by calling the `/oauth/token` endpoint.
+
+
 ## Example of configuration
 
 ```json
@@ -262,7 +295,8 @@ The `audience` field, if specified, must match the *Identifier* of the Auth0 [AP
     "clientId": "{{AUTH0_MANAGEMENT_CLIENT_ID}}",
     "clientSecret": "{{AUTH0_MANAGEMENT_CLIENT_SECRET}}",
     "supportedConnections": [],
-    "defaultCreateUserConnection": ""
+    "defaultCreateUserConnection": "",
+    "authorizeStateRequired": true
   },
   "customClaimsNamespaces": [
     "https://mia-platform.eu/app_metadata",
@@ -357,6 +391,10 @@ Now you have to handle the routing of the request to the auth0-client and oauth-
 
 Put the following code into `auth.json` file of the authorization-service in order to open the routes declared above: 
 
+<details>
+<summary>Click to expand `auth.json` file contents</summary>
+
+
 ```json
 {
   "/web-login": {
@@ -417,6 +455,7 @@ Put the following code into `auth.json` file of the authorization-service in ord
   }
 }
 ```
+</details>
 
 Finally, you need to configure auth0-client to be able to use it correctly:
 
@@ -440,7 +479,8 @@ Finally, you need to configure auth0-client to be able to use it correctly:
     "managementClient": {
         "auth0Url": "YOUR_AUTH0_URL",
         "clientId": "YOUR_AUTH0_CLIENT_ID",
-        "clientSecret": "YOUR_AUTH0_CLIENT_SECRET"
+        "clientSecret": "YOUR_AUTH0_CLIENT_SECRET",
+        "authorizeStateRequired": true
     },
     "customClaimsNamespaces": [
         "https://mia-platform.eu/app_metadata",
