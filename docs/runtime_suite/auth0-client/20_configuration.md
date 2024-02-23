@@ -28,6 +28,7 @@ The Auth0-Client service accepts the following environment variables:
 - __ORIGINAL_PROTOCOL_HEADER__ (__required__): defines the original protocol header
 - __SERVICE_CONFIG_FILE_NAME__ (__required__): defines the service config name
 - __SERVICE_CONFIG_PATH__ (__required__): defines the service config path
+- __AUTH0_LOGOUT_CLIENT_ID_ENABLED__ (__default: `false`__): When true, the `client_id` query string is always used when logging auth from Auth0. N.B. Enabling this variable will possibly require some changes on your Auth0 dashboard configuration, please [check this paragraph](./50_usage.md#logout-the-users) for details.
 
 The following environment variables are to sync user metadata in a `user` collection on every token create/update:
 
@@ -294,8 +295,8 @@ The client must follow these steps:
     "auth0Url": "my auth0 url",
     "clientId": "{{AUTH0_MANAGEMENT_CLIENT_ID}}",
     "clientSecret": "{{AUTH0_MANAGEMENT_CLIENT_SECRET}}",
-    "supportedConnections": [],
-    "defaultCreateUserConnection": "",
+    "supportedConnectionsMap": {},
+    "defaultManagementConnectionName": "",
     "authorizeStateRequired": true
   },
   "customClaimsNamespaces": [
