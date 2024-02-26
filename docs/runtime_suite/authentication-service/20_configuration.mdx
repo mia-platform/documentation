@@ -28,9 +28,11 @@ The environment variables needed by the service are:
 - **REDIS_MODE** (default: `normal`, introduced in `v3.5.0`): defines the redis mode (`normal` or `sentinel`);
 - **REDIS_HOSTS** (_required_): a comma-separated list of the Redis hosts; The hosts must be in the form `ipaddress:6379`. When `REDIS_MODE=normal`, specify only one host;
 - **REDIS_HOST** ( _DEPRECATED_ since `v3.5.0`, _required_ if `REDIS_HOSTS` is not set): the Redis host, with the port; this is deprecated: use `REDIS_HOSTS` instead. It is still supported for retrocompatibility only when `REDIS_MODE=normal`;
-- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis. Only supported if `REDIS_MODE=normal`. Leave blank if the server does not require authentication.
-- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis. Only supported if `REDIS_MODE=normal`. Leave blank if the server does not require authentication.
+- **REDIS_USERNAME** (_optional_): the username to authenticate to Redis. Leave blank if the server does not require authentication.
+- **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis. Leave blank if the server does not require authentication.
 - **REDIS_MASTER_NAME** (_required_ if `REDIS_MODE=sentinel`): the name of the master of your Redis Sentinel configuration
+- **REDIS_TLS** (_optional_): if `true`, enable the TLS connection to Redis. Default is `false`;
+- **REDIS_TLS_CACERT** (_optional_): the path to the CA of the Redis server, if it's not public (this is effective only if `REDIS_TLS` is set to `true`);
 - **CONFIG_FILE_PATH** (_required_): the path to the configuration file. Do not include the file name;
 - **CONFIG_FILE_NAME** (_required_): the name of the JSON configuration file. Do not include the extension;
 - **USERS_CRUD_BASE_URL** (_required_): base URL of the internal endpoint of the CRUD service exposing the data of the users (e.g. `http://crud-service/users`);
