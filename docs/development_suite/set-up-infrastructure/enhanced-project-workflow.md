@@ -83,11 +83,13 @@ Versions can only be deleted by Project Administrators.
 
 ### Revision history
 
-To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its [revision history](#revision-history), which contains past snapshots of the Project configuration.
+To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its revision history, which contains past snapshots of the Project configuration.
 
 ![Revision History modal](img/revision-history.png)
 
-The revision history, accessible by clicking the related icon inside the branch selection area, contains a list of snapshots of the Project configuration, created each time it has been saved, on a certain revision or version. It also includes useful information such as the snapshot date, author, associated message, and any tags created with it. Moreover, the right-side button will show the differences between the selected snapshot and the previous one, in order to have a better understanding of the changes applied to the revision.
+The revision history is accessible by clicking the related icon inside the branch selection area. It contains a list of snapshots of the Project configuration on the current revision or version, created each time it has been saved. It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it. Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
+
+![Diff Editor on Revision History modal](img/diff-editor-on-revision-history.png)
 
 ### New deployment workflow
 
