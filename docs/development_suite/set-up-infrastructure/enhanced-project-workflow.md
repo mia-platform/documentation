@@ -69,8 +69,6 @@ This change also means that the Console will not rely on the typical Git-based i
 - `Branches` and `Tags` become **`Revisions`** and **`Versions`**
 - the `Commit history` becomes **`Revision history`**
 
-To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its [revision history](#revision-history), which contains past snapshots of the Project configuration.
-
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
 ![Revisions management page](img/revisions-overview.png)
@@ -84,6 +82,8 @@ Versions can only be deleted by Project Administrators.
 ![Versions management page](img/versions-overview.png)
 
 ### Revision history
+
+To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its [revision history](#revision-history), which contains past snapshots of the Project configuration.
 
 ![Revision History modal](img/revision-history.png)
 

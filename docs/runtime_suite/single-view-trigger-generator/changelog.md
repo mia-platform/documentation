@@ -15,6 +15,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.6] 2024-02-13
+
+### Added
+
+*  
+  * `kafkajs-snappy`, to enable the encoding/decoding of kafka messages having `snappy` compression
+  * `compression` field to the event store configuration of the kafka producer, which accepts the following values:
+    - `snappy`
+    - `gzip`
+    - `none` (__default__ value used by the service if no value has been provided) 
+
+## [3.1.5] 2024-02-09
+
+### Updated
+
+- `fast-data-automation-lib` to `v3.1.5`
+
 ## [3.1.4] 2023-12-15
 
 ### Fixed

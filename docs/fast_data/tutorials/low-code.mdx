@@ -29,26 +29,26 @@ To do that, in the console, you will:
 Before starting this tutorial, you need to be familiar with the concepts of [Fast Data architecture](/fast_data/architecture.md), including [Projections](/fast_data/configuration/projections.md), [Single View](/fast_data/configuration/single_views.md), and Kafka (including producers and consumers).
 For the technical part of this tutorial, an up-and-running Kafka cluster is required.
 
-## System of Records
+## System of Record
 
-A System of Records is a container of _Projections_, which is are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
+A System of Record is a container of _Projections_, which is are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
 We will use these projections to have an easy way to read a 1:1 copy of the data from the source systems, and later they will be used to aggregate the data from the source systems, using the Single View Creator.
 
 The architectural component responsible for creating and updating the projection is the _Real-Time Updater_ service.
 To simplify, this microservice is a Kafka consumer that will consume the data from the source systems and will update the projection.
 
 In this tutorial, we can imagine a simple delivery platform where the data are the registry and the order of the customers.
-So, we will create a single System of Records with two projections (one for the registry and one for the order) attached to a single Real-Time Updater.
+So, we will create a single System of Record with two projections (one for the registry and one for the order) attached to a single Real-Time Updater.
 
 ### Microservice Real-Time Updater
 
 :::info
 From version `11.7.0` of the Console, the _Real-Time Updater_ service must be created manually with the guide explained in this paragraph.
 
-If you're using an older version, you can skip this paragraph since the service is automatically created when saving the configuration after creating the System of Records.
+If you're using an older version, you can skip this paragraph since the service is automatically created when saving the configuration after creating the System of Record.
 :::
 
-The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Records we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
+The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Record we will create. To do so, we move to the _Microservices_ section of the console. From here we can click on the
 "Create a Microservice" button on the top-left corner to open the Marketplace and select our microservice.
 
 We can find it under the name of *Real-Time Updater*.
@@ -67,31 +67,31 @@ will be created and we will be redirected to the service page. Now we need to co
 - **KAFKA_SASL_MECHANISM**: the mechanism that will be used to login to the kafka brokers
 
 :::info
-The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime_updater.md).
+The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md).
 :::
 
-### Create the System of Records
+### Create the System of Record
 
-Before starting to create projections, we need to create the System of Records (_SoR_) representing the source system we want to connect to.
+Before starting to create projections, we need to create the System of Record (_SoR_) representing the source system we want to connect to.
 
 To create a SoR follow the steps below:
-1. Open the page Projection in the Fast Data section of our left menu;
-2. Click on the button "Create new System of Records":
-![Page System of Records](img/01-page-system-of-records.png)
+1. Open the Systems of Record page in the Fast Data section of our left menu;
+2. Click on the button "Create new System of Record":
+![Page System of Record](img/01-page-systems-of-record.png)
 3. In the dialog, choose the name (which will act as an identifier of the System of Record, we will call it _delivery_) and the Kafka message format (choose the format you want to use for the messages sent on the Kafka topics) and then click on "Go to system page":
-![Create System of Records](img/02-create-system-of-records.png)
-4. Now we can create the projections inside this System of Records:
+![Create System of Record](img/02-create-system-of-record.png)
+4. Now we can create the projections inside this System of Record:
 ![Page Projections](img/03-page-projections.png)
 
 ### Registry Projection
 
 The first projection we will create is the registry and it will store the data of the registries.
 
-Inside a System of Records page, we need to click on the "Create new Projection" button. A modal will open allowing the user to choose the Projection name. Click on "Create" to create the Projection.
-![Create System of Records](img/04-create-projection.png)
+Inside a System of Record page, we need to click on the "Create new Projection" button. A modal will open allowing the user to choose the Projection name. Click on "Create" to create the Projection.
+![Create System of Record](img/04-create-projection.png)
 
 Once the projection is created, you will be automatically redirected to the page of the registry projection. On this page, we can see its data schema and other configurations related to it.
-![Create System of Records](img/05-page-overview-projection.png)
+![Create System of Record](img/05-page-overview-projection.png)
 
 #### Fields
 
@@ -125,7 +125,7 @@ For the scope of this tutorial, we ask you to add the following fields:
 At the bottom of the same page, we can also see the Kafka topics for each environment. There are two types of topics (_Ingestion topics_ and _PR Update topics_)
 but within the scope of this tutorial, only the ingestion topics are considered. The Kafka Ingestion topics will be used by the Real-Time Updater
 to receive the data from the Source Systems so that the Projections will be updated, but we will discuss this later.
-![Create System of Records](img/05b-page-overview-projection-kafka.png)
+![Create System of Record](img/05b-page-overview-projection-kafka.png)
 
 These are the topics defined in Kafka where we expect to receive messages related to the update of projections. The following are the suggested names for the Ingestion topics:
 
@@ -143,7 +143,7 @@ The Real-Time Updater, the service that receives the update from the source Syst
 ### Order Projection
 
 The second projection we will create is the _order_ one. This projection will store the data of the user's orders.
-Again, inside a System of Records page, we need to click on the button "Create new Projection", input _order_ as the projection name and click on "Create".
+Again, inside a System of Record page, we need to click on the button "Create new Projection", input _order_ as the projection name and click on "Create".
 
 ![Create Order Projection](img/15-create-other-projection.png)
 
@@ -171,13 +171,13 @@ These are the topics defined in Kafka where we expect to receive messages relate
 - **demo.integration.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in the _integration_ environment
 - **demo.production.delivery.order.ingestion**: the topic that will be used to send the data to the order projection in the _production_ environment
 
-### Attach the Real-Time Updater to the System of Records
+### Attach the Real-Time Updater to the System of Record
 
 :::info
-Attaching a service to a System of Records is required only with version `11.7.0` of the Console or above. Otherwise, the service will be automatically created and attached to the System
+Attaching a service to a System of Record is required only with version `11.7.0` of the Console or above. Otherwise, the service will be automatically created and attached to the System
 :::
 
-The last step to finish the configuration of the System of Records is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
+The last step to finish the configuration of the System of Record is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
 have been attached yet and suggest you to select one from the list of compatible services.
 
 ![Attach Real-Time Updater](img/08-attach-RTU.png)
@@ -345,7 +345,7 @@ You can find a more thorough explanation of the _Projection Changes Schema_ on t
 
 ### Expose Projection Endpoints
 
-At this point, we have configured the microservice, we already have one system of records and two projections, but we need to expose the Projection endpoints. It is not mandatory to expose the Projection endpoints to create, update and work with the Single View, but if you want to expose the raw data stored in the projection you need to create the endpoints.
+At this point, we have configured the microservice, we already have one System of Record and two projections, but we need to expose the Projection endpoints. It is not mandatory to expose the Projection endpoints to create, update and work with the Single View, but if you want to expose the raw data stored in the projection you need to create the endpoints.
 
 In the Endpoint section, we can click on the **Create new endpoint** button to create the Projection's endpoints.
 ![Create Endpoint's Projection](img/13-create-endpoint.png)
@@ -497,7 +497,7 @@ In this tutorial, we will create two strategies: the first one is for the regist
 Inside our Single View "order-history", click on the **Add link to strategy** button.
 ![Strategy Page](img/28-strategy-page.png)
 
-Now we will choose the System Of Records and the Projection that we want to link to the Strategy; in our case, "delivery" and "registry".
+Now we will choose the System of Record and the Projection that we want to link to the Strategy; in our case, "delivery" and "registry".
 ![Strategy Page](img/29-strategy-select-projection.png)
 
 Last but not least, we need to choose the Strategy Source. In this case, we will use the "Low Code" strategy, then we can click on the **Create** button.

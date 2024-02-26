@@ -1047,8 +1047,23 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/realtime_updater",
-          "type": "doc"
+          "label": "Real-Time Updater",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "fast_data/configuration/realtime-updater/real-time-updater",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "fast_data/configuration/realtime-updater/configuration-files",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/realtime-updater/advanced-topics",
+              "type": "doc"
+            }
+          ]
         },
         {
           "label": "Single View Creator",
@@ -1646,6 +1661,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v12.2.1", "type": "doc" },
         { "id": "release-notes/v12.2.0", "type": "doc" },
         { "id": "release-notes/v12.1.2", "type": "doc" },
         { "id": "release-notes/v12.1.1", "type": "doc" },
