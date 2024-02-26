@@ -15,6 +15,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] 2024-02-26
+
+- Fix notification settings changing 'role' with 'rule'
+
 ## [2.1.0] 2024-01-05
 
 ### Added
@@ -30,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The POST /send endpoint now supports the new field **emailSender** to overwrite the sender set in the service config.
 - Compile event schemas only once
 - Update IC Resource Forbidden Event handler to fetch users from notification settings
-- [MCRDNMUI-16](https://makeitapp.atlassian.net/browse/MCRDNMUI-16]: Add supported and enabled channels to the `GET /user/event` endpoint
+- Add supported and enabled channels to the `GET /user/event` endpoint
 - `PATCH /user/notification-settings` returns a 400 error if user tries to patch an unsupported channel
 
 ### Fixed
