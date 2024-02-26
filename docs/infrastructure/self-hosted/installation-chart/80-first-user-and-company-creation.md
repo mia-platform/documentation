@@ -32,12 +32,12 @@ First of all you need to designate the first Super User, to do so you need to ha
 ```
 
 :::info
-If you want to setup multiple Super User you can use the same binding and add multiple `subjects` to the list.
+If you want to setup multiple Super User, you can use the same binding and add multiple `subjects` to the list.
 :::
 
 ## Create the first company
 
-Now that you have a Super User you can create your fist Company; Company creation can be done via API or via CMS
+Now that you have a Super User, you can create your first Company; Company creation can be done via API or via CMS
 
 :::info
 For further information head to the Company creation [documentation section](../../../development_suite/company/create).
@@ -45,7 +45,7 @@ For further information head to the Company creation [documentation section](../
 
 ### Use Console API Portal
 
-In order to create a new Company via API you can use the API Portal by heading to the `/documentations/api-portal/` path on your Console host and use the `POST /companies` API; the API will return the id of the company to be used later.
+In order to create a new Company via API you can use the API Portal by heading to the `/documentations/api-portal/` path on your Console host and use the `POST /companies` API; the API will return the id of the company to be used later.
 
 After you have created a Company you will be able to access it from Console at the `/tenants/:id` path, here you'll be able to manage the Company providers and Clusters.
 
