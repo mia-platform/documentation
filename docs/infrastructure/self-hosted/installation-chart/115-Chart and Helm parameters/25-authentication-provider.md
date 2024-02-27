@@ -1,6 +1,6 @@
 ---
 id: authentication-provider
-title: Authentication Provider
+title: Helm chart Authentication Provider
 sidebar_label: Authentication Provider
 ---
 

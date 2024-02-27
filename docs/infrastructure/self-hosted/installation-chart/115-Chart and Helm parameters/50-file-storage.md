@@ -1,6 +1,6 @@
 ---
 id: file-storage
-title: File Storage Management
+title: Helm chart File Storage Management
 sidebar_label: File Storage
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: license-management
-title: License management and tracking
+title: Helm chart License management and tracking
 sidebar_label: License Management
 ---
 

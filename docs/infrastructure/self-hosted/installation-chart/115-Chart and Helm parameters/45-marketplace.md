@@ -1,6 +1,6 @@
 ---
 id: marketplace
-title: Marketplace
+title: Helm chart Marketplace configuration
 sidebar_label: Marketplace
 ---
 
