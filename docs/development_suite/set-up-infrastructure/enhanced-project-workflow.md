@@ -73,7 +73,7 @@ Developers can manage *revisions* and *versions* from the dedicated sections ins
 
 ![Revisions management page](img/revisions-overview.png)
 
-Versions with their description and release note can be viewed and deleted through the versions management page:
+Versions, a feature similar to Git _tags_ that works as immutable past snapshots of the configuration in a particular moment, with their description and release note, can be viewed and deleted through the versions management page:
 
 :::info
 Versions can only be deleted by Project Administrators.
@@ -83,7 +83,7 @@ Versions can only be deleted by Project Administrators.
 
 ### Revision history
 
-To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its revision history, which contains past snapshots of the Project configuration.
+To keep track of how a revision has changed over time, the user can access its revision history, which contains past snapshots of the Project configuration.
 
 ![Revision History modal](img/revision-history.png)
 
