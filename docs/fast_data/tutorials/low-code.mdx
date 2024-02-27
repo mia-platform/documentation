@@ -42,12 +42,12 @@ For the technical part of this tutorial, you will need both Kafka and MongoDB in
 
 ## Systems of Record
 
-A _System of Record_ (__SoR__) is a container of _Projections_, which is are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
+A _System of Record_ (__SoR__) is a container of _Projections_, which are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
 We will use these projections to have a copy of the data from the source systems, and later they will be used to aggregate the data from the source systems, using the Single View Creator.
 
-The architectural component responsible for creating and updating the projection is either the _Real-Time Updater_ or, starting from `Console v12.0.0`, the _Projection Storer_: we will refer to it as `SoR Microservice` throughout this tutorial.
+The architectural component responsible for creating and updating the projection is either the _Real-Time Updater_ or, starting from `Console v12.0.0`, the _Projection Storer_: we will refer to them as `SoR Microservices` throughout this tutorial.
 
-This microservice manages a Kafka consumer that will consume the data from the source systems and will update the corresponding projections on MongoDB.
+This microservice manages a Kafka consumer that consume the data from the source systems and update the corresponding projections on MongoDB.
 
 In this tutorial, we can imagine a simple delivery platform where the data are the registry and the order of the customers.
 So, we will create a single System of Record with two projections (one for the registry and one for the order) attached to a single Real-Time Updater.
@@ -75,7 +75,7 @@ Before starting to create projections, we need to create the System of Record re
 
   ![Create Systems of Record](img/02-create-system-of-record.png)
 
-4. Now we can either start the projections or attach _SoR microservices_ inside this System of Record:
+4. Now we can either start define the projections or attach _SoR microservices_ inside this System of Record:
 
 ![Page Projections](img/03-page-projections.png)
 
@@ -94,14 +94,14 @@ Although the two services have several differences, that we will see later durin
 <summary>Projection Storer Setup</summary>
 <p>
 
-The first step is to create the microservice _Projection Storer_, that will be attached to the System of Record we will create. To do so, we move to the _Microservices_ section of the Console. From here we can click on the
+The first step is to create the microservice _Projection Storer_, that will be attached to the System of Record we created before. To do so, we move to the _Microservices_ section of the Console. From here we can click on the
 "Create a Microservice" button on the top-left corner to open the Marketplace and select our microservice.
 
 We can find it under the name of *Projection Storer*.
 
 ![Create Delivery PS](img/07-create-PS.png)
 
-After selecting the _Projection Storer_ service, the only thing you need to choose is a unique name (we suggest `delivery-projection-storer`) and, eventually the description. Once clicked on the `Create` button, the service
+After selecting the _Projection Storer_ service, you just need to choose a unique name (we suggest `delivery-projection-storer`) and, eventually the description. Once clicked on the `Create` button, the service
 will be created and we will be redirected to the service page.
 
 Then, move to the `delivery` SoR and, in the `Services` section, attach the newly created service.
@@ -151,19 +151,17 @@ will be created and we will be redirected to the service page. Now we need to co
 The Real-Time Updater includes more optional parameters that might be included via Environment Variables. If you need to know more about them, you can [read the documentation of the Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md).
 :::
 
-The last step to finish the configuration of the System of Record is to attach the Real-Time Updater we originally created. To do so, move to the _Services_ tab where a placeholder will inform you that no services
-have been attached yet and suggest you to select one from the list of compatible services.
+The last step to finish the configuration is to attach the Real-Time Updater to the System of Record we originally created. To do so, move to the _Services_ tab of the _Projection_ page where a placeholder will inform you that no services
+have been attached yet and suggest you to select one from the list of compatible services, chose the Real-Time Updater you created before and save the configurations.
 
 ![Attach Real-Time Updater](img/08-attach-RTU.png)
-
-Then, we are ready to save the configuration.
 
 </p>
 </details>
 
 ## Projections
 
-Inside a System of Record page, we need to click on the `Create new Projection` button. A modal will open, allowing the user to choose the Projection name. Click on `Create` to create the Projection.
+To start define new Projections, inside a System of Record page, we need to click on the `Create new Projection` button. Doing so a modal will be opened, allowing the user to choose the Projection name. Click on the `Create` button to create the Projection.
 
 ![Create Projection](img/04-create-projection.png)
 
@@ -296,11 +294,11 @@ It is not mandatory to expose the Projection endpoints to create, update and wor
 In the Endpoint section, we can click on the **Create new endpoint** button to create the Projection's endpoints.
 ![Create Endpoint's Projection](img/13-create-endpoint.png)
 
-Inside the creation page, we can choose the endpoint path. Inside the type we need to select `Fast Data Projection` and, in the Fast Data Projection dropdown menu, we can choose the Projection that we want to expose.
+Inside the creation page, we can choose the endpoint path. From the _type_ drop-down we have to choose `Fast Data Projection` and, in the Fast Data Projection dropdown menu, we can choose the Projection that we want to expose.
 We can create two different endpoints, one for the registry and one for the order.
 
 :::caution
-Remember that the endpoint connected to the Fast Data will create just `GET` endpoints: so, we can't perform _update_ and _delete_ operations over the endpoint.
+Remember that the endpoints connected to the Fast Data will expose just the `GET` method: so, we can't perform _update_ and _delete_ operations over them.
 :::
 
 ### Test Projections
@@ -405,12 +403,12 @@ Once messages have been set, you can check from the API Documentations if both `
 
 ## Single View
 
-The Single View is an architectural object that it's used to store the aggregate data from the Projections. The goal of the Single View is to store the data already aggregated and ready to use from the Projection.
+The Single View is an architectural object that is used to store the aggregate data from the Projections. The goal of the Single View is to store the data already aggregated and ready to use from the Projection.
 A good approach is to store the data in Single Views dedicated to each channel and each use.
 
-In this tutorial, our Single View is called `order-history` and we will create an object schema with the registry information and the orders information linked to the registry: this means that each document is an object that contains the registry information about the user and a list of orders made by the user.
+In this tutorial, our Single View is called `order-history` and its schema has the registry information and its linked orders information: this means that each document is an object that contains the registry information about the user and a list of orders made by the user.
 
-We need to open the `Single Views` page in the Fast Data section of our left menu, then click on the **Create new Single View** button.
+To start define our single view we need to open the `Single Views` page in the Fast Data section of our left menu, then click on the **Create new Single View** button.
 
 ![Single View](img/19-single-view.png)
 
@@ -476,7 +474,7 @@ First of all, we need to create a microservice that we will attach to the Single
 
 ![Marketplace and Single View Creator](img/23-marketplace-single-view-low-code.png)
 
-Here we have two different plugins: the first one is for the Single View Creator, and the second one is for the Single View Creator Low Code.
+Here we have two different plugins: the first one is for the _Single View Creator_, and the second one is for the _Single View Creator Low Code_.
 We will go for the latter since we want to leverage the usage of ConfigMaps for a quicker configuration of the microservice. We suggest naming it `single-view-creator-delivery`.
 
 Now we need to configure all the parameters of the microservice, here is a set of the fields that we need to configure:
