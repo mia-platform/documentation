@@ -442,10 +442,10 @@ This event does not guarantee that the user in question already has an higher-pr
 
 *Available from v12.2.2*
 
-This event will be triggered when a user is removed from a Company, either directly or indirectly through a group.
+This event will be triggered when a user loses access to a company, project, or environment, either directly or via a group.
 
 :::note
-The event trigger gives no guarantee that the user no longer has access to the Company from which they were removed, because they may be associated with it through other (direct or group) bindings.
+This event does not guarantee that the user in question already had access to the resource via another group, or directly.
 :::
 
 <Tabs>
