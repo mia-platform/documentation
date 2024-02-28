@@ -120,7 +120,9 @@ This version introduces the possibility to enable the OpenTelemetry tracing feat
 Since this version, a Mia-Platform Company will be created during the installation of the Console. 
 Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
 
-The value `.Values.configurations.miaPlatformDefaultCompanyId` is required, it must be a `kebab-case` string free of spaces and UTF-8 characters.
+The value `.Values.configurations.miaPlatformDefaultCompanyId` is required;
+it must be a [RFC 1035 compliant label](https://datatracker.ietf.org/doc/html/rfc1035), i.e. a `kebab-case` string: only alphanumeric characters and dashes (`-`) are allowed, and the string must have a maximum length of 63 characters.
+
 When installing a fresh instance of the Console or while upgrading from a previous version, a new company will be created with the given value only if not already existing.
 
 :::tip

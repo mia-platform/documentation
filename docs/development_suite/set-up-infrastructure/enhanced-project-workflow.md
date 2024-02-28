@@ -69,23 +69,27 @@ This change also means that the Console will not rely on the typical Git-based i
 - `Branches` and `Tags` become **`Revisions`** and **`Versions`**
 - the `Commit history` becomes **`Revision history`**
 
-To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its history by clicking the related icon inside the branch selection area.
-
-![Revision History modal](img/revision-history.png)
-
-The table includes a list of all snapshots of the project configuration created with each save, along with useful information such as the snapshot date, author, associated message, and any tags created with it.
-
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
 ![Revisions management page](img/revisions-overview.png)
 
-Versions with their description and release note can be viewed and deleted through the versions management page:
+Versions works as immutable snapshots of the configuration in a particular moment, with their description and release note, can be viewed and deleted through the versions management page:
 
 :::info
 Versions can only be deleted by Project Administrators.
 :::
 
 ![Versions management page](img/versions-overview.png)
+
+### Revision history
+
+To keep track of how a revision has changed over time, the user can access its revision history, which contains past snapshots of the Project configuration.
+
+![Revision History modal](img/revision-history.png)
+
+The revision history is accessible by clicking the related icon inside the branch selection area. It contains a list of snapshots of the Project configuration on the current revision or version, created each time it has been saved. It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it. Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
+
+![Diff Editor on Revision History modal](img/diff-editor-on-revision-history.png)
 
 ### New deployment workflow
 
