@@ -14,15 +14,15 @@ This sections illustrates how to use the Notification Manager.
 
 As you may recall from the overview you can send notifications in two different ways:
 
-- manually: by sending a request to the [`POST /send`](#post-send) endpoint, passing the channels, recipients, template, … in the request body;
-- automatically when specific events occur, by calling the [`POST /notification-events`](#post-notification-events).
+- manually: by sending a request to the [`POST /send`][post-send] endpoint, passing the channels, recipients, template, … in the request body;
+- automatically when specific events occur, by calling the [`POST /notification-events`][post-notification-events].
 
 You can create, update or delete notification settings through the endpoints described in the following section:
 
-- [`GET /notification-settings/`](#get-notification-settings)
-- [`PATCH /notification-settings/:id`](#patch-notification-settingsid)
-- [`POST /notification-settings/`](#post-notification-settings)
-- [`DELETE /notification-settings/:id`](#delete-notification-settingsid)
+- [`GET /notification-settings/`][get-notification-settings]
+- [`PATCH /notification-settings/:id`][patch-notification-settingsid]
+- [`POST /notification-settings/`][post-notification-settings]
+- [`DELETE /notification-settings/:id`][delete-notification-settingsid]
 
 ## HTTP API
 
@@ -281,7 +281,7 @@ This endpoint returns the notification settings of the logged user, meaning thos
 - the `role` field contains a role assigned to the user;
 - the `cluster` field contains a cluster the user belongs to.
 
-The endpoint request and response specifications are the same as for the [`GET /notification-settings/` endpoint](#get-notification-settings). The endpoint does not support pagination, so it can only return the first 200 results.
+The endpoint request and response specifications are the same as for the [`GET /notification-settings/` endpoint][get-notification-settings]. The endpoint does not support pagination, so it can only return the first 200 results.
 
 ### PATCH /user-notification-settings/:id
 
@@ -300,7 +300,7 @@ Since the logged user can only modify his/her own settings, the notification set
 :::
 
 
-The endpoint request and response specifications are the same as for the [`PATCH /notification-settings/:id` endpoint](#patch-notification-settingsid).
+The endpoint request and response specifications are the same as for the [`PATCH /notification-settings/:id` endpoint][patch-notification-settingsid].
 
 ### DELETE /user-notification-settings/:id
 
@@ -312,7 +312,7 @@ The endpoint request and response specifications are the same as for the [`PATCH
 
 This endpoint allows the logged user to delete a notification setting having its user ID in the `user` field.
 
-The endpoint request and response specifications are the same as for the [`DELETE /notification-settings/:id` endpoint](#delete-notification-settingsid).
+The endpoint request and response specifications are the same as for the [`DELETE /notification-settings/:id` endpoint][delete-notification-settingsid].
 
 ### GET /user/events/
 
@@ -490,10 +490,10 @@ To set reminders you need to have an instance of the [Timer Service][timer-servi
 
 The following section provides usage details about the API you can access inside a custom handler to perform common tasks, like:
 
-- retrieve the user notification settings for an event using [`getNotificationSettings`](#getnotificationsettings);
-- fetching the user details using [`getRecipients`](#getrecipients);
-- sending notifications using [`sendNotification`](#sendnotification);
-- set reminders using [`setReminders`](#setreminders).
+- retrieve the user notification settings for an event using [`getNotificationSettings`][get-notification-settings];
+- fetching the user details using [`getRecipients`][get-recipients];
+- sending notifications using [`sendNotification`][send-notification];
+- set reminders using [`setReminders`][set-reminders].
 
 ### buildMessages
 
@@ -588,7 +588,7 @@ they would be sorted as follows:
 |----------------|----------|--------------------------------------------------------------|
 | service        | Yes      | Fastify decorated instance                                   |
 | event          | Yes      | Event with id, name and payload                              |
-| user           | No       | A user from the [users CRUD](20_configuration.md#users-crud) |
+| user           | No       | A user from the [users CRUD][crud-users] |
 | emitters       | No       | One or more emitters, as an array of strings                 |
 
 #### Return value
@@ -609,7 +609,7 @@ This function takes a list of CRUD notification settings and filters them accord
 2.  Discard the settings with `SEND` rule that have lower precedence;
 3.  Discard the rules that define one or more sending hours not matching the current time.
 
-The process by which precedence is given to the notification settings is explained in the [getNotificationSettings](#getNotificationSettings) method description.
+The process by which precedence is given to the notification settings is explained in the [getNotificationSettings][utils-get-notification-settings] method description.
 
 #### Parameters
 
@@ -628,7 +628,7 @@ An array of [CRUD notification settings][crud-notification-settings].
 async getRecipients(service, query)
 ```
 
-This function takes a CRUD query for the [users CRUD](20_configuration.md#users-crud) and return the users having any of the given ids, roles, groups and clusters. If multiple filters are passed, for example ids and groups, the function returns all the user having any of the given ids and any of the given groups.
+This function takes a CRUD query for the [users CRUD][crud-users] and return the users having any of the given ids, roles, groups and clusters. If multiple filters are passed, for example ids and groups, the function returns all the user having any of the given ids and any of the given groups.
 
 :::note
 
@@ -641,7 +641,7 @@ You can’t currently search for recipients that belongs to all the given groups
 | Parameter name | Required | Description                                                                |
 |----------------|----------|----------------------------------------------------------------------------|
 | service        | Yes      | Fastify decorated instance                                                 |
-| query          | Yes      | A CRUD query object to filter [CRUD users](20_configuration.md#users-crud) |
+| query          | Yes      | A CRUD query object to filter [CRUD users][crud-users] |
 
 The query can have any combination of the following fields:
 
@@ -701,7 +701,7 @@ Here are some examples:
 
 #### Return value
 
-An array of [CRUD users](20_configuration.md#users-crud).
+An array of [CRUD users][crud-users].
 
 The function throws an error if the CRUD service does not respond correctly or any other kind of fatal error occurs.
 
@@ -724,7 +724,7 @@ In the message templates you can use the following variables for interpolation:
 |----------------|----------|--------------------------------------------------------------|
 | service        | Yes      | Fastify decorated instance                                   |
 | event          | Yes      | An [event][crud-events] with id, name and payload            |
-| user           | Yes      | A user from the [users CRUD](20_configuration.md#users-crud) |
+| user           | Yes      | A user from the [users CRUD][crud-users] |
 | messages       | Yes      | A list of notification messages with channel                 |
 
 #### Return value
@@ -747,7 +747,7 @@ This function takes an event, a user and a notification setting, send all the me
 |----------------|----------|--------------------------------------------------------------------------------|
 | service        | Yes      | Fastify decorated instance                                                     |
 | event          | Yes      | Event with id, name and payload                                                |
-| user           | Yes      | A user from the [users CRUD](20_configuration.md#users-crud)                   |
+| user           | Yes      | A user from the [users CRUD][crud-users]                   |
 | notification   | Yes      | A [CRUD notification setting][crud-notification-settings] |
 
 #### Return value
@@ -771,7 +771,7 @@ The reminders are scheduled subtracting the respective duration from the passed 
 | Parameter name       | Required | Description                                                                                       |
 |----------------------|----------|---------------------------------------------------------------------------------------------------|
 | service              | Yes      | Fastify decorated instance                                                                        |
-| user                 | Yes      | A user from the [users CRUD](20_configuration.md#users-crud)                                      |
+| user                 | Yes      | A user from the [users CRUD][crud-users]                                      |
 | notificationSettings | Yes      | A list of notification settings                                                                   |
 | eventDateTime        | Yes      | Event date to compute reminders from, expressed as [ISO 8601 date-time][iso-8601-datetime] string |
 
@@ -853,7 +853,7 @@ If the original event had a `reminder` field in the `metadata` section, its orig
 |----------------|----------|--------------------------------------------------------------------------------|
 | service        | Yes      | Fastify decorated instance                                                     |
 | event          | Yes      | Event with id, name and payload                                                |
-| user           | Yes      | A user from the [users CRUD](20_configuration.md#users-crud)                   |
+| user           | Yes      | A user from the [users CRUD][crud-users]                   |
 | reminders      | Yes      | A [CRUD notification setting][crud-notification-settings] |
 
 #### Return value
@@ -891,7 +891,7 @@ This function searches for the reminders matching the given event, user and quer
 |----------------|----------------------------------------------------------------------------------|
 | service        | Fastify decorated instance                                                       |
 | event          | Event with id, name and payload                                                  |
-| user           | A user from the [users CRUD](20_configuration.md#users-crud)                     |
+| user           | A user from the [users CRUD][crud-users]                     |
 | query          | An object containing a list of event names that should be included in the search |
 
 Here's an example of a query to abort reminders related to the `ACME/OrderCreated/v1` and `ACME/OrderShipped/v1` events: 
@@ -1715,7 +1715,7 @@ This event is fired when the patient is notified about an ongoing therapy plan i
 }
 ```
 
-This handler automatically schedules the next reminder in the same way of the [TMM/MonitoringReminder/v1](#TMM/MonitoringReminder/v1) event handler.
+This handler automatically schedules the next reminder in the same way of the [TMM/MonitoringReminder/v1][tmm-monitoring-reminder] event handler.
 
 When the handler receives such an event it performs the following operations:
 
@@ -1753,5 +1753,14 @@ When the handler receives such an event it performs the following operations:
 [build-messages]: #buildmessages
 [build-reminders]: #buildreminders
 [custom-handler-api]: #custom-handler-api
+[delete-notification-settingsid]: #delete-notification-settingsid
+[get-notification-settings]: #get-notification-settings
 [get-recipients]: #getrecipients
+[patch-notification-settingsid]: #patch-notification-settingsid
 [post-notification-events]: #post-notification-events
+[post-notification-settings]: #post-notification-settings
+[post-send]: #post-send
+[send-notification]: #sendnotification
+[set-reminders]: #setreminders
+[tmm-monitoring-reminder]: #TMM/MonitoringReminder/v1
+[utils-get-notification-settings]: #getNotificationSettings

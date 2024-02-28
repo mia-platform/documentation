@@ -27,7 +27,7 @@ To use the Notification Manager you need to create the following CRUD collection
 
 This CRUD collection contains the data of the users you want to send messages to. The collection is required and
 can be named however you want (we suggest `users`) as long as you specify the name in the `USERS_CRUD_NAME`
-[environment variable](#environment-variables).
+[environment variable][environment-variables].
 
 The CRUD collection must have the properties listed in the following table.
 
@@ -70,7 +70,7 @@ The templates collection contains all the information needed to create standardi
 
 This CRUD collection contains the message templates for sending notifications, both manually (optional) and automatically (required).
 Like for the `users` collection, it does not matter how the CRUD is named (we suggest `message_templates`) as long as 
-you specify the name in the `TEMPLATES_CRUD_NAME` [environment variable](#environment-variables).
+you specify the name in the `TEMPLATES_CRUD_NAME` [environment variable][environment-variables].
 
 The CRUD collection must have the properties listed in the following table.
 
@@ -88,12 +88,12 @@ The CRUD collection must have the properties listed in the following table.
 | pushMessage                | `string`          | For push notifications     | **Optional since v1.5.0**. Push notification message. It supports [interpolation][message-interpolation].                                                                                                                    |
 | pushData                   | `string`          | For push notifications     | JSON payload of the notification. It supports [interpolation][message-interpolation].                                                                                                                                        |
 | whatsappTemplateName       | `string`          | For whatsapp notifications | Whatsapp template name.                                                                                                                                                                                                      |
-| whatsappTemplateParameters | `string`          | For whatsapp notifications | A comma-separated list of values to pass as parameters (see `TEMPLATE_PARAMETERS` in [Kaleyra API documentation](https://developers.kaleyra.io/docs/message-template2)). It supports [interpolation][message-interpolation]. |
+| whatsappTemplateParameters | `string`          | For whatsapp notifications | A comma-separated list of values to pass as parameters (see `TEMPLATE_PARAMETERS` in [Kaleyra API documentation][kaleyra-whatsapp-templates]). It supports [interpolation][message-interpolation]. |
 
 Since version 1.5.0, the `pushData` field is available to customize the push notifications, for example to provide localized messages, and takes precedence over the other fields - `pushTitle`, `pushSubtitle` and `pushMessage`. The field accepts as value a JSON object with the following fields:
 
-- **android** - `object`: android-specific information to be included in the message. The object must conform the shape described [here](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig).
-- **apns** - `object`: information specific to APNS (Apple Push Notification Service). The object must conform the shape described [here](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig).
+- **android** - `object`: android-specific information to be included in the message. The object must conform the shape described [here][google-firebase-push-config].
+- **apns** - `object`: information specific to APNS (Apple Push Notification Service). The object must conform the shape described [here][google-firebase-push-config].
 
 :::tip
 The fields relative to a channel are required only if plan to use templates, and you want to send messages through that
@@ -110,7 +110,7 @@ channel (this applies also to the fields marked as **required** in the list abov
 
 This CRUD collection contains the settings for each class of events.
 The collection is required and can be named however you want (we suggest `event_settings`) as long as you specify the name in the `EVENTS_SETTINGS_CRUD_NAME`
-[environment variable](#environment-variables).
+[environment variable][environment-variables].
 
 The CRUD collection must have the properties listed in the following table.
 
@@ -139,7 +139,7 @@ The `handlerConfig` is not currently used, but it has been introduced in anticip
 
 This CRUD collection contains details about events, in particular unknown events, that were received.
 The collection is required and can be named however you want (we suggest `events`) as long as you specify the name in the `EVENTS_CRUD_NAME`
-[environment variable](#environment-variables).
+[environment variable][environment-variables].
 
 The CRUD collection must have the properties listed in the following table.
 
@@ -164,7 +164,7 @@ The CRUD collection must have the properties listed in the following table.
 
 This CRUD collection contains details about the notifications sent in response to events.
 The collection is required and can be named however you want (we suggest `notifications`) 
-as long as you specify the name in the `NOTIFICATIONS_CRUD_NAME` [environment variable](#environment-variables).
+as long as you specify the name in the `NOTIFICATIONS_CRUD_NAME` [environment variable][environment-variables].
 
 The CRUD collection must have the properties listed in the following table.
 
@@ -318,7 +318,7 @@ in the notification you could find something like this:
 
 This CRUD collection contains the notification settings. The collection is required and
 can be named however you want (we suggest `notifications_settings`) as long as you specify the name in the `NOTIFICATIONS_SETTINGS_CRUD_NAME`
-[environment variable](#environment-variables).
+[environment variable][environment-variables].
 
 The properties used by the service are the following.
 
@@ -379,15 +379,15 @@ The properties used by the service are the following.
 ## Channels configuration
 
 ### Kaleyra integration
-The outbound calling and the whatsapp services will need the Kaleyra integration to work properly. In order to setup the Kaleyra integration, you will need, firstly, to create a Kaleyra account and create an API Key. To successfully set up your Kaleyra account, please refer to the [Getting Started section of the official Kaleyra documentation](https://developers.kaleyra.io/docs/kcloud-getting-started). The obtained Kaleyra API Key and SID will be provided to the `notification-manager` via environment variables, namely `KALEYRA_API_KEY` and `KALEYRA_API_SID`.
+The outbound calling and the whatsapp services will need the Kaleyra integration to work properly. In order to setup the Kaleyra integration, you will need, firstly, to create a Kaleyra account and create an API Key. To successfully set up your Kaleyra account, please refer to the [Getting Started section of the official Kaleyra documentation][kaleyra-getting-started]. The obtained Kaleyra API Key and SID will be provided to the `notification-manager` via environment variables, namely `KALEYRA_API_KEY` and `KALEYRA_API_SID`.
 
 #### Outbound calls
 In order to use the outbound calls service, you will then need to setup a valid bridge number, that will be provided to the `notification-manager` in the service configuration map, as stated in the next section.
 
 #### Whatsapp messaging
-In order to use the Whatsapp messaging service, you need firstly to enable the Whatsapp channel on your Kaleyra account. When setting up the Whatsapp channel, you will need to create a [WhatsApp Business account](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#set-up-developer-assets) on the Meta developer platform. This account will be then linked to your Kaleyra account. You will also need a [valid phone number](https://developers.facebook.com/docs/whatsapp/cloud-api/get-started/add-a-phone-number) to associate to your Whatsapp business account, which will be the number that will appear to users who will receive your messages. This number will be provided to the `notification-manager` in the service configuration map, as stated in the next section.
+In order to use the Whatsapp messaging service, you need firstly to enable the Whatsapp channel on your Kaleyra account. When setting up the Whatsapp channel, you will need to create a [WhatsApp Business account][facebook-whatsapp-api] on the Meta developer platform. This account will be then linked to your Kaleyra account. You will also need a [valid phone number][facebook-whatsapp-add-number] to associate to your Whatsapp business account, which will be the number that will appear to users who will receive your messages. This number will be provided to the `notification-manager` in the service configuration map, as stated in the next section.
 
-In order to set up a correct configuration, we kindly recommend to follow the [official Kaleyra documentation for Whatsapp integration](https://developers.kaleyra.io/docs/whatsapp-api).
+In order to set up a correct configuration, we kindly recommend to follow the [official Kaleyra documentation for Whatsapp integration][kaleyra-whatsapp-api].
 
 ## Service configuration
 
@@ -432,8 +432,8 @@ If you use an alphanumeric sender ID please avoid generic names (e.g. SMS, Info.
 - **voice** - `object`: the configuration for the outbound calls used for voice notifications.
     - **retryCount** - `integer`: the number of retries that can be made until a timeout is reached if the initial call fails to connect.
   The default retry count is 0 and the maximum count is 2. Any value higher than 2 will be considered 2.
-    - **speechSpeed** - `string`: the speed of the text-to-speech. The available options are: `slow`, `medium`, `fast`, `x-slow` and `x-fast`. For further info, you must refer to [Kaleyra official documentation](https://developers.kaleyra.io/docs/outbound-calling-api#parameters-and-data-types). If not provided, the default speed is set to `medium`.
-    - **speechLanguage** - `string`: the language of the text-to-speech. The available options are: `en-IN`, `en-US`, `es-ES` and `it-IT`. For further info, you must refer to [Kaleyra official documentation](https://developers.kaleyra.io/docs/flowbuilder-supported-tts-languages). If not provided, the default language is set to `it-IT`.
+    - **speechSpeed** - `string`: the speed of the text-to-speech. The available options are: `slow`, `medium`, `fast`, `x-slow` and `x-fast`. For further info, you must refer to [Kaleyra official documentation][kaleyra-voice-api-params]. If not provided, the default speed is set to `medium`.
+    - **speechLanguage** - `string`: the language of the text-to-speech. The available options are: `en-IN`, `en-US`, `es-ES` and `it-IT`. For further info, you must refer to [Kaleyra official documentation][kaleyra-voice-tts-languages]. If not provided, the default language is set to `it-IT`.
 
 - **androidIntentAction** - `string`: the Android intent action that is triggered by the notification (the default value is an empty string).
 
@@ -521,7 +521,7 @@ It follows an example of a valid configuration file.
 
 ### Custom event handlers
 
-To register custom handlers, first you need to create a new configuration with an arbitrary name, for example `/home/node/app/custom-handlers`, and assign its path to the [CUSTOM_HANDLERS_FOLDER env var](#environment-variables).
+To register custom handlers, first you need to create a new configuration with an arbitrary name, for example `/home/node/app/custom-handlers`, and assign its path to the [CUSTOM_HANDLERS_FOLDER env var][environment-variables].
 
 Then, to register a custom handler, simply add a new file to the configuration - like `acme-shipping-handler.js` in the snippet above - containing the JavaScript code implementing and exporting your handler, i.e. the function to be executed when a new HTTP request is received notifying a new event to process.
 
@@ -758,9 +758,17 @@ The following default reminder event handlers both filter the notification setti
 
 
 [e164]: https://www.twilio.com/docs/glossary/what-e164
+[facebook-whatsapp-api]: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#set-up-developer-assets
+[facebook-whatsapp-add-number]: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started/add-a-phone-number
+[google-firebase-push-config]: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#apnsconfig
 [iso-8601-datetime]: https://datatracker.ietf.org/doc/html/rfc3339#section-5.6
 [iso-8601-duration]: https://en.wikipedia.org/wiki/ISO_8601#Durations
+[kaleyra-getting-started]: https://developers.kaleyra.io/docs/kcloud-getting-started
 [kalyera-manage-numbers]: https://eu.kaleyra.io/numbers/manage
+[kaleyra-voice-api-params]: https://developers.kaleyra.io/docs/outbound-calling-api#parameters-and-data-types
+[kaleyra-voice-tts-languages]: https://developers.kaleyra.io/docs/flowbuilder-supported-tts-languages
+[kaleyra-whatsapp-api]: https://developers.kaleyra.io/docs/whatsapp-api
+[kaleyra-whatsapp-templates]: https://developers.kaleyra.io/docs/send-a-text-template-message-through-whatsapp
 [rond]: https://rond-authz.io/
 [twilio-invalid-number]: https://www.twilio.com/docs/api/errors/21212
 
