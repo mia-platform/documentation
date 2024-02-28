@@ -1,6 +1,6 @@
 ---
 id: email-setup
-title: Email Setup
+title: Helm chart Email Setup
 sidebar_label: Email Setup
 ---
 

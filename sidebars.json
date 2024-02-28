@@ -1387,18 +1387,6 @@
           "type": "doc"
         },
         {
-          "id": "infrastructure/self-hosted/troubleshooting",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/ranges-and-quotas",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/pipeline-configuration",
-          "type": "doc"
-        },
-        {
           "label": "Install Mia-Platform Console",
           "type": "category",
           "collapsed": true,
@@ -1410,26 +1398,16 @@
           ]
         },
         {
-          "id": "infrastructure/self-hosted/synchronize-users",
+          "id": "infrastructure/self-hosted/how-to-upgrade",
           "type": "doc"
         },
         {
-          "id": "infrastructure/self-hosted/feature-toggle",
+          "id": "infrastructure/self-hosted/troubleshooting",
           "type": "doc"
         },
+       
         {
-          "label": "Third Party Integrations",
-          "type": "category",
-          "collapsed": true,
-          "items": [
-            {
-              "id": "infrastructure/self-hosted/third-party-integrations/deployment-tools",
-              "type": "doc"
-            }
-          ]
-        },
-        {
-          "id": "infrastructure/self-hosted/private-clusters",
+          "id": "infrastructure/self-hosted/pipeline-configuration",
           "type": "doc"
         }
       ]

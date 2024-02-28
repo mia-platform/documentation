@@ -1,6 +1,6 @@
 ---
 id: mongodb-configurations-and-encryption
-title: MongoDB Configurations and Encryption
+title: Helm chart MongoDB Configurations and Encryption
 sidebar_label: MongoDB Configurations and Encryption
 ---
 
@@ -62,7 +62,7 @@ To activate encryption use the [`crudEncryption`](#crud-encryption) value inside
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `masterKey` | string | The master key value used for encryption | | ❌ |
 
-To generate the master key check out the official [documentation page](../../../runtime_suite/crud-service/encryption_configuration#how-to-generate-a-local-master-key-using-nodejs).
+To generate the master key check out the official [documentation page](../../../../runtime_suite/crud-service/encryption_configuration#how-to-generate-a-local-master-key-using-nodejs).
 
 #### Examples
 

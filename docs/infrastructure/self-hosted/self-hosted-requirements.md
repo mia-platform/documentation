@@ -217,9 +217,4 @@ The following is an example architecture for the installation of the Mia-Platfor
 | Google Cloud Storage      |   SaaS      |                |      |      |          |
 | Google Cloud Platform KMS |   SaaS      |                |      |      |          |
 
-### Designating the Console Super User
 
-When installing an instance of Mia-Platform Console, a user with the Console Super User role will be added to the database automatically.
-
-The Console Super User role has been designed exclusively for backoffice administration purposes. 
-When assigned to a user, this role implies full visibility and management of all CMS resources.

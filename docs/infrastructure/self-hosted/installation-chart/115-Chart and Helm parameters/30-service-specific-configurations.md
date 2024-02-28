@@ -1,6 +1,6 @@
 ---
 id: service-specific-configurations
-title: Service Specific Configuration
+title: Helm chart Service Specific Configuration
 sidebar_label: Service Specific Configurations
 ---
 
@@ -184,7 +184,7 @@ mia-console:
 
 ## Suggested resources
 
-Based on the number of users, you might want to change the CPU and Memory resources configurations for each service; when doing so you can take the examples provided in the [Installation Chart Example page](./90-installation-chart-example.md) which are enough to manage up to 300 monthly active users. If you have less or more users you can reduce or increase the resources as you prefer and fine-tune your installation resource consumption.
+Based on the number of users, you might want to change the CPU and Memory resources configurations for each service; when doing so you can take the examples provided in the [Installation Chart Example page](./10-installation-chart-example.md) which are enough to manage up to 300 monthly active users. If you have less or more users you can reduce or increase the resources as you prefer and fine-tune your installation resource consumption.
 
 :::info
 To better size the Console cluster dimension, consider that the minimum allocatable memory (RAM) and core (CPU) values should be at least equal to the sum of the requested ones set in your installation chart for all services.
