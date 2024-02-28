@@ -14,7 +14,7 @@ This walkthrough will help you learn how to create a Node.js microservice from s
 
 ## Create a microservice
 
-In order to do so, access to [Mia-Platform DevOps Console](https://console.cloud.mia-platform.eu/login), create a new project and go to the **Design** area. From the Design area of your project select _Microservices_ and then create a new one, you have now reached [Mia-Platform Marketplace](../../marketplace/overview_marketplace)!  
+In order to do so, access to [Mia-Platform DevOps Console][mia-console-paas], create a new project and go to the **Design** area. From the Design area of your project select _Microservices_ and then create a new one, you have now reached [Mia-Platform Marketplace][mia-marketplace]!
 In the marketplace you will see a set of Examples and Templates that can be used to set-up microservices with a predefined and tested function.
 
 For this walkthrough select the following template: **Node.js Mia-Care template**. After clicking on this template you will be asked to give the following information:
@@ -25,20 +25,20 @@ For this walkthrough select the following template: **Node.js Mia-Care template*
 - Docker Image Name
 - Description (optional)
 
-You can read more about this fields in [Manage your Microservices from the Dev Console](../../development_suite/api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template) section of Mia-Platform documentation.
+You can read more about this fields in [Manage your Microservices from the Dev Console][mia-console-create-microservice] section of Mia-Platform documentation.
 
 Give your microservice the name you prefer, in this walkthrough we'll refer to it with the following name: **my-node-service-name**.
-Then, fill the other required fields and confirm that you want to create a microservice. You have now generated a _my-node-service-name_ repository that is already deployed on Mia-Platform [Nexus Repository Manager](https://nexus.mia-platform.eu/) once build script in CI is successful.
+Then, fill the other required fields and confirm that you want to create a microservice. You have now generated a _my-node-service-name_ repository that is already deployed on Mia-Platform [Nexus Repository Manager][mia-nexus] once build script in CI is successful.
 
 ## Save your changes
 
 It is important to know that the microservice that you have just created is not saved yet on the DevOps Console. It is not essential to save the changes that you have made, since you will later make other modifications inside of your project in the DevOps Console.  
 If you decide to save your changes now remember to choose a meaningful title for your commit (e.g "created service my_node_service_name"). After some seconds you will be prompted with a popup message which confirms that you have successfully saved all your changes.  
-A more detailed description on how to create and save a node.js Microservice can be found in [Create a Node.js Microservice](../../development_suite/api-console/api-design/services#how-to-create-a-microservice-from-an-example-or-from-a-template) tutorial section of Mia-Platform documentation.
+A more detailed description on how to create and save a node.js Microservice can be found in [Create a Node.js Microservice][mia-console-create-microservice] tutorial section of Mia-Platform documentation.
 
 ## Look inside your repository
 
-After having created your first microservice (based on this template) you will be able to access to its git repository from the DevOps Console. Inside this repository you will find an [index.js](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/index.js) file with the following lines of code:
+After having created your first microservice (based on this template) you will be able to access to its git repository from the DevOps Console. Inside this repository you will find an [index.js][mia-node-template-index] file with the following lines of code:
 
 ```js
 'use strict'
@@ -118,13 +118,13 @@ Moreover, the endpoint folder should follow this pattern:
     |   └── ...                
     └── ...
 
-The `index.js` file should contains the definition of an endpoint, following the [Fastify plugin](https://www.fastify.io/docs/latest/Reference/Plugins/) registration pattern. This file should also contains the [hook implementation](https://www.fastify.io/docs/latest/Reference/Hooks/) which are related to the specific endpoint.
+The `index.js` file should contains the definition of an endpoint, following the [Fastify plugin][fastify-plugins] registration pattern. This file should also contains the [hook implementation][fastify-hooks] which are related to the specific endpoint.
 
 For further information, please refer to the `hello-world` example in the template and to the script for the endpoint creation. 
 
 ### GitOps
 
-Usually, to start creating new features on a microservice, you need to create a branch. Due to the native support of this template to the SaMD development, the branch name should follow a specific convention, that is need to enhance traceability. The traceability is required by the IEC 62304 regulation for the SaMD development. The tool used for the branch naming check is [Husky](https://typicode.github.io/husky/).
+Usually, to start creating new features on a microservice, you need to create a branch. Due to the native support of this template to the SaMD development, the branch name should follow a specific convention, that is need to enhance traceability. The traceability is required by the IEC 62304 regulation for the SaMD development. The tool used for the branch naming check is [Husky][husky].
 
 By default, the pattern for the branch naming convention is: `<type>-<implementation-task-id>-<description>`. Example: `feat-MC-1-login-endpoint`.
 - The `<type>` part is related to the type of the implementation. The possible options are: feat, fix and doc;
@@ -135,7 +135,7 @@ Moreover, for the same traceability requirement, also the commit messages should
 - The `<implementation-task-id>` is the identifier of the implementation task. Usually, it is the Jira story code;
 - The `<commit-description>` is the description of the commit.
 
-If the branch has been named correctly, the implementation task identifier is inserted automatically in the commit message. Therefore, when you run the command `git commit -m "message"`, the commit message is automatically created as `[<implementation-task-id>] message`. The automatic insertion of the implementation task identifier is performed by [jira-prepare-commit-msg](https://github.com/bk201-/jira-prepare-commit-msg).
+If the branch has been named correctly, the implementation task identifier is inserted automatically in the commit message. Therefore, when you run the command `git commit -m "message"`, the commit message is automatically created as `[<implementation-task-id>] message`. The automatic insertion of the implementation task identifier is performed by [jira-prepare-commit-msg][github-jira-prepare-commit-msg].
 
 You can customize the branch naming convention by modifying the bash script that checks the branch name. In particular, you need to modify the regex in the `./scripts/check-branch-naming.sh` with your convention. You can also disable the check by removing the run of the `check-branch-naming.sh` bash script directly in the `./.husky/pre-commit` file.
 
@@ -165,7 +165,7 @@ It creates:
 - the `handler.test.js` file, that contains the Jest unit tests for the handler.
 
 ### Decorators
-The template includes a set of default of request and reply decorators. The [decorators API](https://www.fastify.io/docs/latest/Reference/Decorators/) allows customization of the core Fastify objects, such as the server instance itself and any request and reply objects used during the HTTP request lifecycle. The decorators can be modified and extended with domain-specific notation.
+The template includes a set of default of request and reply decorators. The [decorators API][fastify-decorators] allows customization of the core Fastify objects, such as the server instance itself and any request and reply objects used during the HTTP request lifecycle. The decorators can be modified and extended with domain-specific notation.
 
 The template contains request and reply decorators for, respectively, enrichment of the request object with additional metadata (e.g. `requestId`) and error management. The template implements the formatter for the most common HTTP errors, allowing to have a common format for the error response that, by default, is the following:
 
@@ -191,7 +191,7 @@ async function handler(request, reply) {
 
 ## Expose an endpoint to your microservice
 
-In order to access to your new microservice it is necessary to create an endpoint that targets it. Follow  [this link](../../development_suite/api-console/api-design/endpoints) to learn how to create an endpoint from the DevOps Console.
+In order to access to your new microservice it is necessary to create an endpoint that targets it. Follow  [this link][mia-console-design-endpoints] to learn how to create an endpoint from the DevOps Console.
 
 In particular, in this walkthrough you will create an endpoint to your _my-node-service-name_. To do so, from the Design area of your project select _Endpoints_ and then create a new endpoint.
 Now you need to choose a path for your endpoint and to connect this endpoint to our microservice. Give to your endpoint the following path: **/greetings**. Then, specify that you want to connect your endpoint to a microservice and, finally, select _my-node-service-name_.
@@ -204,7 +204,7 @@ After having created an endpoint to your microservice you should **save** the ch
 
 Once all the changes that you have made are saved, you should deploy your project through the DevOps Console. Go to the **Deploy** area of the DevOps Console.  
 Once here select the environment and the branch you have worked on and confirm your choices clicking on the _deploy_ button. When the deploy process is finished you will receive a pop-up message that will inform you.  
-Follow [this link](../../development_suite/deploy/deploy) to learn how to correctly deploy your project.
+Follow [this link][mia-console-deploy] to learn how to correctly deploy your project.
 
 ## Try it
 
@@ -221,3 +221,17 @@ you should see the following message:
 ```
 
 Congratulations! You can now start developing your own NodeJS microservice!
+
+
+[fastify-decorators]: https://www.fastify.io/docs/latest/Reference/Decorators/
+[fastify-hooks]: https://www.fastify.io/docs/latest/Reference/Hooks/
+[fastify-plugins]: https://www.fastify.io/docs/latest/Reference/Plugins/
+[github-jira-prepare-commit-msg]: https://github.com/bk201-/jira-prepare-commit-msg
+[husky]: https://typicode.github.io/husky/
+[mia-console-paas]: https://console.cloud.mia-platform.eu/login
+[mia-console-create-microservice]: /development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template
+[mia-console-deploy]: /development_suite/deploy/index.md
+[mia-console-design-endpoints]: /development_suite/api-console/api-design/endpoints.md
+[mia-marketplace]: /marketplace/overview_marketplace.md
+[mia-nexus]: https://nexus.mia-platform.eu/
+[mia-node-template-index]: https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/index.js
