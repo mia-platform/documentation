@@ -202,7 +202,7 @@ Assuming you have a Vault instance setup and running and a Console project alrea
 
 Variables stored in a Vault provider cannot be directly interpolated in the project's configuration. However, you could access these variables by creating a new microservice environment variable and setting **value type** to **from secret**, **secret name** to `vault-secret`, and **secret key** to the target secreted environment variable name, take a look at the [microservice configuration section](/development_suite/api-console/api-design/services.md#environment-variable-configuration).
 
-:::warning
+:::caution
 Projects that use Vault as the secret provider cannot manage their variables using the Console interface but they need to be manually edited from the Vault instance as described in a [previous section](#create-the-secret-engines-and-vault-secrets).
 :::
 
