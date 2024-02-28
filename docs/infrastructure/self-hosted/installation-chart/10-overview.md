@@ -25,11 +25,10 @@ To succesfully install the Helm Chart make sure you have addressed the following
 
 Requirement|Example
 --|--
-Create a Kubernetes cluster| [GKE create cluster](https://cloud.google.com/kubernetes-engine/docs/deploy-app-cluster)
-Define the Console and CMS URLs|Console: `https://your-domain/oauth/callback/`<br /> CMS: `https://your-domain/web-login/oauth/callback`
-Prepare the connections needed to work with your authentication provider| BaseURL: `https://your-provider-baseurl` <br /> ClientID and ClientSecret: [Okta example](https://developer.okta.com/docs/guides/find-your-app-credentials/main/) <br />
-Create a MongoDB cluster named "Console and generate a connection string to the DB with readWrite and dbAdmin permissions| [Create a MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)<br /> [Create a MongoDB user](https://www.mongodb.com/docs/manual/tutorial/create-users/)
-Create Redis cluster and have its host, username and password at hand|[Create a Redis Cluster](https://cloud.google.com/kubernetes-engine/docs/tutorials/upgrading-stateful-workload)<br /> RedisHost:`redis.default.svc.cluster.local:6379`
-Define the HostName of your private docker registry | repositoryHostname: `https://your-repo-hostname`
-Create the name of the secret with the credentials to your private docker repository| servicesImagePullSecrets: [MiaSecretName, CustomerSecretName, ...]
-Ask for access to the Mia-Platform Docker Container Registry  | Ask to your Mia-Platform reference
+Console and CMS URLs|Console: `https://console.your-domain`<br /> CMS: `https://console-cms.your-domain`
+OAuth2 application BaseURL, ClientID, ClientSecret| [Okta example](https://developer.okta.com/docs/guides/find-your-app-credentials/main/) <br />
+MongoDB connection string for a user with readWrite permission and dbAdmin permission for console DB| [How to create an Atlas MongoDB cluster](https://www.mongodb.com/docs/guides/atlas/cluster/)<br /> [How to create an Atlas MongoDB user](https://www.mongodb.com/docs/manual/tutorial/create-users/)
+Redis host and port|`redis.default.svc.cluster.local:6379`
+Private docker registry host and port| `your-repo-hostname:port`
+Private docker registry credentials| servicesImagePullSecrets: [MiaSecretName, CustomerSecretName, ...]
+Mia-Platform Docker and Helm repo credentials | Ask to your Mia-Platform contact person

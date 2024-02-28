@@ -8,12 +8,12 @@ With this guide you will:
 
 - Configure and install a Basic configuration of the Helm Chart
 - Log-in for the first time to the Console
-- Create your first company through API
+- Create your first company
 
 ## Step 1 - Configuring the Helm Chart
 
-1. Create an empty YAML file named `values.yaml` and paste the [Helm chart template](../installation-chart/115-Chart%20and%20Helm%20parameters/10-installation-chart-example.md).
-2. Create an empty bash file and paste the following code.
+1. Following [this example](../installation-chart/115-Chart%20and%20Helm%20parameters/10-installation-chart-example.md) create a new `values.yaml` file
+2. Create an empty bash file and paste the following code
 
 ```bash
 rsaPrivateKeyId=$(openssl rand -hex 24)
@@ -53,18 +53,18 @@ bash scriptname.sh
 ```
 
 4. Add the remaining [mandatory fields](../installation-chart/115-Chart%20and%20Helm%20parameters/20-general-settings.md) you already prepared [before to start](./10-overview.md)
-5. Configure the OAuth provider with the [required info](../installation-chart/115-Chart%20and%20Helm%20parameters/25-authentication-provider.md) and delete the other variable that you are not going to use.
+5. Configure the OAuth provider with the [required info](../installation-chart/115-Chart%20and%20Helm%20parameters/25-authentication-provider.md).
 6. Configure the mandatory [MongoDB fields](../installation-chart/115-Chart%20and%20Helm%20parameters/40-mongodb-configurations-and-encryption.md)
 
-## Step 2 - Insalling the Helm Chart
+## Step 2 - Installing the Helm Chart
 
 1. Add the Mia-platform repo that contains the helm chart
 
 ```bash
-helm repo add mia-platform https://nexus.mia-platform.eu/repository/helm-internal/ --username mia-platform-mail --password-stdin
+helm repo add mia-platform https://nexus.mia-platform.eu/repository/helm-internal/ --username your-username --password-stdin
 ```
 
-1. Check if you can reach the mia-platform repository
+2. Check if you can reach the mia-platform repository
 
 ```bash
 helm search repo mia-platform
@@ -82,10 +82,6 @@ helm install -f values.yml --create-namespace -n console console mia-platform/mi
 kubectl get pod -n console
 ```
 
-:::info
-If one or more pods are in `CrashLoopBackOff` try to debug following [this guide](https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/). After edited the `value.yaml` we suggest to delete the cluster and launch the installation helm command again (point 3).
-:::
-
 :::note
 When installing an instance of Mia-Platform Console, a user with the Console Super User role will be added to the database automatically.
 
@@ -99,4 +95,3 @@ When assigned to a user, this role implies full visibility and management of all
 
 1. Reach your console url `https://your-console-url` and you should see the log in page
 2. Log-in with your authentication provider
-3. 
