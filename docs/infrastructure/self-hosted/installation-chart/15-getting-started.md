@@ -158,7 +158,7 @@ spec:
 kubectl create secret generic job-creds --from-literal=MONGO_CONNECTION={{MONGO_CONNECTION}} --from-literal=EMAIL={{EMAIL}}
 ```
 
-5. Execute the job to edit the confiuguration of the super-user.
+5. Execute the job to edit the configuration of the super-user.
 
 ```bash
 kubectl apply -f role_binding_mongo.yaml
