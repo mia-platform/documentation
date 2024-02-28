@@ -21,13 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - introduce support for Control Plane feedback via heartbeat events
 - introduce official support to MongoDB v7
-- introduce support for `snappy` compression both on the consumer and producer sides.
-  While compression coded employed on the consumer is automatically recognized, on the producer
-  it is necessary to be configured explicitly. This can be achieved via `KAFKA_PRODUCER_COMPRESSION` environment variable
-  that defines the compression to be employed, which can be one of the following values:
-    - `none` (default)
-    - `snappy` (recommended)
-    - `gzip`
 
 ### Changed
 
@@ -55,6 +48,18 @@ const updateOp = await singleViewCollection.findOneAndUpdate(
 )
 ```
 :::
+
+## [6.4.1] 2024-02-27
+
+### Added
+
+- introduce support for `snappy` compression both on the consumer and producer sides.
+  While compression coded employed on the consumer is automatically recognized, on the producer
+  it is necessary to be configured explicitly. This can be achieved via `KAFKA_PRODUCER_COMPRESSION` environment variable
+  that defines the compression to be employed, which can be one of the following values:
+    - `none` (default)
+    - `snappy` (recommended)
+    - `gzip`
 
 ## [6.4.0] 2023-12-14
 
