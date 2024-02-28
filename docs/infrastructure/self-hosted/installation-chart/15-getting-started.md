@@ -120,7 +120,7 @@ When assigned to a user, this role implies full visibility and management of all
 
 1. Reach your console url `https://your-console-url` and you should see the log in page
 2. Log-in with your authentication provider
-3. Create a `role_binding_mongo.yaml` file and paste the following configuration
+3. Create a `role_binding_mongo.yaml` file and a `console-super-user-binding.yaml` with the following configurations
 
 ```yaml
 apiVersion: batch/v1
@@ -152,35 +152,57 @@ spec:
                 key: EMAIL
 ```
 
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-super-user-binding
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: create-super-user
+          image: "mongo"
+          imagePullPolicy: IfNotPresent
+          command: 
+          - '/bin/bash'
+          - '-c'
+          - 'export USER_ID=$(mongosh $MONGO_CONNECTION --eval "EJSON.stringify(db.userinfo.findOne({\"email\": \"$EMAIL\"})._id.toString());" --quiet) && echo $USER_ID  && mongosh $MONGO_CONNECTION --eval "EJSON.stringify(db.bindings.updateOne({ \"bindingId\" : \"super-users\"}, { \"\$set\": { \"bindingId\": \"super-users\", \"roles\": [\"console-super-user\"], \"subjects\": [ $USER_ID], \"__STATE__\": \"PUBLIC\" }}, {\"upsert\": true }))"'
+          env:
+          - name: MONGO_CONNECTION
+            valueFrom:
+              secretKeyRef:
+                name: job-creds
+                key: MONGO_CONNECTION
+          - name: EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: job-creds
+                key: EMAIL
+
+```
+
 4. Create a secret and substitute {{MONGO_CONNECTION}} and {{EMAIL}} with the correct values for mongoDB
-   
+
 ```bash
 kubectl create secret generic job-creds --from-literal=MONGO_CONNECTION={{MONGO_CONNECTION}} --from-literal=EMAIL={{EMAIL}}
 ```
 
-5. Execute the job to edit the configuration of the super-user.
+5. Execute the two jobs to edit the configuration of the super-user.
 
 ```bash
 kubectl apply -f role_binding_mongo.yaml
+kubectl apply -f console-super-user-binding.yaml
 ```
 
-6. Now go to the Console MongoDB Database and to create a document in the `bindings` collection with the following information:
-
-```json
-{
-  "bindingId": "super-users",
-  "subjects": ["<_id of the user you want to be super user>"],
-  "roles": ["console-super-user"],
-  "__STATE__": "PUBLIC"
-}
-```
 :::info
 If you want to setup multiple Super User you can use the same binding and add multiple `subjects` to the list.
 :::
 
-7. Now we can create the first company via API by heading to the `/documentations/api-portal/` path on your Console host and use the `POST /companies` API. The API will return the id of the company.
-8. After you have created a Company you will be able to access it from Console at the `/tenants/:id` path, here you'll be able to manage the Company providers and Clusters.
-9. Now you are ready to start with your first project! You can find out more [here](../../../development_suite/company/create#default-configuration-for-a-new-project)
+6. Now we can create the first company via API by heading to the `/documentations/api-portal/` path on your Console host and use the `POST /companies` API. The API will return the id of the company.
+7. After you have created a Company you will be able to access it from Console at the `/tenants/:id` path, here you'll be able to manage the Company providers and Clusters.
+8. Now you are ready to start with your first project! You can find out more [here](../../../development_suite/company/create#default-configuration-for-a-new-project)
 
 :::info
 For further information head to the Company creation [documentation section](../../../development_suite/company/create).
