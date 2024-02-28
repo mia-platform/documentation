@@ -88,17 +88,3 @@ Along with the components above, you can also find Mia-Platform’s **open-sourc
 Mia-Platform is available for purchase in three different ways: SaaS, PaaS, and On-Premises.
 
 For further details on the distribution model, please refer to [this page](/infrastructure/overview.md).
-
-## More Resources
-
-To stay always up-to-date with the **latest product news**, please visit the [Release Note](/release-notes/versions.md) section. Also, feel free to jump into **our community**: explore the [open discussions on GitHub](https://github.com/mia-platform/community/discussions) and ask any questions you may have about our products.
-
-If you are curious about **what you can do with Mia-Platform**, take a look at what we already built with our customers and [explore all the success cases](https://mia-platform.eu/resources/case-history/).
-
-For an **overall understanding* of the underlying technologies, market trends, and related topics, please refer to our [Blog](https://blog.mia-platform.eu/en) and our [Library](https://resources.mia-platform.eu/en/library).
-
-For **fresh news and insights on the company**, subscribe to our [monthly newsletter](https://resources.mia-platform.eu/en/newsletter-general-subscription) and follow us on our social media ([GitHub](https://github.com/mia-platform), [LinkedIn](https://www.linkedin.com/company/mia-platform/), [Instagram](https://www.instagram.com/miaplatform/), [Twitter](https://twitter.com/MiaPlatform), [YouTube](https://www.youtube.com/channel/UCWEgCxRmFgHgCwV3ntZ2hvA)). If you wish to meet us in person and want to know where we will be, please visit the [events page](https://mia-platform.eu/resources/events/) on our website.
-
-Do you want to be part of Mia-Platform? Check out our [open positions](https://mia-platform.eu/careers/) and apply, we are hiring!
-
-Last but not least, we provide **free demos** of our products: if you are interested in seeing them in action, just go to [this page and book a free demo](https://contact.mia-platform.eu/ask-for-a-demo-mia-platform)!

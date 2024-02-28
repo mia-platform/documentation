@@ -53,7 +53,7 @@ is `v7.5.4`
 
 Projection Storer is a new service that can be employed as a replacement of Real-Time Updater
 when Fast Data is configured for adopting the _event-driven_ architecture. This service works in conjunction with both
-Single View Trigger Generator and Single View Creator plugins to transform change events from the system of record into
+Single View Trigger Generator and Single View Creator plugins to transform change events from the System of Record into
 the final aggregated Single View.
 
 #### Minimum Services Version

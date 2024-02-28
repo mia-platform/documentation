@@ -1,6 +1,6 @@
 {
   "name": "mia-platform-doc",
-  "version": "12.0.14",
+  "version": "12.2.1",
   "private": true,
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -25,16 +25,16 @@
     "@docusaurus/plugin-client-redirects": "2.4.3",
     "@docusaurus/preset-classic": "2.4.3",
     "@staticdeploy/cli": "^0.15.5",
-    "clsx": "^2.0.0",
-    "cspell": "^8.1.2",
+    "clsx": "^2.1.0",
+    "cspell": "^8.4.1",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
-    "mermaid": "^10.6.0",
+    "mermaid": "^10.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-youtube": "^10.1.0",
-    "swc-loader": "^0.2.3"
+    "swc-loader": "^0.2.6"
   },
   "browserslist": {
     "production": [
@@ -49,9 +49,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.23.3",
-    "@swc/core": "^1.3.99",
-    "eslint": "^8.52.0",
+    "@babel/eslint-parser": "^7.23.10",
+    "@swc/core": "^1.4.2",
+    "eslint": "^8.56.0",
     "eslint-plugin-react": "7.33.2",
     "front-matter": "^4.0.2",
     "git-list-updated": "^1.2.1",

@@ -12,10 +12,67 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2024-02-05
+
+### Added
+
+- `project iam list` command
+- `project iam edit` command
+- `project iam remove-role` command
+- `--public` flag to `marketplace list` command
+
+### Changed
+
+- update go version to 1.21.6
+- update exp to v0.0.0-20240112132812-db7319d0e0e3
+- update oauth2 to v0.16.0
+- update sync to v0.6.0
+
+### Fixed
+
+- fixed typos
+
+## [0.11.0] - 2024-01-15
+
+### BREAKING
+
+- move serviceaccount commads under `company iam add`
+
+### Added
+
+- `company iam add user` command
+- `company iam edit user` command
+- `company iam add group` command
+- `company iam add group-member` command
+- `company iam edit serviceaccount` command
+- `company iam edit group` command
+- `company iam remove user` command
+- `company iam remove group` command
+- `company iam remove serviceaccount` command
+- `company iam remove group-member` command
+
+### Changed
+
+- the company iam list commands now return the id of the entities as well
+- update go version to 1.21.5
+- update logr to v1.4.1
+- update uuid to 1.5.0
+- update exp to v0.0.0-20231219180239-dc181d75b848
+
+### Fixed
+
+- remove conflicting shortand flag `-v` from `miactl marketplace delete` command
+- creation of basic auth service account
+
 ## [0.10.0] - 2023-12-20
+
+### BREAKING
+
+- `miactl marketplace delete` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
+- `miactl marketplace get` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
 
 ### Added
 
@@ -47,11 +104,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `runtime logs` now is working correctly for pods with more than one container
-
-### BREAKING
-
-- `miactl marketplace delete` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
-- `miactl marketplace get` does not accept anymore the id as argument, it should be provided to the flag `--object-id`
 
 ## [0.9.0] - 2023-11-15
 
@@ -179,7 +231,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.10.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/mia-platform/miactl/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/mia-platform/miactl/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/mia-platform/miactl/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/mia-platform/miactl/compare/v0.7.0...v0.8.0

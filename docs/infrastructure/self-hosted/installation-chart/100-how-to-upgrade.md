@@ -13,14 +13,16 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 In order to upgrade Mia-Platform Console, all you need to do is to update the `mia-console` Chart version dependency in your `Chart.yaml` file.
 
 :::caution
-when upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v9 to v11 you must first upgrade to v10.
+When upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v10 to v12 you must first upgrade to the latest v11 version.
+
+To find out how to upgrade your installation to the latest version of v11, visit the [following documentation](../../../11.x/self_hosted/installation-chart/how_to_upgrade).
 :::
 
 ```yaml title="Chart.yaml" {9} showLineNumbers
 apiVersion: v2
 name: console
 version: "0.0.0"
-kubeVersion: ">= 1.20.0-0"
+kubeVersion: ">= 1.20.0"
 description: Self Hosted Console Installation Chart
 type: application
 dependencies:
@@ -36,6 +38,59 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 :::
 
 ## v12 - version upgrades
+
+### Upgrade from v12.1.0 to v12.X
+
+#### New management of image pull secrets
+
+In this version, it is possible to generate an image pull secret directly from the chart. To do it, you should configure the `imageCredentials` object in the `values.yaml` file.
+So, you can remove the `imagePullSecrets` object from the `values.yaml` file if you have only the secret to pull the image from the mia-platform registry. The field is still active, in the case you need more than one secret to pull images.
+It is be removed the `.Values.registryHost` field, which is moved to the `.Values.imageCredentials.registry` field (which default is the same as the `.Values.registryHost` value).
+
+An example of this configuration:
+
+```yaml
+imageCredentials:
+  registry: "nexus.mia-platform.eu"
+  name: "mia-platform-registry"
+  username: myUsername
+  password: myPassword
+  email: someone@mia-platform.eu
+```
+
+#### New security context
+
+In this version, we removed the Pod Security Policy support (since removed in K8s v1.25) and the `podSecurityPolicyEnabled` field.
+
+We also change the management of the security context. In this version, the security context are applied by default to all the pods, and it is possible to configure only the pod security context using the `defaultPodSecurityContext` field (to change all the pods security context) or the `podSecurityContext` field in each workload configuration (to change the security context of a specific pod).
+
+### Upgrade from v12.0.1 to v12.1.0
+
+#### New backoffice configuration
+
+In this version, cms is replaced with the Backoffice. At runtime, there will be only 1 service called `micro-lc` instead of 4 services (`cms-backend`, `cms-site`, `v1-adapter` and `exportService`).
+This means that you can remove any configuration related to cms from your `values.yaml` file.
+
+You can remove configuration related to:
+
+- `cmsBackendService`
+- `cmsSite`
+- `v1Adapter`
+- `exportService`
+
+And add backoffice configuration, something like:
+
+```yaml
+backoffice:
+  deploy:
+    resources:
+      requests:
+        memory: "250Mi"
+        cpu: "100m"
+      limits:
+        memory: "250Mi"
+        cpu: "250m"
+```
 
 ### Upgrade from last v11 to v12.0.0
 
@@ -54,126 +109,24 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](/infrastructure/self-hosted/installation-chart/30-authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](./30-authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
-This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](/infrastructure/self-hosted/installation-chart/20-general-settings.md#optional-telemetry-configurations).
+This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./20-general-settings.md#optional-telemetry-configurations).
 
 #### Introduction of Mia-Platform Company
 
-Since this version, a Mia-Platform Company will be created during the installation of the Console. Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
+Since this version, a Mia-Platform Company will be created during the installation of the Console. 
+Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
 
-The value `.Values.configurations.miaPlatformDefaultCompanyId` is required.
+The value `.Values.configurations.miaPlatformDefaultCompanyId` is required, it must be a `kebab-case` string free of spaces and UTF-8 characters.
 When installing a fresh instance of the Console or while upgrading from a previous version, a new company will be created with the given value only if not already existing.
 
-:::warning
+:::tip
 
-You can also set this value to an already existing company, but be aware that this Company will be used also for installation internal purposes.
-For this reason we strongly suggest to prefer a dedicated Company.
+We suggest to use the value `mia-platform` as default company ID, since it should be clear that it refers to Mia-Platform.
+
+However, please make sure that a tenant with the same name does not already exist: in such case we suggest to use a different name such as `mia-platform-internal` or similar.
 
 :::
-
-## v11 - version upgrades
-
-### Upgrade from v11.5.x to v11.6.0
-
-This version introduces the possibility to create Jobs from CronJobs, and to delete Jobs.
-
-Therefore, the Kubernetes Service Account set up on the clusters managed by your Console instance needs some specific permissions.
-
-If during the [Cluster Preparation](/development_suite/clusters-management/cluster-setup.mdx#cluster-preparation) you chose the Automatic procedure, just make sure that you have been provided at least the `v2.18.0` Mia-Platform Helm Chart.
-
-Otherwise, if you manually configure your cluster connections, in the `ClusterRole` bound to the Console Kubernetes Service Account, add the `create` and `delete` verbs to the `jobs` resource, along with the already present `get` and `list`:
-
-```yaml
-- apiGroups:
-      - "batch"
-    resources:
-      - "jobs"
-    verbs:
-      - "get"
-      - "list"
-      - "create"
-      - "delete"
-```
-
-### Upgrade from v11.4.0 to v11.4.1
-
-With version v11.4.1 (Chart version v9.5.0) the feature toggle service now uses Rönd, therefore `rbacSidecar` configurations should be added:
-
-```yaml
-featureToggleService:
-  deploy:
-    # ...
-  rbacSidecar:
-    resources:
-      requests:
-        memory: "100Mi"
-        cpu: "100m"
-      limits:
-        memory: "200Mi"
-        cpu: "200m"
-```
-
-### Upgrade from v11.3.0 to v11.4.0
-
-With version v11.4.0 (Chart version v9.4.0) a new service has been added, make sure to configure resource requirements and HPA according to your installation for `exportService`
-
-```yaml
-exportService:
-  deploy:
-    resources:
-      requests:
-        memory: "200Mi"
-        cpu: "50m"
-      limits:
-        memory: "500Mi"
-        cpu: "350m"
-    hpa:
-      annotations: {}
-      minReplicas: 2
-      maxReplicas: 4
-      targetCPUUtilizationPercentage: 70
-  podDisruptionBudget:
-    enabled: true
-    minAvailable: 1
-```
-
-Furthermore, `configurations.exportServiceHostname` value is removed. So, you can remove it from your values file.
-
-### Upgrade from v11.2.1 to v11.3.0
-
-With version v11.3.0 (Chart version v9.3.0) a new service has been added, make sure to configure resource requirements and HPA according to your installation for `eventsManager`
-
-```yaml
-eventsManager:
-  deploy:
-    resources:
-      requests:
-        memory: "50Mi"
-        cpu: "50m"
-      limits:
-        memory: "250Mi"
-        cpu: "350m"
-    hpa:
-      annotations: {}
-      minReplicas: 2
-      maxReplicas: 4
-      targetCPUUtilizationPercentage: 70
-  rbacSidecar:
-    resources:
-      requests:
-        memory: "100Mi"
-        cpu: "100m"
-      limits:
-        memory: "300Mi"
-        cpu: "300m"
-  podDisruptionBudget:
-    enabled: true
-    minAvailable: 1
-```
-
-### Upgrade from v10.9.0 to v11.2.1
-
-Between v10.9.0 (Chart version `v9.0.15`) and v11.2.1 (Chart version `v9.2.1`) the are no notable changes to take care of.

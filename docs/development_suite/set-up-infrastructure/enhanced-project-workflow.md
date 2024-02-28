@@ -7,11 +7,55 @@ sidebar_label: Enhanced Project Workflow
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-:::caution
-This is a **BETA** feature and, as such, is currently under active development. Pay attention using it.
+:::info
+This is a **BETA** feature and, as such, is currently under active development.
+
+It can be safely used but there may still be some missing features: check the [roadmap section](#roadmap-and-future-improvements) below to find out more.
 :::
 
-The **Enhanced Project Workflow** feature aims to provide a better developer experience when working with the Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
+The **Enhanced Project Workflow** feature aims at providing a better developer experience when working with Mia-Platform Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
+
+## Benefits of the Enhanced Workflow
+
+The technological changes underlying this new workflow provide improvements in both *user experience* and *development of future functionalities*; as such, there are several benefits of adopting the **Enhanced Project Workflow**:
+
+### Tailored orchestrator configurations
+
+By generating the orchestrator objects (e.g. *Kubernetes Deployment files*) at deploy time, the **generated configuration files can now be tailored for the selected environment**. 
+
+Generated configurations are still saved on your Git provider repository in different directories, based on the deployed environment.  
+You can review the configuration prior the commit by leveraging the [review feature](#kubernetes-configuration-review-and-export).
+
+### GitOps Support
+
+As mentioned, one of the most relevant features of the **Enhanced Project Workflow** is the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md) support.
+
+This means you can leverage Mia-Platform Console and **run deployments with your favorite GitOps tool** (e.g. [ArgoCD](/development_suite/deploy/gitops-based/configure-argocd.md))
+
+### Faster Design and general performance improvements
+
+A great bottleneck in the Standard Project Workflow is the frequent interaction with the Git Provider during configuration management activities. **Moving away from such an architecture** and limiting the interactions only when they are truly needed (e.g. saving orchestrator configurations on git) **allowed us to provide a faster user experience**. 
+
+The Console Area that benefits the most from such performance improvements is the Design Area where, for example, **the average time** for loading a Project configuration has moved **from ~4s to ~200ms**.
+
+### Design advanced section featured in Merge
+
+The [Advanced section](/development_suite/api-console/advanced-section/index.md) in Design Area is featured in all stages of the workflow, and no longer needs a separate configuration management strategy. This means that you can safely use this section without worrying about duplicate commits or the inability to manage extensions during merge of configurations.
+
+### New features
+
+As if the previous benefits were not enough, there is already a set of **new features available only for Enhanced Project Workflow**:
+
+-  [GitOps deployment support](/development_suite/deploy/gitops-based/index.md)
+-  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx)
+-  [Configurations review and export](#kubernetes-configuration-review-and-export)
+
+And more features to come, such as:
+
+- Saving history with comparison of saved configurations within Design Area
+- Project configuration import from a runtime
+- Compare generated configuration files with last deployed configuration
+- ...and more, check out the [roadmap section](#roadmap-and-future-improvements) for further information
 
 ## Changes to the Console workflow
 
@@ -22,10 +66,14 @@ The following sections will highlight the changes made to the established Consol
 The most relevant change in the Console behavior is that the Project logical state will not be saved on your Git repository anymore. This results in significant **performance improvement** during the main Console workflows (especially in the [Design Area](/development_suite/api-console/api-design/overview.md)), since contacting the Git provider implied a considerable overhead that has now been completely removed.
 
 This change also means that the Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**, while still maintaining consistency with the established workflows; to emphasize this, the following features have been renamed:
-- `branches` and `tags` become **`revisions`** and **`versions`**
-- the `commit history` becomes **`version history`**
+- `Branches` and `Tags` become **`Revisions`** and **`Versions`**
+- the `Commit history` becomes **`Revision history`**
 
-To keep track of the Project evolution, user can create `versions` (similar to Git tags) that act as fixed snapshots of the configuration in a particular moment.
+To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its history by clicking the related icon inside the branch selection area.
+
+![Revision History modal](img/revision-history.png)
+
+The table includes a list of all snapshots of the project configuration created with each save, along with useful information such as the snapshot date, author, associated message, and any tags created with it.
 
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
@@ -58,6 +106,35 @@ The new deployment workflow also unlocks the possibility to adopt a **pull-based
 This workflow enables users to review and export generated configurations before these are even deployed to the cluster.  
 This feature is available from the [Deploy Page](/development_suite/deploy/overview.md#export-and-review-configuration-files) after selecting the revision to deploy.
 
+## Best Practices
+
+With the **Enhanced Project Workflow** paradigm shift, working with the Console may require some habit changes; this section presents some best practices that may help with such change.
+
+### Revision management
+
+Working with revisions in the Enhanced Workflow is not that different from working with branches in the Standard Workflow; revisions have their own history and can be deployed on different environments, therefore patterns such as **Git Flow** or **Trunk-based development** can be applied to the **Enhanced Project Workflow** as well.
+
+#### Trunk-based
+
+If you are **working in a small team**, in general, we advise using **trunk-based development**, with a single revision that represents your Project's state-of-the-art that gets versioned every time a release is needed.
+
+Create new revisions whenever you need to experiment or are unsure of the changes to be made, but [*remember to merge*](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) them in the main trunk as soon as possible to prevent headaches in reconciling diverging revisions.
+
+:::tip
+When a version is deployed a tag is created on Git. Such tag has a different name based on the target environment making it possible to verify configuration changes between different deployments of the same version!
+:::
+
+#### Git Flow
+
+If you are working in **larger teams** or need to make more **structured change reviews**, use **Git Flow** instead and create a revision for each environment your project has. The daily work will be done in the revision associated with the "lower" environment;
+whenever changes can be promoted to a "higher" environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to bring those changes to the revision associated with it.
+
+:::tip
+In a project with two environments (e.g. development and production), make sure to have at least two revisions.
+
+Developers will make changes in the `development` revision and deploy such revision in the development environment; to promote changes to the production environment, use the [merge](/development_suite/api-console/api-design/merge_collaboration.md#how-to-perform-a-merge-of-configurations) feature to incorporate them into the correct revision and finally deploy it to the production environment.
+:::
+
 ## Roadmap and future improvements
 
 :::note
@@ -81,23 +158,47 @@ With this feature Users will be able to not only review the configurations but a
 
 With the first release of this new Workflow, existing Projects will require a migration operation to be performed. With this improvement we ought to provide further assistance in the migration process to make it as easy and smooth as possible.
 
-## Activating the feature on new Projects
+## Activating the feature
 
-The Enhanced Project Workflow can be activated by the user on new Projects enabling the relative switch in the Project workflow card following the [project creation process](/console/project-configuration/create-a-project.mdx#creation-process).
-
-:::info
-If you want to ensure that all Projects in your Company adopt the Enhanced Workflow, you can open a service request and ask for the support of a Mia-Platform referent in order to enable the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature on the Company level disallows also to create new project without the Enhanced Workflow.
-
-In the end of the Project creation process, if the Enhanced Workflow option has been selected, the result is the activation of the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Project level.
-
-:::info
-If you want to activate the Enhanced Workflow on an already existing Project, follow the guide in the next section instead.
+:::note
+The **Enhanced Project Workflow** can be activated by any user with administrative privileges on a Project.
 :::
 
+### New Projects
 
-If you have a Self-Hosted Console installation, and you want to see more detail about how to activate the feature toggles, you can read [this reference](/infrastructure/self-hosted/feature-toggle.md).
-## Migrating your projects
+Newly created Projects can start using the **Enhanced Project Workflow** from the very first moment of their life, simply by switching the Workflow selection during the [Project creation process](/console/project-configuration/create-a-project.mdx#creation-process).
 
+
+  ![create-project-1](./img/project-creation-switch.png)
+
+When making this choice, also make sure the *Project Template* you wish to start from is already supporting the new folder structure required by the **Enhanced Project Workflow**.
+If not, you can still start from any template and after the Project creation you may have to follow the [migration guide](#migrating-your-projects) in order to adapt the created Project repository to [the new folder structure](#git-repository-adjustments).
+
+:::info
+After the Project creation is completed, in the Project Settings, you will be able to select the *deployment strategy* between **Push** (for [Pipeline-based deployments](/development_suite/deploy/pipeline-based/index.md)) and **Pull** (for [GitOps-based deployments](/development_suite/deploy/gitops-based/index.md)).
+
+  ![deployment strategy selection](./img/settings-deployment-strategy-edit.png)
+
+:::
+
+### Existing Projects
+
+To enable the **Enhanced Project Workflow** on an existing Project, head to the **Advanced** tab in the [**Project Settings**](/console/project-configuration/project-settings.md) page and press the *Convert to Enhanced Workflow* button.
+
+  ![deployment strategy selection](./img/settings-advanced-convert-button.png)
+
+:::caution
+Enabling the Workflow on an existing Project will not make any changes to the Project repository, so make sure to follow the [migration guide](#migrating-your-projects) below before converting the Project to the new workflow.
+:::
+
+<details>
+<summary>Enable the Workflow on a whole Company</summary>
+
+If you want to ensure that all Projects in your Company adopt the **Enhanced Project Workflow**, you can open a service request and ask for the support of a Mia-Platform referent in order to activate the `ENABLE_CONF_GENERATION_ON_DEPLOY` feature toggle at Company level. The activation of this feature at the Company level also disallows the creation of new Projects with the standard Workflow.
+
+</details>
+
+## Migrating your Projects
 
 In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
 
@@ -145,7 +246,7 @@ All the contents of the `environments` directory are generated from scratch each
 :::
 
 <br />
-The migration process for the git repository differs depending on whether the project is using kustomize or not.  
+The migration process for the git repository differs depending on whether the Project is using kustomize or not.  
 Follow the right section for your Project to correctly update the git repository:
 
 <Tabs
@@ -210,7 +311,3 @@ After activating the Feature, ensure to configure the new **default revision** f
 If no default revision is specified, the Console will use `main` as the default revision.
 This revision will be an empty configuration if no other `main` branch was previously created on the Project.
 :::
-
-## Pull-based deployment strategy
-
-If you want the Project to use a [**pull-based deployment strategy**](/development_suite/deploy/gitops-based/index.md#advantages-of-pull-based-deployment), you can select it in the [Deployment options card](/console/project-configuration/project-settings.md#deployment-options) in the Workload & Runtime section of the Project Settings page.

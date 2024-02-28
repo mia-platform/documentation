@@ -12,11 +12,10 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 In this section, we show you how to use the `authentication-service`.
 
-## Login Flow
+## Login Flows
 
-The service handle the `authorization_code` OAuth2 grant type.
+The service handles the `authorization_code` and the legacy `password` OAuth2 grant types.
 
-Here is how to login with this flow.
 
 ### Authorize
 
@@ -47,23 +46,21 @@ Your application should then implement the logic to call the [POST /oauth/token 
 
 :::tip
 
-In case you are using a web app this request can be urlmade directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
+In case you are using a web app this request can be made directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
 
 :::
 
-#### Redirect url parameter
+#### Redirect parameter
 
-You can pass a redirect url to the request, by means of the `redirect` query string parameter. After a successful login, the `/oauth/token` endpoint will set the `Location` header to the specified url.
+You can pass a redirect url or path to the request, by means of the `redirect` query string parameter. After a successful login, the `/oauth/token` endpoint will set the `Location` header to the specified url.
 
-If a request comes with no `redirect` query parameter, the `Location` header will be set to the `redirectUrlOnSuccessfullLogin` app setting parameter, if specified.
+The value can either be an absolute url, or a path relative to the root of your web application.
+
+If a request comes with no `redirect` query parameter, the `Location` header will be set to the `defaultRedirectUrlOnSuccessfulLogin` app setting parameter, if specified.
 
 In all other cases the `Location` header will not be set.
 
-:::info
-
 The response status code of a successful request is always `200 OK`, which means that browsers will ignore by default the `Location` header. It is responsibility of the client implementation to use the redirect url when needed.
-
-:::
 
 :::warning
 
@@ -123,7 +120,31 @@ The body of the request, in JSON format, is composed of the following fields:
 
 These fields are usually retrieved from the redirect url query string.
 
-The endpoint will return a JSON object with *accessToken*, *refreshToken* and *expiresAt*.
+#### Password grant type (DEPRECATED)
+
+:::warning
+
+The `password` grant type usage is discouraged and with limited support by providers.
+
+Please only use this only if `authorization_code` grant type is not applicable for your use case.
+
+Check your provider documentation to make sure it is supported.
+
+:::
+
+The body of the request, in JSON format, is composed of the following fields:
+
+```json
+{
+    "grant_type": "password",
+    "username": "{{USERNAME}}",
+    "password": "{{PASSWORD}}",
+    "appId": "{{APP_ID}}",
+    "providerId": "{{PROVIDER_ID}}"
+}
+```
+
+Regardless of the used `grant_type`, the endpoint will return a JSON object with *accessToken*, *refreshToken* and *expiresAt*.
 
 ```json
 {
@@ -281,6 +302,8 @@ application to redirect to the `/logout` endpoint of the provider.
 
 As a result, the user will be signed out from both the provider and the application.
 
+You can specify an absolute url, or a path relative to the root of your application.
+
 ##### With `logoutUrl` parameter
 
 :::info
@@ -307,6 +330,10 @@ When called with the `logoutUrl` parameter set in the service configuration, the
 - `id_token_hint`: it is set to the `id_token`, retrieved from the provider during login, and stored in the backend session along with the access token.
 
 The endpoint will then redirect the user to the `logoutUrl` with the appended query string, causing the user to be signed out from both the provider and the application.
+
+Please note that in this case the `redirect` parameter must be an absolute url, pointing to a proper location of your web app. Relative paths are not accepted: the authentication provider will refuse them. 
+
+Please also make sure you correctly configure your provider adding the redirect urls you wish to use to the allowed `post_logout_redirect_uri`s.
 
 ## User Info
 
@@ -407,9 +434,9 @@ The configuration snippet above will result in the following JWT token claims:
 
 ### Integration with the ***Authorization Service***
 
-The `/userinfo` endpoint can be used by the [Authorization Service](../../runtime_suite/authorization-service/overview) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
+The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
 
-You need to set the following variables in the [configuration](../../runtime_suite/authorization-service/configuration) with these values:
+You need to set the following variables in the [configuration](../authorization-service/configuration) with these values:
 
 - **USERINFO_URL**=`http://authentication-service/userinfo` (NB: change the hostname if it has been named differently)
 - **CUSTOM_USER_ID_KEY**=`userId`
@@ -573,7 +600,7 @@ In order to validate the webhook, Okta sends a GET request on the webhook url wi
 
 In order to secure these endpoints from unwanted requests (that will end up in users being added to the CRUD collection), you need to secure the Endpoint (for instance using an API Key).
 
-::: warning
+:::warning
 
 Remember to keep the API Key secure and to share it only with who is going to consume the webhook!
 
@@ -594,7 +621,7 @@ For new service setups, the usage of an asymmetric algorithm is strongly encoura
 
 By default, the service uses the symmetric signing algorithm `HS256` to sign the token. The signing key is provided by means of the `MIA_JWT_TOKEN_SIGN_KEY` env variable.
 
-::: tip
+:::tip
 
 It is suggested to generate and use an HMAC of least of 512 bytes, for example with the following command:
 
@@ -719,8 +746,8 @@ Example response:
 
 If you set the `EXPOSE_METRICS` environment variable to `true`, the service will expose the `/-/metrics` endpoint, which returns the following metrics:
 
-| Metric Name | Description |
-| ----------- | ----------- |
+| Metric Name                     | Description                                   |
+| ------------------------------- | --------------------------------------------- |
 | `http_request_duration_seconds` | The duration of the HTTP requests, in seconds |
 
 It is possible to customize the metrics prefix by setting the `NAMESPACED_METRICS_PREFIX` environment variable. The default value is `authentication_service`.

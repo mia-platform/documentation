@@ -15,13 +15,13 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 [change-query]: ../70_events.md#change-query
 
-[bk-url-parameters]: ../60_components//540_url_parameters_adapter.md
+[bk-url-parameters]: ../60_components//550_url_parameters_adapter.md
 [bk-crud-client]: ../60_components/100_crud_client.md
 [bk-crud-lookup-client]: ../60_components/170_crud_lookup_client.md
-[bk-state-adapter]: ../60_components/500_state_adapter.md
+[bk-state-adapter]: ../60_components/510_state_adapter.md
 [bk-button]: ../60_components/90_button.md
 
-[afterFinishEvents]: ../60_components/330_form_drawer.md#after-submission
+[afterFinishEvents]: ../60_components/340_form_drawer.md#after-submission
 
 
 

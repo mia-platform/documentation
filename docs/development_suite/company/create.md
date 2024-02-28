@@ -20,12 +20,6 @@ To create a new company in the Mia-Platform SaaS Console, open a [Service Reques
 
 Before creating a new company in a Mia-Platform On-Premise Console installation, contact your Mia-Platform referent.
 
-:::caution
-Remember that the possibility of adding new companies may depend on the type of license you have subscribed to. 
-
-Only a limited amount of companies may be available for creation within your license terms.
-:::
-
 Once you made sure you meet all the necessary requirements to create a new company, you can continue with this guide.
 
 <br/>
@@ -44,7 +38,7 @@ To create and configure a company, you must have:
 You can create a new company by making a POST request to the `/api/backend/companies` API. 
 
 :::info
-This API is visible inside the Console API Portal, under the `Companies` tag.
+This API is visible inside the Console API Portal (`{{CONSOLE-HOST}}/documentations/api-portal/`), under the `Companies` tag.
 :::
 
 You will be asked to set the **name** and the **description** of the company to add (only name is required). 

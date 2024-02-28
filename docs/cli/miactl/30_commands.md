@@ -196,6 +196,245 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 
+#### add serviceaccount basic
+
+The `company iam add serviceaccount basic` subcommand allows you to create a new service account for your Company.
+
+Usage:
+
+```sh
+miactl company iam add serviceaccount basic NAME [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--role`, the Company role for the service account
+
+#### add serviceaccount jwt
+
+The `company iam add serviceaccount jwt` subcommand allows you to create a new service account for your Company that will
+use the jwt authorization method.
+
+Usage:
+
+```sh
+miactl company iam add serviceaccount jwt NAME [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--output`, optional flag to save the service account configuration as json in a file at the provided path
+- `--role`, the Company role for the service account
+
+#### add user
+
+The `company iam add user` subcommand allows you to add a user in your Company with the given role.
+
+Usage:
+
+```sh
+miactl company iam add user [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--email`, the email of the user to add
+- `--role`, the Company role of the user
+
+#### add group
+
+The `company iam add group` subcommand allows you to add a group in your Company with the given role.
+
+Usage:
+
+```sh
+miactl company iam add group NAME [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--role`, the Company role of the user
+
+#### add group-member
+
+The `company iam add group-member` subcommand allows you to add one or more users to a group in your Company.
+
+Usage:
+
+```sh
+miactl company iam add group-member [flags]
+```
+
+Available flags for the command:
+
+- `--group-id`, the group id where to add the users
+- `--user-email`, the list of user email to add to the group
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
+#### edit user
+
+The `company iam edit user` subcommand allows you to edit the role associated to a user in your Company.
+
+Usage:
+
+```sh
+miactl company iam edit user [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--user-id`, the id of the user to edit
+- `--role`, the new Company role of the user
+
+#### edit serviceaccount
+
+The `company iam edit serviceaccount` subcommand allows you to edit the role associated to a service account in
+your Company.
+
+Usage:
+
+```sh
+miactl company iam edit serviceaccount [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--service-account-id`, the id of the service account to edit
+- `--role`, the new Company role of the service account
+
+#### edit group
+
+The `company iam edit group` subcommand allows you to edit the role associated to a group in your Company.
+
+Usage:
+
+```sh
+miactl company iam edit group [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--group-id`, the id of the group to edit
+- `--role`, the new Company role of the group
+
+#### remove user
+
+The `company iam remove user` subcommand allows you to remove a user from a company. Alternatively you can use the
+`no-include-groups` flag for only remove the role directly associated to a user, but leave intact its groups memberships.
+
+Usage:
+
+```sh
+miactl company iam remove user [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--user-id`, the id of the user to remove
+- `--no-include-groups`, set this flag for keeping the user memberhip, and only remove the role attached to the user
+
+#### remove group
+
+The `company iam remove group` subcommand allows you to remove a group and all its memberships from a company.
+
+Usage:
+
+```sh
+miactl company iam remove group [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--group-id`, the id of the group to remove
+
+#### remove serviceaccount
+
+The `company iam remove serviceaccount` subcommand allows you to remove a service account in your Company.
+
+Usage:
+
+```sh
+miactl company iam remove serviceaccount [flags]
+```
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--service-account-id`, the id of the service account to remove
+
+#### remove group-member
+
+The `company iam remove group-member` subcommand allows you to remove one or more users from a group in your Company.
+
+Usage:
+
+```sh
+miactl company iam remove group-member [flags]
+```
+
+Available flags for the command:
+
+- `--group-id`, the group id where to remove the users
+- `--user-id`, the list of user ids to remove from the group
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
 ## project
 
 This command allows you to manage `miactl` Projects.
@@ -221,6 +460,90 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 
+### iam
+
+The `project iam` subcommands are used for managing the RBAC permissions associated with a project. Only
+**Company Owners** and **Project Administrators** can modify, add or remove RBAC authorization for a project.
+
+#### list
+
+The `project iam list` subcommand allows you to view the list of all the different identity that has access to a
+project.
+
+Usage:
+
+```sh
+miactl project iam list [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+
+#### edit RESOURCE-NAME
+
+The `project iam edit` subcommand allows you to alternatively update the role assigned to the current project or
+one of its environment for one of the different `IAM` entity types:
+
+- `group`
+- `service account`
+- `user`
+
+Usage:
+
+```sh
+miactl project edit [user|group|serviceaccount] [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--project-role`, the new role for the current project
+- `--entity-id`, the entity id to change
+- `--environment`, the environment where to change the role
+- `--environment-role`, the new role for the selected environment
+
+#### remove-role RESOURCE-NAME
+
+The `project iam remove-role` subcommand allows you to alternatively delete the custom role assigned to one of the
+different `IAM` entity types for the project or one of its environments.
+
+Usage:
+
+```sh
+miactl project remove-role [user|group|serviceaccount] [flags]
+```
+
+Available flags for the command:
+
+- `--groups`, filter IAM entities to show only groups. Mutally exclusive with `users` and `serviceAccounts`
+- `--serviceAccounts`, filter IAM entities to show only service accounts. Mutally exclusive with `users` and `groups`
+- `--users`, filter IAM entities to show only users. Mutally exclusive with `groups` and `serviceAccounts`
+- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--entity-id`, the entity id to change
+- `--environment`, set the flag to the environment name for deleting the role for that environment
+
 ## deploy
 
 This command allows you to trigger the deploy pipeline for the selected Project.
@@ -242,48 +565,6 @@ Available flags for the command:
 - `--deploy-type`, to select a deploy type (default is `smart_deploy`)
 - `--no-semver`, to force the deploy without `semver`
 - `--revision`, to specify the revision of the commit to deploy
-
-## serviceaccount
-
-### create basic
-
-The `serviceaccount create basic` subcommand allows you to create a new service account for your Company.
-
-Usage:
-
-```sh
-miactl serviceaccount create basic NAME [flags]
-```
-
-Available flags for the command:
-
-- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--certificate-authority`, to provide the path to a custom CA certificate
-- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
-- `--context`, to specify a different context from the currently selected one
-- `--company-id`, to set the ID of the desired Company
-- `--role`, the Company role for the service account
-
-### create jwt
-
-The `serviceaccount create jwt` subcommand allows you to create a new service account for your Company that will
-use the jwt authorization method.
-
-Usage:
-
-```sh
-miactl serviceaccount create jwt NAME [flags]
-```
-
-Available flags for the command:
-
-- `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
-- `--certificate-authority`, to provide the path to a custom CA certificate
-- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
-- `--context`, to specify a different context from the currently selected one
-- `--company-id`, to set the ID of the desired Company
-- `--output`, optional flag to save the service account json description in a file at the provided path
-- `--role`, the Company role for the service account
 
 ## runtime
 
@@ -437,11 +718,17 @@ List Marketplace items
 
 #### Synopsis
 
-List the Marketplace items that the current user can access.
+List the Marketplace items that the current user can access. 
 
+#### Usage
+
+```sh
+miactl marketplace list --company-id company-id [FLAGS]...
 ```
-miactl marketplace list [flags]
-```
+
+#### Flags
+
+*   `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Marketplace items from other companies.
 
 ### get
 

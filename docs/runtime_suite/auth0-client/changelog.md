@@ -15,7 +15,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.6.0 - 26-02-2024
+
+### Added
+
+- Add `client_id` to Auth0 logout endpoint when `AUTH0_LOGOUT_CLIENT_ID_ENABLED` env is true
+
+## 3.5.0 - 20-02-2024
+
+### Added
+
+[MKB-26](http://makeitapp.atlassian.net/browse/MKB-26): Add `authorizeStateRequired` configuration to make the `state` query parameter required for `/authorize` endpoint
+
+## 3.4.0 - 02-02-2024
+
+### Added
+
+- add users Jobs endpoints:
+  - users bulk import
+  - get bulk import status
+  - get bulk import errors
+
+## 3.3.2 - 10-01-2024
+
+### Added
+
+- support for Redis username and password when using standalone mode
+
 ## 3.3.1 - 16-12-2022
+
 ## Added
 
 - Possibility to configure SameSite cookie

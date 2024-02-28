@@ -1,7 +1,7 @@
 ---
 id: main-entrypoint
 title: Main Entrypoint
-sidebar_label: Main-entrypoint
+sidebar_label: Main entrypoint
 ---
 
 <!--

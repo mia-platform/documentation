@@ -15,8 +15,11 @@ nameOverride: "" # optional
 fullnameOverride: "" # optional
 
 mia-console:
-  imagePullSecrets:
-    - name: <PULL_SECRET_NAME> # array of image pull secret to pull Console services
+  imageCredentials:
+    name: <PULL_SECRET_NAME> # array of image pull secret to pull Console services
+    username: <CONTAINER_REGISTRY_USERNAME> # username of the user which download the image from the container registry
+    password: <CONTAINER_REGISTRY_PASSWORD> # password of the user which download the image from the container registry
+    email: <CONTAINER_REGISTRY_EMAIL> # email of the user which download the image from the container registry
 
   configurations:
     consoleUrl: "<CONSOLE_URL>"
@@ -100,16 +103,10 @@ mia-console:
       apiGateway:
         memoryLimitMin: "5Mi"
         memoryLimitMax: "25Mi"
-      microserviceGateway:
-        memoryLimitMin: "50Mi"
-        memoryLimitMax: "300Mi"
       crudService:
         memoryLimitMin: "70Mi"
         memoryLimitMax: "250Mi"
-      authorizationService:
-        memoryLimitMin: "20Mi"
-        memoryLimitMax: "80Mi"
-    crudEncryption: # ../../runtime_suite/crud-service/encryption_configuration
+    crudEncryption: # ../../../runtime_suite/crud-service/encryption_configuration
       keyVaultNamespace: "<dbname.collectionname>" # set to the collection you wish to use as encryption key vault.
       kmsProvider: "gcp|local" # set to gcp or local based on your desired KMS
       # use this configuration if you want to use locally managed master encryption key
@@ -191,26 +188,6 @@ mia-console:
         limits:
           memory: "300Mi"
           cpu: "500m"
-
-  cmsBackendService:
-    deploy:
-      resources:
-        requests:
-          memory: "50Mi"
-          cpu: "20m"
-        limits:
-          memory: "200Mi"
-          cpu: "250m"
-
-  cmsSite:
-    deploy:
-      resources:
-        requests:
-          cpu: "10m"
-          memory: "20Mi"
-        limits:
-          cpu: "10m"
-          memory: "25Mi"
 
   crudService:
     deploy:
@@ -430,16 +407,6 @@ mia-console:
           memory: "300Mi"
           cpu: "300m"
 
-  v1Adapter:
-    deploy:
-      resources:
-        requests:
-          memory: "100Mi"
-          cpu: "100m"
-        limits:
-          memory: "300Mi"
-          cpu: "300m"
-
   websites:
     deploy:
       resources:
@@ -449,4 +416,14 @@ mia-console:
         limits:
           cpu: "150m"
           memory: "25Mi"
+
+  backoffice:
+    deploy:
+      resources:
+        requests:
+          memory: "250Mi"
+          cpu: "100m"
+        limits:
+          memory: "250Mi"
+          cpu: "250m"
 ```

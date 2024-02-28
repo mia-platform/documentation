@@ -26,8 +26,6 @@ All of the following values are root values for the `mia-console` chart values.
 | `authenticationService` | [Service Conf](#service-conf) | The configurations for the Authentication Service |  | ✅ |
 | `authorizationService` | [Service Conf](#service-conf) | The configurations for the Authorization Service |  | ✅ |
 | `backendService` | [Service Conf](#service-conf) | The configurations for the Console Backend Service |  | ✅ |
-| `cmsBackendService` | [Service Conf](#service-conf) | The configurations for the CMS Backend Service |  | ✅ |
-| `cmsSite` | [Service Conf](#service-conf) | The configurations for the CMS website Service |  | ✅ |
 | `crudService` | [Service Conf](#service-conf) | The configurations for the CRUD Service |  | ✅ |
 | `deployService` | [Service Conf](#service-conf) | The configurations for the Deploy Service |  | ✅ |
 | `environmentsVariables` | [Service Conf](#service-conf) | The configurations for the Environment Variables Service |  | ✅ |
@@ -36,18 +34,22 @@ All of the following values are root values for the `mia-console` chart values.
 | `loginSite` | [Service Conf](#service-conf) | The configurations for the Login website Service |  | ✅ |
 | `notificationProvider` | [Service Conf](#service-conf) | The configurations for the Notification Provider Service |  | ✅ |
 | `swaggerAggregator` | [Service Conf](#service-conf) | The configurations for the Swagger Aggregator Service |  | ✅ |
-| `v1Adapter` | [Service Conf](#service-conf) | The configurations for the v1 Adapter Service |  | ✅ |
 | `websites` | [Service Conf](#service-conf) | The configurations for the Console website Service |  | ✅ |
 | `miaCraftBff` | [Service Conf](#service-conf) | The configurations for the mia-craft backend for frontend |  | ✅ |
 | `rbacManagerBff` | [Service Conf](#service-conf) | The configurations for the rbac-manager backend for frontend to handle users and iam |  | ✅ |
 | `rbacStandalone` | [Service Conf](#service-conf) | The configurations for a rbac service standalone |  | ✅ |
 | `tenantOverviewBff` | [Service Conf](#service-conf) | The configurations for the tenant overview service |  | ✅ |
 | `bindingsCleaner` | [Service Conf](#service-conf) | The configurations for the bindings cleaner cronjob |  | ✅ |
+| `configurationsCleaner` | [Service Conf](#service-conf) | The configurations for the configurations history cleaner cronjob |  | ✅ |
 | `mailService` | [Service Conf](#service-conf) | The configurations for the mail service |  | ✅ |
 | `featureToggleService` | [Service Conf](#service-conf) | The configurations for the feature toggle service |  | ✅ |
 | `licenseManager` | [Service Conf](#service-conf) | The configurations for the license manager service |  | ✅ |
-| `exportService` | [Service Conf](#service-conf) | The configurations for the Export service external service | `{ service: { annotations: {} } }` | ✅ |
+| `backoffice` | [Service Conf](#service-conf)| The configurations for Backoffice service |  | ✅ |
+| `eventsManager` | [Service Conf](#service-conf)| The configurations for the events-manager service |  | ✅ |
+| `licenseMetricsGenerator` | [CronJob Conf](#cronjob-conf)| The configurations for the license metrics generator CronJob |  | ✅ |
 | `rbac` | [Annotation Conf](#annotations-conf)| The configurations for the RBAC resources |  | ✅ |
+| `updateScripts.marketplaceCategories` | [Job](#job)| The configurable part of the marketplace categories hook |  | ✅ |
+| `updateScripts.consoleVersionUpgrader` | [Job](#job)| The configurable part of the console-version-upgrader hook |  | ✅ |
 
 ### Service Conf
 
@@ -55,6 +57,13 @@ All of the following values are root values for the `mia-console` chart values.
 |:----:|:----:|:-----------:|:-------:|:--------:|
 | `deploy` | [Deployment Conf](#deployment-conf) | An object that describe the configurable part of a deployment |  | ❌ |
 | `service` | [Annotation Conf](#annotations-conf) | An object that describe the configurable part of a kubernetes service |  | ❌ |
+| `rbacSidecar` | [RBAC Sidecar Conf](#rbac-sidecar-conf) | An object that describe the configurable part of the RBAC Sidecar service |  | ❌ |
+
+### CronJob Conf
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `cronjob` | [CronJob](#cronjob) | An object that describe the configurable part of a cronjob |  | ❌ |
 
 ### Deployment Conf
 
@@ -68,6 +77,7 @@ All of the following values are root values for the `mia-console` chart values.
 | `tolerations` | array | A kubernetes tolerations array for the pod |  | ✅ |
 | `hpa` | [HPA Conf](#hpa) | A kubernetes hpa object to enable horizontal pod autoscaler |  | ✅ |
 | `podDisruptionBudget` | [PodDisruptionBudget](#poddisruptionbudget) | A kubernetes PodDisruptionBudget object |  | ✅ |
+| `podSecurityContext` | [Pod Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | A kubernetes pod security context object |  | ✅ |
 
 ### Docker Image
 
@@ -102,6 +112,36 @@ All of the following values are root values for the `mia-console` chart values.
 | `annotations` | object | A Kubernetes valid annotation object |  | ✅ |
 | `labels` | object | A Kubernetes valid labels object |  | ✅ |
 
+### RBAC Sidecar Conf
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `annotations` | object | A Kubernetes valid annotation object |  | ✅ |
+| `resources` | object | A Kubernetes valid resources object |  | ✅ |
+
+### CronJob
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `image` | [Docker Image](#docker-image) | The docker image configurations |  | ❌ |
+| `annotations` | [Annotation Conf](#annotations-conf)  |  |  | ✅ |
+| `resources` | object | A kubernetes resource object for the container |  | ✅ |
+| `affinity` | object | A kubernetes affinity object for the pod |  | ✅ |
+| `nodeSelector` | object | A kubernetes nodeSelector object for the pod |  | ✅ |
+| `tolerations` | array | A kubernetes tolerations array for the pod |  | ✅ |
+| `podSecurityContext` | [Pod Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | A kubernetes pod security context object |  | ✅ |
+
+### Job
+
+| Name | Type | Description | Default | Optional |
+|:----:|:----:|:-----------:|:-------:|:--------:|
+| `image` | [Docker Image](#docker-image) | The docker image configurations |  | ❌ |
+| `annotations` | [Annotation Conf](#annotations-conf)  |  |  | ✅ |
+| `resources` | object | A kubernetes resource object for the container |  | ✅ |
+| `affinity` | object | A kubernetes affinity object for the pod |  | ✅ |
+| `nodeSelector` | object | A kubernetes nodeSelector object for the pod |  | ✅ |
+| `tolerations` | array | A kubernetes tolerations array for the pod |  | ✅ |
+| `podSecurityContext` | [Pod Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | A kubernetes pod security context object |  | ✅ |
 
 ### Examples
 
@@ -144,7 +184,7 @@ mia-console:
 
 ## Suggested resources
 
-Based on the number of users, you might want to change the CPU and Memory resources configurations for each service; when doing so you can take the examples provided in the [Installation Chart Example page](/infrastructure/self-hosted/installation-chart/90-installation-chart-example.md) which are enough to manage up to 300 monthly active users. If you have less or more users you can reduce or increase the resources as you prefer and fine-tune your installation resource consumption.
+Based on the number of users, you might want to change the CPU and Memory resources configurations for each service; when doing so you can take the examples provided in the [Installation Chart Example page](./90-installation-chart-example.md) which are enough to manage up to 300 monthly active users. If you have less or more users you can reduce or increase the resources as you prefer and fine-tune your installation resource consumption.
 
 :::info
 To better size the Console cluster dimension, consider that the minimum allocatable memory (RAM) and core (CPU) values should be at least equal to the sum of the requested ones set in your installation chart for all services.

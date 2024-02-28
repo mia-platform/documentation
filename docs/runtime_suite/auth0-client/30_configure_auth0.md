@@ -125,10 +125,10 @@ Remember, when configuring the auth0-client, to reuse the value you used as `MIA
 e.g.
 If you set `MIA_NAMESPACE = https://mia-platform.eu/`, then configure the `auth0-client` `config.json` using the Advanced section of Console, by adding the following property:  
 
-```Json
+```json
 {
   // ... the other configurations,
-  customClaimsNamespaces: [
+  "customClaimsNamespaces": [
       "https://mia-platform.eu/app_metadata"
       "https://mia-platform.eu/user_metadata"
   ]

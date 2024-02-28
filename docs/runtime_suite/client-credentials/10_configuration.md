@@ -16,7 +16,7 @@ In this section, you will learn how to configure the `client-credentials` servic
 
 ## Create the client collection
 
-This service uses a [crud-service](../../runtime_suite/crud-service/overview_and_usage) collection to handle clients.
+This service uses a [crud-service](../crud-service/overview_and_usage) collection to handle clients.
 
 [Create a CRUD collection](../../development_suite/api-console/api-design/crud_advanced) in the MongoDB CRUD section of the Console with the name `clients` (you can choose also another name if already taken in your project), download <a download target="_blank" href="/docs_files_to_download/client-credentials/clients.json">these fields</a>, and import them into the Console (find out how to import fields [here](../../development_suite/api-console/api-design/crud_advanced#how-to-create-the-fields-of-your-crud-by-importing-a-json)).
 
@@ -40,18 +40,20 @@ This service is configurable with the following environment variables:
 * **CREDENTIALS_MONGODB_URL** (*required*): the mongo url pointing to the db which will handle the credentials information;
 * **CREDENTIALS_COLLECTION_NAME** (default to `credentials`): collection to save the credentials information;
 * **MONGODB_CREDENTIALS_DATABASE_NAME**: the mongo db name which will include the `credentials` collection. If not set, it is taken from the MongoDB URL configured in `CREDENTIALS_MONGODB_URL` env var;
-* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private RSA key. [Click here](#RSA-key-management) to see how to create it;
+* **PRIVATE_RSA_KEY_FILE_PATH** (*required*): path to mount the private RSA key. [Click here](#rsa-key-management) to see how to create it;
 * **PRIVATE_KEY_PASSWORD**: password to decrypt the RSA key, if it is encrypted with a password. If it is empty, RSA key is treated as a non protected RSA key;
 * **PRIVATE_RSA_KEY_ID** (*required*): id of the private key. It will be added to the *kid* of the generated JWT. This is a random string;
 * **MIA_JWT_ISSUER** (*required*): string containing the issuer to fill the JWT claims. During the login flow, it is added as *iss*;
 * **MIA_JWT_EXPIRES_IN** (*required*): expiration time for the generated JWT, in seconds;
 * **REQUIRED_AUDIENCE_IN_TOKEN_REQUEST** (default to `false`): if audience is required in token request;
-* **ACCEPTED_AUDIENCES**: audience accepted by the service, if included in JWT `aud` claim;
+* **ACCEPTED_AUDIENCES**: comma-separated list of audiences accepted by the service, if included in JWT `aud` claim;
 * **OPENID_CONFIG_PATH**: string representing the path to the file contaning the OpenId Connect Configuration.
 * **REDIS_HOSTS** (*required*): redis host with port (default Redis port is 6379);
-- **REDIS_USERNAME** (*optional*): the username to authenticate to Redis (only supported for `REDIS_MODE=normal`);
-- **REDIS_PASSWORD** (*optional*): the password to authenticate to Redis (only supported for `REDIS_MODE=normal`);
+* **REDIS_USERNAME** (*optional*): the username to authenticate to Redis;
+* **REDIS_PASSWORD** (*optional*): the password to authenticate to Redis;
 * **REDIS_MODE**: defines the redis mode (`normal` or `sentinel`) (default: `normal`);
+* **REDIS_TLS** (*optional*): if `true`, enable the TLS connection to Redis. Default is `false`;
+* **REDIS_TLS_CACERT** (*optional*): the path to the CA of the Redis server, if it's not public (this is effective only if `REDIS_TLS` is set to `true`);
 * **REDIS_MASTER_NAME**: defines the redis master name (required when using `sentinel` mode);
 * **CLOCK_SKEW_SECONDS**: defines the skew seconds that will be used into the `/token` request to validate the **iat** and **notBefore** claims of the *client_assertion* and reduce client and server clocks misalignment
 
