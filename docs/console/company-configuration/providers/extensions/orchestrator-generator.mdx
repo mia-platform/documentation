@@ -288,3 +288,27 @@ The response, coming from the Extension and received by the Console, must be an 
     "my-service.deployment.yml": "the content of the deployment file for my-service..."
 }
 ```
+
+If something goes wrong and an error must be produced by the Orchestrator Generator, you can send a `500` status code and a payload that looks like this
+
+```json
+{
+   "error": "some technical error to be traced in service logs",
+   "message": "some user facing error message that is propagated to the final user" 
+}
+```
+
+:::tip
+Use the `message` field to provide useful insights to the final user and help them resolve what have gone wrong with the configuration.
+
+The user will receive your message in the failed deploy feedback modal
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![failed deploy custom message in modal](./img/failed-deploy-custom-message.png)
+
+  </div>
+</div>
+
+:::
