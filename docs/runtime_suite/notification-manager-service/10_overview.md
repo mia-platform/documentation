@@ -540,26 +540,26 @@ The users targeted by these tests all share the same phone number, and therefore
 [sms-service]: /runtime_suite/sms-service/20_configuration.md
 [ses-mail-notification]: /runtime_suite/ses-mail-notification-service/configuration.md
 [kafka2firebase]: /runtime_suite/kafka2firebase/20_configuration.md
-[flow-manager]: /runtime_suite/flow-manager-service/overview.md
-[timer-service]: /runtime_suite/timer-service/overview.md
-[notification-card-settings]: /runtime_suite/care-kit/20_components/90_ck-notification-card.md
+[flow-manager]: /runtime_suite/flow-manager-service/10_overview.md
+[timer-service]: /runtime_suite/timer-service/10_overview.md
+[notification-card-settings]: /docs/runtime_suite/care-kit/components/ck-notification-card
 [files-service]: /runtime_suite/files-service/configuration.mdx
 [messaging-service]: /runtime_suite/messaging-service/10_overview.md
 
 [message-interpolation]: #messages-interpolation
 
-[crud-notifications]: 20_configuration.md#notifications-crud
-[crud-notification-settings]: 20_configuration.md#notification-settings-crud
+[crud-notifications]: ./20_configuration.md#notifications-crud
+[crud-notification-settings]: ./20_configuration.md#notification-settings-crud
 [crud-templates]: ./20_configuration.md#templates-crud
-[crud-users]: ./20_configuration.md#users-crud-required
-[crud-events]: 20_configuration.md#events-crud
+[crud-users]: ./20_configuration.md#users-crud
+[crud-events]: ./20_configuration.md#events-crud
 [configuration-flow-manager]: ./20_configuration.md#service-configuration
 [custom-handlers]: ./20_configuration.md#custom-event-handlers
 [environment-variables]: ./20_configuration.md#environment-variables
-[service-configuration]: 20_configuration.md#service-configuration
+[service-configuration]: ./20_configuration.md#service-configuration
 
-[usage-event-handlers]: 30_usage.md#event-handlers
+[usage-event-handlers]: ./30_usage.md#event-handlers
 [usage-body]: ./30_usage.md#body
 [post-saga-send]: ./30_usage.md#post-sagasend
-[post-send]: 30_usage.md#post-send
-[post-notification-events]: 30_usage.md#post-notification-events
+[post-send]: ./30_usage.md#post-send
+[post-notification-events]: ./30_usage.md#post-notification-events

@@ -783,14 +783,14 @@ The following default reminder event handlers both filter the notification setti
 [crud-events]: #events-crud
 [crud-events-settings]: #event-settings-crud
 [crud-notification-settings]: #notification-settings-crud
-[crud-users]: #users-crud-required
+[crud-users]: #users-crud
 [environment-variables]: #environment-variables
 [service-configuration]: #service-configuration
 
-[custom-handler-api]: 30_usage.md#custom-handler-api
-[default-event-handlers]: 30_usage.md#event-handlers
-[get-user-events]: 30_usage.md#get-userevents
+[custom-handler-api]: ./30_usage.md#custom-handler-api
+[default-event-handlers]: ./30_usage.md#event-handlers
+[get-user-events]: ./30_usage.md#get-userevents
 [usage-body]: ./30_usage.md#body
-[patch-event-settings]: 30_usage.md#patch-event-settingsid
-[post-event-settings]: 30_usage.md#post-event-settings
-[delete-event-settings]: 30_usage.md#delete-event-settingsid
+[patch-event-settings]: ./30_usage.md#patch-event-settingsid
+[post-event-settings]: ./30_usage.md#post-event-settings
+[delete-event-settings]: ./30_usage.md#delete-event-settingsid

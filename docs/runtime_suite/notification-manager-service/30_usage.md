@@ -1739,15 +1739,15 @@ When the handler receives such an event it performs the following operations:
 [message-interpolation]: ./10_overview.md#messages-interpolation
 [notification-settings]: ./10_overview.md#notification-settings
 
-[custom-handlers]: 20_configuration.md#custom-event-handlers
-[environment-variables]: 20_configuration.md#environment-variables
-[crud-notification-messages]: 20_configuration.md#notification-messages
-[crud-notification-reminders]: 20_configuration.md#notification-reminders
-[crud-notification-settings]: 20_configuration.md#notification-settings-crud
-[crud-notifications]: 20_configuration.md#notifications-crud
-[crud-event-settings]: 20_configuration.md#event-settings-crud
-[crud-events]: 20_configuration.md#events-crud
-[crud-users]: 20_configuration.md#users-crud
+[custom-handlers]: ./20_configuration.md#custom-event-handlers
+[environment-variables]: ./20_configuration.md#environment-variables
+[crud-notification-messages]: ./20_configuration.md#notification-messages
+[crud-notification-reminders]: ./20_configuration.md#notification-reminders
+[crud-notification-settings]: ./20_configuration.md#notification-settings-crud
+[crud-notifications]: ./20_configuration.md#notifications-crud
+[crud-event-settings]: ./20_configuration.md#event-settings-crud
+[crud-events]: ./20_configuration.md#events-crud
+[crud-users]: ./20_configuration.md#users-crud
 [service-configuration]: ./20_configuration.md#service-configuration
 
 [build-messages]: #buildmessages
