@@ -10,22 +10,25 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The **Mailchimp/Mandrill Notification Service** is a microservice responsible to interact with Mailchimp and Mandrill for:
+The **Mailchimp/Mandrill Notification Service** is a microservice responsible for interacting with Mailchimp and Mandrill for:
 
-* **Sending transactional emails**: using Mailchimp defined email templates and Mandrill transactional APIs
-* **Interact with Mailchimp audiences**: subscription, deletion, user status update
+- **Sending transactional emails**: using Mailchimp defined email templates and Mandrill transactional APIs
+- **Interact with Mailchimp audiences**: subscription, deletion, user status update
 
 # 1) Sending transactional emails
-Transactional emails service is provided with 2 main endpoints:
 
-* **Synchronous**: waits for Mailchimp/Mandrill to have actually queued the transactional email request
+Transactional email service is provided with 2 main endpoints:
 
-* **Asynchronous**: fire and forget. The endpoint immediately returns, the request is sent to Mailchimp/Mandrill but the service will not wait for Mailchimp/Mandrill response
+- **Synchronous**: waits for Mailchimp/Mandrill to have actually queued the transactional email request
+
+- **Asynchronous**: fire and forget. The endpoint immediately returns, and the request is sent to Mailchimp/Mandrill but the service will not wait for Mailchimp/Mandrill response
 
 ## Synchronous transactional email send
-The service is provided through the endpoint `POST /transactional/send-template`.
+
+The service is provided through the `POST /transactional/send-template` endpoint.
 
 An example JSON body is presented below:
+
 ```
 {
 	"templateName": "my_template",
@@ -62,33 +65,34 @@ An example JSON body is presented below:
 }
 ```
 
-* `templateName`: name of the email template as created in Mailchimp `Content -> Email Templates` section. 
-    * NB: a `Send To Mandrill` action on the template from the Mailchimp UI is required to be able to send transactional emails using the template defined
-* `subject`: Email subject
-* `fromEmail`: this is the email sender address
-* `fromName`: this is the email friendly sender name
-* `templateMergeVars`: array body parameter
-    * each array entry defines an email `MERGE TAG`: in case the transactional email requires custom parameters inside its body, those can be provided using the `templateMergeVars` array
-    * each entry contains:
-        * `name`: name of the merge tag on Mailchimp email template. Here an example email template on Mailchimp, with an `HELLO_WORLD` merge tag:
-        ```
-        My beatiful email has a merge tag *|HELLO_WORLD|*. 
-        Merge tags inside the Mailchimp email template must be within *| and |*. 
-        HELLO_WORLD can be filled with the string content I need.
-        ```
-        * `content`: string content to be placed inside the merge tag specified by the parameter `name`
-* `to`: array body parameter
-    * multiple `to` array items can be specified
-    * `type`: can be one among `to|cc|bcc`
-    * `email`: email for which the `type` parameter applies
-* `attachments`:
-    * is an array to push attachments to the email to be sent
-    * every array item must have the following fields:
-        * `mimeType`: attachment MIME Type
-        * `visibleName`: attachment name which will be visible in the email template
-        * `base64Content`: attachment Base 64 content
+- `templateName`: name of the email template as created in Mailchimp `Content -> Email Templates` section.
+  - NB: a `Send To Mandrill` action on the template from the Mailchimp UI is required to be able to send transactional emails using the template defined
+- `subject`: Email subject
+- `fromEmail`: this is the email sender address
+- `fromName`: this is the email friendly sender name
+- `templateMergeVars`: array body parameter
+  - each array entry defines an email `MERGE TAG`: in case the transactional email requires custom parameters inside its body, those can be provided using the `templateMergeVars` array
+  - each entry contains:
+    - `name`: name of the merge tag on Mailchimp email template. Here an example email template on Mailchimp, with an `HELLO_WORLD` merge tag:
+    ```
+    My beatiful email has a merge tag *|HELLO_WORLD|*.
+    Merge tags inside the Mailchimp email template must be within *| and |*.
+    HELLO_WORLD can be filled with the string content I need.
+    ```
+    - `content`: string content to be placed inside the merge tag specified by the parameter `name`
+- `to`: array body parameter
+  - multiple `to` array items can be specified
+  - `type`: can be one among `to|cc|bcc`
+  - `email`: email for which the `type` parameter applies
+- `attachments`:
+  - is an array to push attachments to the email to be sent
+  - every array item must have the following fields:
+    - `mimeType`: attachment MIME Type
+    - `visibleName`: attachment name which will be visible in the email template
+    - `base64Content`: attachment Base 64 content
 
 Here an example response for the endpoint `POST /transactional/send-template`:
+
 ```
 {
     "_id": "df4caa05c99746b8863e08cc039b17c5"
@@ -98,11 +102,13 @@ Here an example response for the endpoint `POST /transactional/send-template`:
 Parameter `_id` is the internal Mandrill id for the transactional email just sent.
 
 ## Asynchronous transactional email send
+
 In case a fire and forget transactional Mandrill email send is needed, the endpoint `POST /transactional/send-template-async` is provided.
 
 The JSON input body is the same as the one used for the `POST /transactional/send-template` endpoint.
 
 Here is an example response for the endpoint `POST /transactional/send-template-async`:
+
 ```
 {
     "_id": "queued"
@@ -112,15 +118,17 @@ Here is an example response for the endpoint `POST /transactional/send-template-
 Parameter `_id` is always `queued` since we do not wait Mandrill to get the transactional status of the email sent.
 
 # 2) Mailchimp audiences (newsletters) management
+
 Audience (newsletter) service is provided with 2 main endpoints:
 
-* `POST /marketing/audiences/membership`: determines whether a user, specified by its email, belongs to a specific newsletter list (audience)
+- `POST /marketing/audiences/membership`: determines whether a user, specified by its email, belongs to a specific newsletter list (audience)
 
-* `PUT /marketing/audiences/update-subscription`: updates the subscription of a user (email) to an audience (newsletter list)
-
+- `PUT /marketing/audiences/update-subscription`: updates the subscription of a user (email) to an audience (newsletter list)
 
 ## `POST /marketing/audiences/membership`
+
 An example input JSON body is presented below:
+
 ```
 {
   "email": "mytestemail@test.com",
@@ -128,13 +136,14 @@ An example input JSON body is presented below:
 }
 ```
 
-The endpoint takes in input a JSON body as follows: 
+The endpoint takes in input a JSON body as follows:
 
-* `email`: email of the user for which membership to the audience (specified by `listId`) needs to be checked
+- `email`: The email of the user for which membership to the audience (specified by `listId`) needs to be checked
 
-* `listId`: newsletter list id. Can be found directly on Mailchimp after the audience creation or in the audience details (if audience already exists)
+- `listId`: newsletter list id. Can be found directly on Mailchimp after the audience creation or in the audience details (if the audience already exists)
 
 An example response JSON body is presented below:
+
 ```
 {
 	"membership": true,
@@ -144,12 +153,14 @@ An example response JSON body is presented below:
 
 The endpoint response body is as follows:
 
-* `membership`: can be `true|false`, `true` if the user is within the audience
+- `membership`: can be `true|false`, `true` if the user is within the audience
 
-* `status`: only present if `membership` is valued `true`. Determines the status of the email in the audience list, using Mandrill newsletter statuses.
+- `status`: only present if `membership` is valued `true`. Determines the status of the email in the audience list, using Mandrill newsletter statuses.
 
 ## `PUT /marketing/audiences/update-subscription`
+
 An example input JSON body is presented below:
+
 ```
 {
 	"listId": "c3baaef2e2",
@@ -158,18 +169,20 @@ An example input JSON body is presented below:
 }
 ```
 
-* `listId`: newsletter list id. Can be found directly on Mailchimp after the audience creation or in the audience details (if audience already exists)
-* `status`: desired final status for the email in the newsletter specified by `listId`.
-    * e.g. `subscribed` if we want to subscribe the email to the list. 
-    * e.g. `unsubscribed` if we want to unsubscribe the email from the list
-* `email`: email for which we want to update subscription status to the newsletter specified by `listId`
+- `listId`: newsletter list id. Can be found directly on Mailchimp after the audience creation or in the audience details (if audience already exists)
+- `status`: desired final status for the email in the newsletter specified by `listId`.
+  - e.g. `subscribed` if we want to subscribe the email to the list.
+  - e.g. `unsubscribed` if we want to unsubscribe the email from the list
+- `email`: email for which we want to update subscription status to the newsletter specified by `listId`
 
 An example response JSON body is presented below:
+
 ```
 {
     "status": "subscribed"
 }
 ```
-, in this case, the email has been subscribed to the newsletter.
 
-* `status`: new status for the `email` inside the audience specified by `listId`
+in this case, the email has been subscribed to the newsletter.
+
+- `status`: new status for the `email` inside the audience specified by `listId`
