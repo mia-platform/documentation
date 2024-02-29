@@ -19,12 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-*  
-  * `kafkajs-snappy`, to enable the encoding/decoding of kafka messages having `snappy` compression
-  * `compression` field to the event store configuration of the kafka producer, which accepts the following values:
-    - `snappy`
+- introduce support for `snappy` compression both on the consumer and producer sides.
+  While compression coded employed on the consumer is automatically recognized, on the producer
+  it is necessary to be configured explicitly. This can be achieved by adding `compressionName` property
+  to event store producer configuration, which can get one of the following values:
+    - `none` (default when no value provided)
+    - `snappy` (recommended)
     - `gzip`
-    - `none` (__default__ value used by the service if no value has been provided) 
 
 ## [3.1.5] 2024-02-09
 
