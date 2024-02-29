@@ -230,7 +230,7 @@ Congratulations! You can now start developing your own NodeJS microservice!
 [husky]: https://typicode.github.io/husky/
 [mia-console-paas]: https://console.cloud.mia-platform.eu/login
 [mia-console-create-microservice]: /development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template
-[mia-console-deploy]: /development_suite/deploy/index.md
+[mia-console-deploy]: /development_suite/deploy/overview.md
 [mia-console-design-endpoints]: /development_suite/api-console/api-design/endpoints.md
 [mia-marketplace]: /marketplace/overview_marketplace.md
 [mia-nexus]: https://nexus.mia-platform.eu/
