@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
-* `kafka-importer-lib` to `v7.x.x`
+* `kafka-importer-lib` to `v7.5.8`: pr-update messages are now sent in batch, instead of one message per update
 
 ## [7.5.7] 2023-12-15
 
