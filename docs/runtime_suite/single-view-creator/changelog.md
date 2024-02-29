@@ -15,12 +15,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [6.5.0] 2024-02-21
+## [6.4.1] 2024-02-27
 
 ### Added
 
-- introduce support for Control Plane feedback via heartbeat events
-- introduce official support to MongoDB v7
 - introduce support for `snappy` compression both on the consumer and producer sides.
   While compression coded employed on the consumer is automatically recognized, on the producer
   it is necessary to be configured explicitly. This can be achieved via `KAFKA_PRODUCER_COMPRESSION` environment variable
@@ -28,33 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `none` (default)
     - `snappy` (recommended)
     - `gzip`
-
-### Changed
-
-- updated to `@mia-platform-internal/single-view-creator-lib@15.0.0`
-
-:::warning
-In case custom _upsert_ or _delete_ strategies are employed, it is necessary to verify and potentially upgrade such
-_user-defined_ functions, so that possible usages of `findOneAndUpdate`, `findOneAndReplace` and `findOneAndDelete` methods
-adhere to the MongoDB NodeJS [driver v6.x interface](https://mongodb.github.io/node-mongodb-native/6.3/classes/Collection.html#findOneAndUpdate).
-
-For example, those methods may now need to include the `includeResultMetadata` property set to `true`, to maintain unaltered
-the previous behavior, as shown in the implementation below. Indeed, it should be changed from
-```javascript
-const updateOp = await singleViewCollection.findOneAndUpdate(
-  singleViewKey,
-  { $set: { ... } }
-)
-```
-to
-```javascript
-const updateOp = await singleViewCollection.findOneAndUpdate(
-    singleViewKey,
-    { $set: { ... } },
-    { includeResultMetadata: true } // <-- ⚠️ here the new option is added
-)
-```
-:::
 
 ## [6.4.0] 2023-12-14
 
