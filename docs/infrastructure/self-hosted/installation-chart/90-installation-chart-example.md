@@ -78,7 +78,8 @@ mia-console:
         userSettingsURL: "https://account.microsoft.com/profile/"
         logoutUrlPath: "/logout"
         skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
-    redisHost: "<REDIS_HOST>" # optional: default is "redis.default.svc.cluster.local:6379". If installed with this chart, set it to "redis:6379"
+    redis:
+      host: "<REDIS_HOST>" # host to connect to redis
     
     mongodbUrl: "<MONGODB_URL>" # url for the mongodb connection for the console
     filesStorageType: "mongodb"

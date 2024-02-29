@@ -37,9 +37,23 @@ When upgrading also make sure to check if any new configuration option is availa
 The Chart version follows [semver](https://semver.org/) policy so any breaking change with the Chart will always be followed by a Major release. Minor releases may include new configuration options while as a general rule of thumb, patches never holds new configuration options but only internal updates and fixes.
 :::
 
-## v12 - version upgrades
+## Console v12 - version upgrades
 
-### Upgrade from v12.1.0 to v12.X
+### Upgrade from v12.2.1 to v12.x
+
+#### New Redis configuration fields
+
+From Chart version 13, we moved all the Redis configurations inside a `redis` object in the `values.yaml` file;
+We have also removed the default redis configuration, which was `redis.default.svc.cluster.local:6379`,
+for this reason, before upgrading, you must add the Redis correct host to the `values.yaml` file using the `redis.host` property.
+
+To summarize, you should move the Redis configuration under the specific configuration values property:
+
+* `configurations.redisHost` -> `configurations.redis.host`
+* `configurations.redisUsername` -> `configurations.redis.username`
+* `configurations.redisPassword` -> `configurations.redis.password`
+
+### Upgrade from v12.1.0 to v12.2.1
 
 #### New management of image pull secrets
 
@@ -92,7 +106,7 @@ backoffice:
         cpu: "250m"
 ```
 
-### Upgrade from last v11 to v12.0.0
+### Upgrade from last Console v11 to v12.0.0
 
 #### User JWT with asymmetric signing key
 
