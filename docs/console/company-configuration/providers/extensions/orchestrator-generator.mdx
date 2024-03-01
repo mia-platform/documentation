@@ -4,7 +4,13 @@ title: Orchestrator Generator
 sidebar_label: Orchestrator Generator
 ---
 
-![Orchestrator Generator](img/orchestrator-generator.png)
+One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**.  
+For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
+
+However, in some very specific scenarios, you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.  
+This enables you to tailor the deployment process to your specific needs and the functionalities offered by your chosen orchestrator, achieving a level of customization not readily available with the default Mia-Platform generation.
+
+When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to a configured Provider's API Base URL to generate the files to be deployed. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
 
 :::info
 
@@ -12,10 +18,26 @@ An Orchestrator Generator can only be used when the [Enhanced Project Workflow](
 
 :::
 
-One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
+![Orchestrator Generator](img/orchestrator-generator.png)
 
-However, you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.
-When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the files to be deployed. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
+
+## When should I use the Orchestrator Generator extension?
+
+Orchestrator Generator extension is the go-to when you need to generate orchestrator manifest files tailored to your specific needs. 
+
+Here are some use cases for which you might consider using the extension.
+
+1. **Deploying on Non-Supported Orchestrators**  
+    Since Mia-Platform Console currently only generates manifest files to deploy your services on Kubernetes, this extension allows you to bridge the gap and deploy your applications on your preferred orchestrator such as Docker Swarm, Apache Mesos, Amazon ECS, Azure ACS, Google GKE or any other.
+
+2. **Utilizing alternative k8s Package Managers**  
+    Even if you're using Kubernetes, the Orchestrator Generator extension might be valuable if you prefer a k8s package manager other than the default one.  
+    For instance you may prefer using Helm for managing your deployments, with the extension you can fill this  
+
+3. **Integrating with Existing Orchestrator Workflows**
+    If you already have established workflows and tools for managing deployments on your chosen orchestrator, the extension can act as a bridge.  
+    By providing your Project configuration, you can leverage your existing workflows and integrate them with the Console, streamlining your overall deployment process.
+ 
 
 ## Setup
 
@@ -303,12 +325,13 @@ Use the `message` field to provide useful insights to the final user and help th
 
 The user will receive your message in the failed deploy feedback modal
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
 ![failed deploy custom message in modal](./img/failed-deploy-custom-message.png)
 
+<!-- <div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+
   </div>
-</div>
+</div> -->
 
 :::
