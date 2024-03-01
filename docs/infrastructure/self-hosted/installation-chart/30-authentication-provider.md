@@ -122,13 +122,11 @@ We can discard the public key:
 rm private.key.pub
 ```
 
-and get a `base64` representation of the private key:
+and copy a `base64` representation of the private key:
 
 ```sh
-base64 private.key
+cat private.key | base64 | pbcopy
 ```
-
-Copy the output of the above command to the value of `jwtTokenPrivateKeyBase64`.
 
 You can now delete the `private.key` file:
 
