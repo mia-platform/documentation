@@ -15,7 +15,8 @@
       "rönd",
       "upgrader",
       "Traefik",
-      "CSFLE"
+      "CSFLE",
+      "Mesos"
     ],
     "flagWords": [],
     "ignorePaths": [],
