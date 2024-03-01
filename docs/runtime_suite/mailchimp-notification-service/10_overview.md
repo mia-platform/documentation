@@ -73,9 +73,9 @@ An example JSON body is presented below:
 - `templateMergeVars`: array body parameter
   - each array entry defines an email `MERGE TAG`: in case the transactional email requires custom parameters inside its body, those can be provided using the `templateMergeVars` array
   - each entry contains:
-    - `name`: name of the merge tag on Mailchimp email template. Here an example email template on Mailchimp, with an `HELLO_WORLD` merge tag:
+    - `name`: name of the merge tag on the Mailchimp email template. Here is an example email template on Mailchimp, with a `HELLO_WORLD` merge tag:
     ```
-    My beatiful email has a merge tag *|HELLO_WORLD|*.
+    My beautiful email has a merge tag *|HELLO_WORLD|*.
     Merge tags inside the Mailchimp email template must be within *| and |*.
     HELLO_WORLD can be filled with the string content I need.
     ```
@@ -115,7 +115,7 @@ Here is an example response for the endpoint `POST /transactional/send-template-
 }
 ```
 
-Parameter `_id` is always `queued` since we do not wait Mandrill to get the transactional status of the email sent.
+Parameter `_id` is always `queued` since we do not wait for Mandrill to get the transactional status of the email sent.
 
 # 2) Mailchimp audiences (newsletters) management
 
@@ -123,7 +123,7 @@ Audience (newsletter) service is provided with 2 main endpoints:
 
 - `POST /marketing/audiences/membership`: determines whether a user, specified by its email, belongs to a specific newsletter list (audience)
 
-- `PUT /marketing/audiences/update-subscription`: updates the subscription of a user (email) to an audience (newsletter list)
+- `PUT /marketing/audiences/update-subscription`: update the subscription of a user (email) to an audience (newsletter list)
 
 ## `POST /marketing/audiences/membership`
 
@@ -155,7 +155,7 @@ The endpoint response body is as follows:
 
 - `membership`: can be `true|false`, `true` if the user is within the audience
 
-- `status`: only present if `membership` is valued `true`. Determines the status of the email in the audience list, using Mandrill newsletter statuses.
+- `status`: only present if `membership` is valued as `true`. Determines the status of the email in the audience list, using Mandrill newsletter statuses.
 
 ## `PUT /marketing/audiences/update-subscription`
 

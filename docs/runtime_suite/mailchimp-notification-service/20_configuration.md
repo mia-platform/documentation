@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The microservice uses the following environment variables:
 
-- `MANDRILL_API_KEY` (required): Mandrill API key to send transactional emails. Can be created on the Mandrill portal.
+- `MANDRILL_API_KEY` (required): Mandrill API key to send transactional emails. It can be created on the Mandrill portal.
 
 - `MAILCHIMP_URL` (required): the Mailchimp API URL is similar to the following `https://usxx.api.mailchimp.com/3.0/`
 
