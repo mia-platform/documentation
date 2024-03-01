@@ -78,7 +78,7 @@ In this version, we removed the Pod Security Policy support (since removed in K8
 
 We also change the management of the security context. In this version, the security context are applied by default to all the pods, and it is possible to configure only the pod security context using the `defaultPodSecurityContext` field (to change all the pods security context) or the `podSecurityContext` field in each workload configuration (to change the security context of a specific pod).
 
-### Upgrade from v12.0.1 to v12.1.0
+### Upgrade from v12.0.2 to v12.1.0
 
 #### New backoffice configuration
 
@@ -87,10 +87,10 @@ This means that you can remove any configuration related to cms from your `value
 
 You can remove configuration related to:
 
-- `cmsBackendService`
-- `cmsSite`
-- `v1Adapter`
-- `exportService`
+* `cmsBackendService`
+* `cmsSite`
+* `v1Adapter`
+* `exportService`
 
 And add backoffice configuration, something like:
 
@@ -131,7 +131,7 @@ This version introduces the possibility to enable the OpenTelemetry tracing feat
 
 #### Introduction of Mia-Platform Company
 
-Since this version, a Mia-Platform Company will be created during the installation of the Console. 
+Since this version, a Mia-Platform Company will be created during the installation of the Console.
 Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
 
 The value `.Values.configurations.miaPlatformDefaultCompanyId` is required;
