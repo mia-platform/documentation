@@ -15,6 +15,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Changed
+
+- remove dependency from `golang.org/x/exp`
+- better memory allocation for slices
+- update uuid to v1.6.0
+- update oauth2 to v0.17.0
+
+## [0.12.1] - 2024-02-29
+
+### Changed
+
+- update go version to 1.22.0
+
+### Fixed
+
+- fixed open browser feature on Linux
+- fixed typo in flag parameter for triggering a new release
+
 ## [0.12.0] - 2024-02-05
 
 ### Added
@@ -231,7 +249,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.12.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.12.1...HEAD
+[0.12.1]: https://github.com/mia-platform/miactl/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/mia-platform/miactl/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/mia-platform/miactl/compare/v0.10.0...v0.11.0
 [0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
