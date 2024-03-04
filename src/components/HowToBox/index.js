@@ -26,7 +26,7 @@ function HowToBox({id, title, description, links}) {
   return (
     <div className={clsx("col col--12", featureStyle.feature, styles.howToBox)}>
       <h3
-          id={id ? id : undefined}
+          id={id || undefined}
       >
           {title}
       </h3>
