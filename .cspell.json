@@ -346,7 +346,8 @@
     "kotlinx",
     "Dynatrace",
     "logr",
-    "ODBC"
+    "ODBC",
+    "RDBMS"
   ],
   "dictionaries": [
     "softwareTerms",
