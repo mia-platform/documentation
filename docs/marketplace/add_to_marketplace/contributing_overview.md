@@ -454,29 +454,29 @@ Here are listed some useful advice to strengthen your items:
 
 The category list is constantly updated, check with your Mia-Platform referent for the updated list
 
-| ID              | Description                           |
-|-----------------|----------------------------------------|
-| notification    | Core Plugins - Notifications           |
-| kotlin          | Start From Code - Java/Kotlin          |
-| spa             | Start From Code - SPA - Angular/React  |
-| rust            | Start From Code - Rust/C/Swift         |
-| nodejs          | Start From Code - Node.js              |
-| golang          | Start From Code - Go                   |
-| python          | Start From Code - Python               |
-| code            | Start From Code                        |
-| business        | Add-ons - Data Visualization           |
-| addonsecurity   | Add-ons - Security                     |
-| stream          | Add-ons - Data Stream                  |
-| monitoring      | Add-ons - Monitoring                   |
-| addgeo          | Add-ons - Geolocation                  |
-| payments        | Add-ons - Payments                     |
-| fast-data       | Add-ons - Fast Data                    |
-| frontendbuilder | Add-ons - Frontend Builders            |
-| healthcare      | Add-ons - Healthcare                   |
-| utility         | Add-ons - Utilities                    |
-| scoring         | Add-ons - Scoring Manager              |
-| data-catalog         | Add-ons - Data Catalog            |
-| fast-data-connectors | Add-ons - Fast Data Connectors    |
+| ID                | Description                            |
+|-------------------|----------------------------------------|
+| `notification`    | Core Plugins - Notifications           |
+| `kotlin`          | Start From Code - Java/Kotlin          |
+| `spa`             | Start From Code - SPA - Angular/React  |
+| `rust`            | Start From Code - Rust/C/Swift         |
+| `nodejs`          | Start From Code - Node.js              |
+| `golang`          | Start From Code - Go                   |
+| `python`          | Start From Code - Python               |
+| `code`            | Start From Code                        |
+| `business`        | Add-ons - Data Visualization           |
+| `addonsecurity`   | Add-ons - Security                     |
+| `stream`          | Add-ons - Data Stream                  |
+| `monitoring`      | Add-ons - Monitoring                   |
+| `addgeo`          | Add-ons - Geolocation                  |
+| `payments`        | Add-ons - Payments                     |
+| `fast-data`       | Add-ons - Fast Data                    |
+| `frontendbuilder` | Add-ons - Frontend Builders            |
+| `healthcare`      | Add-ons - Healthcare                   |
+| `utility`         | Add-ons - Utilities                    |
+| `scoring`         | Add-ons - Scoring Manager              |
+| `data-catalog`    | Add-ons - Data Catalog                 |
+| `fast-data-connectors` | Add-ons - Fast Data Connectors    |
 
 
 ## Release Stage of a new item and Coming Soon
