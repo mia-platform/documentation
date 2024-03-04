@@ -451,7 +451,8 @@ Here are listed some useful advice to strengthen your items:
  - **.mia-platform folder**: This folder is ignored withn creating the repository, use it to store the images and the marketplace item configuration
 
 ## Category List
-The category list is constantly updated, check with your reponsible the updated list
+
+The category list is constantly updated, check with your Mia-Platform referent for the updated list
 
 | ID              | Description                           |
 |-----------------|----------------------------------------|
