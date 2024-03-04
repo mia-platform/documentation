@@ -19,7 +19,7 @@ Think about:
 1. **Managed Container Services:** an abstraction over the container orchestrator that provides a place to host your application with a monitoring system already in place, that let you forget about the cluster management. To name a few AWS ECS, Azure ACS or GCP Cloud Run.
 1. **Serverless Computing Services:** another serverless fully managed resource that makes you focus solely on the logic you need without caring about the bare metal under the hood. Here you can find Aws Lambdas, Azure Functions or GCP Cloud Functions.
 
-If you are deploying on one of these resources, you can simply build your own mapping layer that takes in the configuration of your Project and translates it into your favourite cloud resources.
+If you are deploying on one of these resources, you can simply build your own mapping layer that takes in the configuration of your Project and translates it into your favorite cloud resources.
 
 ### Using alternative Kubernetes Package Managers
 

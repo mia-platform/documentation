@@ -225,7 +225,8 @@
     "serp",
     "VULNDB",
     "mergo",
-    "kpis"
+    "kpis",
+    "Mesos"
   ],
   "ignoreWords": [
     "asncdctools",
