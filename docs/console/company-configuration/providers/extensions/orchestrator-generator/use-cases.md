@@ -28,6 +28,6 @@ If this is your case, the Orchestrator Generator extension can help you achievin
 
 ### Integrating with Existing Orchestrator Workflows
 
-Many organizations already adopted custom deployment tools, processes, and scripts tailored to their chosen orchestrator and their specific infrastructure requirements. Some other ones might even separate application development from the containerization management. Rather than forcing you to adopt Mia-Platform workflow, the Orchestrator Generator Extension can act as a bridge providing another level of flexibility.
+Many organizations already adopted custom deployment tools, processes and scripts tailored to their chosen orchestrator and their specific infrastructure requirements. Some other companies might even have different personas for application development and containerization management. Rather than forcing you to adopt the Mia-Platform workflow, the Orchestrator Generator Extension can act as a bridge providing another level of flexibility.
 
 In this case, your already established workflows can be integrated with the Console, consuming your Project configuration as input while leaving all the rest unchanged streamlining your overall deployment process.
