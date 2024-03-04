@@ -324,7 +324,7 @@ Imagine you notice that the service "My Awesome Service" is no longer useful for
 You can delete an item from the Marketplace by means of the `delete` command:
 
 ```sh
-miactl marketplace apply -f myAwesomeService.json
+miactl marketplace delete -f myAwesomeService.json
 ```
 
 The item is then deleted from the Marketplace. 
