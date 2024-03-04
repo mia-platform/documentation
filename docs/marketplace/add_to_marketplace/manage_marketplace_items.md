@@ -324,8 +324,10 @@ Imagine you notice that the service "My Awesome Service" is no longer useful for
 You can delete an item from the Marketplace by means of the `delete` command:
 
 ```sh
-miactl marketplace delete -f myAwesomeService.json
+miactl marketplace delete --object-id=<objectId>
 ```
+
+> The `object-id` is the `ID` you get when you apply the template, it is not the Item Id 
 
 The item is then deleted from the Marketplace. 
 
