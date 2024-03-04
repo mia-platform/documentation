@@ -35,4 +35,4 @@ If you want to keep track of the user who create/update a record and the creatio
 Three different vendors are currently supported:
 - Microsoft SQL Server
 - PostgreSQL
-- OracleSQL (supported by [template](../templates/crud-oracle))
+- OracleSQL (supported by [template](../templates/crud-sql-template))
