@@ -1645,5 +1645,9 @@
   "/docs/runtime_suite/auth0-client/overview_and_usage": {
     "destination": "/docs/runtime_suite/auth0-client/overview",
     "addedOn": "2024-01-22"
+  },
+  "/docs/console/company-configuration/providers/extensions/orchestrator-generator": {
+    "destination": "/docs/console/company-configuration/providers/extensions/orchestrator-generator/overview",
+    "addedOn": "2024-03-01"
   }
 }
