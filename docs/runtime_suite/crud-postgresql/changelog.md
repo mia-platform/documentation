@@ -17,4 +17,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2024-02-29
 
-This is the initial release of CRUD SQL service. A brief overview regarding the service can be found [here](../crud-postgresql)
+This is the initial release of CRUD SQL service. A brief overview regarding the service can be found [here](../crud-postgresql/overview)
