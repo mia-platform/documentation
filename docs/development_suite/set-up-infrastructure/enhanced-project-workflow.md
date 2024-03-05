@@ -175,7 +175,7 @@ When using `PUSH` mode (pipeline-based deploy) all secrets providers supported i
 
 When using `PULL` mode (gitops-based deploy) only Secrets stored in Vault are supported yet. 
 
-Either way, interpolation of secreted variables is **not supported** with the Enhanched Project Workflow and we discourage its usage.  
+Either way, interpolation of secreted variables is **not supported** with the Enhanced Project Workflow and we discourage its usage.  
 Altough interpolating secret variables makes them hidden in Project git repository, these variables will be fully visible when inspecting containers on Kubernetes. This practice could lead to several security issues.
 
 ## Activating the feature
