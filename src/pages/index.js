@@ -22,6 +22,7 @@ const features = [
   {
     type: "feature",
     title: "Getting Started",
+    id: "getting-started",
     icon: "rocket",
     toUrl: "/docs/getting-started/mia-platform-overview",
     description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`,
@@ -29,6 +30,7 @@ const features = [
   {
     type: "feature",
     title: "Console",
+    id: "console",
     icon: "console",
     toUrl: "/docs/development_suite/overview-dev-suite",
     description: `Start to use only one platform to design and manage the full-cycle of your DevOps`,
@@ -36,6 +38,7 @@ const features = [
   {
     type: "feature",
     title: "Learn to build what you want",
+    id: "learn-to-build-what-you-want",
     icon: "learn",
     toUrl: "/docs/getting-started/videos/",
     description: `Read our tutorials, follow walkthroughs and learn how to decouple your
@@ -45,6 +48,7 @@ const features = [
   {
     type: "feature",
     title: "What's new?",
+    id: "whats-new",
     icon: "new",
     description: "Discover new cool features, updates and bug fixes",
     links: [
@@ -64,6 +68,7 @@ const features = [
   {
     type: "howTo",
     title: "How can I?",
+    id: "how-can-i",
     description:
       "Check out the following topics to learn how to build, deploy, debug and monitor your services with Mia-Platform",
     links: [
@@ -100,6 +105,7 @@ const features = [
   {
     type: "howTo",
     title: "Useful resources",
+    id: "useful-resources",
     description:
       "Here you can find some useful resources to discover Mia-Platform.",
     links: [
@@ -215,10 +221,11 @@ function Home() {
                       if (props.type === 'feature') {
                         return <Feature key={idx} {...props} />
                       } else {
-                        const {title, description, links} = props;
+                        const {id, title, description, links} = props;
                         return (
                           <HowToBox
                             description={description}
+                            id={id}
                             key={idx}
                             links={links}
                             title={title}
@@ -249,6 +256,7 @@ function Home() {
 
 Home.propTypes = {
   description: PropTypes.string,
+  id: PropTypes.string,
   links: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
   type: PropTypes.string
