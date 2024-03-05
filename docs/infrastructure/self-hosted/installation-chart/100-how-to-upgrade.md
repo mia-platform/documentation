@@ -123,7 +123,7 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](./30-authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](./30-Authentication-Provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
