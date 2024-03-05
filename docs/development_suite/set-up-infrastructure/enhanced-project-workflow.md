@@ -10,7 +10,7 @@ import TabItem from "@theme/TabItem"
 :::info
 
 This is a **BETA** feature and, as such, is currently under active development and there may still be some missing features.
-Please carefully check the **[roadmap](#roadmap-and-future-improvements)** and **[missing features](#missing-features)** sections below before activating this workflow on **existing Projects**. Once activated on a Project there is no way to rollback to the standard one anymore.
+Please carefully check the **[Roadmap](#roadmap-and-future-improvements)** and **[Migrating your Projects](#migrating-your-projects)** sections below before activating this workflow on **existing Projects**. Once activated on a Project there is no way to rollback to the standard one anymore.
 
 New Projects on the other hand, can be safely created and used with this workflow.
 
@@ -165,19 +165,6 @@ With this feature Users will be able to not only review the configurations but a
 
 With the first release of this new Workflow, existing Projects will require a migration operation to be performed. With this improvement we ought to provide further assistance in the migration process to make it as easy and smooth as possible.
 
-## Missing features
-
-### Secret Variables Management
-
-Despite secrets providers are supported in the **Enhanced Project Workflow** as these currently are in the Standard Workflow too, there are a few constraints to consider when migrating to this workflow whether you are planning to use a **[Push](/development_suite/deploy/pipeline-based/index.md)** or **[Pull](/development_suite/deploy/gitops-based/index.md)** *deploy strategy*.
-
-When using `PUSH` mode (pipeline-based deploy) all secrets providers supported in the Standard Workflow are supported in this workflow too. You can define secrets and use them in your Projects as you always did.
-
-When using `PULL` mode (gitops-based deploy) only Secrets stored in Vault are supported yet. 
-
-Altough Standard Workflow allows you to interpolate Secret Variables on your Project, we discourage its usage. This practice makes variables hidden in the Project git repository but these will be fully visible in plain text when inspecting containers on Kubernetes leading to serious security issues.  
-To avoid this bad practice to be used, Secret Variables interpolation is **not supported** on the Enhanced Project Workflow. Please ensure to fix any Secret Variable usage before migrating to the Enhanced Workflow.
-
 ## Activating the feature
 
 :::note
@@ -222,9 +209,22 @@ If you want to ensure that all Projects in your Company adopt the **Enhanced Pro
 
 In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
 
+ - Secret Variables security enforcement
  - Git repository structure clean-up
  - Feature activation
  - Default revision setup and adjustment of a few Project Settings
+
+### Secret Variables Security Enforcement
+
+Despite secrets providers are supported in the **Enhanced Project Workflow** as these currently are in the Standard Workflow too, there are a few constraints to consider when migrating to this workflow whether you are planning to use a **[Push](/development_suite/deploy/pipeline-based/index.md)** or **[Pull](/development_suite/deploy/gitops-based/index.md)** *deploy strategy*.
+
+When using `PUSH` mode (pipeline-based deploy) all secrets providers supported in the Standard Workflow are supported in this workflow too. You can define secrets and use them in your Projects as you always did.
+
+When using `PULL` mode (gitops-based deploy) only Secrets stored in Vault are supported yet. 
+
+Altough Standard Workflow allows you to interpolate Secret Variables on your Project, we discourage its usage. This practice makes variables hidden in the Project git repository but these will be fully visible in plain text when inspecting containers on Kubernetes leading to serious security issues.  
+To avoid this bad practice to be used, Secret Variables interpolation is **not supported** on the Enhanced Project Workflow. Please ensure to fix any Secret Variable usage before migrating to the Enhanced Workflow.
+
 
 ### Git Repository adjustments
 
