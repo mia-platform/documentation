@@ -250,7 +250,7 @@ You can use more filters in query **_q**. Here is the complete list with the cor
 | Filter | SQL operator  |
 |:-------|:-------------:|
 | $eq    |       =       |
-| $ne    |      <\>      |
+| $ne    |      <\>       |
 | $regex |     LIKE      |
 | $lt    |       <       |
 | $lte   |      <=       |
