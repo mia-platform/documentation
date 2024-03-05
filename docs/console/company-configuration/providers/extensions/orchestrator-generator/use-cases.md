@@ -6,7 +6,7 @@ sidebar_label: Use Cases
 
 In most scenarios, Mia-Platform Console is just enough when it comes on deploying your applications on your orchestrator. In some other specific situations however, you may want more control and flexibility from your deployments.
 
-[Orchestrator Generator extension](./overview.mdx) is the Mia-Platform go-to solution when you need to generate orchestrator manifest files tailored to your specific needs. 
+[Orchestrator Generator extension](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx) is the Mia-Platform go-to solution when you need to generate orchestrator manifest files tailored to your specific needs. 
 
 To help you better understand the power of this tool, let's inspect more in detail a few scenarios in which you may want to opt for Orchestrator Generator.
 
