@@ -169,14 +169,14 @@ With the first release of this new Workflow, existing Projects will require a mi
 
 ### Secret Variables Management
 
-Despite secrets providers are supported in the **Enhanced Project Workflow** as these currently are in the standard workflow too, there are a few constraints to consider when migrating to this workflow whether you are planning to use a **[Push](/development_suite/deploy/pipeline-based/index.md)** or **[Pull](/development_suite/deploy/gitops-based/index.md)** *deploy strategy*.
+Despite secrets providers are supported in the **Enhanced Project Workflow** as these currently are in the Standard Workflow too, there are a few constraints to consider when migrating to this workflow whether you are planning to use a **[Push](/development_suite/deploy/pipeline-based/index.md)** or **[Pull](/development_suite/deploy/gitops-based/index.md)** *deploy strategy*.
 
-When using `PUSH` mode (pipeline-based deploy) all secrets providers supported in the standard workflow are supported in this workflow too. You can define secrets and use them in your Projects as you always did.
+When using `PUSH` mode (pipeline-based deploy) all secrets providers supported in the Standard Workflow are supported in this workflow too. You can define secrets and use them in your Projects as you always did.
 
 When using `PULL` mode (gitops-based deploy) only Secrets stored in Vault are supported yet. 
 
-Either way, interpolation of secreted variables is **not supported** with the Enhanced Project Workflow and we discourage its usage.  
-Altough interpolating secret variables makes them hidden in Project git repository, these variables will be fully visible when inspecting containers on Kubernetes. This practice could lead to several security issues.
+Altough Standard Workflow allows you to interpolate Secret Variables on your Project, we discourage its usage. This practice makes variables hidden in the Project git repository but these will be fully visible in plain text when inspecting containers on Kubernetes leading to serious security issues.  
+To avoid this bad practice to be used, Secret Variables interpolation is **not supported** on the Enhanced Project Workflow. Please ensure to fix any Secret Variable usage before migrating to the Enhanced Workflow.
 
 ## Activating the feature
 
