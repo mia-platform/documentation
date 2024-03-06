@@ -53,6 +53,7 @@ Available flags for the command:
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 - `--environment`, to set the environment scope for the command
+- `--auth-name`, to set the name of the authentication to be used in this context
 
 ### use
 
@@ -79,7 +80,7 @@ miactl context list
 The `context auth` subcommand allows you to setup the Console Service Account you want to use to authenticate to the Console.
 
 ```sh
-miactl context auth [flags]
+miactl context auth CONTEXT [flags]
 ```
 
 Available flags:

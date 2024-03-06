@@ -71,7 +71,7 @@ miactl context list
 The `context auth` subcommand allows you to setup the Console Service Account you want to use to authenticate to the Console.
 
 ```sh
-miactl context auth [flags]
+miactl context auth CONTEXT [flags]
 ```
 
 Available flags:
