@@ -49,6 +49,15 @@ const updateOp = await singleViewCollection.findOneAndUpdate(
 ```
 :::
 
+## [6.4.3] 2024-03-05
+
+### Fixed
+
+- upgrade `@mia-platform-internal/single-view-creator-lib@14.11.1` to ensure that operation
+`timestamp` property in sv-update message contains an ISO 8601 date string, converting
+potential incoming Unix timestamp into the expected format. This fixes a mismatch that prevented
+the daisy chain of two Single View Creator to 
+
 ## [6.4.1] 2024-02-27
 
 ### Added
