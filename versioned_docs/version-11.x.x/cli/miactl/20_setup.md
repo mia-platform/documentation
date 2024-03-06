@@ -77,7 +77,7 @@ sudo mv /tmp/miactl /usr/local/bin
 If you want to run the cli in its environment or you want to test the cli you can use the Docker image:
 
 ```sh
-docker run ghr.io/mia-platform/miactl@0.8.0 miactl
+docker run ghcr.io/mia-platform/miactl:0.8.0 miactl
 ```
 
 ### Windows
