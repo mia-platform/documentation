@@ -47,7 +47,7 @@ The [Advanced section](/development_suite/api-console/advanced-section/index.md)
 As if the previous benefits were not enough, there is already a set of **new features available only for Enhanced Project Workflow**:
 
 -  [GitOps deployment support](/development_suite/deploy/gitops-based/index.md)
--  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx)
+-  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx)
 -  [Configurations review and export](#kubernetes-configuration-review-and-export)
 
 And more features to come, such as:
