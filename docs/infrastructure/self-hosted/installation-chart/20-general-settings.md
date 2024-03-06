@@ -20,6 +20,14 @@ If you want to fine tune resources for specific services the proper documentatio
 
 ## Runtime, Storage and Networking configurations
 
+### General configurations
+
+|            Name            |  Type   |          Description           | Default | Optional |
+| :------------------------: | :-----: | :----------------------------: | :-----: | :------: |
+|     `configurations.consoleUrl`     | string |                                                       The URL where the console will be exposed                                                       |         |    ❌     |
+|       `configurations.cmsUrl`       | string |                                                     The URL where the console CMS will be exposed                                                     |         |    ❌     |
+
+
 ### Docker and runtime specific configurations
 
 |            Name            |  Type   |          Description           | Default | Optional |
@@ -45,18 +53,18 @@ If you want to fine tune resources for specific services the proper documentatio
 
 |                Name                 |  Type  |                                                                      Description                                                                      | Default | Optional |
 | :---------------------------------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :------: |
-|     `configurations.consoleUrl`     | string |                                                       The URL where the console will be exposed                                                       |         |    ❌     |
-|       `configurations.cmsUrl`       | string |                                                     The URL where the console CMS will be exposed                                                     |         |    ❌     |
 | `configurations.repositoryHostname` | string |                                The hostname of the docker repository where the services docker image will be uploaded                                 |         |    ❌     |
 |     `configurations.mongodbUrl`     | string | The connection url to a mongodb server or cluster, more info can be found [here](./40-mongodb-configurations-and-encryption.md#mongodb-configuration) |         |    ❌     |
+|   `configurations.redis.host`   | string | The host of a redis instance                  |  |    ❌     |
 
 #### Optional
 
 |              Name              |  Type  |                     Description                     |                Default                 | Optional |
 | :----------------------------: | :----: | :-------------------------------------------------: | :------------------------------------: | :------: |
-|   `configurations.redisHost`   | string |            The host of a redis instance             | `redis.default.svc.cluster.local:6379` |    ✅     |
-| `configurations.redisUsername` | string | The username used for redis instance authentication |                                        |    ✅     |
-| `configurations.redisPassword` | string |        The password used for redis instance         |                                        |    ✅     |
+| `configurations.redis.username` | string | The username used for redis instance authentication |  |    ✅     |
+| `configurations.redis.password` | string |        The password used for redis instance         |  |    ✅     |
+| `configurations.redis.tls` | boolean | tls connection to redis enabled | false |    ✅     |
+| `configurations.redis.tlsCACert` | string | CA for the TLS configuration to connect to the redis instance. This is effective only if `configurations.redis.tls` set to `true`. |  |    ✅     |
 
 ### Self-Signed CA Bundles
 

@@ -49,9 +49,11 @@ This service is configurable with the following environment variables:
 * **ACCEPTED_AUDIENCES**: comma-separated list of audiences accepted by the service, if included in JWT `aud` claim;
 * **OPENID_CONFIG_PATH**: string representing the path to the file contaning the OpenId Connect Configuration.
 * **REDIS_HOSTS** (*required*): redis host with port (default Redis port is 6379);
-- **REDIS_USERNAME** (*optional*): the username to authenticate to Redis (only supported for `REDIS_MODE=normal`);
-- **REDIS_PASSWORD** (*optional*): the password to authenticate to Redis (only supported for `REDIS_MODE=normal`);
+* **REDIS_USERNAME** (*optional*): the username to authenticate to Redis;
+* **REDIS_PASSWORD** (*optional*): the password to authenticate to Redis;
 * **REDIS_MODE**: defines the redis mode (`normal` or `sentinel`) (default: `normal`);
+* **REDIS_TLS** (*optional*): if `true`, enable the TLS connection to Redis. Default is `false`;
+* **REDIS_TLS_CACERT** (*optional*): the path to the CA of the Redis server, if it's not public (this is effective only if `REDIS_TLS` is set to `true`);
 * **REDIS_MASTER_NAME**: defines the redis master name (required when using `sentinel` mode);
 * **CLOCK_SKEW_SECONDS**: defines the skew seconds that will be used into the `/token` request to validate the **iat** and **notBefore** claims of the *client_assertion* and reduce client and server clocks misalignment
 

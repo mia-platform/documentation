@@ -38,7 +38,7 @@ To create and configure a company, you must have:
 You can create a new company by making a POST request to the `/api/backend/companies` API. 
 
 :::info
-This API is visible inside the Console API Portal, under the `Companies` tag.
+This API is visible inside the Console API Portal (`{{CONSOLE-HOST}}/documentations/api-portal/`), under the `Companies` tag.
 :::
 
 You will be asked to set the **name** and the **description** of the company to add (only name is required). 

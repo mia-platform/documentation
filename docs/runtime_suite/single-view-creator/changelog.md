@@ -15,6 +15,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.4.1] 2024-02-27
+
+### Added
+
+- introduce support for `snappy` compression both on the consumer and producer sides.
+  While compression coded employed on the consumer is automatically recognized, on the producer
+  it is necessary to be configured explicitly. This can be achieved via `KAFKA_PRODUCER_COMPRESSION` environment variable
+  that defines the compression to be employed, which can be one of the following values:
+    - `none` (default)
+    - `snappy` (recommended)
+    - `gzip`
+
 ## [6.4.0] 2023-12-14
 
 ### Updated

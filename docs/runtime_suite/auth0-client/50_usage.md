@@ -100,6 +100,45 @@ curl --location \
     --header 'authorization: Bearer YOUR_ACCESS_TOKEN'
 ```
 
+### Logout the users
+
+To logout a user, your application should redirect them through the endpoint:
+
+```
+GET /logout
+```
+
+The endpoint optionally accepts the `redirect` query string parameter: it defines the path to which redirect your users relative to the base URL of your application.
+
+It is used to build the `returnTo` Auth0 param using the `X-Forwarded-Host` and `X-Forwarded-Proto` request headers.
+
+For example if after logout you want to redirect your users to:
+```
+https://mia-project.example.org/logout-page
+```
+
+your application needs to redirect them to the auth0-client endpoint `/logout?redirect=/logout-page`. The service will internally build the url.
+
+:::info
+
+Make sure that the complete logout urls are registered in the [Advanced Auth0 Tenant Settings](https://auth0.com/docs/get-started/tenant-settings#login-and-logout).
+
+:::
+
+If the `redirect` query string is omitted, the `returnTo` query string will not be passed to Auth0: this will cause Auth0 to redirect the user to the first of the logout urls defined in the Tenant Advanced settings.
+
+#### Use the Auth0 Application Logout URLs - Enable the Auth0 `client_id` query param
+
+If the env __AUTH0_LOGOUT_CLIENT_ID_ENABLED__ is set to `true`, the `client_id` query parameter will always be added to the [Auth0 GET /v2/logout ](https://auth0.com/docs/api/authentication#auth0-logout).
+
+This will have the consequence that Auth0 will consider the logout redirect URLs allow-list defined at **Application level**, rather than at Tenant level.
+
+This means that if the `redirect` query param is defined, the resulting URL must be included in the Application Logout URL list.
+If the `redirect` param is not defined, the user will be redirected to the first Logout URL defined at Application level.
+
+For more information on how to configure Auth0 Application Logout URLs, please [check this documentation page](https://auth0.com/docs/authenticate/login/logout/redirect-users-after-logout).
+
+
 ## How to configure multiple environment
 
 If you want to segregate users for each runtime environment, the simpler solution is to:
@@ -202,7 +241,9 @@ It takes no additional parameters.
 Auth0 Jobs endpoints are designed for bulk operation on the underlying tenant.
 
 :::info
-These endpoints are available from `v3.4.0`
+
+These endpoints are available from `v3.4.0`. To enable them, make sure that your configuration contains the `managementClient.supportedConnectionsMap`.
+
 :::
 
 #### Bulk Import users

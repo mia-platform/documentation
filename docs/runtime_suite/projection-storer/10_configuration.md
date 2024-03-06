@@ -11,6 +11,6 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 Projection Storer is one of the Fast Data components. Its role is to ingest change events coming from the
-origin system ([System of Record](../../fast_data/the_basics.md#system-of-record-sor)) and process them by cleaning, filtering, validating and eventually storing them as raw data for the system.
+origin system ([System of Record](../../fast_data/the_basics.md#system-of-records-sor)) and process them by cleaning, filtering, validating and eventually storing them as raw data for the system.
 
 To learn more about the plugin and its configuration, please navigate to its [documentation](../../fast_data/projection_storer) in the Fast Data section.

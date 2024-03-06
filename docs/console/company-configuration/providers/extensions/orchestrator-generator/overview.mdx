@@ -1,10 +1,16 @@
 ---
-id: orchestrator-generator
+id: overview
 title: Orchestrator Generator
 sidebar_label: Orchestrator Generator
 ---
 
-![Orchestrator Generator](img/orchestrator-generator.png)
+One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**.  
+For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
+
+However, [in some scenarios](/console/company-configuration/providers/extensions/orchestrator-generator/use-cases.md), you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.  
+This enables you to tailor the deployment process to your specific needs and the functionalities offered by your chosen orchestrator, achieving a level of customization not readily available with the default Mia-Platform generation.
+
+When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to a configured Provider's API Base URL to generate the files to be deployed. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
 
 :::info
 
@@ -12,10 +18,7 @@ An Orchestrator Generator can only be used when the [Enhanced Project Workflow](
 
 :::
 
-One of the main features of Mia-Platform is the automatic generation of the **orchestrator files**, ready to **be deployed**; these files are saved in the **configuration repository**. For instance, the Console can generate Kubernetes files and deploy them on your runtime based on the [Design](/development_suite/api-console/api-design/overview.md) configuration you provided.
-
-However, you may want to generate these files differently: in this case, you have to use an **Orchestrator Generator**.
-When the Orchestrator Generator Extension is enabled, the Console sends a **POST request** to its Provider's API Base URL to generate the files to be deployed. The request body contains some information about the Project and the Configuration, and the Console expects to receive, in response, the files to be saved and deployed.
+![Orchestrator Generator](img/orchestrator-generator.png)
 
 ## Setup
 
@@ -288,3 +291,28 @@ The response, coming from the Extension and received by the Console, must be an 
     "my-service.deployment.yml": "the content of the deployment file for my-service..."
 }
 ```
+
+If something goes wrong and an error must be produced by the Orchestrator Generator, you can send a `500` status code and a payload that looks like this
+
+```json
+{
+   "error": "some technical error to be traced in service logs",
+   "message": "some user facing error message that is propagated to the final user" 
+}
+```
+
+:::tip
+Use the `message` field to provide useful insights to the final user and help them resolve what have gone wrong with the configuration.
+
+The user will receive your message in the failed deploy feedback modal
+
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![failed deploy custom message in modal](./img/failed-deploy-custom-message.png)
+
+  </div>
+</div>
+
+:::

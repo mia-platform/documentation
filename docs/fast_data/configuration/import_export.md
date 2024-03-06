@@ -8,15 +8,18 @@ sidebar_label: Import / Export
 This feature is available from `v12.0.0` of Mia-Platform Console (you can enable it in the Feature Preview of your Project Settings).
 :::
 
-The Import / Export feature allows Fast Data users to export resources from a specific project and import them inside another one.
-
+The Import / Export feature allows Fast Data users to export resources from a specific project and import them inside another one.  
 This feature makes it easier to access resources from other projects without having to recreate them on each environment.
 
-The following resources can be exported:
+The following resources can be imported / exported:
 - Custom cast functions (assigned to a Projection field)
 - ER schemas
 - Single Views
 - Systems of Record (with all or some of their Projections)
+
+:::caution
+Some Fast Data resources, such as **Projections**, can be imported as a reference __only in Projects that are using the [Single View Trigger Generator architecture](/fast_data/architecture.md#event-driven-architecture)__. Please check your services before importing the resources.
+:::
 
 The feature can be accessed by clicking on the `Import / Export` button, placed on the top right bar of the Systems of Record and Single Views pages. After clicking on the button, it will be possible to open the `Import` or `Export` modals.
 
@@ -76,10 +79,6 @@ Resources imported by reference are not automatically synced  between projects. 
 
 :::caution
 In both cases, microservices associated to each resource (such as Real-Time Updaters and their Message Formats, Single View Creators or Single View Trigger Generators) will NOT be imported. Please make sure these services have been created before deploying your configuration.
-:::
-
-:::info
-Some Fast Data resources, such as Projections, can be imported as a reference only in projects that are using the Single View Trigger Generator architecture. Please check your services before importing the resources.
 :::
 
 ## FAQs on Import / Export

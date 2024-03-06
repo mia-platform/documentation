@@ -8,9 +8,12 @@ import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
 :::info
-This is a **BETA** feature and, as such, is currently under active development.
 
-It can be safely used but there may still be some missing features: check the [roadmap section](#roadmap-and-future-improvements) below to find out more.
+This is a **BETA** feature and, as such, is currently under active development and there may still be some missing features.
+Please carefully check the **[Roadmap](#roadmap-and-future-improvements)** and **[Migrating your Projects](#migrating-your-projects)** sections below before activating this workflow on **existing Projects**. Once activated on a Project there is no way to rollback to the standard one anymore.
+
+New Projects on the other hand, can be safely created and used with this workflow.
+
 :::
 
 The **Enhanced Project Workflow** feature aims at providing a better developer experience when working with Mia-Platform Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
@@ -47,7 +50,7 @@ The [Advanced section](/development_suite/api-console/advanced-section/index.md)
 As if the previous benefits were not enough, there is already a set of **new features available only for Enhanced Project Workflow**:
 
 -  [GitOps deployment support](/development_suite/deploy/gitops-based/index.md)
--  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator.mdx)
+-  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx)
 -  [Configurations review and export](#kubernetes-configuration-review-and-export)
 
 And more features to come, such as:
@@ -69,23 +72,27 @@ This change also means that the Console will not rely on the typical Git-based i
 - `Branches` and `Tags` become **`Revisions`** and **`Versions`**
 - the `Commit history` becomes **`Revision history`**
 
-To keep track of the Project evolution, the user can create `versions` (similar to Git tags) that act as immutable snapshots of the configuration in a particular moment. To keep track of how a revision has changed over time, the user can access its history by clicking the related icon inside the branch selection area.
-
-![Revision History modal](img/revision-history.png)
-
-The table includes a list of all snapshots of the project configuration created with each save, along with useful information such as the snapshot date, author, associated message, and any tags created with it.
-
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Overview area. Revisions can be accessed and deleted from the Revisions management page:
 
 ![Revisions management page](img/revisions-overview.png)
 
-Versions with their description and release note can be viewed and deleted through the versions management page:
+Versions works as immutable snapshots of the configuration in a particular moment, with their description and release note, can be viewed and deleted through the versions management page:
 
 :::info
 Versions can only be deleted by Project Administrators.
 :::
 
 ![Versions management page](img/versions-overview.png)
+
+### Revision history
+
+To keep track of how a revision has changed over time, the user can access its revision history, which contains past snapshots of the Project configuration.
+
+![Revision History modal](img/revision-history.png)
+
+The revision history is accessible by clicking the related icon inside the branch selection area. It contains a list of snapshots of the Project configuration on the current revision or version, created each time it has been saved. It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it. Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
+
+![Diff Editor on Revision History modal](img/diff-editor-on-revision-history.png)
 
 ### New deployment workflow
 
@@ -202,9 +209,22 @@ If you want to ensure that all Projects in your Company adopt the **Enhanced Pro
 
 In order for the migration to succeed, though, there are some manual adjustments that need to be performed, which can be summarized with the following steps:
 
+ - Secret Variables security enforcement
  - Git repository structure clean-up
  - Feature activation
  - Default revision setup and adjustment of a few Project Settings
+
+### Secret Variables Security Enforcement
+
+Despite secrets providers are supported in the **Enhanced Project Workflow** as these currently are in the Standard Workflow too, there are a few constraints to consider when migrating to this workflow whether you are planning to use a **[Push](/development_suite/deploy/pipeline-based/index.md)** or **[Pull](/development_suite/deploy/gitops-based/index.md)** *deploy strategy*.
+
+When using `PUSH` mode (pipeline-based deploy) all secrets providers supported in the Standard Workflow are supported as well; You can define secrets and use them in your Projects as you always did.
+
+When using `PULL` mode (GitOps-based deploy), only Secrets stored in Vault are currently supported. 
+
+Altough Standard Workflow allows you to interpolate Secret Variables on your Project, we discourage this usage pattern. This practice opens severe security implications, exposing values that are supposed to be secret as plain text when inspecting containers on Kubernetes.  
+To avoid this bad practice to be used, Secret Variables interpolation is **not supported** on the Enhanced Project Workflow. Please make sure to fix any Secret Variable usage before migrating to the Enhanced Workflow.
+
 
 ### Git Repository adjustments
 

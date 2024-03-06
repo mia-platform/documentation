@@ -226,8 +226,19 @@
               },
               "items": [
                 {
-                  "id": "console/company-configuration/providers/extensions/orchestrator-generator",
-                  "type": "doc"
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "Orchestrator Generator",
+                  "link": {
+                    "id": "console/company-configuration/providers/extensions/orchestrator-generator/overview",
+                    "type": "doc"
+                  },
+                  "items": [
+                    {
+                      "id": "console/company-configuration/providers/extensions/orchestrator-generator/use-cases",
+                      "type": "doc"
+                    }
+                  ]
                 }
               ]
             },

@@ -37,9 +37,23 @@ When upgrading also make sure to check if any new configuration option is availa
 The Chart version follows [semver](https://semver.org/) policy so any breaking change with the Chart will always be followed by a Major release. Minor releases may include new configuration options while as a general rule of thumb, patches never holds new configuration options but only internal updates and fixes.
 :::
 
-## v12 - version upgrades
+## Console v12 - version upgrades
 
-### Upgrade from v12.1.0 to v12.X
+### Upgrade from v12.2.1 to v12.x
+
+#### New Redis configuration fields
+
+From Chart version 13, we moved all the Redis configurations inside a `redis` object in the `values.yaml` file;
+We have also removed the default redis configuration, which was `redis.default.svc.cluster.local:6379`,
+for this reason, before upgrading, you must add the Redis correct host to the `values.yaml` file using the `redis.host` property.
+
+To summarize, you should move the Redis configuration under the specific configuration values property:
+
+* `configurations.redisHost` -> `configurations.redis.host`
+* `configurations.redisUsername` -> `configurations.redis.username`
+* `configurations.redisPassword` -> `configurations.redis.password`
+
+### Upgrade from v12.1.0 to v12.2.1
 
 #### New management of image pull secrets
 
@@ -64,7 +78,7 @@ In this version, we removed the Pod Security Policy support (since removed in K8
 
 We also change the management of the security context. In this version, the security context are applied by default to all the pods, and it is possible to configure only the pod security context using the `defaultPodSecurityContext` field (to change all the pods security context) or the `podSecurityContext` field in each workload configuration (to change the security context of a specific pod).
 
-### Upgrade from v12.0.1 to v12.1.0
+### Upgrade from v12.0.2 to v12.1.0
 
 #### New backoffice configuration
 
@@ -73,10 +87,10 @@ This means that you can remove any configuration related to cms from your `value
 
 You can remove configuration related to:
 
-- `cmsBackendService`
-- `cmsSite`
-- `v1Adapter`
-- `exportService`
+* `cmsBackendService`
+* `cmsSite`
+* `v1Adapter`
+* `exportService`
 
 And add backoffice configuration, something like:
 
@@ -92,7 +106,7 @@ backoffice:
         cpu: "250m"
 ```
 
-### Upgrade from last v11 to v12.0.0
+### Upgrade from last Console v11 to v12.0.0
 
 #### User JWT with asymmetric signing key
 
@@ -117,14 +131,18 @@ This version introduces the possibility to enable the OpenTelemetry tracing feat
 
 #### Introduction of Mia-Platform Company
 
-Since this version, a Mia-Platform Company will be created during the installation of the Console. Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
+Since this version, a Mia-Platform Company will be created during the installation of the Console.
+Such Company is needed for some internal logic, for example Marketplace items maintained by Mia-Platform will have a reference to this Company.
 
-The value `.Values.configurations.miaPlatformDefaultCompanyId` is required.
+The value `.Values.configurations.miaPlatformDefaultCompanyId` is required;
+it must be a [RFC 1035 compliant label](https://datatracker.ietf.org/doc/html/rfc1035), i.e. a `kebab-case` string: only alphanumeric characters and dashes (`-`) are allowed, and the string must have a maximum length of 63 characters.
+
 When installing a fresh instance of the Console or while upgrading from a previous version, a new company will be created with the given value only if not already existing.
 
-:::warning
+:::tip
 
-You can also set this value to an already existing company, but be aware that this Company will be used also for installation internal purposes.
-For this reason we strongly suggest to prefer a dedicated Company.
+We suggest to use the value `mia-platform` as default company ID, since it should be clear that it refers to Mia-Platform.
+
+However, please make sure that a tenant with the same name does not already exist: in such case we suggest to use a different name such as `mia-platform-internal` or similar.
 
 :::

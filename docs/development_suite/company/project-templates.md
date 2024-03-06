@@ -4,7 +4,7 @@ title: Project Templates
 sidebar_label: Project Templates
 ---
 
-A project template is a repository which contains some project specific information and a default structure to have
+A project template is a repository that contains some project specific information and a default structure to have
 after the project creation.
 The template allows you to pre-fill resources in your project and start all similar projects with the same configuration.
 In short, it constitutes a base on which to create your project.
@@ -28,12 +28,12 @@ The fields to customize inside CMS are:
 
 * `archiveUrl`: URL to a gzip of the base project configuration folder. All contents of this folder will be copied into the target configuration, and correctly interpolated. If you want to create a custom template, click [here](#how-to-create-a-project-archive) to see how to do it;
 
-* `dashboards`: a list of dashboard configured by default in every environments of the project, when created.
-  Dashboards values can be interpolated with:
+* `dashboards`: a list of dashboard configured by default in every environment of the project, when created.
+  Dashboard values can be interpolated with:
   
   * `%projectId%`: the projectId of the new project
   * `%envId%`: for each environment, the envId
-  * `%namespace%`: for each environment,the namespace
+  * `%namespace%`: for each environment, the namespace
 
   For example:
 
@@ -48,7 +48,7 @@ The fields to customize inside CMS are:
     ]
   ```
 
-  * `id` (*required*): a unique id of the dashboard;
+  * `id` (*required*): unique id of the dashboard;
   * `label` (*required*): the labels shown by the [monitoring section of the Console](/development_suite/monitoring/dashboard.md);
   * `url` (*required*): the url to the dashboard;
   * `type`: can be `iframe` or `newTab`. Default to *iframe*.
@@ -112,6 +112,8 @@ You could create a project template to avoid copy/paste in every new project hav
 
 At Mia-Platform, for example, we create one template to configure a project exposed through Traefik configuration and one to configure it without expose it. Therefore, for a company that uses this template, creating this type of project will be a very simple process.
 
+### Template interpolation variables
+
 You can interpolate the template with some project data. With *mustache.js*, you could iterate through an array, in order to have some configuration iterated for every environment.
 The values you can use during template interpolation are:
 
@@ -168,7 +170,7 @@ To see an example of Jenkins pipelines definition, take a look at [this](/develo
 There are two ways to add services to a template:
 
 * Using an `api-console-config`, which specifies the services that will be included in the projects created with that template, together with other details (e.g. environment variables). This requires you to add an `api-console-config.json` file in the root directory of the project, provided via the `archiveUrl` field;
-* Deprecated: Using `enabledServices`, which only specifies whether a certain service is enabled or not, without the possibility to define any other detail.
+* **Deprecated**: Using `enabledServices`, which only specifies whether a certain service is enabled or not, without the possibility to define any other detail.
 
 :::caution
 The `enabledServices` can only be used for core services (i.e. `cms-site`, `cms-backend`, `v1-adapter`, `export-service`, `auth0-client`, and `oauth-login-site`), while it does not work for services used from the Console that have been migrated to custom services (migrated services are now plugins, you can find them in the [marketplace](/marketplace/overview_marketplace.md)).
