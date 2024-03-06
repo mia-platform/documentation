@@ -45,12 +45,16 @@ For the technical part of this tutorial, you will need both Kafka and MongoDB in
 A _System of Record_ (__SoR__) is a container of _Projections_, which are architectural objects responsible for storing the data in a persistent storage, to have a fast and scalable way to decouple the data from the source system.
 We will use these projections to have a copy of the data from the source systems, and later they will be used to aggregate the data from the source systems, using the Single View Creator.
 
-The architectural component responsible for creating and updating the projection is either the _Real-Time Updater_ or, starting from `Console v12.0.0`, the _Projection Storer_: we will refer to them as `SoR Microservices` throughout this tutorial.
+The architectural component responsible for creating and updating the projection is either the _Real-Time Updater_ or the _Projection Storer_: we will refer to them as `SoR Microservices` throughout this tutorial.
 
-This microservice manages a Kafka consumer that consume the data from the source systems and update the corresponding projections on MongoDB.
+:::info
+Projection Storer is available from `v12.0.0` of MIA Console.
+:::
+
+This microservice orchestrates a Kafka consumer responsible for fetching data from the source systems and updating the corresponding projections in MongoDB.
 
 In this tutorial, we can imagine a simple delivery platform where the data are the registry and the order of the customers.
-So, we will create a single System of Record with two projections (one for the registry and one for the order) attached to a single Real-Time Updater.
+So, we will create a single System of Record with two projections (one for the registry and one for the order) attached to a single _SoR Microservice_.
 
 ### Create the System of Record
 
@@ -126,9 +130,7 @@ In this section, you can setup the following configurations:
 <p>
 
 :::caution
-From version `11.7.0` of the Console, the _Real-Time Updater_ service must be created manually with the guide explained in this paragraph.
-
-If you're using an older version, you can skip this paragraph since the service is automatically created when saving the configuration after creating the System of Record.
+If you're using a console version older than `v11.7.0`, you can skip this paragraph since the service is automatically created when saving the configuration after creating the System of Record.
 :::
 
 The first step is to create the microservice _Real-Time Updater_, that will be attached to the System of Record we will create. To do so, we move to the _Microservices_ section of the Console. From here we can click on the
@@ -238,7 +240,7 @@ to receive the data from the Source Systems so that the Projections will be upda
 
 :::caution
 The application does not create Kafka topics for you. If you decide to use a different Kafka topic name, please be sure the topic already exists and it is fully operational.
-The Real-Time Updater, the service that receives the update from the source System, will crash at startup if there is a topic not defined in Kafka.
+The chosen SoR microservice, that will receives the update from the source System, will crash at startup if there is a topic not defined in Kafka.
 
 The Kafka topic names can be changed over time, but please mind that their name must be __unique within your Kafka cluster__.
 :::
@@ -281,7 +283,7 @@ In this particular case, both `registry` and `orders` will be linked to the same
 
 Going back to the projection's page, you can see that the microservice linked to it will appear under the `Microservice` card.
 
-## Release Projections
+## Expose & Test Projections
 
 At this point, we have configured the microservice, we already have one system of record and two projections, but we need to expose the Projection endpoints. 
 
@@ -292,6 +294,7 @@ It is not mandatory to expose the Projection endpoints to create, update and wor
 :::
 
 In the Endpoint section, we can click on the **Create new endpoint** button to create the Projection's endpoints.
+
 ![Create Endpoint's Projection](img/13-create-endpoint.png)
 
 Inside the creation page, we can choose the endpoint path. From the _type_ drop-down we have to choose `Fast Data Projection` and, in the Fast Data Projection dropdown menu, we can choose the Projection that we want to expose.
@@ -359,7 +362,7 @@ This will mean sending the following ingestion messages to the ingestion topics,
 ```
 
 :::tip
-If you don't have a direct access to your Kafka broker to produce messages, you can use a dedicated microservice such as [Rest2Kafka](/runtime_suite/rest2kafka-service/01_overview.md) to produce Kafka messages as REST request directly from MIA Console. 
+If you don't have a direct access to your Kafka broker to produce messages, you can use a dedicated microservice such as [Rest2Kafka](/runtime_suite/rest2kafka-service/01_overview.md) to produce Kafka messages as REST request directly from MIA Console.
 :::
 
 Once messages have been set, you can check from the API Documentations if both `registry` and `orders` projections have been updated successfully.
@@ -475,7 +478,7 @@ First of all, we need to create a microservice that we will attach to the Single
 ![Marketplace and Single View Creator](img/23-marketplace-single-view-low-code.png)
 
 Here we have two different plugins: the first one is for the _Single View Creator_, and the second one is for the _Single View Creator Low Code_.
-We will go for the latter since we want to leverage the usage of ConfigMaps for a quicker configuration of the microservice. We suggest naming it `single-view-creator-delivery`.
+We will go for the latter, since we want to leverage the usage of [Low Code / No Code features](/fast_data/no_code_overview.md#what-are-low-code-and-no-code) for a quicker configuration of the microservice. We suggest naming it `single-view-creator-delivery`.
 
 Now we need to configure all the parameters of the microservice, here is a set of the fields that we need to configure:
 
