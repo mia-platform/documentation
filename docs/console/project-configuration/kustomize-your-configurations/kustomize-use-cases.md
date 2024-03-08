@@ -41,7 +41,7 @@ spec:
 
 This way, when the production environment will be deployed, there will be two static replicas of the `hello-world` service. Notice that `./overlays/production/kustomization.yaml` is automatically generated and can be left empty.
 
-:::warning
+:::tip
 Sometimes you could need to patch keys containing a `/` character.
 The `/` character is often used (e.g. for inline operations) by Kustomize as separator, consequently you need to replace it with the `~1` value.
 
