@@ -55,7 +55,7 @@ If you want to fine tune resources for specific services the proper documentatio
 | :---------------------------------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :------: |
 | `configurations.repositoryHostname` | string |                                The hostname of the docker repository where the services docker image will be uploaded                                 |         |    ❌     |
 |     `configurations.mongodbUrl`     | string | The connection url to a mongodb server or cluster, more info can be found [here](./40-mongodb-configurations-and-encryption.md#mongodb-configuration) |         |    ❌     |
-|   `configurations.redis.host`   | string | The host of a redis instance                  |  |    ❌     |
+|   `configurations.redis.hosts`   | array | An array of the hosts of a redis instance |  | ❌ |
 
 #### Optional
 

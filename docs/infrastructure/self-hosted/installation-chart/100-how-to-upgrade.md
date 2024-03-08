@@ -45,11 +45,11 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 From Chart version 13, we moved all the Redis configurations inside a `redis` object in the `values.yaml` file;
 We have also removed the default redis configuration, which was `redis.default.svc.cluster.local:6379`,
-for this reason, before upgrading, you must add the Redis correct host to the `values.yaml` file using the `redis.host` property.
+for this reason, before upgrading, you must add the Redis correct host to the `values.yaml` file using the `redis.hosts` property.
 
 To summarize, you should move the Redis configuration under the specific configuration values property:
 
-* `configurations.redisHost` -> `configurations.redis.host`
+* `configurations.redisHost` -> `configurations.redis.hosts`. hosts is an array of host
 * `configurations.redisUsername` -> `configurations.redis.username`
 * `configurations.redisPassword` -> `configurations.redis.password`
 

@@ -75,7 +75,8 @@ configurations:
       logoutUrlPath: "/logout"
       skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
   redis:
-    host: "<REDIS_HOST>" # host to connect to redis
+    hosts:
+      - "<REDIS_HOST>" # host to connect to redis
   
   mongodbUrl: "<MONGODB_URL>" # url for the mongodb connection for the console
   filesStorageType: "mongodb"
