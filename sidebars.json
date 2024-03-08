@@ -452,6 +452,21 @@
           "type": "doc"
         },
         {
+          "collapsed": true,
+          "items": [
+            { 
+              "id": "development_suite/api-console/api-design/flow-manager/overview",
+              "type": "doc"
+            },
+            { 
+              "id": "development_suite/api-console/api-design/flow-manager/how-it-works",
+              "type": "doc"
+            }
+          ],
+          "label": "Flow Manager Configurator",
+          "type": "category"
+        },
+        { 
           "id": "development_suite/api-console/api-design/flow-manager-visualizer",
           "type": "doc"
         },
