@@ -5,7 +5,7 @@ sidebar_label: Flow Manager Visualizer
 ---
 
 :::caution
-Flow Manager Visualizer is available until Console version **12.2.2**. For higher versions please refer to [Flow Manager Configurator](/development_suite/api-console/api-design/flow-manager/overview.md) documentation.
+Flow Manager Visualizer is available until Console version **12.2.2**. For higher versions please refer to [Flow Manager Configurator](/development_suite/api-console/api-design/flow-manager-configurator/overview.md) documentation.
 :::
 
 ## Overview

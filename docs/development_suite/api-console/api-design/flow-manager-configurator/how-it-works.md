@@ -58,7 +58,7 @@ This feature is available starting from Flow Manager version `2.6.0`.
 
 #### Unlink Microservice
 
-The unlink microservice modal alerts the user before actually performing the [unlink process](/development_suite/api-console/api-design/flow-manager/overview.md#unlink).
+The unlink microservice modal alerts the user before actually performing the [unlink process](/development_suite/api-console/api-design/flow-manager-configurator/overview.md#unlink).
 
 ![Unlink Service](img/unlink-service.png)
 
