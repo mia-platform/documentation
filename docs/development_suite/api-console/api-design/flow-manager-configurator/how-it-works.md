@@ -113,8 +113,8 @@ The highlight mode allows the user to focus on a subset of states and events of 
 - Click on a turned off event (i.e. edge)
   - Case source and target states turned off &rarr; nothing is highlighted
   - Case source and target states highlighted &rarr; the event is highlighted
-  - Case source state is highlighted &rarr; the event and every following state and event is highlighed up to the first bifurcation encountered
-  - Case target state is highlighted &rarr; the event and every previous state and event is highlighed up to the first bifurcation encountered
+  - Case source state is highlighted &rarr; the event and every following state and event is highlighted up to the first bifurcation encountered
+  - Case target state is highlighted &rarr; the event and every previous state and event is highlighted up to the first bifurcation encountered
 - Click on an highlighted state &rarr; the state, its incoming events and every following state and event is turned off if they are not highlighted by another branch
 - Click on an highlighted event &rarr; the event is turned off and every following state and event is turned off if they are not highlighted by another branch
 
