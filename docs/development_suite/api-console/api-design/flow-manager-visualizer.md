@@ -4,6 +4,10 @@ title:  Flow Manager Visualizer
 sidebar_label: Flow Manager Visualizer
 ---
 
+:::caution
+Flow Manager Visualizer is available until Console version **12.2.2**. For higher versions please refer to [Flow Manager Configurator](/development_suite/api-console/api-design/flow-manager-configurator/overview.md) documentation.
+:::
+
 ## Overview
 
 The Flow Manager Visualizer helps you graphically visualize your [flow manager](/runtime_suite/flow-manager-service/10_overview.md) service configuration in a simple fashion.
