@@ -118,7 +118,7 @@ Each option fetched like this should have at least a `label` field, which is use
 
 ### Locale
 
-The texts of the Expanded Filters can be customized through the property `customLocale`, which accepts an object shaped like the following:
+The texts of the Expandable Filters can be customized through the property `customLocale`, which accepts an object shaped like the following:
 
 ```typescript
 type Locale = {
