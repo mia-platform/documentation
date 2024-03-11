@@ -43,7 +43,7 @@ An example of `azure-pipeline.yml` template can be found [here](/docs_files_to_d
 
 Let's analyse each section of the above template:
 - `trigger: "none"`
-This field let's you decide when the pipeline should automatically starts. If you want the pipeline to start automatically upon a commit operation on certain branches, you have to update the field as follows:
+This field lets you decide when the pipeline should automatically start. If you want the pipeline to start automatically upon a commit operation on certain branches, you have to update the field as follows:
 ```yaml
 trigger:
   branches:
