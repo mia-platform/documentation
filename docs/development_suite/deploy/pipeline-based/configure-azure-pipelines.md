@@ -92,7 +92,7 @@ When creating a new Project, the Console use [mustache.js](https://github.com/ja
 The idea is to have different `job` named after the environment configured in the Company. The field `condition` will make sure that only the specific job for the target environment will be executed.
 This will ensure you to perform different logic based on the Deploy environment.
 
-- the `variables` section - let's you import variables from different sources. In our example, we are importing some variables from the DevOps Project's Variable Group and from the centralised Common Project:
+- the `variables` section - let's you import variables from different sources. In our example, we are importing some variables from the DevOps Project's Variable Group and from the centralised Common Project (check [Variable Group](configure-azure-pipelines.md#variable-group) for details):
 ```yaml
     variables:
       - group: mia
@@ -122,8 +122,19 @@ In this section, the user can change the content of the `bash` field to prepare 
 In the `template` field is specified a template file that contains the common logic performed by `mlp` to apply the Kubernetes manifest into the Runtime cluster.
 
 :::caution
-Under the commented line in the example, the user must specify those secrets variables that he wants to use in his Project. This step is necessary if you don't have access to any Secret Manager Provider.
+Under the commented line in the example, the user must specify those secrets variables that he wants to use in his Project. This step is necessary if you don't have access to any Secret Manager Provider. You can configure your secrets using a Variable Group, or directly into the Variables section of the Pipeline Editor in Azure DevOps.
 :::
+:::caution
+The first time you trigger a deploy pipeline in your Project, you need to access Azure DevOps to give the pipeline the permissions to access Variable Groups and Environments. The pipeline will not resume until those accesses are granted. In order to avoid the pipeline from stopping, you need to access Variable Groups and Environments and, in the Security section of these resources, select Open Access to all Pipelines or add the specific pipeline to the list of the authorized resources.
+:::
+
+### Variable Group
+The management of the Infrastructure Secrets (those variables that contains the tokens to connect to Kubernetes) in Azure DevOps is controlled with Variables Groups. This feature is available at DevOps Project Level and is used to stored values that we don't want to show to our users. Moreover, the variables stored in a Variable Groups are available in every pipelines created in the DevOps Project. 
+
+In order to deploy correctly, `mlp` usually need the following data:
+- a variable containing the JWT Token to authenticate `mlp` to the Kubernetes Cluster - one for every Cluster configured in your Company;
+- a variable containing the CA to use in the authentication phase to the Kubernetes Cluster - one for every Cluster configured in your Company;
+- a set of variables containing the passwords to access your Docker Registries - this variables will be interpolated in the `mlp.yaml` file available in every Configuration repository linked to Console's Projects.
 
 ### Template Setup
 In the case you want to have a centralise point where to manage the common logic of your deploy pipelines, you can setup a repository (in the same or even in a different DevOps project) to store two files:
