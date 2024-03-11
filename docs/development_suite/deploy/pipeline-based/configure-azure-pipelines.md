@@ -10,7 +10,7 @@ In order to enable your projects to be deployed using Azure Pipelines, in the Co
 
 ![Provider](./img/azure-pipelines-provider.png)
 
-This process will change the configuration of your Company in the CMS. In particular, the JSON configuration of the field `Pipelines` will change as follows:
+This process will change the configuration of your Company. In particular, the JSON configuration of the field `Pipelines` will change as follows:
 
 ```json
 {
