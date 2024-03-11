@@ -35,7 +35,7 @@ For the Projects specific configuration, when you create a new one in a Company 
 
 Where `PIPELINE_ID` will be the unique identifier of the Azure Pipeline created at the first point and that will be used from the Console to trigger the proper one during Deploy operation.
 
-When the user request a Deploy operation from the Console, the Pipeline with this specific ID will be triggered in Azure DevOps.
+When the user triggers a Deploy from the Console, the Pipeline with this specific ID will be triggered in Azure DevOps.
 
 ### Azure Pipelines Basic Configuration
 
