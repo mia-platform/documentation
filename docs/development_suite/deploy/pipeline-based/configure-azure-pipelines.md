@@ -120,14 +120,15 @@ With this instruction, you are saving those variables inside an object called `m
             - template: "common/jobs/deploy/deploy-job.yml@pipelines"
 ```
 In this section, the user can change the content of the `bash` field to prepare the various variables and secrets to be used by `mlp` to perform the Deploy operation.
-In the `template` field is specified a template file that contains the common logic performed by `mlp` to apply the Kubernetes manifest into the Runtime cluster.
 
-:::caution
-Under the commented line in the example, the user must specify those secrets variables that are going to be used in his Project. This step is necessary if you don't have access to any Secret Manager Provider. You can configure your secrets using a Variable Group, or directly into the Variables section of the Pipeline Editor in Azure DevOps.
+Under the commented line in the example, the user must specify those secrets variables that are going to be used in his Project. 
+You can configure your secrets using a Variable Group, or directly into the Variables section of the Pipeline Editor in Azure DevOps.
+
+:::info
+The secrets used by the Microservices in the Console's Project has to be manually assigned only if you don't have access to any Secret Manager Provider.
 :::
-:::caution
-The first time you trigger a deploy pipeline in your Project, you need to access Azure DevOps to give the pipeline the permissions to access Variable Groups and Environments. The pipeline will not resume until those accesses are granted. In order to avoid the pipeline from stopping, you need to access Variable Groups and Environments and, in the Security section of these resources, select Open Access to all Pipelines or add the specific pipeline to the list of the authorized resources.
-:::
+
+In the `template` field is specified a template file that contains the common logic performed by `mlp` to apply the Kubernetes manifest into the Runtime cluster.
 
 ### Variable Group
 The management of the Infrastructure Secrets (those variables that contains the tokens to connect to Kubernetes) in Azure DevOps is controlled with Variables Groups. This feature is available at DevOps Project Level and is used to stored values that we don't want to show to our users. Moreover, the variables stored in a Variable Groups are available in every pipelines created in the DevOps Project. 
@@ -136,6 +137,12 @@ In order to deploy correctly, `mlp` usually need the following data:
 - a variable containing the JWT Token to authenticate `mlp` to the Kubernetes Cluster - one for every Cluster configured in your Company;
 - a variable containing the CA to use in the authentication phase to the Kubernetes Cluster - one for every Cluster configured in your Company;
 - a set of variables containing the passwords to access your Docker Registries - this variables will be interpolated in the `mlp.yaml` file available in every Configuration repository linked to Console's Projects.
+
+These variables needs to be mapped into the `env` section of the `bash` step in the pipeline and then passed to `mlp`. Since this operation is the same for every Project, it is advised to add this mappings in the Project Template pipeline.
+
+:::caution
+The first time you trigger a deploy pipeline in your Project, you need to access Azure DevOps to give the pipeline the permissions to access Variable Groups and Environments. The pipeline will not resume until those accesses are granted. In order to avoid the pipeline from stopping, you need to access Variable Groups and Environments and, in the Security section of these resources, select Open Access to all Pipelines or add the specific pipeline to the list of the authorized resources.
+:::
 
 ### Template Setup
 In the case you want to have a centralize point where to manage the common logic of your deploy pipelines, you can setup a repository (in the same or even in a different DevOps project) to store two files:
