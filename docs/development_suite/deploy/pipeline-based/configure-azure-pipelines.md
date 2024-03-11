@@ -102,7 +102,7 @@ This will ensure you to perform different logic based on the Deploy environment.
 In order to store some variables that you want to keep secret, like Tokens to connect to the K8s Cluster, we use the DevOps `Variable Group`, that can be useful to create secret variables that can be shared between every Pipeline of your DevOps Team Project.
 With this instruction, you are saving those variables inside an object called `mia` that you can use in the Pipeline.
 
-- the `strategy` section - this is the core of the Pipeline, where the Deploy operation are performed:
+- the `strategy` section is the core of the Pipeline, where the Deploy operation are performed:
 ```yaml
     strategy:
       runOnce:
