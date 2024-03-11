@@ -176,7 +176,7 @@ On top of types, extra information can be passed to better understand how a prop
 
 | type         | formats                                                                                                            |
 | ------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `string`     | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, <s>`lookup`</s> (__deprecated__), `editor` |
+| `string`     | `date`, `date-time`, `time`, `email`, `uri`, `regex`, `password`, `text-area`, <s>`lookup`</s> (__deprecated__), `editor`, `html-editor` |
 | `number`     | `date`, `date-time`, `time` , `currency`                                                                           |
 | `integer`    | -                                                                                                                  |
 | `object`     | `file`, `localized-text`, `geopoint`, `lookup`                                                                     |

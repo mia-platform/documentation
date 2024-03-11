@@ -101,6 +101,8 @@ Each notification can be configured with the following properties:
 
 ### Locale
 
+### Locale
+
 The texts of the Notifications can be customized through the property `customLocale`, which accepts an object shaped like the following:
 
 ```typescript
