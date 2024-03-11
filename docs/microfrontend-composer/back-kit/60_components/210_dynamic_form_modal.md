@@ -688,6 +688,10 @@ type Locale = {
       editorView: LocalizedText,
       rawView: LocalizedText
     },
+    htmlEditor: {
+      preview: LocalizedText,
+      html: LocalizedText
+    },
     geopoint:{
       latitude: LocalizedText,
       longitude: LocalizedText,
