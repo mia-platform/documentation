@@ -123,7 +123,7 @@ In this section, the user can change the content of the `bash` field to prepare 
 In the `template` field is specified a template file that contains the common logic performed by `mlp` to apply the Kubernetes manifest into the Runtime cluster.
 
 :::caution
-Under the commented line in the example, the user must specify those secrets variables that he wants to use in his Project. This step is necessary if you don't have access to any Secret Manager Provider. You can configure your secrets using a Variable Group, or directly into the Variables section of the Pipeline Editor in Azure DevOps.
+Under the commented line in the example, the user must specify those secrets variables that are going to be used in his Project. This step is necessary if you don't have access to any Secret Manager Provider. You can configure your secrets using a Variable Group, or directly into the Variables section of the Pipeline Editor in Azure DevOps.
 :::
 :::caution
 The first time you trigger a deploy pipeline in your Project, you need to access Azure DevOps to give the pipeline the permissions to access Variable Groups and Environments. The pipeline will not resume until those accesses are granted. In order to avoid the pipeline from stopping, you need to access Variable Groups and Environments and, in the Security section of these resources, select Open Access to all Pipelines or add the specific pipeline to the list of the authorized resources.
