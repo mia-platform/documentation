@@ -15,7 +15,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.6.0] - 2023-10-20
+## [2.6.3] - 2023-11-22
+
+## [2.6.2] - 2023-11-22
+
+## [2.6.1] - 2023-11-22
+
+### Added
+
+- Added tag `Flow Manager` to all endpoints
+
+### Changed
+
+- Hidden endpoint `/configuration` from swagger 
+- Redacted `connectionUri` in case of `mongo` persistencyManagement configuration
+
+## [2.6.0] 2023-10-20
 
 ### Added
 
@@ -28,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - convert a Buffer to string before logging it
 - add `tini` to Dockerfile
 
-## v2.5.1 - 11-10-2023
+## [2.5.1] 11-10-2023
 
 ### Added
 
@@ -39,13 +54,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - .npmrc file added to .dockerignore
 
-## 2.5.0 - 03-05-2022
+## [2.5.0] 03-05-2022
 
 ### Added
 
 - crud persistency management configuration used to persist saga information through CRUD service.
 
-## 2.4.2 - 12-04-2022
+ 12-04-2022
 
 ### SECURITY FIX
 
@@ -63,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - unexpected producer registration when using REST communication protocol
 
-## 2.4.1 - 07-04-2022
+## [2.4.1] 07-04-2022
 
 ### Added
 
@@ -73,13 +88,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Now a crash event in the consumer sets the healthiness of the pod to false.
 
-## 2.4.0 - 22-03-2022
+## [2.4.0] 22-03-2022
 
 ### Changed
 
 - probes route now dependent on Kafka connection status in order to restart the pod if connection with Kafka drops
 
-## 2.3.1 - 15-03-2022
+## [2.3.1] 15-03-2022
 
 ### Added
 
@@ -89,7 +104,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - custom plugin lib v4.3.2
 
-## 2.3.0 - 22-09-2021
+## [2.3.0] 22-09-2021
 
 ### Changed
 
@@ -97,49 +112,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - a list of strings that represent the kafka brokers
   - a string with the comma separated value brokers
 
-## 2.2.0 - 05-05-2021
+## [2.2.0] 05-05-2021
 
 ### Added
 
 - Persistency Manager support to MongoDB
 
-## 2.1.3 - 04-03-2021
+## [2.1.3] 04-03-2021
 
 ### Updated
 
 - custom-plugin-lib: v2.0.4
 
-## 2.1.2 - 18-01-2020
+## [2.1.2] 18-01-2020
 
 ### Added
 
 - add custom kafka logger to follow mia-platform logs guidelines
 
-## 2.1.1 - 20-11-2020
+## [2.1.1] 20-11-2020
 
 ### Fixed
 
 - removed consumerGroup requirement for kafka producer
 
-## 2.1.0 - 15-10-2020
+## [2.1.0] 15-10-2020
 
 ### Added
 
 - defined new route to expose flow-manager state machine configuration
 
-## 2.0.2 - 13-10-2020
+## [2.0.2] 13-10-2020
 
 ### Updated
 
 - custom-plugin-lib: v2.0.4
 
-## 2.0.1 - 02-10-2020
+## [2.0.1] 02-10-2020
 
 ### Updated
 
 - custom-plugin-lib: v2.0.3
 
-## 2.0.0 - 30-09-2020
+## [2.0.0] 30-09-2020
 
 ### Added
 
@@ -152,13 +167,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - updated custom-plugin-lib dependency to 2.0.2. The update in breaking since it's bringing up lc39 v3.x with the newer logging format.
 - updated flow history format
 
-## 1.1.0 - 11-09-2020
+## [1.1.0] 11-09-2020
 
 ### Added
 
 - support for REST trigger
 - flow history
 
-## 1.0.0 - 17-07-2020
+## [1.0.0] 17-07-2020
 
 - First import

@@ -38,7 +38,7 @@ In order to correctly integrate the plugins with the Fast Data in a parallel way
 * Create _reingestion_ topics
 * Configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md) and
   [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md))
-* Perform an Initial Load procedure of the System of Records, in order to align the messages written on the bucket with all the projections already stored
+* Perform an Initial Load procedure of the System of Record, in order to align the messages written on the bucket with all the projections already stored
   on the database
 
 :::note
@@ -64,7 +64,7 @@ In order to correctly integrate the plugins with the Fast Data in a sequential m
 * Configure and deploy the services of the Bucket Storage Support ([Ingestion Storer](/fast_data/bucket_storage_support/configuration/ingestion_storer.md) and
   [Ingestion Reloader](/fast_data/bucket_storage_support/configuration/ingestion_reloader.md))
 * Configure the Real-Time Updater to the read from the newer post-ingestion topics that have been created in the step above
-* Perform an Initial Load procedure of the System of Records, in order to align the messages written on the bucket with all the projections already stored
+* Perform an Initial Load procedure of the System of Record, in order to align the messages written on the bucket with all the projections already stored
 on the database
 
 For more details, please refer to the Bucket Storage Support [deployment guidelines](/fast_data/bucket_storage_support/deployment_guidelines.md).

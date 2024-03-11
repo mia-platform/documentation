@@ -10,6 +10,14 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+
+The Messaging Service is under maintenance (bug fixes and security updates only) and will reach end-of-life in December 2025.
+
+The plugin is deprecated in favor of the Notification Manager, which inherits all the Messaging Service features and APIs.
+
+:::
+
 Messaging Service allows sending messages to your users through various channels, namely **e-mail**, **SMS**, **push notification** and **voice**.
 
 To send those messages, this service leverages three other Mia-Platform plugins:
@@ -124,10 +132,10 @@ In this case the `eq` function is provided by the [handlebars-helpers][handlebar
 [handlebars]: https://handlebarsjs.com/guide/#what-is-handlebars
 [handlebars-helpers]: https://github.com/helpers/handlebars-helpers
 
-[ses-mail-notification]: ../../runtime_suite/ses-mail-notification-service/configuration
-[sms-service]: ../../runtime_suite/sms-service/configuration
-[kafka2firebase]: ../../runtime_suite/kafka2firebase/overview
-[flow-manager]: ../../runtime_suite/flow-manager-service/overview
+[ses-mail-notification]: ../ses-mail-notification-service/configuration
+[sms-service]: ../sms-service/configuration
+[kafka2firebase]: ../kafka2firebase/overview
+[flow-manager]: ../flow-manager-service/overview
 
 [message-interpolation]: #messages-interpolation
 [crud-templates]: ./20_configuration.md#templates-crud

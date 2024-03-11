@@ -450,7 +450,7 @@ Dependencies are a way to gather data that will be used in the mapping section, 
 
 If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
 
-We have a System of Records that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
+We have a System of Record that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
 A naive solution could be just putting both Projections as dependencies and using both of them in the mapping. This would cause the Single View to have two different `firefighter` and `doctor` fields, one of them undefined, which is clearly not ideal.
 
 Thanks to the `_select` option, we can create a `JOB` dependency, which will use the `DOCTOR` *or* `FIREFIGHTER` Projection based on the value of another field, as shown below:

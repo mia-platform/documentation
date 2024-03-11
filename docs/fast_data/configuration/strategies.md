@@ -13,7 +13,7 @@ The strategy functions can be created in the repository of the project configura
 In order to write a strategy function, first clone the repository, in order to do so click on the git provider icon on the right side of the header (near to the documentation icon and user image) to access the repository and then clone it.
 
 Strategy files need to be created below a folder named `fast-data-files`, if your project does not have it, create it.
-In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Records.
+In this folder, create a folder named `strategies/SYSTEM ID` (replacing *SYSTEM ID* with the system id set in Console) and inside this folder you can add all the files you need to create the strategies for the specified System of Record.
 
 For instance if you want to create a strategy function for the system `my-system` you need to create the following directory tree:
 
@@ -168,7 +168,7 @@ In your custom files (e.g. `fast-data-files`) you can import only the node modul
 ## Strategies type
 
 :::warning
-This information are valid only when using a [Real-Time Updater](/fast_data/configuration/realtime_updater.md) with **Projection Changes**.
+This information are valid only when using a [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) with **Projection Changes**.
 :::
 
 Each strategy is associated with a **type**, which usually (and by default) corresponds to the name of the Single View for which it is configured. When using a Real-Time Updater with Projection Changes, this type should match the one declared in the `TYPE` environment variable of the Single View Creator(s) associated with the Single View. The reason is that, behind the hood, the strategy type is written in the Projection Changes record by the Real-Time Updater and the Single View Creators will discern which records to process based on it.

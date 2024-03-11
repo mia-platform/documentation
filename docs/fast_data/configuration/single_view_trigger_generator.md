@@ -31,8 +31,8 @@ When creating the service from the marketplace the following environment variabl
 | KAFKA_PROJECTION_UPDATES_FOLDER  | &check;  | Path to the [Kafka Projection Updates](#kafka-projection-updates) folder                                                                                                                                | -             |
 | ER_SCHEMA_FOLDER                 | &check;  | Path to the [ER Schema](#er-schema) folder                                                                                                                                                              | -             |
 | PROJECTION_CHANGES_SCHEMA_FOLDER | &check;  | Path to the [Projection Changes Schema](#projection-changes-schema) folder                                                                                                                              | -             |
-| MANUAL_STRATEGIES_FOLDER         | -        | Path to the custom strategies folder where the custom strategies scripts are stored                                                                                                                     | -             |
-| TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Path to the custom functions folder used in `__fromFile__` values                                                                                                                                       | ''            |
+| MANUAL_STRATEGIES_FOLDER         | -        | Absolute path of custom strategy functions folder. These functions are used in `__fromFile__` annotations inside the [Kafka Projection Updates Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.mdx)                                                                                                                   | -             |
+| TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Absolute path of custom functions folder. These functions are used in `__fromFile__` annotations inside the [Projection Changes Schema Configuration](/fast_data/configuration/config_maps/projection_changes_schema.md#custom-functions).                                                                                                                                      | -            |
 
 ## Attaching a Service to a Single View
 
@@ -42,7 +42,7 @@ To simplify the configuration of the Single View Trigger Generator service, you 
 * within the _Single View Creator_ tab of the _Single View_ modal, enter the configuration page of the Single View Creator that you've configured.
 * in the _Single View Trigger Generator_ tab, you can choose a Single View Trigger Generator from the available services. 
 
-Once the service has been attached, you can manage the content of the [_Projection Changes Schema config map_](/fast_data/configuration/config_maps/projection_changes_schema.md) and the [_Kafka Projection Updates config map_](/fast_data/configuration/config_maps/kafka_projection_updates.md).
+Once the service has been attached, you can manage the content of the [_Projection Changes Schema config map_](/fast_data/configuration/config_maps/projection_changes_schema.md) and the [_Kafka Projection Updates config map_](/fast_data/configuration/config_maps/kafka_projection_updates.mdx).
 
 ![Single View Trigger Generator configuration page](./img/svtg-configuration.png)
 
@@ -60,7 +60,7 @@ When a Single View Trigger Generator is attached to a Single View, the environme
 If you prefer to manually configure these services, you can always detach the service in the _Single View Trigger Generator_ tab via the _Detach microservice_ button on the top-right side of the page. After saving the configuration, the environment variable and the config maps will be again editable from the _Microservices_ section.
 :::
 
-## config maps
+## Config Maps
 
 The service can use the following 3 config maps:
 
@@ -70,7 +70,7 @@ When creating the service from the marketplace the following config maps will be
 
 ### ER Schema
 
-The ER Schema config map contains the `erSchema.json` file which describes the relationships between each projection of the [System of Records](/fast_data/the_basics.md#system-of-records-sor).
+The ER Schema config map contains the `erSchema.json` file which describes the relationships between each projection of the [System of Record](/fast_data/the_basics.md#system-of-record-sor).
 
 Remember to copy/paste the mount path into the `ER_SCHEMA_FOLDER` environment variable so the service can read the file.
 To know more on how to configure the file please go to the [ER Schema](/fast_data/configuration/config_maps/erSchema.md) page.
@@ -87,7 +87,7 @@ If you need more info on how to configure the `projectionChangesSchema.json` fil
 The Kafka Projection Updates config map contains the `kafkaProjectionUpdates.json` file which defines the topics from where to consume the [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) and the strategy to apply to each message.
 
 Remember to copy/paste the mount path into the `KAFKA_PROJECTION_UPDATES_FOLDER` environment variable so the service can read the file.
-If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
+If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.mdx) page.
 
 :::warning
 If you attach the service to a Single View, the _Kafka Projection Updates_ config map can be modified to support *only* automatic strategies.
@@ -118,7 +118,7 @@ The `Event Store Config` is a JSON file containing the configuration of the cons
 Mind that only one producer and consumer must be configured at a time so the service knows which kind to use. Providing more than one consumer or producer will fail the configmap validation and shut down the service at start up.
 :::
 
-**Consumers**
+#### Consumers
 
 At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification below.
 
@@ -248,9 +248,10 @@ At the moment you can only configure your consumer with kafka which will read `p
 </p>
 </details>
 
-**Producers**
+#### Producers
 
 For the producers you can choose between two options: Kafka or MongoDB ([`sv-trigger` vs. `pc`](/fast_data/single_view_trigger_generator.md#sv-trigger-vs-pc)).
+
 With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
 
 <details><summary>MongoDB producer config JsonSchema</summary>
@@ -367,6 +368,15 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
         }
       }
     },
+    "compressionName": {
+      "type": "string",
+      "default": "none",
+      "enum": [
+        "gzip",
+        "snappy",
+        "none"
+      ]
+    },
     "logLevel": {
       "type": "string",
       "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"]
@@ -377,7 +387,23 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
 </p>
 </details>
 
-An example of a complete configuration would be:
+:::tip
+Starting from version `v3.1.6` of the SVTG, is possible to add into the Kafka producer configuration the property `compressionName`, to apply a particular encoding to `sv-trigger` messages. Allowed values are:
+
+* `gzip`
+* `snappy`
+* `none` (default, if no options are provided)
+
+While this option can be useful for messages having a large size, can increase the processing time due to the computational resources needed to apply the compression.
+:::
+
+#### Examples
+
+Below you can find a list of example configurations, based on the two different types of producers.
+
+<details>
+<summary>Kafka Consumer with MongoDB Producer</summary>
+<p>
 
 ```json
 {
@@ -398,3 +424,64 @@ An example of a complete configuration would be:
   }
 }
 ```
+
+</p>
+</details>
+
+<details>
+<summary>Kafka Consumer with Kafka Producer</summary>
+<p>
+
+```json
+{
+  "consumer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "consumerGroupId": "group-id",
+      "consumeFromBeginning": true,
+      "logLevel": "NOTHING"
+    }
+  },
+  "producer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "logLevel": "NOTHING"
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+<details>
+<summary>Kafka Consumer with Kafka Producer having Snappy compression</summary>
+<p>
+
+```json
+{
+  "consumer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "consumerGroupId": "group-id",
+      "consumeFromBeginning": true,
+      "logLevel": "NOTHING"
+    }
+  },
+  "producer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "logLevel": "NOTHING",
+      "compressionName": "snappy"
+    }
+  }
+}
+```
+
+</p>
+</details>
+

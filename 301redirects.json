@@ -111,6 +111,7 @@
     "destination": "/docs/fast_data/realtime_updater",
     "addedOn": "2022-10-01"
   },
+  
   "/docs/fast_data/real_time_updater/low-code-configuration": {
     "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2022-10-01"
@@ -147,6 +148,10 @@
   "/docs/fast_data/configuration/realtime_updater/common":  {
     "destination": "/docs/fast_data/configuration/realtime_updater",
     "addedOn": "2023-06-15"
+  },
+  "/docs/fast_data/configuration/realtime_updater":  {
+    "destination": "/docs/fast_data/configuration/realtime-updater/overview",
+    "addedOn": "2024-02-21"
   },
   "/docs/fast_data/configuration/realtime_updater/low_code":  {
     "destination": "/docs/fast_data/configuration/realtime_updater",
@@ -1640,5 +1645,9 @@
   "/docs/runtime_suite/auth0-client/overview_and_usage": {
     "destination": "/docs/runtime_suite/auth0-client/overview",
     "addedOn": "2024-01-22"
+  },
+  "/docs/console/company-configuration/providers/extensions/orchestrator-generator": {
+    "destination": "/docs/console/company-configuration/providers/extensions/orchestrator-generator/overview",
+    "addedOn": "2024-03-01"
   }
 }

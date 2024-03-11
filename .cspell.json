@@ -225,7 +225,8 @@
     "serp",
     "VULNDB",
     "mergo",
-    "kpis"
+    "kpis",
+    "Mesos"
   ],
   "ignoreWords": [
     "asncdctools",
@@ -345,7 +346,9 @@
     "Segoe",
     "kotlinx",
     "Dynatrace",
-    "logr"
+    "logr",
+    "ODBC",
+    "RDBMS"
   ],
   "dictionaries": [
     "softwareTerms",

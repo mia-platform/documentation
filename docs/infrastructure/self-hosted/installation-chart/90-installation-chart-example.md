@@ -15,8 +15,11 @@ nameOverride: "" # optional
 fullnameOverride: "" # optional
 
 mia-console:
-  imagePullSecrets:
-    - name: <PULL_SECRET_NAME> # array of image pull secret to pull Console services
+  imageCredentials:
+    name: <PULL_SECRET_NAME> # array of image pull secret to pull Console services
+    username: <CONTAINER_REGISTRY_USERNAME> # username of the user which download the image from the container registry
+    password: <CONTAINER_REGISTRY_PASSWORD> # password of the user which download the image from the container registry
+    email: <CONTAINER_REGISTRY_EMAIL> # email of the user which download the image from the container registry
 
   configurations:
     consoleUrl: "<CONSOLE_URL>"
@@ -75,7 +78,8 @@ mia-console:
         userSettingsURL: "https://account.microsoft.com/profile/"
         logoutUrlPath: "/logout"
         skipRefreshProviderTokenOnMiaTokenRefresh: true # optional: skip the refresh of the provider token when the console one is expired
-    redisHost: "<REDIS_HOST>" # optional: default is "redis.default.svc.cluster.local:6379". If installed with this chart, set it to "redis:6379"
+    redis:
+      host: "<REDIS_HOST>" # host to connect to redis
     
     mongodbUrl: "<MONGODB_URL>" # url for the mongodb connection for the console
     filesStorageType: "mongodb"

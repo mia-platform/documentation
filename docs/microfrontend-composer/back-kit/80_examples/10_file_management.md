@@ -20,13 +20,13 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [action-hooks]: ../50_actions.md#action-chaining
 
 [bk-button]: ../60_components/90_button.md
-[bk-gallery]: ../60_components/360_gallery.md
-[bk-file-client]: ../60_components/280_file_service_client.md
-[bk-file-manager]: ../60_components/250_file_manager.md
+[bk-gallery]: ../60_components/370_gallery.md
+[bk-file-client]: ../60_components/290_file_service_client.md
+[bk-file-manager]: ../60_components/260_file_manager.md
 [bk-dynamic-form-modal]: ../60_components/210_dynamic_form_modal.md
 [bk-dynamic-form-drawer]: ../60_components/200_dynamic_form_drawer.md
-[bk-file-picker-drawer]: ../60_components/260_file_picker_drawer.md
-[bk-file-picker-modal]: ../60_components/270_file_picker_modal.md
+[bk-file-picker-drawer]: ../60_components/270_file_picker_drawer.md
+[bk-file-picker-modal]: ../60_components/280_file_picker_modal.md
 [bk-crud-client]: ../60_components/100_crud_client.md
 
 [data-schema]: ../30_page_layout.md#data-schema

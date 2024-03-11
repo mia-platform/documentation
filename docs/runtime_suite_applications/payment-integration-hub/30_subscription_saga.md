@@ -17,7 +17,7 @@ Leveraging the flexibility of the Flow Manager the application provides a ready 
 ## Default Configuration
 The default configuration of the subscription saga is described in the image below:
 
-![Machine Definition](img/subscription_saga.png)
+![Machine Definition](img/subscription-saga-v3.2.png)
 
 ### Business States
 The business states of the saga describe the overall state of the subscription, ignoring the technical status of the system:
@@ -31,6 +31,7 @@ The business states of the saga describe the overall state of the subscription, 
 ### Technical States
 The technical states of the saga describe all the necessary steps to describe the subscription life-cycle:
 - **CREATED**: the subscription is created and he system is still collecting information (e.g., the payment method to be used)
+- **PAYMENT_PENDING**: the subscription is active and a recurrent payment is being performed right now
 - **ACTIVE**: the subscription is active and recurrent payments are performing periodically
 - **PAYMENT_FAILED**: the subscription is on hold because the last payment was failed
 - **EXPIRED**: the subscription was expired
@@ -38,11 +39,11 @@ The technical states of the saga describe all the necessary steps to describe th
 
 
 ### Actors
-**Subscription Handler** is the only microservice that interact with the subscription saga in order to update related information and keep track of the payments related to each subscription.
+**Subscription Handler** is the only microservice that interacts with the subscription saga in order to update related information and keep track of the payments related to each subscription.
 
 ## CRUD Collection
 
-A *subscription_saga* collection will be included in the project and by default is used as database reference use to retrieve subscription information:
+A *fm_subscriptions* collection will be included in the project and by default is used as database reference use to retrieve subscription information:
 - **sagaId**: the unique saga id of subscription flow
 - **isFinal**: boolean to indicate if a state is final or not
 - **metadata**: object with information related to the payment

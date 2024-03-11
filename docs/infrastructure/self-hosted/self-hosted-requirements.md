@@ -140,7 +140,14 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td><strong>NoSQL database</strong></td>
          <td><img src="/img/mongodb.ico" width="15" height="15"/> MongoDB Enterprise</td>
-         <td>&gt; 4.2<br/>&lt;= 6</td>
+         <td>&gt; 5<br/>&lt;= 7</td>
+         <td>2 cores</td>
+         <td>2 GB</td>
+      </tr>
+      <tr>
+         <td><strong>Redis Cache</strong></td>
+         <td><img src="/img/redis.png" width="15" height="15"/> Redis</td>
+         <td>&gt;= 6<br/>&lt;= 7</td>
          <td>2 cores</td>
          <td>2 GB</td>
       </tr>
@@ -200,14 +207,15 @@ The following is an example architecture for the installation of the Mia-Platfor
 
 | **Tool**                  | **Version** | **Nodes**      | **CPU** | **RAM** | **Storage** |
 |---------------------------|-------------|----------------|---------|---------|-------------|
-| Okta                      |   SaaS       |             |      |      |          |
+| Okta                      |   SaaS      |                |         |      |          |
 | GitLab                    | 14          | 1              | 8 core  | 32 GB   | 200 GB      |
 | GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
 | MongoDB Enterprise        | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
+| Redis                     | 7           |                |         | 1 GB    | 1 GB       |
 | Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    |          |
-| Google Container Registry |   SaaS       |             |      |      |          |
-| Google Cloud Storage      |   SaaS       |             |      |      |          |
-| Google Cloud Platform KMS |   SaaS       |             |      |      |          |
+| Google Container Registry |   SaaS      |                |      |      |          |
+| Google Cloud Storage      |   SaaS      |                |      |      |          |
+| Google Cloud Platform KMS |   SaaS      |                |      |      |          |
 
 ### Designating the Console Super User
 
