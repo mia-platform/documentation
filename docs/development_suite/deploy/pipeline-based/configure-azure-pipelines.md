@@ -5,7 +5,7 @@ sidebar_label: Deploy with Azure Pipelines
 ---
 The Mia-Platform Console can be configured to deploy your project through Azure Pipelines.
 
-In order to enable your projects to be deployed using Azure Pipelines, in the Company Overview page you must add the Provider Azure DevOps and select the option relative to CI/CD Tool, and then follow the [standard Provider configuration](/docs/console/company-configuration/providers/management#connect-a-provider).
+In order to enable your projects to be deployed using Azure Pipelines, in the Company Overview page you must add the Provider Azure DevOps and select the option relative to CI/CD Tool, and then follow the [standard Provider configuration](/console/company-configuration/providers/configure-provider.mdx).
 
 ![Provider](./img/azure-pipelines-provider.png)
 
@@ -21,7 +21,7 @@ This process will change the configuration of your Company in the CMS. In partic
 Where `PROVIDER_ID` will be equal to the ID of the Azure Pipelines CI/CD Tool Provider that has been setup prior.
 
 For the Projects specific configuration, when you create a new one in a Company that has Azure Pipelines as CI/CD Tool Provider the Console will perform two important actions:
-- based on the [Project Template](docs/development_suite/company/project-templates.md) of choice, the Console will read its `azure-pipelines.yml` file and will request to Azure DevOps the creation of a new Pipeline object that will be based on this file;
+- based on the [Project Template](/development_suite/company/project-templates.md) of choice, the Console will read its `azure-pipelines.yml` file and will request to Azure DevOps the creation of a new Pipeline object that will be based on this file;
 - in the CMS the `Pipelines` JSON configuration will be automatically created as follows:
 
 ```json
@@ -70,7 +70,7 @@ resources:
     ref: 'master'
 ```
 The idea with this instruction is to let Azure Pipelines knows that you are importing other files from another Team Project in Azure DevOps.
-In the example above, we have placed some configuration files and the common logic of the pipeline (check [Template Setup](configure-azure-pipelines.md#template-setup) for details) in a different Project, in order to have a centralize point where to manage the common logic of all the Deploy pipelines.
+In the example above, we have placed some configuration files and the common logic of the pipeline (check [Template Setup](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#template-setup) for details) in a different Project, in order to have a centralize point where to manage the common logic of all the Deploy pipelines.
 :::info
 The DevOps Project that you are pointing must be inside the very same DevOps Organization of the one where the Pipeline is running.
 :::
@@ -88,11 +88,11 @@ jobs:
 ...
 %/project.environments%
 ```
-When creating a new Project, the Console use [mustache.js](https://github.com/janl/mustache.js) to perform some basic interpolations based on the configuration of the Company in which the Project will be craeted.
+When creating a new Project, the Console use [mustache.js](https://github.com/janl/mustache.js) to perform some basic interpolations based on the configuration of the Company in which the Project will be created.
 The idea is to have different `job` named after the environment configured in the Company. The field `condition` will make sure that only the specific job for the target environment will be executed.
 This will ensure you to perform different logic based on the Deploy environment.
 
-- the `variables` section - let's you import variables from different sources. In our example, we are importing some variables from the DevOps Project's Variable Group and from the centralised Common Project (check [Variable Group](configure-azure-pipelines.md#variable-group) for details):
+- the `variables` section - let's you import variables from different sources. In our example, we are importing some variables from the DevOps Project's Variable Group and from the centralized Common Project (check [Variable Group](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#variable-group) for details):
 ```yaml
     variables:
       - group: mia
@@ -137,7 +137,7 @@ In order to deploy correctly, `mlp` usually need the following data:
 - a set of variables containing the passwords to access your Docker Registries - this variables will be interpolated in the `mlp.yaml` file available in every Configuration repository linked to Console's Projects.
 
 ### Template Setup
-In the case you want to have a centralise point where to manage the common logic of your deploy pipelines, you can setup a repository (in the same or even in a different DevOps project) to store two files:
+In the case you want to have a centralize point where to manage the common logic of your deploy pipelines, you can setup a repository (in the same or even in a different DevOps project) to store two files:
 - a file containing all of the variables that you want to use
 - a file containing the logic to apply the configuration files into the Cluster
 
