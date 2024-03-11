@@ -21,7 +21,7 @@ This process will change the configuration of your Company. In particular, the J
 
 Where `PROVIDER_ID` will be equal to the ID of the Azure Pipelines CI/CD Tool Provider that has been setup prior.
 
-For the Projects specific configuration, when you create a new one in a Company that has Azure Pipelines as CI/CD Tool Provider the Console will perform two important actions:
+When creating a new Project in a Company that has Azure Pipelines as CI/CD Tool Provider, the Console will perform two important actions:
 - based on the [Project Template](/development_suite/company/project-templates.md) of choice, the Console will read its `azure-pipelines.yml` file and will request to Azure DevOps the creation of a new Pipeline object that will be based on this file;
 - in the CMS the `Pipelines` JSON configuration will be automatically created as follows:
 
