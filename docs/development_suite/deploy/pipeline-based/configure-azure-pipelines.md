@@ -58,7 +58,7 @@ trigger:
     include:
     - '*'
 ```
-In the example above, the pipeline will starts automatically upon the creation of a tag, no matter its name.
+In the above example, the pipeline will start automatically upon the creation of any tag, regardless of its name.
 With this logic, you can provide custom logic to the pipeline based on the trigger source: you can check it with the instruction <br /> `${{ variables['Build.SourceBranchName'] }}`.
 
 - the `resources` field:
