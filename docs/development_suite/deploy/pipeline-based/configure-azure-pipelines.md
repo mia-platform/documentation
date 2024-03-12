@@ -6,7 +6,7 @@ sidebar_label: Deploy with Azure Pipelines
 
 Mia-Platform Console can be configured to deploy your Project using Azure Pipelines.
 
-In order to enable your projects to be deployed using Azure Pipelines, in the Company Overview page you must add the Provider Azure DevOps and select the option relative to CI/CD Tool, and then follow the [standard Provider configuration](/console/company-configuration/providers/configure-provider.mdx).
+To deploy your projects using Azure Pipelines, you must add the Azure DevOps Provider on the Company Overview page, select the CI/CD Tool option, and then follow the [standard Provider configuration](/console/company-configuration/providers/configure-provider.mdx).
 
 ![Provider](./img/azure-pipelines-provider.png)
 
