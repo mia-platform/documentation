@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 In order to upgrade Mia-Platform Console, all you need to do is to update the `mia-console` Chart version dependency in your `Chart.yaml` file.
 
-:::caution
+:::tip
 When upgrading Mia-Platform Console to a new major release, always remember that updates must be performed one major at a time. Therefore, in order to upgrade from v10 to v12 you must first upgrade to the latest v11 version.
 
 To find out how to upgrade your installation to the latest version of v11, visit the [following documentation](../../../11.x/self_hosted/installation-chart/how_to_upgrade).
@@ -123,11 +123,11 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](./helm-parameters/25_authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](./helm-values/25_authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
-This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./helm-parameters/20_general-settings.md#optional-telemetry-configurations).
+This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./helm-values/20_general-settings.md#optional-telemetry-configurations).
 
 #### Introduction of Mia-Platform Company
 
