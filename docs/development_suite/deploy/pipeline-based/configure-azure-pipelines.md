@@ -22,8 +22,8 @@ This process will change the configuration of your Company. In particular, the J
 Where `PROVIDER_ID` will be equal to the ID of the Azure Pipelines CI/CD Tool Provider that has been setup prior.
 
 When creating a new Project in a Company that has Azure Pipelines as CI/CD Tool Provider, the Console will perform two important actions:
-- based on the [Project Template](/development_suite/company/project-templates.md) of choice, the Console will read its `azure-pipelines.yml` file and will request to Azure DevOps the creation of a new Pipeline object that will be based on this file;
-- in the CMS the `Pipelines` JSON configuration will be automatically created as follows:
+- based on the [Project Template](/development_suite/company/project-templates.md) of choice, the Console will read the `azure-pipelines.yml` file and will request to Azure DevOps the creation of a new Pipeline object that will be based on its contents;
+- The Project configuration `Pipelines` JSON will be defined as follows:
 
 ```json
 {
@@ -51,7 +51,7 @@ trigger:
     - branch1
     - branch2
 ```
-If you want to automatically starts the pipeline when creating a new tag:
+If you want to automatically start the pipeline when creating a new tag:
 ```yaml
 trigger:
   tags:
@@ -70,8 +70,8 @@ resources:
     name: pipelines-templates
     ref: 'master'
 ```
-The idea with this instruction is to let Azure Pipelines knows that you are importing other files from another Team Project in Azure DevOps.
-In the example above, we have placed some configuration files and the common logic of the pipeline (check [Template Setup](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#template-setup) for details) in a different Project, in order to have a centralize point where to manage the common logic of all the Deploy pipelines.
+The idea with this instruction is to let Azure Pipelines know that you are importing other files from another Team Project in Azure DevOps.
+In the example above, we have placed some configuration files and the common logic of the pipeline (check [Template Setup](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#template-setup) for details) in a different Project, in order to have a centralized source of truth where to manage the common logic of all the Deploy pipelines.
 :::info
 The DevOps Project that you are pointing must be inside the very same DevOps Organization of the one where the Pipeline is running.
 :::
@@ -89,11 +89,11 @@ jobs:
 ...
 %/project.environments%
 ```
-When creating a new Project, the Console use [mustache.js](https://github.com/janl/mustache.js) to perform some basic interpolations based on the configuration of the Company in which the Project will be created.
+When creating a new Project, the Console uses a template system, to perform some basic interpolations with the configuration of the Company in which the Project is being created.
 The idea is to have different `job` named after the environment configured in the Company. The field `condition` will make sure that only the specific job for the target environment will be executed.
 This will ensure you to perform different logic based on the Deploy environment.
 
-- the `variables` section - let's you import variables from different sources. In our example, we are importing some variables from the DevOps Project's Variable Group and from the centralized Common Project (check [Variable Group](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#variable-group) for details):
+- the `variables` section allows you to import variables from different sources. In our example, we are importing some variables from the DevOps Project's Variable Group and from the centralized Common Project (check [Variable Group](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#variable-group) for details):
 ```yaml
     variables:
       - group: mia
