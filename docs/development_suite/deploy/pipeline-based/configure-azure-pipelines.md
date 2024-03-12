@@ -70,7 +70,7 @@ resources:
     name: pipelines-templates
     ref: 'master'
 ```
-The idea with this instruction is to let Azure Pipelines know that you are importing other files from another Team Project in Azure DevOps.
+This instruction lets Azure Pipelines know that you are importing other files from another Team Project in Azure DevOps.
 In the example above, we have placed some configuration files and the common logic of the pipeline (check [Template Setup](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#template-setup) for details) in a different Project, in order to have a centralized source of truth where to manage the common logic of all the Deploy pipelines.
 :::info
 The DevOps Project that you are pointing must be inside the very same DevOps Organization of the one where the Pipeline is running.
