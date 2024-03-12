@@ -13,9 +13,9 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This document describes the required values that you will have to configure to work properly.
 
 :::info
-More specific configurations, such as those for the [Authentication Providers](./30-Authentication-Provider.md), [Client-Side Database Encryption](./40-mongodb-configurations-and-encryption.md), [File Storage](./50-file-storage.md) and [Email Connectivity](./60-email-setup.md) are described in separate documents.
+More specific configurations, such as those for the [Authentication Providers](./30_Authentication-Provider.md), [Client-Side Database Encryption](./40_mongodb-configurations-and-encryption.md), [File Storage](./50_file-storage.md) and [Email Connectivity](./60_email-setup.md) are described in separate documents.
 
-If you want to fine tune resources for specific services the proper documentation can be found in [this page](./25-Service-Specific-Configurations.md).
+If you want to fine tune resources for specific services the proper documentation can be found in [this page](./25_Service-Specific-Configurations.md).
 :::
 
 ## Runtime, Storage and Networking configurations
@@ -54,7 +54,7 @@ If you want to fine tune resources for specific services the proper documentatio
 |                Name                 |  Type  |                                                                      Description                                                                      | Default | Optional |
 | :---------------------------------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :------: |
 | `configurations.repositoryHostname` | string |                                The hostname of the docker repository where the services docker image will be uploaded                                 |         |    ❌     |
-|     `configurations.mongodbUrl`     | string | The connection url to a mongodb server or cluster, more info can be found [here](./40-mongodb-configurations-and-encryption.md#mongodb-configuration) |         |    ❌     |
+|     `configurations.mongodbUrl`     | string | The connection url to a mongodb server or cluster, more info can be found [here](./40_mongodb-configurations-and-encryption.md#mongodb-configuration) |         |    ❌     |
 |   `configurations.redis.hosts`   | array | An array of the hosts of a redis instance |  | ❌ |
 
 #### Optional
