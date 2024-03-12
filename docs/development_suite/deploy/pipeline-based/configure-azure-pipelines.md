@@ -131,7 +131,7 @@ The secrets used by the Microservices in the Console's Project has to be manuall
 In the `template` field is specified a template file that contains the common logic performed by `mlp` to apply the Kubernetes manifest into the Runtime cluster.
 
 ### Variable Group
-The management of the Infrastructure Secrets (those variables that contains the tokens to connect to Kubernetes) in Azure DevOps is controlled with Variables Groups. This feature is available at DevOps Project Level and is used to stored values that we don't want to show to our users. Moreover, the variables stored in a Variable Groups are available in every pipelines created in the DevOps Project. 
+Infrastructure Secrets management (variables containing the tokens for Kubernetes connection) in Azure DevOps is handled using Variable Groups. This feature is available at DevOps Project Level and is used to stored values that we don't want to show to our users. Moreover, the variables stored in a Variable Groups are available in every pipelines created in the DevOps Project. 
 
 In order to deploy correctly, `mlp` usually need the following data:
 - a variable containing the JWT Token to authenticate `mlp` to the Kubernetes Cluster - one for every Cluster configured in your Company;
