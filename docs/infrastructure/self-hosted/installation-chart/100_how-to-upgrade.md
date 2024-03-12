@@ -45,11 +45,11 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 From Chart version 13, we moved all the Redis configurations inside a `redis` object in the `values.yaml` file;
 We have also removed the default redis configuration, which was `redis.default.svc.cluster.local:6379`,
-for this reason, before upgrading, you must add the Redis correct host to the `values.yaml` file using the `redis.host` property.
+for this reason, before upgrading, you must add the Redis correct host to the `values.yaml` file using the `redis.hosts` property.
 
 To summarize, you should move the Redis configuration under the specific configuration values property:
 
-* `configurations.redisHost` -> `configurations.redis.host`
+* `configurations.redisHost` -> `configurations.redis.hosts`. hosts is an array of host
 * `configurations.redisUsername` -> `configurations.redis.username`
 * `configurations.redisPassword` -> `configurations.redis.password`
 
@@ -123,11 +123,11 @@ This version introduces the signing of the JWT token with an asymmetric algorith
 
 From now on, tokens will be signed with a private key that you will need to provide.
 
-Please follow the [Authentication Session signing](./30-authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
+Please follow the [Authentication Session signing](./helm-parameters/25_authentication-provider.md#session-signing) guide for a detailed explanation on how to configure it.
 
 #### Open Telemetry preview
 
-This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./20-general-settings.md#optional-telemetry-configurations).
+This version introduces the possibility to enable the OpenTelemetry tracing feature (in preview). It is possible to enable it by follow the [OpenTelemetry tracing guide](./helm-parameters/20_general-settings.md#optional-telemetry-configurations).
 
 #### Introduction of Mia-Platform Company
 

@@ -13,9 +13,9 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This document describes the required values that you will have to configure to work properly.
 
 :::info
-More specific configurations, such as those for the [Authentication Providers](./30-authentication-provider.md), [Client-Side Database Encryption](./40-mongodb-configurations-and-encryption.md), [File Storage](./50-file-storage.md) and [Email Connectivity](./60-email-setup.md) are described in separate documents.
+More specific configurations, such as those for the [Authentication Providers](./25_authentication-provider.md), [Client-Side Database Encryption](./40_mongodb-configurations-and-encryption.md), [File Storage](./50_file-storage.md) and [Email Connectivity](./60_email-setup.md) are described in separate documents.
 
-If you want to fine tune resources for specific services the proper documentation can be found in [this page](./25-service-specific-configurations.md).
+If you want to fine tune resources for specific services the proper documentation can be found in [this page](./30_service-specific-configurations.md).
 :::
 
 ## Runtime, Storage and Networking configurations
@@ -54,8 +54,8 @@ If you want to fine tune resources for specific services the proper documentatio
 |                Name                 |  Type  |                                                                      Description                                                                      | Default | Optional |
 | :---------------------------------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----: | :------: |
 | `configurations.repositoryHostname` | string |                                The hostname of the docker repository where the services docker image will be uploaded                                 |         |    ❌     |
-|     `configurations.mongodbUrl`     | string | The connection url to a mongodb server or cluster, more info can be found [here](./40-mongodb-configurations-and-encryption.md#mongodb-configuration) |         |    ❌     |
-|   `configurations.redis.host`   | string | The host of a redis instance                  |  |    ❌     |
+|     `configurations.mongodbUrl`     | string | The connection url to a mongodb server or cluster, more info can be found [here](./40_mongodb-configurations-and-encryption.md#mongodb-configuration) |         |    ❌     |
+|   `configurations.redis.hosts`   | array | An array of the hosts of a redis instance |  | ❌ |
 
 #### Optional
 
@@ -84,7 +84,7 @@ Mia-Platform Console allows user to create custom Service Accounts to perform m2
 
 ### How to generate secret values
 
-For any doubt check out the [Client Credentials guide](../../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
+For any doubt check out the [Client Credentials guide](../../../../runtime_suite/client-credentials/jwt_keys) which provides useful examples.
 
 * `rsaPrivateKeyBase64`:
   * `ssh-keygen -t rsa -b 4096 -m PEM -f private.key`
