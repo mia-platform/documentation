@@ -15,11 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [6.5.0] 2024-02-21
+## [6.5.1-rc.0] 2024-03-08
 
 ### Added
 
 - introduce support for Control Plane feedback via heartbeat events
+
+## [6.5.0] 2024-02-21
+
+### Added
+
 - introduce official support to MongoDB v7
 
 ### Changed
