@@ -40,7 +40,7 @@ Mia-Platform Docker and Helm repo credentials | Ask to your Mia-Platform contact
 
 ## Step 1 - Configuring the Helm Chart
 
-1. Following [this example](./helm-parameters/10_installation-chart-example.md) create a new `values.yaml` file
+1. Following [this example](./helm-values/10_installation-chart-example.md) create a new `values.yaml` file
 2. Create an empty bash file and paste the following code
 
 ```bash
@@ -74,15 +74,15 @@ echo "jwtTokenPrivateKeyKid: $jwtTokenPrivateKeyKid"
 echo "masterKey: $masterKey"
 ```
 
-3. Run the script to generate the values of the following variables and edit the values.yaml file: `rsaPrivateKeyId`,`rsaPrivateKeyPass`, `clientIdSalt`, `rsaPrivateKeyBase64`, `tokenPassphrase`, `jwtTokenPrivateKeyPassword`, `jwtTokenPrivateKeyBase64`, `masterKey`. These are some of the required [general settings](./helm-parameters/20_general-settings.md) that need to be configured.
+3. Run the script to generate the values of the following variables and edit the values.yaml file: `rsaPrivateKeyId`,`rsaPrivateKeyPass`, `clientIdSalt`, `rsaPrivateKeyBase64`, `tokenPassphrase`, `jwtTokenPrivateKeyPassword`, `jwtTokenPrivateKeyBase64`, `masterKey`. These are some of the required [general settings](./helm-values/20_general-settings.md) that need to be configured.
 
 ```bash
 bash scriptname.sh
 ```
 
-4. Add the remaining [mandatory fields](./helm-parameters/20_general-settings.md) you already prepared before to start
-5. Configure the OAuth provider with the [required info](./helm-parameters/25_authentication-provider.md)
-6. Configure the mandatory [MongoDB fields](./helm-parameters/40_mongodb-configurations-and-encryption.md)
+4. Add the remaining [mandatory fields](./helm-values/20_general-settings.md) you already prepared before to start
+5. Configure the OAuth provider with the [required info](./helm-values/25_authentication-provider.md)
+6. Configure the mandatory [MongoDB fields](./helm-values/40_mongodb-configurations-and-encryption.md)
 
 :::info
 More advanced configuration could be managed by following the Helm parameters documentation.
