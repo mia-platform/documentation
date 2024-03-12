@@ -13,9 +13,9 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 This document describes the required values that you will have to configure to work properly.
 
 :::info
-More specific configurations, such as those for the [Authentication Providers](./30_Authentication-Provider.md), [Client-Side Database Encryption](./40_mongodb-configurations-and-encryption.md), [File Storage](./50_file-storage.md) and [Email Connectivity](./60_email-setup.md) are described in separate documents.
+More specific configurations, such as those for the [Authentication Providers](./25_authentication-provider.md), [Client-Side Database Encryption](./40_mongodb-configurations-and-encryption.md), [File Storage](./50_file-storage.md) and [Email Connectivity](./60_email-setup.md) are described in separate documents.
 
-If you want to fine tune resources for specific services the proper documentation can be found in [this page](./25_Service-Specific-Configurations.md).
+If you want to fine tune resources for specific services the proper documentation can be found in [this page](./30_service-specific-configurations.md).
 :::
 
 ## Runtime, Storage and Networking configurations
