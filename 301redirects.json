@@ -1697,5 +1697,21 @@
   "/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade": {
     "destination": "/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade",
     "addedOn": "2024-03-12"
+  },
+  "/docs/runtime_suite/integration-test-service/overview": {
+    "destination": "/docs/runtime_suite/integration-tests-service/overview",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/integration-test-service/configuration": {
+    "destination": "/docs/runtime_suite/integration-tests-service/configuration",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/integration-test-service/usage": {
+    "destination": "/docs/runtime_suite/integration-tests-service/usage",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/integration-test-service/changelog": {
+    "destination": "/docs/runtime_suite/integration-tests-service/changelog",
+    "addedOn": "2024-03-14"
   }
 }
