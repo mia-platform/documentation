@@ -36,6 +36,10 @@ To configure the **Form Service Backend** service with the Console, follow these
 
 The following sections provide a reference guide to all the available configuration options.
 
+:::warning
+At the moment, in order for the basic styling of the **Form Service Frontend** to work properly, the **Form Service Backend** endpoints must be exposed on the `/` (root) path. If the Form Service Backend is exposed on a different path that isn't `/` (i.e. `/my-path/...`), in order for the styling to work, a [path rewrite](../../development_suite/api-console/api-design/endpoints#about-rewrite-base-path) must be performed at the API Gateway level.
+:::
+
 ## Environment variables
 
 | Name                          | Required | Default           | Description                                                                                        |
@@ -236,7 +240,7 @@ The user of the Form Builder will see a dropdown menu with the specified options
 
 :::caution
 
-The *submit urls* can be either provided with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
+The *submit urls* can be either provided with the [CRUD Service](../crud-service/overview_and_usage) or with custom APIs, but it's important that they expose the following methods:
 
 - `GET /{id}`: to return the submitted data of a form by ID;
 - `GET /export`: to return all the submitted forms data as newline-delimited JSON;
@@ -308,7 +312,7 @@ There is a default value for `messageToBeShownOnExpiredForm` which is `This form
 
 :::
 
-When you export the form data to a CSV, the CSV file includes all the fields available in the current version of the form schema. If you want to include additional fields available in the response of the `GET /export` endpoint, you must add the field names in this configuration options. These fields are mapped to CSV columns before the form data in the exact same order as they are provided in the configuration. If the form data is stored in a CRUD collection, you may want to include [its predefined properties](../../runtime_suite/crud-service/overview_and_usage#predefined-collection-properties).
+When you export the form data to a CSV, the CSV file includes all the fields available in the current version of the form schema. If you want to include additional fields available in the response of the `GET /export` endpoint, you must add the field names in this configuration options. These fields are mapped to CSV columns before the form data in the exact same order as they are provided in the configuration. If the form data is stored in a CRUD collection, you may want to include [its predefined properties](../crud-service/overview_and_usage#predefined-collection-properties).
 
 #### Export lookups (`exportLookups`)
 
@@ -323,7 +327,7 @@ When you export form data by calling the `GET /visualizer/forms/export` endpoint
 To configure the lookup you must assign to the `exportLookups` field an object value, whose properties correspond to the names of the CSV columns you want to perform the lookup on (`formSchemaId` in the example above). Remember, you must use the colum name exactly as it appears on the CSV, so for nested fields you should use the `outerField.innerField` notation.
 
 Each lookup must have the following properties:
-- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage);
+- **lookupDataSource**: the URL of the external data source, which must expose a `GET /export` endpoint compatible with the [CRUD Service](../crud-service/overview_and_usage);
 - **lookupKey**: the data source field to perform the lookup on, searching for the record matching the column value;
 - **lookupValue**: the value to replace the column value with, must be a string with placeholders enclosed between double curly braces; each placeholder must refer a data source field and will be evaluated at runtime and replaced with the corresponding value.
 
@@ -594,7 +598,7 @@ The required properties (specified in the [form drafts CRUD endpoint parameter](
 
 If you want to use the default value of the *formDraftsCrud* you need to expose this CRUD with the `/form-drafts` endpoint. Any other endpoint must be specified in the configuration `JSON`.
 
-Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../../runtime_suite/form-service-frontend/configuration).
+Once the **Form Service Backend** is configured you can continue setting up the **Form Service Frontend** following [this guide](../form-service-frontend/configuration).
 
 ## Other configurations
 
