@@ -69,10 +69,10 @@ Your project might have enabled the possibility to configure ER Schemas with a N
 
 ![ER Schema selection with No Code](./../img/er-schema-selection.png)
 
-After selecting an ER Schema, the next configuration save will generate the Config Map of the ER Schema JSON taken from the one configured in the canvas. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
+After selecting an ER Schema, a canvas showing a read-only version of the selected ER Schema will replace the selection page and the next configuration save will generate the Config Map of the ER Schema JSON taken from the selection. From now on, whenever the ER Schema is updated, the Config Map in the Single View Creator will be updated as well.
 
 :::info
-It is also possible to select the ER Schema from the _Settings_ tab, inside the _General_ card.
+In case you need to change the ER Schema, you can do that from the _Settings_ tab, inside the _General_ card. This method can be used also to select it for the first time.
 
 Please remember that changing the ER Schema will cause the reset of the [Aggregation configuration](/fast_data/configuration/config_maps/aggregation.md).
 :::

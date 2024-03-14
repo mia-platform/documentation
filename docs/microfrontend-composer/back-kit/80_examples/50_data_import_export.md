@@ -21,8 +21,8 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [bk-crud-client]: ../60_components/100_crud_client.md
 [bk-export]: ../60_components/110_crud_export.md
 [bk-export-client]: ../60_components/120_crud_export_client.md
-[bk-export-modal]: ../60_components/240_export_modal.md
-[bk-import-modal]: ../60_components/370_import_modal.md
+[bk-export-modal]: ../60_components/250_export_modal.md
+[bk-import-modal]: ../60_components/380_import_modal.md
 
 [export-data]: ../70_events.md#export-data
 [import-data]: ../70_events.md#import-data

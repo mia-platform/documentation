@@ -16,24 +16,36 @@ This sections illustrates how to use the SMS Service.
 
 With this API you can send a new SMS.
 
-### Body
+:::danger
 
-The body of the request should have the following shape.
+According to GDPR, personal and sensitive information shall not be shared via SMS.
 
-- `sender` (required): the sender of the message. It can be one of the following:
-  - a phone number in [E.164][e164] format
-  - an [alphanumeric sender ID][twilio-sender-id]
-
-- `receiver` (required): the destination phone number in [E.164][e164] format.
-
-- `body` (required): the text of the SMS you want to send.
-
-:::caution
-The body of a single SMS can be up to **1600 characters** long. If it's longer than that, the service will send the 
-message as a segmented SMS and your Twilio account will be charged accordingly.
 :::
 
-It follows an example of a valid request body.
+### Body
+
+The body of the request should have the fields listed in the following table.
+
+| Name       | Required | Description                                                                                                                                                                    |
+|------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `sender`   | Yes      | Message sender. Twilio supports phone numbers in [E.164 format][e164] or an [alphanumeric ID][twilio-sender-id], Kaleyra requires a [registered sender ID][kaleyra-sender-id]. |
+| `receiver` | Yes      | The recipient phone number in [E.164][e164] format.                                                                                                                            |
+| `body`     | Yes      | The text of the SMS you want to send.                                                                                                                                          |
+
+:::note
+
+By default, Kaleyra will create a Sender ID during the signup. However, using this default ID, you can only send SMS messages to your registered mobile number and the numbers that are added to the Team. Hence, you must create your own Sender ID to send an SMS to other mobile numbers.
+
+:::
+
+:::caution
+
+The body of a single SMS can be up to **1600 characters** long.
+If it's longer, the service will send the message as a segmented SMS and your account will be charged accordingly.
+
+:::
+
+Here's an example of a valid request body:
 
 ```json
 {
@@ -63,18 +75,26 @@ information [here][twilio-rate-limits]).
 
 #### Success
 
-In case of successful response (status code `200`), the body of the response has the following structure:
+In case of successful response with status code `200`, the body of the response has the following structure:
 
 ```json
 {
-  "dateEvent": "2021-08-13T12:53:52.959Z", // ISO format
-  "numSegments": "1", // Number of SMS messages it took to deliver the body of the message
-  "sid": "124354", // Unique identifier of the SMS
+  "dateEvent": "2021-08-13T12:53:52.959Z",
+  "numSegments": "1",
+  "sid": "124354",
   "status": "sent"
 }
 ```
 
+| Name          | Type   | Description                                                        |
+|---------------|--------|--------------------------------------------------------------------|
+| `dateEvent`   | String | Date/time in ISO 8601 format when the message was delivered.       |
+| `numSegments` | String | Number of SMS messages it took to deliver the body of the message. |
+| `sid`         | String | Unique identifier of the SMS.                                      |
+| `status`      | String | Message delivery status.                                           |
+
 
 [e164]: https://www.twilio.com/docs/glossary/what-e164
+[kaleyra-sender-id]: https://developers.kaleyra.io/docs/sender-id
 [twilio-sender-id]: https://www.twilio.com/docs/glossary/what-alphanumeric-sender-id
 [twilio-rate-limits]: https://support.twilio.com/hc/en-us/articles/115002943027-Understanding-Twilio-Rate-Limits-and-Message-Queues

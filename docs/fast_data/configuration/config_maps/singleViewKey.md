@@ -8,7 +8,7 @@ The Single View Key is a configuration file used by the Single View Creator part
 
 ## Overview 
 
-The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime_updater.md) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
+The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime-updater/realtime-updater.md) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
 
 In case the following Projection Changes document has been received:
 ```json
@@ -100,7 +100,7 @@ Your project might be enabled to configure the Single View Key with the No Code 
 
 The feature is included in the _Single View_ section. After selecting the Single View and then the Single View Creator attached, the _Settings_ tab will contain a card that recaps the information regarding the current Single View Key configured.
 
-![Recap of the configured Single View Key](../../img/no_code_single_view_key/single_view_key_card.png)
+![Recap of the configured Single View Key](../img/no_code_single_view_key/single_view_key_card.png)
 
 :::info
 Before to configure the Single View Key, the [ER Schema](/fast_data/configuration/config_maps/erSchema.md) and the [Aggregation](/fast_data/configuration/config_maps/aggregation.md) must be configured as well.
@@ -116,7 +116,7 @@ In case there's no Single View Key configured, a placeholder will inform the use
 
 In this modal there's a toggle button, at the bottom left, that moves to the _Advanced Mode_ of the Single View Key. Here it is possible to manually modify the JSON of the Single View Key in case the user wants to review the content of the config map.
 
-![Advanced Mode](../../img/no_code_single_view_key/single_view_key_advanced_mode.png)
+![Advanced Mode](../img/no_code_single_view_key/single_view_key_advanced_mode.png)
 
 ### Review the JavaScript Single View Key with the No Code
 

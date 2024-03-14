@@ -28,7 +28,6 @@ This object contains the necessary fields to configure email sending through the
 
 - **messagingServiceName** (*required*): the name of the messaging service.
 - **templatesCrudName** (*required*): The name of the CRUD collection for message templates.
-- **userIdField** (*required*): The field of the users CRUD collection containing the id used in this service.
 
 ## CRUD
 The CRUD collection of `form-schemas` has to updated with the following fields:

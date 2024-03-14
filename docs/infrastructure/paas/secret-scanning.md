@@ -42,14 +42,11 @@ To address this issue, one might use the above documented `SECRET_DETECTION_EXCL
 To ignore a false positive using inline comments, follow these steps:
 
 * Identify the specific line of code that is generating the false positive.
-* Place an inline comment on the same line as the false positive. The comment must start with `gitleaks-ignore`
-* Add a reason for the ignore, for example, "gitleaks-ignore: this is a test secret"
+* Place an inline comment on the same line as the false positive. The comment must start with `gitleaks:allow`
+* Add a reason for the ignore, for example, `gitleaks:allow: this is a test secret`
 * Commit the changes and push them to the repository.
 * Gitleaks will now ignore the false positive and not flag it as a potential leak.
 
 It's important to note that inline comments are only effective for the specific line of code that they are placed on. If the same false positive occurs on multiple lines, separate inline comments must be added to each line. Additionally, it's important to document the reason for the ignore, so that other members of the team can understand why this specific false positive was ignored.
 
 It's also important to keep in mind that ignoring false positives should be used sparingly and only when necessary, as it may lead to missing real security issues. It's important to have a well-defined process for identifying and handling false positives, to avoid missing real issues.
-
-
-

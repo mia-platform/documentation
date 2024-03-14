@@ -51,7 +51,7 @@ You can configure the **autoscaler** for your services directly by Console by [c
 
 We do not recommend this debugging practice, instead, you should always write good **tests** for your microservices. You can also run the microservice locally.
 
-Furthermore, [logs](/development_suite/monitoring/introduction.md) can help you to understand what your microservice is doing. The use of [logging level](/getting-started/guidelines/guidelines-for-logs.md#use-the-appropriate-logging-level) allows you to distinguish debug messages that you want to have only in no production environments from those that are useful to monitor the applicative state (errors, warnings, etc).
+Furthermore, [logs](/development_suite/monitoring/introduction.md) can help you to understand what your microservice is doing. The use of [logging level](/development_suite/api-console/api-design/guidelines-for-logs.md#use-the-appropriate-logging-level) allows you to distinguish debug messages that you want to have only in no production environments from those that are useful to monitor the applicative state (errors, warnings, etc).
 
 Consider that the Console allows you to quickly [deploy your microservices in a dedicated environment](/development_suite/deploy/overview.md#select-environment), so you can try online immediately.
 
@@ -115,5 +115,5 @@ The [proxy endpoints](/development_suite/api-console/api-design/proxy.md) are ex
 You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.
 
 :::tip
-Checkout the [Mia service Node.js Library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) to know how to call the platform services with a proxy object
+Checkout the [Mia service Node.js Library documentation](https://github.com/mia-platform/custom-plugin-lib/blob/master/docs/http_client.md) to know how to call the platform services with a proxy object.
 :::

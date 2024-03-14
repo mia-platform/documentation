@@ -193,10 +193,6 @@ async function createConfig() {
             href: "https://status.console.cloud.mia-platform.eu"
           },
           {
-            label: "Guidelines",
-            to: "/docs/getting-started/guidelines/",
-          },
-          {
             label: "Library",
             href: "https://resources.mia-platform.eu/en/library",
           },
@@ -274,7 +270,7 @@ async function createConfig() {
                   const {
                     fileName
                   } = params
-                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview'].includes(fileName.toLowerCase())
+                  return defaultCategoryIndexMatcher(params) || ['overview', '10_overview', '10-overview'].includes(fileName.toLowerCase())
                 },
               });
             },

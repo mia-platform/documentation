@@ -10,35 +10,49 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-SMS Service allows sending SMS through a specific service provider.
-
-For now, the only service provider supported is [Twilio][twilio].
+SMS Service allows sending SMS through [Twilio][twilio] or [Kaleyra][kaleyra].
 
 ## Authentication
 
-### Twilio service provider
+### Kaleyra
 
-The service needs an [API Key][twilio-api-keys] to authenticate your requests to Twilio. 
+The service needs an [API Key][kaleyra-api-key].
+
+For more information about setting up a Kaleyra account, please refer to the [official Kaleyra documentation][kaleyra-getting-started].
+
+### Twilio
+
+The service needs an [API Key][twilio-api-keys] to authenticate your requests to Twilio.
+
 This kind of revocable credential can be created in your [Twilio console][twilio-console].
 
 ## Environment variables
 
-The SMS Service accepts the following environment variables.
+The SMS Service accepts the environment variables listed in the following table.
 
-- **SERVICE_PROVIDER (required)**: the service used to send the message. For now, it can only be `twilio`.
+All environment variables starting with `TWILIO_` or `KALEYRA_` respectively apply only to Twilio or Kaleyra provider.
 
-- **TWILIO_ACCOUNT_SID**: the SID of your Twilio Account. Required when `SERVICE_PROVIDER` is Twilio.
-  
-- **TWILIO_AUTH_TOKEN**: your Auth Token from Twilio. Required when `SERVICE_PROVIDER` is Twilio.
+| Name                          | Required                           | Default    | Minimum version | Description                                                                                                                                            |
+|-------------------------------|------------------------------------|------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SERVICE_PROVIDER              | Yes                                | -          | 1.0.0           | The provider used to send the message. Admitted values: `twilio`, `kaleyra` (since version 1.2.0).                                                     |
+| RATE_LIMIT_MAX_REQUESTS       | No                                 | 100        | 1.1.0           | Maximum number of requests in a certain time window. It must be greater than zero.                                                                     |
+| RATE_LIMIT_TIME_WINDOW        | No                                 | `1 minute` | 1.1.0           | Time window in which the service max number of request is counted. It can be expressed in milliseconds or as a string (in the [ms format][ms-format]). |
+| EXPONENTIAL_DELAY_RESET_AFTER | No                                 | 120        | 1.1.0           | time window after which the exponential delay in requests to send sms to the same phone number is reset to zero. It is expressed in seconds.           |
+| TWILIO_ACCOUNT_SID            | If `SERVICE_PROVIDER` is `twilio`  | -          | 1.0.0           | The SID of your Twilio Account.                                                                                                                        |
+| TWILIO_AUTH_TOKEN             | If `SERVICE_PROVIDER` is `twilio`  | -          | 1.0.0           | Your Auth Token from Twilio.                                                                                                                           |
+| TWILIO_EMPTY_BALANCE_CHECK    | No                                 | `false`    | 1.1.0           | Check Twilio account balance before sending SMS, allowing it only with a positive balance.                                                             |
+| KALEYRA_BASE_URL              | If `SERVICE_PROVIDER` is `kaleyra` | -          | 1.2.0           | Base URL of the Kaleyra API, like `https://api.kaleyra.io`.                                                                                            |
+| KALEYRA_API_KEY               | If `SERVICE_PROVIDER` is `kaleyra` | -          | 1.2.0           | [API Key][kaleyra-api-key] of the Kaleyra account.                                                                                                     |
+| KALEYRA_SID                   | If `SERVICE_PROVIDER` is `kaleyra` | -          | 1.2.0           | Security Identifier of the Kaleyra account.                                                                                                            |
+| KALEYRA_EMPTY_BALANCE_CHECK   | No                                 | `false`    | 1.1.0           | Check Kaleyra account balance before sending SMS, allowing it only with a positive balance.                                                            |
 
-- **TWILIO_EMPTY_BALANCE_CHECK**: boolean that activates the check on the balance before sending SMS. It allows SMS posting only with positive balance. It defaults to false.
 
-- **RATE_LIMIT_MAX_REQUESTS**: maximum number of requests that can be received by the service in a certain time window. It must be a positive integer.
+[kaleyra]: https://www.kaleyra.com/
+[kaleyra-api-key]: https://developers.kaleyra.io/docs/generating-an-api-key
+[kaleyra-getting-started]: https://developers.kaleyra.io/docs/kcloud-getting-started
+[kaleyra-sender-id]: https://developers.kaleyra.io/docs/sender-id
 
-- **RATE_LIMIT_TIME_WINDOW**: time window in which the service max number of request is counted. It can be expressed in milliseconds or as a string (in the [ms format][ms-format]). It can be configured within a certain range.
-
-- **EXPONENTIAL_DELAY_RESET_AFTER**: time window after which the exponential delay in requests to send sms to the same phone number is reset to zero. It is expressed in seconds.
-
+[kaleyra]: https://www.kaleyra.com/
 [twilio]: https://www.twilio.com/
 [twilio-api-keys]: https://www.twilio.com/docs/usage/api/keys
 [twilio-console]: https://www.twilio.com/console

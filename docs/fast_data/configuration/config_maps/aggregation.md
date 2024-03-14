@@ -450,7 +450,7 @@ Dependencies are a way to gather data that will be used in the mapping section, 
 
 If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
 
-We have a System of Records that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
+We have a System of Record that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
 A naive solution could be just putting both Projections as dependencies and using both of them in the mapping. This would cause the Single View to have two different `firefighter` and `doctor` fields, one of them undefined, which is clearly not ideal.
 
 Thanks to the `_select` option, we can create a `JOB` dependency, which will use the `DOCTOR` *or* `FIREFIGHTER` Projection based on the value of another field, as shown below:
@@ -703,7 +703,7 @@ Here's a working example:
 
 From version `11.3.0` of the Console, your project might have enabled the possibility to configure ER Schemas with the No Code feature. The new feature will be accessible in the `Single Views` section. Selecting the Single View and the _Single View Creator_ associated, the configuration page with the list of config maps will include the No Code Aggregation by selecting the `Aggregation` tab.
 
-![Example of an Aggregation configured with the No Code](../../img/no_code_aggregation/aggregation_example.png)
+![Example of an Aggregation configured with the No Code](../img/no_code_aggregation/aggregation_example.png)
 
 The new page allows creating an Aggregation from scratch with a clear visual of the Single View Data Model and with a simplified selection of fields based on the projection. It also includes a simpler way to add and manage dependencies and Join Dependencies, simplifying the configuration of the Single View Creator.
 
@@ -717,7 +717,7 @@ Otherwise, a placeholder will remind you the need of an ER Schema, blocking the 
 
 If you don't have an _aggregation_ configuration file yet, or in case it has not been modified after creating the Single View Creator, opening the `Aggregation` tab will show a placeholder that informs that a _Base Projection_ must be selected before starting configuring the aggregation.
 
-![Placeholder to inform the user that a Base Projection must be selected](../../img/no_code_aggregation/base_projection.png)
+![Placeholder to inform the user that a Base Projection must be selected](../img/no_code_aggregation/base_projection.png)
 
 The select field will show all the projections set in the selected ER Schema. The selection will represent the first dependency created in the aggregation that will be linked with the `identifier` object of the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change).
 
@@ -727,7 +727,7 @@ The page will now show the list of fields, as defined in the Single View Data Mo
 
 Clicking on a field will open a drawer to the right side of the panel that allows you to map this field, by allowing the selection of an existing dependency and a field.
 
-![Detail of a field not mapped](../../img/no_code_aggregation/field_not_mapped.png)
+![Detail of a field not mapped](../img/no_code_aggregation/field_not_mapped.png)
 
 The _Dependency_ selection field will include a list of existing dependencies (on top) and all the other dependencies that can be connected (based on the conditions included inside the ER Schema). 
 
@@ -735,13 +735,13 @@ Selecting a dependency will update the state of the _Set Path_ button and its la
 
 The selection will automatically create the mapping. This can be noted also by the fact that all the warnings next to the name of the field will disappear.
 
-![Detail of a dependency field](../../img/no_code_aggregation/dependency_field_detail.png)
+![Detail of a dependency field](../img/no_code_aggregation/dependency_field_detail.png)
 
 ### Automatic generation of dependencies via Path
 
 In case the value selected in the _Dependency_ select field is a dependency that does not exist yet, the "Path not set" text will still be there, and the `Set Path` button can be clicked to open a modal that will introduce the user to a new way to create dependencies.
 
-![Selection of the path](../../img/no_code_aggregation/path_selection.png)
+![Selection of the path](../img/no_code_aggregation/path_selection.png)
 
 The modal will include all the different paths to create all the needed dependencies to proceed with the mapping. Each path will represent a step composed of different projections connected via ER Schema `one-on-one` conditions. 
 
@@ -749,7 +749,11 @@ In the example above, there are more ways to reach from _pr_registry_ to _pr_dis
 
 Click on `Next` will move to the next step of the modal where the user will be prompted to select the condition for each step of the path.
 
-![Condition choices in selected path](../../img/no_code_aggregation/condition_selection_in_path.png)
+![Condition choices in selected path](../img/no_code_aggregation/condition_selection_in_path.png)
+
+:::info
+To help to identify the correct condition, inside every _Select a condition_ dropdown there will be an "**i**" icon on the right side: moving the mouse over this icon will show the query of the condition.
+:::
 
 After selecting a condition for each step, a click on the `Save` button will automatically create a dependency for each step of the selected path. The mapping can continue since the _Field_ select will be enabled and the value can be selected.
 
@@ -757,11 +761,11 @@ After selecting a condition for each step, a click on the `Save` button will aut
 
 The _Set Path_ modal is not the only way to add new dependencies. These can be included manually via the _Edit dependencies_ button at the bottom of the page, followed by the number of dependencies already set. This button will open a different modal that will show all the existing dependencies, giving the possibility to add or delete some.
 
-![Dependency Editor](../../img/no_code_aggregation/dependency_editor.png)
+![Dependency Editor](../img/no_code_aggregation/dependency_editor.png)
 
 A click on the button `+ Add dependency` will change the content of the modal to a form that will allow the user to select the starting projection, the target projection, the condition that connects said projection and - finally - a name to give to said dependency, in case you want to create [an alias](#using-the-same-projection-as-a-dependency-multiple-times-under-different-conditions).
 
-![Form to add a new dependency](../../img/no_code_aggregation/dependency_editor_form.png)
+![Form to add a new dependency](../img/no_code_aggregation/dependency_editor_form.png)
 
 :::info
 All those fields might be automatically populated in case there's only one option available.
@@ -781,7 +785,7 @@ In case it's necessary to map fields inside an array of objects, a new configura
 
 When clicking the button, the already mentioned modal will appear but with a placeholder to invite the user to create the Join Dependency.
 
-![A placeholder is shown in case a join Dependency must be created](../../img/no_code_aggregation/join_dependency_placeholder.png)
+![A placeholder is shown in case a join Dependency must be created](../img/no_code_aggregation/join_dependency_placeholder.png)
 
 A click on the button `Add dependency` will open the same form used to create regular dependencies, but with the important difference to have only starting projections included in the configuration of the parent field and to have only _One To Many_ conditions, necessary to map the array of objects.
 
@@ -798,13 +802,13 @@ On the bottom of the page, there's a switch that will change the `Aggregation` v
 
 In fact, with the No Code Aggregation, it will not be possible to include the [advanced options](#advanced-options) aforementioned: this has to be included in the Advanced Mode.
 
-![Advanced Mode of the No Code Aggregation](../../img/no_code_aggregation/advanced_mode.png)
+![Advanced Mode of the No Code Aggregation](../img/no_code_aggregation/advanced_mode.png)
 
 In this area, you can review the aggregation in its code format, and it's possible even to update the content inside, and to add or delete some parts of the configuration. Any update via Advanced Mode will be instantly reflected when switching back to the No Code.
 
 Despite this, it is possible to use the No Code Aggregation even if one or more fields have been mapped with one of the possible advanced options (such as the usage of a custom function from an external file, or a conditional value). In this case, the user can open the drawer related to the field, but it will be informed that an advanced configuration exists and the only way to make any change or review it is via the advanced mode.
 
-![Advanced mapping](../../img/no_code_aggregation/advanced_mapping.png)
+![Advanced mapping](../img/no_code_aggregation/advanced_mapping.png)
 
 Also, the list of dependencies available via the _Edit dependencies_ button will inform the user of the usage of the [Identifier Query Mapping](#changing-the-query-that-finds-the-projection-based-on-their-identifier) or the usage of [conditional expressions](#using-conditional-expressions-on-dependencies-definitions-and-mappings), but to review these advanced settings, the user will need to move to the Advanced Mode.
 
@@ -814,21 +818,21 @@ The No Code Aggregation will try to catch any error existing, especially on pre-
 
 In this case, the Advanced Mode will automatically be active, and it will not be possible to move to the No Code before to address these errors.
 
-![Wrong version in the Advanced Mode](../../img/no_code_aggregation/advanced-more-with-errors.png)
+![Wrong version in the Advanced Mode](../img/no_code_aggregation/advanced-more-with-errors.png)
 
 Moreover, the No Code Aggregation includes some warnings related to configurations that might not work correctly when running the Microservices and/or might lead to unexpected results.
 
 One of those warnings will be shown next to the field name, in case the field is not mapped, or an error icon in case the mapping is not valid.
 
-![A field with a wrong mapping](../../img/no_code_aggregation/field_with_wrong_mapping.png)
+![A field with a wrong mapping](../img/no_code_aggregation/field_with_wrong_mapping.png)
 
 Also, the drawer to the right side will inform you if the dependency or the field is not valid. Anyway, clicking on the field allows the selection of a valid value and proceed with the configuration.
 
-![Field mapping configuration with an non-existing field selected](../../img/no_code_aggregation/mapping_drawer_with_errors.png)
+![Field mapping configuration with an non-existing field selected](../img/no_code_aggregation/mapping_drawer_with_errors.png)
 
 Errors in configured dependencies are visible inside the modal accessible via the _Edit dependencies_ button: in this case, the user will be informed if there are dependencies related to missing projections, or dependencies that are not reachable because the path is incomplete.
 
-![Non valid dependencies](../../img/no_code_aggregation/dependency_editor_with_errors.png)
+![Non valid dependencies](../img/no_code_aggregation/dependency_editor_with_errors.png)
 
 In this case, it is highly suggested to remove the non-valid projections and re-add them (manually with the [Set Path feature](#automatic-generation-of-dependencies-via-path)).
 
@@ -840,6 +844,6 @@ The `oneOf`, `anyOf`, `allOf`, `if` and `$ref` JSON Schema operators would not m
 
 It is possible to reset the Aggregation and configure it from scratch from the _Settings_ tab, in case of mistakes in selecting the base Projection or using the ER Schema. In this tab, several general options regarding the Single View Creator are included and the first card, named _General_ shows the selected ER Schema and the selected Aggregation.
 
-![General card that includes information on the selected ER Schema and Base Projection](../../img/no_code_aggregation/general_card.png)
+![General card that includes information on the selected ER Schema and Base Projection](../img/no_code_aggregation/general_card.png)
 
 A click on the `Edit` button will open a modal that informs the user of the risks of losing the configured Aggregation before allowing the selection of a new ER Schema and/or a new base Projection. A change in one of the two values will reset the Aggregation.

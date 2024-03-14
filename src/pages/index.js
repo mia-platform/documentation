@@ -22,6 +22,7 @@ const features = [
   {
     type: "feature",
     title: "Getting Started",
+    id: "getting-started",
     icon: "rocket",
     toUrl: "/docs/getting-started/mia-platform-overview",
     description: `Start to learn the main concepts of Mia-Platform and how to use to  develop your services`,
@@ -29,6 +30,7 @@ const features = [
   {
     type: "feature",
     title: "Console",
+    id: "console",
     icon: "console",
     toUrl: "/docs/development_suite/overview-dev-suite",
     description: `Start to use only one platform to design and manage the full-cycle of your DevOps`,
@@ -36,6 +38,7 @@ const features = [
   {
     type: "feature",
     title: "Learn to build what you want",
+    id: "learn-to-build-what-you-want",
     icon: "learn",
     toUrl: "/docs/getting-started/videos/",
     description: `Read our tutorials, follow walkthroughs and learn how to decouple your
@@ -45,6 +48,7 @@ const features = [
   {
     type: "feature",
     title: "What's new?",
+    id: "whats-new",
     icon: "new",
     description: "Discover new cool features, updates and bug fixes",
     links: [
@@ -64,8 +68,9 @@ const features = [
   {
     type: "howTo",
     title: "How can I?",
+    id: "how-can-i",
     description:
-        "Check out the following topics to learn how to build, deploy, debug and monitor your services with Mia-Platform",
+      "Check out the following topics to learn how to build, deploy, debug and monitor your services with Mia-Platform",
     links: [
       {
         label: "Create services",
@@ -96,13 +101,70 @@ const features = [
         href: "/docs/development_suite/api-console/api-design/public_variables",
       },
     ],
-  }
+  },
+  {
+    type: "howTo",
+    title: "Useful resources",
+    id: "useful-resources",
+    description:
+      "Here you can find some useful resources to discover Mia-Platform.",
+    links: [
+      {
+        label: "🌐 Visit our Website",
+        href: "https://mia-platform.eu/",
+      },
+      {
+        label: "🚀 Book a free Demo",
+        href: "https://contact.mia-platform.eu/ask-for-a-demo-mia-platform"
+      },
+      {
+        label: "🏅 Discover some Success cases",
+        href: "https://mia-platform.eu/resources/case-history/",
+      },
+      {
+        label: "📝 Read our Blog",
+        href: "https://blog.mia-platform.eu/en",
+      },
+      {
+        label: "📚 Explore our Library",
+        href: "https://resources.mia-platform.eu/en/library",
+      },
+      {
+        label: "📨 Subscribe to monthly Newsletter",
+        href: "https://resources.mia-platform.eu/en/newsletter-general-subscription",
+      },
+      {
+        label: "💻 Follow us on Github",
+        href: "https://github.com/mia-platform",
+      },
+      {
+        label: "💼 Follow us on LinkedIn",
+        href: "https://www.linkedin.com/company/mia-platform/"
+      },
+      {
+        label: "📸 Follow us on Instagram",
+        href: "https://www.instagram.com/miaplatform/"
+      },
+      {
+        label: "💬 Follow us on X",
+        href: "https://twitter.com/MiaPlatform"
+      },
+      {
+        label: "📹 Follow us on YouTube",
+        href: "https://www.youtube.com/channel/UCWEgCxRmFgHgCwV3ntZ2hvA"
+      },
+      {
+        label: "👥 Join our team",
+        href: "https://mia-platform.eu/careers/"
+      },
+    ],
+  },
 ];
 
 const recentLinks = {
   title: "Latest Documentation Updates",
   description:
-      "Do you wish to stay updated on the latest changes and additions to our documentation? Please refer to the links below."
+    "Do you wish to stay updated on the latest changes and additions to our documentation? Please refer to the links below."
 }
 
 function Home() {
@@ -144,12 +206,12 @@ function Home() {
           <section className={styles.features}>
             <div className="container">
               {<div className="row">
-              <VersionBanner
-                link="/docs/release-notes/v12-overview"
-                majorVersion="12"
-                subTitle="Click here and learn about the new features in this new v12."
-                title="Mia-Platform v12 is now Generally Available"
-              />
+                <VersionBanner
+                  link="/docs/release-notes/v12-overview"
+                  majorVersion="12"
+                  subTitle="Click here and learn about the new features in this new v12."
+                  title="Mia-Platform v12 is now Generally Available"
+                />
               </div>}
 
               <div className="row">
@@ -159,14 +221,15 @@ function Home() {
                       if (props.type === 'feature') {
                         return <Feature key={idx} {...props} />
                       } else {
-                        const {title, description, links} = props;
+                        const {id, title, description, links} = props;
                         return (
-                            <HowToBox
-                              description={description}
-                              key={idx}
-                              links={links}
-                              title={title}
-                            />
+                          <HowToBox
+                            description={description}
+                            id={id}
+                            key={idx}
+                            links={links}
+                            title={title}
+                          />
                         );
                       }
                     })}
@@ -176,8 +239,8 @@ function Home() {
                 <div className="col col--4">
                   <div className="row">
                     <LastPages
-                        description={recentLinks.description}
-                        title={recentLinks.title}
+                      description={recentLinks.description}
+                      title={recentLinks.title}
                     />
                   </div>
                 </div>
@@ -193,6 +256,7 @@ function Home() {
 
 Home.propTypes = {
   description: PropTypes.string,
+  id: PropTypes.string,
   links: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
   type: PropTypes.string

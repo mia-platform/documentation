@@ -321,7 +321,7 @@ Metrics options are changed. Below there are the main changes. For other configu
 ### BREAKING CHANGES
 
 - Dropped support to Node 8
-- Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../getting-started/guidelines/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js).
+- Request and response logged information are now compliant with Mia-Platform logging guidelines. To see the guidelines, please check [Mia Platform Docs](../../development_suite/api-console/api-design/guidelines-for-logs). You can find the implementation details [here](https://github.com/mia-platform/lc39/blob/master/lib/custom-logger.js).
 
 ### Added
 

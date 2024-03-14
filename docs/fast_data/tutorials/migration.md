@@ -124,7 +124,7 @@ To migrate Kafka, you should follow these steps:
 
 ###  Switch all of the external producers to the new Kafka instance
 
-If some external services produce messages in Kafka, you should redirect them to the new Kafka instance. This includes the CDCs connected to your systems of records. At this point, you shouldn't see any new message coming from external sources (e.g. ingestion topics) but only - eventually - internal traffic between your microservices. 
+If some external services produce messages in Kafka, you should redirect them to the new Kafka instance. This includes the CDCs connected to your Systems of Record. At this point, you shouldn't see any new message coming from external sources (e.g. ingestion topics) but only - eventually - internal traffic between your microservices. 
 Topics from the destination Kafka instance should start to accumulate lag.
 
 ### Switch off all services connected to Kafka

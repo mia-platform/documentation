@@ -1,0 +1,493 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "configuration",
+  "examples": [
+    {
+      "connections": {
+        "postgres-16": {
+          "configuration": {
+            "params": {
+              "database": "my-database",
+              "host": "0.0.0.0",
+              "port": 5432,
+              "pwd": "*******",
+              "uid": "my-user"
+            },
+            "vendor": "postgres"
+          },
+          "type": "odbc"
+        }
+      },
+      "target": {
+        "baseUrl": "https://console.cloud.mia-platform.eu",
+        "credentials": {
+          "clientId": "<CLIENT_ID>",
+          "clientKeyId": "<CLIENT_KEY_ID>",
+          "privateKey": "tls/private-key.pem"
+        },
+        "oauthTokenEndpoint": "/api/m2m/oauth/token",
+        "projectId": "1234",
+        "revision": "main",
+        "type": "mia-console"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "connections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/connection"
+      }
+    },
+    "target": {
+      "default": {
+        "type": "stdout"
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/target"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "ConnectionParams": {
+      "examples": [
+        {
+          "database": "db",
+          "flags": "TrustServerCertificate=yes;",
+          "host": "0.0.0.0",
+          "port": 1433,
+          "pwd": "*****",
+          "uid": "user"
+        }
+      ],
+      "type": "object",
+      "required": [
+        "database",
+        "pwd",
+        "uid"
+      ],
+      "properties": {
+        "database": {
+          "type": "string"
+        },
+        "driver": {
+          "type": "string"
+        },
+        "flags": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "host": {
+          "default": "0.0.0.0",
+          "type": "string"
+        },
+        "port": {
+          "default": 1433,
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0.0
+        },
+        "pwd": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      }
+    },
+    "ConnectionParams2": {
+      "examples": [
+        {
+          "database": "db",
+          "host": "0.0.0.0",
+          "port": 3306,
+          "pwd": "*****",
+          "uid": "user"
+        }
+      ],
+      "type": "object",
+      "required": [
+        "database",
+        "pwd",
+        "uid"
+      ],
+      "properties": {
+        "database": {
+          "type": "string"
+        },
+        "driver": {
+          "type": "string"
+        },
+        "flags": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "host": {
+          "default": "0.0.0.0",
+          "type": "string"
+        },
+        "port": {
+          "default": 3306,
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0.0
+        },
+        "pwd": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      }
+    },
+    "ConnectionParams3": {
+      "examples": [
+        {
+          "dbq": "ORACLE_TEST",
+          "pwd": "****",
+          "uid": "user"
+        },
+        {
+          "dbq": "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=0.0.0.0)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORACLE19C_TEST)))",
+          "flags": "DBA=R;",
+          "pwd": "****",
+          "uid": "user"
+        }
+      ],
+      "type": "object",
+      "required": [
+        "dbq",
+        "pwd",
+        "uid"
+      ],
+      "properties": {
+        "dbq": {
+          "type": "string"
+        },
+        "driver": {
+          "type": "string"
+        },
+        "flags": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pwd": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Version"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "ConnectionParams4": {
+      "examples": [
+        {
+          "database": "db",
+          "host": "0.0.0.0",
+          "port": 5432,
+          "pwd": "*****",
+          "uid": "user"
+        }
+      ],
+      "type": "object",
+      "required": [
+        "database",
+        "pwd",
+        "uid"
+      ],
+      "properties": {
+        "database": {
+          "type": "string"
+        },
+        "driver": {
+          "type": "string"
+        },
+        "flags": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "host": {
+          "default": "0.0.0.0",
+          "type": "string"
+        },
+        "port": {
+          "default": 5432,
+          "type": "integer",
+          "format": "uint16",
+          "minimum": 0.0
+        },
+        "pwd": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      }
+    },
+    "Version": {
+      "type": "string",
+      "enum": [
+        "21",
+        "19",
+        "12",
+        "11"
+      ]
+    },
+    "connection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/odbc-configuration"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "odbc"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "credentials": {
+      "type": "object",
+      "required": [
+        "clientId",
+        "clientKeyId",
+        "privateKey"
+      ],
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "clientKeyId": {
+          "type": "string"
+        },
+        "privateKey": {
+          "type": "string"
+        }
+      }
+    },
+    "odbc-configuration": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/ConnectionParams"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "mssql"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/ConnectionParams2"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "mysql"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/ConnectionParams3"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "oracle"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "params",
+            "vendor"
+          ],
+          "properties": {
+            "params": {
+              "$ref": "#/definitions/ConnectionParams4"
+            },
+            "vendor": {
+              "type": "string",
+              "enum": [
+                "postgres"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "examples": [
+        {
+          "type": "stdout"
+        },
+        {
+          "dir": "/path/to/dir",
+          "type": "file"
+        },
+        {
+          "baseUrl": "https://console.cloud.mia-platform.eu",
+          "credentials": {
+            "clientId": "<CLIENT_ID>",
+            "clientKeyId": "<CLIENT_KEY_ID>",
+            "privateKey": "tls/private-key.pem"
+          },
+          "dataCatalogEndpoint": "/custom",
+          "oauthTokenEndpoint": "/api/m2m/oauth/token",
+          "type": "mia-console"
+        }
+      ],
+      "oneOf": [
+        {
+          "type": "object",
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "projectId"
+              ],
+              "properties": {
+                "projectId": {
+                  "type": "string"
+                },
+                "revision": {
+                  "default": "main",
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "dataCatalogEndpoint"
+              ],
+              "properties": {
+                "dataCatalogEndpoint": {
+                  "type": "string"
+                }
+              }
+            }
+          ],
+          "required": [
+            "baseUrl",
+            "credentials",
+            "type"
+          ],
+          "properties": {
+            "baseUrl": {
+              "type": "string"
+            },
+            "credentials": {
+              "$ref": "#/definitions/credentials"
+            },
+            "headers": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "oauthTokenEndpoint": {
+              "default": "/api/m2m/oauth/token",
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "mia-console"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "dir": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "file"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "stdout"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -22,6 +22,12 @@ const filesToExcludeFromSidebarCheck = [
   "infrastructure/self-hosted/installation-chart/*",
   "getting-started/videos/*",
   "getting-started/videos/subtitle/*",
+  "console/videos/*",
+  "console/videos/subtitle/*",
+  "fast_data/videos/*",
+  "fast_data/videos/subtitle/*",
+  "microfrontend-composer/videos/*",
+  "microfrontend-composer/videos/subtitle/*",
   "standalone-resources/*"
 ]
 

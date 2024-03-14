@@ -1,7 +1,7 @@
 ---
 id: development-affordance
 title: Development Affordance
-sidebar_label: Development-affordance
+sidebar_label: Development affordance
 ---
 
 <!--

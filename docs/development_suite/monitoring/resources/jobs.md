@@ -43,7 +43,7 @@ You can also delete multiple Jobs at the same time, by selecting the checkbox on
 
 A modal will ask for confirmation for the action to be performed, and inform you on the operation outcome.
 
-Any related resources, such as Pods, will be marked for deletion, and Kubernetes may [cascading delete](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#cascading-deletion) them at any time.
+The related Pods will be eventually deleted by Kubernetes: the [background cascading deletion policy](https://kubernetes.io/docs/concepts/architecture/garbage-collection/#background-deletion) is used.
 
 ## Inspecting a Job
 

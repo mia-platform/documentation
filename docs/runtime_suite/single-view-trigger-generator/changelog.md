@@ -15,6 +15,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.6] 2024-02-13
+
+### Added
+
+- introduce support for `snappy` compression both on the consumer and producer sides.
+  While compression coded employed on the consumer is automatically recognized, on the producer
+  it is necessary to be configured explicitly. This can be achieved by adding `compressionName` property
+  to event store producer configuration, which can get one of the following values:
+    - `none` (default when no value provided)
+    - `snappy` (recommended)
+    - `gzip`
+
+## [3.1.5] 2024-02-09
+
+### Updated
+
+- `fast-data-automation-lib` to `v3.1.5`
+
 ## [3.1.4] 2023-12-15
 
 ### Fixed

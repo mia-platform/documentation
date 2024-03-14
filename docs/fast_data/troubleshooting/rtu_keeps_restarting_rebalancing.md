@@ -10,7 +10,7 @@ The Real-Time Updater begins to restart or rebalance in an infinite loop; Usuall
 
 ## Cause
 
-**The Real-Time Updater keeps restarting:** If it keeps restarting itself it's because the [health routes](/getting-started/guidelines//microservice-vademecum.md#health-routes) are unreachable, meaning the service is too busy running strategies (CPU consumption too high).
+**The Real-Time Updater keeps restarting:** If it keeps restarting itself it's because the health routes are unreachable, meaning the service is too busy running strategies (CPU consumption too high).
 
 **The Real-Time Updater keeps rebalancing:** If it keeps rebalancing without restarting it's because the strategies are taking too much time to complete (usually due to long waiting times between responses from MongoDB queries) and the consumer can't emit the hearbeat in time. This results in the Real-Time Updater's consumer being kicked out by the group coordinator, outputting and error similar to this: `kafkajs error: Group coordinator is not aware of this member`.
 

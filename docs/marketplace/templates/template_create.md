@@ -3,7 +3,10 @@ id: template_create
 title: Create a new template
 sidebar_label: Create templates
 ---
-Can't find a specific template? You can create a new one. Below you will find the suggested guidelines for the development of a template from which you can start to create your microservice.  
+
+Can't find a specific template? You can create a new one. Below you will find the suggested guidelines for the development of a template from which Console users can create microservices. 
+
+For specific information on how to build a Marketplace item and upload it to the Mia-Platform Console, head to the [Contributing Overview](/marketplace/add_to_marketplace/contributing_overview.md) documentation.
 
 ## The target
 
@@ -22,7 +25,6 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 Each template, or the eventual service library from which depends, should expose health routes.
 These routes provide information on the health of the systems, and let to carry out debugging checks.
-Check out the [Microservices vademecum](/getting-started/guidelines/microservice-vademecum.md#health-routes) and [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) for details.
 
 :::info
 For example, in all Node.js templates, health routes are exposed by [LC-39](https://github.com/mia-platform/lc39)
@@ -49,7 +51,7 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 ### Dockerfile
 
-Your template has to have a [Dockerfile](/getting-started/guidelines//docker-vademecum.md) built with the best practices.
+Your template has to have a Dockerfile built with the best practices.
 
 Check out the [Node.js service template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/Dockerfile) to see an example.
 
@@ -99,7 +101,7 @@ A set of rules that would be appropriate to follow.
 
 A working CI pipeline guarantee that your template, before the integration, is automatically tested and with a consistent code style. Furthermore, you can automatize the build phase.
 
-GitLab provides a dedicated [CI/CD tool](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/), while GitHub leverages leverages third-party party integrations.
+GitLab provides a dedicated [CI/CD tool](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/), while GitHub leverages leverages third-party integrations.
 
 To improve the security of your template, it's important to keep dependencies updated. In order to do this, you can use tools like  [Dependabot](https://dependabot.com/) or [Renovate bot](https://docs.renovatebot.com/).
 
@@ -119,7 +121,7 @@ Check out the [Node.js service template package.json](https://github.com/mia-pla
 
 ### Logging
 
-The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/getting-started/guidelines/guidelines-for-logs.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
+The template should be able to generate logs in JSON format, using appropriate levels. You can follow our [guidelines for logs](/development_suite/api-console/api-design/guidelines-for-logs.md). Coherent logging allows you to properly view logs in [*Log & monitoring* section of Console](/development_suite/overview-dev-suite.md#log-monitoring) and to use them to create custom dashboards.
 
 * The template should provide a logger.
 * If exposes routes, it should generate logs for incoming and completed request.
