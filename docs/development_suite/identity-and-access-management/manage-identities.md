@@ -19,7 +19,7 @@ To find out more about roles check out the available [capabilities](/development
 
 ## Managing Company Identities
 
-At Company level, inside the Company Overview, a Company Owner has visibility of the Access Management section. In particular, from the **IAM portal**, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
+At the Company level, a Company Owner has visibility of the Access Management section. In particular, from the **IAM portal**, a Company Owner can manage all identity permissions and regulate their access to the resources of the Company.
 
 ![Company Identities table](./img/manage-identities/company-identities.png)
 

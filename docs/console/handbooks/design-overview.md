@@ -13,7 +13,7 @@ To create a new View you must have the permission `console.company.project.creat
 
 ## View creation
 
-To create the View, simply navigate to the Company Overview, then to Design Overview and select the tab from available Resources ([CRUD](/development_suite/governance/design-overview.md#CRUD), [Endpoints](/development_suite/governance/design-overview.md#Endpoints), [Microservices](/development_suite/governance/design-overview.md#Microservices)). 
+To create the View, simply choose from the table the Company in which to create it, then go to Design Overview and select the tab from available Resources ([CRUD](/development_suite/governance/design-overview.md#CRUD), [Endpoints](/development_suite/governance/design-overview.md#Endpoints), [Microservices](/development_suite/governance/design-overview.md#Microservices)).
 
 Customize the table based on your needs by hiding/displaying column and/or applying filters.
 
@@ -25,7 +25,7 @@ For further info please refer to the [Design Overview's documentation](/developm
 
 ## View modification
 
-To edit the View, simply navigate to the Company Overview, then to Design Overview's Homepage section and select the card associated to the view to delete.
+To edit the View, simply choose from the table the Company in which it is, then go to Design Overview's Homepage section and select the card associated to the view to delete.
 
 Click the `Actions Dropdown` icon and select `Edit view name`, then insert new 'View name' through the specific popup and click the `Overwrite view` button.
 
@@ -38,7 +38,7 @@ Default views cannot be renamed since they are added by default for all users fo
 
 ## View deletion
 
-To delete the View, simply navigate to the Company Overview, then to Design Overview's Homepage section and select the card associated to the view to delete.
+To delete the View, simply choose from the table the Company in which it is, then go to Design Overview's Homepage section and select the card associated to the view to delete.
 
 Click the `Actions Dropdown` icon and select `Delete`. 
 

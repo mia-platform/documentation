@@ -7,14 +7,14 @@ sidebar_label: Overview
 Webhooks allow you to build or set up integrations that subscribe to certain Console events. 
 When one of those events is triggered, the Console will send an HTTP POST payload to the webhook's configured URL.
 
-Webhooks can be installed on a Console instance, a specific company, or a specific project. 
+Webhooks can be installed on a Console instance, a specific Company, or a specific project. 
 Once installed, the webhook will be sent when one or more subscribed events occur.
 
 ## Webhooks Overview
 
 Mia-Platform Console allows authorized users to manage webhooks. 
 
-More specifically, a user can add, edit, and delete a webhook for a company. To access these features, head to the Company Overview area of the Console by clicking the related button on the home page, next to your company name.
+More specifically, a user can add, edit, and delete a webhook for a Company. To access these features, simply click on the Company name in the Companies table.
 
 ![Go to Company Overview](img/go-to-company-overview.png)
 

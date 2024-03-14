@@ -20,11 +20,11 @@ Prefixes can be of two types:
 
 * **Differentiated**: according to the environment
 
-When a project is created it is associated to a specific Company.
-As described in the [Company section](/console/project-configuration/create-a-project.mdx#create-a-company) a project associated to a specific company will inherit the environment information. For this reason, a differentiated environment variable must have the prefix associated to the `ID` of the specific environment. 
+When a Project is created it is associated to a specific Company.
+As described in the [Company section](/console/project-configuration/create-a-project.mdx#create-a-company) a Project associated to a specific company will inherit the environment information. For this reason, a differentiated environment variable must have the prefix associated to the `ID` of the specific environment. 
 It is possible to find it in the table of the Envs area.
 
-![envs-table](../img/runtime-table-envs.png)
+![envs-table](../img/environments_table.png)
 
 
 :::warning
@@ -33,7 +33,7 @@ Remember! It is fundamental to define a prefix if you want to associate a variab
 
 ## Create a Variable
 
-When you start a new project you will find variables already configured.
+When you start a new Project you will find variables already configured.
 To add a new variable press the **"Add new environment variable"** button at the top-right of the table and fill in the form:
 
 * the **key** is mandatory and identifies your variable. Remember **to use the prefix** to manage the differentiation between environment;

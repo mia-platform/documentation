@@ -28,7 +28,7 @@ In order to create a new CRUD, open the dedicated section, select **Create new C
 * **Name**: the name of the CRUD that will be used for data storage (we recommend using `snake_case` as naming convention). In our case, we will name the collection “books”;
 * **Internal endpoint**: this is the first endpoint that will be exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md). The console will prefill it but you can change it according to your preference.
 
-![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.PNG)
+![newCrudCreation-withInternalEndpoint](img/newCrudCreation-withInternalEndpoint.png)
 
 Once you have entered all required fields, press the **Create** button on the right and you will see your newly created CRUD.
 
@@ -46,9 +46,9 @@ These fields are internally required; you can use them to perform queries or to 
 
 You can add new fields by selecting **Add new** and fill in the blank form with the value you need.
 
-![properties](img/properties.PNG)
+![properties](img/properties.png)
 
-![title](img/title.PNG)
+![title](img/title.png)
 
 You can add the fields you need and select the appropriate properties:
 
@@ -69,7 +69,7 @@ You can add the fields you need and select the appropriate properties:
 * If you select **required** the property is mandatory.
 * If you select **nullable** you can make the value *null*.
 * In the **description** field you can enter a short optional description.
-![properties](img/properties.PNG)
+![properties](img/properties.png)
 
 ### Create nested CRUDs
 
@@ -158,13 +158,13 @@ For an in depth description of the `__STATE__` field, follow this [link](/runtim
 :::
 In our case we will see the first internal endpoint with a **route base path** equal to "/books". The _default state_ (used on document creation) is set to _DRAFT_ by default.
 
-![internalendpoint](img/internalendpoint.PNG)
+![internalendpoint](img/internalendpoint.png)
 
 To create a new endpoint click on the `Add new` button in the card and fill in **Route base path** and the **Default state** property for the new endpoint.
 
 Please note that these endpoints must be unique through all the configured CRUD, the Console will check for you that this constraint is satisfied when creating or editing any CRUD route in your project. In case this happens you will be warned with an error message.
 
-![newEndpoint](img/newEndpoint.PNG)
+![newEndpoint](img/newEndpoint.png)
 
 You can always change the default state of an existing route by simply clicking on the field default state. The two possible values are _DRAFT_ or _PUBLIC_.
 
@@ -347,7 +347,7 @@ Once you imported the JSON from files, it automatically appears in the table und
 
 If you want to delete a row, select red trash symbol on the right of the the table.
 
-![tabella_prop](img/tabella-trash.png)
+![tabella_prop](img/properties.png)
 
 :::warning
 The collection **has not yet been saved** it is necessary to continue the process described below

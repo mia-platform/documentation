@@ -19,7 +19,7 @@ To find out more about roles management, check out the available [capabilities](
 ## Managing Company Groups
 
 :::info 
-Each company has the flexibility to establish its own groups, allowing for distinct identities. Company Owners can configure and manage this feature specifically through the designated **Groups** section within the **Company Overview**, providing clear control over group settings.
+Each company has the flexibility to establish its own groups, allowing for distinct identities. Company Owners can configure and manage this feature specifically through the designated **Groups** section at the **Company** level, providing clear control over group settings.
 
 While groups offer an efficient way to manage user access, they're not the only way to handle permissions within a company. In fact, you still have the option to individually manage user privileges, or even use a combination of both approaches. For a deeper understanding of user management, you can refer to the dedicated [documentation page](/development_suite/identity-and-access-management/manage-users.md#how-to-best-manage-your-users).
 :::

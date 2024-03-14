@@ -14,7 +14,7 @@ When a user enters the Deploy Area, they are automatically led to Deploy Section
 
 ## Deploy Section
 
-![Deploy](./img/deploy_section.PNG)
+![Deploy](./img/deploy_section.png)
 
 This section is tied to a specific environment, which can be changed using the dropdown menu on the right side of the topbar. Once you have selected in which runtime environment you want to release your project configurations and which branch to deploy, you will be able to start the deployment process.
 
@@ -178,7 +178,7 @@ While reviewing the files, you can select the one you view to open from the menu
 
 The History Page is the second area of the Deploy section. In this tab it will be possible to visualize all the released deploy.
 
-![History](img/history.PNG)
+![History](img/history.png)
 
 In the History table the user will be able to visualize the following information:
 
