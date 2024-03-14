@@ -3,9 +3,6 @@ id: bug_policy
 title: Bug policy
 sidebar_label: Bug policy
 ---
-## How to report a bug
-
-You can report a bug by writing an email to this [address](mailto:account@mia-platform.eu).
 
 ## How we approach bug fixing
 

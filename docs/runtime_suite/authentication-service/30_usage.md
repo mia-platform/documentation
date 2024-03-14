@@ -46,23 +46,21 @@ Your application should then implement the logic to call the [POST /oauth/token 
 
 :::tip
 
-In case you are using a web app this request can be urlmade directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
+In case you are using a web app this request can be made directly from the browser; in this case the user will be redirected to an external login page, and then, back to the custom callback URI when the login succeeds.
 
 :::
 
-#### Redirect url parameter
+#### Redirect parameter
 
-You can pass a redirect url to the request, by means of the `redirect` query string parameter. After a successful login, the `/oauth/token` endpoint will set the `Location` header to the specified url.
+You can pass a redirect url or path to the request, by means of the `redirect` query string parameter. After a successful login, the `/oauth/token` endpoint will set the `Location` header to the specified url.
+
+The value can either be an absolute url, or a path relative to the root of your web application.
 
 If a request comes with no `redirect` query parameter, the `Location` header will be set to the `defaultRedirectUrlOnSuccessfulLogin` app setting parameter, if specified.
 
 In all other cases the `Location` header will not be set.
 
-:::info
-
 The response status code of a successful request is always `200 OK`, which means that browsers will ignore by default the `Location` header. It is responsibility of the client implementation to use the redirect url when needed.
-
-:::
 
 :::warning
 
@@ -274,6 +272,21 @@ The response is the same as the `/oauth/token`:
 
 In case the `isWebsiteApp` application flag is `true`, the `/refreshtoken` also sets the *sid* and *refresh_token* cookies with the new values.
 
+
+#### Delete session cookies on refresh token failure
+
+This feature is disabled by default, you can enable it by setting the env variable `INVALID_REFRESH_TOKEN_WIPES_COOKIES` to `true`.
+
+When enabled, if the refresh token found in the `refresh_token` cookie is empty or not valid, the endpoint **wipes both the session cookies**, effectively invalidating the user session.
+ 
+Your web application should logout the user in this situation.
+
+:::caution
+
+For technical limitations, setting custom `Path` or `Domain` attributes on the cookies via the `sidCookieCustomAttributes` and/or `refreshTokenCookieCustomAttributes` settings will prevent the cookies to be wiped.
+
+:::
+
 #### Skip provider refresh token
 
 If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request.
@@ -304,6 +317,8 @@ application to redirect to the `/logout` endpoint of the provider.
 
 As a result, the user will be signed out from both the provider and the application.
 
+You can specify an absolute url, or a path relative to the root of your application.
+
 ##### With `logoutUrl` parameter
 
 :::info
@@ -330,6 +345,10 @@ When called with the `logoutUrl` parameter set in the service configuration, the
 - `id_token_hint`: it is set to the `id_token`, retrieved from the provider during login, and stored in the backend session along with the access token.
 
 The endpoint will then redirect the user to the `logoutUrl` with the appended query string, causing the user to be signed out from both the provider and the application.
+
+Please note that in this case the `redirect` parameter must be an absolute url, pointing to a proper location of your web app. Relative paths are not accepted: the authentication provider will refuse them. 
+
+Please also make sure you correctly configure your provider adding the redirect urls you wish to use to the allowed `post_logout_redirect_uri`s.
 
 ## User Info
 
@@ -430,9 +449,9 @@ The configuration snippet above will result in the following JWT token claims:
 
 ### Integration with the ***Authorization Service***
 
-The `/userinfo` endpoint can be used by the [Authorization Service](../../runtime_suite/authorization-service/overview) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
+The `/userinfo` endpoint can be used by the [Authorization Service](../authorization-service/overview) to determine whether the requested resource can be accessed by the current user, based on the contents of the `groups` array.
 
-You need to set the following variables in the [configuration](../../runtime_suite/authorization-service/configuration) with these values:
+You need to set the following variables in the [configuration](../authorization-service/configuration) with these values:
 
 - **USERINFO_URL**=`http://authentication-service/userinfo` (NB: change the hostname if it has been named differently)
 - **CUSTOM_USER_ID_KEY**=`userId`

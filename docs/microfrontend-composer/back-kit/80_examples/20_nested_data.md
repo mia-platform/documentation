@@ -16,21 +16,21 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [schema-formats]: ../30_page_layout.md#formats
 [form-options]: ../30_page_layout.md#form-options
 
-[bk-form-modal]: ../60_components/340_form_modal.md
-[bk-form-drawer]: ../60_components/330_form_drawer.md
+[bk-form-modal]: ../60_components/350_form_modal.md
+[bk-form-drawer]: ../60_components/340_form_drawer.md
 [bk-dynamic-form-modal]: ../60_components/210_dynamic_form_modal.md
 [bk-dynamic-form-drawer]: ../60_components/200_dynamic_form_drawer.md
-[bk-table]: ../60_components/510_table.md
-[bk-pagination]: ../60_components/460_pagination.md
+[bk-table]: ../60_components/520_table.md
+[bk-pagination]: ../60_components/470_pagination.md
 [bk-breadcrumbs]: ../60_components/60_breadcrumbs.md
 [bk-crud-client]: ../60_components/100_crud_client.md
 [bk-add-new-button]: ../60_components/20_add_new_button.md
 [bk-add-filter-button]: ../60_components/10_add_filter_button.md
-[bk-tabs]: ../60_components/520_tabs.md
-[bk-filter-drawer]: ../60_components/290_filter_drawer.md
-[bk-filters-manager]: ../60_components/300_filters_manager.md
+[bk-tabs]: ../60_components/530_tabs.md
+[bk-filter-drawer]: ../60_components/300_filter_drawer.md
+[bk-filters-manager]: ../60_components/310_filters_manager.md
 
-[table-actions]: ../60_components/510_table.md#actions
+[table-actions]: ../60_components/520_table.md#actions
 
 [nested-navigation-state/push]: ../70_events.md#nested-navigation-state---push
 [nested-navigation-state/back]: ../70_events.md#nested-navigation-state---back

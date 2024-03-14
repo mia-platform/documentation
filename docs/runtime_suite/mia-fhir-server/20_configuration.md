@@ -33,3 +33,82 @@ In order to start using the Mia FHIR Server, all you have to do is adding it fro
 :::warning
 All the environment variables are **required**.
 :::
+
+## How to connect to Postgres via SSL
+
+In case the connection to a Postgres instance requires SSL, you need to perform additional configuration. The SSL connection to Postgres requires some additional fields in the JDBC connection string:
+
+```
+jdbc:postgresql://<server-name>:<server-port>/<database-name>?sslcert=/home/cert/ssl-cert&sslkey=/home/key/private.pk8
+``` 
+
+Compared to the classic connection string, in this we have additional parameters:
+- `sslcert`: the path to client certificate
+- `sslkey`: the path to client private key
+
+:::info
+In order to create an SSL connection you need to have the client certificate and the client private key. If you don't have them, please request them from the database administrator.
+:::
+
+In order to set HAPI to use connection to Postgres via SSL the following operations must be performed:
+
+1. Postgres accepts private keys in `PKCS-12` or in `PKCS-8` formats. If you have key in `pem` format you can run the following command to obtain a `PKCS-8` key: 
+
+    ```bash
+    openssl pkcs8 -topk8 -inform PEM -in postgresql.key -outform DER -out private.pk8 -v1 PBE-MD5-DES -nocrypt
+    ```
+
+2. In order to add the `PKCS-8` private key in the *Variables* section of Mia-Platform IDP we need to convert the `.pk8` file to `base64`. This is because the console does not accept binary files in the *Variables* section. To convert the `private.pk8` into *base64* use the following command: 
+
+    ```bash
+    base64 private.pk8 > private-base64.txt
+    ```
+
+3. Add public certificate and the private key in the *Variables* section:
+    - Set `POSTGRES_SSL_CERT` as key and the certificate file content as value.
+    - Set `POSTGRES_SSL_KEY` as key and the base64 private key file content as value.
+
+4. Add to the `mlp.yaml` the following snippet in order to create a secret starting from a variable:
+
+    ```yaml
+    - name: "postgres-ssl-cert"
+        when: "always"
+        data:
+        - key: "postgres-ssl-cert"
+            value: "{{POSTGRES_SSL_CERT}}"
+            from: literal
+    - name: "postgres-ssl-key"
+        when: "always"
+        data:
+        - from: "file"
+            file: "/tmp/private.pk8"
+    ```
+
+5. Edit the `gitlab-ci.yml` file in order to convert the `SSL_KEY` to binary and store it into a file. 
+
+    ```yaml
+    test:
+        variables:
+            SSL_KEY: "${TEST_SSL_KEY}"
+
+    before_script:
+        - echo "$SSL_KEY" | base64 -d - > /tmp/private.pk8 
+    ```
+
+    :::warning
+    Every time a new environment is added, the corresponding variables must be added. Let’s assume that we want to add the preproduction environment. In this case you need to add the configuration of the variables for that environment as:
+
+    ```yaml
+    preprod:
+    variables:
+        SSL_KEY: "${PREPROD_SSL_KEY}"
+    ```
+    :::
+
+6. Add two secrets in the FHIR Server microservice section, specifying the secret name, e.g. postgres.ssl-cert as configuration name. Then, set the path where you want to mount the secret within the pod. For this guide, let us assume to set `/home/cert/` for client certificate and `/home/key/` for client private key.
+
+7. Add the two paths, the one for the certificate and the one for the private key, to the connection string. As an example, let’s assume that we mounted the secrets in `/home/cert/` and `/home/key/` paths. The connection string will be:
+
+    ```
+    jdbc:postgresql://<server-name>:<server-port>/<database-name>?sslcert=/home/cert/ssl-cert&sslkey=/home/key/private.pk8
+    ```

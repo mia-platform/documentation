@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] 2024-03-07
+
+- Update Node.js to v20 (LTS)
+
+### Added
+
+- Add configuration for Kaleyra provider
+- Add client for Kaleyra provider
+- Use Kaleyra client in `POST /send`
+
 ## [1.1.0] 2023-06-27
 
 - Add documentation with OTP fraud prevention features

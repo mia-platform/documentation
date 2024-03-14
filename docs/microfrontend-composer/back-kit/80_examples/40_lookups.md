@@ -22,11 +22,11 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 [bk-dynamic-form-modal]: ../60_components/210_dynamic_form_modal.md
 [bk-dynamic-form-card]: ../60_components/190_dynamic_form_card.md
 [bk-dynamic-form-drawer]: ../60_components/200_dynamic_form_drawer.md
-[bk-form-modal]: ../60_components/340_form_modal.md
-[bk-form-card]: ../60_components/320_form_card.md
-[bk-form-drawer]: ../60_components/330_form_drawer.md
+[bk-form-modal]: ../60_components/350_form_modal.md
+[bk-form-card]: ../60_components/330_form_card.md
+[bk-form-drawer]: ../60_components/340_form_drawer.md
 [bk-crud-lookup-client]: ../60_components/170_crud_lookup_client.md
-[bk-table]: ../60_components/510_table.md
+[bk-table]: ../60_components/520_table.md
 
 [modal-lookup-queries]: ../60_components/210_dynamic_form_modal.md#lookupqueries
 [modal-conditional-fields]: ../60_components/210_dynamic_form_modal.md#conditional-fields

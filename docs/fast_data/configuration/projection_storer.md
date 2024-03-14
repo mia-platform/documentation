@@ -32,7 +32,7 @@ be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_
 | HTTP_PORT        | -        | defines the service HTTP port where status and metrics endpoints are exposed                              | 3000               |
 | CONFIG_FILE_PATH | -        | defines the file path where the service configuration is found (it can either be a `json` or `yaml` file) | `conf/config.json` |
 
-## Attach to System of Records
+## Attach to System of Record
 
 To evaluate data from external CDC, the Projections included in the System of Record must be attached to one or more [Real-Time Updater](/fast_data/realtime_updater.md) or Projection Storer. Services must be created in advance and they can be attached moving to the _Services_ tab of the selected System of Record.
 
@@ -55,7 +55,7 @@ The page will contain the following configurations:
 - a code editor to configure the [Producer configuration](#producer) of the service
 - a code editor to configure the [Storage configuration](#storage) of the service
 
-All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Records.
+All these configurations, after executing a commit to save all the modifications, will automatically generate the Configuration File that will be saved as a config map of the service. This file will be in read-only mode and updated at any change in the service or the System of Record.
 
 ## Configuration File
 
@@ -80,7 +80,7 @@ can be the following one:
 }
 ```
 
-#### System Of Record
+#### System of Record
 
 | Property          | Type     | Required | Default |
 |-------------------|----------|----------|---------|
@@ -154,11 +154,9 @@ Here is described the interface of the custom message adapter function:
 
 - `message` → a map representing the ingestion message. It contains the following properties:
   - `key`:
-    - `String` (Kotlin) → a string representation of the incoming message's key. A string is returned since it is not known a priori whether it will be possible to convert it as Map object in Kotlin
-    - `Buffer` (Javascript) → the raw message key of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
+    - `Buffer` → the raw message key of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
   - `value`:
-    - `Map<String, Any>?` (Kotlin) → a Map object that contains the payload of the incoming message from the ingestion topic, where each property corresponds to one field of the payload object
-    - `Buffer` (Javascript) → the raw value that contains the payload of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
+    - `Buffer` → the raw value that contains the payload of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
 - `primaryKeys` → the list of field names that compose the primary key identifier for that specific projection
 - `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
 
@@ -169,41 +167,9 @@ Here is described the interface of the custom message adapter function:
 - `before` → an object/map or `null`, which represents the record before the last change occurred 
 - `after` → an object/map or `null`, which represents the record obtained after applying the change that triggered the ingestion event
 
-Taking into account the above details, it is possible to implement _user-defined functions_ either in Javascript or Kotlin.
-Below are provided examples for each supported programming language.
+Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
 
-<details><summary>Custom Message Adapter Function (Kotlin - messageAdapter.kt)</summary>
-<p>
-
-```kotlin
-package customMessageAdapter
-
-import org.slf4j.Logger
-
-// NOTE: the message adapter entry point function must be named `messageAdapter`
-fun messageAdapter(message: Map<String, Any>?, primaryKeys: List<String>, logger: Logger): Any {
-    val payload = message?.get("value") as? Map<*, *>?
-
-    val key = primaryKeys
-        .filter { payload?.containsKey(it) ?: false }
-        .associateWith { payload?.get(it) }
-
-    logger.debug("key: $key")
-
-    return mapOf(
-        "operation" to (if (payload.isNullOrEmpty()) { "D" } else { "I" }),
-        "key" to key,
-        "before" to null,
-        "after" to payload,
-    )
-}
-
-```
-
-</p>
-</details>
-
-<details><summary>Custom Message Adapter Function (Javascript - messageAdapter.js)</summary>
+<details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
 <p>
 
 ```javascript
@@ -255,7 +221,7 @@ function extractKey(obj, wantedKeys) {
 </p>
 </details>
 
-<details><summary>Custom Message Adapter Function (Javascript - with empty payload management - messageAdapter.js)</summary>
+<details><summary>Custom Message Adapter Function (with empty payload management - messageAdapter.js)</summary>
 <p>
 
 ```javascript
@@ -268,7 +234,7 @@ function messageAdapter(message, primaryKeys, logger) {
     const { value, key: keyAsString } = message
 
     const keyObject = JSON.parse(keyAsString)
-    // please notice that value is Kotlin Buffer - to obtain its length,
+    // please notice that value is Buffer - to obtain its length,
     // the length function should be employed. In addition, to ensure
     // compatibility also with Real-Time Updater plugin, the following check has been added 
     const valueLength = (typeof value?.length === "function")
@@ -332,7 +298,7 @@ existing functions:
 - `castToArrayOfObject` → parse a JSON array represented as string into a JSON array
 
 Whenever these functions do not cover a particular use case, it is possible to configure additional _user-defined functions_
-as custom cast functions. These cast functions can be implemented either in Kotlin or Javascript, each of them written in
+as custom cast functions. These cast functions can be implemented in Javascript, each of them written in
 their own file. When the files containing the _user-defined functions_ are loaded, the service will search within them
 for a function named as the key name in the configuration. The function with such name **must** exist otherwise the service will
 encounter a processing error.   
@@ -343,7 +309,7 @@ Here it is shown a possible example of configuring two custom cast functions:
 
 ```json
 "castFunctions": {
-  "mapToAddressType": "/app/extensions/mapToAddressType.kts",
+  "mapToAddressType": "/app/extensions/mapToAddressType.js",
   "castToTitleCase": "/app/extensions/castToTitleCase.js"
 }
 ```
@@ -358,40 +324,47 @@ Considering the implementation of these cast functions, they expect as input two
 to be transformed and the _field name_ represented as `string`. The output of the cast functions should be a single value
 in the type expected by the data model for that specific field on which the cast function is applied.
 
-Below is provided an example of cast functions implementation, one for each supported programming language.
+Below you can find several examples about implementation of cast functions.
 
-<details><summary>Custom Cast Function (Kotlin - mapToAddressType.kts)</summary>
+<details><summary>Custom Cast Function (mapToAddressType.js)</summary>
 <p>
 
-```kotlin
-package castFunctions
-
-val addressMapping = mapOf(
-  1 to "SHIPPING",
-  2 to "BILLING",
-  3 to "LIVING",
-)
+```javascript
+const addressMapping = {
+  1: "SHIPPING",
+  2: "BILLING",
+  3: "LIVING"
+};
 
 // NOTE: the name of the function must correspond to
 //       the key associated to the file containing it
-fun mapToAddressType(value: Any, fieldName: String): String? {
-  return when (value) {
-    is String -> addressMapping[value.toInt()]
-    is Int, is Long -> addressMapping[value]
-    else -> {
-      // NOTE: a basic logger can be accesses via internal binding
-      logger.debug("not an address type code: $value - fieldName: $fieldName")
-      
-      null
-    }
+function mapToAddressType(value, fieldName) {
+  if (typeof value === 'string') {
+    return addressMapping[parseInt(value)];
+  } else if (typeof value === 'number') {
+    return addressMapping[value];
+  } else {
+    // NOTE: a basic logger can be accessed via internal binding
+    logger.debug(`not an address type code: ${value} - fieldName: ${fieldName}`);
+    return null;
   }
+}
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater 
+try {
+    // export function for Real-Time Updater
+    module.exports = mapToAddressType
+} catch(error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
 }
 ```
 
 </p>
 </details>
 
-<details><summary>Custom Cast Function (Javascript - castToTitleCase.js)</summary>
+<details><summary>Custom Cast Function (castToTitleCase.js)</summary>
 <p>
 
 ```javascript
@@ -552,7 +525,7 @@ instructs the service on how to transform each ingestion event into a projection
 | `prUpdate`  | `object` | &check;  |         |
 
 In this section are specified for each projection their input channel (_ingestion_), from which change events on the source
-system (System Of Records) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
+system (System of Record) will be read, and the output channel (_prUpdate_), where update notifications will be emitted
 to trigger Fast Data downstream components.
 
 ##### Ingestion
@@ -606,7 +579,7 @@ the order they occur.
 | `fieldsMapping` | `object` | &check;  |         |
 
 This projection configuration property describes which fields of in the incoming record should be extracted and stored. Indeed, not all
-the fields of those documents coming from the System Of Record may be necessary to construct the projection. From this,
+the fields of those documents coming from the System of Record may be necessary to construct the projection. From this,
 here it is applied a _"projection"_ (filter) operation on the names of the record fields.  
 For each of these fields of interest of this projection it is necessary to configure the following two settings:
 
@@ -983,7 +956,7 @@ projections:
 
 ## Migration Guide
 
-In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime_updater.md) into the one
+In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) into the one
 needed by a Projection Storer service. To support the migration operations, a small command-line interface is available,
 which translates most of the main settings
 
@@ -1034,8 +1007,8 @@ mentioned above were downloaded and execute the following command:
 ```shell
 rtu-to-ps project -cc <filepath-to-api-console-config> \
   -fdc <filepath-to-fast-data-config> \
-  -s <name-system-of-records>
-  -r <name-service-to-migrate-linked-to-system-of-records> \
+  -s <name-system-of-record>
+  -r <name-service-to-migrate-linked-to-system-of-record> \
 ```
 
 :::info
@@ -1106,12 +1079,12 @@ Below are reported all the steps necessary to set-up a Projection Storer that co
 
    When the Projection Storer plugin is created, it already contains the proper set of environment variables. 
 
-2. Once the service is created, navigate to the Fast Data Configurator (Projections section) and select the system of record that contains the Real-Time Updater to be replaced.
+2. Once the service is created, navigate to the Fast Data Configurator (Systems of Record section) and select the System of Record that contains the Real-Time Updater to be replaced.
 In the submenu, please select the _Services_ tab, as displayed below:
 
    ![Open Services section](../img/ps_migration/02_sor_service.png)
 
-3. After entering the services section, the first action to be carried out is to detach from the System Of Record the existing Real-Time Updater service.
+3. After entering the services section, the first action to be carried out is to detach from the System of Record the existing Real-Time Updater service.
 In this manner, the projections that were associated to such service are now free to be assigned to other services.
 
    ![Detach Real-Time Updater from SoR](../img/ps_migration/03_detach_rtu.png)
@@ -1145,7 +1118,7 @@ As explained earlier, Projection Storer service is in charge only of importing, 
 Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md),
 which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.md) can be found an explanation on how to configure it.
 
-In case the System Of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
+In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
 the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since
 Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/architecture.md#event-driven-architecture).
 

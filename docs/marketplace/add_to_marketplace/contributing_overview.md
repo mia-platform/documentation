@@ -445,19 +445,64 @@ Here are listed some useful advice to strengthen your items:
 - **Test**: each service must have well-tested code;
 - **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
 
-## Release Stage of a new item
+## Tips & Tricks
+
+ - **Where to host the zip with the code**: If you code your template on github you can access the zip file using the url https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz
+ - **.mia-platform folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration)
+
+## Category List
+
+The category list is constantly updated, check with your Mia-Platform referent for the updated list
+
+| ID                | Description                            |
+|-------------------|----------------------------------------|
+| `notification`    | Core Plugins - Notifications           |
+| `kotlin`          | Start From Code - Java/Kotlin          |
+| `spa`             | Start From Code - SPA - Angular/React  |
+| `rust`            | Start From Code - Rust/C/Swift         |
+| `nodejs`          | Start From Code - Node.js              |
+| `golang`          | Start From Code - Go                   |
+| `python`          | Start From Code - Python               |
+| `code`            | Start From Code                        |
+| `business`        | Add-ons - Data Visualization           |
+| `addonsecurity`   | Add-ons - Security                     |
+| `stream`          | Add-ons - Data Stream                  |
+| `monitoring`      | Add-ons - Monitoring                   |
+| `addgeo`          | Add-ons - Geolocation                  |
+| `payments`        | Add-ons - Payments                     |
+| `fast-data`       | Add-ons - Fast Data                    |
+| `frontendbuilder` | Add-ons - Frontend Builders            |
+| `healthcare`      | Add-ons - Healthcare                   |
+| `utility`         | Add-ons - Utilities                    |
+| `scoring`         | Add-ons - Scoring Manager              |
+| `data-catalog`    | Add-ons - Data Catalog                 |
+| `fast-data-connectors` | Add-ons - Fast Data Connectors    |
+
+
+## Release Stage of a new item and Coming Soon
 
 From the CMS of the Console, users can associate items with a **release stage** label that will help users identify the maturity of the item.
 
-If you just started developing your item you can select the **coming soon** option to inform users about the imminent publication of your item.
+There are 2 fields that define the release stage of an item: `comingSoon` and `releaseStage`.
 
-Alternatively, you can choose among the available labels of a Marketplace item lifecycle:
+The `comingSoon` field is boolean, setting it to true will show the "Coming Soon" label and will prevent users to use the item.
+
+The `releaseStage` field can have the following values
 
 - preview
 - beta
 - stable
+- deprecated
 
-For more information regarding release stages, take a look at the [items lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section.
+The fields are not required: if not specified, no label will be shown on the item.
+
+:::info
+
+Setting both the `releaseStage` and the `comingSoon` fields is not permitted and would lead to inconsistencies; please set either field or none according to the item lifecycle status.
+
+:::
+
+Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section for details about each specific release stage.
 
 ## Marketplace Items Examples
 
@@ -1177,4 +1222,81 @@ For more information regarding release stages, take a look at the [items lifecyc
 ```
 
 </p>
+</details>
+
+<details><summary>Example of a Start From Code Template</summary>
+
+```json
+{
+    "name": "Spring Boot Native",
+    "description": "Starter for Spring Boot Native Application",
+    "type": "template",
+    "releaseStage": "stable",
+    "tenantId": "my-tenant",
+    "itemId": "spring-boot-service",
+    "repositoryUrl": "https://sample-url.com",
+    "label": "Spring Boot Native",
+    "categoryId": "kotlin",
+    "suportedBy": "Supported",
+    "documentation": {
+        "type": "markdown",
+        "url": "https://url-of-documentation.org"
+    },
+    "image": {
+        "localPath": "./image.png"
+    },
+    "supportedByImage": {
+        "localPath": "./supportedByImage.jpeg"
+    },
+    "resources":{
+        "services":{
+            "spring-boot-service":{
+                "name": "spring-boot-service",
+                "description": "Simple Spring Boot Native service",
+                "archiveUrl": "https://the-archive-url.org",
+                "containerPorts": [
+                    {
+                        "name": "http",
+                        "from": 80,
+                        "to": 3000,
+                        "protocol": "TCP"
+                    }
+                ],
+                "type": "template",
+                "defaultEnvironmentVariables": [
+                    {
+                      "name": "LOG_LEVEL",
+                      "value": "{{LOG_LEVEL}}",
+                      "valueType": "plain"
+                    },
+                    {
+                      "name": "HTTP_PORT",
+                      "value": "3000",
+                      "valueType": "plain"
+                    }
+                ],
+                "defaultProbes": {
+                    "liveness": {
+                        "initialDelaySeconds": 40,
+                        "periodSeconds": 15,
+                        "timeoutSeconds": 1,
+                        "successThreshold": 1,
+                        "failureThreshold": 3
+                    }
+                },
+                "defaultResources": {
+                    "cpuLimits": {
+                      "max": "150m",
+                      "min": "50m"
+                    },
+                    "memoryLimits": {
+                      "max": "400Mi",
+                      "min": "400Mi"
+                    }
+                  }
+            }
+        }
+    }
+}
+```
 </details>

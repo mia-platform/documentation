@@ -24,7 +24,7 @@ Example: `test-tenant.PROD.system-name.test-projection.ingestion`
 
 **Description**: The ingestion message is the message that allows us to mantain the Projections synchronized with the Source Databases since it contains the data of each record that gets inserted, updated or deleted.
 
-When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format) of the Real-Time Updater, which uses it to update the Projections.
+When entering our systems, the message is read by the [Kafka Message Adapter](/fast_data/configuration/realtime-updater/configuration-files.md#kafka-adapters-kafka-messages-format) of the Real-Time Updater, which uses it to update the Projections.
 
 Based on how the ingestion system is set up, the format can be one of three possible types:
 
@@ -32,7 +32,7 @@ Based on how the ingestion system is set up, the format can be one of three poss
 * [Oracle Golden Gate](#oracle-golden-gate)
 * [Debezium](#debezium)
 
-You can also specify a [custom adapter](/fast_data/configuration/realtime_updater.md#custom) to handle any other message formats you need.
+You can also specify a [custom adapter](/fast_data/configuration/realtime-updater/configuration-files.md#custom) to handle any other message formats you need.
 This format is always configurable in the System of Record page on the console, on the _Real-Time Updater_ tab.
 
 Here's the AsyncApi specification of the message and some examples of the different formats.

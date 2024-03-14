@@ -158,8 +158,10 @@ The "Advanced" tab allows the user to visualize advanced information and perform
 
 ### Enhanced Workflow
 
-:::caution
-This is a **BETA** feature and, as such, is currently under active development. Please pay attention using it.
+:::info
+This is a **BETA** feature and, as such, is currently under active development.
+
+It can be safely used but there may be still be some missing features, check the [roadmap section](/development_suite/set-up-infrastructure/enhanced-project-workflow.md#roadmap-and-future-improvements) below to find out more.
 :::
 
 If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md), users will see a card that illustrates the required steps to perform the migration.

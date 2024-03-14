@@ -12,7 +12,7 @@ In this section we will briefly explain what is Fast Data, starting from your fr
 
 ![Fast Data overview](./img/fastdata-overview.png)
 
-The main goal of Fast Data is to aggregate business data from different sources (that we call **Systems of Records**) into a single MongoDB collection called **Single View**. This collection can be easily queried by your APIs. The aggregation is performed only when changes occur to the source data, making your read operations blazing fast as the data is already there.
+The main goal of Fast Data is to aggregate business data from different sources (that we call **Systems of Record**) into a single MongoDB collection called **Single View**. This collection can be easily queried by your APIs. The aggregation is performed only when changes occur to the source data, making your read operations blazing fast as the data is already there.
 
 The aggregation is done using another, valuable, intermediary collection called **Projection**. This collection is a **standardized** version of the original data, containing only the fields you are interested in, and *casting* them to a common format (e.g. it is common to have multiple date formats in your data sources, but with the correct configuration you can solve this issue and have one format shared among all Projections).
 
@@ -34,7 +34,7 @@ With Fast Data you can solve all of these problems, because the legacy systems w
 
 ### Centralization of data coming from different departments
 
-If you are a medium or large company, you might have different departments each with their own applications and System of Records. Employees working in your back-office might need to access data that is saved in another system, but the application they are using is not allowed to access it.
+If you are a medium or large company, you might have different departments each with their own applications and Systems of Record. Employees working in your back-office might need to access data that is saved in another system, but the application they are using is not allowed to access it.
 Thanks to Fast Data, you can centralize all the relevant data and make them available to the correct services, without exposing confidential information nor tinkering with complex access control systems.
 
 ### Decreasing customer's wait time for aggregated data

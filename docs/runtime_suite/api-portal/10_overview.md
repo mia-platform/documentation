@@ -15,7 +15,7 @@ The API Portal service will present you a graphical interface for your [Open Api
 This interface will semantically describe the APIs in a readable structure text format and will also allow you to interact and test each of them by clicking on the "Try it" button.
 
 :::note
-The available Open Api document is automatically generated and kept in sync by [Swagger Aggregator](../../runtime_suite/swagger-aggregator/overview).  
+The available Open Api document is automatically generated and kept in sync by [Swagger Aggregator](../swagger-aggregator/overview).  
 You can [apply custom configurations directly from the Console](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration)
 :::
 

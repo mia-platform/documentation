@@ -107,3 +107,27 @@ For example, to configure the `microservice-gateway` with 5 replicas, the config
   }
 }
 ```
+
+## Add custom environment variables
+
+If you need to add some new environment variables, all you need to do is edit the file in the advanced section: `core-services.json` that you can find in _Advanced_ &rarr; _api-console-config_.
+
+Inside the file, you need to add the **envs** field inside the service you want to modify. The **envs** field is a JSON and must contain the _<key: value>_ pairs with the environment variables you want to add.
+
+In the example below, we are adding three new environment variables to the `v1-adapter` microservice:
+
+```json
+{
+  "v1-adapter": {
+    "name": "v1-adapter",
+    "key": "v1-adapter",
+    "type": "core",
+    "description": "Mia-Platform v1-adapter",
+    "envs": {
+      "LOGIN_REDIRECT_URL_AFTER_LOGOUT": "/web-login",
+      "USERS_ENDPOINT_BASE_URL": "/users",
+      "USERS_LOGOUT_URL": "http://auth0-client/logout"
+    }
+  }
+}
+```

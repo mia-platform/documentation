@@ -18,7 +18,7 @@ For more details, please refer to this [documentation](../../microfrontend-compo
 - `MongoDB-reader`: This microservice is used to retrieve the necessary data from mongoDB to feed the different charts. For more details, please refer to this [documentation](../../runtime_suite/mongodb-reader/configuration).
 
 - `Active User Updater`:  This service is created specifically for obtaining KPI of active users.
-It retrieves, at regular intervals, the list of active users from the [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) and saves it to the appropriate CRUD.
+It retrieves, at regular intervals, the list of active users from the [auth0-client](../../runtime_suite/auth0-client/overview) and saves it to the appropriate CRUD.
 In case the record already exists, the list of users is updated by adding the missing ones.
 
 Moreover, a `Backoffice` application must already be present in the project, since it is required to view dashboards. For more details, please refer to this [documentation](../../microfrontend-composer/overview.md).

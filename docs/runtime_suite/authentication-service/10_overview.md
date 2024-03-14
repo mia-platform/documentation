@@ -14,16 +14,23 @@ The _Authentication Service_ is a core service and it is responsible to provide 
 
 This service supports these OAuth2 providers:
 
-- gitlab
-- github
-- okta
-- microsoft
-- bitbucket
-- keycloak
-- generic
+- Gitlab
+- Github
+- Okta
+- Microsoft AD and Microsoft AD B2C
+- Bitbucket
+- Keycloak
+- Generic providers, as long as they comply with Oauth 2.0 specifications.
 
-## Further details
+## How it works
 
-Follow the pages below for more about the _Authentication Service_:
+The *Authentication Service* service functions as a token broker, interfacing between users and external authentication providers.
+
+Upon successful authentication with a provider, we receive an authorization token which is securely stored and not shared with the frontend application. 
+Instead, a distinct, service-specific token is issued for user sessions. 
+
+This method ensures secure separation of authentication tokens, safeguarding original provider credentials while facilitating controlled access to our services.
+
+For further information on how to configure it, head to the configuration page:
 
 - [_Authentication service_ configuration](./20_configuration.mdx)
