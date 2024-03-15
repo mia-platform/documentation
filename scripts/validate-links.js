@@ -44,7 +44,8 @@ const toCheck = {
         '.gif',
         '.svg',
         '.sh',
-        '.xml'
+        '.xml',
+        '.yml'
     ],
     special: [
         'http',

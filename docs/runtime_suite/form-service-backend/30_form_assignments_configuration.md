@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-If you want to use the [Form assignments](../../runtime_suite/form-service-frontend/form_assignments) feature of the **Form Service Frontend**, version `1.2.0` (or above) of the **Form Service Backend** is required.
+If you want to use the [Form assignments](../form-service-frontend/form_assignments) feature of the **Form Service Frontend**, version `1.2.0` (or above) of the **Form Service Backend** is required.
 
 ## Form Service Backend Configuration
 
@@ -46,7 +46,7 @@ The properties of the `formAssignmentsCrud` object are the following:
 - **manualAssignmentsPropName**
   - *type*: string;
   - *required*: `true`;
-  - *description*: the name of the property that stores user IDs array. The form defined in the `formIdPropName` is assigned to the users contained in this array. These users will be able to submit data with the `/visualizer/fill-assignment/{assignmentId}` route of the [Form Service Frontend](../../runtime_suite/form-service-frontend/overview).
+  - *description*: the name of the property that stores user IDs array. The form defined in the `formIdPropName` is assigned to the users contained in this array. These users will be able to submit data with the `/visualizer/fill-assignment/{assignmentId}` route of the [Form Service Frontend](../form-service-frontend/overview).
 
 :::info
 
@@ -106,7 +106,7 @@ The Form Service doesn't provide any authentication or authorization system nor 
 
 :::
 
-To see how user groups are rendered in the Form Builder UI check the [Form Service Frontend assignments](../../runtime_suite/form-service-frontend/form_assignments) documentation.
+To see how user groups are rendered in the Form Builder UI check the [Form Service Frontend assignments](../form-service-frontend/form_assignments) documentation.
 
 ## CRUDs update
 
@@ -135,4 +135,4 @@ The **Form Visualizer** endpoints described in the [service overview](./10_overv
 - a user can access a private (`isPrivate` is true) form template only when assigned or has a group contained in the **form_schemas** *enabledUserGroups* array;
 - a user can update form submission only if the form template is editable (`isEditable` is true).
 
-Additional information can be found in the [Form assignments](../../runtime_suite/form-service-frontend/form_assignments) documentation of the **Form Service Frontend**.
+Additional information can be found in the [Form assignments](../form-service-frontend/form_assignments) documentation of the **Form Service Frontend**.

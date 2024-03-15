@@ -1,0 +1,52 @@
+trigger: "none"
+resources:
+  repositories:
+  - repository: pipelines
+    type: git
+    name: pipelines-templates
+    ref: 'master'
+jobs:
+%#project.environments%
+  - deployment: deploy_job_%envId%
+    environment: %envId%
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      - group: mia
+      - template: "common/jobs/deploy/variables.yaml@pipelines"
+    condition: eq(variables['STAGE_TO_DEPLOY'], '%envId%')
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - checkout: self
+            - bash: |
+                KUBE_URL=$%cluster.kubeContextVariables.KUBE_URL%
+                KUBE_TOKEN=$KUBE_TOKEN
+                KUBE_CA_PEM=$%cluster.kubeContextVariables.KUBE_CA_PEM%
+                ENVIRONMENT_PREFIX='%envId%_'
+
+                echo "##vso[task.setvariable variable=KUBE_URL;]$KUBE_URL"
+                echo "##vso[task.setvariable variable=KUBE_TOKEN;]$KUBE_TOKEN"
+                echo "##vso[task.setvariable variable=KUBE_CA_PEM;]$KUBE_CA_PEM"
+                echo "##vso[task.setvariable variable=ENVIRONMENT_PREFIX;]$ENVIRONMENT_PREFIX"
+
+                suffix="\-%envId%"
+                group_id=$(az pipelines variable-group list -p $(System.TeamProject) --group-name 'mia' --query '[0].id')
+                variables=$(az pipelines variable-group variable list --group-id $group_id -o table | awk '{print $1}' | grep -E $suffix)
+
+                for var in $variables; do
+                  variable_name=$(echo $var | sed "s/$suffix//" | tr '-' '_')
+                  echo "setting variable $variable_name"
+                  echo "##vso[task.setvariable variable=$variable_name;]${!variable_name}"
+                done
+              env:
+                AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+                KUBE_TOKEN: $(%cluster.kubeContextVariables.KUBE_TOKEN%)
+                ## Add here your custom %envId% variables
+
+              name: PrepareEnvVariables
+
+            - template: "common/jobs/deploy/deploy-job.yml@pipelines"
+
+%/project.environments%

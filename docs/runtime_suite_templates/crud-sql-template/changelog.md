@@ -15,10 +15,5 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] 2023-11-29
-
-- Add endpoint to launch a test
-- Add pipeline ID to group tests
-- Add endpoint to retrieve HTML reports
-- Accept test assets when launching test
-- Replace pipeline ID with tag name
+## [0.1.0] - 2024-02-27
+This is the initial release of CRUD SQL Template. A brief overview regarding the Template can be found [here](overview)
