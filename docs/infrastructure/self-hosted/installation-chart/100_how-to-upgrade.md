@@ -149,7 +149,7 @@ However, please make sure that a tenant with the same name does not already exis
 
 #### Fast Data Projection updates topics
 
-The new version of the console has introduced an automatism to create pr-update topics whenever enabled in a Real-Time Updater or Projection Storer.
+The new version of the console has introduced an automatism to use all the pr-update topic names from projections enabled in a Real-Time Updater or Projection Storer.
 Because of this, if you used to send pr-updates, **but not for all the Projections in the System of Record, you need to clear off the newly added pr-update topics you don't use** that you will find in the Projection's detail page
 
 ![Kafka Topics section inside Projection details page](../img/kafka_topics_projection_page.png)
