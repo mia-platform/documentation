@@ -41,7 +41,7 @@ Roles can be assigned at three levels regarding the following Console resources:
 - Project
 - Runtime Environments
 
-Roles can be assigned at Company level from the IAM portal of the Company Overview section.
+Roles can be assigned at Company level from the IAM portal at the Company level.
 
 The following table describes the capabilities and how they are mapped on the default roles.
 

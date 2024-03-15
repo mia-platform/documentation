@@ -14,7 +14,7 @@ For PaaS type customer every feedback will be collected directly from the Produc
 
 ![feedback button](./img/feedback-button.png)
 
-In any section or area of the Console by clicking on the respective feedback button on the main topbar you can access to the feedback modal, through which the user can choose the type of feedback to give:
+In any section or area of the Console by clicking on your avatar and then on the "Leave a Feedback" button, you can access the feedback modal, through which the user can choose the type of feedback to give:
 * **Feedback**: feedback related to a feature of the Console. For example:
   - I find the user experience of a specific feature or section of the console confusing;
   - A specific page scroll in a strange way;

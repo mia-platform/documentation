@@ -12,14 +12,14 @@ You need to be part of at least one Company to view the list.
 
 ### Viewing your Companies
 
-When hovering over the user profile picture, a dropdown menu appears: click on the `Your Companies` item to view the list of your Companies. 
+When hovering over the user profile picture, a dropdown menu appears: click on the `Companies` item to view the list of your Companies. 
 
 ![user settings dropdown](./img/user-settings-dropdown.png)
 
-In `Your Companies` section, a user can find information about which Companies it has access to.
+In `Companies` section, a user can find information about which Companies it has access to.
 For each Company, a user can identify its assigned Company role and which groups he belongs to.
 
-![Your Companies section](./img/your-companies.png)
+![Companies section](./img/your-companies.png)
 
 ### Leaving a Company
 

@@ -88,13 +88,9 @@ Mia-Platform Console is divided in many different sections that help you manage 
 
 ### Sections Navigation
 
-All the sections can be reached using Mia-Platform Console Homepage or by using the pop-up menu in the left side of the topbar.
+All sections can be reached using the shortcuts accessible at the top of the sidebar, at the Project level.
 
-![Launcher Menu](./img/launcher-menu.gif)
-
-If you wish, you can add up to 6 sections to your Favorites sections, you just need to click con the associated star. That will make them always accessible from the top navbar. You can remove a section from the favorites ones by clicking again on its star.
-
-![Favorites](./img/favorites.gif)
+![Segmented](./img/segmented.png)
 
 Another option to easily switch among Console sections, or to select a specific project, is to use the `⌘ + K` (alternatively, `ctrl + K`) interface. This interface can also be opened using the menu on the right side of the topbar.
 

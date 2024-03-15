@@ -6,14 +6,13 @@ slug: "/development_suite/governance/design-overview"
 ---
 ## What is the Design Overview
 
-The Design Overview is a rich set of visualization tools accessible from the Company Overview section and whose utility is provided under the URL `$HOSTNAME_CONSOLE/tenants/:tenantId/governance/design-overview`.  
+The Design Overview is a rich set of visualization tools accessible at the Company level, and whose utility is provided under the URL `$HOSTNAME_CONSOLE/tenants/:tenantId/governance/design-overview`.
 :::caution
 In the URL, the terms tenants and tenantId refer to the actual companies and companyId new terms. The tenant term is deprecated and will be removed soon
 :::
 
 In the Design Overview you can aggregate Resources from all Projects across the Company into a single table, providing users with filtering and sorting capabilities. Users can easily search, sort, and filter Endpoints, Microservices, and Data Models, and save custom views for easy access and sharing.
 
-![Company Overview Button](img/go-to-company-overview.png)
 ### Homepage
 
 The Homepage tab contains the list of resource views. They can be of two types:

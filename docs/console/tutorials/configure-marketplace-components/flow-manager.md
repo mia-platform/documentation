@@ -41,7 +41,7 @@ To create a Flow Manager microservice follow these steps:
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '600px'}}> 
 
-  ![Flow Manager Marketplace](img/create-microservice-4.png)
+  ![Flow Manager Marketplace](img/create-microservice-1.png)
     
     </div>
   </div>
@@ -54,7 +54,7 @@ To create a Flow Manager microservice follow these steps:
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '600px'}}> 
 
-  ![Microservice Configuration](img/create-microservice-5.png)
+  ![Microservice Configuration](img/create-microservice-2.png)
     
     </div>
   </div>
@@ -74,7 +74,7 @@ We need to update some Environment Variables of the Flow Manager microservice.
     <div style={{display: 'flex', justifyContent: 'center'}}>
       <div style={{display: 'flex', width: '600px'}}> 
 
-      ![Edit environment variables](img/edit-env-variables-3.png)
+      ![Edit environment variables](img/edit-env-variables.png)
         
       </div>
     </div>
@@ -757,7 +757,7 @@ To do this follow these steps:
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}> 
 
-![Create CRUD index](img/create-crud-5.png)
+![Create CRUD index](img/create-crud-1.png)
   
   </div>
 </div>
@@ -769,7 +769,7 @@ To do this follow these steps:
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '600px'}}> 
 
-![Create CRUD index](img/create-crud-8.png)
+![Create CRUD index](img/create-crud-2.png)
   
   </div>
 </div>
@@ -925,7 +925,7 @@ To create and endpoint please follow these steps:
     - **Type**: `Microservice`
     - **Microservice**: select the Flow Manager microservice you created
   
-  ![Expose Flow manager](img/expose-fm-4.png)
+  ![Expose Flow manager](img/expose-fm.png)
 
 1. Click _Create_.
 
@@ -962,7 +962,7 @@ To create the saga, we will use the [API Portal](/console/project-configuration/
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '600px'}}> 
 
-  ![Configure request](img/interact-11.png)
+  ![Configure request](img/interact-1.png)
     
     </div>
   </div>
@@ -973,7 +973,7 @@ To create the saga, we will use the [API Portal](/console/project-configuration/
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '600px'}}> 
 
-  ![Request](img/interact-13.png)
+  ![Request](img/interact-2.png)
     
     </div>
   </div>
