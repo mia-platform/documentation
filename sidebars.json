@@ -226,8 +226,19 @@
               },
               "items": [
                 {
-                  "id": "console/company-configuration/providers/extensions/orchestrator-generator",
-                  "type": "doc"
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "Orchestrator Generator",
+                  "link": {
+                    "id": "console/company-configuration/providers/extensions/orchestrator-generator/overview",
+                    "type": "doc"
+                  },
+                  "items": [
+                    {
+                      "id": "console/company-configuration/providers/extensions/orchestrator-generator/use-cases",
+                      "type": "doc"
+                    }
+                  ]
                 }
               ]
             },
@@ -441,6 +452,21 @@
           "type": "doc"
         },
         {
+          "collapsed": true,
+          "items": [
+            { 
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
+              "type": "doc"
+            },
+            { 
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
+              "type": "doc"
+            }
+          ],
+          "label": "Flow Manager Configurator",
+          "type": "category"
+        },
+        { 
           "id": "development_suite/api-console/api-design/flow-manager-visualizer",
           "type": "doc"
         },

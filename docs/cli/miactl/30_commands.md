@@ -79,14 +79,14 @@ miactl context list
 The `context auth` subcommand allows you to setup the Console Service Account you want to use to authenticate to the Console.
 
 ```sh
-miactl context auth [flags]
+miactl context auth NAME [flags]
 ```
 
 Available flags:
-`--client-id string`: the client ID of the service account
-`--client-secret string`: the client secret of the service account
-`-h, --help`: help for auth
-`--jwt-json string`: path of the json containing the json config of a jwt service account
+- `--client-id string`: the client ID of the service account
+- `--client-secret string`: the client secret of the service account
+- `-h, --help`: help for auth
+- `--jwt-json string`: path of the json containing the json config of a jwt service account
 
 ## company
 

@@ -272,6 +272,21 @@ The response is the same as the `/oauth/token`:
 
 In case the `isWebsiteApp` application flag is `true`, the `/refreshtoken` also sets the *sid* and *refresh_token* cookies with the new values.
 
+
+#### Delete session cookies on refresh token failure
+
+This feature is disabled by default, you can enable it by setting the env variable `INVALID_REFRESH_TOKEN_WIPES_COOKIES` to `true`.
+
+When enabled, if the refresh token found in the `refresh_token` cookie is empty or not valid, the endpoint **wipes both the session cookies**, effectively invalidating the user session.
+ 
+Your web application should logout the user in this situation.
+
+:::caution
+
+For technical limitations, setting custom `Path` or `Domain` attributes on the cookies via the `sidCookieCustomAttributes` and/or `refreshTokenCookieCustomAttributes` settings will prevent the cookies to be wiped.
+
+:::
+
 #### Skip provider refresh token
 
 If in your provider you set the `skipProviderRefreshToken` option, the authentication service will validate the provider refresh token by calling the provider userinfo before issuing the refresh token request.

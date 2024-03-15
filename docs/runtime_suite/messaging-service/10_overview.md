@@ -10,6 +10,14 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+
+The Messaging Service is under maintenance (bug fixes and security updates only) and will reach end-of-life in December 2025.
+
+The plugin is deprecated in favor of the Notification Manager, which inherits all the Messaging Service features and APIs.
+
+:::
+
 Messaging Service allows sending messages to your users through various channels, namely **e-mail**, **SMS**, **push notification** and **voice**.
 
 To send those messages, this service leverages three other Mia-Platform plugins:

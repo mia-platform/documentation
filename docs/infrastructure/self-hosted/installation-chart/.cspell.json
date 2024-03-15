@@ -15,7 +15,11 @@
       "rönd",
       "upgrader",
       "Traefik",
-      "CSFLE"
+      "CSFLE",
+      "creds",
+      "urandom",
+      "CTYPE",
+      "uuidgen"
     ],
     "flagWords": [],
     "ignorePaths": [],

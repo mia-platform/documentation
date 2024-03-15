@@ -41,6 +41,19 @@ spec:
 
 This way, when the production environment will be deployed, there will be two static replicas of the `hello-world` service. Notice that `./overlays/production/kustomization.yaml` is automatically generated and can be left empty.
 
+:::tip
+Sometimes you could need to patch keys containing a `/` character.
+The `/` character is often used (e.g. for inline operations) by Kustomize as separator, consequently you need to replace it with the `~1` value.
+
+For example, if you want to add the `app.kubernetes.io/component` label to one or more manifests, you should escape the slash as following:
+```yaml
+- patch: |-
+      - op: replace
+        path: /metadata/labels/app.kubernetes.io~1component
+        value: monitoring
+```
+:::
+
 ### Patch all deployments
 
 In addition, Kustomize allows you to specify a list of targets in the  `kustomization.yaml` files included in overlays. This feature allows applying patches to multiple resources at once.

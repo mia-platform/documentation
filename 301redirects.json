@@ -1645,5 +1645,57 @@
   "/docs/runtime_suite/auth0-client/overview_and_usage": {
     "destination": "/docs/runtime_suite/auth0-client/overview",
     "addedOn": "2024-01-22"
+  },
+  "/docs/console/company-configuration/providers/extensions/orchestrator-generator": {
+    "destination": "/docs/console/company-configuration/providers/extensions/orchestrator-generator/overview",
+    "addedOn": "2024-03-01"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/overview": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/getting-started",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/general-settings": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/general-settings",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/service-specific-configurations": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/service-specific-configurations",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/authentication-provider": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/authentication-provider",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/mongodb-configurations-and-encryption": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/mongodb-configurations-and-encryption",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/marketplace": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/marketplace",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/file-storage": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/file-storage",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/email-setup": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/email-setup",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/license-management": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/license-management",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/first-user-and-company-creation": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/getting-started#step-3---log-in-and-create-your-first-company",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/installation-chart-example": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/installation-chart-example",
+    "addedOn": "2024-03-12"
+  },
+  "/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade",
+    "addedOn": "2024-03-12"
   }
 }

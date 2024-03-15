@@ -150,7 +150,7 @@ You need to create a configuration with the same path as the one you set in `KAF
 To prevent possible conflicts with the automatically created configuration, please set the `KAFKA_PROJECTION_UPDATES_FOLDER` to a value different from the default `/home/node/app/kafkaProjectionUpdates` path.
 :::
 
-To know more on how to configure the `kafkaProjectionUpdates.json` please refer to its [Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.md) page.
+To know more on how to configure the `kafkaProjectionUpdates.json` please refer to its [Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.mdx) page.
 
 :::info
 Notice that you can either set the topics for all the projections, or for a subset of them.
