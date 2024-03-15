@@ -188,11 +188,6 @@ Now we need to define the fields that we want to store in the Projection. You ca
 It is mandatory to define at least one custom field. Also, you must define at least one field as **Primary Key** (select the related checkbox).
 :::
 
-:::info
-You can leave `defaultIdentity` as a value for _Cast Function_ when entering the fields for this tutorial.
-In this way, every value inside the payload received from the Source Systems will be saved in the database without further customizations.
-:::
-
 Here's the specification for both `registry` and `orders` projections.
 
 <details>
@@ -500,11 +495,11 @@ Also, based on the connection channel where the microservice reads the projectio
 
 <TabItem value="kafka">
 
-* `PROJECTION_CHANGES_SOURCE`: by using the value `kafka`, it instructs the service to read projection changes from a Kafka connection;
+* `PROJECTIONS_CHANGES_SOURCE`: by using the value `KAFKA`, it instructs the service to read projection changes from a Kafka connection;
 * kafka connection variables such as:
   * `KAFKA_BROKERS`: a comma-separated list of your Kafka brokers;
   * `KAFKA_SASL_USERNAME`, `KAFKA_SASL_PASSWORD` and `KAFKA_SASL_MECHANISM` if authentication needs to be performed
-  * `KAFKA_PROJECTION_CHANGES_TOPIC`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`;
+  * `KAFKA_PROJECTION_CHANGES_TOPICS`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`;
   * `KAFKA_GROUP_ID`: name of the consumer group that will be used to subscribe to and read messages from the topic from the `KAFKA_PROJECTION_CHANGES_TOPIC` variable (we can choose `demo.development.delivery.order-history.single-view-creator`).
 
 </TabItem>
