@@ -1691,6 +1691,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v12.3.0", "type": "doc" },
         { "id": "release-notes/v12.2.1", "type": "doc" },
         { "id": "release-notes/v12.2.0", "type": "doc" },
         { "id": "release-notes/v12.1.2", "type": "doc" },

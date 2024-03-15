@@ -220,6 +220,331 @@ This event will be triggered when [a Project is successfully tagged from Console
 </TabItem>
 </Tabs>
 
+
+### User added
+
+*Available from v12.3.0*
+
+This event will be triggered when a user gains access to a company, project, or environment, either directly or via a group. 
+
+:::note
+This event does not guarantee that the user in question already had access to the resource via another group, or directly.
+:::
+
+<Tabs>
+<TabItem value="company-user-added-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                                                                   |
+|-------------|----------|------------------------------------------------------------------------------------------------------------------------------ |
+| `userId`    | `string` | The user identifier                                                                                                           |
+| `email`     | `string` | The user email                                                                                                                |
+| `roleId`    | `string` | The identifier of the role assigned to the user                                                                               |
+| `groupId`   | `string` | The identifier of the group through which the user was added to the Company (if any)                                          |
+| `resource`  | `object` | The field identifies the resource affected by the operation. By inheritance, all lower level resources could also be affected |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "user_added",
+  "eventTimestamp": 123456,
+  "payload": {
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "roleId": "guest",
+    "groupId": "group1",
+    "resource": {
+      "companyId": "my-company-id",
+      "projectId": "my-project-oid",
+      "environmentId": "my-env-id",
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "company_user_added",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user was added to the Company (if any)"
+        },
+        "resource": {
+          "type": "object",
+          "description": "The resource that was affected by the addition. Can be a Company (only companyId is defined), a Project (companyId and projectId are defined) or an Environment (companyId, projectId and environmentId are defined).",
+          "required": ["companyId"],
+          "properties": {
+            "companyId": {
+              "type": "string",
+              "description": "The identifier of the Company to which the user was added"
+            },
+            "projectId": {
+              "type": "string",
+              "description": "The identifier of the Project to which the user was added"
+            },
+            "environmentId": {
+              "type": "string",
+              "description": "The identifier of the Environment to which the user was added"
+            },
+          }
+        },
+      },
+      "required": ["companyId", "userId", "email", "roleId"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload", "resource"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+### User edited
+
+*Available from v12.3.0*
+
+This event will be triggered when a user changes access to a company, project, or environment, either directly or via a group. 
+
+:::note
+This event does not guarantee that the user in question already has an higher-privileged access to the resource via another group, or directly.
+:::
+
+<Tabs>
+<TabItem value="company-user-edited-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                                                                   |
+|-------------|----------|------------------------------------------------------------------------------------------------------------------------------ |
+| `userId`    | `string` | The user identifier                                                                                                           |
+| `email`     | `string` | The user email                                                                                                                |
+| `roleId`    | `string` | The identifier of the role assigned to the user                                                                               |
+| `groupId`   | `string` | The identifier of the group through which the user was added to the Company (if any)                                          |
+| `resource`  | `object` | The field identifies the resource affected by the operation. By inheritance, all lower level resources could also be affected |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "company_user_edited",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "roleId": "guest",
+    "groupId": "group1",
+    "resource": {
+      "companyId": "my-company-id",
+      "projectId": "my-project-oid",
+      "environmentId": "my-env-id",
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "company_user_edited",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user role was modified within the Company (if any)"
+        },
+        "resource": {
+          "type": "object",
+          "description": "The resource that was affected by the addition. Can be a Company (only companyId is defined), a Project (companyId and projectId are defined) or an Environment (companyId, projectId and environmentId are defined).",
+          "required": ["companyId"],
+          "properties": {
+            "companyId": {
+              "type": "string",
+              "description": "The identifier of the Company to which the user was added"
+            },
+            "projectId": {
+              "type": "string",
+              "description": "The identifier of the Project to which the user was added"
+            },
+            "environmentId": {
+              "type": "string",
+              "description": "The identifier of the Environment to which the user was added"
+            },
+          }
+        },
+      },
+      "required": ["companyId", "userId", "email", "roleId", "resource"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### User removed
+
+*Available from v12.3.0*
+
+This event will be triggered when a user loses access to a company, project, or environment, either directly or via a group.
+
+:::note
+This event does not guarantee that the user in question already had access to the resource via another group, or directly.
+:::
+
+<Tabs>
+<TabItem value="company-user-removed-table" label="Event Payload" default>
+
+| Property    | Value    | Description                                                                                                                   |
+|-------------|----------|------------------------------------------------------------------------------------------------------------------------------ |
+| `userId`    | `string` | The user identifier                                                                                                           |
+| `email`     | `string` | The user email                                                                                                                |
+| `roleId`    | `string` | The identifier of the role assigned to the user                                                                               |
+| `groupId`   | `string` | The identifier of the group through which the user was added to the Company (if any)                                          |
+| `resource`  | `object` | The field identifies the resource affected by the operation. By inheritance, all lower level resources could also be affected |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "company_user_removed",
+  "eventTimestamp": 123456,
+  "payload": {
+    "companyId": "my-company-id",
+    "userId": "my-user-id",
+    "email": "my-user-email@mia-platform.eu",
+    "groupId": "group1",
+    "resource": {
+      "companyId": "my-company-id",
+      "projectId": "my-project-oid",
+      "environmentId": "my-env-id",
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "company_user_removed",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The user identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "The user email"
+        },
+        "roleId": {
+          "type": "string",
+          "description": "The identifier of the role assigned to the user"
+        },
+        "groupId": {
+          "type": "string",
+          "description": "The identifier of the group through which the user was removed from the Company (if any)"
+        },
+        "resource": {
+          "type": "object",
+          "description": "The resource that was affected by the addition. Can be a Company (only companyId is defined), a Project (companyId and projectId are defined) or an Environment (companyId, projectId and environmentId are defined).",
+          "required": ["companyId"],
+          "properties": {
+            "companyId": {
+              "type": "string",
+              "description": "The identifier of the Company to which the user was added"
+            },
+            "projectId": {
+              "type": "string",
+              "description": "The identifier of the Project to which the user was added"
+            },
+            "environmentId": {
+              "type": "string",
+              "description": "The identifier of the Environment to which the user was added"
+            },
+          }
+        },
+      },
+      "required": ["companyId", "userId", "email", "resource"],
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
 ## Entities
 
 ### Project
