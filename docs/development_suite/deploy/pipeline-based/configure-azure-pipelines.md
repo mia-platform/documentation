@@ -130,6 +130,18 @@ The secrets used by the Microservices in the Console's Project has to be manuall
 
 In the `template` field is specified a template file that contains the common logic performed by `mlp` to apply the Kubernetes manifest into the Runtime cluster.
 
+### mlp Setup
+In order to use `mlp` to deploy workloads to Kubernetes via Azure Pipelines, it is necessary to setup a section of the pipeline to download the library and launch its commands to interpolate variables, apply Kustomize patches and deploy the manifests.
+
+We suggest to setup a [Template](/development_suite/deploy/pipeline-based/configure-azure-pipelines.md#template-setup) that can be reused in every Project pipeline to avoid duplicating sections of the pipeline.
+
+The steps necessary to run mlp with Azure Pipelines are the following:
+- setup a `step` in your pipeline and run a `script` in it;
+- download the library via the `wget` command, change its access permission and add the current downloaded folder in the $PATH variable of the Runner;
+- run `mlp` commands to generate and deploy the manifest files. Refer to the [mlp Overview](/runtime_suite_tools/mlp/10_overview.md) page for more details.
+
+An example of the above process can be found [here](/docs_files_to_download/azure-pipelines-mlp-template.yml).
+
 ### Variable Group
 Infrastructure Secrets management (variables containing the tokens for Kubernetes connection) in Azure DevOps is handled using Variable Groups. This feature is available at DevOps Project Level and is used to stored values that we don't want to show to our users. Moreover, the variables stored in a Variable Groups are available in every pipelines created in the DevOps Project. 
 
