@@ -1692,6 +1692,7 @@
         { "id": "release-notes/v12.1.2", "type": "doc" },
         { "id": "release-notes/v12.1.1", "type": "doc" },
         { "id": "release-notes/v12.1.0", "type": "doc" },
+        { "id": "release-notes/v12.0.3", "type": "doc" },
         { "id": "release-notes/v12.0.2", "type": "doc" },
         { "id": "release-notes/v12.0.1", "type": "doc" },
         { "id": "release-notes/v12.0.0", "type": "doc" }
