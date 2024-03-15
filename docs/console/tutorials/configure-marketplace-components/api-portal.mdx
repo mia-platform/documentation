@@ -10,13 +10,11 @@ In this tutorial, we will learn how to configure and use the [_API Portal_](/run
 
 ## What we will build
 
-We will add the _API Portal_ and _Swagger Aggregator_ [_Marketplace_ plugins](/plugins/mia-platform-plugins.md) in a project. As a result, we will use the Portal to view and test project endpoints.
+We will add the _API Portal_ and _Swagger Aggregator_ [_Marketplace_ plugins](/plugins/mia-platform-plugins.md) in a project using the dedicated _Application_. As a result, we will use the Portal to view and test project endpoints.
 
 In particular, we will:
 
-- Set up the _API Portal_ plugin;
-- Set up the _Swagger Aggregator_ plugin;
-- Configure the services and endpoints to be displayed in the _API Portal_;
+- Set up the _API Documentation Aggregator_ application;
 - Open the interface and test the endpoints;
 
 ## Prerequisites
@@ -45,62 +43,47 @@ Moreover, you need at least:
 - `developer` role on the project you want to use to reproduce the steps;
 - `maintainer` role on the environment of the project you want to deploy on.
 
-## Install plugins
+## API Documentation Aggregator Application
 
 In order to start the tutorial, you must be in the _design_ section of the project in the [Microservices section](/development_suite/api-console/api-design/services.md) from the left side menu.
 
-Since a project is meant to have several microservices, we want to have the ability to access their documentation from a single place. To do this, we will include:
-- an [_API Portal_](/runtime_suite/api-portal/10_overview.md), that will present a graphical interface to show the OpenAPI documentation of our endpoints;
-- a [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md), that will be contacted by the _API Portal_ to have the entire OpenAPI documentation to be shown. In order to create it, the _Swagger Aggregator_ will retreive the OpenAPI documentation of each service and merge it into a single one.
+Since a project is meant to have several microservices, we want to have the ability to access their documentation from a single place. 
+To do so we need to include in our project an [_API Portal_](/runtime_suite/api-portal/10_overview.md) and a [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service. 
+We can install each plug-in manually from _Mia-Platform Markeplace_, but in this example we use the _API Documentation Aggregator_ application.
 
-### API Portal
+This application include the following components:
+- [_API Portal_](/runtime_suite/api-portal/10_overview.md), that will present a graphical interface to show the OpenAPI documentation of our endpoints;
+- [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md), that will be contacted by the _API Portal_ to have the entire OpenAPI documentation to be shown. In order to create it, the _Swagger Aggregator_ will retreive the OpenAPI documentation of each service and merge it into a single one.
+- you can choose to create a new _API Gateway_ service or choose an already installed service. 
 
-The first plugin we are going to create is the _API portal_. The steps to create it are:
+and the following endpoints:
+- _/documentations/api-portal_ to the [_API Portal_](/runtime_suite/api-portal/10_overview.md) service 
+- _/documentations/api-portal/api_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
+- _/documentations/openapi_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
+- _/documentations/swagger_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
 
-1. Click on the _Create a Microservice_ button;
-1. In the dropdown menu, select _From Marketplace_ option;
-1. On the right side, you will see a catalogue of plugin, templates and examples;
-1. Type `API portal` in the search bar;
-1. Select the **API portal** card from the list of result;
-1. Click on the _Create_ button applying the default fields.
-1. Save the changes by committing. If you do not know how to do it, take a quick look at [Mia-Platform handbook](/console/handbooks/project-usage.md#save-changes) first.
+:::caution
+In the Mia-Platform Marketplace are available two different applications to install the _API Portal_ and _Swagger Aggregator_.
+The difference between them is the _API Gateway_ used: 
+- the _API Documentation Aggregator_ uses the _Envoy API Gateway_
+- the _API Documentation Aggregator NGINX_ uses the _NGINX API Gateway_
 
-![Create API portal](img/create_api_portal.png)
-
-### Swagger Aggregator
-
-In order to create this plugin:
-
-1. Click on the _Create a Microservice_ button;
-1. In the dropdown menu, select _From Marketplace_ option;
-1. On the right side, you will see a catalogue of plugin, templates and examples;
-1. Type **Swagger Aggregator** in the search bar;
-1. Select the card from the list of result;
-1. Click on the _Create_ button applying the default fields.
-1. Save the changes by committing.
-
-![Create API portal](img/create_swagger_aggregator.png)
-
-## Configure plugins endpoints
-
-Now we need to create the necessary endpoints that are required to make the whole system work. This consists of going to the _endpoints_ section and creating:
-
-1. `/documentations/api-portal` having the following configuration:
-   - **Base path**: `/documentations/api-portal`;
-   - **Type**: "_Microservice_";
-   - **Microservice**: "api-portal";
-   - **Rewrite Base Path**: `/`;
-1. `/documentations/api-portal/api` having the folowing configuration:
-   - **Base path**: `/documentations/api-portal/api`;
-   - **Type**: "_Microservice_";
-   - **Microservice**: "swagger-aggregator";
-   - **Rewrite Base Path**: `/`;
-
-Remember to save your changes!
-
-:::tip
-If you don't know how to create an endpoint look at the [first tutorial](/console/tutorials/configure-marketplace-components/microservice-hello-world.mdx#expose-the-hello-world-microservice-api)!
+Pay attention and choose the one best suites your needs.
 :::
+
+### Install the application
+
+To install our _API Documentation Aggregator_ follow the following steps:
+
+1. Click the _Applications_ menu item in the _Workloads_ section of the console left menu;
+1. Click the button _Create new Application_;
+1. Search the application _API Documentation Aggregator_ in the marketplace's right panel search bar;
+1. Choose between the _NGINX_ or the _Envoy_ version;
+1. Follow the wizard and choose the name for service you want to create or simply choose one of the already installed service for the specific category.
+
+
+![create-application](img/create-api-portal-application.png)
+
 
 ## Set which documentations must be aggregated
 
