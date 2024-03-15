@@ -15,6 +15,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.5.2] 2024-03-14
+
+### Fixed
+
+- Improved performance by enhancing parsing and parallelization
+- Fastify: removed deprecated use of `reply.context`, replaced with `request.routeOptions.config`
+
+### Updated
+
+- Node to v20.11
+- Tap to v18.7.1
+- Yaml to v2.4.1
+- @fastify/static to v7.0.1
+
 ## [3.5.1] 2023-09-11
 
 ### Fixed
