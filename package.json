@@ -26,11 +26,11 @@
     "@docusaurus/preset-classic": "2.4.3",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.1.0",
-    "cspell": "^8.5.0",
+    "cspell": "^8.6.0",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
-    "mermaid": "^10.8.0",
+    "mermaid": "^10.9.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-youtube": "^10.1.0",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.10",
-    "@swc/core": "^1.4.2",
+    "@swc/core": "^1.4.6",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "7.34.0",
     "front-matter": "^4.0.2",
@@ -59,5 +59,5 @@
     "prop-types": "^15.8.1",
     "semver-utils": "^1.1.4"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@4.1.0"
 }

@@ -452,6 +452,21 @@
           "type": "doc"
         },
         {
+          "collapsed": true,
+          "items": [
+            { 
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
+              "type": "doc"
+            },
+            { 
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
+              "type": "doc"
+            }
+          ],
+          "label": "Flow Manager Configurator",
+          "type": "category"
+        },
+        { 
           "id": "development_suite/api-console/api-design/flow-manager-visualizer",
           "type": "doc"
         },
@@ -590,6 +605,10 @@
             },
             {
               "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-azure-pipelines",
               "type": "doc"
             }
           ]
@@ -1672,11 +1691,13 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v12.3.0", "type": "doc" },
         { "id": "release-notes/v12.2.1", "type": "doc" },
         { "id": "release-notes/v12.2.0", "type": "doc" },
         { "id": "release-notes/v12.1.2", "type": "doc" },
         { "id": "release-notes/v12.1.1", "type": "doc" },
         { "id": "release-notes/v12.1.0", "type": "doc" },
+        { "id": "release-notes/v12.0.3", "type": "doc" },
         { "id": "release-notes/v12.0.2", "type": "doc" },
         { "id": "release-notes/v12.0.1", "type": "doc" },
         { "id": "release-notes/v12.0.0", "type": "doc" }

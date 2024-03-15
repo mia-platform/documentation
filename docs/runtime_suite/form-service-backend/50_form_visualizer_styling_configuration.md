@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The [Form visualizer styling](../../runtime_suite/form-service-frontend/form_assignments) feature of the **Form Service Frontend** let you add custom *stylesheets* and *fonts* to form templates. It requires version `1.3.0` (or above) of the **Form Service Backend** because `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes have been updated to return the graphical assets associated to a form template alongside to its configuration.
+The [Form visualizer styling](../form-service-frontend/form_visualizer_styling) feature of the **Form Service Frontend** let you add custom *stylesheets* and *fonts* to form templates. It requires version `1.3.0` (or above) of the **Form Service Backend** because `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes have been updated to return the graphical assets associated to a form template alongside to its configuration.
 
 ## Form Service Backend Configuration
 
@@ -36,9 +36,9 @@ Here's an example:
 
 ## Form style assets CRUD
 
-This section defines the details of the CRUD that stores the style assets that can be associated to one or more form templates. The form service supports only `.css` and `fonts` files. Depending on the kind of resource `.css` or `.fonts`, a resource can be provided with an `url` or a `file` stored using the [Files Service](../../runtime_suite/files-service/configuration).
+This section defines the details of the CRUD that stores the style assets that can be associated to one or more form templates. The form service supports only `.css` and `fonts` files. Depending on the kind of resource `.css` or `.fonts`, a resource can be provided with an `url` or a `file` stored using the [Files Service](../files-service/configuration).
 
-The properties of this [CRUD](../../runtime_suite/crud-service/overview_and_usage) (in addition to the default ones) are:
+The properties of this [CRUD](../crud-service/overview_and_usage) (in addition to the default ones) are:
 
 - **name**
   - *type*: string;
@@ -74,7 +74,7 @@ Resources with higher priority than others will be loaded first in the form visu
 - **file**
   - *type*: object;
   - *required*: `true` with `inputType` equal to `file`, `false` otherwise;
-  - *description*: contains the [information of a file](../../runtime_suite/files-service/configuration) uploaded using the `File Service`. The form visualizer will use the url contained in the `location` property of this object to load the required asset when needed.
+  - *description*: contains the [information of a file](../files-service/configuration) uploaded using the `File Service`. The form visualizer will use the url contained in the `location` property of this object to load the required asset when needed.
 
 - **url**
   - *type*: string;
@@ -95,6 +95,13 @@ The form service frontend supports only:
   - *type*: string;
   - *required*: `true` with `resourceType` equal to `font`, `false` otherwise;
   - *description*: the [@font-face src format](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) of the uploaded font. The supported values are: `truetype`, `openformat`, `woff` and `woff2`.
+
+
+:::caution
+
+We recommend to add fonts directly in an uploaded `.css` file (insted of assigning them to the form as separated files) in order to avoid possible problems when loading the form.
+
+:::
 
 :::warning
 
@@ -124,7 +131,7 @@ You also need to expose a new endpoint using the same name defined in the config
 
 :::info
 
-Mia-Platform [Microfrontend Composer](../../microfrontend-composer/back-kit/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../../runtime_suite/files-service/configuration) instance in your project and update Microfrontend Composer configuration to use it's [File Manager](../../microfrontend-composer/back-kit/components/file_manager) client.
+Mia-Platform [Microfrontend Composer](../../microfrontend-composer/back-kit/overview) can be used to manage the different style assets. In case you require supporting files, you will need to configure a [Files Service](../files-service/configuration) instance in your project and update Microfrontend Composer configuration to use it's [File Manager](../../microfrontend-composer/back-kit/components/file_manager) client.
 
 :::
 
