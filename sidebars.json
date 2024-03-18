@@ -1417,10 +1417,6 @@
           "type": "doc"
         },
         {
-          "id": "infrastructure/self-hosted/pipeline-configuration",
-          "type": "doc"
-        },
-        {
           "label": "Install Mia-Platform Console",
           "type": "category",
           "collapsed": true,
