@@ -1417,14 +1417,6 @@
           "type": "doc"
         },
         {
-          "id": "infrastructure/self-hosted/troubleshooting",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/ranges-and-quotas",
-          "type": "doc"
-        },
-        {
           "id": "infrastructure/self-hosted/pipeline-configuration",
           "type": "doc"
         },
@@ -1440,14 +1432,6 @@
           ]
         },
         {
-          "id": "infrastructure/self-hosted/synchronize-users",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/feature-toggle",
-          "type": "doc"
-        },
-        {
           "label": "Third Party Integrations",
           "type": "category",
           "collapsed": true,
@@ -1459,7 +1443,7 @@
           ]
         },
         {
-          "id": "infrastructure/self-hosted/private-clusters",
+          "id": "infrastructure/self-hosted/troubleshooting",
           "type": "doc"
         }
       ]
