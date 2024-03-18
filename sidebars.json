@@ -1413,10 +1413,6 @@
           "type": "doc"
         },
         {
-          "id": "infrastructure/self-hosted/self-hosted-runtime-requirements",
-          "type": "doc"
-        },
-        {
           "label": "Install Mia-Platform Console",
           "type": "category",
           "collapsed": true,
