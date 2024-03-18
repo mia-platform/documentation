@@ -27,6 +27,39 @@ It is possible to select the type of chart through the `constructorType` propert
 
 Through the `options` property, it is possible to customize the chart. As `options` you can use any valid [highcharts options](https://api.highcharts.com/highcharts/).
 
+To hanlde the language of the chart, use the `labelOptions` property, where each language is identified by its unique ID (detected by the browser), and within each language, provide the translated labels. For example:
+
+```json
+"labelOptions": {
+  "it": {
+    "title": {
+      "text": "Tasso di cambio USD-EUR nel tempo",
+      "align": "left"
+    },
+    "subtitle": {
+      "text": "Fare clic e trascinare nell'area del grafico per eseguire lo zoom",
+      "align": "left"
+    }
+  },
+  // Add more languages as needed
+}
+```
+
+When a language is explicitly setted through the `options` parameter, it works as a fallback. For example:
+
+```json
+"options": {
+  "title": {
+    "text": "USD to EUR exchange rate over time",
+    "align": "left"
+  },
+  "subtitle": {
+    "text": "Click and drag in the plot area to zoom in",
+    "align": "left"
+  },
+}
+```
+
 The data of the chart are retrieved from the endpoint set in the `dataEndpoint` property. 
 
 :::info
@@ -44,7 +77,7 @@ If the URL as multiple dynamic parameters, but only a subset is needed inside th
 
 An example configuration follows: 
 
-```
+```json
 {
   "type": "element",
   "tag": "ck-chart",
@@ -67,6 +100,7 @@ An example configuration follows:
 |----------|------|----------|---------|-------------|
 |`dataEndpoint`| string | true | '/' | Endpoint used to retrieve the data displayed on the chart. |
 |`options`| object | true | {} | Object that contains the Highchart chart options. |
+|`labelOptions`| object | true | {} | Object that contains the labels translations. |
 |`constructorType`| string | false | 'chart' |String for chart constructor method. Valid values are `chart`, `stockChart`, `mapChart`, `ganttChart`|
 |`urlMask`| string | false |`/:id` | url mask to apply to the current path to extract id dynamically. |
 |`idKeys`| string[] | false |`['id']` | id keys in urlMask. |
