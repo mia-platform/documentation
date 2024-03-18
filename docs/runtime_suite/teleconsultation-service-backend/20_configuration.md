@@ -163,7 +163,7 @@ The Teleconsultation Service Configuration is a JSON object with 6 root properti
 -   _required_:  `false`;
 -   _description_: contains a field called _url_, which specify the url where the company logo is stored.
 
-**5. groupsWithBrackgroundList**
+**5. groupsWithBackgroundList**
 
 :::note
 Available from version 1.6.1 of the teleconsultation-backend service
@@ -195,7 +195,7 @@ The `JSON` file is structured like the following example:
     "light": {...},
     "dark": {...}
   },
-  "groupsWithBrackgroundList": [...]
+  "groupsWithBackgroundList": [...]
   "companyLogo": {
     "url": ""
   }
