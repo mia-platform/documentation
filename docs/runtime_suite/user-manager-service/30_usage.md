@@ -32,7 +32,7 @@ if a valid username and password are provided.
 
 This request accepts the following fields:
 - **username** - `string`: the user username;
-- **password** - `string`: the user email address.
+- **password** - `string`: the user password.
 
 #### Response
 
@@ -78,9 +78,124 @@ This request accepts the following fields:
 
 If the change password request is correctly sent, you will receive a response with a 204 status code and no payload.
 
+### POST /jobs/change-password/bulk
+
+The endpoint creates an asynchronous job to trigger multiple 'change password' events in the authentication service.
+In case of Auth0, a change password email will be sent to the users.
+
+#### Body
+
+This request accepts the following fields:
+- **authUsersIds** - `string[]`: the users ids in the authentication service.
+
+##### Example of body
+
+```json
+{
+  "authUsersIds": [
+    "auth0|56ko15das68cz132dsa6d4ef",
+    "auth0|34ko15das68cz132dsa6d4aa",
+    "auth0|98ko15das68cz132dsa6d4gv",
+    "auth0|87ko15das68cz132dsa6d4ad"
+  ]
+}
+```
+
+#### Response
+
+In case of successfully created job the response has status code 202 and the following format:
+
+```json
+{
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "status": "pending",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z"
+}
+```
+
+The returned job id can be used to get the job status through the [GET /jobs/change-password/bulk/:id](#get-jobschange-passwordbulkid) endpoint.
+
+In case of failure due to a bad request the response shows an appropriate 4xx status code and relevant information about why the request is invalid.
+
+### GET /jobs/change-password/bulk/:id
+
+This endpoint returns the status and relevant information about a job created by the UMS in order to trigger multiple 'change password' events in Auth0. 
+
+The job id is returned when the job is created using the endpoint [POST /jobs/change-password/bulk](#post-jobschange-passwordbulk).
+
+#### Response
+
+In case of a matching id a successful response with status code 200 is returned with the following format:
+
+Job pending:
+```json
+{
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "status": "pending",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z"
+}
+```
+
+Job completed:
+```json
+{
+  "status": "completed",
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z",
+  "summary": {
+    "failed": 1,
+    "completed": 3,
+    "total": 4
+  },
+  "completed": [
+      {
+          "authUserId": "45eed68c453446ac36f09sj6",
+      },
+      {
+          "authUserId": "45eed68c453446ac36f09sj8",
+      },
+      {
+          "authUserId": "45eed68c453446ac36f09sj9",
+      },
+  ],
+  "failures": [
+      {
+          "authUserId": "45eed68c453446ac36f09sj7",
+      }
+  ]
+}
+```
+
+The job never fails. If all the attempts to trigger change-password events fail the summary will show only failed operations.  
+```json
+{
+  "status": "completed",
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z",
+  "summary": {
+    "failed": 4,
+    "completed": 0,
+    "total": 4
+  },
+  "failures": [
+      {"...": "..."},
+      {"...": "..."},
+      {"...": "..."},
+      {"...": "..."},
+  ]
+}
+```
+
+If the request path parameter `id` does not match an existing job the response returns a 404 status code.
+
 ### POST /users/register
 
 If `POST /users/` has the query parameters `postponeAuthUserCreation` set to `true`, it creates only the user on the CRUD and postpone the creation on the authentication service. `POST /users/register` retrieves data of the user on the CRUD and create the user on the authentication service only if in the configurations of its userGroup `authUserCreationDisabled` equals `false`.
+
+#### Query parameters
+
+This request accepts the following query parameter:
+- **sendResetPwdEmail** - `booelan`: if `false` the reset password email is not sent.
 
 #### Body
 
@@ -91,7 +206,6 @@ This request accepts the following fields:
 :::caution
 The password is randomly generated if the environment variable `RANDOM_PWD_GEN` is set to `true` or if the password is not defined.
 :::
-
 
 #### Response
 
@@ -156,6 +270,7 @@ a request towards the Rönd service is performed in order to set the roles and p
 
 This request accepts the following query parameter:
 - **postponeAuthUserCreation** - `booelan` (from v1.3.0): if `true` the user is only created in the `users` CRUD collection.
+- **sendResetPwdEmail** - `booelan`: if `false` the reset password email is not sent.
 
 :::note
 If a user is created only in the `users` CRUD collection, either with `authUserCreationDisabled` or `postponeAuthUserCreation` equal to true, there is no control on uniqueness based on username or email.
@@ -312,9 +427,9 @@ This endpoint is a direct proxy to the `GET /users/count` of the CRUD service an
 
 ### POST /users/state
 
-Changes the state of the users matching the provided filters (similarly to the `POST /users/state` endpoint of the CRUD).
+Changes the state of the users matching the provided filters.
 
-This endpoint combines calls to the `POST /users/state` of the CRUD service and a `PATCH` on the authentication service,
+This endpoint combines calls to the `POST /users/:id/state` of the CRUD service and a `PATCH` on the authentication service,
 and may have the following side effects.
 
 :::note
@@ -414,3 +529,261 @@ If multiple requests are required to reach the desired user state, for example f
 You can call again this endpoint to resume the operation from the intermediate state.
 
 :::
+
+
+### PATCH /users/import
+
+Import all the users from a CSV file in the database.
+
+The users in the file that specify an `_id` field are updated in the users collection performing a patch with the values of the user specified in the file.
+
+The users in the file that do not specify an `_id` field are inserted in the users collection.
+
+:::warning
+
+To prevent the insertion of duplicated users in the database is necessary to define a [unique index][mongo-unique-index] on the `email` and `username` fields.
+
+:::
+
+:::warning
+
+Due to performance issues the maximum number of users that can be safely imported is 200.
+
+:::
+
+:::note
+
+The maximum file size is 1Mb.
+
+:::
+
+:::warning
+
+To avoid compatibility issues it is suggested to use a Crud Service version >= 6.9.6.
+
+:::
+
+:::note
+
+The `expirationDate` field is not supported, therefore users imported with this field won't expire after the specified date.
+
+:::
+
+:::warning
+
+In order to parse arrays, the CSV delimiter must be different from the comma character `,` (e.g. a semicolon) and array fields must be formatted with square brackets and have **no quotes**.
+
+- valid array `[item1, item2, item3]`
+- invalid array `["item1", "item2", "item3"]`
+
+:::
+
+#### Request
+
+The request must be of type multipart and can contain the following data:
+
+- **file (required)** - the CSV file with the users to be imported;
+- **delimiter** - the delimiter character used to parse the CSV file, which defaults to `,`;
+- **encoding** - the type of encoding necessary to read the file content, which defaults to `utf8`;
+- **escape** - the escape option to parse the file, which defaults to `"`, and can be set to `null`.
+
+An example of request looks like:
+
+```sh
+curl -X PATCH 'https://example.com/ums/users/import' \
+-H 'Content-Type: multipart/form-data;boundary=XXXXX' \
+-F 'file=@"/path/to/file.csv"' \
+-F 'delimiter=";"'
+```
+
+#### Response
+
+In case of success the returned response contains the updated and inserted users ids and details about the invalid rows that failed validation. The response looks like:
+
+```json
+{
+  "updated": [
+    "45eed68c453446ac36f09sj7",
+    "23esa68c453446ac36f09xs4"
+    "14efa68c453446ac36f76uy8"
+     ],
+  "inserted": [
+    "45dhj68c453446ac36f09po0",
+    "46ecf68c453446ac36f09ev4"
+     ],
+  "invalid": [
+    {
+      "row": 5,
+      "error": "Skipping record: invalid json schema, missing required field"
+    },
+    {
+      "row": 7,
+      "error": "Skipping record: userGroup missing on csv record"
+    }
+  ]
+}
+```
+
+If the whole import operation fails, an HTTP error is returned.
+
+### GET /jobs/bulk-activation/:id
+
+This endpoint returns the status and relevant information about a job created by the UMS in order to activate multiple users in Auth0. 
+
+The job id is returned when the job is created using the endpoint [POST /jobs/bulk-activation](#post-jobsbulk-activation).
+
+#### Response
+
+In case of a matching id a successful response with status code 200 is returned with the following format:
+
+Job pending:
+```json
+{
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "status": "pending",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z"
+}
+```
+
+Job completed:
+```json
+{
+  "status": "completed",
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z",
+  "summary": {
+    "failed": 1,
+    "updated": 3,
+    "inserted": 5,
+    "total": 9
+  },
+  "failures": [
+      {
+          "userId": "45eed68c453446ac36f09sj7",
+          "errors": [
+              {
+                    "code": "NON_UNIQUE_PROPERTY_VALUE",
+                    "message": "Property \"username\" has non-unique value: mario"
+                }
+          ]
+      }
+  ]
+}
+```
+
+
+Job failed:
+```json
+{
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "status": "failed",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z"
+
+}
+```
+
+If the request path parameter `id` does not match an existing job the response returns a 404 status code.
+
+
+### POST /jobs/bulk-activation
+
+This endpoint allows the bulk activation of users in Auth0. It starts an asynchronous job to handle the import.
+
+The input body accepts data in the following format:
+
+```json
+[
+  { "filter": { "userId": "78erdnjwq9enkdsakdnklasj" } },
+  { "filter": { "userId": "12pjmczofsd58sda154sdf8s" } },
+  { "filter": { "userId": "87ko15das68cz132dsa6d4ad" } },
+  { "filter": { "userId": "45asda9samsad25a65as1dd1" } }
+]
+```
+
+The input is an array of objects with the following fields:
+
+- `filter`, which contains the `userId` of the selected user (the `_id` of the document in the crud collection);
+
+An optional boolean query parameter `upsert` can be set added to the request. If set to `false` it disables users update, allowing only the creation of new users. It defaults to `true`.
+
+:::warning
+
+Due to performance issues the maximum number of users that can be activated is limited to 200 units.
+
+:::
+
+:::warning
+
+The maximum number of users that can be confidently included  in a single job operation is approximately 2000 units. This is due to the Auth0 bulk import API 500KB limit on the accepted file size.
+
+:::
+
+#### Response
+
+In case of successfully created job the response has status code 202 and the following format:
+
+```json
+{
+  "jobId": "c735cf45-536b-45ce-8ef1-d0066515c185",
+  "status": "pending",
+  "jobCreatedAt": "2024-02-03T15:14:35.115Z"
+}
+```
+
+The returned job id can be used to get the job status through the [GET /jobs/bulk-activation/:id](#get-jobsbulk-activationid) endpoint.
+
+In case of failure due to a bad request the response shows 404 status code and relevant information about why the request is invalid.
+
+
+## Bulk users operations guidelines
+
+This section explains the complete flow of operations to create accounts for multiple users. In particular it involves three steps:
+
+- bulk import of users
+- bulk activation of users
+- bulk change-password events
+
+The new users must be imported in the database collection. This can be achieved sending a CSV file at the endpoint [`PATCH /users/import`](#patch-usersimport), which returns the ids of the inserted users.
+
+Then the imported users must be activated in the authentications provider. It is sufficient to send the ids of the users to the endpoint [`POST /jobs/bulk-activation`](#post-jobsbulk-activation), which starts an asynchronous job to activate all the users and returns the job id. The [`GET /jobs/bulk-activation/:id`](#get-jobsbulk-activationid) endpoint is used to retrieve the status of the job, and returns the result when all operations are completed.
+
+Finally the new activated users must set a new password. The endpoint [`POST /jobs/change-password/bulk`](#post-jobschange-passwordbulk) takes care of sending an email to each user with a link to change its password. Giving as input a list of authentication users ids it starts an asynchronous job to trigger multiple change-password events for each user. The [`GET /jobs/change-password/bulk/:id`](#get-jobschange-passwordbulkid) endpoint is used to retrieve the status of the job, and returns the result when all operations are completed.
+
+The following sequence diagram shows an overview of the complete operations flow.
+
+```mermaid
+sequenceDiagram
+    participant UI
+    participant UMS
+    participant AUTH0
+    participant CRUD
+    
+    Note left of UI: Import users
+    UI->>+UMS: PATCH /users/import
+    UMS->>+CRUD: Insert new users
+    CRUD-->>-UMS: users ids
+    UMS-->>-UI: users ids
+    
+    Note left of UI: Activate users
+    UI->>+UMS: POST /jobs/bulk-activation
+    UMS->>+AUTH0: POST /jobs/bulk-activation
+    AUTH0-->>-UMS: auth0JobId
+    UMS-->>-UI: pending job id
+    AUTH0->>AUTH0: executing import job
+    AUTH0-->>UMS: Job completed
+    UMS->>CRUD: PATCH /users
+    UI->>+UMS: GET /jobs/bulk-activation/id
+    UMS-->>-UI: job result
+
+    Note left of UI: Change users passwords
+    UI->>+UMS: POST /jobs/change-password/bulk
+    UMS-->>-UI: pending job id
+    loop executing change-password job
+    UMS->>+AUTH0: POST /change-password
+    end
+    UI->>+UMS: GET /jobs/change-password/bulk/id
+    UMS-->>-UI: job result
+```
+
+
+[mongo-unique-index]: https://www.mongodb.com/docs/manual/core/index-unique/ "MongoDB unique index"

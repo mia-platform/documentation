@@ -42,6 +42,12 @@ On top of the aforementioned fields, you can add any field you want to this CRUD
 Please remember that all the properties in every user schema must be included in the collection above.
 :::
 
+:::warning
+
+To prevent the insertion of duplicated users in the database is necessary to define a [unique index][mongo-unique-index] on the `email` and `username` fields.
+
+:::
+
 ## User Manager Configuration CRUD collection
 
 The User Manager Service requires a CRUD collection to store user group schemas and other group properties.
@@ -57,6 +63,21 @@ The configuration collection needs the following service-specific fields.
 - **label (required)** - `string`: label displayed in the Backoffice lookup.
 - **authUserCreationDisabled** - `boolean`: if `true`, it disables the user creation in the authentication service for the given group (the user is only created in the CRUD).
 
+## Auth0 Users Imports Jobs CRUD collection
+
+The User Manager Service automatically creates a MongoDB collection to store the jobs that handle the asynchronous bulk import of users in Auth0. The jobs collection is handled by a [job scheduler][agenda-package], and can have any name you want, as long as you specify the correct name in the `JOBS_COLLECTION_NAME` [environment variable](#environment-variables).
+
+The job collection has the following fields:
+
+- **name** - `string`: unique name of the job.
+- **data** - `object`: data passed to the job:
+  - **jobId** - `string`: id of the job.
+  - **auth0JobId** - `string`: id of the Auth0 job.
+- **result** - `object`: result of the job:
+  - **status** - `string`: status of the Auth0 job.
+  - **summary** - `object`: summary of the Auth0 job results, containing the number of inserted, updated users and failed operations.
+  - **failures** - `array`: list of failures of the Auth0 job, with details about users and errors.
+
 ## Rönd Integration
 
 The User Manager Service requires that the Rönd Service is deployed and configured as a `STANDALONE` service.
@@ -71,26 +92,32 @@ The integration with Rönd is not mandatory and can be enabled or disabled throu
 
 The User Manager Service accepts the following environment variables.
 
-| Name                               | Required | Default        | Description                                                                                                                                  |
-|------------------------------------|----------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| **AUTH_MODULE**                    | No       | `auth0Client`  | The module used for the authentication (at this time only Auth0 is available, so it defaults to `auth0Client` if not set).                   |
-| **AUTH_SERVICE**                   | Yes      | -              | The name of the authentication microservice (the address of the Auth0 Client microservice if `auth0Client` is used as authentication module). |
-| **AUTH_CONNECTION**                | Yes      | -              | Name of the auth service database (e.g. for Auth0 can be `Username-Password-Authentication`).                                                |
-| **CRUD_SERVICE**                   | No       | `crud-service` | Name of the CRUD service.                                                                                                                    |
-| **UMS_CONFIG_CRUD_ENDPOINT**       | Yes      | -              | The endpoint of the CRUD containing the UMS configuration, e.g. `/ums/config`.                                                               |
-| **USERS_CRUD_ENDPOINT**            | Yes      | -              | The endpoint of CRUD containing the users, e.g. `/users`.                                                                                    |
-| **RANDOM_PWD_GEN**                 | No       | `true`         | Enable the random password generation if set to `true`.                                                                                      |
-| **RANDOM_PWD_LENGTH**              | No       | 8              | Length of the random generated password                                                                                                      |
-| **AUTH_HARD_DELETE**               | No       | `true`         | Perform user delete on auth service if `true`, blocks the user otherwise.                                                                    |
-| **CUSTOM_USER_ID_KEY**             | No       | `sub`          | The user id key that identifies the user and is returned as one of the `/userinfo` properties                                                |
-| **CONFIG_PATH**                    | No       | -              | The path to the config file (not required, the service starts also without the config file).                                                 |
-| **USERINFO_ADDITIONAL_PROPERTIES** | No       | -              | A comma-separated string, representing the CRUD user properties that must be returned with the `/userinfo` endpoint.                         |
-| **ROND_ENABLED**                   | No       | `false`        | If `true` allows the UMS to integrate with Rönd.                                                                                             |
-| **ROND_SERVICE**                   | No       | `rond-service` | The name of the Rönd service.                                                                                                                |
-| **ROLES_CRUD_ENDPOINT**            | No       | -              | The CRUD endpoint that stores the roles that can be assigned to users in the `roles` string array.                                           |
-| **TIMER_SERVICE**                  | No       | -              | The name of the Timer Service. **Required** if you want to block users automatically on expiration.                                          |
-| **TIMER_SERVICE_HEADERS**          | No       | -              | A comma-separated list of headers from the incoming request that the Timer Service will send when blocking the user on expiration.           |
-| **CONFIGURATION_PATH**            | No       | -              | The path of a configuration file used by the service to add properties to the users, getting the information from Auth0.                     |
+| Name                                      | Required | Default        | Description                                                                                                                                   |
+|-------------------------------------------|----------|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **AUTH_MODULE**                           | No       | `auth0Client`  | The module used for the authentication (at this time only Auth0 is available, so it defaults to `auth0Client` if not set).                    |
+| **AUTH_SERVICE**                          | Yes      | -              | The name of the authentication microservice (the name of the Auth0 Client microservice if `auth0Client` is used as authentication module). |
+| **AUTH_CONNECTION**                       | Yes      | -              | Name of the auth service database (e.g. for Auth0 can be `Username-Password-Authentication`).                                                 |
+| **AUTH0_BULK_CHANGE_PASSWORD_RATE_LIMIT_PER_SECOND**                    | No       | 10              | The maximum number of requests sent in one second by the bulk change password job to Auth0. An high value reduce the job execution time, but it also increases the resources consumption on the UMS and Authentication services.                      |
+| **AUTH0_JOB_POLLING_INTERVAL**            | No       | `2 minutes`    | The interval used to check the status of Auth0 jobs to bulk import users. It can be expressed via cron or human readable syntax.              |
+|**AUTH0_BULK_CHANGE_PASSWORD_RATE_LIMIT_PER_SECOND**            | No       | 2             | The maximum number of HTTP requests per seconds to trigger change-password events that can be sent to Auth0.                                                                    |
+| **CRUD_SERVICE**                          | No       | `crud-service` | Name of the CRUD service.                                                                                                                     |
+| **UMS_CONFIG_CRUD_ENDPOINT**              | Yes      | -              | The endpoint of the CRUD containing the UMS configuration, e.g. `/ums/config`.                                                                |
+| **USERS_CRUD_ENDPOINT**                   | Yes      | -              | The endpoint of CRUD containing the users, e.g. `/users`.                                                                                     |
+| **JOBS_COLLECTION_NAME** | Yes      | `userManagerJobs`              | MongoDB collection name to persist asynchronous jobs.                                                 |
+| **MONGODB_URL**                           | Yes      | -              | The connection string to connect to MongoDB database.                                                                                         |
+| **USER_IMPORT_BATCH_SIZE**                | No       | 250            | The size of the batch to process the csv when importing users                                                                                 |
+| **RANDOM_PWD_GEN**                        | No       | `true`         | Enable the random password generation if set to `true`.                                                                                       |
+| **RANDOM_PWD_LENGTH**                     | No       | 8              | Length of the random generated password                                                                                                       |
+| **AUTH_HARD_DELETE**                      | No       | `true`         | Perform user delete on auth service if `true`, blocks the user otherwise.                                                                     |
+| **CUSTOM_USER_ID_KEY**                    | No       | `sub`          | The user id key that identifies the user and is returned as one of the `/userinfo` properties                                                 |
+| **CONFIG_PATH**                           | No       | -              | The path to the config file (not required, the service starts also without the config file).                                                  |
+| **USERINFO_ADDITIONAL_PROPERTIES**        | No       | -              | A comma-separated string, representing the CRUD user properties that must be returned with the `/userinfo` endpoint.                          |
+| **ROND_ENABLED**                          | No       | `false`        | If `true` allows the UMS to integrate with Rönd.                                                                                              |
+| **ROND_SERVICE**                          | No       | `rond-service` | The name of the Rönd service.                                                                                                                 |
+| **ROLES_CRUD_ENDPOINT**                   | No       | -              | The CRUD endpoint that stores the roles that can be assigned to users in the `roles` string array.                                            |
+| **TIMER_SERVICE**                         | No       | -              | The name of the Timer Service. **Required** if you want to block users automatically on expiration.                                           |
+| **TIMER_SERVICE_HEADERS**                 | No       | -              | A comma-separated list of headers from the incoming request that the Timer Service will send when blocking the user on expiration.            |
+| **CONFIGURATION_PATH**                    | No       | -              | The path of a configuration file used by the service to add properties to the users, getting the information from Auth0.                      |
 
 :::info
 
@@ -151,3 +178,44 @@ When no file is provided, no additional properties will be added.
 In order to use the User Manager Service from the Backoffice, you must create a dedicated endpoint to expose routes.
 If the Auth0 Client is used as authentication service, the API Key must be enabled in the endpoint,
 since it is used by the Auth0 Client to infer the client-type.
+
+
+## Job Scheduler
+
+The User Manager Service leverages the [Agenda][agenda-package] job scheduling library to handle asyncrhonous job processes. In order to use the job scheduler the **MONGODB_URL** configuration variable must be set.
+
+### Auth0 users bulk import job
+
+The bulk import of users in Auth0 is handled as shown in this sequence diagram.
+
+```mermaid
+sequenceDiagram
+    participant UI
+    box User Manager Service
+    participant UMS
+    participant JOB_SCHEDULER
+    end
+    participant AUTH0
+    participant CRUD
+    UI->>+UMS: POST /jobs/bulk-activation
+    UMS->>+CRUD: GET /users
+    CRUD-->>-UMS: users
+    UMS->>+AUTH0: POST /jobs/bulk-activation
+    AUTH0-->>-UMS: auth0JobId
+    AUTH0->>AUTH0: executing import job
+    UMS->>+JOB_SCHEDULER: create polling job
+    JOB_SCHEDULER-->>-UMS: pending job id
+    UMS-->>-UI: pending job id
+    loop polling every n seconds
+        JOB_SCHEDULER->>+AUTH0: GET /jobs/id
+    end
+    AUTH0-->>-JOB_SCHEDULER: Job completed
+    JOB_SCHEDULER->>+CRUD: PATCH /users {set: authId}
+    CRUD-->>-JOB_SCHEDULER: number of patches
+    loop polling every n seconds
+    UI->>+UMS: GET /jobs/bulk-activation/id
+    end
+    UMS-->>-UI: completed job results
+```
+
+[agenda-package]: https://www.npmjs.com/package/agenda "Agenda package documentation"
