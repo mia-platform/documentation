@@ -817,9 +817,13 @@ The flag -f accepts either files or directories. In case of directories, it expl
 Supported formats are JSON (.json files) and YAML (.yaml or .yml files).
 
 The file can contain an image object with the following format:
+
+```json
 "image": {
 	"localPath": "./someImage.png"
 }
+```
+
 The localPath can be absolute or relative to the file location.
 The image will be uploaded along with the Marketplace item.
 Before being applied, the "image" key will be replaced with the "imageUrl" referring to the uploaded image.
