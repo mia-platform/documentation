@@ -14,7 +14,7 @@ The main purpose of the User Manager is to ease user management operations.
 It combines calls directed to the chosen authentication service and to the `users` CRUD collection.
 
 :::note
-As stated in the [configuration section](./20_configuration.md), you can name the CRUD collections however you like.
+As stated in the [configuration section][configuration], you can name the CRUD collections however you like.
 For simplicity’s sake, in the following page it is assumed that you have called them `users` and `ums-config`.
 :::
 
@@ -66,7 +66,7 @@ Triggers a 'change password' event in the authentication service.
 In case of Auth0, a change password email will be sent to the user.
 
 :::note
-Since this endpoint is exposed as a `POST`, it can be used as an 'action' in the Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview).
+Since this endpoint is exposed as a `POST`, it can be used as an 'action' in the Mia-Platform [Microfrontend Composer][microfrontend-composer].
 :::
 
 #### Body
@@ -113,7 +113,7 @@ In case of successfully created job the response has status code 202 and the fol
 }
 ```
 
-The returned job id can be used to get the job status through the [GET /jobs/change-password/bulk/:id](#get-jobschange-passwordbulkid) endpoint.
+The returned job id can be used to get the job status through the [GET /jobs/change-password/bulk/:id][get-jobs-change-password-bulk-id] endpoint.
 
 In case of failure due to a bad request the response shows an appropriate 4xx status code and relevant information about why the request is invalid.
 
@@ -121,7 +121,7 @@ In case of failure due to a bad request the response shows an appropriate 4xx st
 
 This endpoint returns the status and relevant information about a job created by the UMS in order to trigger multiple 'change password' events in Auth0. 
 
-The job id is returned when the job is created using the endpoint [POST /jobs/change-password/bulk](#post-jobschange-passwordbulk).
+The job id is returned when the job is created using the endpoint [POST /jobs/change-password/bulk][post-jobs-change-password-bulk].
 
 #### Response
 
@@ -222,7 +222,7 @@ If the `expirationDate` field is set, the UMS will automatically schedule a job 
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var][environment-variables] to get the user automatically blocked.
 
 :::
 
@@ -274,7 +274,7 @@ This request accepts the following query parameter:
 
 :::note
 If a user is created only in the `users` CRUD collection, either with `authUserCreationDisabled` or `postponeAuthUserCreation` equal to true, there is no control on uniqueness based on username or email.
-You make these properties unique [indexes](../../development_suite/api-console/api-design/crud_advanced#indexes) to enforce users with unique username or email in the `users` CRUD collection.
+You make these properties unique [indexes][crud-indexes] to enforce users with unique username or email in the `users` CRUD collection.
 :::
 
 #### Response
@@ -300,14 +300,14 @@ This request accepts the following 'standard' fields:
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) in order to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var][environment-variables] in order to get the user automatically blocked.
 
 Furthermore, if you are upgrading to v1.4.0 or later from a previous version and use `expirationDate` as a custom property,
 you need to rename that property before upgrading.
 
 :::
 
-Similarly to the [POST /users/](./30_usage.md#POST-/users/), additional fields can also be added to the body
+Similarly to the [POST /users/][post-users], additional fields can also be added to the body
 and must be defined in the schema stored in the `ums-config` CRUD collection.
 Validation is also performed against such schema.
 
@@ -337,7 +337,7 @@ If the user is set to expire in a future date/time, the UMS will automatically c
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var][environment-variables] to get the user automatically blocked.
 
 :::
 
@@ -382,7 +382,7 @@ including the expiration date, or that only users from certain groups or with ce
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](./20_configuration.md#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var][environment-variables] to get the user automatically blocked.
 
 :::
 
@@ -437,7 +437,7 @@ A user set to `DRAFT` or `TRASH` states is set to `blocked: true` in the authent
 
 A user set to `PUBLIC` state is set to `blocked: false` in the authentication service, in order to 'unblock' a previously blocked user.
 
-A user set to `DELETED` is deleted from the authentication service only if the [AUTH_HARD_DELETE](./20_configuration.md#environment-variables) is set to `true`,
+A user set to `DELETED` is deleted from the authentication service only if the [AUTH_HARD_DELETE][environment-variables] is set to `true`,
 otherwise its behavior is the same as the `DRAFT` and `TRASH` cases.
 Note that in any case a user set to `DELETED` is never deleted from the CRUD with this endpoint (its state is only set to `DELETED`).
 :::
@@ -630,7 +630,7 @@ If the whole import operation fails, an HTTP error is returned.
 
 This endpoint returns the status and relevant information about a job created by the UMS in order to activate multiple users in Auth0. 
 
-The job id is returned when the job is created using the endpoint [POST /jobs/bulk-activation](#post-jobsbulk-activation).
+The job id is returned when the job is created using the endpoint [POST /jobs/bulk-activation][post-jobs-bulk-activation].
 
 #### Response
 
@@ -730,7 +730,7 @@ In case of successfully created job the response has status code 202 and the fol
 }
 ```
 
-The returned job id can be used to get the job status through the [GET /jobs/bulk-activation/:id](#get-jobsbulk-activationid) endpoint.
+The returned job id can be used to get the job status through the [GET /jobs/bulk-activation/:id][get-jobs-bulk-activation-id] endpoint.
 
 In case of failure due to a bad request the response shows 404 status code and relevant information about why the request is invalid.
 
@@ -743,11 +743,11 @@ This section explains the complete flow of operations to create accounts for mul
 - bulk activation of users
 - bulk change-password events
 
-The new users must be imported in the database collection. This can be achieved sending a CSV file at the endpoint [`PATCH /users/import`](#patch-usersimport), which returns the ids of the inserted users.
+The new users must be imported in the database collection. This can be achieved sending a CSV file at the endpoint [`PATCH /users/import`][patch-users-import], which returns the ids of the inserted users.
 
-Then the imported users must be activated in the authentications provider. It is sufficient to send the ids of the users to the endpoint [`POST /jobs/bulk-activation`](#post-jobsbulk-activation), which starts an asynchronous job to activate all the users and returns the job id. The [`GET /jobs/bulk-activation/:id`](#get-jobsbulk-activationid) endpoint is used to retrieve the status of the job, and returns the result when all operations are completed.
+Then the imported users must be activated in the authentications provider. It is sufficient to send the ids of the users to the endpoint [`POST /jobs/bulk-activation`][post-jobs-bulk-activation], which starts an asynchronous job to activate all the users and returns the job id. The [`GET /jobs/bulk-activation/:id`][get-jobs-bulk-activation-id] endpoint is used to retrieve the status of the job, and returns the result when all operations are completed.
 
-Finally the new activated users must set a new password. The endpoint [`POST /jobs/change-password/bulk`](#post-jobschange-passwordbulk) takes care of sending an email to each user with a link to change its password. Giving as input a list of authentication users ids it starts an asynchronous job to trigger multiple change-password events for each user. The [`GET /jobs/change-password/bulk/:id`](#get-jobschange-passwordbulkid) endpoint is used to retrieve the status of the job, and returns the result when all operations are completed.
+Finally the new activated users must set a new password. The endpoint [`POST /jobs/change-password/bulk`][post-jobs-change-password-bulk] takes care of sending an email to each user with a link to change its password. Giving as input a list of authentication users ids it starts an asynchronous job to trigger multiple change-password events for each user. The [`GET /jobs/change-password/bulk/:id`][get-jobs-change-password-bulk-id] endpoint is used to retrieve the status of the job, and returns the result when all operations are completed.
 
 The following sequence diagram shows an overview of the complete operations flow.
 
@@ -785,5 +785,16 @@ sequenceDiagram
     UMS-->>-UI: job result
 ```
 
-
+[crud-indexes]: /development_suite/api-console/api-design/crud_advanced.md#indexes
+[microfrontend-composer]: /microfrontend-composer/overview.md
 [mongo-unique-index]: https://www.mongodb.com/docs/manual/core/index-unique/ "MongoDB unique index"
+
+[configuration]: ./20_configuration.md
+[environment-variables]: ./20_configuration.md#environment-variables
+
+[get-jobs-bulk-activation-id]: #get-jobsbulk-activationid
+[get-jobs-change-password-bulk-id]: #get-jobschange-passwordbulkid
+[patch-users-import]: #patch-usersimport
+[post-jobs-bulk-activation]: #post-jobsbulk-activation
+[post-jobs-change-password-bulk]: #post-jobschange-passwordbulk
+[post-users]: #post-users

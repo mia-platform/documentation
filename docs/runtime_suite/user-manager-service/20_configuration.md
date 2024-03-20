@@ -18,7 +18,7 @@ and a set of environment variables.
 
 The User Manager Service requires a CRUD collection to store users.
 The collection can have any name you want, as long as you specify the correct name in the 
-`USERS_CRUD_ENDPOINT` [environment variable](#environment-variables).
+`USERS_CRUD_ENDPOINT` [environment variable][environment-variables].
 
 The users collection needs the following service-specific fields.
 
@@ -33,7 +33,7 @@ The users collection needs the following service-specific fields.
 :::caution
 
 Since v1.4.0 the UMS relies on the Timer Service to automatically block the user on expiration,
-so you must set the [`TIMER_SERVICE` env var](#environment-variables) to get the user automatically blocked.
+so you must set the [`TIMER_SERVICE` env var][environment-variables] to get the user automatically blocked.
 
 :::
 
@@ -54,7 +54,7 @@ The User Manager Service requires a CRUD collection to store user group schemas 
 This collection can be managed directly from the Backoffice, allowing also users that do not have access to the console
 to configure the user Manager Service.
 The collection can have any name you want, as long as you specify the correct name in the
-`UMS_CONFIG_CRUD_ENDPOINT` [environment variable](#environment-variables).
+`UMS_CONFIG_CRUD_ENDPOINT` [environment variable][environment-variables].
 
 The configuration collection needs the following service-specific fields.
 
@@ -65,7 +65,7 @@ The configuration collection needs the following service-specific fields.
 
 ## Auth0 Users Imports Jobs CRUD collection
 
-The User Manager Service automatically creates a MongoDB collection to store the jobs that handle the asynchronous bulk import of users in Auth0. The jobs collection is handled by a [job scheduler][agenda-package], and can have any name you want, as long as you specify the correct name in the `JOBS_COLLECTION_NAME` [environment variable](#environment-variables).
+The User Manager Service automatically creates a MongoDB collection to store the jobs that handle the asynchronous bulk import of users in Auth0. The jobs collection is handled by a [job scheduler][agenda-package], and can have any name you want, as long as you specify the correct name in the `JOBS_COLLECTION_NAME` [environment variable][environment-variables].
 
 The job collection has the following fields:
 
@@ -82,7 +82,7 @@ The job collection has the following fields:
 
 The User Manager Service requires that the Rönd Service is deployed and configured as a `STANDALONE` service.
 It is mandatory to specify the `MONGODB_URL` in order to create the Roles and Bindings collections and to add the array field `roles` when creating the **crudSchema** as specified in the previous paragraph. 
-For more information on how to correctly setup Rönd visit the following [page](https://rond-authz.io/docs/configuration).
+For more information on how to correctly setup Rönd visit the following [page][rond-config].
 
 :::note
 The integration with Rönd is not mandatory and can be enabled or disabled through the `ROND_ENABLED` environment variable.
@@ -128,7 +128,7 @@ the `/userinfo` endpoint will return also the user's `permissions`.
 
 :::info
 
-The roles CRUD should have the minimum required properties of the role object described in the `RBAC Data model` of the [Rönd documentation](https://rond-authz.io/docs/policy-integration). This is required because the user's permissions are resolved using the roleIds in the roles array. Roles with matching `roleId` are retrieved and user's permissions are merged in a single array.
+The roles CRUD should have the minimum required properties of the role object described in the `RBAC Data model` of the [Rönd documentation][rond-policy-integration]. This is required because the user's permissions are resolved using the roleIds in the roles array. Roles with matching `roleId` are retrieved and user's permissions are merged in a single array.
 
 :::
 
@@ -219,3 +219,7 @@ sequenceDiagram
 ```
 
 [agenda-package]: https://www.npmjs.com/package/agenda "Agenda package documentation"
+[rond-config]: https://rond-authz.io/docs/configuration
+[rond-policy-integration]: https://rond-authz.io/docs/policy-integration
+
+[environment-variables]: #environment-variables
