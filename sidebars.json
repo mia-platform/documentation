@@ -1424,12 +1424,28 @@
           ]
         },
         {
-          "label": "Third Party Integrations",
+          "label": "Cluster management and other resources",
           "type": "category",
           "collapsed": true,
           "items": [
             {
               "id": "infrastructure/self-hosted/third-party-integrations/deployment-tools",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/ranges-and-quotas",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/feature-toggle",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/private-clusters",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/pipeline-configuration",
               "type": "doc"
             }
           ]
