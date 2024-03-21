@@ -46,8 +46,9 @@ The fix that requires setting the properties specified in the form builder even 
 
 ### Added
 
-- Make the expiration message customizable for each form.
+- Make the expiration message customizable for each form
 - Support form start date
+- User can set the email address of the recap email sent when a user fill a form
 
 ### Fixed
 
