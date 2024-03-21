@@ -14,7 +14,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The following sections explain the details about the endpoints exposed from the **Teleconsultation Service Backend**.
 
-This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](../auth0-client/overview_and_usage).
+This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*][auth0-client].
 
 In Kaleyra there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
@@ -217,7 +217,7 @@ Updates a teleconsultation whose id is equal to roomId.
 :::note
 Kaleyra does not support the possibility to make changes existing rooms. 
 
-For this reason, the Kaleyra room is created only if all participants data is provided. If the Kaleyra room has already been created and a change having effects on its features is requested, the existing Kaleyra room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service grants that participants cannot access a Kaleyra room as long as it could be replaced by a new one. 
+For this reason, the Kaleyra room is created only if all participants data is provided. If the Kaleyra room has already been created and a change having effects on its features is requested, the existing Kaleyra room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`][environment-variables] milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`][get-teleconsultation-room-id] documentation to understand how the service grants that participants cannot access a Kaleyra room as long as it could be replaced by a new one. 
 :::
 
 #### Body parameters
@@ -327,7 +327,7 @@ Pushes a new teleconsultation participant in the `participants.data` array of th
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 :::note
-Kaleyra does not support the possibility to make changes existing rooms. For this reason, the Kaleyra room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service ensures that participants cannot access a Kaleyra room as long as such room can be replaced by a new one.
+Kaleyra does not support the possibility to make changes existing rooms. For this reason, the Kaleyra room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`][environment-variables] milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the [`GET /teleconsultation/:roomI][get-teleconsultation-room-id] documentation to understand how the service ensures that participants cannot access a Kaleyra room as long as such room can be replaced by a new one.
 :::
 
 #### Body parameters
@@ -407,7 +407,7 @@ Retrieves the custom teleconsultation url for the requesting user.
 Available from version 1.6.0
 :::
 
-Retrieves the detail of a teleconsultation room usage, as stored on Kaleyra ([reference](https://developers.kaleyra.io/reference/video-room-get)).
+Retrieves the detail of a teleconsultation room usage, as stored on Kaleyra ([reference][kaleyra-get-room]).
 
 #### Query parameters
 
@@ -541,13 +541,13 @@ Available from version 1.4.0
 :::
 
 :::note
-For this endpoint to work, it's necessary for the service to use [auth0-client](../auth0-client/overview_and_usage) as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
+For this endpoint to work, it's necessary for the service to use [auth0-client][auth0-client] as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
 :::
 
-Generate an access token and the Kaleyra id for the currently logged user accordingly to the [request authentication headers](../authorization-service/usage#headers-set-by-auth).
-If no Kaleyra user is associated to the logged user, a new Kaleyra user is created alongside the corresponding record in the [teleconsultations_users](./20_configuration.md#user-id-map-crud) collection.
+Generate an access token and the Kaleyra id for the currently logged user accordingly to the [request authentication headers][console-mia-headers].
+If no Kaleyra user is associated to the logged user, a new Kaleyra user is created alongside the corresponding record in the [teleconsultations_users][crud-user-id-map] collection.
 
-This endpoint is mainly used to integrate with the [Kaleyra Video React Native Module](https://github.com/KaleyraVideo/VideoReactNativeModule).
+This endpoint is mainly used to integrate with the [Kaleyra Video React Native Module][kaleyra-video-react-native-module].
 
 #### Body parameters
 
@@ -681,4 +681,14 @@ In case the service is not able to get user authentication from the request head
 401: { "error": "Unauthorized user" } 
 ```
 
+
+[kaleyra-get-room]: https://developers.kaleyra.io/reference/video-room-get
+[kaleyra-video-react-native-module]: https://github.com/KaleyraVideo/VideoReactNativeModule
+
+[auth0-client]: /runtime_suite/auth0-client/10_overview.md
+[console-mia-headers]: /runtime_suite/authorization-service/30_usage.md#headers-set-by-auth
+
 [environment-variables]: ./20_configuration.md#environment-variables
+[crud-user-id-map]: ./20_configuration.md#user-id-map-crud
+
+[get-teleconsultation-room-id]: #get-teleconsultationroomid

@@ -10,11 +10,11 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend](../teleconsultation-service-frontend/overview). The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
+The Teleconsultation Service Backend is a Mia-Platform plugin that acts as a BFF (Backend For Frontend) for the [Teleconsultation Service Frontend][teleconsultation-service-fe]. The **Teleconsultation Service Frontend** handles and visualizes the teleconsultation UI and all its relative tools for the call using iframe.
 
-The teleconsultation service uses the [SaaS Kaleyra Service](https://www.bandyer.com/) which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.). It provides also supports image background management and language management (only `it` and `en` are supported at the moment). 
+The teleconsultation service uses the [SaaS Kaleyra Service][bandyer] which allows you to create a video call between two or more people, providing also different tools (like chat, whiteboard, screen sharing, file upload ecc.). It provides also supports image background management and language management (only `it` and `en` are supported at the moment). 
 
-The **Teleconsultation Service Backend** allows you to handle all the necessary operations (create, update, delete), on the teleconsultations. The Back End uses the [RESTful APIs](https://docs.bandyer.com/Bandyer-RESTAPI/) provided by Kaleyra.
+The **Teleconsultation Service Backend** allows you to handle all the necessary operations (create, update, delete), on the teleconsultations. The Back End uses the [RESTful APIs][bandyer-rest-api] provided by Kaleyra.
 
 :::caution
 In order to use this service, you need first to contact Kaleyra to create a Company, for your product and get the BANDYER_API_SECRET_KEY (for the Teleconsultation Service Backend).
@@ -30,7 +30,7 @@ In order to use Kaleyra's services, Kaleyra has to provide you the BANDYER_API_S
 :::note
 A company has several customizable parameters, like theme, languages, virtual background, etc.
 
-For additional information about company customization, please follow [this link](https://docs.bandyer.com/Bandyer-RESTAPI/?shell#customization).
+For additional information about company customization, please check [the REST API][bandyer-rest-api].
 :::
 
 :::warning
@@ -47,13 +47,13 @@ There are two types of users:
 In order to start a call, a **plus user** at least is required as participant in the call.
 :::
 
-For additional information about users, check [this link](https://docs.bandyer.com/Bandyer-RESTAPI/?shell#create-user).
+For additional information about users, check [the REST API][bandyer-rest-api].
 
 #### Room
 The virtual place where a call is hosted, is called a Room.
 There's the possibility to specify a max duration for a Room in seconds (max time allowed 24h).
 
-For additional information about rooms, check [this link](https://docs.bandyer.com/Bandyer-RESTAPI/?shell#create-room).
+For additional information about rooms, check [this link][bandyer-rest-api].
 
 ## Teleconsultation Service Backend APIs
 
@@ -69,4 +69,10 @@ The **Teleconsultation Service Backend** service exposes the APIs listed in the 
 | `DELETE /teleconsultation/:teleconsultationId/uploads`         | 1.5.0                    | Delete all files uploaded by the participants during a teleconsultation.                  |
 | `POST /credentials`                                            | 1.4.0                    | Return a valid accessToken for clients using SDK authentication.                          |
 | `POST /settings/background-image`                              | 1.6.0      
-| `PATCH /settings/update`                                       | 1.6.0
+| `PATCH /settings/update`                                       | 1.6.0      
+
+
+[bandyer]: https://www.bandyer.com/
+[bandyer-rest-api]: https://docs.bandyer.com/Bandyer-RESTAPI/
+
+[teleconsultation-service-fe]: /runtime_suite/teleconsultation-service-frontend/10_overview.md
