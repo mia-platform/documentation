@@ -15,6 +15,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.7.0]
+
+- Added `ck-book-slot-modal`
+- Added `reset-password-modal` and Added `reset-password-button` doc
+- Added `reset-password-modal` and Added `reset-password-button` component
+- Added `import-users-modal` doc
+- Added `import-users-modal` component
+- Fix bug on filtering the resources in `am-calendar`
+- Added additional info to the dragable modal `am-calendar`
+- `ck-chart` now supports label translation
+
 ## [v2.6.0]
 
 - Added permissions handling to `am-calendar`

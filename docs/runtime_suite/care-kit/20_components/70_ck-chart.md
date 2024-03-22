@@ -27,7 +27,7 @@ It is possible to select the type of chart through the `constructorType` propert
 
 Through the `options` property, it is possible to customize the chart. As `options` you can use any valid [highcharts options](https://api.highcharts.com/highcharts/).
 
-To hanlde the language of the chart, use the `labelOptions` property, where each language is identified by its unique ID (detected by the browser), and within each language, provide the translated labels. For example:
+To handle the language of the chart, use the `labelOptions` property, where each language is identified by its unique ID (detected by the browser), and within each language, provide the translated labels. For example:
 
 ```json
 "labelOptions": {

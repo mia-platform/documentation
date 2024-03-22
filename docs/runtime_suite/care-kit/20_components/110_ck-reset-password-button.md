@@ -27,7 +27,7 @@ An example configuration follows:
 }
 ```
 
-The button would not show until at least one record is selected from the table for the opration. When the button is then clicked, the corresponding event to open [ck-reset-password-modal](./120_ck-reset-password-modal.md), and the modal would show the progression of the operation.
+The button would not show until at least one record is selected from the table for the operation. When the button is then clicked, the corresponding event to open [ck-reset-password-modal](./120_ck-reset-password-modal.md), and the modal would show the progression of the operation.
 
 ## Properties & Attributes
 
