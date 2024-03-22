@@ -123,11 +123,11 @@ const features = [
       },
       {
         label: "📝 Read our Blog",
-        href: "https://blog.mia-platform.eu/en",
+        href: "https://mia-platform.eu/blog/",
       },
       {
         label: "📚 Explore our Library",
-        href: "https://resources.mia-platform.eu/en/library",
+        href: "https://mia-platform.eu/library/",
       },
       {
         label: "📨 Subscribe to monthly Newsletter",
