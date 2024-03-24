@@ -95,3 +95,15 @@ The event to open contains filters used by the ck-chart component.
 ```typescript
 Filters[]
 ```
+
+## BookSlotModal
+
+The event to open an [ck-book-slot-modal](20_components/130_ck-book-slot-modal.md) modal.
+
+- Label: `book-slot-modal`
+
+- Payload:
+
+```typescript
+{}
+```
