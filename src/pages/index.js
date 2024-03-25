@@ -209,8 +209,8 @@ function Home() {
                 <VersionBanner
                   link="docs/release-notes/v12.3.0"
                   majorVersion="12.3"
-                  subTitle="Coming on March 28th"
-                  title="The look & feel of Mia-Platform is about to change!"
+                  subTitle="Click here for further information"
+                  title="The look & feel of Mia-Platform Console is officially released!"
                 />
               </div>}
 
