@@ -1,14 +1,14 @@
 ---
-id: settings
+id: company-settings
 title: Company Settings
 sidebar_label: Company Settings
 ---
 
-The **Settings** section allows you to view and define various configurations and settings related to your Company. These can include general settings, feature preview options, advanced settings and so on. 
+The **Settings** section allows you to view and define various configurations and settings related to your Company.
 
 ### Rules
 
-The **Rules** tab allows the user to customize rules defined for the Company and its Projects. Rules can pertain to different domains, such as configuration, runtime or deployment management.
+The **Rules** tab allows the user to customize rules defined for the Company and its Projects.
 
 #### Saving options
 

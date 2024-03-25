@@ -22,6 +22,10 @@
           "type": "doc"
         },
         {
+          "id": "console/company-configuration/company-settings",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",
@@ -112,10 +116,6 @@
               "type": "doc"
             }
           ]
-        },
-        {
-          "id": "console/company-configuration/settings",
-          "type": "doc"
         }
       ]
     },
