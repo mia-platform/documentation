@@ -1713,5 +1713,21 @@
   "/docs/runtime_suite/integration-test-service/changelog": {
     "destination": "/docs/runtime_suite/integration-tests-service/changelog",
     "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/overview": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/overview",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/configuration": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/configuration",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/usage": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/usage",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/changelog": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/changelog",
+    "addedOn": "2024-03-25"
   }
 }
