@@ -18,5 +18,5 @@ This setting can be useful if your Company must comply with specific regulations
 ![saving options](./img/settings-saving-options.png)
 
 :::info  
-If the setting is enabled on the Company, it cannot be overridden at Project level. On the other hand, if more strict contraints are needed only on a specific Project, this setting can be enabled selectively from the [Rules tab of the Project Settings page](/console/project-configuration/project-settings.md#rules), keeping it disabled at Company level.
+If the setting is enabled on the Company, it cannot be overridden at Project level. On the other hand, if more strict constraints are needed only on a specific Project, this setting can be enabled selectively from the [Rules tab of the Project Settings page](/console/project-configuration/project-settings.md#rules), keeping it disabled at Company level.
 :::
