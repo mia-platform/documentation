@@ -112,6 +112,10 @@
               "type": "doc"
             }
           ]
+        },
+        {
+          "id": "console/company-configuration/settings",
+          "type": "doc"
         }
       ]
     },

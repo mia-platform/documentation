@@ -144,6 +144,16 @@ The above information can be edited by clicking on the "Edit" button, which will
   </div>
 </div>
 
+## Rules
+
+The "Rules" tab allows the user to customize rules defined for the Project. Rules can pertain to different domains, such as configuration, runtime or deployment management, and so on.
+
+### Saving options
+
+This set of rules allows users to configure the Project **saving options**, which define settings and constraints relative to the saving process, such as the mandatory confirmation of the commit message before saving the Project configuration.
+
+![saving options](./img/settings-saving-options.png)
+
 ## Feature Preview
 
 The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific Project, through a single card called "Feature Preview for your Project".
