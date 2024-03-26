@@ -177,6 +177,10 @@
           "type": "doc"
         },
         {
+          "id": "console/company-configuration/company-settings",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",
