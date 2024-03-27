@@ -1726,8 +1726,20 @@
     "destination": "/docs/runtime_suite/pharma-ecommerce-backend/usage",
     "addedOn": "2024-03-25"
   },
-  "/docs/runtime_suite/pharma-e-commerce-backend/changelog": {
-    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/changelog",
-    "addedOn": "2024-03-25"
+  "/docs/runtime_suite/mia-fhir-adapter/overview_and_usage": {
+    "destination": "/docs/runtime_suite/fhir-adapter/overview_and_usage",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/files_management": {
+    "destination": "/docs/runtime_suite/fhir-adapter/files_management",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/configuration": {
+    "destination": "/docs/runtime_suite/fhir-adapter/configuration",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/changelog": {
+    "destination": "/docs/runtime_suite/fhir-adapter/changelog",
+    "addedOn": "2024-03-27"
   }
 }
