@@ -30,12 +30,15 @@ Every Braintree endpoint has this prefix path `/v3/braintree`
 
 This endpoint allows to execute payments via the Braintree payment provider.
 
-The request body requires the `providerData` field which requires the following data:
-- `customerId`: id of the customer. Vaulted payment uses this field to identify the customer, thus make sure to give
-  the same id that you saved in the vault.
-- `storeInVault`: boolean that specifies whether to store the customer inside the vault. Set it to `true` if performing
+The request body requires the `providerData` field with the following data:
+- `customerId` (required): id of the customer. If already Vaulted, payment uses this field to identify the customer, thus make sure to give
+  the same id that you saved in the vault. Otherwise, the customer is created with this id.
+- `storeInVault` (required): boolean that specifies whether to store the customer inside the vault. Set it to `true` if performing
   Checkout + Vault.
-- `vaulted`: boolean that specifies whether the customer is already vaulted or not.
+- `vaulted` (required): boolean that specifies whether the customer is already vaulted or not.
+- `nonce`: nonce that identify the payment method of the customer. Required performing a non-vaulted payment. If already vaulted, the nonce is used if specified;
+  if it is null, the customer id is used to retrieve the payment method already vaulted.
+- `deviceData`: Braintree device session ID.
 
 
 For more information, please read BrainTree's [documentation](https://developer.paypal.com/braintree/docs/guides/paypal/overview),
@@ -61,29 +64,55 @@ The request body does not require any provider-specific data.
 
 This endpoint allows to start a new subscription via the Braintree provider.
 
-The request body requires the `providerData` object: the following options are available:
-- `paymentToken`
-```jsonc
-{
-  [...]
-  "providerData": {
-     "paymentToken": "1234567890" // paymentToken related to the payment method saved on Braintree Vault for the user.
-  },
-}
-```
-- `nonce`
-```jsonc
-{
-  [...]
-  "providerData": {
-    "nonce": "1234567890",     // Nonce related to the user's payment method.
-    "customerId": "0000000007" // Braintree customer identifier.
-  },
-}
-```
+The request body requires the `providerData` field with the following data:
+- `paymentToken`: identifier of a customer Payment method, if specified 
+- `customerId` (required): id of the customer. If already Vaulted, payment uses this field to identify the customer, thus make sure to give
+  the same id that you saved in the vault. Otherwise, the customer is created with this id.
+- `storeInVault` (required): boolean that specifies whether to store the customer inside the vault. Set it to `true` if performing
+  Checkout + Vault.
+- `vaulted` (required): boolean that specifies whether the customer is already vaulted or not.
+- `nonce`: nonce that identify the payment method of the customer. Required performing a non-vaulted payment. If already vaulted, the nonce is used if specified;
+  if it is null, the customer id is used to retrieve the payment method already vaulted.
+- `deviceData`: Braintree device session ID.
 
-The `subscriptionInfo.interval` field accept the following values:
-- `MONTH`
+
+The request body requires the `providerData` object: the following options are available:
+- `paymentToken`: paymentToken related to the payment method saved on Braintree Vault for the customer.
+    ```jsonc
+    {
+      [...]
+      "providerData": {
+         "paymentToken": string
+      },
+    }
+    ```
+- `vaulted`: specifies that the customer is already vaulted. One of `nonce` or `customerId` is required.
+    With the `nonce` specified, a new payment method is stored in the vault, otherwise teh one stored in the vault for the specified `customerId` is used.
+    ```jsonc
+    {
+      [...]
+      "providerData": {
+        "nonce": string,      // Nonce related to the user's payment method.
+        "customerId": string, // Braintree customer identifier. Required.
+        "vaulted": true                 
+      },
+    }
+    ```
+- `non-vaulted`: specifies that the customer is not vaulted. Both `nonce` and `customerId` are required.
+    The customer is created with the associated payment method specified by the `nonce`.
+    ```jsonc
+    {
+      [...]
+      "providerData": {
+        "nonce": string,      // Nonce related to the user's payment method. Required.
+        "customerId": string, // Braintree customer identifier. Required.
+        "vaulted": true                 
+      },
+    }
+    ```
+
+The `subscriptionInfo.interval` field accepts only the following values:
+- MONTH
 
 #### Update
 
@@ -116,6 +145,20 @@ This endpoint allows to expire a subscription.
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status          | Plugin Status |
+|--------------------------|---------------|
+| SETTLEMENT_CONFIRMED     | ACCEPTED      |
+| SETTLED                  | ACCEPTED      |
+| SUBMITTED_FOR_SETTLEMENT | ACCEPTED      |
+| SETTLING                 | ACCEPTED      |
+| SETTLEMENT_PENDING       | PENDING       |
+| AUTHORIZING              | PENDING       |
+| AUTHORIZED               | PENDING       |
+
+Everything else will be mapped as FAILED.
 
 ### Check
 
@@ -186,6 +229,18 @@ Example:
 }
 ```
 
+### Delete Customer
+
+`POST /utility/delete`
+
+This endpoint allows to delete a customer on the provider systems.
+This endpoint should only be called by Braintree, and accepts only webhook with type PAYMENT_METHOD_REVOKED_BY_CUSTOMER.
+
+:::warning
+This endpoint is deprecated and will not be maintained in next releases
+:::
+
+
 ## Braintree Dashboard Configuration
 Some configurations are needed on the provider dashboard in order to be able to manage automatic payments related to subscription:
 1. create a new webhook to the **Payment Gateway Manager** `/v3/braintree/callback` endpoint
@@ -194,3 +249,4 @@ Some configurations are needed on the provider dashboard in order to be able to 
    - Subscription Charged Successfully
    - Subscription Unsuccessfully
    - Subscription Expired
+   - Payment Method Revoked By Customer

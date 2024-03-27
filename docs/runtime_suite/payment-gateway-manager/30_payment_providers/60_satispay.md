@@ -78,6 +78,14 @@ This endpoint allows to expire a subscription.
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status | Plugin Status |
+|-----------------|---------------|
+| ACCEPTED        | ACCEPTED      |
+| CANCELED        | FAILED        |
+| PENDING         | PENDING       |
 
 ### Check
 

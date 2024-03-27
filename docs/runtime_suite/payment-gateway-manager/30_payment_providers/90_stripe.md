@@ -98,6 +98,19 @@ This endpoint allows to expire a subscription.
 `GET /status?paymentId={paymentId}`
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+The provider specific `metadata` field can contain the following fields:
+- `paymentIntentId`: the payment intent id. Refer to [Stripe documentation](https://docs.stripe.com/api/payment_intents) for more info.
+- `subscriptionToken`: the subscription id. Refer to [Stripe documentation](https://docs.stripe.com/api/subscriptions) for more info.
+
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status | Session Status | Plugin Status |
+|-----------------|----------------|---------------|
+| UNPAID          | OPEN           | PENDING       |
+| PAID            | COMPLETE       | ACCEPTED      |
+| UNPAID          | EXPIRED        | FAILED        |
+
 ### Check
 
 `GET /check?paymentId={paymentId}`

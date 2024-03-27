@@ -29,7 +29,7 @@ The `amount` is expressed as an integer in order to avoid precision loss.
 Together with the `currency` value (ISO 4217) the correct float value can be computed. 
 
 :::warning
-Only "EUR" currency is supported
+Only "EUR" currency is supported at this moment
 :::
 
 
@@ -166,6 +166,11 @@ The `provider` will notify with a callback every change on the subscription.
     "providerData": {...}              // the object with provider-specific data (optional, varies with the provider)
 }
 ```
+Possible values of `subscrptionInfo.interval` are:
+- DAY
+- WEEK
+- MONTH
+- YEAR
 
 #### Response
 
@@ -377,7 +382,7 @@ Retrieve [payment status](#payment-status).
 
 `GET /{provider}/check?paymentId=0987654321`
 
-The **Payment Gateway Manager** send a callback with the status of the payment to an external service, as specified by the
+The **Payment Gateway Manager** sends a callback with the status of the payment to an external service, as specified by the
 `PAYMENT_CALLBACK_URL` environment variable.
 More details on how to configure the callback are available on the dedicated section.
 
@@ -424,7 +429,7 @@ Below, the interface exposed:
 * M2M Callback Transaction Status Verification: `GET /{external}/callback`
 * On-Demand Transaction Status Verification: `GET /{external}/check`
 
-More details about custom external integrations are available on the [dedicated section](30_payment_providers/99_external).
+More details about custom external integrations are available on the [dedicated section](30_payment_providers/99_external.md).
 
 ## Payment Saga APIs - Flow Manager Integration
 
