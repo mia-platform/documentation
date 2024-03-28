@@ -64,6 +64,8 @@ Each Flow Manager service can be manually linked at any time, this allows the us
 Once the Flow Manager service is linked, a commit is required in order to properly handle the service configuration. After the commit, indeed, the config map of the Flow Manager service will no longer be editable as it is completely controlled by the Configurator tool.
 :::
 
+![Link Service](img/link-service.png)
+
 There are some cases in which the Flow Manager service cannot be linked to the Configurator, those cases are:
 - missing environment variable `CONFIGURATIONS_FILE_PATH`
 - wrong `CONFIGURATIONS_FILE_PATH` value
@@ -71,8 +73,6 @@ There are some cases in which the Flow Manager service cannot be linked to the C
 - invalid config map content (does not match JSON schema)
 
 For each of these cases the Configurator will show an error with a badge describing the error.
-
-![Link Service](img/link-service.png)
 
 ## Unlink
 
