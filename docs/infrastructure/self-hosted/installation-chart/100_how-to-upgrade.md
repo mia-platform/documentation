@@ -146,10 +146,3 @@ We suggest to use the value `mia-platform` as default company ID, since it shoul
 However, please make sure that a tenant with the same name does not already exist: in such case we suggest to use a different name such as `mia-platform-internal` or similar.
 
 :::
-
-#### Fast Data Projection updates topics
-
-The new version of the console has introduced an automatism to use all the pr-update topic names from projections enabled in a Real-Time Updater or Projection Storer.
-Because of this, if you used to send pr-updates, **but not for all the Projections in the System of Record, you need to clear off the newly added pr-update topics you don't use** that you will find in the Projection's detail page
-
-![Kafka Topics section inside Projection details page](../img/kafka_topics_projection_page.png)

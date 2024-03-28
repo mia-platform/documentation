@@ -82,6 +82,7 @@ The app configuration contains:
   - **userSettingsURL** (_optional_): an URL to send the user to the user settings page on idp provider;
   - **skipRefreshProviderTokenOnMiaTokenRefresh** (_default `false`_): if `true`, the provider's token won't be refreshed when calling the `/refreshtoken` endpoint, unless the provider token has expired;
   - **logoutUrl** (_optional_) (available since `v3.3.0`): If the provider is OIDC compliant, the url where the user agent is redirected to perform the logout from the provider;
+  - **exposeProviderIdToken** (default: `false`) (available since `v3.9.0`): Only applicable where `provider.type` is `microsoft`, when true an endpoint to retrieve the provider `idToken` is exposed.
 - **redirectUrl** (_required_): the url where the app is redirected during the `authorization_code` grant type, to be redirect after the authorize call. This must be set the same as in the idp provider;
 - **authorizeStateRequired** (_default: `false`_): When `true`, the client should generate the `state` parameter, enabling further protection against CSRF attacks. See the [related section](./30_usage.md#client-generated-state);
 - **realm**: (_required_)*: the realm of the application, to aggregate users between different configuration in a same provider (user is identified by *realm*, *providerId* and *providerUserId\*);
@@ -340,13 +341,13 @@ You probably also need to modify the `InputClaims` of the Userinfo configuration
 To achieve this you have to add the `PartnerClaimType` attribute with the correct name, as shown in the following example:
 
 ```xml
-                    <InputClaims>
-                        <InputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
-                        <InputClaim ClaimTypeReferenceId="givenName"/>
-                        <InputClaim ClaimTypeReferenceId="surname"/>
-                        <InputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
-                        <InputClaim ClaimTypeReferenceId="signInNames.emailAddress" PartnerClaimType="email" />
-                    </InputClaims>
+<InputClaims>
+  <InputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
+  <InputClaim ClaimTypeReferenceId="givenName"/>
+  <InputClaim ClaimTypeReferenceId="surname"/>
+  <InputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
+  <InputClaim ClaimTypeReferenceId="signInNames.emailAddress" PartnerClaimType="email" />
+</InputClaims>
 ```
 
 Refer [to this section](https://docs.microsoft.com/en-us/azure/active-directory-b2c/userinfo-endpoint?pivots=b2c-custom-policy#provide-optional-claims) of the AD B2C documentation for a thorough explanation on how to do it.

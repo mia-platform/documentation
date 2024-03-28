@@ -766,3 +766,26 @@ If you set the `EXPOSE_METRICS` environment variable to `true`, the service will
 | `http_request_duration_seconds` | The duration of the HTTP requests, in seconds |
 
 It is possible to customize the metrics prefix by setting the `NAMESPACED_METRICS_PREFIX` environment variable. The default value is `authentication_service`.
+
+## Get Provider idToken
+
+:::warning
+
+This feature is only available for the provider `microsoft` and disabled by default.
+Only activate it if needed for your specific use case.
+
+:::
+
+API Signature: `GET /provider/idtoken`
+
+The endpoint is exposed only if the `apps.<appId>.providers.<providerId>.exposeProviderIdToken` config parameter is set to `true`.
+
+When contacted with a valid access token, either in the `sid` cookie or in the `Authorization` header, it returns the provider [OIDC `id_token`](https://openid.net/specs/openid-connect-core-1_0.html#TokenResponse) relative to the current session, that was retrieved from the provider during the login or the token refresh.
+
+The response is a JSON string reflecting the following example:
+
+```json
+{
+    "idToken": <the-provider-id-token>
+}
+```

@@ -74,7 +74,7 @@ The users' collection needs the following service-specific fields:
 - **phoneNumber (required)** - `string`: the user's phone number;
 - **fiscalCode (required)** - `string`: the user's fiscal code.
 
-The minimum required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/pharma-e-commerce-backend/users_fields.json">example json file</a>.
+The minimum required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/pharma-ecommerce-backend/users_fields.json">example json file</a>.
 
 :::warning
 If you want to use the **Pharma Ecommerce Backend** in conjunction with the [User Manager Service][ums-overview-link], you will also need to add the service required specified in the [service configuration][ums-config-link].
@@ -95,7 +95,7 @@ The orders' collection stores the information of an order placed to a pharma e-c
 - **customOrderId (required)** - `string`: an order that is different from the order id given by a pharma e-commerce provider during the creation of an order;
 - **orderId (required)** - `string`: this property stores the specific provider order id.
 
-The required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/pharma-e-commerce-backend/pharma_ecommerce_orders_fields.json">example json file</a>.
+The required properties of this CRUD can be imported downloading this <a download target="_blank" href="/docs_files_to_download/pharma-ecommerce-backend/pharma_ecommerce_orders_fields.json">example json file</a>.
 
 :::warning
 Currently, the only supported `provider` is `pharmaPrime`.
@@ -138,8 +138,8 @@ We advise to leverage the [CRUD Service][crud-service-overview] and the [Files S
 :::
 
 [language-codes]: https://httpwg.org/specs/rfc9110.html#field.accept-language
-[ums-overview-link]: ../../runtime_suite/user-manager-service/overview
-[ums-config-link]: ../../runtime_suite/user-manager-service/configuration
+[ums-overview-link]: ../user-manager-service/overview
+[ums-config-link]: ../user-manager-service/configuration
 [pharma-prima-support-email]: mailto:support@pharmaprime.it
-[crud-service-overview]: ../../runtime_suite/crud-service/overview_and_usage
-[files-service-overview]: ../../runtime_suite/files-service/configuration
+[crud-service-overview]: ../crud-service/overview_and_usage
+[files-service-overview]: ../files-service/configuration

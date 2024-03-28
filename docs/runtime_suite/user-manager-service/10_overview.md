@@ -11,18 +11,18 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 The **User Manager Service** is a microservice responsible for handling user management.
-Leveraging the [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) and the desired authentication service
-(for instance, the [Auth0 Client](../../runtime_suite/auth0-client/overview)),
+Leveraging the [CRUD Service][crud-service] and the desired authentication service
+(for instance, the [Auth0 Client][auth0-client]),
 it can be used to control users creation, update and deletion on both a CRUD collection and the authentication service.
-The service can also handle user roles and permissions leveraging the integration with the [Rönd Service](https://rond-authz.io/docs/getting-started).
+The service can also handle user roles and permissions leveraging the integration with the [Rönd Service][rond].
 
 The combination of the authentication service with a CRUD collection brings the following advantages:
-- it supports the adoption of data encryption: properties can easily be encrypted in the [CRUD](../../runtime_suite/crud-service/encryption_configuration);
-- the [user management endpoints](./30_usage.md#User-Management) are CRUD-alike, thus the User Manager Service can be used by the Mia-Platform [Microfrontend Composer](../../microfrontend-composer/overview)
-  as a CRUD collection (other endpoints can be used as actions from the Microfrontend Composer, e.g. the [reset password endpoint](./30_usage.md#POST-/users/change-password)).
+- it supports the adoption of data encryption: properties can easily be encrypted in the [CRUD][crud-encryption];
+- the [user management endpoints][user-management-endpoints] are CRUD-alike, thus the User Manager Service can be used by the Mia-Platform [Microfrontend Composer][microfrontend-composer]
+  as a CRUD collection (other endpoints can be used as actions from the Microfrontend Composer, e.g. the [reset password endpoint][reset-password-endpoint]).
 - the authentication service only contains authentication information (password, username, email), while all the user data is stored in the CRUD;
 - even if all the users are stored in a common CRUD collection, each user group make use of a different schema, stored in a
-  [dedicated CRUD collection](./20_configuration.md#User-Manager-Configuration-CRUD-collection);
+  [dedicated CRUD collection][crud-user-manager-config];
   this allows the validation of the user against different schemas and to define different properties for each group.
 
 :::note
@@ -37,6 +37,17 @@ The User Manager Service can be extended with new authentication modules, in ord
 To do this, a dedicated interface to the given authorization service must be implemented and added to the service.
 
 :::note
-At this time the [Auth0 Client](../../runtime_suite/auth0-client/overview) microservice is the only authentication service available,
+At this time the [Auth0 Client][auth0-client] microservice is the only authentication service available,
 so the `auth0Client` module is the only one that has been implemented in the User Manager Service.
 :::
+
+
+[auth0-client]: /runtime_suite/auth0-client/10_overview.md
+[crud-service]: /runtime_suite/crud-service/10_overview_and_usage.md
+[crud-encryption]: /runtime_suite/crud-service/30_encryption_configuration.md
+[microfrontend-composer]: /microfrontend-composer/overview.md
+[rond]: https://rond-authz.io/docs/getting-started
+
+[reset-password-endpoint]: ./30_usage.md#post-userschange-password
+[user-management-endpoints]: ./30_usage.md#user-management
+[crud-user-manager-config]: ./20_configuration.md#user-manager-configuration-crud-collection

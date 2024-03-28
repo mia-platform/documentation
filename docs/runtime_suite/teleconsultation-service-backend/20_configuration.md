@@ -103,10 +103,10 @@ The Teleconsultation Service Backend accepts the environment variables described
 |------------------------------------------|----------|---------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **BANDYER_API_SECRET_KEY**               | Yes      | -       | 1.0.0           | API Secret Key to use in order to communicate with Kaleyra's APIs.                                                                                                                                                |
 | **BANDYER_BASE_URL**                     | Yes      | -       | 1.0.0           | Name of the Kaleyra API endpoint.                                                                                                                                                                                 |
-| **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | 1.0.0           | Full path of the updated file defined in the [previous section](#environment-variables).                                                                                                                          |
+| **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | 1.0.0           | Full path of the updated file defined in the [previous section][environment-variables].                                                                                                                          |
 | **TELECONSULTATIONS_CRUD_NAME**          | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the teleconsultations.                                                                                                                                                  |
 | **USER_ID_MAP_CRUD_NAME**                | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.                                                                                                           |
-| **AUTH_SERVICE**                         | No       | -       | 1.0.0           | Name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration](#teleconsultation-service-backend-configuration)). |
+| **AUTH_SERVICE**                         | No       | -       | 1.0.0           | Name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration][configuration]). |
 | **DEFAULT_CLIENT_TYPE**                  | No       | -       | 1.0.0           | Name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.                                                                                                    |
 | **UNLIMITED_TELECONSULTATION**           | No       | `true`  | 1.1.2           | If the teleconsultation duration is infinite.                                                                                                                                                                     |
 | **LIVE_TELECONSULTATION**                | No       | `true`  | 1.3.0           | If the teleconsultation ends when a participant leaves the call and the number of the remaining participants are less than two.                                                                                   |
@@ -137,7 +137,7 @@ If `LIVE_TELECONSULTATION` is set to false, the period of time during which a pa
 
 ### Teleconsultation Service Configuration
 
-The Teleconsultation Service Configuration is a JSON object with 5 root properties.
+The Teleconsultation Service Configuration is a JSON object with 6 root properties.
 
 **1. privileges**
 
@@ -163,7 +163,17 @@ The Teleconsultation Service Configuration is a JSON object with 5 root properti
 -   _required_:  `false`;
 -   _description_: contains a field called _url_, which specify the url where the company logo is stored.
 
-**5. userIdPathInRequest**
+**5. groupsWithBackgroundList**
+
+:::note
+Available from version 1.6.1 of the teleconsultation-backend service
+:::
+  
+-   _type_: array;
+-   _required_:  `false`;
+-   _description_: contains a list of strings referring to user groups for which a virtual background should be used. Follow [these instructions][usage-virtual-background] to configure a virtual background for the service.
+
+**6. userIdPathInRequest**
 
 -   _type_: array;
 -   _required_:  `false`;
@@ -185,6 +195,7 @@ The `JSON` file is structured like the following example:
     "light": {...},
     "dark": {...}
   },
+  "groupsWithBackgroundList": [...]
   "companyLogo": {
     "url": ""
   }
@@ -364,3 +375,8 @@ This allows the Teleconsultation Service Backend to communicate with Kaleyra (a 
 The teleconsultations CRUD needs the following service-specific fields:
 - **bandyerId (required)** - `string`: the id of the user on Kaleyra;
 - **receivedUserId (required)** - `string`: the id of the user on Auth0;
+
+
+[configuration]: #teleconsultation-service-backend-configuration
+[environment-variables]: #environment-variables
+[usage-virtual-background]: ./30_usage.md#post-settingsbackground-image
