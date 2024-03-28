@@ -51,7 +51,7 @@ None
 
 | event            | action               |
 | ---------------- | -------------------- |
-| [show-in-viewer] | opens PDF in brawser |
+| [show-in-viewer] | opens PDF in browser |
 
 ### Emits
 

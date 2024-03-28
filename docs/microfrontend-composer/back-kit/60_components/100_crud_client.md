@@ -278,6 +278,14 @@ The regular expression specified in the `from` key of an entry of `reroutingRule
 }
 ```
 
+### Estimate count
+
+The property `useEstimateCount` enables to call every `GET /count` request with the query parameter `_useEstimate=true`. It returns the total number of elements in the collection but it doesn't take into account any type of filter.
+
+:::caution
+To use this property you must use [CRUD Service][crud-service] version `6.10.0` or above.
+:::
+
 
 
 ## Examples
@@ -711,10 +719,11 @@ triggers a request like this
 | `dataSchema`                | -                              | [ExtendedJSONSchema7Definition][data-schema] | -                             | data-schema describing which field to retrieve from CRUD collection                                                                                                               |
 | `enableDefinitiveDelete`    | `enable-definitive-delete`     | boolean                                      | false                         | when `true`, http DELETE cannot be rolled back                                                                                                                                    |
 | `initialEvent`              | -                              | [ChangeQueryPayload][change-query]           | {pageSize: 25, pageNumber: 1} | in case of no `change-query` received within `botstrapTimout` milliseconds from connection to DOM, an initial [change-query][change-query] event with this payload will be thrown |
-| `keepStateWhileDuplicating` | `keep-state-while-duplicating` | boolean                                      | false                         | if `true` duplicate will keep the original record \_\_STATE\_\_                                                                                                                   |
-| `shouldIncludeProjections`  | `should-include-projections`   | boolean                                      | true                          | should append projection when exporting from CRUD service                                                                                                                         |
-| `keepPageCount`             | `keep-page-count`              | boolean                                      | false                         | should attempt to stay on current page after successful CRUD operation                                                                                                            |
-| `reflectToUrl`              | `reflect-to-url`               | boolean                                      | true                          | on internal state update, should reflect internal state on URL                                                                                                                    |
+| `keepStateWhileDuplicating` | `keep-state-while-duplicating` | boolean                                      | false                         | if `true` duplicate will keep the original record \_\_STATE\_\_                                                                                                                  |
+| `shouldIncludeProjections`  | `should-include-projections`   | boolean                                      | true                          | should append projection when exporting from CRUD service                                                                                                                          |
+| `keepPageCount`             | `keep-page-count`              | boolean                                      | false                         | should attempt to stay on current page after successful CRUD operation                                                                                                             |
+| `reflectToUrl`              | `reflect-to-url`               | boolean                                      | true                          | on internal state update, should reflect internal state on URL                                                                                                                 |
+| `useEstimateCount`          | -                              | boolean                                      | false                         | Calls GET /count with the query parameter _useEstimate set at true                                                                                                              |
 | `baseSortProperty`          | `base-sort-property`           | string                                       | -                             | field to use as additional sorting criteria when fetching data. It is appended to `_s` search parameter                                                                           |
 
 
