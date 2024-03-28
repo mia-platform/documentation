@@ -101,6 +101,14 @@ Below an example of the `providerData` object needed:
 }
 ```
 
+#### Get Status
+
+`GET /subscription/expire/{subscriptionToken}?reference={{shopperReference}}`
+
+This endpoint allows to get a subscription status. Available status are:
+- `ACTIVE`
+- `UNKNOWN`
+
 #### Expire
 
 `POST /subscription/expire/{subscriptionToken}?reference={{shopperReference}}`

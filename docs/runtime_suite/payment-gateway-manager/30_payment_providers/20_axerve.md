@@ -210,6 +210,19 @@ It required the `token` field inside the `subscriptionInfo` object.
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status | Plugin Status |
+|-----------------|---------------|
+| APPROVED        | ACCEPTED      |
+| OK              | ACCEPTED      |
+| DECLINED        | FAILED        |
+| KO              | FAILED        |
+| PENDING         | PENDING       |
+| WAITING         | PENDING       |
+| UNSUBMITTED     | PENDING       |
+
 ### Check
 
 `GET /check?paymentId={paymentId}`

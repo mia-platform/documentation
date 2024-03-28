@@ -58,6 +58,23 @@ The request body does not require any provider-specific data.
 `GET /status?paymentId={paymentId}`
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status   | Plugin Status |
+|-------------------|---------------|
+| AUTHORIZED        | ACCEPTED      |
+| EXECUTED          | ACCEPTED      |
+| VOIDED            | ACCEPTED      |
+| REFUNDED          | ACCEPTED      |
+| DECLINED          | FAILED        |
+| DENIED_BY_RISK    | FAILED        |
+| THREEDS_FAILED    | FAILED        |
+| CANCELED          | FAILED        |
+| FAILED            | FAILED        |
+| THREEDS_VALIDATED | PENDING       |
+| PENDING           | PENDING       |
+
 ### Check
 
 `GET /check?paymentId={paymentId}`
