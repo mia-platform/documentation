@@ -165,12 +165,25 @@ SMS message recipients need the following fields in the [*users* CRUD collection
 
 ### Push notifications
 
-To send push notifications, you need to configure a Kafka cluster and the [Kafka2Firebase Service][kafka2firebase] and set all the [`KAFKA_*` environment variables][environment-variables] accordingly.
+:::info
+
+**v2.2.0**
+
+Since version 2.2.0 you can send push notifications without needing Kafka.
+We recommend using Kafka when you need high reliability or performance, for example when handling an high volume of notifications.
+
+:::
+
+To send push notifications, you can do one of the following:
+
+- send the notifications directly to Firebase by setting the [`GOOGLE_APPLICATION_CREDENTIALS` environment variable][environment-variables] (*requires version 2.2.0 or later*);
+- configure the Kafka cluster and the [Kafka2Firebase Service][kafka2firebase] and set all the [`KAFKA_*` environment variables][environment-variables] accordingly.
 
 In the [service configuration][service-configuration], you must set the following fields:
 
 - `activeChannels` must include the `push` value;
-- `userFields.deviceToken` should specify the custom name of the `deviceToken` field of the [*users* CRUD collection][crud-users].
+- `push.provider` must specify if the push notifications are sent to Firebase (`firebase`) or Kafka (`kafka`), default is `kafka` for backwards compatibility;
+- `userFields.deviceToken` must specify the custom name of the `deviceToken` field of the [*users* CRUD collection][crud-users].
 
 Message templates need the following fields in the [*templates* CRUD collection][crud-templates]:
 
