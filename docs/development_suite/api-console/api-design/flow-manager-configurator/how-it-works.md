@@ -38,7 +38,7 @@ The history buttons are placed on the right side of the header. They provide the
 The settings button is placed on the right side of the header. It provides a dropdown menu with the following options:
 - Persistency Management
 - Deep Merge (only for Flow Manager version >= `2.6.0`)
-- Unlink microservice
+- Unlink microservice (only for linked services)
 
 #### Persistency Management
 
@@ -103,6 +103,7 @@ Button placed in the bottom right corner provide the following features:
 - Zoom out
 - Zoom in
 - Fit view &rarr; centers the flow and chooses the right zoom to visualize the entire flow
+- Collapse/Expand &rarr; collapses or expands nodes and edges
 - Auto layout &rarr; auto computes and sets nodes and edge positions
 - Toggle side panel visibility.
 

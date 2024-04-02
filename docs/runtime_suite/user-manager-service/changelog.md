@@ -15,6 +15,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] 2024-03-27
+
+### [Fixed]
+
+- The generated ID for the users in the bulk import follows the Auth0 standard of 24 only alphabetic characters.
+
+## [1.5.0] 2024-03-18
+
+### [Added]
+
+- Fix 500 error for nested fields in request body of `PATCH /users/:id` endpoint
+- Add PATCH /users/import endpoint
+- Update errors and failures interface for endpoints `POST /jobs/auth0-users-import` and `GET /jobs/auth0-users-import/:id`
+- Implement handlers logic for `POST /jobs/auth0-users-import` and `GET /jobs/auth0-users-import/:id`
+- Add ums job logic implementation for bulk import of users in Auth0
+- Add interface for endpoints `POST /jobs/auth0-users-import` and `GET /jobs/auth0-users-import/:id`
+- Add load/stress test suite
+- Add rescheduling logic for UMS jobs that to poll Auth0 for users bulk import 
+- Add job scheduler concurrency tests 
+- Add logic to update job status with job scheduler
+- Remove sensitive data from auth import error feedback
+- Add documentation for `GET /jobs/change-password/bulk/:id` and `POST /jobs/change-password/bulk` endpoints. Update endpoints of jobs name to `GET /jobs/bulk-activation/:id` and `POST /jobs/bulk-activation`
+- Update `PATCH /users/import` response with inserted and updated users ids
+- Add documentation for complete flow of users bulk operations: import, activation and change password
+- Add implementation of `POST /jobs/change-password/bulk` endpoint
+- Add stress tests for `POST /jobs/change-password/bulk` endpoint
+- Add implementation of `GET /jobs/change-password/bulk/:id` endpoint
+- Update response of `GET /jobs/change-password/bulk/:id` with successful users ids
+- Add the upsert query parameter to `POST /jobs/bulk-activation`
+ 
+### [Fixed]
+
+- Fix CSV bulk import with array fields
+- Fix CSV bulk import performance issues due to too many unnecessary requests to Crud
+- Fix bulk activation of users filtering out already active users
+- Fix error in documentation of `POST /users/state`
+- Fix error in documentation of `POST /oauth/token`
+- Improve `PATCH /users/import` response with array of ivalid rows
+
+### [Changed]
+
+- Rename endpoints `POST /jobs/auth0-users-import` and `GET /jobs/auth0-users-import/:id` to `POST /jobs/users/bulk-activation` and `GET /jobs/users/bulk-activation/:id` respectively, and remove patch feedback from users bulk activation
+
 ## [1.4.3] 2023-10-10
 
 ### Changed
@@ -144,7 +187,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This version contains changes to the error objects.
 This new format can be breaking if your microservices are explicitly using the old error objects content.
 - This version requires at least v4.3.0 of crud service since we are using the query parameter `_rawp` in the
-user manager service (see [here](../../runtime_suite/crud-service/overview_and_usage#return-a-subset-of-properties) for further information).
+user manager service (see [here](../crud-service/overview_and_usage#return-a-subset-of-properties) for further information).
 - The userinfo additional properties are now handled via the `USERINFO_ADDITIONAL_PROPERTIES` environment variable.
 Additional properties via configuration file are no longer available.
 

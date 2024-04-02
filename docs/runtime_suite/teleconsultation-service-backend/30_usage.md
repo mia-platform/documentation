@@ -14,11 +14,17 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The following sections explain the details about the endpoints exposed from the **Teleconsultation Service Backend**.
 
-This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*](../../runtime_suite/auth0-client/overview).
+This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*][auth0-client].
 
 In Kaleyra there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
-The **Teleconsultation Service Backend** accepts, as body parameters for some routes, a **start_date** and an **end_date** to calculate the max duration of a teleconsultation.
+The **Teleconsultation Service Backend** accepts, alternatively, as body parameters to create or modify a room:
+- **start_date** and **end_date**, to calculate the max duration of a teleconsultation.
+- **start_date** and **duration_in_seconds**
+
+:::warning
+The duration, calculated as described above, must be at least 5 minutes.
+:::
 
 :::note
 If the `UNLIMITED_TELECONSULTATION` variable is set to `true` in the service configuration, the room has unlimited duration. Otherwise, the duration is calculated as previously described.
@@ -42,7 +48,7 @@ The service will create a kaleyra room only if all participants' data is specifi
 #### Body parameters
 
 ##### participants (required) 
-**Type**: `array of string` (only accepted if the service is configured to interact with auth0) or `object`
+**Type**: `array of string` (only accepted if the service is configured to interact with auth0) or `object`<br />
 **Description**: The list of participants to the call. If a list of string is provided, each element of the array needs to be an auth0's user id of the participant. If an object is provided, you must specify:
 - the expected `number` of participants;
 - an array of participants' `data`, containing, for each participant:
@@ -60,20 +66,30 @@ If a user has multiple roles, the higher role will be selected automatically.
 Example: ```['user1_auth0_id', 'user2_auth0_id', ...]```
 
 ##### start_date (required)
-Type: `Date`
-Description: The starting date of an appointment.
+**Type**: `Date`<br />
+**Description**: The starting date of an appointment.
 This date is used in combination with the end_date in order to calculate the duration of a teleconsultation.
-The date follow the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
+The date follows the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
 
 Example: ```2022-02-22T15:30:00.000Z```
 
-##### end_date (required)
-Type: `Date`
-Description: The starting date of an appointment.
+##### Duration field
+
+Only one of the following fields is required and can be specified.
+
+##### end_date
+**Type**: `Date`<br />
+**Description**: The ending date of an appointment.
 This date is used in combination with the start_date in order to calculate the duration of a teleconsultation.
-The date follow the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
+The date follows the **ISO 8601** format: YYYY-MM-DDTHH:mm:ss.sssZ
 
 Example: ```2022-02-22T16:30:00.000Z```
+
+##### duration_in_seconds
+**Type**: `Integer`<br />
+**Description**: The duration in seconds of an appointment.
+
+Example: ```3600```
 
 <br />
 
@@ -109,6 +125,7 @@ curl -X POST "https://my_project_url/teleconsultation" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -130,6 +147,7 @@ curl -X POST "https://my_project_url/teleconsultation" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -156,8 +174,19 @@ curl -X POST "https://my_project_url/teleconsultation" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
+     }'
+```
+
+With duration_in_seconds field:
+```
+curl -X POST "https://my_project_url/teleconsultation" \
+     -d '{
+         "participants": ['user1_auth0_id', 'user2_auth0_id', 'user3_auth0_id'],
+         "start_date": "2022-02-22T15:30:00.000Z",
+         "duration_in_seconds": 3600
      }'
 ```
 
@@ -188,7 +217,7 @@ Updates a teleconsultation whose id is equal to roomId.
 :::note
 Kaleyra does not support the possibility to make changes existing rooms. 
 
-For this reason, the Kaleyra room is created only if all participants data is provided. If the Kaleyra room has already been created and a change having effects on its features is requested, the existing Kaleyra room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service grants that participants cannot access a Kaleyra room as long as it could be replaced by a new one. 
+For this reason, the Kaleyra room is created only if all participants data is provided. If the Kaleyra room has already been created and a change having effects on its features is requested, the existing Kaleyra room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`][environment-variables] milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`][get-teleconsultation-room-id] documentation to understand how the service grants that participants cannot access a Kaleyra room as long as it could be replaced by a new one. 
 :::
 
 #### Body parameters
@@ -227,6 +256,7 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -248,6 +278,7 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
@@ -274,17 +305,29 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
                 "language": "it"
               }
             ]
+         }
          "start_date": "2022-02-22T15:30:00.000Z",
          "end_date": "2022-02-22T16:30:00.000Z"
      }'
 ```
+
+With duration_in_seconds field:
+```
+curl -X PATCH "https://my_project_url/teleconsultation" \
+     -d '{
+         "participants": ['user1_auth0_id', 'user2_auth0_id', 'user3_auth0_id'],
+         "start_date": "2022-02-22T15:30:00.000Z",
+         "duration_in_seconds": 3600
+     }'
+```
+
 ### POST /teleconsultation/:roomId/participants/data
 
 Pushes a new teleconsultation participant in the `participants.data` array of the teleconsultation instance having id equal to roomId.
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 :::note
-Kaleyra does not support the possibility to make changes existing rooms. For this reason, the Kaleyra room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`](./20_configuration.md#environment-variables) milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the [`GET /teleconsultation/:roomId`](#get-teleconsultationroomid) documentation to understand how the service ensures that participants cannot access a Kaleyra room as long as such room can be replaced by a new one.
+Kaleyra does not support the possibility to make changes existing rooms. For this reason, the Kaleyra room is created only when all participants data is known. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`][environment-variables] milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See the [`GET /teleconsultation/:roomI][get-teleconsultation-room-id] documentation to understand how the service ensures that participants cannot access a Kaleyra room as long as such room can be replaced by a new one.
 :::
 
 #### Body parameters
@@ -360,6 +403,25 @@ If no one of the participants is a `plus` user the service returns the following
 
 Retrieves the custom teleconsultation url for the requesting user.
 
+:::note
+Available from version 1.6.0
+:::
+
+Retrieves the detail of a teleconsultation room usage, as stored on Kaleyra ([reference][kaleyra-get-room]).
+
+#### Query parameters
+
+##### useBackground (optional)
+
+**Type**: `boolean`
+**Description**: Set to true, if required to use background within the virtual meeting
+
+
+##### language (optional)
+
+**Type**: `string`
+**Description**: Specify the language of the virtual room. By default, it uses the default company language. Supports `it` and `en`.
+
 **Request**
 ```
 curl -X GET "https://my_project_url/teleconsultation/room_xyz"
@@ -395,12 +457,28 @@ if no errors occur, you will get a response like this:
       "fullName": "Luigi Bianchi"
     },
     ...
-  ]
+  ],
+  "details": {
+    "recording": "none",
+    "recordingStatus": "stopped",
+    "callType": "audio_only",
+    "description": "text",
+    "status": "NOT_RUNNING",
+    "disabled": true,
+    "creationDate": "2023-12-22T13:36:48.164Z",
+    "durationInSeconds": 3600,
+    "durationUsedInSeconds": 1200,
+    "live": true
+  }
 } 
 ```
 
 <br/>
 
+It supports 2 optional query parameters `useBackground` and `language`. When `useBackground` is set to `true` it returns
+the room url with the default background enabled. When `language` is `it` or `en` it return the room url with the
+specified language set, otherwise the default `language` for the company is used. See `POST /settings/background-image`
+and `PATCH /settings/update` to manage the upload and update of the background images for the company.
 ### DELETE /teleconsultation/:roomId
 
 Deletes a teleconsultation on Kaleyra and set the state of that teleconsultation on CRUD to TRASH.
@@ -463,13 +541,13 @@ Available from version 1.4.0
 :::
 
 :::note
-For this endpoint to work, it's necessary for the service to use [auth0-client](../../runtime_suite/auth0-client/overview) as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
+For this endpoint to work, it's necessary for the service to use [auth0-client][auth0-client] as authentication method, so be sure you properly set the AUTH_SERVICE environment variable.
 :::
 
-Generate an access token and the Kaleyra id for the currently logged user accordingly to the [request authentication headers](../../runtime_suite/authorization-service/usage#headers-set-by-auth).
-If no Kaleyra user is associated to the logged user, a new Kaleyra user is created alongside the corresponding record in the [teleconsultations_users](./20_configuration.md#user-id-map-crud) collection.
+Generate an access token and the Kaleyra id for the currently logged user accordingly to the [request authentication headers][console-mia-headers].
+If no Kaleyra user is associated to the logged user, a new Kaleyra user is created alongside the corresponding record in the [teleconsultations_users][crud-user-id-map] collection.
 
-This endpoint is mainly used to integrate with the [Kaleyra Video React Native Module](https://github.com/KaleyraVideo/VideoReactNativeModule).
+This endpoint is mainly used to integrate with the [Kaleyra Video React Native Module][kaleyra-video-react-native-module].
 
 #### Body parameters
 
@@ -504,4 +582,113 @@ In case the service is not able to get user authentication from the request head
 ```
 
 
+### POST /settings/background-image
+
+:::note
+Available from version 1.6.0
+:::
+
+Uploads the image specified by virtual_background for the company. 
+
+#### Body parameters
+
+##### virtual_background 
+
+**Type**: `binary`
+**Description**: File containing the image to be used as background of the virtual room. Maximum 10 MB.
+
+
+**Example POST Request:**
+```
+curl -X POST "https://my_project_url/settings/background-image" \
+--header 'apikey: your_api_key' \
+--header 'content-type: multipart/form-data; boundary=multipart-boundary' \
+--form virtual_background=your_path_to_file'
+```
+
+#### Response
+
+In case the operation is successful, a 200 status code will be returned alongside with an object containing the following fields:
+
+Example Response:
+```
+200: {
+	"virtual_background": {
+		"background_alias":,
+		"url",
+		"creation_date",
+	}
+}
+```
+
+In case the service is not able to get user authentication from the request headers, a 401 response will be returned.
+
+```
+401: { "error": "Unauthorized user" } 
+```
+
+
+### PATCH /settings/update
+
+:::note
+Available from version 1.6.0
+:::
+
+Updates the default background image for the company, specified by the body parameter `background_alias`
+
+#### Body parameters
+
+##### background_alias
+
+**Type**: `string`
+**Description**: Refers to the alias of the background image that is returned by the POST call when uploading the image.
+
+
+**Example PATCH Request:**
+```
+curl -X PATCH "https://my_project_url/settings/update" \
+--header 'apikey: your_api_key' \
+--data '{
+"background_alias":"3e4d0683d78be3a884b7a60028644f57"
+}'
+```
+
+#### Response
+
+In case the operation is successful, a 200 status code will be returned alongside with an object containing the following fields:
+
+Example Response:
+```
+200: {
+	"company": {
+		"name",
+		"default_language",
+		"default_background": {
+			"alias",
+			"url",
+			"creation_date"
+		},
+		"end_call_redirect_url": "",
+		"user_details_provider_url": "",
+		"end_call_redirect_timeout_ms": 5000
+	}
+}
+```
+
+In case the service is not able to get user authentication from the request headers, a 401 response will be returned.
+
+```
+401: { "error": "Unauthorized user" } 
+```
+
+
+[kaleyra-get-room]: https://developers.kaleyra.io/reference/video-room-get
+[kaleyra-video-react-native-module]: https://github.com/KaleyraVideo/VideoReactNativeModule
+
+[auth0-client]: /runtime_suite/auth0-client/10_overview.md
+[console-mia-headers]: /runtime_suite/authorization-service/30_usage.md#headers-set-by-auth
+
 [environment-variables]: ./20_configuration.md#environment-variables
+[crud-user-id-map]: ./20_configuration.md#user-id-map-crud
+
+[get-teleconsultation-room-id]: #get-teleconsultationroomid

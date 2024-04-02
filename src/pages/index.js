@@ -123,11 +123,11 @@ const features = [
       },
       {
         label: "📝 Read our Blog",
-        href: "https://blog.mia-platform.eu/en",
+        href: "https://mia-platform.eu/blog/",
       },
       {
         label: "📚 Explore our Library",
-        href: "https://resources.mia-platform.eu/en/library",
+        href: "https://mia-platform.eu/library/",
       },
       {
         label: "📨 Subscribe to monthly Newsletter",
@@ -210,7 +210,7 @@ function Home() {
                   link="docs/release-notes/v12.3.0"
                   majorVersion="12.3"
                   subTitle="Click here for further information"
-                  title="The new look and feel of Mia-Platform Console is official released!"
+                  title="The look & feel of Mia-Platform Console is officially released!"
                 />
               </div>}
 

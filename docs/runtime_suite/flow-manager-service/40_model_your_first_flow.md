@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::caution
+The following guide is valid until Console version **12.2.x**. For higher versions it is recommended to use the [Flow Manager Configurator](../../development_suite/api-console/api-design/flow-manager-configurator/overview).
+:::
+
 This guide will follow step by step the complete procedure of creating and configuring a microservice leveraging the Flow Manager plugin.
 
 In particular, we will deepen into the already familiar **order creation scenario**. 

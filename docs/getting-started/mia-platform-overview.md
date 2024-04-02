@@ -12,7 +12,7 @@ With Mia-Platform, you can **standardize and reuse your code**, enabling you to 
 
 To further foster composability, Mia-Platform features a **software catalog** full of ready-to-use components that you can plug into your software. Among these components, one of the most important is Mia-Platform Fast Data, a data management layer that can be used to build a **Digital Integration Hub**. Thanks to this solution, you can connect your cloud-native platform with existing systems, decouple and offload legacy systems, and serve real-time data 24/7. Thus, you can fully benefit from the [true power of your data](#unleash-the-true-power-of-your-data).
 
-Mia-Platform products are built **by developers for developers**, and you can [actively contribute](#more-resources). Our main purpose is to streamline the software development lifecycle, and we do so by collecting all the tools you need in a single place.
+Mia-Platform products are built **by developers for developers**, and you can [actively contribute](/#more-resources). Our main purpose is to streamline the software development lifecycle, and we do so by collecting all the tools you need in a single place.
 
 ![Mia-Platform](img/mia-technologies.png)
 
@@ -50,7 +50,7 @@ By using Mia-Platform, you can **define standards** such as templates, plugins, 
 
 ### Unleash the true power of your data
 
-With Mia-Platform, you will be able to build your **Digital Integration Hub** relying on a solution that has repeatedly been [mentioned](https://mia-platform.eu/company/certifications-and-memberships/#:~:text=Analysts%20Mentions%20and%20Recognitions) by Gartner® as a sample implementation. This solution is a great example of **cohabitation between the paradigms of Data Mesh and Data Fabric**, featuring the best attributes of each approach.
+With Mia-Platform, you will be able to build your **Digital Integration Hub** relying on a solution that has repeatedly been [mentioned](https://mia-platform.eu/company/newsroom/?news-q=Gartner&news-year=#Press%20release) by Gartner® as a sample implementation. This solution is a great example of **cohabitation between the paradigms of Data Mesh and Data Fabric**, featuring the best attributes of each approach.
 
 This layer ingests data from different sources, aggregates it in single views according to business needs, and makes it available in near real-time. In this way, organizations can improve data availability, while also offloading legacy systems and decoupling them from external consumers.
 
