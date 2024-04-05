@@ -158,7 +158,6 @@
         }
       ]
     },
-
     {
       "collapsed": true,
       "type": "category",
@@ -458,11 +457,11 @@
         {
           "collapsed": true,
           "items": [
-            { 
+            {
               "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
               "type": "doc"
             },
-            { 
+            {
               "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
               "type": "doc"
             }
@@ -470,7 +469,7 @@
           "label": "Flow Manager Configurator",
           "type": "category"
         },
-        { 
+        {
           "id": "development_suite/api-console/api-design/flow-manager-visualizer",
           "type": "doc"
         },
@@ -755,7 +754,10 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": ["use-cases", "guides"],
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -1011,8 +1013,19 @@
       "type": "doc"
     },
     {
-      "id": "fast_data/runtime_management",
-      "type": "doc"
+      "label": "Runtime Management",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "id": "fast_data/runtime_management/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "fast_data/runtime_management/secure_access",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/glossary",
@@ -1695,17 +1708,50 @@
         "id": "release-notes/versions"
       },
       "items": [
-        { "id": "release-notes/v12.3.1", "type": "doc" },
-        { "id": "release-notes/v12.3.0", "type": "doc" },
-        { "id": "release-notes/v12.2.1", "type": "doc" },
-        { "id": "release-notes/v12.2.0", "type": "doc" },
-        { "id": "release-notes/v12.1.2", "type": "doc" },
-        { "id": "release-notes/v12.1.1", "type": "doc" },
-        { "id": "release-notes/v12.1.0", "type": "doc" },
-        { "id": "release-notes/v12.0.3", "type": "doc" },
-        { "id": "release-notes/v12.0.2", "type": "doc" },
-        { "id": "release-notes/v12.0.1", "type": "doc" },
-        { "id": "release-notes/v12.0.0", "type": "doc" }
+        {
+          "id": "release-notes/v12.3.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.3.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.2.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.2.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.1.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.1.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.1.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.0.3",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.0.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.0.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v12.0.0",
+          "type": "doc"
+        }
       ]
     },
     {

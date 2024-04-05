@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 _Control Plane_ is a specialized microservice designed to manage the runtime deployment of Fast Data within a Kubernetes environment.
 Its core functionality includes the ability to alter, store, and reset the runtime state of microservices that constitute Mia-Platform Fast Data solution.
-For this reason, it is a crucial component of the Fast Data [Runtime Management](../../fast_data/runtime_management.mdx) suite.
+For this reason, it is a crucial component of the Fast Data [Runtime Management](../../fast_data/runtime_management/overview.mdx) suite.
 
 Instantiating the application from the Marketplace will create a deployment of Control Plane in your current namespace.
 It will also create an endpoint which allows you to access the application's frontend (see the image below).
@@ -22,7 +22,7 @@ This separation of responsibilities ensures effective communication and control 
 providing a robust and adaptable solution for runtime management within a Kubernetes environment.
 
 :::tip
-Check out the [Runtime Management](../../fast_data/runtime_management.mdx) documentation for more information on its features and how to use the Control Plane frontend.
+Check out the [Runtime Management](../../fast_data/runtime_management/overview.mdx) documentation for more information on its features and how to use the Control Plane frontend.
 :::
 
 :::note

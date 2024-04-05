@@ -1,5 +1,5 @@
 ---
-id: runtime_management
+id: overview
 title: Runtime Management
 sidebar_label: Runtime Management
 ---
@@ -103,7 +103,7 @@ To see how to send a command, check the [Sending a command](#sending-a-command) 
 The frontend is divided into two sections: a form on the left and a log panel on the right.
 The form allows you to specify the details of the command you want to send, while the log panel displays the log of the command sent.
 
-![Control Plane UI](img/runtime_management/runtime_management_initial_screen.png)
+![Control Plane UI](img/runtime_management_initial_screen.png)
 
 <Tabs>
 
@@ -138,7 +138,7 @@ Before you initiate a command using Runtime Management, be aware that sending a 
 3. **Runtime Selection (optional):** Select the target runtime environment for executing the selected action.
 4. **Submit:** Press the submit button to send a Kafka message representing the action command to the dedicated topic.
 
-![Control Plane action command](img/runtime_management/runtime_management_request_with_parameters.png)
+![Control Plane action command](img/runtime_management_request_with_parameters.png)
 
 This straightforward process allows you to seamlessly communicate your command to the Fast Data microservices.
 
@@ -148,7 +148,7 @@ Any errors that occur during the execution of a command are displayed in the log
 The Monaco editor panel on the right displays the log of the sent command, providing visibility into the executed actions.
 It also shows any possible errors that could arise during the process.
 
-![Control Plane error log](img/runtime_management/runtime_management_error_log.png)
+![Control Plane error log](img/runtime_management_error_log.png)
 
 ---
 
