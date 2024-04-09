@@ -458,11 +458,11 @@
         {
           "collapsed": true,
           "items": [
-            { 
+            {
               "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
               "type": "doc"
             },
-            { 
+            {
               "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
               "type": "doc"
             }
@@ -470,7 +470,7 @@
           "label": "Flow Manager Configurator",
           "type": "category"
         },
-        { 
+        {
           "id": "development_suite/api-console/api-design/flow-manager-visualizer",
           "type": "doc"
         },
@@ -609,6 +609,10 @@
             },
             {
               "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-gitlab-runners",
               "type": "doc"
             },
             {
