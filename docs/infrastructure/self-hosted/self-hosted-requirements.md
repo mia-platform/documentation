@@ -265,6 +265,5 @@ To size your cluster you should reserve a minimum of 3 cores for Operations tool
 
 Cluster sizing examples:
 
-* 1 Mia-Platform Project with 3 Runtime Environments: 5 worker nodes (2 cores, 4 GiB RAM each). 4 cores for Operations tools and 6 cores for your applications
 * 3 Mia-Platform Project with 3 Runtime Environments: 12 worker nodes (2 cores, 4 GiB RAM each). 5 cores for Operations tools and 19 cores for your applications
 * 5 Mia-Platform Project with 3 Runtime Environments: 18 worker nodes (2 cores, 4 GiB RAM each). 6 cores for Operations tools and 30 cores for your applications
