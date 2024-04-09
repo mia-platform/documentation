@@ -16,7 +16,7 @@ is inspired from this [guide](/console/tutorials/configure-marketplace-component
   scaffold the configurations regarding microservices, collections, endpoints and variables needed for controlling Fast Data
   runtime and protecting its access. Generated resources need to be further customized depending on your needs and credentials.
 - an introduction to [Envoy](https://envoyproxy.io/), which is employed as API Gateway by the application. It is also
-  possible to employ nginx as API Gateway, though the focus of this guide is on the former.
+  possible to employ [Nginx](https://www.nginx.com/) as API Gateway, though the focus of this guide is on the former.
 - an introduction to [Rönd](https://rond-authz.io/), which is the underlying system this guide will rely on for protecting
   the access to Fast Data Runtime Management application.
 - an Identity Provider, which manages users' identities. The one employed throughout this guide is [Okta](https://www.okta.com/),
@@ -36,8 +36,8 @@ should appear in the different Console section.
 
 Among them, there are the two services in charge of deploying the  Fast Data Runtime Management, which are:
 
-- `control-plane`, which is responsible to dispatch actions to the deployed Fast Data runtime and provide the current runtime configuration to the frontend
-- `control-plane-fe`, which is the tool for visualizing Fast Data runtime state and interact with it
+- `control-plane`, which is responsible for dispatching actions to the deployed Fast Data runtime and provide the current runtime configuration to the frontend
+- `control-plane-fe`, which is the UI tool for visualizing Fast Data runtime state and interact with it
 
 In order to properly access Fast Data runtime, it is necessary to fill in all the necessary configuration in the service
 config map, which they may vary depending on your Fast Data configuration.
@@ -205,9 +205,9 @@ where `<project-base-url>` is the base url where the project of interest is expo
 ### Collections
 
 The authentication flow via the `authentication-service` requires also the introduction of a CRUD Collection, where
-users details are saved upon successful login. These information can then be employed in the authorization flow, which is
-described later, in conjunction with the roles and policies to ensure that only authorized users can visualize or interact with Fast Data
-runtime.  
+users details are saved upon successful login. These user (_subject_) information can then be employed in the authorization flow, which is
+described later, in conjunction with [policies](#policies) and [roles](#roles) to ensure that only authorized users can
+visualize or interact with Fast Data runtime.  
 By default the `Fast Data Control Plane` application creates the collection for you and instantiate the CRUD Service,
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project. 
@@ -552,7 +552,7 @@ the following values
 | HEADERS_TO_PROXY     | connection,upgrade,sec-websocket-protocol,sec-websocket-version,x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host |
 | USERINFO_URL         | http://authentication-service/userinfo                                                                                                         |
 
-In order to support real-time updates in the Fast Data Runtime Management system, it is important to allow forwarding the following
+In order to support real-time updates in the Fast Data Runtime Management system, it is important to allow proxying the following
 headers:
 - [`connection`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection)
 - [`upgrade`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade)
@@ -562,13 +562,13 @@ headers:
 #### Rönd
 
 Once all the services are ready, it is necessary to protect them. To achieve so, in this guide we are going to rely on [Rönd](https://rond-authz.io/),
-which allows to define for each service's endpoints the proper access policy. Hence, let's enable Rönd sidecar for the following
+which allows to define for each service's endpoints the proper access policies. Hence, let's enable Rönd sidecar for the following
 two services:
 
 - `control-plane` → to regulate who can retrieve Fast Data runtime configuration and change its runtime status
 - `crud-service` → to regulate who can access roles and bindings (discussed later)
 
-An example of Rönd enable for these services can be observed in the image:
+An example of Rönd enabled for these services can be observed in the image:
 
 ![List of services with Rönd enabled](img/rond_enabled_services.png)
 
@@ -580,7 +580,7 @@ as explained in the [documentation](https://rond-authz.io/docs/configuration#ope
 
 In particular, Control Plane service expects the name of two types of policies, one that allows viewing Fast Data runtime
 configuration and status (e.g. `fd_control_plane_allow_view`) and one for interacting with it (e.g. `fd_control_plane_allow_edit`),
-that is changing its component's state. These two policies can be configured within the `settings` object that is found
+that is changing its components' state. These two policies name can be configured within the `settings` object that is found
 within the service configuration config map, as follows:
 
 ```json
@@ -591,7 +591,7 @@ within the service configuration config map, as follows:
       "apis": {
         "controllers": {
           "settings": {
-            // this key define which policies should be adopted
+            // this key defines which policies should be adopted
             "policies": {
               "edit": "fd_control_plane_allow_edit",
               "view": "fd_control_plane_allow_view"
@@ -607,12 +607,27 @@ within the service configuration config map, as follows:
 
 ### Policies
 
-After enabling Rönd for the pod of interest, it is now possible to define the policies that verify who can access the different routes.
-This action can be carried out in the _Authentication Management_ panel of Console _Design_ section, as depicted in the figure below:
+:::info
+For more in-depth explanation on how to configure Rönd policies please head to the dedicated [documentation page](/console/tutorials/protect-your-endpoints-with-policies.mdx).
+:::
+
+Rönd Policies are set of rules that specify which constraints must be satisfied in order to grant the access to the protected
+resources, such as endpoints. For example, an authenticated user might need to own a specific _permission_, have a particular _role_ or
+belong to a _group_ with the proper grants. Furthermore, the request might require headers with proper values or even ad-hoc headers from
+which request and user metadata are extracted.
+
+In the previous paragraph it is described how to enable Rönd for the pods of interest, which occurs within the _Authentication Management_ panel
+of Console _Design_ section. In the same panel, under the _policies_ tab, it is possible to define the policies and their rules.
+The specific panel tab is depicted in the image below:
 
 ![Authentication Management panel in Console](img/auth_management_policies.png)
 
-To control which users access the different feature we need to create four different policies, each of them with its own purpose:
+Upon clicking the <kbd>Edit policies</kbd> button, a modal opens with two code blocks. On the left it is possible to write
+the policies and their rules to be satisfied by requests, while on the right the code block allow to implement multiple
+tests to verify that written rules adhere to expected behavior, granting the access only to correct users.
+
+In the context of Fast Data Runtime Management application, it is recommended to set up the following four different policies,
+each of them with its own purpose for controlling which user can access the different features:
 
 | Policy Name                   | Explanation                                                        |
 |-------------------------------|--------------------------------------------------------------------|
@@ -622,9 +637,12 @@ To control which users access the different feature we need to create four diffe
 | `fd_control_plane_allow_edit` | users need the permission to edit runtime status                   |
 
 :::info
-When Rönd is enabled for a pod, then the default policy is deny-all the incoming connections. For this reason it is also
+When Rönd is enabled for a pod, then the default policy is _deny-all_ the incoming connections. For this reason it is also
 useful to introduce the `allow_all` policy,
 :::
+
+In the code block show below are reported the policies definitions that are named in the table above. These can be copied directly within in your project
+_Authentication Management_ section alongside their tests. 
 
 ```rego title="Authorization Management Policies"
 package policies
@@ -635,7 +653,10 @@ allow_all {
 
 default allow_manage_cp_users = false
 allow_manage_cp_users {
+  # extract the roles associated to the user who performed the request
   userRoles := input.user.roles[_]
+  
+  # for each role, verify whether it has the permission to manage users 
   userRoles.permissions[_] == "console.data-fabric.control-plane.manage"
 }
 
@@ -644,6 +665,7 @@ fd_control_plane_allow_view {
   userRoles := input.user.roles[_]
   userRoles.permissions[_] == "console.data-fabric.control-plane.view"
 }
+# defining multiple times the same policy is equivalent to setting their rules in an "or" statement
 fd_control_plane_allow_view {
   userRoles := input.user.roles[_]
   userRoles.permissions[_] == "console.data-fabric.control-plane.edit"
@@ -899,103 +921,495 @@ test_fd_control_plane_allow_edit_owner {
 
 </details>
 
-### Roles
+### [Roles](https://rond-authz.io/docs/policy-integration#roles)
+
+Roles in Rönd characterize the function a subject can assume within the application. This can be achieved by applying
+specific permissions to each role, granting them different powers. For example, there can be the role of _viewer_,
+which represents users that can read the Fast Data runtime configuration and state, but they cannot change it.
+Similarly, the _editor_ role can represent users with the same access of the viewer, augmented with the capability
+to also change the Fast Data runtime state.
+
+In the previous paragraph we defined the policies that governs the access to Fast Data Runtime Management system. Those policies
+verify the permissions associated to the roles assigned to the user requesting the resource.
+For example, in the context of Fast Data Runtime Management, let's suppose user _Alice_ is assigned the runtime _viewer_ role, which
+has the permission `console.data-fabric.control-plane.view`. Considering the policies definitions and the permission
+the _viewer_ role has, the defined policies would act differently as follows:
+
+| Policy Name                   |  Role  |                Is Allowed                 |
+|-------------------------------|:------:|:-----------------------------------------:|
+| `allow_all`                   | viewer | <span style={{color: "green"}}>Yes</span> |
+| `allow_manage_cp_users`       | viewer |  <span style={{color: "red"}}>No</span>   |
+| `fd_control_plane_allow_view` | viewer | <span style={{color: "green"}}>Yes</span> |
+| `fd_control_plane_allow_edit` | viewer |  <span style={{color: "red"}}>No</span>   |
+
+To allow a greater flexibility in roles management, roles details are stored within an external MongoDB collection, for example named as `rbac-roles`.
+This collection is then employed by Rönd to learn which roles exists and can actually be assigned to a user, together with their associated permissions.
+
+When used within the Console, Rönd automatically tries to create this collection definition, according to its configuration which can be edited
+in the _Authentication Management_ panel. This collection definition is then read by CRUD Service, so that it can create
+the needed indexes. Below it is possible to also find the _roles_ collection definition, which can be directly imported in case the
+CRUD collections section if it does not already exist after enable Rönd and saved the configuration.
+
+<details><summary>Control Plane Roles Collection Definition (import ready)</summary>
+
+```json
+{
+  "data": {
+    "collections": {
+      "rbac-roles": {
+        "id": "rbac-roles",
+        "description": "Collection rbac-roles created by RBAC Manager plugin for bindings management",
+        "name": "rbac-roles",
+        "tags": [
+          "rbac-manager-plugin"
+        ],
+        "fields": [
+          {
+            "name": "_id",
+            "description": "_id",
+            "type": "ObjectId",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "creatorId",
+            "description": "creatorId",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "createdAt",
+            "description": "createdAt",
+            "type": "Date",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "updaterId",
+            "description": "updaterId",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "updatedAt",
+            "description": "updatedAt",
+            "type": "Date",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "__STATE__",
+            "description": "__STATE__",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "roleId",
+            "description": "unique role identifier",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "name",
+            "description": "human readable role name",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": false,
+            "nullable": false
+          },
+          {
+            "name": "permissions",
+            "description": "list of permissions composing the role",
+            "type": "Array_string",
+            "required": true,
+            "nullable": false
+          }
+        ],
+        "internalEndpoints": [
+          {
+            "basePath": "/rbac-roles",
+            "defaultState": "PUBLIC"
+          }
+        ],
+        "owners": [
+          {
+            "owner": "rbac-manager-plugin"
+          }
+        ],
+        "type": "collection",
+        "indexes": [
+          {
+            "name": "_id",
+            "type": "normal",
+            "unique": true,
+            "fields": [
+              {
+                "name": "_id",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "name": "createdAt",
+            "type": "normal",
+            "unique": false,
+            "fields": [
+              {
+                "name": "createdAt",
+                "order": -1
+              }
+            ]
+          },
+          {
+            "name": "uniqueRoleId",
+            "type": "normal",
+            "unique": true,
+            "fields": [
+              {
+                "name": "roleId",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "branchName": "",
+    "exportTimestamp": "2024-04-09T12:34:10.483Z",
+    "isImported": true,
+    "pathRefType": "revisions",
+    "projectId": "",
+    "projectName": ""
+  }
+}
+```
+
+</details>
+
+To cover all the main use cases of accessing the Fast Data Runtime Management system we devised three roles, which can
+be loaded in the _roles_ collection. These roles are show in this code block:
 
 ```json
 [
-    {
-        "_id" : ObjectId("6606e9c332152e6f63fbd0cd"),
-        "roleId" : "control-plane-viewer",
-        "name" : "Viewer",
-        "description" : "A user who can visualize Fast Data configuration and its runtime status",
-        "permissions" : [
-            "console.data-fabric.control-plane.view"
-        ],
-        "__STATE__" : "PUBLIC",
-        "updatedAt" : ISODate("2024-04-02T07:37:12.641+0000"),
-        "updaterId" : "6606e94a0e85630ccda72486"
-    },
-    {
-        "_id" : ObjectId("6606e9f232152e6f63fbd0ce"),
-        "roleId" : "control-plane-editor",
-        "name" : "Editor",
-        "description" : "A user who can visualize Fast Data configuration and modify its runtime status",
-        "permissions" : [
-            "console.data-fabric.control-plane.view",
-            "console.data-fabric.control-plane.edit"
-        ],
-        "__STATE__" : "PUBLIC",
-        "updatedAt" : ISODate("2024-04-02T07:37:37.442+0000"),
-        "updaterId" : "6606e94a0e85630ccda72486"
-    },
-    {
-        "_id" : ObjectId("6606ead632152e6f63fbd0d0"),
-        "roleId" : "control-plane-super-user",
-        "name" : "Manager",
-        "description" : "A user who can control Fast Data runtime and who can manage it",
-        "permissions" : [
-            "console.fast-data.control-plane.manage",
-            "console.data-fabric.control-plane.manage"
-        ],
-        "__STATE__" : "PUBLIC",
-        "updatedAt" : ISODate("2024-04-02T07:37:48.235+0000"),
-        "updaterId" : "6606e94a0e85630ccda72486"
-    }
+  {
+    "roleId" : "control-plane-viewer",
+    "name" : "Viewer",
+    "description" : "A user who can visualize Fast Data configuration and its runtime state",
+    "permissions" : [
+        "console.data-fabric.control-plane.view"
+    ],
+    "__STATE__" : "PUBLIC"
+  },
+  {
+    "roleId" : "control-plane-editor",
+    "name" : "Editor",
+    "description" : "A user who can visualize Fast Data configuration and modify its runtime state",
+    "permissions" : [
+        "console.data-fabric.control-plane.view",
+        "console.data-fabric.control-plane.edit"
+    ],
+    "__STATE__" : "PUBLIC"
+  },
+  {
+    "roleId" : "control-plane-users-manager",
+    "name" : "Manager",
+    "description" : "A user who manages the users that can access Fast Data runtime",
+    "permissions" : [
+        "console.data-fabric.control-plane.manage"
+    ],
+    "__STATE__" : "PUBLIC"
+  }
 ]
 ```
 
-### Bindings
+:::note
+For more details on _roles_ meaning in the context of security model, please search up [Role-based Access Control (RBAC)](https://en.wikipedia.org/wiki/Role-based_access_control) model. 
+:::
+
+### [Bindings](https://rond-authz.io/docs/policy-integration#bindings)
+
+> A Binding in Rönd represents an association between a set of Subjects (or groups), a set of Roles and (optionally) a Resource.
+
+Eventually, once users (subjects) and roles are defined on the database, it is then possible to match them together within
+the _bindings_ collection. Similarly to _roles_ collection, the collection is managed in Console by Rönd and it adopts the
+definition provided below:
+
+<details><summary>Control Plane Bindings Collection Definition (import ready)</summary>
+
+```json
+{
+  "data": {
+    "collections": {
+      "rbac-bindings": {
+        "id": "rbac-bindings",
+        "description": "Collection rbac-bindings created by RBAC Manager plugin for bindings management",
+        "name": "rbac-bindings",
+        "tags": [
+          "rbac-manager-plugin"
+        ],
+        "fields": [
+          {
+            "name": "_id",
+            "description": "_id",
+            "type": "ObjectId",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "creatorId",
+            "description": "creatorId",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "createdAt",
+            "description": "createdAt",
+            "type": "Date",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "updaterId",
+            "description": "updaterId",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "updatedAt",
+            "description": "updatedAt",
+            "type": "Date",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "__STATE__",
+            "description": "__STATE__",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "bindingId",
+            "description": "binding unique identifier",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "groups",
+            "description": "list of user groups subject to this binding",
+            "type": "Array_string",
+            "required": false,
+            "nullable": false
+          },
+          {
+            "name": "subjects",
+            "description": "list of subjects of the binding",
+            "type": "Array_string",
+            "required": false,
+            "nullable": false
+          },
+          {
+            "name": "roles",
+            "description": "list of roles identifiers that subjects will inherit from the binding",
+            "type": "Array_string",
+            "required": false,
+            "nullable": false
+          },
+          {
+            "name": "permissions",
+            "description": "list of specific permissions that will be inherited by the subjects of the bindings",
+            "type": "Array_string",
+            "required": false,
+            "nullable": false
+          },
+          {
+            "name": "resource",
+            "description": "resource on which the role permissions are evaluated from the binding",
+            "type": "RawObject",
+            "required": false,
+            "nullable": false
+          }
+        ],
+        "internalEndpoints": [
+          {
+            "basePath": "/rbac-bindings",
+            "defaultState": "PUBLIC"
+          }
+        ],
+        "owners": [
+          {
+            "owner": "rbac-manager-plugin"
+          }
+        ],
+        "type": "collection",
+        "indexes": [
+          {
+            "name": "_id",
+            "type": "normal",
+            "unique": true,
+            "fields": [
+              {
+                "name": "_id",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "name": "createdAt",
+            "type": "normal",
+            "unique": false,
+            "fields": [
+              {
+                "name": "createdAt",
+                "order": -1
+              }
+            ]
+          },
+          {
+            "name": "uniqueBindingId",
+            "type": "normal",
+            "unique": true,
+            "fields": [
+              {
+                "name": "bindingId",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "branchName": "",
+    "exportTimestamp": "2024-04-09T12:34:10.483Z",
+    "isImported": true,
+    "pathRefType": "revisions",
+    "projectId": "",
+    "projectName": ""
+  }
+}
+```
+
+</details>
+
+To link users with their respective roles it is first necessary to create three bindings, one for each existing role as defined
+in the code block reported beneath. These bindings can be imported directly in the _bindings_ collection to kickstart further operations.
 
 ```json
 [
-    {
-        "bindingId" : "cp-managers",
-        "groups" : [
-            "cp-managers"
-        ],
-        "subjects" : [],
-        "roles" : [
-            "control-plane-super-user"
-        ],
-        "__STATE__" : "PUBLIC"
-    },
-    {
-        "bindingId" : "cp-editors",
-        "subjects" : [],
-        "roles" : [
-            "control-plane-viewer",
-            "control-plane-editor"
-        ],
-        "__STATE__" : "PUBLIC"
-    },
-    {
-        "bindingId" : "cp-viewers",
-        "subjects" : [],
-        "roles" : [
-            "control-plane-viewer"
-        ],
-        "__STATE__" : "PUBLIC"
-    }
+  {
+    "bindingId" : "control-plane-users-managers",
+    "subjects" : [],
+    "roles" : [
+      "control-plane-users-manager"
+    ],
+    "__STATE__" : "PUBLIC"
+  },
+  {
+    "bindingId" : "control-plane-editors",
+    "subjects" : [],
+    "roles" : [
+        "control-plane-viewer",
+        "control-plane-editor"
+    ],
+    "__STATE__" : "PUBLIC"
+  },
+  {
+    "bindingId" : "control-plane-viewers",
+    "subjects" : [],
+    "roles" : [
+        "control-plane-viewer"
+    ],
+    "__STATE__" : "PUBLIC"
+  }
 ]
 ```
+
+Afterward, the link process executes in these steps:
+
+- from the users collection `cp-users` is selected the user that needs to be associated
+- from the found user the `_id` field is extracted as string value
+- the `_id` string value is inserted as value in the `subjects` array of the binding representing the role of interest
+to be associated with the selected user
+
+For example, let's suppose that the details of _Alice_ user are the ones below:
+
+```json
+{
+    "_id" : ObjectId("6606e94a0e85630ccda72486"),
+    "__STATE__" : "PUBLIC",
+    "providerId" : "okta",
+    "providerUserId" : "user-id",
+    "realm" : "my-kingdom",
+    "createdAt" : ISODate("2024-03-29T16:16:10.037+0000"),
+    "creatorId" : "public",
+    "email" : "alice@platform.world",
+    "groups" : [],
+    "name" : "Alice",
+    "updatedAt" : ISODate("2024-04-08T16:23:12.364+0000"),
+    "updaterId" : "public",
+    "username" : ""
+}
+```
+and the goal is to allow Alice to both view and modify Fast Data runtime state. Then, the `control-plane-editors` binding
+should become as follows:
+
+```json
+{
+  "bindingId" : "control-plane-editors",
+  "subjects" : [
+    // _id of Alice user
+    "6606e94a0e85630ccda72486"
+  ],
+  "roles" : [
+      "control-plane-viewer",
+      "control-plane-editor"
+  ],
+  "__STATE__" : "PUBLIC"
+}
+```
+
+Following this change, _Alice_ user would be able to visualize Fast Data Runtime Management application and pause/resume
+the state of the different components.
+
+:::note
+Changes to the roles and binding collections are independent of project deploys. For this reason, managing the runtime and
+who can access it does not require further deploys.
+:::
 
 ### Endpoints
 
-In addition to the endpoints described in the previous section, the following ones expose all the functionalities of Fast Data
-Runtime Management system, both the frontend and backend components. The backend endpoints must be protected by Rönd with the
-appropriate policies, which are described in the table. Please notice that in case the policies were configured in Control Plane
-settings, then no manual route needs to be added in the Authorization Management section, since they are inferred from the OpenAPI
-Specification exposed by the service itself.
+In addition to the endpoints described in the [Authentication Flow](#endpoints) section, here are described the ones that expose
+all the functionalities of Fast Data Runtime Management system, both the frontend and backend components.
+The backend endpoints must be protected by Rönd with the appropriate [policies](#policies), as it is described in the table below.
 
-| Endpoint                                  | Service          | Authentication Required | User Group Permission | Policy                      |
-|-------------------------------------------|------------------|:-----------------------:|-----------------------|-----------------------------|
-| `/control-plane`                          | control-plane-fe |            ✅            | true                  |                             |
+Please notice that in case the policies were configured in [Control Plane settings](#control-plane), then no manual route needs to be added
+in the _Authorization Management_ section, since they are inferred from the OpenAPI Specification exposed by the service itself.
+
+| Endpoint                                  | Service          | Authentication Required | User Group Permission |           Policy            |
+|-------------------------------------------|------------------|:-----------------------:|-----------------------|:---------------------------:|
+| `/control-plane`                          | control-plane-fe |            ✅            | true                  |              -              |
 | `/control-plane/fast-data`                | control-plane    |            ✅            | true                  | fd_control_plane_allow_edit |
 | `/control-plane/fast-data/configurations` | control-plane    |            ✅            | true                  | fd_control_plane_allow_view |
 | `/control-plane/fast-data/:id/feedback`   | control-plane    |            ✅            | true                  | fd_control_plane_allow_view |
 
 :::caution
-Please ensure that all these endpoint are set with _Authentication Required_ in their security details tab.
+Please ensure that all these endpoints are set with _Authentication Required_ in their security details tab.
 :::
 
 ## Users Management
@@ -1004,10 +1418,18 @@ Please ensure that all these endpoint are set with _Authentication Required_ in 
 
 ### Endpoints
 
-| Endpoint                                         | Service          | Authentication Required | User Group Permission | Policy                        |
-|--------------------------------------------------|------------------|:-----------------------:|-----------------------|-------------------------------|
-| `/micro-lc-configurations`                       | micro-lc         |            ✅            | true                  |                               |
-| `/<control-plane-base>/user-manager`             | micro-lc         |            ✅            | true                  | fd_control_plane_allow_manage |
-| `/rond/rbac-bindings`                            | crud             |            ✅            | groups.admin          | allow_manage_cp_users         |
-| `/rond/rbac-roles`                               | crud             |            ✅            | groups.admin          | allow_manage_cp_users         |
-| `/rond/cp-users`                                 | crud             |            ✅            | groups.admin          | allow_all                     |
+| Endpoint                             | Service  | Authentication Required | User Group Permission |        Policy         |
+|--------------------------------------|----------|:-----------------------:|-----------------------|:---------------------:|
+| `/micro-lc-configurations`           | micro-lc |            ✅            | true                  |           -           |
+| `/<control-plane-base>/user-manager` | micro-lc |            ✅            | groups.admin          |           -           |
+| `/rond/rbac-bindings`                | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
+| `/rond/rbac-roles`                   | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
+| `/rond/cp-users`                     | crud     |            ✅            | groups.admin          |       allow_all       |
+
+
+Add `admin` to `groups` of users that can manage the Control Plane users 
+
+
+## Tips & Tricks
+
+Use a single db to manage users
