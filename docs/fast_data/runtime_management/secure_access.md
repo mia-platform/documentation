@@ -138,6 +138,45 @@ can be fond in the panel below.
 
 </details>
 
+In addition to previous configurations, the service needs to mount a private key as a secret. This key is employed to
+sign JWTs that are set as _session id_ for authenticated users. In case the service has been instantiated through the
+Fast Data Control Plane application, a secret has already been associated to it, which is named `authentication-service-secrets`.
+
+:::caution
+These instructions below assume that the tool employ to deploy Console projects is [`mlp`](/runtime_suite_tools/mlp/10_overview.md).
+Please, remember to adapt them according to your adopted deploy tool and/or secret management configuration.
+:::
+
+In order for the Console to automatically create the secret at deploy time it is then necessary to edit the file `mlp.yaml`,
+that can be found within your project repository root folder, and extend it with the following entry under the `secrets` key:
+
+```yaml title=mlp.yaml
+secrets:
+  ...
+  - name: "authentication-service-secrets"
+    when: "always"
+    data:
+      - from: "literal"
+        key: "private-key.pem"
+        value: "{{CP_JWT_CLIENT_PRIVATE_KEY}}"
+  ...
+```
+
+This will create a K8s secret named `authentication-service-secrets` which contains a property `private-key.pem` mapped
+to the value of the interpolated variable `CP_JWT_CLIENT_PRIVATE_KEY`.  
+To provide the proper value, please generate a private key, for example as follows,
+
+```shell
+ssh-keygen -t rsa -b 4096 -m PEM -f private.key
+```
+
+and then create the corresponding environment variable `CP_JWT_CLIENT_PRIVATE_KEY` in the _Variables_ tab of _Console Project Overview_ section.  
+Finally, please ensure that on the `authentication-service`, located under the _Microservices_ tab in the Console _Design_ section,
+the environment `MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH` is set to `/secrets/private-key.pem` (where the folder is driven
+by the secret mount path and the file name corresponds to the `key` property set in the `mlp.yaml` configuration entry).
+
+In case more details are needed on this latter part, please head over to the `authentication-service` [documentation page](/runtime_suite/authentication-service/30_usage.md#asymmetric-signing-algorithm-rsa256).
+
 #### Control Plane Login Site
 
 No further configuration is needed for this service.
@@ -1414,22 +1453,1482 @@ Please ensure that all these endpoints are set with _Authentication Required_ in
 
 ## Users Management
 
+Controlling which users can access the Fast Data Runtime Management system, their roles and bindings can be done either
+via directly editing database records or calling CRUD Service APIs. However, having a front-end to execute these actions
+would be a nice add-on that simplifies them and reduce error related to possible mis-configurations.
+
+This can be achieved exploiting the [Microfrontend Composer](/microfrontend-composer/what-is.md) tool, which allows crafting
+and configuring web pages and applications. In particular, it is possible to build the pages for listing the users,
+the existing roles and the bindings that link subjects with their roles.
+
+An example of application that can be created is show in the picture below:
+
+![Screenshot of application created via Microfrontend Composer](img/users_web_app.png)
+
 ### Microfrontend Composer
+
+Upon application instantiation, a predefined set of web pages are created and ready to be used once the project is deployed.
+In case you would like to customize those pages here are provided their configuration, one for control plane users, one for
+the roles and one for their bindings. These configuration can be loaded either as config map of [micro-lc](https://micro-lc.io/docs/) service
+or within the advanced tab of the corresponding page in the Composer.
+
+<details><summary>Control Plane Users Page</summary>
+
+```json title=users-config.json
+{
+  "definitions": {
+    "dataSchema": {
+      "type": "object",
+      "required": [
+        "providerId",
+        "providerUserId"
+      ],
+      "properties": {
+        "_id": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "type": "string"
+        },
+        "creatorId": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "type": "string"
+        },
+        "createdAt": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD hh:mm"
+          },
+          "format": "date-time",
+          "type": "string"
+        },
+        "updaterId": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "type": "string"
+        },
+        "updatedAt": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD hh:mm"
+          },
+          "format": "date-time",
+          "type": "string"
+        },
+        "__STATE__": {
+          "enum": [
+            "PUBLIC",
+            "DRAFT",
+            "TRASH",
+            "DELETED"
+          ],
+          "label": "STATE",
+          "formOptions": {
+            "readOnlyOnUpdate": true
+          },
+          "visualizationOptions": {
+            "hidden": true,
+            "iconMap": {
+              "PUBLIC": {
+                "shape": "roundedSquare",
+                "color": "#52C41A"
+              },
+              "DRAFT": {
+                "shape": "roundedSquare",
+                "color": "#CDCDCE"
+              },
+              "TRASH": {
+                "shape": "roundedSquare",
+                "color": "#FF9933"
+              }
+            }
+          },
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "label": "Name"
+        },
+        "groups": {
+          "type": "array",
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "items": {
+            "type": "string"
+          },
+          "label": "Groups"
+        },
+        "username": {
+          "type": "string",
+          "label": "Username"
+        },
+        "email": {
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "formOptions": {
+            "readOnly": true,
+            "hidden": true
+          },
+          "label": "Email"
+        },
+        "providerId": {
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "formOptions": {
+            "readOnly": true
+          },
+          "label": "Provider ID"
+        },
+        "providerUserId": {
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "formOptions": {
+            "readOnly": true
+          },
+          "label": "Provider User ID"
+        },
+        "realm": {
+          "type": "string",
+          "formOptions": {
+            "readOnly": true
+          },
+          "label": "Realm"
+        },
+        "metadata": {
+          "type": "object",
+          "required": [],
+          "additionalProperties": true,
+          "label": "Metadata"
+        }
+      }
+    }
+  },
+  "content": {
+    "content": [
+      {
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "properties": {
+                  "content": "Users"
+                },
+                "tag": "bk-title"
+              },
+              {
+                "tag": "bk-refresh-button",
+                "attributes": {
+                  "style": "margin-left: 14px; align-self: end;"
+                }
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                }
+              },
+              {
+                "properties": {
+                  "placeholder": "Search..."
+                },
+                "tag": "bk-search-bar"
+              },
+              {
+                "properties": {
+                  "content": "",
+                  "clickConfig": {
+                    "type": "event",
+                    "actionConfig": {
+                      "label": "filter",
+                      "payload": {}
+                    }
+                  },
+                  "type": "outlined",
+                  "iconId": "FunnelPlotOutlined"
+                },
+                "tag": "bk-button"
+              }
+            ],
+            "attributes": {
+              "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "width: 100%; display: flex; justify-content: space-between;"
+            },
+            "content": [
+              {
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                },
+                "properties": {
+                  "tabs": [
+                    {
+                      "key": "public",
+                      "title": "Public",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "PUBLIC"
+                        }
+                      ],
+                      "order": 0
+                    },
+                    {
+                      "title": "Draft",
+                      "key": "draft",
+                      "order": 2,
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "DRAFT"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Trash",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "TRASH"
+                        }
+                      ],
+                      "order": 3,
+                      "key": "trash"
+                    }
+                  ]
+                },
+                "tag": "bk-tabs"
+              },
+              {
+                "attributes": {
+                  "style": "margin-right: 4px"
+                },
+                "properties": {
+                  "dataSchema": {
+                    "$ref": "#/definitions/dataSchema"
+                  },
+                  "filters": []
+                },
+                "tag": "bk-filters-manager"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "padding: 0 20px;"
+            },
+            "content": {
+              "tag": "bk-breadcrumbs",
+              "properties": {
+                "dataSchema": {
+                  "$ref": "#/definitions/dataSchema"
+                }
+              }
+            }
+          }
+        ],
+        "tag": "header",
+        "attributes": {
+          "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "maxLines": 10,
+              "rowActions": {
+                "kind": "icons",
+                "actions": [
+                  {
+                    "label": "Delete",
+                    "icon": "fas fa-trash",
+                    "kind": "event",
+                    "content": "delete-data",
+                    "meta": {
+                      "actionId": "delete-data"
+                    },
+                    "requireConfirm": true
+                  }
+                ]
+              }
+            },
+            "tag": "bk-table"
+          },
+          {
+            "properties": {
+              "requireConfirm": {
+                "onClose": true,
+                "onSave": true
+              },
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "70vw",
+              "allowObjectAsTable": false,
+              "editorHeight": "30vh"
+            },
+            "tag": "bk-form-modal"
+          },
+          {
+            "tag": "bk-confirmation-modal"
+          },
+          {
+            "properties": {
+              "rootElementSelectors": "main.micro-lc-layout-content",
+              "successEventMap": {
+                "create-data": {
+                  "title": "Success",
+                  "content": "Data successfully created",
+                  "type": "success"
+                },
+                "update-data": {
+                  "title": "Success",
+                  "content": "Data successfully updated",
+                  "type": "success"
+                },
+                "delete-data": {
+                  "title": "Success",
+                  "content": "Data successfully deleted",
+                  "type": "success"
+                }
+              },
+              "errorEventMap": {
+                "create-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order creation",
+                  "type": "error"
+                },
+                "update-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order updated",
+                  "type": "error"
+                },
+                "delete-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order deletion",
+                  "type": "error"
+                }
+              }
+            },
+            "tag": "bk-notifications",
+            "attributes": {}
+          }
+        ],
+        "tag": "main",
+        "attributes": {
+          "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "40vw"
+            },
+            "tag": "bk-filter-drawer"
+          }
+        ],
+        "tag": "aside"
+      },
+      {
+        "content": [
+          {
+            "tag": "bk-bulk-delete"
+          },
+          {
+            "tag": "bk-bulk-actions",
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              }
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "flex-grow: 1;"
+            }
+          },
+          {
+            "tag": "bk-footer",
+            "attributes": {
+              "style": "display: flex; justify-content: end; align-items: center;"
+            }
+          },
+          {
+            "tag": "bk-pagination",
+            "properties": {
+              "pageSize": 10
+            }
+          }
+        ],
+        "tag": "footer",
+        "attributes": {
+          "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
+        }
+      },
+      {
+        "properties": {
+          "basePath": "/v2/rond/cp-users",
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          }
+        },
+        "tag": "bk-crud-client"
+      }
+    ],
+    "tag": "div",
+    "attributes": {
+      "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
+    }
+  },
+  "sources": [
+    "https://cdn.mia-platform.eu/backoffice/bk-web-components/{{BACK_KIT_VERSION}}/dist/bk-web-components.esm.js"
+  ]
+}
+```
+
+</details>
+<details><summary>Roles Page</summary>
+
+```json title=roles-config.json
+{
+  "definitions": {
+    "dataSchema": {
+      "type": "object",
+      "required": [
+        "roleId",
+        "name",
+        "permissions"
+      ],
+      "properties": {
+        "_id": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "creatorId": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "createdAt": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD hh:mm"
+          },
+          "format": "date-time",
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "updaterId": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "updatedAt": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD hh:mm"
+          },
+          "format": "date-time",
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "__STATE__": {
+          "enum": [
+            "PUBLIC",
+            "DRAFT",
+            "TRASH",
+            "DELETED"
+          ],
+          "formOptions": {
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "iconMap": {
+              "PUBLIC": {
+                "shape": "roundedSquare",
+                "color": "#52C41A"
+              },
+              "DRAFT": {
+                "shape": "roundedSquare",
+                "color": "#CDCDCE"
+              },
+              "TRASH": {
+                "shape": "roundedSquare",
+                "color": "#FF9933"
+              }
+            },
+            "hidden": true
+          }
+        },
+        "roleId": {
+          "type": "string",
+          "description": "unique role identifier",
+          "formOptions": {
+            "readOnlyOnUpdate": true
+          },
+          "label": "Role ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "human readable role name",
+          "label": "Name"
+        },
+        "description": {
+          "type": "string",
+          "label": "Description"
+        },
+        "permissions": {
+          "type": "array",
+          "description": "list of permissions composing the role",
+          "items": {
+            "type": "string"
+          },
+          "label": "Permissions"
+        }
+      }
+    }
+  },
+  "content": {
+    "content": [
+      {
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "properties": {
+                  "content": "Roles"
+                },
+                "tag": "bk-title"
+              },
+              {
+                "tag": "bk-refresh-button",
+                "attributes": {
+                  "style": "margin-left: 14px; align-self: end;"
+                }
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                }
+              },
+              {
+                "properties": {
+                  "placeholder": "Search..."
+                },
+                "tag": "bk-search-bar"
+              },
+              {
+                "tag": "bk-add-new-button"
+              },
+              {
+                "properties": {
+                  "content": "",
+                  "clickConfig": {
+                    "type": "event",
+                    "actionConfig": {
+                      "label": "filter",
+                      "payload": {}
+                    }
+                  },
+                  "type": "outlined",
+                  "iconId": "FunnelPlotOutlined"
+                },
+                "tag": "bk-button"
+              }
+            ],
+            "attributes": {
+              "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "width: 100%; display: flex; justify-content: space-between;"
+            },
+            "content": [
+              {
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                },
+                "properties": {
+                  "tabs": [
+                    {
+                      "key": "public",
+                      "title": "Public",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "PUBLIC"
+                        }
+                      ],
+                      "order": 0
+                    },
+                    {
+                      "title": "Draft",
+                      "order": 2,
+                      "key": "draft",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "DRAFT"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Trash",
+                      "order": 3,
+                      "key": "trash",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "TRASH"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "tag": "bk-tabs"
+              },
+              {
+                "attributes": {
+                  "style": "margin-right: 4px"
+                },
+                "properties": {
+                  "dataSchema": {
+                    "$ref": "#/definitions/dataSchema"
+                  },
+                  "filters": []
+                },
+                "tag": "bk-filters-manager"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "padding: 0 20px;"
+            },
+            "content": {
+              "tag": "bk-breadcrumbs",
+              "properties": {
+                "dataSchema": {
+                  "$ref": "#/definitions/dataSchema"
+                }
+              }
+            }
+          }
+        ],
+        "tag": "header",
+        "attributes": {
+          "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "maxLines": 10,
+              "rowActions": {
+                "kind": "icons",
+                "actions": [
+                  {
+                    "label": "Delete",
+                    "icon": "fas fa-trash",
+                    "kind": "event",
+                    "content": "delete-data",
+                    "meta": {
+                      "actionId": "delete-data"
+                    },
+                    "requireConfirm": true
+                  }
+                ]
+              }
+            },
+            "tag": "bk-table"
+          },
+          {
+            "properties": {
+              "requireConfirm": {
+                "onClose": true,
+                "onSave": true
+              },
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "70vw"
+            },
+            "tag": "bk-form-modal"
+          },
+          {
+            "tag": "bk-confirmation-modal"
+          },
+          {
+            "properties": {
+              "rootElementSelectors": "main.micro-lc-layout-content",
+              "successEventMap": {
+                "create-data": {
+                  "title": "Success",
+                  "content": "Data successfully created",
+                  "type": "success"
+                },
+                "update-data": {
+                  "title": "Success",
+                  "content": "Data successfully updated",
+                  "type": "success"
+                },
+                "delete-data": {
+                  "title": "Success",
+                  "content": "Data successfully deleted",
+                  "type": "success"
+                }
+              },
+              "errorEventMap": {
+                "create-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order creation",
+                  "type": "error"
+                },
+                "update-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order updated",
+                  "type": "error"
+                },
+                "delete-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order deletion",
+                  "type": "error"
+                }
+              }
+            },
+            "tag": "bk-notifications",
+            "attributes": {}
+          }
+        ],
+        "tag": "main",
+        "attributes": {
+          "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "40vw"
+            },
+            "tag": "bk-filter-drawer"
+          }
+        ],
+        "tag": "aside"
+      },
+      {
+        "content": [
+          {
+            "tag": "bk-bulk-delete"
+          },
+          {
+            "tag": "bk-bulk-actions",
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              }
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "flex-grow: 1;"
+            }
+          },
+          {
+            "tag": "bk-footer",
+            "attributes": {
+              "style": "display: flex; justify-content: end; align-items: center;"
+            }
+          },
+          {
+            "tag": "bk-pagination",
+            "properties": {
+              "pageSize": 10
+            }
+          }
+        ],
+        "tag": "footer",
+        "attributes": {
+          "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
+        }
+      },
+      {
+        "properties": {
+          "basePath": "/v2/rond/rbac-roles",
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          }
+        },
+        "tag": "bk-crud-client"
+      }
+    ],
+    "tag": "div",
+    "attributes": {
+      "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
+    }
+  },
+  "sources": [
+    "https://cdn.mia-platform.eu/backoffice/bk-web-components/{{BACK_KIT_VERSION}}/dist/bk-web-components.esm.js"
+  ]
+}
+```
+
+</details>
+<details><summary>Bindings Page</summary>
+
+```json title=bindings-config.json
+{
+  "definitions": {
+    "dataSchema": {
+      "type": "object",
+      "required": [
+        "bindingId"
+      ],
+      "properties": {
+        "_id": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "creatorId": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "createdAt": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD hh:mm"
+          },
+          "format": "date-time",
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "updaterId": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "updatedAt": {
+          "formOptions": {
+            "hiddenOnInsert": true,
+            "readOnlyOnUpdate": true
+          },
+          "dateOptions": {
+            "displayFormat": "YYYY-MM-DD hh:mm"
+          },
+          "format": "date-time",
+          "type": "string",
+          "visualizationOptions": {
+            "hidden": true
+          }
+        },
+        "__STATE__": {
+          "enum": [
+            "PUBLIC",
+            "DRAFT",
+            "TRASH",
+            "DELETED"
+          ],
+          "formOptions": {
+            "readOnlyOnUpdate": true
+          },
+          "type": "string",
+          "label": "STATE",
+          "visualizationOptions": {
+            "iconMap": {
+              "PUBLIC": {
+                "shape": "roundedSquare",
+                "color": "#52C41A"
+              },
+              "DRAFT": {
+                "shape": "roundedSquare",
+                "color": "#CDCDCE"
+              },
+              "TRASH": {
+                "shape": "roundedSquare",
+                "color": "#FF9933"
+              }
+            },
+            "hidden": true
+          }
+        },
+        "bindingId": {
+          "type": "string",
+          "description": "binding unique identifier ",
+          "formOptions": {
+            "readOnlyOnUpdate": true
+          },
+          "label": "Binding ID"
+        },
+        "groups": {
+          "type": "array",
+          "description": "list of user groups subject to this binding",
+          "items": {
+            "type": "string"
+          },
+          "label": "Groups"
+        },
+        "subjects": {
+          "type": "array",
+          "description": "list of subjects of the binding",
+          "items": {
+            "type": "string"
+          },
+          "excludeFromSearch": false,
+          "format": "multilookup",
+          "lookupOptions": {
+            "lookupValue": "_id",
+            "lookupFields": [
+              "name"
+            ],
+            "lookupDataSource": "rond/cp-users"
+          },
+          "label": "Subjects"
+        },
+        "roles": {
+          "type": "array",
+          "description": "list of roles identifiers that subjects will inherit from the binding",
+          "items": {
+            "type": "string"
+          },
+          "visualizationOptions": {
+            "hidden": false
+          },
+          "excludeFromSearch": false,
+          "format": "multilookup",
+          "lookupOptions": {
+            "lookupValue": "roleId",
+            "lookupFields": [
+              "name"
+            ],
+            "lookupDataSource": "rond/rbac-roles"
+          },
+          "label": "Roles"
+        },
+        "permissions": {
+          "type": "array",
+          "description": "list of specific permissions that will be inherited by the subjects of the bindings",
+          "items": {
+            "type": "string"
+          },
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "label": "Permissions"
+        },
+        "resource": {
+          "type": "object",
+          "description": "resource on which the role permissions are evaluated from the binding",
+          "required": [],
+          "additionalProperties": true,
+          "visualizationOptions": {
+            "hidden": true
+          },
+          "label": "Resource"
+        }
+      }
+    }
+  },
+  "content": {
+    "content": [
+      {
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "properties": {
+                  "content": "Bindings"
+                },
+                "tag": "bk-title"
+              },
+              {
+                "tag": "bk-refresh-button",
+                "attributes": {
+                  "style": "margin-left: 14px; align-self: end;"
+                }
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                }
+              },
+              {
+                "properties": {
+                  "placeholder": "Search..."
+                },
+                "tag": "bk-search-bar"
+              },
+              {
+                "tag": "bk-add-new-button"
+              },
+              {
+                "properties": {
+                  "content": "",
+                  "clickConfig": {
+                    "type": "event",
+                    "actionConfig": {
+                      "label": "filter",
+                      "payload": {}
+                    }
+                  },
+                  "type": "outlined",
+                  "iconId": "FunnelPlotOutlined"
+                },
+                "tag": "bk-button"
+              }
+            ],
+            "attributes": {
+              "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "width: 100%; display: flex; justify-content: space-between;"
+            },
+            "content": [
+              {
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                },
+                "properties": {
+                  "tabs": [
+                    {
+                      "key": "public",
+                      "title": "Public",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "PUBLIC"
+                        }
+                      ],
+                      "order": 0
+                    },
+                    {
+                      "title": "Draft",
+                      "order": 2,
+                      "key": "draft",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "DRAFT"
+                        }
+                      ]
+                    },
+                    {
+                      "title": "Trash",
+                      "order": 3,
+                      "key": "trash",
+                      "filters": [
+                        {
+                          "property": "__STATE__",
+                          "operator": "equal",
+                          "value": "TRASH"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "tag": "bk-tabs"
+              },
+              {
+                "attributes": {
+                  "style": "margin-right: 4px"
+                },
+                "properties": {
+                  "dataSchema": {
+                    "$ref": "#/definitions/dataSchema"
+                  },
+                  "filters": []
+                },
+                "tag": "bk-filters-manager"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "padding: 0 20px;"
+            },
+            "content": {
+              "tag": "bk-breadcrumbs",
+              "properties": {
+                "dataSchema": {
+                  "$ref": "#/definitions/dataSchema"
+                }
+              }
+            }
+          }
+        ],
+        "tag": "header",
+        "attributes": {
+          "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "maxLines": 10,
+              "rowActions": {
+                "kind": "icons",
+                "actions": [
+                  {
+                    "label": "Delete",
+                    "icon": "fas fa-trash",
+                    "kind": "event",
+                    "content": "delete-data",
+                    "meta": {
+                      "actionId": "delete-data"
+                    },
+                    "requireConfirm": true
+                  }
+                ]
+              },
+              "showArrayPopover": false
+            },
+            "tag": "bk-table"
+          },
+          {
+            "properties": {
+              "requireConfirm": {
+                "onClose": true,
+                "onSave": true
+              },
+              "width": "70vw",
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "editorHeight": "30vh"
+            },
+            "tag": "bk-form-modal"
+          },
+          {
+            "tag": "bk-confirmation-modal"
+          },
+          {
+            "properties": {
+              "rootElementSelectors": "main.micro-lc-layout-content",
+              "successEventMap": {
+                "create-data": {
+                  "title": "Success",
+                  "content": "Data successfully created",
+                  "type": "success"
+                },
+                "update-data": {
+                  "title": "Success",
+                  "content": "Data successfully updated",
+                  "type": "success"
+                },
+                "delete-data": {
+                  "title": "Success",
+                  "content": "Data successfully deleted",
+                  "type": "success"
+                }
+              },
+              "errorEventMap": {
+                "create-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order creation",
+                  "type": "error"
+                },
+                "update-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order updated",
+                  "type": "error"
+                },
+                "delete-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order deletion",
+                  "type": "error"
+                }
+              }
+            },
+            "tag": "bk-notifications",
+            "attributes": {}
+          }
+        ],
+        "tag": "main",
+        "attributes": {
+          "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "40vw"
+            },
+            "tag": "bk-filter-drawer"
+          }
+        ],
+        "tag": "aside"
+      },
+      {
+        "content": [
+          {
+            "tag": "bk-bulk-delete"
+          },
+          {
+            "tag": "bk-bulk-actions",
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              }
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "flex-grow: 1;"
+            }
+          },
+          {
+            "tag": "bk-footer",
+            "attributes": {
+              "style": "display: flex; justify-content: end; align-items: center;"
+            }
+          },
+          {
+            "tag": "bk-pagination",
+            "properties": {
+              "pageSize": 10
+            }
+          }
+        ],
+        "tag": "footer",
+        "attributes": {
+          "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
+        }
+      },
+      {
+        "properties": {
+          "basePath": "/v2/rond/rbac-bindings",
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          }
+        },
+        "tag": "bk-crud-client"
+      },
+      {
+        "properties": {
+          "basePath": "/v2",
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          }
+        },
+        "tag": "bk-crud-lookup-client"
+      }
+    ],
+    "tag": "div",
+    "attributes": {
+      "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
+    }
+  },
+  "sources": [
+    "https://cdn.mia-platform.eu/backoffice/bk-web-components/{{BACK_KIT_VERSION}}/dist/bk-web-components.esm.js"
+  ]
+}
+```
+
+</details>
+
+![Screenshot of Microfrontend Composer homepage](img/microfrontend_composer.png)
+
+In the screenshot above is shown how the Composer tool should be looking due to the application configuration.  
+Before deploying, please verify that micro-lc public variables have been created, that are:
+
+| Public Variable          | Value |
+|--------------------------|-------|
+| MICRO_LC_VERSION         | 2.4.0 |
+| MICRO_LC_MANAGER_VERSION | 3.1.1 |
+| BACK_KIT_VERSION         | 1.5.0 |
+
+These variables are employed by the Console to define the version of the service and libraries used by micro-lc at deploy time.
+They can be upgraded whenever an update is available. 
 
 ### Endpoints
 
-| Endpoint                             | Service  | Authentication Required | User Group Permission |        Policy         |
-|--------------------------------------|----------|:-----------------------:|-----------------------|:---------------------:|
-| `/micro-lc-configurations`           | micro-lc |            ✅            | true                  |           -           |
-| `/<control-plane-base>/user-manager` | micro-lc |            ✅            | groups.admin          |           -           |
-| `/rond/rbac-bindings`                | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
-| `/rond/rbac-roles`                   | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
-| `/rond/cp-users`                     | crud     |            ✅            | groups.admin          |       allow_all       |
+Here are described the endpoints that should be exposed from the project for the users management application. It is
+important to notice that the Rönd policies on CRUD Service endpoints must be created manually. 
 
+| Endpoint                   | Service  | Authentication Required | User Group Permission |        Policy         |
+|----------------------------|----------|:-----------------------:|-----------------------|:---------------------:|
+| `/micro-lc-configurations` | micro-lc |            ✅            | true                  |           -           |
+| `/control-plane-manager`   | micro-lc |            ✅            | groups.admin          |           -           |
+| `/rond/rbac-bindings`      | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
+| `/rond/rbac-roles`         | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
+| `/rond/cp-users`           | crud     |            ✅            | groups.admin          |       allow_all       |
 
-Add `admin` to `groups` of users that can manage the Control Plane users 
+:::caution
+Please ensure that all these endpoints are set with _Authentication Required_ in their security details tab.
+:::
 
+:::info
+Adding the `admin` group to User Group Permission of the endpoints configuration requires users to belong to the group `admin`,
+that is their record on the database should contain the value `admin` under the property `groups`.
 
-## Tips & Tricks
+This is an example of user record which belongs to the `admins` group:
 
-Use a single db to manage users
+```json
+{
+  "_id" : ObjectId("6606e94a0e85630ccda72486"),
+  "__STATE__" : "PUBLIC",
+  "providerId" : "okta",
+  "providerUserId" : "user-id",
+  "realm" : "my-kingdom",
+  "createdAt" : ISODate("2024-03-29T16:16:10.037+0000"),
+  "creatorId" : "public",
+  "email" : "alice@platform.world",
+  "groups" : [
+    // here the admin group has been added to the user
+    "admin"
+  ],
+  "name" : "Alice",
+  "updatedAt" : ISODate("2024-04-08T16:23:12.364+0000"),
+  "updaterId" : "public",
+  "username" : ""
+}
+```
+
+Please notice that until no user is assigned to the `admin` group, then no user would be able to manage the users, roles and bindings.
+:::
+
+## Tips
+
+Currently, the configurations described in the previous sections regard a single project deployed in a single namespace. In fact,
+users, roles and permissions should be defined on the database for each deployed runtime (for example _non-production_ and _production_ environments).
+Similarly, different projects should declare their own users, roles and bindings.
+
+One possible manner to share users, roles and bindings across multiple projects could be creating a MongoDB database dedicated
+to users management. The collections defined within this database then would be shared by all the projects by sharing the
+connection to it in the _Authentication Management_ tab.
+
+![Rönd configuration in Authentication Management tab](img/rond_shared_config.png)
+
+In the image above is shown that Rönd uses a dedicated MongoDB connection (read from a secret) to a database employed specifically for management of Fast Data Runtime users.
