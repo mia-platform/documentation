@@ -61,9 +61,9 @@ In order to make `mlp` able to connect to the Kubernetes Cluster and been able t
 variables:
   DEPLOY_TYPE: deploy_all
   FORCE_DEPLOY_WHEN_NO_SEMVER: "false"
-  KUBE_URL: "${KUBE__URL}"
-  KUBE_TOKEN: "${KUBE__TOKEN}"
-  KUBE_CA_PEM: "${KUBE__CA_PEM}"
+  KUBE_URL: "${KUBE_NOPROD_URL}"
+  KUBE_TOKEN: "${KUBE_NOPROD_TOKEN}"
+  KUBE_CA_PEM: "${KUBE_NOPROD_CA_PEM}"
   ENVIRONMENT_PREFIX: <<ENV_ID>>_
 ```
 
@@ -75,7 +75,3 @@ Where:
 - `KUBE_TOKEN`: it's the JWT Token used by `mlp` to authenticate into the Kubernetes Cluster - it should be relative to a Service Account created in the Cluster;
 - `KUBE_CA_PEM`: it's the certificate used by `mlp` to authenticate into the Kubernetes Cluster - it should be relative to the same Service Account seen above;
 - `ENVIRONMENT_PREFIX`: it's the differentiate prefix used to filter the secret variables configured in the Project section of the Console, check [this](../../../console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab.md#how-to-differentiate-your-variable-from-one-environment-to-another) page for more details;
-
-:::info
-In order to keep this data secure, and to be able to share them between different Project Pipelines, it is adviced to create them at the higher GitLab Group level from the Subgroups relative to the Projects, in order to avoid replicating them.
-:::
