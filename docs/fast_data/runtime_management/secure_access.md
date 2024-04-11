@@ -36,7 +36,7 @@ should appear in the different Console section.
 
 Among them, there are the two services in charge of deploying the  Fast Data Runtime Management, which are:
 
-- `control-plane`, which is responsible for dispatching actions to the deployed Fast Data runtime and provide the current runtime configuration to the frontend
+- `control-plane`, which is responsible for dispatching actions to the deployed Fast Data runtime and providing the current runtime configuration to the frontend
 - `control-plane-fe`, which is the UI tool for visualizing Fast Data runtime state and interact with it
 
 In order to properly access Fast Data runtime, it is necessary to fill in all the necessary configuration in the service
@@ -54,7 +54,7 @@ Runtime Management solution.
 Upon application instantiation, the following services should have been generated for handling the authentication flow:
 
 - [`api-gateway`](/runtime_suite/envoy-api-gateway/overview.md), which is the entrypoint of your project requests
-- [`authentication-service`](/runtime_suite/authentication-service/10_overview.md), which is the service that interact with your Identity Provider to request a user identity verification
+- [`authentication-service`](/runtime_suite/authentication-service/10_overview.md), which is the service that interacts with your Identity Provider to request the user identity verification
 - `control-plane-login-site`, a frontend employed for handling the authentication flow in the browser
 - `redis-auth`, a small instance of Redis OSS (< v7.4) with no disk persistence, which is employed to support the authentication flow
 
@@ -143,7 +143,7 @@ sign JWTs that are set as _session id_ for authenticated users. In case the serv
 Fast Data Control Plane application, a secret has already been associated to it, which is named `authentication-service-secrets`.
 
 :::caution
-These instructions below assume that the tool employ to deploy Console projects is [`mlp`](/runtime_suite_tools/mlp/10_overview.md).
+These instructions below assume that the tool employed to deploy Console projects is [`mlp`](/runtime_suite_tools/mlp/10_overview.md).
 Please, remember to adapt them according to your adopted deploy tool and/or secret management configuration.
 :::
 
@@ -171,7 +171,7 @@ ssh-keygen -t rsa -b 4096 -m PEM -f private.key
 ```
 
 and then create the corresponding environment variable `CP_JWT_CLIENT_PRIVATE_KEY` in the _Variables_ tab of _Console Project Overview_ section.  
-Finally, please ensure that on the `authentication-service`, located under the _Microservices_ tab in the Console _Design_ section,
+Finally, please ensure that on the `authentication-service`, located under the _Microservices_ section in the Console _Design_ area,
 the environment `MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH` is set to `/secrets/private-key.pem` (where the folder is driven
 by the secret mount path and the file name corresponds to the `key` property set in the `mlp.yaml` configuration entry).
 
@@ -219,7 +219,7 @@ user default off
 
 ### Endpoints
 
-Below is reported the list of endpoints that have already been created for you by the application instantiation. Please
+Below is reported the list of endpoints created with the Control Plane application instantiation. Please
 ensure that they are exposed with the proper security options.
 
 | Endpoint        | Service                  | Authentication Required | User Group Permission |
@@ -246,8 +246,8 @@ where `<project-base-url>` is the base url where the project of interest is expo
 The authentication flow via the `authentication-service` requires also the introduction of a CRUD Collection, where
 users details are saved upon successful login. These user (_subject_) information can then be employed in the authorization flow, which is
 described later, in conjunction with [policies](#policies) and [roles](#roles) to ensure that only authorized users can
-visualize or interact with Fast Data runtime.  
-By default the `Fast Data Control Plane` application creates the collection for you and instantiate the CRUD Service,
+visualize or even interact with Fast Data runtime.  
+By default the `Fast Data Control Plane` application creates the collection for you and instantiates the CRUD Service,
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project. 
 
@@ -479,14 +479,14 @@ collection definition ready for being imported, in case it may be necessary to m
 ### Advanced
 
 In this section are described the tweaks to be carried out on the API Gateway (Envoy) that enhance the interaction with
-the runtime system and allows the solution to properly work in your project.
-These modifications should be inserted in the proper file in the **advanced** tab of the Console _Design_ section, under
+the runtime system and allow the solution to properly work in your project.
+These modifications should be inserted in the proper file in the **Advanced** section of the Console _Design_ area, under
 the key `api-gateway-envoy`.
 
 ![Console advanced tab in Design section showing 'api-gateway-envoy' configuration](img/advanced_section_envoy.png)
 
 :::caution
-Please notice that the following configuration are specific for the `frontend` listener of Envoy. In case it has been
+Please notice that the following configurations are specific for the `frontend` listener of Envoy. In case it has been
 decided to expose the Fast Data Runtime Management system under a [different listener](/development_suite/api-console/api-design/listeners.md),
 please update the configuration accordingly.
 :::
@@ -494,7 +494,7 @@ please update the configuration accordingly.
 #### Automatic redirect upon receiving 401 HTTP error
 
 This configuration edit should be inserted in the file `local-replies.yml` and it enforces a redirect to the login
-page every time a 401 HTTP error is encountered by the system. This ensure that the user authenticates before returning
+page every time a 401 HTTP error is encountered by the system. This ensures that the users authenticate before returning
 to the page they were trying to browse.
 
 ```yml title=local-replies.yml
@@ -535,7 +535,7 @@ This configuration edit should be inserted in the file `patches.yml` and it perf
 - override the default headers that are added to the HTTP response, so that `X-Frame-Options` is removed and the frontend
   can be embedded as iframe
 
-It is important to observer that both modifications affect the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
+It is important to observe that both modifications affect the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
 
 ```yaml title=patches.yml
 - listener_name: frontend
@@ -582,8 +582,8 @@ to the Fast Data Runtime Management solution only to authorized users.
 
 #### Authorization Service
 
-This service is introduced with the application creation and it is already preconfigured with all the necessary configs.
-In case the service already existed in your project, please ensure the following environment variable on the service contains
+This service is introduced with the application creation and it is already preconfigured with all the necessary configurations.
+In case the service already exists in your project, please ensure the following environment variables on the service contain
 the following values
 
 | Environment Variable | Value                                                                                                                                          |
@@ -600,12 +600,12 @@ headers:
 
 #### Rönd
 
-Once all the services are ready, it is necessary to protect them. To achieve so, in this guide we are going to rely on [Rönd](https://rond-authz.io/),
-which allows to define for each service's endpoints the proper access policies. Hence, let's enable Rönd sidecar for the following
+Once all the services are properly configured, it is necessary to protect them. To achieve so, in this guide we are going to rely on [Rönd](https://rond-authz.io/),
+which allows to define for each service's endpoint the proper access policies. Hence, let's enable Rönd sidecar for the following
 two services:
 
 - `control-plane` → to regulate who can retrieve Fast Data runtime configuration and change its runtime status
-- `crud-service` → to regulate who can access roles and bindings (discussed later)
+- `crud-service` → to regulate who can access roles and bindings (discussed in the following paragraphs)
 
 An example of Rönd enabled for these services can be observed in the image:
 
@@ -655,8 +655,8 @@ resources, such as endpoints. For example, an authenticated user might need to o
 belong to a _group_ with the proper grants. Furthermore, the request might require headers with proper values or even ad-hoc headers from
 which request and user metadata are extracted.
 
-In the previous paragraph it is described how to enable Rönd for the pods of interest, which occurs within the _Authentication Management_ panel
-of Console _Design_ section. In the same panel, under the _policies_ tab, it is possible to define the policies and their rules.
+In the previous paragraph it is described how to enable Rönd for the pods of interest, which occurs within the _Authorization Management_ panel
+of Console _Design_ area. In the same panel, under the _policies_ tab of the Authorization section, it is possible to define the policies and their rules.
 The specific panel tab is depicted in the image below:
 
 ![Authentication Management panel in Console](img/auth_management_policies.png)
@@ -676,11 +676,11 @@ each of them with its own purpose for controlling which user can access the diff
 | `fd_control_plane_allow_edit` | users need the permission to edit runtime status                   |
 
 :::info
-When Rönd is enabled for a pod, then the default policy is _deny-all_ the incoming connections. For this reason it is also
+When Rönd is enabled for a pod, then the _deny-all_ default policy is applied the incoming connections. For this reason it is also
 useful to introduce the `allow_all` policy,
 :::
 
-In the code block show below are reported the policies definitions that are named in the table above. These can be copied directly within in your project
+In the code block shown below are reported the policies definitions above described. These can be copied directly within your project
 _Authentication Management_ section alongside their tests. 
 
 ```rego title="Authorization Management Policies"
@@ -962,9 +962,9 @@ test_fd_control_plane_allow_edit_owner {
 
 ### [Roles](https://rond-authz.io/docs/policy-integration#roles)
 
-Roles in Rönd characterize the function a subject can assume within the application. This can be achieved by applying
-specific permissions to each role, granting them different powers. For example, there can be the role of _viewer_,
-which represents users that can read the Fast Data runtime configuration and state, but they cannot change it.
+Roles in Rönd characterize the set of capabilities a subject can assume within the application. This can be achieved by applying
+specific permissions to each role, granting them different level of access and actions on the resource. For example, there can be the role of _viewer_,
+which represents users that can view the Fast Data runtime configuration and state, but that cannot change it.
 Similarly, the _editor_ role can represent users with the same access of the viewer, augmented with the capability
 to also change the Fast Data runtime state.
 
@@ -1137,7 +1137,7 @@ CRUD collections section if it does not already exist after enable Rönd and sav
 </details>
 
 To cover all the main use cases of accessing the Fast Data Runtime Management system we devised three roles, which can
-be loaded in the _roles_ collection. These roles are show in this code block:
+be loaded in the _roles_ collection. These roles are shown in this code block:
 
 ```json
 [
@@ -1435,7 +1435,7 @@ who can access it does not require further deploys.
 
 In addition to the endpoints described in the [Authentication Flow](#endpoints) section, here are described the ones that expose
 all the functionalities of Fast Data Runtime Management system, both the frontend and backend components.
-The backend endpoints must be protected by Rönd with the appropriate [policies](#policies), as it is described in the table below.
+The backend endpoints must be protected by Rönd with the appropriate [policies](#policies), as described in the table below.
 
 Please notice that in case the policies were configured in [Control Plane settings](#control-plane), then no manual route needs to be added
 in the _Authorization Management_ section, since they are inferred from the OpenAPI Specification exposed by the service itself.
@@ -1455,9 +1455,9 @@ Please ensure that all these endpoints are set with _Authentication Required_ in
 
 Controlling which users can access the Fast Data Runtime Management system, their roles and bindings can be done either
 via directly editing database records or calling CRUD Service APIs. However, having a front-end to execute these actions
-would be a nice add-on that simplifies them and reduce error related to possible mis-configurations.
+would be a nice add-on to simplify these actions and to reduce errors related to possible mis-configurations.
 
-This can be achieved exploiting the [Microfrontend Composer](/microfrontend-composer/what-is.md) tool, which allows crafting
+This can be achieved thanks to the [Microfrontend Composer](/microfrontend-composer/what-is.md) tool, which allows crafting
 and configuring web pages and applications. In particular, it is possible to build the pages for listing the users,
 the existing roles and the bindings that link subjects with their roles.
 
@@ -2860,7 +2860,7 @@ or within the advanced tab of the corresponding page in the Composer.
 
 ![Screenshot of Microfrontend Composer homepage](img/microfrontend_composer.png)
 
-In the screenshot above is shown how the Composer tool should be looking due to the application configuration.  
+The screenshot above shows what the Composer tool should look like based on the application configuration.
 Before deploying, please verify that micro-lc public variables have been created, that are:
 
 | Public Variable          | Value |
@@ -2891,7 +2891,7 @@ Please ensure that all these endpoints are set with _Authentication Required_ in
 
 :::info
 Adding the `admin` group to User Group Permission of the endpoints configuration requires users to belong to the group `admin`,
-that is their record on the database should contain the value `admin` under the property `groups`.
+that is, their record on the database should contain the value `admin` under the property `groups`.
 
 This is an example of user record which belongs to the `admins` group:
 
