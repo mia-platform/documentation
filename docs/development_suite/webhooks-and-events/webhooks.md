@@ -21,9 +21,10 @@ More specifically, a user can add, edit, and delete a webhook for a Company. To 
 By clicking on "Webhooks" you will be redirected to the related section, in which (assuming you already have added some webhooks) you can see a table containing some information about the webhooks:
 
 * **Target URL**: the HTTP URL that will be called when the event is triggered;
-* **Events**: the name of the events the webhook should listen to. Check them out [here](/development_suite/webhooks-and-events/events.mdx).
+* **Events**: the name of the events the webhook should listen to. Check them out [here](/development_suite/webhooks-and-events/events.mdx);
+* **Last Event**: information regarding the last event intercepted by the webhook. The column shows the status (success or error), date and time of dispatch of the event, and, via appropriate icon, more specific information about the event itself, i.e., event type and status code.
 
-You can filter table data by events, add a webhook, or edit/delete a specific webhook using the related button associated with its table row.
+You can filter table data by events, add a webhook, edit/delete a specific webhook using the related button associated with its table row, or access its detail page.
 
 ![Webhooks overview](img/webhooks-overview.png)
 
@@ -76,6 +77,17 @@ As mentioned in the previous section, you can delete a specific webhook using th
 A click on the button will open the webhook delete modal, the operation will be confirmed upon clicking the "Delete webhook" button within the modal, which will initiate the deletion process.
 
 ![delete webhook](./img/delete-webhook.png)
+
+## Event history
+
+By clicking on the arrow button of a table row, the detail page of the corresponding webhook can be opened. Here an "Event history" card containing the most recent events (up to a maximum of 200) related to the webhook is shown.
+
+![event history](./img/event-history.png)
+
+For each event, the date and time of the dispatch, type, and status (which includes both the "success" or "error" condition and the status code) are shown. It is also possible to change the sorting of events by showing them from oldest to newest, and filter by event type, status ("success" or "error") or status code.
+Lastly, using the button to the right of each line, the request body of the event can also be displayed.
+
+![event body](./img/event-body.png)
 
 ## Payload authentication
 

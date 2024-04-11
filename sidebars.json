@@ -177,6 +177,10 @@
           "type": "doc"
         },
         {
+          "id": "console/company-configuration/company-settings",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",
@@ -1691,6 +1695,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v12.4.0", "type": "doc" },
         { "id": "release-notes/v12.3.1", "type": "doc" },
         { "id": "release-notes/v12.3.0", "type": "doc" },
         { "id": "release-notes/v12.2.1", "type": "doc" },

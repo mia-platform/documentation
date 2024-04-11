@@ -48,11 +48,14 @@ In addition, you will be added as the first Company user with the role of [`Comp
 ##### Example call
 
 ```bash
-curl 
-  --request POST \ 
-  --url https://{CONSOLE_HOST}/api/backend/companies \
+curl --request POST \ 
+  --url "https://{CONSOLE_HOST}/api/backend/companies" \
   --header 'Accept: application/json' \
-  --header 'Content-Type: application/json'
+  --header 'Content-Type: application/json' \
+  --data   '{
+           "name": "your-company-name",
+           "description": "your-company-description"
+           }'
 ```
 
 where `CONSOLE_HOST` is the base path of your Console installation.
