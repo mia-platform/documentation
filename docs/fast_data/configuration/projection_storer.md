@@ -414,7 +414,7 @@ as input events. Currently only Kafka (and platforms adopting Kafka APIs) is sup
 
 #### Kafka Configuration
 
-If you select the Kafka Consumer, the service will create a Kafka Client to consume messages from the ingestion topics you setup in the _Systems of Record_ section.
+If you select the Kafka Consumer, the service will create a Kafka Client to consume messages from the ingestion topics you setup.
 
 :::tip
 When Kafka is selected as consumer for the Projection Storer service, **it is possible to provide most of the Kafka Consumer
@@ -463,7 +463,7 @@ as output events. Currently only Kafka (and platforms adopting Kafka APIs) is su
 
 #### Kafka Configuration
 
-If you select the Kafka Consumer, the service will create a Kafka Client to produce messages into the topics related to the PR Updates you setup in the _Systems of Record_ section.
+If you select the Kafka Consumer, the service will create a Kafka Client to produce messages into the topics related to the PR Updates you setup.
 
 :::tip
 When Kafka is selected as producer for the Projection Storer service, **it is possible to provide most of the Kafka Producer
