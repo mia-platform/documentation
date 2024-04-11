@@ -681,8 +681,8 @@ each of them with its own purpose for controlling which user can access the diff
 | `fd_control_plane_allow_edit` | users need the permission to edit runtime status                   |
 
 :::info
-When Rönd is enabled for a pod, then the _deny-all_ default policy is applied the incoming connections. For this reason it is also
-useful to introduce the `allow_all` policy,
+When Rönd is enabled for a pod, then the _deny-all_ policy is applied by default to the incoming connections. For this reason it is also
+useful to introduce the `allow_all` policy.
 :::
 
 In the code block shown below are reported the policies definitions above described. These can be copied directly within your project
