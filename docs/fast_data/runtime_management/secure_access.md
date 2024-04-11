@@ -60,13 +60,14 @@ Upon application instantiation, the following services should have been generate
 
 #### Api Gateway
 
-No further configuration is needed for this service in Console _Design_ section.
+For the current use case no further configuration is needed for this service in Console _Design_ area. However, if there
+is a need for updating any specific detail, please look for more information at the dedicated [documentation page](/runtime_suite/envoy-api-gateway/overview.md).
 
 #### Authentication Service
 
 The service configuration is created with a set of preconfigured variables, such as the connection to Redis, and a config map
-that lists the supported applications. Within the latter config map it is possible to find the definition of an application
-that uses Okta as Identity Provider.
+that lists the supported applications. Within the config map that contains the known applications it is already possible
+to find the definition of an application that uses Okta as Identity Provider.
 
 :::info
 In case you would prefer using another Identity Provider, please read the [authentication-service documentation](/runtime_suite/authentication-service/20_configuration.mdx) to learn
@@ -604,12 +605,16 @@ Once all the services are properly configured, it is necessary to protect them. 
 which allows to define for each service's endpoint the proper access policies. Hence, let's enable Rönd sidecar for the following
 two services:
 
-- `control-plane` → to regulate who can retrieve Fast Data runtime configuration and change its runtime status
+- `control-plane` → to regulate who can retrieve Fast Data runtime configuration and change its runtime state,
+that is whether the underlying application is processing Fast Data events or it is instead paused 
 - `crud-service` → to regulate who can access roles and bindings (discussed in the following paragraphs)
 
-An example of Rönd enabled for these services can be observed in the image:
+An example of Rönd enabled for these services can be observed in the image, which represents the _Authorization Management_ section
+that can be found within Console _Design_ area:
 
 ![List of services with Rönd enabled](img/rond_enabled_services.png)
+
+For further instructions on how Rönd can be enabled, please read this [documentation](/development_suite/api-console/api-design/authorization.md) and this [tutorial](/console/tutorials/protect-your-endpoints-with-policies.mdx), which explains all the steps in details. 
 
 #### Control Plane
 
@@ -984,10 +989,11 @@ the _viewer_ role has, the defined policies would act differently as follows:
 To allow a greater flexibility in roles management, roles details are stored within an external MongoDB collection, for example named as `rbac-roles`.
 This collection is then employed by Rönd to learn which roles exists and can actually be assigned to a user, together with their associated permissions.
 
-When used within the Console, Rönd automatically tries to create this collection definition, according to its configuration which can be edited
-in the _Authentication Management_ panel. This collection definition is then read by CRUD Service, so that it can create
-the needed indexes. Below it is possible to also find the _roles_ collection definition, which can be directly imported in case the
-CRUD collections section if it does not already exist after enable Rönd and saved the configuration.
+When used within the Console, Rönd automatically tries to create this collection definition, using as name the one defined
+in the _Authentication Management_ section. The collection definition is important since it instructs the CRUD Service to create
+the needed indexes, which speeds up reading roles from the database.  
+In case you would like to import the _roles_ collection in another project where Rönd is not active (for example a project [dedicated to users management](#tips)),
+here is provided the definition, which can be imported using the dedicated button in the _MongoDB CRUDs_ section in the _Design_ area.
 
 <details><summary>Control Plane Roles Collection Definition (import ready)</summary>
 
@@ -1438,7 +1444,8 @@ all the functionalities of Fast Data Runtime Management system, both the fronten
 The backend endpoints must be protected by Rönd with the appropriate [policies](#policies), as described in the table below.
 
 Please notice that in case the policies were configured in [Control Plane settings](#control-plane), then no manual route needs to be added
-in the _Authorization Management_ section, since they are inferred from the OpenAPI Specification exposed by the service itself.
+in the _Authorization Management_ section, since they are inferred from the OpenAPI Specification exposed by the service itself.  
+For further details on manual routes definition, please visit the specific [documentation](/development_suite/api-console/api-design/authorization.md#manual-routes-tab). 
 
 | Endpoint                                  | Service          | Authentication Required | User Group Permission |           Policy            |
 |-------------------------------------------|------------------|:-----------------------:|-----------------------|:---------------------------:|
@@ -2863,14 +2870,14 @@ or within the advanced tab of the corresponding page in the Composer.
 The screenshot above shows what the Composer tool should look like based on the application configuration.
 Before deploying, please verify that micro-lc public variables have been created, that are:
 
-| Public Variable          | Value |
-|--------------------------|-------|
-| MICRO_LC_VERSION         | 2.4.0 |
-| MICRO_LC_MANAGER_VERSION | 3.1.1 |
-| BACK_KIT_VERSION         | 1.5.0 |
+| Public Variable          | Current Version Value | Minimum Version Value |
+|--------------------------|-----------------------|-----------------------|
+| MICRO_LC_VERSION         | 2.4.0                 | 2.2.3                 |
+| MICRO_LC_MANAGER_VERSION | 3.1.1                 | 3.0.6                 |
+| BACK_KIT_VERSION         | 1.5.0                 | 1.4.17                |
 
 These variables are employed by the Console to define the version of the service and libraries used by micro-lc at deploy time.
-They can be upgraded whenever an update is available. 
+They can be upgraded whenever an update is available.
 
 ### Endpoints
 
@@ -2916,19 +2923,42 @@ This is an example of user record which belongs to the `admins` group:
 }
 ```
 
-Please notice that until no user is assigned to the `admin` group, then no user would be able to manage the users, roles and bindings.
+🚨🚨🚨  
+Please notice that <u>until no user is assigned to the `admin` group, then no user would be able to manage the users, roles and bindings</u>.
+Therefore, either the group is added to the user via editing database record or the `admin` group is set in User Group Permission only after the first
+subject is assigned to the `admin` group via the application UI.  
+🚨🚨🚨
 :::
 
 ## Tips
 
-Currently, the configurations described in the previous sections regard a single project deployed in a single namespace. In fact,
-users, roles and permissions should be defined on the database for each deployed runtime (for example _non-production_ and _production_ environments).
-Similarly, different projects should declare their own users, roles and bindings.
+Currently, the configurations described in the previous sections regard a single project deployed in a single namespace.
+Since in general a different database is employed for each runtime environment of a project, this means that records in users, roles and permissions
+collections should be replicated on each database of deployed runtimes. For example, let's suppose a Console project has
+associated two environment, _development_ and _production_. Consequently, the records defined in the collections of _development_ environment
+should be copied/imported over the collection of the _production_ environment in order to replicate the same authorization behavior in both environments.  
+Similarly, when working on different Console projects that probably have their own database, one for each of their environment, it is necessary
+to redeclare the users, roles and bindings across all the databases involved.
 
-One possible manner to share users, roles and bindings across multiple projects could be creating a MongoDB database dedicated
-to users management. The collections defined within this database then would be shared by all the projects by sharing the
-connection to it in the _Authentication Management_ tab.
+:::note
+The _users_ collection is filled in every time a new user first login in the application, so that on that collection it may only be needed to add the `admin` group
+to the relevant users.
+:::
+
+One possible manner to solve this issue and simplify users management across multiple project is sharing the database containing
+the users, roles and bindings collections across them. This could be reached by creating a MongoDB database dedicated to users management,
+which can be accessed using its own connection string. The connection string should then be included in each project of interest,
+either as a K8s secret or as a secret environment variable in Console Overview area.
+
+As a result, when it is necessary to configure Rönd in the _Authorization Management_ section of Console _Design_ area, it is possible
+to use the dedicated database as MongoDB connection. The image below shows that Rönd uses a MongoDB connection defined in the secret,
+which we configured to point to the dedicated Fast Data runtime users management database.
 
 ![Rönd configuration in Authentication Management tab](img/rond_shared_config.png)
 
-In the image above is shown that Rönd uses a dedicated MongoDB connection (read from a secret) to a database employed specifically for management of Fast Data Runtime users.
+While the Rönd configuration shown above must be carried out in all the projects that should access the users, deploying
+the web application that manages users can be done in a single _"master"_ project that governs all the other.
+
+:::caution
+When setting up the _users_, _roles_ and _bindings_ collections in the dedicated database, please ensure that indexes are created appropriately 
+:::
