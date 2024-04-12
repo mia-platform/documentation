@@ -612,7 +612,7 @@
               "type": "doc"
             },
             {
-              "id": "development_suite/deploy/pipeline-based/configure-gitlab-runners",
+              "id": "development_suite/deploy/pipeline-based/configure-gitlab-ci",
               "type": "doc"
             },
             {
