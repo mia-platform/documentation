@@ -222,7 +222,7 @@ The following is an example architecture for a proper installation of the Mia-Pl
 
 ## Runtime requirements 
 
-Applications developed with Mia-Platform Console will run in a Kubernetes environment. This Kubernetes runtime environment will be managed and monitored by Mia-Platform Console.  
+Applications developed with Mia-Platform Console will run in a Kubernetes environment. This Kubernetes runtime environment is managed and monitored by Mia-Platform Console.  
 In order to do this, the following requirements must be fulfilled for a self-hosted installation.
 
 ### Self-Hosted runtime installation prerequisites
@@ -245,13 +245,9 @@ These are minimum requirements for your cluster. These requirements have a scale
 | Traefik Ingress Controller   | 0.3 core                 | 300 MiB                  | Traffic                                                       |
 | Velero for Disaster Recovery | 0.2 core                 | 400 MiB                  | -                                                             |
 
-In total, the minimum requirements in order to host all the above tools in the Kubernetes cluster are about 2 cores and 5 GiB of memory. Above values will scale with the number of nodes, traffic, applications.
+In total, the minimum requirements in order to host all the above tools in the Kubernetes cluster are about 4 cores and 8 GiB of memory. Above values will scale with the number of nodes, traffic, applications.
 
 Velero, in addition, needs a S3-like bucket storage for keeping the Kubernetes cluster backup.
-
-Grafana Mimir will be installed in the same Kubernetes cluster hosting Mia-Platform Console. The minimum requirements needed for Grafana Mimir are 2 cores and 4 GiB of memory.
-
-For a simple Mia-Platform Console Project with 3 environments, a minimum of 6 cores and 12 GiB of memory are needed. Of course this is just an indicative estimation and the right sizing depends on your application.
 
 ### Suggested resource allocation for your runtime
 
