@@ -10,9 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The `ck-availability-modal` web component is a modal specialized in adding/modify Aavailabilities for the two kind of availability in flexible or normal availability.
+The `ck-availability-modal` web component is a modal specialized in adding/modify availabilities for the two kind of availability in flexible or normal availability.
 
 ![ck-availability-modal](../img/ck-availability-modal.png)
+
 ## Usage
 
 The web component consists of a form inside a modal with dynamically generated fields based on a Availability.
@@ -98,25 +99,25 @@ In order to open the `ck-availability-modal` in a Microfrontend Composer, a conf
 
 ## Properties & Attributes
 
-| property | type | required | default | description |
-|----------|------|----------|---------|-------------|
-|`availabilityBasePath`| string | true | / | Base path to the Therapy and Monitoring Manager. |
-|`dataSchema`| DataSchema | false | - |  Defines a dataSchema for additional fields |
-|`width`| string | false | 800px | The width of the modal. It must a valid CSS value. |
-|`height`| string | false | 500px | The minimum height of the modal. It must a valid CSS value. |
+| property               | type       | required | default | description                                                 |
+|------------------------|------------|----------|---------|-------------------------------------------------------------|
+| `availabilityBasePath` | string     | true     | /       | Base path to the Therapy and Monitoring Manager.            |
+| `dataSchema`           | DataSchema | false    | -       | Defines a dataSchema for additional fields                  |
+| `width`                | string     | false    | 800px   | The width of the modal. It must a valid CSS value.          |
+| `height`               | string     | false    | 500px   | The minimum height of the modal. It must a valid CSS value. |
 
 ## Listens to
 
-| event | action | emits | on error |
-|-------|--------|-------|----------|
-|availability-modal| Triggers the opening or the closing of the modal. | - | - |
-|[selected-data](../../../microfrontend-composer/back-kit/events#selected-data)| Triggers the opening of the modal in edit mod | availability-modal | - |
-|add-new| Listens to the add-new event to open modal | - | - |
-|LookupLiveFound| Listens to the live lookup data | - | - |
-|LookupFound| Listens to the lookup data | - | - |
+| event                                                                          | action                                            | emits              | on error |
+|--------------------------------------------------------------------------------|---------------------------------------------------|--------------------|----------|
+| availability-modal                                                             | Triggers the opening or the closing of the modal. | -                  | -        |
+| [selected-data](../../../microfrontend-composer/back-kit/events#selected-data) | Triggers the opening of the modal in edit mod     | availability-modal | -        |
+| add-new                                                                        | Listens to the add-new event to open modal        | -                  | -        |
+| LookupLiveFound                                                                | Listens to the live lookup data                   | -                  | -        |
+| LookupFound                                                                    | Listens to the lookup data                        | -                  | -        |
 
 ## Emits
 
-| event | description |
-|-------|-------------|
-|availability-modal| Custom event, triggers the opening or the closing of the modal. |
+| event              | description                                                     |
+|--------------------|-----------------------------------------------------------------|
+| availability-modal | Custom event, triggers the opening or the closing of the modal. |

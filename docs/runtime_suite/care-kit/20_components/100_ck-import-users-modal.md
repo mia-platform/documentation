@@ -50,13 +50,14 @@ When the operation completes. A feedback message will be shown indicating the re
 
 ## Properties & Attributes
 
-| property                | type     | required | default | description                                                                                     |
-|-------------------------|----------|----------|---------|-------------------------------------------------------------------------------------------------|
-| `userManagerServiceUrl` | `string` | false    | /ums    | Path the expose the UserManager Service. The path must not have the trailing slash.             |
-| `width`                 | `string` | false    | 600px   | The width of the modal. It must a valid CSS value                                               |
-| `height`                | `string` | false    | auto    | The minimum height of the modal. It must a valid CSS value.                                     |
-| `pollMaxRetries`        | `number` | false    | 5       | The maximum amount of retries the component will do while waiting for the job completion        |
-| `pollIntervalPeriod`    | `number` | false    | 1000    | The period that will occur between two subsequents api call while polling the status of the job |
+| property                | type      | required | default | description                                                                                                                               |
+|-------------------------|-----------|----------|---------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `userManagerServiceUrl` | `string`  | false    | /ums    | Path the expose the UserManager Service. The path must not have the trailing slash.                                                       |
+| `width`                 | `string`  | false    | 600px   | The width of the modal. It must a valid CSS value                                                                                         |
+| `height`                | `string`  | false    | auto    | The minimum height of the modal. It must a valid CSS value.                                                                               |
+| `pollMaxRetries`        | `number`  | false    | 5       | The maximum amount of retries the component will do while waiting for the job completion                                                  |
+| `pollIntervalPeriod`    | `number`  | false    | 1000    | The period that will occur between two subsequents api call while polling the status of the job                                           |
+| `jobUpsert`             | `boolean` | false    | -       | Add the upsert parameter to the job creation's API call. If set to false, it disables users update, allowing only the creation of new users |
 
 
 ## Listens to
