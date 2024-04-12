@@ -61,3 +61,10 @@ This procedure allows you to manually add the various services and endpoints nee
 Take a look at the "Environment Variables" tab of the API Portal service, and make sure the HTTP_PORT where the web server is exposed is properly set, with value `8080`.
 ![API Portal | Environment Variables](./img/api-portal_environment-variables.png)
 :::
+
+## Enviroment variables
+
+The API Portal accepts the following enviroment variables:
+
+- **HTTP_PORT** (default: 8080): defines the http port to use
+- **SWAGGER_VERSION** (*optional*, default: 3): defines the version of the visualized documentation. Its value can be `3` indicating a `openapi v3.0.x` documentation, or `3.1` indicating a `openapi v3.1` documentation.
