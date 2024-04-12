@@ -10,10 +10,14 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-All notable changes to this project will be documented in this file.
+## [3.6.0] 2024-04-11
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+### Updated
+
+- Added support to `openapi v3.1` with the new endpoints `/openapi/v3-1/*`
+
+- Yarn v4.1.1
+- Node to v20.12
 
 ## [3.5.2] 2024-03-14
 

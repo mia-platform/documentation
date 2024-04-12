@@ -36,11 +36,6 @@ Configure Swagger Aggregator directly from [Console](../../development_suite/api
 This Microservice is configured via a configuration file similar to this:
 
 ```js
-/*
- * Copyright © 2018-present Mia-Platform
- * All rights reserved
- */
-
 module.exports = {
   title: "Documentation",
   descriptionMarkdownFilePath: "tests/DESCRIPTION.md",
