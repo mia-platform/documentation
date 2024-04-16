@@ -61,7 +61,7 @@ For this reason, inside the detail page of a Domain pipeline, two main Fast Data
  - **Ingestion phase:** At the beginning of the flow there is the ingestion phase, wherein a System of Record is represented, as well as the CDC, that reacts to changes of data on some external sources and sends the occurred events (typically through a message broker like Kafka with different topics configured) to some different destinations, identified as data streams in the pipeline graphical visualization;
  - **Landing phase:** Once ingested, the data flowing on the different data streams originally coming from the System of Record can be transformed in order to guarantee coherency and consistency in the format in which data have to be saved and persisted. Thus, this phase is identified with the Mapping step, in which Cast Functions act to adequate data formats, and by the final step of the Domain pipeline, that represents data stream persisted and related together through a configured ER-schema
 
-Taking in consideration the Fast Data microservices architecture, in Domain pipelines runtime governance there are two actors that Control Plance frontend can interact with: [Real-time updater](link) or [Projection storer](link).
+Taking in consideration the Fast Data microservices architecture, in Domain pipelines runtime governance there are two actors that Control Plane frontend can interact with: [Real-time updater](link) or [Projection storer](link).
 More specifically, for what concerns Domain pipeline runtime interaction, user can decide to play/pause the consumption of messages performed by a Real-time updater (or Projection storer) across the different ingestion messagges on topics of pipeline data streams.
 
 #### Single View pipeline
@@ -95,7 +95,7 @@ In particular, the following states have been designed.
 
 When messages consuption is active along a data stream, the __running__ state is rendered. This means that the Fast Data microservice involved in consuming events on that data stream is in active state.  
 
-From Control Plane settings located at the bottom-right, user can decide to swith-off/switch-on the animation of the running streams.
+From Control Plane settings located at the bottom-right, user can decide to switch-off / switch-on the animation of the running streams.
 
 #### Paused
 
@@ -108,13 +108,13 @@ When messages consuption is paused along a data stream, the __paused__ state is 
 >>> IMG TO BE INSERTED <<<
 
 When user interacts with the frontend in order to perform play/pause actions along data streams, a laoding state is rendered, meaning that an action is going to be performed on that data stream and control plane has sent the command to the involved microservice and is waiting for a feedback from that specific microservice.  
-Typically, after a loading state, if action succeds, the data stream will change its state from paused to running or viceversa; if action does not succeed, an error will be displayed to user and the data stream will not change its status.
+Typically, after a loading state, if action succeeds, the data stream will change its state from paused to running or viceversa; if action does not succeed, an error will be displayed to user and the data stream will not change its status.
 
 #### Unsupported
 
 >>> IMG TO BE INSERTED <<<
 
-Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. This is the case of what happens in a classical ingestion phase, wherein is not possible to alter the behaviour of a CDC that is acquiring events from external sources.
+Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. This is the case of what happens in a classical ingestion phase, wherein is not possible to alter the behavior of a CDC that is acquiring events from external sources.
 
 #### Disabled
 
@@ -131,7 +131,7 @@ If there are some misconfiguration on Fast Data pipeline, the Control Plane syst
 ### Fast Data Runtime Interaction
 
 From Control Plane frontend, user can monitor the status of each Fast Data pipeline in real-time. Then, user can interact with it by pausing/resuming messages consumption along data streams. To do this, it is possible to click on the play/pause buttons distributed along the various data streams of the pipeline.  
-Once clicked on the button, a Loading state appears and a message on the top of the frontend shows a countdown of 5s within which the user can decide to revoke the triggered action. If revoked, the previous state will be ripristinated without any impact on Fast Data runtime. If not, Control Plane will send the command to the target microservice involved on that data stream, and on the frontend after the loading state, if the action is successful, the data stream will accordingly change its status.
+Once clicked on the button, a Loading state appears and a message on the top of the frontend shows a countdown of 5s within which the user can decide to revoke the triggered action. If revoked, the previous state will be restored without any impact on Fast Data runtime. If not, Control Plane will send the command to the target microservice involved on that data stream, and on the frontend after the loading state, if the action is successful, the data stream will accordingly change its status.
 
 #### Bulk actions
 
