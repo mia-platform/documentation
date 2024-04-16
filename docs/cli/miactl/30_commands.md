@@ -47,12 +47,17 @@ miactl context set CONTEXT [flags]
 
 Available flags for the command:
 
+- `--auth-name`, to tell the _miactl_ the name of the auth to use (discover more on the [dedicated documentation section](#auth))
 - `--endpoint`, to set the Console endpoint (default is `https://console.cloud.mia-platform.eu`)
 - `--certificate-authority`, to provide the path to a custom CA certificate
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 - `--environment`, to set the environment scope for the command
+
+:::warning
+If you are going to use the `miactl` with a _Service Account_, **remember to specify the auth to be used** with the `--auth-name` flag, otherwise the _miactl_ will try to perform a _User Login_ and it probably will not work.
+:::
 
 ### use
 

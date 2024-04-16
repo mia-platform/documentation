@@ -79,3 +79,49 @@ You can customize the way your Project is deployed:
 ```sh
 miactl deploy development --no-semver --revision tags/v1.0.0
 ```
+
+## Deploy Project using a service account from a CD pipeline
+
+The commands are the same used above in the [Deploy Project](#deploy-project) section, but you need to use a _Service Account_ for that.
+If you don't know how to create a _Service Account_, read the [dedicated documentation](/docs/development_suite/identity-and-access-management/manage-service-accounts).
+
+After creating the service account, you must create the `auth` on the `miactl` running the following command:
+
+```sh
+miactl context auth <miactl-auth-name> --client-id <sa-client-id> --client-secret <sa-client-secret>
+```
+
+Now you can set the context and, more important, **you must specify the auth name to be used**:
+
+```sh
+miactl context set <my-context-name> --endpoint https://console.private --company-id <my-company-id> --project-id <my-project-id> --auth-name <miactl-auth-name>
+```
+
+After that, just use the context:
+
+```sh
+miactl context use <my-context-name>
+```
+
+and deploy the pipeline:
+
+```sh
+miactl deploy development --no-semver --revision main
+```
+
+Finally, you can group the commands above and run them inside a pipeline, e.g. a GitLab pipeline:
+
+```yaml
+# Insert that after your pipeline stages
+delivery:
+    stage: deploy
+    image: ghcr.io/mia-platform/miactl:v0.12.2
+
+    script:
+      - miactl version
+      - miactl context auth deployer-sa --client-id sa-client-id --client-secret sa-super-secret
+      - miactl context set my-private-console --endpoint https://console.private --company-id id-of-my-company --project-id id-of-my-project --auth-name deployer-sa
+      - miactl use my-private-console
+      - miactl deploy DEV --no-semver --deploy-type smart_deploy --revision main
+```
+
