@@ -231,7 +231,7 @@ The following tools will be installed in your runtime Kubernetes clusters if des
 
 * (Optional) Mia Monitoring stack
 * (Optional) Mia Logging stack
-* Traefik Ingress Controller
+* (Optional) Traefik Ingress Controller
 * (Optional) Velero for Disaster Recovery
 
 :::note
