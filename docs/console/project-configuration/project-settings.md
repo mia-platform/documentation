@@ -58,15 +58,22 @@ This card shows and gives the user the ability to change some settings related t
 
 The above information can be edited by clicking on the "Edit" button, which will open a modal very similar to that seen for Project information. Upon clicking "Save changes", the information will be updated.
 
-### Image pull secrets
+### Image pull Secrets
 
 ![image pull secrets](./img/settings-image-pull-secrets.png)
 
 :::note
-An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
+
+An image pull Secret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
+
+The console will insert them in the [`imagePullSecrets` field](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) of the deployed Pods.
+
 :::
 
-This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add image pull secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
+This card shows a table with the list of the image pull secret names that will be used in deployment and cronjob files for pulling Docker images. 
+
+The user has the possibility of adding new image pull Secret names through the "Add image pull Secret" button, which will open a simple modal asking for the Secret name. 
+Image pull Secrets can be edited and deleted using the appropriate icons at the right hand side of the respective row.
 
 ### Deployment options
 
