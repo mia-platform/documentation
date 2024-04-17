@@ -6,7 +6,7 @@ sidebar_label: System requirements
 
 Mia-Platform Console Self Hosted installation implies that the customer has already installed in its systems all the required software and tools.
 
-### Self-Hosted installation architecture
+## Self-Hosted installation architecture
 
 The following picture shows the high-level architecture for a Self-Hosted Mia-Platform Console installation. The communication between the components must be allowed as shown in the architecture.
 
@@ -14,7 +14,7 @@ The following picture shows the high-level architecture for a Self-Hosted Mia-Pl
 
 The following software and hardware recommendations are for installing Mia-Platform Console On-Premises.
 
-### Software and Hardware prerequisites  
+### Architectural prerequisites  
 
 :::note
 Blanks cell in the following table are for tools that do not require a specific version or a minimum of RAM and CPU.  
@@ -201,9 +201,11 @@ Blanks cell in the following table are for tools that do not require a specific 
 </table>
 
 
-### Reference Architecture
+### Suggested resource allocation per tool
 
-The following is an example architecture for the installation of the Mia-Platform Console supporting ~500 users and ~200 projects:
+:::info
+The following is an example architecture for a proper installation of the Mia-Platform Console supporting ~500 users and ~200 projects:
+:::
 
 | **Tool**                  | **Version** | **Nodes**      | **CPU** | **RAM** | **Storage** |
 |---------------------------|-------------|----------------|---------|---------|-------------|
@@ -217,9 +219,47 @@ The following is an example architecture for the installation of the Mia-Platfor
 | Google Cloud Storage      |   SaaS      |                |      |      |          |
 | Google Cloud Platform KMS |   SaaS      |                |      |      |          |
 
-### Designating the Console Super User
 
-When installing an instance of Mia-Platform Console, a user with the Console Super User role will be added to the database automatically.
+## Runtime requirements 
 
-The Console Super User role has been designed exclusively for backoffice administration purposes. 
-When assigned to a user, this role implies full visibility and management of all CMS resources.
+Applications developed with Mia-Platform Console will run in a Kubernetes environment. This Kubernetes runtime environment is managed and monitored by Mia-Platform Console.  
+In order to do this, the following requirements must be fulfilled for a self-hosted installation.
+
+### Self-Hosted runtime installation prerequisites
+
+The following tools will be installed in your runtime Kubernetes clusters if desired:  
+
+* (Optional) Mia Monitoring stack
+* (Optional) Mia Logging stack
+* (Optional) Traefik Ingress Controller
+* (Optional) Velero for Disaster Recovery
+
+:::note
+These are minimum requirements for your cluster. These requirements have a scale factor that must be taken in account when estimating your cluster size.
+:::
+
+| **Tool**                     | **Namespace CPU limits** | **Namespace RAM limits** | **Scales with**                                               |
+|------------------------------|--------------------------|--------------------------|---------------------------------------------------------------|
+| Monitoring stack             | 1 core                   | 3 GiB                    | Number of cluster nodes, number of metrics                    |
+| Logging stack                | 0.5 core                 | 1 GiB                    | Number of cluster nodes, number of applications logs, traffic |
+| Traefik Ingress Controller   | 0.3 core                 | 300 MiB                  | Traffic                                                       |
+| Velero for Disaster Recovery | 0.2 core                 | 400 MiB                  | -                                                             |
+
+In total, the minimum requirements in order to host all the above tools in the Kubernetes cluster are about 4 cores and 8 GiB of memory. Above values will scale with the number of nodes, traffic, applications.
+
+Velero, in addition, needs a S3-like bucket storage for keeping the Kubernetes cluster backup.
+
+### Suggested resource allocation for your runtime
+
+:::note
+The following requirements are just an approximate reference. For a more accurate estimate, an assessment of your application and architecture is needed.
+:::
+
+:::info
+To size your cluster you should reserve a minimum of 3 cores for Operations tools and minimum 2 cores for each Runtime Environment managed by Mia-Platform. A Project can managed one or more Runtime Environment.
+:::
+
+Cluster sizing examples:
+
+* 3 Mia-Platform Project with 3 Runtime Environments: 12 worker nodes (2 cores, 4 GiB RAM each). 5 cores for Operations tools and 19 cores for your applications
+* 5 Mia-Platform Project with 3 Runtime Environments: 18 worker nodes (2 cores, 4 GiB RAM each). 6 cores for Operations tools and 30 cores for your applications
