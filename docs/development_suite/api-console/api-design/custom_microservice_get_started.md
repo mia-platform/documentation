@@ -18,23 +18,30 @@ In the Console, follow these steps:
  2. Click on `Create a Microservice`:  
    ![new-examples](./img/Marketplace-categories.png)
    You can search for a template, adding `Templates` to types filter. Each template belongs to specific **Category**. You can filter by category using `Filter by categories` filter.
- 3. Select a Template and add the Microservice information:
-      * **Name of the Microservice** (*required*): this is the internal hostname
+ 3. Select a Template and revise or fill the Microservice information:
+      * **Name of the Microservice** (*required*): it will be used as internal hostname
       * **Description** (*optional*): this is the description of your Microservice
-      * **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
-      * **GitLab Repository name**: the gitlab repository name that you want for your Microservice
-      * **Docker image name**: the docker image name, you can leave the default one too
- 4. Then click on `Create` button
+      * **Git Repository owner** (*required*): choose the path where the repository is created. Only the accessible paths will be available for selection.
+      * **Git Repository name**: the name of the git repository that will be created.
+      * **Container Registry**: The Container Registry where the microservice image resides in.
+      You can use any Container Registry configured in the current Company
+      * **Docker image name**: the Docker image path.  
+      The shown hostname cannot be modified: it is automatically filled with the hostname of the selected Container Registry
+ 4. Finally, click on the `Create` button
 
-Now you have a customization interface and you can optionally customize some configuration if you want.
+The Console creates a new git repository on your Provider, by cloning the original Template repository.
 
-:::note
-By default are enabled the standard kubernetes configurations, that provide the default configurations yml, but you can use your custom files by enable *Advanced configuration*
+If everything is successful, you will be presented the details page of the newly created Microservice, where you can proceed in further customizations.
+
+:::caution
+
+Please notice that the new service repository is created *before* the Console configuration is saved.
+
+Therefore, if you do not save the configuration after the Microservice is created, the repository will remain on your Git provider, even if the service is not present among your microservices.
+
+In case this happens, we suggest to delete the created repository and start over with the template creation.
+
 :::
-
-In the *Environment variable configuration section* you can customize the environment variables.
-
-![Environment variable configuration section](img/api-console-new-service-environments.png)
 
 ### 2. Creating the endpoint
 
