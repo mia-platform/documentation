@@ -3,6 +3,11 @@ id: colorare_il_cms
 title:  Color the CMS
 sidebar_label: Color the CMS
 ---
+
+:::caution Deprecated
+The Content Management System (CMS) has been deprecated and it has been substituted by [Microfrontend Composer](/microfrontend-composer/what-is.md).
+:::
+
 ## The files you need
 
 

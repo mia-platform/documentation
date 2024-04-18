@@ -3,6 +3,11 @@ id: guide_cms
 title:  CMS
 sidebar_label: Use
 ---
+
+:::caution Deprecated
+The Content Management System (CMS) has been deprecated and it has been substituted by [Microfrontend Composer](/microfrontend-composer/what-is.md).
+:::
+
 A Content Management System (CMS) is used to post, process, publish, delete content that is shown in an app or site.
 
 ## Access the CMS
