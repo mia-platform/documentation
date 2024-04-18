@@ -25,7 +25,7 @@ In the Console, follow these steps:
       * **Git Repository name**: the name of the git repository that will be created.
       * **Container Registry**: The Container Registry where the microservice image resides in.
       You can use any Container Registry configured in the current Company
-      * **Docker image name**: the Docker image path.  
+      * **Docker image name**: the Docker image URL.  
       The shown hostname cannot be modified: it is automatically filled with the hostname of the selected Container Registry
  4. Finally, click on the `Create` button
 
