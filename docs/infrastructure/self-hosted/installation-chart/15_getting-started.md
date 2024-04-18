@@ -120,8 +120,7 @@ When assigned to a user, this role implies full visibility and management of all
 
 1. Reach your console URL `https://your-console-url` and you should see the log in page
 2. Log-in with your authentication provider
-3. Create a `role_binding_mongo.yaml` file and a `console-super-user-binding.yaml` with the following configurations
-4. Execute the following jobs on the cluster `console` to edit the configuration of the super-user. Remember to substitute the `{{FIRST_LOGIN_EMAIL}}` with your auth provider log-in email
+3. Execute the following command to create the first super-user. Remember to substitute the `{{FIRST_LOGIN_EMAIL}}` with your auth provider log-in email
 
 ```bash
 cat <<EOF | kubectl apply -n console --filename -
@@ -183,9 +182,9 @@ EOF
 If you want to setup multiple Super User you can use the same binding and add multiple `subjects` to the list directly from backoffice.
 :::
 
-5. Now it's possible to can create the first company via API by heading to the `/documentations/api-portal/` path on your Console host and using the `POST /companies` API. The API will return the id of the company.
-6. After the creation of the Company you will be able to access it from Console at the `/tenants/:id` path, here you'll be able to manage the Company providers and Clusters.
-7.  Now you are ready to start with your first project! You can find out more [here](../../../console/company-configuration/project-default-configuration)
+4. Now it's possible to can create the first company via API by heading to the `/documentations/api-portal/` path on your Console host and using the `POST /companies` API. The API will return the id of the company.
+5. After the creation of the Company you will be able to access it from Console at the `/tenants/:id` path, here you'll be able to manage the Company providers and Clusters.
+6.  Now you are ready to start with your first project! You can find out more [here](../../../console/company-configuration/project-default-configuration)
 
 :::info
 For further information head to the Company creation [documentation section](../../../console/project-configuration/create-a-project).
