@@ -64,9 +64,12 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 :::note
 
-An image pull Secret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
+An image pull Secret is a Kubernetes entity used to authenticate and authorize access to private Container Registries.
 
 The console will insert them in the [`imagePullSecrets` field](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod) of the deployed Pods.
+
+Make sure the Secret is properly configured in your Kubernetes instance. 
+In case of doubt, contact your systems administrator.
 
 :::
 
