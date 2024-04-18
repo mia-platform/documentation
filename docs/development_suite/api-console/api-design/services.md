@@ -6,23 +6,32 @@ sidebar_label: Configure
 ## Introduction
 
 :::caution
-All Microservices of the platform as a default are internally exposed on the **80 port** with **hostname equal to the service name**.  
-So for example the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will be reachable at the url `http://crud-service`. This is applied to all microservices.
+
+All Microservices of the platform are by default internally exposed on the **80 port** with **the hostname equal to the service name**.  
+
+For example the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will be reachable at the url `http://crud-service`. This is applied to all microservices.
+
 :::
 
-In this section you can learn how to create and manage Microservices on Mia-Platform Console.
+In this section you can learn how to create and manage Microservices on the Mia-Platform Console.
 
-You can create a Microservice from the Marketplace section of Console. To learn more about Marketplace, you can read [this page](/marketplace/overview_marketplace.md) of Mia-Platform Docs.
+You can create a Microservice from the Marketplace section of Console. 
 
-You can create a Microservice by:
+:::tip
 
-* **using a Plugin**: a ready-to-use Microservice
+To learn more about Marketplace, you can read [this page](/marketplace/overview_marketplace.md) of Mia-Platform Docs.
 
-* **using a Template**: a starting point to create a new Microservice
+:::
 
-* **using an Example**: an existing and ready-to-use model
+You can create a Microservice from:
 
-* **uploading a Docker Image Name**: an existing Docker image of a Microservice
+* **a Plugin**: a ready-to-use Microservice
+
+* **a Template**: a starting point to create a new Microservice
+
+* **an Example**: an existing and ready-to-use model
+
+* **a Docker Image Name**: an existing Docker image of a Microservice, for which you just need to specify the image pull URL.
 
 ![new-examples](./img/Marketplace-categories.png)
 
@@ -40,45 +49,51 @@ In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list o
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
-* **Name of the Microservice** (*required*): this is the internal hostname
+* **Name of the Microservice** (*required*): it will be used as internal hostname
 
-* **Description** (*optional*): this is the description of your microservice
+* **Description** (*optional*): this is the description of your Microservice
 
-* **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
+* **Git Repository owner** (*required*): choose the path where the repository is created (e.g. the GitLab Group for GitLab, or similar concepts applicable to other providers). Only the accessible paths will be available for selection.
 
-:::warning
-If you are using GitLab and don't see any option in *Git repository owner*, it means that you have no access to the GitLab group where the project resides: please contact your console administrator to solve this issue.
+:::caution
+
+If your git Provider is GitLab and don't see any option in *Git Repository owner*, it means that you have no access to the GitLab group where the project resides: please contact your console administrator to fix this issue.
+
 :::
 
-* **Git Repository Name** (*required*): name of the git repository of the service
-
-* **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "company/service-name:tag"). It will be filled with the docker host during the service generation
+* **Git Repository name** (*required*): the name of the git repository that will be created.
+* **Container Registry** (*required*): The Container Registry where the microservice image resides in.
+You can use any Container Registry configured in the current Company
+* **Docker image name** (*required*): the Docker image path.
+The shown hostname cannot be modified: it's automatically filled with the hostname of the selected Container Registry. The URL to the docker image will be composed by prepending the hostname to the path you specify.
+* **Git Repository Name** (*required*): the name of the git repository of the service that will be created
 
 ![service-example](img/service-example.png)
 
 ![service-template](img/service-template.png)
 
-Finally to create the Microservice push **create**.
+Finally to create the Microservice click on the **Create** button.
 
-:::warning
-Once the service is created on your Git provider, you will not be able to delete it anymore from Console.
-:::
-
-:::info
-When creating your microservice, the Console also generates a CI file (e.g. `.gitlab-ci.yml`) along side the service files.
-This file is used to instruct your pipeline provider for continuous integration and continuous deployment.
+When creating your microservice, the Console also generates a CI file (e.g. `.gitlab-ci.yml` for Gitlab) alongside the service files.
+This file is used to configure your pipeline provider's continuous integration and continuous deployment.
 
 You can set up the CI file by yourself or use instead Mia-Platform pipeline templates.
 In order to use the templates provided by Mia-Platform you can contact your referent to configure the pipeline templates within your Console installation.
+
+:::caution
+
+Please notice that the new service repository is created *before* the Console configuration is saved.
+
+Therefore, if you do not save the configuration after the Microservice is created, the repository will remain on your Git provider, even if the service is not present among your microservices.
+
+In case this happens, we suggest to manually delete the created repository and start over with the template creation.
+
 :::
 
-:::info
-At this [link](/development_suite/api-console/api-design/custom_microservice_get_started.md) you can find a more detailed guide and overview about how to create new service starting from Templates.
-:::
+## How to create a Microservice from an existing Docker Image
 
-## How to create a Microservice from a Docker Image
+The only requirement to import an external Microservice is that the Docker Image needs to be already built and pushed to the Cont
 
-The only requirement to import an external Microservice is that the Docker Image needs to be already built.
 Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the following information:
 
 * **Name** (*required*): this is the internal hostname;  
@@ -105,12 +120,16 @@ For a step-by-step guide on creating a microservice using a Docker image, refer 
 
 ## Manage Microservices
 
-For each microservice, Console allows to:
+For each microservice, the Console allows to:
 
-* **Delete** the microservice: with the 'Delete' button present at the bottom of each microservice detail, you can delete it.
+* **Delete** the microservice: with the 'Delete' button present at the bottom of each microservice detail.
 
 :::warning
+
 Deleting a microservice, you are also deleting each associated endpoint.
+
+Please also notice that in case the microservice is associated to a repository (e.g. it was created from a template or example), the repository won't be automatically deleted. If you wish, you should delete it manually by accessing the Git Provider where it is hosted.
+
 :::
 
 * **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.

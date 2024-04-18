@@ -7,6 +7,12 @@ An **Example** provides sample code addressing a specific use-case, it's a ready
 
 When an example is created in a project, a new repository is created: just clone it and start coding to enrich it with your custom features.
 
+## Create a Microservice from an Example
+
+You can easily create a Microservice from an example [by following the dedicated documentation](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+
+## Mia-Platform supported Examples
+
 Mia-Platforms currently supports the following examples:
 
 | **Example**                                                                                                                       | **Technologies**                                                   | **Use case**                                                                                                                              |

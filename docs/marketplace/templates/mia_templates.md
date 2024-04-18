@@ -7,6 +7,12 @@ A **Template** is a base repository from which you can start to create a new Mic
 
 Usually they depend on specific [Mia Service libraries](/libraries/mia-service-libraries.md).
 
+## Create a Microservice from a Template
+
+You can easily create a Microservice from a template [by following the dedicated documentation](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+
+## Mia-Platform supported Templates
+
 Mia-Platforms currently supports the following examples:
 
 | **Template**                                                                                          | **Technologies**                                                   |

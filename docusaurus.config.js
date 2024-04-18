@@ -68,7 +68,7 @@ async function createConfig() {
             type: 'doc',
             docId: "marketplace/overview_marketplace",
             label: "Marketplace",
-            activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
+            activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/tools|runtime_suite_tools|libraries)"
           }
           ]
         },

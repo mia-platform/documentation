@@ -1534,10 +1534,6 @@
           "collapsed": true,
           "items": [
             {
-              "id": "development_suite/api-console/api-design/custom_microservice_get_started",
-              "type": "doc"
-            },
-            {
               "id": "marketplace/templates/template_create",
               "type": "doc"
             },
