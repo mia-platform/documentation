@@ -247,6 +247,10 @@
               ]
             },
             {
+              "id": "console/company-configuration/providers/container-registries",
+              "type": "doc"
+            },
+            {
               "id": "console/company-configuration/providers/api-reference",
               "type": "doc"
             }
