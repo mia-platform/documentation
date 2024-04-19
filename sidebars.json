@@ -647,6 +647,33 @@
       "collapsed": true,
       "items": [
         {
+          "id": "development_suite/extension/overview",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/extension/registration",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/extension/activation",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/extension/locations",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/extension/overrides",
+          "type": "doc"
+        }
+      ],
+      "label": "Console Extensibility",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
           "id": "development_suite/monitoring/introduction",
           "type": "doc"
         },
