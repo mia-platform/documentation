@@ -126,6 +126,11 @@ Moreover, with a flag, you can decide to show or not the microservice in the doc
 
 ![service-detail-new](img/service-detail-new.png)
 
+### Microservice containers
+
+<!-- TODO: explanation + link to sidecar detail section -->
+<!-- Exposure switch: allows you to decide which containers to expose. At least one container must be exposed. If you are using Rond on your service, you will see etc... -->
+
 ### Microservice Configuration
 
 In this section, you can manage the resources dedicated to your microservice:

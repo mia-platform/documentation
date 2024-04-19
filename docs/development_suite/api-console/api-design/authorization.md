@@ -11,6 +11,7 @@ You can configure your security policies from the Authorization section (inside 
 
 :::info
 To achieve this level of security, Mia-Platform runs [**Rönd** (an open-source authorization mechanism)](https://rond-authz.io) as a sidecar container, for each of your pods.  
+<!-- TODO: Enabling Rönd on your microservices will add a special sidecar to them: in the sidecars section and in the microservice containers table it is visualized as... -->
 Find out more about Rönd in the [project documentation](https://rond-authz.io/docs).
 :::
 

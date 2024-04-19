@@ -452,6 +452,10 @@
           "type": "doc"
         },
         {
+          "id": "console/design-your-projects/create-sidecars",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/decorators",
           "type": "doc"
         },
