@@ -11,7 +11,6 @@ You can configure your security policies from the Authorization section (inside 
 
 :::info
 To achieve this level of security, Mia-Platform runs [**Rönd** (an open-source authorization mechanism)](https://rond-authz.io) as a sidecar container, for each of your pods.  
-<!-- TODO: Enabling Rönd on your microservices will add a special sidecar to them: in the sidecars section and in the microservice containers table it is visualized as... -->
 Find out more about Rönd in the [project documentation](https://rond-authz.io/docs).
 :::
 
@@ -23,6 +22,10 @@ Heading to the Authorization section (inside the Design area), you can manage Au
 - [**General Settings**](#general-settings-tab): in this tab, you can control shared settings between all of your Rönd instances in the project (such as the version of Rönd service or the [storage configuration](#rbac-storage));
 - [**Policies**](#policies-tab): in this tab, you can write and test your own policies (policies are written using the Rego language, more info [here](https://www.openpolicyagent.org/docs/latest/policy-language/))
 - [**Manual Routes**](#manual-routes-tab): in this tab, you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification).
+
+:::info
+Enabling Rönd on your microservices will add a special sidecar to them, the `rbac-manager` sidecar. You can find it in the [Sidecars section](TODO: link) and in the [microservice containers table](TODO: link), but it can only be configured in the Authorization section. Learn more about sidecars in the [dedicated documentation page](TODO: link)
+:::
 
 ### Overview tab
 

@@ -93,7 +93,7 @@ From the Advanced tab you can also decide to remove the sidecar from the microse
 
 The `rbac-manager` container is a special sidecar created when Rönd is enabled on a microservice, and it is managed by the Authorization section.
 
-You can find this sidecar the microservice containers table and in the Sidecars management section, but if you want to manage its configurations you must do it in the Authorization section. Find out more about defining custom security policies with Rönd in the [dedicated documentation page](TODO: link)
+You can find this sidecar in the microservice containers table and in the Sidecars management section, but if you want to manage its configurations you must do it in the Authorization section. Find out more about defining custom security policies with Rönd in the [dedicated documentation page](TODO: link)
 
 :::info
 When Rönd is enabled on a microservice, the only container that can be exposed on a port is `rbac-manager`. All other containers present in the microservice, including the main container, will remain unexposed by default. In the microservice containers table, the exposure switch will be turned off and disabled.
