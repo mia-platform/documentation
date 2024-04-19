@@ -72,9 +72,12 @@ The following table describes the capabilities and how they are mapped on the de
 | View Company Clusters information                                      | `console.company.cluster.view`                          | ✅    | ✅       | ✅        | ✅         | ✅                    | ✅            |
 | Manage Company Project Templates                                       | `console.company.templates.manage`                      |       |          |           |            |                       | ✅            |
 | Manage Company Views in Design Overview                                | `console.company.configuration.views.manage`            |       |          |           |            | ✅                    | ✅            |
-| View Marketplace resources owned exclusively by the Company            | `marketplace.company.resources.view`                   | ✅     | ✅       | ✅        | ✅         | ✅                    | ✅            |
-| Manage Marketplace resources owned exclusively by the Company          | `marketplace.company.resources.manage`                 |        |          |           |            | ✅                    | ✅            |
-| Delete the configuration versions of all the Projects of this Company  | `console.company.project.configuration.version.delete` |        |          |           |            | ✅                    | ✅            |
+| View Marketplace resources owned exclusively by the Company            | `marketplace.company.resources.view`                    | ✅    | ✅       | ✅        | ✅         | ✅                    | ✅            |
+| Manage Marketplace resources owned exclusively by the Company          | `marketplace.company.resources.manage`                  |       |          |           |            | ✅                    | ✅            |
+| Delete the configuration versions of all the Projects of this Company  | `console.company.project.configuration.version.delete`  |       |          |           |            | ✅                    | ✅            |
+| Manage the Console Extensions of this Company                          | `console.company.extensions.manage`                     |       |          |           |            |                       | ✅            |
+| Manage the activation of the registered Console Extensions             | `console.company.extensions.activate`                   |       |          |           |            |                       | ✅            |
+| View the activated extensions in a specific context                    | `console.company.extensions.view`                       | ✅    | ✅       | ✅        | ✅         |                       | ✅            |
 
 User roles are manageable from CMS by **Console Super Users**, which are particular Console Administrators having access to the Console CMS and thus being able to manage the entire Console, including Companies, Projects and the Marketplace.
 

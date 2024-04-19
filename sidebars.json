@@ -661,10 +661,6 @@
         {
           "id": "development_suite/extension/locations",
           "type": "doc"
-        },
-        {
-          "id": "development_suite/extension/overrides",
-          "type": "doc"
         }
       ],
       "label": "Console Extensibility",
