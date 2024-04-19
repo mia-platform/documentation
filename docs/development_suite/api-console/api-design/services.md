@@ -128,8 +128,19 @@ Moreover, with a flag, you can decide to show or not the microservice in the doc
 
 ### Microservice containers
 
-<!-- TODO: explanation + link to sidecar detail section -->
-<!-- Exposure switch: allows you to decide which containers to expose. At least one container must be exposed. If you are using Rond on your service, you will see etc... -->
+In this section you can view and manage all containers pertaining to the microservice. You can also choose to add a new sidecar to the microservice by clicking on the **Add container** dropdown.
+
+<!-- TODO: Screenshot -->
+
+There are different types of containers: the **main container** is always present and represents the service itself. Then, there might also be some **sidecar containers**, including the special [Authorization sidecar](TODO: link).
+
+For each container, you can view its main configurations on the corresponding table row. You can also remove a container from the microservice by clicking the Delete button on the corresponding table row.
+
+#### Exposure switch
+
+The exposure switch allows you to decide which containers to expose on a container port. At least one container must be exposed, so if there is only one container in your microservice, it will be exposed by default. 
+
+<!-- TODO: If you have enabled Rond on your service, you will see etc... -->
 
 ### Microservice Configuration
 
