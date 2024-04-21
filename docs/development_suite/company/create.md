@@ -35,30 +35,31 @@ To create and configure a company, you must have:
 
 ## Create a company from API
 
-You can create a new company by making a POST request to the `/api/backend/companies` API. 
+You can create a new company by making a POST request to the `/api/backend/companies` API.
 
 :::info
 This API is visible inside the Console API Portal (`{{CONSOLE-HOST}}/documentations/api-portal/`), under the `Companies` tag.
 :::
 
-You will be asked to set the **name** and the **description** of the company to add (only name is required). 
+You will be asked to set the **name** and the **description** of the company to add (only name is required).
 
 In addition, you will be added as the first Company user with the role of [`Company Owner`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#users-capabilities-inside-console).
 
-##### Example call
+### Example call
 
 ```bash
-curl --request POST \ 
+curl --request POST \
   --url "https://{CONSOLE_HOST}/api/backend/companies" \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer {TOKEN}' \
   --data   '{
            "name": "your-company-name",
            "description": "your-company-description"
            }'
 ```
 
-where `CONSOLE_HOST` is the base path of your Console installation.
+where `CONSOLE_HOST` is the base path of your Console installation and `TOKEN` is the access token to use to create the new company.
 
 ## Create a company from CMS
 
@@ -73,7 +74,7 @@ It is recommended to use the API to create a new company. Use this method only i
 <details>
 <summary>Detailed guide</summary>
 
-#### Create the company
+### Create the company
 
 Visit the Console CMS page and open the `Companies` section.
 
@@ -82,7 +83,7 @@ Click the `Add new` button, you will be asked to provide an **id**, a **name**, 
 You will be able to set all the optional fields after the creation of the company.
 For further information regarding other configuration fields, visit the dedicated [section](#default-configuration-for-a-new-project) later on this page.
 
-#### Add the first Company User
+### Add the first Company User
 
 Once your company has been created using CMS, you need to associate the first user to be able to access the company from the Console. 
 The first user may either be yourself or another user on the Platform. 
