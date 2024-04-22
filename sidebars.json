@@ -647,19 +647,19 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/extension/overview",
+          "id": "console/console-extensibility/overview",
           "type": "doc"
         },
         {
-          "id": "development_suite/extension/registration",
+          "id": "console/console-extensibility/registration",
           "type": "doc"
         },
         {
-          "id": "development_suite/extension/activation",
+          "id": "console/console-extensibility/activation",
           "type": "doc"
         },
         {
-          "id": "development_suite/extension/locations",
+          "id": "console/console-extensibility/locations",
           "type": "doc"
         }
       ],
