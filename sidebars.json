@@ -56,6 +56,10 @@
                   "type": "doc"
                 },
                 {
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp-jwt-plugin",
+                  "type": "doc"
+                },
+                {
                   "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
                   "type": "doc"
                 },

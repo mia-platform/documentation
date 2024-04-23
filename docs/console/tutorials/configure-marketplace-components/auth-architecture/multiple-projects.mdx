@@ -12,7 +12,7 @@ import TabItem from "@theme/TabItem";
 In this scenario, we present the case where your architecture is composed by multiple Mia-Platform projects. Of course, you could think to treat each project as an independent entity and replicate, in each project, one of the scenarios presented so far.
 
 For example, you could replicate [Scenario 2](/console/tutorials/configure-marketplace-components/auth-architecture/external-idp.md) as in the following schema:
-![Scenario 4](./img/auth-scenario4.png)
+![Scenario 4](./img/auth-scenario5.png)
 
 However, this replication brings some problems:
 - The authentication service is replicated in every project. This is a waste of resources and it can also lead to problems when the service needs to be updated for some projects
@@ -21,7 +21,7 @@ However, this replication brings some problems:
 
 Therefore, we recommend to introduce in your architecture an `Edge Gateway` project that will be the entry point of all the incoming requests to your company and where you will centralize the token resolution flow.
 
-![Scenario4a](./img/auth-scenario4a.png)
+![Scenario5a](./img/auth-scenario5a.png)
 
 The picture above illustrates the architecture of a company composed by two projects and an `Edge Gateway` project.
 
