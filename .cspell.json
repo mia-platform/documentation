@@ -226,7 +226,8 @@
     "VULNDB",
     "mergo",
     "kpis",
-    "Mesos"
+    "Mesos",
+    "SWSS"
   ],
   "ignoreWords": [
     "asncdctools",
