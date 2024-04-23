@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Handle expire subscription on Satispay callback
 - Handle expire subscription and "Payment Method Revoked By Customer" event on Braintree callback
-- resulDescription on metadata field on status response
+- resultDescription on metadata field on status response
 - action field on payment status response
 - Stripe: added "payment_intent" id in the PaymentStatus metadata
 - FnmPay payment provider
