@@ -128,7 +128,7 @@ The following table describes the manageable privileges at Console root level th
 | Edit any License                                | `console.root.licenses.manage`        |
 | Manage identity roles, Groups and Bindings      | `console.root.user.bind`              |
 | Create and delete any user                      | `console.root.user.manage`            |
-| View all user roles information                 | `console.root.user.view`              |
+| View all companies, projects and  user roles information | `console.root.all.view`      |
 | Create and delete root service account          | `console.root.serviceaccount.manage`  |
 | Manage all private and public Project Templates | `console.root.templates.manage`       |
 | Manage available features                       | `console.root.features.manage`        |
