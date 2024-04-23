@@ -1022,6 +1022,14 @@
       },
       "items": [
         {
+          "id": "fast_data/runtime_management/control_plane",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane_frontend",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/runtime_management/secure_access",
           "type": "doc"
         }

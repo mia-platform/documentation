@@ -10,52 +10,149 @@ import TabItem from '@theme/TabItem';
 ## Introducing Fast Data Control Plane
 
 Mia-Platform Fast Data includes a Runtime Management solution, **Fast Data Control Plane**.  
-It provides a general overview of the Fast Data pipelines released on a runtime environment, and allows users to monitor and govern the execution of the Fast Data system.  
-In particular, this Fast Data suite component offers functionalities to pause and resume the consumption of data streams along Fast Data pipelines with just a few clicks.  
-Therefore, processes such as Fast Data Initial Load management and Full Refresh actions can be easily managed from a user-friendly web interface supported by robust backend functionalities.
 
-### Key Benefits
+It provides a general overview of the Fast Data pipelines released on a runtime environment, 
+and allows users to monitor and govern the execution of the Fast Data system.  
 
-With Fast Data Control Plane, user can govern the execution of Fast Data microservices involved in messages consumption along the overall data pipeline with fine-grained control.  
+In particular, this Fast Data suite component offers functionalities to pause and resume the 
+consumption of data streams along Fast Data pipelines with just a few clicks.  
+
+Therefore, processes such as Fast Data Initial Load management and Full Refresh actions can be 
+easily managed from a user-friendly web interface supported by robust backend functionalities.
+
+### Benefits
+
+With Fast Data Control Plane, user can govern the execution of Fast Data microservices involved 
+in messages consumption along the overall data pipeline with fine-grained control.  
+
 This Fast Data runtime management flexibility, enables strategic management of the runtime environment in various scenarios:
 
-- **Strategic Resource Allocation:** Dynamically allocate resources by pausing and resuming microservices involved in messages consumption based on workload and resource availability.
-      Efficiently utilize computing resources and prioritize critical processes during peak demand; this leads to performance optimization, ensuring data consistency.
-- **Initial Load and Full Refresh processes management:** Govern and control initial load and full refresh processes directly from a user interface without frictions and without altering your workloads configuration deployed in runtime. For example, start the ingestion of a massive data system into the Fast Data environment. Only after the ingestion process is complete, 
-      initiate the processing of updates from the Real Time Updater (and the Single View Trigger Generator if active) to generate Single Views.  
-- **Performance Testing and Simulation:** Simulate different scenarios for performance testing by pausing and resuming messages consumption along pipeline.
-      Observe system behavior under various conditions to identify bottlenecks and optimize resource allocation.
-- **Enhanced System Reliability:** Gracefully handle unexpected situations or system maintenance by pausing specific data pipeline steps.
-      Resume operations post-maintenance to minimize downtime and enhance overall system reliability.
+- **Strategic Resource Allocation**: 
+  - Dynamically allocate resources by pausing and resuming microservices involved in messages consumption based on workload and resource availability.
+  - Efficiently utilize computing resources and prioritize critical processes during peak demand
+  
+  This leads to performance optimization, ensuring data consistency.
+- **Initial Load and Full Refresh processes management**: Govern and control initial load and full refresh processes directly from a user 
+  interface without frictions and without altering your workloads configuration deployed in runtime. 
+  
+  For example, start the ingestion of a massive data system into the Fast Data environment. Only after the ingestion process is complete, 
+  initiate the processing of updates from the Real Time Updater (and the Single View Trigger Generator if active) to generate Single Views.  
+- **Performance Testing and Simulation**: 
+  - Simulate different scenarios for performance testing by pausing and resuming messages consumption along pipeline.
+  - Observe system behavior under various conditions to identify bottlenecks and optimize resource allocation.
+- **Enhanced System Reliability**: 
+  - Gracefully handle unexpected situations or system maintenance by pausing specific data pipeline steps.
+  - Resume operations post-maintenance to minimize downtime and enhance overall system reliability.
 
-## Control Plane Frontend
+### Marketplace Applications
 
-To interact with the Fast Data runtime, access the web user interface provided by the Control Plane application.  
-In Control Plane frontend, there is an overview of all data pipelines released in the same runtime environment in which the Control Plane application is released, and user can access the details of a single pipeline to govern its data flows at runtime.
+To setup Control Plane, you can start from the [application marketplace](/marketplace/applications/mia_applications.md) and search for `control plane` in the search bar. You will have two options:
 
->>> To see how to release Control Plane frontend, please visit the [Control Plane application documentation page](link). <<<
+- _Fast Data Control Plane_, to link a basic control plane instance to a new or existing Envoy API Gateway. 
+- _Fast Data Control Plane With Access Control_, to link a control plane with an authorization layer (see box tip below for more information)
 
-### Pipelines Overview section
+![Control Plane Marketplace](img/marketplace_runtime_mngm_app_selection.png)
 
-When user accesses Control Plane frontend, an overview section shows the list of Fast Data pipelines released on that runtime environment.  
-In particular, two types of pipelines are shown: **Domain pipelines** and **Single View pipelines**, whose definitions are described on the following paragraphs.
+:::tip Set RBAC for secure application access
 
->>> IMG TO BE INSERTED <<<
+As Control Plane is a powerful tool for governing Fast Data at runtime, it is important to ensure that only authorized users can access and interact with it, especially if the interaction is performed on a Fast Data production environment.  
 
-Then, user can click on a single pipeline on the list in order to access the single pipeline detail page.
+By combining different capabilities and tools offered and managed in Mia-Platform Suite, Control Plane can be setup with a solid authorization security layer, and RBAC mechanisms can be built on top of it.
 
-### Pipeline Detail Page
+To find out how to better address this goal, please visit the related [documentation page](/fast_data/runtime_management/secure_access.md) that explains how to manage the Fast Data Control Plane With Access Control.
+:::
 
-When entering a single pipeline detail page, a graphical representation of the configured pipeline is diplayed.  
-Within a detail page of a pipeline, user can monitor and govern its data flows at runtime.  
+Among the services provided by both applications, there are the two services in charge of deploying the Fast Data Runtime Management, which are:
 
-The canvas structure depends on which type of pipeline is displayed, as it can be a Domain pipeline or a Single View pipeline.
+- `control-plane`, which is responsible for dispatching actions to the deployed Fast Data runtime and providing the current runtime configuration to the frontend
+- `control-plane-fe`, which is the UI tool for visualizing Fast Data runtime state and interact with it
 
-#### Domain pipeline
+In order to properly access Fast Data runtime, it is necessary to fill in all the necessary configuration in the service config map, which they may vary depending on your Fast Data configuration.
 
->>> IMG TO BE INSERTED <<<
+:::info
+For more details on the Control Plane service configuration, please head over the dedicated [documentation section](/fast_data/runtime_management/control_plane.mdx).
+:::
 
-A **Domain pipeline** represents a set of entities that have been configured to be related each others. The concept of ***Domain***, in the way it is represented in Control Plane, is strongly related to the concept of [ER-schema](link), that provides a way to declare how projections in your System of Records are joined together.  
+---
+
+## Concepts
+
+Here are listed some concepts that are used on the Runtime Management solution. This concepts complement the ones already provided on the Fast Data Selection. 
+
+### Workload 
+
+A _workload_ represent a microservice managed by Fast Data that can be controlled through Control Plane.  
+
+### Pipeline
+
+A _pipeline_ is a group of entities that are across different workloads. Each pipeline is managed separately.
+
+### Artifact
+
+An _artifact_ represents a unique entity inside the pipeline. This entity can be of different types, dependending on its occurrence inside the pipeline, which are:
+
+- **System of Record**: represents a data source. 
+- **Data Streams**: represents a source where data is managed. Can either be:
+  - an ingestion topic
+  - a projection 
+  - a trigger topic or a projection change
+  - a single view 
+
+Each artifact is linked to a Fast Data resource, which can be conversely related to multiple artifacts appearing in different pipelines.  
+
+### Execution Step
+
+An _Execution Step_ represent a particular operation performed over a data flow. This operation can change, depending on the stage where the execution step is located:
+
+- **CDC**: is the step that register changes from the data source of a pipeline, sending the corresponding operations to an ingestion topic. 
+  This step can't be controlled by the Control Plane.
+- **Mapping**: is the step that reads the changes from an ingestion topic and performs:
+  - validation of the data and the operation contained in the ingestion topic
+  - casting of the fields contained inside a message
+  - storage of data inside MongoDB
+
+  This step is managed by either the Projection Storer or the Real-Time Updater.    
+- **Reducing**: is the step involved to compute the identifier of the curated data that is aggregated by a pipeline. 
+  This step is managed by the Single View Trigger Generator. (SVTG)
+
+  :::caution Standard Architecture
+  For runtimes implementing the [Standard Architecture](link), i.e. having a Real-Time Updater that performs the execution of [strategies](link),
+  the Reducing step cannot be controlled since no SVTG is employed.  
+  :::
+
+- **Aggregation**: is the step where the data collected by the Reducing step is aggregated and stored into a Single View.
+  This step is managed by the Single View Creator. 
+
+### Stage
+
+A stage represent a set of artifacts and execution steps that are grouped together by their scope.
+
+- **Ingested**: is where the data is received. This stage contains the following components:
+  - **Artifact**: System of Record
+  - **Execution Step**: CDC     
+- **Landed**: is where the data is validated and parsed accordingly. This stage contains the following components:
+  - **Artifact**: Ingestion Topic
+  - **Execution Step**: Mapping     
+- **Collected**: is where the data is stored and queried to notify what changes have been performed on the final data
+  that should be represented. This stage contains the following components:
+  - **Artifact**: Projection
+  - **Execution Step**: Reducing   
+- **Curated**: is where the data is aggregated and produce an output that is persisted, i.e. a single view. 
+  This stage contains the following components:
+  - **Artifact**: Trigger Topic or Projection Changes collection
+  - **Execution Step**: Aggregation      
+
+---
+## Pipelines
+
+By using the concepts provided, the Control Plane offers two kind of pipelines, where is possible to manage a subset of artifacts and execution steps. 
+
+### Domain Pipeline
+
+A **Domain pipeline** represents a set of entities that have been configured to be related each others. 
+The concept of ***Domain***, in the way it is represented in Control Plane, is strongly related to the concept of [ER-schema](/fast_data/configuration/config_maps/erSchema.md), 
+that provides a way to declare how projections in your System of Records are joined together.  
+
 For this reason, inside the detail page of a Domain pipeline, two main Fast Data flow phases are graphically represented:
 
  - **Ingestion phase:** At the beginning of the flow there is the ingestion phase, wherein a System of Record is represented, as well as the CDC, that reacts to changes of data on some external sources and sends the occurred events (typically through a message broker like Kafka with different topics configured) to some different destinations, identified as data streams in the pipeline graphical visualization;
@@ -64,7 +161,7 @@ For this reason, inside the detail page of a Domain pipeline, two main Fast Data
 Taking in consideration the Fast Data microservices architecture, in Domain pipelines runtime governance there are two actors that Control Plane frontend can interact with: [Real-time updater](link) or [Projection storer](link).
 More specifically, for what concerns Domain pipeline runtime interaction, user can decide to play/pause the consumption of messages performed by a Real-time updater (or Projection storer) across the different ingestion messages on topics of pipeline data streams.
 
-#### Single View pipeline
+### Single View Pipeline
 
 >>> IMG TO BE INSERTED <<<
 
@@ -80,73 +177,11 @@ More specifically, for what concerns Single View pipeline runtime interaction, u
 In realizing a Single View implementation, different external Domain pipelines can be involved. This is the reason why in the figure above shown, across the Ingestion and Landing phases, even externally defined Domain pipelines can be diplayed to make clear from which data stream the Single View pipeline has been configured.  
 Given that the same one Domain pipeline can be adopted for obtaining different Single View pipelines, users accessing a Single View pipeline cannot perform play/pause actions on the external Domain pipeline sources, as that action may impact other Single View pipelines present in your runtime Fast Data system.  
 
-## Monitoring and Interacting with pipelines
-
-In this section we are going to describe in detail how the different states of the Fast data system at runtime are represented in the pipeline, and what actions the user can take to interact on the pipeline.  
-
-### States of Fast Data runtime pipeline
-
-Along a pipeline, it is possible to identify different graphical elements useful for representing the various states of your data streams in real-time and for highlighting architectural aspects of your Fast Data configuration.
-In particular, the following states have been designed.  
-
-#### Running
-
->>> IMG TO BE INSERTED <<<
-
-When messages consuption is active along a data stream, the __running__ state is rendered. This means that the Fast Data microservice involved in consuming events on that data stream is in active state.  
-
-From Control Plane settings located at the bottom-right, user can decide to switch-off / switch-on the animation of the running streams.
-
-#### Paused
-
->>> IMG TO BE INSERTED <<<
-
-When messages consuption is paused along a data stream, the __paused__ state is rendered. This means that the Fast Data microservice involved on that data stream is not consuming messages that flow through that data stream.
-
-#### Loading
-
->>> IMG TO BE INSERTED <<<
-
-When user interacts with the frontend in order to perform play/pause actions along data streams, a laoding state is rendered, meaning that an action is going to be performed on that data stream and control plane has sent the command to the involved microservice and is waiting for a feedback from that specific microservice.  
-Typically, after a loading state, if action succeeds, the data stream will change its state from paused to running or viceversa; if action does not succeed, an error will be displayed to user and the data stream will not change its status.
-
-#### Unsupported
-
->>> IMG TO BE INSERTED <<<
-
-Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. This is the case of what happens in a classical ingestion phase, wherein is not possible to alter the behavior of a CDC that is acquiring events from external sources.
-
-#### Disabled
-
->>> IMG TO BE INSERTED <<<
-
-There could be the case in which a play/pause action cannot be performed by user. Even this state can be influenced by architectural issues.
-
-#### Unknown
-
->>> IMG TO BE INSERTED <<<
-
-If there are some misconfiguration on Fast Data pipeline, the Control Plane system is not able to identify the real-time state of a certain data stream. This is why sometimes there could be present the Unknown state along a pipeline visualization. In this case, user can verify for example if Fast Data workloads are correctly running from Monitoring Area of Console, or if there are some misconfiguration on the Design Area of Console.
-
-### Fast Data Runtime Interaction
-
-From Control Plane frontend, user can monitor the status of each Fast Data pipeline in real-time. Then, user can interact with it by pausing/resuming messages consumption along data streams. To do this, it is possible to click on the play/pause buttons distributed along the various data streams of the pipeline.  
-Once clicked on the button, a Loading state appears and a message on the top of the frontend shows a countdown of 5s within which the user can decide to revoke the triggered action. If revoked, the previous state will be restored without any impact on Fast Data runtime. If not, Control Plane will send the command to the target microservice involved on that data stream, and on the frontend after the loading state, if the action is successful, the data stream will accordingly change its status.
-
-#### Bulk actions
-
-Bulk actions can enhance user experience in interacting with pipelines.  
-With a simple click on a play/pause button located at the top of each main Fast Data architectural step (Ingestion, Laning, Curated, Collected phases), user can pause all the active data streams, or can resume all the paused ones.  
-Bulk actions are useful in case of large data pipeline and speed-up the runtime management.  
-They can be powerful also in case of Initial load process management. In fact, with the first deploy of Fast Data pipelines on a runtime environment, the overall pipelines are set in __paused__ state as default. Consequently, in order to efficiently manage the Initial load of the Fast Data system, user can leverage bulk actions on a step-by-step process along the different pipeline phases.
-
-## Set RBAC for secure application access
-
-As Control Plane is a powerful tool for governing Fast Data at runtime, it is important to ensure that only authorized users can access and interact with it, especially if the interaction is performed on a Fast Data production environment.  
-By combining different capabilities and tools offered and managed in Mia-Platform Suite, Control Plane can be setup with a solid authorization security layer, and RBAC mechanisms can be built on top of it.
-To find out how to better address this goal, please visit the related [documentation page](link to secure access Control Plane page).
-
 ---
 
+## Useful Resources
+
 Now, you are equipped with the knowledge to efficiently manage Fast Data during its runtime using the Runtime Management system.  
-If you want to try Control Plane, visit the dedicated [documentation page](link) for properly configuring it and enjoy the full potential of Fast Data Runtime Management.
+
+- If you want to try Control Plane, visit the dedicated [documentation page](link) for properly configuring it and enjoy the full potential of Fast Data Runtime Management.
+- 

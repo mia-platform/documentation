@@ -1,7 +1,7 @@
 ---
 id: secure_access
 title: Runtime Secure Access
-sidebar_label: Runtime Secure Access
+sidebar_label: Secure Access
 ---
 
 In order to ensure that only authorized people can access Fast Data Runtime Management system and consequently
@@ -33,16 +33,6 @@ Then proceed step by step with the creation of the needed services, endpoints an
 should appear in the different Console section.
 
 ![Summary of Fast Data Control Plane application](img/marketplace_runtime_mngm_app_creation.png)
-
-Among them, there are the two services in charge of deploying the  Fast Data Runtime Management, which are:
-
-- `control-plane`, which is responsible for dispatching actions to the deployed Fast Data runtime and providing the current runtime configuration to the frontend
-- `control-plane-fe`, which is the UI tool for visualizing Fast Data runtime state and interact with it
-
-In order to properly access Fast Data runtime, it is necessary to fill in all the necessary configuration in the service
-config map, which they may vary depending on your Fast Data configuration.
-
-For more details on the Control Plane service configuration, please head over the dedicated [documentation section](/runtime_suite_applications/control-plane/20_configuration.mdx).
 
 ## Authentication Flow
 
