@@ -15,6 +15,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2024-04-23
+
+### Added
+
+- introduce support for GRPC as communication protocol in Runtime Management component
+
+### Changed
+
+- improved logging messages for internal communication errors to clarify their cause and how to solve it
+- Kafka consumer rebalance logic has been revised, adding a deadline to the wait for records processing end. In this manner 
+rebalance operations do not hang indefinitely
+
+### Fixed
+
+- when internal timeout error (`FD_PS_E7001`) is raised, now the service does not hang indefinitely when it is stopped
+
 ## [1.1.0] - 2024-04-12
 
 ### Added
