@@ -15,6 +15,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.7.0] 2024-04-23
+
+### Updated
+
+- **control plane** connection, which can be configured also using [gRPC protocol](https://grpc.io/docs/what-is-grpc/introduction/) supported by control plane backend. 
+
+  Two possible configurations can be set over the JSON file located at the path specified by `CONTROL_PLANE_CONFIG_PATH`:
+  - `full-duplex`: the service will open a bidirectional streaming channel to send its state and receive updates
+    ```json
+    {
+      "feedback": {
+        "type": "grpc"
+      },
+      "controller": {
+        "type": "grpc"
+      },
+      "settings": {
+        "channel": {
+          // interval for which service will send its state
+          // defaults to 2500ms if not specified
+          "heartbet.ms": 2500 
+        },
+        "grpc": {
+          // tells the service the hostname of your control plane istance
+          "host": "your-control-plane-host",
+          // port where the service is exposed, defaults to grpc default 50051
+          "port": 50051 
+        }
+      }
+    }
+    ```
+  - `feedback-only`: the service will open a request streaming channel to send its state, while the control plane will send updates using a kafka topic
+    ```json
+    {
+      "feedback": {
+        "type": "grpc"
+      },
+      "controller": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ }
+      },
+      "settings": { /** same as full-duplex */ }
+    }
+    ```
+    
+
 ## [6.6.0] 2024-04-11
 
 ### Added
