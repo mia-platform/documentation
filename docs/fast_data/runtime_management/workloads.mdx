@@ -1,0 +1,65 @@
+---
+id: workloads
+title: Control Plane Workloads Configuration
+sidebar_label: Workloads Configuration
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-client-config.schema.json"
+import JSWorkloadSnippet from "./snippets/js-workload-configuration.mdx"
+
+This section helps you configure either new or existing Fast Data services to communicate with the Control Plane.
+
+:::info Compatibility Matrix
+To see if your microservices have support for your Control Plane version, go check the [compatibility matrix section](/fast_data/runtime_management/compatibility_matrix.md).
+:::
+
+## Configuration
+
+To enable a Fast Data service to communicate with a Control Plane instance, you have to define a JSON configuration that should
+match the one given to the Control Plane.
+
+The JSON object has the same properties for all Fast Data microservices and must be compliant to the following JSON Schema.
+
+<JSONSchemaViewer schema={ControlPlaneSchema} />
+
+Choose below the service you want to configure with Control Plane to see where to place this configuration.
+
+<Tabs values={[
+    {label: 'Projection Storer', value: 'projection-storer'},
+    {label: 'Real-Time Updater', value: 'rtu'},
+    {label: 'Single View Trigger Generator', value: 'svtg'},
+    {label: 'Single View Creator', value: 'svc'}
+]} queryString="workload">
+
+<TabItem value="projection-storer">
+
+#### Projection Storer
+For the projection 
+</TabItem>
+<TabItem value="rtu">
+
+#### Real-Time Updater
+<JSWorkloadSnippet/>
+</TabItem>
+
+<TabItem value="svtg">
+
+#### Single View Trigger Generator
+<JSWorkloadSnippet/>
+</TabItem>
+
+<TabItem value="svc">
+
+#### Single View Creator
+<JSWorkloadSnippet/>
+
+</TabItem>
+</Tabs>
+
+### Examples
+
+## Bind Microservices to Runtime
+
