@@ -15,7 +15,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 ### User created on Identity Provider - Okta
 `event: okta.create.user`
 
-On this event the `mia console` provider will proxy the Okta event hook to the console endpoint used to synchronize the console with the identity provider used; for more information you can refer to the [related documentation](../../../infrastructure/self-hosted/synchronize-users).
+On this event the `mia console` provider will proxy the Okta event hook to the console endpoint used to synchronize the console with the identity provider used.
 
 Below you can find the JSON schema related to the action used to configure this action.
 ```jsonc
