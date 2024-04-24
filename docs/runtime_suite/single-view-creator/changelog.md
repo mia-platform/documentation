@@ -15,6 +15,105 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.7.0] 2024-04-23
+
+### Updated
+
+- **control plane** connection, which can be configured also using [gRPC protocol](https://grpc.io/docs/what-is-grpc/introduction/) supported by control plane backend. 
+
+  Two possible configurations can be set over the JSON file located at the path specified by `CONTROL_PLANE_CONFIG_PATH`:
+  - `full-duplex`: the service will open a bidirectional streaming channel to send its state and receive updates
+    ```json
+    {
+      "feedback": {
+        "type": "grpc"
+      },
+      "controller": {
+        "type": "grpc"
+      },
+      "settings": {
+        "channel": {
+          // interval for which service will send its state
+          // defaults to 2500ms if not specified
+          "heartbet.ms": 2500 
+        },
+        "grpc": {
+          // tells the service the hostname of your control plane istance
+          "host": "your-control-plane-host",
+          // port where the service is exposed, defaults to grpc default 50051
+          "port": 50051 
+        }
+      }
+    }
+    ```
+  - `feedback-only`: the service will open a request streaming channel to send its state, while the control plane will send updates using a kafka topic
+    ```json
+    {
+      "feedback": {
+        "type": "grpc"
+      },
+      "controller": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ }
+      },
+      "settings": { /** same as full-duplex */ }
+    }
+    ```
+    
+
+## [6.6.0] 2024-04-11
+
+### Added
+
+- introduce support for Control Plane feedback via heartbeat events
+
+### Fixed
+
+- when the service is under pressure it is now able to send the Kafka heartbeat to the coordinator
+preventing unnecessary restarts
+
+## [6.5.0] 2024-02-21
+
+### Added
+
+- introduce official support to MongoDB v7
+
+### Changed
+
+- updated to `@mia-platform-internal/single-view-creator-lib@15.0.0`
+
+:::warning
+In case custom _upsert_ or _delete_ strategies are employed, it is necessary to verify and potentially upgrade such
+_user-defined_ functions, so that possible usages of `findOneAndUpdate`, `findOneAndReplace` and `findOneAndDelete` methods
+adhere to the MongoDB NodeJS [driver v6.x interface](https://mongodb.github.io/node-mongodb-native/6.3/classes/Collection.html#findOneAndUpdate).
+
+For example, those methods may now need to include the `includeResultMetadata` property set to `true`, to maintain unaltered
+the previous behavior, as shown in the implementation below. Indeed, it should be changed from
+```javascript
+const updateOp = await singleViewCollection.findOneAndUpdate(
+  singleViewKey,
+  { $set: { ... } }
+)
+```
+to
+```javascript
+const updateOp = await singleViewCollection.findOneAndUpdate(
+    singleViewKey,
+    { $set: { ... } },
+    { includeResultMetadata: true } // <-- ⚠️ here the new option is added
+)
+```
+:::
+
+## [6.4.3] 2024-03-05
+
+### Fixed
+
+- upgrade `@mia-platform-internal/single-view-creator-lib@14.11.1` to ensure that operation
+`timestamp` property in sv-update message contains an ISO 8601 date string, converting
+potential incoming Unix timestamp into the expected format. This fixes a mismatch that prevented
+the daisy chain of two Single View Creator to 
+
 ## [6.4.1] 2024-02-27
 
 ### Added
