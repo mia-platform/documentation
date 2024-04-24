@@ -162,7 +162,7 @@ Here is described the interface of the custom message adapter function:
 
 ```json title="Example of adapter input message"
 {
-  "key": "{\"warehouseId\":\"W0A133\",\"productId\":\"P219345\"}",
+  "key": "{\"warehouseId\":\"W0A113\",\"productId\":\"P219345\"}",
   "value": Buffer.from([123,34,119,97,114,101,104,111,117,115,101,73,100,34,58,34,87,48,65,49,51,51,34,44,34,112,114,111,100,117,99,116,73,100,34,58,34,80,50,49,57,51,52,53,34,44,34,113,117,97,110,116,105,116,121,34,58,50,48,48,44,34,110,101,101,100,82,101,112,108,97,99,101,109,101,110,116,34,58,102,97,108,115,101,125])
 }
 ```
@@ -179,12 +179,12 @@ Here is described the interface of the custom message adapter function:
 {
   "operation": "I",
   "key": {
-    "warehouseId": "W0A133",
+    "warehouseId": "W0A113",
     "productId": "P219345"
   },
   "before": null,
   "after": {
-    "warehouseId": "W0A133",
+    "warehouseId": "W0A113",
     "productId": "P219345",
     "quantity": 200,
     "needReplacement": false
@@ -708,6 +708,243 @@ defined cast function.
 }
 ```
 
+### Control Plane Config
+
+Starting from version `v1.1.0` of Projection Storer service it is possible to instruct it to _pause_ and _resume_ the
+consumption of change events from ingestion topics. This can be achieved by configuring the service accordingly, so that
+it communicates with an instance of [Fast Data Control Plane](/fast_data/runtime_management.mdx). This connection is then
+employed to establish the status each service ingestion component should apply (either `pause` or `resume`) and to
+provide the corresponding feedback back to the Control Plane.
+
+The content of this configuration is divided in three main fields, which are described below.
+
+#### State
+
+This field describe which communication protocol is employed for receiving the Fast Data _state_ from the
+Fast Data Control Plane instance. This can happen directly via [GRPC](https://grpc.io/) or indirectly via
+a topic on a Kafka broker. Here are detailed the fields to be configured depending on the selected communication protocol.
+
+##### GRPC
+
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `type`          | `string` | &check;  |         |
+
+When `type` is set to `grpc` then no further configuration under this field is needed by the service.
+
+:::note
+GRPC is available since version `v1.1.1` of Projection Storer
+:::
+
+##### Kafka
+
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `type`          | `string` | &check;  |         |
+| `channel`       | `string` | &check;  |         |
+| `configuration` | `object` | &check;  |         |
+
+When `type` is set to `kafka` then it is necessary to specify from which `channel`, that is the Kafka topic,
+Fast Data state events should be read and the Kafka configuration properties to be passed to the [Kafka Consumer](https://kafka.apache.org/documentation/#consumerconfigs).
+
+:::caution
+In order to guarantee global order on Fast Data states emitted by Fast Data Control Plane instance, configured
+topic must have a single partition, from which all the Fast Data services will read the current state to be applied.
+:::
+
+:::note
+The following Kafka Consumer properties cannot be customized by the user, since are managed by the service:
+- `key.deserializer`
+- `value.deserializer`
+:::
+
+#### Feedback
+
+This field describe which communication protocol is employed for sending a _feedback_ as heartbeat to the
+Fast Data Control Plane instance. This can happen directly via [GRPC](https://grpc.io/) or indirectly via
+a topic on a Kafka broker. Here are detailed the fields to be configured depending on the selected communication protocol.
+
+##### GRPC
+
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `type`          | `string` | &check;  |         |
+
+When `type` is set to `grpc` then no further configuration under this field is needed by the service.
+
+:::note
+GRPC is available since version `v1.1.1` of Projection Storer
+:::
+
+##### Kafka
+
+| Property        | Type     | Required | Default |
+|-----------------|----------|----------|---------|
+| `type`          | `string` | &check;  |         |
+| `channel`       | `string` | &check;  |         |
+| `configuration` | `object` | &check;  |         |
+
+When `type` is set to `kafka` then it is necessary to specify on which `channel`, that is the Kafka topic,
+service feedback events should be produced and the Kafka configuration properties to be passed
+to the [Kafka Producer](https://kafka.apache.org/documentation/#producerconfigs).
+
+:::note
+The following Kafka Producer properties cannot be customized by the user, since are managed by the service:
+- `acks`
+- `enable.idempotence`
+- `key.deserializer`
+- `value.deserializer`
+:::
+
+#### Shared Settings
+
+| Property  | Type     | Required | Default |
+|-----------|----------|----------|---------|
+| `grpc`    | `object` |          |         |
+
+The property `settings` under the Control Plane `settings` field contains a set of configurations that are shared by both
+`state` and `feedback` components. In particular, there is a property `grpc` that allows to specify the `host` and the
+`port` of the Fast Data Control Plane instance that expose the GRPC server.
+
+---
+
+When using Mia-Platform Console to configure the settings explained above, please remember to insert only the
+content of `controlPlane.settings` property in the dedicated space within Projection Storer configuration page. As a reference, 
+the configuration panel is shown in the screenshot here:
+
+![](img/projection_storer_control_plane.png)
+
+Below are provided three examples of how Control Plane settings can be configured for the Projection Storer service. These
+are:
+
+- GRPC feedback loop: both Fast Data _state_ and service _feedback_ transit over GRPC communication protocol. This is the
+**recommended** configuration, since it is better suited for this kind of inter-service communication and it does not require
+any additional external resource.
+- Kafka feedback loop: both Fast Data _state_ and service _feedback_ transit between services as Kafka messages
+- Kafka + GRPC feedback loop: Fast Data _state_ is read from a Kafka topic as a message while and service _feedback_ is
+sent directly to the Fast Data Control Plane instance via GRPC.
+
+<details><summary>Control Plane Configuration | GRPC feedback loop</summary>
+This configuration enables both state and feedback component to connect to the GRPC server on the Fast Data Control Plane instance.
+<p>
+
+```json
+"controlPlane": {
+  "settings": {
+    "state": {
+      "type": "grpc"
+    },
+    "feedback": {
+      "type": "grpc"
+    },
+    "settings": {
+      "grpc": {
+        "host": "<fd-control-plane-k8s-service-name>",
+        "port": 50051
+      }
+    }
+  },
+  "bindings": {
+    ...
+  }
+}
+```
+
+</p>
+</details>
+
+<details><summary>Control Plane Configuration | Kafka feedback loop</summary>
+<p>
+
+```json
+"controlPlane": {
+  "settings": {
+    "state": {
+      "type": "kafka",
+      "channel": "<control-plane-state-topic>",
+      "configuration": {
+        "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-state",
+        "bootstrap.servers": "localhost:9092",
+        "group.id": "galaxy.fast-data.DEV.inventory-projection-storer-control-plane",
+        /* the following properties define the authentication parameters - please update or remove them after copying the example config */
+        "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
+        "sasl.mechanism": "SCRAM-SHA-256",
+        "security.protocol": "SASL_SSL",
+        "max.poll.records": 1000,
+        "max.poll.timeout": 1000
+      }
+    },
+    "feedback": {
+      "type": "kafka",
+      "channel": "<control-plane-feedback-topic>",
+      "configuration": {
+        "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-feedback",
+        "bootstrap.servers": "localhost:9092",
+        /* the following properties define the authentication parameters - please update or remove them after copying the example config */
+        "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
+        "sasl.mechanism": "SCRAM-SHA-256",
+        "security.protocol": "SASL_SSL"
+      }
+    }
+  },
+  "bindings": {
+    ...
+  }
+}
+```
+
+</p>
+</details>
+
+<details><summary>Control Plane Configuration | Kafka+GRPC feedback loop</summary>
+<p>
+
+```json
+"controlPlane": {
+  "settings": {
+    "state": {
+      "type": "kafka",
+      "channel": "<control-plane-state-topic>",
+      "configuration": {
+        "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-state",
+        "bootstrap.servers": "localhost:9092",
+        "group.id": "galaxy.fast-data.DEV.inventory-projection-storer-control-plane",
+        /* the following properties define the authentication parameters - please update or remove them after copying the example config */
+        "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
+        "sasl.mechanism": "SCRAM-SHA-256",
+        "security.protocol": "SASL_SSL",
+        "max.poll.records": 1000,
+        "max.poll.timeout": 1000
+      }
+    },
+    "feedback": {
+      "type": "grpc"
+    },
+    "settings": {
+      "grpc": {
+        "host": "<fd-control-plane-k8s-service-name>",
+        "port": 50051
+      }
+    }
+  },
+  "bindings": {
+    ...
+  }
+}
+```
+
+</p>
+</details>
+
+:::caution
+In order for the service to be aware of which Fast Data pipelines _artifacts_ and _execs_ it is managing, an additional
+`bindings` property must be passed within the Control Plane service configuration. This latter configuration maps
+pipeline artifacts identifiers with their corresponding details.  
+Beware that without the `bindings` property the Control Plane component will not be enabled on the Projection Storer.
+
+Mia-Platform Console automatically generates such mapping starting from the Fast Data configuration and adds it to the service. 
+:::
+
 ## Configuration File Example
 
 Below is presented an example of Projection Storer working configuration, both `JSON` and `YAML` formats, which are the ones
@@ -880,6 +1117,22 @@ supported by the service.
         }
       }
     }
+  },
+  "controlPlane": {
+    "settings": {
+      "state": {
+        "type": "grpc"
+      },
+      "feedback": {
+        "type": "grpc"
+      },
+      "settings": {
+        "grpc": {
+          "host": "localhost"
+        }
+      }
+    },
+    "bindings": {}
   }
 }
 ```
@@ -1009,6 +1262,17 @@ projections:
       price:
         targetField: price
         castFunction: castToFloat
+controlPlane:
+  settings:
+    state:
+      type: grpc
+    feedback:
+      type: grpc
+    settings:
+      grpc:
+        host: localhost
+  # bindings map is empty and therefore Control Plane component is disabled
+  bindings: {}
 ```
 
 </p>
