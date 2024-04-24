@@ -154,11 +154,18 @@ Here is described the interface of the custom message adapter function:
 
 - `message` → a map representing the ingestion message. It contains the following properties:
   - `key`:
-    - `Buffer` → the raw message key of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
+    - `Buffer` → a string representing the key of the incoming message from the ingestion topic. It may be parsed as JSON object if needed
   - `value`:
     - `Buffer` → the raw value that contains the payload of the incoming message from the ingestion topic. It can be converted to string and parsed as JSON object
 - `primaryKeys` → the list of field names that compose the primary key identifier for that specific projection
 - `logger` → service logger instance which exports leveled output functions (e.g. `info()`, `debug()`, ...)
+
+```json title="Example of adapter input message"
+{
+  "key": "{\"warehouseId\":\"W0A133\",\"productId\":\"P219345\"}",
+  "value": Buffer.from([123,34,119,97,114,101,104,111,117,115,101,73,100,34,58,34,87,48,65,49,51,51,34,44,34,112,114,111,100,117,99,116,73,100,34,58,34,80,50,49,57,51,52,53,34,44,34,113,117,97,110,116,105,116,121,34,58,50,48,48,44,34,110,101,101,100,82,101,112,108,97,99,101,109,101,110,116,34,58,102,97,108,115,101,125])
+}
+```
 
 ##### Adapter Output
 
@@ -166,6 +173,24 @@ Here is described the interface of the custom message adapter function:
 - `key` → an object/map that contains the primary key fields for the record matching their value
 - `before` → an object/map or `null`, which represents the record before the last change occurred 
 - `after` → an object/map or `null`, which represents the record obtained after applying the change that triggered the ingestion event
+
+
+```json title="Example of adapter output"
+{
+  "operation": "I",
+  "key": {
+    "warehouseId": "W0A133",
+    "productId": "P219345"
+  },
+  "before": null,
+  "after": {
+    "warehouseId": "W0A133",
+    "productId": "P219345",
+    "quantity": 200,
+    "needReplacement": false
+  }
+}
+```
 
 Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
 
@@ -215,6 +240,16 @@ function extractKey(obj, wantedKeys) {
             .filter(keyEntry => obj[keyEntry] !== undefined)
             .map(keyEntry => [keyEntry, obj[keyEntry]])
     )
+}
+
+// the following code allows to use the same custom function
+// in both the Projection Storer and the Real-Time Updater
+try {
+    // export function for Real-Time Updater
+    module.exports = messageAdapter
+} catch (error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
 }
 ```
 
@@ -273,7 +308,19 @@ try {
 
 :::caution
 Within the custom message adapter script file it is possible to define multiple functions. However, it is mandatory
-to define a function named `messageAdapter`, which will be treated as entry point for the custom message adapter.
+to define a function named `messageAdapter`, which will be treated as the entry point for the custom message adapter.
+
+Moreover, to support both Projection Storer and Real-Time Updater services, the `module.export` instruction must be
+added, but encapsulated within a try/catch block as shown below:
+```js
+try {
+    // export function for Real-Time Updater
+    module.exports = messageAdapter
+} catch (error) {
+    // ignore error when importing the custom function in the Projection Storer
+    // since it exploits the function name
+}
+```
 :::
 
 #### Cast Functions and Additional Cast Functions
@@ -446,7 +493,6 @@ before returning any event (in case `max.poll.records` or `message.max.bytes` ar
 :::note
 The following Kafka Consumer properties cannot be customized by the user, since are managed by the service:
 - `enable.auto.commit`
-- `allow.auto.create.topics`
 - `key.deserializer`
 - `value.deserializer`
 :::
@@ -524,6 +570,12 @@ This is an example of storage configuration when `mongodb` is selected as type:
 This section of the configuration provides all the details related to each projection associated to an instance of the
 Projection Storer service. The content of this property is mapping between projection names and their configuration the input and output specification together with the mapping configuration that
 instructs the service on how to transform each ingestion event into a projection record and where to store it.
+
+:::info
+When using Mia-Platform Console to configure the service, the configuration shown in this section are managed by the UI,
+so that interacting with the list of projections and their fields in the Systems of Record section will automatically
+generate the needed configuration for the Projection Storer service.
+:::
 
 #### Topics
 
