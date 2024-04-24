@@ -9,11 +9,9 @@ import TabItem from '@theme/TabItem';
 
 Fast Data Control Plane is the service that:
 
-* receives and keeps track of the state of the different pipelines of a runtime.
-* reiceves 
-* receives feedbacks from workloads, informing the service of their current states.
-
-_Configuration of Control Plane_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+* keeps track of the state of the different pipelines of a runtime;
+* reiceves user's interaction with the dedicated frontend, to update pipeline's state accordingly;  
+* receives feedbacks from workloads, to acknowledge that they're up-and-running in the pipelines they've been linked to. 
 
 ## State Persistence
 
@@ -21,7 +19,7 @@ The Control Plane stores for each runtime the latest state of all pipelines (eit
 that is queried directly by the service at startup to retrieve the latest available state. 
 
 :::info
-
+To discover more about state persistence configuration, you can check [its dedicated section](?control-plane-configuration=persistence#persistence)
 :::
 
 This collection can change based on user interactions through the frontend.
@@ -54,7 +52,11 @@ The _Feedback Channel_ is where the workloads will notify the Control Plane abou
 
 The workloads will send messages through the feedback channel **periodically**.
 
-## Environment Variables
+## Configuration
+
+_Configuration of Control Plane_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+
+### Environment Variables
 
 Control Plane can be customized using the following environment variables:
 
@@ -64,35 +66,157 @@ Control Plane can be customized using the following environment variables:
 | `LOG_LEVEL`                               | -        | Specify the centralized application log level, choosing from options such as  `debug` ,  `error` ,  `fatal` ,  `info` ,  `silent` ,  `trace` , or  `warn` .               | `info`                                     |
 | `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file.                                                                                                                               | ` ~/.fd/control-plane/configuration.json ` |
 
-## Configuration
+### Config Map 
 
 The configuration of the service is handled by a JSON file whose location is defined by the `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH`.
 
 The [Control Plane applications](/docs/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `config map`.
 
-<Tabs>
+<Tabs groupId='control-plane-configuration' queryString>
 
 <TabItem value="persistence" label="Persistence" default>
 
 #### Persistence
 
-This section configures the layer of runtime state persistence where Control Plane stores the next desired state for each configured runtime.
-The client is also used to stream changes to the state channels of each given runtime.
-It must point to a `MongoDB` collection, available in a [`replicaSet` enabled database](https://www.mongodb.com/docs/manual/replication/). Available interfaces include:
+The object `persistence` configures the layer of runtime state persistence where Control Plane stores the next desired state for its runtime.
+
+It must point to a `MongoDB` collection, available in a [`replicaSet` enabled database](https://www.mongodb.com/docs/manual/replication/).
+
+Available interfaces include:
 
 - `MongoDB` client
 
-Example:
+###### Example
 
 ```json
 {
-    "type": "mongodb",
-    "configuration": {
-        "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
-    },
-    "collection": {
-        "name": "runtime-state"
+    // ...other control plane configurations
+    "persistence": {
+        "type": "mongodb",
+        "configuration": {
+            "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+        },
+        "collection": {
+            "name": "runtime-state"
+        }
     }
+    // ...other control plane configurations
+}
+```
+
+</TabItem>
+
+<TabItem value="runtime" label="Runtime">
+
+#### Runtime
+
+The object `runtime` configures: 
+
+- the state channel that the Control Plane uses to dispatch the next desired state;
+- the feedback channel where Control Plane receives workloads feedbacks about their inner states. 
+
+Available interfaces are:
+
+#### Kafka 
+
+Both feedback and state channels can be managed by a Kafka broker. In particular:
+
+- the state channel will have a Kafka Producer that sends desired states to a dedicated topic (referred to as _Action Topic_)
+- the feedback channel will have a Kafka Consumer that reads workloads feedbacks from a dedicated topic (referred to as _Heartbeat Topic_)
+
+###### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "configuration": {
+            // to see all the available configuration options, go over the JSON schema
+            "allow.auto.create.topics": "true",
+            "bootstrap.servers": "localhost:9094"
+          },
+          "consumer": {
+            "topic": "heartbeat-topic",
+            "group.id": "control-plane-group-id"
+          },
+          "type": "kafka"
+        },
+        "state": {
+          "configuration": {
+            // to see all the available configuration options, go over the JSON schema
+            "allow.auto.create.topics": "true",
+            "bootstrap.servers": "localhost:9094"
+          },
+          "producer": {
+            "topic": "action-topic"
+          },
+          "type": "kafka"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+#### gRPC
+
+Both feedback and state channels can be managed by a gRPC server instance managed by the Control Plane, 
+which creates a bi-directional streaming procedure that:
+
+- receives feedbacks from workloads
+- dispatch states to services 
+
+##### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "type": "grpc"
+        },
+        "state": {
+          "type": "grpc"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+:::info 
+By default, the gRPC server is exposed over the default gRPC protocol port (50051). 
+This value can be overriden in the [`settings` section](link) 
+::: 
+
+#### gRPC + Kafka 
+
+It's also possible to have:
+
+- a state channel managed by a topic in a Kafka broker;
+- a feedback channel managed by a gRPC server with a client-side streaming request
+
+###### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "type": "grpc"
+        },
+        "state": {
+          "configuration": {
+            // to see all the available configuration options, go over the JSON schema
+            "allow.auto.create.topics": "true",
+            "bootstrap.servers": "localhost:9094"
+          },
+          "producer": {
+            "topic": "action-topic"
+          },
+          "type": "kafka"
+        }
+    }
+    // ...other control plane configurations
 }
 ```
 
@@ -102,55 +226,39 @@ Example:
 
 #### Settings
 
-The overall setup of Control Plane is tuned in the Settings object, allowing you to configure **HTTP controller** routes, including:
+The overall setup of Control Plane is tuned in the `settings` object, allowing you to configure several aspects of the services, such as:
 
-- APIs
+- channels setup, including:
+  - buffer timeout used to delay state channel notifications
+  - gRPC server configuration
+  - runtime heartbeat in milliseconds, used to tell whether a workload is alive or not 
+- server APIs, including:
   - Fast Data control endpoint
   - Metrics
   - Probes
-- Frontend/Website
+- Frontend/Website endpoint locations
 
 Example:
 
 ```json
 {
-  "server": {
-    "prefix": "/control-plane/",
-    "website": {
-      "url": "/"
-    }
-  }
+    // ...other control plane configurations
+    "settings": {
+        "server": {
+          "prefix": "/control-plane/",
+          "website": {
+            "url": "/"
+          }
+        }
+    } 
+    // ...other control plane configurations
 }
 ```
 
-</TabItem>
-
-<TabItem value="runtimes" label="Runtimes">
-
-#### Runtimes
-
-A key-value object representing runtime instances controlled by this control-plane.
-Key is a unique name that corresponds with the persistence unique identifier for the current desired state of a given runtime.
-Runtimes contain communication channel from and to deployed microservices.
-For each deployed runtime, this section configures the communication channel that the Control Plane uses to dispatch the next desired state.
-Available interfaces are:
-
-- `Kafka` producer
-
-Example:
-
-```json
-{
-    "type": "kafka",
-    "configuration": {
-        "bootstrap.servers": "localhost:9092,localhost:9094",
-        "auto.offset.reset": "earliest"
-    },
-    "producer": {
-        "topic": "state-topic"
-    }
-}
-```
+:::info 
+To have a full overview of the `settings` properties, you can check the JSON Schema specifications
+provided in this section.
+::: 
 
 </TabItem>
 
@@ -164,494 +272,1398 @@ Example:
 
 ```json
 {
-    "type": "object",
-    "title": "Control Plane Configuration",
-    "description": "Json schema for the control-plane configuration file. File is by default loaded at **~/.fd/control-plane/configuration.json**. Default location can be configured using the environment variable **FD\\_CONTROL_PLANE\\_CONFIGURATION\\_FILEPATH**.",
-    "examples": [
-        {
-            "runtimes": {
-                "runtime-1": {
-                    "channels": {
-                        "state": {
-                            "type": "kafka",
-                            "configuration": {
-                                "bootstrap.servers": "localhost:9094",
-                                "allow.auto.create.topics": "true"
-                            },
-                            "producer": {
-                                "topic": "state"
-                            }
-                        }
-                    }
-                }
-            },
-            "persistence": {
-                "type": "mongodb",
-                "configuration": {
-                    "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
-                },
-                "collection": {
-                    "name": "runtime-state"
-                }
-            }
-        },
-        {
-            "runtimes": {
-                "runtime-1": {
-                    "channels": {
-                        "state": {
-                            "type": "kafka",
-                            "configuration": {
-                                "bootstrap.servers": "localhost:9094",
-                                "allow.auto.create.topics": "true"
-                            },
-                            "producer": {
-                                "topic": "state"
-                            }
-                        }
-                    }
-                },
-                "runtime-2": {
-                    "channels": {
-                        "state": {
-                            "type": "kafka",
-                            "configuration": {
-                                "bootstrap.servers": "{{KAFKA_BROKERS}}",
-                                "client.id": "fd-tests.{{ENVIRONMENT_TO_DEPLOY}}.new-rtu-atm-0004-consumer",
-                                "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"{{KAFKA_SASL_USERNAME}}\" password=\"{{KAFKA_SASL_PASSWORD}}\"",
-                                "sasl.mechanism": "SCRAM-SHA-256",
-                                "security.protocol": "SASL_SSL"
-                            },
-                            "producer": {
-                                "topic": "state"
-                            }
-                        }
-                    }
-                }
-            },
-            "persistence": {
-                "type": "mongodb",
-                "configuration": {
-                    "url": "{{MONGODB_URL}}"
-                },
-                "collection": {
-                    "name": "state-collection"
-                }
-            },
-            "settings": {
-                "server": {
-                    "prefix": "/control-plane/",
-                    "apis": {
-                        "controllers": {
-                            "fast-data": "/my-awesome-controller"
-                        }
-                    },
-                    "website": {
-                        "url": "/__frontend/"
-                    }
-                }
-            }
-        }
-    ],
-    "required": [
-        "persistence",
-        "runtimes"
-    ],
-    "properties": {
-        "runtimes": {
-            "examples": [
-                {
-                    "runtime-1": {
-                        "channels": {
-                            "state": {
-                                "type": "kafka",
-                                "configuration": {
-                                    "bootstrap.servers": "localhost:9094",
-                                    "allow.auto.create.topics": "true"
-                                },
-                                "producer": {
-                                    "topic": "state"
-                                }
-                            }
-                        }
-                    }
-                }
-            ],
-            "type": "object",
-            "description": "A key-value object representing runtime instances controlled by this control-plane. Key is a unique name that corresponds with the persistence unique identifier for the current desired state of a given runtime. Runtimes contain communication channel from and to deployed microservices.",
-            "minProperties": 1,
-            "additionalProperties": {
-                "type": "object",
-                "title": "Runtime",
-                "required": [
-                    "channels"
-                ],
-                "properties": {
-                    "channels": {
-                        "description": "Communication channels from and to deployed microservices composing this runtime",
-                        "type": "object",
-                        "required": [
-                            "state"
-                        ],
-                        "properties": {
-                            "state": {
-                                "description": "Channel from control-plane to runtime deployed microservices used to convey the next desired state of the runtime. Used primarily to switch on and off service features.",
-                                "title": "StateChannel",
-                                "oneOf": [
-                                    {
-                                        "description": "Kafka client configuration for consumer, producer, or admin client",
-                                        "title": "KafkaConnection",
-                                        "examples": [
-                                            {
-                                                "type": "kafka",
-                                                "configuration": {
-                                                    "bootstrap.servers": "localhost:9092,localhost:9094",
-                                                    "auto.offset.reset": "earliest"
-                                                },
-                                                "producer": {
-                                                    "topic": "state-topic"
-                                                }
-                                            }
-                                        ],
-                                        "type": "object",
-                                        "required": [
-                                            "producer",
-                                            "configuration"
-                                        ],
-                                        "properties": {
-                                            "type": {
-                                                "const": "kafka"
-                                            },
-                                            "configuration": {
-                                                "type": "object",
-                                                "description": "Kafka driver configurations. See <https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html>",
-                                                "required": [
-                                                    "bootstrap.servers"
-                                                ],
-                                                "properties": {
-                                                    "bootstrap.servers": {
-                                                        "type": "string",
-                                                        "description": "A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. See <https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html#bootstrap-servers>"
-                                                    },
-                                                    "client.id": {
-                                                        "type": "string"
-                                                    },
-                                                    "security.protocol": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "PLAINTEXT",
-                                                            "SSL",
-                                                            "SASL_PLAINTEXT",
-                                                            "SASL_SSL"
-                                                        ]
-                                                    },
-                                                    "sasl.mechanism": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "PLAIN",
-                                                            "SCRAM-SHA-256",
-                                                            "SCRAM-SHA-512",
-                                                            "OAUTHBEARER"
-                                                        ]
-                                                    },
-                                                    "sasl.username": {
-                                                        "type": "string"
-                                                    },
-                                                    "sasl.password": {
-                                                        "type": "string"
-                                                    },
-                                                    "sasl.jaas.config": {
-                                                        "type": "string"
-                                                    },
-                                                    "sasl.login.callback.handler.class": {
-                                                        "type": "string"
-                                                    },
-                                                    "session.timeout.ms": {
-                                                        "type": "integer"
-                                                    },
-                                                    "auto.offset.reset": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "earliest",
-                                                            "latest"
-                                                        ]
-                                                    },
-                                                    "allow.auto.create.topics": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "true",
-                                                            "false"
-                                                        ],
-                                                        "default": "false"
-                                                    },
-                                                    "enable.auto.commit": {
-                                                        "type": "string",
-                                                        "enum": [
-                                                            "true",
-                                                            "false"
-                                                        ],
-                                                        "default": "true"
-                                                    }
-                                                },
-                                                "additionalProperties": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "producer": {
-                                                "description": "Kafka producer specific configuration",
-                                                "type": "object",
-                                                "required": [
-                                                    "topic"
-                                                ],
-                                                "properties": {
-                                                    "topic": {
-                                                        "description": "The name of the topic to send messages to",
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                ]
-                            },
-                            "request": {
-                                "description": "reserved keyword",
-                                "title": "RequestChannel",
-                                "$comment": "TBD: channel used by slave replicas to mirror user requests to master"
-                            },
-                            "feedback": {
-                                "description": "reserved keyword",
-                                "title": "FeedbackChannel",
-                                "$comment": "TBD: channel used by runtime to inform control-plane of its status"
-                            }
-                        }
-                    },
-                    "configuration": {
-                        "description": "reserved keyword",
-                        "$comment": "TBD: here the fast-data config for the selected runtime"
-                    }
-                }
-            }
-        },
+  "$ref": "#/definitions/control-plane",
+  "definitions": {
+    "control-plane": {
+      "type": "object",
+      "properties": {
         "persistence": {
-            "description": "Configuration of the persistence layer where control-plane stores the next desired state for each configured runtime. The client is also used to stream changes to the state channels of each given runtime.",
-            "examples": [
-                {
-                    "type": "mongodb",
-                    "configuration": {
-                        "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+          "type": "object",
+          "properties": {
+            "collection": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "updates": {
+                  "type": "object",
+                  "properties": {
+                    "millis": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "configuration": {
+              "type": "object",
+              "properties": {
+                "database": {
+                  "type": "string"
+                },
+                "url": {
+                  "anyOf": [
+                    {
+                      "type": "string"
                     },
-                    "collection": {
-                        "name": "runtime-state"
-                    }
-                }
-            ],
-            "oneOf": [
-                {
-                    "title": "MongodbConnection",
-                    "type": "object",
-                    "description": "interface of a mongodb connection which is generally accepted by fast-data",
-                    "required": [
-                        "collection",
-                        "configuration"
-                    ],
-                    "properties": {
+                    {
+                      "type": "object",
+                      "properties": {
+                        "encoding": {
+                          "type": "string",
+                          "enum": [
+                            "base64"
+                          ]
+                        },
+                        "key": {
+                          "type": "string"
+                        },
                         "type": {
-                            "const": "mongodb"
-                        },
-                        "configuration": {
-                            "description": "Mongodb driver configurations.",
-                            "type": "object",
-                            "required": [
-                                "url"
-                            ],
-                            "properties": {
-                                "url": {
-                                    "description": "Mongodb connection string.",
-                                    "type": "string"
-                                },
-                                "database": {
-                                    "description": "Mongodb database to override default inferred by connection string.",
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "collection": {
-                            "type": "object",
-                            "required": [
-                                "name"
-                            ],
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "updates": {
-                                    "type": "object",
-                                    "description": "When mongodb connection is direct, instead of a collection `watch` <https://www.mongodb.com/docs/manual/reference/method/db.collection.watch/>, the persistence layer polls the collection with a given `updates.millis` interval",
-                                    "properties": {
-                                        "millis": {
-                                            "default": 2000,
-                                            "type": "number"
-                                        }
-                                    }
-                                }
-                            },
-                            "description": "Mongodb collection fine tunings."
+                          "type": "string",
+                          "const": "env"
                         }
+                      },
+                      "required": [
+                        "key",
+                        "type"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "encoding": {
+                          "type": "string",
+                          "enum": [
+                            "base64"
+                          ]
+                        },
+                        "key": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "file"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "type"
+                      ],
+                      "additionalProperties": false
                     }
+                  ]
                 }
-            ]
+              },
+              "required": [
+                "url"
+              ],
+              "additionalProperties": false
+            },
+            "type": {
+              "type": "string",
+              "const": "mongodb"
+            }
+          },
+          "required": [
+            "collection",
+            "configuration",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        "runtime": {
+          "type": "object",
+          "properties": {
+            "feedback": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "configuration": {},
+                    "type": {
+                      "type": "string",
+                      "const": "grpc"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "default": {
+                    "type": "grpc"
+                  }
+                },
+                {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "configuration": {
+                          "type": "object",
+                          "properties": {
+                            "allow.auto.create.topics": {
+                              "type": "string",
+                              "enum": [
+                                "true",
+                                "false"
+                              ]
+                            },
+                            "auto.offset.reset": {
+                              "type": "string",
+                              "enum": [
+                                "earliest",
+                                "latest"
+                              ]
+                            },
+                            "bootstrap.servers": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "client.id": {
+                              "type": "string"
+                            },
+                            "enable.auto.commit": {
+                              "type": "string",
+                              "enum": [
+                                "true",
+                                "false"
+                              ]
+                            },
+                            "sasl.mechanism": {
+                              "type": "string",
+                              "enum": [
+                                "PLAIN",
+                                "SCRAM-SHA-256",
+                                "SCRAM-SHA-512",
+                                "OAUTHBEARER"
+                              ]
+                            },
+                            "sasl.password": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "sasl.username": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "security.protocol": {
+                              "type": "string",
+                              "enum": [
+                                "PLAINTEXT",
+                                "SSL",
+                                "SASL_PLAINTEXT",
+                                "SASL_SSL"
+                              ]
+                            },
+                            "session.timeout.ms": {
+                              "type": "number"
+                            },
+                            "ssl.key.password": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.keystore.certificate.chain": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.keystore.key": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.keystore.location": {
+                              "type": "string"
+                            },
+                            "ssl.keystore.type": {
+                              "type": "string",
+                              "const": "PEM",
+                              "default": "PEM"
+                            },
+                            "ssl.truststore.certificates": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.truststore.location": {
+                              "type": "string"
+                            },
+                            "ssl.truststore.type": {
+                              "type": "string",
+                              "const": "PEM",
+                              "default": "PEM"
+                            }
+                          },
+                          "required": [
+                            "bootstrap.servers"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "kafka"
+                        }
+                      },
+                      "required": [
+                        "configuration",
+                        "type"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "consumer": {
+                          "type": "object",
+                          "properties": {
+                            "group.id": {
+                              "type": "string"
+                            },
+                            "topic": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "group.id",
+                            "topic"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "consumer"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "state": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "configuration": {},
+                    "type": {
+                      "type": "string",
+                      "const": "grpc"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "default": {
+                    "type": "grpc"
+                  }
+                },
+                {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "configuration": {
+                          "type": "object",
+                          "properties": {
+                            "allow.auto.create.topics": {
+                              "type": "string",
+                              "enum": [
+                                "true",
+                                "false"
+                              ]
+                            },
+                            "auto.offset.reset": {
+                              "type": "string",
+                              "enum": [
+                                "earliest",
+                                "latest"
+                              ]
+                            },
+                            "bootstrap.servers": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "client.id": {
+                              "type": "string"
+                            },
+                            "enable.auto.commit": {
+                              "type": "string",
+                              "enum": [
+                                "true",
+                                "false"
+                              ]
+                            },
+                            "sasl.mechanism": {
+                              "type": "string",
+                              "enum": [
+                                "PLAIN",
+                                "SCRAM-SHA-256",
+                                "SCRAM-SHA-512",
+                                "OAUTHBEARER"
+                              ]
+                            },
+                            "sasl.password": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "sasl.username": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "security.protocol": {
+                              "type": "string",
+                              "enum": [
+                                "PLAINTEXT",
+                                "SSL",
+                                "SASL_PLAINTEXT",
+                                "SASL_SSL"
+                              ]
+                            },
+                            "session.timeout.ms": {
+                              "type": "number"
+                            },
+                            "ssl.key.password": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.keystore.certificate.chain": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.keystore.key": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.keystore.location": {
+                              "type": "string"
+                            },
+                            "ssl.keystore.type": {
+                              "type": "string",
+                              "const": "PEM",
+                              "default": "PEM"
+                            },
+                            "ssl.truststore.certificates": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "env"
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "encoding": {
+                                      "type": "string",
+                                      "enum": [
+                                        "base64"
+                                      ]
+                                    },
+                                    "key": {
+                                      "type": "string"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "const": "file"
+                                    }
+                                  },
+                                  "required": [
+                                    "path",
+                                    "type"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              ]
+                            },
+                            "ssl.truststore.location": {
+                              "type": "string"
+                            },
+                            "ssl.truststore.type": {
+                              "type": "string",
+                              "const": "PEM",
+                              "default": "PEM"
+                            }
+                          },
+                          "required": [
+                            "bootstrap.servers"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "kafka"
+                        }
+                      },
+                      "required": [
+                        "configuration",
+                        "type"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "producer": {
+                          "type": "object",
+                          "properties": {
+                            "topic": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "topic"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "producer"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
         },
         "settings": {
-            "examples": [
-                {
-                    "server": {
-                        "prefix": "/control-plane/"
-                    }
-                }
-            ],
-            "type": "object",
-            "title": "Settings",
-            "description": "Control-plane general settings.",
-            "properties": {
-                "server": {
-                    "description": "HTTP server settings.",
-                    "type": "object",
-                    "title": "ServerConfig",
-                    "properties": {
-                        "prefix": {
-                            "description": "Specifies the endpoint prefix for the HTTP server. All endpoints will be exposed under this prefix. For example, if the prefix is set to '/api/', the endpoint '/users' will be accessible as '/api/users'.",
-                            "type": "string",
-                            "pattern": "^/([^#?]+/)?$",
-                            "default": "/"
-                        },
-                        "apis": {
-                            "type": "object",
-                            "description": "Configurations for api endpoints",
-                            "properties": {
-                                "probes": {
-                                    "description": "Configurations for probes and metrics that are exposed by the service to allow k8s to perform healthcheck",
-                                    "type": "object",
-                                    "properties": {
-                                        "prefix": {
-                                            "description": "Specifies the probes prefix. It is appended to the overall HTTP server prefix, if any.",
-                                            "type": "string",
-                                            "pattern": "^/([^#?]+/)?$",
-                                            "default": "/-/"
-                                        },
-                                        "metrics": {
-                                            "description": "GET-only endpoint exposing Prometheus compliant metrics",
-                                            "type": "string",
-                                            "pattern": "^/([^#?]+/?)?$",
-                                            "default": "/metrics"
-                                        },
-                                        "readiness": {
-                                            "description": "Readiness probe returning either 200 or 503",
-                                            "type": "string",
-                                            "pattern": "^/([^#?]+/?)?$",
-                                            "default": "/ready"
-                                        },
-                                        "healthcheck": {
-                                            "description": "Health probe returning either 200 or 503",
-                                            "type": "string",
-                                            "pattern": "^/([^#?]+/?)?$",
-                                            "default": "/healthz"
-                                        }
-                                    }
-                                },
-                                "controllers": {
-                                    "description": "Configurations for controller apis",
-                                    "type": "object",
-                                    "properties": {
-                                        "prefix": {
-                                            "description": "Specifies the controllers prefix. It is appended to the overall HTTP server prefix, if any.",
-                                            "type": "string",
-                                            "pattern": "^/([^#?]+/)?$",
-                                            "default": "/"
-                                        },
-                                        "fast-data": {
-                                            "description": "JsonRPC endpoint that receives commands to alter a runtime state. Commands must conform with the <a href=\"https://git.tools.mia-platform.eu/platform/fast-data/control-plane/control-plane/-/blob/main/schemas/jsonrpc-request-2.0.schema.json\" target=\"_blank\">Json RPC</a>.",
-                                            "type": "string",
-                                            "pattern": "^/([^#?]+/?)?$",
-                                            "default": "/fast-data"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "website": {
-                            "description": "Configurations for the website static endpoint",
-                            "type": "object",
-                            "properties": {
-                                "url": {
-                                    "description": "Endpoint that serves the frontend static files",
-                                    "type": "string",
-                                    "pattern": "^/([^#?]+/)?$",
-                                    "default": "/website/"
-                                },
-                                "root": {
-                                    "description": "Folder where static files are located",
-                                    "type": "string",
-                                    "pattern": "^\\.?/([^#?]+/?)?$",
-                                    "default": "./website"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-</p>
-</details>
-
-<details>
-<summary>Example of ConfigMap</summary>
-<p>
-
-```json
-{
-    "runtimes": {
-        "runtime-1": {
+          "type": "object",
+          "properties": {
             "channels": {
-                "state": {
-                    "type": "kafka",
-                    "configuration": {
-                        "bootstrap.servers": "localhost:9094",
-                        "allow.auto.create.topics": "true"
-                    },
-                    "producer": {
-                        "topic": "state"
+              "type": "object",
+              "properties": {
+                "buffer": {
+                  "type": "object",
+                  "properties": {
+                    "millis": {
+                      "type": "number"
                     }
+                  },
+                  "additionalProperties": false
+                },
+                "grpc": {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "json",
+                        "protobuf"
+                      ],
+                      "default": "protobuf"
+                    },
+                    "port": {
+                      "type": "number",
+                      "default": 50051
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "runtimeHeartbeat": {
+                  "type": "object",
+                  "properties": {},
+                  "additionalProperties": false
                 }
-            }
-        }
-    },
-    "persistence": {
-        "type": "mongodb",
-        "configuration": {
-            "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
-        },
-        "collection": {
-            "name": "runtime-state"
-        }
-    },
-    "settings": {
-        "server": {
-            "prefix": "/control-plane/",
-            "apis": {
-                "controllers": {
-                    "fast-data": "/my-awesome-controller"
-                }
+              },
+              "additionalProperties": false
             },
-            "website": {
-                "url": "/__frontend/"
+            "server": {
+              "type": "object",
+              "properties": {
+                "apis": {
+                  "type": "object",
+                  "properties": {
+                    "controllers": {
+                      "type": "object",
+                      "properties": {
+                        "fast-data": {
+                          "type": "string",
+                          "default": "/fast-data"
+                        },
+                        "prefix": {
+                          "type": "string"
+                        },
+                        "settings": {
+                          "type": "object",
+                          "properties": {
+                            "feedbackBuffer": {
+                              "type": "object",
+                              "properties": {
+                                "millis": {
+                                  "type": "number"
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "policies": {
+                              "type": "object",
+                              "properties": {
+                                "edit": {
+                                  "type": "string"
+                                },
+                                "view": {
+                                  "type": "string"
+                                }
+                              },
+                              "additionalProperties": false
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "probes": {
+                      "type": "object",
+                      "properties": {
+                        "healthcheck": {
+                          "type": "string",
+                          "default": "/healthz"
+                        },
+                        "metrics": {
+                          "type": "string",
+                          "default": "/metrics"
+                        },
+                        "prefix": {
+                          "type": "string",
+                          "default": "/-/"
+                        },
+                        "readiness": {
+                          "type": "string",
+                          "default": "/ready"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "authorization": {
+                  "type": "object",
+                  "properties": {
+                    "apiKey": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "encoding": {
+                              "type": "string",
+                              "enum": [
+                                "base64"
+                              ]
+                            },
+                            "key": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "env"
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "type"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "encoding": {
+                              "type": "string",
+                              "enum": [
+                                "base64"
+                              ]
+                            },
+                            "key": {
+                              "type": "string"
+                            },
+                            "path": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string",
+                              "const": "file"
+                            }
+                          },
+                          "required": [
+                            "path",
+                            "type"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "apiKey"
+                  ],
+                  "additionalProperties": false
+                },
+                "prefix": {
+                  "type": "string",
+                  "default": "/"
+                },
+                "swagger": {
+                  "type": "object",
+                  "properties": {
+                    "prefix": {
+                      "type": "string",
+                      "default": "/documentation"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "website": {
+                  "type": "object",
+                  "properties": {
+                    "root": {
+                      "type": "string",
+                      "default": "./website"
+                    },
+                    "security": {
+                      "type": "object",
+                      "properties": {
+                        "x-frame-options": {
+                          "type": "string",
+                          "enum": [
+                            "sameorigin",
+                            "deny"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "url": {
+                      "type": "string",
+                      "default": "/website/"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
             }
+          },
+          "additionalProperties": false
         }
+      },
+      "required": [
+        "persistence"
+      ],
+      "additionalProperties": false,
+      "description": "Json schema for the control-plane configuration file. File is by default loaded at **~/.fd/control-plane/configuration.json**. Default location can be configured using the environment variable **FD\\_CONTROL_PLANE\\_CONFIGURATION\\_FILEPATH**."
     }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }
 ```
 
