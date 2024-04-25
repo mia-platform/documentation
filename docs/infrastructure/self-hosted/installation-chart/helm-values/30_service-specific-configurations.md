@@ -29,6 +29,7 @@ All of the following values are root values for the `mia-console` chart values.
 | `crudService` | [Service Conf](#service-conf) | The configurations for the CRUD Service |  | ✅ |
 | `deployService` | [Service Conf](#service-conf) | The configurations for the Deploy Service |  | ✅ |
 | `environmentsVariables` | [Service Conf](#service-conf) | The configurations for the Environment Variables Service |  | ✅ |
+| `extensibilityManagerService` | [Service Conf](#service-conf) | The configurations for the Extensibility Manager Service |  | ✅ |
 | `filesService` | [Service Conf](#service-conf) | The configurations for the Files Service |  | ✅ |
 | `kubernetesService` | [Service Conf](#service-conf) | The configurations for the Kubernetes Service |  | ✅ |
 | `loginSite` | [Service Conf](#service-conf) | The configurations for the Login website Service |  | ✅ |

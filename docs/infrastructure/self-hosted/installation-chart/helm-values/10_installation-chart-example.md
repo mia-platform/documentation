@@ -241,6 +241,24 @@ environmentsVariables:
         memory: "300Mi"
         cpu: "300m"
 
+extensibilityManagerService:
+  deploy:
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "150m"
+      limits:
+        memory: "700Mi"
+        cpu: "400m"
+  rbacSidecar:
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "300Mi"
+        cpu: "500m"
+
 favoritesService:
   deploy:
     resources:
