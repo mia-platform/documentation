@@ -45,7 +45,7 @@ The environment variables needed by the service are:
 - **ADDITIONALS_CA_FOLDER** (_optional_): folder which contains the CA of the OAuth2 identity providers, if it's not public;
 - **ADDITIONAL_HEADERS_TO_PROXY** (_optional_): comma separated list of headers to proxy to the request to CRUD service.
 - **STORED_ACCESS_TOKEN_NUMBER** (_optional_): maximum number of stored access token associated to a user. The tokens are stored on Redis. Default is 10.
-- **REDIS_SESSIONS_SCOPE** (_required_): a string used to define the scope of redis in order to distinguish items in a multi-tenant architecture.
+- **REDIS_SESSION_SCOPE** (_required_): a string used to define the scope of redis in order to distinguish items in a multi-tenant architecture.
 - **STATE_MANAGER_EXPIRATION_TIME_MINUTES** (_optional_): Minutes the state should be maintained during registration, login, etc. Default is 2 minutes.
 - **MIA_JWT_TOKEN_SIGNING_METHOD** (default: `HS256`): The token signing method to be used. Currently supported methods are `HS256` (the default) and `RS256`
 - **MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH** (_optional_): required if  **MIA_JWT_TOKEN_SIGNING_METHOD** is RS256, the file name of the mounted private key, without extension.
