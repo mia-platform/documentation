@@ -63,16 +63,116 @@ The workloads will send messages through the feedback channel **periodically**.
 
 ## Endpoints
 
-Here's a list of endpoints made available by the Control Plane. 
+Here's a list of the APIs made available by the Control Plane with the following endpoints. 
 
-| Endpoint                    |     Type    |                                Description                                                 |
-| ----------------------------|-------------|:------------------------------------------------------------------------------------------:|
-| `/fast-data/configurations` |    REST     |  Returns the pipelines from the runtime where Control Plane has been deployed.             |
-| `/fast-data/feedback/:id`   |  Websocket  |  Opens a websocket connection with the client to send/receive updates for a given pipeline.|
+| Endpoint                        |     Type    |        |                                Description                                                 |
+| --------------------------------|-------------|--------|:------------------------------------------------------------------------------------------:|
+| `/fast-data/`                   |     REST    |   POST |  Receives [JSON-RPC(https://www.jsonrpc.org/specification) from the frontend.              |
+| `/fast-data/configurations/:id` |     REST    |   GET  |  Returns the data of a given pipeline of the runtime where Control Plane has been deployed.|
+| `/fast-data/configurations`     |     REST    |   GET  |  Returns the data from all pipelines of the runtime where Control Plane has been deployed. |
+| `/fast-data/feedback/:id`       |  Websocket  |   GET  |  Opens a websocket connection with the client to receive updates for a given pipeline.     |
 
 :::tip
-The prefix for the endpoint can be customized in the [Settings configuration](?control-plane-configuration=settings#settings).
+The default prefix for Control Plane endpoints is `/fast-data` and can be customized in the [Settings configuration](?control-plane-configuration=settings#settings).
 :::
+
+:::caution
+
+To make the endpoint work properly, you need to perform additional manual operations in the [Advanced Section](/development_suite/api-console/advanced-section/index.md) of your gateway.
+
+This operations are needed to:
+
+- introduce the support to [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection);
+- override the default headers that are added to the HTTP response, so that `X-Frame-Options` is removed and the frontend
+  can be embedded as an iFrame.
+:::
+
+### Envoy
+
+This configuration edit needs to be inserted in the file `patches.yml`,
+
+It is important to observe that these modifications affect the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
+
+```yaml title=patches.yml
+- listener_name: frontend
+  # https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-msg-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-upgradeconfig
+  'filter_chains.0.filters.0.typed_config.upgrade_configs':
+    upgrade_type: "websocket"
+  'filter_chains.0.filters.0.typed_config.route_config.response_headers_to_add': [
+    {
+      "header": {
+        "key": "X-Content-Type-Options",
+        "value": "nosniff"
+      },
+      "append": false
+    },
+    {
+      "header": {
+        "key": "X-Download-Options",
+        "value": "noopen"
+      },
+      "append": false
+    },
+    {
+      "header": {
+        "key": "Referrer-Policy",
+        "value": "strict-origin-when-cross-origin"
+      },
+      "append": false
+    }
+  ]
+```
+
+---
+
+:::note
+In case your project does not employ Envoy as API Gateway, please remember to adapt your API Gateway configuration
+accordingly to support the runtime management system features, such as [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection).
+:::
+
+### Nginx
+
+If you're using the standard Nginx API Gateway, you have to:
+
+- add [this custom location](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-proxy-web-socket-connections) to `api-gateway/server-extension.conf` 
+  using the websocket endpoint as location (e.g. `/fast-data/feedback`)
+- if you want to use the Control Plane as iFrame, you need to expose the frontend on a different location (see full example below)
+  and overwrite its headers in the Advanced section.
+
+<details> 
+<summary>API Gateway Nginx Full Configuration</summary>
+<p>
+
+Consider a use case where:
+
+- Control Plane backend is exposed over `/fast-data`
+- Control Plane frontend is exposed over `/control-plane` (check the [frontend documentation](/fast_data/runtime_management/control_plane_frontend.mdx) on how to overwrite the default base path)
+
+Then, we have to write the following advanced configuration:
+
+```text title=api-gateway/server-extension.conf
+location /fast-data/feedback/ {
+    proxy_pass http://$proxy_name$proxy_url;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection upgrade;
+}
+
+location /control-plane {
+    proxy_pass http://$proxy_name$proxy_url;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Content-Type-Options noopen;
+    add_header Referrer-Policy strict-origin-when-cross-origin;
+}
+```
+
+</p>
+</details>
 
 ## Configuration
 
@@ -92,7 +192,7 @@ Control Plane can be customized using the following environment variables:
 
 The configuration of the service is handled by a JSON file whose location is defined by the `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH`.
 
-The [Control Plane applications](/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `config map`.
+The [Control Plane applications](/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `control-plane-configuration`.
 
 <JSONSchemaViewer schema={ControlPlaneSchema} />
 
@@ -212,7 +312,7 @@ which creates a [bi-directional streaming remote procedure call](https://grpc.io
 ```
 
 :::info 
-By default, the gRPC server is exposed over the default gRPC protocol port (50051). 
+By default, the gRPC server is exposed over the default gRPC protocol port (`50051`). 
 This value can be overridenn in the [`settings` section](?control-plane-configuration=settings#settings) 
 ::: 
 
@@ -264,7 +364,7 @@ The overall setup of Control Plane is tuned in the `settings` object, allowing y
   - Fast Data control endpoint
   - Metrics
   - Probes
-- Frontend/Website endpoint locations
+- Frontend/Website static files location
 
 ###### Example
 

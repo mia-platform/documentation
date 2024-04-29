@@ -512,6 +512,7 @@ collection definition ready for being imported, in case it may be necessary to m
 
 In this section are described the tweaks to be carried out on the API Gateway (Envoy) that enhance the interaction with
 the runtime system and allow the solution to properly work in your project.
+
 These modifications should be inserted in the proper file in the **Advanced** section of the Console _Design_ area, under
 the key `api-gateway-envoy`.
 
@@ -558,51 +559,8 @@ to the page they were trying to browse.
       append: false
 ```
 
-#### Extend functionalities of gateway listener
-
-This configuration edit should be inserted in the file `patches.yml` and it performs the following changes:
-
-- introduce the support to [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection),
-  which is achieved by specifying the [`upgrade_type`](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-msg-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-upgradeconfig) under the `filter_chains.0.filters.0.typed_config.upgrade_configs` key
-- override the default headers that are added to the HTTP response, so that `X-Frame-Options` is removed and the frontend
-  can be embedded as iframe
-
-It is important to observe that both modifications affect the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
-
-```yaml title=patches.yml
-- listener_name: frontend
-  'filter_chains.0.filters.0.typed_config.upgrade_configs':
-    upgrade_type: "websocket"
-  'filter_chains.0.filters.0.typed_config.route_config.response_headers_to_add': [
-    {
-      "header": {
-        "key": "X-Content-Type-Options",
-        "value": "nosniff"
-      },
-      "append": false
-    },
-    {
-      "header": {
-        "key": "X-Download-Options",
-        "value": "noopen"
-      },
-      "append": false
-    },
-    {
-      "header": {
-        "key": "Referrer-Policy",
-        "value": "strict-origin-when-cross-origin"
-      },
-      "append": false
-    }
-  ]
-```
-
----
-
 :::note
-In case your project does not employ Envoy as API Gateway, please remember to adapt your API Gateway configuration
-accordingly to support the runtime management system features, such as [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection).
+If you're using API Gateway with Nginx, consider using [this approach for automatic redirects](/runtime_suite_applications/secure-api-gateway/20_configuration.md#nginx).
 :::
 
 ## Authorization

@@ -7,6 +7,29 @@ sidebar_label: Frontend
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+Runtime Management has a dedicated frontend that interacts with [Control Plane](/fast_data/runtime_management/control_plane.mdx).
+
+This frontend:
+
+- retrieves pipelines information, to show them in dedicated canvas;
+- opens web socket connections to the Control Plane, to receive updates about the state of a given pipeline;
+- sends JSON-RPC commands to the Control Plane, after the user interacts with a pipeline to stop or resume one or more data streams.  
+
+## Configuration
+
+By default, the Control Plane application expose the frontend over the `/` base path. 
+
+This value can be overridenn by using the environment `BASE_PATH` with `/<your path>/` as value.
+
+On the Endpoint section, remember to use `/<your path>` as [rewrite base path](/development_suite/api-console/api-design/endpoints.md#about-rewrite-base-path).
+
+:::tip
+Control Plane frontend can also be embedded as an iFrame, to be used  for example in the [Dashboards section of Mia Console](/development_suite/monitoring/dashboard.md#managing-dashboards).
+
+To do this, remember to setup properly Control Plane endpoints as [described here](/fast_data/runtime_management/control_plane.mdx#endpoints).
+:::
+
+
 ## Pipelines Overview
 
 When user accesses Control Plane frontend, an overview section shows the list of Fast Data pipelines released on that runtime environment.  
