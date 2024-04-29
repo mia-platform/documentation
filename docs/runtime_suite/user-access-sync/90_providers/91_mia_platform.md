@@ -38,7 +38,7 @@ Below you can find the JSON schema related to the action used to configure this 
 ### User deleted from Identity Provider - Okta
 `event: okta.delete.user`
 
-On this event the `mia console` provider will proxy the Okta event hook to the console endpoint used to synchronize the console with the identity provider used; for more information you can refer to the [related documentation](../../../infrastructure/self-hosted/synchronize-users).
+On this event the `mia console` provider will proxy the Okta event hook to the console endpoint used to synchronize the console with the identity provider used.
 
 Below you can find the JSON schema related to the action used to configure this action.
 ```jsonc
