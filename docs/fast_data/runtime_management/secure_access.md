@@ -4,6 +4,9 @@ title: Runtime Secure Access
 sidebar_label: Secure Access
 ---
 
+<!-- TODO update application name once defined -->
+<!-- TODO update "img/marketplace_runtime_mngm_app.png" image once new application card is available  -->
+
 In order to ensure that only authorized people can access Fast Data Runtime Management system and consequently
 visualize or change its state, it is important to properly set up a security layer.
 
@@ -25,7 +28,7 @@ is inspired from this [guide](/console/tutorials/configure-marketplace-component
 
 ## Control Plane Configuration
 
-Let's start by selecting the `Fast Data Control Plane` application from the Marketplace, under the applications tab:
+Let's start by selecting the `Control Plane With Access Control` application from the Marketplace, under the applications tab:
 
 ![Fast Data Control Plane application in Console marketplace](img/marketplace_runtime_mngm_app.png)
 
@@ -33,6 +36,81 @@ Then proceed step by step with the creation of the needed services, endpoints an
 should appear in the different Console section.
 
 ![Summary of Fast Data Control Plane application](img/marketplace_runtime_mngm_app_creation.png)
+
+For more details on the Control Plane service configuration, please head over the dedicated [documentation section](/runtime_suite_applications/control-plane/20_configuration.mdx).
+
+### Enabling gRPC communication
+
+The default configuration for the Control Plane specifies the use of [grpc](https://grpc.io/) for communication. To enable grpc communication,
+a Kubernetes [Custom Resource](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) should be associated with
+the Control Plane instance and other Fast Data services intending to communicate with it via gRPC.
+
+To create a new entry "from Scratch" from the _Custom Resources_ section in the _Design_ area, initialize the resource following the below table:
+
+| Attribute  | Expanation                                                      |
+| ---------- | --------------------------------------------------------------- |
+| name       | The name of the Custom Resource (e.g. `crd-control-plane-grpc`) |
+| kind       | `Service`                                                       |
+| apiVersion | `v1`                                                            |
+
+At the end, the Custom Resource should look like:
+
+```yaml title=crd-control-plane-grpc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: crd-control-plane-grpc
+  labels:
+    app: control-plane
+spec:
+  type: ClusterIP
+  ports:
+    - name: grpc
+      protocol: TCP
+      port: 50051
+      targetPort: 50051
+      nodePort: null
+  selector:
+    app: control-plane
+```
+
+It is important to note that `metadata.labels.app` and `spec.selector.app` should match the name of the target Control Plane service.
+
+To enable gRPC communication between the Control Plane and the Fast Data runtime, services within the Fast Data runtime should reference
+the Custom Resource, like so:
+
+```json
+{
+  ...
+  "settings": {
+    "grpc": {
+      // name of the Custom Resource
+      "host": "fd-control-plane-grpc"
+    }
+  }
+}
+```
+
+
+<details><summary>Workload Configuration | Configuration example for grpc communication with Control Plane</summary>
+
+```json title=config.json
+{
+  "state": {
+    "type": "grpc"
+  },
+  "feedback": {
+    "type": "grpc"
+  },
+  "settings": {
+    "grpc": {
+      "host": "crd-control-plane-grpc"
+    }
+  }
+}
+```
+
+</details>
 
 ## Authentication Flow
 
@@ -74,10 +152,11 @@ should be added under the _Variables_ tab of _Project Overview_ section, while t
 | CP_OKTA_CLIENT_SECRET | client secret obtained when registering this specific application on Okta |
 
 | Public Variable | Explanation                                                                                                         |
-|-----------------|---------------------------------------------------------------------------------------------------------------------|
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
 | OKTA_BASE_URL   | base url where your Identity Provider is exposed                                                                    |
 | CP_APP_ID       | application identifier employed when registering this specific application on Okta (e.g. `fast-data-control-plane`) |
 | CP_PROVIDER_ID  | provider identifier employed when registering this specific application on Okta (e.g. `okta-development`)           |
+| CP_REDIS_SCOPE  | redis scope in case of a multi-tenant architecture                                                                  |
 | CP_BASE_URL     | base url where the project is exposed                                                                               |
 
 :::note
@@ -131,7 +210,7 @@ can be fond in the panel below.
 
 In addition to previous configurations, the service needs to mount a private key as a secret. This key is employed to
 sign JWTs that are set as _session id_ for authenticated users. In case the service has been instantiated through the
-Fast Data Control Plane application, a secret has already been associated to it, which is named `authentication-service-secrets`.
+`Control Plane With Access Control` application, a secret has already been associated to it, which is named `authentication-service-secrets`.
 
 :::caution
 These instructions below assume that the tool employed to deploy Console projects is [`mlp`](/runtime_suite_tools/mlp/10_overview.md).
@@ -214,13 +293,13 @@ Below is reported the list of endpoints created with the Control Plane applicati
 ensure that they are exposed with the proper security options.
 
 | Endpoint        | Service                  | Authentication Required | User Group Permission |
-|-----------------|--------------------------|:-----------------------:|-----------------------|
+| --------------- | ------------------------ | :---------------------: | --------------------- |
 | `/web-login`    | control-plane-login-site |            -            | true                  |
 | `/authorize`    | authentication-service   |            -            | true                  |
 | `/oauth/token`  | authentication-service   |            -            | true                  |
 | `/logout`       | authentication-service   |            -            | true                  |
-| `/refreshtoken` | authentication-service   |            ✅            | true                  |
-| `/userinfo`     | authentication-service   |            ✅            | true                  |
+| `/refreshtoken` | authentication-service   |           ✅            | true                  |
+| `/userinfo`     | authentication-service   |           ✅            | true                  |
 | `/apps`         | authentication-service   |            -            | true                  |
 
 Knowing these endpoints are exposed, it is now possible to configure the redirect urls that some Identity Providers, such as Okta or Auth0, require to complete
@@ -238,7 +317,7 @@ The authentication flow via the `authentication-service` requires also the intro
 users details are saved upon successful login. These user (_subject_) information can then be employed in the authorization flow, which is
 described later, in conjunction with [policies](#policies) and [roles](#roles) to ensure that only authorized users can
 visualize or even interact with Fast Data runtime.  
-By default the `Fast Data Control Plane` application creates the collection for you and instantiates the CRUD Service,
+By default the `Control Plane With Access Control` application creates the collection for you and instantiates the CRUD Service,
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project. 
 
@@ -1438,11 +1517,11 @@ in the _Authorization Management_ section, since they are inferred from the Open
 For further details on manual routes definition, please visit the specific [documentation](/development_suite/api-console/api-design/authorization.md#manual-routes-tab). 
 
 | Endpoint                                  | Service          | Authentication Required | User Group Permission |           Policy            |
-|-------------------------------------------|------------------|:-----------------------:|-----------------------|:---------------------------:|
-| `/control-plane`                          | control-plane-fe |            ✅            | true                  |              -              |
-| `/control-plane/fast-data`                | control-plane    |            ✅            | true                  | fd_control_plane_allow_edit |
-| `/control-plane/fast-data/configurations` | control-plane    |            ✅            | true                  | fd_control_plane_allow_view |
-| `/control-plane/fast-data/:id/feedback`   | control-plane    |            ✅            | true                  | fd_control_plane_allow_view |
+| ----------------------------------------- | ---------------- | :---------------------: | --------------------- | :-------------------------: |
+| `/control-plane`                          | control-plane-fe |           ✅            | true                  |              -              |
+| `/control-plane/fast-data`                | control-plane    |           ✅            | true                  | fd_control_plane_allow_edit |
+| `/control-plane/fast-data/configurations` | control-plane    |           ✅            | true                  | fd_control_plane_allow_view |
+| `/control-plane/fast-data/:id/feedback`   | control-plane    |           ✅            | true                  | fd_control_plane_allow_view |
 
 :::caution
 Please ensure that all these endpoints are set with _Authentication Required_ in their security details tab.
@@ -1577,9 +1656,6 @@ or within the advanced tab of the corresponding page in the Composer.
           "type": "array",
           "visualizationOptions": {
             "hidden": true
-          },
-          "items": {
-            "type": "string"
           },
           "label": "Groups"
         },
@@ -2055,9 +2131,6 @@ or within the advanced tab of the corresponding page in the Composer.
         "permissions": {
           "type": "array",
           "description": "list of permissions composing the role",
-          "items": {
-            "type": "string"
-          },
           "label": "Permissions"
         }
       }
@@ -2475,17 +2548,11 @@ or within the advanced tab of the corresponding page in the Composer.
         "groups": {
           "type": "array",
           "description": "list of user groups subject to this binding",
-          "items": {
-            "type": "string"
-          },
           "label": "Groups"
         },
         "subjects": {
           "type": "array",
           "description": "list of subjects of the binding",
-          "items": {
-            "type": "string"
-          },
           "excludeFromSearch": false,
           "format": "multilookup",
           "lookupOptions": {
@@ -2500,9 +2567,6 @@ or within the advanced tab of the corresponding page in the Composer.
         "roles": {
           "type": "array",
           "description": "list of roles identifiers that subjects will inherit from the binding",
-          "items": {
-            "type": "string"
-          },
           "visualizationOptions": {
             "hidden": false
           },
@@ -2520,9 +2584,6 @@ or within the advanced tab of the corresponding page in the Composer.
         "permissions": {
           "type": "array",
           "description": "list of specific permissions that will be inherited by the subjects of the bindings",
-          "items": {
-            "type": "string"
-          },
           "visualizationOptions": {
             "hidden": true
           },
@@ -2875,12 +2936,12 @@ Here are described the endpoints that should be exposed from the project for the
 important to notice that the Rönd policies on CRUD Service endpoints must be created manually. 
 
 | Endpoint                   | Service  | Authentication Required | User Group Permission |        Policy         |
-|----------------------------|----------|:-----------------------:|-----------------------|:---------------------:|
-| `/micro-lc-configurations` | micro-lc |            ✅            | true                  |           -           |
-| `/control-plane-manager`   | micro-lc |            ✅            | groups.admin          |           -           |
-| `/rond/rbac-bindings`      | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
-| `/rond/rbac-roles`         | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
-| `/rond/cp-users`           | crud     |            ✅            | groups.admin          |       allow_all       |
+| -------------------------- | -------- | :---------------------: | --------------------- | :-------------------: |
+| `/micro-lc-configurations` | micro-lc |           ✅            | true                  |           -           |
+| `/control-plane-manager`   | micro-lc |           ✅            | groups.admin          |           -           |
+| `/rond/rbac-bindings`      | crud     |           ✅            | groups.admin          | allow_manage_cp_users |
+| `/rond/rbac-roles`         | crud     |           ✅            | groups.admin          | allow_manage_cp_users |
+| `/rond/cp-users`           | crud     |           ✅            | groups.admin          |       allow_all       |
 
 :::caution
 Please ensure that all these endpoints are set with _Authentication Required_ in their security details tab.
