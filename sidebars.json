@@ -1309,6 +1309,10 @@
       "type": "category"
     },
     {
+      "id": "fast_data/secret_resolution",
+      "type": "doc"
+    },
+    {
       "collapsed": true,
       "items": [
         {

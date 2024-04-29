@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import JSONSchemaViewer from "@theme/JSONSchemaViewer";
 import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-client-config.schema.json"
-import JSWorkloadSnippet from "./snippets/js-workload-configuration.mdx"
+import JSWorkloadSnippet from "./snippets/js-workload-configuration.md"
 
 This section helps you configure either new or existing Fast Data services to communicate with the Control Plane.
 
@@ -37,7 +37,13 @@ Choose below the service you want to configure with Control Plane to see where t
 <TabItem value="projection-storer">
 
 #### Projection Storer
-For the projection 
+
+To configure the Control Plane connection for the Projection Storer, first [you need to attach the microservice to a System of Record](/fast_data/configuration/projection_storer_config#attach-to-system-of-record).
+
+Then, you can scroll over the Control Plane section and parse your JSON configuration.
+
+![PS Configuration](img/ps_configuration.png)
+
 </TabItem>
 <TabItem value="rtu">
 
@@ -59,7 +65,119 @@ For the projection
 </TabItem>
 </Tabs>
 
+:::info gRPC Host Resolution
+
+To enable gRPC communication between the Control Plane and the Fast Data runtime, services within the Fast Data runtime should reference
+the gRPC server contained in the Control Plane using its corresponding [Kubernetes hostname](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/).
+
+For example, consider a use case where we have a Control Plane microservice named `fd-control-plane-grpc`.
+Then, workloads should have the `settings` properties like the following:
+
+```json
+{
+  // ...
+  "settings": {
+    "grpc": {
+      "host": "fd-control-plane-grpc" 
+      // or fd-control-plane-grpc.svc.cluster.local, etc...
+    }
+  }
+  // ...
+}
+```
+
+:::
+
+### Secret Resolution
+
+The following fields contains secrets that can be managed using the [Fast Data Secret Resolution mechanism](/fast_data/secret_resolution.md):
+
+- `runtime.feedback.configuration.['bootstrap.servers'`]
+- `runtime.feedback.configuration.['sasl.username'`]
+- `runtime.feedback.configuration.['sasl.password'`]
+- `runtime.feedback.configuration.['ssl.truststore.certificates']`
+- `runtime.feedback.configuration.['ssl.keystore.key']`
+- `runtime.feedback.configuration.['ssl.key.password']`
+- `runtime.feedback.configuration.['ssl.keystore.certificate.chain']`
+- `runtime.state.configuration.['bootstrap.servers'`]
+- `runtime.state.configuration.['sasl.username'`]
+- `runtime.state.configuration.['sasl.password'`]
+- `runtime.state.configuration.['ssl.truststore.certificates']`
+- `runtime.state.configuration.['ssl.keystore.key']`
+- `runtime.state.configuration.['ssl.key.password']`
+- `runtime.state.configuration.['ssl.keystore.certificate.chain']`
+
 ### Examples
 
+Here are listed some configuration examples that you can use as a starting point for your workloads.
+
+<details>
+<summary>Workload Configuration with Kafka Channels</summary>
+<p>
+
+```json
+{
+    "controller": {
+      "type": "kafka",
+      "channel": "actionTopic",
+      "configuration": {
+        "bootstrap.servers": "localhost:9092",
+        "client.id": "test-factory",
+        "sasl.mechanism": "plain",
+        "group.id": "groupId",
+        "ssl.enabled": false
+      }
+    },
+    "feedback": {
+      "type": "kafka",
+      "configuration": {
+        "bootstrap.servers": "localhost:9092",
+        "client.id": "test-factory",
+        "sasl.mechanism": "plain",
+        "heartbeat.ms": 2500,
+        "ssl.enabled": false
+      },
+      "channel": "heartbeatTopic"
+    }
+}
+```
+
+</p>
+</details>
+
+<details>
+<summary>Workload Configuration with gRPC Channels</summary>
+<p>
+
+```json
+{
+  "controller": {
+    "type": "grpc"
+  },
+  "feedback": {
+    "type": "grpc"
+  },
+  "settings": {
+    "grpc": {
+      "host": "fd-control-plane"
+    }
+  }
+}
+```
+
+</p>
+</details>
+
 ## Bind Microservices to Runtime
+
+Once a Control Plane configuration has been defined for one of the workloads defined above, upon saving,
+the Console will create an additional configuration, that we refer to as **bindings**, that will contain 
+the mapping between the Projections or the Single Views with a specific pipeline and its own artifacts.
+
+This configuration will be read-only and:
+
+- for the Projection Storer, the configuration will be managed internally by the microservice;
+- for other microservices, an additional environment variable `CONTROL_PLANE_BINDINGS_PATH` managed by
+  Mia Console will be set-up with the full path of the new configuration.   
+
 

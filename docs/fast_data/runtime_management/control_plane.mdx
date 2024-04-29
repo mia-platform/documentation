@@ -61,6 +61,19 @@ The workloads will send messages through the feedback channel **periodically**.
 
 <JSONSchemaViewer schema={FeedbackChannelSchema} />
 
+## Endpoints
+
+Here's a list of endpoints made available by the Control Plane. 
+
+| Endpoint                    |     Type    |                                Description                                                 |
+| ----------------------------|-------------|:------------------------------------------------------------------------------------------:|
+| `/fast-data/configurations` |    REST     |  Returns the pipelines from the runtime where Control Plane has been deployed.             |
+| `/fast-data/feedback/:id`   |  Websocket  |  Opens a websocket connection with the client to send/receive updates for a given pipeline.|
+
+:::tip
+The prefix for the endpoint can be customized in the [Settings configuration](?control-plane-configuration=settings#settings).
+:::
+
 ## Configuration
 
 _Configuration of Control Plane_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
@@ -200,7 +213,7 @@ which creates a bi-directional streaming procedure that:
 
 :::info 
 By default, the gRPC server is exposed over the default gRPC protocol port (50051). 
-This value can be overriden in the [`settings` section](link) 
+This value can be overriden in the [`settings` section](?control-plane-configuration=settings#settings) 
 ::: 
 
 #### gRPC + Kafka 
@@ -253,7 +266,7 @@ The overall setup of Control Plane is tuned in the `settings` object, allowing y
   - Probes
 - Frontend/Website endpoint locations
 
-Example:
+###### Example
 
 ```json
 {
@@ -279,8 +292,30 @@ provided in this section.
 
 </Tabs>
 
+### Secret Resolution
+
+The following fields contains secrets that can be managed using the [Fast Data Secret Resolution mechanism](/fast_data/secret_resolution.md):
+
+- `persistence.configuration.url`
+- `runtime.feedback.configuration.['bootstrap.servers'`]
+- `runtime.feedback.configuration.['sasl.username'`]
+- `runtime.feedback.configuration.['sasl.password'`]
+- `runtime.feedback.configuration.['ssl.truststore.certificates']`
+- `runtime.feedback.configuration.['ssl.keystore.key']`
+- `runtime.feedback.configuration.['ssl.key.password']`
+- `runtime.feedback.configuration.['ssl.keystore.certificate.chain']`
+- `runtime.state.configuration.['bootstrap.servers'`]
+- `runtime.state.configuration.['sasl.username'`]
+- `runtime.state.configuration.['sasl.password'`]
+- `runtime.state.configuration.['ssl.truststore.certificates']`
+- `runtime.state.configuration.['ssl.keystore.key']`
+- `runtime.state.configuration.['ssl.key.password']`
+- `runtime.state.configuration.['ssl.keystore.certificate.chain']`
+- `settings.server.authorization.apiKey`
+
 ### Examples
 
+Here are listed some configuration examples that can be useful as a starting point for your setup.
 
 <details>
 <summary>Control Plane with Kafka Channels</summary>

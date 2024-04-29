@@ -76,42 +76,6 @@ spec:
 
 It is important to note that `metadata.labels.app` and `spec.selector.app` should match the name of the target Control Plane service.
 
-To enable gRPC communication between the Control Plane and the Fast Data runtime, services within the Fast Data runtime should reference
-the Custom Resource, like so:
-
-```json
-{
-  ...
-  "settings": {
-    "grpc": {
-      // name of the Custom Resource
-      "host": "fd-control-plane-grpc"
-    }
-  }
-}
-```
-
-
-<details><summary>Workload Configuration | Configuration example for grpc communication with Control Plane</summary>
-
-```json title=config.json
-{
-  "state": {
-    "type": "grpc"
-  },
-  "feedback": {
-    "type": "grpc"
-  },
-  "settings": {
-    "grpc": {
-      "host": "crd-control-plane-grpc"
-    }
-  }
-}
-```
-
-</details>
-
 ## Authentication Flow
 
 In this section are described which resources should be configured in order to properly protect the access to the Fast Data

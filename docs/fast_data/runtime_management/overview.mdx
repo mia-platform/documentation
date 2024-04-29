@@ -77,11 +77,18 @@ For more details on the Control Plane service configuration, please head over th
 
 ## Concepts
 
-Here are listed some concepts that are used on the Runtime Management solution. This concepts complement the ones already provided by [Fast Data Section](link). 
+Here are listed some concepts that are used on the Runtime Management solution. This concepts complement the ones already provided by [Fast Data Section](/fast_data/glossary.mdx). 
 
 ### Workload 
 
 A _workload_ represent a microservice of a Fast Data architecture that can be controlled through Control Plane.  
+
+### Runtime
+
+A _runtime_ corresponds to [a deploy environemnt of Mia Console](/development_suite/monitoring/introduction.md), 
+where the Control Plane instance has been deployed.
+
+At the moment, a Control Plane instance can manage only the pipeline microservices deployed on that specific runtime.
 
 ### Pipeline
 
@@ -118,8 +125,8 @@ An _Execution Step_ represent a particular operation performed over a data flow.
   This step is managed by the Single View Trigger Generator. (SVTG)
 
   :::caution Standard Architecture
-  For runtimes implementing the [Standard Architecture](link), i.e. having a Real-Time Updater that performs the execution of [strategies](link),
-  the Reducing step cannot be controlled since no SVTG is employed.  
+  For runtimes implementing the [Standard Architecture](/fast_data/architecture.md#standard-architecture), i.e. having a Real-Time Updater that performs 
+  the execution of [strategies](/fast_data/configuration/strategies.md), the Reducing step cannot be controlled since no SVTG is employed.  
   :::
 
 - **Aggregation** <img src="/img/fd-cp-aggregation-step-icon.svg"/>: is the step where the data collected by the Reducing step is aggregated and stored into a Single View.
@@ -162,7 +169,7 @@ For this reason, inside the detail page of a Domain pipeline, two main Fast Data
  - **Ingestion phase:** At the beginning of the flow there is the ingestion phase, wherein a System of Record is represented, as well as the CDC, that reacts to changes of data on some external sources and sends the occurred events (typically through a message broker like Kafka with different topics configured) to some different destinations, identified as data streams in the pipeline graphical visualization;
  - **Landing phase:** Once ingested, the data flowing on the different data streams originally coming from the System of Record can be transformed in order to guarantee coherency and consistency in the format in which data have to be saved and persisted. Thus, this phase is identified with the Mapping step, in which Cast Functions act to adequate data formats, and by the final step of the Domain pipeline, that represents data stream persisted and related together through a configured ER-schema
 
-Taking in consideration the Fast Data microservices architecture, in Domain pipelines runtime governance there are two actors that Control Plane frontend can interact with: [Real-time updater](link) or [Projection storer](link).
+Taking in consideration the Fast Data microservices architecture, in Domain pipelines runtime governance there are two actors that Control Plane frontend can interact with: [Real-time updater](/fast_data/realtime_updater.md) or [Projection storer](/fast_data/projection_storer.md).
 More specifically, for what concerns Domain pipeline runtime interaction, user can decide to play/pause the consumption of messages performed by a Real-time updater (or Projection storer) across the different ingestion messages on topics of pipeline data streams.
 
 ### Single View Pipeline
@@ -180,8 +187,10 @@ For this reason, inside the detail page of a Single View pipeline, in addition t
  - **Curated phase:** In this phase, there is the reducing step in which a calculation is performed to identify from which base projection the aggregation will start
  - **Collected phase:** In this phase, the aggregation is performed to update the Single View as output of the data pipeline
 
-Referring to the different Fast Data architectures that can be implemented, in Single View pipelines runtime governance there are two actors that Control Plane frontend can interact with: [Single View Trigger Generator](link) and [Single View Creator](link).  
-More specifically, for what concerns Single View pipeline runtime interaction, user can decide to play/pause the consumption of messages performed by a Single View Trigger Generator (if involved in an event-base pipeline architecture) and by a Single View Creator, respectively across the different PR-updates messages and sv-trigger messages on topics of pipeline data streams.
+Referring to the different Fast Data architectures that can be implemented, in Single View pipelines runtime governance there are two actors that Control Plane frontend can interact with: 
+[Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) and [Single View Creator](/fast_data/single_view_creator.md).  
+More specifically, for what concerns Single View pipeline runtime interaction, user can decide to play/pause the consumption of messages performed by a Single View Trigger Generator 
+(if involved in an event-base pipeline architecture) and by a Single View Creator, respectively across the different PR-updates messages and sv-trigger messages on topics of pipeline data streams.
 
 :::info
 In realizing a Single View implementation, different external Domain pipelines can be involved. 
