@@ -46,7 +46,13 @@ This means that the Fast Data microservice involved in consuming events on that 
 
 When messages consuption is paused along a data stream, the __paused__ state is rendered. 
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
 ![Paused State](img/running_state.png)
+
+  </div>
+</div>
 
 This means that the Fast Data microservice involved on that data stream is not consuming messages that flow through that data stream.
 
@@ -56,27 +62,63 @@ When user interacts with the frontend in order to perform play/pause actions alo
 that an action is going to be performed on that data stream and control plane has sent the command to the involved microservice and 
 is waiting for a feedback from that specific microservice.  
 
-![Paused State](img/loading_state.png)
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Loading State](img/loading_state.png)
+
+  </div>
+</div>
 
 Typically, after a loading state, if action succeeds, the data stream will change its state from paused to running or viceversa; if action does not succeed, an error will be displayed to user and the data stream will not change its status.
 
 ### Unsupported
 
->>> IMG TO BE INSERTED <<<
+Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. 
 
-Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. This is the case of what happens in a classical ingestion phase, wherein is not possible to alter the behavior of a CDC that is acquiring events from external sources.
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Unsupported State](img/unsupported_state.png)
+
+  </div>
+</div>
+
+This status can appear in the ingestion phase, where is not possible to alter the behavior of a CDC acquiring events from external sources.
 
 ### Disabled
 
->>> IMG TO BE INSERTED <<<
+There could be the case in which a play/pause action cannot be performed by user. 
 
-There could be the case in which a play/pause action cannot be performed by user. Even this state can be influenced by architectural issues.
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Disabled State](img/disabled_state.png)
+
+  </div>
+</div>
+
+This status can appear in the Single View pipeline's artifacts belonging to the Landing stage, 
+since their actions are managed by a domain pipeline.
 
 ### Unknown
 
->>> IMG TO BE INSERTED <<<
+If there are some misconfiguration on Fast Data pipeline, 
 
-If there are some misconfiguration on Fast Data pipeline, the Control Plane system is not able to identify the real-time state of a certain data stream. This is why sometimes there could be present the Unknown state along a pipeline visualization. In this case, user can verify for example if Fast Data workloads are correctly running from Monitoring Area of Console, or if there are some misconfiguration on the Design Area of Console.
+The unknown status appears when Control Plane system is not able to identify the state of a certain data stream.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Unknown State](img/unknown_state.png)
+
+  </div>
+</div>
+
+This status can appear when: 
+
+- there are some misconfiguration on Fast Data pipeline;
+- workloads are not sending their feedback to the Control Plane.
 
 ## Monitoring and Interacting with pipelines
 

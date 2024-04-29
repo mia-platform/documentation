@@ -8,6 +8,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import JSONSchemaViewer from "@theme/JSONSchemaViewer";
 import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-config.schema.json"
+import StateChannelSchema from "@site/static/schemas/fast-data-control-plane-state.schema.json"
+import FeedbackChannelSchema from "@site/static/schemas/fast-data-control-plane-feedback.schema.json"
+
 
 Fast Data Control Plane is the service that:
 
@@ -43,7 +46,9 @@ For each pipeline, there could be different `overrides` that can change individu
 Also, each artifact can have additional `overrides` for each stage of the pipeline where is employed. 
 
 The state that can be set at pipeline level, or artifact level, or stage level is an _Activation State_: it can either `pause` or `resume`, 
-which will be used by workloads to stop/resume consumption of data.   
+which will be used by workloads to stop/resume consumption of data. 
+
+<JSONSchemaViewer schema={StateChannelSchema} />
 
 ### Feedback Channel
 
@@ -53,6 +58,8 @@ The _Feedback Channel_ is where the workloads will notify the Control Plane abou
 - the workloads have their state updated correctly after a message from the state channel
 
 The workloads will send messages through the feedback channel **periodically**.
+
+<JSONSchemaViewer schema={FeedbackChannelSchema} />
 
 ## Configuration
 
