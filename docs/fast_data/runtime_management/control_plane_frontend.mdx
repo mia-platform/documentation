@@ -38,9 +38,15 @@ From Control Plane settings located at the bottom-right of the canvas, user can 
 
 When messages consumption is active along a data stream, the __running__ state is rendered. 
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
 ![Running State](img/running_state.png)
 
-This means that the Fast Data microservice involved in consuming events on that data stream is in active state.  
+  </div>
+</div>
+
+This means that the Fast Data workloads involved in consuming events on that data stream are in `running` state.  
 
 ### Paused
 
@@ -49,12 +55,13 @@ When messages consuption is paused along a data stream, the __paused__ state is 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '500px'}}> 
 
-![Paused State](img/running_state.png)
+![Paused State](img/paused_state.png)
 
   </div>
 </div>
 
-This means that the Fast Data microservice involved on that data stream is not consuming messages that flow through that data stream.
+This means that the Fast Data workloads involved on that data stream are in `paused` state and 
+their are not consuming messages that flow through that data stream.
 
 ### Loading
 
@@ -117,7 +124,7 @@ The unknown status appears when Control Plane system is not able to identify the
 
 This status can appear when: 
 
-- there are some misconfiguration on Fast Data pipeline;
+- there may be some misconfigurations on the Fast Data pipeline;
 - workloads are not sending their feedback to the Control Plane.
 
 ## Monitoring and Interacting with pipelines
@@ -125,19 +132,22 @@ This status can appear when:
 From Control Plane frontend, user can monitor the status of each Fast Data pipeline in real-time and interact with 
 it by pausing/resuming messages consumption on the available data streams. 
 
-To do this, it is possible to click on the play/pause buttons distributed along the various data streams of the pipeline.  
+### Pause and Resume
+
+It's possible to click on the play/pause buttons distributed along the various data streams of the pipeline.  
 
 ![Control Plane Interaction](img/pipeline_artifact_interaction.gif)
 
-Once clicked on the button, a Loading state appears and a message on the top of the frontend shows a countdown of 5s within 
+Once clicked on the button, a [Loading state](#loading) appears and a message on the top of the frontend shows a countdown of 5s within 
 which the user can decide to revoke the triggered action:
+
 - if revoked, the previous state will be restored without any impact on Fast Data runtime; 
 
 or
 
 - if not, Control Plane will receive the command and send the corresponding state to the target microservice involved on that data stream. 
 
-After the loading state, if the action is successful, the data stream will accordingly change its status.
+After the loading state, if the action is successful, the data stream will accordingly change its status in either [running](#running) or [paused](#paused).
 
 ### Bulk actions
 
@@ -147,8 +157,6 @@ With a simple click on a play/pause button located at the top of each main Fast 
 (Ingestion, Laning, Curated, Collected phases), user can pause all the active data streams, or can resume all the paused ones.
 
 ![Control Plane Bulk Action](img/bulk_action.gif)
-
-
 
 :::tip 
 Bulk actions are useful in case of large data pipelines and to speed-up the runtime management: 

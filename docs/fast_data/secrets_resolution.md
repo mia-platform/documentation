@@ -24,8 +24,7 @@ Remember to use [environment variables](/console/project-configuration/manage-en
 {
   "some-entry": {
     // ...,
-    "another-entry": {
-      // ...,
+    "some-secret-field": {
       "url": {
         "type": "env",
         "key": "<ENVIRONMENT VARIABLE NAME>"
@@ -43,8 +42,7 @@ Remember to use [environment variables](/console/project-configuration/manage-en
 {
   "some-entry": {
     // ...
-    "another-entry": {
-      // ...
+    "some-secret-field": {
       "url": {
         "type": "file",
         "path": "/path/to/file"
@@ -60,11 +58,10 @@ Remember to use [environment variables](/console/project-configuration/manage-en
 {
   "some-entry": {
     // ...
-    "another-entry": {
-      // ...
+    "some-secret-field": {
       "url": {
         "type": "file",
-        "path": "/path/to/file",
+        "path": "/path/to/file.ini",
         "key": "<KEY NAME>"
       }
     }

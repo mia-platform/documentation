@@ -64,6 +64,7 @@ While `sv-trigger` messages sound like the better option so far, `pc` records us
 ### Configuration
 
 The Single View Trigger Generator can be configured to to process `pr-update` events and to produce `sv-trigger` events or Projection changes.
+
 An in-depth explanation on how to configure the service is provided in the [dedicated page](/fast_data/configuration/single_view_trigger_generator.md).
 
 Currently it is necessary to manually manage the Single View Trigger Generator config maps from the microservices section of Console, since it does not cover its configuration yet.

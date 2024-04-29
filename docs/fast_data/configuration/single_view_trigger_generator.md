@@ -33,6 +33,8 @@ When creating the service from the marketplace the following environment variabl
 | PROJECTION_CHANGES_SCHEMA_FOLDER | &check;  | Path to the [Projection Changes Schema](#projection-changes-schema) folder                                                                                                                              | -             |
 | MANUAL_STRATEGIES_FOLDER         | -        | Absolute path of custom strategy functions folder. These functions are used in `__fromFile__` annotations inside the [Kafka Projection Updates Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.mdx)                                                                                                                   | -             |
 | TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Absolute path of custom functions folder. These functions are used in `__fromFile__` annotations inside the [Projection Changes Schema Configuration](/fast_data/configuration/config_maps/projection_changes_schema.md#custom-functions).                                                                                                                                      | -            |
+| CONTROL_PLANE_CONFIG_PATH          | -        | Starting from `v3.3.0`, is possible to configure Runtime Management. More informations [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svtg#single-view-trigger-generator)                                                                                                                                                                                                                                                                                                                                    | 
+| CONTROL_PLANE_BINDINGS_PATH        | -        | Starting from `v3.3.0`, is possible to configure Runtime Management. More informations [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svtg#single-view-trigger-generator)                                                                                                                                                                                                                                                                                                                                     |  
 
 ## Attaching a Service to a Single View
 
@@ -484,4 +486,63 @@ Below you can find a list of example configurations, based on the two different 
 
 </p>
 </details>
+
+<details>
+<summary>Kafka with Authentication</summary>
+<p>
+
+```json
+{
+  "consumer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "consumerGroupId": "group-id",
+      "consumeFromBeginning": true,
+      "sasl": {
+        "username": "my-username",
+        "password": "my-password",
+        "mechanism": "plain", // 'scram-sha-256', 'scram-sha-512'
+      },
+      "ssl": true,
+      "logLevel": "NOTHING"
+    }
+  },
+  "producer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "logLevel": "NOTHING",
+      "ssl": true,
+      "sasl": {
+        "username": "my-username",
+        "password": "my-password",
+        "mechanism": "plain", // 'scram-sha-256', 'scram-sha-512'
+      }
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+## Runtime Management
+
+:::info
+This feature is supported from version `3.3.0` of the Single View Trigger Generator.
+:::
+
+By specifying the environment variables `CONTROL_PLANE_CONFIG_PATH`, you enable the SVTG to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management/overview.mdx).
+
+:::caution
+By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
+has already resumed the data stream before. 
+
+Therefore, when the SVTG  starts up, the trigger generation will not start automatically. 
+
+In this case, you just need to send a `resume` command to one of the projections managed by the SVTG.
+:::
+
+You can read about the setup of the Single View Trigger Generator in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svtg#single-view-trigger-generator).
 

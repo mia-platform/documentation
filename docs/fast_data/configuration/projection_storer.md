@@ -954,6 +954,23 @@ projections:
 </p>
 </details>
 
+## Runtime Management
+
+:::info
+This feature is supported from version `1.1.1` of the Projection Storer.
+:::
+
+By specifying the Control Plane configuration in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=ps#projection-storer), you enable the PS to receive and execute the commands from/to the [Runtime Management](/fast_data/runtime_management/overview.mdx).
+
+:::caution
+By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
+has already resumed the data stream before. 
+
+Therefore, when the Projection Storer starts up, topics ingestion will not start automatically. 
+
+In this case, you just need to send a `resume` command to one of the projections managed by the Projection Storer.
+:::
+
 ## Migration Guide
 
 In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) into the one

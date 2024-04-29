@@ -67,19 +67,11 @@ We strongly recommend using the plugin. The template is supposed to be used only
 | USE_UPDATE_MANY_SV_PATCH            | -        | Use the MongoDB ```updateMany``` operation instead of the ```findOneAndUpdate``` with cursors in the sv patch operation. This will speed up the Single View creation/update process but it will not fire the kafka events of Single View Creation/Update. As a natural consequence, if enabled, the following environment vairables will be ignored: ```SEND_BA_TO_KAFKA```, ```KAFKA_BA_TOPIC```, ```SEND_SV_UPDATE_TO_KAFKA```, ```KAFKA_SV_UPDATE_TOPIC```, ```ADD_BEFORE_AFTER_CONTENT```, ```KAFKA_SVC_EVENTS_TOPIC``` | false               |
 | KAFKA_CONSUMER_MAX_WAIT_TIME_MS     | -        | (v6.2.1 or higher) The maximum amount of time in milliseconds the server will block before answering the fetch request if there isn't sufficient data to immediately satisfy the requirement given by minBytes [1 byte]                                                                                                                                                                                                                                                                                                     | 500                 |
 | SV_UPDATE_VERSION                   | -        | (v6.2.1 or higher) Define which version of the `sv-update` event should be emitted by the service. Accepted values are `v1.0.0` and `v2.0.0`. By default, for retro-compatibility, version `v1.0.0` is employed                                                                                                                                                                                                                                                                                                             | v1.0.0              |
-| CONTROL_PLANE_ACTIONS_TOPIC         | -        | Topic where the Single View Creator expects to receive the action commands of `pause` and `resume`.                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
-| CONTROL_PLANE_KAFKA_GROUP_ID        | -        | The Kafka Consumer Group Identifier for the action commands client.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
+| CONTROL_PLANE_ACTIONS_TOPIC         | -        |  **@deprecated** in favour of [Runtime Management](/fast_data/runtime_management/overview.mdx). Topic where the Single View Creator expects to receive the action commands of `pause` and `resume`.                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
+| CONTROL_PLANE_KAFKA_GROUP_ID        | -        | **@deprecated** in favour of [Runtime Management](/fast_data/runtime_management/overview.mdx). The Kafka Consumer Group Identifier for the action commands client.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | -                   |
 | KAFKA_PRODUCER_COMPRESSION          | -        | Starting from `v6.5.0`, is possible to choose the type of compression that can be applied to `pr-update` messages. Possible values are: `gzip`, `snappy` or `none`                                                                                                                                                                                                                                                                                                                                                          | `none`              |
-
-
-
-:::note
-
-Setting up both the variable `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` enables the communication between the Single View Creator and the [Runtime Management](/fast_data/runtime_management/overview.mdx).
-This means that the Single View Creator will receive and execute the commands from the latter.
-Check the [Runtime Management](#runtime-management) section of this page for more information.
-
-:::
+| CONTROL_PLANE_CONFIG_PATH          | -        | Starting from `v6.7.0`, is possible to configure Runtime Management. More informations [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svc#single-view-creator)                                                                                                                                                                                                                                                                                                                                     | 
+| CONTROL_PLANE_BINDINGS_PATH        | -        | Starting from `v6.7.0`, is possible to configure Runtime Management. More informations [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svc#single-view-creator)                                                                                                                                                                                                                                                                                                                                     |                     
 
 
 :::caution
@@ -160,13 +152,18 @@ To customize the system we also offer you the environment variables `KAFKA_SV_RE
 ## Runtime Management
 
 :::info
-This feature is supported from version `6.4.0` of the Single View Creator
+This feature is supported from version `6.7.0` of the Single View Creator.
 :::
 
-By specifying the environment variables `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` you enable the Single View Creator to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management/overview.mdx).
+By specifying the environment variables `CONTROL_PLANE_CONFIG_PATH`, you enable the Single View Creator to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management/overview.mdx).
 
-By design, every service interacting with the Control Plane starts up in a paused state, unless a `resume` command that can apply to the specific service is already present in the topic. Therefore, when the Single View Creator starts up, the aggregation process will not start automatically. In this case, you just need to send a `resume` command to the resource name (namely, the Single View name) managed by the Single View Creator.
+:::caution
+By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
+has already resumed the data stream before. 
 
-:::tip
-Read the [Interacting with the Frontend](/fast_data/runtime_management/overview.mdx#interacting-with-the-frontend) section of the Runtime Management documentation page to learn more about the Control Plane and how to use it.
+Therefore, when the Single View Creator starts up, the aggregation process will not start automatically. 
+
+In this case, you just need to send a `resume` command to the resource name (namely, the Single View name) managed by the Single View Creator.
 :::
+
+You can read about the setup of the Single View Creator in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svc#single-view-creator).
