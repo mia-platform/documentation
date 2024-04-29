@@ -195,7 +195,7 @@ async function createConfig() {
           },
           {
             label: "Library",
-            href: "https://resources.mia-platform.eu/en/library",
+            href: "https://mia-platform.eu/library/",
           },
           {
             label: "GitHub",
@@ -282,6 +282,8 @@ async function createConfig() {
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
+            ignorePatterns: ['/10.x/**', '/11.x/**'],
+            filename: 'sitemap.xml',
           }
         },
       ],
