@@ -77,11 +77,20 @@ For more details on the Control Plane service configuration, please head over th
 
 ## Concepts
 
-Here are listed some concepts that are used on the Runtime Management solution. This concepts complement the ones already provided by [Fast Data Section](/fast_data/glossary.mdx). 
+Here are listed some concepts that are used on the Runtime Management solution. 
+This concepts are in addition the ones already provided by [Fast Data Section](/fast_data/glossary.mdx). 
 
 ### Workload 
 
-A _workload_ represent a microservice of a Fast Data architecture that can be controlled through Control Plane.  
+A _workload_ represent a microservice of a Fast Data architecture that can be controlled through Control Plane. 
+
+Each workload can manage one or more [artifacts](#artifacts).
+:::info
+At startup, a workload will have all its artifacts in a `paused` state, meaning that no actions will be performed 
+by the service until the Control Plane will receive a command to `resume` at least one artifact for a specific workload.
+
+Upon receiving this command, the involved artifacts will be in a `running` state.
+:::
 
 ### Runtime
 

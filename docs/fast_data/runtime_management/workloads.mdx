@@ -12,8 +12,21 @@ import JSWorkloadSnippet from "./snippets/js-workload-configuration.md"
 
 This section helps you configure either new or existing Fast Data services to communicate with the Control Plane.
 
-:::info Compatibility Matrix
+:::note Compatibility Matrix
 To see if your microservices have support for your Control Plane version, go check the [compatibility matrix section](/fast_data/runtime_management/compatibility_matrix.md).
+:::
+
+As mentioned in the [Overview section](/fast_data/runtime_management/overview.mdx#workload), a service configured
+to interact with the Control Plane will have all its artifacts (topics, projection or single views) in a `paused` state,
+meaning that no data will be processed until a [resume interaction](/fast_data/runtime_management/control_plane_frontend.mdx#pause-and-resume) will be requested by the user.
+
+:::danger
+If you're configuring Control Plane configurations for existing Fast Data workloads, they will be released in a 
+`paused` state after deployment and they will __not__ process data.
+
+This may cause some delay in your architecture.
+
+To reduce as much possible this delay, you can relay on [Bulk actions](/fast_data/runtime_management/control_plane_frontend.mdx#bulk-actions) to quickly resume entire pipeline stages.
 :::
 
 ## Configuration
@@ -71,7 +84,7 @@ To enable gRPC communication between the Control Plane and the Fast Data runtime
 the gRPC server contained in the Control Plane using its corresponding [Kubernetes hostname](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/).
 
 For example, consider a use case where we have a Control Plane microservice named `fd-control-plane-grpc`.
-Then, workloads should have the `settings` properties like the following:
+Then, workloads should have the `settings` properties configured as follows:
 
 ```json
 {
@@ -88,20 +101,20 @@ Then, workloads should have the `settings` properties like the following:
 
 :::
 
-### Secret Resolution
+### Secrets Resolution
 
-The following fields contains secrets that can be managed using the [Fast Data Secret Resolution mechanism](/fast_data/secrets_resolution.md):
+The following fields contains secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/secrets_resolution.md):
 
-- `runtime.feedback.configuration.['bootstrap.servers'`]
-- `runtime.feedback.configuration.['sasl.username'`]
-- `runtime.feedback.configuration.['sasl.password'`]
+- `runtime.feedback.configuration.['bootstrap.servers']`
+- `runtime.feedback.configuration.['sasl.username']`
+- `runtime.feedback.configuration.['sasl.password']`
 - `runtime.feedback.configuration.['ssl.truststore.certificates']`
 - `runtime.feedback.configuration.['ssl.keystore.key']`
 - `runtime.feedback.configuration.['ssl.key.password']`
 - `runtime.feedback.configuration.['ssl.keystore.certificate.chain']`
-- `runtime.state.configuration.['bootstrap.servers'`]
-- `runtime.state.configuration.['sasl.username'`]
-- `runtime.state.configuration.['sasl.password'`]
+- `runtime.state.configuration.['bootstrap.servers']`
+- `runtime.state.configuration.['sasl.username']`
+- `runtime.state.configuration.['sasl.password']`
 - `runtime.state.configuration.['ssl.truststore.certificates']`
 - `runtime.state.configuration.['ssl.keystore.key']`
 - `runtime.state.configuration.['ssl.key.password']`
