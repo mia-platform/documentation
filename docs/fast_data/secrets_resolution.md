@@ -1,10 +1,10 @@
 ---
-id: secret_resolution
-title: Fast Data Secret Resolution
-sidebar_label: Secret Resolution
+id: secrets_resolution
+title: Fast Data Secrets Resolution
+sidebar_label: Secrets Resolution
 ---
 
-Fast Data services may have configurations injected as Config Maps. Secrets can be injected as:
+Fast Data services may have secrets inside their Config Maps. Secrets can be injected as:
 
 - plain text;
 - reference to an environment variable;

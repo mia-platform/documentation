@@ -28,20 +28,18 @@ is inspired from this [guide](/console/tutorials/configure-marketplace-component
 
 ## Control Plane Configuration
 
-Let's start by selecting the `Control Plane With Access Control` application from the Marketplace, under the applications tab:
-
-![Fast Data Control Plane application in Console marketplace](img/marketplace_runtime_mngm_app.png)
+Let's start by selecting the `Control Plane With Access Control` application from the Marketplace, under the applications tab.
 
 Then proceed step by step with the creation of the needed services, endpoints and collections. Once finalized, all those resources
 should appear in the different Console section.
 
 ![Summary of Fast Data Control Plane application](img/marketplace_runtime_mngm_app_creation.png)
 
-For more details on the Control Plane service configuration, please head over the dedicated [documentation section](/runtime_suite_applications/control-plane/20_configuration.mdx).
+For more details on the Control Plane service configuration, please head over the dedicated [documentation section](/fast_data/runtime_management/control_plane.mdx).
 
 ### Enabling gRPC communication
 
-The default configuration for the Control Plane specifies the use of [grpc](https://grpc.io/) for communication. To enable grpc communication,
+The default configuration for the Control Plane specifies the use of [gRPC](https://grpc.io/) for communication. To enable gRPC communication,
 a Kubernetes [Custom Resource](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) should be associated with
 the Control Plane instance and other Fast Data services intending to communicate with it via gRPC.
 

@@ -92,7 +92,7 @@ Control Plane can be customized using the following environment variables:
 
 The configuration of the service is handled by a JSON file whose location is defined by the `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH`.
 
-The [Control Plane applications](/docs/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `config map`.
+The [Control Plane applications](/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `config map`.
 
 <JSONSchemaViewer schema={ControlPlaneSchema} />
 
@@ -188,8 +188,8 @@ Both feedback and state channels can be managed by a Kafka broker. In particular
 
 #### gRPC
 
-Both feedback and state channels can be managed by a gRPC server instance managed by the Control Plane, 
-which creates a bi-directional streaming procedure that:
+Both feedback and state channels can be managed by a [gRPC](https://grpc.io/) server instance managed by the Control Plane, 
+which creates a [bi-directional streaming remote procedure call](https://grpc.io/docs/what-is-grpc/core-concepts/#bidirectional-streaming-rpc) that:
 
 - receives feedbacks from workloads
 - dispatch states to services 
@@ -221,7 +221,7 @@ This value can be overriden in the [`settings` section](?control-plane-configura
 It's also possible to have:
 
 - a state channel managed by a topic in a Kafka broker;
-- a feedback channel managed by a gRPC server with a client-side streaming request
+- a feedback channel managed by a gRPC server with a [client-side streaming request](https://grpc.io/docs/what-is-grpc/core-concepts/#client-streaming-rpc).
 
 ###### Example
 
@@ -294,7 +294,7 @@ provided in this section.
 
 ### Secret Resolution
 
-The following fields contains secrets that can be managed using the [Fast Data Secret Resolution mechanism](/fast_data/secret_resolution.md):
+The following fields contains secrets that can be managed using the [Fast Data Secret Resolution mechanism](/fast_data/secrets_resolution.md):
 
 - `persistence.configuration.url`
 - `runtime.feedback.configuration.['bootstrap.servers'`]
