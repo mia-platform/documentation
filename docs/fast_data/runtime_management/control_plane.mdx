@@ -15,7 +15,7 @@ import FeedbackChannelSchema from "@site/static/schemas/fast-data-control-plane-
 Fast Data Control Plane is the service that:
 
 * keeps track of the state of the different pipelines of a runtime;
-* reiceves user's interaction with the dedicated frontend, to update pipeline's state accordingly;  
+* receives user's interaction with the dedicated frontend, to update pipeline's state accordingly;  
 * receives feedbacks from workloads, to acknowledge that they're up-and-running in the pipelines they've been linked to. 
 
 ## State Persistence
@@ -213,7 +213,7 @@ which creates a [bi-directional streaming remote procedure call](https://grpc.io
 
 :::info 
 By default, the gRPC server is exposed over the default gRPC protocol port (50051). 
-This value can be overriden in the [`settings` section](?control-plane-configuration=settings#settings) 
+This value can be overridenn in the [`settings` section](?control-plane-configuration=settings#settings) 
 ::: 
 
 #### gRPC + Kafka 
