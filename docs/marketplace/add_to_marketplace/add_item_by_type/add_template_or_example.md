@@ -23,7 +23,7 @@ For simplicity, in this tutorial, the word **template** refers to both Template 
 ### Test
 
 The template should always include integration tests.
-Even just to show users where to manafge and how to run tests.
+Even just to show users where to manage and how to run tests.
 
 Check out the [Node.js service template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/tests/index.test.js) to see an example.
 
