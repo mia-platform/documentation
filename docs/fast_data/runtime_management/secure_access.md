@@ -4,8 +4,7 @@ title: Runtime Secure Access
 sidebar_label: Secure Access
 ---
 
-<!-- TODO update application name once defined -->
-<!-- TODO update "img/marketplace_runtime_mngm_app.png" image once new application card is available  -->
+<!-- TODO update "img/marketplace_runtime_mngm_app_selection.png" image once application cards are available with updated description  -->
 
 In order to ensure that only authorized people can access Fast Data Runtime Management system and consequently
 visualize or change its state, it is important to properly set up a security layer.
@@ -15,7 +14,7 @@ is inspired from this [guide](/console/tutorials/configure-marketplace-component
 
 ## Requirements
 
-- access to [Control Plane With Access Control](/fast_data/runtime_management/overview.mdx) application, which automatically
+- access to [Fast Data Control Plane With Access Control](/fast_data/runtime_management/overview.mdx) application, which automatically
   scaffold the configurations regarding microservices, collections, endpoints and variables needed for controlling Fast Data
   runtime and protecting its access. Generated resources need to be further customized depending on your needs and credentials.
 - an introduction to [Envoy](https://envoyproxy.io/), which is employed as API Gateway by the application. It is also
@@ -28,7 +27,7 @@ is inspired from this [guide](/console/tutorials/configure-marketplace-component
 
 ## Control Plane Configuration
 
-Let's start by selecting the `Control Plane With Access Control` application from the Marketplace, under the applications tab.
+Let's start by selecting the `Fast Data Control Plane With Access Control` application from the Marketplace, under the applications tab.
 
 Then proceed step by step with the creation of the needed services, endpoints and collections. Once finalized, all those resources
 should appear in the different Console section.
@@ -172,7 +171,7 @@ can be fond in the panel below.
 
 In addition to previous configurations, the service needs to mount a private key as a secret. This key is employed to
 sign JWTs that are set as _session id_ for authenticated users. In case the service has been instantiated through the
-`Control Plane With Access Control` application, a secret has already been associated to it, which is named `authentication-service-secrets`.
+`Fast Data Control Plane With Access Control` application, a secret has already been associated to it, which is named `authentication-service-secrets`.
 
 :::caution
 These instructions below assume that the tool employed to deploy Console projects is [`mlp`](/runtime_suite_tools/mlp/10_overview.md).
@@ -279,7 +278,7 @@ The authentication flow via the `authentication-service` requires also the intro
 users details are saved upon successful login. These user (_subject_) information can then be employed in the authorization flow, which is
 described later, in conjunction with [policies](#policies) and [roles](#roles) to ensure that only authorized users can
 visualize or even interact with Fast Data runtime.  
-By default the `Control Plane With Access Control` application creates the collection for you and instantiates the CRUD Service,
+By default the `Fast Data Control Plane With Access Control` application creates the collection for you and instantiates the CRUD Service,
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project. 
 
