@@ -8,7 +8,7 @@ A **Template** is a base repository from which users can build a new Microservic
 
 **Examples** are similar to Templates, the only difference is they provide a basic implementation of the business logic for a specific use case, that users can use as a starting point for their custom implementation.
 
-To configure Template and Examples, make sure you followed the [common Marketplace item creation steps](../contributing_overview.md#creation-of-a-marketplace-item), then follow the paragraphs below to finalize the configuration.
+To configure Template and Examples, make sure you followed the [common Marketplace item creation steps](/marketplace/add_to_marketplace/contributing_overview.md#creation-of-a-marketplace-item), then follow the paragraphs below to finalize the configuration.
 
 ## The target
 
@@ -84,12 +84,6 @@ By adding an **Example** or a **Template**, the code provided will act as a boil
 :::  
 
 Once the user creates a new microservice starting from your template or example, the Console will create a new Git repository in which it will copy all the template files.
-
-:::info
-
-Further details on creating a template are provided by visiting [this documentation page](/marketplace/templates/template_create.md).
-
-:::
 
 ## Repository Files Placeholder
 

@@ -265,6 +265,6 @@ Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-
 
 Refer to the detailed explanations and examples for each item type:
 
-- [Plugins](/marketplace//add_to_marketplace/add_item_by_type/add_plugin)
-- [Templates and Examples](/marketplace//add_to_marketplace/add_item_by_type/add_template_or_example)
-- [Plugins](/marketplace//add_to_marketplace/add_item_by_type/add_application)
+- [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md)
+- [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md)
+- [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_application.md)

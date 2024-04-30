@@ -6,7 +6,7 @@ sidebar_label: Create a Plugin
 
 Plugins are ready-to-use microservices that only need some configuration from the user to work.
 
-To configure a Plugin, make sure you followed the [common Marketplace item creation steps](../contributing_overview.md#creation-of-a-marketplace-item), then follow the paragraphs below to finalize the configuration.
+To configure a Plugin, make sure you followed the [common Marketplace item creation steps](/marketplace/add_to_marketplace/contributing_overview.md#creation-of-a-marketplace-item), then follow the paragraphs below to finalize the configuration.
 
 ## Where to host plugins
 
