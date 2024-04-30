@@ -137,7 +137,7 @@ Here is some useful advice to strengthen your items:
 
 ## Tips & Tricks
 
- - **Where to host the zip with the code**: If you code your template on github you can access the zip file using the url https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz
+ - **Where to host the zip with the code**: If you code your template on GitHub you can access the zip file using the URL https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz
  - **`.mia-platform/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
 
 
