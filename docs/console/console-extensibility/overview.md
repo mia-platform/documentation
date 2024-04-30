@@ -9,7 +9,9 @@ The Extensibility feature can make your work easier and allow you to integrate y
 
 A correctly active extension will appear as a new menu item on the sidebar and you can place it in different Console contexts such as within a Company or a specific Project. Furthermore, you can also specify restrictions using Console permissions so that the new menu item is visible only to a small group of users.
 
-<!-- TODO: Added a preview image that show the new menu item and the new opened page on Console-->
+In the following pages you will be explained how to add the backoffice as extension within a project in order to consult it directly in the Console.
+
+![backoffice extension overview](./images/backofficeExtensionOverview.png)
 
 ## How to see your extension on Console?
 
