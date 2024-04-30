@@ -136,7 +136,7 @@ The category list is constantly updated, check with your Mia-Platform referent f
 
 ## Best Practices
 
-Here are listed some useful advice to strengthen your items:
+Here is some useful advice to strengthen your items:
 
 - **Test**: each service must have well-tested code;
 - **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
