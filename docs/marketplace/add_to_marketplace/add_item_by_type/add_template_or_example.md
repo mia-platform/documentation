@@ -57,7 +57,6 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 ## The source Git repository
 
-
 The item template must be hosted on a remote **Git repository**.
 
  The URL to the tar.gz version of the Git project must be specified in the `archiveUrl` field, optionally you can specify either the `sha` or the `ref` as query parameters. If you don't have access to CMS, this should be provided to your Mia-Platform referent in form of a Git clone URL.
