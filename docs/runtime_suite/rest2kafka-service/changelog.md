@@ -15,6 +15,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/0.0.1/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] 2024-04-30
+
+### Added
+- property `keyAsJson` that allows users to set the Kafka message key as a JSON, containing the key field configured in the `keyField` property;
+
+### Updated
+- node to v20 iron
+- service dependencies
+
 ## [1.0.0] 2022-10-27
 
 **This is the first released version of the `rest2kafka` plugin.**
