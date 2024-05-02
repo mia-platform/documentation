@@ -1,7 +1,7 @@
 The Control Plane Configuration is managed by a dedicated Config Map.
 
 In [the Config Map section of the Design Area](/development_suite/api-console/api-design/services.md#configmaps), create a new Config Map (e.g. `control-plane-configuration`),
-then create a JSON file (e.g. `config.json`) where you'll write your own configuration.
+then create a JSON file (e.g. `config.json`) where you will write your own configuration.
 
 ![Microservice Configuration](./../img/microservice_configuration.png)
 
