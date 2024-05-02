@@ -6,7 +6,7 @@ then create a JSON file (e.g. `config.json`) where you'll write your own configu
 ![Microservice Configuration](./../img/microservice_configuration.png)
 
 To made the service aware of the Control Plane configuration, add a new environment variable called 
-`CONTROL_PLANE_CONFIG_PATH` where you'll use as value the full path of the configuration file inside
+`CONTROL_PLANE_CONFIG_PATH` where you will use as value the full path of the configuration file inside
 your microservice. 
 
 :::tip
