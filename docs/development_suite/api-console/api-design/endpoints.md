@@ -217,6 +217,11 @@ The **Advanced** tab is visible only if the Envoy API Gateway service is enabled
 - **Timeout** (_integer_): the maximum amount of time (in seconds) the gateway waits while the request is processed by the upstream or downstream;
 - **Rate limit** (_integer_): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
 - **Request body size** (_decimal_): the maximum body size of user requests.
+- **Iframe embedding options**: the X-Frame-Options directive that is considered when the endpoint response should be embedded in an iframe;
+
+:::warning
+This `Iframe embedding` option is configurable only for the api-gateway envoy, instead for nginx it is required to configured it manually using the `Advanced` section of Console
+:::
 
 ## Routes
 
