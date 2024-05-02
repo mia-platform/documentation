@@ -21,6 +21,6 @@ Mia-Platforms currently supports the following examples:
 | [Ktor template](https://github.com/mia-platform-marketplace/Ktor-Template)                            | Ktor, Kotlin                                                       |
 | [Ktor multi module template](https://github.com/mia-platform-marketplace/Ktor-Multi-Module-Template)  | Ktor, Kotlin                                                       | . |
 
-You can also [build a template](/marketplace/templates/template_create.md) by yourself.
+You can also [build a template](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md) by yourself.
 
 Head to the [Contributing Overview](/marketplace/add_to_marketplace/contributing_overview.md) for further information on how to create and upload it to the Marketplace.
