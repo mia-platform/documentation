@@ -122,7 +122,7 @@ Each artifact is linked to a Fast Data resource, which can be conversely related
 
 An _Execution Step_ represent a particular operation performed over a data flow. This operation can change, depending on the stage where the execution step is located:
 
-- **CDC**: is the step that register changes from the data source of a pipeline, sending the corresponding operations to an ingestion topic. 
+- **CDC**: is the step that registers changes from the data source of a pipeline, sending the corresponding operations to an ingestion topic. 
   This step cannot be controlled by the Control Plane.
 - **Mapping** <img src="/img/fd-cp-mapping-step-icon.svg"/>: is the step that reads the changes from an ingestion topic and performs:
   - validation of the data and the operation contained in the ingestion topic
