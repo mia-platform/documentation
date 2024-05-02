@@ -4,7 +4,7 @@ title: Runtime Secure Access
 sidebar_label: Secure Access
 ---
 
-<!-- TODO update "img/marketplace_runtime_mngm_app_selection.png" image once application cards are available with updated description  -->
+<!-- TODO update "img/marketplace_runtime_management_app_selection.png" image once application cards are available with updated description  -->
 
 In order to ensure that only authorized people can access Fast Data Runtime Management system and consequently
 visualize or change its state, it is important to properly set up a security layer.
@@ -32,7 +32,7 @@ Let's start by selecting the `Fast Data Control Plane With Access Control` appli
 Then proceed step by step with the creation of the needed services, endpoints and collections. Once finalized, all those resources
 should appear in the different Console section.
 
-![Summary of Fast Data Control Plane application](img/marketplace_runtime_mngm_app_creation.png)
+![Summary of Fast Data Control Plane application](img/marketplace_runtime_management_app_creation.png)
 
 For more details on the Control Plane service configuration, please head over the dedicated [documentation section](/fast_data/runtime_management/control_plane.mdx).
 
