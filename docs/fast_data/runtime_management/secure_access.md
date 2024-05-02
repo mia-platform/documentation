@@ -509,18 +509,16 @@ collection definition ready for being imported, in case it may be necessary to m
 
 ### Advanced
 
-In this section are described the tweaks to be carried out on the API Gateway (Envoy) that enhance the interaction with
-the runtime system and allow the solution to properly work in your project.
+In this section are described additional tweaks to be carried out on the API Gateway (Envoy), that enhance the interaction with
+the runtime system and allow the solution to support authentication.
 
 These modifications should be inserted in the proper file in the **Advanced** section of the Console _Design_ area, under
 the key `api-gateway-envoy`.
 
 ![Console advanced tab in Design section showing 'api-gateway-envoy' configuration](img/advanced_section_envoy.png)
 
-:::caution
-Please notice that the following configurations are specific for the `frontend` listener of Envoy. In case it has been
-decided to expose the Fast Data Runtime Management system under a [different listener](/development_suite/api-console/api-design/listeners.md),
-please update the configuration accordingly.
+:::note
+Before proceeding, be sure to have configured Control Plane endpoints accordingly to their [specific documentation](/fast_data/runtime_management/control_plane.mdx#endpoints).
 :::
 
 #### Automatic redirect upon receiving 401 HTTP error

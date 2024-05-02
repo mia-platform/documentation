@@ -67,7 +67,7 @@ Here's a list of the APIs made available by the Control Plane with the following
 
 | Endpoint                        |     Type    |        |                                Description                                                 |
 | --------------------------------|-------------|--------|:------------------------------------------------------------------------------------------:|
-| `/fast-data/`                   |     REST    |   POST |  Receives [JSON-RPC(https://www.jsonrpc.org/specification) from the frontend.              |
+| `/fast-data/`                   |     REST    |   POST |  Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend.              |
 | `/fast-data/configurations/:id` |     REST    |   GET  |  Returns the data of a given pipeline of the runtime where Control Plane has been deployed.|
 | `/fast-data/configurations`     |     REST    |   GET  |  Returns the data from all pipelines of the runtime where Control Plane has been deployed. |
 | `/fast-data/feedback/:id`       |  Websocket  |   GET  |  Opens a websocket connection with the client to receive updates for a given pipeline.     |
@@ -89,7 +89,7 @@ This operations are needed to:
 
 ### Envoy
 
-This configuration edit needs to be inserted in the file `patches.yml`,
+This configuration edit needs to be inserted in the file `patches.yml`.
 
 It is important to observe that these modifications affect the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
 
@@ -123,11 +123,10 @@ It is important to observe that these modifications affect the first [filter cha
   ]
 ```
 
----
-
-:::note
-In case your project does not employ Envoy as API Gateway, please remember to adapt your API Gateway configuration
-accordingly to support the runtime management system features, such as [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection).
+:::caution
+Please notice that the following configurations are specific for the `frontend` listener of Envoy. In case it has been
+decided to expose the Fast Data Runtime Management system under a [different listener](/development_suite/api-console/api-design/listeners.md),
+please update the configuration accordingly.
 :::
 
 ### Nginx
