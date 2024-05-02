@@ -1746,12 +1746,16 @@
     "destination": "/docs/runtime_suite/fhir-adapter/changelog",
     "addedOn": "2024-03-27"
   },
-  "/infrastructure/self-hosted/synchronize-users": {
+  "/docs/infrastructure/self-hosted/synchronize-users": {
     "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/synchronize-users-with-an-identity-provider",
     "addedOn": "2024-03-27"
   },
-  "/infrastructure/self-hosted/self-hosted-runtime-requirements": {
+  "/docs/infrastructure/self-hosted/self-hosted-runtime-requirements": {
     "destination": "/docs/infrastructure/self-hosted/self-hosted-requirements",
     "addedOn": "2024-04-09"
+  },
+  "/docs/marketplace/templates/template_create": {
+    "destination": "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
+    "addedOn": "2024-04-30"
   }
 }

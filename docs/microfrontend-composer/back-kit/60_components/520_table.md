@@ -1512,6 +1512,32 @@ Assuming the following configuration for the Table:
 Table rows with field `email` equal to the `emailAddress` field of the logged user will be highlighted with a yellow color,
 while rows with field `payed` larger than field `owed`, will be set to green color.
 
+### Example: Make the table as height as the parent container
+
+To make the table as height as the parent container, `fitParentContainer` property must be set to true and the `bk-table` component should have the correct style to make it as height as needed.
+
+:::info
+Please remember that `maxLines` and `fitParentContainer` properties cannot be used at the same time. If both are set, only `maxLines` will be used.
+:::
+
+```json
+{
+  "content": [
+    {
+      "properties": {
+        ...,
+        "fitParentContainer": true
+      },
+      "tag": "bk-table",
+      "attributes": { "style": "flex-grow: 1" }
+    }
+  ],
+  "tag": "div",
+  "attributes": { "style": "display: flex; flex-direction: column" }
+}
+```
+
+
 ## API
 
 ### Properties & Attributes
@@ -1529,7 +1555,8 @@ while rows with field `payed` larger than field `owed`, will be set to green col
 |`initialSortDirection`| - |"descend" \| "ascend"| - |initial sorting direction to use when component bootstraps |
 |`initialSortProperty`|`initial-sort-property`|string| - |Initial property to sort on when component bootstraps |
 |`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
-|`maxLines`|`max-lines`|number| - |force lines that will be displayed together |
+|`maxLines`|`max-lines`|number| - |force lines that will be displayed together. It can't be used with `fitParentContainer` |
+|`fitParentContainer`|`fit-parent-container`|boolean|false|Make the table fit the parent container height. It can't be used with `maxLines`|
 |`navigationRowActions`| - |[NavigationDataActions](#navigationdataactions)| {"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]} |actions in nested objects.|
 |`openFileInViewerRegex`| - |[FileInViewerRegex](#fileinviewerregex)| - |regex expressions, matched against file values to request a preview of the file or for it to be downloaded. |
 |`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
