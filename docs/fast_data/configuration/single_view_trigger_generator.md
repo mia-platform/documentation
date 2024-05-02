@@ -539,7 +539,7 @@ By specifying the environment variables `CONTROL_PLANE_CONFIG_PATH`, you enable 
 By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
 has already resumed the data stream before. 
 
-Therefore, when the SVTG  starts up, the trigger generation will not start automatically. 
+Therefore, when the SVTG starts up, the trigger generation will not start automatically. 
 
 In this case, you just need to send a `resume` command to one of the projections managed by the SVTG.
 :::
