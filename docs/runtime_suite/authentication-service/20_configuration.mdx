@@ -92,7 +92,7 @@ The app configuration contains:
 - **isWebsiteApp** (_optional_): a boolean, if true set a Cookie _sid_ in header.
 - **customTokenClaims** (_optional_): options to configure additional custom claims to be added to the JWT token.
   - **includeProviderUserId** (_default: `false`_): if `true`, the claim `providerUserId` will be included in the JWT token.
-  - **metadataFieldsToIncluded** (_optional_): an array of fields to be included under the field `metadata`. The `metadata`field will be populated only if the array is defined and not empty.
+  - **metadataFieldsToInclude** (_optional_): an array of fields to be included under the field `metadata`. The `metadata`field will be populated only if the array is defined and not empty.
 - **issuer** (_required_): The value of the `iss` claim, it will be inserted in the issued tokens.
 - **sidCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./30_usage.md#website-cookie-configuration)
   - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
