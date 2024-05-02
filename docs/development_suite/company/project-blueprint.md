@@ -17,7 +17,7 @@ The fields set by the template can be changed after the Project creation.
 
 There are 2 cards in this section: the first displays the default template for the blueprint, and the second displays a table with all the configured templates.
 
-// IMMAGINE
+![project templates](img/project-templates.png)
 
 ### Create a Template
 
@@ -31,7 +31,7 @@ You can create a new template using the "Add template" button of the card. A mod
 - **Pipeline runner** (*required*): choose MLP if the Project uses it as command line deployment tool. It is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
 - **Description**: the description of the template.
 
-// IMMAGINE
+![add template](img/add-template.png)
 
 :::caution
 If you enable Kustomize as Project structure, your Project configuration for newly created Projects [needs to be changed accordingly](/console/project-configuration/kustomize-your-configurations/migrate-to-kustomize.md).
@@ -43,7 +43,7 @@ After entering the required information, a click on the "Create template" button
 
 If at least one template is configured on the blueprint, you will also be able to set it as the default template with a click on the "Select default Template" button, which will open a modal with a dropdown from which you can choose the template you want to set as the default. Once a default template is set, a tag will be displayed next to the template name in the table and on the respective detail page.
 
-// IMMAGINE
+![edit default template](img/edit-default-template.png)
 
 ### Edit Template 
 
@@ -51,7 +51,11 @@ You can edit template information from its detail page, accessible by clicking o
 
 - **General**: shows the general information of the template: name, ID, archive URL and description. You can edit this information (except for ID) by clicking on the "Edit" button of the card;
 
+![templates general](img/templates-general.png)
+
 - **Deploy settings**: shows information inherent to the deployment: strategy (push or pull mode), pipeline runner, and Project structure (whether the Project uses Kustomize as a configuration management tool for Project microservices). You can edit this information by clicking on the "Edit" button of the card;
+
+![templates deploy settings](img/templates-deploy-settings.png)
 
 - **Dashboards**: through this card you can add, edit, and delete dashboards that will be configured on each Project environment once new Projects are created. Through the "Add Dashboard" button, a modal will be displayed requiring the following information:
   * **Name** (*required*): dashboard label, shown by the [monitoring section of the Console](/development_suite/monitoring/dashboard.md);
@@ -61,13 +65,13 @@ You can edit template information from its detail page, accessible by clicking o
 
   Once a dashboard is created, this information can be edited using the appropriate button in the respective row of the table, while with the trash button it will be possible to delete the dashboard from the template.
 
-// IMMAGINE
+![templates dashboards](img/templates-dashboards.png)
 
 ### Delete Template
 
 Via the "Delete" button located in the footer of the detail page, you can delete a template. A confirmation modal will be displayed where you are asked to enter the template name to confirm the deletion. Once a template is deleted, you will be redirected to the templates table.
 
-// IMMAGINE
+![delete template](img/delete-template.png)
 
 
 ## Environments
@@ -76,7 +80,7 @@ Runtime environments are the set of computer systems, servers, networks, storage
 
 In this section, you can have an overview of the runtime environments configured for the blueprint through a "Runtime Environments" card, which displays a table with a row for each environment, as shown in the picture below.
 
-// IMMAGINE
+![runtime environments](img/runtime-environments.png)
 
 ### Add an Environment
 
@@ -94,7 +98,7 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 
 By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table (in which the information of name, ID, documentation URL, CMS URL, application URL, and cluster ID will be displayed, together with a tag used to identify production environments). When the creation is complete, it will also be possible to directly access the environment detail page via the "Go to environment" button. Alternatively, to access the detail it will be sufficient to click on the icon to the right of the environment-related table entry.
 
-// IMMAGINE
+![add environment](img/add-environment.png)
 
 ### Edit an Environment 
 
@@ -102,15 +106,17 @@ You can edit environment information from its detail page, accessible by clickin
 
 - **Details**: shows the general information of the environment: name, ID, variables prefix, documentation URL, CMS URL, application URL, and description. You can edit this information (except for ID and variables prefix) by clicking on the "Edit" button of the card;
 
+![environments details](img/environments-details.png)
+
 - **Cluster connection**: shows information inherent to the cluster to which the environment is connected: cluster ID, URL, and namespace. This information cannot be modified.
 
-// IMMAGINE
+![environments cluster connection](img/environments-cluster-connection.png)
 
 ### Remove an Environment
 
 In the bottom part of the page, there is a footer which allows to delete the runtime environment from the Console. By clicking on the "Delete" button, a modal will be displayed, asking for confirmation of the deletion.
 
-// IMMAGINE
+![delete environment](img/delete-environment.png)
 
 After entering the name in the input field and clicking "Delete," a loading and finally a feedback of successful removal will be shown. Closing the modal will then redirect you to the environments table. In case of errors, an informative feedback will be shown instead, and the "Close" button will not perform any redirection.
 
@@ -123,8 +129,6 @@ As mentioned in the warning displayed in the deletion modal, the runtime environ
 
 The "Workload & Runtime" tab shows information about the Project blueprint workload and runtime settings through 4 cards: "Microservices", "Image Pull Secrets", "Runtime", and "Security Features".
 
-// IMMAGINE
-
 ### Microservices
 
 This card shows and gives the user the ability to change some settings related to the creation of microservices within newly created Project. Specifically:
@@ -132,6 +136,8 @@ This card shows and gives the user the ability to change some settings related t
 - **Prefix** (only if type is `CONSTANT_PREFIX`): defines the prefix that will appear in the suggestion for the Docker image name.
 
 The above information can be edited by clicking on the "Edit" button, editing the fields in the modal that will open, and clicking on "Save changes."
+
+![workload & runtime microservices](img/workload&runtime-microservices.png)
 
 ### Image Pull Secrets
 
@@ -141,6 +147,8 @@ An imagePullSecret is a Kubernetes entity used to authenticate and authorize acc
 
 This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add Image Pull Secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
 
+![workload & runtime image pull secrets](img/workload&runtime-image-pull-secrets.png)
+
 ### Runtime
 
 This card gives the user the ability to view and change some runtime settings. 
@@ -148,6 +156,8 @@ This card gives the user the ability to view and change some runtime settings.
 Specifically, the **Monitoring** tags allow you to choose between the different supported monitoring systems.
 
 The above information can be edited by clicking on the "Edit" button, editing the fields in the modal that will open, and clicking on "Save changes."
+
+![workload & runtime runtime](img/workload&runtime-runtime.png)
 
 ### Security features
 
@@ -167,6 +177,8 @@ This card shows and gives the user the ability to change some security features,
   You can learn more about the `securityContext` object by taking a look at the [official Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/).
 
 The above information can be edited by clicking on the "Edit" button, which will open a modal through which you can turn on/off the security features. Upon clicking "Save changes", the information will be updated.
+
+![workload & runtime security features](img/workload&runtime-security-features.png)
 
 
 ## How to create a Project Archive
