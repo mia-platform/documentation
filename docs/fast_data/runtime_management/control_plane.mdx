@@ -12,11 +12,11 @@ import StateChannelSchema from "@site/static/schemas/fast-data-control-plane-sta
 import FeedbackChannelSchema from "@site/static/schemas/fast-data-control-plane-feedback.schema.json"
 
 
-Fast Data Control Plane is the service that:
+Fast Data Control Plane allows to:
 
-* keeps track of the state of the different pipelines of a runtime;
-* receives user's interaction with the dedicated frontend, to update pipeline's state accordingly;  
-* receives feedbacks from workloads, to acknowledge that they're up-and-running in the pipelines they've been linked to. 
+* keep track of the state of the different pipelines of a runtime;
+* receive user interaction through the dedicated frontend, and to update pipeline state accordingly;  
+* receive feedbacks from workloads, to acknowledge that they are up-and-running in the pipelines they have been linked to. 
 
 ## State Persistence
 
@@ -27,14 +27,14 @@ that is queried directly by the service at startup to retrieve the latest availa
 To discover more about state persistence configuration, you can check [its dedicated section](?control-plane-configuration=persistence#persistence)
 :::
 
-This collection can change based on user interactions through the frontend.
+This collection can change on the basis of the user interactions through the frontend.
 
 ## Runtime Communication
 
 Communications to/from runtime's workloads happen through two different channels, namely _State Channel_ and _Feedback Channel_. 
 
 :::info
-To discover more about state persistence configuration, you can check [its dedicated section](?control-plane-configuration=runtime#runtime)
+To discover more about channels configuration, you can check [its dedicated section](?control-plane-configuration=runtime#runtime)
 :::
 
 ### State Channel
@@ -78,7 +78,7 @@ The default prefix for Control Plane endpoints is `/fast-data` and can be custom
 
 :::caution
 
-To make the endpoint work properly, you need to perform additional manual operations in the [Advanced Section](/development_suite/api-console/advanced-section/index.md) of your gateway.
+To make the endpoint work properly, additional manual operations must be performed in the [Advanced Section](/development_suite/api-console/advanced-section/index.md) of your gateway.
 
 This operations are needed to:
 
@@ -132,7 +132,7 @@ accordingly to support the runtime management system features, such as [_Websock
 
 ### Nginx
 
-If you're using the standard Nginx API Gateway, you have to:
+If you are using the standard Nginx API Gateway, you have to:
 
 - add [this custom location](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-proxy-web-socket-connections) to `api-gateway/server-extension.conf` 
   using the websocket endpoint as location (e.g. `/fast-data/feedback`)
@@ -313,12 +313,12 @@ which creates a [bi-directional streaming remote procedure call](https://grpc.io
 
 :::info 
 By default, the gRPC server is exposed over the default gRPC protocol port (`50051`). 
-This value can be overridenn in the [`settings` section](?control-plane-configuration=settings#settings) 
+This value can be overridden in the [`settings` section](?control-plane-configuration=settings#settings) 
 ::: 
 
 #### gRPC + Kafka 
 
-It's also possible to have:
+It is also possible to have:
 
 - a state channel managed by a topic in a Kafka broker;
 - a feedback channel managed by a gRPC server with a [client-side streaming request](https://grpc.io/docs/what-is-grpc/core-concepts/#client-streaming-rpc).
