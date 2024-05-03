@@ -140,7 +140,7 @@ In order to bump a new documentation version you have to follow through this che
 
 ### Freeze previous version
 
-TO freeze the **previous** version run the following command:
+Each tagged version has a dedicated folder: `versioned_docs/version-<number version>`. To create a new one and freeze the **previous** version run the following command:
 
 ```bash
 yarn run docusaurus docs:version <x.x.x>
@@ -154,11 +154,9 @@ yarn run docusaurus docs:version <x.x.x>
 > $ yarn run docusaurus docs:version 99.x.x
 > ```
 
-Each tagged version has a dedicated folder:
+### Bump new version
 
-- `versioned_docs/version-<number version>`
-
-**The current version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+There is no need to **tag the new version**, however you have update the `docusaurus.config.js` file in order to support the newer version. The property to edit is `presets."@docusaurus/preset-classic".versions`:
 
 <details>
 <summary>docusaurus.config.js example</summary>
