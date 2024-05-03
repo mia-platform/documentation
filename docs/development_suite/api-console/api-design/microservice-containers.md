@@ -38,7 +38,7 @@ In this section we will go deeper in how you can manage this kind of containers 
 
 The containers table in the microservice detail page gives an immediate overview of all the containers that your microservice is made of, indicating which is the **main container** and which is the **sidecar** one.
 
-The table shows a summary of the containers resource request and limits for CPU and memory as well as which configmaps and secrets are used by which container. From here is also possible to add and delete sidecars to the current microservice.
+The table shows a summary of `requests` and `limits` set for both container CPU and memory resources, as well as which ConfigMaps and Secrets are used by which container. From here it is also possible to add and delete sidecars from the current microservice.
 
 ![Microservice Containers](img/microservice-containers/containers-table.png)
 

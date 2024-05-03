@@ -58,6 +58,6 @@ If the sidecar is used only by one microservice, removing it from the microservi
 ### Microservice sidecars
 
 Another way to view and manage sidecars configurations is from the [microservice detail page](/development_suite/api-console/api-design/microservice-containers.md).  
-From here you can find an overview of all the containers configured for the microservice (both main container and sidecar containers) and configure the specific sidecar container configuration for your needs.
+From here you can find an overview of all the containers configured for the microservice (both main and sidecar containers) and configure the specific sidecar container configuration for your needs.
 
 ![Service containers](img/service-containers.png)
