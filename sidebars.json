@@ -471,10 +471,6 @@
           "type": "category"
         },
         {
-          "id": "development_suite/api-console/api-design/flow-manager-visualizer",
-          "type": "doc"
-        },
-        {
           "id": "development_suite/api-console/api-design/endpoints",
           "type": "doc"
         },

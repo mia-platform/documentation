@@ -4,10 +4,6 @@ title: How does it work?
 sidebar_label: How it works
 ---
 
-:::caution
-Flow Manager Configurator is available from Console version **12.3.0**. For lower versions please refer to [Flow Manager Visualizer](/development_suite/api-console/api-design/flow-manager-visualizer.md) documentation.
-:::
-
 The following image represents what a user visualizes for a Flow Manager service linked to the Configurator.
 
 ![Default Scenario](img/default-scenario.png)
@@ -92,11 +88,14 @@ Finally, states with no command offer a select to set a command.
 
 ### Control Buttons
 
-Control buttons are placed in the top and bottom right corner of the canvas.
+Control buttons are placed in the corners of the canvas.
+
+Button placed in the top left corner provide the following features:
+- Searchbar &rarr; searches for states and events of the flow, clicking on an item will cause it to be centered and selected
 
 Button placed in the top right corner provide the following features:
 - Download flow &rarr; exports an image representing the whole flow or the current view
-- Highlight &rarr; enters the [highlight mode](#highlight-mode)
+- Highlight &rarr; enters the [highlight mode](/development_suite/api-console/api-design/flow-manager-configurator/overview.md#highlight-mode)
 - Add state &rarr; creates a new state
 
 Button placed in the bottom right corner provide the following features:
@@ -106,20 +105,6 @@ Button placed in the bottom right corner provide the following features:
 - Collapse/Expand &rarr; collapses or expands nodes and edges
 - Auto layout &rarr; auto computes and sets nodes and edge positions
 - Toggle side panel visibility.
-
-### Highlight Mode
-
-The highlight mode allows the user to focus on a subset of states and events of the flow. The following rules are applied:
-- Click on a turned off state &rarr; the state is highlighted
-- Click on a turned off event (i.e. edge)
-  - Case source and target states turned off &rarr; nothing is highlighted
-  - Case source and target states highlighted &rarr; the event is highlighted
-  - Case source state is highlighted &rarr; the event and every following state and event is highlighted up to the first bifurcation encountered
-  - Case target state is highlighted &rarr; the event and every previous state and event is highlighted up to the first bifurcation encountered
-- Click on an highlighted state &rarr; the state, its incoming events and every following state and event is turned off if they are not highlighted by another branch
-- Click on an highlighted event &rarr; the event is turned off and every following state and event is turned off if they are not highlighted by another branch
-
-![Highlight Mode](img/highlight-mode.png)
 
 ## Side Panel
 

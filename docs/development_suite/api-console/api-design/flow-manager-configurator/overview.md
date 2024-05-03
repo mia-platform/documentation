@@ -4,10 +4,6 @@ title: Overview
 sidebar_label: Overview
 ---
 
-:::caution
-Flow Manager Configurator is available from Console version **12.3.0**. For lower versions please refer to [Flow Manager Visualizer](/development_suite/api-console/api-design/flow-manager-visualizer.md) documentation.
-:::
-
 The Flow Manager Configurator is a tool that allows to easily configure Flow Manager services thanks to its intuitive graphical interface.
 
 ## Supported Versions
@@ -37,6 +33,7 @@ Below you can find a detailed list of supported versions.
     <li>2.6.1</li>
     <li>2.6.2</li>
     <li>2.6.3</li>
+    <li>2.6.4</li>
   </ul>
 </details>
 
@@ -50,11 +47,25 @@ The Configurator does not support versions interpolated using variables. In this
 
 ## Readonly Mode
 
-The *Readonly* mode allows the user to visualize the flow defined in the configuration for those Flow Manager services still not linked to the Configurator.
+The *Readonly* mode allows the user to visualize the flow defined in the configuration for those Flow Manager services still not linked to the Configurator. The user can still use the searchbar, the [highlight mode](#highlight-mode) and download the flow image.
 
 No edits are allowed in this mode.
 
 ![Readonly Mode](img/readonly-mode.png)
+
+## Highlight Mode
+
+The highlight mode allows the user to focus on a subset of states and events of the flow. The following rules are applied:
+- Click on a turned off state &rarr; the state is highlighted
+- Click on a turned off event (i.e. edge)
+  - Case source and target states turned off &rarr; nothing is highlighted
+  - Case source and target states highlighted &rarr; the event is highlighted
+  - Case only source state is highlighted &rarr; the event and every following state and event is highlighted up to the first bifurcation encountered
+  - Case only target state is highlighted &rarr; the event and every previous state and event is highlighted up to the first bifurcation encountered
+- Click on an highlighted state &rarr; the state, its incoming events and every following state and event is turned off if they are not highlighted by another branch
+- Click on an highlighted event &rarr; the event is turned off and every following state and event is turned off if they are not highlighted by another branch
+
+![Highlight Mode](img/highlight-mode.png)
 
 ## Link
 
