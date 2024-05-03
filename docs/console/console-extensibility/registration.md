@@ -28,7 +28,6 @@ As can be seen from the example image, registering an extension requires providi
 - `extensionType` (_required_): select the type of extension. For now, only the iframe type is supported
 - `permissions`: indicate which permissions users will need to have to see the extension once activated (further details in the [next section](#how-to-restrict-the-extension-usage))
 - `routes` (_required_): provide the menu items that should appear on the sidebar once the extension is activated
-<!-- TODO: We should explain that we can only put one menu item per extension and multiple extensions need to be created to put more than one in different locations -->
 
 ### How to restrict the extension usage?
 
@@ -54,9 +53,6 @@ A route, therefore, requires to provide the following information:
 - `destinationPath` (_required_): indicate the destination suffix to which you will be redirected when clicking the menu item and it will compose the URL where the iframe will be mounted; in fact, the resulting URL will be composed accoring this pattern `<locationPath>/extensions/<extensionId><destinationPath>`. This information should be defined but is ignored for the `category` route.
 - `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. This value can be omitted for the `category` route.
 - `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
-- `featureToggles`: TBD
-- `order`: TBD
-- `matchExactMountPath`: TBD
 <!-- TODO: Should be added some mentions about the order of menu items? -->
 
 #### Register Backoffice Extension Example
