@@ -1,5 +1,5 @@
 ---
-id: overview
+id: extensibility-overview
 title: Overview
 sidebar_label: Overview
 ---
@@ -15,7 +15,7 @@ In the following pages you will be explained how to add the backoffice as extens
 
 ## How to see your extension on Console?
 
-Activating completely a new extension in the Console involves 2 phases:
+Activating a new extension in the Console involves two phases:
 
 - [Registration](/console/console-extensibility/registration.md)
 - [Activation](/console/console-extensibility/activation.md)
@@ -25,4 +25,4 @@ Activating completely a new extension in the Console involves 2 phases:
 
 ## Advanced concepts: Security and Customization
 
-The extension visibility could be based on IAM permissions and restricted only to specific users (see the security paragraph on the [registration page](/console/console-extensibility/registration.md#how-to-restrict-the-extension-usage)) and the activation could override some registered extension settings and apply these overrides only to a specific activation context (see the [overrides](/console/console-extensibility/activation.md#overrides) section for more information).   
+The extension visibility can be based on IAM permissions and restricted only to specific users (see the security paragraph on the [registration page](/console/console-extensibility/registration.md#how-to-restrict-the-extension-usage)) and the activation could override some registered extension settings and apply these overrides only to a specific activation context (see the [overrides](/console/console-extensibility/activation.md#overrides) section for more information).   

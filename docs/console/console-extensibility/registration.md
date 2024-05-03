@@ -1,5 +1,5 @@
 ---
-id: registration
+id: extension-registration
 title: Register Extensions
 sidebar_label: Register Extensions
 ---

@@ -1,5 +1,5 @@
 ---
-id: activation
+id: extension-activation
 title: Activate Extensions
 sidebar_label: Activate Extensions
 ---
@@ -57,7 +57,7 @@ After registering the Backoffice extension as explained [here](/console/console-
 
 ## Overrides
 
-Overrides allow us to edit the routes of a registered extension graphically applying these changes only for a specific activation. Activations without overrides show the extension's menu item as it was registered with [this API](/console/console-extensibility/registration.md#how-to-register-my-extension), while with overrides there could be graphical differences like a different icon or label.
+Overrides allow you to edit the routes of a registered extension graphically applying these changes only for a specific activation. Activations without overrides show the extension's menu item as it was registered with [this API](/console/console-extensibility/registration.md#how-to-register-my-extension), while with overrides there could be graphical differences like a different icon or label.
 
 :::info
 With overrides, it is possible to edit one or more routes of the registered extension, including routes of type `category`. The override on a route will apply only the specified changes and leave the others unchanged, so except for the routeId the other properties are optional.
@@ -120,7 +120,6 @@ Be careful to not activate the same extension multiple times on the same context
 ```
 
 <!-- TODO: Explain that an override refers to the route registered with the extension using the routeId (Invite the user to remember the routeId or to use the GET activate extension api to retrieve the registered extension with its routes) -->
-<!-- TODO: Add an image on Console with the added extension showing the overrides  -->
 
 
 # Deactivate an extension
