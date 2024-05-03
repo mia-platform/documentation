@@ -5,29 +5,61 @@ sidebar_label: Extensible Locations
 ---
 # Extensible Locations
 
+La Console permette di incorporare estensioni in punti ben specifici che hanno già delle voci di menu e dei gruppi che possono essere utilizzati anche dalle nostre estensioni. Queste locations sono:
 
-<!-- TODO: Add a Console image for each location also to show the base menu groups  -->
-<!-- TODO: List all the locationId that can be used on the registered extension -->
-<!-- TODO: For each extension list the routeId of each menu groups that can be used as parentId to registering an extension and add its menu item inside one of these extisting menu groups -->
-<!-- TODO: Should be added some mentions about the order of menu items? -->
+- `tenant`
+- `project`
+- `runtime`
 
-- 'tenant' -> '/tenants/:tenantId'
+## Tenant
 
-- GENERAL GROUP (parentId: `general`)
-- INFRASTRUCTURE GROUP (parentId: `infrastructure`)
-- GOVERNANCE GROUP (parentId: `governance`)
-- ACCESS MANAGEMENT GROUP (parentId: `access-management`)
-- ADMINISTRATION GROUP (parentId: `administration`)
-- EXTENSIBILITY GROUP (parentId: `extensibility`)
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
 
+![tenant location](./images/tenantLocation.png)
+  
+  </div>
+</div>
 
-- 'project' -> '/projects/:projectId'
+Questa location si trova sulle sezioni riguardanti la Company caratterizzati dal prefisso nell'URL `/tenants/:tenantId`. Come visibile dall'immagine la sidebar contiene già i gruppi di menu utilizzabili tramite parentId: 
+
+- **GENERAL GROUP** (parentId: `general`)
+- **INFRASTRUCTURE GROUP** (parentId: `infrastructure`)
+- **GOVERNANCE GROUP** (parentId: `governance`)
+- **ACCESS MANAGEMENT GROUP** (parentId: `access-management`)
+- **ADMINISTRATION GROUP** (parentId: `administration`)
+- **EXTENSIBILITY GROUP** (parentId: `extensibility`)
+
+## Project
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![project location](./images/projectLocation.png)
+  
+  </div>
+</div>
+
+Questa location si trova sulle sezioni riguardanti l'overview di Progetto caratterizzati dal prefisso nell'URL `/projects/:projectId`. Come visibile dall'immagine la sidebar contiene già i gruppi di menu utilizzabili tramite parentId: 
 
 - GENERAL GROUP (parentId: `general`)
 - ADMINISTRATION GROUP (parentId: `administration`)
 - RUNTIME GROUP (parentId: `runtime`)
 - ACCESS MANAGEMENT GROUP (parentId: `access-management`)
 
-- 'runtime' -> '/projects/:projectId/monitoring/environments/:envId'
+## Runtime
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![runtime location](./images/runtimeLocation.png)
+  
+  </div>
+</div>
+
+Questa location si trova sulle sezione Runtime di un Progetto caratterizzati dal prefisso nell'URL `/projects/:projectId/monitoring/environments/:envId`. Come visibile dall'immagine la sidebar contiene già i gruppi di menu utilizzabili tramite parentId: 
 
 - WORKLOADS GROUP (parentId: `workloads`)
+
+
+<!-- TODO: Should be added some mentions about the order of menu items? -->

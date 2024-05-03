@@ -47,7 +47,7 @@ Dopo aver registrato l'estensione del backoffice come spiegato [qui](./registrat
 }
 ```
 
-**Response**
+**Response on success**
 ```json
 {
     "activationId": "my-activation-id"
@@ -111,7 +111,7 @@ Attenzione a non attivare più volte la stessa estensione sullo stesso contesto 
 }
 ```
 
-**Response**
+**Response on success**
 ```json
 {
     "activationId": "my-activation-id"
@@ -124,6 +124,23 @@ Attenzione a non attivare più volte la stessa estensione sullo stesso contesto 
 
 # Deactivate an extension
 
-`DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation`
+L'attivazione di un estensione può essere annullata in qualsiasi momento con l'API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation` e si può contattare tramite API Portal sotto le tag `Companies` o `Extensibility`.
 
 ![delete extension activation](./images/deleteExtensionActivation.png)
+
+**Path Params**
+- `tenantId`: inserire il tenant ID della Company su cui è registrata l'estensione da disattivare
+- `extensionId`: inserire l'extension ID dell'estensione da disattivare
+- `contextType`: inserire il tipo di contesto su cui è attiva l'estensione
+- `contextId`: inserire l'ID della Company o del Project a seconda del tipo di contesto specificato su cui è attiva l'estensione
+
+```json
+{
+  "tenantId": "my-tenant-id",
+  "extensionId": "my-extension-id",
+  "contextType": "project",
+  "contextId": "my-project-id"
+}
+```
+
+**Response on success**: 204 No Content
