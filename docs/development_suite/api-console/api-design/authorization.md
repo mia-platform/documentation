@@ -24,7 +24,8 @@ Heading to the Authorization section (inside the Design area), you can manage Au
 - [**Manual Routes**](#manual-routes-tab): in this tab, you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification).
 
 :::info
-Enabling Rönd on your microservices will add a special sidecar to them, the `rbac-manager` sidecar. You can find it in the [Sidecars section](TODO: link) and in the [microservice containers table](TODO: link), but it can only be configured in the Authorization section. Learn more about sidecars in the [dedicated documentation page](TODO: link)
+When Rönd is enabled on your microservice the `rbac-service` sidecar is added to the microservide. This is a [special sidecar](/docs/development_suite/api-console/api-design/microservice-containers#) managed by the Authorization section.  
+You can then find it listed in the [Sidecars section](/docs/console/design-your-projects/manage-sidecars) as well as in the [microservice containers table](/docs/development_suite/api-console/api-design/microservice-containers).
 :::
 
 ### Overview tab
@@ -51,7 +52,7 @@ If your service exposes OpenAPI 3 Specification you can use the **custom attribu
 
 Inside the General Settings tab you can:
 - define the Rönd service version
-- configure RBAC Storage information.
+- configure RBAC Storage information
 
 #### RBAC Storage
 
