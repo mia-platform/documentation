@@ -60,8 +60,8 @@ const features = [
       {
         icon: "globe",
         target: "_blank",
-        href: "https://mia-platform.eu/mia-platform-v12/",
-        label: "Discover Mia-Platform v12 🎉",
+        href: "https://mia-platform.eu/mia-platform-v13/",
+        label: "Discover Mia-Platform v13 🎉",
       },
     ],
   },
