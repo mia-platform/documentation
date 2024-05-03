@@ -80,7 +80,7 @@ This is the case of [`rbac-service` sidecar](#rbac-service-sidecar): a special s
 
 #### `rbac-service` sidecar
 
-If you enabled [Rönd](https://rond-authz.io/) on your microservice, you can find the `rbac-service` container in you microservice containers table and in the [Sidecars management section](/console/design-your-projects/sidecars.md) as well. This is a special sidecar and thus its configuration can be managed from the [Authorization page](/development_suite/api-console/api-design/authorization.md).
+If you enabled [Rönd](https://rond-authz.io/) on your microservice, you can find the `rbac-service` container in you microservice containers table and in the [Sidecars management section](/console/design-your-projects/sidecars.md) as well. This is a special sidecar and thus its configuration can only be managed from the dedicated [Authorization page](/development_suite/api-console/api-design/authorization.md).
 
 :::info
 When Rönd is enabled on a microservice, the only container that can be exposed on a port is `rbac-service`. All other containers present in the microservice, including the main container, will remain unexposed by default. In the microservice containers table, the exposure switch will be turned off and disabled.
