@@ -45,12 +45,13 @@ The table shows a summary of the containers resource request and limits for CPU 
 ### Exposing a specific container
 
 :::info
-Exposing a container means making it reachable from other workloads inside the same Project environment.
-
+Exposing a container means making it reachable from other workloads inside the same Project environment.  
 By default all the containers that specify a container port are exposed by the Console if no other changes are made.
 :::
 
 From the containers table you can decide whether to expose all your service containers or toggle only the ones you want to expose. In the example below, only the **main container** is configured to be exposed.
+
+In order to expose a container, this must define at least one container port. In case no container ports are defined, the exposure switch will be disabled. Configure ports from the specific section in the [sidecar detail](#sidecar-detail)
 
 ![Exposing containers](img/microservice-containers/exposing-containers.png)
 
@@ -65,9 +66,9 @@ The main container and other [special sidecar containers](#special-sidecars) can
 
 In this example you can see the same sections that are present in the microservice detail too. To correctly configure these sections check out the relative documentation:
 
-- [General](/docs/development_suite/api-console/api-design/services#manage-microservices)
-- [Environment Variables](/docs/development_suite/api-console/api-design/services##environment-variable-configuration)
-- [ConfigMaps & Secrets](/docs/development_suite/api-console/api-design/services#custom-configuration)
+- [General](/development_suite/api-console/api-design/services.md#manage-microservices)
+- [Environment Variables](/development_suite/api-console/api-design/services.md#environment-variable-configuration)
+- [ConfigMaps & Secrets](/development_suite/api-console/api-design/services.md#custom-configuration)
 - **Advanced:** from this section you can delete the sidecar from the currently selected service
 
 ![Sidecar detail page](img/microservice-containers/sidecar-detail-page.png)
@@ -75,11 +76,11 @@ In this example you can see the same sections that are present in the microservi
 ### Special sidecars
 
 Some sidecar configurations cannot be directly modified like other sidecars and services. These special sidecars that are marked with a different icon and can be managed from other sections of the Console.  
-This is the case of [`rbac-service` sidecar](#rbac-service-sidecar): a special sidecar that can be configured from the [Authorization section](/docs/development_suite/api-console/api-design/authorization).
+This is the case of [`rbac-service` sidecar](#rbac-service-sidecar): a special sidecar that can be configured from the [Authorization section](/development_suite/api-console/api-design/authorization.md).
 
 #### `rbac-service` sidecar
 
-If you enabled [Rönd](https://rond-authz.io/) on your microservice, you can find the `rbac-service` container in you microservice containers table and in the [Sidecars management section](/docs/console/design-your-projects/manage-sidecars) as well. This is a special sidecar and thus its configuration can be managed from the [Authorization page](/docs/development_suite/api-console/api-design/authorization).
+If you enabled [Rönd](https://rond-authz.io/) on your microservice, you can find the `rbac-service` container in you microservice containers table and in the [Sidecars management section](/console/design-your-projects/sidecars.md) as well. This is a special sidecar and thus its configuration can be managed from the [Authorization page](/development_suite/api-console/api-design/authorization.md).
 
 :::info
 When Rönd is enabled on a microservice, the only container that can be exposed on a port is `rbac-service`. All other containers present in the microservice, including the main container, will remain unexposed by default. In the microservice containers table, the exposure switch will be turned off and disabled.

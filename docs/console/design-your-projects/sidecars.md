@@ -1,15 +1,15 @@
 ---
-id: manage-sidecars
+id: sidecars
 title: Create and Manage Sidecars
 sidebar_label: Create Sidecars
 ---
 
 ## What is a Sidecar
 
-A sidecar is a secondary container that runs together with the [**main application container**](/docs/development_suite/api-console/api-design/microservice-containers#main-container) inside a Pod.  
+A sidecar is a secondary container that runs together with the [**main application container**](/development_suite/api-console/api-design/microservice-containers.md#main-container) inside a Pod.  
 In your Console Projects, sidecars can be added to microservices to enhance or extend their functionality by providing additional features such as security, logging or data synchronization.
 
-To better understand the difference between main and sidecar containers, check out [Microservice Containers](/docs/development_suite/api-console/api-design/microservice-containers).
+To better understand the difference between main and sidecar containers, check out [Microservice Containers](/development_suite/api-console/api-design/microservice-containers.md).
 
 ## Managing your Sidecars
 
@@ -30,10 +30,10 @@ By clicking on the Edit button inside the table, you can update the sidecar reso
 
 ![Edit sidecar drawer](img/edit-sidecar-drawer.png)
 
-If you want to view the sidecar configuration in detail, use the **View sidecar configuration** button or click on the the sidecar name in the table row to go to its [detail page](/docs/development_suite/api-console/api-design/microservice-containers#sidecar-detail) inside the microservice it is attached to.
+If you want to view the sidecar configuration in detail, use the **View sidecar configuration** button or click on the the sidecar name in the table row to go to its [detail page](/development_suite/api-console/api-design/microservice-containers.md#sidecar-detail) inside the microservice it is attached to.
 
 :::info
-Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/docs/development_suite/api-console/api-design/microservice-containers#special-sidecars) that are managed by specifc Console sections.
+Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specifc Console sections.
 :::
 
 #### Create sidecar
@@ -57,7 +57,7 @@ If the sidecar is used only by one microservice, removing it from the microservi
 
 ### Microservice sidecars
 
-Another way to view and manage sidecars configurations is from the [microservice detail page](/docs/development_suite/api-console/api-design/microservice-containers).  
+Another way to view and manage sidecars configurations is from the [microservice detail page](/development_suite/api-console/api-design/microservice-containers.md).  
 From here you can find an overview of all the containers configured for the microservice (both main container and sidecar containers) and configure the specific sidecar container configuration for your needs.
 
 ![Service containers](img/service-containers.png)

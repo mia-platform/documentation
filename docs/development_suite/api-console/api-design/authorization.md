@@ -24,8 +24,8 @@ Heading to the Authorization section (inside the Design area), you can manage Au
 - [**Manual Routes**](#manual-routes-tab): in this tab, you can manually configure the policies required by your service APIs (useful when your service does not expose an OpenAPI Specification).
 
 :::info
-When Rönd is enabled on your microservice the `rbac-service` sidecar is added to the microservide. This is a [special sidecar](/docs/development_suite/api-console/api-design/microservice-containers#) managed by the Authorization section.  
-You can then find it listed in the [Sidecars section](/docs/console/design-your-projects/manage-sidecars) as well as in the [microservice containers table](/docs/development_suite/api-console/api-design/microservice-containers).
+When Rönd is enabled on your microservice the `rbac-service` sidecar is added to the microservide. This is a [special sidecar](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) managed by the Authorization section.  
+You can then find it listed in the [Sidecars section](/console/design-your-projects/sidecars.md) as well as in the [microservice containers table](/development_suite/api-console/api-design/microservice-containers.md).
 :::
 
 ### Overview tab
