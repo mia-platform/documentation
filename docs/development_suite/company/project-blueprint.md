@@ -24,8 +24,7 @@ There are 2 cards in this section: the first displays the default template for t
 You can create a new template using the "Add template" button of the card. A modal will open requiring the following information:
 
 - **Name** (*required*): the name of the template;
-- **ID** (*required*): the human-readable ID of the template (e.g. "mia-platform-multitenant-template"). It must adhere to this regex: `(^[a-z]+[a-z0-9-]*$)`;
-- **Archive URL** (*required*): URL to a zip/gzip of the base Project configuration folder. All contents of this folder will be copied into the target configuration, and correctly interpolated. If you want to create a custom template, click [here](#how-to-create-a-project-archive) to see how to do it; //TODO
+- **Archive URL** (*required*): URL to a zip/gzip of the base Project configuration folder. All contents of this folder will be copied into the target configuration, and correctly interpolated. If you want to create a custom template, click [here](#how-to-create-a-project-archive) to see how to do it;
 - **Enable Kustomize as Project structure**: whether the Project uses Kustomize as a configuration management tool for Project microservices (more info on Kustomize can be found [here](/console/project-configuration/kustomize-your-configurations/index.md));
 - **Deployment strategy**: it could be either push mode (pipeline-based) or pull mode (GitOps-based);
 - **Pipeline runner** (*required*): choose MLP if the Project uses it as command line deployment tool. It is required to have the [Smart Deploy](/development_suite/deploy/overview.md#smart-deploy) feature enabled;
@@ -49,7 +48,7 @@ If at least one template is configured on the blueprint, you will also be able t
 
 You can edit template information from its detail page, accessible by clicking on the template name in the table. Three cards are shown here:
 
-- **General**: shows the general information of the template: name, ID, archive URL and description. You can edit this information (except for ID) by clicking on the "Edit" button of the card;
+- **General**: shows the general information of the template: name, archive URL and description. You can edit this information by clicking on the "Edit" button of the card;
 
 ![templates general](img/templates-general.png)
 
