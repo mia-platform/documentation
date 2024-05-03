@@ -178,7 +178,7 @@ async function createConfig() {
           },
           {
             label: "Mia-Platform Fast Data",
-            href: "https://mia-platform.eu/platform/console/fast-data",
+            href: "https://mia-platform.eu/platform/fast-data/",
           },
           {
             label: "Release Notes",
@@ -194,7 +194,7 @@ async function createConfig() {
           },
           {
             label: "Library",
-            href: "https://resources.mia-platform.eu/en/library",
+            href: "https://mia-platform.eu/library/",
           },
           {
             label: "GitHub",
@@ -246,17 +246,17 @@ async function createConfig() {
             lastVersion: "current",
             versions: {
               current: {
-                label: "12.x (Current)",
+                label: "13.x (Current)",
                 path: "",
                 banner: "none"
+              },
+              "12.x.x": {
+                label: "12.4.x",
+                path: "12.x",
               },
               "11.x.x": {
                 label: "11.7.x",
                 path: "11.x",
-              },
-              "10.x.x": {
-                label: "10.9.x",
-                path: "10.x",
               },
             },
             async sidebarItemsGenerator({
@@ -281,6 +281,8 @@ async function createConfig() {
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
+            ignorePatterns: ['/11.x/**', '/12.x/**'],
+            filename: 'sitemap.xml',
           }
         },
       ],
