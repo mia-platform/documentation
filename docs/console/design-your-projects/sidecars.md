@@ -45,7 +45,7 @@ From the creation form you can select multiple services to which the sidecar wil
 
 #### Delete sidecar
 
-You can remove a sidecar from a microservice by clicking on the Delete button inside the table row or, you can remove it completely from all microservices from the Advanced tab.
+You can remove a sidecar from a microservice by clicking on the Delete button inside the table row, or you can delete it completely from all microservices from the Advanced tab.
 
 ![Bulk delete sidecar](img/bulk-delete-sidecar.png)
 
