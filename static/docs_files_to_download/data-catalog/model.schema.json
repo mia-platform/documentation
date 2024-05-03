@@ -94,12 +94,7 @@
         "type"
       ],
       "properties": {
-        "default": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
+        "default": true,
         "nullable": {
           "type": "boolean"
         },
@@ -121,7 +116,7 @@
           "format": "int32"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/raw-type"
         },
         "unique": {
           "type": "boolean"
@@ -142,9 +137,29 @@
         }
       }
     },
+    "json-primitive-type": {
+      "type": "string",
+      "enum": [
+        "null",
+        "boolean",
+        "number",
+        "integer",
+        "string",
+        "array",
+        "object"
+      ]
+    },
     "json-property": {
       "type": "object",
       "properties": {
+        "default": true,
+        "nullable": {
+          "writeOnly": true,
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
         "type": {
           "anyOf": [
             {
@@ -160,7 +175,6 @@
     "json-schema": {
       "type": "object",
       "required": [
-        "additionalProperties",
         "properties",
         "type"
       ],
@@ -181,20 +195,34 @@
           }
         },
         "type": {
-          "$ref": "#/definitions/json-type"
+          "$ref": "#/definitions/json-primitive-type"
         }
       }
     },
     "json-type": {
-      "type": "string",
-      "enum": [
-        "null",
-        "boolean",
-        "number",
-        "integer",
-        "string",
-        "array",
-        "object"
+      "anyOf": [
+        {
+          "$ref": "#/definitions/json-primitive-type"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/json-primitive-type"
+          }
+        }
+      ]
+    },
+    "raw-type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       ]
     },
     "source-connection-metadata": {
