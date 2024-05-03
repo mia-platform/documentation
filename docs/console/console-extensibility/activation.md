@@ -10,7 +10,7 @@ An extension registered on a Company can be activated to be used in the Console.
 
 The activation can be done using the API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` that can be accessed via the API Portal under the tags `Companies` or `Extensibility`.
 
-![activate extension example](./images/activateExtension.png)
+![activate extension example](img/activateExtension.png)
 
 As shown in the image, to activate an extension, the API allows specifying these parameters:
 
@@ -19,7 +19,7 @@ As shown in the image, to activate an extension, the API allows specifying these
 - `extensionId`: insert the extension ID of the extension to activate
 
 **Body Params**
-- `contextType`: you can specify one of the contexts `company` or `project` on which the extension allows the activation (see `contexts` on this [link](./registration.md#how-to-register-my-extension))
+- `contextType`: you can specify one of the contexts `company` or `project` on which the extension allows the activation (see `contexts` on this [link](/console/console-extensibility/registration.md#how-to-register-my-extension))
 - `contextId`: insert the ID of the Company or Project depending on the type of context specified
 - `overrides`: array of routes registered on the extension that you want to modify only for this activation (see the [section](#overrides) below)
 
@@ -29,7 +29,7 @@ Activation at the Project level can only be done on a project within the same Co
 
 ### Activate Backoffice Extension Example
 
-After registering the Backoffice extension as explained [here](./registration.md#register-backoffice-extension-example), you can proceed with its activation on a project located within the Company identified by `my-tenant-id`:
+After registering the Backoffice extension as explained [here](/console/console-extensibility/registration.md#register-backoffice-extension-example), you can proceed with its activation on a project located within the Company identified by `my-tenant-id`:
 
 **Path Params**
 ```json
@@ -57,7 +57,7 @@ After registering the Backoffice extension as explained [here](./registration.md
 
 ## Overrides
 
-Overrides allow us to edit the routes of a registered extension graphically applying these changes only for a specific activation. Activations without overrides show the extension's menu item as it was registered with [this API](./registration.md#how-to-register-my-extension), while with overrides there could be graphical differences like a different icon or label.
+Overrides allow us to edit the routes of a registered extension graphically applying these changes only for a specific activation. Activations without overrides show the extension's menu item as it was registered with [this API](/console/console-extensibility/registration.md#how-to-register-my-extension), while with overrides there could be graphical differences like a different icon or label.
 
 :::info
 With overrides, it is possible to edit one or more routes of the registered extension, including routes of type `category`. The override on a route will apply only the specified changes and leave the others unchanged, so except for the routeId the other properties are optional.
@@ -69,11 +69,11 @@ With overrides, it is possible to edit one or more routes of the registered exte
 - `icon`
 - `labelIntl` 
 
-The properties that can be modified by the override coincide with the properties of the routes registered with the extension already explained [here](./registration.md#how-to-configure-correctly-the-extension-menu-item)
+The properties that can be modified by the override coincide with the properties of the routes registered with the extension already explained [here](/console/console-extensibility/registration.md#how-to-configure-correctly-the-extension-menu-item)
 
 ### Apply overrides on Backoffice Extension Example
 
-![activate extension with override](./images/activateExtensionWithOverride.png)
+![activate extension with override](img/activateExtensionWithOverride.png)
 
 With the following example, you can activate the Backoffice extension as done [above](#activate-backoffice-extension-example) applying overrides to change the label of the menu group and the icon of the extension route.
 
@@ -127,7 +127,7 @@ Be careful to not activate the same extension multiple times on the same context
 
 The activation of an extension can be canceled at any time with the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation` and can be accessed via the API Portal under the tags `Companies` or `Extensibility` and it is required the Company Owner role on the Company where the extension is activated.
 
-![delete extension activation](./images/deleteExtensionActivation.png)
+![delete extension activation](img/deleteExtensionActivation.png)
 
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to deactivate is registered

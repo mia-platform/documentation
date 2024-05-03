@@ -17,7 +17,7 @@ The Console allows to embed extensions at specific locations that already have m
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '500px'}}> 
 
-![tenant location](./images/tenantLocation.png)
+![tenant location](img/tenantLocation.png)
   
   </div>
 </div>
@@ -36,7 +36,7 @@ This location is found on sections related to the Company on the URLs with prefi
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '500px'}}> 
 
-![project location](./images/projectLocation.png)
+![project location](img/projectLocation.png)
   
   </div>
 </div>
@@ -53,7 +53,7 @@ This location is found on sections related to the Project overview on the URLs w
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '500px'}}> 
 
-![runtime location](./images/runtimeLocation.png)
+![runtime location](img/runtimeLocation.png)
   
   </div>
 </div>
