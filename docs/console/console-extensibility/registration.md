@@ -65,7 +65,7 @@ Before to proceed make sure you have:
 2. The `Microfrontend Composer Toolkit` application created and exposed to view the Backoffice frontend. Follow this section of the [guide](../../microfrontend-composer/tutorials/basics#setup-the-microservices) to do so.
 3. The response from the Backoffice endpoint can be embedded within an iframe. See this [link](../../development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
 
-Once this is done, you can registrate the Backoffice as extension:
+Once this is done, you can register the Backoffice as extension:
 
 **Path Params**
 ```json
