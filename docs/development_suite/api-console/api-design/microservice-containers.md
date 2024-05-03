@@ -18,7 +18,7 @@ When creating a new microservice in Console, you can define a single docker imag
 
 ## Sidecar Containers
 
-For several reasons although, you may want to extend the main Container functionalities **without modifying** the business logic of your application.
+For several reasons although, you may want to extend the main container functionalities **without modifying** the business logic of your application.
 
 To better understand this need, let's imagine this common scenario.  
 You have a core microservice that processes user orders. This microservice is responsible for validating the order, calculating the total amount, and then sending it to the fulfillment center.
@@ -82,7 +82,7 @@ This is the case of [`rbac-service` sidecar](#rbac-service-sidecar): a special s
 If you enabled [Rönd](https://rond-authz.io/) on your microservice, you can find the `rbac-service` container in you microservice containers table and in the [Sidecars management section](/docs/console/design-your-projects/manage-sidecars) as well. This is a special sidecar and thus its configuration can be managed from the [Authorization page](/docs/development_suite/api-console/api-design/authorization).
 
 :::info
-When Rönd is enabled on a microservice, the only container that can be exposed on a port is `rbac-manager`. All other containers present in the microservice, including the main container, will remain unexposed by default. In the microservice containers table, the exposure switch will be turned off and disabled.
+When Rönd is enabled on a microservice, the only container that can be exposed on a port is `rbac-service`. All other containers present in the microservice, including the main container, will remain unexposed by default. In the microservice containers table, the exposure switch will be turned off and disabled.
 :::
 
 ![rbac-service sidecar](img/microservice-containers/rbac-service-sidecar.png)

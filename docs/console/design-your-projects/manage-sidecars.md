@@ -13,7 +13,7 @@ To better understand the difference between main and sidecar containers, check o
 
 ## Managing your Sidecars
 
-From the Design area,  you can manage all sidecars configurations for your microservices from the dedicated **Sidecars** section. You can also configure them directly from the **Sidecar detail page** inside the microservice the sidecar is attached to.
+From the Design area, you can manage all sidecars configurations for your microservices from the dedicated **Sidecars** section. You can also configure them directly from the **Sidecar detail page** inside the microservice the sidecar is attached to.
 
 ### Sidecars overview section
 
