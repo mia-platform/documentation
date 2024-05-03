@@ -178,7 +178,7 @@ async function createConfig() {
           },
           {
             label: "Mia-Platform Fast Data",
-            href: "https://mia-platform.eu/platform/console/fast-data",
+            href: "https://mia-platform.eu/platform/fast-data/",
           },
           {
             label: "Release Notes",
@@ -281,7 +281,7 @@ async function createConfig() {
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
-            ignorePatterns: ['/10.x/**', '/11.x/**'],
+            ignorePatterns: ['/11.x/**', '/12.x/**'],
             filename: 'sitemap.xml',
           }
         },
