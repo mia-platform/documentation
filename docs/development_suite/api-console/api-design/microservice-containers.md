@@ -75,7 +75,7 @@ In this example you can see the same sections that are present in the microservi
 
 ### Special sidecars
 
-Some sidecar configurations cannot be directly modified like other sidecars and services. These special sidecars that are marked with a different icon and can be managed from other sections of the Console.  
+Some sidecar configurations cannot be directly modified like other sidecars and services. These special sidecars are marked with a different icon and can be managed from other sections of the Console.  
 This is the case of [`rbac-service` sidecar](#rbac-service-sidecar): a special sidecar that can be configured from the [Authorization section](/development_suite/api-console/api-design/authorization.md).
 
 #### `rbac-service` sidecar
