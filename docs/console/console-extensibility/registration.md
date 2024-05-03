@@ -5,66 +5,71 @@ sidebar_label: Register Extensions
 ---
 # Register Extensions
 
-Una nuova estensione ha bisogno sempre di essere registrata sulla Console prima di poter essere attivata. L'estensione registrata risulterà cosi sotto il dominio della propria Company ed è per questo che la registrazione e la gestione delle estensioni registrate può essere fatta solo dal Company Owner.
+A new extension always should be registered on Console before it can be activated. The registered extension are owned by specific Companies and so the registration and management operations on extensions can only be done by a Company Owner.
 
 ## How to register my extension?
 
-Se vuoi registrare una nuova estensione sarà necessario aver già scelto la Company che ne avrà possesso e assicurarsi di avere il ruolo di Company Owner su tale Company. Una volta fatto questo, la registrazione può essere fatta tramite API e consigliamo di utilizzare l'API Portal per forgiare le richieste.
+If you want to register a new extension, you will need to have already chosen the Company that will own it and ensure that you have the role of Company Owner on that Company. Once this is done, the registration can be done via API, and we recommend using the API Portal to forge requests.
 
-La rotta da contattare è la `PUT /api/extensibility/tenants/{tenantId}/extensions` e la puoi trovare sotto il tag `Companies` o `Extensibility`. 
+The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, which you can find under the tags `Companies` or `Extensibility`.
 
 ![registration example](./images/registrationExample.png)
 
-Come si può vedere dall'immagine di esempio, la registrazione di un estensione richiede di fornire alcune informazioni necessarie per la renderizzazione corretta in Console.
+As can be seen from the example image, registering an extension requires providing some necessary information for proper rendering in the Console.
 
 **Path Params**
-- `tenantId`: inserire il tenant ID della Company che avrà ownership della nuova estension
+- `tenantId`: insert the tenant ID of the Company that will own the new extension
 
 **Body Params**
-- `name`: riporta il nome della tua estensione
-- `contexts`: dichiara in quali contesti potrà essere attivata l'estensione. I valori selezionabili al momento sono Company e Project.
-- `description`: fornisci una descrizione breve dell'estensione 
-- `entry`: indica l'url dove verrà fetchato l'iframe
-- `extensionType`: seleziona il tipo di estensione. Per ora solo il tipo iframe è supportato
-- `permissions`: indica quali permessi dovranno avere gli utenti per poter vedere l'estensione una volta attiva (maggiori approfondimenti nella [sezione](#how-to-restrict-the-extension-usage) successiva)
-- `routes`: fornisci le voci di menu che dovranno comparire sulla sidebar una volta attivata l'estensione
-<!-- TODO: dobbiamo spiegare che possiamo solo mettere un menu item per estensione e bisogna creare più estensioni per metterne più di una in diverse location -->
+- `name` (_required_): provide the name of your extension
+- `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
+- `description`: provide a brief description of the extension
+- `entry` (_required_): indicate the URL where the iframe will be fetched
+- `extensionType` (_required_): select the type of extension. For now, only the iframe type is supported
+- `permissions`: indicate which permissions users will need to have to see the extension once activated (further details in the [next section](#how-to-restrict-the-extension-usage))
+- `routes` (_required_): provide the menu items that should appear on the sidebar once the extension is activated
+<!-- TODO: We should explain that we can only put one menu item per extension and multiple extensions need to be created to put more than one in different locations -->
 
 ### How to restrict the extension usage?
 
-Le estensioni registrate possono anche conservare un array di `permissions` che serve per verificare se un utente può vedere l'estensione attiva in Console oppure no. In particolare l'utente dovrà avere **almeno uno dei permessi richiesti nell'array** e i permessi che si possono registrare su un estensione sono quelli della Console riportati in tabella dell'[Identity and access management page](../../development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console)  
+A registered extensions can specifies an array of `permissions` that is used to check if a user can see the active extension in the Console or not. In particular, the user must have **at least one of the required permissions in the array**, and the permissions that can be registered on an extension are those of the Console listed in the table of the [Identity and access management page](../../development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
 
-### How to configure correctly the extension menu item? 
+### How to configure correctly the extension menu item?
 
 ![registration example main route](./images/registrationExampleMainRoute.png)
 
 ![registration example category route](./images/registrationExampleCategoryRoute.png)
 
-Le rotte rappresentano le voci di menu che verranno aggiunte alla sidebar e che ci permettono di accedere all'estensione. Queste rotte devono specificare una location ben precisa e ad ogni location corrisponderanno anche dei menu groups a cui le rotte si possono agganciare. Inoltre su una location è anche possibile registrare delle rotte di tipo `category` che aggiungono nuovi menu groups e utilizzarli per agganciare i nuovi menu items.
+The routes should contain the info to render the extension menu item on the Console sidebar, that  allow to access the extension. A route can be registered leaving `renderType` unsetted to be rendered as simple menu item or it can be a `category` route corresponding to a new custom menu group where attach menu items.
 
-Una rotta richede quindi di fornire le seguenti informazioni:
-- `id`: assegnare un id univoco che potrà essere utilizzato per applicare degli override con l'attivazione oppure per agganciare dei menu items se il renderType della rotta è `category`
-- `locationId`: scegli una location dove inserire la tua rotta (vedi le [location supportate](./locations.md))
-- `renderType`: seleziona `category` se vuoi inserire un nuovo menu group altrimenti lascia un valore vuoto per aggiungere un menu item
-- `parentId`: inserisci il route `id` di un menu group dove si vuole agganciare il menu item (trovi i parentId già esistenti corrispondenti alle [location supportate](./locations.md)) oppure aggiungi una route di tipo `category` e usa il suo `id`. Puoi omettere questa informazione se la rotta è di tipo `category`.
-- `destinationPath`: indica il suffisso di destinazione a cui si verrà rimandati al click del menu item e comporrà l'URL dove verrà montato l'iframe, infatti l'URL finale sarà composta da 3 pezzi `<locationPath>/extensions/<extensionId><destinationPath>`. Puoi omettere questa informazione se la rotta è di tipo `category`. <!-- TODO: Viene ignorata ma va inserita -->
-- `icon`: seleziona un icona da utilizzare sul nuovo menu item e riportala dentro il campo `name`. Puoi trovare le icone su questo [link](https://react-icons.github.io/react-icons/search/) e sono supportate solo le icone di Ant, Feather e Phosphor. Puoi omettere questa informazione se la rotta è di tipo `category`.
-- `labelIntl`: inserisci la label che verrà usata sul menu item o menu group e riportala in un oggetto {"en": string, "it": string} affinchè il testo venga anche internazionalizzato.
+:::info
+Each extension should have at least a route (that is not `category`) to have sense and could also add at most another `category` type route to add a custom group menu item
+:::
+
+A route, therefore, requires to provide the following information:
+- `id` (_required_): assign a unique id that can be used for applying overrides with activation or for attaching other menu items if the route renderType is `category`
+- `locationId` (_required_): choose a location to place your route (see the [supported locations](./locations.md))
+- `renderType`: select `category` if you want to add a new menu group, otherwise leave it unsetted to add a menu item
+- `parentId`: insert the route `id` of a menu group where you want to attach the menu item. It is possible to choose existing parentIds documented on the [supported locations page](./locations.md) or add a route of type `category` and use its `id`. This value can be omitted for the `category` route.
+- `destinationPath` (_required_): indicate the destination suffix to which you will be redirected when clicking the menu item and it will compose the URL where the iframe will be mounted; in fact, the resulting URL will be composed accoring this pattern `<locationPath>/extensions/<extensionId><destinationPath>`. This information should be defined but is ignored for the `category` route.
+- `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. This value can be omitted for the `category` route.
+- `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
 - `featureToggles`: TBD
 - `order`: TBD
 - `matchExactMountPath`: TBD
 <!-- TODO: Should be added some mentions about the order of menu items? -->
-<!-- TODO: Explain that the route id is required and it is needed to advanced customization (redirect to overrides page) -->
 
 #### Register Backoffice Extension Example
 
-Il seguente esempio mostra come registrare il Backoffice come estensione di Progetto. Per riprodurlo sarà necessario configurare il Backoffice ed esporlo in modo tale che sia possibile utilizzarlo come iframe. I passi preliminari da seguire sono quindi i seguenti:
+The following example shows how to register the Backoffice as a Project extension. To reproduce it, you will need to configure the Backoffice and expose it in such a way that it can be used as an iframe.
 
-1. Creare un progetto reso contattabile esternamente (vedi questa [guida](../project-configuration/create-a-project.mdx) per farlo)
-2. Aggiungere l'application `Microfrontend Composer Toolkit` seguendo questa [guida](../../microfrontend-composer/tutorials/basics#setup-the-microservices)
-3. Assicurati che la risposta dell'endpoint del backoffice permetta di essersi embeddata dentro un iframe (see `Iframe embedding options` on this [link](../../development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more info) 
+Before to proceed make sure you have:
 
-Una volta che questo è stato fatto si può procedere con la registrazione dell'estensione:
+1. A project reachable externally, otherwise create one by referring to this [guide](../project-configuration/create-a-project.mdx).
+2. The `Microfrontend Composer Toolkit` application created and exposed to view the Backoffice frontend. Follow this section of the [guide](../../microfrontend-composer/tutorials/basics#setup-the-microservices) to do so.
+3. The response from the Backoffice endpoint can be embedded within an iframe. See this [link](../../development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
+
+Once this is done, you can registrate the Backoffice as extension:
 
 **Path Params**
 ```json
@@ -77,7 +82,7 @@ Una volta che questo è stato fatto si può procedere con la registrazione dell'
 ```json
 {
   "contexts": ["project"],
-  "description": "Extension to integrate backoffice on Console",
+  "description": "Extension to integrate Backoffice on Console",
   "entry": "https://<my-domain>/mfe-application/home",
   "extensionType": "iframe",
   "name": "Integrated Backoffice",
@@ -96,7 +101,7 @@ Una volta che questo è stato fatto si può procedere con la registrazione dell'
       "parentId": "my-menu-group"
     },
     {
-      "destinationPath": "/something-ignored", // This is required but ignored if renderType is category 
+      "destinationPath": "/something-ignored",
       "id": "my-menu-group",
       "labelIntl": {
         "en": "My Menu Group",
@@ -116,11 +121,11 @@ Una volta che questo è stato fatto si può procedere con la registrazione dell'
 }
 ```
 
-L'estension ID sarà un dato richiesto per controllare l'estensione con le restanti API e potrà essere recuperato usando un'apposita API riporta qui di seguito.
+The extension ID will be required to check the extension with the remaining APIs and can be retrieved using a specific API listed below.
 
 ## Get registered Extensions
 
-La rotta `GET /api/extensibility/tenants/{tenantId}/extensions` ti permette di consultare tutte l'estensioni registrate sotto una specifica Company e la si può contattare facilmente sull'API Portal sotto il tag `Companies` o `Extensibility` assicurandosi di avere il ruolo di Company Owner sulla Company richiesta. 
+The route `GET /api/extensibility/tenants/{tenantId}/extensions` allows you to query all registered extensions under a specific Company and can be easily used on the API Portal under the tags `Companies` or `Extensibility` having the role of Company Owner on the Company that you would require.
 
 ![retrieve extensions example](./images/retrieveExtensionsExample.png)
 
@@ -133,26 +138,26 @@ La rotta `GET /api/extensibility/tenants/{tenantId}/extensions` ti permette di c
 }
 ```
 
-**Response**
+**Response on success**
 ```json
 [
   {
     "extensionId":"my-extension-id",
     "name":"Integrated Backoffice",
-    "description":"Extension to integrate backoffice on Console"
+    "description":"Extension to integrate Backoffice on Console"
   }
 ]
 ```
 
 ## Edit registered Extension
 
-La rotta `PUT /api/extensibility/tenants/{tenantId}/extensions` può essere usata per modificare un estensione già registrata semplicemente specificando l'`extensionId` e riportando tutte le informazioni da applicare incluse anche quelle che dovranno rimanere invariate. Anche questa rotta si può contattare con l'API Portal sotto il tag `Companies` o `Extensibility` assicurandosi di avere il ruolo di Company Owner sulla Company richiesta. 
+The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to edit an already registered extension simply specifying the `extensionId` and providing all the information to apply, including those that should remain unchanged. This route can also be contacted with the API Portal under the tags `Companies` or `Extensibility`, ensuring you have the role of Company Owner on the requested Company.
 
 ![edit registered extension](./images/editRegisteredExtension.png)
 
 #### Edit Backoffice Extension Example
 
-In questo esempio modifichiamo l'estensione del Backoffice registrata [qui](#register-backoffice-extension-example), modificando la label del suo menu item:
+In this example, the Backoffice extension registered [here](#register-backoffice-extension-example) is edited changing the label of its menu item:
 
 **Path Params**
 ```json
@@ -166,7 +171,7 @@ In questo esempio modifichiamo l'estensione del Backoffice registrata [qui](#reg
 {
   "contexts": ["project"],
   "extensionId": "my-extension-id",
-  "description": "Extension to integrate backoffice on Console",
+  "description": "Extension to integrate Backoffice on Console",
   "entry": "https://<my-domain>/mfe-application/home",
   "extensionType": "iframe",
   "name": "Integrated Backoffice",
@@ -185,7 +190,7 @@ In questo esempio modifichiamo l'estensione del Backoffice registrata [qui](#reg
       "parentId": "my-menu-group"
     },
     {
-      "destinationPath": "/something-ignored", // This is required but ignored if renderType is category 
+      "destinationPath": "/something-ignored",
       "id": "my-menu-group",
       "labelIntl": {
         "en": "My Menu Group",
@@ -198,21 +203,24 @@ In questo esempio modifichiamo l'estensione del Backoffice registrata [qui](#reg
 }
 ```
 
-**Response on success**: 204 No Content
+**Response on success**: 
+```
+204 No Content
+```
 
 ## Remove registered Extension
 
-La rotta `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}` può essere usata per rimuovere un estensione già registrata. Si può contattare tramite API Portal sotto il tag `Companies` o `Extensibility` assicurandosi di avere il ruolo di Company Owner sulla Company richiesta. 
+The route `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}` can be used to remove an already registered extension. It can be contacted via API Portal under the tags `Companies` or `Extensibility` and it is required the Company Owner role on the requested Company.
 
 :::info
-L'eliminazione di un estensione la disattiva automaticamente anche da tutti i contesti in cui era attiva.
+Deleting an extension automatically deactivates it from all contexts where it was active.
 :::
 
 ![delete registered extension](./images/deleteRegisteredExtension.png)
 
 #### Remove Backoffice Extension Example
 
-Se si vuole eliminare l'estensione del Backoffice registrata [qui](#register-backoffice-extension-example) ci basta specificare il `tenantId` su cui è stata registrato e il suo `extensionId`:
+To remove the Backoffice extension registered [here](#register-backoffice-extension-example) specify the `tenantId` on which it was registered and its `extensionId`:
 
 **Path Params**
 ```json
@@ -222,4 +230,7 @@ Se si vuole eliminare l'estensione del Backoffice registrata [qui](#register-bac
 }
 ```
 
-**Response on success**: 204 No Content
+**Response on success**: 
+```
+204 No Content
+```

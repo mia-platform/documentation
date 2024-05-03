@@ -3,32 +3,33 @@ id: activation
 title: Activate Extensions
 sidebar_label: Activate Extensions
 ---
+
 # Activate Extensions
 
-Un estensione registrata su una Company può essere attivata per poterla utilizzare in Console. L'attivazione può avvenire in contesti censiti dall'estensione e può essere fatta solo se si ha il ruolo di Company Owner della Company su cui è registrata l'estensione.
+An extension registered on a Company can be activated to be used in the Console. Activation can occur in contexts defined by the extension and can only be done if you have the role of Company Owner on the Company on which the extension is registered.
 
-L'attivazione viene fatta usando l'API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` e si può contattare tramite API Portal sotto le tag `Companies` o `Extensibility`. 
+The activation can be done using the API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` that can be accessed via the API Portal under the tags `Companies` or `Extensibility`.
 
 ![activate extension example](./images/activateExtension.png)
 
-Come mostrato dall'immagine, per attivare un estensione l'API permette di specificare questi parametri:
+As shown in the image, to activate an extension, the API allows specifying these parameters:
 
 **Path Params**
-- `tenantId`: inserire il tenant ID della Company su cui è registrata l'estensione da attivare
-- `extensionId`: inserire l'extension ID dell'estensione da attivare
+- `tenantId`: insert the tenant ID of the Company on which the extension to activate is registered
+- `extensionId`: insert the extension ID of the extension to activate
 
 **Body Params**
-- `contextType`: si possono specificare uno dei contesti `company` o `project` su cui l'estensione permette di essere attivata (vedi `contexts` su questo [link](./registration.md#how-to-register-my-extension))
-- `contextId`: inserire l'ID della Company o del Project a seconda del tipo di contesto specificato
-- `overrides`: array di rotte registrate sull'estensione che si vogliono modificare solo per questa attivazione (vedi il [paragrafo](#overrides) seguente)
+- `contextType`: you can specify one of the contexts `company` or `project` on which the extension allows the activation (see `contexts` on this [link](./registration.md#how-to-register-my-extension))
+- `contextId`: insert the ID of the Company or Project depending on the type of context specified
+- `overrides`: array of routes registered on the extension that you want to modify only for this activation (see the [section](#overrides) below)
 
 :::info
-L'attivazione a livello di Progetto può essere fatta solo su un progetto all'interno della stessa Company su cui è registrata l'estensione
+Activation at the Project level can only be done on a project within the same Company on which the extension is registered.
 :::
 
 ### Activate Backoffice Extension Example
 
-Dopo aver registrato l'estensione del backoffice come spiegato [qui](./registration.md#register-backoffice-extension-example), si può procedere con la sua attivazione su un progetto che si trova all'interno della Company identificata da `my-tenant-id`:
+After registering the Backoffice extension as explained [here](./registration.md#register-backoffice-extension-example), you can proceed with its activation on a project located within the Company identified by `my-tenant-id`:
 
 **Path Params**
 ```json
@@ -56,28 +57,28 @@ Dopo aver registrato l'estensione del backoffice come spiegato [qui](./registrat
 
 ## Overrides
 
-Gli overrides ci permettono di effettuare di modificare alcune caratteristiche grafiche delle rotte di un'estensione registrata che si applicano solo per una specifica attivazione. Le attivazioni che non specificano overrides permetteranno di vedere il menu item dell'estensione così come è stata registrata con [questa api](./registration.md#how-to-register-my-extension), mentre se si utilizzano gli overrides possiamo vedere delle differenze grafiche come un'icona o una label differente.
+Overrides allow us to edit the routes of a registered extension graphically applying these changes only for a specific activation. Activations without overrides show the extension's menu item as it was registered with [this API](./registration.md#how-to-register-my-extension), while with overrides there could be graphical differences like a different icon or label.
 
 :::info
-Con gli overrides è possibile modificare una o più rotte dell'estensione registrata comprese anche le rotte di tipo `category`. L'override su una rotta applicherà solo le modifiche specificate e lascierà invariate le altre, quindi ad eccezione del routeId le altre proprietà sono opzionali.    
+With overrides, it is possible to edit one or more routes of the registered extension, including routes of type `category`. The override on a route will apply only the specified changes and leave the others unchanged, so except for the routeId the other properties are optional.
 :::
 
 **Override properties**
-- `routeId`(_required_): specifica l'id della rotta dell'estensione registrata su cui applicare le modifiche
+- `routeId`(_required_): specifies the id of the registered extension's route on which apply the changes
 - `order`
 - `icon`
 - `labelIntl` 
 
-Le proprietà modificabili dall'override coincidono con le proprietà delle rotte registrate con l'estensione già spiegate [qui](./registration.md#how-to-configure-correctly-the-extension-menu-item)
+The properties that can be modified by the override coincide with the properties of the routes registered with the extension already explained [here](./registration.md#how-to-configure-correctly-the-extension-menu-item)
 
 ### Apply overrides on Backoffice Extension Example
 
 ![activate extension with override](./images/activateExtensionWithOverride.png)
 
-Con il seguente esempio si può attivare l'estensione del Backoffice come fatto [sopra](#activate-backoffice-extension-example) applicando gli overrides per modificare la label del menu group e l'icona della rotta dell'estensione.
+With the following example, you can activate the Backoffice extension as done [above](#activate-backoffice-extension-example) applying overrides to change the label of the menu group and the icon of the extension route.
 
-:::warn
-Attenzione a non attivare più volte la stessa estensione sullo stesso contesto se l'estensione è già stata attivata con l'esempio sopra, quindi ricordarsi di modificare il project id su cui attivare nuovamente l'estensione oppure eliminare l'attivazione precedente (vedi [qui](#deactivate-an-extension)).
+:::warning
+Be careful to not activate the same extension multiple times on the same context if the extension has already been activated with the example above, so remember to change the project id on which to activate the extension again or delete the previous activation (see [here](#deactivate-an-extension)).
 :::
 
 **Path Params**
@@ -124,15 +125,15 @@ Attenzione a non attivare più volte la stessa estensione sullo stesso contesto 
 
 # Deactivate an extension
 
-L'attivazione di un estensione può essere annullata in qualsiasi momento con l'API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation` e si può contattare tramite API Portal sotto le tag `Companies` o `Extensibility`.
+The activation of an extension can be canceled at any time with the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation` and can be accessed via the API Portal under the tags `Companies` or `Extensibility` and it is required the Company Owner role on the Company where the extension is activated.
 
 ![delete extension activation](./images/deleteExtensionActivation.png)
 
 **Path Params**
-- `tenantId`: inserire il tenant ID della Company su cui è registrata l'estensione da disattivare
-- `extensionId`: inserire l'extension ID dell'estensione da disattivare
-- `contextType`: inserire il tipo di contesto su cui è attiva l'estensione
-- `contextId`: inserire l'ID della Company o del Project a seconda del tipo di contesto specificato su cui è attiva l'estensione
+- `tenantId`: insert the tenant ID of the Company on which the extension to deactivate is registered
+- `extensionId`: insert the extension ID of the extension to deactivate
+- `contextType`: insert the type of context on which the extension is active
+- `contextId`: insert the ID of the Company or the Project depending on the specified context type on which the extension is active
 
 ```json
 {
@@ -143,4 +144,7 @@ L'attivazione di un estensione può essere annullata in qualsiasi momento con l'
 }
 ```
 
-**Response on success**: 204 No Content
+**Response on success**
+```
+204 No Content
+```
