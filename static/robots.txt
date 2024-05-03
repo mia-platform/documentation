@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /10.x/
 Disallow: /11.x/
+Disallow: /12.x/
 Sitemap: https://docs.mia-platform.eu/sitemap.xml

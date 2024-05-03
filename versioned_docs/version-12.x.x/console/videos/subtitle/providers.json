@@ -1,0 +1,110 @@
+{
+  "videoId": "6ZA1UXrRhPU",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:04,971",
+      "endTimeString": "00:00:07,240 ",
+      "text": "Hi, and welcome to Mia-Platform Video Pills."
+    },
+    {
+      "startTimeString": "00:00:07,273",
+      "endTimeString": "00:00:11,978 ",
+      "text": "Today we will see a new way of managing providers in Mia-Platform Console at the platform level."
+    },
+    {
+      "startTimeString": "00:00:12,012",
+      "endTimeString": "00:00:16,850 ",
+      "text": "Providers can be generically defined as a means of storing information about external services."
+    },
+    {
+      "startTimeString": "00:00:16,916",
+      "endTimeString": "00:00:20,820 ",
+      "text": "Starting on the page that contains all your projects, click on Platform Overview."
+    },
+    {
+      "startTimeString": "00:00:20,820",
+      "endTimeString": "00:00:23,223 ",
+      "text": "The Providers tab is located on the left sidebar."
+    },
+    {
+      "startTimeString": "00:00:23,423",
+      "endTimeString": "00:00:25,525 ",
+      "text": "On this page, you have the list of providers."
+    },
+    {
+      "startTimeString": "00:00:25,558",
+      "endTimeString": "00:00:29,129 ",
+      "text": "You can see that we already created Mia-Platform, GitLab and Azure DevOps."
+    },
+    {
+      "startTimeString": "00:00:29,596",
+      "endTimeString": "00:00:32,932 ",
+      "text": "Each provider is listed with the type of capacity and service used."
+    },
+    {
+      "startTimeString": "00:00:33,666",
+      "endTimeString": "00:00:35,235 ",
+      "text": "Let's try to add a new one."
+    },
+    {
+      "startTimeString": "00:00:35,235",
+      "endTimeString": "00:00:36,870 ",
+      "text": "Click on Add Provider Connection."
+    },
+    {
+      "startTimeString": "00:00:36,870",
+      "endTimeString": "00:00:38,638 ",
+      "text": "A modal window is displayed."
+    },
+    {
+      "startTimeString": "00:00:38,638",
+      "endTimeString": "00:00:40,707 ",
+      "text": "You can choose from a range of providers."
+    },
+    {
+      "startTimeString": "00:00:40,707",
+      "endTimeString": "00:00:42,142 ",
+      "text": "Click on Get Lab."
+    },
+    {
+      "startTimeString": "00:00:42,142",
+      "endTimeString": "00:00:49,349 ",
+      "text": "On the next page we can select the features used by the provider, the secret manager, the get provider, the CI/CD tool for all of them."
+    },
+    {
+      "startTimeString": "00:00:51,217",
+      "endTimeString": "00:00:56,790 ",
+      "text": "Next, you enter the name of the provider, the basic API URL and a brief description if necessary."
+    },
+    {
+      "startTimeString": "00:01:00,293",
+      "endTimeString": "00:01:02,896 ",
+      "text": "Following the wizard, we can now enter the credentials."
+    },
+    {
+      "startTimeString": "00:01:03,897",
+      "endTimeString": "00:01:09,235 ",
+      "text": "On the last page, in the Advanced section, we can enter a Certificate Authority and the proxy if required."
+    },
+    {
+      "startTimeString": "00:01:09,569",
+      "endTimeString": "00:01:11,671 ",
+      "text": "Let's add the provider and close the modal."
+    },
+    {
+      "startTimeString": "00:01:12,138",
+      "endTimeString": "00:01:14,507 ",
+      "text": "We now find our new GitLab provider in the list."
+    },
+    {
+      "startTimeString": "00:01:15,575",
+      "endTimeString": "00:01:20,380 ",
+      "text": "If you need to change it, just click on the arrow and edit the field you want to modify."
+    },
+    {
+      "startTimeString": "00:01:23,550",
+      "endTimeString": "00:01:32,625 ",
+      "text": "With this feature, you can manage providers from one place, defining their capabilities, entering credentials, certifications, authority and proxies."
+    }
+  ]
+}
