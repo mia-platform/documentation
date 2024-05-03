@@ -126,49 +126,83 @@ The repo provides a series of content test that must be passed:
 - `versioned_sidebars/`
    Contains versioned sidebars config.
 
-## Create a new Docusaurus version
+## Create a new documentation version
 
-When you want to create a new version, you can tag the **previous** the following command:
+In order to bump a new documentation version you have to follow through this checklist of activities:
+
+1. freeze previous version
+1. bump newer version
+1. remove the versioned docs that reached EOL
+1. clear the previous version overview page to create space for the newer one
+1. remove all the previous release notes pages and prepare a single release page for the new version
+1. update homepage benner
+1. update hompage quick links targeting information relevant to the previous version
+
+### Freeze previous version
+
+TO freeze the **previous** version run the following command:
 
 ```bash
 yarn run docusaurus docs:version <x.x.x>
 ```
 
+> [!IMPORTANT]
+> Do not include the `v` in the target version!
+> e.g.: if you need to create the docs for v100 you will have to freeze v99, therefore run
+>
+> ```bash
+> $ yarn run docusaurus docs:version 99.x.x
+> ```
+
 Each tagged version has a dedicated folder:
 
 - `versioned_docs/version-<number version>`
 
-**The current  version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
+**The current version must not be tagged**, however you have to do insert the new version in the `docusaurus.config.js`. The property to edit is `presets."@docusaurus/preset-classic".versions`:
 
-Eg.
+<details>
+<summary>docusaurus.config.js example</summary>
 
-```json
+```js
   presets: [
     [
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          lastVersion: 'current',
+          ...
+          lastVersion: "current",
           versions: {
             current: {
-              label: '<Current version' (Current)',
-              path: '',
+              label: "100.x (Current)",
+              path: "",
+              banner: "none"
             },
-            '10.x.x': {
-              label: '10.x.x',
-              path: '10.x',
+            "99.x.x": {
+              label: "99.9.x",
+              path: "99.x",
+            },
+            "98.x.x": {
+              label: "98.8.x",
+              path: "98.x",
             },
           },
-        },
-        ...
+        }
+      }
+    ]
+  ]
 ```
 
-Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
+</details>
+
+<br>
+
+> [!TIP]
+> Check out the [docusaurus official doc](https://v2.docusaurus.io/docs/versioning/) for more information.
 
 ## Documentations pages
 
-> :warning: If you want to edit o create documentation for **marketplace plugins you have to write documentation directly in the plugin repository**.  
+>[!WARNING]
+> If you want to edit o create documentation for **marketplace plugins you have to write documentation directly in the plugin repository**.  
 Check out the following [guide](https://makeitapp.atlassian.net/wiki/spaces/MIAP/pages/2373877834/Docs+Aggregator)
 
 Each .md file have to include the following preamble:
