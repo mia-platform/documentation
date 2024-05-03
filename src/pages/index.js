@@ -207,10 +207,10 @@ function Home() {
             <div className="container">
               {<div className="row">
                 <VersionBanner
-                  link="docs/release-notes/v12.3.0"
-                  majorVersion="12.3"
+                  link="docs/release-notes/v13.0.0"
+                  majorVersion="13-preview"
                   subTitle="Click here for further information"
-                  title="The look & feel of Mia-Platform Console is officially released!"
+                  title="Mia-Platform v13 in now available in Preview!"
                 />
               </div>}
 
