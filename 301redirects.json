@@ -1757,5 +1757,41 @@
   "/docs/marketplace/templates/template_create": {
     "destination": "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
     "addedOn": "2024-04-30"
+  },
+  "/docs/fast_data/runtime_management": {
+    "destination": "/docs/fast_data/runtime_management/overview",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/single_view_creator/#upsert": {
+    "destination": "/docs/fast_data/configuration/single_view_creator/upsert_delete_strategies#upsert-strategy",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/single_view_creator/#delete": {
+    "destination": "/docs/fast_data/configuration/single_view_creator/upsert_delete_strategies#delete-strategy",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/single_view_creator#single-view-key": {
+    "destination": "/docs/fast_data/configuration/config_maps/singleViewKey",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/single_view_creator#aggregation": {
+    "destination": "/docs/fast_data/configuration/single_view_creator/plugin#aggregation",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/realtime-updater/overview#ibm-infosphere-data-replication-for-db2": {
+    "destination": "/docs/fast_data/configuration/realtime-updater/configuration-files#ibm-infosphere-data-replication-for-db2s",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/realtime_updater/common#oracle-goldengate": {
+    "destination": "/docs/fast_data/configuration/realtime-updater/configuration-files#oracle-goldengate",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/realtime_updater/common#debezium": {
+    "destination": "/docs/fast_data/configuration/realtime-updater/configuration-files#debezium",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/realtime-updater/overview#custom": {
+    "destination": "/docs/fast_data/configuration/realtime-updater/configuration-files#custom",
+    "addedOn": "2024-05-06"
   }
 }
