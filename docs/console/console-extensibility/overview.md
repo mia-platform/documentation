@@ -5,22 +5,22 @@ sidebar_label: Overview
 ---
 # Overview
 
-The Extensibility feature can make your work easier and allow you to integrate your external tools via iframes. In this way the Console will be able to incorporate more features from other websites (or from the Console projects itself) and thus become a single access point making the user experience more comfortable.
+The Extensibility feature can simplify your development workflows and allow you to integrate external tools via iframes. In this way, the Console can incorporate additional features from external sources (or directly from other Console Projects) and thus become a single access point, making the developer experience more comfortable.
 
-A correctly active extension will appear as a new menu item on the sidebar and you can place it in different Console contexts such as within a Company or a specific Project. Furthermore, you can also specify restrictions using Console permissions so that the new menu item is visible only to a small group of users.
+A correctly activated extension will appear as a new menu item on the Console main navigation. You can place extensions in different Console contexts such as within a Company or inside a specific Project. Furthermore, you can also specify restrictions using Console permissions so that the new menu item is visible only to a limited group of users.
 
-In the following pages you will be explained how to add the backoffice as extension within a project in order to consult it directly in the Console.
+In the following pages you will learn how to add the Backoffice as an extension within a Project, in order to consult it directly from the Console.
 
 ![backoffice extension overview](img/backofficeExtensionOverview.png)
 
 ## How to see your extension on Console?
 
-Activating a new extension in the Console involves two phases:
+The activation of a new extension in the Console involves two phases:
 
 - [Registration](/console/console-extensibility/registration.md)
 - [Activation](/console/console-extensibility/activation.md)
 
-`Registration` allows you to add an extension for the first time and register all the main info required from extension to work such as the URL where fetching the iframe and the different locations where place the new menu items.
+`Registration` allows you to add an extension for the first time and provide all the essential information necessary for the extension to work, such as the URL for fetching the iframe and the different locations where the new menu items should be placed.
 `Activation`, on the other hand, allows you to activate an extension already registered on a specific Console context and in this way the same extension can be active on multiple contexts at the same time, such as multiple projects for example.
 
 ## Advanced concepts: Security and Customization

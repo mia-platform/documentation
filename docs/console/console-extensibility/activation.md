@@ -57,14 +57,14 @@ After registering the Backoffice extension as explained [here](/console/console-
 
 ## Overrides
 
-Overrides allow you to edit the routes of a registered extension graphically applying these changes only for a specific activation. Activations without overrides show the extension's menu item as it was registered with [this API](/console/console-extensibility/registration.md#how-to-register-my-extension), while with overrides there could be graphical differences like a different icon or label.
+Overrides allow us to visually modify the routes within a registered extension, applying these alterations only for a specific activation. Activations lacking overrides display the extension's menu item as originally registered using [this API](./registration.md#how-to-register-my-extension), while with overrides there might be visual distinctions such as a different icon or label.
 
 :::info
-With overrides, it is possible to edit one or more routes of the registered extension, including routes of type `category`. The override on a route will apply only the specified changes and leave the others unchanged, so except for the routeId the other properties are optional.
+Using overrides allows you to modify one or more routes within the registered extension, including those marked as `category` routes. When applying an override to a route, only the specified alterations will take effect, leaving all other properties unchanged. Therefore, aside from the `routeId`, the remaining properties are optional.
 :::
 
 **Override properties**
-- `routeId`(_required_): specifies the id of the registered extension's route on which apply the changes
+- `routeId`(_required_): specifies the id of the registered extension's route to which the changes are applied
 - `order`
 - `icon`
 - `labelIntl` 
@@ -78,7 +78,7 @@ The properties that can be modified by the override coincide with the properties
 With the following example, you can activate the Backoffice extension as done [above](#activate-backoffice-extension-example) applying overrides to change the label of the menu group and the icon of the extension route.
 
 :::warning
-Be careful to not activate the same extension multiple times on the same context if the extension has already been activated with the example above, so remember to change the project id on which to activate the extension again or delete the previous activation (see [here](#deactivate-an-extension)).
+Be careful to avoid activating the same extension multiple times within the same context if it has already been activated using the example provided above. Therefore, be sure to either change the project id on which you want to activate the extension, or delete the previous activation before proceeding (see [here](#deactivate-an-extension)).
 :::
 
 **Path Params**
@@ -124,7 +124,7 @@ Be careful to not activate the same extension multiple times on the same context
 
 # Deactivate an extension
 
-The activation of an extension can be canceled at any time with the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation` and can be accessed via the API Portal under the tags `Companies` or `Extensibility` and it is required the Company Owner role on the Company where the extension is activated.
+An extension activation can be terminated at any point using the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation`. This functionality is accessible through the API Portal under the tags `Companies` or `Extensibility`. Please note that the Company Owner role within the respective Company where the extension is activated is required for this action.
 
 ![delete extension activation](img/deleteExtensionActivation.png)
 

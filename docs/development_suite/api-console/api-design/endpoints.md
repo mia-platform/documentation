@@ -220,7 +220,7 @@ The **Advanced** tab is visible only if the Envoy API Gateway service is enabled
 - **Iframe embedding options**: the X-Frame-Options directive that is considered when the endpoint response should be embedded in an iframe;
 
 :::warning
-This `Iframe embedding` option is configurable only for the api-gateway envoy, instead for nginx it is required to configured it manually using the `Advanced` section of Console
+This `Iframe embedding` option is configurable only for the `Envoy API Gateway`, instead for `Nginx API Gateway` it is required to configure it manually using the `Advanced` section of the Console
 :::
 
 ## Routes

@@ -6,7 +6,7 @@ sidebar_label: Available Locations
 
 # Available Extension Locations
 
-The Console allows to embed extensions at specific locations that already have menu items and groups that can also be used by our extensions. These locations are:
+The Console allows you to embed extensions at specific locations that already contain menu items and groups, which can also be used by our extensions. These locations are:
 
 - **Tenant** with locationId `tenant`
 - **Project** with locationId `project`

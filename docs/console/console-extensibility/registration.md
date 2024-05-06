@@ -5,7 +5,7 @@ sidebar_label: Register Extensions
 ---
 # Register Extensions
 
-A new extension always should be registered on Console before it can be activated. The registered extension are owned by specific Companies and so the registration and management operations on extensions can only be done by a Company Owner.
+A new extension should always be registered on the Console before it can be activated. Registered extensions are owned by specific Companies, thus the registration and management operations on extensions can only be performed by a Company Owner.
 
 ## How to register my extension?
 
@@ -25,13 +25,13 @@ As can be seen from the example image, registering an extension requires providi
 - `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
 - `description`: provide a brief description of the extension
 - `entry` (_required_): indicate the URL where the iframe will be fetched
-- `extensionType` (_required_): select the type of extension. For now, only the iframe type is supported
+- `extensionType` (_required_): select the type of extension. For now, only the `iframe` type is supported
 - `permissions`: indicate which permissions users will need to have to see the extension once activated (further details in the [next section](#how-to-restrict-the-extension-usage))
 - `routes` (_required_): provide the menu items that should appear on the sidebar once the extension is activated
 
 ### How to restrict the extension usage?
 
-A registered extensions can specifies an array of `permissions` that is used to check if a user can see the active extension in the Console or not. In particular, the user must have **at least one of the required permissions in the array**, and the permissions that can be registered on an extension are those of the Console listed in the table of the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
+A registered extension can specify an array of `permissions` that is used to check whether or not a user can see the extension in the Console, once activated. In particular, the user must have **at least one of the required permissions in the array**. You can find the list of allowed permissions to be registered on an extension in the dedicated table inside the [Identity and access management page](../../development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
 
 ### How to configure correctly the extension menu item?
 
@@ -39,18 +39,18 @@ A registered extensions can specifies an array of `permissions` that is used to 
 
 ![registration example category route](img/registrationExampleCategoryRoute.png)
 
-The routes should contain the info to render the extension menu item on the Console sidebar, that  allow to access the extension. A route can be registered leaving `renderType` unsetted to be rendered as simple menu item or it can be a `category` route corresponding to a new custom menu group where attach menu items.
+The routes should include the necessary information to render the extension menu item on the Console sidebar, which enables access to the extension. A route can be registered with the `renderType` left unset to appear as a simple menu item, or it can be a `category` route, creating a new custom menu group to which menu items can be attached.
 
 :::info
-Each extension should have at least a route (that is not `category`) to have sense and could also add at most another `category` type route to add a custom group menu item
+Each extension should include at least one route that is not of type `category` to be meaningful. Additionally, it can optionally include at most one route of type `category` to add a custom group menu item.
 :::
 
 A route, therefore, requires to provide the following information:
-- `id` (_required_): assign a unique id that can be used for applying overrides with activation or for attaching other menu items if the route renderType is `category`
+- `id` (_required_): assign a unique identifier that can be used for applying overrides during activation or for attaching other menu items when the route's `renderType` is set to `category`.
 - `locationId` (_required_): choose a location to place your route (see the [supported locations](/console/console-extensibility/locations.md))
-- `renderType`: select `category` if you want to add a new menu group, otherwise leave it unsetted to add a menu item
+- `renderType`: select `category` if you want to add a new menu group, otherwise leave it unset to add a simple menu item
 - `parentId`: insert the route `id` of a menu group where you want to attach the menu item. It is possible to choose existing parentIds documented on the [supported locations page](/console/console-extensibility/locations.md) or add a route of type `category` and use its `id`. This value can be omitted for the `category` route.
-- `destinationPath` (_required_): indicate the destination suffix to which you will be redirected when clicking the menu item and it will compose the URL where the iframe will be mounted; in fact, the resulting URL will be composed accoring this pattern `<locationPath>/extensions/<extensionId><destinationPath>`. This information should be defined but is ignored for the `category` route.
+- `destinationPath`: indicate the destination suffix to which you will be redirected when clicking the menu item and it will compose the URL where the iframe will be mounted; in fact, the resulting URL will be composed according to this pattern `<locationPath>/extensions/<extensionId><destinationPath>`. This value can be omitted for the `category` route.
 - `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. This value can be omitted for the `category` route.
 - `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
 <!-- TODO: Should be added some mentions about the order of menu items? -->
@@ -59,13 +59,13 @@ A route, therefore, requires to provide the following information:
 
 The following example shows how to register the Backoffice as a Project extension. To reproduce it, you will need to configure the Backoffice and expose it in such a way that it can be used as an iframe.
 
-Before to proceed make sure you have:
+Before proceeding make sure you have:
 
 1. A project reachable externally, otherwise create one by referring to this [guide](/console/project-configuration/create-a-project.mdx).
 2. The `Microfrontend Composer Toolkit` application created and exposed to view the Backoffice frontend. Follow this section of the [guide](/microfrontend-composer/tutorials/basics.mdx#setup-the-microservices) to do so.
 3. The response from the Backoffice endpoint can be embedded within an iframe. See this [link](/development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
 
-Once this is done, you can register the Backoffice as extension:
+Once this is done, you can register the Backoffice as an extension:
 
 **Path Params**
 ```json
@@ -97,7 +97,6 @@ Once this is done, you can register the Backoffice as extension:
       "parentId": "my-menu-group"
     },
     {
-      "destinationPath": "/something-ignored",
       "id": "my-menu-group",
       "labelIntl": {
         "en": "My Menu Group",
@@ -117,11 +116,11 @@ Once this is done, you can register the Backoffice as extension:
 }
 ```
 
-The extension ID will be required to check the extension with the remaining APIs and can be retrieved using a specific API listed below.
+The extension ID will be necessary for working with the extension through the remaining APIs and can be retrieved using a specific API listed below.
 
 ## Get registered Extensions
 
-The route `GET /api/extensibility/tenants/{tenantId}/extensions` allows you to query all registered extensions under a specific Company and can be easily used on the API Portal under the tags `Companies` or `Extensibility` having the role of Company Owner on the Company that you would require.
+The route `GET /api/extensibility/tenants/{tenantId}/extensions` allows you to retrieve all registered extensions under a specific Company. This functionality is readily accessible via the API Portal under the 'Companies' or 'Extensibility' tags, provided you have the Company Owner role for the selected Company.
 
 ![retrieve extensions example](img/retrieveExtensionsExample.png)
 
@@ -186,7 +185,6 @@ In this example, the Backoffice extension registered [here](#register-backoffice
       "parentId": "my-menu-group"
     },
     {
-      "destinationPath": "/something-ignored",
       "id": "my-menu-group",
       "labelIntl": {
         "en": "My Menu Group",
