@@ -38,7 +38,7 @@ Some sidecar configurations cannot be directly modified in this page. This is th
 
 #### Create sidecar
 
-You can add a new sidecar to your services by choosing an already existing sidecar configuration from the Marketplace or by specifying a docker image.  To do this, select your best fitting solution from the **Create sidecar** dropdown.  
+You can add a new sidecar to your services by choosing an already existing sidecar configuration from the Marketplace or by specifying a docker image. To do this, select your best fitting solution from the **Create sidecar** dropdown.  
 From the creation form you can select multiple services to which the sidecar will be added.
 
 ![Create sidecar from docker image](img/create-sidecar.png)
