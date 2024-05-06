@@ -463,7 +463,7 @@ as output events. Currently only Kafka (and platforms adopting Kafka APIs) is su
 
 #### Kafka Configuration
 
-If you select the Kafka Consumer, the service will create a Kafka Client to produce messages into the topics related to the PR Updates you setup.
+If you select the Kafka Producer, the service will create a Kafka Client to produce messages into the topics related to the PR Updates you setup.
 
 :::tip
 When Kafka is selected as producer for the Projection Storer service, **it is possible to provide most of the Kafka Producer
