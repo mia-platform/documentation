@@ -31,13 +31,11 @@ As can be seen from the example image, registering an extension requires providi
 
 ### How to restrict the extension usage?
 
-A registered extension can specify an array of `permissions` that is used to check whether or not a user can see the extension in the Console, once activated. In particular, the user must have **at least one of the required permissions in the array**. You can find the list of allowed permissions to be registered on an extension in the dedicated table inside the [Identity and access management page](../../development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
+A registered extension can specify an array of `permissions` that is used to check whether or not a user can see the extension in the Console, once activated. In particular, the user must have **at least one of the required permissions in the array**. You can find the list of allowed permissions to be registered on an extension in the dedicated table inside the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
 
 ### How to configure correctly the extension menu item?
 
-![registration example main route](img/registrationExampleMainRoute.png)
-
-![registration example category route](img/registrationExampleCategoryRoute.png)
+![registration example routes](img/registrationExampleRoutes.png)
 
 The routes should include the necessary information to render the extension menu item on the Console sidebar, which enables access to the extension. A route can be registered with the `renderType` left unset to appear as a simple menu item, or it can be a `category` route, creating a new custom menu group to which menu items can be attached.
 
@@ -53,7 +51,7 @@ A route, therefore, requires to provide the following information:
 - `destinationPath`: indicate the destination suffix to which you will be redirected when clicking the menu item and it will compose the URL where the iframe will be mounted; in fact, the resulting URL will be composed according to this pattern `<locationPath>/extensions/<extensionId><destinationPath>`. This value can be omitted for the `category` route.
 - `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. This value can be omitted for the `category` route.
 - `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
-<!-- TODO: Should be added some mentions about the order of menu items? -->
+- `order` (_required_): insert optionally this numeric value used to sort in ascending order the menu items on the sidebar. During the rendering, the `category` menu are sorted first and then the menu items attached on a specific `category` menu.
 
 #### Register Backoffice Extension Example
 
