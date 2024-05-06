@@ -20,12 +20,16 @@ HowToLink.propTypes = {
   label: PropTypes.string.isRequired,
 }
 
-function HowToBox({title, description, links}) {
+function HowToBox({id, title, description, links}) {
   links = links || [];
 
   return (
-    <div className={clsx("col col--8", featureStyle.feature, styles.howToBox)}>
-      <h3>{title}</h3>
+    <div className={clsx("col col--12", featureStyle.feature, styles.howToBox)}>
+      <h3
+          id={id || undefined}
+      >
+          {title}
+      </h3>
       <p>{description}</p>
       <div className={styles.howToLinkBox}>
         {links.map((props, idx) => (
@@ -38,6 +42,7 @@ function HowToBox({title, description, links}) {
 
 HowToBox.propTypes = {
   description: PropTypes.string.isRequired,
+  id: PropTypes.string,
   links: PropTypes.arrayOf(PropTypes.shape({
     href: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,

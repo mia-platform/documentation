@@ -1,0 +1,76 @@
+---
+id: usage
+title: CSV Fast Data Connector Usage
+sidebar_label: Usage
+---
+The CSV Connector can be used either as a kubernetes _**cronjob**_ or as a normal microservice in _**polling**_ mode.
+In both cases, it will ask the Files Service the list of all the files present in the bucket of input and process them, generating a Kafka message for the Fast Data for each line.
+When a file has been completely processed, it will get moved to the bucket of output.
+
+Kafka messages will be produced following the [message adapter DB2](../../fast_data/configuration/realtime_updater.md#kafka-adapters-kafka-messages-format) standard.
+
+To change between the two execution modes, the **LAUNCH_MECHANISM** environment variable must have one of the following values: `cronjob` or `polling`.
+
+### Polling mode
+
+If LAUNCH_MECHANISM is set to `polling`, then the service starts and never stops its execution.
+
+In this case, the **SCHEDULING** variable is mandatory and its value is a cronjob expression following [quartz](http://www.quartz-scheduler.org/) format.
+Following this scheduling, the service will get the list of the new files added in the bucket and proceed to generate the corresponding Kafka messages.
+
+### Cronjob mode
+
+If LAUNCH_MECHANISM is set to `cronjob`, the service starts, checks for new files in the bucket and process them. Once finished the execution, it stops.
+
+That's why this mechanism is more suitable for a kubernetes cronjob component. To know more about the configuration of a cronjob in the console, read the [documentation page](../../development_suite/api-console/api-design/jobs-cronjob).
+
+
+### Prometheus metrics management
+
+When in polling mode, the service will expose its metrics on the route `/-/metrics`. In this way, it will be reachable as long as it's up and running.
+
+In cronjob mode, however, its lifecycle will become ephemeral, invalidating metrics exposure.
+For this reason, when in cronjob mode, the CSV connector will push all the metrics to a Prometheus push-gateway service (for more info, check the [Prometheus](https://prometheus.io/docs/practices/pushing/) official documentation.
+In this case, a push-gateway should also be configured in the cluster.
+
+> **Note**
+:::note
+The variable **PUSH_GATEWAY_SERVICE** is optional even if the service is executing as a cronjob. In this case, it will be simply ignored and no metrics will be pushed.
+:::
+
+The metrics exposed (no matter the launch mechanism) are shown in the table below:
+
+|        Metric name         |  Type   |                        Labels                         |                              Description                              |
+|:--------------------------:|:-------:|:-----------------------------------------------------:|:---------------------------------------------------------------------:|
+|    _**imported_files**_    | counter | **_file_**=fileName<br/>**_processed_**=\[`OK`/`KO`\] | Number of imported files, labeled by filename and processing success. |
+|    _**kafka_message**_     | counter |  **_topic_**=topicName<br/>**_sent_**=\[`OK`/`KO`\]   |   Number of kafka messages sent, labeled by topic name and success.   |
+|       _**csv_line**_       |  gauge  |   **_file_**=fileName<br/>**_valid_**=\[`OK`/`KO`\]   | Number of csv lines read, labeled by filename and validation success. |
+| _**cycle_execution_time**_ |  timer  |                           -                           |       Execution time in milliseconds of a single import cycle.        |
+| _**file_processing_time**_ |  timer  |                  **_file_**=fileName                  |        Processing time for a single file, labeled by filename.        |
+
+### Error Codes
+
+The following is a list of all errors launched during the execution of the service.
+
+|    Error code     |                        Cause                         |                                                              Action                                                               |     Actor     |
+|:-----------------:|:----------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|:-------------:|
+| **FD_CSVC_E0001** |               invalid parameter value                |                                    Check environment variables for any illegal configuration.                                     | csv-connector |
+| **FD_CSVC_E0002** |             missing environment variable             |                                    Check environment variables for any missing configuration.                                     | csv-connector |
+| **FD_CSVC_E0003** |               invalid filename format                |                          Check csv filename extensions passed and be sure they have a _.csv_ extension.                           | csv-connector |
+| **FD_CSVC_E2001** |           error during csv line validation           | - Search for the csv line specified inside the csv file being parsed.<br/> - Check any discrepancies with the json schema passed. | csv-connector |
+| **FD_CSVC_E2002** |             jsonSchema type not managed              |           Be sure that the parameter described in the json schema is one of `string`, `number`, `integer` or `boolean`.           | csv-connector |
+| **FD_CSVC_E2003** | error when creating csv/entity mapper utility object |         Check that the json schema passed is well formed (look at the description of the error message for better hints).         | csv-connector |
+| **FD_CSVC_E2004** |              unexpected null parameter               |                                 Contact the maintainers of this plugin and show them this error.                                  | csv-connector |
+| **FD_CSVC_E2005** |            error while scheduling the job            |                                 Contact the maintainers of this plugin and show them this error.                                  | csv-connector |
+| **FD_CSVC_E2006** |          error while building kafka message          |                                 Contact the maintainers of this plugin and show them this error.                                  | csv-connector |
+| **FD_CSVC_E2007** |        communication error with files-service        |                           - Check the network health.<br/> - Check that the service address is correct.                           | csv-connector |
+| **FD_CSVC_E2008** |    communication error with push-gateway-service     |                           - Check the network health.<br/> - Check that the service address is correct.                           | csv-connector |
+
+### Dependencies and Optimal Performance
+
+As previously mentioned, for the CSV Connector to function properly, it requires an instance of both the Files Service and the Crud Service running in the same cluster. Specifically, the Files Service must support **multi-bucket** mode.
+
+For optimal performance, we recommend setting the CPU limit for both the CSV Connector and the Files Service to 1.5. This will help ensure that resources are efficiently utilized and that the system runs smoothly.
+During tests with 1GB files, we observed peaks of **4300 messages per second (msg/s)** when sending Kafka messages to the topics. This demonstrates that the system is capable of handling a large volume of data. Additionally, we observed a maximum **IO rate of 3.07 MB/s**, indicating that the system can efficiently move data between different components.
+
+It's worth noting that these results were achieved under controlled conditions and may vary depending on the specific use case. However, we believe that these recommendations can serve as a useful starting point for optimizing system performance.

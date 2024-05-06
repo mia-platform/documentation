@@ -1,0 +1,16 @@
+.howToLinkBox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.howToLink {
+    padding: 0 !important;
+}
+
+.howToCategoryBox{
+    margin-left: 0px;
+    margin-bottom: 8px;
+}
+.howToCategoryBox > h4 {
+    margin-bottom: 4px;
+  }

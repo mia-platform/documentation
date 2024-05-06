@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "1550e11b-e528-46d8-9c74-849691df8148",
+		"name": "Therapy and Monitoring Manager - Integration Tests with Notification Manager",
+		"description": "## Configuration\n\nIn order to run the tests the Therapy and Monitoring Manager must be configured to send notifications to the Notification Manager.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26367572"
+	},
+	"item": [
+		{
+			"name": "Create Therapy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check response body\", function () {",
+							"    const payload = pm.response.json()",
+							"    pm.expect(payload._id).to.be.a('string')",
+							"    pm.variables.set('therapyId', payload._id)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"planName\": \"Daily medication\",\n  \"prototypeId\": \"bloodPressure\",\n  \"startDate\": \"2023-10-01\",\n  \"endDate\": \"2023-10-15\",\n  \"doctorId\": \"auth0|dr.mario.rossi\",\n  \"patientId\": \"auth0|giovanni.bianchi\",\n  \"each\": [\"day\"],\n  \"hours\": [\"10:00\"],\n  \"adherenceStatus\": \"enabled\",\n  \"adherenceToleranceTime\": 1,\n  \"adherenceMinimumPercentage\": 90,\n  \"complianceStatus\": \"enabled\",\n  \"complianceMinimumPercentage\": 90\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/therapies/",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"therapies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Therapy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check response body\", function () {",
+							"    const payload = pm.response.json()",
+							"    pm.expect(payload._id).to.be.a('string')",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"$set\": {\n        \"doctorId\": \"auth0|dr.lucia.verdi\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/therapies/{{therapyId}}",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"therapies",
+						"{{therapyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Therapy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"2023-09-20T09:00:00.000Z\",\n    \"endDate\": \"2023-09-20T18:00:00.000Z\",\n    \"slotDuration\": 60,\n    \"each\": \"day\",\n    \"untilDate\": \"2023-09-30T00:00:00.000Z\",\n    \"resourceId\": \"auth0|dr.mario.rossi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/therapies/{{therapyId}}",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"therapies",
+						"{{therapyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Monitoring",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check response body\", function () {",
+							"    const payload = pm.response.json()",
+							"    pm.expect(payload._id).to.be.a('string')",
+							"    pm.variables.set('monitoringId', payload._id)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"planName\": \"Daily medication\",\n  \"prototypeId\": \"bloodPressure\",\n  \"startDate\": \"2023-10-01\",\n  \"endDate\": \"2023-10-15\",\n  \"doctorId\": \"auth0|dr.mario.rossi\",\n  \"patientId\": \"auth0|giovanni.bianchi\",\n  \"each\": [\"day\"],\n  \"hours\": [\"10:00\"],\n  \"adherenceStatus\": \"enabled\",\n  \"adherenceToleranceTime\": 1,\n  \"adherenceMinimumPercentage\": 90,\n  \"complianceStatus\": \"enabled\",\n  \"complianceMinimumPercentage\": 90,\n  \"thresholds\": [\n    {\n      \"propertyName\": \"maximumBloodPressure\",\n      \"thresholdOperator\": \"gt\",\n      \"thresholdValue\": 120\n    },\n    {\n      \"propertyName\": \"minimumBloodPressure\",\n      \"thresholdOperator\": \"lt\",\n      \"thresholdValue\": 70\n    }\n  ]\n}\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/monitorings/",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"monitorings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Monitoring",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check response body\", function () {",
+							"    const payload = pm.response.json()",
+							"    pm.expect(payload._id).to.be.a('string')",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"$set\": {\n        \"doctorId\": \"auth0|dr.lucia.verdi\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/monitorings/{{monitoringId}}",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"monitorings",
+						"{{monitoringId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Detection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check response body\", function () {",
+							"    const payload = pm.response.json()",
+							"    pm.expect(payload._id).to.be.a('string')",
+							"    pm.variables.set('detectionId', payload._id)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"planType\": \"monitoring\",\n  \"planId\": \"{{monitoringId}}\",\n  \"value\": {\n    \"minimumBloodPressure\": 68,\n    \"maximumBloodPressure\": 100\n  },\n  \"observedAt\": \"2023-09-02T10:30:00.000Z\",\n  \"doctorId\": \"auth0|dr.lucia.verdi\",\n  \"patientId\": \"auth0|giovanni.bianchi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/detections/",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"detections",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Detection",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"2023-09-20T09:00:00.000Z\",\n    \"endDate\": \"2023-09-20T18:00:00.000Z\",\n    \"slotDuration\": 60,\n    \"each\": \"day\",\n    \"untilDate\": \"2023-09-30T00:00:00.000Z\",\n    \"resourceId\": \"auth0|dr.mario.rossi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/detections/{{detectionId}}",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"detections",
+						"{{detectionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Monitoring",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "sid={{sid}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlTherapyMonitoringManager}}/monitorings/{{monitoringId}}",
+					"host": [
+						"{{baseUrlTherapyMonitoringManager}}"
+					],
+					"path": [
+						"monitorings",
+						"{{monitoringId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

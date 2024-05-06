@@ -9,8 +9,6 @@ checkSidebar('./docs', './sidebars.json', '', false, 'throw')
 
 const filesToExcludeFromSidebarCheck = [
   "monitoring/paas_alerting_rules",
-  "getting_started/monitoring-dashboard/dev_ops_guide/business_continuity",
-  "getting_started/monitoring-dashboard/dev_ops_guide/disaster_recovery",
   "info/licenses-reports/.gitkeep",
   'cli/miactl/*',
   "info/licenses/*",
@@ -19,11 +17,18 @@ const filesToExcludeFromSidebarCheck = [
   "runtime_suite_templates/*",
   "runtime_suite_libraries/*",
   "runtime_suite_tools/*",
-  "business_suite/*",
-  "self_hosted/installation-chart/*",
-  "getting_started/videos/*",
-  "getting_started/videos/subtitle/*",
-  "tutorial/demo_project/overview", // TODO:
+  "microfrontend-composer/back-kit/*",
+  "microfrontend-composer/composer/*",
+  "infrastructure/self-hosted/installation-chart/*",
+  "getting-started/videos/*",
+  "getting-started/videos/subtitle/*",
+  "console/videos/*",
+  "console/videos/subtitle/*",
+  "fast_data/videos/*",
+  "fast_data/videos/subtitle/*",
+  "microfrontend-composer/videos/*",
+  "microfrontend-composer/videos/subtitle/*",
+  "standalone-resources/*"
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')

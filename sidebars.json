@@ -6,6 +6,167 @@
     },
     {
       "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Configure Marketplace Components",
+          "items": [
+            {
+              "id": "console/tutorials/configure-marketplace-components/microservice-hello-world",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/configure-marketplace-components/api-portal",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/configure-marketplace-components/rest-api-for-crud-on-data",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/configure-marketplace-components/create-a-custom-microservice",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/configure-marketplace-components/microservice-with-metrics",
+              "type": "doc"
+            },
+            {
+              "id": "console/tutorials/configure-marketplace-components/flow-manager",
+              "type": "doc"
+            },
+            {
+              "label": "Auth Architecture",
+              "type": "category",
+              "collapsed": true,
+              "link": {
+                "type": "doc",
+                "id": "console/tutorials/configure-marketplace-components/auth-architecture/intro"
+              },
+              "items": [
+                {
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/static-api-key",
+                  "type": "doc"
+                },
+                {
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp",
+                  "type": "doc"
+                },
+                {
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/external-idp-internal-session",
+                  "type": "doc"
+                },
+                {
+                  "id": "console/tutorials/configure-marketplace-components/auth-architecture/multiple-projects",
+                  "type": "doc"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "console/tutorials/microservice-from-docker-image",
+          "type": "doc"
+        },
+        {
+          "id": "console/tutorials/set-requests-limits-of-a-microservice",
+          "type": "doc"
+        },
+        {
+          "id": "console/tutorials/protect-your-endpoints-with-policies",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Videos",
+      "items": [
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Marketplace Components",
+          "items": [
+            {
+              "id": "console/videos/marketplace-components/node-microservice",
+              "type": "doc"
+            },
+            {
+              "id": "console/videos/marketplace-components/crud-service",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "console/videos/connecting-cluster",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/feature-preview",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/m2m-auth",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/providers",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/runtime-area",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Handbooks",
+      "items": [
+        {
+          "id": "console/handbooks/project-manage",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/project-usage",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/project-development",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/design-overview",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/microservice-ports",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/endpoints",
+          "type": "doc"
+        },
+        {
+          "id": "console/handbooks/traefik-handbook",
+          "type": "doc"
+        }
+      ]
+    },
+
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Company Configuration",
+      "link": {
+        "id": "development_suite/company/overview",
+        "type": "doc"
+      },
       "items": [
         {
           "id": "development_suite/company/create",
@@ -16,30 +177,87 @@
           "type": "doc"
         },
         {
+          "id": "console/company-configuration/company-settings",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "development_suite/clusters-management/clusters-overview-setup",
+            "id": "development_suite/clusters-management/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/clusters-management/vendors-runtime-services",
+              "id": "development_suite/clusters-management/cluster-setup",
               "type": "doc"
             },
             {
-              "id": "development_suite/clusters-management/add-edit-remove-cluster",
+              "id": "development_suite/clusters-management/connect-and-manage-cluster",
               "type": "doc"
             }
           ]
         },
         {
-          "id": "development_suite/set-up-infrastructure/providers-management",
+          "collapsed": true,
+          "type": "category",
+          "label": "Providers",
+          "link": {
+            "id": "console/company-configuration/providers/overview",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "console/company-configuration/providers/management",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/marketplace",
+              "type": "doc"
+            },
+            {
+              "id": "console/company-configuration/providers/project-configuration",
+              "type": "doc"
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Extension Providers",
+              "link": {
+                "id": "console/company-configuration/providers/extension-providers",
+                "type": "doc"
+              },
+              "items": [
+                {
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "Orchestrator Generator",
+                  "link": {
+                    "id": "console/company-configuration/providers/extensions/orchestrator-generator/overview",
+                    "type": "doc"
+                  },
+                  "items": [
+                    {
+                      "id": "console/company-configuration/providers/extensions/orchestrator-generator/use-cases",
+                      "type": "doc"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "console/company-configuration/providers/api-reference",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "console/company-configuration/project-default-configuration",
           "type": "doc"
         },
         {
-          "id": "development_suite/company/project-templates",
+          "id": "development_suite/company/project-blueprint",
           "type": "doc"
         },
         {
@@ -49,16 +267,43 @@
         {
           "id": "development_suite/license-metrics/license-metrics",
           "type": "doc"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Manage Webhooks",
+          "link": {
+            "type": "doc",
+            "id": "development_suite/webhooks-and-events/webhooks"
+          },
+          "items": [
+            {
+              "id": "development_suite/webhooks-and-events/events",
+              "type": "doc"
+            }
+          ]
         }
-      ],
-      "label": "Company Configuration",
-      "type": "category"
+      ]
     },
     {
+      "label": "Project Configuration",
+      "type": "category",
       "collapsed": true,
+      "link": {
+        "type": "doc",
+        "id": "console/project-configuration/project-configuration"
+      },
       "items": [
         {
-          "id": "development_suite/set-up-infrastructure/create-project",
+          "id": "console/project-configuration/create-a-project",
+          "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/delete-a-project",
+          "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/project-settings",
           "type": "doc"
         },
         {
@@ -66,73 +311,83 @@
           "type": "category",
           "collapsed": true,
           "link": {
-            "id": "development_suite/set-up-infrastructure/kustomize/kustomize",
+            "id": "console/project-configuration/kustomize-your-configurations/kustomize-your-configurations",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/set-up-infrastructure/kustomize/migrate",
+              "id": "console/project-configuration/kustomize-your-configurations/migrate-to-kustomize",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/kustomize/projects",
+              "id": "console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/kustomize/examples",
+              "id": "console/project-configuration/kustomize-your-configurations/kustomize-use-cases",
               "type": "doc"
             }
           ]
         },
         {
-          "collapsed": true,
-          "items": [
-            {
-              "id": "development_suite/set-up-infrastructure/add-environment",
-              "type": "doc"
-            },
-            {
-              "id": "development_suite/set-up-infrastructure/remove-environment",
-              "type": "doc"
-            }
-          ],
           "label": "Manage Runtime Environments",
           "type": "category",
-          "link": {
-            "id": "development_suite/set-up-infrastructure/runtime-environments",
-            "type": "doc"
-          }
-        },
-        {
           "collapsed": true,
+          "link": {
+            "id": "console/project-configuration/manage-runtime-environments/manage-runtime-environments",
+            "type": "doc"
+          },
           "items": [
             {
-              "id": "development_suite/set-up-infrastructure/env-var-gitlab",
+              "id": "console/project-configuration/manage-runtime-environments/configure-a-new-environment",
               "type": "doc"
             },
             {
-              "id": "development_suite/set-up-infrastructure/env-var-vault",
+              "id": "console/project-configuration/manage-runtime-environments/delete-an-environment",
               "type": "doc"
             }
-          ],
+          ]
+        },
+        {
           "label": "Manage Environment Variables",
           "type": "category",
+          "collapsed": true,
           "link": {
-            "id": "development_suite/set-up-infrastructure/env-var",
+            "id": "console/project-configuration/manage-environment-variables/environment-variables-introduction",
             "type": "doc"
-          }
+          },
+          "items": [
+            {
+              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab",
+              "type": "doc"
+            },
+            {
+              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-vault",
+              "type": "doc"
+            },
+            {
+              "id": "console/project-configuration/manage-environment-variables/manage-environment-variables-with-akv",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "development_suite/set-up-infrastructure/authorization-flow",
+          "id": "console/project-configuration/authorization-flow",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-portal/api-documentations",
+          "id": "console/project-configuration/documentation-portal",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+          "type": "doc"
+        },
+        {
+          "id": "console/project-configuration/docker-registry-configuration",
           "type": "doc"
         }
-      ],
-      "label": "Project Configuration",
-      "type": "category"
+      ]
     },
     {
       "collapsed": true,
@@ -179,6 +434,10 @@
             {
               "id": "development_suite/api-console/api-design/microservice-monitoring",
               "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/guidelines-for-logs",
+              "type": "doc"
             }
           ],
           "label": "Create Services",
@@ -197,11 +456,30 @@
           "type": "doc"
         },
         {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
+              "type": "doc"
+            }
+          ],
+          "label": "Flow Manager Configurator",
+          "type": "category"
+        },
+        {
           "id": "development_suite/api-console/api-design/flow-manager-visualizer",
           "type": "doc"
         },
         {
           "id": "development_suite/api-console/api-design/endpoints",
+          "type": "doc"
+        },
+        {
+          "id": "development_suite/api-console/api-design/listeners",
           "type": "doc"
         },
         {
@@ -240,23 +518,9 @@
           "collapsed": true,
           "items": [
             {
-              "collapsed": true,
-              "items": [
-                {
-                  "id": "development_suite/api-console/advanced-section/dev-console-config/advanced_name_core",
-                  "type": "doc"
-                },
-                {
-                  "id": "development_suite/api-console/advanced-section/dev-console-config/replicas",
-                  "type": "doc"
-                },
-                {
-                  "id": "development_suite/api-console/advanced-section/dev-console-config/custom-ca-certs",
-                  "type": "doc"
-                }
-              ],
               "label": "Console Configuration",
-              "type": "category"
+              "type": "doc",
+              "id": "development_suite/api-console/advanced-section/api-console-configuration"
             },
             {
               "collapsed": true,
@@ -313,8 +577,12 @@
               "type": "doc"
             }
           ],
-          "label": "Advanced configuration",
-          "type": "category"
+          "label": "Advanced Mode",
+          "type": "category",
+          "link": {
+            "id": "development_suite/api-console/advanced-section/advanced-section",
+            "type": "doc"
+          }
         }
       ],
       "label": "Design your projects",
@@ -328,16 +596,52 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/deploy/configure-jenkins",
-          "type": "doc"
+          "type": "category",
+          "label": "Pipeline-based deployment strategy",
+          "link": {
+            "id": "development_suite/deploy/pipeline-based/pipeline-based",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-jenkins",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-gitlab-ci",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-azure-pipelines",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "development_suite/deploy/configure-github-actions",
-          "type": "doc"
+          "type": "category",
+          "label": "GitOps deployment strategy (BETA)",
+          "link": {
+            "id": "development_suite/deploy/gitops-based/gitops-based",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/deploy/gitops-based/configure-argocd",
+              "type": "doc"
+            }
+          ]
         }
       ],
-      "label": "Deploy what you have created",
-      "type": "category"
+      "label": "Deploy your workload",
+      "type": "category",
+      "link": {
+        "id": "development_suite/deploy/deploy",
+        "type": "doc"
+      }
     },
     {
       "collapsed": true,
@@ -368,10 +672,6 @@
         },
         {
           "id": "development_suite/monitoring/resources/namespace",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/monitoring/configuration",
           "type": "doc"
         },
         {
@@ -419,7 +719,7 @@
       ],
       "link": {
         "type": "doc",
-        "id": "development_suite/identity-and-access-management/overview"
+        "id": "development_suite/identity-and-access-management/identity-and-access-management"
       },
       "type": "category",
       "label": "Identity and Access Management"
@@ -428,7 +728,7 @@
       "collapsed": true,
       "items": [
         {
-          "id": "development_suite/user-settings/user-profile-picture",
+          "id": "development_suite/user-settings/user-personal-info",
           "type": "doc"
         },
         {
@@ -448,21 +748,6 @@
       "type": "category"
     },
     {
-      "collapsed": true,
-      "type": "category",
-      "label": "Webhooks and Events",
-      "items": [
-        {
-          "id": "development_suite/webhooks-and-events/webhooks",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/webhooks-and-events/events",
-          "type": "doc"
-        }
-      ]
-    },
-    {
       "type": "autogenerated",
       "dirName": "cli"
     },
@@ -474,10 +759,7 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": [
-          "use-cases",
-          "guides"
-        ],
+        "keywords": ["use-cases", "guides"],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -486,43 +768,118 @@
           "type": "doc"
         }
       ]
+    },
+    {
+      "id": "development_suite/user-feedback/give-feedback",
+      "type": "doc"
     }
   ],
-  "cms": [
+  "microfrontendComposer": [
     {
-      "collapsed": true,
-      "type": "category",
-      "label": "Backoffice",
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "business_suite/backoffice"
-      }]
+      "id": "microfrontend-composer/what-is",
+      "type": "doc"
     },
     {
-      "collapsed": true,
-      "type": "category",
-      "label": "Backoffice Configurator",
-      "items": [
-        {
-          "type": "autogenerated",
-          "dirName": "business_suite/backoffice-configurator"
-        }
-      ]
+      "id": "microfrontend-composer/overview",
+      "type": "doc"
     },
     {
-      "label": "Data Visualization",
       "type": "category",
       "collapsed": true,
+      "label": "Tutorials",
       "items": [
         {
-          "id": "business_suite/data-visualization",
+          "id": "microfrontend-composer/tutorials/basics",
           "type": "doc"
         },
         {
-          "id": "business_suite/timeline",
+          "id": "microfrontend-composer/tutorials/templates",
+          "type": "doc"
+        },
+        {
+          "id": "microfrontend-composer/tutorials/microfrontends",
+          "type": "doc"
+        },
+        {
+          "id": "microfrontend-composer/tutorials/auth0-integration",
           "type": "doc"
         }
       ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "label": "Videos",
+      "items": [
+        {
+          "id": "microfrontend-composer/videos/microfrontend-composer",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "id": "microfrontend-composer/architecture",
+      "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Composer",
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "microfrontend-composer/composer"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Back-Kit library",
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "microfrontend-composer/back-kit"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "External components",
+      "items": [
+        {
+          "id": "microfrontend-composer/external-components/overview",
+          "type": "doc"
+        },
+        {
+          "id": "microfrontend-composer/external-components/manifest",
+          "type": "doc"
+        },
+        {
+          "id": "microfrontend-composer/external-components/bundling",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "label": "Use cases",
+      "type": "category",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "microfrontend-composer/use-cases/data-visualization",
+          "type": "doc"
+        },
+        {
+          "id": "microfrontend-composer/use-cases/timeline",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "id": "microfrontend-composer/faqs",
+      "type": "doc"
     },
     {
       "label": "Previous tools",
@@ -530,53 +887,53 @@
       "collapsed": true,
       "items": [
         {
-          "id": "business_suite/overview-business-suite",
+          "id": "microfrontend-composer/previous-tools/overview-business-suite",
           "type": "doc"
         },
         {
+          "label": "CMS",
+          "type": "category",
           "collapsed": true,
           "items": [
             {
-              "id": "business_suite/guide_cms",
+              "id": "microfrontend-composer/previous-tools/cms/guide_cms",
               "type": "doc"
             },
             {
-              "id": "business_suite/cms_configuration/config_cms",
+              "id": "microfrontend-composer/previous-tools/cms/config_cms",
               "type": "doc"
             },
             {
-              "id": "business_suite/cms_configuration/conf_cms",
+              "id": "microfrontend-composer/previous-tools/cms/conf_cms",
               "type": "doc"
             },
             {
-              "id": "business_suite/colorare_il_cms",
+              "id": "microfrontend-composer/previous-tools/cms/colorare_il_cms",
               "type": "doc"
             },
             {
-              "id": "business_suite/update_cms",
+              "id": "microfrontend-composer/previous-tools/cms/update_cms",
               "type": "doc"
             },
             {
-              "id": "business_suite/custom-frontends-integration-CMS",
+              "id": "microfrontend-composer/previous-tools/cms/custom-frontends-integration-CMS",
               "type": "doc"
             },
             {
-              "id": "business_suite/video-pills",
+              "id": "microfrontend-composer/previous-tools/cms/video-pills",
               "type": "doc"
             }
-          ],
-          "label": "CMS",
-          "type": "category"
+          ]
         },
         {
           "collapsed": true,
           "items": [
             {
-              "id": "business_suite/cms_configuration/config_analytics",
+              "id": "microfrontend-composer/previous-tools/analytics/config_analytics",
               "type": "doc"
             },
             {
-              "id": "business_suite/conf_analytics",
+              "id": "microfrontend-composer/previous-tools/analytics/conf_analytics",
               "type": "doc"
             }
           ],
@@ -596,6 +953,40 @@
       "type": "doc"
     },
     {
+      "type": "category",
+      "label": "Tutorials",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/tutorials/low-code",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/tutorials/bucket-storage-support",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/tutorials/migration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Videos",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/videos/fast-data-no-code",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/videos/bucket-storage",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "id": "fast_data/inputs_and_outputs",
       "type": "doc"
     },
@@ -612,11 +1003,19 @@
       "type": "doc"
     },
     {
+      "id": "fast_data/projection_storer",
+      "type": "doc"
+    },
+    {
       "id": "fast_data/single_view_creator",
       "type": "doc"
     },
     {
       "id": "fast_data/single_view_trigger_generator",
+      "type": "doc"
+    },
+    {
+      "id": "fast_data/runtime_management",
       "type": "doc"
     },
     {
@@ -639,11 +1038,19 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/configuration/indexes",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/configuration/strategies",
           "type": "doc"
         },
         {
           "id": "fast_data/configuration/cast_functions",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/import_export",
           "type": "doc"
         },
         {
@@ -653,6 +1060,14 @@
           "items": [
             {
               "id": "fast_data/configuration/config_maps/erSchema",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/config_maps/aggregation",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/config_maps/singleViewKey",
               "type": "doc"
             },
             {
@@ -666,35 +1081,51 @@
           ]
         },
         {
-          "type": "category",
+          "id": "fast_data/configuration/projection_storer_config",
+          "type": "doc"
+        },
+        {
           "label": "Real-Time Updater",
+          "type": "category",
           "collapsed": true,
+          "link": {
+            "id": "fast_data/configuration/realtime-updater/real-time-updater",
+            "type": "doc"
+          },
           "items": [
             {
-              "id": "fast_data/configuration/realtime_updater/common",
+              "id": "fast_data/configuration/realtime-updater/configuration-files",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/realtime_updater/low_code",
+              "id": "fast_data/configuration/realtime-updater/advanced-topics",
               "type": "doc"
             }
           ]
         },
         {
-          "type": "category",
           "label": "Single View Creator",
+          "type": "category",
           "collapsed": true,
+          "link": {
+            "id": "fast_data/configuration/single_view_creator/overview",
+            "type": "doc"
+          },
           "items": [
             {
-              "id": "fast_data/configuration/single_view_creator/common",
+              "id": "fast_data/configuration/single_view_creator/plugin",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/single_view_creator/low_code",
+              "id": "fast_data/configuration/single_view_creator/template",
               "type": "doc"
             },
             {
-              "id": "fast_data/configuration/single_view_creator/manual",
+              "id": "fast_data/configuration/single_view_creator/patch",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/single_view_creator/upsert_delete_strategies",
               "type": "doc"
             }
           ]
@@ -776,23 +1207,53 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/monitoring/dashboards/consumer_groups",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/monitoring/dashboards/projection_changes",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/monitoring/dashboards/single_views",
-          "type": "doc"
-        },
-        {
-          "id": "fast_data/monitoring/dashboards/unmapped_fields",
-          "type": "doc"
+          "type": "category",
+          "label": "Dashboards",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "fast_data/monitoring/dashboards/bucket_storage_support",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/debezium_cdc",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/kafka_messages",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/projection_changes",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/real_time_updater",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/single_views",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/monitoring/dashboards/unmapped_fields",
+              "type": "doc"
+            }
+          ]
         }
       ],
       "label": "Monitoring",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/data_catalog/overview_data_catalog",
+          "type": "doc"
+        }
+      ],
+      "label": "Data Catalog",
       "type": "category"
     },
     {
@@ -809,6 +1270,10 @@
         {
           "id": "fast_data/troubleshooting/pr_update_topics_overwritten",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/troubleshooting/rtu_violates_unique_keys",
+          "type": "doc"
         }
       ],
       "label": "Troubleshooting",
@@ -818,7 +1283,27 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/faq/failure_handling_fast_data",
+          "id": "fast_data/faq/parallel_svc",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/failure_handling",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/architecture_migration",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/bootstrapping_fast_data",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/import_export_faq",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/faq/fast_data_versioning",
           "type": "doc"
         }
       ],
@@ -828,182 +1313,50 @@
   ],
   "gettingStarted": [
     {
-      "id": "overview/mia_platform_overview",
+      "id": "getting-started/mia-platform-overview",
       "type": "doc"
     },
     {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "tutorial/microservices/microservice_hello_world",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/api_portal/api_portal_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/rest_api/quick_rest_api",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/node_ms/node_ms_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/requests_limits/requests_limits_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/authorization/authorization_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/flow_manager/flow_manager_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/fast_data/fast_data_low_code_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/design_overview/design_overview",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/migration/fast_data_migration_tutorial",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/create_project_jenkins/project_template_jenkins_tutorial",
-          "type": "doc"
-        }
-      ],
-      "label": "Tutorials",
-      "type": "category"
+      "type": "doc",
+      "id": "getting-started/tutorials/tutorials"
     },
     {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "tutorial/console/project_handbook",
-          "type": "doc"
-        },
-        {
-          "id": "tutorial/console/console_handbook",
-          "type": "doc"
-        },
-        {
-          "id": "how_to/console/project_dev_tools_setup",
-          "type": "doc"
-        },
-        {
-          "id": "how_to/traefik/traefik_handbook",
-          "type": "doc"
-        },
-        {
-          "id": "how_to/crud_service/crud_oss_usage",
-          "type": "doc"
-        }
-      ],
-      "label": "Handbooks",
-      "type": "category"
+      "type": "doc",
+      "id": "getting-started/handbooks/handbooks"
     },
     {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "getting_started/videos/backoffice",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/bucket_storage",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/connecting_cluster",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/fast_data_no_code",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/feature_preview",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/m2m_auth",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/providers",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/videos/runtime_area",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/video_pills/video_pills",
-          "type": "doc"
-        }
-      ],
-      "label": "Videos",
-      "type": "category"
-    },
-    {
-      "id": "getting_started/faqs",
+      "id": "getting-started/videos/videos",
       "type": "doc"
     },
     {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "guidelines/git_vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "guidelines/rest_api_vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "guidelines/microservice_vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "guidelines/docker_vademecum",
-          "type": "doc"
-        },
-        {
-          "id": "getting_started/monitoring-dashboard/dev_ops_guide/log",
-          "type": "doc"
-        }
-      ],
-      "label": "Guidelines",
-      "type": "category"
+      "id": "getting-started/faqs",
+      "type": "doc"
     }
   ],
   "governance": [
     {
+      "id": "infrastructure/infrastructure_overview",
+      "type": "doc"
+    },
+    {
       "type": "category",
       "collapsed": true,
-      "label": "Paas",
+      "label": "PaaS",
+      "link": {
+        "id": "infrastructure/paas/overview",
+        "type": "doc"
+      },
       "items": [
         {
-          "id": "paas/overview",
+          "id": "infrastructure/paas/maintenance",
           "type": "doc"
         },
         {
-          "id": "paas/alerting_rules",
+          "id": "infrastructure/paas/security-measures",
           "type": "doc"
         },
         {
-          "id": "paas/security/security_measures",
-          "type": "doc"
-        },
-        {
-          "id": "paas/security/secret_scanning",
+          "id": "infrastructure/paas/secret-scanning",
           "type": "doc"
         },
         {
@@ -1011,11 +1364,7 @@
           "type": "doc"
         },
         {
-          "id": "paas/business_continuity",
-          "type": "doc"
-        },
-        {
-          "id": "paas/K8s_roles_and_permissions",
+          "id": "infrastructure/paas/business-continuity",
           "type": "doc"
         },
         {
@@ -1024,23 +1373,39 @@
           "collapsed": true,
           "items": [
             {
-              "id": "paas/kube-green",
+              "id": "infrastructure/paas/tools/runtime",
               "type": "doc"
             },
             {
-              "id": "paas/cert-manager",
+              "id": "infrastructure/paas/tools/message-broker",
               "type": "doc"
             },
             {
-              "id": "paas/traefik",
+              "id": "infrastructure/paas/tools/docker-registry",
               "type": "doc"
             },
             {
-              "id": "paas/mtls",
+              "id": "infrastructure/paas/tools/traefik",
               "type": "doc"
             },
             {
-              "id": "paas/alarms",
+              "id": "infrastructure/paas/tools/cert-manager",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/paas/tools/grafana",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/paas/tools/kube-green",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/paas/tools/telepresence",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/paas/tools/mtls",
               "type": "doc"
             }
           ]
@@ -1052,35 +1417,57 @@
       "type": "category",
       "items": [
         {
-          "id": "self_hosted/self_hosted_requirements",
-          "type": "doc"
-        },
-        {
-          "id": "self_hosted/self_hosted_runtime_requirements",
-          "type": "doc"
-        },
-        {
-          "id": "self_hosted/troubleshooting",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/set-up-infrastructure/ranges-and-quotas",
-          "type": "doc"
-        },
-        {
-          "id": "development_suite/deploy/pipeline-configuration",
+          "id": "infrastructure/self-hosted/self-hosted-requirements",
           "type": "doc"
         },
         {
           "label": "Install Mia-Platform Console",
           "type": "category",
           "collapsed": true,
-          "items": [{
-            "dirName": "self_hosted/installation-chart",
-            "type": "autogenerated"
-          }]
+          "items": [
+            {
+              "dirName": "infrastructure/self-hosted/installation-chart",
+              "type": "autogenerated"
+            }
+          ]
+        },
+        {
+          "label": "Cluster management and other resources",
+          "type": "category",
+          "collapsed": true,
+          "items": [
+            {
+              "id": "infrastructure/self-hosted/third-party-integrations/deployment-tools",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/ranges-and-quotas",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/feature-toggle",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/private-clusters",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/pipeline-configuration",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "infrastructure/self-hosted/troubleshooting",
+          "type": "doc"
         }
       ]
+    },
+    {
+      "label": "Bring Your Own Infrastructure",
+      "id": "infrastructure/byoi/byoi-overview",
+      "type": "doc"
     }
   ],
   "marketplace": [
@@ -1089,67 +1476,143 @@
       "type": "doc"
     },
     {
-      "id": "marketplace/add_to_marketplace/contributing_overview",
-      "type": "doc",
-      "label": "Add to marketplace"
-    },
-    {
-      "collapsed": true,
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite_applications"
-      }],
-      "label": "Applications",
-      "type": "category",
-      "link": {
-        "id": "marketplace/applications/mia_applications",
-        "type": "doc"
-      }
-    },
-    {
-      "label": "Plugins",
-      "type": "category",
-      "link": {
-        "id": "plugins/mia-platform-plugins",
-        "type": "doc"
-      },
-      "collapsed": true,
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite"
-      }]
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
-          "id": "development_suite/api-console/api-design/custom_microservice_get_started",
-          "type": "doc"
-        },
-        {
-          "id": "marketplace/templates/template_create",
-          "type": "doc"
-        },
-        {
-          "type": "autogenerated",
-          "dirName": "runtime_suite_templates"
-        }
-      ],
-      "label": "Templates",
-      "type": "category",
-      "link": {
-        "id": "marketplace/templates/mia_templates",
-        "type": "doc"
-      }
-    },
-    {
-      "id": "marketplace/examples/mia_examples",
-      "type": "doc"
-    },
-    {
-      "label": "Compatibility matrices",
+      "label": "Compatibility Matrices",
       "id": "marketplace/compatibility_matrices/mongo_compatibility_matrix",
       "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Handbooks",
+      "items": [
+        {
+          "id": "marketplace/handbooks/crud-oss-usage",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Marketplace Items",
+      "items": [
+        {
+          "label": "Plugins",
+          "type": "category",
+          "link": {
+            "id": "plugins/mia-platform-plugins",
+            "type": "doc"
+          },
+          "collapsed": true,
+          "items": [
+            {
+              "type": "autogenerated",
+              "dirName": "runtime_suite"
+            }
+          ]
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/api-console/api-design/custom_microservice_get_started",
+              "type": "doc"
+            },
+            {
+              "type": "autogenerated",
+              "dirName": "runtime_suite_templates"
+            }
+          ],
+          "label": "Templates",
+          "type": "category",
+          "link": {
+            "id": "marketplace/templates/mia_templates",
+            "type": "doc"
+          }
+        },
+        {
+          "id": "marketplace/examples/mia_examples",
+          "type": "doc"
+        },
+        {
+          "collapsed": true,
+          "items": [
+            {
+              "type": "autogenerated",
+              "dirName": "runtime_suite_applications"
+            }
+          ],
+          "label": "Applications",
+          "type": "category",
+          "link": {
+            "id": "marketplace/applications/mia_applications",
+            "type": "doc"
+          }
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "label": "Marketplace Management",
+      "type": "category",
+      "items": [
+        {
+          "label": "Contributing to the Marketplace",
+          "type": "category",
+          "link": {
+            "id": "marketplace/add_to_marketplace/contributing_overview",
+            "type": "doc"
+
+          },
+          "items": [
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_plugin",
+              "label": "Create a Plugin Marketplace Item",
+              "type": "doc"
+            },
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
+              "label": "Create a Template or Example Marketplace Item",
+              "type": "doc"
+            },
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_application",
+              "label": "Create an Application Marketplace Item",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "marketplace/add_to_marketplace/manage_marketplace_items",
+          "type": "doc",
+          "label": "Manage Marketplace Items"
+        },
+        {
+          "id": "marketplace/add_to_marketplace/marketplace_items_accessibility",
+          "type": "doc"
+        },
+        {
+          "id": "marketplace/add_to_marketplace/change_marketplace_item_visibility",
+          "type": "doc",
+          "label": "Change Marketplace Items Visibility"
+        },
+        {
+          "id": "marketplace/add_to_marketplace/declarative_marketplace",
+          "type": "doc",
+          "label": "Marketplace Declarative Approach"
+        }
+      ]
     },
     {
       "collapsed": true,
@@ -1195,10 +1658,12 @@
     {
       "type": "category",
       "label": "Libraries List",
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite_libraries"
-      }]
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "runtime_suite_libraries"
+        }
+      ]
     },
     {
       "label": "Tools",
@@ -1221,15 +1686,17 @@
     {
       "type": "category",
       "label": "Tools List",
-      "items": [{
-        "type": "autogenerated",
-        "dirName": "runtime_suite_tools"
-      }]
+      "items": [
+        {
+          "type": "autogenerated",
+          "dirName": "runtime_suite_tools"
+        }
+      ]
     }
   ],
   "releaseNotes": [
     {
-      "id": "release-notes/v11-overview",
+      "id": "release-notes/v13-overview",
       "type": "doc"
     },
     {
@@ -1241,39 +1708,12 @@
         "id": "release-notes/versions"
       },
       "items": [
-        {
-          "id": "release-notes/v11.2.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.2.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.1.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.1.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.1.0",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.0.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.0.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v11.0.0",
-          "type": "doc"
-        }
+        { "id": "release-notes/v13.0.0", "type": "doc" }
       ]
+    },
+    {
+      "id": "release-notes/stable-versions",
+      "type": "doc"
     },
     {
       "id": "release-notes/roadmap",

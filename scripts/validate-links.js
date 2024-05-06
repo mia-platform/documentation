@@ -11,9 +11,10 @@ const excludePath = (path) => {
         'docs/runtime_suite_libraries',
         'docs/runtime_suite_tools',
         'docs/runtime_suite_applications',
-        'docs/self_hosted/installation-chart',
-        'docs/business_suite',
-        'docs/cli'
+        'docs/infrastructure/self-hosted/installation-chart',
+        'docs/microfrontend-composer/back-kit',
+        'docs/microfrontend-composer/composer',
+        'docs/cli',
     ];
 
     if (pathToExclude.some(s => path.toLowerCase().includes(s))) return true;
@@ -43,7 +44,8 @@ const toCheck = {
         '.gif',
         '.svg',
         '.sh',
-        '.xml'
+        '.xml',
+        '.yml'
     ],
     special: [
         'http',
@@ -59,18 +61,21 @@ const linkToCheck = (link) => {
 }
 
 const checkLink = (link) => {
-    const [path] = link.split('#');
+    const [pathWithQs] = link.split('#');
+    const [path] = pathWithQs.split('?')
     const pathToCheck = `${docsFolder}/docs${path}`;
     let errors = [];
 
     if(path.toLowerCase().startsWith('http') || path.toLowerCase().startsWith('https')) {
         if (path.toLowerCase().includes('docs.mia-platform.eu')) errors.push("httpLinkToInternalDocs");
     } else {
-        if(!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
-        if(path.startsWith('.')) errors.push("relativePath");
-        if(!path.startsWith('/')) errors.push("missingStartingSlash");
-        if(path.toLowerCase().startsWith('/docs') || path.toLowerCase().startsWith('docs')) errors.push("linkStartWithDocs");
-        if(!fs.existsSync(pathToCheck) || !fs.lstatSync(pathToCheck).isFile()) errors.push("fileNotFound");
+        if(path.toLowerCase() !== "/" && !path.toLowerCase().startsWith('/#')) {
+            if (!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
+            if (path.startsWith('.')) errors.push("relativePath");
+            if (!path.startsWith('/')) errors.push("missingStartingSlash");
+            if (path.toLowerCase().startsWith('/docs') || path.toLowerCase().startsWith('docs')) errors.push("linkStartWithDocs");
+            if (!fs.existsSync(pathToCheck) || !fs.lstatSync(pathToCheck).isFile()) errors.push("fileNotFound");
+        }
     }
     return errors.length > 0 ? errors : null;
 }

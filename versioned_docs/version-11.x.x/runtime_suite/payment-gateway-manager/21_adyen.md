@@ -1,0 +1,117 @@
+---
+id: adyen
+title: Adyen
+sidebar_label: Adyen
+---
+In this page you will find the required information to perform REST calls related to the Adyen payment provider.
+
+| Payment Method | Payment | Refund | Automatic Subscription | Manual Subscription |
+|----------------|---------|--------|------------------------|---------------------|
+| `credit-cards` | ✓       | ✓      |                        | ✓                   | 
+
+|              | Enabled |
+|--------------|---------|
+| Pay By Link  | ✓       |
+
+:::warning
+At this moment, only the Adyen [Automatic Capture](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/capture#automatic-capture) mode is supported. Remember to set it in the Adyen Customer Area.
+:::
+
+## Endpoints
+
+Every Adyen endpoint has the prefix path `/v3/adyen`.
+
+### Pay
+
+`POST /{payment-method}/pay`
+
+In addition to the common mandatory fields, has four provider specific required ones:
+```jsonc
+{
+   "amount": "...",
+   "shopTransactionId": "...",
+   "providerData": {
+      "encryptedCardNumber": "...",
+      "encryptedExpiryMonth": "...",
+      "encryptedExpiryYear": "...",
+      "encryptedSecurityCode": "..."
+   }
+}
+```
+All these four fields are related to the shopper credit/debit card details and must be encrypted by Adyen system first. 
+
+### Refund
+
+`POST /refund`
+
+This endpoint allows to refund, fully or partially, an already executed payment via the Adyen provider.
+
+The request body does not require any provider-specific data.
+
+The refund request is asynchronous, so `/refund` endpoint doesn't return the outcome of the operation but a generic `PENDING` code. 
+In order to verify if a refund has been performed or not, a notification must be received through the `/callback` endpoint.
+
+### Subscription
+
+#### Start
+
+`POST /subscription/start`
+
+This endpoint allows to create a new subscription and the related first payment via the Adyen provider.
+
+It required the same fields inside `providerData` object as the *pay* request.
+Below an example of the `providerData` object needed:
+```jsonc
+{
+    [...]
+    "providerData": {
+        "paymentMethod": {
+            "encryptedCardNumber": "string",
+            "encryptedExpiryMonth": "string",
+            "encryptedExpiryYear": "string",
+            "encryptedSecurityCode": "string"
+        },
+        "shopperReference": "string"
+    }
+}
+```
+
+#### Pay
+
+`POST /subscription/pay`
+
+This endpoint allows to create a new payment related to the subscription defined by the `subscriptionToken` via the Adyen provider.
+
+It required the `token` field inside the `subscriptionInfo` object.
+
+Below an example of the `providerData` object needed:
+```jsonc
+{
+    [...]
+    "providerData": {
+        "shopperReference": "string"
+    }
+}
+```
+
+#### Expire
+
+`POST /subscription/expire/{subscriptionToken}?reference={{shopperReference}}`
+
+This endpoint allows to expire a subscription.
+
+### Pay By Link
+
+`POST /pay-by-link`
+
+The request body does not require any provider-specific data.
+
+### Callback
+
+`POST /callback`
+
+This endpoint should only be called by Adyen.
+
+:::warning
+The `/status` and `/check` endpoints are not implemented.
+:::

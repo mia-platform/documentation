@@ -1,0 +1,29 @@
+[
+    {
+        "address": "customer-1 address",
+        "city": "customer-1 city",
+        "email": "customer1@mail.com",
+        "name": "customer-1",
+        "phone": "customer phone",
+        "registry_id": "reg-1",
+        "state": "active"
+    },
+    {
+        "address": "customer-2 address",
+        "city": "customer-2 city",
+        "email": "customer2@mail.com",
+        "name": "customer 2",
+        "phone": "customer-2 phone",
+        "registry_id": "reg-2",
+        "state": "inactive"
+    },
+    {
+        "address": "customer-1 address",
+        "city": "customer-1 city",
+        "email": "customer1@mail.com",
+        "name": "customer-1",
+        "phone": "customer-1 phone",
+        "registry_id": "reg-3",
+        "state": "inactive"
+    }
+]

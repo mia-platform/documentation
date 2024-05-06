@@ -1,0 +1,181 @@
+---
+id: changelog
+title: Changelog
+sidebar_label: CHANGELOG
+---
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.9.1] 2023-09-05
+
+## Fixed
+- Fixed test scope assertions
+
+## [1.9.0] 2023-08-31
+
+## Added
+- Configuration file accepts the field `isMessagingAvailable` and `messagingOptions` for managing notifications via messaging service
+- Updated API PUT /visualizer/forms/:id for sending emails at the submission
+- Created API GET /templates for retrieving email templates
+- Updated API POST /visualizer/forms for sending emails at the submission
+- When sending emails, the form data is also transferred to the messaging service
+- Updated API POST /send for managing blind carbon copies (BCC)
+
+## [1.8.1] 2023-07-28
+
+### Added
+
+- API GET /visualizer/schemas/:id returns also `formExpirationDate` 
+- Configuration file accepts the field `formExpirationDateFormat` in the `formBuilderCustomProperties` object
+
+## [1.8.0] 2023-07-24
+
+### Added
+
+- Configuration file accepts the field `messageToBeShownOnExpiredForm` in the `formVisualizerOptions` object
+- Api GET /visualizer/config returns also the new field `messageToBeShownOnExpiredForm`
+- POST /builder/schemas endpoints accepts `formExpirationDate` field to set form expiration date
+- GET /builder/schemas/:id endpoint returns also the `formExpirationDate` field
+- PUT /builder/schemas/:id is possible to $set and $unset the `formExpirationDate` field
+
+### Fixed 
+
+- Fix documentation links
+
+## [1.7.1] 2023-03-31
+
+- Add Excel compatibility flag to CSV form export
+- Fix wrong number of forms returned in CSV
+
+## [1.7.0] 2023-02-22
+
+### Added
+
+- Add GET /visualizer/forms/export endpoint.
+- Add export lookup configuration.
+- Add export lookup.
+- Improve Excel compatibility of the CSV file.
+- Extract form fields from schema.
+- Return empty CSV with headers.
+- Export to CSV fields extracted from the form schema.
+- Add export fields and redirects.
+
+## [1.6.0] 2023-02-06
+
+### Fixed
+
+- Fix GET: forms/:id. Endpoint now set isEditable correctly retrieving draft data.
+
+### Added
+
+- Form service backend now include form assignments in autosave procedure.
+
+## [1.5.0] 2023-01-03
+
+### BREAKING CHANGES
+The autosave feature includes a change in the service calls for data storage, which now require two additional fields that are required.
+
+### Changed
+
+- Update CRUD client GET, DELETE, and POST to match CRUD's endpoint paths.
+
+#### Note
+Caution: be careful that the submitUrl exposes methods correctly. Read documentation for details, in particular the [Form submit urls parameters](./20_configuration.md#form-submit-urls-parameters) section.
+
+### Added
+
+- Draft Endpoint added.
+- Form Service Backend now edits drafts.
+- Delete Endpoint added. Form Service Backend now deletes forms and drafts.
+- Now formSchamaId of Drafts is not required.
+- Visualizer Config Endpoint added.
+- Added query param _status to GET /visualizer/forms/:id endpoint to retrieve the draft data if "_status" equals "draft".
+- Autosave documentation added.
+- Now the Draft endpoint create a new draft if formId is defined but the draft has not been created yet.
+- Edit to add hasDraft and isValid tags to forms.
+- Added to documentation hasDraft and isValid properties.
+
+## [1.4.0] 2022-06-23
+
+### Added
+
+- Form Service Backend now supports the form data versioning, by passing (if configured) the `_v` to the `submit_url` endpoint.
+
+### Changed
+
+- Form validator removal.
+
+### Fixed
+
+- Form Service Backend now does not reply with `500` status code when CRUD POST returns `2xx` response different from `200`.
+
+## [1.3.0] 2022-03-22
+
+### Added
+
+- Form visualizer styling support updating `GET /visualizer/schemas/:id` and `GET /visualizer/forms/:id` routes to return style assets associated to a form template.
+
+## [1.2.2] 2022-03-22
+
+### Added
+
+- Provide templating options to the Form Visualizer.
+- Documentation for the Form Visualizer options.
+
+### Fixed
+
+- Fixed support for external submit URLs and submit URLs with explicit port.
+- Backward compatibility issue that required the `formSchemaCrud` object in the configuration even if it's optional.
+- Update documentation links to download example .json files to fix link not opening in a new browser tab.
+- Improved documentation by adding the description of the *submit URLs*.
+
+## [1.2.1] 2021-12-15
+
+### Changed
+
+- Update ACL controls relying only on manual and automatic assignments.
+
+## [1.2.0] 2021-12-09
+
+### Fixed
+
+- Remove payload log in `POST` an `PUT` endpoints.
+
+### Changed
+
+- `PUT /visualizer/schemas/:id` updated to handle `$set` and `$unset` body.
+
+### Added
+
+- Inject configurable or default client type if missing in the request's headers in all handlers.
+- New endpoint`GET /visualizer/assignments/:id/schema-id`.
+- `GET /visualizer/schemas/:id` updated to handle isPrivate and isEditable.
+- `PUT /visualizer/schemas/:id` updated to handle isPrivate and isEditable.
+- `POST /visualizer/forms` updated to handle isPrivate and previous submission checks.
+- `GET /visualizer/schemas/:id` updated to handle isPrivate and groups.
+- Introducing isPrivate, isEditable and user groups properties.
+
+## [1.1.1] 2021-11-05
+
+### Added
+
+- Return options object from formSchemaMapCrud if any in the response of `GET|PUT /visualizer/forms/{id}` endpoints.
+- Prevent a submitted form update if options object from formSchemaMapCrud contains readOnly property equal to `true`.
+
+### Fixed
+
+- Fixing issue on form validation (validation now skips `customConditional` elements).
+
+## [1.1.0] 2021-06-28
+
+### Added
+
+- Form data validation in the backend through the use of a Validator. Form validation is enabled for visualizer POST and PUT operations.
+
+## [1.0.0] 2021-06-10
+
+### Added
+
+- Initial form service backend implementation. Added APIs to manage form schemas and form submissions.

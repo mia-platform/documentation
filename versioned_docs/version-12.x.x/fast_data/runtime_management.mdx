@@ -1,0 +1,155 @@
+---
+id: runtime_management
+title: Runtime Management
+sidebar_label: Runtime Management
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Runtime Management
+
+Runtime Management is a tool in the Fast Data environment for achieving better control over the Fast Data microservices during runtime.
+This component lets you dynamically manage the execution of Fast Data, offering functionalities to pause and resume microservices with few clicks.
+
+To facilitate these operations, it provides a user-friendly web interface and robust backend functionalities.
+
+By ***Runtime Environment*** we mean a set of microservices that are deployed in a specific Console environment and that are configured to communicate with each other.
+There could be multiple Runtime Environments in a single Console environment or among different ones.
+With Runtime Management, users gain the ability to govern several different aspects of a Fast Data runtime.
+
+:::note
+Currently, this mechanism is supported only in the Single View Creator from version `6.4.0`.
+:::
+
+### Key Benefits
+
+The major benefits of Runtime Management are an **improved performance and consistency** and a **flexible control** over the Fast Data runtime.
+
+#### Enhanced Performance and Consistency
+
+Use Runtime Management to optimize performance and ensure data consistency. 
+For example, start the ingestion of a massive data system into the Fast Data environment. Only after the ingestion process is complete, 
+initiate the processing of updates from the Real Time Updater (and the Single View Trigger Generator if active) to generate Single Views. 
+
+#### Flexible Control
+
+Govern the execution of Fast Data microservices with fine-grained control, allowing for strategic management of the runtime environment in various scenarios:
+
+- **Strategic Resource Allocation:** Dynamically allocate resources by pausing and resuming microservices based on workload and resource availability.
+      Efficiently utilize computing resources and prioritize critical processes during peak demand.
+- **Performance Testing and Simulation:** Simulate different scenarios for performance testing by pausing and resuming microservices.
+      Observe system behavior under various conditions to identify bottlenecks and optimize resource allocation.
+- **Enhanced System Reliability:** Gracefully handle unexpected situations or system maintenance by pausing specific microservices.
+      Resume operations post-maintenance to minimize downtime and enhance overall system reliability.
+
+## What You Can Do
+
+At the moment, the following commands can be exploited:
+
+- ***Pause***. Temporarily halt the consumption of messages on the Single View Creator microservice, be it from *Projection Changes* or *Single View Trigger* messages,
+    so that no aggregation is executed.
+    This command is useful when you want to pause the generation of Single Views, for example, during high-load data ingestion.
+
+- ***Resume***. Restart the consumption of *PC* or *sv-trigger* messages by the Single View Creator, bringing Single Views aggregation process back to active operation.
+
+## Up and Running
+
+To ensure a smooth setup and operation of Runtime Management, make sure you've completed the following tasks:
+
+1. **Set Up the persistence environment:** ensure that you have configured a persistence environment (e.g., MongoDB) for Runtime Management to store its state.
+  Make sure that the persistence environment is accessible from the Control Plane application and insert its connection configuration in the Config Map of the Control Plane.
+
+  :::tip
+  You can connect to any MongoDB instance.
+  If your are using Mia-Platform Console in PaaS, you can request a MongoDB Database managed by Mia-Platform by opening a proper Service Request.
+  Before opening a Service Request, check if a MongoDB Database was already provided for you or your team during Company creation or Project creation phases.
+  :::
+
+This step alone grants the proper functioning of the frontend and backend of Runtime Management. However, if you want to enable the communication with one or more runtimes of Fast Data, follow the next steps.
+
+2. **Set Up Fast Data Environment in Console:** naturally, you need to have a Fast Data environment in the Console,
+  defining all the possible microservices you may need and their runtime configurations.
+  In particular, be sure to set the two environment variables `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID` for the Single View Creator,
+  to enable the communication with the Runtime Management.
+  Check the Single View Creator [Environment Variables section](/fast_data/configuration/single_view_creator/index.md#environment_variables) for further details.
+
+  :::tip
+  For an overview of the Fast Data architecture and what services can be deployed, check the [Architecture](/fast_data/architecture.md) page or consult the [Fast Data Tutorial](/fast_data/tutorials/low-code.mdx) for a step-by-step guide on how to create a Fast Data environment.
+  :::
+
+3. **Create a Kafka topic:** create a Kafka topic dedicated to receiving action commands on your Kafka cluster.
+  This ensures seamless communication between Runtime Management and Fast Data microservices.
+  
+  :::tip
+  We suggest using a single-partitioned topic. We also recommend giving the topic a name that is easy to identify and share among all microservices inside a runtime environment.
+  In fact, we suggest using a unique topic for each runtime environment.
+  :::
+
+4. **Configure Control Plane Application:** populate the Config Map of the Control Plane application with details regarding your runtime environment.
+
+  :::note
+  For a detailed explanation on how to configure the Control Plane application and its ConfigMap, check the [Control Plane application documentation](/runtime_suite_applications/control-plane/10_overview.md).
+  :::
+
+## Interacting with the Frontend
+
+To interact with Runtime Management, access the web user interface provided by the Control Plane application.
+Once configured in Console, you can navigate to the frontend using the link generated in the Endpoints section and start managing your Fast Data runtime.
+To see how to send a command, check the [Sending a command](#sending-a-command) section below.
+
+### Frontend Overview
+
+The frontend is divided into two sections: a form on the left and a log panel on the right.
+The form allows you to specify the details of the command you want to send, while the log panel displays the log of the command sent.
+
+![Control Plane UI](img/runtime_management/runtime_management_initial_screen.png)
+
+<Tabs>
+
+<TabItem value="control-plane-ui-left" label="Left Side" default>
+
+#### Form Section
+  - ***Method*:** Choose between `Pause` and `Resume` commands.
+  - ***Resource name*:** Enter the name of a specific resource to pause or resume (for example, the name of a Single View).
+  - ***Runtime*:** Select a target runtime environment name on which to execute the command.
+
+</TabItem>
+
+<TabItem value="control-plane-ui-right" label="Right Side">
+
+#### Log Panel
+  After submitting the form, a Kafka message representing the command is sent to the topic.
+  The Monaco editor panel on the right displays the log of the sent command, providing visibility into the executed actions.
+  It also shows any possible errors that could arise during the process.
+
+  At the top, two buttons allow you to prettify the text being logged and to clear it.
+
+</TabItem>
+
+</Tabs>
+
+### Sending a command
+
+Before you initiate a command using Runtime Management, be aware that sending a command involves a few key steps to ensure precision and effectiveness in controlling your Fast Data runtime.
+
+1. **Method Selection:** Choose an action to send from the *Method* dropdown.
+2. **Resource name (optional):** Enter the name of a specific resource.
+3. **Runtime Selection (optional):** Select the target runtime environment for executing the selected action.
+4. **Submit:** Press the submit button to send a Kafka message representing the action command to the dedicated topic.
+
+![Control Plane action command](img/runtime_management/runtime_management_request_with_parameters.png)
+
+This straightforward process allows you to seamlessly communicate your command to the Fast Data microservices.
+
+### Error Logs
+
+Any errors that occur during the execution of a command are displayed in the log panel.
+The Monaco editor panel on the right displays the log of the sent command, providing visibility into the executed actions.
+It also shows any possible errors that could arise during the process.
+
+![Control Plane error log](img/runtime_management/runtime_management_error_log.png)
+
+---
+
+Now, you're equipped with the knowledge to efficiently manage Fast Data during its runtime using the Runtime Management system.

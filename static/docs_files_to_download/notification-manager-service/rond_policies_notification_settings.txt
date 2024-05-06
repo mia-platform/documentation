@@ -1,0 +1,14 @@
+### Notification manager
+
+nm_create_notification_settings{
+  eventName := input.request.body.eventName
+  eventSettings := find_many("ms_event_settings",{"$or":[{"userGroups":{"$in":input.user.groups}},{"userGroups":{"$exists": false}}]})
+  eventSettings[_].eventName == eventName
+}
+
+nm_update_notification_settings{
+  eventSettings := find_many("ms_event_settings",{"$or":[{"userGroups":{"$in":input.user.groups}},{"userGroups":{"$exists": false}}]})
+  resourceId := input.request.pathParams.id
+  resource := find_one("ms_notification_settings", {"$expr": { "$eq": [ "$_id", { "$toObjectId": resourceId } ] }})
+  eventSettings[_].eventName == resource.eventName
+}

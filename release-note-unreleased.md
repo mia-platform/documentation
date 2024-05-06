@@ -28,7 +28,7 @@ _RELEASE_DATE_
 ### Security update for the following microservices
 
 
-## Backoffice
+## Microfrontend Composer
 
 ### New features
 

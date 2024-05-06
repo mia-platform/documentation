@@ -1,0 +1,457 @@
+---
+id: events
+title: Console Events
+sidebar_label: Console Events
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Events allow users to be notified when certain operations are performed in the Console.
+
+## Event types
+
+All the events triggered by the Console share some common properties:
+
+|     Property     |  Value   |                          Description                           |
+| ---------------- | -------- | -------------------------------------------------------------- |
+| `eventName`      | `string` | The name of the event, usually in the form of `subject_action` |
+| `eventTimestamp` | `number` | The timestamp of the event emission                            |
+| `payload`        | `object` | Contains the event-specific payload                            |
+
+
+
+### Project Created
+
+This event will be triggered when a project is created successfully.
+
+<Tabs>
+<TabItem value="project-created-table" label="Event Payload" default>
+
+|  Property   |  Value   |                              Description                               |
+| ----------- | -------- | ---------------------------------------------------------------------- |
+| `tenantId`  | `string` | The identifier of the Company the Project belongs to                   |
+| `projectId` | `string` | The identifier of the newly created Project                            |
+
+</TabItem>
+<TabItem value="example" label="Example" default>
+
+```json
+{
+  "eventName": "project_created",
+  "eventTimestamp": 123456,
+  "payload": {
+    "tenantId": "my-company-id",
+    "projectId": "0000000000000001"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {
+      "const": "project_created",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "type": "number"
+    },
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "description": "The identifier of the Project that was created"
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "The identifier of the Company the Project belongs to"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "type": "object"
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### Service Created
+
+This event will be triggered when a microservice is successfully generated from a marketplace template or example.
+
+:::note
+The event is triggered as soon as the service's repository is successfully created,
+hence there is no guarantee that the service will be found in the project configuration, yet.
+:::
+
+<Tabs>
+<TabItem value="service-created-table" label="Event Payload" default>
+
+
+|    Property     |  Value   |                                         Description                                          |
+| --------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `tenantId`      | `string` | The identifier of the Company the service belongs to                                         |
+| `projectId`     | `string` | The identifier of the Project the service belongs to                                         |
+| `repositoryURL` | `string` | The URL of the repository that hosts the service code                                        |
+| `serviceName`   | `string` | The name of the service inside the project configuration                                     |
+| `templateId`    | `string` | The identifier of the template in the Console marketplace from which the service was created |
+
+</TabItem>
+<TabItem value="example" label="Example">
+
+```json
+{
+  "eventName": "service_created",
+  "eventTimestamp": 123456,
+  "payload": {
+    "tenantId": "my-company-id",
+    "projectId": "0000000000000001",
+    "repositoryURL": "http://gihub.com/my-repository",
+    "serviceName": "my-service",
+    "templateId": "0000000000000002"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "type": "object",
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {"const": "service_created", "type": "string"},
+    "eventTimestamp": {"type": "number"},
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tenantId": {"type": "string"},
+        "projectId": {"type": "string"},
+        "repositoryURL": {"type": "string"},
+        "serviceName": {"type": "string"},
+        "templateId": {"type": "string"}
+      },
+    }
+  },
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Tag Created
+
+This event will be triggered when a project is successfully tagged from console.
+
+<Tabs>
+<TabItem value="tag-created-table" label="Event Payload" default>
+
+|       Property       |  Value   |                              Description                               |
+| -------------------- | -------- | ---------------------------------------------------------------------- |
+| `tenantId`           | `string` | The identifier of the Company the service belongs to                   |
+| `projectId`          | `string` | The identifier of the Project the service belongs to                   |
+| `tagName`            | `string` | The name of the tag created from the console                           |
+| `ref`                | `string` | The ref of the tag                                                     |
+| `message`            | `string` | The message of the tag compiled from the console                       |
+| `releaseDescription` | `string` | The release description of the tag compiled from the console           |
+| `project`            | `object` | [The project metadata](#project) (ideally, the whole project resource) |
+
+</TabItem>
+
+<TabItem value="example" label="Example">
+
+```json
+{
+  "eventName": "tag_created",
+  "eventTimestamp": 123456,
+  "payload": {
+    "tenantId": "my-company-id",
+    "projectId": "0000000000000001",
+    "tagName": "v1.0.0",
+    "ref": "af132fr",
+    "message": "tag message compiled from the console",
+    "releaseDescription": "release description compiled from the console",
+
+    // See the project metadata below
+    "project": {...} 
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="json-schema" label="JSON Schema">
+
+```json
+{
+  "type": "object",
+  "required": ["eventName", "eventTimestamp", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "eventName": {"const": "tag_created", "type": "string"},
+    "eventTimestamp": {"type": "number"},
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tenantId": {"type": "string"},
+        "projectId": {"type": "string"},
+        "tagName": {"type": "string"},
+        "ref": {"type": "string"},
+        "message": {"type": "string"},
+        "releaseDescription": {"type": "string"},
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+### Entities
+
+#### Project
+
+<Tabs>
+<TabItem value="project-table" label="Entity">
+
+|        Property        |   Type   |                                         Description                                          |
+| ---------------------- | -------- | -------------------------------------------------------------------------------------------- |
+| `_id`                  | `string` | The unique identifier of project created                                                      |
+| `configurationGitPath` | `string` | The path where project persist in git repository                                             |
+| `defaultBranch`        | `string` | The default branch of git repository                                                         |
+| `description`          | `string` | The project description                                                                      |
+| `environments`         | `array`  | The project environments, where project can be released                                      |
+| `name`                 | `string` | The identifier of the template in the Console marketplace from which the service was created |
+| `projectId`            | `string` | The human readable identifier of the Project that was created                                |
+| `repository`           | `object` | The git repository information                                                               |
+| `repositoryURL`        | `string` | The URL of the repository that hosts the service code                                        |
+| `tenantId`             | `string` | The human readable identifier of the Company the service belongs to                          |
+
+</TabItem>
+
+<TabItem  value="project-example" label="Example">
+
+```json
+{
+  "tenantId": "my-company-id",
+  "projectId": "project-id",
+  "name": "project name",
+  "isRepositoryCreated": true,
+  "configurationGitPath": "the/configuration/git/path/configurations",
+  "repositoryUrl": "https://api.git.baseurl/the/configuration/git/path/configurations",
+  "dockerImageNameSuggestion": {"type": "PROJECT_ID"},
+  "repository": {"providerId": "git-provider-id"},
+  "environments": [
+    {
+      "label": "Development",
+      "envId": "DEV",
+      "envPrefix": "DEV",
+      "hosts": [{
+        "host": "your.host.development.eu",
+        "isBackoffice": false
+      }],
+      "isProduction": false,
+      "cluster": {
+        "namespace": "project-development",
+        "clusterId": "mongoObjectId",
+      },
+      "deploy": {
+        "type": "gitlab-ci",
+        "providerId": "git-provider-id"
+      }
+    },
+    {
+      "label": "Production",
+      "envId": "PROD",
+      "envPrefix": "PROD",
+      "hosts": [
+        {
+          "host": "your.host.prod.eu",
+          "isBackoffice": false
+        },
+        {
+          "host": "cms.host.prod.eu",
+          "isBackoffice": true
+        }
+      ],
+      "isProduction": true,
+      "cluster": {
+        "namespace": "console-e2e-test-production",
+        "clusterId": "mongoObjectId",
+      },
+      "deploy": {
+        "type": "gitlab-ci",
+        "providerId": "gitlab-bot-targa"
+      }
+    }
+  ],
+  "pipelines": {"providerId": "pipelines-provider-id", "type": "gitlab-ci"},
+  "enabledSecurityFeatures": {
+    "seccompProfile": false,
+    "appArmor": true,
+    "hostProperties": true,
+    "privilegedPod": false
+  },
+  "areNamespacesCreated": [
+    {
+      "namespace": "project-development",
+      "envId": "DEV",
+      "labels": {
+        "mia-platform.eu/company": "company-id",
+        "mia-platform.eu/environment": "DEV",
+        "mia-platform.eu/project": "project name",
+        "kubernetes.io/metadata.name": "your.host.development.eu",
+        "app.kubernetes.io/managed-by": "mia-platform"
+      }
+    },
+    {
+      "namespace": "project-production",
+      "envId": "PROD",
+      "error": {
+        "message": "namespaces \"project-production\" already exists",
+        "errorCode": "FNC",
+        "statusCode": "409"
+      },
+      "message": "failed namespace creation",
+      "labels": {
+        "mia-platform.eu/company": "company-id",
+        "mia-platform.eu/environment": "PROD",
+        "mia-platform.eu/project": "project name",
+        "kubernetes.io/metadata.name": "your.host.prod.eu",
+        "app.kubernetes.io/managed-by": "mia-platform"
+      }
+    }
+  ]
+}
+```
+
+</TabItem>
+
+<TabItem value="project-schema" label="JSON Schema">
+
+```json 
+{
+  "description": "The project metadata (ideally, the whole project resource)",
+  "type": "object",
+  "properties": {
+    "_id": { "type": "string" },
+    "areNamespacesCreated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "namespace": { "type": "string" },
+          "envId": { "type": "string" },
+          "error": {
+            "type": "object",
+            "properties": {
+              "message": { "type": "string" },
+              "errorCode": { "type": "string" },
+              "statusCode": { "type": "string" },
+            },
+          },
+          "message": { "type": "string" },
+          "labels": {
+            "type": "object",
+            "additionalProperties": true,
+          },
+          "deployServiceAccount": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "base64CA": { "type": "string" },
+            },
+          },
+        },
+      },
+    },
+    "availableNamespaces": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": { "type": "string" },
+          "label": { "type": "string" },
+        },
+        "required": ["value"],
+      },
+    },
+    "configurationGitPath": { "type": "string" },
+    "defaultBranch": { "type": "string" },
+    "description": { "type": "string" },
+    "environments": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "envId": { "type": "string" },
+          "envPrefix": { "type": "string" },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "host": { "type": "string" },
+                "isBackoffice": { "type": "boolean" },
+                "scheme": { "type": "string", "description": "an url schema, usually one of 'http' or 'https'" },
+              },
+            },
+          },
+          "description": { "type": "string" },
+          "isProduction": { "type": "boolean", "default": false },
+          "cluster": {
+            "type": "object",
+            "properties": {
+              "namespace": { "type": "string" },
+              "clusterId": { "type": "string" }
+            },
+          },
+          "deploy": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": { "type": "string" }
+            },
+          },
+        },
+        "required": ["envId"],
+      },
+    },
+    "isRepositoryCreated": { "type": "boolean" },
+    "name": { "type": "string" },
+    "projectId": { "type": "string" },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "providerId": { "type": "string" },
+      },
+    },
+    "repositoryUrl": { "type": "string" },
+    "tenantId": { "type": "string" },
+  }
+}
+```
+
+</TabItem>
+
+</Tabs>
