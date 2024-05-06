@@ -6,7 +6,7 @@ sidebar_label: Workloads Configuration
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import JSONSchemaViewer from "@theme/JSONSchemaViewer";
+import SchemaViewer from "../snippets/schema_viewer.mdx";
 import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-client-config.schema.json"
 import JSWorkloadSnippet from "./snippets/js-workload-configuration.md"
 
@@ -36,7 +36,7 @@ match the one given to the Control Plane.
 
 The JSON object has the same properties for all Fast Data microservices and must be compliant to the following JSON Schema.
 
-<JSONSchemaViewer schema={ControlPlaneSchema} />
+<SchemaViewer schema={ControlPlaneSchema} />
 
 Choose below the service you want to configure with Control Plane to see where to place this configuration.
 

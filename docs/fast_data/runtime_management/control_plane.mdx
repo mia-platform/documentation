@@ -6,11 +6,10 @@ sidebar_label: Control Plane
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import JSONSchemaViewer from "@theme/JSONSchemaViewer";
 import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-config.schema.json"
 import StateChannelSchema from "@site/static/schemas/fast-data-control-plane-state.schema.json"
 import FeedbackChannelSchema from "@site/static/schemas/fast-data-control-plane-feedback.schema.json"
-
+import SchemaViewer from "../snippets/schema_viewer.mdx"
 
 Fast Data Control Plane allows to:
 
@@ -48,7 +47,7 @@ Also, each artifact can have additional `overrides` for each stage of the pipeli
 The state that can be set at pipeline level, or artifact level, or stage level is an _Activation State_: it can either `pause` or `resume`, 
 which will be used by workloads to stop/resume consumption of data. 
 
-<JSONSchemaViewer schema={StateChannelSchema} />
+<SchemaViewer schema={StateChannelSchema} />
 
 ### Feedback Channel
 
@@ -59,7 +58,7 @@ The _Feedback Channel_ is where the workloads will notify the Control Plane abou
 
 The workloads will send messages through the feedback channel **periodically**.
 
-<JSONSchemaViewer schema={FeedbackChannelSchema} />
+<SchemaViewer schema={FeedbackChannelSchema} />
 
 ## Endpoints
 
@@ -193,7 +192,7 @@ The configuration of the service is handled by a JSON file whose location is def
 
 The [Control Plane applications](/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `control-plane-configuration`.
 
-<JSONSchemaViewer schema={ControlPlaneSchema} />
+<SchemaViewer schema={ControlPlaneSchema} />
 
 :::info
 Initially, only the persistence layer is required to be available at startup, as there could be no Fast Data runtime available.
