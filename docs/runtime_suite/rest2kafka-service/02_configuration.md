@@ -29,6 +29,7 @@ an instance of `Rest2Kafka` service.
   - `scram-sha-512`
 - `KAFKA_SASL_USERNAME`: the username key used by the service to authenticate onto Kafka brokers
 - `KAFKA_SASL_PASSWORD`: the secret used by the service to authenticate onto Kafka brokers
+- `KAFKA_SSL_ENABLED`: a boolean flag used to enable or not the `ssl` on the Kafka client. The default value is `true`
 
 ## Endpoints Config Map
 
