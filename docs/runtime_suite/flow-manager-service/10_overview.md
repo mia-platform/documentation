@@ -12,6 +12,10 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The [_Flow Manager_](https://blog.mia-platform.eu/en/flow-manager-the-saga-orchestrator-of-mia-platform) is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named **Saga Pattern** using, in particular, the [Command/Orchestration approach](https://blog.mia-platform.eu/en/saga-pattern-how-to-manage-distributed-transactions-with-microservices).
 
+:::tip
+Checkout the [Flow Manager Configurator](../../development_suite/api-console/api-design/flow-manager-configurator/overview): a tool to easily generate the configuration file of the service.
+:::
+
 ## Introduction
 
 The _Flow Manager_ receives a [_Finite State Machine_](https://brilliant.org/wiki/finite-state-machines/) through a configuration file and is capable to orchestrate the saga flow based on the received machine.

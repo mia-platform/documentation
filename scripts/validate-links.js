@@ -44,7 +44,8 @@ const toCheck = {
         '.gif',
         '.svg',
         '.sh',
-        '.xml'
+        '.xml',
+        '.yml'
     ],
     special: [
         'http',
@@ -68,11 +69,13 @@ const checkLink = (link) => {
     if(path.toLowerCase().startsWith('http') || path.toLowerCase().startsWith('https')) {
         if (path.toLowerCase().includes('docs.mia-platform.eu')) errors.push("httpLinkToInternalDocs");
     } else {
-        if(!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
-        if(path.startsWith('.')) errors.push("relativePath");
-        if(!path.startsWith('/')) errors.push("missingStartingSlash");
-        if(path.toLowerCase().startsWith('/docs') || path.toLowerCase().startsWith('docs')) errors.push("linkStartWithDocs");
-        if(!fs.existsSync(pathToCheck) || !fs.lstatSync(pathToCheck).isFile()) errors.push("fileNotFound");
+        if(path.toLowerCase() !== "/" && !path.toLowerCase().startsWith('/#')) {
+            if (!path.toLowerCase().includes('.md') && !path.toLowerCase().includes('.mdx')) errors.push("missingExtension");
+            if (path.startsWith('.')) errors.push("relativePath");
+            if (!path.startsWith('/')) errors.push("missingStartingSlash");
+            if (path.toLowerCase().startsWith('/docs') || path.toLowerCase().startsWith('docs')) errors.push("linkStartWithDocs");
+            if (!fs.existsSync(pathToCheck) || !fs.lstatSync(pathToCheck).isFile()) errors.push("fileNotFound");
+        }
     }
     return errors.length > 0 ? errors : null;
 }

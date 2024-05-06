@@ -2,7 +2,7 @@
   "comparisonDetails": {
     "doneOn": "2023-11-30",
     "sourceCommitSha": "a83127c4ed67812de918b04bf5e371b2f713fc71",
-    "targetVersion": "v12.0.0"
+    "targetVersion": "v13.0.0"
   },
   "categories": [
     {
@@ -108,8 +108,8 @@
       "title": "Microfrontend Composer overview"
     },
     {
-      "url": "/release-notes/v12-overview",
-      "title": "Mia-Platform v12 Overview"
+      "url": "/release-notes/v13-overview",
+      "title": "Mia-Platform v13 Overview"
     },
     {
       "url": "/runtime_suite/acl-service/overview",

@@ -12,6 +12,10 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 In this page you will find the required information to easily migrate from Payment Gateway Manager v2 to v3.
 
+:::warning
+**SafeCharge** provider is no longer supported.
+:::
+
 ## APIs
 
 ### Standardization
@@ -25,6 +29,7 @@ In v3 APIs have been standardized cross-provider, thus you will always find:
 - `/v3/.../{paymentMethod}/subscription/start`
 - `/v3/.../{paymentMethod}/subscription/pay`
 - `/v3/.../subscription/update/{subscriptionToken}`
+- `/v3/.../subscription/status/{subscriptionToken}`
 - `/v3/.../subscription/expire/{subscriptionToken}`
 
 These APIs share common body structures and query parameters as described [here](how_it_works).

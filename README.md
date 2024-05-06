@@ -27,7 +27,7 @@ We believe in the open source community, we think it is important to give back a
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://www.instagram.com/miaplatform/)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/mia-platform)
 [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/miaplatform)
-[![Technical Blog](https://img.shields.io/badge/Technical_Blog-%23F1883F.svg?style=for-the-badge&logo=readthedocs&logoColor=white)](https://blog.mia-platform.eu/en)
+[![Technical Blog](https://img.shields.io/badge/Technical_Blog-%23F1883F.svg?style=for-the-badge&logo=readthedocs&logoColor=white)](https://mia-platform.eu/blog/)
 
 
 

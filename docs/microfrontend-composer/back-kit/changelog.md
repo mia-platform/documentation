@@ -15,6 +15,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2024-05-03
+
+### Added
+
+- added the possibility to choose the date format and the time zone in `bk-export-modal` and `bk-export` can now be used with `bk-export-modal`
+- added `fitParentContainer` property to `bk-table` to make the table as height as the parent container
+
+### Fixed
+
+- fixed link url generation with special characters
+
+## [1.5.0] - 2024-03-22
+
+### Added
+
+- added the possibility to search between menu items in `bk-layout` and changed the collapse button.
+- added `useEstimateCount` property to `bk-crud-client` and `usePagesCount` property to `bk-pagination`
+
+### Fixes
+
+- improved behavior of `bk-crud-client` and `bk-pagination` when `keepPageCount` is true.
+- fixed files preview in `bk-file-client`
+
+## [1.4.17] - 2024-03-08
+
+### Added
+
+- added the new format `html-editor` in dataschema for type `string`. When `html-editor` format is set, the form components show an editor to write html and see a readonly preview of it.
+
+## [1.4.16] - 2024-02-15
+
+### Fixes
+
+- `bk-expanded-filters` supports `lookupDeps` option
+
+## [1.4.15] - 2024-02-07
+
+### Fixes
+
+- dynamic values may include new line characters
+- bk-expanded-filters allows to customize date picker locale
+
 ## [1.4.14] - 2024-01-28
 
 ### Added
