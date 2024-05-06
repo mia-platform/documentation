@@ -12,7 +12,9 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The [_Flow Manager_](https://blog.mia-platform.eu/en/flow-manager-the-saga-orchestrator-of-mia-platform) is a saga orchestrator, capable to manage flows structured by using the Architectural pattern named **Saga Pattern** using, in particular, the [Command/Orchestration approach](https://blog.mia-platform.eu/en/saga-pattern-how-to-manage-distributed-transactions-with-microservices).
 
-From Console version **12.3.0**, the [Flow Manager Configurator](../../development_suite/api-console/api-design/flow-manager-configurator/overview) is available: a tool to easily build the configuration file of the service.
+:::tip
+Checkout the [Flow Manager Configurator](../../development_suite/api-console/api-design/flow-manager-configurator/overview): a tool to easily generate the configuration file of the service.
+:::
 
 ## Introduction
 

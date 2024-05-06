@@ -1793,5 +1793,9 @@
   "/docs/fast_data/configuration/realtime-updater/overview#custom": {
     "destination": "/docs/fast_data/configuration/realtime-updater/configuration-files#custom",
     "addedOn": "2024-05-06"
+  },
+  "/docs/runtime_suite/flow-manager-service/model_your_first_flow": {
+    "destination": "/docs/runtime_suite/flow-manager-service/how_it_works",
+    "addedOn": "2024-05-06"
   }
 }

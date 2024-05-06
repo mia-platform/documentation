@@ -56,6 +56,20 @@ should be redirected to complete the payment).
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status          | Plugin Status |
+|--------------------------|---------------|
+| DISBURSED                | ACCEPTED      |
+| CANCELED                 | FAILED        |
+| QUOTE                    | PENDING       |
+| REQUEST_APPROVED         | PENDING       |
+| REQUEST_RECEIVED         | PENDING       |
+| WAITING_FOR_VERIFICATION | PENDING       |
+| WAITING_FOR_DISBURSEMENT | PENDING       |
+
+Everything else will be mapped as FAILED.
 
 ### Check
 
