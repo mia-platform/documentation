@@ -1765,5 +1765,9 @@
   "/docs/runtime_suite/flow-manager-service/model_your_first_flow": {
     "destination": "/docs/runtime_suite/flow-manager-service/how_it_works",
     "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/single_view_trigger_generator.md": {
+    "destination": "/docs/fast_data/configuration/single_view_trigger_generator.mdx",
+    "addedOn": "2024-05-06"
   }
 }

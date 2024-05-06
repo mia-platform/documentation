@@ -968,7 +968,7 @@ Going into the Single View Creator Section of the single view `order-history`, y
 
 There, we can pick a name, in our case will be `single-view-trigger-generator-delivery`, and also choose the name of the **Event Store Config**: is a configuration that will contain the connection options of the microservice, in our case will be named `delivery`.
 
-Once the microservice has been, you can go to **ConfigMaps & Secrets** of the microservice and edit the configuration accordingly to the producer configuration, which can either be Kafka or MongoDB. For that, you can use as references [the examples provided by its dedicated section](/fast_data/configuration/single_view_trigger_generator.md#examples) and fill it with your connection parameters.  
+Once the microservice has been, you can go to **ConfigMaps & Secrets** of the microservice and edit the configuration accordingly to the producer configuration, which can either be Kafka or MongoDB. For that, you can use as references [the examples provided by its dedicated section](/fast_data/configuration/single_view_trigger_generator.mdx#examples) and fill it with your connection parameters.  
 
 Also, you have to configure the required property `EVENT_STORE_TARGET`, which represents the target where the service will write the result of the strategies, which will be:
 

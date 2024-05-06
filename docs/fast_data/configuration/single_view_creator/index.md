@@ -80,7 +80,7 @@ If you want to enable any mechanism that uses Kafka in the Single View Creator, 
 
 - `KAFKA_BROKERS` (required)
 - `KAFKA_CLIENT_ID` (required)
-- `KAFKA_GROUP_ID` (required if the machanism needs a consumer)
+- `KAFKA_GROUP_ID` (required if the mechanism needs a consumer)
 - `KAFKA_SASL_USERNAME`
 - `KAFKA_SASL_PASSWORD`
 - `KAFKA_SASL_MECHANISM`

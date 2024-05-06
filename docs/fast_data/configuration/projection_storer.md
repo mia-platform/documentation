@@ -1133,7 +1133,7 @@ In case the selected message adapter is **custom**, then please verify that the 
 :::caution
 As explained earlier, Projection Storer service is in charge only of importing, clean, filter and validate change events as projection records.
 Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md),
-which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.md) can be found an explanation on how to configure it.
+which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.mdx) can be found an explanation on how to configure it.
 
 In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
 the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since

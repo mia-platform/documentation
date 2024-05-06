@@ -62,7 +62,7 @@ Please note that this feature is **only** supported by <ins>Single View Trigger 
 It's possible to use custom functions in each path that requires additional operations not provided by the ER Schema. 
 
 To define a custom function, you should specify as identifier the `__fromFile__[<filename>]` keyword,
-where within squared brackets is provided the filename containing the custom function: the function provided must be created in a config map, that has been mounted in the same path as the one defined in the [environment variable `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`](/fast_data/configuration/single_view_trigger_generator.md#environment-variables).
+where within squared brackets is provided the filename containing the custom function: the function provided must be created in a config map, that has been mounted in the same path as the one defined in the [environment variable `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`](/fast_data/configuration/single_view_trigger_generator.mdx#environment-variables).
 
 
 <details><summary>Projection Changes Configuration with function loading</summary>

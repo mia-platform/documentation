@@ -49,7 +49,7 @@ In case of any doubt, please refer to service documentation, which can be found 
 
 ### Single View Trigger Generator
 
-In case of any doubt, please refer to service documentation, which can be found [here](/fast_data/configuration/single_view_trigger_generator.md).
+In case of any doubt, please refer to service documentation, which can be found [here](/fast_data/configuration/single_view_trigger_generator.mdx).
 
 | Error code    | Category                  | Cause                                                             | Action                                                                                                                                                                                                                                                                                                                                                        |
 |---------------|---------------------------|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
