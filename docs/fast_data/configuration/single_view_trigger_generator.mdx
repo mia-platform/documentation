@@ -127,6 +127,22 @@ The JSON configuration must be compliant to the following JSON Schema.
 
 <SchemaViewer schema={EventStoreConfiguration} />
 
+#### Secrets Resolution
+
+The following fields contain secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/secrets_resolution.md):
+
+- `consumer.kafka.['bootstrap.servers']`
+- `consumer.kafka.['sasl.username']`
+- `consumer.kafka.['sasl.password']`
+- `consumer.kafka.['ssl.passphrase']`
+- `consumer.kafka.['ssl.keystore.certificate.chain']`
+- `producer.kafka.['bootstrap.servers']`
+- `producer.kafka.['sasl.username']`
+- `producer.kafka.['sasl.password']`
+- `producer.kafka.['ssl.passphrase']`
+- `producer.kafka.['ssl.key.password']`
+- `producer.mongo.['url']`
+
 #### Consumers
 
 At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification above.
@@ -148,22 +164,6 @@ Starting from version `v3.1.6` of the SVTG, is possible to add into the Kafka pr
 
 While this option can be useful for messages having a large size, can increase the processing time due to the computational resources needed to apply the compression.
 :::
-
-##### Secrets Resolution
-
-The following fields contain secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/secrets_resolution.md):
-
-- `consumer.kafka.['bootstrap.servers']`
-- `consumer.kafka.['sasl.username']`
-- `consumer.kafka.['sasl.password']`
-- `consumer.kafka.['ssl.passphrase']`
-- `consumer.kafka.['ssl.keystore.certificate.chain']`
-- `producer.kafka.['bootstrap.servers']`
-- `producer.kafka.['sasl.username']`
-- `producer.kafka.['sasl.password']`
-- `producer.kafka.['ssl.passphrase']`
-- `producer.kafka.['ssl.key.password']`
-- `producer.mongo.['url']`
 
 #### Examples
 
