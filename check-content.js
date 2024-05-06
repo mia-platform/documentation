@@ -29,7 +29,8 @@ const filesToExcludeFromSidebarCheck = [
   "microfrontend-composer/videos/*",
   "microfrontend-composer/videos/subtitle/*",
   "standalone-resources/*",
-  "fast_data/runtime_management/snippets/*"
+  "fast_data/runtime_management/snippets/*",
+  "fast_data/snippets/*",
 ]
 
 const checkIdRegexp = new RegExp('^---(\\n.*)+id:\\s+([-\\w. ]+)(.*\\n)+---$', 'm')
