@@ -13,7 +13,7 @@ Ensure compatibility with external services using the following matrix.
 
 | Control Plane | MongoDB | Kafka |
 |:-------------:|:-------:|:-----:|
-|     1.0.0     |  >=5    | >=2.8 |
+|     1.1.0     |  >=5    | >=2.8 |
 
 ## Fast Data services
 
@@ -22,4 +22,4 @@ Ensure compatibility with Fast Data microservices using the following matrix.
 
 | Control Plane |   PS     |   RTU   |  SVTG   | SVC    |
 |:-------------:|:--------:|:-------:|:-------:|:------:|
-|     1.0.0     |  >=1.1.1 | >=7.7.0 | >=3.3.0 | >=6.7.0|
+|     1.1.0     |  >=1.1.1 | >=7.7.0 | >=3.3.0 | >=6.7.0|
