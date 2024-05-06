@@ -1753,5 +1753,9 @@
   "/docs/infrastructure/self-hosted/self-hosted-runtime-requirements": {
     "destination": "/docs/infrastructure/self-hosted/self-hosted-requirements",
     "addedOn": "2024-04-09"
+  },
+  "/docs/marketplace/templates/template_create": {
+    "destination": "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
+    "addedOn": "2024-04-30"
   }
 }
