@@ -10,7 +10,7 @@ A microservice in Console is a collection of one or more containers that solve a
 
 In general microservices define a single docker image and thus a single **main container**.
 
-Sometimes tough, it may be useful to run another container alongside the main container to add some capabilities. Usually these kind of containers are used to avoid cluttering the main service with helper code. These containers are known as **sidecar containers**.
+Sometimes though, it may be useful to run another container alongside the main container to add some capabilities. Usually these kind of containers are used to avoid cluttering the main service with helper code. These containers are known as **sidecar containers**.
 
 ## Main Container
 
@@ -32,7 +32,6 @@ For these reasons the sidecar-pattern comes very handy. You can develop a lightw
 You can then deploy this logging service along with the main application on the same host. This ensures that the sidecar and main service containers are always running on the same machine.
 
 In this section we will go deeper in how you can manage this kind of containers for your microservices.
-
 
 ## Microservice detail page
 
@@ -58,7 +57,6 @@ In order to expose a container, this must define at least one container port. In
 ### Sidecar detail
 
 Clicking on the sidecar name in the table, you enter the sidecar configuration page.  From this page you can inspect and update the configuration as well as adding configMaps, secrets, update the docker image and all the other settings, the same way as you can edit a microservice configuration.
-
 
 :::info
 The main container and other [special sidecar containers](#special-sidecars) cannot be removed nor modified from this section. These containers are directly managed from other sections of the Console. Read below for more.
