@@ -10,6 +10,18 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.7.4] - 2024-05-03
+
+## [1.7.3] - 2024-05-03
+
+### Added
+
+- Support for CRUD schema generation from Mongo view, Projections, and Single Views
+
+### Changed
+
+- Homepage previews lazily loaded
+
 ## [1.7.2] - 2024-02-12
 
 ### Versioning

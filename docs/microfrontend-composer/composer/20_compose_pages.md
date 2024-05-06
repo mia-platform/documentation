@@ -26,7 +26,7 @@ Compose pages can be created starting from a template, which is a pre-defined co
 To learn how to use your own custom templates, read the [dedicated documentation](./30_configurator_settings.md#template-sources).
 ::: 
 
-### Page with table
+### Base table
 
 A page built to display an array of data with a tabular view. It provides filtering, exporting, pagination, creation, and editing functionalities.
 
@@ -46,7 +46,17 @@ The template should be linked to a data source implementing a [CRUD service](/ru
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties).
 
-### Master table
+### Read-only table with nested fields
+
+A page built to display an array of data with a tabular view. Data are read-only and can't be edited or created but they can be filtered and paginated. Moreover, it is already configured to view nested fields.
+
+![Read-only table with nested fields](img/compose-page_templates_read-only-table-with-nested-fields.png)
+
+The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ in _Connectors & Adapters_ section.
+
+Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties).
+
+### Table with navigation button
 
 A table page built to be connected with another page that provides further details on the data.
 
@@ -61,16 +71,6 @@ A page built to display a detailed view of data (e.g., a single row of a table) 
 ![Details page template](img/compose-page_templates_details-page.png)
 
 The template should be linked to a data source implementing a [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md)-compatible interface configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_ section. Moreover, _URL mask_ property of _URL parameters adapter_ component in _Connectors & Adapters_ should be [properly configured](/microfrontend-composer/back-kit/60_components/540_url_parameters_adapter.md) to query data correctly.
-
-Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties).
-
-### Single view visualization
-
-A page built to visualize a [Fast Data Single View](/fast_data/the_basics.md#single-view-sv). It offers a readonly interaction with the data and is equipped for nested data visualization.
-
-![Single view template](img/compose-page_templates_single-view.png)
-
-The template should be linked to an exposed Single View configuring the _base path_ property of _CURD client_ component in _Connectors & Adapters_ section.
 
 Data shape is defined by `dataSchema` shared property, that can be edited in a no-code fashion from the [dedicated section](#shared-properties).
 
