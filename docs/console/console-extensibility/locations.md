@@ -12,6 +12,8 @@ The Console allows you to embed extensions at specific locations that already co
 - **Project** with locationId `project`
 - **Runtime** with locationId `runtime`
 
+Each location has already menu groups that can be used as `category` route to which attach new menu item with your extension. 
+
 ## Tenant
 
 <div style={{display: 'flex', justifyContent: 'center'}}>

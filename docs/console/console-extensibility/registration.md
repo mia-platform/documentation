@@ -24,7 +24,7 @@ As can be seen from the example image, registering an extension requires providi
 - `name` (_required_): provide the name of your extension
 - `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
 - `description`: provide a brief description of the extension
-- `entry` (_required_): indicate the URL where the iframe will be fetched
+- `entry` (_required_): indicate the website URL that will be embedded on Console
 - `extensionType` (_required_): select the type of extension. For now, only the `iframe` type is supported
 - `permissions`: indicate which permissions users will need to have to see the extension once activated (further details in the [next section](#how-to-restrict-the-extension-usage))
 - `routes` (_required_): provide the menu items that should appear on the sidebar once the extension is activated
@@ -39,8 +39,10 @@ A registered extension can specify an array of `permissions` that is used to che
 
 The routes should include the necessary information to render the extension menu item on the Console sidebar, which enables access to the extension. A route can be registered with the `renderType` left unset to appear as a simple menu item, or it can be a `category` route, creating a new custom menu group to which menu items can be attached.
 
+![menu item and category routes](img/menuItemAndCategory.png)
+
 :::info
-Each extension should include at least one route that is not of type `category` to be meaningful. Additionally, it can optionally include at most one route of type `category` to add a custom group menu item.
+Each extension should have always a single route that is not of type `category` to be meaningful and additionally, it is possible to include also a route of type `category` to add a custom group menu item.
 :::
 
 A route, therefore, requires to provide the following information:
@@ -107,6 +109,11 @@ Once this is done, you can register the Backoffice as an extension:
 }
 ```
 
+:::info
+These registered routes are rendered as a menu item with label `Integrated Backoffice` that is attached to a `category` menu group with label `My menu group`. If you want to register only the menu item, you can remove the second route from routes array and set the `parentId` field of the remained route to undefined if the menu item should not be inside on a menu group or to a parentId of the existing menu groups corresponding to the chosen location (e.g. `runtime` for the project location)
+:::
+
+
 **Response on success**
 ```json
 {
@@ -115,6 +122,7 @@ Once this is done, you can register the Backoffice as an extension:
 ```
 
 The extension ID will be necessary for working with the extension through the remaining APIs and can be retrieved using a specific API listed below.
+
 
 ## Get registered Extensions
 
