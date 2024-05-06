@@ -33,7 +33,7 @@ By clicking on the Edit button inside the table, you can update the sidecar reso
 If you want to view the sidecar configuration in detail, use the **View sidecar configuration** button or click on the the sidecar name in the table row to go to its [detail page](/development_suite/api-console/api-design/microservice-containers.md#sidecar-detail) inside the microservice it is attached to.
 
 :::info
-Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specifc Console sections.
+Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specific Console sections.
 :::
 
 #### Create sidecar
