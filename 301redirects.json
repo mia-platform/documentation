@@ -1757,5 +1757,9 @@
   "/docs/marketplace/templates/template_create": {
     "destination": "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
     "addedOn": "2024-04-30"
+  },
+  "/docs/runtime_suite/flow-manager-service/model_your_first_flow": {
+    "destination": "/docs/runtime_suite/flow-manager-service/how_it_works",
+    "addedOn": "2024-05-06"
   }
 }
