@@ -446,6 +446,11 @@ Remember that for `identifierQueryMapping` to be used, you still need to explici
 
 #### Using conditional expressions on dependencies definitions and mappings
 
+:::caution
+Starting with the release of Console `v13.0.0`, the usage of this advanced feature (`_select`) is **deprecated**, as it will be replaced
+in the future with a better solution for pre-filtering which projections should be included in the aggregation. 
+:::
+
 Dependencies are a way to gather data that will be used in the mapping section, creating the Single View, and as Single Views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a Single View.
 
 If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
@@ -576,6 +581,11 @@ module.exports = async function(logger, clientMongo) {
 The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
 
 For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
+
+:::caution
+Starting with the release of Console `v13.0.0`, the usage of this advanced feature (`_select`) is **deprecated**, as it will be replaced
+in the future with a better solution for pre-filtering which projections should be included in the aggregation.
+:::
 
 #### `null` values inside conditional expressions
 

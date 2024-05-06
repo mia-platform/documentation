@@ -3,6 +3,11 @@ id: custom-frontends-integration-CMS
 title:  Integrate custom frontends into the CMS
 sidebar_label: Integrate custom frontends
 ---
+
+:::caution Deprecated
+The Content Management System (CMS) has been deprecated and it has been substituted by [Microfrontend Composer](/microfrontend-composer/what-is.md).
+:::
+
 The CMS provides a way to dynamically integrate external custom frontends into a dedicated side menu option.
 
 To integrate this functionality there are steps to follow, all through the API Console.
