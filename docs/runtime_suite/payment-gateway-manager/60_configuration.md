@@ -14,110 +14,18 @@ The **Payment Gateway Manager (PGM)** needs some environment variables to work p
 
 ## Generic Environment Variables
 
-* **LOG_LEVEL**
+* **LOG_LEVEL** (required): logging level, Defaults to `INFO`
 * **HTTP_LOG_LEVEL**: `basic`, `body`, `headers` or `none`; logs additional info about http requests
-    made towards external systems, defaults to `none`
-* **HTTP_PORT**
+    made towards external systems. Defaults to `none`
+* **HTTP_PORT**: the port where the service is exposed. Defaults to 8080
 * **ENABLED_PROVIDERS** (required): comma separated list of payment providers enabled at runtime
 * **PAYMENT_CALLBACK_URL** (required): URL used to notify other services about a payment transaction result
 * **FLOW_MANAGER_URL**: url of the Flow Manager service. If set, Flow Manager related features are enabled
 * **SAGA_CRUD_URL** (required if FLOW_MANAGER_URL is set): url of the saga CRUD collection
-* **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH**: path to config map defining available payment methods based on rules
 * **EXTERNAL_PROVIDERS_CONFIG**: path to config map defining external services for payments
 * **SUBSCRIPTION_HANDLER_URL**: url to the subscription handler service. Required to handle subscription payment within the Payment Integration Hub
-
-The config map located at **DYNAMIC_PAYMENT_METHOD_CONFIG_PATH** must comply with the following schema
-<details>
-    <summary>Config schema</summary>
-
-```json
-{
-  "type": "object",
-  "required": ["default", "rules"],
-  "properties": {
-    "default": {
-      "type": "object",
-      "required": ["availableMethods"],
-      "properties": {
-        "availableMethods": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["paymentMethod", "provider"],
-            "properties": {
-              "paymentMethod": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      }
-    },
-    "rules": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["ruleId", "matchInValues", "matchInRange", "paymentMethods"],
-        "properties": {
-          "ruleId": {
-            "type": "string"
-          },
-          "matchInValues": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "matchInRange": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "object",
-                "required": ["minOrEqual", "max"],
-                "properties": {
-                  "minOrEqual": {
-                    "type": "string"
-                  },
-                  "max": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "availableMethods": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": ["paymentMethod", "provider"],
-              "properties": {
-                "paymentMethod": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-</details>
+* **ADAPTIVE_CHECKOUT_CRUD_URL**: url to the Adaptive Checkout rules collection. Its use is discouraged in favor of the [Adaptive Approval Service](../adaptive-approval-service/overview)
+* **ADAPTIVE_CHECKOUT_CACHE_EXPIRE_MIN**: Duration, in minutes, of Adaptive Checkout rules caching. Defaults to 5
 
 
 The config map located at **EXTERNAL_PROVIDERS_CONFIG** must comply with the following schema

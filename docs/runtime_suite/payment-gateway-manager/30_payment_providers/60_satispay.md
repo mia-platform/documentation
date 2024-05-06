@@ -57,6 +57,15 @@ The request body does **not** require any additional data, thus the `providerDat
 Before starting a new subscription, it is necessary to request the authorization token through the /utility/{paymentMethod}/subscription/token endpoint
 :::
 
+#### Get Status
+
+`GET /subscription/status/{subscriptionToken}`
+
+This endpoint allows to get a subscription status. Available status are:
+- `PENDING`
+- `ACTIVE`
+- `CANCELED`
+
 #### Expire
 
 `POST /subscription/expire/{subscriptionToken}?shopTransactionId={{shopTransactionId}}`
@@ -69,6 +78,14 @@ This endpoint allows to expire a subscription.
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status | Plugin Status |
+|-----------------|---------------|
+| ACCEPTED        | ACCEPTED      |
+| CANCELED        | FAILED        |
+| PENDING         | PENDING       |
 
 ### Check
 

@@ -68,6 +68,11 @@ This endpoint allows to start a manual subscription on the external service.
 `POST - /subscription/pay`
 This endpoint allows to execute a manual payment related to a subscription on the external service.
 
+### Get Subscription Status
+
+`GET - /subscription/status/{subscriptionToken}`
+This endpoint allows to get the subscription (referenced by the **required** path parameter `subscriptionToken`) status, on the external service.
+
 ### Expire Subscription
 
 `DELETE - /subscription/expire/{subscriptionToken}`
