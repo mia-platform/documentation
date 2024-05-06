@@ -15,7 +15,7 @@ In order to simplify the creation of a new Mongo-based
 instance, this application available in the Marketplace will help you configure all the needed resources in a few clicks.
 
 :::tip
-This application may come in handy when adding files-related capabilities to a [Backoffice](../../business_suite/backoffice/overview).
+This application may come in handy when adding files-related capabilities to a [Microfrontend Composer](../../microfrontend-composer/overview).
 :::
 
 ## Usage
