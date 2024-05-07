@@ -412,6 +412,10 @@
               "type": "doc"
             },
             {
+              "id": "development_suite/api-console/api-design/microservice-containers",
+              "type": "doc"
+            },
+            {
               "id": "development_suite/api-console/api-design/microservice-memory-resources",
               "type": "doc"
             },
@@ -449,6 +453,10 @@
         },
         {
           "id": "development_suite/api-console/api-design/jobs-cronjob",
+          "type": "doc"
+        },
+        {
+          "id": "console/design-your-projects/sidecars",
           "type": "doc"
         },
         {
