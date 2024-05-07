@@ -34,12 +34,12 @@ By clicking on the Edit button inside the table, you can update the sidecar reso
 If you want to view the sidecar configuration in detail, use the **View sidecar configuration** button or click on the the sidecar name in the table row to go to its [detail page](/development_suite/api-console/api-design/microservice-containers.md#sidecar-detail) inside the microservice it is attached to.
 
 :::info
-Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specifc Console sections.
+Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specific Console sections.
 :::
 
 #### Create sidecar
 
-You can add a new sidecar to your services by choosing an already existing sidecar configuration from the Marketplace or by specifying a docker image.  To do this, select your best fitting solution from the **Create sidecar** dropdown.  
+You can add a new sidecar to your services by choosing an already existing sidecar configuration from the Marketplace or by specifying a docker image. To do this, select your best fitting solution from the **Create sidecar** dropdown.  
 From the creation form you can select multiple services to which the sidecar will be added.
 
 ![Create sidecar from docker image](img/create-sidecar.png)

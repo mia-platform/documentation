@@ -10,7 +10,7 @@ A microservice in Console is a collection of one or more containers that solve a
 
 In general microservices define a single docker image and thus a single **main container**.
 
-Sometimes tough, it may be useful to run another container alongside the main container to add some capabilities. Usually these kind of containers are used to avoid cluttering the main service with helper code. These containers are known as **sidecar containers**.
+Sometimes though, it may be useful to run another container alongside the main container to add some capabilities. Usually these kind of containers are used to avoid cluttering the main service with helper code. These containers are known as **sidecar containers**.
 
 ### Main Container
 
