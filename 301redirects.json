@@ -1638,5 +1638,49 @@
   "/docs/runtime_suite/flow-manager-service/model_your_first_flow": {
     "destination": "/docs/runtime_suite/flow-manager-service/how_it_works",
     "addedOn": "2024-05-06"
+  },
+  "/docs/development_suite/api-console/api-design/flow-manager-visualizer": {
+    "destination": "/docs/development_suite/api-console/api-design/flow-manager-configurator/overview",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/axerve": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/axerve",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/braintree": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/braintree",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/satispay": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/satispay",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/stripe": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/stripe",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/external": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/external",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/adyen": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/adyen",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/scalapay": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/scalapay",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/nexi": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/nexi",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/soisy": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/soisy",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/flowpay": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/flowpay",
+    "addedOn": "2024-05-07"
   }
 }
