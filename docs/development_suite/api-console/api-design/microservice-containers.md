@@ -65,9 +65,9 @@ The main container and other [special sidecar containers](#special-sidecars) can
 
 This page reflects the same sections that are present in the microservice detail too. To correctly configure these sections check out the relative documentation:
 
-- [General](/development_suite/api-console/api-design/services.md#manage-microservices)
-- [Environment Variables](/development_suite/api-console/api-design/services.md#environment-variable-configuration)
-- [ConfigMaps & Secrets](/development_suite/api-console/api-design/services.md#custom-configuration)
+- [**General:**](/development_suite/api-console/api-design/services.md#manage-microservices) to set up resources, container ports and runtime probes
+- [**Environment Variables:**](/development_suite/api-console/api-design/services.md#environment-variable-configuration) to manage environment variables for this container
+- [**ConfigMaps & Secrets:**](/development_suite/api-console/api-design/services.md#custom-configuration) to manage configMaps and Secrets for this container
 - **Advanced:** from this section you can delete the sidecar from the currently selected service
 
 ![Sidecar detail page](img/microservice-containers/sidecar-detail-page.png)
