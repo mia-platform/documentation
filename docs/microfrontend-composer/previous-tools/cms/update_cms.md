@@ -3,6 +3,11 @@ id: update_cms
 title:  How to update the CMS
 sidebar_label: Update
 ---
+
+:::caution Deprecated
+The Content Management System (CMS) has been deprecated and it has been substituted by [Microfrontend Composer](/microfrontend-composer/what-is.md).
+:::
+
 Here you will find all the steps to update the CMS.
 
 ## 1. How to understand your version of the CMS

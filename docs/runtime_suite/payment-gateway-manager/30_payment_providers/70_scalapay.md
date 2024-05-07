@@ -44,10 +44,6 @@ The request body requires the `providerData` field which requires the following 
             "postcode": "20800",
             "line1": "Via Garibaldi, 12"
         },
-        "merchant": {
-            "redirectConfirmUrl": "https://success-url",
-            "redirectCancelUrl": "https://failure-url"
-        },
         "items": [{
             "quantity": 1,
             "price": {
@@ -57,7 +53,8 @@ The request body requires the `providerData` field which requires the following 
             "name": "item name",
             "category": "category name",
             "sku": "sku value"
-        }]
+        }],
+        "travelDate": "01-01-1999"
     }
 }
 ```
@@ -79,6 +76,20 @@ The request body does not require any provider-specific data.
 
 This endpoint allows to get the current status of the payment identified by the **required** query parameter `paymentId`.
 
+#### Mapping
+The status received by the provider will be mapped according to the following table:
+
+| Provider Status | Plugin Status |
+|-----------------|---------------|
+| charged         | ACCEPTED      |
+| refunded        | FAILED        |
+| expired         | FAILED        |
+| created         | PENDING       |
+| pending         | PENDING       |
+| authorized      | PENDING       |
+| approved        | PENDING       |
+
+Everything else will be mapped as PENDING.
 
 ### Check
 

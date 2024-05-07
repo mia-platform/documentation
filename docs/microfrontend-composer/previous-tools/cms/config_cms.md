@@ -3,6 +3,11 @@ id: config_cms
 title:  How to Configure the CMS from the Console
 sidebar_label: Configure CMS through Console
 ---
+
+:::caution Deprecated
+The Content Management System (CMS) has been deprecated and it has been substituted by [Microfrontend Composer](/microfrontend-composer/what-is.md).
+:::
+
 From the Console you can easily configure and manage your CMS.
 
 :::note
