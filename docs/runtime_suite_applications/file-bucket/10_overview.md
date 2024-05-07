@@ -10,9 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-In order to simplify the creation of a new Mongo-based 
-[Files Service](../../runtime_suite/files-service/configuration#mongodb-gridfs-configuration-file-single-bucket-option) 
-instance, this application available in the Marketplace will help you configure all the needed resources in a few clicks.
+In order to simplify the creation of a new Mongo-based [Files Service](../../runtime_suite/files-service/configuration#mongodb-gridfs-configuration-file-single-bucket-option) instance, this application available in the Marketplace will help you configure all the needed resources in a few clicks.
 
 :::tip
 This application may come in handy when adding files-related capabilities to a [Microfrontend Composer](../../microfrontend-composer/overview).
@@ -20,13 +18,10 @@ This application may come in handy when adding files-related capabilities to a [
 
 ## Usage
 
-It is recommended to check the documentation page for the [Files Service Plugin](../../runtime_suite/files-service/configuration)
-for detailed information on how to use the component.
+It is recommended to check the documentation page for the [Files Service Plugin](../../runtime_suite/files-service/configuration) for detailed information on how to use the component.
 
 :::caution
-This application comes with a default incomplete ConfigMap for the Files Service, specifying Mongo as storage service.
-For detailed information on how to write a proper ConfigMap, please refer to the Files Service Plugin 
-[documentation page](../../runtime_suite/files-service/configuration#configuration-file).
+This application comes with a default incomplete ConfigMap for the Files Service, specifying Mongo as storage service. For detailed information on how to write a proper ConfigMap, please refer to the Files Service Plugin [documentation page](../../runtime_suite/files-service/configuration#configuration-file).
 :::
 
 ## Microservices
@@ -34,9 +29,7 @@ For detailed information on how to write a proper ConfigMap, please refer to the
 The application consists of the following microservices:
 
 - [Files Service](../../runtime_suite/files-service/configuration#configuration-file) to manage files.
-- [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) to store files information in
-  a [pre-configured](../../runtime_suite/files-service/configuration#crud-collection) collection
-  called `file_records`.
+- [CRUD Service](../../runtime_suite/crud-service/overview_and_usage) to store files information in a [pre-configured](../../runtime_suite/files-service/configuration#crud-collection) collection called `file_records`.
 
 ## Endpoints
 
