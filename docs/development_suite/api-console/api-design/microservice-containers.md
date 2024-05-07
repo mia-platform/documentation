@@ -4,19 +4,19 @@ title: Microservice Containers
 sidebar_label: Microservice Containers
 ---
 
-# Microservice Containers
+## Microservice Structure
 
-A microservice in Console is a collection of one or more containers that solve a single yet well defined business scope. 
+A microservice in Console is a collection of one or more containers that solve a single yet well defined business scope.  
 
 In general microservices define a single docker image and thus a single **main container**.
 
 Sometimes tough, it may be useful to run another container alongside the main container to add some capabilities. Usually these kind of containers are used to avoid cluttering the main service with helper code. These containers are known as **sidecar containers**.
 
-## Main Container
+### Main Container
 
-When creating a new microservice in Console, you can define a single docker image that will be used for the **main container** of your microservice. This container should contain the core business feature of the microservice itself. 
+When creating a new microservice in Console, you can define a **single docker image**. This image will be used for the **main container** of your microservice. This container should represent the core business feature of the microservice itself.  
 
-## Sidecar Containers
+### Sidecar Containers
 
 For several reasons although, you may want to extend the main container functionalities **without modifying** the business logic of your application.
 
@@ -25,6 +25,7 @@ You have a core microservice that processes user orders. This microservice is re
 
 However, you now have a new requirement: adding a logging functionality to your microservice to monitor every order that is being processed.  
 You could simply add the logging code to the core service source code, but sometimes this option is not viable, to name a few reasons:
+
 - the service may be maintained by another team
 - modifying the legacy core service may introduce errors
 
@@ -32,7 +33,6 @@ For these reasons the sidecar-pattern comes very handy. You can develop a lightw
 You can then deploy this logging service along with the main application on the same host. This ensures that the sidecar and main service containers are always running on the same machine.
 
 In this section we will go deeper in how you can manage this kind of containers for your microservices.
-
 
 ## Microservice detail page
 
@@ -59,12 +59,11 @@ In order to expose a container, this must define at least one container port. In
 
 Clicking on the sidecar name in the table, you enter the sidecar configuration page.  From this page you can inspect and update the configuration as well as adding configMaps, secrets, update the docker image and all the other settings, the same way as you can edit a microservice configuration.
 
-
 :::info
 The main container and other [special sidecar containers](#special-sidecars) cannot be removed nor modified from this section. These containers are directly managed from other sections of the Console. Read below for more.
 :::
 
-In this example you can see the same sections that are present in the microservice detail too. To correctly configure these sections check out the relative documentation:
+This page reflects the same sections that are present in the microservice detail too. To correctly configure these sections check out the relative documentation:
 
 - [General](/development_suite/api-console/api-design/services.md#manage-microservices)
 - [Environment Variables](/development_suite/api-console/api-design/services.md#environment-variable-configuration)

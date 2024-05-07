@@ -17,14 +17,15 @@ From the Design area, you can manage all sidecars configurations for your micros
 
 ### Sidecars overview section
 
-To have an overview of all sidecars in your Project and the microservices they are attached to, head over to the **Sidecars section**. 
+To have an overview of all sidecars in your Project and the microservices they are attached to, head over to the **Sidecars section**.  
 
 ![Sidecars overview](img/sidecars-overview.png)
 
 For each sidecar, you can see all microservices that use it, as well as some information about the sidecar itself, such as:
- - Docker image
- - CPU and Memory resources
- - ConfigMaps and Secrets
+
+- Docker image
+- CPU and Memory resources
+- ConfigMaps and Secrets
 
 By clicking on the Edit button inside the table, you can update the sidecar resources configuration for a specific microservice.
 
@@ -45,15 +46,17 @@ From the creation form you can select multiple services to which the sidecar wil
 
 #### Delete sidecar
 
-You can remove a sidecar from a microservice by clicking on the Delete button inside the table row, or you can delete it completely from all microservices from the Advanced tab.
-
-![Bulk delete sidecar](img/bulk-delete-sidecar.png)
+You can remove a sidecar from a microservice by clicking on the Delete button inside the table row.  
 
 :::caution
 If the sidecar is used only by one microservice, removing it from the microservice will result in completely deleting the sidecar from the Project.
-:::
 
 ![Delete last sidecar](img/delete-last-sidecar.png)
+:::
+
+Alternatively you can entirely remove the sidecar from the Project and from all microservices that are using it. This action can be done from the Advanced tab.
+
+![Bulk delete sidecar](img/bulk-delete-sidecar.png)
 
 ### Microservice sidecars
 
