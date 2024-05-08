@@ -10,10 +10,6 @@ An extension registered on a Company can be activated to be used in the Console.
 
 The activation can be done using the API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` that can be accessed via the API Portal under the tags `Companies` or `Extensibility`.
 
-![activate extension example](img/activateExtension.png)
-
-As shown in the image, to activate an extension, the API allows specifying these parameters:
-
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to activate is registered
 - `extensionId`: insert the extension ID of the extension to activate
@@ -23,37 +19,14 @@ As shown in the image, to activate an extension, the API allows specifying these
 - `contextId`: insert the ID of the Company or Project depending on the type of context specified
 - `overrides`: array of routes registered on the extension that you want to modify only for this activation (see the [section](#overrides) below)
 
+**Response on success**
+- `activationId`: the activation identifier to manage the created extension activation
+
 :::info
 Activation at the Project level can only be done on a project within the same Company on which the extension is registered.
 :::
 
-### Activate Backoffice Extension Example
-
-After registering the Backoffice extension as explained [here](/console/console-extensibility/registration.md#register-backoffice-extension-example), you can proceed with its activation on a project located within the Company identified by `my-tenant-id`:
-
-**Path Params**
-```json
-{
-  "tenantId": "my-tenant-id",
-  "extensionId": "my-extension-id"
-}
-```
-
-**Body Params**
-```json
-{
-  "contextType": "my-project-id",
-  "contextId": "project",
-  "overrides": []
-}
-```
-
-**Response on success**
-```json
-{
-    "activationId": "my-activation-id"
-}
-```
+See the example on the [getting started guide](/console/console-extensibility/tutorial.md#3-activate-the-extension)
 
 ## Overrides
 
@@ -71,59 +44,9 @@ Using overrides allows you to modify one or more routes within the registered ex
 
 The properties that can be modified by the override coincide with the properties of the routes registered with the extension already explained [here](/console/console-extensibility/registration.md#how-to-configure-correctly-the-extension-menu-item)
 
-### Apply overrides on Backoffice Extension Example
-
-![activate extension with override](img/activateExtensionWithOverride.png)
-
-With the following example, you can activate the Backoffice extension as done [above](#activate-backoffice-extension-example) applying overrides to change the label of the menu group and the icon of the extension route.
-
-:::warning
-Be careful to avoid activating the same extension multiple times within the same context if it has already been activated using the example provided above. Therefore, be sure to either change the project id on which you want to activate the extension, or delete the previous activation before proceeding (see [here](#deactivate-an-extension)).
-:::
-
-**Path Params**
-```json
-{
-  "tenantId": "my-tenant-id",
-  "extensionId": "my-extension-id"
-}
-```
-
-**Body Params**
-```json
-{
-  "contextId": "project",
-  "contextType": "company",
-  "overrides": [
-    {
-      "routeId": "backoffice-route",
-      "icon": {
-        "name": "PiAcorn"
-      }
-    },
-    {
-      "routeId": "my-menu-group",
-      "labelIntl": {
-        "en": "Overrided Label for menu group",
-        "it": "Etichetta Sovrascritta per gruppo menu"
-      }
-    }
-  ]
-}
-```
-
-**Response on success**
-```json
-{
-    "activationId": "my-activation-id"
-}
-```
-
 # Deactivate an extension
 
 An extension activation can be terminated at any point using the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation`. This functionality is accessible through the API Portal under the tags `Companies` or `Extensibility`. Please note that the Company Owner role within the respective Company where the extension is activated is required for this action.
-
-![delete extension activation](img/deleteExtensionActivation.png)
 
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to deactivate is registered
@@ -131,16 +54,9 @@ An extension activation can be terminated at any point using the API `DELETE /ap
 - `contextType`: insert the type of context on which the extension is active
 - `contextId`: insert the ID of the Company or the Project depending on the specified context type on which the extension is active
 
-```json
-{
-  "tenantId": "my-tenant-id",
-  "extensionId": "my-extension-id",
-  "contextType": "project",
-  "contextId": "my-project-id"
-}
-```
-
 **Response on success**
 ```
 204 No Content
 ```
+
+See the example on the [getting started guide](/console/console-extensibility/tutorial.md#5-deactivate-the-backoffice-extension)

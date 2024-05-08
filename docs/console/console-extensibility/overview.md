@@ -9,10 +9,6 @@ The Extensibility feature can simplify your development workflows and allow you 
 
 A correctly activated extension will appear as a new menu item on the Console main navigation. You can place extensions in different Console contexts such as within a Company or inside a specific Project. Furthermore, you can also specify restrictions using Console permissions so that the new menu item is visible only to a limited group of users.
 
-In the following pages you will learn how to add the Backoffice as an extension within a Project, in order to consult it directly from the Console.
-
-![backoffice extension overview](img/backofficeExtensionOverview.png)
-
 ## How to see your extension on Console?
 
 The activation of a new extension in the Console involves two phases:
@@ -22,6 +18,8 @@ The activation of a new extension in the Console involves two phases:
 
 `Registration` allows you to add an extension for the first time and provide all the essential information necessary for the extension to work, such as the URL for fetching the iframe and the different locations where the new menu items should be placed.
 `Activation`, on the other hand, allows you to activate an extension already registered on a specific Console context and in this way the same extension can be active on multiple contexts at the same time, such as multiple projects for example.
+
+Consult the [tutorial](/console/console-extensibility/tutorial.md) to take your first steps. 
 
 ## Advanced concepts: Security and Customization
 

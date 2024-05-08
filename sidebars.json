@@ -651,6 +651,10 @@
           "type": "doc"
         },
         {
+          "id": "console/console-extensibility/extension-example-tutorial",
+          "type": "doc"
+        },
+        {
           "id": "console/console-extensibility/extension-registration",
           "type": "doc"
         },
