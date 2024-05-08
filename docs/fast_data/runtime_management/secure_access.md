@@ -45,7 +45,7 @@ the Control Plane instance and other Fast Data services intending to communicate
 To create a new entry "from Scratch" from the _Custom Resources_ section in the _Design_ area, initialize the resource following the below table:
 
 | Attribute  | Expanation                                                      |
-| ---------- | --------------------------------------------------------------- |
+|------------|-----------------------------------------------------------------|
 | name       | The name of the Custom Resource (e.g. `crd-control-plane-grpc`) |
 | kind       | `Service`                                                       |
 | apiVersion | `v1`                                                            |

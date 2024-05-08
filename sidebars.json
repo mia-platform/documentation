@@ -1166,6 +1166,10 @@
         {
           "id": "fast_data/configuration/single_view_trigger_generator",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/secrets_resolution",
+          "type": "doc"
         }
       ],
       "label": "Configuration",
@@ -1311,10 +1315,6 @@
       ],
       "label": "Troubleshooting",
       "type": "category"
-    },
-    {
-      "id": "fast_data/secrets_resolution",
-      "type": "doc"
     },
     {
       "collapsed": true,

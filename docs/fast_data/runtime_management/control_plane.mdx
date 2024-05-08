@@ -64,12 +64,12 @@ The workloads will send messages through the feedback channel **periodically**.
 
 Here's a list of the APIs made available by the Control Plane with the following endpoints. 
 
-| Endpoint                        |     Type    |        |                                Description                                                 |
-| --------------------------------|-------------|--------|:------------------------------------------------------------------------------------------:|
-| `/fast-data/`                   |     REST    |   POST |  Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend.              |
-| `/fast-data/configurations/:id` |     REST    |   GET  |  Returns the data of a given pipeline of the runtime where Control Plane has been deployed.|
-| `/fast-data/configurations`     |     REST    |   GET  |  Returns the data from all pipelines of the runtime where Control Plane has been deployed. |
-| `/fast-data/feedback/:id`       |  Websocket  |   GET  |  Opens a websocket connection with the client to receive updates for a given pipeline.     |
+| Endpoint                        | Type      | Method | Description                                                                                |
+|---------------------------------|-----------|--------|--------------------------------------------------------------------------------------------|
+| `/fast-data/`                   | REST      | POST   | Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend.              |
+| `/fast-data/configurations/:id` | REST      | GET    | Returns the data of a given pipeline of the runtime where Control Plane has been deployed. |
+| `/fast-data/configurations`     | REST      | GET    | Returns the data from all pipelines of the runtime where Control Plane has been deployed.  |
+| `/fast-data/feedback/:id`       | Websocket | GET    | Opens a websocket connection with the client to receive updates for a given pipeline.      |
 
 :::tip
 The default prefix for Control Plane endpoints is `/fast-data` and can be customized in the [Settings configuration](?control-plane-configuration=settings#settings).
@@ -79,7 +79,7 @@ The default prefix for Control Plane endpoints is `/fast-data` and can be custom
 
 To make the endpoint work properly, additional manual operations must be performed in the [Advanced Section](/development_suite/api-console/advanced-section/index.md) of your gateway.
 
-This operations are needed to:
+These operations are needed to:
 
 - introduce the support to [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection);
 - override the default headers that are added to the HTTP response, so that `X-Frame-Options` is removed and the frontend
@@ -123,7 +123,7 @@ It is important to observe that these modifications affect the first [filter cha
 ```
 
 :::caution
-Please notice that the following configurations are specific for the `frontend` listener of Envoy. In case it has been
+Please notice that the above configurations are specific for the `frontend` listener of Envoy. In case it has been
 decided to expose the Fast Data Runtime Management system under a [different listener](/development_suite/api-console/api-design/listeners.md),
 please update the configuration accordingly.
 :::
@@ -392,7 +392,7 @@ provided in this section.
 
 ### Secret Resolution
 
-The following fields contains secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/secrets_resolution.md):
+The following fields contains secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/configuration/secrets_resolution.md):
 
 - `persistence.configuration.url`
 - `runtime.feedback.configuration.['bootstrap.servers']`

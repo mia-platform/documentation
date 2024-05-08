@@ -34,11 +34,28 @@ The field is populated [by a microservice environment variable](/development_sui
     }
   }
 }
-
 ```
 
-:::caution
-The value of the variable __must__ be encoded in `base64` format.
+:::tip
+By default the value contained in the environment variable that is referenced within the secret is expected to be a plain text.
+However, the secret definition allows to define the `encoding` property to `base64`, so that the value contained in the
+environment variable can be written in `base64` format.
+
+```json
+{
+  "some-entry": {
+    // ...,
+    "some-secret-field": {
+      "url": {
+        "type": "env",
+        "key": "<ENVIRONMENT VARIABLE NAME>",
+        "encoding": "base64"
+      }
+    }
+  }
+}
+```
+
 :::
 
 ## File Reference
