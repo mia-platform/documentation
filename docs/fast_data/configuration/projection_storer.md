@@ -708,15 +708,28 @@ defined cast function.
 }
 ```
 
-### Control Plane Config
+### Runtime Management Config
 
-Starting from version `v1.1.0` of Projection Storer service it is possible to instruct it to _pause_ and _resume_ the
-consumption of change events from ingestion topics. This can be achieved by configuring the service accordingly, so that
-it communicates with an instance of [Fast Data Control Plane](/fast_data/runtime_management.mdx). This connection is then
-employed to establish the status each service ingestion component should apply (either `pause` or `resume`) and to
-provide the corresponding feedback back to the Control Plane.
+Starting from version `v1.1.0` of Projection Storer service it is possible to instruct it to `pause` and `resume` the
+consumption of change events from ingestion topics. This feature is enabled by specifying the Control Plane configuration
+in [the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=ps#projection-storer) of the configuration page.
 
-The content of this configuration is divided in three main fields, which are described below.
+Adding the Control Plane configuration to the service enables it to communicate with an instance of [Fast Data Control Plane](/fast_data/runtime_management/overview.mdx).
+This connection is then employed to establish which status each service ingestion component should apply (either `pause` or `resume`) and to
+provide the corresponding feedback back to the Control Plane service.
+
+:::caution
+By design, every service interacting with the Control Plane starts up in a `paused` state, unless the Control Plane
+has already resumed the data stream before.
+
+Therefore, when the Projection Storer starts up, <u>consumption from ingestion topics will not start automatically</u>.
+
+In this case, you just need to [send a `resume` command](/fast_data/runtime_management/control_plane_frontend.mdx#pause-and-resume)
+to one of the projections managed by the Projection Storer.
+:::
+
+In the next paragraphs are described the fields that compose the Projection Storer Control Plane configuration, which at
+the top level in the configuration file is identified by the `controlPlane` property.
 
 #### State
 
@@ -732,8 +745,8 @@ a topic on a Kafka broker. Here are detailed the fields to be configured dependi
 
 When `type` is set to `grpc` then no further configuration under this field is needed by the service.
 
-:::note
-GRPC is available since version `v1.1.1` of Projection Storer
+:::info
+GRPC communication protocol support is available since version `v1.1.1` of Projection Storer
 :::
 
 ##### Kafka
@@ -772,8 +785,8 @@ a topic on a Kafka broker. Here are detailed the fields to be configured dependi
 
 When `type` is set to `grpc` then no further configuration under this field is needed by the service.
 
-:::note
-GRPC is available since version `v1.1.1` of Projection Storer
+:::info
+GRPC communication protocol support is available since version `v1.1.1` of Projection Storer
 :::
 
 ##### Kafka
@@ -812,7 +825,7 @@ When using Mia-Platform Console to configure the settings explained above, pleas
 content of `controlPlane.settings` property in the dedicated space within Projection Storer configuration page. As a reference, 
 the configuration panel is shown in the screenshot here:
 
-![](img/projection_storer_control_plane.png)
+![control plane panel in projection storer config page](img/projection_storer_control_plane.png)
 
 Below are provided three examples of how Control Plane settings can be configured for the Projection Storer service. These
 are:
@@ -937,12 +950,14 @@ This configuration enables both state and feedback component to connect to the G
 </details>
 
 :::caution
-In order for the service to be aware of which Fast Data pipelines _artifacts_ and _execs_ it is managing, an additional
+In order for the service to be aware of which Fast Data pipelines [_artifacts_](/fast_data/runtime_management/overview.mdx#artifact)
+and [_execs_](/fast_data/runtime_management/overview.mdx#execution-step) it is managing, an additional
 `bindings` property must be passed within the Control Plane service configuration. This latter configuration maps
 pipeline artifacts identifiers with their corresponding details.  
 Beware that without the `bindings` property the Control Plane component will not be enabled on the Projection Storer.
 
-Mia-Platform Console automatically generates such mapping starting from the Fast Data configuration and adds it to the service. 
+Mia-Platform Console <u>automatically</u> generates for you such mapping starting from the Fast Data configuration and adds it to the service,
+so that these bindings do not have be added by the user.
 :::
 
 ## Configuration File Example
@@ -1277,23 +1292,6 @@ controlPlane:
 
 </p>
 </details>
-
-## Runtime Management
-
-:::info
-This feature is supported from version `1.1.1` of the Projection Storer.
-:::
-
-By specifying the Control Plane configuration in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=ps#projection-storer), you enable the PS to receive and execute the commands from/to the [Runtime Management](/fast_data/runtime_management/overview.mdx).
-
-:::caution
-By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
-has already resumed the data stream before. 
-
-Therefore, when the Projection Storer starts up, topics ingestion will not start automatically. 
-
-In this case, you just need to send a `resume` command to one of the projections managed by the Projection Storer.
-:::
 
 ## Migration Guide
 
