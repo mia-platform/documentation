@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Support for `salesforce_objects`
-- _Data Catalog Agent_ bumped to version `0.5.0`
+- _Data Catalog Agent_ bumped to version `0.5.1`
 
 ## [1.1.0] 2024-02-08
 
