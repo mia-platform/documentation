@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Update
 
-- add `SWAGGER_VERSION` enviroment variable
+- add `SWAGGER_VERSION` environment variable
 
 ## 1.16.12 - 2023-11-28
 
