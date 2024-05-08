@@ -338,7 +338,13 @@ The properties used by the service are the following.
 
 ## Environment variables
 
-:::caution
+:::info
+
+**v2.2.0**. Since version 2.2.0 the `GOOGLE_APPLICATION_CREDENTIALS` environment variable is available, to send push notifications directly to Firebase, without needing Kafka.
+
+:::
+
+:::info
 
 **v2.0.0**. Since version 2.0.0 the following environment variables are no longer available, so if you are upgrading from version 1.x you need to update the service configuration first:
 - `CRUD_SERVICE_NAME` (use `CRUD_SERVICE_URL` instead).
@@ -375,6 +381,7 @@ The properties used by the service are the following.
 | **KALEYRA_API_KEY**                  | No                  | -       | Kaleyra API key for the whatsapp and outbound calling services.                                                  |
 | **KALEYRA_API_SID**                  | No                  | -       | Kaleyra SID for the whatsapp and outbound calling services.                                                      |
 | **CUSTOM_HANDLERS_FOLDER**           | Custom handlers     | -       | The path to the directory containing the definitions (i.e. the configmaps) of the custom handlers.               |
+| **GOOGLE_APPLICATION_CREDENTIALS**   | Push notifications  | -       | The application credentials given by Firebase. Must be loaded from a [secret][service-secrets].                  |
 
 ## Channels configuration
 
@@ -434,6 +441,9 @@ If you use an alphanumeric sender ID please avoid generic names (e.g. SMS, Info.
   The default retry count is 0 and the maximum count is 2. Any value higher than 2 will be considered 2.
     - **speechSpeed** - `string`: the speed of the text-to-speech. The available options are: `slow`, `medium`, `fast`, `x-slow` and `x-fast`. For further info, you must refer to [Kaleyra official documentation][kaleyra-voice-api-params]. If not provided, the default speed is set to `medium`.
     - **speechLanguage** - `string`: the language of the text-to-speech. The available options are: `en-IN`, `en-US`, `es-ES` and `it-IT`. For further info, you must refer to [Kaleyra official documentation][kaleyra-voice-tts-languages]. If not provided, the default language is set to `it-IT`.
+
+- **push** - `object`: the configuration for push notifications.
+    - **provider** - `string`: the provider used to deliver push notifications. The available options are: `firebase`, `kafka` (default).
 
 - **androidIntentAction** - `string`: the Android intent action that is triggered by the notification (the default value is an empty string).
 
@@ -504,6 +514,9 @@ It follows an example of a valid configuration file.
     "retryCount": 0,
     "speechSpeed": "medium",
     "speechLanguage": "it-IT"
+  },
+  "push": {
+    "provider": "kafka"
   },
   "androidIntentAction": "eu.miaplatform.fakeactivity",
   "flowManagerConfiguration": {
@@ -775,6 +788,7 @@ The following default reminder event handlers both filter the notification setti
 [appointment-manager]: /runtime_suite/appointment-manager/10_overview.md
 [files-service]: /runtime_suite/files-service/configuration.mdx
 [localized-strings]: /microfrontend-composer/back-kit/40_core_concepts.md
+[service-secrets]: /development_suite/api-console/api-design/services.md#secrets
 [sms-service]: /runtime_suite/sms-service/10_overview.md
 [therapy-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/10_overview.md
 
