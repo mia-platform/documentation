@@ -15,6 +15,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.7.1] 2024-05-02
+
+- add `KAFKA_SECURITY_PROTOCOL` environment variable.
+  This variable sets SSL protocol to communicate with brokers. Possible values are: (case insensitive)
+  - `PLAINTEXT`;
+  - `SSL`;
+  - `SASL_PLAINTEXT`;
+  - `SASL_SSL`.
+  
+  If the variable has not been defined, the value defaults to `SSL`.
+
 ## [6.7.0] 2024-04-23
 
 ### Updated
@@ -54,18 +65,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       },
       "controller": {
         "type": "kafka",
-        "configuration": { /** kafka connection configuration */ }
+        "configuration": { /** kafka connection configuration */ },
+        "channel": "state-channel-topic"
       },
       "settings": { /** same as full-duplex */ }
     }
     ```
-    
+  :::note
+  More details about configuration available on [the dedicated section](/fast_data/runtime_management/workloads.mdx)
+  :::
 
 ## [6.6.0] 2024-04-11
 
 ### Added
 
-- introduce support for Control Plane feedback via heartbeat events
+- introduce support for Control Plane feedback via heartbeat events. The configuration can be set over the JSON file located at the path specified by `CONTROL_PLANE_CONFIG_PATH`:
+  ```json
+    {
+      "feedback": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ },
+        "channel": "feedback-channel-topic"
+      },
+      "controller": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ },
+        "channel": "state-channel-topic"
+      }
+    }
+  ```
+  :::note
+  More details about configuration available on [the dedicated section](/fast_data/runtime_management/workloads.mdx)
+  :::
 
 ### Fixed
 
