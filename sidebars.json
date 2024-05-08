@@ -650,6 +650,33 @@
       "collapsed": true,
       "items": [
         {
+          "id": "console/console-extensibility/extensibility-overview",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-example-tutorial",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-registration",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-activation",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-locations",
+          "type": "doc"
+        }
+      ],
+      "label": "Console Extensibility",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
           "id": "development_suite/monitoring/introduction",
           "type": "doc"
         },
