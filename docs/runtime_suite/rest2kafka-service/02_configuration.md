@@ -29,6 +29,7 @@ an instance of `Rest2Kafka` service.
   - `scram-sha-512`
 - `KAFKA_SASL_USERNAME`: the username key used by the service to authenticate onto Kafka brokers
 - `KAFKA_SASL_PASSWORD`: the secret used by the service to authenticate onto Kafka brokers
+- `KAFKA_SSL_ENABLED`: a boolean flag used to enable or not the `ssl` on the Kafka client. The default value is `true`
 
 ## Endpoints Config Map
 
@@ -61,6 +62,10 @@ This is the JSON schema of the configuration map:
       "keyField": {
         "type": "string",
         "description": "a JSON path to select which field of the payload should be employed as key of the Kafka message"
+      },
+      "keyAsJson": {
+        "type": "boolean",
+        "description": "a optional flag to require the publication of the message with a JSON with the key as the field - default is false. If enabled, the key will contain a JSON like the following one: {{{keyField}}: {{keyFieldValue}}}"
       },
       "schema": {
         "type": "object",
@@ -115,6 +120,7 @@ An example of an endpoints' configuration map is the following one:
     "path": "/notification",
     "topic": "ext.notify.dev",
     "keyField": "notify-id",
+    "keyAsJson": true,
     "schema": {
       "body": {
         "type": "object",

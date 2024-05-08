@@ -414,8 +414,12 @@ as input events. Currently only Kafka (and platforms adopting Kafka APIs) is sup
 
 #### Kafka Configuration
 
-When Kafka is selected as consumer for the Projection Storer service, it is possible to provide most of the Kafka Consumer
-properties that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
+If you select the Kafka Consumer, the service will create a Kafka Client to consume messages from the ingestion topics you setup.
+
+:::tip
+When Kafka is selected as consumer for the Projection Storer service, **it is possible to provide most of the Kafka Consumer
+properties** that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
+:::
 
 This is an example of consumer configuration when `kafka` is selected as type: 
 
@@ -459,8 +463,12 @@ as output events. Currently only Kafka (and platforms adopting Kafka APIs) is su
 
 #### Kafka Configuration
 
-When Kafka is selected as producer for the Projection Storer service, it is possible to provide most of the Kafka Producer
-properties that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#producerconfigs).
+If you select the Kafka Producer, the service will create a Kafka Client to produce messages into the topics related to the PR Updates you setup.
+
+:::tip
+When Kafka is selected as producer for the Projection Storer service, **it is possible to provide most of the Kafka Producer
+properties** that are defined in the [Apache Kafka documentation](https://kafka.apache.org/documentation/#producerconfigs).
+:::
 
 This is an example of producer configuration when `kafka` is selected as type:
 
