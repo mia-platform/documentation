@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The **Secure Api Gateway** is an application that allow you to set up all the microservices and endpoints to enable an authorization flow using Auth0 or other external IDP.
+The **Secure Api Gateway** is an application that allow you to set up all the microservices and enpoints to enable an authorization flow using Auth0 or other external IDP.
 The application contains the following **microservices**:
 
 - `Authorization Service`
@@ -40,7 +40,7 @@ To have an overview on how to use the **Secure API Gateway** application to secu
 ## Authorization Service
 
 The [authorization-service](../../runtime_suite/authorization-service/overview) is added by the application if it does not already exist.
-The **authorization-service** is used to manage the [authorization flow](../../console/project-configuration/authorization-flow). It is created with a standard configuration, with `USERINFO_URL` pointing to the `auth0-client` service.
+The **authorizatin-service** is used to manage the [authorization flow](../../console/project-configuration/authorization-flow). It is created with a standard configuration, with `USERINFO_URL` pointing to the `auth0-client` service.
 
 To have a complete overview of all the possible configurations for the **authorization-service** read the [dedicated documentation page](../../runtime_suite/authorization-service/configuration).
 
@@ -63,7 +63,7 @@ With the _oauth-login-site_ microservice the following endpoints are added to yo
 
 ## Auth0 Client
 
-The [auth0-client](../../runtime_suite/auth0-client/overview) is added (if it does not already exist) in order to handle authentication and user management using Auth0 as identity provider.
+The [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) is added if it does not already exist in order to handle authentication and user management using Auth0 as identity provider.
 
 With the _oauth-client_ microservice the following endpoints are added to your project:
 
