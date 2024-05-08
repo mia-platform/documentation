@@ -10,27 +10,65 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-_Control Plane_ is a specialized microservice designed to manage the runtime deployment of Fast Data within a Kubernetes environment.
-Its core functionality includes the ability to alter, store, and reset the runtime state of microservices that constitute Mia-Platform Fast Data solution.
-For this reason, it is a crucial component of the Fast Data [Runtime Management](/fast_data/runtime_management/overview.mdx) suite.
-
-Instantiating the application from the Marketplace will create a deployment of Control Plane in your current namespace.
-It will also create an endpoint which allows you to access the application's frontend (see the image below).
-
-![Control Plane Frontend](img/runtime_management_initial_screen.png)
-
-From the frontend page, you can select the resource you want to manage and the desired state you want to achieve.
-The backend will take care of the request and dispatch it to the messaging system, which will then be consumed by the interested microservices.
-When dispatching a new command request, the Control Plane will also store the current state of the resource in a database.
-This allows the application to keep track of the current state of the resource. 
-
-This separation of responsibilities ensures effective communication and control over the state of microservices,
-providing a robust and adaptable solution for runtime management within a Kubernetes environment.
+_Fast Data Control Plane_ is an application designed to manage the runtime deployment of Fast Data within a Kubernetes environment, using the [Runtime Management](/fast_data/runtime_management/overview.mdx) suite.
 
 :::tip
-Check out the [Runtime Management](/fast_data/runtime_management/overview.mdx) documentation for more information on its features and how to use the Control Plane frontend.
+Check the [Runtime Management](/fast_data/runtime_management/overview.mdx) documentation for more information on its features and how to use the Control Plane frontend.
 :::
 
+Its core functionality includes the ability to alter, store, and reset the runtime state of microservices that constitute Mia-Platform Fast Data solution.
+
 :::note
-Check the [Configuration](./20_configuration.mdx) section for more information on how to configure the Control Plane application.
+Check the [Control Plane Configuration](/fast_data/runtime_management/control_plane.mdx) documentation for more information on how to configure the Control Plane application.
 :::
+
+## Resources
+
+With the Marketplace application you will have all the required resources to start using Runtime Management.
+
+### Microservices
+
+The application will create (or use if already been defined) the following microservices:
+
+- [Envoy API Gateway](/runtime_suite/envoy-api-gateway/overview.md)
+- [Control Plane backend](/fast_data/runtime_management/control_plane.mdx), having a gRPC full-duplex connection channel
+- [Control Plane frontend](/fast_data/runtime_management/control_plane_frontend.mdx), used by the end-user to interact with the Control Plane 
+
+### Config Maps
+
+The application will create a Config Map (named `control-plane-configuration` by default) having the following JSON configuration file.
+
+```json title={configuration.json}
+{
+  "runtime": {
+    "feedback": {
+      "type": "grpc"
+    },
+    "state": {
+      "type": "grpc"
+    }
+  },
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": "{{MONGODB_URL}}"
+    },
+    "collection": {
+      "name": "{{MONGODB_COLLECTION}}"
+    }
+  }
+}
+```
+
+### Endpoints
+
+The following endpoints will be attached to the API Gateway:
+
+- `/`: which will redirect to the Control Plane frontend;
+- `/fast-data` where the Control Plane backend will be exposed
+
+### Secure Access
+
+If you want to setup Control Plane with authorization and authentication mechanisms, there is a dedicated application.
+
+To learn more about it, you can visit [its own documentation page](/fast_data/runtime_management/secure_access.md).
