@@ -67,4 +67,14 @@ Take a look at the "Environment Variables" tab of the API Portal service, and ma
 The API Portal accepts the following environment variables:
 
 - **HTTP_PORT** (default: 8080): defines the http port to use
-- **SWAGGER_VERSION** (*optional*, default: 3): defines the version of the visualized documentation. Its value can be `3` indicating a `openapi v3.0.x` documentation, or `3.1` indicating a `openapi v3.1` documentation.
+
+## How to use Open API version 3.1
+
+Since version `3.6.0`, the [Swagger Aggregator](../swagger-aggregator/overview) supports Open API version 3.1. To use it in the Api Portal you need to expose a new endpoint in the Endpoints section with the following configuration.
+
+* Base path: `/documentations/api-portal/api/openapi/v3`
+* Type: `Microservice`
+* Microservice: `swagger-aggregator`
+* Rewrite base path: `/openapi/v3-1`
+
+In this way, the requests made by the Api Portal to retrieve the swagger will be re-routed to the endpoint exposing the 3.1 version.
