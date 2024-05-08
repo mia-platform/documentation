@@ -5,7 +5,7 @@ sidebar_label: Register Extensions
 ---
 # Register Extensions
 
-A new extension should always be registered on the Console before it can be activated. Registered extensions are owned by specific Companies, thus the registration and management operations on extensions can only be performed by a Company Owner.
+Before [activating an extension](/console/console-extensibility/activation.md), you must register it on Console. Registered extensions are owned by specific Companies, thus the registration and management operations on extensions can only be performed by a Company Owner.
 
 ## How to register my extension?
 
@@ -42,16 +42,16 @@ The routes should include the necessary information to render the extension menu
 ![menu item and category routes](img/menuItemAndCategory.png)
 
 :::info
-Each extension should have always a single route that is not of type `category` to be meaningful and additionally, it is possible to include also a route of type `category` to add a custom group menu item.
+Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.  
 :::
 
 A route, therefore, requires to provide the following information:
 - `id` (_required_): assign a unique identifier that can be used for applying overrides during activation or for attaching other menu items when the route's `renderType` is set to `category`.
 - `locationId` (_required_): choose a location to place your route (see the [supported locations](/console/console-extensibility/locations.md))
-- `renderType`: select `category` if you want to add a new menu group, otherwise leave it unset to add a simple menu item
+- `renderType`: select `category` if you want to add a new menu group, otherwise leave it unset to add a simple menu item (see in the image above the distinction among menu groups and menu items)
 - `parentId`: insert the route `id` of a menu group where you want to attach the menu item. It is possible to choose existing parentIds documented on the [supported locations page](/console/console-extensibility/locations.md) or add a route of type `category` and use its `id`. This value can be omitted for the `category` route.
 - `destinationPath`: indicate the destination suffix to which you will be redirected when clicking the menu item and it will compose the URL where the iframe will be mounted; in fact, the resulting URL will be composed according to this pattern `<locationPath>/extensions/<extensionId><destinationPath>`. This value can be omitted for the `category` route.
-- `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. This value can be omitted for the `category` route.
+- `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. After pick an icon, you can use the React component name represented in the code example (e.g. the Phosphor icon `<PiAirplaneTiltFill />` has `PiAirplaneTiltFill` as name). This value can be omitted for the `category` route.
 - `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
 - `order` (_required_): insert optionally this numeric value used to sort in ascending order the menu items on the sidebar. During the rendering, the `category` menu are sorted first and then the menu items attached on a specific `category` menu.
 
