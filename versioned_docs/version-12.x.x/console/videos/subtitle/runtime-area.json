@@ -1,0 +1,70 @@
+{
+  "videoId": "pM7ww_X2Drk",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:00,399",
+      "endTimeString": "00:00:09,133 ",
+      "text": "Hi and welcome to Mia-Platform Video Pills Today I will show how we have enriched the runtime area, providing it with an extended sidebar with new tabs for monitoring workloads."
+    },
+    {
+      "startTimeString": "00:00:09,666",
+      "endTimeString": "00:00:11,099 ",
+      "text": "Let's begin."
+    },
+    {
+      "startTimeString": "00:00:11,099",
+      "endTimeString": "00:00:14,099 ",
+      "text": "Once on the project homepage access the runtime area."
+    },
+    {
+      "startTimeString": "00:00:15,366",
+      "endTimeString": "00:00:21,633 ",
+      "text": "Whereas before in the runtime area I could only find the monitoring part of the pods, now you have the whole workflow of my infrastructure."
+    },
+    {
+      "startTimeString": "00:00:21,933",
+      "endTimeString": "00:00:28,066 ",
+      "text": "In addition to pods, it is now possible to find: deployments, services, cronjobs, jobs and namespaces."
+    },
+    {
+      "startTimeString": "00:00:28,266",
+      "endTimeString": "00:00:29,766 ",
+      "text": "Let us look at the layout."
+    },
+    {
+      "startTimeString": "00:00:30,099",
+      "endTimeString": "00:00:35,399 ",
+      "text": "On the right side, you can manually refresh the data or decide how often the page should be refreshed."
+    },
+    {
+      "startTimeString": "00:00:37,566",
+      "endTimeString": "00:00:40,466 ",
+      "text": "Then there is the search box where you can filter the data."
+    },
+    {
+      "startTimeString": "00:00:40,466",
+      "endTimeString": "00:00:45,799 ",
+      "text": "These fields will also be present in the next tabs, allowing for a smooth navigation experience in each section."
+    },
+    {
+      "startTimeString": "00:00:49,599",
+      "endTimeString": "00:00:54,166 ",
+      "text": "As can be seen by clicking on each tab, the tables provide the relevant information."
+    },
+    {
+      "startTimeString": "00:00:59,899",
+      "endTimeString": "00:01:02,399 ",
+      "text": "Continue navigating and click on the namespace."
+    },
+    {
+      "startTimeString": "00:01:03,066",
+      "endTimeString": "00:01:08,699 ",
+      "text": "Here you will find all the details of the namespace and can copy Expand the entire code or export the JSON file."
+    },
+    {
+      "startTimeString": "00:01:09,799",
+      "endTimeString": "00:01:18,599 ",
+      "text": "Monitoring is essential to deliver better software, therefore, by enriching the runtime area, we want to simplify and improve the way developers monitor their pods and services."
+    }
+  ]
+}

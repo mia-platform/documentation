@@ -15,6 +15,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.6.0 - 26/03/2024
+
+### Fixed
+
+- Reply with error when subscription expiration goes wrong on the provider (Satispay and Braintree)
+- Braintree's subscriptions correctly handles vaulted and non-vaulted cases
+- Fixed Unicredit issues
+- shopTransactionId on braintree payment status response for Braintree provider
+
+### Added
+
+- Handle expire subscription on Satispay callback
+- Handle expire subscription and "Payment Method Revoked By Customer" event on Braintree callback
+- resultDescription on metadata field on status response
+- action field on payment status response
+- Stripe: added "payment_intent" id in the PaymentStatus metadata
+- FnmPay payment provider
+
+### Updated
+
+- Removed Merchant object from providerData on Scalapay pay request
+- Status mapping for Braintree provider
+- `PAYMENT_CALLBACK_URL` env variable changed from mandatory to optional
+
+## 3.5.0 - 26/01/2024
+
+### Added
+
+- API to get subscription status. Available for Adyen, Braintree, Satispay, Stripe and External Providers. 
+
+### Fixed
+
+- ScalaPay callback handles `approved` status
+
+## 3.4.0 - 17/01/2024
+
+### Added
+
+- FlowPay payment provider
+
+## 3.3.0 - 09/01/2024
+
+### Added
+
+- Nexi payment provider
+
 ## 3.2.0 - 29/11/2023
 
 ### Updated
@@ -101,7 +147,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 2.9.0-quarkus & 2.9.0-ktor - 05/12/2022
 
-::: warning
+:::warning
 From version 2.9.0 the framework used is changed from ktor to quarkus.
 Until version 3.0.0 will be available both framework, and you can choose the framework you prefer by adding the related suffix to the tag name.
 :::

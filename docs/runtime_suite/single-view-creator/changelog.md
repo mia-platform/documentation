@@ -15,6 +15,148 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.7.1] 2024-05-02
+
+- add `KAFKA_SECURITY_PROTOCOL` environment variable.
+  This variable sets SSL protocol to communicate with brokers. Possible values are: (case insensitive)
+  - `PLAINTEXT`;
+  - `SSL`;
+  - `SASL_PLAINTEXT`;
+  - `SASL_SSL`.
+  
+  If the variable has not been defined, the value defaults to `SSL`.
+
+## [6.7.0] 2024-04-23
+
+### Updated
+
+- **control plane** connection, which can be configured also using [gRPC protocol](https://grpc.io/docs/what-is-grpc/introduction/) supported by control plane backend. 
+
+  Two possible configurations can be set over the JSON file located at the path specified by `CONTROL_PLANE_CONFIG_PATH`:
+  - `full-duplex`: the service will open a bidirectional streaming channel to send its state and receive updates
+    ```json
+    {
+      "feedback": {
+        "type": "grpc"
+      },
+      "controller": {
+        "type": "grpc"
+      },
+      "settings": {
+        "channel": {
+          // interval for which service will send its state
+          // defaults to 2500ms if not specified
+          "heartbet.ms": 2500 
+        },
+        "grpc": {
+          // tells the service the hostname of your control plane istance
+          "host": "your-control-plane-host",
+          // port where the service is exposed, defaults to grpc default 50051
+          "port": 50051 
+        }
+      }
+    }
+    ```
+  - `feedback-only`: the service will open a request streaming channel to send its state, while the control plane will send updates using a kafka topic
+    ```json
+    {
+      "feedback": {
+        "type": "grpc"
+      },
+      "controller": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ },
+        "channel": "state-channel-topic"
+      },
+      "settings": { /** same as full-duplex */ }
+    }
+    ```
+  :::note
+  More details about configuration available on [the dedicated section](/fast_data/runtime_management/workloads.mdx)
+  :::
+
+## [6.6.0] 2024-04-11
+
+### Added
+
+- introduce support for Control Plane feedback via heartbeat events. The configuration can be set over the JSON file located at the path specified by `CONTROL_PLANE_CONFIG_PATH`:
+  ```json
+    {
+      "feedback": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ },
+        "channel": "feedback-channel-topic"
+      },
+      "controller": {
+        "type": "kafka",
+        "configuration": { /** kafka connection configuration */ },
+        "channel": "state-channel-topic"
+      }
+    }
+  ```
+  :::note
+  More details about configuration available on [the dedicated section](/fast_data/runtime_management/workloads.mdx)
+  :::
+
+### Fixed
+
+- when the service is under pressure it is now able to send the Kafka heartbeat to the coordinator
+preventing unnecessary restarts
+
+## [6.5.0] 2024-02-21
+
+### Added
+
+- introduce official support to MongoDB v7
+
+### Changed
+
+- updated to `@mia-platform-internal/single-view-creator-lib@15.0.0`
+
+:::warning
+In case custom _upsert_ or _delete_ strategies are employed, it is necessary to verify and potentially upgrade such
+_user-defined_ functions, so that possible usages of `findOneAndUpdate`, `findOneAndReplace` and `findOneAndDelete` methods
+adhere to the MongoDB NodeJS [driver v6.x interface](https://mongodb.github.io/node-mongodb-native/6.3/classes/Collection.html#findOneAndUpdate).
+
+For example, those methods may now need to include the `includeResultMetadata` property set to `true`, to maintain unaltered
+the previous behavior, as shown in the implementation below. Indeed, it should be changed from
+```javascript
+const updateOp = await singleViewCollection.findOneAndUpdate(
+  singleViewKey,
+  { $set: { ... } }
+)
+```
+to
+```javascript
+const updateOp = await singleViewCollection.findOneAndUpdate(
+    singleViewKey,
+    { $set: { ... } },
+    { includeResultMetadata: true } // <-- ⚠️ here the new option is added
+)
+```
+:::
+
+## [6.4.3] 2024-03-05
+
+### Fixed
+
+- upgrade `@mia-platform-internal/single-view-creator-lib@14.11.1` to ensure that operation
+`timestamp` property in sv-update message contains an ISO 8601 date string, converting
+potential incoming Unix timestamp into the expected format. This fixes a mismatch that prevented
+the daisy chain of two Single View Creator to 
+
+## [6.4.1] 2024-02-27
+
+### Added
+
+- introduce support for `snappy` compression both on the consumer and producer sides.
+  While compression coded employed on the consumer is automatically recognized, on the producer
+  it is necessary to be configured explicitly. This can be achieved via `KAFKA_PRODUCER_COMPRESSION` environment variable
+  that defines the compression to be employed, which can be one of the following values:
+    - `none` (default)
+    - `snappy` (recommended)
+    - `gzip`
+
 ## [6.4.0] 2023-12-14
 
 ### Updated

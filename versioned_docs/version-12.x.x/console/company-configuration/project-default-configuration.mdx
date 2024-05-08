@@ -1,0 +1,606 @@
+---
+id: project-default-configuration
+title: New Project Default Configurations
+sidebar_label: Default Project Configurations
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+By editing the Company data model, you will be able to set default configurations for all the Projects that will be created within the Company.
+
+:::info
+This configuration can be done from the `Companies` section of the Console CMS.
+:::
+
+The Projects default configurations fields are:
+
+- **defaultTemplateId**:
+
+  The identifier of the default template to be used for the creation of a Project.
+  This information can be changed for a specific Project during the steps of the Project creation wizard.
+
+- **cmsImageName**:
+
+  The Docker image configuring the CMS used in your Project. It should also contain the CMS tag to be used.
+  This value will interpolate the template archive of your Project.
+
+  If `cms-site` service is disabled during the Project creation, this field will not be used.
+
+- **repository** (_required_):
+
+  An object that specifies the information regarding the repository where the Projects of this Company will be created.
+
+  :::info
+  This field can also be set by [selecting a default Git Provider](/console/company-configuration/providers/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
+  :::
+
+  The object must have the following properties:
+
+  - **providerId** (_required_): the unique identifier of the Git Provider associated with the Company
+
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the Provider.
+
+    Check out the complete list of [supported providers](/console/company-configuration/providers/configure-provider.mdx);
+
+  - **basePath**: the base path where the Project will be created.
+
+    :::caution
+    Make sure the selected Git Provider has the right permissions for creating Projects on the configured path.
+    :::
+
+    Here are some tips on how to correctly configure the _basePath_ property, grouped by Git Provider:
+
+    <Tabs>
+
+    <TabItem value="gitlab" label="GitLab" default>
+
+      It corresponds to the **basePath of the group** where to create the Project.
+
+      If the group does not exist, the Project will be created only if the user has the needed permission to create the group in its parent.
+
+      For example, if your group is reachable at the URL **`https://my-gitlab-host.eu/mia-platform/projects`**, <br/>
+      then the `basePath` must be **`mia-platform/projects`**.
+
+      If your group does not exist (in the example groupB):
+
+      - /groupA/groupB -> if the user has permission to create groups in groupA, then groupB will be created;
+      - /groupA/groupB -> if the user has no permission to create groups in groupA, then groupB will NOT be created;
+      - /groupA/groupB -> if groupA does not exist, then it will NOT be created any group.
+
+    </TabItem>
+
+    <TabItem value="github" label="GitHub">
+
+      It corresponds to the **path of an existing organization**.
+
+      If the path does not exist, the Project will not be created.
+
+      For example, if your organization is reachable at the URL **`https://github.com/mia-platform`**, <br/>
+      then the `basePath` must be **`mia-platform`**
+
+    </TabItem>
+
+    <TabItem value="azure-devops" label="Azure DevOps">
+
+      There are two different possibilities: use an already existing Azure DevOps Project with multiple
+      Console Projects inside it or create an Azure DevOps Project for each Console Project.
+
+      #### A single Azure DevOps Project with multiple configurations repository
+
+      It corresponds to the **path where your Azure project is reachable**: the pattern is _organization-name/project-name_.
+
+      For example, if your project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
+      then the `basePath` must be **`mia-platform-devops/Test`**.
+
+      #### An Azure DevOps Project for each Console Project
+
+      It corresponds to the **organization where to create the Project**: the pattern is organization-name_.
+
+      For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
+      then the `basePath` must be **`mia-platform-devops`**.
+
+    </TabItem>
+
+    <TabItem value="bitbucket" label="Bitbucket">
+
+      It corresponds to the **path where your Bitbucket Project is reachable**: the pattern is _projects/project-code_.
+
+      For example, if your Project is reachable at the URL **`https://bitbucket.mia-platform.eu/projects/Test`**, <br/>
+      then the `basePath` must be **`projects/Test`**.
+
+    </TabItem>
+
+    </Tabs>
+
+  - **visibility**: the visibility of the Project.
+
+    Either one of the following:
+
+      - `public`: the repository can be accessed and viewed by anyone, including non-authenticated users;
+      - `internal`: the repository can be accessed and viewed by any authenticated user within the same Git Provider instance or organization;
+      - `private`: the repository can only be accessed and viewed by users who have been explicitly granted access by the repository owner.
+
+  <br/>
+
+  ##### Example Configurations
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
+    ```json
+    {
+      "providerId": "my-gitlab",
+      "type": "gitlab",
+      "visibility": "public",
+      "basePath": "Mia-Platform/projects"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="github" label="GitHub">
+
+    ```json
+    {
+      "providerId": "my-github",
+      "type": "github",
+      "visibility": "internal",
+      "basePath": "Mia-Platform"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="azure-devops" label="Azure DevOps">
+
+    ```json
+    {
+      "providerId": "my-azure-devops",
+      "type": "azure-devops",
+      "visibility": "private",
+      "basePath": "Mia-Platform-devops/Test"
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="bitbucket" label="Bitbucket">
+
+    ```json
+    {
+      "providerId": "my-bitbucket",
+      "type": "bitbucket",
+      "visibility": "internal",
+      "basePath": "projects/Test"
+    }
+    ```
+
+  </TabItem>
+  </Tabs>
+
+- **pipelines** (_required_):
+
+  An object that specifies the information regarding the CI/CD pipelines used by the Company.
+
+  :::info
+  This field can also be set by [selecting a default CI/CD Tool](/console/company-configuration/providers/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
+  :::
+
+  The object must have the following properties:
+
+  - **providerId**: the unique identifier of the CI/CD Tool associated with the Company.
+
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the Provider.
+
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/console/company-configuration/providers/configure-provider.mdx).
+
+  In addition, it can include the following properties, supported only by specific Providers:
+
+  <Tabs>
+  <TabItem value="azure-devops" label="Azure DevOps">
+
+    - **azurePipelineId**: a unique identifier that can be used to reference and identify a pipeline.
+
+    Learn more on how to retrieve the ID of a pipeline on the Azure DevOps [pipelines documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines).
+
+  </TabItem>
+  <TabItem value="jenkins" label="Jenkins">
+
+    - **options**: an object containing the `view` property.
+
+      In Jenkins, pipeline views allow you to visualize and monitor your pipelines and their status in a more organized and user-friendly way, making it easier to track their progress and health.
+
+      The `view` configuration includes the following fields:
+
+      - **name**: the name of the visualization step where Jenkins pipelines are shown.
+
+  </TabItem>
+  </Tabs>
+
+  ##### Example Configurations
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
+  ```json
+  {
+    "providerId": "my-gitlab",
+    "type": "gitlab-ci"
+  }
+  ```
+  </TabItem>
+  <TabItem value="github" label="GitHub">
+
+  ```json
+  {
+    "providerId": "my-github",
+    "type": "github-actions"
+  }
+  ```
+  </TabItem>
+  <TabItem value="azure-devops" label="Azure DevOps">
+
+  ```json
+  {
+    "providerId": "my-azure",
+    "type": "azure-pipelines",
+    "azurePipelineId": "{PIPELINE_ID}"
+  }
+  ```
+  </TabItem>
+    <TabItem value="jenkins" label="Jenkins">
+
+  ```json
+  {
+    "providerId": "my-jenkins",
+    "type": "jenkins",
+    "options": {
+      "view": { "name": "my-view" }
+    }
+  }
+  ```
+  </TabItem>
+  </Tabs>
+
+- **environmentsVariables**:
+
+  An object that describes the configuration to enable the Variables section in the Project Overview area of the Console.
+
+  :::info
+  This field can also be set by [selecting a default Secret Manager](/console/company-configuration/providers/configure-provider.mdx#set-a-default-provider) in the **Providers** section of the Console.
+  :::
+
+  :::caution
+  This field is not required. However, by leaving an empty configuration you will need to manually configure a Secret Manager for each Project you create.
+  :::
+
+  The object can be configured with the following properties:
+
+  - **providerId**: the unique identifier of the Secret Manager associated with the Company.
+
+    It corresponds to the `providerId` field of the reference document within the `Providers` section of the CMS, and it is used to retrieve information about the Provider.
+
+  - **type** (_required_): one of the supported provider types. Check out the complete list of [supported providers](/console/company-configuration/providers/configure-provider.mdx).
+
+  In addition, it can include the following properties, supported only by specific Providers:
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
+  - **baseUrl**: the base path from which the variables will be read.
+
+    If not specified, variables will be read from the first parent group of the Configurations Project in GitLab.
+
+    As an example, if your GitLab Project is saved in **`https://git.tools.mia-platform.eu/mia-platform/Test/configurations`**, the environment variables will be written in the **`mia-platform/Test`** group.
+
+  - **storage**: additional settings related to the storage of environment variables within the GitLab installation.
+
+    It is composed of the following properties:
+
+    - **path**: specifies the exact location for reading variables, starting from the _baseUrl_.
+
+    - **type**: the level of granularity with which variables are managed within the GitLab installation.
+
+      It determines the scope within which variables will be available to the pipelines.
+
+      Either one of the following:
+
+      - `groups`: variables will be managed at the Group level;
+      - `projects`: variables will be managed at the Project level.
+
+    <br/>
+
+  :::info
+  This configuration is saved only within the Company model and is retrieved by Projects at runtime.
+
+  If in your company all the environment variables are set to be located in the parent group, by editing this field you can safely change the variables' path for all the Projects in the Company.
+  :::
+
+  </TabItem>
+  </Tabs>
+
+  ##### Example Configurations
+
+  <Tabs>
+  <TabItem value="gitlab" label="GitLab">
+
+  ```json
+  {
+    "providerId": "my-gitlab",
+    "type": "gitlab",
+    "baseUrl": "https://my-gitlab-host",
+    "storage": {
+      "type": "projects",
+      "path": "clients/mia-platform/configurations"
+    }
+  }
+  ```
+
+  </TabItem>
+  <TabItem value="vault" label="Vault">
+
+  ```json
+  {
+    "providerId": "my-vault",
+    "type": "vault"
+  }
+  ```
+
+  </TabItem>
+  </Tabs>
+
+- **environments** (_required_):
+
+  An array of objects containing the definitions of the environments for the Company.
+
+  :::note
+  The content of this array will be interpolated during Project creation by replacing `%projectId%` strings with the `projectId` field specified in the Project.
+  :::
+
+  Each object is shaped as follows:
+
+  - **label**: a descriptive, human-readable identifier for the environment;
+  - **envId** (_required_): a unique identifier associated with the environment;
+  - **envPrefix**: defines a common prefix for environment-specific variables;
+  - **description**: a short description of the environment;
+  - **isProduction**: a boolean value indicating whether it is considered to be a production environment;
+  - **hosts**: an array of objects identifying the hosts used by the environment.
+
+    Each host is shaped as follows:
+
+    - **host**: the URL identifying where the host is located;
+    - **isBackoffice**: a boolean value indicating whether the host is a CMS instance;
+    - **scheme**: an URL schema, typically either _http_ of _https_.
+
+    This object can be used to specify where a specific environment should be hosted,
+    where it should expose its documentation or where to access its CMS.
+
+  - **environmentsVariables**: an object that describes the configuration of variables for the environment.
+
+    :::info
+    This field can be overwritten by the configuration provided in the `environmentsVariables` field for a specific environment.
+    :::
+
+    It can be configured following the configuration of the `environmentsVariables` company field.
+
+  - **deploy**: an object that describes the configuration of CI/CD pipelines for the environment.
+
+    :::info
+    This field can be overwritten by the configuration provided in the `pipelines` field for a specific environment.
+    :::
+
+    It can be configured following the configuration of the `pipelines` company field.
+
+    In addition, it can include the following properties, supported only by specific providers:
+
+    <Tabs>
+    <TabItem value="jenkins" label="Jenkins">
+
+     - **jobId**: identifier of the Jenkins job associated with the pipeline.
+
+      It uniquely identifies the job within the Jenkins instance.
+
+     - **paramsMap**: a map or dictionary of parameters that can be passed to a Jenkins pipeline.
+
+      Parameters allow you to provide inputs or configuration values to the pipeline, enabling dynamic behavior and customization.
+
+    </TabItem>
+    </Tabs>
+
+  - **cluster**: an object identifying the connection parameters of the cluster the environment is deployed to.
+
+    It contains the following properties:
+
+      - **clusterId**: a unique identifier associated with the Kubernetes cluster;
+      - **namespace**: the name of the logical partitioning the cluster refers to;
+      - **kubeContextVariables**: an object containing configuration variables for the Kubernetes context.
+
+        It is composed of the following variables:
+
+          - **KUBE_URL**: the URL or endpoint used to access the cluster;
+
+          - **KUBE_TOKEN**: an authentication token required to authenticate and authorize access to the cluster.
+
+          - **KUBE_CA_PEM**: a PEM-encoded certificate authority.
+
+            It is used to verify the authenticity of the cluster's TLS certificate during secure communication.
+
+  :::danger
+  The values saved here are not encrypted!
+
+  Do not set the `cluster.kubeContextVariables` with plain values to access the cluster.
+
+  Instead, prefer the use of an interpolated value. By specifying a variable key name (as shown in the example), the value will be taken from the corresponding project variable.
+  :::
+
+  ##### Example Configuration
+
+  ```json
+  [
+    {
+      "label": "Development",
+      "envId": "development",
+      "envPrefix": "development",
+      "isProduction": false,
+      "hosts": [
+        {
+          "host": "%projectId%.test.mia-platform.eu",
+          "scheme": "https"
+        },
+        {
+          "host": "cms.%projectId%.test.mia-platform.eu",
+          "isBackoffice": true
+        }
+      ],
+      "environmentsVariables": {
+        "providerId": "my-vault",
+        "type": "vault"
+      },
+      "deploy": {
+        "providerId": "my-jenkins",
+        "type": "jenkins",
+      },
+      "cluster": {
+        "clusterId": "human-readable-id-of-the-cluster",
+        "namespace": "%projectId%-development",
+        "kubeContextVariables": {
+          "KUBE_URL": "KUBE_DEV_URL",
+          "KUBE_TOKEN": "KUBE_DEV_TOKEN",
+          "KUBE_CA_PEM": "KUBE_DEV_CA_PEM",
+        }
+      }
+    }
+  ]
+  ```
+
+- **logicalScopeLayers**:
+
+  An array of objects that identifies the set of logical layers available in the current company.
+
+  Each object is shaped as follows:
+
+  - **name**: identifies the name of the logical layer;
+  - **order**: identifies the numerical order of the layer, used to display layers according to the sorting order defined by the user.
+
+  The `logicalScopeLayers` field will be created in the project model according to the project `layerId` value. Please refer to the [Create a Project](/console/project-configuration/create-a-project.mdx) section for further details.
+
+  ##### Example Configuration
+  ```json
+  [
+    { "name": "layer-1", "order": 2},
+    { "name": "layer-2", "order": 1}
+  ]
+  ```
+
+- **availableNamespaces**:
+
+  Namespaces which are internally accessible from your project, using the `cross-projects` endpoint.
+
+  Namespaces are useful when your company is made up of several projects that communicate with each other.
+
+  :::note
+  The content of this array will be interpolated during project creation by replacing `%projectId%` strings with the `projectId` field specified in the project.
+  :::
+
+  Each object is shaped as follows:
+
+    - **value**: the identifier of the namespace;
+    - **label**: an alias for the namespace to be displayed inside the project.
+
+  <br/>
+
+  ##### Example Configuration
+  ```json
+  [
+    { "value": "dev.%projectId%", "label": "Development"},
+    { "value": "preprod.%projectId%", "label": "Preproduction"},
+  ]
+  ```
+
+- **dockerImageNameSuggestion**:
+
+  An object defining the Docker image name suggestion that will be passed to every project created in your company.
+
+  :::info
+  This suggestion will appear in the `Docker Image Name` field when you [create a microservice](/development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template).
+  :::
+
+  The object should have the following properties:
+
+  - **type** (_required_): defines the format of the suggestion.
+
+    Currently, three types are present:
+
+      - `PROJECT_ID` (_default_): **`<project-id>/<your-service-name>`**
+
+        This is the default behavior, suggestions will follow this format when this field is not set. Do **not** set the _prefix_ property if you choose this type of suggestion.
+
+      - `REPOSITORY`: **`<your-group-name>/<your-repo-name>`**
+
+        Do **not** set the _prefix_ property if you choose this type of suggestion.
+
+      - `CONSTANT_PREFIX`: **`<prefix-value>/<your-service-name>`**.
+
+        The _prefix_ property is required for this type and will replace _prefix-value_.
+
+  - **prefix**: defines the prefix that will appear in the suggestion for the Docker image name.
+
+    This property must be defined only when **type** property value is set to `CONSTANT_PREFIX`.
+
+  ##### Example Configuration
+  ```json
+  {
+    "type": "CONSTANT_PREFIX",
+    "prefix": "my-docker-image"
+  }
+  ```
+
+- **imagePullSecretNames**:
+
+  A list of imagePullSecret names.
+
+  :::note
+  An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries.
+  :::
+
+  The imagePullSecrets whose name is specified in this field will be inherited in the project during project creation and then used in deployment and cronjob files for pulling Docker images.
+
+  ##### Example Configuration
+  ```json
+  [
+    "my-imagepullsecret"
+  ]
+  ```
+
+- **enabledSecurityFeatures**:
+
+  A set of features to enforce the security of the project.
+
+  It defines the security features and settings that will be applied to the Kubernetes environment that your project will be deployed on.
+
+  The object can be configured with the following properties:
+
+  - **`seccompProfile`**: indicates whether the Seccomp profile is enabled.
+
+    Seccomp (short for secure computing mode) is a Linux kernel feature that restricts the system calls a process can make. Enabling Seccomp profiles helps enhance the security of containers by limiting their access to potentially dangerous system calls.
+
+  - **`appArmor`**: indicates whether AppArmor is enabled.
+
+    AppArmor is a Linux security module that provides mandatory access control (MAC) policies. It allows you to define fine-grained restrictions on the actions that a process can perform, helping to prevent unauthorized activities and limit the potential impact of security breaches.
+
+  - **`hostProperties`**: indicates whether the container has access to host properties.
+
+    Host properties typically include information about the underlying host system, such as network interfaces, file systems, or hardware details. Disabling access to host properties helps isolate the container from the host environment, reducing the risk of information leakage or unauthorized system access.
+
+  - **`privilegedPod`**: indicates whether the container or pod has privileged access.
+
+    Privileged access means that the container or pod has elevated permissions and can perform privileged operations on the host system. Disabling privileged access is generally recommended for improved security, as it helps prevent containers from having unrestricted control over the underlying infrastructure.
+
+  ##### Example Configuration
+  ```json
+  {
+    "seccompProfile": false,
+    "appArmor": false,
+    "hostProperties": true,
+    "privilegedPod": false
+  }
+  ```
+

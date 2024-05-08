@@ -446,11 +446,16 @@ Remember that for `identifierQueryMapping` to be used, you still need to explici
 
 #### Using conditional expressions on dependencies definitions and mappings
 
+:::caution
+Starting with the release of Console `v13.0.0`, the usage of this advanced feature (`_select`) is **deprecated**, as it will be replaced
+in the future with a better solution for pre-filtering which projections should be included in the aggregation. 
+:::
+
 Dependencies are a way to gather data that will be used in the mapping section, creating the Single View, and as Single Views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a Single View.
 
 If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
 
-We have a System of Records that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
+We have a System of Record that consists of multiple Projections about jobs, one for each different job. For example, we have `DOCTOR` and `FIREFIGHTER`. If you want to create a `USER` Single View which has the information coming from its job Projection, you need a way to get a dependency which is either a `DOCTOR` or a `FIREFIGHTER`.
 A naive solution could be just putting both Projections as dependencies and using both of them in the mapping. This would cause the Single View to have two different `firefighter` and `doctor` fields, one of them undefined, which is clearly not ideal.
 
 Thanks to the `_select` option, we can create a `JOB` dependency, which will use the `DOCTOR` *or* `FIREFIGHTER` Projection based on the value of another field, as shown below:
@@ -576,6 +581,11 @@ module.exports = async function(logger, clientMongo) {
 The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
 
 For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
+
+:::caution
+Starting with the release of Console `v13.0.0`, the usage of this advanced feature (`_select`) is **deprecated**, as it will be replaced
+in the future with a better solution for pre-filtering which projections should be included in the aggregation.
+:::
 
 #### `null` values inside conditional expressions
 

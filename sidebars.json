@@ -158,7 +158,6 @@
         }
       ]
     },
-
     {
       "collapsed": true,
       "type": "category",
@@ -169,11 +168,15 @@
       },
       "items": [
         {
-          "id": "development_suite/company/create",
+          "id": "development_suite/company/create-company",
           "type": "doc"
         },
         {
           "id": "development_suite/company/configuration",
+          "type": "doc"
+        },
+        {
+          "id": "console/company-configuration/company-settings",
           "type": "doc"
         },
         {
@@ -226,8 +229,19 @@
               },
               "items": [
                 {
-                  "id": "console/company-configuration/providers/extensions/orchestrator-generator",
-                  "type": "doc"
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "Orchestrator Generator",
+                  "link": {
+                    "id": "console/company-configuration/providers/extensions/orchestrator-generator/overview",
+                    "type": "doc"
+                  },
+                  "items": [
+                    {
+                      "id": "console/company-configuration/providers/extensions/orchestrator-generator/use-cases",
+                      "type": "doc"
+                    }
+                  ]
                 }
               ]
             },
@@ -242,7 +256,7 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/company/project-templates",
+          "id": "development_suite/company/project-blueprint",
           "type": "doc"
         },
         {
@@ -397,6 +411,10 @@
               "type": "doc"
             },
             {
+              "id": "development_suite/api-console/api-design/microservice-containers",
+              "type": "doc"
+            },
+            {
               "id": "development_suite/api-console/api-design/microservice-memory-resources",
               "type": "doc"
             },
@@ -437,12 +455,27 @@
           "type": "doc"
         },
         {
+          "id": "console/design-your-projects/sidecars",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/decorators",
           "type": "doc"
         },
         {
-          "id": "development_suite/api-console/api-design/flow-manager-visualizer",
-          "type": "doc"
+          "collapsed": true,
+          "items": [
+            {
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/overview",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/api-console/api-design/flow-manager-configurator/how-it-works",
+              "type": "doc"
+            }
+          ],
+          "label": "Flow Manager Configurator",
+          "type": "category"
         },
         {
           "id": "development_suite/api-console/api-design/endpoints",
@@ -579,6 +612,14 @@
             },
             {
               "id": "development_suite/deploy/pipeline-based/configure-github-actions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-gitlab-ci",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/deploy/pipeline-based/configure-azure-pipelines",
               "type": "doc"
             }
           ]
@@ -721,7 +762,10 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": ["use-cases", "guides"],
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -977,8 +1021,35 @@
       "type": "doc"
     },
     {
-      "id": "fast_data/runtime_management",
-      "type": "doc"
+      "label": "Runtime Management",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "id": "fast_data/runtime_management/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "fast_data/runtime_management/control_plane",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane_frontend",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/workloads",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/secure_access",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/compatibility_matrix",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/glossary",
@@ -1047,8 +1118,23 @@
           "type": "doc"
         },
         {
-          "id": "fast_data/configuration/realtime_updater",
-          "type": "doc"
+          "label": "Real-Time Updater",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "fast_data/configuration/realtime-updater/real-time-updater",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "fast_data/configuration/realtime-updater/configuration-files",
+              "type": "doc"
+            },
+            {
+              "id": "fast_data/configuration/realtime-updater/advanced-topics",
+              "type": "doc"
+            }
+          ]
         },
         {
           "label": "Single View Creator",
@@ -1079,6 +1165,10 @@
         },
         {
           "id": "fast_data/configuration/single_view_trigger_generator",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/secrets_resolution",
           "type": "doc"
         }
       ],
@@ -1190,6 +1280,17 @@
         }
       ],
       "label": "Monitoring",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/data_catalog/overview_data_catalog",
+          "type": "doc"
+        }
+      ],
+      "label": "Data Catalog",
       "type": "category"
     },
     {
@@ -1357,22 +1458,6 @@
           "type": "doc"
         },
         {
-          "id": "infrastructure/self-hosted/self-hosted-runtime-requirements",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/troubleshooting",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/ranges-and-quotas",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/pipeline-configuration",
-          "type": "doc"
-        },
-        {
           "label": "Install Mia-Platform Console",
           "type": "category",
           "collapsed": true,
@@ -1384,26 +1469,34 @@
           ]
         },
         {
-          "id": "infrastructure/self-hosted/synchronize-users",
-          "type": "doc"
-        },
-        {
-          "id": "infrastructure/self-hosted/feature-toggle",
-          "type": "doc"
-        },
-        {
-          "label": "Third Party Integrations",
+          "label": "Cluster management and other resources",
           "type": "category",
           "collapsed": true,
           "items": [
             {
               "id": "infrastructure/self-hosted/third-party-integrations/deployment-tools",
               "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/ranges-and-quotas",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/feature-toggle",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/private-clusters",
+              "type": "doc"
+            },
+            {
+              "id": "infrastructure/self-hosted/pipeline-configuration",
+              "type": "doc"
             }
           ]
         },
         {
-          "id": "infrastructure/self-hosted/private-clusters",
+          "id": "infrastructure/self-hosted/troubleshooting",
           "type": "doc"
         }
       ]
@@ -1474,10 +1567,6 @@
               "type": "doc"
             },
             {
-              "id": "marketplace/templates/template_create",
-              "type": "doc"
-            },
-            {
               "type": "autogenerated",
               "dirName": "runtime_suite_templates"
             }
@@ -1516,9 +1605,30 @@
       "type": "category",
       "items": [
         {
-          "id": "marketplace/add_to_marketplace/contributing_overview",
-          "type": "doc",
-          "label": "Add to marketplace"
+          "label": "Contributing to the Marketplace",
+          "type": "category",
+          "link": {
+            "id": "marketplace/add_to_marketplace/contributing_overview",
+            "type": "doc"
+
+          },
+          "items": [
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_plugin",
+              "label": "Create a Plugin Marketplace Item",
+              "type": "doc"
+            },
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
+              "label": "Create a Template or Example Marketplace Item",
+              "type": "doc"
+            },
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_application",
+              "label": "Create an Application Marketplace Item",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "marketplace/add_to_marketplace/manage_marketplace_items",
@@ -1623,7 +1733,7 @@
   ],
   "releaseNotes": [
     {
-      "id": "release-notes/v12-overview",
+      "id": "release-notes/v13-overview",
       "type": "doc"
     },
     {
@@ -1635,18 +1745,7 @@
         "id": "release-notes/versions"
       },
       "items": [
-        {
-          "id": "release-notes/v12.0.2",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v12.0.1",
-          "type": "doc"
-        },
-        {
-          "id": "release-notes/v12.0.0",
-          "type": "doc"
-        }
+        { "id": "release-notes/v13.0.0", "type": "doc" }
       ]
     },
     {

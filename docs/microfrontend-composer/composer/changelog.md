@@ -10,6 +10,53 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.7.4] - 2024-05-03
+
+## [1.7.3] - 2024-05-03
+
+### Added
+
+- Support for CRUD schema generation from Mongo view, Projections, and Single Views
+
+### Changed
+
+- Homepage previews lazily loaded
+
+## [1.7.2] - 2024-02-12
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.15`
+- `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.3`
+- `@mia-platform-internal/reactord` to `^10.2.0`
+- `rc-virtual-list` to `^3.11.4`
+- `react-router-dom` to `^6.22.0`
+- Dev dependencies updated
+
+### Changed
+
+- Dynamic routes removed from router.json (Dynamic Sidebar implementation)
+
+### Fixed
+
+- Fixed edit page modal title copy
+
+## [1.7.1] - 2024-01-29
+
+### Versioning
+
+- `BACK_KIT_VERSION` to `1.4.13`
+- `@mia-platform-internal/reactord` to `^10.1.3`
+- `@micro-lc/middleware` to `^3.0.6`
+- `flag-icons` to `^7.1.0`
+- `monaco-yaml` to `^5.1.1`
+- `react-router-dom` to `^6.21.3`
+- Dev dependencies updated
+
+### Changed
+
+- Router.json adapted to new data model
+
 ## [1.7.0] - 2023-12-15
 
 ### Versioning

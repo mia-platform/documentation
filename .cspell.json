@@ -8,6 +8,11 @@
     "reinit",
     "ABAC",
     "axerve",
+    "nexi",
+    "fnmpay",
+    "Fnmpay",
+    "UNSUBMITTED",
+    "THREEDS",
     "Bianchi",
     "Boundarye",
     "Brotli",
@@ -57,6 +62,7 @@
     "hmac",
     "hsts",
     "htpasswd",
+    "iban",
     "imbonati",
     "infobox",
     "intellij",
@@ -223,7 +229,9 @@
     "serp",
     "VULNDB",
     "mergo",
-    "kpis"
+    "kpis",
+    "Mesos",
+    "SWSS"
   ],
   "ignoreWords": [
     "asncdctools",
@@ -343,7 +351,9 @@
     "Segoe",
     "kotlinx",
     "Dynatrace",
-    "logr"
+    "logr",
+    "ODBC",
+    "RDBMS"
   ],
   "dictionaries": [
     "softwareTerms",

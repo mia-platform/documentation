@@ -63,7 +63,7 @@ With the _oauth-login-site_ microservice the following endpoints are added to yo
 
 ## Auth0 Client
 
-The [auth0-client](../../runtime_suite/auth0-client/overview_and_usage) is added if it does not already exist in order to handle authentication and user management using Auth0 as identity provider.
+The [auth0-client](../../runtime_suite/auth0-client/overview) is added (if it does not already exist) in order to handle authentication and user management using Auth0 as identity provider.
 
 With the _oauth-client_ microservice the following endpoints are added to your project:
 

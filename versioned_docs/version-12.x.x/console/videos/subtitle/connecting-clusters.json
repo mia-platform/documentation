@@ -1,0 +1,115 @@
+{
+  "videoId": "3iOIqmloiD4",
+  "subtitles": [
+    {
+      "startTimeString": "00:00:04,971",
+      "endTimeString": "00:00:07,307 ",
+      "text": "Hi, and welcome to Mia-Platform Video Pills."
+    },
+    {
+      "startTimeString": "00:00:07,507",
+      "endTimeString": "00:00:13,580 ",
+      "text": "In this video, we will see how we have improved the experience of connecting and editing a cluster within Mia-Platform Console."
+    },
+    {
+      "startTimeString": "00:00:14,881",
+      "endTimeString": "00:00:21,421 ",
+      "text": "From the homepage, you can click on the icons besides your platforms, or you can open the right menu and click on your companies to view all your platforms."
+    },
+    {
+      "startTimeString": "00:00:22,222",
+      "endTimeString": "00:00:27,427 ",
+      "text": "By clicking on one of the displayed platforms, you can access the cluster section to view all your connected clusters."
+    },
+    {
+      "startTimeString": "00:00:27,627",
+      "endTimeString": "00:00:30,764 ",
+      "text": "In this example, the platform doesn't have any connected cluster."
+    },
+    {
+      "startTimeString": "00:00:31,197",
+      "endTimeString": "00:00:35,135 ",
+      "text": "We can create a new cluster connection by clicking on the Add cluster connection button."
+    },
+    {
+      "startTimeString": "00:00:36,836",
+      "endTimeString": "00:00:43,309 ",
+      "text": "As you can see, we support by default all the major cloud providers like GCP, a AWS, Azure and Oracle Cloud."
+    },
+    {
+      "startTimeString": "00:00:43,777",
+      "endTimeString": "00:00:48,348 ",
+      "text": "You can also connect additional ones as long as they have a Kubernetes or OpenShift distribution."
+    },
+    {
+      "startTimeString": "00:00:48,815",
+      "endTimeString": "00:00:51,351 ",
+      "text": "Let's create a new cluster connection on GCP."
+    },
+    {
+      "startTimeString": "00:00:52,852",
+      "endTimeString": "00:00:55,121 ",
+      "text": "Let's select Kubernetes as a Runtime Service."
+    },
+    {
+      "startTimeString": "00:00:55,755",
+      "endTimeString": "00:00:58,191 ",
+      "text": "At this point, we should insert the cluster details."
+    },
+    {
+      "startTimeString": "00:00:58,458",
+      "endTimeString": "00:01:09,469 ",
+      "text": "So we add the cluster ID, the geographic location and a description."
+    },
+    {
+      "startTimeString": "00:01:12,839",
+      "endTimeString": "00:01:28,455 ",
+      "text": "Finally, we have to complete the connection by adding the cluster URL, the Proxy URL, a cluster token, and optionally an authority certificate."
+    },
+    {
+      "startTimeString": "00:01:28,455",
+      "endTimeString": "00:01:32,525 ",
+      "text": "This message confirms that that the cluster is finally connected."
+    },
+    {
+      "startTimeString": "00:01:34,260",
+      "endTimeString": "00:01:39,332 ",
+      "text": "As Mia-Platform supports multi-cloud environments, you can add another cluster from a different provider."
+    },
+    {
+      "startTimeString": "00:01:40,033",
+      "endTimeString": "00:01:42,035 ",
+      "text": "Let's click again on Add Cluster Connection."
+    },
+    {
+      "startTimeString": "00:01:42,802",
+      "endTimeString": "00:01:46,272 ",
+      "text": "Select “other” as cloud provider and Kubernetes is runtime service."
+    },
+    {
+      "startTimeString": "00:01:47,006",
+      "endTimeString": "00:01:49,008 ",
+      "text": "We now fill in the new cluster details."
+    },
+    {
+      "startTimeString": "00:01:49,275",
+      "endTimeString": "00:01:54,914 ",
+      "text": "Finally, we insert the cluster and proxy URL, The cluster token, and eventually the certificate of authority."
+    },
+    {
+      "startTimeString": "00:01:56,249",
+      "endTimeString": "00:01:57,684 ",
+      "text": "The new cluster is connected."
+    },
+    {
+      "startTimeString": "00:01:58,051",
+      "endTimeString": "00:01:58,952 ",
+      "text": "Within your environment."
+    },
+    {
+      "startTimeString": "00:01:58,952",
+      "endTimeString": "00:02:06,559 ",
+      "text": "You will find the two connected clusters with the details about the runtime services, the Kubernetes versions, and the cluster URL."
+    }
+  ]
+}
