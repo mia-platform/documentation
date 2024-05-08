@@ -1,0 +1,513 @@
+---
+id: control_plane
+title: Control Plane Configuration
+sidebar_label: Control Plane
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-config.schema.json"
+import StateChannelSchema from "@site/static/schemas/fast-data-control-plane-state.schema.json"
+import FeedbackChannelSchema from "@site/static/schemas/fast-data-control-plane-feedback.schema.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
+Fast Data Control Plane allows to:
+
+* keep track of the state of the different pipelines of a runtime;
+* receive user interaction through the dedicated frontend, and to update pipeline state accordingly;  
+* receive feedbacks from workloads, to acknowledge that they are up-and-running in the pipelines they have been linked to. 
+
+## State Persistence
+
+The Control Plane stores for each runtime the latest state of all pipelines (either domain or single view) and its artifacts in a MongoDB collection, 
+that is queried directly by the service at startup to retrieve the latest available state. 
+
+:::info
+To discover more about state persistence configuration, you can check [its dedicated section](?control-plane-configuration=persistence#persistence)
+:::
+
+This collection can change on the basis of the user interactions through the frontend.
+
+## Runtime Communication
+
+Communications to/from runtime's workloads happen through two different channels, namely _State Channel_ and _Feedback Channel_. 
+
+:::info
+To discover more about channels configuration, you can check [its dedicated section](?control-plane-configuration=runtime#runtime)
+:::
+
+### State Channel
+
+The _State Channel_ is where the Control Plane sends the current state of each pipeline. Each pipeline has a general state, that can be overridden.
+
+For each pipeline, there could be different `overrides` that can change individually the state of a particular artifact.
+
+Also, each artifact can have additional `overrides` for each stage of the pipeline where is employed. 
+
+The state that can be set at pipeline level, or artifact level, or stage level is an _Activation State_: it can either `pause` or `resume`, 
+which will be used by workloads to stop/resume consumption of data. 
+
+<SchemaViewer schema={StateChannelSchema} />
+
+### Feedback Channel
+
+The _Feedback Channel_ is where the workloads will notify the Control Plane about the state of their artifacts. This is needed to inform the Control Plane that:
+
+- the artifacts are up-and-running;
+- the workloads have their state updated correctly after a message from the state channel
+
+The workloads will send messages through the feedback channel **periodically**.
+
+<SchemaViewer schema={FeedbackChannelSchema} />
+
+## Endpoints
+
+Here's a list of the APIs made available by the Control Plane with the following endpoints. 
+
+| Endpoint                        | Type      | Method | Description                                                                                |
+|---------------------------------|-----------|--------|--------------------------------------------------------------------------------------------|
+| `/fast-data/`                   | REST      | POST   | Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend.              |
+| `/fast-data/configurations/:id` | REST      | GET    | Returns the data of a given pipeline of the runtime where Control Plane has been deployed. |
+| `/fast-data/configurations`     | REST      | GET    | Returns the data from all pipelines of the runtime where Control Plane has been deployed.  |
+| `/fast-data/feedback/:id`       | Websocket | GET    | Opens a websocket connection with the client to receive updates for a given pipeline.      |
+
+:::tip
+The default prefix for Control Plane endpoints is `/fast-data` and can be customized in the [Settings configuration](?control-plane-configuration=settings#settings).
+:::
+
+:::caution
+
+To make the endpoint work properly, additional manual operations must be performed in the [Advanced Section](/development_suite/api-console/advanced-section/index.md) of your gateway.
+
+These operations are needed to:
+
+- introduce the support to [_Websocket connection upgrade_](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection);
+- override the default headers that are added to the HTTP response, so that `X-Frame-Options` is removed and the frontend
+  can be embedded as an iFrame.
+:::
+
+### Envoy
+
+This configuration edit needs to be inserted in the file `patches.yml`.
+
+It is important to observe that these modifications affect the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
+
+```yaml title=patches.yml
+- listener_name: frontend
+  # https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-msg-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-upgradeconfig
+  'filter_chains.0.filters.0.typed_config.upgrade_configs':
+    upgrade_type: "websocket"
+  'filter_chains.0.filters.0.typed_config.route_config.response_headers_to_add': [
+    {
+      "header": {
+        "key": "X-Content-Type-Options",
+        "value": "nosniff"
+      },
+      "append": false
+    },
+    {
+      "header": {
+        "key": "X-Download-Options",
+        "value": "noopen"
+      },
+      "append": false
+    },
+    {
+      "header": {
+        "key": "Referrer-Policy",
+        "value": "strict-origin-when-cross-origin"
+      },
+      "append": false
+    }
+  ]
+```
+
+:::caution
+Please notice that the above configurations are specific for the `frontend` listener of Envoy. In case it has been
+decided to expose the Fast Data Runtime Management system under a [different listener](/development_suite/api-console/api-design/listeners.md),
+please update the configuration accordingly.
+:::
+
+### Nginx
+
+If you are using the standard Nginx API Gateway, you have to:
+
+- add [this custom location](/development_suite/api-console/advanced-section/api-gateway/how-to.md#how-to-proxy-web-socket-connections) to `api-gateway/server-extension.conf` 
+  using the websocket endpoint as location (e.g. `/fast-data/feedback`)
+- if you want to use the Control Plane as iFrame, you need to expose the frontend on a different location (see full example below)
+  and overwrite its headers in the Advanced section.
+
+<details> 
+<summary>API Gateway Nginx Full Configuration</summary>
+<p>
+
+Consider a use case where:
+
+- Control Plane backend is exposed over `/fast-data`
+- Control Plane frontend is exposed over `/control-plane` (check the [frontend documentation](/fast_data/runtime_management/control_plane_frontend.mdx) on how to overwrite the default base path)
+
+Then, we have to write the following advanced configuration:
+
+```text title=api-gateway/server-extension.conf
+location /fast-data/feedback/ {
+    proxy_pass http://$proxy_name$proxy_url;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection upgrade;
+}
+
+location /control-plane {
+    proxy_pass http://$proxy_name$proxy_url;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Content-Type-Options noopen;
+    add_header Referrer-Policy strict-origin-when-cross-origin;
+}
+```
+
+</p>
+</details>
+
+## Configuration
+
+_Configuration of Control Plane_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+
+### Environment Variables
+
+Control Plane can be customized using the following environment variables:
+
+| Name                                      | Required | Description                                                                                                                                                               | Default Value                              |
+|-------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| `HTTP_PORT`                               | -        | This variable determines the TCP port where the  ** HTTP controller **  binds its listener.                                                                               | 3000                                       |
+| `LOG_LEVEL`                               | -        | Specify the centralized application log level, choosing from options such as  `debug` ,  `error` ,  `fatal` ,  `info` ,  `silent` ,  `trace` , or  `warn` .               | `info`                                     |
+| `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file.                                                                                                                               | ` ~/.fd/control-plane/configuration.json ` |
+
+### Config Map 
+
+The configuration of the service is handled by a JSON file whose location is defined by the `FD_CONTROL_PLANE_CONFIGURATION_FILEPATH`.
+
+The [Control Plane applications](/runtime_suite_applications/control-plane/10_overview.md) provide a sample of this JSON in a dedicated Config Map, named `control-plane-configuration`.
+
+<SchemaViewer schema={ControlPlaneSchema} />
+
+:::info
+Initially, only the persistence layer is required to be available at startup, as there could be no Fast Data runtime available.
+:::
+
+<Tabs groupId='control-plane-configuration' queryString>
+
+<TabItem value="persistence" label="Persistence" default>
+
+#### Persistence
+
+The object `persistence` configures the layer of runtime state persistence where Control Plane stores the next desired state for its runtime.
+
+It must point to a `MongoDB` collection, available in a [`replicaSet` enabled database](https://www.mongodb.com/docs/manual/replication/).
+
+Available interfaces include:
+
+- `MongoDB` client
+
+###### Example
+
+```json
+{
+    // ...other control plane configurations
+    "persistence": {
+        "type": "mongodb",
+        "configuration": {
+            "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+        },
+        "collection": {
+            "name": "runtime-state"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+</TabItem>
+
+<TabItem value="runtime" label="Runtime">
+
+#### Runtime
+
+The object `runtime` configures: 
+
+- the state channel that the Control Plane uses to dispatch the next desired state;
+- the feedback channel where Control Plane receives workloads feedbacks about their inner states. 
+
+Available interfaces are:
+
+#### Kafka 
+
+Both feedback and state channels can be managed by a Kafka broker. In particular:
+
+- the state channel will have a Kafka Producer that sends desired states to a dedicated topic (referred to as _Action Topic_)
+- the feedback channel will have a Kafka Consumer that reads workloads feedbacks from a dedicated topic (referred to as _Heartbeat Topic_)
+
+###### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "configuration": {
+            // to see all the available configuration options, go over the JSON schema
+            "allow.auto.create.topics": "true",
+            "bootstrap.servers": "localhost:9094"
+          },
+          "consumer": {
+            "topic": "heartbeat-topic",
+            "group.id": "control-plane-group-id"
+          },
+          "type": "kafka"
+        },
+        "state": {
+          "configuration": {
+            // to see all the available configuration options, go over the JSON schema
+            "allow.auto.create.topics": "true",
+            "bootstrap.servers": "localhost:9094"
+          },
+          "producer": {
+            "topic": "action-topic"
+          },
+          "type": "kafka"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+#### gRPC
+
+Both feedback and state channels can be managed by a [gRPC](https://grpc.io/) server instance managed by the Control Plane, 
+which creates a [bi-directional streaming remote procedure call](https://grpc.io/docs/what-is-grpc/core-concepts/#bidirectional-streaming-rpc) that:
+
+- receives feedbacks from workloads
+- dispatch states to services 
+
+##### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "type": "grpc"
+        },
+        "state": {
+          "type": "grpc"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+:::info 
+By default, the gRPC server is exposed over the default gRPC protocol port (`50051`). 
+This value can be overridden in the [`settings` section](?control-plane-configuration=settings#settings) 
+::: 
+
+#### gRPC + Kafka 
+
+It is also possible to have:
+
+- a state channel managed by a topic in a Kafka broker;
+- a feedback channel managed by a gRPC server with a [client-side streaming request](https://grpc.io/docs/what-is-grpc/core-concepts/#client-streaming-rpc).
+
+###### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "type": "grpc"
+        },
+        "state": {
+          "configuration": {
+            // to see all the available configuration options, go over the JSON schema
+            "allow.auto.create.topics": "true",
+            "bootstrap.servers": "localhost:9094"
+          },
+          "producer": {
+            "topic": "action-topic"
+          },
+          "type": "kafka"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+</TabItem>
+
+<TabItem value="settings" label="Settings">
+
+#### Settings
+
+The overall setup of Control Plane is tuned in the `settings` object, allowing you to configure several aspects of the services, such as:
+
+- channels setup, including:
+  - buffer timeout used to delay state channel notifications
+  - gRPC server configuration
+  - runtime heartbeat in milliseconds, used to tell whether a workload is alive or not 
+- server APIs, including:
+  - Fast Data control endpoint
+  - Metrics
+  - Probes
+- Frontend/Website static files location
+
+###### Example
+
+```json
+{
+    // ...other control plane configurations
+    "settings": {
+        "server": {
+          "prefix": "/control-plane/",
+          "website": {
+            "url": "/"
+          }
+        }
+    } 
+    // ...other control plane configurations
+}
+```
+
+:::info 
+To have a full overview of the `settings` properties, you can check the JSON Schema specifications
+provided in this section.
+::: 
+
+</TabItem>
+
+</Tabs>
+
+### Secret Resolution
+
+The following fields contains secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/configuration/secrets_resolution.md):
+
+- `persistence.configuration.url`
+- `runtime.feedback.configuration.['bootstrap.servers']`
+- `runtime.feedback.configuration.['sasl.username']`
+- `runtime.feedback.configuration.['sasl.password']`
+- `runtime.feedback.configuration.['ssl.truststore.certificates']`
+- `runtime.feedback.configuration.['ssl.keystore.key']`
+- `runtime.feedback.configuration.['ssl.key.password']`
+- `runtime.feedback.configuration.['ssl.keystore.certificate.chain']`
+- `runtime.state.configuration.['bootstrap.servers']`
+- `runtime.state.configuration.['sasl.username']`
+- `runtime.state.configuration.['sasl.password']`
+- `runtime.state.configuration.['ssl.truststore.certificates']`
+- `runtime.state.configuration.['ssl.keystore.key']`
+- `runtime.state.configuration.['ssl.key.password']`
+- `runtime.state.configuration.['ssl.keystore.certificate.chain']`
+- `settings.server.authorization.apiKey`
+
+### Examples
+
+Here are listed some configuration examples that can be useful as a starting point for your setup.
+
+<details>
+<summary>Control Plane with Kafka Channels</summary>
+<p>
+
+```json
+{
+    "runtime": {
+        "state": {
+            "type": "kafka",
+            "configuration": {
+                "bootstrap.servers": "localhost:9094",
+                "allow.auto.create.topics": "true"
+            },
+            "producer": {
+                "topic": "state"
+            }
+        },
+        "feedback": {
+            "type": "kafka",
+            "configuration": {
+                "bootstrap.servers": "localhost:9094",
+                "allow.auto.create.topics": "true"
+            },
+            "producer": {
+                "topic": "feedback",
+                "group.id": "feedback-group"
+            }
+        }
+    },
+    "persistence": {
+        "type": "mongodb",
+        "configuration": {
+            "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+        },
+        "collection": {
+            "name": "runtime-state"
+        }
+    },
+    "settings": {
+        "server": {
+            "prefix": "/control-plane/",
+            "apis": {
+                "controllers": {
+                    "fast-data": "/my-awesome-controller"
+                }
+            },
+            "website": {
+                "url": "/__frontend/"
+            }
+        }
+    }
+}
+```
+</p>
+</details>
+
+<details>
+<summary>Control Plane with gRPC channels</summary>
+<p>
+
+```json
+{
+    "runtime": {
+        "state": {
+            "type": "grpc"
+        },
+        "feedback": {
+            "type": "grpc"
+        }
+    },
+    "persistence": {
+        "type": "mongodb",
+        "configuration": {
+            "url": "mongodb://localhost:27017/fast-data?replicaSet=local"
+        },
+        "collection": {
+            "name": "runtime-state"
+        }
+    },
+    "settings": {
+        "server": {
+            "prefix": "/control-plane/",
+            "apis": {
+                "controllers": {
+                    "fast-data": "/my-awesome-controller"
+                }
+            },
+            "website": {
+                "url": "/__frontend/"
+            }
+        }
+    }
+}
+```
+</p>
+</details>

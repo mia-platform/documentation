@@ -4,6 +4,9 @@ title: Single View Trigger Generator
 sidebar_label: Single View Trigger Generator
 ---
 
+import EventStoreConfiguration from "@site/static/schemas/fast-data-event-store-config.schema.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
 The Single View Trigger Generator has 3 fundamental parts:
 
 - The consumption of pr-update messages
@@ -33,6 +36,8 @@ When creating the service from the marketplace the following environment variabl
 | PROJECTION_CHANGES_SCHEMA_FOLDER | &check;  | Path to the [Projection Changes Schema](#projection-changes-schema) folder                                                                                                                              | -             |
 | MANUAL_STRATEGIES_FOLDER         | -        | Absolute path of custom strategy functions folder. These functions are used in `__fromFile__` annotations inside the [Kafka Projection Updates Configuration](/fast_data/configuration/config_maps/kafka_projection_updates.mdx)                                                                                                                   | -             |
 | TRIGGER_CUSTOM_FUNCTIONS_FOLDER  | -        | Absolute path of custom functions folder. These functions are used in `__fromFile__` annotations inside the [Projection Changes Schema Configuration](/fast_data/configuration/config_maps/projection_changes_schema.md#custom-functions).                                                                                                                                      | -            |
+| CONTROL_PLANE_CONFIG_PATH          | -        | Starting from `v3.3.0`, is possible to configure Runtime Management. More details [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svtg#single-view-trigger-generator)                                                                                                                                                                                                                                                                                                                                    | 
+| CONTROL_PLANE_BINDINGS_PATH        | -        | Starting from `v3.3.0`, is possible to configure Runtime Management. More details [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svtg#single-view-trigger-generator)                                                                                                                                                                                                                                                                                                                                     |  
 
 ## Attaching a Service to a Single View
 
@@ -118,274 +123,37 @@ The `Event Store Config` is a JSON file containing the configuration of the cons
 Mind that only one producer and consumer must be configured at a time so the service knows which kind to use. Providing more than one consumer or producer will fail the configmap validation and shut down the service at start up.
 :::
 
+The JSON configuration must be compliant to the following JSON Schema.
+
+<SchemaViewer schema={EventStoreConfiguration} />
+
+#### Secrets Resolution
+
+Starting from `v3.3.1`, the following fields can contain secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/configuration/secrets_resolution.md):
+
+- `consumer.kafka.['bootstrap.servers']`
+- `consumer.kafka.['sasl.username']`
+- `consumer.kafka.['sasl.password']`
+- `consumer.kafka.['ssl.passphrase']`
+- `consumer.kafka.['ssl.keystore.certificate.chain']`
+- `producer.kafka.['bootstrap.servers']`
+- `producer.kafka.['sasl.username']`
+- `producer.kafka.['sasl.password']`
+- `producer.kafka.['ssl.passphrase']`
+- `producer.kafka.['ssl.key.password']`
+- `producer.mongo.['url']`
+
 #### Consumers
 
-At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification below.
-
-<details><summary>Kafka consumer config JsonSchema</summary>
-<p>
-
-```json
-{
-  "type": "object",
-  "required": [
-    "brokers",
-    "consumerGroupId"
-  ],
-  "properties": {
-    "brokers": {
-      "type": "string"
-    },
-    "consumerGroupId": {
-      "type": "string"
-    },
-    "consumeFromBeginning": {
-      "type": "boolean",
-      "description": "specify whether the consumer group should start to consume from the beginning of the topic whenever the group id is created for the first time",
-      "default": false
-    },
-    "ssl": {
-      "description": "https://kafka.js.org/docs/configuration#ssl",
-      "oneOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "object",
-          "additionalProperties": true,
-          "properties": {
-            "ca": {
-              "type": "string",
-              "description": "path to the file containing the CA certificate in PEM format"
-            },
-            "key": {
-                "type": "string",
-              "description": "path to the file containing the client private key in PEM format"
-            },
-            "passphrase": {
-              "type": "string",
-              "description": "password necessary to unlock the private key"
-            },
-            "cert": {
-              "type": "string",
-              "description": "path to the file containing the client certificate in PEM format"
-            }
-          }
-        }
-      ]
-    },
-    "sasl": {
-      "type": "object",
-      "properties": {
-        "mechanism": {
-          "type": "string",
-          "enum": [
-            "plain",
-            "scram-sha-256",
-            "scram-sha-512"
-          ]
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "clientId": {
-      "type": "string"
-    },
-    "connectionTimeout": {
-      "type": "number"
-    },
-    "authenticationTimeout": {
-      "type": "number"
-    },
-    "reauthenticationThreshold": {
-      "type": "number"
-    },
-    "requestTimeout": {
-      "type": "number"
-    },
-    "enforceRequestTimeout": {
-      "type": "boolean"
-    },
-    "retry": {
-      "type": "object",
-      "properties": {
-        "maxRetryTime": {
-          "type": "number"
-        },
-        "initialRetryTime": {
-          "type": "number"
-        },
-        "factor": {
-          "type": "number"
-        },
-        "multiplier": {
-          "type": "number"
-        },
-        "retries": {
-          "type": "number"
-        }
-      }
-    },
-    "logLevel": {
-      "type": "string",
-      "enum": [
-        "NOTHING",
-        "ERROR",
-        "WARN",
-        "INFO",
-        "DEBUG"
-      ]
-    }
-  }
-}
-```
-
-</p>
-</details>
+At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification above.
 
 #### Producers
 
 For the producers you can choose between two options: Kafka or MongoDB ([`sv-trigger` vs. `pc`](/fast_data/single_view_trigger_generator.md#sv-trigger-vs-pc)).
 
-With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
+With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so.
 
-<details><summary>MongoDB producer config JsonSchema</summary>
-<p>
-
-```json
-{
-  "type": "object",
-  "required": ["url", "dbName"],
-  "properties": {
-    "url": {
-      "type": "string"
-    },
-    "dbName": {
-      "type": "string"
-    }
-  }
-}
-```
-</p>
-</details>
-
-<details><summary>Kafka producer config JsonSchema</summary>
-<p>
-
-```json
-{
-  "type": "object",
-  "required": ["brokers"],
-  "properties": {
-    "brokers": {
-      "type": "string"
-    },
-    "ssl": {
-      "description": "https://kafka.js.org/docs/configuration#ssl",
-      "oneOf": [
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "object",
-          "additionalProperties": true,
-          "properties": {
-            "ca": {
-              "type": "string",
-              "description": "path to the file containing the CA certificate in PEM format"
-            },
-            "key": {
-              "type": "string",
-              "description": "path to the file containing the client private key in PEM format"
-            },
-            "passphrase": {
-              "type": "string",
-              "description": "password necessary to unlock the private key"
-            },
-            "cert": {
-              "type": "string",
-              "description": "path to the file containing the client certificate in PEM format"
-            }
-          }
-        }
-      ]
-    },
-    "sasl": {
-      "type": "object",
-      "properties": {
-        "mechanism": {
-          "type": "string",
-          "enum": ["plain", "scram-sha-256", "scram-sha-512"]
-        },
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "clientId": {
-      "type": "string"
-    },
-    "connectionTimeout": {
-      "type": "number"
-    },
-    "authenticationTimeout": {
-      "type": "number"
-    },
-    "reauthenticationThreshold": {
-      "type": "number"
-    },
-    "requestTimeout": {
-      "type": "number"
-    },
-    "enforceRequestTimeout": {
-      "type": "boolean"
-    },
-    "retry": {
-      "type": "object",
-      "properties": {
-        "maxRetryTime": {
-          "type": "number"
-        },
-        "initialRetryTime": {
-          "type": "number"
-        },
-        "factor": {
-          "type": "number"
-        },
-        "multiplier": {
-          "type": "number"
-        },
-        "retries": {
-          "type": "number"
-        }
-      }
-    },
-    "compressionName": {
-      "type": "string",
-      "default": "none",
-      "enum": [
-        "gzip",
-        "snappy",
-        "none"
-      ]
-    },
-    "logLevel": {
-      "type": "string",
-      "enum": ["NOTHING", "ERROR", "WARN", "INFO", "DEBUG"]
-    }
-  }
-}
-```
-</p>
-</details>
+To configure it you must follow the JsonSchema specification above.
 
 :::tip
 Starting from version `v3.1.6` of the SVTG, is possible to add into the Kafka producer configuration the property `compressionName`, to apply a particular encoding to `sv-trigger` messages. Allowed values are:
@@ -484,4 +252,63 @@ Below you can find a list of example configurations, based on the two different 
 
 </p>
 </details>
+
+<details>
+<summary>Kafka with Authentication</summary>
+<p>
+
+```json
+{
+  "consumer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "consumerGroupId": "group-id",
+      "consumeFromBeginning": true,
+      "sasl": {
+        "username": "my-username",
+        "password": "my-password",
+        "mechanism": "plain", // 'scram-sha-256', 'scram-sha-512'
+      },
+      "ssl": true,
+      "logLevel": "NOTHING"
+    }
+  },
+  "producer": {
+    "kafka": {
+      "brokers": "localhost:9092,localhost:9093",
+      "clientId": "client-id",
+      "logLevel": "NOTHING",
+      "ssl": true,
+      "sasl": {
+        "username": "my-username",
+        "password": "my-password",
+        "mechanism": "plain", // 'scram-sha-256', 'scram-sha-512'
+      }
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+## Runtime Management
+
+:::info
+This feature is supported from version `3.3.0` of the Single View Trigger Generator.
+:::
+
+By specifying the environment variables `CONTROL_PLANE_CONFIG_PATH`, you enable the SVTG to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management/overview.mdx).
+
+:::caution
+By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
+has already resumed the data stream before. 
+
+Therefore, when the SVTG starts up, the trigger generation will not start automatically. 
+
+In this case, you just need to send a `resume` command to one of the projections managed by the SVTG.
+:::
+
+You can read about the setup of the Single View Trigger Generator in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=svtg#single-view-trigger-generator).
 

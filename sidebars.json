@@ -158,7 +158,6 @@
         }
       ]
     },
-
     {
       "collapsed": true,
       "type": "category",
@@ -763,7 +762,10 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": ["use-cases", "guides"],
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -1019,8 +1021,35 @@
       "type": "doc"
     },
     {
-      "id": "fast_data/runtime_management",
-      "type": "doc"
+      "label": "Runtime Management",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "id": "fast_data/runtime_management/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "fast_data/runtime_management/control_plane",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane_frontend",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/workloads",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/secure_access",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/compatibility_matrix",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/glossary",
@@ -1136,6 +1165,10 @@
         },
         {
           "id": "fast_data/configuration/single_view_trigger_generator",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/secrets_resolution",
           "type": "doc"
         }
       ],

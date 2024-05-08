@@ -962,6 +962,23 @@ projections:
 </p>
 </details>
 
+## Runtime Management
+
+:::info
+This feature is supported from version `1.1.1` of the Projection Storer.
+:::
+
+By specifying the Control Plane configuration in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=ps#projection-storer), you enable the PS to receive and execute the commands from/to the [Runtime Management](/fast_data/runtime_management/overview.mdx).
+
+:::caution
+By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
+has already resumed the data stream before. 
+
+Therefore, when the Projection Storer starts up, topics ingestion will not start automatically. 
+
+In this case, you just need to send a `resume` command to one of the projections managed by the Projection Storer.
+:::
+
 ## Migration Guide
 
 In the following section is explained how to migrate the configuration of an existing [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) into the one
@@ -1124,7 +1141,7 @@ In case the selected message adapter is **custom**, then please verify that the 
 :::caution
 As explained earlier, Projection Storer service is in charge only of importing, clean, filter and validate change events as projection records.
 Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md),
-which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.md) can be found an explanation on how to configure it.
+which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.mdx) can be found an explanation on how to configure it.
 
 In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
 the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since
