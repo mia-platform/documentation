@@ -1706,5 +1706,9 @@
   "/docs/development_suite/company/create": {
     "destination": "/docs/development_suite/company/create-company",
     "addedOn": "2024-05-08"
+  },
+  "/docs/runtime_suite_applications/control-plane/changelog": {
+    "destination": "/docs/runtime_suite_applications/fast-data-control-plane/changelog",
+    "addedOn": "2024-05-09"
   }
 }
