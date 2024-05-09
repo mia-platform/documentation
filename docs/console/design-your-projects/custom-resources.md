@@ -4,7 +4,7 @@ title: Create Custom Resources
 sidebar_label: Create Custom Resources
 ---
 
-## What is a Custom Resource
+## How to use the Custom Resources
 
 A Custom Resource allows you to define custom objects that are not part of the standard Console supported resources.
 
@@ -25,7 +25,7 @@ It is possible to create a new Custom Resource from Marketplace or from scratch.
 
 To create a resource from Marketplace, you need to select the Custom Resource you want to create.
 
-At the moment, the only supported Custom Resources to create are the ones inside the private Company marketplace.  
+At the moment, the only supported Custom Resources to create are the ones inside the internal Company marketplace.  
 To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl` ([see here for details](#publish-a-custom-resource-inside-the-marketplace)).
 
 ![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
