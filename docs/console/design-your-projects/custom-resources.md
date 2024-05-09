@@ -10,8 +10,8 @@ A Custom Resource allows you to define custom objects that are not part of the s
 
 For example, it is possible to:
 
-- manage some Kubernetes Custom Resource managed by the cluster, e.g. the Traefik `IngressRoute`;
-- with [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx), generate templates for the other orchestrators.
+- configure Kubernetes Custom Resource that are managed by the cluster (e.g. the Traefik `IngressRoute`);
+- generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx).
 
 ## How to manage a Custom Resource
 
@@ -27,8 +27,6 @@ To create a resource from Marketplace, you need to select the Custom Resource yo
 
 At the moment, the only supported Custom Resources to create are the ones inside the private Company marketplace.  
 To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl` ([see here for details](#publish-a-custom-resource-inside-the-marketplace)).
-
-Once click on create from Marketplace, you will see the marketplace items you can use inside your project.
 
 ![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
 
@@ -46,7 +44,7 @@ In creation, you will see the preview of the generated manifest.
 
 ### Update a Custom Resource
 
-Once created a Custom Resource, it is possible to update it. Click on the Custom Resource you want to update in the sidebar, and you will see a YAML editor.
+Once you have created a Custom Resource, it will be possible to update it. Click on the Custom Resource you want to update in the sidebar, and you will see a YAML editor.
 
 The Custom Resource has some supported fields, other fields will be ignored. The supported fields are:
 
@@ -62,7 +60,7 @@ The Custom Resource has some supported fields, other fields will be ignored. The
 
 ### Delete a Custom Resource
 
-To delete a Custom Resource, you need to click on the delete button in the detail page of the Custom Resource you want to delete.
+To delete a Custom Resource, you have to click on the delete button in the detail page of the Custom Resource.
 
 You need to insert the Custom Resource name and click on the delete button.
 
@@ -72,7 +70,7 @@ You need to insert the Custom Resource name and click on the delete button.
 
 It is possible to add the Custom Resource inside the Company Marketplace using [miactl](/marketplace/add_to_marketplace/manage_marketplace_items.md).
 
-An example of Custom Resource, for example for the `Traefik IngressRoute`, can be visible here:
+For example, Custom Resources can be used to configure the `Traefik IngressRoute`. In order to add the Custom Resource Marketplace item that allows you to create a `Traefik IngressRoute` you can use the Mia-Platform Marketplace manifest below:
 
 ```yaml
 name: 'Traefik IngressRoute'
@@ -106,7 +104,11 @@ supportedBy: <YOUR_COMPANY_NAME>
 tenantId: <YOUR_COMPANY_ID>
 ```
 
-And remember to save it in a file (e.g. ingressroute.yaml) replace the placeholders with the correct values:
+:::tip
+Remember to change the file, replacing the placeholders with the correct values!
+:::
+
+The placeholders in the file above are meant to be used with the following values:
 
 - `<IMAGE_URL>`: the URL of the image that represents the Custom Resource;
 - `<SUPPORTED_BY_IMAGE_URL>`: the URL of the image that represents the company that supports the Custom Resource;
