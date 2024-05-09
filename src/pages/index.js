@@ -210,7 +210,7 @@ function Home() {
                   link="docs/release-notes/v13.0.0"
                   majorVersion="13-preview"
                   subTitle="Click here for further information"
-                  title="Mia-Platform v13 in now available in Preview!"
+                  title="Mia-Platform v13 is now available in Preview!"
                 />
               </div>}
 
