@@ -11,7 +11,7 @@ A Custom Resource allows you to define custom objects that are not part of the s
 For example, it is possible to:
 
 - manage some Kubernetes Custom Resource managed by the cluster, e.g. the Traefik `IngressRoute`;
-- with [External Configuration Generator](/docs/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx), generate templates for the other orchestrators.
+- with [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx), generate templates for the other orchestrators.
 
 ## How to manage a Custom Resource
 
@@ -26,7 +26,11 @@ It is possible to create a new Custom Resource from Marketplace or from scratch.
 To create a resource from Marketplace, you need to select the Custom Resource you want to create.
 
 At the moment, the only supported Custom Resources to create are the ones inside the private Company marketplace.  
-To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl`.
+To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl` ([see here for details](#publish-a-custom-resource-inside-the-marketplace)).
+
+Once click on create from Marketplace, you will see the marketplace items you can use inside your project.
+
+![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
 
 #### Create a Custom Resource from Scratch
 
@@ -66,7 +70,7 @@ You need to insert the Custom Resource name and click on the delete button.
 
 ## Publish a Custom Resource inside the Marketplace
 
-It is possible to add the Custom Resource inside the Company Marketplace using [miactl](/docs/marketplace/add_to_marketplace/manage_marketplace_items.md).
+It is possible to add the Custom Resource inside the Company Marketplace using [miactl](/marketplace/add_to_marketplace/manage_marketplace_items.md).
 
 An example of Custom Resource, for example for the `Traefik IngressRoute`, can be visible here:
 
