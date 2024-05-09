@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /11.x/
 Disallow: /12.x/
+Disallow: /next/
 Sitemap: https://docs.mia-platform.eu/sitemap.xml
