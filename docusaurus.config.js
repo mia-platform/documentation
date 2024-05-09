@@ -251,7 +251,7 @@ async function createConfig() {
                 path: "next",
               },
               "12.x.x": {
-                label: "12.4.x (Current)",
+                label: "12.4.x",
                 path: "",
                 banner: "none"
               },
