@@ -14,6 +14,7 @@ async function createConfig() {
     favicon: "img/favicon.ico",
     organizationName: "Mia-Platform", // Usually your GitHub org/user name.
     projectName: "Mia-Platform", // Usually your repo name.
+    themes: ["docusaurus-json-schema-plugin"],
     themeConfig: {
       prism: {
         additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],

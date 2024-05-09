@@ -158,7 +158,6 @@
         }
       ]
     },
-
     {
       "collapsed": true,
       "type": "category",
@@ -169,7 +168,7 @@
       },
       "items": [
         {
-          "id": "development_suite/company/create",
+          "id": "development_suite/company/create-company",
           "type": "doc"
         },
         {
@@ -412,6 +411,10 @@
               "type": "doc"
             },
             {
+              "id": "development_suite/api-console/api-design/microservice-containers",
+              "type": "doc"
+            },
+            {
               "id": "development_suite/api-console/api-design/microservice-memory-resources",
               "type": "doc"
             },
@@ -449,6 +452,10 @@
         },
         {
           "id": "development_suite/api-console/api-design/jobs-cronjob",
+          "type": "doc"
+        },
+        {
+          "id": "console/design-your-projects/sidecars",
           "type": "doc"
         },
         {
@@ -643,6 +650,33 @@
       "collapsed": true,
       "items": [
         {
+          "id": "console/console-extensibility/extensibility-overview",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-example-tutorial",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-registration",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-activation",
+          "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-locations",
+          "type": "doc"
+        }
+      ],
+      "label": "Console Extensibility",
+      "type": "category"
+    },
+    {
+      "collapsed": true,
+      "items": [
+        {
           "id": "development_suite/monitoring/introduction",
           "type": "doc"
         },
@@ -755,7 +789,10 @@
         "type": "generated-index",
         "title": "Use Cases",
         "description": "A list of advanced use cases and how to configure in Console",
-        "keywords": ["use-cases", "guides"],
+        "keywords": [
+          "use-cases",
+          "guides"
+        ],
         "slug": "development_suite/use-cases"
       },
       "items": [
@@ -1011,8 +1048,35 @@
       "type": "doc"
     },
     {
-      "id": "fast_data/runtime_management",
-      "type": "doc"
+      "label": "Runtime Management",
+      "type": "category",
+      "collapsed": true,
+      "link": {
+        "id": "fast_data/runtime_management/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "fast_data/runtime_management/control_plane",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane_frontend",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/workloads",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/secure_access",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/compatibility_matrix",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/glossary",
@@ -1128,6 +1192,10 @@
         },
         {
           "id": "fast_data/configuration/single_view_trigger_generator",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/configuration/secrets_resolution",
           "type": "doc"
         }
       ],

@@ -49,6 +49,7 @@ More details can be found [here](/fast_data/monitoring/overview.md).
 An issue on Mia-Platform components would cause a temporary misalignment between data on Single View and data on the source database. However, this misalignment will be automatically recovered as soon as Mia-Platform components return online.
 
 In particular, the recovery mechanism works as follows:
+
 * Mia-Platform components stop or crash
 * Data changes continue to accumulate on Kafka
 * Mia-Platform components stop reading data changes from the topics because they are offline
