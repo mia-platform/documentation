@@ -19,7 +19,8 @@
       "creds",
       "urandom",
       "CTYPE",
-      "uuidgen"
+      "uuidgen",
+      "micro-lc"
     ],
     "flagWords": [],
     "ignorePaths": [],
