@@ -6,13 +6,31 @@ sidebar_label: Secrets Resolution
 
 Fast Data services may have secrets inside their Config Maps. Secrets can be injected as:
 
-- plain text;
-- reference to an environment variable;
-- reference to a file, either its full content or the internal key of a `.ini` file.
+- [plain text](#plain-text)
+- reference to an [environment variable](#environment-variable)
+- reference to a [file](#file-reference), either its full content or the internal key of a `.ini` file
+
+These are the services versions that support this feature in their config maps:
+
+| Control Plane | Projection Storer | Real Time Updater | Single View Trigger Generator | Single View Creator |
+|:-------------:|:-----------------:|:-----------------:|:-----------------------------:|:-------------------:|
+|    >=1.1.0    |      >=1.2.0      |         -         |            >=3.3.1            |          -          |
 
 ## Plain Text
 
-The field is set to a string, loaded from the Config Map itself.
+The field is set to be a string and it is loaded directly from the Config Map itself.
+
+
+```json
+{
+  "some-entry": {
+    // ...,
+    "some-secret-field": {
+      "url": "{{CONNECTION_STRING}}"
+    }
+  }
+}
+```
 
 :::danger
 Remember to use [external environment variables](/console/project-configuration/manage-environment-variables/index.md), to avoid store them in plain in your Console configuration!

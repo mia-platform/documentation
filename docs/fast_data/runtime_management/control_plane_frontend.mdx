@@ -24,9 +24,48 @@ This value can be overridden by using the environment `BASE_PATH` with `/<your p
 On the Endpoint section, remember to use `/<your path>` as [rewrite base path](/development_suite/api-console/api-design/endpoints.md#about-rewrite-base-path).
 
 :::tip
-Control Plane frontend can also be embedded as an iFrame, to be used for example in the [Dashboards section of Mia-Platform Console](/development_suite/monitoring/dashboard.md#managing-dashboards).
+Control Plane frontend can also be embedded as an iFrame, to be used as an extension of Mia Platform Console.
+For more details on how to setup it in the Runtime area of the console, please read the dedicated [Console Extension Documentation](/console/console-extensibility/overview.md).
 
-To do this, remember to setup properly Control Plane endpoints as [described here](/fast_data/runtime_management/control_plane.mdx#endpoints).
+Here is provided an example of payload specific for the Fast Data Runtime Management, which can be employed in [extension registration API](/console/console-extensibility/registration.md#how-to-register-your-extension):
+
+```json
+{
+    "name": "Fast Data Control Plane",
+    "contexts": [
+        "project"
+    ],
+    "description": "This extension enables teams to monitor and interact with Fast Data Runtime deployed in a Console project",
+    "entry": "https://<address-of-your-project-exposing-control-plane>",
+    "extensionType": "iframe",
+    "routes": [
+        {
+            "id": "fast-data-runtime",
+            "locationId": "runtime",
+            "renderType": "category",
+            "labelIntl": {
+                "en": "Fast Data Runtime",
+                "it": "Fast Data Runtime"
+            }
+        },
+        {
+            "id": "fast-data-control-plane",
+            "locationId": "runtime",
+            "parentId": "fast-data-runtime",
+            "destinationPath": "/<your path>",
+            "icon": {
+                "name": "PiAirTrafficControl"
+            },
+            "labelIntl": {
+                "en": "Control Plane",
+                "it": "Control Plane"
+            }
+        }
+    ]
+}
+```
+
+Finally, remember also to properly setup Control Plane endpoints as [described here](/fast_data/runtime_management/control_plane.mdx#endpoints).
 :::
 
 ## Pipelines Overview
