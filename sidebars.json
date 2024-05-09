@@ -459,6 +459,10 @@
           "type": "doc"
         },
         {
+          "id": "console/design-your-projects/custom-resources",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/decorators",
           "type": "doc"
         },
