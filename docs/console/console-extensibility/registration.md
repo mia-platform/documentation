@@ -21,7 +21,7 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 - `name` (_required_): provide the name of your extension
 - `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
 - `description`: provide a brief description of the extension
-- `entry` (_required_): indicate the website URL that will be embedded on Console
+- `entry` (_required_): indicate the website URL that will be embedded on Console. This URL can be parametrized using special keywords that the Console is able to resolve (see the [relative section](/console/console-extensibility/locations.md#parametrized-iframe-entry))
 - `extensionType` (_required_): select the type of extension. For now, only the `iframe` type is supported
 - `permissions`: indicate which permissions users will need to have to see the extension once activated (further details in the [next section](#how-to-restrict-the-extension-usage))
 - `routes` (_required_): provide the menu items that should appear on the sidebar once the extension is activated
@@ -83,7 +83,7 @@ The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to 
 - `name` (_required_): provide the name of your extension
 - `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
 - `description`: provide a brief description of the extension
-- `entry` (_required_): indicate the website URL that will be embedded on Console
+- `entry` (_required_): indicate the website URL that will be embedded on Console. This URL can be parametrized using special keywords that the Console is able to resolve (see the [relative section](/console/console-extensibility/locations.md#parametrized-iframe-entry))
 - `extensionType` (_required_): select the type of extension. For now, only the `iframe` type is supported
 - `permissions`: indicate which permissions users will need to have to see the extension once activated (further details in the [section](#how-to-restrict-the-extension-usage))
 - `routes` (_required_): provide the menu items that should appear on the sidebar once the extension is activated
