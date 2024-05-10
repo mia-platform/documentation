@@ -41,7 +41,7 @@ The detection of issues on Mia-Platform components (e.g. pod in crash-loop backo
 
 An issue on Mia-Platform components would cause a temporary misalignment between data on Single View and data on source database. However, this misalignment will be automatically recovered as soon as Mia-Platform components return online.
 
-In particular, the recover mechanism works as follow:
+In particular, the recover mechanism works as follows:
 * Mia-Platform components stop or crash
 * Data changes continue to get accumulated on Kafka
 * Mia-Platform components stop reading data changes from the topics because they are offline

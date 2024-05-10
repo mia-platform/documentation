@@ -42,7 +42,7 @@ After selecting a _Single View Creator Service_, you can access the configuratio
 - Add a _Validator_ file
 - The _Upsert/Delete Strategy_;
 - The _Single View Key_ (from the _Settings_ tab)
-- The _Single View Trigger Generator_ (more information in the [related page](/fast_data/configuration/single_view_trigger_generator.md#attach-a-service-to-a-single-view))
+- The _Single View Trigger Generator_ (more information in the [related page](/fast_data/configuration/single_view_trigger_generator.mdx#attach-a-service-to-a-single-view))
 
 Any updates to these configurations will be reflected in the service's configuration maps once you save the changes.
 

@@ -33,7 +33,7 @@ In case you want to export a file with a button in the [Headless CMS](../../micr
 
 ## Setup
 
-The Export Service can be used in single, stand-alone projects, released alongside other services, or can be shared among different projects; while the first setup is as easy as adding a new service from the marketplace like [Flow Manager](../flow-manager-service/model_your_first_flow#add-plugin-from-marketplace), the latter may require additional configurations.
+The Export Service can be used in single, stand-alone projects, released alongside other services, or can be shared among different projects; while the first setup is as easy as adding a new plugin from the marketplace, the latter may require additional configurations.
 
 ### Stand-alone project
 

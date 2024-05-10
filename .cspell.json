@@ -9,6 +9,10 @@
     "ABAC",
     "axerve",
     "nexi",
+    "fnmpay",
+    "Fnmpay",
+    "UNSUBMITTED",
+    "THREEDS",
     "Bianchi",
     "Boundarye",
     "Brotli",
@@ -226,7 +230,8 @@
     "VULNDB",
     "mergo",
     "kpis",
-    "Mesos"
+    "Mesos",
+    "SWSS"
   ],
   "ignoreWords": [
     "asncdctools",

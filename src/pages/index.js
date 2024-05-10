@@ -60,8 +60,8 @@ const features = [
       {
         icon: "globe",
         target: "_blank",
-        href: "https://mia-platform.eu/mia-platform-v12/",
-        label: "Discover Mia-Platform v12 🎉",
+        href: "https://mia-platform.eu/mia-platform-v13/",
+        label: "Discover Mia-Platform v13 🎉",
       },
     ],
   },
@@ -123,11 +123,11 @@ const features = [
       },
       {
         label: "📝 Read our Blog",
-        href: "https://blog.mia-platform.eu/en",
+        href: "https://mia-platform.eu/blog/",
       },
       {
         label: "📚 Explore our Library",
-        href: "https://resources.mia-platform.eu/en/library",
+        href: "https://mia-platform.eu/library/",
       },
       {
         label: "📨 Subscribe to monthly Newsletter",
@@ -207,10 +207,10 @@ function Home() {
             <div className="container">
               {<div className="row">
                 <VersionBanner
-                  link="/docs/release-notes/v12-overview"
-                  majorVersion="12"
-                  subTitle="Click here and learn about the new features in this new v12."
-                  title="Mia-Platform v12 is now Generally Available"
+                  link="docs/release-notes/v13.0.0"
+                  majorVersion="13-preview"
+                  subTitle="Click here for further information"
+                  title="Mia-Platform v13 is now available in Preview!"
                 />
               </div>}
 

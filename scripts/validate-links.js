@@ -37,6 +37,7 @@ const toCheck = {
     start: [
         'mailto',
         '#',
+        '?',
     ],
     end: [
         '.png',
@@ -44,7 +45,8 @@ const toCheck = {
         '.gif',
         '.svg',
         '.sh',
-        '.xml'
+        '.xml',
+        '.yml'
     ],
     special: [
         'http',

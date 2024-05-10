@@ -1,100 +1,4 @@
 {
-  "/docs/user_guide_and_tools/cms/guide_cms":  {
-    "destination": "/docs/business_suite/guide_cms",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/development_suite/api-portal/swagger_conf": {
-    "destination": "/docs/runtime_suite/swagger-aggregator/overview",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/development_suite/monitoring-dashboard/dev_ops_guide/log":  {
-    "destination": "/docs/getting_started/monitoring-dashboard/dev_ops_guide/log",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/development_suite/api-console/api-design/esponi_api": {
-    "destination": "/docs/development_suite/api-console/api-design/endpoints",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/mail-notification":  {
-    "destination": "/docs/runtime_suite/ses-mail-notification-service/configuration",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/dev_ops_guide/git_vademecum/": {
-    "destination": "/docs/guidelines/git_vademecum",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/guidelines/communication_between_services_mp4":  {
-    "destination": "/docs/development_suite/api-console/api-design/services",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/development_suite/miactl/overview": {
-    "destination": "/docs/runtime_suite_tools/miactl/overview",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/notifications-manager":  {
-    "destination": "/docs/runtime_suite/push-notification-manager/configuration",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/push_notifications_platform_4": {
-    "destination": "/docs/runtime_suite/push-notification-sender/overview",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/api-gateway-envoy/filters":  {
-    "destination": "/docs/runtime_suite/envoy-api-gateway/filters",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/api-gateway-envoy/overview": {
-    "destination": "/docs/runtime_suite/envoy-api-gateway/overview",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/event-source-management":  {
-    "destination": "/docs/fast_data/overview",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/runtime_suite/pdf-service": {
-    "destination": "/docs/runtime_suite/pdf-service/overview",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/info/version-policy/":  {
-    "destination": "/docs/info/version_policy/",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/development_suite/api-console/api-design/templates_conf": {
-    "destination": "/docs/marketplace/add_to_marketplace/contributing_overview/",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/overview":  {
-    "destination": "/docs/fast_data/what_is_fast_data",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/setup_fast_data": {
-    "destination": "/docs/fast_data/architecture",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/create_projection":  {
-    "destination": "/docs/fast_data/configuration/projections",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/cast_functions": {
-    "destination": "/docs/fast_data/configuration/cast_functions",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/import_export": {
-    "destination": "/docs/fast_data/configuration/import_export",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/single_view":  {
-    "destination": "/docs/fast_data/configuration/single_views",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/single_view_creator/overview": {
-    "destination": "/docs/fast_data/single_view_creator",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/single_view_creator/low-code-configuration":  {
-    "destination": "/docs/fast_data/configuration/single_view_creator",
-    "addedOn": "2022-10-01"
-  },
   "/docs/fast_data/configuration/single_view_creator/common.md": {
     "destination": "/docs/fast_data/configuration/single_view_creator",
     "addedOn": "2023-06-15"
@@ -106,19 +10,6 @@
   "/docs/fast_data/configuration/single_view_creator/manual": {
     "destination": "/docs/fast_data/configuration/single_view_creator",
     "addedOn": "2023-06-15"
-  },
-  "/docs/fast_data/real_time_updater/overview":  {
-    "destination": "/docs/fast_data/realtime_updater",
-    "addedOn": "2022-10-01"
-  },
-  
-  "/docs/fast_data/real_time_updater/low-code-configuration": {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
-    "addedOn": "2022-10-01"
-  },
-  "/docs/fast_data/real_time_updater/manual-configuration":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
-    "addedOn": "2022-11-10"
   },
   "/docs/fast_data/single_view_trigger": {
     "destination": "/docs/fast_data/single_view_trigger_generator",
@@ -132,18 +23,10 @@
     "destination": "/docs/fast_data/configuration/single_view_trigger_generator",
     "addedOn": "2023-01-11"
   },
-  "/docs/development_suite/api-console/api-design/rbac_api_configuration": {
-    "destination": "/docs/development_suite/api-console/api-design/rbac",
-    "addedOn": "2022-10-01"
-  },
   "/docs/fast_data/configuration/erSchema": {
     "destination": "/docs/fast_data/configuration/config_maps/erSchema",
     "addedOn": "2023-03-01",
     "tocheck": true
-  },
-  "/docs/fast_data/configuration/realtime_updater/manual": {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
-    "addedOn": "2022-11-10"
   },
   "/docs/fast_data/configuration/realtime_updater/common":  {
     "destination": "/docs/fast_data/configuration/realtime_updater",
@@ -161,14 +44,6 @@
     "destination": "/docs/fast_data/configuration/single_view_trigger_generator",
     "addedOn": "2023-03-01",
     "tocheck": true
-  },
-  "/docs/runtime_suite/auth0-+-api-gateway/overview": {
-    "destination": "/docs/runtime_suite/secure-apigateway/overview",
-    "addedOn": "2022-12-06"
-  },
-  "/docs/runtime_suite/auth0-+-backoffice/overview": {
-    "destination": "/docs/runtime_suite/secure-backoffice/overview",
-    "addedOn": "2022-12-06"
   },
   "/docs/development_suite/monitoring/monitoring": {
     "destination": "/docs/development_suite/monitoring/resources/pods",
@@ -536,11 +411,13 @@
   },
   "/release_notes/support-policy/": {
     "destination": "/docs/release-notes/support-policy",
-    "addedOn": "2023-07-28"
+    "addedOn": "2023-07-28",
+    "perpetual": true
   },
   "/info/version-policy/": {
     "destination": "/docs/info/version_policy",
-    "addedOn": "2023-08-01"
+    "addedOn": "2023-08-01",
+    "perpetual": true
   },
   "/docs/paas/alerting_rules": {
     "destination": "/docs/paas/grafana",
@@ -1697,5 +1574,141 @@
   "/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade": {
     "destination": "/docs/infrastructure/self-hosted/installation-chart/how-to-upgrade",
     "addedOn": "2024-03-12"
+  },
+  "/docs/runtime_suite/integration-test-service/overview": {
+    "destination": "/docs/runtime_suite/integration-tests-service/overview",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/integration-test-service/configuration": {
+    "destination": "/docs/runtime_suite/integration-tests-service/configuration",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/integration-test-service/usage": {
+    "destination": "/docs/runtime_suite/integration-tests-service/usage",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/integration-test-service/changelog": {
+    "destination": "/docs/runtime_suite/integration-tests-service/changelog",
+    "addedOn": "2024-03-14"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/overview": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/overview",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/configuration": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/configuration",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/usage": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/usage",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/pharma-e-commerce-backend/changelog": {
+    "destination": "/docs/runtime_suite/pharma-ecommerce-backend/changelog",
+    "addedOn": "2024-03-25"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/overview_and_usage": {
+    "destination": "/docs/runtime_suite/fhir-adapter/overview_and_usage",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/files_management": {
+    "destination": "/docs/runtime_suite/fhir-adapter/files_management",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/configuration": {
+    "destination": "/docs/runtime_suite/fhir-adapter/configuration",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/runtime_suite/mia-fhir-adapter/changelog": {
+    "destination": "/docs/runtime_suite/fhir-adapter/changelog",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/infrastructure/self-hosted/synchronize-users": {
+    "destination": "/docs/infrastructure/self-hosted/installation-chart/helm-values/synchronize-users-with-an-identity-provider",
+    "addedOn": "2024-03-27"
+  },
+  "/docs/infrastructure/self-hosted/self-hosted-runtime-requirements": {
+    "destination": "/docs/infrastructure/self-hosted/self-hosted-requirements",
+    "addedOn": "2024-04-09"
+  },
+  "/docs/marketplace/templates/template_create": {
+    "destination": "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
+    "addedOn": "2024-04-30"
+  },
+  "/docs/runtime_suite_applications/control-plane/overview": {
+    "destination": "/docs/runtime_suite_applications/fast-data-control-plane/overview",
+    "addedOn": "2024-04-30"
+  },
+  "/docs/runtime_suite_applications/control-plane/configuration": {
+    "destination": "/docs/runtime_suite_applications/fast-data-control-plane/overview",
+    "addedOn": "2024-04-30"
+  },
+  "/docs/runtime_suite_applications/fast-data-control-plane/configuration": {
+    "destination": "/docs/runtime_suite_applications/fast-data-control-plane/overview",
+    "addedOn": "2024-04-30"
+  },
+  "/docs/fast_data/runtime_management": {
+    "destination": "/docs/fast_data/runtime_management/overview",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/runtime_suite/flow-manager-service/model_your_first_flow": {
+    "destination": "/docs/runtime_suite/flow-manager-service/how_it_works",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/fast_data/configuration/single_view_trigger_generator.md": {
+    "destination": "/docs/fast_data/configuration/single_view_trigger_generator.mdx",
+    "addedOn": "2024-05-06"
+  },
+  "/docs/development_suite/api-console/api-design/flow-manager-visualizer": {
+    "destination": "/docs/development_suite/api-console/api-design/flow-manager-configurator/overview",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/axerve": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/axerve",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/braintree": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/braintree",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/satispay": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/satispay",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/stripe": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/stripe",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/external": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/external",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/adyen": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/adyen",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/scalapay": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/scalapay",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/nexi": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/nexi",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/soisy": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/soisy",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/runtime_suite/payment-gateway-manager/flowpay": {
+    "destination": "/docs/runtime_suite/payment-gateway-manager/payment_providers/flowpay",
+    "addedOn": "2024-05-07"
+  },
+  "/docs/development_suite/company/create": {
+    "destination": "/docs/development_suite/company/create-company",
+    "addedOn": "2024-05-08"
+  },
+  "/docs/runtime_suite_applications/control-plane/changelog": {
+    "destination": "/docs/runtime_suite_applications/fast-data-control-plane/changelog",
+    "addedOn": "2024-05-09"
   }
 }

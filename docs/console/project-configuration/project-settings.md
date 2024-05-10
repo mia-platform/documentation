@@ -46,7 +46,7 @@ This card presents an overview of which Git Provider, Secret Manager, and CI/CD 
 
 ## Workload & Runtime
 
-The "Workload & Runtime" tab shows information about the Project workload and runtime through 5 cards: "Microservices", "Image Pull Secret", "Deployment options", "Runtime", and "Security Features".
+The "Workload & Runtime" tab shows information about the Project workload and runtime settings through 5 cards: "Microservices", "Image Pull Secrets", "Deployment options", "Runtime", and "Security Features".
 
 ### Microservices
 
@@ -58,7 +58,7 @@ This card shows and gives the user the ability to change some settings related t
 
 The above information can be edited by clicking on the "Edit" button, which will open a modal very similar to that seen for Project information. Upon clicking "Save changes", the information will be updated.
 
-### Image pull secrets
+### Image Pull Secrets
 
 ![image pull secrets](./img/settings-image-pull-secrets.png)
 
@@ -66,11 +66,11 @@ The above information can be edited by clicking on the "Edit" button, which will
 An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
 :::
 
-This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add image pull secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
+This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add Image Pull Secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
 
 ### Deployment options
 
-This card allows users to manage some options regarding the Project deployment.
+This card allows users to manage some options regarding Project deployment.
 
 ![runtime settings](./img/settings-deployment-options.png)
 
@@ -143,6 +143,20 @@ The above information can be edited by clicking on the "Edit" button, which will
 
   </div>
 </div>
+
+## Rules
+
+The "Rules" tab allows the user to customize rules defined for the Project.
+
+### Saving options
+
+This set of rules allows users to configure the Project **saving options**, which define settings and constraints relative to the saving process, such as the mandatory confirmation of the commit message before saving the Project configuration.
+
+![saving options](./img/settings-saving-options.png)
+
+:::tip  
+If you are a Company Owner and want to enable this setting for all Projects in your Company, you can do it from the [Company settings page](/console/company-configuration/settings.md#rules).
+:::
 
 ## Feature Preview
 

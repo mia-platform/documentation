@@ -590,6 +590,8 @@ sends user configuration payload to perform export
   filters: "all" | "filtered" | "selected"
   columns: string[]
   columnName: "id" | "label"
+  dateFormat: string
+  timezone: string
 }
 ```
 
