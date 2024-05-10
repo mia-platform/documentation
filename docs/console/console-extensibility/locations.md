@@ -86,3 +86,7 @@ Consider an extension that:
 - is active on the project with the ID `my-project-id` located in the tenant with the ID `my-tenant-id`
 
 The Console displays the extension as soon as you enter the `my-project-id` project. When accessing its menu item on the sidebar, the parameterized entry is resolved and the website to be mounted in the iframe is retrieved at the URL address `https://iframe-domain/any-path?tenant=my-tenant-id&project=my-project-id`.
+
+:::tip
+The `{tenantId}`, `{projectId}` and `{environmentId}` parameters can be used in any the entry URL, so you can use them in the host, path, query string or anchor based on your webapplication needs.
+:::
