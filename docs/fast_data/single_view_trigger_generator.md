@@ -24,7 +24,7 @@ Eventually, the [Single View Creator](/fast_data/single_view_creator.md) consume
 The main change occurring due to the introduction of the Single View Trigger Generator is the decoupling of projections import logic from the one in charge identifying which Single View should be updated.
 This effect leads to the following advantages:
 
-- operations occurring during initial load phase are easier to handle and carry out
+- operations occurring during [initial load phase](/fast_data/data_loading.mdx#initial-load) are easier to handle and carry out
 - processing load can be better spread across the two services depending on the requirements, so that it is possible to optimize the different number of services' replicas depending on the ongoing situation
 
 ### Migration Guide for adopting Single View Trigger Generator

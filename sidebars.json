@@ -1024,6 +1024,10 @@
       ]
     },
     {
+      "id": "fast_data/glossary",
+      "type": "doc"
+    },
+    {
       "id": "fast_data/inputs_and_outputs",
       "type": "doc"
     },
@@ -1081,10 +1085,6 @@
           "type": "doc"
         }
       ]
-    },
-    {
-      "id": "fast_data/glossary",
-      "type": "doc"
     },
     {
       "collapsed": true,
@@ -1220,6 +1220,10 @@
       ],
       "label": "Connectors",
       "type": "category"
+    },
+    {
+      "id": "fast_data/data_loading",
+      "type": "doc"
     },
     {
       "collapsed": true,

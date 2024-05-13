@@ -15,7 +15,7 @@ Kafka messages can be sent using a particular compression encoding. In this sect
 Also, this compression mechanisms can also be used by the microservice itself while producing kafka messages, by specifying, starting from version `v7.5.8`, the environment variable `PRODUCER_COMPRESSION`. Allowed values are `gzip`, `snappy` or `none`: if the variable has not been specified, `none` will be the default compression system used by the RTU.
 
 :::caution
-Compression and decompression algorithm will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications; on the other hand, it is well recommended for initial load procedures which tend to produce a huge amount of messages.
+Compression and decompression algorithm will always increase the delay between production and consumption of the message, hence it is not advised for strong real-time relying applications; on the other hand, it is well recommended for [initial load procedures](/fast_data/data_loading.mdx#initial-load) which tend to produce a huge amount of messages.
 :::
 
 ### Snappy

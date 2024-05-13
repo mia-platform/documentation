@@ -139,7 +139,7 @@ The Kafka message format based on the _IBM InfoSphere Data Replication for DB2_ 
 
 ### Prevent projections to be overwritten
 
-During a rebalancing or a massive initial load with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
+During a rebalancing or a massive [initial load](/fast_data/data_loading.mdx#initial-load) with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
 To prevent that old messages that have already updated the projection, overwrite the projection again, the environment variable `FORCE_CHECK_ON_OFFSET` is set by default to `true`.
 
