@@ -60,6 +60,9 @@ const customService = require('@mia-platform/custom-plugin-lib')(envVarsSchema)
 
 const getHelloWorld = require('./src/endpoints/hello-world/get')
 
+const { logMethod } = require('./src/lib/utils')
+const { AUDIT_TRAIL_LOG_LEVEL } = require('./src/lib/constants')
+
 module.exports = customService(async function index(service) {
   service.register(getHelloWorld)
 
@@ -73,16 +76,29 @@ module.exports = customService(async function index(service) {
 
   decorateRequestWithBuildErrorResponse(service)
 })
+
+module.exports.options = {
+  logger: {
+    customLevels: {
+      audit: AUDIT_TRAIL_LOG_LEVEL,
+    },
+    hooks: {
+      logMethod,
+    },
+  },
+}
 ```
 
 The `index.js` file already contains:
-- the definition of an simple endpoint `GET /hello-world`;
+- the definition of a simple endpoint `GET /hello-world`;
 - the definition of the Reply Fastify decorators for the error management;
-- the definition of the Request Fastify decorators to enrich the request object.
+- the definition of the Request Fastify decorators to enrich the request object;
+- the logger configuration options to enable audit logs.
 
 Wonderful! You are now ready to start customizing your service! Read next section to learn how.
 
 ### Folder structure
+
 The folder structure should follow this pattern:
 
     .
@@ -165,6 +181,7 @@ It creates:
 - the `handler.test.js` file, that contains the Jest unit tests for the handler.
 
 ### Decorators
+
 The template includes a set of default of request and reply decorators. The [decorators API][fastify-decorators] allows customization of the core Fastify objects, such as the server instance itself and any request and reply objects used during the HTTP request lifecycle. The decorators can be modified and extended with domain-specific notation.
 
 The template contains request and reply decorators for, respectively, enrichment of the request object with additional metadata (e.g. `requestId`) and error management. The template implements the formatter for the most common HTTP errors, allowing to have a common format for the error response that, by default, is the following:
@@ -188,6 +205,79 @@ async function handler(request, reply) {
   return reply.sendAuthorizationError(request, 'Custom error message')
 }
 ```
+
+### Audit Trail
+
+:::caution
+
+Audit logs require additional microservices and advanced configurations on the logging stack.
+Please take a look at [*Audit Trail* documentation][audit-logs] for details on how to properly configure your environment before using audit logs.
+
+:::
+
+This template provides out-of-the-box support for audit logs, which are designed to track meaningful events happening inside and across our microservices for auditing purposes.
+
+Audit logs are a subset of application logs having a custom logging level and expected to contain structured information, that can be later queried to answer common questions about systems and users activities and behaviors. For additional information about audit logs, please look at the [Audit Trail section][audit-logs].
+
+The audit log configuration is specified at the bottom of the `index.js` file:
+
+```js
+module.exports.options = {
+  logger: {
+    customLevels: {
+      audit: AUDIT_TRAIL_LOG_LEVEL,
+    },
+    hooks: {
+      logMethod,
+    },
+  },
+}
+```
+
+The exported options enable you to generate audit logs by calling the `audit` logging method on the logger instance inside your handlers:
+
+```js
+async function handler(request, reply) {
+  request.log.audit({ event: 'MiaCare/HelloWorld/v1', severity: 'INFO' }, 'Hello World Audit Log')
+}
+```
+
+The first argument should be an object containing event metadata, that are persisted on MongoDB to performs advanced queries. To guarantee that audit logs from different services can be correlated, we strongly recommend to follow the standard data model illustrated in the [*Audit Trail* data model section][audit-logs-data-model].
+
+Under the hood, audit logs have a custom log level which is used to filter them from other application logs and save them to a MongoDB collection.
+By default, the log level is named `audit` and has `1100` as numeric value.
+Setting a log level strictly greater than 1000 to identify audit logs serves the purpose of avoid conflicts with existing log levels and ensure the audit logs are correctly filtered downstream and forwarded to MongoDB.
+
+:::danger
+
+Be careful when setting the `LOG_LEVEL` environment variable of your service: you must ensure that the numeric value associated to the chosen log level is lower than the one chosen for the audit log level, otherwise the audit logs will not be generated.
+
+:::
+
+So, given the example above, the resulting log will have a structure looking like this:
+
+```json
+{
+  "level": 1100,
+  "message": "Hello World Audit Log",
+  "auditLog": {
+    "version": "1.0.0",
+    "timestamp": "2024-04-30T09:12:06.095Z",
+    "checksum": {
+      "algorithm": "sha512",
+      "value": "e474e95adfb31ef4cac7d992732a43d65e3313c852bd5e318dd84087b39ab62b19ff4c5590a6d5d5055ee5e3669c384c55eff0f36fe090205bd67d92d4aa9381"
+    },
+    "metadata": {
+      "event": "MiaCare/HelloWorld/v1",
+      "severity": "INFO"
+    }
+  }
+}
+```
+
+A new field called `auditLog` is added to the log entry, containing some generated fields (`version`, `timestamp` and `checksum`), while the `metadata` field contains the original object passed as first argument to the logging method. Only the content of the `auditLog` field will be persisted to MongoDB.
+
+If you configure your environment to process audit logs as illustrated in the [*Audit Trail* architecture documentation][audit-logs-architecture], due to technical requirements of the logging infrastructure, you should add a new label to your microservice, called `mia-care.io/audit-trail` with value `true`, to signal which services are generating audit logs and therefore minimize the amount of application logs to be processed and avoid performance bottlenecks that could cause logs loss.
 
 ## Expose an endpoint to your microservice
 
@@ -235,3 +325,7 @@ Congratulations! You can now start developing your own NodeJS microservice!
 [mia-marketplace]: /marketplace/overview_marketplace.md
 [mia-nexus]: https://nexus.mia-platform.eu/
 [mia-node-template-index]: https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/index.js
+
+[audit-logs]: 30_audit_trail.md
+[audit-logs-architecture]: 30_audit_trail.md#architecture
+[audit-logs-data-model]: 30_audit_trail.md#data-model

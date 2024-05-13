@@ -10,9 +10,9 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-`Node.js Mia-Care Template` is the best template to start creating a service in NodeJs, integrated inside your platform. This template contains tools to simplifying the building Software as a Medical Device (SaMD).
+`Node.js Mia-Care Template` is the best template to start creating a service in Node.js integrated inside your platform. This template contains tools to simplify building Software as a Medical Device (SaMD).
 
-This template leverages Mia Platform [custom-plugin-lib][custom-plugin-lib].  
+This template leverages Mia Platform [custom-plugin-lib][custom-plugin-lib].
 `custom-plugin-lib` is a [node.js][node.js] library developed by Mia-Platform. This library contains configurations and functions that will help you to modify your template with easiness.
 
 If you want to learn how to modify this template and create your node microservice with custom logic, follow this [walkthrough][walkthrough].
