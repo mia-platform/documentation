@@ -21,16 +21,16 @@ We recommend `yaml` to define your resources, but you can use either `yaml` or `
 :::
 
 ```yaml
-name: Smallest sidecar
-itemId: smallest-sidecar-id
-description: Smallest sidecar
+name: My sidecar
+itemId: my-sidecar
+description: My sidecar
 type: sidecar
 documentation:
   type: externalLink
-  url: https://github.com/smallest-sidecar-id/docs
+  url: https://github.com/my-sidecar/docs
 resources:
-  name: smallest-sidecar-id
-  dockerImage: ghcr.io/smallest-sidecar:1.0
+  name: my-sidecar
+  dockerImage: ghcr.io/my-sidecar:1.0
 tenantId: rocket-playground
 ```
 
@@ -72,13 +72,10 @@ As a first step, retrieve the sidecar definition from `miactl`:
 Then update the `my-sidecar` docker image version changing the relative line in the `my-sidecar-update.yaml` file.
 
 ```yaml
-{
+... other sidecar configuration
+resources:
   ... other sidecar configuration
-  "resources": {
-  ... other sidecar configuration
-    "dockerImage": "ghcr.io/my-sidecar:2.0",
-  }
-}
+  dockerImage: ghcr.io/my-sidecar:2.0
 ```
 
 And finally, run the same `miactl` command, passing the updated `my-sidecar-update.ymal` file:
