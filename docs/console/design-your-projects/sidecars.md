@@ -64,3 +64,7 @@ Another way to view and manage sidecars configurations is from the [microservice
 From here you can find an overview of all the containers configured for the microservice (both main and sidecar containers) and configure the specific sidecar container configuration for your needs.
 
 ![Service containers](img/service-containers.png)
+
+### Upload a sidecar to the Marketplace
+
+To better understand the steps to execute in order to publish your sidecar definition on the Marketplace, follow the how to [add sidecar to Marketplace](/docs/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md) guide.
