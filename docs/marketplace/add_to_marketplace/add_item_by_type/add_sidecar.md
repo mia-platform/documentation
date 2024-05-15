@@ -291,7 +291,7 @@ Congratulations! You just created your first sidecar and it is now available on 
 
 You already published a sidecar and you want to update its configuration. In this section we will see how to update it from `miactl`.
 
-In the section above we created a sidecar resource but we now want to update it to use the version `2.0` of the docker image.  To do this, just update the `my-sidecar.json` changing the relative line.
+In the previous section we created a sidecar resource but we now want to update it to use the version `2.0` of the docker image. To do this, just update the `my-sidecar.json` by changing the relative line.
 
 ```js
 {
