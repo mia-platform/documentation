@@ -29,7 +29,7 @@ Create a `my-sidecar.json` file and fill it with the sidecar resource definition
   },
   "resources": {
     "name": "my-sidecar",
-    "dockerImage": "ghcr.io/my-sidecar",
+    "dockerImage": "ghcr.io/my-sidecar:1.0",
     "containerPorts": [
       {
         "from": 80,
@@ -291,21 +291,22 @@ Congratulations! You just created your first sidecar and it is now available on 
 
 You already published a sidecar and you want to update its configuration. In this section we will see how to update it from `miactl`.
 
-In the section above we created a sidecar resource but only visible to our Company, we now want make it available to each company. To do this, update the `my-sidecar.json` adding the following lines.
+In the section above we created a sidecar resource but we now want to update it to use the version `2.0` of the docker image.  To do this, just update the `my-sidecar.json` changing the relative line.
 
 ```js
 {
-    ... sidecar configuration
-    "visibility": {
-        "allTenants": true
-    }
+  ... other sidecar configuration
+  "resources": {
+  ... other sidecar configuration
+    "dockerImage": "ghcr.io/my-sidecar:2.0",
+  }
 }
 ```
 
 Now run the same `miactl` command, passing the updated `my-sidecar.json` file:
 
 ```bash
-> miactl marketplace apply -f ./my-sidecar-updated.json --company-id my-company-id
+> miactl marketplace apply -f ./my-sidecar.json --company-id my-company-id
 ```
 
 You will receive a similar response with `STATUS: Updated`
@@ -318,4 +319,4 @@ You will receive a similar response with `STATUS: Updated`
   66423781fdd3d6dd3ca62b7b  my-sidecar  Updated  
 ```
 
-Done! Your sidecar resource is now public and can be used from other Companies too.
+Done! Your sidecar resource has been updated and all the new instances will now be created with the correct version.
