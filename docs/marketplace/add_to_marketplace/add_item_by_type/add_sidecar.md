@@ -4,7 +4,7 @@ title: Create a sidecar
 sidebar_label: Create a sidecar
 ---
 
-[sidecar containers](/development_suite/api-console/api-design/microservice-containers.md#sidecar-containers) are secondary utility containers running side by side with the [main container](/development_suite/api-console/api-design/microservice-containers.md#main-container) in the same host.
+[Sidecar containers](/development_suite/api-console/api-design/microservice-containers.md#sidecar-containers) are secondary utility containers running side by side with the [main container](/development_suite/api-console/api-design/microservice-containers.md#main-container) in the same host.
 
 sidecars can be added to your Project from the Marketplace or directly specifying a docker image.
 
