@@ -67,4 +67,4 @@ From here you can find an overview of all the containers configured for the micr
 
 ### Upload a sidecar to the Marketplace
 
-To better understand the steps to execute in order to publish your sidecar definition on the Marketplace, follow the how to [add sidecar to Marketplace](/docs/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md) guide.
+To better understand the steps to execute in order to publish your sidecar definition on the Marketplace, follow the how to [add sidecar to Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md) guide.
