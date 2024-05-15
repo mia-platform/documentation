@@ -14,42 +14,98 @@ To ease this process, Mia-Platform Console allows you to define your sidecar res
 
 ### Define the sidecar resource
 
-Create a `my-sidecar.json` file and fill it with the sidecar resource definition.
+Create a `my-sidecar.yaml` file and fill it with the sidecar resource definition.
 
-```json
-{
-  "name": "My sidecar", 
-  "itemId": "my-sidecar",
-  "description": "A very simple sidecar",
-  "type": "sidecar",
-  "tenantId": "my-tenant-id",
-  "documentation": {
-    "type": "externalLink",
-    "url": "https://github.com/my-sidecar/docs"
-  },
-  "resources": {
-    "name": "my-sidecar",
-    "dockerImage": "ghcr.io/my-sidecar:1.0",
-    "containerPorts": [
-      {
-        "from": 80,
-        "name": "http",
-        "protocol": "TCP",
-        "to": 5000
-      }
-    ],
-  },
-}
+:::tip
+We recommend `yaml` to define your resources, but you can use either `yaml` or `json` as these are both supported.
+:::
+
+```yaml
+name: Smallest sidecar
+itemId: smallest-sidecar-id
+description: Smallest sidecar
+type: sidecar
+documentation:
+  type: externalLink
+  url: https://github.com/smallest-sidecar-id/docs
+resources:
+  name: smallest-sidecar-id
+  dockerImage: ghcr.io/smallest-sidecar:1.0
+tenantId: rocket-playground
 ```
 
 :::info
 Note the `"type": "sidecar"` is required to specify that this resource is a sidecar.
 :::
 
-In this example, the configuration defines a very simple sidecar resource by specifying only the docker image of the sidecar application and exposing it to the `5000` port of the container. To define a more specific configuration with `ConfigMaps`, `Probes` or `EnvironmentVariables` too just follow the `json-schema` below.
+### Publish a new sidecar resource via `miactl`
+
+This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
+
+To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
+
+```bash
+> miactl marketplace apply -f ./my-sidecar.ymal --company-id my-company-id
+```
+
+You should receive a success response similar to this one:
+
+```bash
+1 of 1 items have been successfully applied:
+
+  OBJECT ID                 ITEM ID     STATUS   
+
+  66423781fdd3d6dd3ca62b7b  my-sidecar  Created 
+```
+
+Congratulations! You just created your first sidecar and it is now available on your `Internal Company Marketplace`.
+
+### Update the sidecar resource via `miactl`
+
+In the previous section we created our first sidecar resource. Now we want to update it in order to use the version `2.0` of the docker image.  
+As a first step, retrieve the sidecar definition from `miactl`:
+
+```bash
+> miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-sidecar-update.ymal
+```
+
+Then update the `my-sidecar` docker image version changing the relative line in the `my-sidecar-update.yaml` file.
+
+```yaml
+{
+  ... other sidecar configuration
+  "resources": {
+  ... other sidecar configuration
+    "dockerImage": "ghcr.io/my-sidecar:2.0",
+  }
+}
+```
+
+And finally, run the same `miactl` command, passing the updated `my-sidecar-update.ymal` file:
+
+```bash
+> miactl marketplace apply -f ./my-sidecar-udapte.ymal --company-id my-company-id
+```
+
+You will receive a similar response with `STATUS: Updated`
+
+```bash
+1 of 1 items have been successfully applied:
+
+  OBJECT ID                 ITEM ID     STATUS   
+
+  66423781fdd3d6dd3ca62b7b  my-sidecar  Updated  
+```
+
+Done! Your sidecar resource has been updated and all the new instances will now be created with the correct version.
+
+### Customize your sidecar definition
+
+In these examples, the configuration defines a very simple sidecar resource by specifying only the docker image of the sidecar application and exposing it to the `5000` port of the container, but you can define `ConfigMaps`, `Probes` or `Environment Variables` too.  
+To do this, create a more specific sidecar definition following the `json-schema` below.
 
 <details>
-<summary>Click to view the full JSON Schema for a sidecar</summary>
+<summary>Click to view the full JSON Schema.</summary>
 <p>
 
 ```json
@@ -266,64 +322,3 @@ In this example, the configuration defines a very simple sidecar resource by spe
 
 </p>
 </details>
-
-### Publish a new sidecar resource via `miactl`
-
-This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
-
-To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
-
-```bash
-> miactl marketplace apply -f ./my-sidecar.json --company-id my-company-id
-```
-
-You should receive a success response similar to this one:
-
-```bash
-1 of 1 items have been successfully applied:
-
-  OBJECT ID                 ITEM ID     STATUS   
-
-  66423781fdd3d6dd3ca62b7b  my-sidecar  Created 
-```
-
-Congratulations! You just created your first sidecar and it is now available on your `Internal Company Marketplace`.
-
-### Update the sidecar resource via `miactl`
-
-In the previous section we created our first sidecar resource. Now we want to update it in order to use the version `2.0` of the docker image.   
-As a first step, retrieve the sidecar definition from `miactl`:
-
-```bash
-> miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-sidecar-update.json
-```
-
-Then update the `my-sidecar` docker image version changing the relative line in the `my-sidecar-update.json` file.
-
-```js
-{
-  ... other sidecar configuration
-  "resources": {
-  ... other sidecar configuration
-    "dockerImage": "ghcr.io/my-sidecar:2.0",
-  }
-}
-```
-
-And finally, run the same `miactl` command, passing the updated `my-sidecar.json` file:
-
-```bash
-> miactl marketplace apply -f ./my-sidecar.json --company-id my-company-id
-```
-
-You will receive a similar response with `STATUS: Updated`
-
-```bash
-1 of 1 items have been successfully applied:
-
-  OBJECT ID                 ITEM ID     STATUS   
-
-  66423781fdd3d6dd3ca62b7b  my-sidecar  Updated  
-```
-
-Done! Your sidecar resource has been updated and all the new instances will now be created with the correct version.
