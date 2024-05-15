@@ -42,6 +42,8 @@ Create a `my-sidecar.json` file and fill it with the sidecar resource definition
 }
 ```
 
+> Note the `"type": "sidecar"` is required to specify that this resource is a sidecar.
+
 In this example, the configuration defines a very simple sidecar resource by specifying only the docker image of the sidecar application and exposing it to the `5000` port of the container. To define a more specific configuration with `ConfigMaps`, `Probes` or `EnvironmentVariables` too just follow the `json-schema` below.
 
 <details>
@@ -62,7 +64,7 @@ In this example, the configuration defines a very simple sidecar resource by spe
       "type": "string"
     },
     "type": {
-      "type": "string"
+      "const": "sidecar"
     },
     "tenantId": {
       "type": "string"
