@@ -267,7 +267,7 @@ In this example, the configuration defines a very simple sidecar resource by spe
 
 ### Publish a new sidecar resource via `miactl`
 
-This section describe the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md) the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
+This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
 
 To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
 
