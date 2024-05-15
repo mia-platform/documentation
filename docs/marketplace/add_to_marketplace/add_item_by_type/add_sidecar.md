@@ -10,7 +10,7 @@ Sidecars can be added to your Project from the Marketplace or directly specifyin
 
 Sometimes you may want to add your sidecar to multiple Services. Adding the sidecar from docker image and setting up the correct values for the sidecar configuration for each Service might be a little tricky and error prone.
 
-To ease this process, Mia-Platform lets you upload your sidecar resource definitions to the Marketplace. This way you can define once the correct sidecar configuration and then replicate the same configuration each time you add the sidecar on your Projects.
+To ease this process, Mia-Platform Console allows you to define your sidecar resource in the Marketplace. This way, you can define once the correct sidecar configuration and then replicate it every time you need to add it in your Projects.
 
 ### Define the sidecar resource
 
