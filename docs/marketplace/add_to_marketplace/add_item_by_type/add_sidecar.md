@@ -1,6 +1,6 @@
 ---
 id: add_sidecar
-title: Create a sidecar
+title: Publish your sidecar to the Marketplace
 sidebar_label: Create a sidecar
 ---
 
@@ -42,7 +42,9 @@ Create a `my-sidecar.json` file and fill it with the sidecar resource definition
 }
 ```
 
-> Note the `"type": "sidecar"` is required to specify that this resource is a sidecar.
+:::info
+Note the `"type": "sidecar"` is required to specify that this resource is a sidecar.
+:::
 
 In this example, the configuration defines a very simple sidecar resource by specifying only the docker image of the sidecar application and exposing it to the `5000` port of the container. To define a more specific configuration with `ConfigMaps`, `Probes` or `EnvironmentVariables` too just follow the `json-schema` below.
 
@@ -289,9 +291,14 @@ Congratulations! You just created your first sidecar and it is now available on 
 
 ### Update the sidecar resource via `miactl`
 
-You already published a sidecar and you want to update its configuration. In this section we will see how to update it from `miactl`.
+In the previous section we created our first sidecar resource. Now we want to update it in order to use the version `2.0` of the docker image.   
+As a first step, retrieve the sidecar definition from `miactl`:
 
-In the previous section we created a sidecar resource but we now want to update it to use the version `2.0` of the docker image. To do this, just update the `my-sidecar.json` by changing the relative line.
+```bash
+> miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-sidecar-update.json
+```
+
+Then update the `my-sidecar` docker image version changing the relative line in the `my-sidecar-update.json` file.
 
 ```js
 {
@@ -303,7 +310,7 @@ In the previous section we created a sidecar resource but we now want to update 
 }
 ```
 
-Now run the same `miactl` command, passing the updated `my-sidecar.json` file:
+And finally, run the same `miactl` command, passing the updated `my-sidecar.json` file:
 
 ```bash
 > miactl marketplace apply -f ./my-sidecar.json --company-id my-company-id
