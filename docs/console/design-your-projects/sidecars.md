@@ -44,6 +44,10 @@ From the creation form you can select multiple services to which the sidecar wil
 
 ![Create sidecar from docker image](img/create-sidecar.png)
 
+:::tip
+It is possible to define and publish sidecar resource definitions on the Marketplace. Find out more in the [Publish your sidecar to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md) guide.
+:::
+
 #### Delete sidecar
 
 You can remove a sidecar from a microservice by clicking on the Delete button inside the table row.  
