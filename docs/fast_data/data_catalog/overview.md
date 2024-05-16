@@ -21,13 +21,15 @@ location where it is possible to collect metadata concerning all the data assets
 :::tip
 The Mia-Platform Console Project can be configured to work as a Data Catalog if you configure a Data Catalog Agent in your project. Refer to the [documentation](/runtime_suite_templates/data-catalog/10_overview.md) to understand how to set it up.
 :::
-Within the project, it is possible to set up our Data Catalog Agent, which can be configured to connect to different sources,
+Within the project, it is possible to [set up](/runtime_suite_templates/data-catalog/20_configuration.md) our Data Catalog Agent, which can be configured to connect to different sources,
 such as:
 
 - Oracle Database
 - Postgres Database
 - MySQL Database
 - Microsoft SQL Server Database
+- Mia-Platform CRUD Service
+- Salesforce SObjects API
 
 This agent is in charge of extracting metadata regarding the several tables and data structures existing on configured
 sources (System of Record) and forward them to Mia-Platform Console for storing them in the dedicated project.
