@@ -60,9 +60,9 @@ the SVTG, so that strategies will generate the single view identifiers according
 
 ##### Using Runtime Management
 
-With Runtime Management, is possible to manage Initial Load operations without altering your configuration.
+With [Runtime Management](/fast_data/runtime_management/overview.mdx), is possible to manage Initial Load operations without altering your configuration.
 
-From the Control Plane frontend, you have to check first that the Domain Pipeline that will consume messages
+From the [Control Plane frontend](/fast_data/runtime_management/control_plane_frontend.mdx), you have to check first that the Domain Pipeline that will consume messages
 is in a running state. Then, in the Single View pipeline that will receives data streams
 from the projections involved in the Initial Load, both `Collected` and `Curated` stages must be in a __Paused State__.
 
@@ -78,7 +78,7 @@ stage back to the __Running State__ and let the underlying SVTG consuming the `p
 
 :::tip
 If the Initial Load involves projections having large datasets, is suggested to __only__ restart the base projection, i.e. the projection
-that is the root of your single view aggregation.
+that is the root of your single view aggregation (see [Glossary](/fast_data/concepts/glossary.mdx)). 
 
 Then, from your Kafka instance, you should reset the offsets of `pr-update` topics to the last messages sent by the Initial Load procedure.
 :::
@@ -145,7 +145,7 @@ of your Single View Creator (SVC) to speed up the aggregation process.
 
 ##### Using Runtime Management
 
-With Runtime Management, is possible to manage Full Refresh operations without altering your project configuration.
+With [Runtime Management](/fast_data/runtime_management/overview.mdx), is possible to manage Full Refresh operations without altering your project configuration.
 
 From the Control Plane frontend, you have to check in the Single View pipelines that the `Collected` stage is in a
 __Paused State__, while the `Curated Stage` must be in a __Running State__.
