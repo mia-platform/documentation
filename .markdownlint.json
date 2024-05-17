@@ -1,0 +1,8 @@
+{
+  "MD013": {
+    "line_length": -1
+  },
+  "MD033": {
+    "allowed_elements": ["nobr", "sup", "a", "p", "details", "summary"]
+  }
+}
