@@ -19,7 +19,7 @@ In order to create a new API Key, open the dedicated section in the *Design area
 * **Active**: check the flag to activate the API Key, uncheck to deactivate.
 * **Description**: optional description of the API Key.
 
-![API Key creation](img/how_to_create_API_Keys.gif)
+![API Key creation](img/api-keys/overview.png)
 
 ## How to use an API Key
 

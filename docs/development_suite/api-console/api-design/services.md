@@ -105,16 +105,10 @@ For a step-by-step guide on creating a microservice using a Docker image, refer 
 
 ## Manage Microservices
 
-For each microservice, Console allows to:
-
-* **Delete** the microservice: with the 'Delete' button present at the bottom of each microservice detail, you can delete it.
-
-:::warning
-Deleting a microservice, you are also deleting each associated endpoint.
-:::
+Microservices, and workloads in general, are the most important entity in your Project architecture as they hold the core business
+logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables, files, exposed ports and many others.
 
 * **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
-
 * **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
 
 The detail of each microservice is divided in the following sections:
@@ -451,42 +445,38 @@ Finally, you should create a new environment variable passing the following data
 
 Once saved all these changes, you should see the volume correctly mounted in the generated deployment file.
 
-### Advanced Configuration
+## Raw Manifest configuration
 
-In this section, you can write your advanced configurations by filling the files:
+If, for any reason, the Console lacks some functionality that you may need, you can switch to the Raw Manifest configuration mode and write your own kubernetes manifest files:
 
-* *File Deployment*: defines how the pod in Kubernetes is built (container, probes, ports).
-
-* *File Service*: defines how to contact your deployment.
-
+* *Deployment file*: defines how the pod in Kubernetes is built (container, probes, ports).
+* *Service file*: defines how to contact your deployment.
 * *Configmaps*: configuration files that are mounted on the containers.
 
-:::info
-You have to use Advanced Configuration if you want to write deployment files with more than one container.
-:::
+### Enabling raw manifest configuration mode
 
- By switching from standard to advanced configuration (and vice versa), Console allows you to customize your Kubernetes files:
+You can enable the **Raw Manifest mode** in the Advanced tab of your Microservice configuration page
 
-* **To switch from standard to advanced configuration**, you have to flag the option 'I want to write custom k8s files for this microservice'. Enabling advanced configuration, you can customize your kubernetes files.
-
-    ![service-to-advanced](img/service-to-advanced.png)
-
-    The advanced section allows you to configure service.yml and deployment.yml (*File Service* and *File Deployment*). You can also add configmaps by filling the *File path to create* and the *File name to create*.  By pushing the delete button, you can completely remove your advanced configurations.
+![service-to-advanced](img/services/service-to-advanced.png)
 
 :::warning
-By switching from standard to advanced configuration, you will lose every standard configuration set before.
+By switching from standard to raw manifest configuration mode, you will lose every standard configuration set before.
 :::
 
-* **To switch from advanced to standard configuration**, you have to de-flag the option 'I want to write custom k8s files for this microservice'. Coming back to standard configuration, you will no longer be able to customize your K8s files.
+### Enable standard managed mode
 
-    ![service-to-standard](img/service-to-standard.png)
+in the Advanced tab, you can also **switch back** from raw manifest mode to the standard Console-managed configuration.
 
-    If you configure your advanced service, deployment and configmaps files, when you come back to standard configuration, you can see your custom configuration files already filled with the environment variables. In other words, you can come back to standard configuration without loosing your advanced settings like your docker image, your variables and your configmaps.
+![service-to-standard](img/services/service-to-standard.png)
 
-:::info
-We suggest you to convert in a standard mode all your microservices in order to achieve a better governance of your microservices.
+:::tip
+You can convert to standard configuration without losing your advanced settings like your docker image, variables, ConfigMaps and other configurations.
 :::
+
+## Deleting a service
+
+To delete a microservice head to the Advanced tab and use the **Delete** button.
 
 :::warning
-By switching from advanced to standard configuration, you are loosing all the containers, except for the first one that you have inserted. The docker image, all the environment variables and all the configmaps are preserved. Other advanced configurations will be lost.
+By deleting a microservice, you are also deleting each associated depency (e.g. endpoints, decorators, etc.)
 :::
