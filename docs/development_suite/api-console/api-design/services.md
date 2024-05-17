@@ -106,7 +106,7 @@ For a step-by-step guide on creating a microservice using a Docker image, refer 
 ## Manage Microservices
 
 Microservices, and workloads in general, are the most important entity in your Project architecture as they hold the core business
-logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables, files, exposed ports and many other.
+logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables, files, exposed ports and many others.
 
 * **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
 * **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
@@ -475,7 +475,7 @@ You can convert to standard configuration without losing your advanced settings 
 
 ## Deleting a service
 
-To **Delete** a microservice head to the Advanced tab and use the **Delete** button.
+To delete a microservice head to the Advanced tab and use the **Delete** button.
 
 :::warning
 By deleting a microservice, you are also deleting each associated depency (e.g. endpoints, decorators, etc.)
