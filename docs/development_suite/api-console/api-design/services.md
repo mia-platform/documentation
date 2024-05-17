@@ -476,5 +476,5 @@ in the Advanced tab, you can also **switch back** from raw manifest mode to the 
 ![service-to-standard](img/services/service-to-standard.png)
 
 :::tip
-You can convert to standard configuration without loosing your advanced settings like your docker image, variables, ConfigMaps and other configurations.
+You can convert to standard configuration without losing your advanced settings like your docker image, variables, ConfigMaps and other configurations.
 :::
