@@ -105,7 +105,7 @@ For a step-by-step guide on creating a microservice using a Docker image, refer 
 
 ## Manage Microservices
 
-Microservices, and workloads in general, are the most important entity in your Project archicture as they hold the core business
+Microservices, and workloads in general, are the most important entity in your Project architecture as they hold the core business
 logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables, files, exposed ports and many other.
 
 * **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
