@@ -4,7 +4,7 @@ title: Projections Configuration
 sidebar_label: Projections
 ---
 
-In this document we guide you through the configuration of [Projections](/fast_data/the_basics.md#projection) directly in the Console.
+In this document we guide you through the configuration of [Projections](/fast_data/concepts/the_basics.md#projection) directly in the Console.
 
 ## Create a System of Record
 

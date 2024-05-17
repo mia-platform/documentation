@@ -6,7 +6,7 @@ sidebar_label: RTU restarting/rebalancing
 
 ## Problem
 
-The Real-Time Updater begins to restart or rebalance in an infinite loop; Usually this happens when you have a peak of input data from the ingestion topics, like in an [Initial Load case](/fast_data/data_loading.mdx#initial-load) for example.
+The Real-Time Updater begins to restart or rebalance in an infinite loop; Usually this happens when you have a peak of input data from the ingestion topics, like in an [Initial Load case](/fast_data/concepts/data_loading.mdx#initial-load) for example.
 
 ## Cause
 
@@ -37,7 +37,7 @@ Wait for the Real-Time Updaters to consume all the ingestion messages in queue (
 
 ### 3. Manually generate the Projection Changes to trigger all the Single Views' regeneration
 
-Here you need to perform a [full-refresh operation](/fast_data/data_loading.mdx#full-refresh) that calculates the identifiers for each Single View document, maps them in the [Projection Change](/fast_data/inputs_and_outputs.md#projection-change) format and inserts them into your MongoDB.
+Here you need to perform a [full-refresh operation](/fast_data/concepts/data_loading.mdx#full-refresh) that calculates the identifiers for each Single View document, maps them in the [Projection Change](/fast_data/concepts/inputs_and_outputs.md#projection-change) format and inserts them into your MongoDB.
 
 ### 4. Let the Single View Creators regenerate all the Single Views' documents
 

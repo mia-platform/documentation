@@ -18,8 +18,8 @@ For an overview of which are Real-Time Updater's features, it is possible to rea
 :::
 
 :::danger
-Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture).
-However, it supports all the others architecture where [Projection Record Updates](/fast_data/inputs_and_outputs.md#projection-update-message) messages are emitted by the service as
+Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/concepts/architecture.md#standard-architecture).
+However, it supports all the others architecture where [Projection Record Updates](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) messages are emitted by the service as
 triggers for the Fast Data downstream components. This means that, in order to use the Projection Storer, it will
 be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) plugin to actually trigger the generation of Single Views.
 :::
@@ -1457,9 +1457,9 @@ As explained earlier, Projection Storer service is in charge only of importing, 
 Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md),
 which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.mdx) can be found an explanation on how to configure it.
 
-In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
+In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/concepts/architecture.md#standard-architecture), which means
 the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since
-Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/architecture.md#event-driven-architecture).
+Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/concepts/architecture.md#event-driven-architecture).
 
 A detailed explanation of how the Single View Trigger Generator service should be introduced and how to migrate Fast Data
 from _standard_ to _event-driven_ architecture is provided [here](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator)

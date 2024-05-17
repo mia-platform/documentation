@@ -4,7 +4,7 @@ title: Strategies Configuration
 sidebar_label: Strategies
 ---
 
-In this document we guide you through the configuration of [Strategies](/fast_data/the_basics.md#strategies) directly in the Console.
+In this document we guide you through the configuration of [Strategies](/fast_data/concepts/the_basics.md#strategies) directly in the Console.
 
 ## Write your strategy
 

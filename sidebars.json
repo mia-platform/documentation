@@ -1024,20 +1024,31 @@
       ]
     },
     {
-      "id": "fast_data/glossary",
-      "type": "doc"
-    },
-    {
-      "id": "fast_data/inputs_and_outputs",
-      "type": "doc"
-    },
-    {
-      "id": "fast_data/the_basics",
-      "type": "doc"
-    },
-    {
-      "id": "fast_data/architecture",
-      "type": "doc"
+      "type": "category",
+      "label": "Concepts",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/concepts/glossary",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/inputs_and_outputs",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/the_basics",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/architecture",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/data_loading",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/realtime_updater",
@@ -1220,10 +1231,6 @@
       ],
       "label": "Connectors",
       "type": "category"
-    },
-    {
-      "id": "fast_data/data_loading",
-      "type": "doc"
     },
     {
       "collapsed": true,

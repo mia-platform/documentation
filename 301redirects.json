@@ -1710,5 +1710,45 @@
   "/docs/runtime_suite_applications/control-plane/changelog": {
     "destination": "/docs/runtime_suite_applications/fast-data-control-plane/changelog",
     "addedOn": "2024-05-09"
+  },
+  "/docs/fast_data/architecture.md": {
+    "destination": "/docs/fast_data/concepts/architecture.md",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/architecture": {
+    "destination": "/docs/fast_data/concepts/architecture",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/inputs_and_outputs.md": {
+    "destination": "/docs/fast_data/concepts/inputs_and_outputs.md",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/inputs_and_outputs": {
+    "destination": "/docs/fast_data/concepts/inputs_and_outputs",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/the_basics.md": {
+    "destination": "/docs/fast_data/concepts/the_basics.md",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/the_basics": {
+    "destination": "/docs/fast_data/concepts/the_basics",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/data_loading.mdx": {
+    "destination": "/docs/fast_data/concepts/data_loading.mdx",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/data_loading": {
+    "destination": "/docs/fast_data/concepts/data_loading",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/glossary.mdx": {
+    "destination": "/docs/fast_data/concepts/glossary.mdx",
+    "addedOn": "2024-05-17"
+  },
+  "/docs/fast_data/glossary": {
+    "destination": "/docs/fast_data/concepts/glossary",
+    "addedOn": "2024-05-17"
   }
 }

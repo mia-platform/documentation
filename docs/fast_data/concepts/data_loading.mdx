@@ -44,7 +44,7 @@ and stop the generation of Single Views.
 If you need to Bootstrap either Fast Data services or infrastructural component, you can check out [this section](/fast_data/faq/bootstrapping_fast_data.md#what-should-be-the-required-resources-to-perform-an-initial-load). 
 :::
 
-Before an Initial Load takes place, you have to prepare your [Fast Data architecture](/fast_data/architecture.md#putting-it-all-together) accordingly.
+Before an Initial Load takes place, you have to prepare your [Fast Data architecture](/fast_data/concepts/architecture.md#putting-it-all-together) accordingly.
 
 <Tabs groupId='fast-data-architecture'>
 
@@ -129,7 +129,7 @@ this is to ensure that projections are not changing while the refresh operation 
 which benefits also the memory usage of your database infrastructure.
 
 Below you can find the instructions to setup your runtime based on the
-[Fast Data architecture](/fast_data/architecture.md#putting-it-all-together) you've deployed.
+[Fast Data architecture](/fast_data/concepts/architecture.md#putting-it-all-together) you've deployed.
 
 <Tabs groupId='fast-data-architecture'>
 
@@ -174,7 +174,7 @@ Below, you can find some useful Node.js scripts that can be used a starting poin
 
 <TabItem value="trigger" label="Trigger Messages">
 
-This script will generate `trigger` messages [based on their specification](/fast_data/inputs_and_outputs.md#single-view-trigger-message).
+This script will generate `trigger` messages [based on their specification](/fast_data/concepts/inputs_and_outputs.md#single-view-trigger-message).
 
 First, create a blank project and install the following dependencies:
 
@@ -331,7 +331,7 @@ Finally, you can launch the script from your command line terminal.
 
 <TabItem value="pc" label="Projection Changes">
 
-This script will generate `projection changes` records [based on their specification](/fast_data/inputs_and_outputs.md#projection-changes).
+This script will generate `projection changes` records [based on their specification](/fast_data/concepts/inputs_and_outputs.md#projection-changes).
 
 First, create a blank project and install the following dependencies:
 

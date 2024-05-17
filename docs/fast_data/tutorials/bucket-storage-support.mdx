@@ -20,7 +20,7 @@ In particular, you will:
   - Expose an endpoint to reload the data from the bucket files into a dedicated re-ingestion topic.
 
 ## Prerequisites
-- Knowledge of [Fast Data architecture](/fast_data/architecture.md) and [Bucket Storage Support](/fast_data/bucket_storage_support/overview.md).
+- Knowledge of [Fast Data architecture](/fast_data/concepts/architecture.md) and [Bucket Storage Support](/fast_data/bucket_storage_support/overview.md).
 - An up-and-running Kafka cluster.
 - Either GCP or S3-like bucket connection.
 
@@ -108,7 +108,7 @@ Let's consider a basic case where the following registries are published to the 
 </details>
 
 :::caution
-Ingestion messages generally has a specific format, as defined in the [Inputs and Outputs section of the Fast Data](/fast_data/inputs_and_outputs.md#ingestion-message).
+Ingestion messages generally has a specific format, as defined in the [Inputs and Outputs section of the Fast Data](/fast_data/concepts/inputs_and_outputs.md#ingestion-message).
 
 For the sake of simplicity, in this tutorial the ingestion messages contains only the payload of a projection. It's worth noting that the _Ingestion Storer_ does not perform any validation on the input message, which can be of any JSON format.
 :::

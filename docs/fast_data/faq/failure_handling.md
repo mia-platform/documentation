@@ -11,7 +11,7 @@ This section aims to clarify the failure handling of Mia-Platform Fast Data. In 
 An issue on Kafka would cause a temporary misalignment between data on Single View and data on source database. However, this misalignment will be automatically recovered as long as Kafka downtime is less than the configured retention of Write Ahead Logging (WAL) configuration of the source databases (e.g.  Redo Logs for Oracle and MySQL, Write Ahead Logs for Postgres and SQL Server, etc...), which is typically weeks.
 
 :::caution
-In case Kafka downtime exceeds Write Ahead Logging (WAL) retention time, a new [initial load](/fast_data/data_loading.mdx#initial-load) will be needed to recover from the issue.
+In case Kafka downtime exceeds Write Ahead Logging (WAL) retention time, a new [initial load](/fast_data/concepts/data_loading.mdx#initial-load) will be needed to recover from the issue.
 :::
 
 In particular, the recover mechanism works as follow:
@@ -28,7 +28,7 @@ An issue on MongoDB would cause the temporary unavailability of APIs exposing th
 The API will be automatically recovered as soon as MongoDB returns online. The Single Views will be automatically realigned with the source data as long as MongoDB downtime is less than the configured retention time of Kafka topics (which is typically weeks). 
 
 :::caution
-In case MongoDB downtime exceeds topics retention time, a new [initial load](/fast_data/data_loading.mdx#initial-load) will be needed to recover from the issue.
+In case MongoDB downtime exceeds topics retention time, a new [initial load](/fast_data/concepts/data_loading.mdx#initial-load) will be needed to recover from the issue.
 :::
 
 In particular, the recover mechanism works as follow:

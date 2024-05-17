@@ -84,4 +84,4 @@ By accessing the service configurations you have the possibility to configure yo
 
 ### Linking Strategies (No Code)
 
-The Fast Data No Code experience ends with the possibility to link a [strategy](/fast_data/the_basics.md#strategies) to your single view. To do that, you need to go in the `strategies` section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.
+The Fast Data No Code experience ends with the possibility to link a [strategy](/fast_data/concepts/the_basics.md#strategies) to your single view. To do that, you need to go in the `strategies` section of your single view and choose Low Code Strategy source in this way you allow the console to automatically manage the strategy for you.

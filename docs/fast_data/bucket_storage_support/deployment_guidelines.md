@@ -87,7 +87,7 @@ To configure the CDC with multiple ingestion topics, the following steps are nee
 
 - Create new specific topics on Kafka dedicated to the Bucket initialization
 - Configure the Bucket Storage Support to read from the above created topics and then follow the [Simple deployment](#simple-deployment) procedure.
-- Execute an [Initial Load procedure](/fast_data/data_loading.mdx#initial-load) using the above created topics
+- Execute an [Initial Load procedure](/fast_data/concepts/data_loading.mdx#initial-load) using the above created topics
 - Set the Ingestion Storer consumer group's offsets to the moment just after the projections snapshot is generated
 - Reconfigure the Bucket Storage Support for standard operations as explained in the [Simple deployment](#simple-deployment) procedure.
 
@@ -98,7 +98,7 @@ To use Fast Data Projection as the Bucket Storage initialization input, the foll
 - Generate a Projections snapshot
 - Create new specific topics on Kafka dedicated to the Bucket initialization
 - Configure the Bucket Storage Support to read from the above created topics and then follow the [Simple deployment](#simple-deployment) procedure.
-- Simulate [Initial Load Procedure](/fast_data/data_loading.mdx#initial-load) starting from the Projections snapshot
+- Simulate [Initial Load Procedure](/fast_data/concepts/data_loading.mdx#initial-load) starting from the Projections snapshot
 - Set the Ingestion Storer consumer group's offsets to the moment just after the projections snapshot is generated
 - Reconfigure the Bucket Storage Support for standard operations as explained in the [Simple deployment](#simple-deployment) procedure.
 
@@ -106,17 +106,17 @@ To use Fast Data Projection as the Bucket Storage initialization input, the foll
 
 To initialize the Bucket Storage exploiting the CDC topics, the following steps are needed:
 
-- Stop the CDC and prepare the [Initial Load](/fast_data/data_loading.mdx#initial-load) operations
+- Stop the CDC and prepare the [Initial Load](/fast_data/concepts/data_loading.mdx#initial-load) operations
 - Configure the Bucket Storage Support as in the [Simple deployment](#simple-deployment) procedure.
-- Execute [Initial Load](/fast_data/data_loading.mdx#initial-load) Procedure
+- Execute [Initial Load](/fast_data/concepts/data_loading.mdx#initial-load) Procedure
 
 ## Raw Data in Mia-Platform Systems dump generation
 
 - Configure the Bucket Storage Support as in the [Simple deployment](#simple-deployment) procedure.
-- Load the System of Record database dump into Kafka to simulate [Initial Load](/fast_data/data_loading.mdx#initial-load) procedure
+- Load the System of Record database dump into Kafka to simulate [Initial Load](/fast_data/concepts/data_loading.mdx#initial-load) procedure
 
 ## Raw Data dump generation
 
 - Reconstruct a dump of the System of Record Database from the archived data
 - Configure the Bucket Storage Support as in the [Simple deployment](#simple-deployment) procedure.
-- Load the System of Record database dump into Kafka to simulate [Initial Load](/fast_data/data_loading.mdx#initial-load) procedure
+- Load the System of Record database dump into Kafka to simulate [Initial Load](/fast_data/concepts/data_loading.mdx#initial-load) procedure
