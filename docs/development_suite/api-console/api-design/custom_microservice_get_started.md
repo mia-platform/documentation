@@ -29,7 +29,7 @@ In the Console, follow these steps:
 Now you have a customization interface and you can optionally customize some configuration if you want.
 
 :::note
-By default are enabled the standard kubernetes configurations, that provide the default configurations yml, but you can use your custom files by enable *Advanced configuration*
+By default are enabled the standard kubernetes configurations, that provide the default configurations yml, but you can use your custom files by enable *Raw manifest configuration mode*
 :::
 
 In the *Environment variable configuration section* you can customize the environment variables.
