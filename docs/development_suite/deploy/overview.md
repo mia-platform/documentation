@@ -104,7 +104,7 @@ It is important to **save** the configuration at least one time after the featur
 :::
 
 :::info
-In order to avoid unnecessary deployments, services created using an **raw manifest configuration** should be manually modified by **removing all the old interpolated annotations**.
+In order to avoid unnecessary deployments, services created using a **raw manifest configuration** should be manually modified by **removing all the old interpolated annotations**.
 :::
 
 When deploying for the first time using this feature, some services might not be able to collect all the necessary information to show the effective deployment strategy adopted. However, service that do not show actual differences on the cluster will not be deployed.
