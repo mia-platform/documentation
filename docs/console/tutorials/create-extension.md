@@ -1,10 +1,10 @@
 ---
-id: extension-example-tutorial
+id: create-extension-tutorial
 title: Getting started
-sidebar_label: Getting started
+sidebar_label: Create your extension
 ---
 
-# Getting started: Extend your Console
+# Create your extension
 
 Following this tutorial you will learn how to add the Backoffice as an extension within a Project, in order to consult it directly from the Console.
 

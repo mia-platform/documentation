@@ -78,6 +78,10 @@
         {
           "id": "console/tutorials/protect-your-endpoints-with-policies",
           "type": "doc"
+        },
+        {
+          "id": "console/tutorials/create-extension-tutorial",
+          "type": "doc"
         }
       ]
     },
@@ -655,10 +659,6 @@
       "items": [
         {
           "id": "console/console-extensibility/extensibility-overview",
-          "type": "doc"
-        },
-        {
-          "id": "console/console-extensibility/extension-example-tutorial",
           "type": "doc"
         },
         {
