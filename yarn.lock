@@ -10158,9 +10158,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mermaid@npm:^10.9.0":
-  version: 10.9.0
-  resolution: "mermaid@npm:10.9.0"
+"mermaid@npm:^10.9.1":
+  version: 10.9.1
+  resolution: "mermaid@npm:10.9.1"
   dependencies:
     "@braintree/sanitize-url": "npm:^6.0.1"
     "@types/d3-scale": "npm:^4.0.3"
@@ -10182,7 +10182,7 @@ __metadata:
     ts-dedent: "npm:^2.2.0"
     uuid: "npm:^9.0.0"
     web-worker: "npm:^1.2.0"
-  checksum: 10/458c2dec312271c1e48b6dc8ba9f8a50209e3cb633fcce2ee5d9f75a02ca0a85de28bd95d1096ac2106aecd7c33637d4084d0aca02ba9d25b3495e60d76796a2
+  checksum: 10/13f90ec5995d994c5d6433173f973cc954294be8f90b9c05e32c43b5f0b68b83156de219c9a27396fad293e35ef9003f1dc347bc78543cd6975ca3742df7c261
   languageName: node
   linkType: hard
 
@@ -10214,7 +10214,7 @@ __metadata:
     klaw: "npm:^4.1.0"
     mdx-mermaid: "npm:^v1.3.2"
     medium-zoom: "npm:^1.0.8"
-    mermaid: "npm:^10.9.0"
+    mermaid: "npm:^10.9.1"
     prop-types: "npm:^15.8.1"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
