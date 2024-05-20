@@ -1,18 +1,13 @@
 ---
 id: contributing_overview
-title:  Contributing to the Marketplace
-sidebar_label:  Contributing to the Marketplace
+title:  Internal Company Marketplace
+sidebar_label:  Internal Company Marketplace
 ---
 
-As a Console user, you can contribute to the Marketplace by creating new items of any kind. You can choose to make them available on the internal Company, or request for them to be published.
+In this section, we dive into the process of creating a new item for your Internal Company Marketplace, analyzing the main differences between different types of items and providing some configuration examples.
 
-In this section, we dive into the process of creating a new item for the Marketplace, analyzing the main differences between different types of items and providing some configuration examples.
-
-:::info
-
-There are different methods to manage Marketplace items, described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
-
-:::
+As a Console user, you can access both Mia-Platform public Marketplace catalog and your Internal Company Marketplace. 
+While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, The Internal Company Marketplace is a Company-specific private space where to create and manage the items which are available only for your Company.
 
 ## Public and Internal Company Marketplace
 
@@ -20,11 +15,16 @@ The **Mia-Platform public Marketplace** is the place where every Company can fin
 
 However, a Company might want to have its own internal Marketplace, fulfilled also with items that must not be shared with everyone else outside the Company.
 
+:::info
+
+There are different methods to manage your Internal Company Marketplace items. They are described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
+
+:::
 
 
-## Creation of a Marketplace Item
+## Creation of an Internal Company Marketplace item
 
-Creation of a Marketplace item consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
+Creation of a Marketplace item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
 
 You have to ways to upload the item file:
 
@@ -34,14 +34,6 @@ You have to ways to upload the item file:
 Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
-### Deciding whether to create a private or public Marketplace item
-
-The choice between a private and public Marketplace involves benefits on both sides that should be carefully analyzed before making a decision.
-
-Creating an item within the private Marketplace is undoubtedly the better choice when you want to make something highly specialized available for the specific use cases of your Company. If the item cannot be generalized and would have little value for other Companies, then a private Marketplace is the way to go. Additionally, in this case, creating items within the private Marketplace allows for complete ownership in managing them, resulting in a faster maintenance process.
-
-On the other hand, publishing your items in the private Marketplace leads to a loss of corporate visibility that you would otherwise have by making your item publicly available in the Marketplace. It also means missing out on the opportunity to receive reviews from the Mia-Platform team and potential external contributions that can help your product grow and improve more rapidly.
-
 :::info
 
 To create Marketplace items you need to be a *Company Owner* or a *Project Administrator* at Company level.
@@ -49,13 +41,13 @@ To create Marketplace items you need to be a *Company Owner* or a *Project Admin
 Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
-If you want to contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+If you want to contribute to the **Mia-Platform public Marketplace** by making your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
 
 :::
 
 :::info
 
-To learn how to migrate an item from the public to private Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
+To learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
 
 :::
 
