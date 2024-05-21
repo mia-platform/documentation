@@ -1710,5 +1710,9 @@
   "/docs/runtime_suite_applications/control-plane/changelog": {
     "destination": "/docs/runtime_suite_applications/fast-data-control-plane/changelog",
     "addedOn": "2024-05-09"
+  },
+  "/docs/console/console-extensibility/extension-example-tutorial": {
+    "destination": "/docs/console/tutorials/create-extension-tutorial",
+    "addedOn": "2024-05-20"
   }
 }
