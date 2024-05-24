@@ -15,24 +15,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.0.4 2024-03-28
+
+### Fixed
+
+fixed error on form creation
+fixed error on form update
+
 ## 2.0.3 2024-02-12
 
-## Fixed
+### Fixed
 
-- fixed error handler in style assets loader
-- fixed error message when updating/saving a form schema in the builder
+- Fixed error message when updating/saving a form schema in the builder
+- Fixed error handler in style assets loader
 
 ## 2.0.2 2024-01-15
 
-## Fixed
+### Fixed
 
-- improved behavior of error notification in builder when saving or updating form
+- Improved behavior of error notification in builder when saving or updating form
 
 ## 2.0.1 2023-12-15
 
 ### Fixed
 
-- if the application is already at `/visualizer/:id`, the page is reloaded after a form submition
+- If the application is already at `/visualizer/:id`, the page is reloaded after a form submition
 
 ## 2.0.0 2023-11-21
 
@@ -41,14 +48,15 @@ The fix that requires setting the properties specified in the form builder even 
 
 ### Changed
 
-- Make form modal messages (availability and expiration) translatable
+- Supports translations for availability and expiration error messages
 - Update the FormDatePicker in order to avoid past date selection
+- Supports recap via email
 
 ### Added
 
 - Make the expiration message customizable for each form
-- Support form start date
 - User can set the email address of the recap email sent when a user fill a form
+- Support form start date
 
 ### Fixed
 
