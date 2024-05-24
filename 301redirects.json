@@ -1750,5 +1750,9 @@
   "/docs/fast_data/glossary": {
     "destination": "/docs/fast_data/concepts/glossary",
     "addedOn": "2024-05-17"
+  },
+  "/docs/console/console-extensibility/extension-example-tutorial": {
+    "destination": "/docs/console/tutorials/create-extension-tutorial",
+    "addedOn": "2024-05-20"
   }
 }

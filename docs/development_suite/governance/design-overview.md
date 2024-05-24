@@ -16,6 +16,7 @@ In the Design Overview you can aggregate Resources from all Projects across the 
 ### Homepage
 
 The Homepage tab contains the list of resource views. They can be of two types:
+
 * *Default Views* - A predefined set of read-only views configured at Company level. All Company users can access these views, modifications (edit/delete) are not allowed, default filters and thresholds are configured into the Design Overview backend service;
 * *Public Views* - A set of user-defined editable views configured at Company level. All Company users can access these views, modifications (edit/delete) are allowed only for Project Administrator and/or Company Owner roles.
 
@@ -79,6 +80,7 @@ An example is in the following picture.
 The Microservices Overview provides the user with a graphical cross-project overview of all the Microservices.
 
 The Microservices Overview collects data on the project configuration and creates a table presenting information on all the Microservices, where each row shows:
+
 * *Name*: Name of the Microservice.
 * *Project*: Project of the Microservice.
 * *Type*: Type of the Microservice.
@@ -89,7 +91,7 @@ The Microservices Overview collects data on the project configuration and create
 * *Memory Request*: Memory Request of the Microservice.
 * *Memory Limit*: Memory Limit of the Microservice.
 * *Log Parser*: Log Parser implementation of the Microservice.
-* *Advanced Configuration*: Advanced Configuration flag of the Microservice.
+* *Advanced Configuration*: Whether the Microservice is using raw manifest configuration.
 
 An example is in the following picture.
 

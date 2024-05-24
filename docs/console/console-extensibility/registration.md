@@ -29,7 +29,7 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 **Response**
 - `extensionId`: the extension identifies needed to manage the registered extension
 
-See the example on the [getting started guide](/console/console-extensibility/tutorial.md#1-register-backoffice-extension)
+See the example on the [getting started guide](/console/tutorials/create-extension.md#1-register-backoffice-extension)
 
 ### How to restrict the extension usage?
 
@@ -69,7 +69,7 @@ Array of registered extensions metadata:
 - `name`: extension name
 - `description`: extension description
 
-See the example on the [getting started guide](/console/console-extensibility/tutorial.md#2-check-that-the-new-extension-is-registered)
+See the example on the [getting started guide](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)
 
 ## Edit registered Extension
 
@@ -93,7 +93,7 @@ The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to 
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/console-extensibility/tutorial.md#edit-the-registered-extension)
+See the example on the [getting started guide](/console/tutorials/create-extension.md#edit-the-registered-extension)
 
 ## Remove registered Extension
 
@@ -112,4 +112,4 @@ Deleting an extension automatically deactivates it from all contexts where it wa
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/console-extensibility/tutorial.md#6-remove-definitely-the-backoffice-extension)
+See the example on the [getting started guide](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)
