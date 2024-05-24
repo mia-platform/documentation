@@ -4,7 +4,7 @@ title: Single Views Configuration
 sidebar_label: Single Views
 ---
 
-In this document we guide you through the configuration of [Single Views](/fast_data/the_basics.md#single-view-sv) directly in the Console.
+In this document we guide you through the configuration of [Single Views](/fast_data/concepts/the_basics.md#single-view-sv) directly in the Console.
 
 ## Create the Single View
 
@@ -26,7 +26,7 @@ The type fields supported are the same of the collection you can create in the [
 
 ## Create the Single View Creator service
 
-You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change) event occurs.
+You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-change) event occurs.
 
 A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Record through Projection Changes.
 
@@ -182,7 +182,7 @@ This scenario brings to a problem: The Single View Creator will have to re-gener
 
 To prevent this problem, a new infrastructure has been designed:
 
-![SV-Patch infrastructure](../img/fastdata-architecture-standard-svpatch.svg)
+![SV-Patch infrastructure](../concepts/img/fastdata-architecture-standard-svpatch.svg)
 
 The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
 This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.

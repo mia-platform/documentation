@@ -17,7 +17,7 @@ and allows users to monitor and govern the execution of the Fast Data system.
 In particular, this Fast Data suite component offers functionalities to pause and resume the 
 consumption of data streams along Fast Data pipelines with just a few clicks.  
 
-Therefore, processes such as Fast Data Initial Load management and Full Refresh actions can be 
+Therefore, processes such as Fast Data [Initial Load management and Full Refresh](/fast_data/concepts/data_loading.mdx) actions can be 
 easily managed from a user-friendly web interface supported by robust backend functionalities.
 
 ### Benefits
@@ -78,7 +78,7 @@ For more details on the Control Plane service configuration, please head over th
 ## Concepts
 
 Here are listed some concepts that are used on the Runtime Management solution. 
-This concepts are in addition the ones already provided by [Fast Data Section](/fast_data/glossary.mdx). 
+This concepts are in addition the ones already provided by [Fast Data Section](/fast_data/concepts/glossary.mdx). 
 
 ### Workload 
 
@@ -134,7 +134,7 @@ An _Execution Step_ represent a particular operation performed over a data flow.
   This step is managed by the Single View Trigger Generator (SVTG).
 
   :::caution Standard Architecture
-  For runtimes implementing the [Standard Architecture](/fast_data/architecture.md#standard-architecture), i.e. having a Real-Time Updater that performs 
+  For runtimes implementing the [Standard Architecture](/fast_data/concepts/architecture.md#standard-architecture), i.e. having a Real-Time Updater that performs 
   the execution of [strategies](/fast_data/configuration/strategies.md), the Reducing step cannot be controlled since no SVTG is employed.  
   :::
 

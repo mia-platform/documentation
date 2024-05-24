@@ -53,14 +53,14 @@ This value can be set at the topic level with the parameter `min.insync.replicas
 
 ### What should be the required resources to perform an Initial Load?
 
-The **Initial Load** is a manual operation made at runtime to initialize the projection's records with the most recent copy of the whole dataset from the System of Record linked to it.
+The [Initial Load](/fast_data/concepts/data_loading.mdx#initial-load) is a manual operation made at runtime to initialize the projection's records with the most recent copy of the whole dataset from the System of Record linked to it.
 
 This operation is carried out either the first time the system is boot up, when no records have ever been ingested, or whenever a schema change is deemed relevant enough to require reloading all the table content: for example, a new field is added to the schema of a table and it should be added retroactively to records that have already been ingested but that might not receive further updates in the future.
 
 The component that will perform receive the record, for example from a Change Data Capture (CDC), is the [Real-Time Updater (RTU)](/fast_data/realtime_updater.md).
 
 :::danger Before executing the Initial Load
-The RTU can be enabled to [execute strategies](/fast_data/the_basics.md#strategies), custom functions that from an ingestion record performs a set of queries to extract one or more projection change records that will be used to generate a Single View.
+The RTU can be enabled to [execute strategies](/fast_data/concepts/the_basics.md#strategies), custom functions that from an ingestion record performs a set of queries to extract one or more projection change records that will be used to generate a Single View.
 
 Since an high number of ingestion messages will be handled by the RTU, remember **to disable strategy execution** during the Initial Load.
 
@@ -77,7 +77,7 @@ The **Single View Refresh** is an operation performed to update all the projecti
 
 This action will start for each projection changes record updated the aggregation pipeline of the [**Single-View Creator**. (**SVC**)](/fast_data/single_view_creator.md).
 
-On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), this means that the database will perform operations on:
+On a [Standard Architecture](/fast_data/concepts/architecture.md#standard-architecture), this means that the database will perform operations on:
 
 * the projection changes collections, because the **SVC** will update the projection changes record updating/removing the `changes` record; 
 * the projections that are used by the single view aggregation mechanism; 
@@ -89,7 +89,7 @@ The time generation is **strictly dependent** on the number of projections that 
 On a single view having three projections and custom functions, a refresh operation involving 16k projection changes records required _5 minutes_, which is approximately a rate of `1k single view/minute`, using up until the 80% of a single MongoDB core.
 :::
 
-On an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture), projection changes collection is removed in favour of trigger topics, so Fast Data will use less database resources.
+On an [Event-Driven Architecture](/fast_data/concepts/architecture.md#event-driven-architecture), projection changes collection is removed in favour of trigger topics, so Fast Data will use less database resources.
 
 
 ### Why is the strategy execution or the single view generation slow?
@@ -104,7 +104,7 @@ If the execution of a strategy or the aggregation of a single view takes too muc
 
 ### How should I set the resource limits of the Real-Time Updater (RTU)?
 
-On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), the RTU performs strategies to generate projection changes: based on the complexity of this strategy and the number of projections involved, this could require a variable range of resources to use.
+On a [Standard Architecture](/fast_data/concepts/architecture.md#standard-architecture), the RTU performs strategies to generate projection changes: based on the complexity of this strategy and the number of projections involved, this could require a variable range of resources to use.
 
 Also, keep in mind that you may need to have a number of replicas greater than 1 as the number of projections and the corresponding number of partitions of their topics increases over time.
 
@@ -138,11 +138,11 @@ This issue can be seen only with a huge amount of data: before releasing your se
 
 When a strategy retrieves a huge number of projection identifiers, it may happen that the ingestion rate of the RTU decreases: this may increase the lag of your application, which may be critical in case there are some real-time boundaries.
 
-In this case, consider using an [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture) and move the strategies to the [Single View Trigger Generator (SVTG)](/fast_data/single_view_trigger_generator.md): in this way, the Real Time Updater just stores projections on MongoDB to produce a pr-update message, that will be processed by the SVTG.
+In this case, consider using an [Event-Driven Architecture](/fast_data/concepts/architecture.md#event-driven-architecture) and move the strategies to the [Single View Trigger Generator (SVTG)](/fast_data/single_view_trigger_generator.md): in this way, the Real Time Updater just stores projections on MongoDB to produce a pr-update message, that will be processed by the SVTG.
 
 ### How should I set the resource limits of the Single View Creator (SVC)?
 
-On a [Standard Architecture](/fast_data/architecture.md#standard-architecture), the SVC aggregates single view into records by reading projection changes documents and querying the MongoDB database multiple times: based on the complexity of this strategy and the number of projections involved, this could require a variable range of replicas and resources to use.
+On a [Standard Architecture](/fast_data/concepts/architecture.md#standard-architecture), the SVC aggregates single view into records by reading projection changes documents and querying the MongoDB database multiple times: based on the complexity of this strategy and the number of projections involved, this could require a variable range of replicas and resources to use.
 
 :::tip Use case
 

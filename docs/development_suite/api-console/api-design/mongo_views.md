@@ -39,7 +39,7 @@ When you create a new view, the console will set a default pipeline which return
 
 :::note
 The whole aggregation pipeline is going to be performed on-demand on each request the view received.   
-If you expect to perform complex aggregation with many collections involved, or several amounts of documents involved in each request, you may consider using a [**Fast Data Single View**](/fast_data/the_basics.md#single-view-sv) instead. In fact, a MongoDB View perform aggregation on reading, the Fast Data Single View perform the aggregation on writing of the source collections (called [**Projections**](/fast_data/the_basics.md#projection)) and it's so a better choice for data-intensive aggregation.
+If you expect to perform complex aggregation with many collections involved, or several amounts of documents involved in each request, you may consider using a [**Fast Data Single View**](/fast_data/concepts/the_basics.md#single-view-sv) instead. In fact, a MongoDB View perform aggregation on reading, the Fast Data Single View perform the aggregation on writing of the source collections (called [**Projections**](/fast_data/concepts/the_basics.md#projection)) and it's so a better choice for data-intensive aggregation.
 :::
 
 :::caution

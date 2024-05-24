@@ -6,7 +6,7 @@ sidebar_label: Real-Time Updater
 
 Real-Time Updater is the service in charge of keeping up-to-date the projections with the data sent by the connected system.   
 
-Optionally, the service can generate [Projection Update messages](/fast_data/inputs_and_outputs.md#projection-update-message) so that your services can consume these events and react when projections are updated. 
+Optionally, the service can generate [Projection Update messages](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) so that your services can consume these events and react when projections are updated. 
 
 For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/realtime_updater.md).  
 
@@ -139,7 +139,7 @@ The Kafka message format based on the _IBM InfoSphere Data Replication for DB2_ 
 
 ### Prevent projections to be overwritten
 
-During a rebalancing or a massive initial load with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
+During a rebalancing or a massive [initial load](/fast_data/concepts/data_loading.mdx#initial-load) with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
 To prevent that old messages that have already updated the projection, overwrite the projection again, the environment variable `FORCE_CHECK_ON_OFFSET` is set by default to `true`.
 
@@ -194,7 +194,7 @@ The information saved are:
 
 ## Projection Changes Collection
 
-[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) (**PC**) are records generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-record-sor), after the execution of a strategies. 
+[Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-changes) (**PC**) are records generated from each Real-Time Updater service attached to a [System of Record](/fast_data/concepts/the_basics.md#system-of-record-sor), after the execution of a strategies. 
 
 This records will be consumed by the [Single View Creator](/fast_data/single_view_creator.md), to start the aggregation process to aggregate a [Single View](/fast_data/configuration/single_views.md).
 

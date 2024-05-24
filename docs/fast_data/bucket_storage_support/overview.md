@@ -16,7 +16,7 @@ The main feature the Bucket Storage Support presents is the ability to **send pr
 In the context of Fast Data, Bucket Storage Support can be seamlessly integrated attaching it to the same projections ingestion topics,
 which are the ones populated by a Change Data Capture (CDC) system and read by the Real-Time Updater.
 In this manner, besides supporting the near-real time data flow, Fast Data messages can be archived for future usage,
-either for analytics or reloading them into the system to recreate [Projections](/fast_data/the_basics.md#projection) and [Single Views](/fast_data/the_basics.md#single-view-sv)
+either for analytics or reloading them into the system to recreate [Projections](/fast_data/concepts/the_basics.md#projection) and [Single Views](/fast_data/concepts/the_basics.md#single-view-sv)
 that might have been deleted due to business requirements. More details can be found in the dedicated [page](/fast_data/bucket_storage_support/integration.md).
 
 ## Main Components

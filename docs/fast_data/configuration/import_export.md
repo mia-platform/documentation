@@ -18,7 +18,7 @@ The following resources can be imported / exported:
 - Systems of Record (with all or some of their Projections)
 
 :::caution
-Some Fast Data resources, such as **Projections**, can be imported as a reference __only in Projects that are using the [Single View Trigger Generator architecture](/fast_data/architecture.md#event-driven-architecture)__. Please check your services before importing the resources.
+Some Fast Data resources, such as **Projections**, can be imported as a reference __only in Projects that are using the [Single View Trigger Generator architecture](/fast_data/concepts/architecture.md#event-driven-architecture)__. Please check your services before importing the resources.
 :::
 
 The feature can be accessed by clicking on the `Import / Export` button, placed on the top right bar of the Systems of Record and Single Views pages. After clicking on the button, it will be possible to open the `Import` or `Export` modals.

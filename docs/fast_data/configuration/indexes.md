@@ -10,7 +10,7 @@ Collection indexes are crucial for the Fast Data to work at it's maximum efficie
 
 ## Projections
 
-[Projections](/fast_data/the_basics.md#projection) are used by almost all of the services of the Fast Data. The following indexes must be configured for every projection so DB interaction is as quick as possible.
+[Projections](/fast_data/concepts/the_basics.md#projection) are used by almost all of the services of the Fast Data. The following indexes must be configured for every projection so DB interaction is as quick as possible.
 
 - **Primary key index**: Compound unique index of all the fields marked as primary key. This index will be used in the strategies execution. When using index autogeneration this index will be called `mia_primary_key_index`.
 - **Ingestion indexes**: Same as the "Primary key fields index" but with the addition of two fields, `__internal__counter` and `__internal__counterType`. These two fields are added to the projection's record in the database when the record is created by the [Real-Time Updater](/fast_data/realtime_updater.md) so there's no need to declare them as normal fields. Make sure you declare **two indexes**, one with both fields and the other one with just the `__internal__counterType` field. As the name indicates, this indexes will be used to update the Projection's record during the ingestion process. When using index autogeneration these indexes will be called `mia_internal_counter_index` and `mia_internal_counter_type_index`.
@@ -30,7 +30,7 @@ An automation of the indexes based on the primary key fields is available in the
 
 ## Projection Changes
 
-[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-record-sor). Depending on the configuration, these collections might be automatically created or they can be [custom made](/fast_data/configuration/realtime-updater/realtime-updater.md#projection_changes_collection).
+[Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-changes) are collections generated from each Real-Time Updater service attached to a [System of Record](/fast_data/concepts/the_basics.md#system-of-record-sor). Depending on the configuration, these collections might be automatically created or they can be [custom made](/fast_data/configuration/realtime-updater/realtime-updater.md#projection_changes_collection).
 
 To make the generation of Projection Changes as quick as possible the following indexes must be configured.
 
@@ -57,4 +57,4 @@ Sometimes, errors in the aggregation/sv-patch process may occur. These errors ar
 
 On a further note, Single Views Errors provide you with a very useful set of data to monitor your Fast Data application, that's why you may want to collect such information to keep everything under control. 
 
-For example, you may want to have a count widget on Grafana to see how many Single View Error of type `NO_SV_GENERATED` there are. For that you're probably going to configure the [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) to do a query similar to `{"errorType": "NO_SV_GENERATED"}` (for more info on all the fields available check the [Inputs Outputs - Single Views Errors](/fast_data/inputs_and_outputs.md#single-view-error) section). If this is your case remember to also create indexes for all your queries to help MongoDB process all of your requests and not slow down your Fast Data application.
+For example, you may want to have a count widget on Grafana to see how many Single View Error of type `NO_SV_GENERATED` there are. For that you're probably going to configure the [MongoDB Query Exporter](https://github.com/raffis/mongodb-query-exporter) to do a query similar to `{"errorType": "NO_SV_GENERATED"}` (for more info on all the fields available check the [Inputs Outputs - Single Views Errors](/fast_data/concepts/inputs_and_outputs.md#single-view-error) section). If this is your case remember to also create indexes for all your queries to help MongoDB process all of your requests and not slow down your Fast Data application.

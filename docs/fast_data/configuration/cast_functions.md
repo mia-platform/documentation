@@ -4,7 +4,7 @@ title: Cast Functions Configuration
 sidebar_label: Cast Functions
 ---
 
-In this document we guide you through the configuration of [Cast Functions](/fast_data/the_basics.md#cast-function) directly in the Console.
+In this document we guide you through the configuration of [Cast Functions](/fast_data/concepts/the_basics.md#cast-function) directly in the Console.
 
 ## Default Cast Functions
 

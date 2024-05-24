@@ -89,10 +89,10 @@ If you want to enable any mechanism that uses Kafka in the Single View Creator, 
 
 ## Consuming from Kafka
 
-As you can see, the Single View Creator lets you configure what channel is used as input through the `PROJECTIONS_CHANGES_SOURCE` environment variable. The default channel is MongoDB for the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) but this might not always be what you need. The service gives you the alternative to listen from Apache Kafka instead, this can be useful in two different cases:
+As you can see, the Single View Creator lets you configure what channel is used as input through the `PROJECTIONS_CHANGES_SOURCE` environment variable. The default channel is MongoDB for the [Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-changes) but this might not always be what you need. The service gives you the alternative to listen from Apache Kafka instead, this can be useful in two different cases:
 
-- You want to use the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to produce [`sv-trigger`](/fast_data/inputs_and_outputs.md#single-view-trigger-message) messages.
-- You want to configure the [Single View Patch](/fast_data/configuration/single_view_creator/patch.md) cycle which reads [`pr-update`](/fast_data/inputs_and_outputs.md#projection-update-message) messsages from the Real-Time Updater.
+- You want to use the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to produce [`sv-trigger`](/fast_data/concepts/inputs_and_outputs.md#single-view-trigger-message) messages.
+- You want to configure the [Single View Patch](/fast_data/configuration/single_view_creator/patch.md) cycle which reads [`pr-update`](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) messsages from the Real-Time Updater.
 
 In both of the cases you have to configure all the required environment variables related to kafka. First you need to configure the `KAFKA_BROKERS` and `KAFKA_GROUP_ID`, then you probably need to configure your authentication credentials with `KAFKA_SASL_MECHANISM`, `KAFKA_SASL_USERNAME` and `KAFKA_SASL_PASSWORD`.
 
@@ -119,7 +119,7 @@ Since service version `3.9.0`, you can include additional certification authorit
 
 ## Error handling
 
-When generating a Single View, every error that occurs is saved in MongoDB following the [Single View Error](/fast_data/inputs_and_outputs.md#single-view-error) format which satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console.
+When generating a Single View, every error that occurs is saved in MongoDB following the [Single View Error](/fast_data/concepts/inputs_and_outputs.md#single-view-error) format which satisfies the schema requirements of the CRUD service, so that you can handle those errors using the Console.
 It is highly recommended to use a TTL index to enable the automatic deletion of older messages, which can be done directly using the Console, as explained [here](/development_suite/api-console/api-design/crud_advanced.md#indexes).
 
 Errors are categorized with a code that you will find in the `errorType` property of the Single View Error record.
@@ -146,7 +146,7 @@ The Single View Retry mechanism lets you configure a Kafka topic as a [DLQ](http
 Once a message is sent to that topic it will be consumed by all the Single View Creators with the Single View Retry enabled and connected to that topic, then an attempt to aggregate the failed Single View record will be performed.
 
 First thing you need to do to enable the mechanism is to define the `KAFKA_SV_RETRY_TOPIC` alongside with all the Kafka related variables to make Kafka work in the service. 
-The messages sent to that topic have the [Single View Trigger](/fast_data/inputs_and_outputs.md#single-view-trigger-message) format, that's why, if you are already listening to Single View Trigger messages on Kafka as the main input of the service you can re-use the same exact topic.
+The messages sent to that topic have the [Single View Trigger](/fast_data/concepts/inputs_and_outputs.md#single-view-trigger-message) format, that's why, if you are already listening to Single View Trigger messages on Kafka as the main input of the service you can re-use the same exact topic.
 
 To customize the system we also offer you the environment variables `KAFKA_SV_RETRY_MAX_ATTEMPTS` and `KAFKA_SV_RETRY_DELAY`. Check them out on the [Environment Variables](#environment-variables) table.
 
