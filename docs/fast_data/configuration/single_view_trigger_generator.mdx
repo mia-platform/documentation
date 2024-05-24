@@ -94,10 +94,11 @@ The Kafka Projection Updates config map contains the `kafkaProjectionUpdates.jso
 Remember to copy/paste the mount path into the `KAFKA_PROJECTION_UPDATES_FOLDER` environment variable so the service can read the file.
 If you need more info on how to configure the `kafkaProjectionUpdates.json` file, please refer to the [Kafka Projection Updates](/fast_data/configuration/config_maps/kafka_projection_updates.mdx) page.
 
-:::warning
-If you attach the service to a Single View, the _Kafka Projection Updates_ config map can be modified to support *only* automatic strategies.
+:::caution
+If you attach the service to a Single View, the _Kafka Projection Updates_ config map will be read-only.
 
-If you need to use manual strategies for one or more projections, please detach the service and configure the config maps from the _Microservices_ page.
+If you need to use manual strategies for one or more projections, you have to create an additional config map
+having the manual strategies, that will be linked to the service by the usage of the `MANUAL_STRATEGIES_FOLDER` environment variable.
 :::
 
 ### Event Store Config
