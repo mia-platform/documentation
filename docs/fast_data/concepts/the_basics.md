@@ -13,6 +13,7 @@ A System of Record is the data source providing the raw information to a Fast Da
 ### Change Data Capture (CDC)
 
 A Change Data Capture is a system that reacts to change of data at some source (in our case the System of Record) by emitting an event that notifies the listeners about the changes that just occurred.
+
 Most Database Management Systems have various CDCs coming out of the box, with a simple user interface that makes it possible to start capturing the data changes and sending them to some destination, usually a message broker like Kafka.
 
 ## Projection
@@ -27,6 +28,7 @@ Projections are stored on MongoDB, which means the original data can be transfor
 ### Cast Function
 
 Cast Functions, as the name suggests, are JavaScript functions used to transform the data originally coming from the System of Record before it is saved in the Projection.
+
 This is particularly useful when the SoRs use different format. A common case is with date formats: using Cast Functions, you can guarantee all your Projections will have their dates saved in a coherent and consistent way, making querying them an easier and reliable task.
 
 The Console provides basic Cast Functions for the most common use cases, together with the possibility to add custom ones written in plain JavaScript.
@@ -34,8 +36,11 @@ The Console provides basic Cast Functions for the most common use cases, togethe
 ## Single View (SV)
 
 A Single View is a document that aggregates data from many Projections, offering business-centric information that is always available and updated in near real-time.
+
 The Single View is updated every time a Projection whose data is used in the Single View changes. This means that aggregation happens as soon as the data changes, instead of when querying data (for this kind of behavior, you should consider using Mongo Views).
 
 ### Strategies
 
-Strategies are JavaScript functions that basically retrieve the unique identifiers of the Single View that needs to be updated or created as consequence of the changes on the Projection. The output of the strategies will be used by the Real-Time Updater to record a change in the proper projection-changes collection for each identifier. Later on, the Single View Creator will receive the identifier object to find the correct Single View to update.
+Strategies are JavaScript functions that basically retrieve the unique identifiers of the Single View that needs to be updated or created as consequence of the changes on the Projection.
+
+The output of the strategies will be computed either by the Real-Time Updater or the Single View Trigger Generator, which will be sent to the Single View Creator (either through) receive the identifier object to find the correct Single View to update.
