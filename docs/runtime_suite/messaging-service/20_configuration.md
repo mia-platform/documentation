@@ -92,6 +92,12 @@ channel (this applies also to the fields marked as **required** in the list abov
 
 ## Environment variables
 
+:::info
+
+**v1.7.0**. Since version `1.7.0` the `DEFAULT_LOCALE` environment variable is available, to configure the default locale to use with [`toLocale` custom helper][message-interpolation].
+
+:::
+
 The Messaging Service accepts the following environment variables.
 
 - **CRUD_SERVICE_NAME (required)**: name of the CRUD Service.
@@ -129,6 +135,8 @@ The Messaging Service accepts the following environment variables.
 - **KALEYRA_API_KEY**: Kaleyra API key for the outbound calling service.
 
 - **KALEYRA_SID**: Kaleyra SID for the outbound calling service.
+
+- **DEFAULT_LOCALE**: a [BCP 47 language tag][bcp-47-language-tag] used as default locale by [`toLocale` custom helper][message-interpolation] in message templates.
 
 ## Service configuration
 
@@ -237,6 +245,7 @@ It follows an example of a valid configuration file.
 }
 ```
 
+[bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 [e164]: https://www.twilio.com/docs/glossary/what-e164
 [files-service]: ../files-service/usage
 [kalyera-manage-numbers]: https://eu.kaleyra.io/numbers/manage
