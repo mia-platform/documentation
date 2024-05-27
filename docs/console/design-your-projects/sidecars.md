@@ -13,7 +13,8 @@ To better understand the difference between main and sidecar containers, check o
 
 ## Managing your Sidecars
 
-From the Design area, you can manage all sidecars configurations for your microservices from the dedicated **Sidecars** section. You can also configure them directly from the **Sidecar detail page** inside the microservice the sidecar is attached to.
+From the Design area, you can manage all sidecars configurations for your microservices from the dedicated **Sidecars** section.
+You can also configure them directly from the **Sidecar detail page** inside the microservice the sidecar is attached to.
 
 ### Sidecars overview section
 
@@ -31,24 +32,54 @@ By clicking on the Edit button inside the table, you can update the sidecar reso
 
 ![Edit sidecar drawer](img/edit-sidecar-drawer.png)
 
-If you want to view the sidecar configuration in detail, use the **View sidecar configuration** button or click on the the sidecar name in the table row to go to its [detail page](/development_suite/api-console/api-design/microservice-containers.md#sidecar-detail) inside the microservice it is attached to.
+If you want to view the sidecar configuration in detail, use the **View sidecar configuration** button or click on the the sidecar
+name in the table row to go to its [detail page](/development_suite/api-console/api-design/microservice-containers.md#sidecar-detail) inside the microservice it is attached to.
 
 :::info
-Some sidecar configurations cannot be directly modified in this page. This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specific Console sections.
+Some sidecar configurations cannot be directly modified in this page.
+This is the case of [Special sidecars](/development_suite/api-console/api-design/microservice-containers.md#special-sidecars) that are managed by specific Console sections.
 :::
 
 #### Create sidecar
 
-You can add a new sidecar to your services by choosing an already existing sidecar configuration from the Marketplace or by specifying a docker image. To do this, select your best fitting solution from the **Create sidecar** dropdown.  
+You can add a new sidecar to your services by choosing an already existing sidecar configuration from the Marketplace or by specifying a docker image.
+To do this, select your best fitting solution from the **Create sidecar** dropdown.  
 From the creation form you can select multiple services to which the sidecar will be added.
+
+:::tip
+If you want to create a new instance of a sidecar you are already using in some microservice you can always [clone it](#clone-a-sidecar)!
+:::
 
 ![Create sidecar from docker image](img/create-sidecar.png)
 
 :::tip
-It is possible to define and publish sidecar resource definitions on the Marketplace. Find out more in the [Publish your sidecar to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md) guide.
+It is possible to define and publish sidecar resource definitions on the Marketplace.
+Find out more in the [Publish your sidecar to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md) guide.
 :::
 
-#### Delete sidecar
+#### Clone a sidecar
+
+Sometimes you may need to **replicate a sidecar configuration** for new microservices you have created,
+this is the scenario where you may need to **clone an existing sidecar** configuration into one or more existing microservices.
+
+To do so you can use the **_Add to another microservice_** microservice button.
+
+![Clone sidecar button](img/clone-sidecar-button.png)
+
+In the dialog, then select the microservices you wish to **copy the configuration from** and **one or more** microservices where the configuration
+should be **cloned to**.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}>
+
+![Clone sidecar button](img/clone-sidecar-modal.png)
+
+  </div>
+</div>
+
+By doing so a **new copy** of the sidecar will be created that will feature all the configurations you have previously set up.
+
+#### Delete a sidecar
 
 You can remove a sidecar from a microservice by clicking on the Delete button inside the table row.  
 

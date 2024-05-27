@@ -46,12 +46,12 @@ Your template has to let an easy reading of the environment variables. Furthermo
 
 To work correctly, each template, or the service library on which depends, needs some specific environment variables:
 
-* `USERID_HEADER_KEY`
-* `USER_PROPERTIES_HEADER_KEY`
-* `GROUPS_HEADER_KEY`
-* `CLIENTTYPE_HEADER_KEY`
-* `BACKOFFICE_HEADER_KEY`
-* `MICROSERVICE_GATEWAY_SERVICE_NAME`
+- `USERID_HEADER_KEY`
+- `USER_PROPERTIES_HEADER_KEY`
+- `GROUPS_HEADER_KEY`
+- `CLIENTTYPE_HEADER_KEY`
+- `BACKOFFICE_HEADER_KEY`
+- `MICROSERVICE_GATEWAY_SERVICE_NAME`
 
 Check out the [Node.js service template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/255233ce35ec7748bb4120057dc36fcd2bb3f983/Dockerfile#L29-L30) to see an example.
 
@@ -63,9 +63,10 @@ The item template must be hosted on a remote **Git repository**.
 
 The service should ensure a Continuous Integration (CI) to update the service image any time his code is modified, through the `pipelines` field you can set up the CI file by yourself or use instead Mia-Platform pipeline templates.  
 
-To use the templates provided by Mia-Platform, you can contact your referent to configure the pipeline templates within your Console installation. 
+To use the templates provided by Mia-Platform, you can contact your referent to configure the pipeline templates within your Console installation.
 
 When creating your microservice, the Console will also generate a CI file (e.g. `.gitlab-ci.yml`) alongside the service files.
+
 - The service must be well documented and the field `documentation` helps in it.
 
 In fact, during service creation, it is possible to access the service documentation by clicking on `View documentation` button, which will appear only if the `documentation` field has been filled correctly.  
@@ -136,9 +137,8 @@ Here is some useful advice to strengthen your items:
 
 ## Tips & Tricks
 
- - **Where to host the zip with the code**: If you code your template on GitHub you can access the zip file using the URL https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz
- - **`.mia-platform/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
-
+- **Where to host the zip with the code**: If you code your template on GitHub you can access the zip file using the URL `https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz`
+- **`.mia-template/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
 
 <details><summary>Example of a Start From Code Template</summary>
 
@@ -215,4 +215,5 @@ Here is some useful advice to strengthen your items:
     }
 }
 ```
+
 </details>
