@@ -46,7 +46,7 @@ In order to implement the flow depicted above, you can perform the following ste
      | AUTHORIZATION_HEADERS_TO_PROXY | <header of the client's request containing the token> (e.g. `Authorization`) |
      | USER_PROPERTIES_TO_PROXY       | miauserproperties                                                            |
 
-2. Create the [`JWT Token Validator`](/runtime_suite/jwt-token-validator/10_overview_and_usage.md) plugin from Marketplace, following the same steps described. The Environment variables of the Plugin are already set up correctly, the only thing that needs to be edited is the ConfigMap `issuer-config.json`. Following is an example with Azure Active Directory as Identity Provider:
+2. Create the [`JWT Token Validator`](/runtime_suite/jwt-token-validator/10_overview_and_usage.md) plugin from Marketplace. The Environment variables of the Plugin are already set up correctly; the only thing that needs to be edited is the ConfigMap `issuer-config.json`. Following is an example with Azure Active Directory as Identity Provider:
 
 ```json
 {
@@ -60,3 +60,8 @@ In order to implement the flow depicted above, you can perform the following ste
   ]
 }
 ```
+
+3. Secure the endpoint
+   - Select the endpoint you want to secure in the `Endpoints` section of your project
+   - In the Endpoint Settings section, click on the `Security` tab
+   - Click on the checkbox next to `Authentication required` - this action will force the `API Gateway` to call the `Authorization Service` created before to check that the user that is calling the endpoint is using a valid authentication method. In particular, for our example, the Authorization Service will ask to the `JWT Token Validator` to check the JWT Token that the client is using in the `Authorization` header.
