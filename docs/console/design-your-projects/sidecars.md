@@ -59,7 +59,7 @@ Find out more in the [Publish your sidecar to the Marketplace](/marketplace/add_
 
 #### Clone a sidecar
 
-Sometimes you may need to **replicate a sidecar configuration** for new microservices you have created,
+Sometimes you may need to **replicate a sidecar configuration** for new microservices you have created:
 this is the scenario where you may need to **clone an existing sidecar** configuration into one or more existing microservices.
 
 To do so you can use the **_Add to another microservice_** microservice button.
@@ -77,7 +77,7 @@ should be **cloned to**.
   </div>
 </div>
 
-By doing so a **new copy** of the sidecar will be created that will feature all the configurations you have previously set up.
+By doing so a **new copy** of the sidecar with all the configurations you previously set up will be created.
 
 #### Delete a sidecar
 
