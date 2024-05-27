@@ -15,12 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.0.5 2024-05-23
+
+- fixed bug on expired form behavior
+
 ## 2.0.4 2024-03-28
 
 ### Fixed
 
-fixed error on form creation
-fixed error on form update
+- fixed error on form creation
+- fixed error on form update
 
 ## 2.0.3 2024-02-12
 
