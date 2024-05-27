@@ -12,8 +12,19 @@ Collection indexes are crucial for the Fast Data to work at it's maximum efficie
 
 [Projections](/fast_data/concepts/the_basics.md#projection) are used by almost all of the services of the Fast Data. The following indexes must be configured for every projection so DB interaction is as quick as possible.
 
-- **Primary key index**: Compound unique index of all the fields marked as primary key. This index will be used in the strategies execution. When using index autogeneration this index will be called `mia_primary_key_index`.
-- **Ingestion indexes**: Same as the "Primary key fields index" but with the addition of two fields, `__internal__counter` and `__internal__counterType`. These two fields are added to the projection's record in the database when the record is created by the [Real-Time Updater](/fast_data/realtime_updater.md) so there's no need to declare them as normal fields. Make sure you declare **two indexes**, one with both fields and the other one with just the `__internal__counterType` field. As the name indicates, this indexes will be used to update the Projection's record during the ingestion process. When using index autogeneration these indexes will be called `mia_internal_counter_index` and `mia_internal_counter_type_index`.
+- **Primary key index**: Compound unique index of all the fields marked as primary key. This index will be used in the strategies execution and by services such as Real-Time Updater (RTU) or Projection Storer (PS), to optimize read and write operations to the collection of the projection. 
+
+  When using index autogeneration this index will be called `mia_primary_key_index`.
+- **Ingestion indexes**: Same as the "Primary key fields index" but with the addition of two fields, `__internal__counter` and `__internal__counterType`. These two fields are added to the projection's record in the database when the record is created by the [Real-Time Updater](/fast_data/realtime_updater.md) so there's no need to declare them as normal fields. 
+  
+  If you're linking a projection to a RTU, make sure to declare **two indexes**, one with both fields and the other one with just the `__internal__counterType` field.
+  
+  As the name indicates, this fields will be used by the RTU to keep the Projection's record updated during the ingestion process. When using index autogeneration, these indexes will be called `mia_internal_counter_index` and `mia_internal_counter_type_index`.
+
+  :::tip
+  If you're linking a projection to a Projection Storer, this indexes are __not needed__ since the service doesn't need both `__internal__counterType`
+  and `__internal__counter` fields to keep the most recent version of each record.
+  :::
 - **Aggregation index**: Again, same as the "Primary key fields index" but adding the field `__STATE__`. As the name suggests, it will be used to query the documents for the aggregation. When using index autogeneration this index will be called `mia_state_index`.
 
 :::caution
