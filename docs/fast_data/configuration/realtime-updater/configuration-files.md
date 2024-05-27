@@ -42,7 +42,7 @@ It is important to note that whenever the ingestion message is not a *delete* op
 
 These are the only fields needed to configure correctly the message adapter. For more details and further explanations, you can read the [documentation page about the supported JSON format](https://www.ibm.com/docs/en/idr/11.4.0?topic=kcop-write-json-format-records).
 
-To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#ibm-infosphere-data-replication-for-db2) .
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/concepts/inputs_and_outputs.md#ibm-infosphere-data-replication-for-db2) .
 
 :::caution
 This Kafka message format does not support a Primary Key update. For additional information, please check the [Primary Key update](#primary-key-update) section.
@@ -54,7 +54,7 @@ This Kafka Message Adapter has been created to have a format supported by [Oracl
 
 In this Golden Gate adapter, we expect that the message includes data as explained in the [JSON Formatter page of the official documentation](https://docs.oracle.com/goldengate/bd1221/gg-bd/GADBD/GUID-F0FA2781-0802-4530-B1F0-5E102B982EC0.htm#GADBD501).
 
-To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#oracle-goldengate) .
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/concepts/inputs_and_outputs.md#oracle-goldengate) .
 
 ### Debezium
 
@@ -71,7 +71,7 @@ Debezium has also some "special" events which are handled in their own way:
 - **Tombstone**: Tombstone events are messages sent after a normal delete message and are only useful for kafka itself and its topic compression policies. For this reason the adapter will ignore and skip them.
 - **Truncate**: Truncate events are messages sent when an entire table is emptied. Unfortunately we **do not support** this kind of messages at the moment and they will be skipped.
 
-To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#debezium) .
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/concepts/inputs_and_outputs.md#debezium) .
 
 ### Custom
 
@@ -91,7 +91,7 @@ To make this work, you need to create a `Custom Kafka Message Adapter` inside _R
 If the `value` is null, it is a delete operation.
 The `keyObject` **cannot** be null.
 
-To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/inputs_and_outputs.md#custom) .
+To see the message's structure specification and some examples go to the [Inputs and Outputs page](/fast_data/concepts/inputs_and_outputs.md#custom) .
 
 :::note
 To support a Primary Key update, the `before`, `after` and `operationPosition` fields should be included in the adapter. (Hint: if not present, a simple `operationPosition` value might be the Kafka message timestamp).
@@ -257,7 +257,7 @@ where:
 - `MY_PROJECTION` is the name of the collection whose topic has received the message from the CDC.
 - `MY_SINGLE_VIEW` is the single view that have to be updated
 - `MY_STRATEGY` is the strategy to be used to get the identifier of the Single View to update. It could be the name of a file or, in case an automatic strategy, the string `__automatic__`.
-- `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](/fast_data/inputs_and_outputs.md#topic-for-svc-trigger))
+- `MY_TOPIC` is the topic where the projection change need to be sent (for further information about the naming convention adopted for this topic, [click here](/fast_data/concepts/inputs_and_outputs.md#topic-for-svc-trigger))
 
 <details>
 <summary>Example</summary>

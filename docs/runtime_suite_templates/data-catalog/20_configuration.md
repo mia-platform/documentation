@@ -47,10 +47,6 @@ Each push on the default branch or any tag starting with `v` will create a new d
 
 Your repository contains a `README.md` file which also contains a lists of operations needed to include drivers for `oracle`, `mysql`, `mssql` databases.
 
-### PostgreSQL: add support
-
-No further actions needed.
-
 ### Oracle Database: add support
 
 **In the template repository**, to enable Oracle Database support actions are needed:
@@ -182,6 +178,51 @@ The configuration has the following main sections:
 }
 ```
 
+### Secret support
+
+In k8s environments secrets can be injected in a running workload as an environment variable,
+as a standalone file or a INI key in a standalone file. Such secrets may be base64 encoded.
+
+_Data Catalog Agent_ configuration supports referencing such secrets inline in selected fields of the
+JSON configuration file. When the field supports secrets you may write a plain string or objects.
+
+In case of a string the secret is considered `plain` and written in the config file.
+In case of an object with `env` guard like:
+
+```json
+{
+  "type": "env",
+  "key": "MY_SECRET_ENV_VAR"
+}
+```
+
+the agent will use the content of the env var `MY_SECRET_ENV_VAR`. An extra `encoding` field equal
+to `base64` can be used to specify a pre-read decoded to use.
+
+In case of an object with `file` guard like:
+
+```json
+{
+  "type": "file",
+  "path": "/path/to/secret"
+}
+```
+
+it will use the content of the file on such `path`. If the file is formatted as an `ini` file a `key` may
+be specified
+
+```json
+{
+  "type": "file",
+  "path": "/path/to/secret",
+  "key": "CONNECTION_STRING"
+}
+```
+
+An extra `encoding` field equal to `base64` can be used to specify a pre-read decoded to use.
+
+Secretable fields are marked in the following sections.
+
 ### Connections
 
 A list of entries to connect to datasources via supported integration methods. The general recipe is:
@@ -202,10 +243,13 @@ A list of entries to connect to datasources via supported integration methods. T
 Available integration methods are:
 
 - [`odbc`](https://en.wikipedia.org/wiki/Open_Database_Connectivity)
+- `http`
 
 Such drivers come often in the form of a [`dynamic shared object`](https://en.wikipedia.org/wiki/Shared_library) and must be embedded with the binary and available at runtime (see the template repository README file).
 
-#### PostgreSQL
+#### ODBC
+
+##### PostgreSQL
 
 To configure a **PostgreSQL** connection use:
 
@@ -227,9 +271,29 @@ To configure a **PostgreSQL** connection use:
 }
 ```
 
+or use an inline ODBC connection string
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {  // 👈 pick a name
+      "type": "odbc",
+      "configuration": {
+        "vendor": "postgres",
+        "params": "DRIVER=postgres;SERVER=0.0.0.0;PORT=5432;DATABASE=db;UID=user;PWD=pwd;"
+      }
+    }
+  }
+}
+```
+
 Other keys are `host` and `port` which for a **PostgreSQL** connection are defaulted to `0.0.0.0` and `5432`. Any other configuration parameter can be appended using the key `flags` which must be a semicolon separated string.
 
-#### Oracle
+###### Secretable fields
+
+`uid`, `pwd` or `params` support secrets
+
+##### Oracle
 
 To configure an **Oracle** connection use:
 
@@ -244,6 +308,28 @@ To configure an **Oracle** connection use:
           "uid": "test_user",
           "pwd": "password",
           "dbq": "<SERVICE_NAME>"
+        }
+      }
+    }
+  }
+}
+```
+
+or use an inline ODBC connection string and also set the TNS_ADMIN environment variable
+to access a `tnsnames.ora` file where the DBQ name can be resolved
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {  // 👈 pick a name
+      "type": "odbc",
+      "configuration": {
+        "vendor": "oracle",
+        "params": {
+          "uid": "test_user",
+          "pwd": "password",
+          //                                              👇 this must be defined in your tnsnames.ora file
+          "dbq": "DRIVER=oracle;UID=user;PWD=p4ssw0rd;DBQ=DATABASE_NAME"
         }
       }
     }
@@ -294,7 +380,11 @@ Also the environment variable must be set:
 
 1. The `TNS_ADMIN` environment variable must be set **explicitly** unless defaulted to `/home/agent/oracle/admin`
 
-#### MS SQL server
+###### Secretable fields
+
+`uid`, `pwd` or `params` support secrets
+
+##### MS SQL server
 
 To configure a **MS SQL Server** connection use:
 
@@ -316,9 +406,29 @@ To configure a **MS SQL Server** connection use:
 }
 ```
 
+or use an inline ODBC connection string:
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {
+      "type": "odbc",
+      "configuration": {
+        "vendor": "mssql",
+        "params": "Driver=mssql;Server=0.0.0.0,1433;Database=db;Uid=user;Pwd=p4ssw0rd;TrustServerCertificate=yes;"
+      }
+    }
+  }
+}
+```
+
 Other keys are `host` and `port` which for a **PostgreSQL** connection are defaulted to `0.0.0.0` and `1433`. Any [extra connection property](https://learn.microsoft.com/en-us/sql/connect/odbc/dsn-connection-string-attribute?view=sql-server-ver16) can be added via the key `flags` which will be added, as a string, to the connection, as a semicolon separated string. It is quite useful, for local development purposes to add the flag `"TrustServerCertificate=yes"`.
 
-#### MySQL
+###### Secretable fields
+
+`uid`, `pwd` or `params` support secrets
+
+##### MySQL
 
 To configure a **MySQL** connection use:
 
@@ -340,7 +450,147 @@ To configure a **MySQL** connection use:
 }
 ```
 
+or use an inline ODBC connection string:
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {
+      "type": "odbc",
+      "configuration": {
+        "vendor": "mysql",
+        "params": "DRIVER=mysql;SERVER=0.0.0.0;PORT=3306;DATABASE=db;UID=user;PWD=p4ssw0rd;"
+      }
+    }
+  }
+}
+```
+
 Other keys are `host` and `port` which for a **PostgreSQL** connection are defaulted to `0.0.0.0` and `3306`. Any [extra connection property](https://dev.mysql.com/doc/connector-odbc/en/connector-odbc-configuration-connection-parameters.html) can be added via the key `flags` which will be added, as a string, to the connection, as a semicolon separated string.
+
+###### Secretable fields
+
+`uid`, `pwd` or `params` support secrets
+
+#### HTTP
+
+##### Mia CRUD Service
+
+To configure a **Mia CRUD Service** connection use:
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {
+      "type": "http",
+      "configuration": {
+        "vendor": "mia-crud-service",
+        "params": {
+          "baseUrl": "http://mia-crud-service:3000",
+          "endpoint": "/-/schemas",
+          "headers": {
+            "accept": "application/x-ndjson"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+The driver basically calls the `/-/schemas` URL to extract all the data models from MongoDB. Since the response is, of course, a JSON Schema, some information in the `ddl` object may be missing, like the `size` of the properties.
+
+##### Salesforce SObjects
+
+To configure a **Salesforce SObjects** connection you can use two authentication methods:
+
+* [jwt-bearer](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5):
+  ```json
+  {
+    "connections": {
+      "<CONNECTION_NAME>": {
+        "type": "http",
+        "configuration": {
+          "vendor": "salesforce-sobjects",
+          "params": {
+            "authenticationFlow": "jwt-bearer",
+            "baseUrl": "https://my-subdomain.my.salesforce.com",
+            "clientId": "XXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "privateKey": "/path/to/private-key/key.pem",
+            "username": "my-user@email.com",
+            "apiVersion": "59.0"
+          }
+        }
+      }
+    }
+  }
+  ```
+* [username-password](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_username_password_flow.htm&type=5): (**deprecated**)
+  ```json
+  {
+    "connections": {
+      "<CONNECTION_NAME>": {
+        "type": "http",
+        "configuration": {
+          "vendor": "salesforce-sobjects",
+          "params": {
+            "authenticationFlow": "username-password",
+            "baseUrl": "https://my-subdomain.my.salesforce.com",
+            "apiVersion": "31.0",
+            "clientId": "XXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "clientSecret": "XXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "username": "my-user@email.com",
+            "password": "XXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "securityToken": "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+          }
+        }
+      }
+    }
+  }
+  ```
+
+> The range of supported `apiVersion` goes from `31.0` to `59.0` 
+
+The driver uses the [Salesforce SObjects API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm) to retrieve the schema from all the `SObject`s you have. Make sure the user you configure has the right permissions to retrieve all the `SObject`s you need.
+
+If not all the `SObjects` are retrieved you'll have to follow these steps to expose them through the API:
+
+**For custom `SObjects`**
+
+- Go to your Salesforce dashboard
+- Access Setup
+- Access the "Permission Sets" section
+- Create a new Permission Set (e.g. API for Custom Objects) with license type "Salesforce API Integration"
+- Click on "Object Settings" inside the new Permission Set, then, for each custom SObject, update the visibility in the desired way (e.g. View All, Modify All)
+- Assign the new Permission Set to the user with "Salesforce Integration" user license and "Salesforce API Only System Integrations" profile
+
+**For standard `SObjects`**
+
+- Go to your Salesforce dashboard
+- Access Setup
+- Access the "Permission Sets" section
+- Create a Permission Set (e.g. API for Standard Objects) without specifying a license type
+- Click on "Object Settings" inside the new Permission Set, then, for each standard SObject, update the visibility in the desired way (e.g. View All, Modify All)
+- Assign the new Permission Set to the user with "Salesforce Integration" user license and "Salesforce API Only System Integrations" profile
+
+###### JWT Authorization
+
+To be able to connect to the Salesforce API using the JWT Bearer flow you will need to follow the next steps.
+
+1. Follow the steps one and two from this guide: https://help.salesforce.com/s/articleView?id=sf.connected_app_create_api_integration.htm&type=5
+2. Then you'll need to upload your self-signed certificate in PEM format (step 5 from the guide). If you don't have a certificate follow these instructions:
+   1. Generate a rsa key with the command `openssl genrsa -out tls/key.pem`
+   2. Then create a request to sign the certificate with this command `openssl req -new -key tls/key.pem -out tls/sf_connect.csr`
+   3. Sign the request with you private key with `openssl x509 -signkey tls/key.pem -in tls/sf_connect.csr -req -out tls/sf_connect.crt`
+   4. Upload the generated certificate (`tls/sf_connect.crt`)
+3. Now you need to enable the OAuth2 mechanism following the 10th step from the guide, creating a connected app and all.
+4. Finally you need to enable the JWT access with the step 14 of the guide.
+   
+Now you should have everything you need to fill out the configuration parameters. If you are using a testing instance you'll need to set the param `loginUrl` to `https://test.salesforce.com/`.
+
+###### Secretable fields
+
+`clientId`, `username`, `clientSecret`, `password`, `securityToken` or `privateKey` support secrets
 
 ### Targets
 
@@ -418,7 +668,7 @@ credentials are used to [obtain](https://mia-platform.eu/blog/client-credentials
     "credentials": {
       "clientId": "1234",
       "clientKeyId": "123",
-      "privateKey": "tls/key.pem" // 👈 either a file system path or an rsa private key inlined with `\n`
+      "privateKey": {"type": "file", "path": "tls/key.pem"} // 👈 either a file system path or an rsa private key inlined with `\n`
     }
   }
 }
@@ -428,3 +678,7 @@ on `type` `mia-console` the auth endpoint can be customized using `oauthTokenEnd
 
 1. customizing the revision using the field `revision`
 2. or customizing the overall url using the field `dataCatalogEndpoint`
+
+###### Secretable fields
+
+`clientId`, `clientKeyId`, or `privateKey` support secrets

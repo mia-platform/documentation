@@ -27,9 +27,9 @@ To do that, in the console, you will:
 ## Prerequisites
 
 Before starting this tutorial, you need to be familiar with the concepts of:
-* basic knowledge about [Fast Data architecture](/fast_data/architecture.md), in particular:
-  * [Standard Architecture](/fast_data/architecture.md#standard-architecture)
-  * [Event-Driven Architecture](/fast_data/architecture.md#event-driven-architecture)
+* basic knowledge about [Fast Data architecture](/fast_data/concepts/architecture.md), in particular:
+  * [Standard Architecture](/fast_data/concepts/architecture.md#standard-architecture)
+  * [Event-Driven Architecture](/fast_data/concepts/architecture.md#event-driven-architecture)
 * familiarity with the concepts of: 
   * [Projections](/fast_data/configuration/projections.md)
   * [Single View](/fast_data/configuration/single_views.md)
@@ -118,8 +118,8 @@ Once the service has been attached, you can click on the right arrow of the micr
 
 In this section, you can setup the following configurations:
 
-* [Kafka Consumer](/fast_data/configuration/projection_storer.md#consumer), which will be used to read [ingestion-messages](/fast_data/inputs_and_outputs.md#ingestion-message),
-* [Kafka Producer](/fast_data/configuration/projection_storer.md#producer), which will be used to generate [pr-update messages](/fast_data/inputs_and_outputs.md#projection-update-message),
+* [Kafka Consumer](/fast_data/configuration/projection_storer.md#consumer), which will be used to read [ingestion-messages](/fast_data/concepts/inputs_and_outputs.md#ingestion-message),
+* [Kafka Producer](/fast_data/configuration/projection_storer.md#producer), which will be used to generate [pr-update messages](/fast_data/concepts/inputs_and_outputs.md#projection-update-message),
 * [Storage Configuration](/fast_data/configuration/projection_storer.md#storage), which will contain the MongoDB connection where the database is located.
 
 </p>
@@ -226,9 +226,9 @@ Here's the specification for both `registry` and `orders` projections.
 
 At the bottom of the same page, we can also see the Kafka topics. There are two types of topics:
 
-* [Ingestion topic](/fast_data/inputs_and_outputs.md#ingestion-message):  will be used by the SoR microservice
+* [Ingestion topic](/fast_data/concepts/inputs_and_outputs.md#ingestion-message):  will be used by the SoR microservice
 to receive the data from the Source Systems so that the Projections will be updated on the target Database;
-* [PR Update topic](/fast_data/inputs_and_outputs.md#projection-update-message): will be used to notify when a projection has been updated.
+* [PR Update topic](/fast_data/concepts/inputs_and_outputs.md#projection-update-message): will be used to notify when a projection has been updated.
 
 
 ![Projection Topics](img/05b-page-overview-projection-kafka.png)
@@ -306,7 +306,7 @@ Now it's time to [save](/console/handbooks/project-usage.md#save-changes) and [d
 
 After that, we can try to send a message to the _Kafka Ingestion Topics_ created in the previous steps, and we can see the data stored in the Projection using the APIs available in the [API Documentations](/console/project-configuration/documentation-portal.md).
 
-Since we have chosen `Debezium` as the format for our _SoR_, the ingestion message that we will send has to comply to [its specifications](/fast_data/inputs_and_outputs.md#debezium).
+Since we have chosen `Debezium` as the format for our _SoR_, the ingestion message that we will send has to comply to [its specifications](/fast_data/concepts/inputs_and_outputs.md#debezium).
 
 <details>
 <summary>Ingestion Example</summary>
@@ -480,7 +480,7 @@ Now we need to configure all the parameters of the microservice, here is a set o
 - `SINGLE_VIEWS_COLLECTION`: should be the name of the single view which your single view creator is responsible for (we suggest `order-history`, the same name as the Single View we are going to create);
 - `SINGLE_VIEWS_PORTFOLIO_ORIGIN`: a representative name used in debugging and metrics to identify the source of any Single View update request (we suggest to use the name of the System of Record, `delivery`);
 - `TYPE`: identifies the type of projection changes that need to be read. It should be the same as the Single View name you want to update (also here we are going to call it `order-history`);
-- `SINGLE_VIEWS_ERRORS_COLLECTION`: a collection where the service will write errors that may happen during aggregation. (we suggest `order-history-errors`, [here](/fast_data/inputs_and_outputs.md#single-view-error) you can read about record format that will be stored)
+- `SINGLE_VIEWS_ERRORS_COLLECTION`: a collection where the service will write errors that may happen during aggregation. (we suggest `order-history-errors`, [here](/fast_data/concepts/inputs_and_outputs.md#single-view-error) you can read about record format that will be stored)
 
 Also, based on the connection channel where the microservice reads the projection changes, additional environment variables needs to be set:
 
@@ -499,7 +499,7 @@ Also, based on the connection channel where the microservice reads the projectio
 * kafka connection variables such as:
   * `KAFKA_BROKERS`: a comma-separated list of your Kafka brokers;
   * `KAFKA_SASL_USERNAME`, `KAFKA_SASL_PASSWORD` and `KAFKA_SASL_MECHANISM` if authentication needs to be performed
-  * `KAFKA_PROJECTION_CHANGES_TOPICS`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`;
+  * `KAFKA_PROJECTION_CHANGES_TOPICS`: name of the topic that will receive projection changes in the shape of [trigger messages](/fast_data/concepts/inputs_and_outputs.md#single-view-trigger-message), you can choose `demo.development.delivery.order-history.trigger`;
   * `KAFKA_GROUP_ID`: name of the consumer group that will be used to subscribe to and read messages from the topic from the `KAFKA_PROJECTION_CHANGES_TOPIC` variable (we can choose `demo.development.delivery.order-history.single-view-creator`).
 
 </TabItem>
@@ -856,14 +856,14 @@ Strategies can have different definitions, based on the architecture employed du
 
   - `PROJECTION_CHANGES_ENABLED`: `true`
 
-  then you are using a [Standard Architecture](/fast_data/architecture.md#standard-architecture) where strategies are executed within the _Real Time Updater_;
+  then you are using a [Standard Architecture](/fast_data/concepts/architecture.md#standard-architecture) where strategies are executed within the _Real Time Updater_;
 
 * if you have defined a _RTU_ having the following environment variables:
 
   - `KAFKA_PROJECTION_UPDATES_ENABLED`: `true`
   - `PROJECTION_CHANGES_ENABLED`: `false`
 
-  or you have configured a _PS_, then you are using a [Event Driven Architecture](/fast_data/architecture.md#event-driven-architecture), where strategies are executed by an additional microservice, the **Single View Trigger Generator** (**SVTG**).
+  or you have configured a _PS_, then you are using a [Event Driven Architecture](/fast_data/concepts/architecture.md#event-driven-architecture), where strategies are executed by an additional microservice, the **Single View Trigger Generator** (**SVTG**).
 
 We will see, for each architecture, what are the steps needed to enable strategies.
 
@@ -968,7 +968,7 @@ Going into the Single View Creator Section of the single view `order-history`, y
 
 There, we can pick a name, in our case will be `single-view-trigger-generator-delivery`, and also choose the name of the **Event Store Config**: is a configuration that will contain the connection options of the microservice, in our case will be named `delivery`.
 
-Once the microservice has been, you can go to **ConfigMaps & Secrets** of the microservice and edit the configuration accordingly to the producer configuration, which can either be Kafka or MongoDB. For that, you can use as references [the examples provided by its dedicated section](/fast_data/configuration/single_view_trigger_generator.md#examples) and fill it with your connection parameters.  
+Once the microservice has been, you can go to **ConfigMaps & Secrets** of the microservice and edit the configuration accordingly to the producer configuration, which can either be Kafka or MongoDB. For that, you can use as references [the examples provided by its dedicated section](/fast_data/configuration/single_view_trigger_generator.mdx#examples) and fill it with your connection parameters.  
 
 Also, you have to configure the required property `EVENT_STORE_TARGET`, which represents the target where the service will write the result of the strategies, which will be:
 
@@ -1061,7 +1061,7 @@ Now we have the Projections, the Single View and each configuration ready to be 
 
 ![Expose Single View](img/32-expose-single-view.png)
 
-Now we can [commit](/console/handbooks/project-usage.md#save-changes) our changes, [deploy](/console/handbooks/project-usage.md#deploy-changes), and try our [Fast Data](/fast_data/architecture.md) sending data from the Kafka Topic, and see the result in the Single View using the endpoints.
+Now we can [commit](/console/handbooks/project-usage.md#save-changes) our changes, [deploy](/console/handbooks/project-usage.md#deploy-changes), and try our [Fast Data](/fast_data/concepts/architecture.md) sending data from the Kafka Topic, and see the result in the Single View using the endpoints.
 
 ### Test your Single View
 

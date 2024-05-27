@@ -9,6 +9,10 @@
     "ABAC",
     "axerve",
     "nexi",
+    "fnmpay",
+    "Fnmpay",
+    "UNSUBMITTED",
+    "THREEDS",
     "Bianchi",
     "Boundarye",
     "Brotli",
@@ -38,6 +42,7 @@
     "evolvability",
     "fastify",
     "fhir",
+    "Fluentd",
     "fortio",
     "furtherly",
     "gcloud",
@@ -226,7 +231,8 @@
     "VULNDB",
     "mergo",
     "kpis",
-    "Mesos"
+    "Mesos",
+    "SWSS"
   ],
   "ignoreWords": [
     "asncdctools",

@@ -25,7 +25,7 @@ The complete list of supported databases can be found in [Debezium documentation
 
 ### How to connect any data source to Fast Data
 
-In general, any application that writes messages onto an event messaging platform adopting one of the formats [accepted by the Real-Time Updater](/fast_data/inputs_and_outputs.md#data-change-message) can act as a Connector.
+In general, any application that writes messages onto an event messaging platform adopting one of the formats [accepted by the Real-Time Updater](/fast_data/concepts/inputs_and_outputs.md#data-change-message) can act as a Connector.
 In particular, it is possible to either write your own [custom Connector](#bring-your-own-cdc) tailored for your unique needs and requirements, or use one of the Connectors available in the Mia-Platform [Marketplace](/plugins/mia-platform-plugins.md).
 
 Some connectors you'll find in the Marketplace:
@@ -48,7 +48,7 @@ This approach has already been tested, verified and it is working in production 
 - [Oracle Golden Gate for Big Data](https://www.oracle.com/integration/goldengate/)
 - [Debezium](https://debezium.io/)
 
-Change Data Capture systems described above publish change events in one of the [formats supported by Fast Data](/fast_data/inputs_and_outputs.md#data-change-message). When another CDC system is employed it is important to either verify that such component can produce compatible messages or provide a [_custom message adapter_](/fast_data/configuration/realtime-updater/configuration-files.md#custom) to the Fast Data Real-Time Updater component. In this way Fast Data can easily process change events employing user-defined formats.
+Change Data Capture systems described above publish change events in one of the [formats supported by Fast Data](/fast_data/concepts/inputs_and_outputs.md#data-change-message). When another CDC system is employed it is important to either verify that such component can produce compatible messages or provide a [_custom message adapter_](/fast_data/configuration/realtime-updater/configuration-files.md#custom) to the Fast Data Real-Time Updater component. In this way Fast Data can easily process change events employing user-defined formats.
 
 :::danger
 When configuring any CDC you have to bear in mind that Fast Data needs the whole record in every message sent. This may look worse storage-wise but it allows the microservices to save precious time on MongoDB queries that would otherwise slow down the process considerably.

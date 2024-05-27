@@ -37,6 +37,7 @@ const toCheck = {
     start: [
         'mailto',
         '#',
+        '?',
     ],
     end: [
         '.png',

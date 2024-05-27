@@ -6,7 +6,7 @@ sidebar_label: Real-Time Updater
 
 Real-Time Updater is the service in charge of keeping up-to-date the projections with the data sent by the connected system.   
 
-Optionally, the service can generate [Projection Update messages](/fast_data/inputs_and_outputs.md#projection-update-message) so that your services can consume these events and react when projections are updated. 
+Optionally, the service can generate [Projection Update messages](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) so that your services can consume these events and react when projections are updated. 
 
 For having an overview of the features of the Real-Time Updater, you can go [here](/fast_data/realtime_updater.md).  
 
@@ -58,6 +58,8 @@ For having an overview of the features of the Real-Time Updater, you can go [her
 | PAUSE_TOPIC_CONSUMPTION_ON_ERROR            | -        | If set to true, in case of an error while consuming an ingestion message, the service will pause the topic's consumption while keep consuming the other ones. More info on the feature [here](#pause-single-topics-consumption-on-error)                                                                                                                                                                                                                | `false`    |
 | USE_POS_AS_COUNTER                          | -        | If ```KAFKA_MESSAGE_ADAPTER``` is set to ```golden-gate``` it will use the ```pos``` field as timestamp for ingestion kafka messages. When set to ```false``` it will use the default ```timestamp``` property in the message provided by kafka like the other adapters do. Setting this property to ```true``` with a ```KAFKA_MESSAGE_ADAPTER``` **different** from ```golden-gate``` will have no effect.                                            | `true`     |
 | PRODUCER_COMPRESSION                          | -        | Starting from `v7.5.8`, is possible to choose the type of compression that can be applied to `pr-update` messages. Possible values are: `gzip`, `snappy` or `none`                                     | `none`     |
+| CONTROL_PLANE_CONFIG_PATH          | -        | Starting from `v7.7.0`, is possible to configure Runtime Management. More details [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=rtu#real-time-updater)                                                                                                                                                                                                                                                                                                                                     | 
+| CONTROL_PLANE_BINDINGS_PATH        | -        | Starting from `v7.7.0`, is possible to configure Runtime Management. More details [on the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=rtu#real-time-updater)                                                                                                                                                                                                                                                                                                                                     |   
 
 ## Attach to System of Record
 
@@ -137,7 +139,7 @@ The Kafka message format based on the _IBM InfoSphere Data Replication for DB2_ 
 
 ### Prevent projections to be overwritten
 
-During a rebalancing or a massive initial load with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
+During a rebalancing or a massive [initial load](/fast_data/concepts/data_loading.mdx#initial-load) with multiple replicas of the Real-Time updater, a batch of old messages that have not been committed yet could be read by the Real-Time updater. In fact, Kafka ensures that messages are received, in order, at least once.
 
 To prevent that old messages that have already updated the projection, overwrite the projection again, the environment variable `FORCE_CHECK_ON_OFFSET` is set by default to `true`.
 
@@ -192,7 +194,7 @@ The information saved are:
 
 ## Projection Changes Collection
 
-[Projection Changes](/fast_data/inputs_and_outputs.md#projection-changes) (**PC**) are records generated from each Real-Time Updater service attached to a [System of Record](/fast_data/the_basics.md#system-of-record-sor), after the execution of a strategies. 
+[Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-changes) (**PC**) are records generated from each Real-Time Updater service attached to a [System of Record](/fast_data/concepts/the_basics.md#system-of-record-sor), after the execution of a strategies. 
 
 This records will be consumed by the [Single View Creator](/fast_data/single_view_creator.md), to start the aggregation process to aggregate a [Single View](/fast_data/configuration/single_views.md).
 
@@ -288,3 +290,22 @@ The collection also needs to have the following indexes, to support the queries 
 :::note
 To allow the Single View Creator to read from the Projection Changes collection, its name should also be set in the `PROJECTIONS_CHANGES_COLLECTION` environment variable of your Single View Creator service. 
 :::
+
+## Runtime Management
+
+:::info
+This feature is supported from version `7.7.0` of the Real-Time Updater.
+:::
+
+By specifying the environment variables `CONTROL_PLANE_CONFIG_PATH`, you enable the RTU to receive and execute the commands from the [Runtime Management](/fast_data/runtime_management/overview.mdx).
+
+:::caution
+By design, every service interacting with the Control Plane starts up in a paused state, unless the Control Plane
+has already resumed the data stream before. 
+
+Therefore, when the RTU starts up, the ingestion process will not start automatically. 
+
+In this case, you just need to send a `resume` command to the projections managed by the RTU.
+:::
+
+You can read about the setup of the Real-Time Updater in [its dedicated section](/fast_data/runtime_management/workloads.mdx?workload=rtu#real-time-updater).

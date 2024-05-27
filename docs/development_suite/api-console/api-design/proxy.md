@@ -14,12 +14,17 @@ Moreover being able to expose proxies on the same project domain, you'll be able
 ## Create a Proxy
 
 You can create a proxy selecting one of the available proxy inside the marketplace, or you can create a custom proxy by yourself.
-There are two types of proxy: External and Cross Project.
+There are two types of proxy: [**External**](#external-proxy) and [**Cross Project**](#cross-projects-proxy).
 
+:::caution
+When you call an [external proxy](#external-proxy) any cookie/client-key are removed to avoid security issues. Instead, when you call a [cross projects proxy](#cross-projects-proxy) you will keep them.
+:::
+
+### External Proxy
+
+:::info
 An External Proxy allows you to contact endpoints outside your cluster.
-A Cross Projects proxy allows you to call a microservice in another namespace of the cluster.
-
-### Type External 
+:::
 
 In order to create a new external proxy, open the `Proxies` section in the *Design area*, select `Create new proxy` and choose `External` as `Type`. Then enter the following information:
 
@@ -43,9 +48,13 @@ For example, this feature is useful to call an external API passing an authoriza
 If the proxy host is unreachable you can see error logs in the API Gateway service pod.
 :::
 
-![external proxy creation](img/how_to_create_external_proxy.gif)
+![external proxy creation](img/proxies/external-proxy.png)
 
-### Type Cross Projects
+### Cross-Projects Proxy
+
+:::tip
+A Cross Projects proxy allows you to call a microservice in another namespace of the cluster.
+:::
 
 In order to create a new external proxy, open the `Proxies` in the *Design area*, select `Create new proxy` and choose `Cross Projects` as `Type`. Then enter the following information:
 
@@ -54,11 +63,7 @@ In order to create a new external proxy, open the `Proxies` in the *Design area*
 * **Port** (*required*): the port of the microservice
 * **Description**: optional description of the proxy
 
-![cross proxy creation](img/how_to_create_cross_proxy.gif)
-
-:::caution
-When you call an [external proxy](#create-a-new-external-proxy) any cookie/client-key are removed to avoid security issues. Instead, when you call a [cross projects proxy](#create-a-new-cross-projects-proxy) you will keep them.
-:::
+![cross proxy creation](img/proxies/cross-project-proxy.png)
 
 ## Expose a Proxy
 
@@ -66,9 +71,7 @@ Before using a proxy you have to expose it by an [endpoint](/development_suite/a
 
 The `Type` of the endpoint must be `External Proxy/Cross Projects proxy`. In the `Microservice` field select the name of the proxy you want to expose. The proxy endpoint will be exposed on [API gateway](/runtime_suite/api-gateway/10_overview.md).
 
-![Expose proxy](img/how_to_expose_proxy.gif)
-
-## How to call a Proxy
+### How to call a Proxy
 
 You can call a proxy endpoint making an HTTP request:
 
@@ -84,4 +87,3 @@ curl --request GET
 The proxy endpoints are exposed on the [API gateway](/runtime_suite/api-gateway/10_overview.md) so you can call them from your microservices making an HTTP request to the API Gateway: `http://api-gateway:8080/your-endpoint`.
 
 You can also use the [Mia-Platform Service Libraries](/libraries/mia-service-libraries.md) that help you to get a proxy towards the API Gateway.
-

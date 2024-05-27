@@ -106,7 +106,7 @@ Furthermore, a primary key should be specified for the targeted collection via p
 
 ### Stream Saver
 
-In order to handle large sized file, a service worker is registered to perform local storage persistance operations instead of using large chunks of memory. To do so an external [resource] is needed. You can also use the same resource hosted with `back-kit` JS bundle available at `<back-kit endpoint>/export-service-worker.html`.
+In order to handle large sized file, a service worker is registered to perform local storage persistence operations instead of using large chunks of memory. To do so an external [resource] is needed. You can also use the same resource hosted with `back-kit` JS bundle available at `<back-kit endpoint>/export-service-worker.html`.
 In the latter case set `streamSaverIFrameSrc` to the resource endpoint.
 
 

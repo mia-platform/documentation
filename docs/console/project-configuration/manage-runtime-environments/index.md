@@ -6,11 +6,11 @@ sidebar_label: Manage Runtime Environments
 
 Runtime environments are the set of computer systems, servers, networks, storage, etc. where the applications are released and executed. Nowadays, it is common to have multiple runtime environments with different connotations - for example, one dedicated to production and one for testing bugs or new features. The Console is built with this concept in mind, and thus provides support and tools to easily manage multiple environments.
 
-You can deploy the same codebase to different environments obtaining different behaviors based on some configurations like via [environment variables](/console/project-configuration/manage-environment-variables/index.md). Another notable difference is that different environments may differ in hardware resource usage, and it is therefore possible to maintain more resources (or the more performant ones)for production environments and not for testing environments.
+You can deploy the same codebase to different environments obtaining different behaviors based on some configurations like via [environment variables](/console/project-configuration/manage-environment-variables/index.md). Another notable difference is that different environments may differ in hardware resource usage, and it is therefore possible to maintain more resources (or the more performant ones) for production environments and not for testing environments.
 
-The Console handles environments in a project-specific manner. When creating a new project, it will inherit the runtime environments configured in the company it belongs to. After creating a project it is possible to add, edit and remove them for the specific project. Each runtime environment runs in a dedicated Kubernetes namespace in the configured cluster.
+The Console handles environments in a Project-specific manner. When creating a new Project, it will inherit the runtime environments configured in the company it belongs to. After creating a Project it is possible to add, edit and remove them for the specific Project. Each runtime environment runs in a dedicated Kubernetes namespace in the configured cluster.
 
-In the Overview area, you can have an overview of the runtime environments configured for the project through a Runtime Environments card, which displays a table with a row for each environment, as shown in the picture below.
+In the Overview area, you can have an overview of the runtime environments configured for the Project through a "Runtime Environments" card, which displays a table with a row for each environment, as shown in the picture below.
 
 ![environments table](../img/environments_table.png)
 
@@ -23,32 +23,32 @@ The table displays information in the following columns:
 * **Application**: a link to the main application deployed in the runtime environment;
 * **Cluster**: the ID of the cluster to which the runtime environment is linked.
 
-A label also appears next to the name to identify production environments.
+A tag also appears next to the name to identify production environments.
 
 ## Add an Environment
 
-You can add a new environment by clicking on the "Add new runtime environment" button, located in the top right corner of the page. A modal will show up, and you will be asked to fill a form containing some information related to the environment:
+You can add a new environment by clicking on the "Add new runtime environment" button, located in the top right corner of the card. A modal will show up, and you will be asked to fill a form containing some information related to the environment:
 
 * **Name** (*required*): a label given by the user to recognize the runtime environment;
 * **Production environment**: a toggle that specifies whether or not the runtime environment is a production environment;
 * **Environment ID** (*required*): the human-readable ID of the runtime environment;
 * **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
 * **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](/development_suite/clusters-management/connect-and-manage-cluster.mdx) first);
-* **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Company ID and Environment ID);
-* **Project URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
-* **CMS URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the CMS of the project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
+* **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from Project ID and Environment ID);
+* **Project URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the Project itself is exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
+* **CMS URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the CMS of the Project is exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));
 * **Description**: a brief description of the runtime environment.
 
 ![add environment](../img/add_environment.png)
 
-By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table.  
+By clicking on "Create environment", the new runtime environment will be generated, and it will appear as a new entry in the table.
 
 :::info
-If the Console service account has proper permissions, the namespace on the Kubernetes cluster will be created as well. If not given the permissions, the project will be created but not the namespace (this could be useful for some environment where the namespaces must be created following a specific process).
+If the Console service account has proper permissions, the namespace on the Kubernetes cluster will be created as well. If not given the permissions, the Project will be created but not the namespace (this could be useful for some environment where the namespaces must be created following a specific process).
 :::
 
 :::warning
-After you have created the runtime environment from the Console, you must properly configure your project on your Git provider to allow the Console to successfully run the deploy task. Click [here](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx) for more information.
+After you have created the runtime environment from the Console, you must properly configure your Project on your Git provider to allow the Console to successfully run the deploy task. Click [here](/console/project-configuration/manage-runtime-environments/configure-a-new-environment.mdx) for more information.
 :::
 
 ### What happens behind the scenes?
@@ -56,7 +56,7 @@ After you have created the runtime environment from the Console, you must proper
 When the user requests the creation of a new runtime environment, the following operations are performed:
 
 1. Further validation on environment ID and namespace format;
-2. Update of the reference project, in which the new environment is added;
+2. Update of the reference Project, in which the new environment is added;
 3. Retrieval of the credentials of the Kubernetes cluster on which the environment will be created;
 4. Creation of the namespace associated with the environment;
 5. Creation of the service account for the newly created namespace;
@@ -105,7 +105,7 @@ After entering the name in the input field and clicking "Delete," a loading and 
 As mentioned in the warning displayed in the deletion modal, the runtime environment deletion implies the deletion of the related cluster namespace and all resources configured within the environment.
 :::
 :::warning
-After you have deleted the runtime environment from the Console, you are tasked with properly cleanup your project on your Git provider from the resources and pipelines needed for that environment. Click [here](/console/project-configuration/manage-runtime-environments/delete-an-environment.md) for more information.
+After you have deleted the runtime environment from the Console, you are tasked with properly cleanup your Project on your Git provider from the resources and pipelines needed for that environment. Click [here](/console/project-configuration/manage-runtime-environments/delete-an-environment.md) for more information.
 :::
 
 ## Manage Runtime Environments via CMS

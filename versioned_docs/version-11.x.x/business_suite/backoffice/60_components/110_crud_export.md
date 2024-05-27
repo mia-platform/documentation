@@ -59,7 +59,7 @@ For its most basic usage, the CRUD Export requires properties `basePath` and `da
 
 ### Stream Saver
 
-In order to handle large sized file, on CRUD export data, a service worker is registered to perform local storage persistance operations instead of using large chunks of memory. To do so an external [resource] is needed. You can also use the same resource hosted with `back-kit` JS bundle available at `<back-kit endpoint>/export-service-worker.html`.
+In order to handle large sized file, on CRUD export data, a service worker is registered to perform local storage persistence operations instead of using large chunks of memory. To do so an external [resource] is needed. You can also use the same resource hosted with `back-kit` JS bundle available at `<back-kit endpoint>/export-service-worker.html`.
 In the latter case set `streamSaverIFrameSrc` to the resource endpoint.
 
 ```json

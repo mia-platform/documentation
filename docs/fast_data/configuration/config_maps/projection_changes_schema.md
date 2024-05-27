@@ -6,8 +6,8 @@ sidebar_label: Projection Changes Schema
 
 ## Overview
 
-The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/glossary.mdx)
-to the [base projection](/fast_data/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
+The Projection Changes Schema is a JSON file (`projectionChangesSchema.json`) which helps the [strategy](/fast_data/concepts/the_basics.md#strategies) to find the right path from the [initial projection](/fast_data/concepts/glossary.mdx)
+to the [base projection](/fast_data/concepts/glossary.mdx) and then to the identifier used to match the single view document. This file is typically used
 by the [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) or the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) to execute the strategies.
 
 ## Configuration Properties
@@ -62,7 +62,7 @@ Please note that this feature is **only** supported by <ins>Single View Trigger 
 It's possible to use custom functions in each path that requires additional operations not provided by the ER Schema. 
 
 To define a custom function, you should specify as identifier the `__fromFile__[<filename>]` keyword,
-where within squared brackets is provided the filename containing the custom function: the function provided must be created in a config map, that has been mounted in the same path as the one defined in the [environment variable `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`](/fast_data/configuration/single_view_trigger_generator.md#environment-variables).
+where within squared brackets is provided the filename containing the custom function: the function provided must be created in a config map, that has been mounted in the same path as the one defined in the [environment variable `TRIGGER_CUSTOM_FUNCTIONS_FOLDER`](/fast_data/configuration/single_view_trigger_generator.mdx#environment-variables).
 
 
 <details><summary>Projection Changes Configuration with function loading</summary>

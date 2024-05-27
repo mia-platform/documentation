@@ -9,7 +9,7 @@ import TabItem from "@theme/TabItem";
 
 ## Overview
 
-The Kafka Projection Updates is a JSON file which describes for each projection a [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) topic and a [Strategy](/fast_data/configuration/strategies.md) to generate the projection changes identifier. This file is typically used by:
+The Kafka Projection Updates is a JSON file which describes for each projection a [Projection Updates](/fast_data/concepts/inputs_and_outputs.md#projection-update) topic and a [Strategy](/fast_data/configuration/strategies.md) to generate the projection changes identifier. This file is typically used by:
 
 * the [Real-Time Updater](/fast_data/realtime_updater.md), to generate a `pr-update` message; 
 * the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md), to execute a strategy starting from a `pr-update` message.  
@@ -18,7 +18,7 @@ The Kafka Projection Updates is a JSON file which describes for each projection 
 
 The Kafka Projection Updates is a JSON object where each key represents the name of a projection. Each entry has the following fields:
 
-- `updatesTopic`: The topic where the Projection Updates messages are sent, if you haven't created a topic for the projection yet take a look to our [naming conventions for the Projection Updates topics](/fast_data/inputs_and_outputs.md#topic-naming-convention-1).
+- `updatesTopic`: The topic where the Projection Updates messages are sent, if you haven't created a topic for the projection yet take a look to our [naming conventions for the Projection Updates topics](/fast_data/concepts/inputs_and_outputs.md#topic-naming-convention-1).
 - `strategy`: the type of strategies that you want to use onto this projection. You can choose either `__automatic__` or `__fromFile__`.
 
 There will be different behaviors based on the strategy value. The JSON configuration can contain both automatic and manual strategies.
@@ -59,14 +59,14 @@ The automatic strategy handles the generation of the projection changes identifi
 The `__fromFile__` keyword lets you specify a Javascript module inside the squared brackets, which will execute the a manual Strategy on the Projection Updates message.
 
 :::info
-The `file` should be mountend into a specific config map of the micro-service. Please refer to [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) and [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.md) configuration pages.
+The `file` should be mountend into a specific config map of the micro-service. Please refer to [Real-Time Updater](/fast_data/configuration/realtime-updater/realtime-updater.md) and [Single View Trigger Generator](/fast_data/configuration/single_view_trigger_generator.mdx) configuration pages.
 :::
 
 This Javascript file should export a default async generator function with the following parameters:
 - `strategyContext`: object made of two properties:
   - `logger`: [Pino logger](https://github.com/pinojs/pino)
   - `dbMongo`: the configured [MongoDB Database](https://mongodb.github.io/node-mongodb-native/5.2/classes/Db.html) instance where the projections are stored
-- `updateEvent`: The [Projection Updates](/fast_data/inputs_and_outputs.md#projection-update) message.
+- `updateEvent`: The [Projection Updates](/fast_data/concepts/inputs_and_outputs.md#projection-update) message.
 
 The function _yields_ one or more identifier retrieved from the update event. 
 

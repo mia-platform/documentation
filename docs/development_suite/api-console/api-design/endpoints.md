@@ -56,12 +56,12 @@ Upon creation of an endpoint linked to a microservice, you will be able to edit 
 #### Fast Data Projection
 
 This endpoint type is used to read data of the [Fast Data Projection](/fast_data/configuration/projections.md).
-These APIs are read-only, because they should be edited only by the [Real-Time Updater](/fast_data/architecture.md#real-time-updater-rtu).
+These APIs are read-only, because they should be edited only by the [Real-Time Updater](/fast_data/concepts/architecture.md#real-time-updater-rtu).
 
 #### Fast Data Single View
 
-This endpoint type is used to read data of the [Fast Data Single View](/fast_data/the_basics.md#single-view-sv).
-These APIs are read-only, because they should be edited only by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc).
+This endpoint type is used to read data of the [Fast Data Single View](/fast_data/concepts/the_basics.md#single-view-sv).
+These APIs are read-only, because they should be edited only by the [Single View Creator](/fast_data/concepts/architecture.md#single-view-creator-svc).
 
 ### About Rewrite Base Path
 
@@ -217,6 +217,11 @@ The **Advanced** tab is visible only if the Envoy API Gateway service is enabled
 - **Timeout** (_integer_): the maximum amount of time (in seconds) the gateway waits while the request is processed by the upstream or downstream;
 - **Rate limit** (_integer_): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
 - **Request body size** (_decimal_): the maximum body size of user requests.
+- **Iframe embedding options**: the X-Frame-Options directive that is considered when the endpoint response should be embedded in an iframe;
+
+:::warning
+This `Iframe embedding` option is configurable only for the `Envoy API Gateway`, instead for `Nginx API Gateway` it is required to configure it manually using the `Advanced` section of the Console
+:::
 
 ## Routes
 

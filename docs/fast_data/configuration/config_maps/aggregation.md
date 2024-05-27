@@ -4,7 +4,7 @@ title: Aggregation Configuration
 sidebar_label: Aggregation
 ---
 
-The Aggregation configuration is used by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](/fast_data/configuration/single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
+The Aggregation configuration is used by the [Single View Creator](/fast_data/concepts/architecture.md#single-view-creator-svc) to generate a document with the same structure defined in the [Single View data model](/fast_data/configuration/single_views.md#single-view-data-model) and the content calculated by aggregating data inside the projections.
 
 The aggregation is mounted as a config map of the Single View Creator Service and might be composed by:
 - a manual configuration, composed of `pipeline.js` and `mapper.js` files inside the _configuration_ config map (automatically created adding the `Single View Creator` plugin from the Mia Marketplace)
@@ -446,6 +446,11 @@ Remember that for `identifierQueryMapping` to be used, you still need to explici
 
 #### Using conditional expressions on dependencies definitions and mappings
 
+:::caution
+Starting with the release of Console `v13.0.0`, the usage of this advanced feature (`_select`) is **deprecated**, as it will be replaced
+in the future with a better solution for pre-filtering which projections should be included in the aggregation. 
+:::
+
 Dependencies are a way to gather data that will be used in the mapping section, creating the Single View, and as Single Views grow in complexity, you might need to use conditional expressions to use different dependencies configurations and/or change the mapped output of a Single View.
 
 If you have not had this necessity yet, this might be somewhat abstract, so we will directly dive into an example.
@@ -576,6 +581,11 @@ module.exports = async function(logger, clientMongo) {
 The `value` field is an object with exactly the same structure as a regular dependency, as it will be used as a dependency after the condition is met.
 
 For **mappings**, the process of taking advantage of `_select` is very similar: each field in the mapping can be expressed as an object with a `_select` field that follows the same rules. Just keep in mind that the `value` here is not a dependency (with fields such as `type` and `on`), but a field of a dependency (e.g. `MY_DEPENDENCY.field_name`).
+
+:::caution
+Starting with the release of Console `v13.0.0`, the usage of this advanced feature (`_select`) is **deprecated**, as it will be replaced
+in the future with a better solution for pre-filtering which projections should be included in the aggregation.
+:::
 
 #### `null` values inside conditional expressions
 
@@ -719,7 +729,7 @@ If you don't have an _aggregation_ configuration file yet, or in case it has not
 
 ![Placeholder to inform the user that a Base Projection must be selected](../img/no_code_aggregation/base_projection.png)
 
-The select field will show all the projections set in the selected ER Schema. The selection will represent the first dependency created in the aggregation that will be linked with the `identifier` object of the [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change).
+The select field will show all the projections set in the selected ER Schema. The selection will represent the first dependency created in the aggregation that will be linked with the `identifier` object of the [Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-change).
 
 ### How to map fields
 

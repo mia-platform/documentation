@@ -4,6 +4,10 @@ title: Configure CMS extensions
 sidebar_label: Configure CMS extensions
 ---
 
+:::caution Deprecated
+The Content Management System (CMS) has been deprecated and it has been substituted by [Microfrontend Composer](/microfrontend-composer/what-is.md).
+:::
+
 ## CMS extensions
 
 All previous configurations are automatically managed by the Console. However, there are some extensions that can not yet be configured from the front end but are managed by a component: the **config-extension**.
