@@ -22,8 +22,8 @@ Collection indexes are crucial for the Fast Data to work at it's maximum efficie
   As the name indicates, this fields will be used by the RTU to keep the Projection's record updated during the ingestion process. When using index autogeneration, these indexes will be called `mia_internal_counter_index` and `mia_internal_counter_type_index`.
 
   :::tip
-  If you're linking a projection to a Projection Storer, this indexes are __not needed__ since the service doesn't need both `__internal__counterType`
-  and `__internal__counter` fields to keep the most recent version of each record.
+  If you're linking a projection to a Projection Storer, this indexes are __not needed__ since the service needs neither `__internal__counterType`
+  nor `__internal__counter` fields to keep the most recent version of each record.
   :::
 - **Aggregation index**: Again, same as the "Primary key fields index" but adding the field `__STATE__`. As the name suggests, it will be used to query the documents for the aggregation. When using index autogeneration this index will be called `mia_state_index`.
 
