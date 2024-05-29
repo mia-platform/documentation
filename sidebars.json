@@ -1366,6 +1366,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/faq/debezium",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/faq/failure_handling",
           "type": "doc"
         },
