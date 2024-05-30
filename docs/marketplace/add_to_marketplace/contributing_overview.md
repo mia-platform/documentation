@@ -1,15 +1,15 @@
 ---
 id: contributing_overview
-title:  Internal Company Marketplace
+title:  Manage your Company Marketplace
 sidebar_label:  Internal Company Marketplace
 ---
 
-In this section, we dive into the process of creating a new item for your Internal Company Marketplace, analyzing the main differences between different types of items and providing some configuration examples.
+In this section, we dive into the process of creating a new item for your **Internal Company Marketplace**, analyzing the main differences between different types of items and providing some configuration examples.
+
+## Public and Internal Company Marketplace
 
 As a Console user, you can access both Mia-Platform public Marketplace catalog and your Internal Company Marketplace. 
 While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, The Internal Company Marketplace is a Company-specific private space where to create and manage the items which are available only for your Company.
-
-## Public and Internal Company Marketplace
 
 The **Mia-Platform public Marketplace** is the place where every Company can find most of the items needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
@@ -20,7 +20,6 @@ However, a Company might want to have its own internal Marketplace, fulfilled al
 There are different methods to manage your Internal Company Marketplace items. They are described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
 
 :::
-
 
 ## Creation of an Internal Company Marketplace item
 
