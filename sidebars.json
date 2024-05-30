@@ -1636,7 +1636,7 @@
       "type": "category",
       "items": [
         {
-          "label": "Contributing to the Marketplace",
+          "label": "Internal Company Marketplace",
           "type": "category",
           "link": {
             "id": "marketplace/add_to_marketplace/contributing_overview",
