@@ -15,6 +15,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2024-05-27
+
+### Fixed
+
+- when a Javascript custom cast function returns a Javascript Date object, now the service properly maps the type into the internal one
+
+## [1.2.2] - 2024-05-16
+
+### Changed
+
+- when the storage component receives an empty list of projection records, instead of treating it as an error now
+it logs a warning message and it proceeds processing the other topic-partition ingestion events
+
 ## [1.2.1] - 2024-05-07
 
 ### Changed
