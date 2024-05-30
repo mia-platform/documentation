@@ -603,7 +603,7 @@ There are 3 targets available:
 For each listed connection, after metadata is retrieved, `agent` **sequentially** sends data to the target as:
 
 - `json` for `stdout` and `file`
-- [`ndjson`](https://ndjson.org/) for `mia-console`
+- [`ndjson`](https://github.com/ndjson/ndjson-spec) for `mia-console`
 
 The final content is an `array` of models. Model spec is given in the form of a <a download target="_blank" href="/docs_files_to_download/data-catalog/model.schema.json">JSON schema</a>.
 
