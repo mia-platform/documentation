@@ -9,40 +9,6 @@ This page contains some useful answers to common questions about Debezium.
 # Debezium Connect
 This section covers the usage of Debezium as a Kafka Connect connector, specifically when using the official Docker image `quay.io/debezium/connect`.
 
-## How to filter messages before publishing to Kafka?
-To filter messages before puglishing to Kafka, you can use [Debezium Message Filtering](https://debezium.io/documentation/reference/2.6/transformations/filtering.html). Add the following properties to your connector's configuration:
-```
-...
-transforms=filter
-transforms.filter.type=io.debezium.transforms.Filter
-transforms.filter.language=jsr223.groovy
-transforms.filter.topic.regex=*.ingestion.MY_TABLE
-transforms.filter.condition=value.op == 'u' && value.before.id == 2
-...
-```
-For these properties to work, you need to add both `Debezium scripting` and `Groovy JSR` to the Debezium Docker image. You can do this by mounting a volume to the container or by building a new Docker image as follows:
-```Dockerfile
-FROM quay.io/debezium/connect:2.5
-
-# These versions to be used
-ENV DEBEZIUM_SCRIPTING_VERSION="2.5.4.Final" \
-    GROOVY_VERSION="4.0.21"
-
-# Download and extract Debezium scripting tar.gz
-RUN cd $KAFKA_CONNECT_PLUGINS_DIR/debezium-connector-oracle && \
-    curl -LO https://repo1.maven.org/maven2/io/debezium/debezium-scripting/${DEBEZIUM_SCRIPTING_VERSION}/debezium-scripting-${DEBEZIUM_SCRIPTING_VERSION}.tar.gz && \
-    tar -xzf debezium-scripting-${DEBEZIUM_SCRIPTING_VERSION}.tar.gz && \
-    rm debezium-scripting-${DEBEZIUM_SCRIPTING_VERSION}.tar.gz
-
-# Download Groovy jars
-RUN cd $KAFKA_CONNECT_PLUGINS_DIR/debezium-connector-oracle && \
-    curl -LO https://repo1.maven.org/maven2/org/apache/groovy/groovy/${GROOVY_VERSION}/groovy-${GROOVY_VERSION}.jar && \
-    curl -LO https://repo1.maven.org/maven2/org/apache/groovy/groovy-json/${GROOVY_VERSION}/groovy-json-${GROOVY_VERSION}.jar && \
-    curl -LO https://repo1.maven.org/maven2/org/apache/groovy/groovy-jsr223/${GROOVY_VERSION}/groovy-jsr223-${GROOVY_VERSION}.jar
-
-USER kafka
-```
-
 ## Network errors on Debezium Logs
 
 When running Debezium on a Kafka Connect worker, you might notice logs like the following, even if it appears to publish database changes to Kafka correctly:
@@ -64,36 +30,10 @@ When running Debezium on a Kafka Connect worker, you might notice logs like the 
 
 These logs typically indicate that idle connections with Kafka brokers are being closed by the Kafka Connect worker and are not a cause for concern.
 
-## Multiple replicas of Debezium Connect
-
-If you are running Debezium in a Kafka Connect cluster, consider the following before adding more than one worker to your cluster:
-
-- A Kafka Connect cluster distributes connector tasks across workers, but a Debezium connector has only one task. Thus, even with multiple workers, only one will be active at a time, while the others remain idle. The benefit is that if a worker fails, the task is automatically reassigned to another healthy worker.
-- Kafka Connect exposes REST APIs that are used extensively to manage the Debezium connector. With multiple workers, if the API call is forwarded to a worker that is not the coordinator, it needs to forward the request to the cluster coordinator. Therefore, you need to ensure that replicas can communicate with each other. In particular, each replica needs the `CONNECT_REST_ADVERTISED_HOST_NAME` environment variable to be configured with its reachable hostname. This is not feasible with common cloud technologies that replicate Docker containers (e.g. Azure App Service) because usually it is not possbile to change the value of an environment variable across replicated containers.
 
 # Debezium Oracle connector
 
 This section addresses questions specific to the Oracle connector.
-
-## How to add the Oracle JDBC to the Debezium Docker image?
-Due to licensing reasons, if you want to use Debezium to connect to an Oracle database, you need to build your own image and manually include the Oracle JDBC. Use the following Dockerfile (ensure the JDBC group, version, and MD5 are correct):
-```Dockerfile
-FROM quay.io/debezium/connect:2.5
-
-ENV KAFKA_CONNECT_JDBC_DIR=$KAFKA_CONNECT_PLUGINS_DIR/kafka-connect-jdbc
-
-# These should point to the driver version to be used
-ENV MAVEN_DEP_DESTINATION=$KAFKA_HOME/libs \
-    ORACLE_JDBC_REPO="com/oracle/database/jdbc" \
-    ORACLE_JDBC_GROUP="ojdbc10" \
-    ORACLE_JDBC_VERSION="19.21.0.0" \
-    ORACLE_JDBC_MD5=55544d916412e364112695485d078a66
-
-# Download Oracle JDBC driver
-RUN docker-maven-download central "$ORACLE_JDBC_REPO" "$ORACLE_JDBC_GROUP" "$ORACLE_JDBC_VERSION" "$ORACLE_JDBC_MD5"
-
-USER kafka
-```
 
 ## Oracle connector fails with ORA-00600 error
 
