@@ -157,7 +157,7 @@ Here below are listed all the properties that you can provide for each microserv
 - **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
   In particular, for each of them you need to provide:  
   - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
-  - **`value`**: the variable default value; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation  section](#interpolating-default-labels-annotations-and-environment-variables-values) section.
+  - **`value`**: the variable default value; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values) section.
 - **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
   - **`name`**: the name of the ConfigMap
@@ -180,13 +180,13 @@ Here below are listed all the properties that you can provide for each microserv
 The annotations that start with `mia-platform.eu` are reserved, you are not allowed to use them.
   The field is an array of objects that represent the labels. Each object has the following fields:
   - `name`: the name of the annotation
-  - `value`: the value of the annotation; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation  section](#interpolating-default-labels-annotations-and-environment-variables-values) section.
+  - `value`: the value of the annotation; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values) section.
   - `description`: description of the label,
   - `readOnly`: boolean that represent if you can change the value of the label through the
 - **`defaultLabels`**: the service labels, which can be used to categorize, group, and select your service. The labels that start with `mia-platform.eu` are reserved, you are not allowed to use them.
   The field is an array of objects that represent the labels. Each object has the following fields:
   - `name`: the name of the label
-  - `value`: the value of the label; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation  section](#interpolating-default-labels-annotations-and-environment-variables-values).
+  - `value`: the value of the label; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values).
   - `description`: description of the label
   - `readOnly`: boolean that represent if you can change the value of the label through the Console
 - **`defaultDocumentationPath`**: the APIs documentation path.
