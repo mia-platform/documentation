@@ -1227,6 +1227,10 @@
         {
           "id": "fast_data/connectors/debezium_cdc",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/connectors/debezium_connect_cdc",
+          "type": "doc"
         }
       ],
       "label": "Connectors",
@@ -1352,6 +1356,10 @@
         },
         {
           "id": "fast_data/troubleshooting/rtu_violates_unique_keys",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/troubleshooting/debezium",
           "type": "doc"
         }
       ],
