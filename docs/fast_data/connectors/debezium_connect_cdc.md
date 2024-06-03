@@ -139,7 +139,7 @@ If you plan to horizontally replicate this image, be aware that this will create
 - Kafka Connect exposes REST APIs that are used extensively to manage the Debezium connector. With multiple workers, if the API call is forwarded to a worker that is not the coordinator, it needs to forward the request to the cluster coordinator. Therefore, you need to ensure that replicas can communicate with each other. In particular, each replica needs the `CONNECT_REST_ADVERTISED_HOST_NAME` environment variable to be configured with its reachable hostname. This is not feasible with common cloud technologies that replicate Docker containers (e.g. Azure App Service) because usually it is not possbile to change the value of an environment variable across replicated containers.
 
 
-## Oracle DB
+## Integration with Oracle Database
 Due to licensing reasons, if you want to use Debezium Connect for an Oracle database, you need to build your own image and manually include the Oracle JDBC. Use the following Dockerfile (ensure the JDBC group, version, and MD5 are correct):
 ```Dockerfile
 FROM quay.io/debezium/connect:2.5
