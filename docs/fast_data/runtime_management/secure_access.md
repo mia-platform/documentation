@@ -4,8 +4,6 @@ title: Runtime Secure Access
 sidebar_label: Secure Access
 ---
 
-<!-- TODO update "img/marketplace_runtime_management_app_selection.png" image once application cards are available with updated description  -->
-
 In order to ensure that only authorized people can access Fast Data Runtime Management system and consequently
 visualize or change its state, it is important to properly set up a security layer.
 
@@ -14,7 +12,7 @@ is inspired from this [guide](/console/tutorials/configure-marketplace-component
 
 ## Requirements
 
-- access to [Fast Data Control Plane With Access Control](/fast_data/runtime_management/overview.mdx) application, which automatically
+- access to [Fast Data Control Plane With Access Control](/runtime_suite_applications/fast-data-control-plane/10_overview.md) application, which automatically
   scaffold the configurations regarding microservices, collections, endpoints and variables needed for controlling Fast Data
   runtime and protecting its access. Generated resources need to be further customized depending on your needs and credentials.
 - an introduction to [Envoy](https://envoyproxy.io/), which is employed as API Gateway by the application. It is also
