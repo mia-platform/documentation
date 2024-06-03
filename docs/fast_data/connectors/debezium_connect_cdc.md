@@ -108,7 +108,7 @@ Moreover, we recommend exposing only the strictly necessary endpoints.
 
 
 ## Message filtering
-To filter messages before puglishing to Kafka, you can use [Debezium Message Filtering](https://debezium.io/documentation/reference/2.7/transformations/filtering.html). Add the following properties to your connector's configuration:
+To filter messages before publishing to Kafka, you can use [Debezium Message Filtering](https://debezium.io/documentation/reference/2.7/transformations/filtering.html). Add the following properties to your connector's configuration:
 ```
 ...
 transforms=filter
