@@ -98,7 +98,13 @@ Here is an example configuration for an Oracle database:
 
 ## Operate on Debezium Connect connectors
 You can easily start, stop, pause, or delete the connectors by invoking the Kafka Connect REST APIs.
-Please refer to the official documentation for the [API reference](https://kafka.apache.org/documentation/#connect_rest).
+Please refer to the official documentation for the [API reference](https://kafka.apache.org/documentation/#connect_rest).  
+
+:::warning
+Please, notice that these APIs expose sensitive information, such as the database password. If you choose to expose Debezium Connect through an [API Gateway endpoint](/development_suite/api-console/api-design/endpoints.md), ensure it is protected with proper authorization mechanisms.
+
+Moreover, we recommend exposing only the striclty necessary endpoints.
+:::
 
 
 ## Message filtering
