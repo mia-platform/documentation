@@ -140,7 +140,7 @@ If you plan to horizontally replicate this image, be aware that this will create
 
 
 ## Integration with Oracle Database
-Due to licensing reasons, if you want to use Debezium Connect for an Oracle database, you need to build your own image and manually include the Oracle JDBC. Use the following Dockerfile (ensure the JDBC group, version, and MD5 are correct):
+Due to licensing reasons, if you want to use Debezium Connect for an Oracle database, you need to build your own image and manually include the Oracle JDBC. Here's a sample of a Dockerfile that can be used as a starting point (ensure the JDBC group, version, and MD5 are correct):
 ```Dockerfile
 FROM quay.io/debezium/connect:2.5
 
