@@ -43,6 +43,10 @@ CONNECT_SASL_MECHANISM=SCRAM-SHA-256
 CONNECT_SECURITY_PROTOCOL=SASL_SSL
 ```
 
+:::warning
+For the interpolated variables of the above configuration, `KAFKA_DEBEZIUM_PASSWORD` is a secreted variable and should be placed in the [Project's Variables section](/console/project-configuration/manage-environment-variables/index.md) of the Console. Meanwhile,  `KAFKA_BOOTSTAP_SERVERS`, `ENV`, `INTERNAL_TOPIC_PREFIX` and `KAFKA_DEBEZIUM_USER` can be safely placed in the [Public Variables](/development_suite/api-console/api-design/public_variables.md) section.
+:::
+
 ## Debezium Connect Configuration
 
 Once Debezium Connect is running, you can start new connectors by simply invoking the REST API `PUT/connectors/:connectorName/config`. This REST API will start a new connector if `connectorName` is not present, or update the configuration of an existing connector. It accepts the configuration in the request body.
