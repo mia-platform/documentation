@@ -103,7 +103,7 @@ Please refer to the official documentation for the [API reference](https://kafka
 :::warning
 Please, notice that these APIs expose sensitive information, such as the database password. If you choose to expose Debezium Connect through an [API Gateway endpoint](/development_suite/api-console/api-design/endpoints.md), ensure it is protected with proper authorization mechanisms.
 
-Moreover, we recommend exposing only the striclty necessary endpoints.
+Moreover, we recommend exposing only the strictly necessary endpoints.
 :::
 
 
