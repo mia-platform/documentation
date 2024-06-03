@@ -45,7 +45,7 @@ CONNECT_SECURITY_PROTOCOL=SASL_SSL
 
 ## Debezium Connect Configuration
 
-Once Debezium Connect is running, you can start new conncetors by simply invoking the REST API `PUT/connectors/:connectorName/config`. This REST API will start a new connector if `connectorName` is not present, or update the configuration of an existing connector. It accepts the configuration in the request body.
+Once Debezium Connect is running, you can start new connectors by simply invoking the REST API `PUT/connectors/:connectorName/config`. This REST API will start a new connector if `connectorName` is not present, or update the configuration of an existing connector. It accepts the configuration in the request body.
 
 For a complete list of configuration parameters, refer to the [official documentation](https://debezium.io/documentation/reference/connectors/oracle.html#required-debezium-oracle-connector-configuration-properties). Note that this documentation varies for each type of source database.
 
