@@ -10,7 +10,7 @@ This page provides instructions on how to configure Debezium as a Kafka Connect 
 
 Unlike [Debezium Server](/fast_data/connectors/debezium_cdc.md), the configuration discussed here is not related to any plugins in the Mia-Platform Marketplace. However, you can use the official public image `quay.io/debezium/connect`.
 
-This image serves as a [Kafka Connect](https://kafka.apache.org/documentation/#connect) worker with all the Debezium connectors Debezium connectors already included.
+This image serves as a [Kafka Connect](https://kafka.apache.org/documentation/#connect) worker with all the Debezium connectors already included.
 
 Compared to Debezium Server, Debezium Connect does not require Redis for storing metadata regarding offsets and schema management. Instead, it uses dedicated Kafka topics for this internal information.
 
