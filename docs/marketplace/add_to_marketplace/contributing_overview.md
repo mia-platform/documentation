@@ -25,7 +25,7 @@ There are different methods to manage your Internal Company Marketplace items. T
 
 Creation of a Marketplace item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
 
-You have to ways to upload the item file:
+You have two ways to upload the item file:
 
 - by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool (recommended)
 - by creating it in the CMS
