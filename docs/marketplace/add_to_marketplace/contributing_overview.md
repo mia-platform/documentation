@@ -40,6 +40,7 @@ To create Marketplace items you need to be a *Company Owner* or a *Project Admin
 Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
+If you want to make your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
 :::
 
 :::info
