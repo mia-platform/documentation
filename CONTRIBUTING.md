@@ -135,8 +135,9 @@ In order to bump a new documentation version you have to follow through this che
 1. remove the versioned docs that reached EOL
 1. clear the previous version overview page to create space for the newer one
 1. remove all the previous release notes pages and prepare a single release page for the new version
-1. update homepage benner
+1. update homepage banner
 1. update hompage quick links targeting information relevant to the previous version
+1. update version policy page to include the new release support period
 
 ### Freeze previous version
 
