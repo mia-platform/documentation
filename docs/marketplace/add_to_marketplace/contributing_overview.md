@@ -9,7 +9,7 @@ In this section, we dive into the process of creating a new item for your **Inte
 ## Public and Internal Company Marketplace
 
 As a Console user, you can access both Mia-Platform public Marketplace catalog and your Internal Company Marketplace. 
-While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the Internal Company Marketplace is a Company-specific private space where to create and manage the items which are available only for your Company.
+While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the **Internal Company Marketplace** is a Company-specific private space where to create and manage the items which are available only for your Company.
 
 The **Mia-Platform public Marketplace** is the place where every Company can find most of the items needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
