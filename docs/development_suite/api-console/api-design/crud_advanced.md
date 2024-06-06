@@ -172,9 +172,16 @@ You can always change the default state of an existing route by simply clicking 
 
 You can delete a route but you must always leave at least one endpoint exposed by the [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md), otherwise the CRUD won't be accessible by anyone, neither the services in your project.
 
-### How to create the fields of your CRUD by importing a JSON
+### Import CRUD collection fields
 
-If you want, you can upload your fields from file, selecting **Import fields from File**.
+Instead of manually creating your CRUD fields, you can easily import them:
+
+- from a [JSON schema](#how-to-create-the-fields-of-your-crud-by-importing-a-json)
+- from a [data sample](#how-to-generate-from-data-sample-your-crud-fields)
+
+#### How to create the fields of your CRUD by importing a JSON
+
+In the Fields card, from the `Import field` button you can select the **From JSON schema** option.
 Remember that the file must be a JSON with the following directions:
 
 * Enter the property `name` in camelCase
@@ -351,6 +358,42 @@ If you want to delete a row, select red trash symbol on the right of the the tab
 
 :::warning
 The collection **has not yet been saved** it is necessary to continue the process described below
+:::
+
+#### How to generate from data sample your CRUD fields
+
+From the `Import fileds` button, select the **From data sample** option. 
+Doing this will replace the current fields with those contained within the file.
+The supported file extension are: `.csv` and `.json`.
+
+Example json
+
+```json
+[
+  {
+    "field1": "anyString",
+    "field2": "true",
+    "field3": "123"
+  }
+]
+```
+
+Example CSV
+
+```csv
+field1,field2,field3
+false,anyString,123
+```
+
+At the end of the upload an internal function will try to cast the types correctly, otherwise it will treat them as strings by default.
+
+:::note
+Import of fields is supported only for the following data types: `String`, `Number`, `Boolean` or `Date`. For example, you cannot import fields of type object.
+In case some fields are not in the correct format, they will be ignored.
+:::
+
+:::caution
+You cannot import fields with the same name as one of the metadata fields. If this happens, a warning will be displayed and the import won't be successful
 :::
 
 ### Indexes
