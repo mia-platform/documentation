@@ -174,11 +174,12 @@ You can delete a route but you must always leave at least one endpoint exposed b
 
 ### Import CRUD collection fields
 
-Instead of manually creating your CRUD fields, you can easily import them:
+In addition to manually manually creating your CRUD fields, it is also possible to import them:
 
 - from a [JSON schema](#how-to-create-the-fields-of-your-crud-by-importing-a-json)
 - from a [data sample](#how-to-generate-from-data-sample-your-crud-fields)
 
+This simplify the schema definition whenever it has already been defined somewhere else or a record representative of your dataset is available.
 #### How to create the fields of your CRUD by importing a JSON
 
 In the Fields card, from the `Import field` button you can select the **From JSON schema** option.
