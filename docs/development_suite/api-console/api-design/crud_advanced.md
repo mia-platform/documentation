@@ -363,7 +363,7 @@ The collection **has not yet been saved** it is necessary to continue the proces
 
 #### How to generate from data sample your CRUD fields
 
-From the `Import fileds` button, select the **From data sample** option. 
+From the `Import fields` button, select the **From data sample** option. 
 Doing this will replace the current fields with those contained within the file.
 The supported file extension are: `.csv` and `.json`.
 
