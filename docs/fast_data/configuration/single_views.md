@@ -24,10 +24,12 @@ To define the custom fields, indexes and internal endpoints of your single view 
 
 ### Import Single view fields
 
-Instead of manually creating your single view fields, you can easily import them:
+In addition to manually manually creating your CRUD fields, it is also possible to import them:
 
 - from a [JSON schema](#how-to-create-the-fields-of-your-single-view-by-importing-a-json)
 - from a [data sample](#generate-single-view-fields-from-data-sample)
+
+This simplify the schema definition whenever it has already been defined somewhere else or a record representative of your dataset is available.
 
 #### How to create the fields of your single view by importing a JSON
 
