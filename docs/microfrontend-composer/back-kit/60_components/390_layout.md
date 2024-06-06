@@ -742,7 +742,7 @@ type UserMenu {
     /** Method used to perform the call to the URL specified in the 'url' property */
     method?: 'GET' | 'POST'
 
-    /** URL to be redirected to after the logout */
+    /** URL to be redirected to after the logout. When missing, if the logout call replies with a redirect, then it will be followed */
     redirectUrl?: string
 
     /** URL called to log out the user. The method used is the one specified in the 'method' property */
