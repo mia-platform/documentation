@@ -15,6 +15,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.8.0] 2024-06-06
+
+### Added
+
+- 
+  - support for new cast function signature, that is:
+    ```js
+    export default function(messageObject, fieldName, logger) {
+      const myValue = messageObject[fieldName]
+      // do some custom logic...
+      return myValue
+    }
+    ```
+  - kafka message adapter can be loaded as ESM modules, for example:
+    ```js
+    export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+      // ...adapter logic
+    }
+    ```
+
 ## [7.7.0] 2024-04-23
 
 ### Updated
@@ -263,6 +283,26 @@ Now the Real-Time Updater properly support Debezium CDC change events with and w
 
 - `kafka-importer-lib`@7.0.0 npm audit
 
+## [6.1.0] 2024-05-28
+
+### Added
+
+- 
+  - support for new cast function signature, that is:
+    ```js
+    export default function(messageObject, fieldName, logger) {
+      const myValue = messageObject[fieldName]
+      // do some custom logic...
+      return myValue
+    }
+    ```
+  - kafka message adapter can be loaded as ESM modules, for example:
+    ```js
+    export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+      // ...adapter logic
+    }
+    ```
+
 ## [6.0.1] 2022-07-04
 
 ### Updated
@@ -274,10 +314,30 @@ Now the Real-Time Updater properly support Debezium CDC change events with and w
 ### BREAKING CHANGES
 
 - uniform handling of MongoDB queries in `LowCode`
-
+  
 ### Updated
 
 - `@mia-platform-internal/fast-data-automation-lib` 2.0.0
+
+## [5.5.0] 2024-05-28
+
+### Added
+
+- 
+  - support for new cast function signature, that is:
+    ```js
+    export default function(messageObject, fieldName, logger) {
+      const myValue = messageObject[fieldName]
+      // do some custom logic...
+      return myValue
+    }
+    ```
+  - kafka message adapter can be loaded as ESM modules, for example:
+    ```js
+    export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+      // ...adapter logic
+    }
+    ```
 
 ## [5.4.1] 2022-05-09
 
