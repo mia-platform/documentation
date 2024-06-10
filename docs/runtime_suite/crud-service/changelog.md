@@ -58,6 +58,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - updated `@fastify/mongodb` to v8.0.0
 - updated `@fastify/multipart` to v8.0.0
 
+## 6.10.2 - 2024-06-06
+
+### Changed
+
+- upgrade NodeJS version in Docker image to v20.14.0
+
+## 6.10.1 - 2024-05-17
+
+- fixed projection example in json schema generator
+
+
 ## 6.10.0 - 2024-02-01
 
 ### Added
