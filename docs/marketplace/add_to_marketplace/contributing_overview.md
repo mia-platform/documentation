@@ -263,7 +263,7 @@ Failing to comply with these limitations will result in an error when deploying 
 
 :::
 
-:::caution
+:::info
 
 Any unrecognized placeholder will be left as is in the final value.
 
