@@ -166,7 +166,7 @@ Here below are listed all the properties that you can provide for each microserv
   - **`secretKey`**: the key of the secret that contains the value of the variable
   - **`description`**: a brief description of the variable
   - **`readOnly`**: a boolean that represents if you can change the value of the variable through the Console
-  Be aware that the secret must be created in the same namespace of the service will be deployed. Since the secret cannot be created through the Console, the user must be made aware of this requirement when they want to deploy the service.
+  Be aware that the secret must be created in the same namespace where the service will be deployed. Since the secret cannot be created through the Console, the user must be made aware of this requirement when they want to deploy the service.
   It is advisable to make the `readOnly` property `false`, to allow users to change the secret reference in case they have it with another name or key for watherever reason.
 - **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
