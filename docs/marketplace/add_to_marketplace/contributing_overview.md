@@ -149,15 +149,25 @@ Each property described in the following paragraphs regarding the microservices 
 }
 ```
 
-The serviceId **must** be in `kebab-case` format.
+The serviceId **must** be in `kebab-case` format and should not exceed the length of 63 characters.
 
 Here below are listed all the properties that you can provide for each microservice item:
   
 - **`itemId`**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
-- **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
-  In particular, for each of them you need to provide:  
+- **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by the Console.  
+  In particular, for each of them you need to provide:
   - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
   - **`value`**: the variable default value; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values).
+  - **`description`**: a brief description of the variable
+  - **`readOnly`**: a boolean that represents if you can change the value of the variable through the Console
+  You can also define a variable whose value will be provided by a kubernetes secret. In this case, you need to provide:
+  - **`valueType`**: must be set to `secret`
+  - **`secretName`**: the name of the secret that contains the value of the variable
+  - **`secretKey`**: the key of the secret that contains the value of the variable
+  - **`description`**: a brief description of the variable
+  - **`readOnly`**: a boolean that represents if you can change the value of the variable through the Console
+  Be aware that the secret must be created in the same namespace of the service will be deployed. Since the secret cannot be created through the Console, the user must be made aware of this requirement when they want to deploy the service.
+  It is advisable to make the `readOnly` property `false`, to allow users to change the secret reference in case they have it with another name or key for watherever reason.
 - **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
   - **`name`**: the name of the ConfigMap
@@ -240,6 +250,18 @@ The microservice will be created with the env var `SOME_ENV_VAR` set as follows:
    "value": "ms name: my-ms; project id: my-project; company id: my-company"
 }
 ```
+
+:::caution
+
+Be aware of the limitations of the values where the placeholders will be interpolated.
+For example, the labels values are limited to 63 characters, so the interpolated value must not exceed this limit.
+Annotations have a limit of 256 characters, so the interpolated value must not exceed this limit.
+
+Refer to kubernetes documentation for more information about the limits of the resources.
+
+Failing to comply with these limitations will result in an error when deploying the service.
+
+:::
 
 :::caution
 
