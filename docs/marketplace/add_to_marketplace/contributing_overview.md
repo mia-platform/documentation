@@ -257,7 +257,7 @@ Be aware of the limitations of the values where the placeholders will be interpo
 For example, the labels values are limited to 63 characters, so the interpolated value must not exceed this limit.
 Annotations have a limit of 256 characters, so the interpolated value must not exceed this limit.
 
-Refer to kubernetes documentation for more information about the limits of the resources.
+Refer to Kubernetes documentation for more information about the limits of the resources.
 
 Failing to comply with these limitations will result in an error when deploying the service.
 
