@@ -5,12 +5,17 @@ sidebar_label: Merge of configurations
 ---
 
 :::caution
-Currently, in the merge process, the following Design sections are not supported:
+This feature is not a `git merge`, which means it does not include all the content of the project repository during the comparison between the two branches.
+
+Currently, it includes only the configurations included in the _Design_ sections of the Console with the exception of:
 
 - Visualize
 - Advanced
 
-Therefore, the user must manage them manually.
+This means that the Merge process will not allow you to compare the content coming from these two sections, as well as any other configuration included in the project repository but not in Console (such as pipelines for CI/CD operations or the content of the `mlp.yaml` file used by **mlp**).
+After completing the merge operation, these configurations will not be modified in the current working branch.
+
+To update these configurations, you will have to manually update them in the current working branch.
 :::
 
 Within the project, different users can concurrently work on the same branch while having visibility of any configuration changes made by other users.
@@ -24,7 +29,7 @@ As a matter of fact, from the Design area, and specifically through the branch a
 Therefore, in case of a new commit is available, users can decide whether to start a merge configurations process or to save their local changes on a new branch.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '340px'}}> 
+  <div style={{display: 'flex', width: '340px'}}>
 
 ![Branch action popover menu with merge option](img/merge-collaboration/action-popover-merge-mode.png)
 
@@ -32,7 +37,7 @@ Therefore, in case of a new commit is available, users can decide whether to sta
 </div>
 
 :::note
-If you want to **save on the same branch** you must perform the merge; otherwise you'll have to discard your changes, pull the new configuration and manually apply your changes again. 
+If you want to **save on the same branch** you must perform the merge; otherwise you'll have to discard your changes, pull the new configuration and manually apply your changes again.
 :::
 
 ## Differences between Pull and Merge
@@ -42,7 +47,7 @@ Once there is a new available commit from remote, the action popover will displa
 If no local changes have been made, you can click on the Pull action from the action popover in order to download the updated configuration and start working on it.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '340px'}}> 
+  <div style={{display: 'flex', width: '340px'}}>
 
 ![Branch action popover menu with pull option](img/merge-collaboration/action-popover-pull-mode.png)
 
@@ -118,7 +123,7 @@ This button allows you to go back to the initial situation for the current secti
 
 ## Merge from another branch
 
-As an alternative to the merging process already described above, it is also possible to merge your actual configuration not only with the different remote configuration within the same branch, but also with other different branches. 
+As an alternative to the merging process already described above, it is also possible to merge your actual configuration not only with the different remote configuration within the same branch, but also with other different branches.
 
 In order to perform this action, you have to click on the "Merge from another branch" icon inside the action popover: at this point, a list of all the other different available branches will appear and from this list you can choose the branch with which you want to merge your actual branch.
 
@@ -135,7 +140,7 @@ This will open a modal where the two different branches are shown; each branch w
 If the 'merge from another branch' operation is successful, you can choose to delete the source branch. In any case, you can choose either to continue editing or to save your configuration.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
+  <div style={{display: 'flex', width: '600px'}}>
 
 ![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-ok-delete-branch.png)
 
