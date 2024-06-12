@@ -135,6 +135,13 @@ Moreover, if enabled by [configuration][service-configuration], it sends an even
 
 ### POST /notification-events/
 
+:::caution
+
+**v2.3.0**. Since v2.3.0 the endpoint accepts arbitrary fields in the request body JSON object, that are automatically merged inside the event `payload`.
+If a field with the same name already exists in the event `payload`, the corresponding value will be overwritten.
+
+:::
+
 :::info
 
 **v2.0.0**. This endpoint is available only since v2.0.0.
@@ -214,6 +221,16 @@ If any other error occurs, the response will return a `4xx` or `5xx` status code
 
 This endpoint is a proxy to the `GET /` endpoint of the [notifications CRUD][crud-notifications].
 
+### GET /notifications/count
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /count` endpoint of the [notifications CRUD][crud-notifications].
+
 ### GET /notifications/:id
 
 :::info
@@ -234,6 +251,20 @@ This endpoint is a proxy to the `GET /:id` endpoint of the [notifications CRUD][
 
 This endpoint is a proxy to the `GET /` endpoint of the [notification settings CRUD][crud-notification-settings].
 
+### GET /notification-settings/:id
+
+This endpoint is a proxy to the `GET /:id` endpoint of the [notification settings CRUD][crud-notification-settings].
+
+### GET /notification-settings/count
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /count` endpoint of the [notification settings CRUD][crud-notification-settings].
+
 ### PATCH /notification-settings/:id
 
 :::info
@@ -243,6 +274,15 @@ This endpoint is a proxy to the `GET /` endpoint of the [notification settings C
 :::
 
 This endpoint is a proxy to the `PATCH /:id` endpoint of the [notification settings CRUD][crud-notification-settings].
+
+A valid notification setting must satisfy the following conditions:
+
+- No multiple notification settings are allowed with the same combination of event name, template name and users selectors;
+- All the notification settings channels must be enabled at the service or event level;
+- The notification settings template must exist and must support all the selected channels
+- The `hours` field must not have duplicated values
+- The `emitters` field must not have duplicated values
+- The `reminders` field must not have duplicated values
 
 ### POST /notification-settings/
 
@@ -255,6 +295,15 @@ This endpoint is a proxy to the `PATCH /:id` endpoint of the [notification setti
 This endpoint is a proxy to the `POST /` endpoint of the [notification settings CRUD][crud-notification-settings].
 
 A notification setting can target any combination of a single user, group, role or cluster, which means that any combination of the following fields can be set in the request body: `user`, `cluster`, `role` or `group`.
+
+A valid notification setting must satisfy the following conditions:
+
+- No multiple notification settings are allowed with the same combination of event name, template name and users selectors;
+- All the notification settings channels must be enabled at the service or event level;
+- The notification settings template must exist and must support all the selected channels
+- The `hours` field must not have duplicated values
+- The `emitters` field must not have duplicated values
+- The `reminders` field must not have duplicated values
 
 ### DELETE /notification-settings/:id
 
@@ -473,6 +522,238 @@ After updating successfully an event settings in the CRUD, the routing configura
 - `eventSchema`
 - `handlerName`
 - `handlerConfig`
+
+### GET /templates/
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /` endpoint of the [templates CRUD][crud-templates].
+
+### GET /templates/count
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /count` endpoint of the [templates CRUD][crud-templates].
+
+### GET /templates/:id
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /:id` endpoint of the [templates CRUD][crud-templates].
+
+### POST /templates/
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `POST /` endpoint of the [templates CRUD][crud-templates].
+
+A valid template must satisfy the following conditions:
+
+- it must have a unique name;
+- only one among `emailMessage` and `emailHtmlMessage` fields can be defined;
+- if the `pushData` field is set, `pushTitle`, `pushSubtitle` and `pushMessage` must not be defined;
+- if `pushTitle`, `pushSubtitle` and/or `pushMessage` are set, `pushData` must not be set.
+
+### PATCH /templates/:id
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `PATCH /:id` endpoint of the [templates CRUD][crud-templates].
+
+A valid template must satisfy the following conditions:
+
+- it must have a unique name;
+- only one among `emailMessage` and `emailHtmlMessage` fields can be defined;
+- if the `pushData` field is set, `pushTitle`, `pushSubtitle` and `pushMessage` must not be defined;
+- if `pushTitle`, `pushSubtitle` and/or `pushMessage` are set, `pushData` must not be set.
+
+### DELETE /templates/:id
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `DELETE /:id` endpoint of the [templates CRUD][crud-templates].
+
+### POST /templates/state
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `POST /state` endpoint of the [templates CRUD][crud-templates].
+
+### GET /notification-messages/
+
+:::caution
+
+This endpoint is available in preview, breaking changes could be introduced in next minor versions.
+Please check the CHANGELOG before upgrading. 
+
+:::
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /notifications` endpoint of the [templates CRUD][crud-templates], and it returns the messages of the queried notifications. See [notifications CRUD][crud-notification] and [messages CRUD][crud-notification-messages].
+
+If the queried notifications look like these:
+
+```json
+[
+  {
+    "_id": "663ccd65dee93b2a6a6885d1",
+    "event": {
+      "_id": "663ccd63dee93b2a6a6885d0",
+      "name": "Update appointment",
+      "payload": {
+        "recipient": "663ccce5dee93b2a6a6885ty",
+        "templateName": "update-appointment"
+      },
+      "source": {
+        "channel": "http",
+        "requestId": "6e4ddc4eda4ce1f422b285a80da3128a"
+      },
+      "status": "RECEIVED"
+    },
+    "recipient": "663ccce5dee93b2a6a6885ty",
+    "messages": [
+      {
+        "channel": "email",
+        "templateName": "new-appointment",
+        "status": "SUCCESS"
+      },
+      {
+        "channel": "sms",
+        "templateName": "new-appointment",
+        "status": "FAILED"
+      }
+    ]
+  },
+  {
+    "_id": "812rcd65dee93b2a6a9845z98",
+    "event": {
+      "_id": "758acd63dee93b2a6a68125a",
+      "name": "New appointment",
+      "payload": {
+        "recipient": "recipient-2",
+        "templateName": "new-appointment"
+      },
+      "source": {
+        "channel": "http",
+        "requestId": "6e4ddc4eda4ce1f422b285a80da3128a"
+      },
+      "status": "RECEIVED"
+    },
+    "recipient": "675cdse5dee93b2a6a64565rf",
+    "messages": [
+      {
+        "channel": "email",
+        "templateName": "new-appointment",
+        "status": "SUCCESS"
+      }
+    ]
+  }
+]
+
+```
+
+the response with the messages looks like the following:
+
+```json
+[
+  {
+    "_id": "663ccd65dee93b2a6a6885d1-m1",
+    "event": {
+      "_id": "663ccd63dee93b2a6a6885d0",
+      "name": "Update appointment",
+      "payload": {},
+      "source": {}
+    },
+    "recipient": "663ccce5dee93b2a6a6885ty",
+    "message": {
+      "channel": "email",
+      "templateName": "new-appointment",
+      "status": "SUCCESS"
+    }
+  },
+  {
+    "_id": "663ccd65dee93b2a6a6885d1-m2",
+    "event": {
+      "_id": "663ccd63dee93b2a6a6885d0",
+      "name": "Update appointment",
+      "payload": {},
+      "source": {}
+    },
+    "recipient": "663ccce5dee93b2a6a6885ty",
+    "message": {
+      "channel": "sms",
+      "templateName": "new-appointment",
+      "status": "FAILED"
+    }
+  },
+  {
+    "_id": "812rcd65dee93b2a6a9845z98-m1",
+    "event": {
+      "_id": "758acd63dee93b2a6a68125a",
+      "name": "New appointment",
+      "payload": {},
+      "source": {}
+    },
+    "recipient": "675cdse5dee93b2a6a64565rf",
+    "message": {
+      "channel": "email",
+      "templateName": "new-appointment",
+      "status": "SUCCESS"
+    }
+  }
+]
+```
+
+### GET /notification-messages/count
+
+:::caution
+
+This endpoint is available in preview, breaking changes could be introduced in next minor versions.
+Please check the CHANGELOG before upgrading. 
+
+:::
+
+:::info
+
+**v2.3.0**. This endpoint is available only since v2.3.0.
+
+:::
+
+This endpoint is a proxy to the `GET /notifications` endpoint of the [templates CRUD][crud-templates], and it returns the number of messages of the queried notifications. See [notifications CRUD][crud-notification] and [messages CRUD][crud-notification-messages].
+
 
 ## Custom handler API
 
@@ -707,11 +988,19 @@ The function throws an error if the CRUD service does not respond correctly or a
 
 ### sendMessages
 
+:::info
+
+**v2.3.0**. Custom attachments specified in the message `attachments` field will be sent if the `email` channel is specified.
+
+:::
+
 ```
 async sendMessages(service, event, user, messages)
 ```
 
-This functions takes as input a list of [messages][crud-notification-messages] for a given user and event, like those generated by the [`buildMessages` utility function][build-messages], and sends them using the specified channels and templates. If the list of messages is empty, no record is stored in the [notifications CRUD][crud-notifications].
+This functions takes as input a list of [messages][crud-notification-messages] for a given user and event, like those generated by the [`buildMessages` utility function][build-messages], and sends them using the specified channels and templates.
+If one or more attachments are specified in combination with the `email` channel, those attachments will be sent together with template attachments.
+If the list of messages is empty, no record is stored in the [notifications CRUD][crud-notifications].
 
 In the message templates you can use the following variables for interpolation:
 
@@ -720,12 +1009,12 @@ In the message templates you can use the following variables for interpolation:
 
 #### Parameters
 
-| Parameter name | Required | Description                                                  |
-|----------------|----------|--------------------------------------------------------------|
-| service        | Yes      | Fastify decorated instance                                   |
-| event          | Yes      | An [event][crud-events] with id, name and payload            |
-| user           | Yes      | A user from the [users CRUD][crud-users] |
-| messages       | Yes      | A list of notification messages with channel                 |
+| Parameter name | Required | Description                                                            |
+|----------------|----------|------------------------------------------------------------------------|
+| service        | Yes      | Fastify decorated instance                                             |
+| event          | Yes      | An [event][crud-events] with id, name and payload                      |
+| user           | Yes      | A user from the [users CRUD][crud-users]                               |
+| messages       | Yes      | A list of notification messages with channel, template and attachments |
 
 #### Return value
 
@@ -743,11 +1032,11 @@ This function takes an event, a user and a notification setting, send all the me
 
 #### Parameters
 
-| Parameter name | Required | Description                                                                    |
-|----------------|----------|--------------------------------------------------------------------------------|
-| service        | Yes      | Fastify decorated instance                                                     |
-| event          | Yes      | Event with id, name and payload                                                |
-| user           | Yes      | A user from the [users CRUD][crud-users]                   |
+| Parameter name | Required | Description                                               |
+|----------------|----------|-----------------------------------------------------------|
+| service        | Yes      | Fastify decorated instance                                |
+| event          | Yes      | Event with id, name and payload                           |
+| user           | Yes      | A user from the [users CRUD][crud-users]                  |
 | notification   | Yes      | A [CRUD notification setting][crud-notification-settings] |
 
 #### Return value
@@ -1748,6 +2037,7 @@ When the handler receives such an event it performs the following operations:
 [crud-event-settings]: ./20_configuration.md#event-settings-crud
 [crud-events]: ./20_configuration.md#events-crud
 [crud-users]: ./20_configuration.md#users-crud
+[crud-templates]: ./20_configuration.md#templates-crud
 [service-configuration]: ./20_configuration.md#service-configuration
 
 [build-messages]: #buildmessages

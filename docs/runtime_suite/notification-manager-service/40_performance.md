@@ -22,7 +22,10 @@ Following our suggested requests and limits, you can serve more users by simply 
 
 This test suite helped us establish a baseline for the performance of the service when no notification is actually send.
 We tested this scenario without configuring any notification setting.
+Each concurrent user was configured to send a request every one to five seconds.
 Each test was left running for 5 minutes.
+
+### v2.0.0
 
 | Users | Replicas | Requests Per Second | Average response time (in s) | Median response time (in s) | Min response time (in s) | Max response time (ms) |
 |:-----:|:--------:|:-------------------:|:----------------------------:|:---------------------------:|:------------------------:|:----------------------:|
@@ -30,16 +33,40 @@ Each test was left running for 5 minutes.
 |   5   |    2     |          1          |              2               |             0.3             |           0.01           |           60           |
 |  10   |    2     |         1.6         |              2               |             0.4             |           0.01           |           26           |
 
+### v2.3.0
+
+| Users | Replicas | Requests Per Second | Average response time (in ms) | Median response time (in s) | Min response time (in s) | Max response time (ms) |
+|:-----:|:--------:|:-------------------:|:-----------------------------:|:---------------------------:|:------------------------:|:----------------------:|
+|   5   |    1     |         1.6         |              0.2              |             0.1             |           0.05           |           3            |
+|   5   |    2     |         1.5         |             0.18              |             0.1             |           0.05           |          1.5           |
+|  10   |    2     |         2.7         |             0.15              |             0.1             |           0.05           |          1.7           |
+|  25   |    2     |         8.1         |             0.35              |            0.15             |           0.05           |           7            |
+
 ## Test with notifications
 
 This test suite was designed to measure the collective performance of the Notification Manager alongside the other services it depends on to send messages and set reminders.
-Each test sent on average an email and an SMS message to each participant - typically the doctor and the patient - and was left running for 5 minutes.
+Each concurrent user was configured to send a request every one to five seconds.
+
+### v2.0.0
+
+Each test sent on average two emails and two SMS messages and was left running for 5 minutes.
 
 | Users | Replicas | Requests Per Second | Average response time (in s) | Median response time (in s) | Min response time (in s) | Max response time (s) |
 |:-----:|:--------:|:-------------------:|:----------------------------:|:---------------------------:|:------------------------:|:---------------------:|
 |   1   |    1     |          0          |              13              |              3              |            1             |          60           |
 |   5   |    1     |         0.6         |              9               |              4              |            1             |          60           |
 |   5   |    2     |         0.4         |              29              |             17              |            1             |          60           |
+
+### v2.3.0
+
+Each test sent on average one email and was left running for 5 minutes.
+
+| Users | Replicas | Requests Per Second | Average response time (in s) | Median response time (in s) | Min response time (in s) | Max response time (s) |
+|:-----:|:--------:|:-------------------:|:----------------------------:|:---------------------------:|:------------------------:|:---------------------:|
+|   1   |    1     |         0.3         |             0.9              |             0.9             |           0.06           |          3.2          |
+|   5   |    1     |          1          |             1.0              |            0.64             |           0.05           |          6.3          |
+|  10   |    1     |         1.6         |             1.8              |              1              |           0.05           |         11.3          |
+|  10   |    2     |         2.2         |             2.2              |             1.5             |           0.05           |         14.8          |
 
 ## Recommended configuration
 
@@ -49,7 +76,7 @@ We recommending adding more replicas of each service, according to your usage sc
 
 | Service                   | CPU Requests (in Mi) | CPU Limits (in Mi) | Memory Requests (in m) | Memory Limits (in m) | Notes                                                |
 |---------------------------|----------------------|--------------------|------------------------|----------------------|------------------------------------------------------|
-| Notification Manager      | 50                   | 120                | 50                     | 100                  |                                                      |
+| Notification Manager      | 60                   | 120                | 60                     | 120                  |                                                      |
 | Mail Notification Service | 25                   | 60                 | 50                     | 100                  |                                                      |
 | SMS Service               | 100                  | 100                | 150                    | 150                  | Remember to configure the rate limits appropriately. |
 
