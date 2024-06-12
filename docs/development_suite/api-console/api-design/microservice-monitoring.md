@@ -19,7 +19,7 @@ or ask your Project Administrator in order to activate the feature!
 
 Once the Runtime Monitoring system is configured for your Project, you will be able to define scraping rules for each of your microservices container.
 
-In the Design section, each microservices features the Monitoring tab where you can view, udpate or delete your metrics scraping endpoint.
+In the Design section, each microservices features the Monitoring tab where you can view, update or delete your metrics scraping endpoint.
 
 For each container you can specificy multiple metrics endpoint, defined by the following fields:
 
