@@ -103,7 +103,7 @@ This card gives the user the ability to view and change some runtime settings.
 
 ![runtime settings](./img/settings-runtime-settings.png)
 
-Specifically, the **Monitoring** configuration lets you to choose between the different supported monitoring systems to gather metrics from your [Project microservices](/development_suite/api-console/api-design/microservice-monitoring.md).
+Specifically, the **Monitoring** configuration lets you choose between the different supported monitoring systems to gather metrics from your [Project microservices](/development_suite/api-console/api-design/microservice-monitoring.md).
 
 :::info
 [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator/blob/master/README.md#prometheus-operator) is currently the only supported monitoring system.
