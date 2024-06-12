@@ -5,17 +5,13 @@ sidebar_label: Merge of configurations
 ---
 
 :::caution
-This feature is not a `git merge`, which means it does not include all the content of the project repository during the comparison between the two branches.
+During the merge process, please remember that:
 
-Currently, it includes only the configurations included in the _Design_ sections of the Console with the exception of:
+- the configuration included in the _Visualize_ are not included and must be manually updated
+- the configuration included in the _Advanced_ section can be merged if the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled, otherwise must be manually updated
+- all configuration files manually managed inside the project repoisitory (such as pipelines for CI/CD operations or the content of the `mlp.yaml` file used by **mlp**) are not included in the merge process and must be manually updated
 
-- Visualize
-- Advanced
-
-This means that the Merge process will not allow you to compare the content coming from these two sections, as well as any other configuration included in the project repository but not in Console (such as pipelines for CI/CD operations or the content of the `mlp.yaml` file used by **mlp**).
-After completing the merge operation, these configurations will not be modified in the current working branch.
-
-To update these configurations, you will have to manually update them in the current working branch.
+If your project might have updates related to these points, please remember to check these configurations after the merge to ensure you have your branch up-to-date.
 :::
 
 Within the project, different users can concurrently work on the same branch while having visibility of any configuration changes made by other users.
@@ -79,7 +75,6 @@ Entering one of them, to resolve a diff, you can:
 - edit the local configuration on the right-hand editor (the left-hand editor is read-only)
 - either apply the remote changes from the left into the editor on the right or approve your local changes by moving them to the editor on the left. To apply the specific changes, you have to click on the small arrows located between the two editors (as shown in the image right above). 
 
-
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
 
@@ -130,7 +125,7 @@ In order to perform this action, you have to click on the "Merge from another br
 This will open a modal where the two different branches are shown; each branch will open up two editors displaying the other branch you have chosen (on the left) and your actual branch (on the right). Subsequently, from this modal, you can manage diffs and then confirm your merge in the same way as described above.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '340px'}}> 
+  <div style={{display: 'flex', width: '340px'}}>
 
 ![Merge from another branch](img/merge-collaboration/merge-from-another-branch.png)
 
