@@ -115,10 +115,10 @@ Be aware that Endpoints that are **only exposed by** the Listener you are deleti
 
 ![delete-listener](img/listeners/delete-listener.png)
 
-[//]: # (External links below:)
+<!-- External links below: -->
 [traefik]: https://doc.traefik.io/traefik/providers/kubernetes-ingress/
 [ingress-route]: https://doc.traefik.io/traefik/providers/kubernetes-crd/
 [ingress-controller]: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
 
-[//]: # (Mia doc links below:)
+<!-- Mia doc links below: -->
 [microservice-container-ports]: /development_suite/api-console/api-design/services#container-ports-configuration
