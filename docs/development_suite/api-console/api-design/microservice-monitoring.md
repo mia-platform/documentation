@@ -21,7 +21,7 @@ Once the Runtime Monitoring system is configured for your Project, you will be a
 
 In the Design section, each microservices features the Monitoring tab where you can view, update or delete your metrics scraping endpoint.
 
-For each container you can specificy multiple metrics endpoint, defined by the following fields:
+For each container you can specify multiple metrics endpoints, defined by the following fields:
 
 * **Path**: The path that should be contacted to gather your service metrics.
 * **Port**: The port (e.g., `80` or `http`) exposed by your service.
