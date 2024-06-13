@@ -90,9 +90,19 @@ To keep track of how a revision has changed over time, the user can access its r
 
 ![Revision History modal](img/revision-history.png)
 
-The revision history is accessible by clicking the related icon inside the branch selection area. It contains a list of snapshots of the Project configuration on the current revision or version, created each time it has been saved. It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it. Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
+The revision history is accessible by clicking the related icon inside the branch selection area.
+It contains the list of snapshots of the Project configuration on the current revision or version, created each time it has been saved.  
+It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it.
+Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
 
 ![Diff Editor on Revision History modal](img/diff-editor-on-revision-history.png)
+
+:::tip
+From the revision history you can revert previous changes using the specific option in the contextual menu.
+
+![revert button](./img/revision-history-revert-changes-button.png)
+
+:::
 
 ### New deployment workflow
 
