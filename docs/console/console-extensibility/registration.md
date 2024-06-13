@@ -18,6 +18,7 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 - `tenantId`: insert the tenant ID of the Company that will own the new extension
 
 **Body Params**
+- `extensionId`: this field should be empty when creating an extension. It is required to edit a extension already registered (see [here](#edit-registered-extension) for more info)
 - `name` (_required_): provide the name of your extension
 - `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
 - `description`: provide a brief description of the extension
