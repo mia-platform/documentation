@@ -103,17 +103,15 @@ This card gives the user the ability to view and change some runtime settings.
 
 ![runtime settings](./img/settings-runtime-settings.png)
 
-Specifically, the **Monitoring** tags allow you to choose between the different supported monitoring systems.
+Specifically, the **Monitoring** configuration lets you choose between the different supported monitoring systems to gather metrics from your [Project microservices](/development_suite/api-console/api-design/microservice-monitoring.md).
 
-The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
+:::info
+[Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator/blob/master/README.md#prometheus-operator) is currently the only supported monitoring system.
+When using the Monitoring configuration tab in the Design section, the Console is responsible for defining and provisioning `ServiceMonitor` and `PodMonitor` based on your microservices configuration.
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '700px'}}>
-
-![edit runtime settings](./img/settings-edit-runtime-settings.png)
-
-  </div>
-</div>
+`ServiceMonitor` and `PodMonitor` are specific [Kubernetes Custom Resources](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions),
+defined by the Prometheus Operator, that help configuring [Prometheus scraping mechanism](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
+:::
 
 ### Security features
 
