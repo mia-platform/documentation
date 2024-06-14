@@ -59,9 +59,8 @@ Then you can paste the output in the `fileContents` field.
  
 #### Image sizes
 
-The image files base64 encoded value will be inserted into a Kubernetes ConfigMap, so the size of the image should be taken into account to avoid exceeding the maximum size of a ConfigMap; we suggest that the images are as low as possible, and they should never exceed 600KB in size to give some margin before reaching the maximum ConfigMap size, taking into account that the base64 encoding will increase the size of the image by 33% and that ConfigMap also contains other metadata.
-
-We suggest the usage of SVG images, given their small size and scalability.
+Given the 1MB limit of the Helm values, **we suggest keeping the images as small as possible**, in the order of a few KBs.
+SVG images are preferred, usually smaller than PNG or JPEG images while maintaining good quality.
 
 #### Image format
 
