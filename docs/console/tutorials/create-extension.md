@@ -68,12 +68,13 @@ Once that all requisites are satisfied, you can register the Backoffice as an ex
 ```
 
 :::tip
-If you want to limit your extension to only users who can deploy it, you can configure the `permissions` key defined in this way:
+You can limit extension visibility based on Console User Capabilities; for instance, if you want to show your extension only to users who can deploy a project, you can configure the `permissions` key defined in this way:
 ```js
 {
   "permissions": ["console.company.project.environment.deploy.trigger"]
 }
 ```
+You can find out available capabilities in the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
 :::
 
 :::info

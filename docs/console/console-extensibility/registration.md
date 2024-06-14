@@ -31,11 +31,11 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 - `extensionId`: the extension identifies needed to manage the registered extension
 
 :::tip
-**[See the example on the tutorial page](/console/tutorials/create-extension.md#1-register-backoffice-extension)**
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#1-register-backoffice-extension)**
 :::
 
 :::info
-The API Portal does not show clearly which object fields (as `labelIntl` or `icon`) are required, in fact the `labelIntl` is required also if there is not the red asterisk, instead the `icon` is not required also if it should always contain the required `name` propriety.
+Please note that `labelIntl` is required, the `icon` field instead is optional; if set it must contain the required `name` property, useful to specify the icon name to be used.
 :::
 
 ### How to restrict the extension usage?
@@ -49,7 +49,7 @@ The routes should include the necessary information to render the extension menu
 ![menu item and category routes](img/menuItemAndCategory.png)
 
 :::info
-Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible, but not recommended, to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.
+Each extension should have always only one route that is not of type `category` to be meaningful and visible. Additionally, it is possible, to include another route of type `category` to add a custom group menu item and therefore include an extension under that group.
 :::
 
 A route, therefore, requires to provide the following information:
@@ -77,7 +77,7 @@ Array of registered extensions metadata:
 - `description`: extension description
 
 :::tip
-**[See the example on the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
 :::
 
 ## Edit registered Extension
@@ -103,11 +103,11 @@ The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to 
 ```
 
 :::tip
-**[See the example on the tutorial page](/console/tutorials/create-extension.md#edit-the-registered-extension)**
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#edit-the-registered-extension)**
 :::
 
 :::info
-The API Portal does not show clearly which object fields (as `labelIntl` or `icon`) are required, in fact the `labelIntl` is required also if there is not the red asterisk, instead the `icon` is not required also if it should always contain the required `name` propriety.
+Please note that `labelIntl` is required, the `icon` field instead is optional; if set it must contain the required `name` property, useful to specify the icon name to be used.
 :::
 
 ## Remove registered Extension
@@ -128,5 +128,5 @@ Deleting an extension automatically deactivates it from all contexts where it wa
 ```
 
 :::tip
-**[See the example on the tutorial page](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)**
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)**
 :::

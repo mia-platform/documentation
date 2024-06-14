@@ -23,7 +23,7 @@ The activation can be done using the API `POST /api/extensibility/tenants/{tenan
 - `activationId`: the activation identifier to manage the created extension activation
 
 :::tip
-**[See the example on the tutorial page](/console/tutorials/create-extension.md#3-activate-the-extension)**
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#3-activate-the-extension)**
 :::
 
 :::info
@@ -62,5 +62,5 @@ An extension activation can be terminated at any point using the API `DELETE /ap
 ```
 
 :::tip
-**[See the example on the tutorial page](/console/tutorials/create-extension.md#5-deactivate-the-backoffice-extension)**
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#5-deactivate-the-backoffice-extension)**
 :::
