@@ -14,6 +14,8 @@ If you want to register a new extension, you will need to have already chosen th
 
 The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, which you can find under the tags `Companies` or `Extensibility`.
 
+**-> [See the example on the tutorial page](/console/tutorials/create-extension.md#1-register-backoffice-extension)**
+
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company that will own the new extension
 
@@ -30,8 +32,6 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 **Response**
 - `extensionId`: the extension identifies needed to manage the registered extension
 
-See the example on the [tutorial page](/console/tutorials/create-extension.md#1-register-backoffice-extension)
-
 :::info
 The API Portal does not show clearly which object fields (as `labelIntl` or `icon`) are required, in fact the `labelIntl` is required also if there is not the red asterisk, instead the `icon` is not required also if it should always contain the required `name` propriety.
 :::
@@ -47,7 +47,7 @@ The routes should include the necessary information to render the extension menu
 ![menu item and category routes](img/menuItemAndCategory.png)
 
 :::info
-Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.  
+Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.
 :::
 
 A route, therefore, requires to provide the following information:
@@ -60,9 +60,15 @@ A route, therefore, requires to provide the following information:
 - `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
 - `order` (_required_): insert optionally this numeric value used to sort in ascending order the menu items on the sidebar. During the rendering, the `category` menu are sorted first and then the menu items attached on a specific `category` menu.
 
+:::warning
+The custom group menu item added with an extension could be also used as route's parentId of another extension, but this is not recommended because in this way the second extension could be visible only if the first one is activated and visible.
+:::
+
 ## Get registered Extensions
 
 The route `GET /api/extensibility/tenants/{tenantId}/extensions` allows you to retrieve all registered extensions under a specific Company. This functionality is readily accessible via the API Portal under the 'Companies' or 'Extensibility' tags, provided you have the Company Owner role for the selected Company.
+
+**-> [See the example on the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
 
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company which you want to retrieve the registered extensions of
@@ -74,11 +80,11 @@ Array of registered extensions metadata:
 - `name`: extension name
 - `description`: extension description
 
-See the example on the [tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)
-
 ## Edit registered Extension
 
 The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to edit an already registered extension simply specifying the `extensionId` and providing all the information to apply, including those that should remain unchanged. This route can also be contacted with the API Portal under the tags `Companies` or `Extensibility`, ensuring you have the role of Company Owner on the requested Company.
+
+**-> [See the example on the tutorial page](/console/tutorials/create-extension.md#edit-the-registered-extension)**
 
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company that will own the new extension
@@ -98,8 +104,6 @@ The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to 
 204 No Content
 ```
 
-See the example on the [tutorial page](/console/tutorials/create-extension.md#edit-the-registered-extension)
-
 :::info
 The API Portal does not show clearly which object fields (as `labelIntl` or `icon`) are required, in fact the `labelIntl` is required also if there is not the red asterisk, instead the `icon` is not required also if it should always contain the required `name` propriety.
 :::
@@ -112,6 +116,8 @@ The route `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}
 Deleting an extension automatically deactivates it from all contexts where it was active.
 :::
 
+**-> [See the example on the tutorial page](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)**
+
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company that own the extension to remove
 - `extensionId`: insert the ID of the extension to remove
@@ -120,5 +126,3 @@ Deleting an extension automatically deactivates it from all contexts where it wa
 ```
 204 No Content
 ```
-
-See the example on the [tutorial page](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)

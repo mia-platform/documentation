@@ -10,6 +10,8 @@ An extension registered on a Company can be activated to be used in the Console.
 
 The activation can be done using the API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` that can be accessed via the API Portal under the tags `Companies` or `Extensibility`.
 
+**-> [See the example on the tutorial page](/console/tutorials/create-extension.md#3-activate-the-extension)**
+
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to activate is registered
 - `extensionId`: insert the extension ID of the extension to activate
@@ -25,8 +27,6 @@ The activation can be done using the API `POST /api/extensibility/tenants/{tenan
 :::info
 Activation at the Project level can only be done on a project within the same Company on which the extension is registered.
 :::
-
-See the example on the [tutorial page](/console/tutorials/create-extension.md#3-activate-the-extension)
 
 ## Overrides
 
@@ -48,6 +48,8 @@ The properties that can be modified by the override coincide with the properties
 
 An extension activation can be terminated at any point using the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation`. This functionality is accessible through the API Portal under the tags `Companies` or `Extensibility`. Please note that the Company Owner role within the respective Company where the extension is activated is required for this action.
 
+**-> [See the example on the tutorial page](/console/tutorials/create-extension.md#5-deactivate-the-backoffice-extension)**
+
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to deactivate is registered
 - `extensionId`: insert the extension ID of the extension to deactivate
@@ -58,5 +60,3 @@ An extension activation can be terminated at any point using the API `DELETE /ap
 ```
 204 No Content
 ```
-
-See the example on the [tutorial page](/console/tutorials/create-extension.md#5-deactivate-the-backoffice-extension)
