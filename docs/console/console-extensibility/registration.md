@@ -49,7 +49,7 @@ The routes should include the necessary information to render the extension menu
 ![menu item and category routes](img/menuItemAndCategory.png)
 
 :::info
-Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.  
+Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible, but not recommended, to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.
 :::
 
 A route, therefore, requires to provide the following information:
@@ -61,10 +61,6 @@ A route, therefore, requires to provide the following information:
 - `icon`: select an icon for the new menu item and fill the `icon.name` field. You can find the icons at this [link](https://react-icons.github.io/react-icons/search/), but only Ant, Feather and Phosphor icons are supported. After pick an icon, you can use the React component name represented in the code example (e.g. the Phosphor icon `<PiAirplaneTiltFill />` has `PiAirplaneTiltFill` as name). This value can be omitted for the `category` route.
 - `labelIntl` (_required_): insert the label to be used on the menu item or menu group and fill this field providing an object JSON `{"en": string, "it": string}` so that the text is also internationalized.
 - `order` (_required_): insert optionally this numeric value used to sort in ascending order the menu items on the sidebar. During the rendering, the `category` menu are sorted first and then the menu items attached on a specific `category` menu.
-
-:::warning
-The custom group menu item added with an extension could be also used as route's parentId of another extension, but this is not recommended because in this way the second extension could be visible only if the first one is activated and visible.
-:::
 
 ## Get registered Extensions
 

@@ -67,6 +67,15 @@ Once that all requisites are satisfied, you can register the Backoffice as an ex
 }
 ```
 
+:::tip
+If you want to limit your extension to only users who can deploy it, you can configure the `permissions` key defined in this way:
+```js
+{
+  "permissions": ["console.company.project.environment.deploy.trigger"]
+}
+```
+:::
+
 :::info
 These registered routes are rendered as a menu item with label `Integrated Backoffice` that is attached to a `category` menu group with label `My menu group`. If you do not want to introduce new menu group, you can remove the second route from routes array and edit the `parentId` field of the remained route with one of that options:
 - `undefined`, so that the menu item will not be attached on any menu group 
