@@ -26,7 +26,7 @@ The activation can be done using the API `POST /api/extensibility/tenants/{tenan
 Activation at the Project level can only be done on a project within the same Company on which the extension is registered.
 :::
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#3-activate-the-extension)
+See the example on the [tutorial page](/console/tutorials/create-extension.md#3-activate-the-extension)
 
 ## Overrides
 
@@ -59,4 +59,4 @@ An extension activation can be terminated at any point using the API `DELETE /ap
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#5-deactivate-the-backoffice-extension)
+See the example on the [tutorial page](/console/tutorials/create-extension.md#5-deactivate-the-backoffice-extension)

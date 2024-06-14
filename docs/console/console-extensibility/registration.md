@@ -30,7 +30,11 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 **Response**
 - `extensionId`: the extension identifies needed to manage the registered extension
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#1-register-backoffice-extension)
+See the example on the [tutorial page](/console/tutorials/create-extension.md#1-register-backoffice-extension)
+
+:::info
+The API Portal does not show clearly which object fields (as `labelIntl` or `icon`) are required, in fact the `labelIntl` is required also if there is not the red asterisk, instead the `icon` is not required also if it should always contain the required `name` propriety.
+:::
 
 ### How to restrict the extension usage?
 
@@ -70,7 +74,7 @@ Array of registered extensions metadata:
 - `name`: extension name
 - `description`: extension description
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)
+See the example on the [tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)
 
 ## Edit registered Extension
 
@@ -94,7 +98,11 @@ The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to 
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#edit-the-registered-extension)
+See the example on the [tutorial page](/console/tutorials/create-extension.md#edit-the-registered-extension)
+
+:::info
+The API Portal does not show clearly which object fields (as `labelIntl` or `icon`) are required, in fact the `labelIntl` is required also if there is not the red asterisk, instead the `icon` is not required also if it should always contain the required `name` propriety.
+:::
 
 ## Remove registered Extension
 
@@ -113,4 +121,4 @@ Deleting an extension automatically deactivates it from all contexts where it wa
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)
+See the example on the [tutorial page](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)

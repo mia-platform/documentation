@@ -184,8 +184,8 @@ After registering you can proceed with its activation on a project using the [PO
 **Body Params without overrides (Option 1)**
 ```json
 {
-  "contextType": "my-project-id",
-  "contextId": "project",
+  "contextId": "my-project-id",
+  "contextType": "project",
   "overrides": []
 }
 ```
