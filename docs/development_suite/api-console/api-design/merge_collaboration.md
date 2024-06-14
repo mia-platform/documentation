@@ -5,12 +5,13 @@ sidebar_label: Merge of configurations
 ---
 
 :::caution
-Currently, in the merge process, the following Design sections are not supported:
+During the merge process, please remember that:
 
-- Visualize
-- Advanced
+- changes made inside the _Visualize_ section are not included and any modifications to the configuration must be manually applied after the merge
+- changes made inside the _Advanced_ section can be merged if the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled, otherwise its content must be manually updated after the merge
+- all configuration files manually managed inside the project repository (such as pipelines for CI/CD operations or the content of the `mlp.yaml` file used by **mlp**) are not included in the merge process and must be manually updated
 
-Therefore, the user must manage them manually.
+If your project might have updates related to these points, please remember to check these configurations after the merge to ensure you have your branch up-to-date.
 :::
 
 Within the project, different users can concurrently work on the same branch while having visibility of any configuration changes made by other users.
@@ -24,7 +25,7 @@ As a matter of fact, from the Design area, and specifically through the branch a
 Therefore, in case of a new commit is available, users can decide whether to start a merge configurations process or to save their local changes on a new branch.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '340px'}}> 
+  <div style={{display: 'flex', width: '340px'}}>
 
 ![Branch action popover menu with merge option](img/merge-collaboration/action-popover-merge-mode.png)
 
@@ -32,7 +33,7 @@ Therefore, in case of a new commit is available, users can decide whether to sta
 </div>
 
 :::note
-If you want to **save on the same branch** you must perform the merge; otherwise you'll have to discard your changes, pull the new configuration and manually apply your changes again. 
+If you want to **save on the same branch** you must perform the merge; otherwise you'll have to discard your changes, pull the new configuration and manually apply your changes again.
 :::
 
 ## Differences between Pull and Merge
@@ -42,7 +43,7 @@ Once there is a new available commit from remote, the action popover will displa
 If no local changes have been made, you can click on the Pull action from the action popover in order to download the updated configuration and start working on it.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '340px'}}> 
+  <div style={{display: 'flex', width: '340px'}}>
 
 ![Branch action popover menu with pull option](img/merge-collaboration/action-popover-pull-mode.png)
 
@@ -73,7 +74,6 @@ The sections where changes occur are marked with a warning so you can review the
 Entering one of them, to resolve a diff, you can:
 - edit the local configuration on the right-hand editor (the left-hand editor is read-only)
 - either apply the remote changes from the left into the editor on the right or approve your local changes by moving them to the editor on the left. To apply the specific changes, you have to click on the small arrows located between the two editors (as shown in the image right above). 
-
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '340px'}}> 
@@ -118,14 +118,14 @@ This button allows you to go back to the initial situation for the current secti
 
 ## Merge from another branch
 
-As an alternative to the merging process already described above, it is also possible to merge your actual configuration not only with the different remote configuration within the same branch, but also with other different branches. 
+As an alternative to the merging process already described above, it is also possible to merge your actual configuration not only with the different remote configuration within the same branch, but also with other different branches.
 
 In order to perform this action, you have to click on the "Merge from another branch" icon inside the action popover: at this point, a list of all the other different available branches will appear and from this list you can choose the branch with which you want to merge your actual branch.
 
 This will open a modal where the two different branches are shown; each branch will open up two editors displaying the other branch you have chosen (on the left) and your actual branch (on the right). Subsequently, from this modal, you can manage diffs and then confirm your merge in the same way as described above.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '340px'}}> 
+  <div style={{display: 'flex', width: '340px'}}>
 
 ![Merge from another branch](img/merge-collaboration/merge-from-another-branch.png)
 
@@ -135,7 +135,7 @@ This will open a modal where the two different branches are shown; each branch w
 If the 'merge from another branch' operation is successful, you can choose to delete the source branch. In any case, you can choose either to continue editing or to save your configuration.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
+  <div style={{display: 'flex', width: '600px'}}>
 
 ![Merge modal sidebar item with change detail](img/merge-collaboration/merge-modal-ok-delete-branch.png)
 
