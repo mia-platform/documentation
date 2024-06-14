@@ -98,9 +98,9 @@ Moreover, the right-side button allows the user to visualize changes between the
 ![Diff Editor on Revision History modal](img/diff-editor-on-revision-history.png)
 
 :::tip
-From the revision history you can revert previous changes using the specific option in the contextual menu.
+From the revision history you can restore previous changes using the specific option in the contextual menu.
 
-![revert button](./img/revision-history-revert-changes-button.png)
+![restore button](./img/revision-history-restore-changes-button.png)
 
 :::
 
