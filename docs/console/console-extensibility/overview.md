@@ -19,7 +19,9 @@ The activation of a new extension in the Console involves two phases:
 `Registration` allows you to add an extension for the first time and provide all the essential information necessary for the extension to work, such as the URL for fetching the iframe and the different locations where the new menu items should be placed.
 `Activation`, on the other hand, allows you to activate an extension already registered on a specific Console context and in this way the same extension can be active on multiple contexts at the same time, such as multiple projects for example.
 
-Consult the [tutorial](/console/tutorials/create-extension.md) to take your first steps. 
+:::tip
+**[Consult the tutorial to take your first steps.](/console/tutorials/create-extension.md)**
+:::
 
 ## Advanced concepts: Security and Customization
 

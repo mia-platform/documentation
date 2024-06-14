@@ -67,6 +67,18 @@ Once that all requisites are satisfied, you can register the Backoffice as an ex
 }
 ```
 
+:::tip
+You can limit extension visibility based on Console User Capabilities; for instance, if you want to show your extension only to users who can deploy a project, you can configure the `permissions` key defined in this way:
+
+```js
+{
+  "permissions": ["console.company.project.environment.deploy.trigger"]
+}
+```
+
+You can find out available capabilities in the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
+:::
+
 :::info
 These registered routes are rendered as a menu item with label `Integrated Backoffice` that is attached to a `category` menu group with label `My menu group`. If you do not want to introduce new menu group, you can remove the second route from routes array and edit the `parentId` field of the remained route with one of that options:
 - `undefined`, so that the menu item will not be attached on any menu group 
@@ -184,8 +196,8 @@ After registering you can proceed with its activation on a project using the [PO
 **Body Params without overrides (Option 1)**
 ```json
 {
-  "contextType": "my-project-id",
-  "contextId": "project",
+  "contextId": "my-project-id",
+  "contextType": "project",
   "overrides": []
 }
 ```

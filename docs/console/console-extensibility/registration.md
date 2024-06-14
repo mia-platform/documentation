@@ -18,6 +18,7 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 - `tenantId`: insert the tenant ID of the Company that will own the new extension
 
 **Body Params**
+- `extensionId`: this field should be empty when creating an extension. It is required to edit a extension already registered (see [here](#edit-registered-extension) for more info)
 - `name` (_required_): provide the name of your extension
 - `contexts` (_required_): declare in which contexts the extension can be activated. The selectable values are Company and Project.
 - `description`: provide a brief description of the extension
@@ -29,7 +30,13 @@ The route to contact is `PUT /api/extensibility/tenants/{tenantId}/extensions`, 
 **Response**
 - `extensionId`: the extension identifies needed to manage the registered extension
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#1-register-backoffice-extension)
+:::tip
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#1-register-backoffice-extension)**
+:::
+
+:::info
+Please note that `labelIntl` is required, the `icon` field instead is optional; if set it must contain the required `name` property, useful to specify the icon name to be used.
+:::
 
 ### How to restrict the extension usage?
 
@@ -42,7 +49,7 @@ The routes should include the necessary information to render the extension menu
 ![menu item and category routes](img/menuItemAndCategory.png)
 
 :::info
-Each extension should have always only one route that is not of type `category` to be meaningful and visibile. Additionally, it is possible to include also another route of type `category` to add a custom group menu item and therefore include an extension under that group.  
+Each extension should have always only one route that is not of type `category` to be meaningful and visible. Additionally, it is possible, to include another route of type `category` to add a custom group menu item and therefore include an extension under that group.
 :::
 
 A route, therefore, requires to provide the following information:
@@ -69,7 +76,9 @@ Array of registered extensions metadata:
 - `name`: extension name
 - `description`: extension description
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)
+:::tip
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
+:::
 
 ## Edit registered Extension
 
@@ -93,7 +102,13 @@ The route `PUT /api/extensibility/tenants/{tenantId}/extensions` can be used to 
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#edit-the-registered-extension)
+:::tip
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#edit-the-registered-extension)**
+:::
+
+:::info
+Please note that `labelIntl` is required, the `icon` field instead is optional; if set it must contain the required `name` property, useful to specify the icon name to be used.
+:::
 
 ## Remove registered Extension
 
@@ -112,4 +127,6 @@ Deleting an extension automatically deactivates it from all contexts where it wa
 204 No Content
 ```
 
-See the example on the [getting started guide](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)
+:::tip
+**[See the example in the tutorial page](/console/tutorials/create-extension.md#6-remove-definitely-the-backoffice-extension)**
+:::
