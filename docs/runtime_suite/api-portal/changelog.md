@@ -10,26 +10,21 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
-
 ## 1.16.13 - 2024-04-11
 
-### Update
+### Changed
 
 - add `SWAGGER_VERSION` environment variable
 
 ## 1.16.12 - 2023-11-28
 
-### Update
+### Changed
 
 - upgrade static-files to 3.3.1
 
 ## 1.16.11 - 2023-11-27
 
-### Update
+### Changed
 
 - upgrade static-files to 3.3.0
 
@@ -57,19 +52,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 1.16.7 - 2023-10-6
 
-### Updated
+### Changed
 
 - Upgrade api-explorer version to 6.7.9
 
 ## 1.16.6 - 2023-03-15
 
-### Updated
+### Changed
 
 - Upgrade api-explorer version to 6.7.8
 
 ## 1.16.5 - 2023-02-17
 
-### Updated
+### Changed
 
 - Upgrade api-explorer version to 6.7.7
 
@@ -79,25 +74,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 1.16.4 - 2022-06-07
 
-### Updated
+### Changed
 
 - Upgrade static-files version to 3.2.8
 
 ## 1.16.2 - 2022-04-15
 
-### Updated
+### Changed
 
 - Upgrade api-explorer version to 6.7.5
 
 ## 1.16.1 - 2022-04-08
 
-### Updated
+### Changed
 
 - Upgrade api-explorer version to 6.7.1
 
 ## 1.16.0 - 2022-03-30
 
-### Updated
+### Changed
 
 - Upgrade api-explorer version to 6.7.0
 
@@ -110,28 +105,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.15.0 - 2022-01-20
 
 ### Added 
+
 - added anchors to explorer routes.
 
-### Updated
+### Changed
+
 - Upgrade api-explorer version to 6.6.10
 
 ## 1.14.4 - 2021-12-20
-### Updated
+
+### Changed
+
 - Upgrade api-explorer version to 6.6.9
 
 ## 1.14.3 - 2021-12-15
 
-### Updated
+### Changed
+
 - Upgrade api-explorer version to 6.6.8
 
 ## 1.14.2 - 2021-12-10
 
-### Updated
+### Changed
+
 - Upgrade api-explorer version to 6.6.6
 
 ## 1.14.1 - 2021-12-03
 
 ### Fixed
+
 - Fixed unmount behavior for Qiankun
 - Page title can be configured using props
 - Upgrade api-explorer version to 6.6.5
@@ -139,12 +141,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## 1.14.0 - 2021-11-09
 
 ### Added
+
 - qiankun integration.
 - view mode support.
 - updated `@mia-platform/api-explorer` to version 6.6.4
 - view mode for authorization modal
 
 ### Fixed
+
 - fix panel open on high cpu usage
 - fix bearer token authentication in AuthForm
 - UI fixes to header, sidebar and content
@@ -162,30 +166,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - added documentation pages.
 
 ### Changed
+
 - [ISSUE-28]: updated `@mia-platform/api-explorer` to version 6.5.8
 
 ## 1.13.7 - 2021-02-04
 
-### Updated
+### Changed
+
 - @mia-platform/api-explorer ^6.5.6
 
 ## 1.13.6 - 2020-12-02
 
-### Updated
+### Changed
+
 - @mia-platform/api-explorer ^6.5.6
 
 ## 1.13.5 - 2020-11-23
-### Updated
+
+### Changed
+
 - @mia-platform/api-explorer ^6.5.5
 
 ## 1.13.4 - 2020-11-04
 
-### Updated
+### Changed
+
  - updated api-explorer 6.5.3
 
 ## 1.13.3 - 2020-10-13
 
-### Updated
+### Changed
+
  - updated api-explorer 6.5.2
 
 ## 1.13.2 - 2020-10-05
@@ -196,18 +207,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 1.13.1 - 2020-08-05
 
-### Updated:
+### Changed
+
  - updated api-explorer 6.5.1
 
 ## 1.13.0 - 2020-07-28
 
-### Updated:
+### Changed
+
  - @mia-platform/api-explorer ^6.5.0
  - decrease for an error of lint `eslint-plugin-react` from `^7.12.4` to `7.12.3`. problem persist in `7.20.4`, see this [issue](https://github.com/yannickcr/eslint-plugin-react/issues/2728)
 
 ## 1.12.0 - 2020-07-08
 
-### Updated:
+### Changed
+
  - @mia-platform/api-explorer ^6.4.1
 
 ### Changed
@@ -230,7 +244,8 @@ in Safari e Firefox
  - Form - handle field value when clear the input (unset for number and integer, empty string for type string)
  - Form - render UI correctly when preview the image to upload
 
-### Updated:
+### Changed
+
  - @mia-platform/api-explorer ^6.3.5
 
 ## 1.11.0 - 2020-06-03
@@ -257,7 +272,8 @@ in Safari e Firefox
 
 ## 1.9.0 - 2020-04-16
 
-### Updated:
+### Changed
+
  - Updated base API to download newer OpenAPI v3 schemas
 
 ## 1.8.0 - 2020-03-10
@@ -267,7 +283,8 @@ in Safari e Firefox
 
 ## 1.7.1 - 2020-02-11
 
-### Updated:
+### Changed
+
   - new icon for authentication security input
 
 ### Fixed:
@@ -275,7 +292,8 @@ in Safari e Firefox
 
 ## 1.7.0 - 2019-12-01
 
-### Updated:
+### Changed
+
   - Remove Menu from the Header
   - api-explorer with new form
 
