@@ -27,7 +27,7 @@
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.1.1",
     "cspell": "^8.8.4",
-    "docusaurus-json-schema-plugin": "^1.12.0",
+    "docusaurus-json-schema-plugin": "^1.12.1",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
