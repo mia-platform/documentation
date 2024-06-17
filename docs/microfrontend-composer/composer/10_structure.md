@@ -10,6 +10,8 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+The Microfrontend Composer allows to configure multiple micro-lc services. The user can switch among services using the selector in the page header.
+
 The first section of the configurator targets the general structure of the frontend. It is divided into five tabs:
 
 1. [pages](#pages), where you can overview the frontend structure and quickly adding or removing pages,
