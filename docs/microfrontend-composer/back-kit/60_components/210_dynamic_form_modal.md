@@ -119,15 +119,33 @@ Particularly, but not limited to, every field supports a set of [options][form-o
 
 The Dynamic Form Modal can be opened in two different modes:
 
-- *insert*: submitting the form signals the need for an item creation. This mode is activated upon listening to an [add-new] event
-- *edit*: submitting the form signals the need for an item creation. This mode is activated upon listening to an [selected-data] event
+- *insert*: submitting the form signals the need for an item creation. This mode is activated upon listening to an [add-new] event or a custom event specified by the user in the properties like in the example below:
+```json
+{
+  "customEvents": {
+    "nameOfTheEvent": "insert"
+  }
+}
+```
+- *edit*: submitting the form signals the need for an item creation. This mode is activated upon listening to an [selected-data] event or a custom event specified by the user in the properties like in the example below:
+```json
+{
+  "customEvents": {
+    "nameOfTheEvent": "select"
+  }
+}
+```
+
+:::caution
+If the property `customEvents` is specified the component will stop listening to the events [add-new] and [selected-data]
+:::
 
 
 ### Modes
 
 #### Insert
 
-When the component reacts to the [add-new] event, the modal opens and the form initializes its fields with values specified in the payload of the event. 
+When the component reacts to the [add-new] event or to a custom event specified by the user, the modal opens and the form initializes its fields with values specified in the payload of the event. 
 In this mode, upon clicking on the submit button of the footer, the Dynamic Form Modal signals the request to push a new item to a CRUD collection, emitting the event [create-data] with payload extracted from the state of the form, particularly its values.
 A component such as the [CRUD Client][bk-crud-client] could pick up on the `create-data` event.
 If the form contains files, the component emits a [create-data-with-file] event, which signals the need to upload files to a file storage service on top of pushing the item to a CRUD collection.
@@ -137,7 +155,7 @@ A `transactionId` is added to the meta field of the emitted event to handle poss
 
 #### Edit
 
-When the component reacts to the [selected-data] event, the modal opens and the form initializes its fields with the values specified in the payload of the event.
+When the component reacts to the [selected-data] event or to a custom event specified by the user, the modal opens and the form initializes its fields with the values specified in the payload of the event.
 
 By clicking on the submit button, the Dynamic Form Modal signals the request to update an item in the CRUD collection, emitting the event [update-data] with payload determined the state of the form, particularly its values
 The item to update is identified by its `_id` field, which is a [predefined field][predefined-fields] of [Mia Platform's CRUD Service][crud-service] collections.
@@ -1273,6 +1291,7 @@ Note how each entry of array fields is singularly matched against the query. Onl
 | `fileFieldsPreview` | `file-fields-preview` | boolean | - | Enables preview of uploaded files in drag-n-drop file fields |
 | `enableSubmitOnFormUntouched` | `enable-submit-on-form-untouched` | boolean | - | Allows submitting an unedited form |
 | `basePath` | - | string | - | The URL base path to which to send HTTP requests, used when fetching options for lookup field in [views](#working-with-views) |
+| `customEvents` | - | [CustomEvents](#customevents) | - | A user-specified custom event that the component listens to |
 
 #### ButtonWithClose
 
@@ -1350,12 +1369,21 @@ type Condition = {
 }
 ```
 
+#### CustomEvents
+
+```typescript
+const customEvents: Record<string, FormOpeningEvent>
+
+type FormOpeningEvent = 'insert' | 'select'
+```
+
 ### Listens to
 
 | event                             | action                                                                                                                                                                                          |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [add-new]                         | opens the modal to create a new item, potentially applying default fields from data schema or data provided in the payload of the event                                                         |
-| [selected-data]                   | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event                                                                               |
+| [selected-data]                   | opens the modal to edit a selected item, filling in its fields from the data provided in the payload of the event      
+| {custom-event}                  | opens the modal to edit a selected item or create a new item, filling in its fields from the data provided in the payload of the event                                                                            |
 | [nested-navigation-state/push]    | updates internal representation of the current navigation path by adding one step                                                                                                               |
 | [nested-navigation-state/back]    | updates internal representation of the current navigation path by removing the specified number of steps                                                                                        |
 | [nested-navigation-state/display] | updates internal representation of the current navigation and closes the modal                                                                                                                  |
