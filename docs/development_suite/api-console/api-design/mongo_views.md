@@ -64,7 +64,7 @@ The [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will ha
 
 Since the internal endpoint of a MongoDB View can be used only for reading operations, the endpoint will expose only `GET` routes as well.
 
-From version `13.0.2` of Mia-Platform console, endpoints connected to [writable Views](/runtime_suite/crud-service/50_writable_views.md) will expose the following routes:
+From version `13.0.2` of Mia-Platform Console, endpoints connected to [writable Views](/runtime_suite/crud-service/50_writable_views.md) will expose the following routes:
 - `DELETE/:id`
 - `GET/`
 - `GET/:id`
