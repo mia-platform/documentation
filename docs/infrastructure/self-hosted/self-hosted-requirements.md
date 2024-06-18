@@ -154,7 +154,7 @@ Blanks cell in the following table are for tools that do not require a specific 
       <tr>
          <td><strong>Runtime</strong></td>
          <td><img src="/img/kubernetes.png" width="15" height="15"/> Kubernetes</td>
-         <td>&gt; 1.20<br/>&lt;= 1.27</td>
+         <td>&gt;= 1.21<br/>&lt;= 1.30</td>
          <td>2 CPU requests</td>
          <td>4 GiB Memory requests</td>
       </tr>
@@ -214,7 +214,7 @@ The following is an example architecture for a proper installation of the Mia-Pl
 | GitLab CI Runners         | 14          | 2              | 1 core  | 2 GB    | 25 GB       |
 | MongoDB Enterprise        | 5           | 3              | 2 core  | 8 GB    | 20 GB       |
 | Redis                     | 7           |                |         | 1 GB    | 1 GB       |
-| Google Kubernetes Engine  | 1.21        | 2 worker nodes | 4 core  | 8 GB    |          |
+| Google Kubernetes Engine  | 1.28        | 2 worker nodes | 4 core  | 8 GB    |          |
 | Google Container Registry |   SaaS      |                |      |      |          |
 | Google Cloud Storage      |   SaaS      |                |      |      |          |
 | Google Cloud Platform KMS |   SaaS      |                |      |      |          |
