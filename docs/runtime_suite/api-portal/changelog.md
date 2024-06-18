@@ -10,6 +10,15 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.0.0] - 2024-06-17
+
+### BREAKING CHANGES
+
+- The service now fetches specifications from `/api/openapi/json`
+- The service now fetches subswaggers from `/api/openapi/subswaggers`
+- The service now fetches raw specifications for download from `/api/openapi/raw`
+- Official Swagger Editor UI is now used throughout the application
+
 ## 1.16.13 - 2024-04-11
 
 ### Changed
