@@ -6,7 +6,7 @@ sidebar_label: API portal documentation
 
 import VideoBox from "./../../../src/components/VideoBox";
 
-In this tutorial, we will learn how to configure and use the [_API Portal_](/runtime_suite/api-portal/10_overview.md) and the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) in order to provide the developers with a user-friendly interface that enables them to easily visualize and test endpoints of different microservices in a single place. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/) Specification.
+In this tutorial, we will learn how to configure and use the [_API Portal_](/runtime_suite/api-portal/10_overview.md) and the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) in order to provide the developers with a user-friendly interface that enables them to easily visualize and test endpoints of different microservices in a single place. It is built on top of the [OpenAPI 2.0](https://swagger.io/specification/v2/)/[OpenAPI 3.0](https://swagger.io/specification/v3/)/[OpenAPI 3.1](https://swagger.io/specification/) Specification.
 
 ## What we will build
 
@@ -57,10 +57,9 @@ This application include the following components:
 - you can choose to create a new _API Gateway_ service or choose an already installed service. 
 
 and the following endpoints:
-- _/documentations/api-portal_ to the [_API Portal_](/runtime_suite/api-portal/10_overview.md) service 
-- _/documentations/api-portal/api_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
-- _/documentations/openapi_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
-- _/documentations/swagger_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
+- _/documentations/api-portal_ to the [_API Portal_](/runtime_suite/api-portal/10_overview.md) service
+- _/api/openapi_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
+- _/api/openapi/raw_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
 
 :::caution
 In the Mia-Platform Marketplace are available two different applications to install the _API Portal_ and _Swagger Aggregator_.
