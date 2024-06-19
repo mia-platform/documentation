@@ -13,7 +13,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 The **API Portal** microservice can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace). It works best with the [Swagger Aggregator](../swagger-aggregator/overview) but it's possible to use it with a custom microservice if the correct data are returned.
 
 :::note
-You can select the [API Documentation]() application on the [Marketplace](../../marketplace/overview_marketplace) to have a ready-to-use `API Portal` that works with the `Swagger Aggregator` microservice.
+You can select the [API Documentation](../../runtime_suite_applications/api-documentation-aggregator/overview) application on the [Marketplace](../../marketplace/overview_marketplace) to have a ready-to-use `API Portal` that works with the `Swagger Aggregator` microservice.
 :::
 
 ## Routes
@@ -48,3 +48,30 @@ For example, if the selected category has `categoryUrl = ../category1.json`, the
 The API Portal accepts the following environment variables:
 
 - **HTTP_PORT** (default: 8080): defines the http port to use
+
+## How to migrate to v2
+
+To migrate from the `v1.16.14`, you have to:
+
+1. Make sure to update the `Swagger Aggregator` microservice to the latest version (`3.6.0` or above).
+2. Remove the following endpoints:
+    - `/documentations/api-portal/api/openapi/v3`
+    - `/documentations/api-portal/api`
+    - `/documentations/openapi`
+    - `/documentations/swagger`
+3. Add the following endpoints:
+    - Endpoint 1:
+      * Base path: `/api/openapi`
+      * Type: `Microservice`
+      * Microservice: `swagger-aggregator`
+      * Rewrite base path: it depents on the documentation version you want to see.
+        * `/openapi/v3-1` for Open API v3.1
+        * `/openapi/v3` for Open API v3.0
+        * `/openapi/v2` for Swagger v2
+    - Endpoint 2:
+      * Base path: `/api/openapi/raw`
+      * Type: `Microservice`
+      * Microservice: `swagger-aggregator`
+      * Rewrite base path: `/`
+
+Now you should have only three endpoints related to the API Portal: `/documentations/api-portal` (or whathever url you decided to expose it), `/api/openapi` and `/api/openapi/raw`
