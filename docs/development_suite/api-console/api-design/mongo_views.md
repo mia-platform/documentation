@@ -64,6 +64,21 @@ The [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will ha
 
 Since the internal endpoint of a MongoDB View can be used only for reading operations, the endpoint will expose only `GET` routes as well.
 
+From version `13.0.2` of Mia-Platform Console, endpoints connected to [writable Views](/runtime_suite/crud-service/50_writable_views.md) will expose the following routes:
+- `DELETE/:id`
+- `GET/`
+- `GET/:id`
+- `GET/export`
+- `GET/count`
+- `GET/schema`
+- `GET/lookup/:id`
+- `PATCH/:id`
+- `POST/`
+
+:::caution
+Switching from writable to non writable views (and vice versa) and saving the configuration may result in losing some custom parameters on the endpoint routes. Please pay attention when performing this operation.
+:::
+
 :::caution
 When exposing data through an endpoint, it's necessary for documents to have a `__STATE__` field to facilitate accurate filtering. If the aggregation process generates objects without this field, the endpoint will consistently return an empty array as its output.
 
