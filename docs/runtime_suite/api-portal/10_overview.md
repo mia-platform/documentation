@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-![api-portal](./imgs//api-portal.png)
+![api-portal](./img/api-portal.png)
 
 The **API Portal** microservice will present you a graphical interface for your [Open Api specification document](https://swagger.io/resources/open-api/). This service is responsible for contacting an endpoint where your swagger Open Api document should be provided.
 
