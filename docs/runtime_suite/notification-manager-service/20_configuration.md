@@ -25,6 +25,12 @@ To use the Notification Manager you need to create the following CRUD collection
 
 ### Users CRUD
 
+:::info
+
+Since version **v2.3.0** the users collection is no longer required if the [`USERS_API_ENDPOINT`][environment-variables] is specified and it points to an external service that handles users.
+
+:::
+
 This CRUD collection contains the data of the users you want to send messages to. The collection is required and
 can be named however you want (we suggest `users`) as long as you specify the name in the `USERS_CRUD_NAME`
 [environment variable][environment-variables].
@@ -182,21 +188,23 @@ Each message in the `messages` field represents a single message sent to the rec
 
 Each message has the properties illustrated in the following table.
 
-| Name           | Type     | Required | Description                                                                              |
-|----------------|----------|----------|------------------------------------------------------------------------------------------|
-| `status`       | `string` | Yes      | If the message was processed correctly (`SUCCESS`) or not (`FAILURE`).                   |
-| `channel`      | `string` | Yes      | Name of the channel the message was sent on.                                             |
-| `templateName` | `string` | Yes      | Name of the template used to send the message on the channel.                            |
-| `service`      | `Object` | No       | An object containing information about the notification processed by a service provider. |
-| `error`        | `Object` | No       | In case of errors, it contains additional information about the error.                   |
+| Name           | Type              | Required | Description                                                                              |
+|----------------|-------------------|----------|------------------------------------------------------------------------------------------|
+| `status`       | `string`          | Yes      | If the message was processed correctly (`SUCCESS`) or not (`FAILURE`).                   |
+| `channel`      | `string`          | Yes      | Name of the channel the message was sent on.                                             |
+| `templateName` | `string`          | Yes      | Name of the template used to send the message on the channel.                            |
+| `attachments`  | `Array of object` | No       | List of custom attachments sent (available since version 2.3.0).                         |
+| `service`      | `Object`          | No       | An object containing information about the notification processed by a service provider. |
+| `error`        | `Object`          | No       | In case of errors, it contains additional information about the error.                   |
 
 So, for example, if you configure a notification settings with the following reminders:
 
 ```json
 {
   "user": "auth0|john.doe",
-  "channels": ["email", "sms"],
-  "templateName": "create-appointment-patient"
+  "channel": "email",
+  "templateName": "create-appointment-patient",
+  "attachments": [{"file" :"patient-medical-record.pdf"}]
 }
 ```
 
@@ -209,6 +217,7 @@ in the notification you could find something like this:
       "status": "SUCCESS",
       "channel": "email",
       "templateName": "create-appointment-patient",
+      "attachments": [{"file" :"patient-medical-record.pdf"}],
       "service": {
         "message": {
           "sender": "noreply@example.com",
@@ -340,6 +349,20 @@ The properties used by the service are the following.
 
 :::info
 
+**v2.3.0**. Since version 2.3.0 the `USERS_API_ENDPOINT` environment variable is available, to configure the base URL of an API providing users data with a CRUD-like interface.
+If `USERS_API_ENDPOINT` is not set, the users data is retrieved as in previous versions from a CRUD collection using the `CRUD_SERVICE_URL` and `USERS_CRUD_NAME` environment variables.
+
+
+:::
+
+:::info
+
+**v2.3.0**. Since version 2.3.0 the `DEFAULT_LOCALE` environment variable is available, to configure the default locale to use with [`toLocale` custom helper][message-interpolation].
+
+:::
+
+:::info
+
 **v2.2.0**. Since version 2.2.0 the `GOOGLE_APPLICATION_CREDENTIALS` environment variable is available, to send push notifications directly to Firebase, without needing Kafka.
 
 :::
@@ -351,37 +374,39 @@ The properties used by the service are the following.
 
 :::
 
-| Name                                 | Required            | Default | Description                                                                                                      |
-|--------------------------------------|---------------------|---------|------------------------------------------------------------------------------------------------------------------|
-| **SERVICE_NAME**                     | Yes                 | -       | The name of the Notification Manager microservice.                                                               |
-| **CONFIGURATION_PATH**               | Yes                 | -       | Path of the config map file containing the service configuration.                                                |
-| **CRUD_SERVICE_URL**                 | Yes                 | -       | The HTTP(S) URL of the CRUD service. This environment variable replaces `CRUD_SERVICE_NAME` since version 2.0.0. |
-| **USERS_CRUD_NAME**                  | Yes                 | -       | Name of the CRUD collection containing users data.                                                               |
-| **TEMPLATES_CRUD_NAME**              | Yes                 | -       | Name of the CRUD collection containing messaging templates.                                                      |
-| **EVENTS_CRUD_NAME**                 | Yes                 | -       | Name of the CRUD collection containing events.                                                                   |
-| **EVENTS_SETTINGS_CRUD_NAME**        | Yes                 | -       | Name of the CRUD collection containing event settings.                                                           |
-| **NOTIFICATIONS_CRUD_NAME**          | Yes                 | -       | Name of the CRUD collection containing statistics about notifications sent.                                      |
-| **NOTIFICATIONS_SETTINGS_CRUD_NAME** | Yes                 | -       | Name of the CRUD collection containing the notifications settings.                                               |
-| **MAIL_SERVICE_URL**                 | Email notifications | -       | URL of the SES Mail Notification Service. Required if you want to send e-mails.                                  |
-| **SMS_SERVICE_URL**                  | SMS notifications   | -       | URL of the SMS Service. Required if you want to send SMS.                                                        |
-| **FILE_SERVICE_URL**                 | Email attachments   | -       | URL of the File Service. Required if you want to send emails with attachments.                                   |
-| **TIMER_SERVICE_URL**                | Reminders           | -       | The HTTP(S) URL of the Timer Service.                                                                            |
-| **KAFKA_CLIENT_ID**                  | Push notifications  | -       | Required if you want to send push notifications.                                                                 |
-| **KAFKA_BROKERS**                    | Push notifications  | -       | List of comma separated brokers address. Required if you want to send push notifications.                        |
-| **KAFKA_TOPICS**                     | Push notifications  | -       | List of comma separated topics. Required if you want to send push notifications.                                 |
-| **KAFKA_AUTH_MECHANISM**             | Push notifications  | -       | Authentication mechanism, used only if `KAFKA_USERNAME` and `KAFKA_PASSWORD` have a value. Defaults to `PLAIN`.  |
-| **KAFKA_USERNAME**                   | Push notifications  | -       |                                                                                                                  |
-| **KAFKA_PASSWORD**                   | Push notifications  | -       |                                                                                                                  |
-| **KAFKA_CONNECTION_TIMEOUT**         | Push notifications  | -       | Time in milliseconds to wait for a successful connection. Defaults to 1000.                                      |
-| **KAFKA_AUTHENTICATION_TIMEOUT**     | Push notifications  | -       | Time in milliseconds to wait for a successful authentication. Defaults to 1000.                                  |
-| **KAFKA_EVENTS_TOPIC_NAME**          | No                  | -       | Name of the Kafka topic for incoming events. If not set, automatic notifications via Kafka are disabled.         |
-| **KAFKA_ERRORS_TOPIC_NAME**          | No                  | -       | Name of the Kafka topic for unknown events. If not set, automatic notifications via Kafka are disabled.          |
-| **KAFKA_CONSUMER_GROUP**             | No                  | -       | Name of the Kafka consumer group for Kafka topic for incoming events.                                            |
-| **KALEYRA_API_BASE_URL**             | No                  | -       | Kaleyra API base URL for the whatsapp and outbound calling services.                                             |
-| **KALEYRA_API_KEY**                  | No                  | -       | Kaleyra API key for the whatsapp and outbound calling services.                                                  |
-| **KALEYRA_API_SID**                  | No                  | -       | Kaleyra SID for the whatsapp and outbound calling services.                                                      |
-| **CUSTOM_HANDLERS_FOLDER**           | Custom handlers     | -       | The path to the directory containing the definitions (i.e. the configmaps) of the custom handlers.               |
-| **GOOGLE_APPLICATION_CREDENTIALS**   | Push notifications  | -       | The application credentials given by Firebase. Must be loaded from a [secret][service-secrets].                  |
+| Name                                 | Required            | Default | Version  | Description                                                                                                                                    |
+|--------------------------------------|---------------------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **SERVICE_NAME**                     | Yes                 | -       | *        | The name of the Notification Manager microservice.                                                                                             |
+| **CONFIGURATION_PATH**               | Yes                 | -       | *        | Path of the config map file containing the service configuration.                                                                              |
+| **CRUD_SERVICE_URL**                 | Yes                 | -       | >= 2.0.0 | The HTTP(S) URL of the CRUD service. This environment variable replaces `CRUD_SERVICE_NAME` since version 2.0.0.                               |
+| **USERS_CRUD_NAME**                  | Yes                 | -       | *        | Name of the CRUD collection containing users data.                                                                                             |
+| **TEMPLATES_CRUD_NAME**              | Yes                 | -       | *        | Name of the CRUD collection containing messaging templates.                                                                                    |
+| **EVENTS_CRUD_NAME**                 | Yes                 | -       | *        | Name of the CRUD collection containing events.                                                                                                 |
+| **EVENTS_SETTINGS_CRUD_NAME**        | Yes                 | -       | *        | Name of the CRUD collection containing event settings.                                                                                         |
+| **NOTIFICATIONS_CRUD_NAME**          | Yes                 | -       | *        | Name of the CRUD collection containing statistics about notifications sent.                                                                    |
+| **NOTIFICATIONS_SETTINGS_CRUD_NAME** | Yes                 | -       | *        | Name of the CRUD collection containing the notifications settings.                                                                             |
+| **MAIL_SERVICE_URL**                 | Email notifications | -       | *        | URL of the SES Mail Notification Service. Required if you want to send e-mails.                                                                |
+| **SMS_SERVICE_URL**                  | SMS notifications   | -       | *        | URL of the SMS Service. Required if you want to send SMS.                                                                                      |
+| **FILE_SERVICE_URL**                 | Email attachments   | -       | *        | URL of the File Service. Required if you want to send emails with attachments.                                                                 |
+| **TIMER_SERVICE_URL**                | Reminders           | -       | *        | The HTTP(S) URL of the Timer Service.                                                                                                          |
+| **KAFKA_CLIENT_ID**                  | Push notifications  | -       | *        | Required if you want to send push notifications.                                                                                               |
+| **KAFKA_BROKERS**                    | Push notifications  | -       | *        | List of comma separated brokers address. Required if you want to send push notifications.                                                      |
+| **KAFKA_TOPICS**                     | Push notifications  | -       | *        | List of comma separated topics. Required if you want to send push notifications.                                                               |
+| **KAFKA_AUTH_MECHANISM**             | Push notifications  | -       | *        | Authentication mechanism, used only if `KAFKA_USERNAME` and `KAFKA_PASSWORD` have a value. Defaults to `PLAIN`.                                |
+| **KAFKA_USERNAME**                   | Push notifications  | -       | *        |                                                                                                                                                |
+| **KAFKA_PASSWORD**                   | Push notifications  | -       | *        |                                                                                                                                                |
+| **KAFKA_CONNECTION_TIMEOUT**         | Push notifications  | -       | *        | Time in milliseconds to wait for a successful connection. Defaults to 1000.                                                                    |
+| **KAFKA_AUTHENTICATION_TIMEOUT**     | Push notifications  | -       | *        | Time in milliseconds to wait for a successful authentication. Defaults to 1000.                                                                |
+| **KAFKA_EVENTS_TOPIC_NAME**          | No                  | -       | *        | Name of the Kafka topic for incoming events. If not set, automatic notifications via Kafka are disabled.                                       |
+| **KAFKA_ERRORS_TOPIC_NAME**          | No                  | -       | *        | Name of the Kafka topic for unknown events. If not set, automatic notifications via Kafka are disabled.                                        |
+| **KAFKA_CONSUMER_GROUP**             | No                  | -       | *        | Name of the Kafka consumer group for Kafka topic for incoming events.                                                                          |
+| **KALEYRA_API_BASE_URL**             | No                  | -       | *        | Kaleyra API base URL for the whatsapp and outbound calling services.                                                                           |
+| **KALEYRA_API_KEY**                  | No                  | -       | *        | Kaleyra API key for the whatsapp and outbound calling services.                                                                                |
+| **KALEYRA_API_SID**                  | No                  | -       | *        | Kaleyra SID for the whatsapp and outbound calling services.                                                                                    |
+| **CUSTOM_HANDLERS_FOLDER**           | Custom handlers     | -       | *        | The path to the directory containing the definitions (i.e. the configmaps) of the custom handlers.                                             |
+| **GOOGLE_APPLICATION_CREDENTIALS**   | Push notifications  | -       | >= 2.2.0 | The application credentials given by Firebase. Must be loaded from a [secret][service-secrets].                                                |
+| **DEFAULT_LOCALE**                   | No                  | -       | >= 2.3.0 | A [BCP 47 language tag][bcp-47-language-tag] used as default locale by [`toLocale` custom helper][message-interpolation] in message templates. |
+| **USERS_API_ENDPOINT**                   | No                  | -       | >= 2.3.0 | The url of the API queried to fetch users data.                                                                                          |
 
 ## Channels configuration
 
@@ -634,6 +659,12 @@ Be careful with the implementation of your handler, since any error raised durin
 
 :::
 
+### Users configuration
+
+Since version **v2.3.0** users can be handled by an external service if the [`USERS_API_ENDPOINT`][environment-variables] is defined. This external service must be compatible with the Crud service interface.
+If the external api endpoint is not defined the `USERS_CRUD_NAME` must be specified, and the Notification Manager fetches users from the Crud service as usual.
+When both environment variables are specified, the `USERS_API_ENDPOINT` takes precedence and the external service is used for users.
+
 ## Security configuration
 
 General recommendations about endpoint authorization are summarized in the following table.
@@ -770,6 +801,7 @@ The following default reminder event handlers both filter the notification setti
 :::
 
 
+[bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 [e164]: https://www.twilio.com/docs/glossary/what-e164
 [facebook-whatsapp-api]: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started#set-up-developer-assets
 [facebook-whatsapp-add-number]: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started/add-a-phone-number

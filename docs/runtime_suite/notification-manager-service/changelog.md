@@ -15,6 +15,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] 2024-06-11
+
+### Fixed
+
+- Fixed bug causing errors when sending attachments via email
+
+### Added
+
+- Add custom helper to format values according to locale
+- Add DEFAULT_LOCALE environment variable
+- Add support for custom email attachments to notification events API
+- Add endpoint `GET /notifications/count`
+- Add endpoint `GET /notification-settings/count`
+- Add `USERS_API_ENDPOINT` environment variable and integration with external module for users management
+- Add `GET /templates/` endpoint
+- Add `GET /templates/:id` endpoint
+- Add `GET /templates/count` endpoint
+- Add `POST /templates/` endpoint
+- Add `PATCH /templates/:id` endpoint
+- Add `DELETE /templates/:id` endpoint
+- Add `POST /templates/state` endpoint
+- Add `GET /notification-messages/` endpoint
+- Add `GET /notification-messages/count` endpoint
+- Add `POST /notification-settings/state` endpoint
+
+### Changed
+
+- `POST /notification-events/` accepts custom fields in the request body that are merged into the event payload
+- Change validation to endpoint `POST /notification-settings`
+- Change validation to endpoint `PATCH /notification-settings/:id`
+- Remove required CRUD properties from event settings schema, remove `templateName` from required notification message schema
+
 ## [2.2.0] 2024-03-28
 
 - Update Node.js to v20 (LTS)
