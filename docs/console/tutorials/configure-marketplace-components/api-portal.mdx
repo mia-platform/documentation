@@ -58,8 +58,15 @@ This application include the following components:
 
 and the following endpoints:
 - _/documentations/api-portal_ to the [_API Portal_](/runtime_suite/api-portal/10_overview.md) service
-- _/api/openapi_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
+- _/api/openapi_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service which reroutes to `/openapi/v3-1`
 - _/api/openapi/raw_ to the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md) service
+
+:::note
+The _/api/openapi_ endpoint reroute depends on which Open API Specification you want to see:
+- `/openapi/v3-1` shows a [Open API v3.1](https://swagger.io/specification/)
+- `/openapi/v3` shows a [Open API v3](https://swagger.io/specification/v3/)
+- `/openapi/v2` shows a [Open API v2 (swagger)](https://swagger.io/specification/v2/)
+:::
 
 :::caution
 In the Mia-Platform Marketplace are available two different applications to install the _API Portal_ and _Swagger Aggregator_.
