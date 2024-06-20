@@ -64,7 +64,7 @@ To migrate from the `v1.16.14`, you have to:
       * Base path: `/api/openapi`
       * Type: `Microservice`
       * Microservice: `swagger-aggregator`
-      * Rewrite base path: it depents on the documentation version you want to see.
+      * Rewrite base path: it depends on the documentation version you want to see.
         * `/openapi/v3-1` for Open API v3.1
         * `/openapi/v3` for Open API v3.0
         * `/openapi/v2` for Swagger v2
