@@ -166,12 +166,28 @@ It is not recommended to activate the checkbox in a production runtime environme
 This feature is only available to Projects that use [**Enhanced Project Workflow**](/development_suite/set-up-infrastructure/enhanced-project-workflow.md).
 :::
 
-When using the **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you can review generated Kubernetes files from the Console or even export these in `tar.gz` format to review them later.
+When using the **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you can:
 
-![ExportAndReview](./img/export-and-review-files.png)
+- compare the generated Kubernetes files with the previous version
+- review generated Kubernetes files from the Console or download them as a `.tar.gz` archive.
+
+Such functionalities are available through the respective buttons in the  `Configuration Files `card.
+
+![Compare and Review](./img/compare_and_review.png)
+
+#### Compare Changes
+
+By clicking on the `Compare changes` button, a diff-editor will show the differences between the configurations of the selected version and the previous one in a side-by-side view.
+
+On the bottom, a button allows you to download the configurations files as a `.tar.gz` archive.
+
+![Compare](./img/compare_changes.png)
+
+#### Review Configurations
 
 While reviewing the files, you can select the one you view to open from the menu on the left. You can see the file content full-screen by clicking the top-right button with four outgoing arrows.
 
+On the bottom, a button allows you to download the configurations files as a `.tar.gz` archive.
 ![Review](./img/review-configuration-files.png)
 
 ## History
