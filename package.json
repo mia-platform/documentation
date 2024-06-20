@@ -29,7 +29,7 @@
     "cspell": "^8.8.4",
     "docusaurus-json-schema-plugin": "^1.12.1",
     "klaw": "^4.1.0",
-    "mdx-mermaid": "^v1.3.2",
+    "mdx-mermaid": "^v2.0.0",
     "medium-zoom": "^1.0.8",
     "mermaid": "^10.9.1",
     "react": "^17.0.2",
