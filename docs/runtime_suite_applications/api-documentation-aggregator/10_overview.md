@@ -25,6 +25,5 @@ In addition to the API Gateway (Envoy or NGINX), the following two plugins will 
 To correctly retrieve and expose the microservices specifications through the portal, the API documentation aggregator includes the following endpoints:
 
 - /documentations/api-portal
-- /documentations/api-portal/api
-- /documentations/openapi
-- /documentations/swagger
+- /api/openapi
+- /api/openapi/raw

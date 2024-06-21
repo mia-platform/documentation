@@ -15,6 +15,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.0.3 - 2024-06-20
+
+### Changed
+
+- hooks and serializer compiler are not registered anymore on every `httpInterface.js`, but only once in `index.js`, to avoid multiple registers for collections;
+- validator compiler is still applied to each HTTP interface to avoid OOM, but it has been moved to `compilers.js`;
+- `AdditionalCaster` class does not need to compute the fields that are either `ObjectId`, `Date`, or `Geopoint`: in the new `castItem` method, field types are inferred with the `instanceof` keyword;
+- upgrade NodeJS version in Docker image to v20.14.0
+- added `await` keyword when registering Fastify plugins
+
+### Fixed
+
+- fixed projection example in json schema generator
+- `serializerCompiler` has been added to use explicitly [`fastifiy-fast-json`](https://github.com/fastify/fast-json-stringify), along with `AdditionalCaster`  
+- `$eq` operator can now be used also for array fields
+- [#286](https://github.com/mia-platform/crud-service/issues/286): `/-/schemas` accept header defaults to `application/json`
+- [#326](https://github.com/mia-platform/crud-service/issues/326): `/schemas` and `/-/schemas` endpoints now return also `required` property
+
 ## 7.0.2 - 2024-05-06
 
 ### Added

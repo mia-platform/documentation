@@ -460,27 +460,55 @@ WhatsApp supports templates localization, meaning that every template can have m
 Whether you use a template or you provide a message in the [body of the send request][usage-body], you can use
 interpolation to insert in the text some dynamic information.
 
-The syntax to be used is the [Handlebars][handlebars]. A Handlebars expression 
-is a `{{`, some contents, followed by a `}}`. When the text is compiled, these expressions are replaced with values from 
-an input object. 
+The syntax to be used is the [Handlebars][handlebars]. A Handlebars expression is an expression enclosed by double or triple curly brackets, like `{{ user.firstName }}` or `{{{ appointment.notes }}}`. They only difference is that HTML characters are escaped automatically only when using double curly brackets, which are safer and recommended to use unless you need to preserve text formatting.
 
-The inputs object that can be used in the Notification Manager are:
+:::danger
+Be very careful sanitizing your input when using triple curly brackets, otherwise your users may be exposed to code injection attacks.
+:::
+
+When the text is compiled, these expressions are replaced with values from an input object.
+The input objects that can be used in the Notification Manager are:
+
 - the **user** object (i.e., the data of the user to which you are sending the message)
+
 - the **data** object of the [body of the send request][usage-body]
-- the [Handlebars][handlebars] helper `(dateNow)` that provides the `now` date string at execution time
-- the [Handlebars][handlebars] helper `dateFormat`using the following syntax: (dateFormat `date` format='DD/MM/YYYY' tz='Europe/Rome')
+
+In addition, you can use the following [custom helpers][handlebars-custom-helpers]: 
+
+- `(dateNow)`: return the current date/time as ISO string
+
+```
+{{ dateNow }} // e.g. 2023-10-15T09:30:00.123Z
+```
+
+- `dateFormat`: format a date/time value in a given time zone (default: UTC)
+
+```
+{{ dateFormat data.startDate format='DD/MM/YYYY' tz='Europe/Rome' }} // e.g. 15/10/2023
+```
 
 | Property | Type     | Values                                                                 | Default        |
 |----------|----------|------------------------------------------------------------------------|----------------|
 | format   | `string` | Any format supported by [Dayjs][dayjs]                                 | ISO8601 format |
 | tz       | `string` | Any timezone supported by [ECMAScript2020][ecmascript2020] section 6.4 | UTC            |
 
+- `toLocale` (available since version `2.3.0`): return a string representing a value in a given locale, if the value is undefined an empty string is returned instead
+
+```
+{{ toLocale data.amount }} // Use default locale -- e.g. 1.234.567,89
+{{ toLocale data.amount locale='it-IT' }} // e.g. 1.234.567,89
+```
+
+| Property | Type     | Values                                       | Default                                   |
+|----------|----------|----------------------------------------------|-------------------------------------------|
+| locale   | `string` | A [BCP 47 language tag][bcp-47-language-tag] | [`DEFAULT_LOCALE`][environment-variables] |
+
 For example, given the following `user` object
 
 ```json
 {
   "name": "Mario",
-  "surname": "Rossi"
+  "surname": "Rossi",
 }
 ```
 
@@ -488,20 +516,21 @@ and the following `data` object in the body of the send request
 
 ```json
 {
-  "appointmentDate": "01/01/2021"
+  "appointmentDate": "01/01/2021",
+  "serviceAmount": 1234567.89
 }
 ```
 
 this message
 
 ```
-'Hello, {{user.name}}! Your appointment is dated {{data.appointmentDate}}'
+'Hello, {{user.name}}! You have a new appointment on {{data.appointmentDate}} and you are going to pay ${{toLocale data.serviceAmount "en-US"}}'
 ```
 
 will be compiled in
 
 ```
-'Hello, Mario! Your appointment is dated 01/01/2021'
+'Hello, Mario! You have a new appointment on 01/01/2021 and you are going to pay $1,234,567.89'
 ```
 
 ### Handlebars helpers
@@ -548,7 +577,9 @@ The users targeted by these tests all share the same phone number, and therefore
 [dayjs]: https://day.js.org/docs/en/display/format
 [ecmascript2020]: https://www.ecma-international.org/wp-content/uploads/ECMA-402_7th_edition_june_2020.pdf
 [handlebars]: https://handlebarsjs.com/guide/#what-is-handlebars
+[handlebars-custom-helpers]: https://handlebarsjs.com/guide/#custom-helpers
 [handlebars-helpers]: https://github.com/helpers/handlebars-helpers
+[bcp-47-language-tag]: https://en.wikipedia.org/wiki/IETF_language_tag
 
 [sms-service]: /runtime_suite/sms-service/20_configuration.md
 [ses-mail-notification]: /runtime_suite/ses-mail-notification-service/configuration.md
