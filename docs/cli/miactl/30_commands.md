@@ -47,12 +47,18 @@ miactl context set CONTEXT [flags]
 
 Available flags for the command:
 
+- `--auth-name`, to set the name of the authentication to use (discover more on the [dedicated documentation section](#auth))
 - `--endpoint`, to set the Console endpoint
 - `--certificate-authority`, to provide the path to a custom CA certificate
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 - `--environment`, to set the environment scope for the command
+
+
+:::warning
+If you want to use `miactl` with a _Service Account_, **remember to specify** the  `--auth-name` flag, otherwise _miactl_ will try to perform a _User Login_, opening the browser for authentication the user.
+:::
 
 ### use
 
@@ -566,6 +572,175 @@ Available flags for the command:
 - `--no-semver`, to force the deploy without `semver`
 - `--revision`, to specify the revision of the commit to deploy
 
+## extensions
+
+The `extensions` command allows you to manage Company extensions.
+
+Available subcommands are the following ones:
+
+```sh
+  list        List registered extensions
+  apply       Create or update an extension
+  activate    Activate an extension
+  deactivate  Deactivate an extension
+  delete      Delete extension
+```
+
+### list
+
+The `extensions list` command helps you gathering available extension in your Company
+
+Usage:
+
+```sh
+miactl extensions list [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+
+### apply
+
+The `extensions apply` command can be used to register new extensions or update an existing one.
+
+It accepts an Extension Manifest either in `yaml` or `json` format
+
+<details>
+<summary>Example JSON Manifest<summary>
+
+```json
+{
+    "name": "Extension 1",
+    "description": "My extension 1",
+    "entry": "https://example.com/",
+    "contexts": [
+        "project"
+    ],
+    "routes": [
+        {
+            "id": "extension-1",
+            "parentId": "workloads",
+            "locationId": "runtime",
+            "renderType": "menu",
+            "labelIntl": {
+                "en": "SomeLabel",
+                "it": "SomeLabelInItalian"
+            },
+            "destinationPath": "/",
+            "order": 200.0,
+            "icon": {
+                "name": "PiHardDrives"
+            }
+        }
+    ]
+}
+```
+
+</details>
+
+<details>
+<summary>Example YAML Manifest<summary>
+
+```yaml
+name: "Extension 1"
+description: "My extension 1"
+entry: "https://example.com/"
+contexts:
+  - project
+routes:
+  - id: "extension-1"
+    parentId: "workloads"
+    locationId: "runtime"
+    labelIntl:
+      en: "SomeLabel"
+      it: "SomeLabelInItalian"
+    destinationPath: "/"
+    renderType: "menu"
+    order: 200
+    icon:
+      name: "PiHardDrives"
+```
+
+</details>
+
+Usage:
+
+```sh
+miactl extensions apply [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--file-path` (`-f`) **required** to specify the path to the extension manifest
+- `--extension-id` to set the ID of the extension Company, required for updating an existing extension.
+
+:::tip
+In order to specify whether a create or an update is needed you have to use the `--extension-id` 
+flag or specify the `extensionId` property in the manifest file.
+
+You can get the **extension id** by using the [extensions list](#list-5) command or
+in the apply response after creating the extension.
+:::
+
+### activate
+
+The `extensions activate` command can be used to delete an existing extension.
+
+:::tip
+You can activate an extension on the whole Company or only for specific Projects.
+If you activate it for the whole Company it will be inherited by all the Projects
+:::
+
+Usage:
+
+```sh
+miactl extensions activate [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--project-id` to set the ID of the desired project, if specified, the extension will be activated only for this project only
+- `--extension-id` **required** to set the ID of the extension.
+
+### deactivate
+
+The `extensions deactivate` command can be used to delete an existing extension.
+
+:::tip
+Please note that if an extension has been activated on the whole Company it can't be deactivated on a specific Project;
+you have to deactivate on the whole Company and activate it on the desired Projects.
+:::
+
+Usage:
+
+```sh
+miactl extensions deactivate [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--project-id` to set the ID of the desired project, if specified, the extension will be deactivated only for this project only
+- `--extension-id` **required** to set the ID of the extension.
+
+### delete
+
+The `extensions delete` command can be used to delete an existing extension.
+
+Usage:
+
+```sh
+miactl extensions delete [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--extension-id` **required** to set the ID of the extension, required for updating an existing extension.
+
 ## runtime
 
 ### environment list
@@ -701,7 +876,7 @@ View and manage Marketplace items
 
 All the subcommands inherit the following flags:
 
-```
+```sh
       --auth-name string               the name of the miactl auth to use
       --certificate-authority string   path to a cert file for the certificate authority for the selected endpoint
       --company-id string              the ID of the Company
