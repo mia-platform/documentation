@@ -607,7 +607,7 @@ The `extensions apply` command can be used to register new extensions or update
 It accepts an Extension Manifest either in `yaml` or `json` format
 
 <details>
-<summary>Example JSON Manifest<summary>
+<summary>Example JSON Manifest</summary>
 
 ```json
 {
@@ -640,7 +640,7 @@ It accepts an Extension Manifest either in `yaml` or `json` format
 </details>
 
 <details>
-<summary>Example YAML Manifest<summary>
+<summary>Example YAML Manifest</summary>
 
 ```yaml
 name: "Extension 1"
@@ -677,7 +677,7 @@ Available flags for the command:
 - `--extension-id` to set the ID of the extension Company, required for updating an existing extension.
 
 :::tip
-In order to specify whether a create or an update is needed you have to use the `--extension-id` 
+In order to specify whether a create or an update is needed you have to use the `--extension-id`
 flag or specify the `extensionId` property in the manifest file.
 
 You can get the **extension id** by using the [extensions list](#list-5) command or
@@ -686,11 +686,16 @@ in the apply response after creating the extension.
 
 ### activate
 
-The `extensions activate` command can be used to delete an existing extension.
+The `extensions activate` command can be used to activate an existing extension.
 
 :::tip
-You can activate an extension on the whole Company or only for specific Projects.
-If you activate it for the whole Company it will be inherited by all the Projects
+Please note that, based on provided `contexts`, an extension can be activated for the whole Company or for specific Projects.
+
+By using the `routes.locationId` option, you can specify where the extension is available, therefore
+you can create an extension shown on the Project runtime and activate it for the whole Company context.
+Such extension will be visible by all the Projects.
+
+For further information checkout the [official documentation](../../console/console-extensibility/extension-activation).
 :::
 
 Usage:
@@ -703,11 +708,11 @@ Available flags for the command:
 
 - `--company-id` to set the ID of the desired Company
 - `--project-id` to set the ID of the desired project, if specified, the extension will be activated only for this project only
-- `--extension-id` **required** to set the ID of the extension.
+- `--extension-id` **required** to set the ID of the extension
 
 ### deactivate
 
-The `extensions deactivate` command can be used to delete an existing extension.
+The `extensions deactivate` command can be used to deactivate an existing extension.
 
 :::tip
 Please note that if an extension has been activated on the whole Company it can't be deactivated on a specific Project;
