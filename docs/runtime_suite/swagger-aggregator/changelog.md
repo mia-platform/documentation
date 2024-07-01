@@ -43,7 +43,6 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ### Added
 
-
 - `PREVENT_REQUEST_BODY_CONFLICTS` environment variable, to prevent the request body aggregation during the conversion from Swagger 2 to OpenAPI Specification v3. It is equivalent to the `resolveInternal` [parameter of the `swagger2openapi` library](https://github.com/Mermade/oas-kit/blob/main/packages/swagger2openapi/README.md#a-command-line) used for the conversion.
 
 ### Updated
