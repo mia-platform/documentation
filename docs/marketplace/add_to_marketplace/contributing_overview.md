@@ -1,10 +1,10 @@
 ---
 id: contributing_overview
-title:  Contributing to the Marketplace
-sidebar_label:  Contributing to the Marketplace
+title:  Marketplace Items Lifecycle
+sidebar_label:  Marketplace Items Lifecycle
 ---
 
-As a Console user, you can contribute to the Marketplace by creating new items of any kind. You can choose to make them available on the internal Company, or request for them to be published.
+As a Console user, you can create and update Marketplace items of any kind. You can choose to make them available on the internal Company, or request for them to be published.
 
 In this section, we dive into the process of creating a new item for the Marketplace, analyzing the main differences between different types of items and providing some configuration examples.
 
