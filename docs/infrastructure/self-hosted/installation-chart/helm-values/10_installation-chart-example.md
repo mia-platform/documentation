@@ -118,6 +118,11 @@ configurations:
       keyRing: "<KMS_GCP_KEY_RING>"
       keyName: "<KMS_GCP_KEY_NAME>"
       privateKey: "<CRUD_ENCRYPTION_KEY>"
+  assistant:
+    enabled: true
+    keys:
+      llm: "<YOUR_OPENAI_API_KEY>"
+      embeddings: "<YOUR_OPENAI_API_KEY>"
 
 apiGateway:
   deploy:
