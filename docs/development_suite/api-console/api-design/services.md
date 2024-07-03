@@ -320,7 +320,7 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
 * **Configuration Name** (*required*): This is the name of your configuration.
 
-* **Runtime Mount Path** (*required*): Path inside the service where you want to mount the directory.
+* **Runtime Mount Path**: Path inside the service where you want to mount the directory.
 
 Moreover, you can decide to preserve files and directories already existing in the Runtime Mount Path directory, by activating the related checkbox.
 
