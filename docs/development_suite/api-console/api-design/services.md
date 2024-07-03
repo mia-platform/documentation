@@ -191,11 +191,11 @@ Currently, the following types exist:
 * **From ConfigMap**: use this type to load a file of a ConfigMap into an environment variable, the **ConfigMap Name** and the **ConfigMap File Name** must be provided.
 
 :::warning
-We always advise mounting ConfigMaps on the files system, and using environment variables *From ConfigMap* only with small-sized files.
+We always advise mounting ConfigMaps on the files system, and using environment variables *From ConfigMap* when necessary and only with small-sized files.
 :::
 
 :::info
-If you want more information about adding Kubernetes secrets to a microservice visit the following [link](/development_suite/api-console/api-design/services.md#secrets).
+Please refer to the dedicated [ConfigMaps](/development_suite/api-console/api-design/services.md#configmaps) and [Secrets](/development_suite/api-console/api-design/services.md#secrets) sections for more information about how to manage them using the Console.
 :::
 
 Therefore, for each variable, you have to define:
