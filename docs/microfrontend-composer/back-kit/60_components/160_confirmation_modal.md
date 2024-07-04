@@ -39,8 +39,8 @@ The Confirmation Modal becomes visible upon listening to a [require-confirm] eve
 
 - `title`: the title of the modal.
 - `content`: the text content of the modal.
-- `okText`: the text content of the "Cancel" button.
-- `cancelText`: the text content of the "Confirm" button.
+- `okText`: the text content of the "Confirm" button.
+- `cancelText`: the text content of the "Cancel" button.
 - `onOk`: the callback to execute on confirm. Note: this key cannot be set through configuration. Use `configOk` key instead.
 - `onCancel`: the callback to execute on cancel. Note: this key cannot be set through configuration. Use `configCancel` key instead.
 - `configOk`: a "tag"-"properties" pair to mount a custom component in place of the default confirmation button. Usually, mounted components are instances of the [Button][bk-button] component.

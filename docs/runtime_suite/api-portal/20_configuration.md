@@ -10,10 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The **API Portal** microservice can be added to your project by visiting Mia-Platform [Marketplace](../../marketplace/overview_marketplace). It works best with the [Swagger Aggregator](../swagger-aggregator/overview) but it's possible to use it with a custom microservice if the correct data are returned.
+The **API Portal** microservice can be added to your project by visiting Mia-Platform [Marketplace](/marketplace/overview_marketplace.md). It works best with the [Swagger Aggregator](/runtime_suite/swagger-aggregator/10_overview.md) but it's possible to use it with a custom microservice if the correct data are returned.
 
 :::note
-You can select the [API Documentation](../../runtime_suite_applications/api-documentation-aggregator/overview) application on the [Marketplace](../../marketplace/overview_marketplace) to have a ready-to-use `API Portal` that works with the `Swagger Aggregator` microservice.
+You can select the [API Documentation](/runtime_suite_applications/api-documentation-aggregator/10_overview.md) application on the [Marketplace](/marketplace/overview_marketplace.md) to have a ready-to-use `API Portal` that works with the `Swagger Aggregator` microservice.
 :::
 
 ## Routes
@@ -24,7 +24,7 @@ The main endpoints are:
 
 * `/api/openapi/json`: it expects a compliant [Open API specification document](https://swagger.io/resources/open-api/). All versions are supported;
 
-* `/api/openapi/subswaggers/`: it expects an array of objects like `[{"name": "<subswagger-name>", "categoryUrl": "<subswagger-url>"}]`. The `categoryUrl` is joined, using [path.join](https://www.npmjs.com/package/path), with `/api/openapi/json`. To understand what is a subswagger, please see [this page](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration#subswaggers).
+* `/api/openapi/subswaggers/`: it expects an array of objects like `[{"name": "<subswagger-name>", "categoryUrl": "<subswagger-url>"}]`. The `categoryUrl` is joined, using [path.join](https://www.npmjs.com/package/path), with `/api/openapi/json`. To understand what is a subswagger, please see [this page](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md#subswaggers).
 
 The endpoints regarding the downloads are:
 

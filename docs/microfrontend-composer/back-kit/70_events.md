@@ -709,7 +709,7 @@ raised when the import button is clicked
 sends user configuration payload to perform import
 
 
-- Label: `import-user-config`
+- Label: `import-data/user-config`
 - Payload:
 
 ```typescript
