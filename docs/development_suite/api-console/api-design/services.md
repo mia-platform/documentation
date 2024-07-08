@@ -191,7 +191,7 @@ Currently, the following types exist:
 * **From ConfigMap**: use this type to load a file of a ConfigMap into an environment variable, the **ConfigMap Name** and the **ConfigMap File Name** must be provided.
 
 :::warning
-We always suggest using ConfigMaps on the files system and using environment variables *From ConfigMap* when necessary and only with small-sized files.
+We always suggest mounting ConfigMaps on the files system and using environment variables *From ConfigMap* when necessary and only with small-sized files.
 :::
 
 :::info
