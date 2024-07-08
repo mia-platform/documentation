@@ -188,9 +188,14 @@ Currently, the following types exist:
 
 * **Plain Text**: values belonging to this type are strings that define the value that we want to associate to that specific environment variable key. For this type it is necessary to specify the **Value** that we want to link to that specific environment variable. **Value** can also be an interpolated string, to do so the value to interpolate needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
 * **From Secret**: this type represents a value that is obtained from a Kubernetes Secret. For this type, it is necessary to specify the **Secret Name** and the **Secret Key** from which this value can be retrieved.
+* **From ConfigMap**: use this type to load a file of a ConfigMap into an environment variable, the **ConfigMap Name** and the **ConfigMap File Name** must be provided.
+
+:::warning
+We always suggest mounting ConfigMaps on the files system and using environment variables *From ConfigMap* when necessary and only with small-sized files.
+:::
 
 :::info
-If you want more information about adding Kubernetes secrets to a microservice visit the following [link](/development_suite/api-console/api-design/services.md#secrets).
+Please refer to the dedicated [ConfigMaps](/development_suite/api-console/api-design/services.md#configmaps) and [Secrets](/development_suite/api-console/api-design/services.md#secrets) sections for more information about how to manage them using the Console.
 :::
 
 Therefore, for each variable, you have to define:
@@ -204,6 +209,10 @@ Therefore, for each variable, you have to define:
 * **Secret Name** (*present and required only if **Value Type** is From Secret*)
 
 * **Secret Key** (*present and required only if **Value Type** is From Secret*)
+
+* **ConfigMap Name** (*present and required only if **Value Type** is From ConfigMap*)
+
+* **ConfigMap File Name** (*present and required only if **Value Type** is From ConfigMap*)
 
 * **Description**
 
@@ -311,7 +320,7 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
 * **Configuration Name** (*required*): This is the name of your configuration.
 
-* **Runtime Mount Path** (*required*): Path inside the service where you want to mount the directory.
+* **Runtime Mount Path**: Path inside the service where you want to mount the directory.
 
 Moreover, you can decide to preserve files and directories already existing in the Runtime Mount Path directory, by activating the related checkbox.
 
