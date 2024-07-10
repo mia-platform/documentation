@@ -105,17 +105,17 @@ From the revision history you can restore previous changes using the specific op
 
 #### Snaphot review 
 
+On the revision history, it is possible to click on a snapshot ID to access its configuration and review and edit it using the Design section.
+
 ![load-snapshot-link](img/load-snapshot-link.png)
 
-Clicking on the ID of a snapshot it is possible to access its configuration and review and edit it using the Design section. Once a snapshot is loaded, a warning message will appear as an overlay at the bottom with a button to exit the snapshot and return to working on latest snapshot of revision.
+Once a snapshot is loaded, a warning message will appear as an overlay at the bottom with a button to exit the snapshot and return to the latest revision configuration.
 
 ![snapshot-view-on-design](img/snapshot-view-on-design.png)
 
-There is also another button to leave the snapshot review in the revision status popover and this mode allows also to make changes and save them in a new revision or discard them.
+It is also possible to leave the snapshot review also in the revision status popover or to save changes in a new revision or discard them.
 
 ![snapshot-view-actions](img/snapshot-view-actions.png)
-![save-on-new-revision-on-snapshot-view](img/save-on-new-revision-on-snapshot-view.png)
-
 
 ### New deployment workflow
 
