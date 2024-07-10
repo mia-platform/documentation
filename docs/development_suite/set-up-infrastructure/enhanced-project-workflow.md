@@ -100,21 +100,21 @@ Moreover, the right-side button allows the user to visualize changes between the
 :::tip
 From the revision history you can restore previous changes using the specific option in the contextual menu.
 
-![restore button](./img/revision-history-restore-changes-button.png)
+![restore button](img/revision-history-restore-changes-button.png)
 :::
 
 #### Snaphot review 
 
-![load-snapshot-link](./img/load-snapshot-link.png)
+![load-snapshot-link](img/load-snapshot-link.png)
 
 Clicking on the ID of a snapshot it is possible to access its configuration and review and edit it using the Design section. Once a snapshot is loaded, a warning message will appear as an overlay at the bottom with a button to exit the snapshot and return to working on latest snapshot of revision.
 
-![snasphot-view-on-design](./img/snasphot-view-on-design.png)
+![snapshot-view-on-design](img/snapshot-view-on-design.png)
 
 There is also another button to leave the snapshot review in the revision status popover and this mode allows also to make changes and save them in a new revision or discard them.
 
-![snapshot-view-actions](./img/snapshot-view-actions.png)
-![save-on-new-revision-on-snapshot-view](./img/save-on-new-revision-on-snapshot-view.png)
+![snapshot-view-actions](img/snapshot-view-actions.png)
+![save-on-new-revision-on-snapshot-view](img/save-on-new-revision-on-snapshot-view.png)
 
 
 ### New deployment workflow
