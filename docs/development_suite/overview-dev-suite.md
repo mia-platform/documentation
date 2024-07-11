@@ -19,8 +19,6 @@ Modern companies achieve this through an Internal Developer Platform (IDP). The 
 
 ![Mia-Platform Console Overview](img/Mia-Platform-infographic-overview.png)
 
-With this **[15 minutes demo](https://mia-platform.eu/library/console-demo-video/)**, you'll gain a thorough understanding of what you can achieve with Mia-Platform Console.
-
 ## Why Mia-Platform Console is important
 
 Mia-Platform Console manages the entire software lifecycle seamlessly and unify your IT department under one integrated platform. Simplify cloud-native development while maintaining complete governance and control over your processes.
