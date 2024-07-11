@@ -38,4 +38,4 @@ They accept the boolean query parameter `includeAll`. If `true`, the subswaggers
 
 ### Static route
 
-The service also responds with the swagger static website at the path `/website/` showing the API Portal.
+The service also responds with the swagger static website at the path `/swagger/` showing the API Portal.
