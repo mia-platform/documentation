@@ -11,7 +11,7 @@ This page will give you a brief overview of **Mia-Platform Console**, explain **
 In an evolving, omnichannel market, successful enterprises must operate and innovate like tech companies by:
 
 * Building and launching digital products **quickly**; for example, reducing the time-to-market for a new app from months to weeks.
-* Viewing market changes as **opportunities**.
+* Viewing market changes as **opportunities**, such as rapidly adopting new technologies.
 * Being **flexible** to rapidly respond to demand fluctuations.
 * **Integrating** with various tools, partners, and ecosystems.
 
