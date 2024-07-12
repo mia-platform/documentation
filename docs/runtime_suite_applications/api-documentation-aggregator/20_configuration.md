@@ -38,15 +38,14 @@ You can set up a login process by using the [Auth0 Client](../../runtime_suite/a
 
 This procedure allows you to manually add the various services and endpoints needed to make the API Portal work properly, effectively generating the resources that are automatically created when you add an API Documentation Aggregator application to the project.
 
-1. Add the **API Portal** plugin to the project via the "Microservices" section;
-2. Add the **Swagger Aggregator** plugin to the project via the "Microservices" section;
-3. Add the **API Gateway** plugin to the project via the "Microservices" section;
-4. [Create three new endpoints](../../development_suite/api-console/api-design/endpoints) with the following configurations:
+1. Add the **Swagger Aggregator** plugin to the project via the "Microservices" section;
+2. Add the **API Gateway** plugin to the project via the "Microservices" section;
+3. [Create three new endpoints](../../development_suite/api-console/api-design/endpoints) with the following configurations:
     - Endpoint 1:
       * Base path: `/documentations/api-portal`
       * Type: `Microservice`
-      * Microservice: `api-portal`
-      * Rewrite base path: `/`
+      * Microservice: `swagger-aggregator`
+      * Rewrite base path: `/swagger`
     - Endpoint 2:
       * Base path: `/api/openapi`
       * Type: `Microservice`
