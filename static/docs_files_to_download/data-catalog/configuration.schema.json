@@ -81,6 +81,89 @@
     }
   },
   "definitions": {
+    "OracleMode": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "user"
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "all"
+          ],
+          "properties": {
+            "all": {
+              "type": "object",
+              "properties": {
+                "owners": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "dba"
+          ],
+          "properties": {
+            "dba": {
+              "type": "object",
+              "properties": {
+                "owners": {
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Settings": {
+      "type": "object",
+      "properties": {
+        "batchSize": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "columnBatchSize": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "uint32",
+          "minimum": 0.0
+        },
+        "connectionName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
     "connection": {
       "oneOf": [
         {
@@ -201,6 +284,20 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "healthcheck": {
+          "default": "/-/healthz",
+          "type": "string"
+        },
+        "tls": {
+          "default": {
+            "insecure": false
+          },
+          "allOf": [
+            {
+              "$ref": "#/definitions/tls-params"
+            }
+          ]
         }
       }
     },
@@ -360,6 +457,14 @@
             "vendor"
           ],
           "properties": {
+            "options": {
+              "default": "user",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/OracleMode"
+                }
+              ]
+            },
             "params": {
               "$ref": "#/definitions/oracle-connection-params"
             },
@@ -367,6 +472,16 @@
               "type": "string",
               "enum": [
                 "oracle"
+              ]
+            },
+            "version": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/version"
+                },
+                {
+                  "type": "null"
+                }
               ]
             }
           }
@@ -395,14 +510,14 @@
       "examples": [
         {
           "dbq": "ORACLE_TEST",
-          "pwd": "****",
-          "uid": "user"
+          "uid": "user",
+          "pwd": "****"
         },
         {
           "dbq": "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=0.0.0.0)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORACLE19C_TEST)))",
           "flags": "DBA=R;",
-          "pwd": "****",
-          "uid": "user"
+          "uid": "user",
+          "pwd": "****"
         },
         "DRIVER=oracle;UID=user;PWD=p4ssw0rd;DBQ=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=0.0.0.0)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORACLE19C_TEST)))"
       ],
@@ -435,16 +550,6 @@
             },
             "uid": {
               "$ref": "#/definitions/secret"
-            },
-            "version": {
-              "anyOf": [
-                {
-                  "$ref": "#/definitions/version"
-                },
-                {
-                  "type": "null"
-                }
-              ]
             }
           }
         }
