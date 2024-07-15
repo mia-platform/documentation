@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.0.1] - 2024-07-12
+
+- Updated `swager-aggregator` to version `3.7.0`
+- Removed `api-portal`
+- Changed exposed routes for `swagger-aggregator`
+
 ## [2.0.0] - 2024-06-20
 
 - Updated `api-portal` to version `2.0.0`
