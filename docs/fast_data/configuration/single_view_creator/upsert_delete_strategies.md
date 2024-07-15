@@ -44,7 +44,7 @@ If there isn't a `DELETE_STRATEGY` explicitly defined into the micro-service, `d
 :::
 
 ### Soft Delete
-Using `virtualDelete`, the Single View Creator [soft deletes](https://en.wiktionary.org/wiki/soft_deletion) the Single View, by setting the `__STATUS__` property to `DELETED`.
+Using `virtualDelete`, the Single View Creator [soft deletes](https://en.wiktionary.org/wiki/soft_deletion) the Single View, by setting the `__STATE__` property to `DELETED`.
 
 The delete operation of a Single View (either hard, soft or custom) happens when the Base Projection record gets deleted.
 
