@@ -6724,9 +6724,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-json-schema-plugin@npm:^1.12.1":
-  version: 1.12.1
-  resolution: "docusaurus-json-schema-plugin@npm:1.12.1"
+"docusaurus-json-schema-plugin@npm:^1.12.2":
+  version: 1.12.2
+  resolution: "docusaurus-json-schema-plugin@npm:1.12.2"
   dependencies:
     "@stoplight/json-ref-resolver": "npm:^3.1.5"
     monaco-editor: "npm:^0.44.0"
@@ -6736,7 +6736,7 @@ __metadata:
     "@docusaurus/core": ^3.0.0
     "@docusaurus/theme-classic": ^3.0.0
     react: ">=17 <= 18"
-  checksum: 10/c8e202c666bac3266cd83d78b206e55c1d4ad746edab4415ea520e16fb74edd38a4f61bcbdb52ca0a2749a6a0e0efac7bde539ca9292ef5262e994e04243e03c
+  checksum: 10/e20aaa0edf7635bdba36047f1b8dc4c986ce204d96b1538150841436193cc646852ff135fdfcb1cd39a57dc8bbc29fc6007c490e6765a12021e395ec16d2357a
   languageName: node
   linkType: hard
 
@@ -10260,7 +10260,7 @@ __metadata:
     "@swc/core": "npm:^1.6.6"
     clsx: "npm:^2.1.1"
     cspell: "npm:^8.8.4"
-    docusaurus-json-schema-plugin: "npm:^1.12.1"
+    docusaurus-json-schema-plugin: "npm:^1.12.2"
     eslint: "npm:^8.57.0"
     eslint-plugin-react: "npm:7.34.3"
     front-matter: "npm:^4.0.2"
