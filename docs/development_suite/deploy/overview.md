@@ -177,6 +177,10 @@ Such functionalities are available through the respective buttons in the  `Confi
 
 #### Compare Changes
 
+:::info
+This feature is only available to Projects that use [**Enhanced Project Workflow**](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) and `GitLab`, `GitHub` or `Azure` as CI/CD provider.
+:::
+
 By clicking on the `Compare changes` button, a diff-editor will show the differences between the configurations of the selected version and the previous one in a side-by-side view.
 
 On the bottom, a button allows you to download the configurations files as a `.tar.gz` archive.
