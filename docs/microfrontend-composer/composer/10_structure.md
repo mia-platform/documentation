@@ -18,7 +18,8 @@ The first section of the configurator targets the general structure of the front
 2. [layout](#layout), where you can configure the frontend layout in a no-code fashion,
 3. [settings](#settings), where frontend global and shared settings reside,
 4. [webserver configuration](#webserver-configuration), where settings regarding the underlying server are made accessible, and
-5. [advanced](#advanced-configuration), from which it is possible to review and edit the raw configuration.
+5. [translations](#translations), where you can view and edit the translations of different labels for different languages,
+6. [advanced](#advanced-configuration), from which it is possible to review and edit the raw configuration.
 
 ![First section](img/structure_first-section.png)
 
@@ -133,6 +134,8 @@ The preview has two modes, one where you can **interact with the page** as you w
 ![Preview interaction](img/structure_layout-preview-interact.png)
 
 In "select" mode, a click on a component will **highlight** it, **select** it in the [left menu](#components-list), and show its **properties** for editing in the [right drawer](#components-properties-editor).
+
+In the bottom bar you can also select the language to be used for translations: if none is selected the user's browser default will be used.
 
 Since the preview is a real, functioning frontend, components may fire calls to backend or Web APIs (e.g., navigation events or local storage accesses). To avoid disrupting the configuration flow, these events are caught and mocked. You will receive **notifications** regarding them – alongside with any **error** that may occur in page – in the notification center in the bottom right corner of the preview.
 
@@ -255,6 +258,54 @@ This section allows you to specify [additional headers](https://micro-lc.io/add-
 
 ![Entry point](img/structure_webserver_headers.png)
 
+## Translations
+
+The _Translations_ tab gives you access to the table for configuring the labels and their translations. It allows you to view, create, modify, and delete languages and labels.
+
+:::info
+The legacy translation mode is an object with language ids as keys and the translations as values. The new translation configuration mode translates on the backend side all the labels which are simple strings.
+:::
+
+![Translations configurator](img/translations-configurator.png)
+
+### Import of existing translation files
+
+If a translation configuration file already exists, it is possible to import it before using the translator configurator by clicking on the `Retrieve translations` button.
+
+![Translations import](img/translations-import.png)
+
+Once the import is complete, a table of all the labels and their translations will appear.
+
+### Add or delete a language
+
+It is possible to add a new language from the first page by clicking on the button `Add language` or from the table page by clicking on the `Manage languages` button. Once you have clicked on one of these buttons, a modal will appear allowing you to add or delete a language in a select box.
+
+![Translations manage languages](img/translations-manage-languages.png)
+
+Once you have clicked on the `confirm` button the table will reflect the changes you have made.
+
+### Add label
+
+It is possible to add a new label by clicking on the `Add new label` button. Once you have clicked the button, a modal will appear allowing you to add a new label and its translation for each language you have.
+
+![Translations add new label](img/translations-add-new-label.png)
+
+Once you have clicked on the `create` button the table will reflect the changes you have made.
+
+### Delete of a label
+
+It is possible to delete an existing label by clicking on the delete button on each row of the table. Once you have clicked on the button, a pop-up will appear asking you to confirm for the deletion of the label.
+
+![Translations delete label](img/translations-delete-label.png)
+
+### Editing of a label and its translations
+
+It is possible to edit an existing label and its translations by clicking on the edit button on each row of the table. Once you have clicked on the button, a drawer will appear on the right hand side allowing you to edit the label and its translation value.
+
+![Translations edit label](img/translations-edit-label.png)
+
+Once you have clicked on the `Save` button the table will reflect the changes you have made.
+
 ## Advanced configuration
 
 The _Advanced configuration_ tab is built to give the highest degree of configurability, providing access to the final JSON configuration. In this visualization the page is divided in two section, a **code editor** on the left and a **live preview** on the right.
@@ -273,6 +324,25 @@ The updates made with the editor are not immediately reflected in the preview on
 Any modification made with the editor **will not be saved** unless the _"Apply"_ button is clicked.
 :::
 
+In the bottom bar you can also select the language to be used for translations: if none is selected the user's browser default will be used.
+
 Since the preview is a real, functioning frontend, components may fire calls to backend or Web APIs (e.g., navigation events or local storage accesses). To avoid disrupting the configuration flow, these events are caught and mocked. You will receive **notifications** regarding them – alongside with any **error** that may occur in page – in the notification center in the bottom right corner of the page.
 
 ![Advanced configuration notification](img/structure_advanced-notification.png)
+
+### Components Explorer
+
+The "View Components" button on the top right opens an overlay on top of the preview that shows a list of available custom elements. The list will include custom elements exposed by the libraries defined in the `layout.sources` array and those used in the configuration.
+
+This component provides a library-based filter and a text search in order to quikly find the custom elements.
+
+![Components Explorer](img/structure_advanced_components-explorer.png)
+
+Clicking on a custom element it displays a page with its details. Depending on what information the library exposes, the possible details showed are:
+
+- preview image
+- description (markdown supported)
+- example
+- documentation link
+
+![Component Details](img/structure_advanced_component-detail.png)
