@@ -10,6 +10,16 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.0.1] - 2024-07-11
+
+### Added
+
+- Added loading to download buttons while downloading
+
+### Fixed
+
+- Fixed filter function
+
 ## [2.0.0] - 2024-06-17
 
 ### BREAKING CHANGES
