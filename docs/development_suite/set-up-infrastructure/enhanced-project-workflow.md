@@ -52,12 +52,12 @@ As if the previous benefits were not enough, there is already a set of **new fea
 -  [GitOps deployment support](/development_suite/deploy/gitops-based/index.md)
 -  [External Orchestrator Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx)
 -  [Configurations review and export](#kubernetes-configuration-review-and-export)
+-  [Compare generated configuration files with the last deployed configuration](/development_suite/deploy/overview.md#compare-changes)
 
 And more features to come, such as:
 
 - Saving history with comparison of saved configurations within Design Area
 - Project configuration import from a runtime
-- Compare generated configuration files with last deployed configuration
 - ...and more, check out the [roadmap section](#roadmap-and-future-improvements) for further information
 
 ## Changes to the Console workflow
