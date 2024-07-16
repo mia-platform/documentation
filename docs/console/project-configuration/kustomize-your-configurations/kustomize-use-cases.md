@@ -172,7 +172,7 @@ Sometimes you need to be sure about the availability of few business critical mi
 
 In order to do that you probably want some microservice in *High Availability*.
 :::info
-The _High Availability_ is a characteristic of a system, an application, a service, that guarantee operativity without intervention, even if there are problems on an instance of it.
+The _High Availability_ is a characteristic of a system, an application, a service, that guarantee operability without intervention, even if there are problems on an instance of it.
 :::
 
 Using *Kustomize* and the *Mia-Platform Console* you can add advanced configurations to your business critical microservices.
