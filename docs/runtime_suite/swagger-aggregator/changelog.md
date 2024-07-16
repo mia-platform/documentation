@@ -10,6 +10,18 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.7.0] 2024-07-11
+
+### Added
+
+- Added `subswaggersInDescription` query parameter to `/swagger/*`, `/openapi/v3/*` and `/openapi/v3-1/*` endpoints
+- APi Portal v2.0.1 is now served from Docker image
+
+### Versioning
+
+- `ajv` to `^8.16.0`
+- Dev dependencies updated
+
 ## [3.6.0] 2024-04-11
 
 ### Updated
