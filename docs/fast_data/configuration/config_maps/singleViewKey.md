@@ -119,4 +119,4 @@ In case there is no Single View Key configured, a placeholder will inform the us
 In Single View key configuration modal, there is a toggle button, at the bottom left, that moves to the _Advanced Mode_ of the Single View Key. Here it is possible to manually modify the JSON of the Single View Key in case the user wants to review the content of the config map.  
 Moreover, user can choose to configure Single View Key as a JavaScript file. Viceversa, in case the Single View Key is configured as a JavaScript file, from this advanced mode user can switch to JSON format.
 
-![Advanced Mode](/fast_data/configuration/img/no_code_single_view_key/single_view_key_advanced_mode.png)
+![Advanced Mode](../img/no_code_single_view_key/single_view_key_advanced_mode.png)
