@@ -4,8 +4,6 @@
     <description></description>
     <keepDependencies>false</keepDependencies>
     <properties>
-        <jenkins.model.BuildDiscarderProperty>
-        </jenkins.model.BuildDiscarderProperty>
         <com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty plugin="gitlab-plugin@1.5.8">
             <gitLabConnection>Gitlab</gitLabConnection>
         </com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty>
@@ -40,20 +38,21 @@
     </properties>
     <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.54">
         <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
-        <configVersion>2</configVersion>
-        <userRemoteConfigs>
-            <hudson.plugins.git.UserRemoteConfig>
-                <name>pipelines</name>
-                <url>{{PIPELINES_REPOSITORY}}</url>
-                <credentialsId>{{TOKEN}}</credentialsId>
-            </hudson.plugins.git.UserRemoteConfig>
-        </userRemoteConfigs>
-        <branches>
-            <hudson.plugins.git.BranchSpec>
-                <name>pipelines/master</name>
-            </hudson.plugins.git.BranchSpec>
-        </branches>
-        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+            <configVersion>2</configVersion>
+            <userRemoteConfigs>
+                <hudson.plugins.git.UserRemoteConfig>
+                    <name>pipelines</name>
+                    <url>{{PIPELINES_REPOSITORY}}</url>
+                    <credentialsId>{{TOKEN}}</credentialsId>
+                </hudson.plugins.git.UserRemoteConfig>
+            </userRemoteConfigs>
+            <branches>
+                <hudson.plugins.git.BranchSpec>
+                    <name>pipelines/master</name>
+                </hudson.plugins.git.BranchSpec>
+            </branches>
+            <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        </scm>
     </definition>
     <triggers/>
 </flow-definition>

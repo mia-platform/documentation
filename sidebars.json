@@ -1573,7 +1573,7 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
+          "id": "marketplace/tutorials/service-template-integrated-with-jenkins",
           "type": "doc"
         }
       ]

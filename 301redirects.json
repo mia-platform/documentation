@@ -1734,5 +1734,9 @@
   "/docs/console/console-extensibility/extension-example-tutorial": {
     "destination": "/docs/console/tutorials/create-extension-tutorial",
     "addedOn": "2024-05-20"
+  },
+  "/docs/marketplace/tutorials/project-template-integrated-with-jenkins": {
+    "destination": "/docs/marketplace/tutorials/service-template-integrated-with-jenkins",
+    "addedOn": "2024-07-16"
   }
 }

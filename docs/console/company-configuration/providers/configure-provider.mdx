@@ -94,6 +94,20 @@ Below, some examples on the data to set for the supported provider types:
 * **API Base URL**: `https://dev.azure.com`
 * **Base URL**: `https://dev.azure.com`
 
+There are two different possibilities: use an already existent Azure DevOps Project with multiple Console Project inside it or create an Azure DevOps Project for each Console Project.
+
+**A single Azure DevOps Project with multiple configurations repository**
+
+* **Repository path template**: `azure-devops-organization/project-name/_git/{{projectId}}-configurations`
+
+Where `azure-devops-organization` is the Azure DevOps organization name and `project-name` is the Azure DevOps project name.
+
+**A single Azure DevOps Project with multiple configurations repository**
+
+* **Repository path template**: `azure-devops-organization/{{projectId}}/_git/configurations`
+
+Where `azure-devops-organization` is the Azure DevOps organization name and `project-name` is the Azure DevOps project name.
+
 </TabItem>
 <TabItem value="vault" label="Hashicorp Vault">
 
@@ -101,7 +115,7 @@ Below, some examples on the data to set for the supported provider types:
 * **Base URL**: `https://vault.example.com/`
 
 </TabItem>
-<TabItem value="jenkins" label="Jenkins OAuth 2.0">
+<TabItem value="jenkins" label="Jenkins">
 
 * **API Base URL**: `https://jenkins.example.com/`
 * **Base URL**: `https://jenkins.example.com/`
@@ -139,15 +153,6 @@ For credentials of the type "M2M":
 
 * **Token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (long-lived credentials);
 * **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include the authentication token, responds by generating temporary credentials.
-
-</TabItem>
-<TabItem value="OAuth2" label="OAuth2">
-
-For credentials of the type "OAuth2":
-
-- **Access token URL** (*required*): the reference OAuth2 authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
-- **Client ID** (*required*): OAuth2 public client identifier;
-- **Client secret** (*required*): OAuth2 secret, known only to the client and the authorization server.
 
 </TabItem>
 <TabItem value="client-credentials" label="Client credentials">
@@ -188,8 +193,7 @@ Depending on the provider selected in step 1, the types of credentials supported
 | ------------------------------ |:------------------------------------------------------------------------:|
 | Token                          | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins, Azure Key Vault |
 | M2M                            | Vault                                                                    |
-| OAuth2                         | Jenkins                                                                  |
-| Client Credentials             | Azure Key Vault                                                          |
+| Client Credentials             | Azure Key Vault,Jenkins                                                  |
 | Client Credentials Certificate | Azure Key Vault                                                          |
 
 :::caution Assign the right scope to your credentials
@@ -209,10 +213,12 @@ Below, for the M2M and OAuth2 providers, some example configurations:
 With the correct host to the Hashicorp Vault instance.
 
 </TabItem>
-<TabItem value="jenkins" label="Jenkins OAuth 2.0">
+<TabItem value="jenkins" label="Jenkins Client Credentials">
 
-* **Client ID**: OAuth2 client id
-* **Client Secret**: OAuth2 client secret
+It is possible to 
+
+* **Client ID**: client identifier
+* **Client Secret**: the shared client secret
 * **Access Token URL**: "https://jenkins.example.com/oauth2/login"
 
 With the correct host to the Jenkins instance.
