@@ -578,7 +578,7 @@ To configure a **Mia CRUD Service** connection use:
 
 The driver basically calls the `/-/schemas` URL to extract all the data models from MongoDB. Since the response is, of course, a JSON Schema, some information in the `ddl` object may be missing, like the `size` of the properties.
 
-Additionally, the version of the CRUD Service is obtained from the `/-/healthz` endpoint.
+Additionaly, the version of the CRUD Service is obtained from the `/-/healthz` endpoint.
 
 In case custom `tls` parameters are required such as a custom root CA or an insecure HTTPS connection,
 use the parameter `tls` with keys `insecure` and/or `certificate`:
