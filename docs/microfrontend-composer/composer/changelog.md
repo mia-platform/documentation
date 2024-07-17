@@ -10,6 +10,18 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.0] - 2024-07-12
+
+### Added
+
+- Support for multilanguage in iframe preview
+- Translations tab to manage labels and languages
+- Components Explorer
+
+### Versioning
+
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.7.1`
+
 ## [1.8.2] - 2024-07-01
 
 ### Fixed
