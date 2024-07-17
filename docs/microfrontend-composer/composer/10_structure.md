@@ -334,7 +334,7 @@ Since the preview is a real, functioning frontend, components may fire calls to 
 
 The "View Components" button on the top right opens an overlay on top of the preview that shows a list of available custom elements. The list will include custom elements exposed by the libraries defined in the `layout.sources` array and those used in the configuration.
 
-This component provides a library-based filter and a text search in order to quikly find the custom elements.
+This component provides a library-based filter and a text search in order to quickly find the custom elements.
 
 ![Components Explorer](img/structure_advanced_components-explorer.png)
 
