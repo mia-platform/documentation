@@ -89,7 +89,7 @@ You can add a new environment by clicking on the "Add new runtime environment" b
 * **Production environment**: a toggle that specifies whether or not the runtime environment is a production environment;
 * **Environment ID** (*required*): the human-readable ID of the runtime environment;
 * **Environment variables prefix** (*required*): a string used as a prefix for environment variables related to the runtime environment;
-* **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](console/company-configuration/clusters-management/connect-and-manage-cluster.mdx) first);
+* **Cluster ID** (*required*): ID of the Kubernetes cluster on which the runtime environment runs (if you want to run the environment on a new cluster you need to [add the cluster](/console/company-configuration/clusters-management/connect-and-manage-cluster.mdx) first);
 * **Cluster namespace**: the namespace of the Kubernetes cluster the runtime environment runs on (automatically generated from `%projectId%` and Environment ID);
 * **Project URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which newly created Projects will be exposed, together with API Portal and Dev Portal (e.g., [https://my-project-host.com](https://my-project-host.com));
 * **CMS URL**: the URL - consisting of protocol + host (final slash '/' optional) - on which the CMS of newly created Projects will be exposed (e.g., [https://my-cms-host.com](https://my-cms-host.com));

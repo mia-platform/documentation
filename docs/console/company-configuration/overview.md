@@ -13,7 +13,7 @@ Through the Company Overview, users gain access to:
 
 - **User Permissions and Group Management:** Ensuring meticulous control over resource access. [More details](/development_suite/identity-and-access-management/index.md)
 - **Service Accounts:** Handle service accounts for automated interactions and specific operations. [More details](/development_suite/identity-and-access-management/manage-service-accounts.md)
-- **Cluster Management:** Add, remove, and monitor Kubernetes clusters to ensure scalability and resilience. [More details](console/company-configuration/clusters-management/cluster-setup.mdx)
+- **Cluster Management:** Add, remove, and monitor Kubernetes clusters to ensure scalability and resilience. [More details](/console/company-configuration/clusters-management/cluster-setup.mdx)
 - **Integration with Providers:** Integrate tools and services like Git repositories, Secret Manager, and CI/CD Tool to facilitate development and operations. [More details](/console/company-configuration/providers/configure-provider.mdx)
 - **Webhooks:** Leverage webhooks to ease the integration and automation between various tools and services. [More details](/console/company-configuration/webhooks.md)
 - **Design Overview:** Obtain a visual overview of resources, filtering, organization, and customization. [More details](/console/company-configuration/design-overview.md)
