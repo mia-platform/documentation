@@ -121,7 +121,7 @@ so all messages must be treated with the upsert policy.
 ### Delete
 
 From version `v7.9.0` you can choose whether to [hard delete](https://en.wiktionary.org/wiki/hard_deletion) or [soft delete](https://en.wiktionary.org/wiki/soft_deletion) projection records.
-This behavior is controlled by the env var `DELETE_MECHANISM` which can be set either to `soft` or `hard`.
+This behavior is controlled by the env var `DELETE_MECHANISM` which can be set either to `soft` or `hard`. By default, the mechanism is set to `soft`.
 
 :::caution
 This behavior is overwritten to `hard` when `USE_UPSERT` is set to `false`. 
