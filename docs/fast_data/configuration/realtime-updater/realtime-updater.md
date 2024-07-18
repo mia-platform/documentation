@@ -104,12 +104,6 @@ You can quickly convert a System of Record from Manual to Low code by changing t
 
 ### Upsert
 
-:::caution
-This behavior is overwritten to `true` when `KAFKA_MESSAGE_ADAPTER` is set to `db2` or `basic`. 
-This is because DB2 messages do not contain information about the operation type (insert or update),
-so all messages must be treated with the upsert policy.
-:::
-
 When performing Insert and Update operations, Real-Time Updater will perform an upsert operation as default.
 This means that if the document matching the key of the message does not exist, it will be created; otherwise, if it already exists, it will just be updated. 
 
@@ -118,15 +112,21 @@ Doing so, for the Insert operation the service will fail to insert documents tha
 
 For the Update operation, it will fail when trying to update non-existing documents, causing the service to stop.
 
+:::caution
+This behavior is overwritten to `true` when `KAFKA_MESSAGE_ADAPTER` is set to `db2` or `basic`. 
+This is because DB2 messages do not contain information about the operation type (insert or update),
+so all messages must be treated with the upsert policy.
+:::
+
 ### Delete
+
+From version `v7.9.0` you can choose whether to [hard delete](https://en.wiktionary.org/wiki/hard_deletion) or [soft delete](https://en.wiktionary.org/wiki/soft_deletion) projection records.
+This behavior is controlled by the env var `DELETE_MECHANISM` which can be set either to `soft` or `hard`.
 
 :::caution
 This behavior is overwritten to `hard` when `USE_UPSERT` is set to `false`. 
 This is because when a record gets deleted an re-inserted again, the two behaviors go into conflict and service would crash.
 :::
-
-From version `v7.9.0` you can choose whether to [hard delete](https://en.wiktionary.org/wiki/hard_deletion) or [soft delete](https://en.wiktionary.org/wiki/soft_deletion) projection records.
-This behavior is controlled by the env var `DELETE_MECHANISM` which can be set either to `soft` or `hard`.
 
 Versions **before** the `v7.9.0` use the soft delete strategy to handle deletes of Projection records.
 
