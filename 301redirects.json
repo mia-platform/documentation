@@ -1734,5 +1734,49 @@
   "/docs/console/console-extensibility/extension-example-tutorial": {
     "destination": "/docs/console/tutorials/create-extension-tutorial",
     "addedOn": "2024-05-20"
+  },
+  "/docs/development_suite/company/overview": {
+    "destination": "/docs/console/company-configuration/overview",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/company/create-company": {
+    "destination": "/docs/console/company-configuration/create-company",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/company/configuration": {
+    "destination": "/docs/console/company-configuration/configuration",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/clusters-management/overview": {
+    "destination": "/docs/console/company-configuration/clusters-management/overview",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/clusters-management/cluster-setup": {
+    "destination": "/docs/console/company-configuration/clusters-management/cluster-setup",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/clusters-management/connect-and-manage-cluster": {
+    "destination": "/docs/console/company-configuration/clusters-management/connect-and-manage-cluster",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/company/project-blueprint": {
+    "destination": "/docs/console/company-configuration/project-blueprint",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/governance/design-overview": {
+    "destination": "/docs/console/company-configuration/design-overview",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/license-metrics/": {
+    "destination": "/docs/console/company-configuration/license-metrics",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/webhooks-and-events/webhooks": {
+    "destination": "/docs/console/company-configuration/webhooks",
+    "addedOn": "2024-07-17"
+  },
+  "/docs/development_suite/webhooks-and-events/events": {
+    "destination": "/docs/console/company-configuration/events",
+    "addedOn": "2024-07-17"
   }
 }

@@ -167,16 +167,16 @@
       "type": "category",
       "label": "Company Configuration",
       "link": {
-        "id": "development_suite/company/overview",
+        "id": "console/company-configuration/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "development_suite/company/create-company",
+          "id": "console/company-configuration/create-company",
           "type": "doc"
         },
         {
-          "id": "development_suite/company/configuration",
+          "id": "console/company-configuration/configuration",
           "type": "doc"
         },
         {
@@ -188,16 +188,16 @@
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "development_suite/clusters-management/overview",
+            "id": "console/company-configuration/clusters-management/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/clusters-management/cluster-setup",
+              "id": "console/company-configuration/clusters-management/cluster-setup",
               "type": "doc"
             },
             {
-              "id": "development_suite/clusters-management/connect-and-manage-cluster",
+              "id": "console/company-configuration/clusters-management/connect-and-manage-cluster",
               "type": "doc"
             }
           ]
@@ -260,15 +260,15 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/company/project-blueprint",
+          "id": "console/company-configuration/project-blueprint",
           "type": "doc"
         },
         {
-          "id": "development_suite/governance/design-overview",
+          "id": "console/company-configuration/design-overview",
           "type": "doc"
         },
         {
-          "id": "development_suite/license-metrics/license-metrics",
+          "id": "console/company-configuration/license-metrics",
           "type": "doc"
         },
         {
@@ -277,11 +277,11 @@
           "label": "Manage Webhooks",
           "link": {
             "type": "doc",
-            "id": "development_suite/webhooks-and-events/webhooks"
+            "id": "console/company-configuration/webhooks"
           },
           "items": [
             {
-              "id": "development_suite/webhooks-and-events/events",
+              "id": "console/company-configuration/events",
               "type": "doc"
             }
           ]
