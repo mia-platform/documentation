@@ -2,7 +2,7 @@
 id: design-overview
 title: Design Overview
 sidebar_label: Design Overview
-slug: "/development_suite/governance/design-overview"
+slug: "/console/company-configuration/design-overview"
 ---
 ## What is the Design Overview
 

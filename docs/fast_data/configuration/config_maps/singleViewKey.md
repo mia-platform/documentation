@@ -8,7 +8,7 @@ The Single View Key is a configuration file used by the Single View Creator part
 
 ## Overview 
 
-The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime-updater/realtime-updater.md) is received via Kafka or found in the MongoDB protection changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
+The Single View Creator updates Single View documents every time a [Projection Changes document](/fast_data/configuration/realtime-updater/realtime-updater.md) is received via Kafka or found in the MongoDB Projection Changes collection, depending on the service configuration. The content of the `identifier` property includes the list of fields and their values to be matched to the Single View document found.
 
 In case the following Projection Changes document has been received:
 ```json
@@ -29,7 +29,7 @@ In case the following Projection Changes document has been received:
     }],
 }
 ```
-The Service understands that a projection with the identifier `ID_USER` with the value `123` must be updated by performing an aggregation because one or more values inside the Single View have been updated. However the Single View might have fields with different names, therefore a configuration to understand which field of the Single View should be compared with the `123` value to understand the document to update. This configuration is the Config Map named _Single View Key_.
+The Service understands that a projection with the identifier `ID_USER` with the value `123` must be updated by performing an aggregation because one or more values inside the Single View have been updated. However, the Single View might have fields with different names, therefore a configuration to understand which field of the Single View should be compared with the `123` value to understand the document to update. This configuration is the Config Map named _Single View Key_.
 
 The Single View Key can be a JavaScript file, which must be named `singleViewKey.js` and will perform customized logic to retrieve the document to update, or a JSON file named `singleViewKey.json` with a predefined structure to simplify the relationship between the fields of the Projection Changes and the Single View.
 
@@ -96,7 +96,7 @@ It is possible to include more relationships between fields
 
 ## Using the No Code
 
-Your project might be enabled to configure the Single View Key with the No Code feature included in the _Single View_ section. This feature allows the selection of the fields from the available fields defined in the Single View data model and the fields available from the Base Projection.
+Your Project might be enabled to configure the Single View Key with the No Code feature included in the _Single View_ section. This feature allows the selection of the fields from the available fields defined in the Single View data model and the fields available from the Base Projection.
 
 The feature is included in the _Single View_ section. After selecting the Single View and then the Single View Creator attached, the _Settings_ tab will contain a card that recaps the information regarding the current Single View Key configured.
 
@@ -111,13 +111,12 @@ A click on the `Edit` button will open a modal that allows the user to add more 
 - the second field, to the right, can be populated with one of the available fields defined in the data model of the projection [defined as "Base Projection" in the Aggregation](/fast_data/configuration/config_maps/aggregation.md#selection-of-the-base-projection) or a custom value (in case the Projection Changes Schema includes customized names).
 
 :::info
-In case there's no Single View Key configured, a placeholder will inform the user that a new Single View Key must be created. A click on the attached button will automatically create an empty `singleViewKey.json` that will be automatically attached to the config maps of your Single View Creator.
+In case there is no Single View Key configured, a placeholder will inform the user that a new Single View Key must be created. A click on the attached button will automatically create an empty `singleViewKey.json` that will be automatically attached to the config maps of your Single View Creator.
 :::
 
-In this modal there's a toggle button, at the bottom left, that moves to the _Advanced Mode_ of the Single View Key. Here it is possible to manually modify the JSON of the Single View Key in case the user wants to review the content of the config map.
+### Choose between JSON and JavaScript format in Advanced Mode
+
+In Single View key configuration modal, there is a toggle button, at the bottom left, that moves to the _Advanced Mode_ of the Single View Key. Here it is possible to manually modify the JSON of the Single View Key in case the user wants to review the content of the config map.  
+Moreover, user can choose to configure Single View Key as a JavaScript file. Viceversa, in case the Single View Key is configured as a JavaScript file, from this advanced mode user can switch to JSON format.
 
 ![Advanced Mode](../img/no_code_single_view_key/single_view_key_advanced_mode.png)
-
-### Review the JavaScript Single View Key with the No Code
-
-The Single View Key configured as a JavaScript file can be also modified with the No Code feature active. The _Settings_ tab will contain the same card but with a different placeholder that informs that the Single View Key is, indeed, included in a JavaScript file. A click on the `Configure` button will open a modal that contains a Code Editor that will allow the user to review and modify the JavaScript file to its needs.

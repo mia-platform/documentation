@@ -13,7 +13,7 @@ To create a new View you must have the permission `console.company.project.creat
 
 ## View creation
 
-To create the View, simply choose from the table the Company in which to create it, then go to Design Overview and select the tab from available Resources ([CRUD](/development_suite/governance/design-overview.md#CRUD), [Endpoints](/development_suite/governance/design-overview.md#Endpoints), [Microservices](/development_suite/governance/design-overview.md#Microservices)).
+To create the View, simply choose from the table the Company in which to create it, then go to Design Overview and select the tab from available Resources ([CRUD](/console/company-configuration/design-overview.md#CRUD), [Endpoints](/console/company-configuration/design-overview.md#Endpoints), [Microservices](/console/company-configuration/design-overview.md#Microservices)).
 
 Customize the table based on your needs by hiding/displaying column and/or applying filters.
 
@@ -21,7 +21,7 @@ Finally use the `Save current view` button to insert View name and the `Save vie
 
 The saved view is visible in the Design Overview's Homepage section.
 
-For further info please refer to the [Design Overview's documentation](/development_suite/governance/design-overview.md#saving)
+For further info please refer to the [Design Overview's documentation](/console/company-configuration/design-overview.md#saving)
 
 ## View modification
 
@@ -29,7 +29,7 @@ To edit the View, simply choose from the table the Company in which it is, then 
 
 Click the `Actions Dropdown` icon and select `Edit view name`, then insert new 'View name' through the specific popup and click the `Overwrite view` button.
 
-For further info please refer to the [Design Overview's documentation](/development_suite/governance/design-overview.md#editing)
+For further info please refer to the [Design Overview's documentation](/console/company-configuration/design-overview.md#editing)
 
 :::note
 Current feature is limited to edit name.
@@ -42,7 +42,7 @@ To delete the View, simply choose from the table the Company in which it is, the
 
 Click the `Actions Dropdown` icon and select `Delete`. 
 
-For further info please refer to the [Design Overview's documentation](/development_suite/governance/design-overview.md#deleting)
+For further info please refer to the [Design Overview's documentation](/console/company-configuration/design-overview.md#deleting)
 
 :::note
 Default views cannot be edited/deleted since they are added by default for all users for a given Company.

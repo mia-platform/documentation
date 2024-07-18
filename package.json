@@ -27,7 +27,7 @@
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.1.1",
     "cspell": "^8.8.4",
-    "docusaurus-json-schema-plugin": "^1.12.1",
+    "docusaurus-json-schema-plugin": "^1.12.2",
     "klaw": "^4.1.0",
     "mdx-mermaid": "^v1.3.2",
     "medium-zoom": "^1.0.8",
@@ -50,10 +50,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.24.7",
-    "@swc/core": "^1.6.6",
+    "@babel/eslint-parser": "^7.24.8",
+    "@swc/core": "^1.6.13",
     "eslint": "^8.57.0",
-    "eslint-plugin-react": "7.34.3",
+    "eslint-plugin-react": "7.34.4",
     "front-matter": "^4.0.2",
     "git-list-updated": "^1.2.1",
     "git-tag": "^0.2.0",
