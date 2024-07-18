@@ -48,24 +48,52 @@ sequenceDiagram
   Console->>Jenkins: Get pipeline id
   Jenkins-->>Console: Pipeline ID
   Console-->>User: 200
-  User->Console: GET pipeline status
-  Console->Jenkins: GET pipeline status
+  User->>Console: GET pipeline status
+  Console->>Jenkins: GET pipeline status
   Jenkins-->>Console: 200 with status
   Console-->>User: 200 with status
-```x  
+```
 
-1. The console performs a POST to Jenkins in order to trigger `jobId`, using `triggerToken` as a query parameter. The body is in this form:
+1. The console performs a POST to Jenkins in order to trigger `jobId`. The body is in this form:
 
-  ```json
-  {
-    "ENVIRONMENT": "<DEPLOY_TARGET_ENV>",
-    "TAG": "<TAG_TO_DEPLOY>"
-  }
-  ```
+    ```json
+    {
+      "revision": REVISION_TO_TRIGGER,
+      "environment": envId,
+      "deployType": "smart_deploy" or "deploy_all",
+      "forceDeployWhenNoSemver": true or false
+    }
+    ```
 
-2. The expected Jenkins response has a 201 status code and contains a `Location` header (i.e. `<JENKINS_URL>/queue/item/:pipelineId`). This is used from the backend of the console to retrieve the id of the triggered pipeline.
+    Where:
 
-3. The console Service periodically performs GET requests to check the status of the triggered job
+    - `REVISION_TO_TRIGGER`: is the revision to deploy (i.e. the tag or the branch name);
+    - `envId`: is the environment id to deploy.
+
+    :::warning
+    This feature is deprecated and will be removed in the future, does not use that:
+
+    Otherwise, it is possible to set inside the project environment configuration (only from the CMS) a `deploy.paramsMap` field which is a key value map used to change the key of this fields.
+    For example, if you set `deploy.paramsMap` as:
+    ```json
+    {
+      "revision": "TAG",
+      "environment": "ENVIRONMENT"
+    }
+    ```
+    The body will be:
+    ```json
+    {
+      "TAG": REVISION_TO_TRIGGER,
+      "ENVIRONMENT": envId,
+      "deployType": "smart_deploy" or "deploy_all",
+      "forceDeployWhenNoSemver": true or false
+    }
+    ```
+    :::
+
+1. The expected Jenkins response has a 201 status code and contains a `Location` header (i.e. `<JENKINS_URL>/queue/item/:pipelineId`). This is used from the backend of the console to retrieve the id of the triggered pipeline.
+2. The console Service periodically performs GET requests to check the status of the triggered job
 
 ### How to automatically create Jenkins job on project creation
 
