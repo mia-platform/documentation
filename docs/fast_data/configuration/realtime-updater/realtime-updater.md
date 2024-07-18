@@ -125,7 +125,7 @@ This behavior is controlled by the env var `DELETE_MECHANISM` which can be set e
 
 :::caution
 This behavior is overwritten to `hard` when `USE_UPSERT` is set to `false`. 
-This is because when a record gets deleted an re-inserted again, the two behaviors go into conflict and service would crash.
+This is because when a record gets deleted and re-inserted again, the two behaviors conflict and the service crashes.
 :::
 
 Versions **before** the `v7.9.0` use the soft delete strategy to handle deletes of Projection records.
