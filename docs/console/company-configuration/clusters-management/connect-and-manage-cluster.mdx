@@ -37,7 +37,7 @@ You can connect a cluster by clicking on the "Add cluster connection" button, lo
 
 ![Add cluster connection 1](img/add-cluster-connection-1.png)
 
-In this step, you are required to choose the cluster's vendor and runtime service. You can do so by selecting a vendor tab and clicking on the card related to the runtime service you want to use. Further information on the supported vendors and runtime services can be found [here](/development_suite/clusters-management/overview.md).
+In this step, you are required to choose the cluster's vendor and runtime service. You can do so by selecting a vendor tab and clicking on the card related to the runtime service you want to use. Further information on the supported vendors and runtime services can be found [here](/console/company-configuration/clusters-management/overview.md).
 
 In case your vendor is not supported by the Console, don't worry! You can still select the "Other" tab and choose a runtime service.
 
@@ -68,7 +68,7 @@ Depending on the credentials type, the other information to be entered will be t
 For credentials of the type "Token":
 
 * **Service account token** (*required*): JWT token needed by the service account to perform operations on the cluster.
-To extract it, refer to [this paragraph](/development_suite/clusters-management/cluster-setup.mdx#ca-and-token).
+To extract it, refer to [this paragraph](/console/company-configuration/clusters-management/cluster-setup.mdx#ca-and-token).
 
 </TabItem>
 <TabItem value="client-credentials" label="Client credentials">
@@ -144,7 +144,7 @@ If the credentials type is "Client credentials":
 If the credentials type is "Client credentials certificate":
 
 * **Private key**: the private key of the certificate uploaded;
-* **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, it is the Base64url-encoded SHA-1 thumbprint of the certificate itself. As specified in the [official documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/certificate-credentials#header) of the `x5t` field. 
+* **Certificate thumbprint**: the thumbprint associated with the certificate uploaded, it is the Base64url-encoded SHA-1 thumbprint of the certificate itself. As specified in the [official documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/certificate-credentials#header) of the `x5t` field.
 
 </TabItem>
 </Tabs>
@@ -157,17 +157,17 @@ If the credentials type is "Client credentials certificate":
 In this step, you can insert some advanced information about the cluster:
 
 * **Certificate authority**: CA certificate for the TLS connection with the cluster.
-  To extract it, refer to [this paragraph](/development_suite/clusters-management/cluster-setup.mdx#ca-and-token);
+  To extract it, refer to [this paragraph](/console/company-configuration/clusters-management/cluster-setup.mdx#ca-and-token);
 * **Proxy URL**: URL of the proxy used to connect to the cluster, usually needed when the cluster is exposed on a private network.
 
 By clicking on "Add cluster", the connection to the cluster will be set, and it will appear as a new entry in the table.
 
 :::note
-A syntactic check is performed at the moment of data entry, but the Console will verify their correctness on saving, contacting the cluster to establish the connection.  
+A syntactic check is performed at the moment of data entry, but the Console will verify their correctness on saving, contacting the cluster to establish the connection.
 Therefore, inserting a wrong URL, token, or certificate will result in a network error because the cluster will not be contacted successfully, and thus it will not be connected nor saved.
 :::
 :::danger
-In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment. More information on how to connect the service account can be found [here](/development_suite/clusters-management/cluster-setup.mdx#configure-and-connect-the-service-account-to-the-cluster).
+In case the service account is not configured on the specific cluster, upon creation of an environment associated with that cluster the Console will not be able to generate the token needed for deployment. More information on how to connect the service account can be found [here](/console/company-configuration/clusters-management/cluster-setup.mdx#configure-and-connect-the-service-account-to-the-cluster).
 :::
 
 ## View Cluster Information
