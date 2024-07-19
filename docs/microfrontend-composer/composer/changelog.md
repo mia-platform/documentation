@@ -10,6 +10,13 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.1] - 2024-07-18
+
+### Fixed
+
+- Enforcing of translation labels uniqueness
+- Edit label drawer showing incorrect data
+
 ## [1.9.0] - 2024-07-12
 
 ### Added
