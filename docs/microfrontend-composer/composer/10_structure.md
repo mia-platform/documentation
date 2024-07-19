@@ -260,6 +260,10 @@ This section allows you to specify [additional headers](https://micro-lc.io/add-
 
 ## Translations
 
+:::caution
+This feature is available for micro-lc's Middleware service starting from version `3.1.0`. Versions interpolated using variables are not supported, thus the feature will be disabled.
+:::
+
 The _Translations_ tab gives you access to the table for configuring the labels and their translations. It allows you to view, create, modify, and delete languages and labels.
 
 :::info
