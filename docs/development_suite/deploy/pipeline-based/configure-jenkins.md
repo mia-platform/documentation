@@ -88,7 +88,8 @@ When creating a new Project in a Company that has Jenkins Provider set, the Cons
 Where:
 
 - `PROVIDER_ID` is the providerId of the CI/CD Jenkins provider;
-- `JOB_ID` is the configured job id created from the Console. By default, Console will create a job with `deploy-{{projectId}}` id, but it is possible to configure the invoked `jobId` by environment
+- `JOB_ID` is the configured job id created from the Console. By default, Console will create a job with `{{projectId}}-configurations` id (where `{{projectId}}` is the human readable projectId),
+but it is possible to configure the invoked `jobId` by environment
 ([follow this guide](#manual-configuration-using-cms)).
 
 ### How to automatically create Jenkins job on project creation
