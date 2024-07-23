@@ -4,61 +4,132 @@ title: What is Fast Data
 sidebar_label: What is Fast Data
 ---
 
-In this page you will learn what is *Fast Data*, which **business problems it solves**, what are its main concepts, how it is **different from similar products**, and why you should keep all your **data organized and available** in near real time, **24/7**.
+In this page you will learn what is **Mia-Platform Fast Data**, its main concepts and:
+
+* Why Fast Data is important for the **evolution of your business**.
+* Fast Data **improves the data management**.
+* The role of Fast Data to accomplish your *Data Integration Hub*.
+* How Fast Data **is different** from similar products.
+* **GDPR**
 
 ## Product overview
 
-In this section we will briefly explain what is Fast Data, starting from your fragmented data, and its journey to become an aggregated source of truth that satisfies your business needs.
+Business is changing rapidly with companies aiming to provide seamless digital experiences across numerous touchpoints and applications. APIs are crucial in this scenario, as they enable data exposure from different sources to various channels.
 
 ![Fast Data overview](./img/fastdata-overview.png)
 
-The main goal of Fast Data is to aggregate business data from different sources (that we call **Systems of Record**) into a single MongoDB collection called **Single View**. This collection can be easily queried by your APIs. The aggregation is performed only when changes occur to the source data, making your read operations blazing fast as the data is already there.
+Mia-Platform Fast Data let you to decouple your data from different sources, that we call **Systems of Record** (SoRs), aggregate them into a single MongoDB collection called **Single View** than can be easily queried by your APIs and thus build your out-of-the-box **Digital Integration Hub** (DIH). The consolidation is performed only when the source data changes, ensuring read operations are blazing fast since the data is pre-aggregated.
 
-The aggregation is done using another, valuable, intermediary collection called **Projection**. This collection is a **standardized** version of the original data, containing only the fields you are interested in, and *casting* them to a common format (e.g. it is common to have multiple date formats in your data sources, but with the correct configuration you can solve this issue and have one format shared among all Projections).
+The aggregation is performed using an important intermediary collection known as **Projection**. This collection is a standardized version of the original data, featuring only the fields of interest and *casting* them into a common format. For example, while your data sources might use various date formats, proper configuration allows you to unify them into a single format used across all Projections.
 
-Moreover, Fast Data provides ready-to-use microservices and a user-friendly interface to set up the data flow in a **low-code** fashion. The low-code configuration helps you to get started in a very short amount of time.
+Additionally, Mia-Platform Fast Data offers pre-built microservices and a user-friendly interface for setting up data flows in a low-code manner. This approach allows you to get started quickly and efficiently.
 
-## How Fast Data can impact your business
+Visit **[this page](./concepts/architecture.md)** you can learn more about the architecture of Mia-Platform Fast Data.
 
-In this section we present the main scenarios in which Fast Data can significantly boost your company.
+## Why Fast Data
 
-### Offloading of legacy systems
+Mia-Platform Fast Data combines **Data Mesh** and **Data Fabric** strategy, leveraging a suite of highly configurable tools that integrate the advantages of **Internal Developer Platform** while operationalizing your own **Digital Integration Hub**.
 
-When you have legacy systems, trying to build services that need to use the fragmented data stored in non-scalable and already load-heavy systems can be quite problematic. While accessing data from different systems and aggregating them on demand, you will face many problems, such as:
+### Legacy system offloading
 
-* Slower response times;
-* Heavy CPU/memory load, as more and more queries need to be served;
+Working with legacy systems to build services that rely on fragmented data from non-scalable, load-heavy environments can present several challenges. When accessing and aggregating data from various systems on demand, you may encounter issues such as:
+
+* Increased response times.
+* High CPU/memory usage due to the growing number of queries.
 * Network congestion.
 
-With Fast Data you can solve all of these problems, because the legacy systems will have a synced, transformed counterpart, the Projections, and aggregated versions in the Single Views. These collections are saved in MongoDB, without hindering the legacy systems, since you will no longer query them each time you need data. Instead, the legacy systems will only be concerned with sending events when they are updated.
+Mia-Platform Fast Data addresses these challenges by providing a solution where legacy systems are complemented by synced and transformed counterparts known as Projections, and aggregated versions stored in Single Views. These collections are maintained in MongoDB, which alleviates the need to repeatedly query and request for access to your DBs. Instead, the legacy systems are only required to send updates as events occur.
 
-### Centralization of data coming from different departments
+### 24/7 operations
 
-If you are a medium or large company, you might have different departments each with their own applications and Systems of Record. Employees working in your back-office might need to access data that is saved in another system, but the application they are using is not allowed to access it.
-Thanks to Fast Data, you can centralize all the relevant data and make them available to the correct services, without exposing confidential information nor tinkering with complex access control systems.
+Mia-Platform Fast Data ensures an experience uninterrupted real-time data access, available 24/7, even during system maintenance or downtime. Our solution guarantees that data provisioning remains seamless and reliable, leveraging a resilient data layer that functions continuously regardless of API availability or system status. This setup enables you to serve channels and access critical information without disruption, ensuring that your data remains accessible and operational around the clock.
 
-### Decreasing customer's wait time for aggregated data
+### Data standardization
 
-When your data is fragmented in different legacy systems you need to query all of them, perform aggregation, and only then you are ready to serve the data. This can cause various issues, mostly high waiting time and costly CPU intensive processing.
+As mentioned before in **[Product overview](./what_is_fast_data#product-overview)** section, Mia-Platform Fast Data gathers data from different System of Records (APIs, CDC, DB triggers etc.) and aggregates them into a single MongoDB collection called Single View and Projections, according to your business model.
+With this data standardization process, your data is transformed into the exact format you require, ensuring consistency and compatibility across all datasets. This streamlined approach facilitates seamless data sharing with various channels and applications integrated with Mia-Platform Fast Data. As a result, you can efficiently distribute standardized data, enhancing interoperability and reducing the complexity typically associated with data exchange between disparate systems.
 
-Fast data solves the problem by providing you with Single Views that are aggregated whenever source data changes, which causes the aggregation to only happen once, saving precious CPU cycles and a lot of time, since the requests will not need to wait for the aggregation to happen every time they make a call.
+### Up-to-date picture of fast-changing data
+
+By maintaining your data consistently synchronized across all systems, with Mia-Platform Fast Data you ensure that every application and service have access to the most up-to-date and accurate information. The Single View, a document that consolidates data from one or more Projections, is refreshed whenever any Projection contributing data to it is modified, ensuring that aggregation occurs immediately upon data changes rather than during query time.
+This alignment not only enhances operational efficiency but also significantly improves the user experience by providing reliable, timely data. Users benefit from faster response times, fewer errors, and a seamless interaction with your services, ultimately leading to higher satisfaction and trust in your system's capabilities.
 
 ### Making your company a Digital Platform
 
 SQL data residing in legacy systems can be quite challenging to integrate in modern systems. Moving data to MongoDB with the help of Fast Data, you will unlock the potential to become a real Digital Platform. Specifically, you will be able to:
 
-* Automatically expose the data through API, thanks to the CRUD service;
-* Automatically generate API and data documentation, thanks to the API Portal;
+* Automatically expose the data through API, thanks to the CRUD service.
+* Automatically generate API and data documentation, thanks to the API Portal.
 * Scale horizontally with ease, thanks to MongoDB architecture.
 
 With these new tools your company can grow faster than ever, become more connected, and fully become omnichannel.
 
+## Fast Data improves the data management
+
+Mia-Platform Fast Data makes data management operations less complex and more 'user friendly'. In this section, we introduce you to the technologies that make all this possible.
+
+### Ready-to-Use Data Connectors
+
+Mia-Platform Fast Data utilizes an event streaming platform to ingest messages about changes within your systems (e.g., create, update, or delete operations) in near real-time. The components responsible for transmitting these changes to the event streaming platform are known as **[connectors](./connectors/overview.md)**.
+A connector monitors changes in the data sources and forwards them to one or more Kafka topics. The data is then processed on parallel queues and converted into a format compatible with Mia-Platform Fast Data. This decouples data reading from processing, enhancing reliability and robustness.
+
+You can either develop a custom connector tailored to your specific needs or use one of the connectors available in the **[Mia-Platform Marketplace](/marketplace/overview_marketplace.md)**.
+
+### No Code / Low Code Data management
+
+Mia-Platform Fast Data implements its own data management logic that lets you save time during setup. We are talking about **No Code / Low Code (NC/LC)** functionalities.
+This system leverages two core principles: No Code Fast Data and Low Code Fast Data.
+
+With **No Code** functionality, you can configure your project quickly with minimal manual intervention. From version 10.6.0 onward, enabling the No Code feature (which may require coordination with your System Administrator) allows you to define relationships between projections within the ER Schema.
+With **Low Code**, you only need to:
+1. Define relationships between Projections in the ER Schema;
+2. Specify which projection changes trigger updates to specific Single Views;
+3. Provide a declarative definition of Single Views, based on Projection fields and other flexible options.
+
+For further information about our No Code / Low Code logic, please visit the **[dedicated page](./no_code_overview.md)**.
+
+### Control Plane
+
+Control Plane is essential for monitoring the execution of Mia-Platform Fast Data and managing data across various runtime environments:
+
+* Monitor the status of various runtime pipelines.
+* Interact with users via a specialized frontend and adjust pipeline states in response to user inputs.
+* Collect feedback from workloads to verify their operational status within the associated pipelines.
+
+For more information about Control Plane configuration, visit **[this page](./runtime_management/control_plane.mdx)**. 
+
+## Fast Data to accomplish your Data Integration Hub
+
+Mia-Platform allows you to set up and deploy your end-to-end **Digital Integration Hub-enabled API platform**, as mentioned in the **[Gartner® Hype Cycle™ for Application Architecture and Integration, 2022](https://mia-platform.eu/news-en/gartner-application-architecture-and-integration/)**.
+
+![Mia-Platform Fast Data DIH architecture](./img/fastdata-DIH-architecture.png)
+
+Digital Integration Hub is an important architectural component offering low-latency, high-throughput data access via APIs and event-based mechanisms. It separates SoRs sources from external channels through a data management layer that ensures data synchronization using event-driven patterns.
+Key benefits are:
+* Access aggregated real-time data scattered across SoRs.
+* Upgrade legacy systems with minimal disruption to the API layer.
+* Ensure continuous data provisioning 24/7, even when some APIs are temporarily unavailable.
+* Maintain data availability 24/7, even when systems are offline for scheduled maintenance.
+* Serve channels with a persistent data layer, ensuring access even during system downtimes.
+* Reduce the load on costly SoRs by offloading tasks to API services.
+* Facilitate data integration by forwarding DIH data to other endpoints.
+* Offer real-time connectors for data analytics and business intelligence (BI) applications.
+
 ## How is Fast Data different from similar products?
 
-"ETL" systems (Extract, Transform, Load) are not big news, they have been around for decades and their principles are now a staple in the industry. So what makes Fast Data stand out from the crowd? It is easy to set up thanks to its **low code/ no code** functionality, fully customizable injecting actual javascript code as configuration, and part of an **ecosystem** that will grant you all the tools you need to make the most out of your standardized and aggregated data.
+"ETL" systems (Extract, Transform, Load) have been industry standards for decades, forming a core component of data management.
+What differentiates Mia-Platform Fast Data is its ease of setup through **No Code / Low Code** functionality, full customizability via JavaScript code as configured, and its integration within an **ecosystem** that provides all necessary tools for maximizing standardized and aggregated data.
 
-Moreover, Fast Data is used in production by many large companies, with millions of events handled every day, so you can be confident it is a reliable solution.
+Moreover, you can build your Data Product utilizing a suite of tools specifically engineered to optimize Data acquisition and pipeline efficiency, for example: 
+* **Data Catalog**: a command-line interface binary designed to query data sources for their schemas and transmit them to a target location. Data Catalog acts as a driver for collecting and unifying views of tables and collections from various sources (SoRs).
+* **Bucket Storage Support** allows messages passing through a channel to be stored in an external storage system, such as a Google Cloud Storage bucket or any bucket compatible with the Amazon AWS S3 interface.
+* **Flow Manager Service**: a saga orchestrator, capable of managing workflows structured using the Saga Pattern architectural framework.
+* **CRUD Service**: its purpose is to abstract Data Collections, enabling developers to easily, scalably, and securely expose CRUD APIs over the database. 
+
+Visit the **[Mia-Platform Marketplace](/marketplace/overview_marketplace.md)** page where you can find other useful ready-to-use plugins.
+
+Fast Data is used in production by many large companies, with millions of events handled every day, so you can be confident it is a reliable solution.
 
 ## GDPR
 
-Fast Data services may log the primary keys of your projections, single views and keys of the Kafka Messages. Please, be sure that they are not sensible information in order to be in accordance with GDPR policies. Otherwise, you need to set topic retentions conformed to the rules and inform the Mia-Platform referent to set logs retention according to that.
+Mia-Platform Fast Data services may log the primary keys of your projections, single views, and Kafka message keys. Ensure these do not contain sensitive information to comply with GDPR policies. If they do, configure topic retentions according to the regulations and notify the Mia-Platform referent to adjust log retention settings accordingly.
