@@ -41,7 +41,7 @@ The current version of the Platform is visible in the Console info section.
 
 ## Feature Preview and Beta
 
-New Mia-Platform version may include features that are not yet considered stable; such features are highlighed with a special
+New Mia-Platform version may include features that are not yet considered stable; such features are highlighted with a special
 tag denoting the current feature state.
 
 :::info
@@ -51,8 +51,8 @@ or whole [Projects](/docs/console/project-configuration/project-settings#feature
 
 The currently used feature states are the following:
 
-- **experimenta**: used for feature that are under heavy development;
+- **experimental**: used for feature that are under heavy development;
 - **preview**: generally representing the first iteration for a new feature;
 it means that the feature is available for use but it may not be completed yet or could be subject to undocumented breaking changes;
 - **beta**: the feature implementation is completed and there will not be any undocumented breaking changes. However, for different reasons
-(e.g. lack of proper validatiom on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.
+(e.g. lack of proper validation on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.
