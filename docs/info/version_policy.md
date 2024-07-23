@@ -46,7 +46,7 @@ tag denoting the current feature state.
 
 :::info
 Preview and beta feature are usually disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on specific users
-or whole Projects/Companies)
+or whole Projects/Companies).
 :::
 
 The currently used feature states are the following:
@@ -54,4 +54,4 @@ The currently used feature states are the following:
 - **preview**: generally representing the first interation for a new feature;
 it means that the feature is available for use but it may not be completed yet or could be subject to undocumented breaking changes;
 - **beta**: the feature implementation is completed and there won't be any undocumented breaking changes however, for different reasons
-(e.g. lack of proper validatino on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.
+(e.g. lack of proper validatiom on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.
