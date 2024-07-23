@@ -3,36 +3,25 @@ id: version_policy
 title: Version policy
 sidebar_label: Version policy
 ---
-Mia-Platform version numbers consist of 3 parts: MAJOR.MINOR.PATCH.
-For Example a version number could be: **4.17.3**
-The Major number identifies the Version.
 
-**4** is the Major number  
-**17** is the Minor number  
-**3** is the Patch number
+Mia-Platform version numbers consists of thee, dot separated, parts: *MAJOR*.*MINOR*.*PATCH*.
 
-* **MAJOR** get updated with any significant Mia-Platform new functionalities release and for any backwards incompatible. A new major number is usually released every year.
-* **MINOR** get updated with any new functionalities released
-* **PATCH** get updated with any bug fixing or security fixing released.
+- **MAJOR** is increased for significant or disruptive Mia-Platform functionalities. A major update may bring backward-incompatible changes;
+- **MINOR** is increased for new functionalities and significant improvements;
+- **PATCH** is increased for small improvements, bug fixes or security updates.
 
-The current version of the Platform is visible in the API Console.
+## Release history
 
-Moreover, inside the Console it is possible to find tags which describe the feature lifecycle. They are used to point out the stage of a new feature and they are:
+This section lists all the Major versions released over time;
+for self-hosted installation read the [Stable version release policy](/docs/release-notes/stable-versions) to find out which version are receiving official support.
 
-* **Preview**: first usable feature release, there may be bugs and they may be subject to undocumented breaking changes
-* **Beta**: the feature implementation is completed and there cannot be any undocumented breaking changes however there could still be bugs, hence it must be used carefully
-
-## Version Supported
-
-Below are listed all the Major versions of Mia-Platform released.
+:::note
 Mia-Platform guarantees **security patches** for the two preceding versions to the current Major.
-
-**Bux Fixing Patch** and **Minor** will instead only be released for the current Major.
-[Read Here](/info/bug_policy.md) to discover more about our bug policy
+:::
 
 Release | Release Date |  End of Life Date
 -------| -------|-------
-v13| May 2024 | End of 2025
+v13 (current)| May 2024 | End of 2025
 v12| November 2023 | May 2025
 v11| May 2023 | End of 2024
 v10| October 2022 | May 2024
@@ -45,3 +34,24 @@ v4| July 2018 | January 2021
 v3| September 2017 | September 2020
 v2| November 2016 | December 2019
 v1| December 2015 | July 2018
+
+:::tip
+The current version of the Platform is visible in the Console info section.
+:::
+
+## Feature Preview and Beta
+
+New Mia-Platform version may include features that are not yet considered stable; such features are highlighed with a special
+tag denoting the current feature state.
+
+:::info
+Preview and beta feature are usually disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on specific users
+or whole Projects/Companies)
+:::
+
+The currently used feature states are the following:
+
+- **preview**: generally representing the first interation for a new feature;
+it means that the feature is available for use but it may not be completed yet or could be subject to undocumented breaking changes;
+- **beta**: the feature implementation is completed and there won't be any undocumented breaking changes however, for different reasons
+(e.g. lack of proper validatino on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.

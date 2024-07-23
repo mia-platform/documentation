@@ -3,8 +3,17 @@ id: support-policy
 title:  Support Policy
 sidebar_label: Support Policy
 ---
-The support policy page links all the materials useful to customers
 
-[On this page](/info/version_policy.md) you can find all the information about the supported versions of Mia-Platform Suite.
+This page holds useful links for customers regarding the different policies available.
 
-[Here](/info/bug_policy.md) instead you can discover more about our Bug Policy
+:::info
+Read [Stable Versions](/docs/release-notes/stable-versions) to find out the stable version roadmap and details about the currently supported version of the Mia-Platform products.
+:::
+
+:::note
+Read [Version Policy](/info/version_policy.md) to find all the information regarding how new Mia-Platform versions are named.
+:::
+
+:::note
+Read the [Bug policy](/info/bug_policy.md) to find out how bugs are disclosed and treated.
+:::
