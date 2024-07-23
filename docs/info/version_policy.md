@@ -51,6 +51,7 @@ or whole [Projects](/docs/console/project-configuration/project-settings#feature
 
 The currently used feature states are the following:
 
+- **experimenta**: used for feature that are under heavy development;
 - **preview**: generally representing the first iteration for a new feature;
 it means that the feature is available for use but it may not be completed yet or could be subject to undocumented breaking changes;
 - **beta**: the feature implementation is completed and there will not be any undocumented breaking changes. However, for different reasons
