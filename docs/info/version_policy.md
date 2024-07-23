@@ -4,7 +4,7 @@ title: Version policy
 sidebar_label: Version policy
 ---
 
-Mia-Platform version numbers consists of thee, dot separated, parts: *MAJOR*.*MINOR*.*PATCH*.
+Mia-Platform version numbers consists of three, dot separated, parts: *MAJOR*.*MINOR*.*PATCH*.
 
 - **MAJOR** is increased for significant or disruptive Mia-Platform functionalities. A major update may bring backward-incompatible changes;
 - **MINOR** is increased for new functionalities and significant improvements;
@@ -51,7 +51,7 @@ or whole Projects/Companies).
 
 The currently used feature states are the following:
 
-- **preview**: generally representing the first interation for a new feature;
+- **preview**: generally representing the first iteration for a new feature;
 it means that the feature is available for use but it may not be completed yet or could be subject to undocumented breaking changes;
-- **beta**: the feature implementation is completed and there won't be any undocumented breaking changes however, for different reasons
+- **beta**: the feature implementation is completed and there will not be any undocumented breaking changes. However, for different reasons
 (e.g. lack of proper validatiom on certain use-cases), it may be yet considered unsuitable for use in production, hence it must be used carefully.
