@@ -24,7 +24,7 @@ The aggregation is performed using an important intermediary collection known as
 
 Additionally, Mia-Platform Fast Data offers pre-built microservices and a user-friendly interface for setting up data flows in a low-code manner. This approach allows you to get started quickly and efficiently.
 
-Visit **[this page](./concepts/architecture.md)** you can learn more about the architecture of Mia-Platform Fast Data.
+Visit **[this page](./concepts/architecture.md)** to learn more about the architecture of Mia-Platform Fast Data.
 
 ## Why Fast Data
 
