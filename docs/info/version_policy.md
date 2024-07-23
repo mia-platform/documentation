@@ -45,8 +45,8 @@ New Mia-Platform version may include features that are not yet considered stable
 tag denoting the current feature state.
 
 :::info
-Preview and beta feature are usually disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on specific users
-or whole Projects/Companies).
+Preview and beta feature are usually disabled by default and can be enabled using the Feature Preview pages (depending whether the feature has impact on [specific users](/docs/development_suite/user-settings/feature-preview)
+or whole [Projects](/docs/console/project-configuration/project-settings#feature-preview)).
 :::
 
 The currently used feature states are the following:
