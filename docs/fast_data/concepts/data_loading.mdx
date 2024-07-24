@@ -19,8 +19,8 @@ In Fast Data, __Initial Load__ operations are made to synchronize the Systems of
 
 ### Overview
 
-Beside the standard real-time data stream, the Initial Load operation is carried out by the CDC, 
-which will produce ingestion messages for each record of the tables that have been chosen to be sent to Fast Data. 
+Beside the standard real-time data stream, the Initial Load operation is carried out by the CDC,
+which will produce ingestion messages for each record of the tables that have been chosen to be sent to Fast Data.
 
 :::caution
 Usually CDCs will stop the capture of real time events to the source systems during an Initial Load:
@@ -37,11 +37,11 @@ This operation is needed when:
 
 ### Best Practices
 
-Since Initial Load may involve tables having huge size, is necessary to prepare your infrastructure accordingly 
+Since Initial Load may involve tables having huge size, is necessary to prepare your infrastructure accordingly
 and stop the generation of Single Views.
 
 :::tip
-If you need to Bootstrap either Fast Data services or infrastructural component, you can check out [this section](/fast_data/faq/bootstrapping_fast_data.md#what-should-be-the-required-resources-to-perform-an-initial-load). 
+If you need to Bootstrap either Fast Data services or infrastructural component, you can check out [this section](/fast_data/faq/bootstrapping_fast_data.md#what-should-be-the-required-resources-to-perform-an-initial-load).
 :::
 
 Before an Initial Load takes place, you have to prepare your [Fast Data architecture](/fast_data/concepts/architecture.md#putting-it-all-together) accordingly.
@@ -66,8 +66,8 @@ From the [Control Plane frontend](/fast_data/runtime_management/control_plane_fr
 is in a running state. Then, in the Single View pipeline that will receive data streams
 from the projections involved in the Initial Load, both `Collected` and `Curated` stages must be in a __Paused State__.
 
-The state of your pipeline should match the example shown below, where a data stream generating a single view 
-named `orders-history` is completely paused.  
+The state of your pipeline should match the example shown below, where a data stream generating a single view
+named `orders-history` is completely paused.
 
 ![Initial Load Runtime Management](img/data_loading_initial_load_runtime.png)
 
@@ -78,13 +78,13 @@ stage back to the __Running State__ and let the underlying SVTG consuming the `p
 
 :::tip
 If the Initial Load involves projections having large datasets, is suggested to __only__ restart the base projection, i.e. the projection
-that is the root of your single view aggregation (see [Glossary](/fast_data/concepts/glossary.mdx)). 
+that is the root of your single view aggregation (see [Glossary](/fast_data/concepts/glossary.mdx)).
 
 Then, from your Kafka instance, you should reset the offsets of `pr-update` topics to the last messages sent by the Initial Load procedure.
 :::
 
 Finally, to generate the single view documents, you can restart the `Curated` stage and let the underlying Single View Creator compute
-the aggregation of single view documents from the `trigger` messages generated from the previous stage.  
+the aggregation of single view documents from the `trigger` messages generated from the previous stage.
 </TabItem>
 
 
@@ -95,10 +95,10 @@ Then, you need to disable strategy execution or the Real-Time Updater that will 
 
 - setting the environment variable `GENERATE_KAFKA_PROJECTION_CHANGES` to `false`
 or
-- disable the strategies linked to the Single View involved [from the dedicated section](/fast_data/configuration/single_views.md#link-projections-to-the-single-view) 
+- disable the strategies linked to the Single View involved [from the dedicated section](/fast_data/configuration/single_views.md#link-projections-to-the-single-view)
 
-After the Initial Load has been completed, is possible to generate the corresponding Single Views 
-that have the projections as dependencies by performing a [Full Refresh operation](#full-refresh). 
+After the Initial Load has been completed, is possible to generate the corresponding Single Views
+that have the projections as dependencies by performing a [Full Refresh operation](#full-refresh).
 
 </TabItem>
 
@@ -111,13 +111,13 @@ In Fast Data, __Full Refresh__ operations are made to regenerate the documents o
 ### Overview
 
 The operation is carried out within the Fast Data Architecture, to let the Single View Creator (SVC) performing
-the aggregation of all the documents of a Single View collection.  
+the aggregation of all the documents of a Single View collection.
 
-### Scenarios 
+### Scenarios
 
 This operation may be needed to make the single view aggregation consistent with the source system when:
 
-- fields have been _added_/_removed_ _to_/_from_ a projection after the Initial Load and 
+- fields have been _added_/_removed_ _to_/_from_ a projection after the Initial Load and
   needs to be _added_/_removed_ _into_/_from_ the Single View;
 - there has been some _disalignment_ in the single view generation process, due to either
   infrastractural problems or misconfigurations.
@@ -140,7 +140,7 @@ Generator (SVTG) linked to the single view that needs to be re-generated.
 
 :::tip
 If the full refresh operation will target a large number of single view documents, consider increasing the replicas
-of your Single View Creator (SVC) to speed up the aggregation process. 
+of your Single View Creator (SVC) to speed up the aggregation process.
 :::
 
 ##### Using Runtime Management
@@ -160,7 +160,7 @@ You need to disable strategy execution of the Real-Time Updater that will be reg
 
 - setting the environment variable `GENERATE_KAFKA_PROJECTION_CHANGES` to `false`
 or
-- disable the strategies linked to the Single View involved [from the dedicated section](/fast_data/configuration/single_views.md#link-projections-to-the-single-view) 
+- disable the strategies linked to the Single View involved [from the dedicated section](/fast_data/configuration/single_views.md#link-projections-to-the-single-view)
 
 </TabItem>
 
@@ -183,7 +183,7 @@ npm init -y
 npm i mongodb kafkajs ramda
 ```
 
-Then, place the following script to your newly created project 
+Then, place the following script to your newly created project
 and replace the different placeholders accordingly to your needs.
 
 ```js title=index.js
@@ -194,7 +194,7 @@ const { Kafka, CompressionTypes, CompressionCodecs } = require('kafkajs')
 const fs = require('fs/promises')
 
 function getTriggerMessage({
-  projection, 
+  projection,
   singleViewIdentifier,
   singleViewName,
   clientId,
@@ -205,16 +205,16 @@ function getTriggerMessage({
     value: {
       type: "aggregation",
       singleViewName,
-      singleViewIdentifier, 
+      singleViewIdentifier,
       change: {
         data: projection.document,
-        projectionIdentifier: projection.identifier, 
+        projectionIdentifier: projection.identifier,
         projectionName: projection.name
       }
       __internal__kafkaInfo: {
         ...projection.document.__internal__kafkaInfo,
         // metadata used to understand that trigger message has been
-        // generated by a local full refresh 
+        // generated by a local full refresh
         timestamp: operationTimestamp,
         topic: clientId,
       }
@@ -224,7 +224,7 @@ function getTriggerMessage({
             type: 'sv-trigger',
             version: 'v1.0.0',
         }
-    }              
+    }
   }
 }
 
@@ -245,9 +245,9 @@ async function main(projectionName, triggerTopic, singleViewName, batchSize = 50
         /** replace with your authentication mechanism */
       },
   })
-  
+
   const producer = kafka.producer()
-  
+
   try {
     await producer.connect()
     await mongoClient.connect()
@@ -258,16 +258,16 @@ async function main(projectionName, triggerTopic, singleViewName, batchSize = 50
     const indexes = await collection.indexes()
     const primaryKeyIndex = indexes.find(index => index.name === 'mia_primary_key_index')
     const primaryKeys = Object.keys(primaryKeyIndex.key)
-    // we check that the collection is a projection 
+    // we check that the collection is a projection
     if(!primaryKeyIndex) {
         throw new Error('no pk index found for projection.')
     }
-    
+
     const messages = []
     // by sorting with the _id field, is possible to restart generation using
     // the skip parameter of mongodb
-    const cursor = collection.find({}).sort({_id: -1}) 
-    
+    const cursor = collection.find({}).sort({_id: -1})
+
     const getSingleViewIdentifier = (document) => {
       /** here you write the logic to obtain the identifier from base projection document */
       return {
@@ -280,7 +280,7 @@ async function main(projectionName, triggerTopic, singleViewName, batchSize = 50
           document,
           identifier: pick(projection.primaryKeys, projection.doc),
           name: projectionName
-        }, 
+        },
         singleViewIdentifier: getSingleViewIdentifier(document),
         singleViewName,
         operationTimestamp,
@@ -292,12 +292,12 @@ async function main(projectionName, triggerTopic, singleViewName, batchSize = 50
           headers: JSON.stringify(message.headers)
       })
       // sends batch equals to batchSize
-      if (messages.length === batchSize) {       
+      if (messages.length === batchSize) {
           await Promise.resolve(producer.send({
               topic: triggerTopic,
               messages,
               // if many messages are involved, consider using GZIP compression
-              // compression: CompressionTypes.GZIP 
+              // compression: CompressionTypes.GZIP
           }))
           counter += batchSize
           // reset messages count
@@ -339,7 +339,7 @@ npm init -y
 npm i mongodb
 ```
 
-Then, place the following script to your newly created project 
+Then, place the following script to your newly created project
 and replace the different placeholders accordingly to your needs.
 
 ```js title=index.js
@@ -347,7 +347,7 @@ const { MongoClient } = require('mongodb')
 const fs = require('fs/promises')
 
 function getProjectionChangesRecord({
-  projection, 
+  projection,
   singleViewIdentifier,
   singleViewName,
   clientId,
@@ -355,18 +355,18 @@ function getProjectionChangesRecord({
 }) {
   return {
     type: singleViewName,
-    identifier: singleViewIdentifier, 
+    identifier: singleViewIdentifier,
     changes: [{
       __STATE__: "NEW",
       ...projection.__internal__kafkaInfo,
       // metadata used to understand that trigger message has been
-      // generated by a local full refresh 
+      // generated by a local full refresh
       timestamp: operationTimestamp,
       topic: clientId,
 
     }],
     createdAt: operationTimestamp,
-    updatedAt: operationTimestamp,          
+    updatedAt: operationTimestamp,
   }
 }
 
@@ -388,9 +388,9 @@ async function main(projectionName, projectionChangesCollectionName, singleViewN
         /** replace with your authentication mechanism*/
       },
   })
-  
+
   const producer = kafka.producer()
-  
+
   try {
     await producer.connect()
     await mongoClient.connect()
@@ -402,16 +402,16 @@ async function main(projectionName, projectionChangesCollectionName, singleViewN
     const indexes = await projectionCollection.indexes()
     const primaryKeyIndex = indexes.find(index => index.name === 'mia_primary_key_index')
     const primaryKeys = Object.keys(primaryKeyIndex.key)
-    // we check that the collection is a projection 
+    // we check that the collection is a projection
     if(!primaryKeyIndex) {
         throw new Error('no pk index found for projection.')
     }
-    
+
     const promises = []
     // by sorting with the _id field, is possible to restart generation using
     // the skip parameter of mongodb
-    const cursor = projectionCollection.find({}).sort({_id: -1}) 
-    
+    const cursor = projectionCollection.find({}).sort({_id: -1})
+
     const getSingleViewIdentifier = (document) => {
       /** here you write the logic to obtain the identifier from base projection document */
       return {
@@ -421,7 +421,7 @@ async function main(projectionName, projectionChangesCollectionName, singleViewN
     for await(projection of cursor) {
       const singleViewIdentifier = getSingleViewIdentifier(projection)
       const pcRecord = getProjectionChangesRecord({
-        projection, 
+        projection,
         singleViewIdentifier,
         singleViewName,
         operationTimestamp,
@@ -440,7 +440,7 @@ async function main(projectionName, projectionChangesCollectionName, singleViewN
         })
       )
       // sends batch equals to batchSize
-      if (messages.length === batchSize) {       
+      if (messages.length === batchSize) {
         await Promise.all(promises)
         counter += batchSize
         // reset messages count
@@ -469,3 +469,182 @@ Finally, you can launch the script from your command line terminal.
 </TabItem>
 
 </Tabs>
+
+### Advanced
+
+There are scenarios in which it is required to regenerate the kafka update messages starting from the projection (pr-update)
+or the single-view (sv-update) collections.
+
+This script will generate update messages based on their specification.
+You can generate both projection update and single view update messages.
+
+First, create a blank project and install the following dependencies:
+
+```bash
+npm init -y
+npm i mongodb kafkajs ramda
+```
+
+Then, place the following script to your newly created project
+and replace the different placeholders accordingly to your needs.
+
+You will have to change the following variables:
+- collection: projection or single view collection
+- updateTopic: pr-update or sv-update topic
+- typeUpdate: "pr-update" or "sv-update"
+- messageVersion: "v1.0.0" or "v2.0.0"
+- mongoUrl: mongodb string connection
+- brokers: array of string with the list of brokers
+- sasl: sasl configuration; username, password and mechanism.
+- indexName: the primary index name
+
+
+```
+const { MongoClient } = require('mongodb')
+const { pick } = require('ramda')
+const { Kafka, CompressionTypes, CompressionCodecs } = require('kafkajs')
+
+const fs = require('fs/promises')
+
+function getUpdateMessage({doc, primaryKeys, projectionName, operationTimestamp, typeUpdate, messageVersion}) {
+    if (messageVersion === 'v2.0.0') {
+        return {
+            key: pick(primaryKeys, doc),
+            value: {
+                operation: {
+                    "type": "INSERT",
+                    "timestamp": operationTimestamp
+                },
+                "storageNamespace": projectionName,
+                source: "script",
+                primaryKeys,
+                before: null,
+                after: doc,
+            },
+            headers: {
+                messageSchema: {"type":typeUpdate,"version":"v2.0.0"}
+            }
+        }
+    }
+    if (messageVersion === 'v1.0.0') {
+        return {
+            key: pick(primaryKeys, doc),
+            value: {
+                operationType: "INSERT",
+                primaryKeys,
+                operationTimestamp,
+                __internal__kafkaInfo: doc.__internal__kafkaInfo,
+                projectionName,
+                source: "script",
+                before: null,
+                after: doc,
+                documentId: doc._id
+            },
+            headers: {
+                messageSchema: {
+                    type: typeUpdate,
+                    version: 'v1.0.0',
+                }
+            }
+        }
+
+    }
+    throw new Error('message version not valid')
+}
+
+async function main(projectionName, topic, typeUpdate, messageVersion, parallelRequests = 50) {
+    const mongoUrl = ""
+    const mongoClient = new MongoClient(mongoUrl)
+    const interval = setInterval(() => console.log(`Updated ${counter} docs`), 5000)
+    const operationTimestamp = new Date()
+    let counter = 0
+
+    const kafka = new Kafka({
+        brokers: [/** ... put here your kafka brokers ... */],
+        clientId: `mia.local.update-generator`,
+        // SSL Configuration
+        ssl: {
+            ca: await fs.readFile('ca.pem', 'utf-8'), // required if ca.pem file is needed for kafka
+        },
+        /** replace with your authentication mechanism */
+        sasl: {
+            username: '',
+            password: '',
+            mechanism: '',
+        },
+    })
+
+    const producer = kafka.producer()
+
+    try {
+        await producer.connect()
+        await mongoClient.connect()
+        const db = mongoClient.db()
+        const collection = db.collection(projectionName)
+        const indexes = await collection.indexes()
+
+        const indexName = ''
+        const primaryKeyIndex = indexes.find(index => index.name === indexName)
+        const primaryKeys = Object.keys(primaryKeyIndex?.key)
+
+        if (!primaryKeyIndex) {
+            throw new Error('no pk index found')
+        }
+
+        const messages = []
+        // by sorting with the _id field, is possible to restart generation using
+        // the skip parameter of mongodb
+        const cursor = collection.find({}).sort({_id: -1})
+
+        for await(doc of cursor) {
+            const message = getUpdateMessage({doc, primaryKeys, projectionName, operationTimestamp, typeUpdate, messageVersion})
+            messages.push({
+                key: JSON.stringify(message.key),
+                value: JSON.stringify(message.value),
+                headers: JSON.stringify(message.headers)
+            })
+
+            if (messages.length === parallelRequests) {
+                await Promise.resolve(producer.send({
+                    topic,
+                    messages,
+                    // if many messages are involved, consider using GZIP compression
+                    // compression: CompressionTypes.GZIP
+                }))
+                counter += parallelRequests
+                messages.splice(0, messages.length)
+            }
+        }
+
+        await Promise.resolve(producer.send({
+            topic,
+            messages,
+        }))
+        counter += messages.length
+        console.log(`Updated ${counter} docs. End.`)
+
+    } catch (err) {
+        console.error(err)
+    } finally {
+        console.log('closing connections')
+        clearInterval(interval)
+        await mongoClient.close()
+        await producer.disconnect()
+    }
+}
+
+const collection = '' // projection or single view collection
+const updateTopic= '' // pr-update or sv-update topic
+const typeUpdate = '' // 'pr-update' or 'sv-update'
+const messageVersion = '' // "v1.0.0" or "v2.0.0"
+
+main(collection, updateTopic, typeUpdate, messageVersion)
+```
+
+In the kafka configuration please take in consideration the ssl field. In the script is required the `ca.pem` file.
+
+Finally, you can launch the script from your command line terminal.
+
+```
+node index.js
+```
