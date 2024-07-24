@@ -32,7 +32,7 @@ sequenceDiagram
 
   User->>Console: Press Deploy
   Console->>Jenkins: Trigger job
-  note over Console,Jenkins: body<br/>{<br/>"revision": REVISION_TO_TRIGGER,<br/>"environment": envId,<br/>"deployType": "smart_deploy" or "deploy_all",<br/>"forceDeployWhenNoSemver": true or false<br/>}
+  note over Console,Jenkins: body<br/>{<br/>"REVISION": REVISION_TO_TRIGGER,<br/>"ENVIRONMENT_TO_DEPLOY": envId,<br/>"DEPLOY_TYPE": "smart_deploy" or "deploy_all",<br/>"FORCE_DEPLOY_WHEN_NO_SEMVER": true or false<br/>,"KUBE_NAMESPACE": NAMESPACE_NAME<br/>}
   Jenkins-->>Console: 201 with Location header with pipeline id
   note over User,Console: responds with pipeline<br/> id and web url
   Console-->>User: 200
@@ -53,10 +53,17 @@ sequenceDiagram
 
     ```json
     {
-      "revision": REVISION_TO_TRIGGER,
-      "environment": envId,
-      "deployType": "smart_deploy" or "deploy_all",
-      "forceDeployWhenNoSemver": true or false
+        "REVISION": REVISION_TO_TRIGGER,
+        "ENVIRONMENT_TO_DEPLOY": envId,
+        "DEPLOY_TYPE": "smart_deploy" or "deploy_all",
+        "FORCE_DEPLOY_WHEN_NO_SEMVER": true or false,
+        "KUBE_NAMESPACE": NAMESPACE_NAME,
+
+        // Deprecated parameters
+        "revision": REVISION_TO_TRIGGER,
+        "environment": envId,
+        "deployType": "smart_deploy" or "deploy_all",
+        "forceDeployWhenNoSemver": true or false
     }
     ```
 
@@ -64,6 +71,11 @@ sequenceDiagram
 
     - `REVISION_TO_TRIGGER`: is the revision to deploy (i.e. the tag or the branch name);
     - `envId`: is the environment id to deploy;
+    - `KUBE_NAMESPACE` is the namespace where the deployment should be performed;
+
+    :::warning
+    The parameters `revision`, `environment`, `deployType`, `forceDeployWhenNoSemver` are deprecated and will be removed in the future. Use the other parameters instead.
+    :::
 
 2. The expected Jenkins response has a 201 status code and contains a `Location` header (i.e. `<JENKINS_URL>/queue/item/:pipelineId`). This is used from the backend of the console to retrieve the id of the triggered pipeline;
 3. The console website periodically performs GET requests to check the status of the triggered job
