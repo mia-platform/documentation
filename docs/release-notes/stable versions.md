@@ -8,15 +8,16 @@ A **stable release** is version that is as reliable as possible and on which a d
 
 Versions labeled as _stable_ are particularly suitable for on-premise updates and installations.
 
-Typically, a new stable version is announced every quarter of the year. Therefore, __four stable versions__ will be announced over a one-year period.
+Typically, a new stable version is announced every quarter of the year. Therefore, _four stable versions_ will be announced over a one-year period.
 
 For each stable version, a **Maintenance Time Window (MTW)** will be granted for a three-months period approximately, pending the next stable version.
 
-Thus, once a [Major/Minor version](/info/version_policy.md) is labeled as stable, patches on this specific version will be provided throughout the Maintenance Time Window in case of relevant detected bugs. Then, we recommend regularly upgrading to the latest patch of the stable release.  
+Thus, once a [Major/Minor version](/info/version_policy.md) is labeled as stable, patches on this specific version will be provided throughout the Maintenance Time Window in case of relevant detected bugs.
+Then, we recommend regularly upgrading to the latest patch of the stable release.  
 Once a new stable release is announced, it is suggested to upgrade to the new stable version to ensure guaranteed future support in case of malfunctions or relevant bugs detection.
 
 :::info
-**Only bug-fixes** will be applied on the stable version, and __no new features will be added__.
+**Only bug-fixes** will be applied on the stable version, and _no new features will be added_.
 :::
 
 ## Stable versions list
