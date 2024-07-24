@@ -16,7 +16,7 @@ In this page you will learn what is **Mia-Platform Fast Data**, its main concept
 
 Business is changing rapidly with companies aiming to provide seamless digital experiences across numerous touchpoints and applications. APIs are crucial in this scenario, as they enable data exposure from different sources to various channels.
 
-![Fast Data overview](./img/fastdata-overview.png)
+![Fast Data overview](img/fastdata-overview.png)
 
 Mia-Platform Fast Data let you to decouple your data from different sources, that we call **Systems of Record** (SoRs), aggregate them into a single MongoDB collection called **Single View** than can be easily queried by your APIs and thus build your out-of-the-box **Digital Integration Hub** (DIH). The consolidation is performed only when the source data changes, ensuring read operations are blazing fast since the data is pre-aggregated.
 
@@ -24,7 +24,7 @@ The aggregation is performed using an important intermediary collection known as
 
 Additionally, Mia-Platform Fast Data offers pre-built microservices and a user-friendly interface for setting up data flows in a low-code manner. This approach allows you to get started quickly and efficiently.
 
-Visit **[this page](./concepts/architecture.md)** to learn more about the architecture of Mia-Platform Fast Data.
+Visit **[this page](/fast_data/concepts/architecture.md)** to learn more about the architecture of Mia-Platform Fast Data.
 
 ## Why Fast Data
 
@@ -46,7 +46,7 @@ Mia-Platform Fast Data ensures an experience uninterrupted real-time data access
 
 ### Data standardization
 
-As mentioned before in **[Product overview](./what_is_fast_data#product-overview)** section, Mia-Platform Fast Data gathers data from different System of Records (APIs, CDC, DB triggers etc.) and aggregates them into a single MongoDB collection called Single View and Projections, according to your business model.
+As mentioned before in Product overview section, Mia-Platform Fast Data gathers data from different System of Records (APIs, CDC, DB triggers etc.) and aggregates them into a single MongoDB collection called Single View and Projections, according to your business model.
 With this data standardization process, your data is transformed into the exact format you require, ensuring consistency and compatibility across all datasets. This streamlined approach facilitates seamless data sharing with various channels and applications integrated with Mia-Platform Fast Data. As a result, you can efficiently distribute standardized data, enhancing interoperability and reducing the complexity typically associated with data exchange between disparate systems.
 
 ### Up-to-date picture of fast-changing data
@@ -82,27 +82,27 @@ This system leverages two core principles: No Code Fast Data and Low Code Fast D
 
 With **No Code** functionality, you can configure your project quickly with minimal manual intervention. From version 10.6.0 onward, enabling the No Code feature (which may require coordination with your System Administrator) allows you to define relationships between projections within the ER Schema.
 With **Low Code**, you only need to:
-1. Define relationships between Projections in the ER Schema;
-2. Specify which projection changes trigger updates to specific Single Views;
+1. Define relationships between Projections in the ER Schema.
+2. Specify which projection changes trigger updates to specific Single Views.
 3. Provide a declarative definition of Single Views, based on Projection fields and other flexible options.
 
-For further information about our No Code / Low Code logic, please visit the **[dedicated page](./no_code_overview.md)**.
+For further information about our No Code / Low Code logic, please visit the **[dedicated page](/fast_data/no_code_overview.md)**.
 
 ### Control Plane
 
 Control Plane is essential for monitoring the execution of Mia-Platform Fast Data and managing data across various runtime environments:
 
 * Monitor the status of various runtime pipelines.
-* Using a dedicated frontend, users can resume or stop pipeline components by sending commands to the underlying microservices;
+* Using a dedicated frontend, users can resume or stop pipeline components by sending commands to the underlying microservices.
 * Collect feedback from workloads to verify their operational status within the associated pipelines.
 
-For more information about Control Plane configuration, visit **[this page](./runtime_management/control_plane.mdx)**. 
+For more information about Control Plane configuration, visit **[this page](/fast_data/runtime_management/control_plane.mdx)**. 
 
 ## Fast Data to accomplish your Data Integration Hub
 
 Mia-Platform allows you to set up and deploy your end-to-end **Digital Integration Hub-enabled API platform**, as mentioned in the **[Gartner® Hype Cycle™ for Application Architecture and Integration, 2022](https://mia-platform.eu/news-en/gartner-application-architecture-and-integration/)**.
 
-![Mia-Platform Fast Data DIH architecture](./img/fastdata-DIH-architecture.png)
+![Mia-Platform Fast Data DIH architecture](img/fastdata-DIH-architecture.png)
 
 Digital Integration Hub is an important architectural component offering low-latency, high-throughput data access via APIs and event-based mechanisms. It separates SoRs sources from external channels through a data management layer that ensures data synchronization using event-driven patterns.
 Key benefits are:
