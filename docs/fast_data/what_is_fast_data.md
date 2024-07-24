@@ -50,7 +50,7 @@ Mia-Platform Fast Data ensures uninterrupted access to real-time data, available
 
 ### Data standardization
 
-As mentioned before in Product overview section, Mia-Platform Fast Data gathers data from different System of Records (APIs, CDC, DB triggers etc.) and aggregates them into a single MongoDB collection called Single View and Projections, according to your business model.
+As mentioned before in Product overview section, Mia-Platform Fast Data gathers data from different System of Records (APIs, CDC, DB triggers etc.) and aggregates them into a single MongoDB collection called Single View, according to your business model.
 With this data standardization process, your data is transformed into the exact format you require, ensuring consistency and compatibility across all datasets. This streamlined approach facilitates seamless data sharing with various channels and applications integrated with Mia-Platform Fast Data. As a result, you can efficiently distribute standardized data, enhancing interoperability and reducing the complexity typically associated with data exchange between disparate systems.
 
 ### Up-to-date picture of fast-changing data
