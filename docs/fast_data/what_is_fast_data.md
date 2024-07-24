@@ -46,7 +46,7 @@ Mia-Platform Fast Data addresses these challenges by providing a solution where 
 
 ### 24/7 operations
 
-Mia-Platform Fast Data ensures an experience uninterrupted real-time data access, available 24/7, even during system maintenance or downtime. Our solution guarantees that data provisioning remains seamless and reliable, leveraging a resilient data layer that functions continuously regardless of API availability or system status. This setup enables you to serve channels and access critical information without disruption, ensuring that your data remains accessible and operational around the clock.
+Mia-Platform Fast Data ensures uninterrupted access to real-time data, available 24/7, even during maintenance or system downtime. Our solution ensures that data provisioning remains seamless and reliable, leveraging a resilient data layer that operates continuously regardless of API availability or system status. This setup allows channels to be served and critical information to be accessed without interruption, ensuring that your data remains accessible and operational around the clock.
 
 ### Data standardization
 
