@@ -109,6 +109,7 @@ Mia-Platform allows you to set up and deploy your end-to-end **Digital Integrati
 ![Mia-Platform Fast Data DIH architecture](img/fastdata-DIH-architecture.png)
 
 Digital Integration Hub is an important architectural component offering low-latency, high-throughput data access via APIs and event-based mechanisms. It separates SoRs sources from external channels through a data management layer that ensures data synchronization using event-driven patterns.
+
 Key benefits are:
 * Access aggregated real-time data scattered across SoRs.
 * Upgrade legacy systems with minimal disruption to the API layer.
