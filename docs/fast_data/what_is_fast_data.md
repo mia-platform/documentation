@@ -126,10 +126,10 @@ Key benefits are:
 What differentiates Mia-Platform Fast Data is its ease of setup through **No Code / Low Code** functionality, full customizability via JavaScript code as configured, and its integration within an **ecosystem** that provides all necessary tools for maximizing standardized and aggregated data.
 
 Moreover, you can build your Data Product utilizing a suite of tools specifically engineered to optimize Data acquisition and pipeline efficiency, for example: 
-* **Data Catalog**: a command-line interface binary designed to query data sources for their schemas and transmit them to a target location. Data Catalog acts as a driver for collecting and unifying views of tables and collections from various sources (SoRs).
-* **Bucket Storage Support** allows messages passing through a channel to be stored in an external storage system, such as a Google Cloud Storage bucket or any bucket compatible with the Amazon AWS S3 interface.
-* **Flow Manager Service**: a saga orchestrator, capable of managing workflows structured using the Saga Pattern architectural framework.
-* **CRUD Service**: its purpose is to abstract Data Collections, enabling developers to easily, scalably, and securely expose CRUD APIs over the database. 
+* **[Data Catalog](/fast_data/data_catalog/overview.md)**: a command-line interface binary designed to query data sources for their schemas and transmit them to a target location. Data Catalog acts as a driver for collecting and unifying views of tables and collections from various sources (SoRs).
+* **[Bucket Storage Support](/fast_data/bucket_storage_support/overview.md)** allows messages passing through a channel to be stored in an external storage system, such as a Google Cloud Storage bucket or any bucket compatible with the Amazon AWS S3 interface.
+* **[Flow Manager Service](/console/tutorials/configure-marketplace-components/flow-manager.md)**: a saga orchestrator, capable of managing workflows structured using the Saga Pattern architectural framework.
+* **[CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md)**: its purpose is to abstract Data Collections, enabling developers to easily, scalably, and securely expose CRUD APIs over the database.
 
 Visit the **[Mia-Platform Marketplace](/marketplace/overview_marketplace.md)** page where you can find other useful ready-to-use plugins.
 
