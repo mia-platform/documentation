@@ -74,7 +74,7 @@ Mia-Platform Fast Data makes data management operations less complex and more 'u
 
 ### Ready-to-Use Data Connectors
 
-Mia-Platform Fast Data utilizes an event streaming platform to ingest messages about changes within your systems (e.g., create, update, or delete operations) in near real-time. The components responsible for transmitting these changes to the event streaming platform are known as **[connectors](./connectors/overview.md)**.
+Mia-Platform Fast Data utilizes an event streaming platform to ingest messages about changes within your systems (e.g., create, update, or delete operations) in near real-time. The components responsible for transmitting these changes to the event streaming platform are known as **[connectors](/fast_data/connectors/overview.md)**.
 A connector monitors changes in the data sources and forwards them to one or more Kafka topics. The data is then processed on parallel queues and converted into a format compatible with Mia-Platform Fast Data. This decouples data reading from processing, enhancing reliability and robustness.
 
 You can either develop a custom connector tailored to your specific needs or use one of the connectors available in the **[Mia-Platform Marketplace](/marketplace/overview_marketplace.md)**.
