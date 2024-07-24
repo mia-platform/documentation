@@ -84,7 +84,7 @@ You can either develop a custom connector tailored to your specific needs or use
 Mia-Platform Fast Data implements its own data management logic that lets you save time during setup. We are talking about **No Code / Low Code (NC/LC)** functionalities.
 This system leverages two core principles: No Code Fast Data and Low Code Fast Data.
 
-With **No Code** functionality, you can configure your project quickly with minimal manual intervention. From version 10.6.0 onward, enabling the No Code feature (which may require coordination with your System Administrator) allows you to define relationships between projections within the ER Schema.
+With **No Code** functionality, you can configure your project quickly with minimal manual intervention. From Mia-Platform Console v10.6.0 onward, enabling the No Code feature (which may require coordination with your System Administrator) allows you to define relationships between projections within the ER Schema.
 With **Low Code**, you only need to:
 1. Define relationships between Projections in the ER Schema.
 2. Specify which projection changes trigger updates to specific Single Views.
