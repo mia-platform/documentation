@@ -30,6 +30,10 @@ Visit **[this page](/fast_data/concepts/architecture.md)** to learn more about t
 
 Mia-Platform Fast Data combines **Data Mesh** and **Data Fabric** strategy, leveraging a suite of highly configurable tools that integrate the advantages of **Internal Developer Platform** while operationalizing your own **Digital Integration Hub**.
 
+Data Mesh architecture is a decentralized alternative to central data lakes. It organizes data by specific business domains, giving domain teams ownership and accountability for their data, which enhances data quality and governance. Data Mesh allows teams to independently scale their data systems using the technologies and tools that best fit their needs.
+
+Data Fabric is an adaptive, flexible, and secure integrated data architecture that provides a unified view of data across various sources, addressing challenges faced by data lakes. It simplifies data integration, transformation, and movement, allowing for faster and more efficient data access
+
 ### Legacy system offloading
 
 Working with legacy systems to build services that rely on fragmented data from non-scalable, load-heavy environments can present several challenges. When accessing and aggregating data from various systems on demand, you may encounter issues such as:
