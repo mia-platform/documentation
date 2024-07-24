@@ -94,7 +94,7 @@ For further information about our No Code / Low Code logic, please visit the **[
 
 ### Control Plane
 
-Control Plane is essential for monitoring the execution of Mia-Platform Fast Data and managing data across various runtime environments:
+Control Plane is essential for monitoring and governing the execution of Mia-Platform Fast Data pipelines across various runtime environments:
 
 * Monitor the status of various runtime pipelines.
 * Using a dedicated frontend, users can resume or stop pipeline components by sending commands to the underlying microservices.
