@@ -36,14 +36,13 @@ Each of the above values is an object containing these keys:
 
 ```yaml
 mia-console:
-  configurations:
-    staticImages:
-      loginPageLogo:
-        fileExtension: "png"
-        fileContents: <base64>
-      favicon:
-        fileExtension: "png"
-        fileContents: <base64>
+  staticImages:
+    loginPageLogo:
+      fileExtension: "png"
+      fileContents: <base64>
+    favicon:
+      fileExtension: "png"
+      fileContents: <base64>
 ```
 
 The base64 encoded image can be generated with a command like:
