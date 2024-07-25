@@ -12,26 +12,37 @@
                     <trim>true</trim>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.StringParameterDefinition>
-                    <name>environment</name>
+                    <name>PROJECT_ID</name>
+                    <defaultValue>%project._id%</defaultValue>
                     <trim>true</trim>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.StringParameterDefinition>
-                    <name>revision</name>
+                    <name>ENVIRONMENT_TO_DEPLOY</name>
+                    <trim>true</trim>
+                </hudson.model.StringParameterDefinition>
+                <hudson.model.StringParameterDefinition>
+                    <name>REVISION</name>
                     <trim>true</trim>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.ChoiceParameterDefinition>
-                    <name>deployType</name>
+                    <name>DEPLOY_TYPE</name>
                     <choices class="java.util.Arrays$ArrayList">
                         <a class="string-array">
-                            <string>smart_deploy</string>
-                        </a>
-                        <a class="string-array">
                             <string>deploy_all</string>
+                            <string>smart_deploy</string>
                         </a>
                     </choices>
                 </hudson.model.ChoiceParameterDefinition>
                 <hudson.model.StringParameterDefinition>
-                    <name>forceDeployWhenNoSemver</name>
+                    <name>FORCE_DEPLOY_WHEN_NO_SEMVER</name>
+                    <trim>true</trim>
+                </hudson.model.StringParameterDefinition>
+                <hudson.model.StringParameterDefinition>
+                    <name>TRIGGER_ID</name>
+                    <trim>true</trim>
+                </hudson.model.StringParameterDefinition>
+                <hudson.model.StringParameterDefinition>
+                    <name>KUBE_NAMESPACE</name>
                     <trim>true</trim>
                 </hudson.model.StringParameterDefinition>
             </parameterDefinitions>

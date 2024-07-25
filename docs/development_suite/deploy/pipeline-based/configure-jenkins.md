@@ -12,11 +12,12 @@ When a project will use this provider, the Project configuration will be changed
 ```json
 {
   "type": "jenkins",
-  "providerId": "{{PROVIDER_ID}}"
+  "providerId": "{{PROVIDER_ID}}",
+  "jobId": "{{JOB_ID}}"
 }
 ```
 
-Where `PROVIDER_ID` will be equal to the ID of the just configured Jenkins Provider.
+Where `{{PROVIDER_ID}}` will be equal to the ID of the just configured Jenkins Provider and `{{JOB_ID}}` is the id of the job to trigger to deploy the configuration.
 
 ### Workflow
 
@@ -32,7 +33,7 @@ sequenceDiagram
 
   User->>Console: Press Deploy
   Console->>Jenkins: Trigger job
-  note over Console,Jenkins: body<br/>{<br/>"REVISION": REVISION_TO_TRIGGER,<br/>"ENVIRONMENT_TO_DEPLOY": envId,<br/>"DEPLOY_TYPE": "smart_deploy" or "deploy_all",<br/>"FORCE_DEPLOY_WHEN_NO_SEMVER": true or false<br/>,"KUBE_NAMESPACE": NAMESPACE_NAME<br/>}
+  note over Console,Jenkins: body<br/>{<br/>"REVISION": REVISION_TO_TRIGGER,<br/>"ENVIRONMENT_TO_DEPLOY": envId,<br/>"DEPLOY_TYPE": "smart_deploy" or "deploy_all",<br/>"FORCE_DEPLOY_WHEN_NO_SEMVER": true or false<br/>,"KUBE_NAMESPACE": NAMESPACE_NAME<br/>TRIGGER_ID: RANDOM_ID<br/>}
   Jenkins-->>Console: 201 with Location header with pipeline id
   note over User,Console: responds with pipeline<br/> id and web url
   Console-->>User: 200
@@ -58,6 +59,8 @@ sequenceDiagram
         "DEPLOY_TYPE": "smart_deploy" or "deploy_all",
         "FORCE_DEPLOY_WHEN_NO_SEMVER": true or false,
         "KUBE_NAMESPACE": NAMESPACE_NAME,
+        "TRIGGER_ID": RANDOM_ID,
+        "REVISION": REVISION_TO_TRIGGER,
 
         // Deprecated parameters
         "revision": REVISION_TO_TRIGGER,
@@ -72,6 +75,7 @@ sequenceDiagram
     - `REVISION_TO_TRIGGER`: is the revision to deploy (i.e. the tag or the branch name);
     - `envId`: is the environment id to deploy;
     - `KUBE_NAMESPACE` is the namespace where the deployment should be performed;
+    - `RANDOM_ID` is a random id to identify the trigger;
 
     :::warning
     The parameters `revision`, `environment`, `deployType`, `forceDeployWhenNoSemver` are deprecated and will be removed in the future. Use the other parameters instead.
@@ -138,47 +142,79 @@ tag (line 41-57 of the example);
 
 ##### Jenkinsfile example
 
-The pipeline repository should contain the `Jenkinsfile` with the deploy scripts. An example of `Jenkinsfile` is the following:
+:::info
+This is only a simple example to understand the various required steps in the pipeline. The `Jenkinsfile` strongly depends on how Jenkins is configured and what types of plugins are installed.
+:::
+
+The pipeline repository should contain the `Jenkinsfile` with the deploy scripts. It is also possible to use a `Jenkinsfile` for each created project.
+
+An example of `Jenkinsfile` which performs a deploy, using the `Kubernetes` and the `Git` plugins is the following:
 
 ```groovy
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'revision', defaultValue: 'master', description: 'Branch to deploy')
-        string(name: 'environment')
-        string(name: 'deployType')
-        string(name: 'forceDeployWhenNoSemver')
-    }
-
+    // This step chechout the project configuration repository.
+    // You should substitute the 'GIT_PROVIDER_CREDENTIAL_ID' with the correct one.
     stages {
         stage('Checkout') {
             steps {
-                git branch: "${params.revision}",
+                git branch: "${params.REVISION}",
                     url: "${params.PROJECT_URL}",
-                    credentialsId: "CREDENTIALS_ID"
+                    credentialsId: "GIT_PROVIDER_CREDENTIAL_ID"
             }
         }
-        
+
+        // This stage performs the deploy of the project inside the cluster.
+        // The deploy is performed using the MLP CLI, installed in the `mlp` container.
+        // In this pipeline are used some credentialIds. These credentials should be stored manually in Jenkins.
         stage('Script') {
             steps {
-                script {
-                    sh"""
-                        echo 'Deploy scripts'
-                    """
+                container('mlp') {
+                    withCredentials([
+                        string(credentialsId: 'KUBE_URL', variable: 'KUBE_URL'),
+                        string(credentialsId: 'KUBE_TOKEN', variable: 'KUBE_TOKEN'),
+                        file(credentialsId: 'KUBE_CA_PEM', variable: 'KUBE_CA_PEM'),
+                        string(credentialsId: 'REGISTRY_URL', variable: 'REGISTRY_URL'),
+                        string(credentialsId: 'REGISTRY_USER', variable: 'REGISTRY_USER'),
+                        string(credentialsId: 'REGISTRY_TOKEN', variable: 'REGISTRY_TOKEN'),
+                    ]) {
+                        sh 'mlp version'
+                        sh """
+                            export RELEASE_DATE="\$(date -I'seconds' -u)"
+                            export DESTINATION_PATH="interpolated-files"
+                            export GENERATE_FILE="mlp.yaml"
+                            export ENVIRONMENT_PREFIX="${params.ENVIRONMENT_TO_DEPLOY}_"
+                            export ENVIRONMENT_VARIABLES_PREFIX="MIA_"
+                            export OVERLAY_PATH="overlays/${params.ENVIRONMENT_TO_DEPLOY}"
+                            export BASE_PATH=configuration
+                            export KUBE_URL=${params.KUBE_URL}
+                            mkdir "\${DESTINATION_PATH}"
+                            test -f "\${GENERATE_FILE}" && mlp generate -c "\${GENERATE_FILE}" -e "\${ENVIRONMENT_PREFIX}" -e "\${ENVIRONMENT_VARIABLES_PREFIX}" -o "\${OVERLAY_PATH}"
+                            mlp hydrate "\${BASE_PATH}" "\${OVERLAY_PATH}"
+                            mlp kustomize "\${OVERLAY_PATH}" -o "\${DESTINATION_PATH}/kustomize-output.yaml"
+                            mlp deploy --ensure-namespace=false --server "\${KUBE_URL}" --certificate-authority "\${KUBE_CA_PEM}" --token "\${KUBE_TOKEN}" --deploy-type "${params.DEPLOY_TYPE}" --force-deploy-when-no-semver="${params.FORCE_DEPLOY_WHEN_NO_SEMVER}" -f "\${DESTINATION_PATH}/kustomize-output.yaml" -n "${params.KUBE_NAMESPACE}"
+                        """
+                    }
                 }
             }
         }
     }
     
-    // TODO: Add webhook invocation
     post {
         always {
             script {
-                def status = currentBuild.result ?: 'SUCCESS'
+                def validStatuses = [
+                    'SUCCESS': 'success',
+                    'FAILURE': 'failed',
+                    'ABORTED': 'canceled',
+                    'NOT_BUILT': 'skipped',
+                ]
+                def status = validStatuses[currentBuild.result] ?: 'failed'
                 sh"""
-                    echo "POST BUILD"
-                    echo ${status}
+                    export PAYLOAD='{"status": "${status}"}'
+                    export SIGNATURE=\$(echo -n "\${PAYLOAD}${params.TRIGGER_ID}" | sha256sum | cut -d ' ' -f 1)
+                    curl -v -X POST "https://test.console.gcp.mia-platform.eu/api/deploy/webhooks/projects/${params.PROJECT_ID}/pipelines/triggers/${params.TRIGGER_ID}/status/" -d "\${PAYLOAD}" -H "X-Mia-Signature: \${SIGNATURE}" -H "Content-Type: application/json"
                 """
             }
         }
@@ -186,10 +222,22 @@ pipeline {
 }
 ```
 
-where the `Script` stage is to be replaced with the actual deploy scripts.
+Above the various stages is explained what the steps do. Keep attention, there are some placeholders that should be replaced with the correct values.
 
+Those credentials should be stored manually in Jenkins:
+
+- `GIT_PROVIDER_CREDENTIAL_ID`: the git credentials id to access the project configuration repository;
+- `KUBE_URL`: the Kubernetes URL to access the cluster;
+- `KUBE_TOKEN`: the Kubernetes token to access the cluster;
+- `KUBE_CA_PEM`: the Kubernetes certificate authority to access the cluster;
+- `REGISTRY_URL`: the registry URL to access the artifacts;
+- `REGISTRY_USER`: the registry user to access the artifacts;
+- `REGISTRY_TOKEN`: the registry token to access the artifacts;
+
+:::warning
 The post stage is the part where the Jenkins job will send the status of the pipeline to the Console. This is a really important step to perform in your pipeline to correctly connect
 Jenkins with the Console and use all the Console features at best.
+:::
 
 #### Jenkins View template
 
@@ -214,7 +262,7 @@ In particular, the `environments[].deploy` object of the configuration should co
 - **type**: string, must be `jenkins` for deployment with Jenkins
 - **providerId**: is the unique id of the provider that holds Jenkins credentials (it is set when you configure a Company)
 - **jobId**: id of the Jenkins job to trigger. It is automatically interpolated from the backend of the console when a new project is created.
-- **paramsMap**: is a parameters mapping for the parameters needed in your Jenkins job (i.e.: if your pipeline needs `revision` parameters to be named as `tag`, this object should be: `{'revision': 'tag'}`)  
+- **paramsMap**: is a parameters mapping for the parameters needed in your Jenkins job (i.e.: if your pipeline needs `revision` parameters to be named as `tag`, this object should be: `{'revision': 'tag'}`)
 
 A working JSON example is the following:
 
