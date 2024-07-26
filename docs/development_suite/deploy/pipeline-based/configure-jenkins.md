@@ -240,8 +240,6 @@ pipeline {
             script {
                 container('miactl') {
                     withCredentials([
-                        string(credentialsId: 'CONSOLE_CLIENT_ID', variable: 'client_id'),
-                        file(credentialsId: 'SA_PRIVATE_KEY', variable: 'private_key_path'),
                         file(credentialsId: 'CONSOLE_JWT_JSON', variable: 'CONSOLE_JWT_JSON'),
                         string(credentialsId: 'CONSOLE_URL', variable: 'CONSOLE_URL'),
                     ]) {
