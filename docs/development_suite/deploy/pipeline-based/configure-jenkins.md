@@ -140,6 +140,38 @@ so that it is possible to centralize them. It is also possible to insert a `Jenk
 tag (line 41-57 of the example);
 - `CREDENTIALS_ID`: the git credentials id to access the project pipeline repository; credentials should be stored manually in Jenkins.
 
+##### Update the status of the pipeline
+
+Once the pipeline is completed, Jenkins should send a POST request to the Console to update the status of the pipeline. This is a really important step to perform in your pipeline to enable the configuration review (and improve the deploy history).
+
+The API reference is the following:
+
+- path: `/api/deploy/webhooks/projects/${PROJECT_ID}/pipelines/triggers/${TRIGGER_ID}/status/`
+- method: `POST`
+- request body: `{"status": "{STATUS}"}`
+- response: `202` if all goes well, `400` if the request is malformed, `401` if the request is unauthorized
+
+The example cURL command is the following:
+
+```curl
+curl -v -X POST \
+    "{CONSOLE_BASE_URL}/api/deploy/webhooks/projects/${PROJECT_ID}/pipelines/triggers/${TRIGGER_ID}/status/" \
+    -d "{"status":"{STATUS}"}" \
+    -H "Authorization: Bearer ${AUTHENTICATION_TOKEN}" \
+    -H "Content-Type: application/json"
+```
+
+where:
+
+- `CONSOLE_BASE_URL`: is the base URL of the Console;
+- `PROJECT_ID`: is the _id of the project;
+- `TRIGGER_ID`: is the trigger id of the pipeline;
+- `STATUS`: is the status of the pipeline. It can be `success`, `failed`, `canceled`, `skipped`;
+- `AUTHENTICATION_TOKEN`: is the token to authenticate the request. The token is associated to a Console service account as explained [here](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication).
+
+It is available a command in `miactl`, `miactl deploy add status`, to add the status of the pipeline. [Click here](/cli/miactl/commands.md#deploy) to see more details.
+In the below example, there is an example of the update of the status using `miactl`.
+
 ##### Jenkinsfile example
 
 :::info
@@ -201,21 +233,33 @@ pipeline {
         }
     }
     
+    // This stage performs post other stages, and it will save the status of the pipeline inside the Console.
+    // It uses the `miactl` CLI to perform the operation, installed in a `miactl` container.
     post {
         always {
             script {
-                def validStatuses = [
-                    'SUCCESS': 'success',
-                    'FAILURE': 'failed',
-                    'ABORTED': 'canceled',
-                    'NOT_BUILT': 'skipped',
-                ]
-                def status = validStatuses[currentBuild.result] ?: 'failed'
-                sh"""
-                    export PAYLOAD='{"status": "${status}"}'
-                    export SIGNATURE=\$(echo -n "\${PAYLOAD}${params.TRIGGER_ID}" | sha256sum | cut -d ' ' -f 1)
-                    curl -v -X POST "https://test.console.gcp.mia-platform.eu/api/deploy/webhooks/projects/${params.PROJECT_ID}/pipelines/triggers/${params.TRIGGER_ID}/status/" -d "\${PAYLOAD}" -H "X-Mia-Signature: \${SIGNATURE}" -H "Content-Type: application/json"
-                """
+                container('miactl') {
+                    withCredentials([
+                        string(credentialsId: 'CONSOLE_CLIENT_ID', variable: 'client_id'),
+                        file(credentialsId: 'SA_PRIVATE_KEY', variable: 'private_key_path'),
+                        file(credentialsId: 'CONSOLE_JWT_JSON', variable: 'CONSOLE_JWT_JSON'),
+                        string(credentialsId: 'CONSOLE_URL', variable: 'CONSOLE_URL'),
+                    ]) {
+                        def validStatuses = [
+                            'SUCCESS': 'success',
+                            'FAILURE': 'failed',
+                            'ABORTED': 'canceled',
+                            'NOT_BUILT': 'skipped',
+                        ]
+                        def status = validStatuses[currentBuild.result] ?: 'failed'
+                        sh"""
+                            miactl version
+                            miactl context auth jenkins-webhook-integration --jwt-json "${CONSOLE_JWT_JSON}"
+                            miactl context set console --endpoint ${CONSOLE_URL} --company-id ${params.TENANT_ID} --project-id ${params.PROJECT_ID} --auth-name jenkins-webhook-integration
+                            miactl deploy add status "${status}" --trigger-id "${params.TRIGGER_ID}"
+                        """
+                    }
+                }
             }
         }
     }
@@ -223,6 +267,8 @@ pipeline {
 ```
 
 Above the various stages is explained what the steps do. Keep attention, there are some placeholders that should be replaced with the correct values.
+
+- `params.PROJECT_URL`: the URL of the project configuration repository, defined in the pipeline;
 
 Those credentials should be stored manually in Jenkins:
 
@@ -233,6 +279,8 @@ Those credentials should be stored manually in Jenkins:
 - `REGISTRY_URL`: the registry URL to access the artifacts;
 - `REGISTRY_USER`: the registry user to access the artifacts;
 - `REGISTRY_TOKEN`: the registry token to access the artifacts;
+- `CONSOLE_URL`: the base URL of the Console;
+- `CONSOLE_JWT_JSON`: the JSON of the JWT of the service account which will perform the update operation; the created service account should have the permission to deploy in the selected environment;
 
 :::warning
 The post stage is the part where the Jenkins job will send the status of the pipeline to the Console. This is a really important step to perform in your pipeline to correctly connect

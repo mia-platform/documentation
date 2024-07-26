@@ -17,6 +17,11 @@
                     <trim>true</trim>
                 </hudson.model.StringParameterDefinition>
                 <hudson.model.StringParameterDefinition>
+                    <name>TENANT_ID</name>
+                    <defaultValue>%project.tenantId%</defaultValue>
+                    <trim>true</trim>
+                </hudson.model.StringParameterDefinition>
+                <hudson.model.StringParameterDefinition>
                     <name>ENVIRONMENT_TO_DEPLOY</name>
                     <trim>true</trim>
                 </hudson.model.StringParameterDefinition>
