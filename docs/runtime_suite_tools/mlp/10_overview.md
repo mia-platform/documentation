@@ -16,9 +16,9 @@ It can be viewed as a superpowered `kubectl apply` command that introduce additi
 patches to the api-server.
 
 `mlp` can prune resources that are not present anymore between different deploys because it keeps an inventory
-of all the resources that has applyed the last time.  
-It can force new deployment rollout even if there are no differeces between deploys, running Jobs immediately from
-CronJob definitions, and it will add annotations to workload resources about their Secrets and ConfigMaps depedencies.  
+of all the resources that has applied the last time.  
+It can force new deployment rollout even if there are no differences between deploys, running Jobs immediately from
+CronJob definitions, and it will add annotations to workload resources about their Secrets and ConfigMaps dependencies.  
 The cli will also automatically watch the progression of the applied resources and it will report what and how many
 resources failed to reach a ready or successfull state.
 
@@ -29,7 +29,7 @@ the ability to use different configuration for different runtime environments.
 ## Functionalities
 
 - `deploy`: the main command, is used for creating, updating and pruning resources in a kubernetes
-	environment using the resouce files created by the Mia-Platform Console
+	environment using the resource files created by the Mia-Platform Console
 - `generate`: create kubernetes `ConfigMap` and `Secret` based on a configuration file
 - `hydrate`: is an helper function for configuring correctly the kustomization files inside the target folder
 	with all the files and patches found

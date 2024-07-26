@@ -73,7 +73,7 @@ This key is used during apply time, and if set to `once` will generate a configu
 that will apply the generated file only if a resources of the same kind, name and namespace is not already present
 on the remote Kubernetes cluster.  
 This option can be useful for generating resources with placeholder values that will be updated from other tools but
-are necessary for the correct rollout of other resources that might depedends of them. A tipical application
+are necessary for the correct rollout of other resources that might depends of them. A tipical application
 can be a `Secret` resource of `tls` type that contains a tls that will be handled by an external tools for keeping it
 updated before the end of the valid timestamp.
 
@@ -81,7 +81,7 @@ updated before the end of the valid timestamp.
 
 The `data` block is the only valid block for a `ConfigMap` resource and one of the valid one for the `Secret`
 resource.  
-This block is used for setting one or more key in the resouce using literal values or files.
+This block is used for setting one or more key in the resource using literal values or files.
 
 The `from` key can be one of `literal` or `file` and is used to select where to find the value used to popolate `key`
 in the final resource. If the value is `literal` the `value` key is used and its values is used; in the other case the
@@ -104,4 +104,4 @@ exposing an HTTPS connection for an `Ingress` the keys of the object are always 
 `tls.key` for the private key.
 
 The values can be passed by file or directly in the configuration, but we highly recommend to use files for avoiding
-to accidentaly leak sensible data.
+to accidentally leak sensible data.

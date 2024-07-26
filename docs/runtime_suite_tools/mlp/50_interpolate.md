@@ -27,13 +27,13 @@ data:
 ```
 
 The commands that support the interpolation template will also support to set a series of prefixes to prepend to the
-environement variable name to allow overrides and default values. The rule is that every prefixes will be check in
+environment variable name to allow overrides and default values. The rule is that every prefixes will be check in
 order before the actual variables and if a value is found the call chain is stopped.  
 For example if you set two prefixes like `TEST_` and `PRODUCTION_` for the previous yaml, the interpolation engine
-will check the existance of `TEST_ENVIRONMENT_NAME`, `PRODUCTION_ENVIRONMENT_NAME` and `ENVIRONMENT_NAME` in order
+will check the existence of `TEST_ENVIRONMENT_NAME`, `PRODUCTION_ENVIRONMENT_NAME` and `ENVIRONMENT_NAME` in order
 and substitute the first of this three variables that contains a value.
 
 By default this interpolation will set the value on a single line putting the `\n` character explicitly for every
 new line found in the value.  
-If the interpolation sequence is found sorrounded by the `"` or `'` character will also escape the content contained
+If the interpolation sequence is found surrounded by the `"` or `'` character we will also escape the content contained
 in the environment for you so that the resulting string will be a valid double or single quoted string.
