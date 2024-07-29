@@ -188,12 +188,20 @@ pipeline {
 
     // This step chechout the project configuration repository.
     // You should substitute the 'GIT_PROVIDER_CREDENTIAL_ID' with the correct one.
+    // The script to set the environment variables is used to get the author name, email, commit sha, commit date and commit url on Console history.
     stages {
         stage('Checkout') {
             steps {
                 git branch: "${params.REVISION}",
                     url: "${params.PROJECT_URL}",
                     credentialsId: "GIT_PROVIDER_CREDENTIAL_ID"
+                script {
+                    env.AUTHOR_NAME = sh(script: 'git log -1 --pretty=format:"%an"', returnStdout: true).trim()
+                    env.AUTHOR_EMAIL = sh(script: 'git log -1 --pretty=format:"%ae"', returnStdout: true).trim()
+                    env.COMMIT_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    env.COMMIT_DATE = sh(script: 'git log -1 --pretty=format:"%cd" --date=iso', returnStdout: true).trim()
+                    env.COMMIT_URL = "${params.PROJECT_URL}/commit/${env.COMMIT_SHA}"
+                }
             }
         }
 
@@ -220,7 +228,6 @@ pipeline {
                             export ENVIRONMENT_VARIABLES_PREFIX="MIA_"
                             export OVERLAY_PATH="overlays/${params.ENVIRONMENT_TO_DEPLOY}"
                             export BASE_PATH=configuration
-                            export KUBE_URL=${params.KUBE_URL}
                             mkdir "\${DESTINATION_PATH}"
                             test -f "\${GENERATE_FILE}" && mlp generate -c "\${GENERATE_FILE}" -e "\${ENVIRONMENT_PREFIX}" -e "\${ENVIRONMENT_VARIABLES_PREFIX}" -o "\${OVERLAY_PATH}"
                             mlp hydrate "\${BASE_PATH}" "\${OVERLAY_PATH}"
@@ -252,8 +259,9 @@ pipeline {
                         def status = validStatuses[currentBuild.result] ?: 'failed'
                         sh"""
                             miactl version
-                            miactl context auth jenkins-webhook-integration --jwt-json "${CONSOLE_JWT_JSON}"
-                            miactl context set console --endpoint ${CONSOLE_URL} --company-id ${params.TENANT_ID} --project-id ${params.PROJECT_ID} --auth-name jenkins-webhook-integration
+                            miactl context auth jenkins-webhook-integration --jwt-json \${CONSOLE_JWT_JSON}
+                            miactl context set console --endpoint \${CONSOLE_URL} --company-id ${params.TENANT_ID} --project-id ${params.PROJECT_ID} --auth-name jenkins-webhook-integration
+                            miactl context use console
                             miactl deploy add status "${status}" --trigger-id "${params.TRIGGER_ID}"
                         """
                     }
@@ -267,6 +275,8 @@ pipeline {
 Above the various stages is explained what the steps do. Keep attention, there are some placeholders that should be replaced with the correct values.
 
 - `params.PROJECT_URL`: the URL of the project configuration repository, defined in the pipeline;
+- `params.TENANT_ID`: the tenant id of the project, set on pipeline creation;
+- `params.PROJECT_ID`: the project _id of the project, set on pipeline creation.
 
 Those credentials should be stored manually in Jenkins:
 
