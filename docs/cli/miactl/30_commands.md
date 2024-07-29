@@ -552,12 +552,23 @@ Available flags for the command:
 
 ## deploy
 
+The `deploy` command allows you to manage the deployment of your Projects.
+
+Available subcommands are the following ones:
+
+```sh
+  trigger       Trigger a deploy pipeline
+  add status    Add a new deploy status
+```
+
+### trigger
+
 This command allows you to trigger the deploy pipeline for the selected Project.
 
 Usage:
 
 ```sh
-miactl deploy ENVIRONMENT [flags]
+miactl deploy trigger ENVIRONMENT [flags]
 ```
 
 Available flags for the command:
@@ -571,6 +582,29 @@ Available flags for the command:
 - `--deploy-type`, to select a deploy type (default is `smart_deploy`)
 - `--no-semver`, to force the deploy without `semver`
 - `--revision`, to specify the revision of the commit to deploy
+
+### add status
+
+This command allows you to add a new deploy status for the selected trigger id pipelines of the Project,
+only for those integration which trigger the pipeline with a trigger id (e.g. Jenkins integration).
+
+Usage:
+
+```sh
+miactl deploy add status STATUS [flags]
+```
+
+where `STATUS` must be one of: `success`, `failed`, `canceled`, `skipped`.
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--trigger-id`, to specify the trigger id to update
 
 ## extensions
 
