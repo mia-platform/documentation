@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.9.0] 2024-07-29
+
+### Added
+
+- Add `DELETE_MECHANISM` env var to control hard/soft delete behavior
+
+### Fixed
+
+- `USE_UPSERT` is overwritten to true when message adapter is `db2` or `basic` since the DB2 message does not contain operation type info
+
 ## [7.8.0] 2024-06-06
 
 ### Added
