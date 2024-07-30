@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.8",
-    "@swc/core": "^1.7.0",
+    "@swc/core": "^1.7.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "7.35.0",
     "front-matter": "^4.0.2",
