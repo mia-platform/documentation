@@ -7,15 +7,6 @@ sidebar_label: Enhanced Project Workflow
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-:::info
-
-This is a **BETA** feature and, as such, is currently under active development and there may still be some missing features.
-Please carefully check the **[Roadmap](#roadmap-and-future-improvements)** and **[Migrating your Projects](#migrating-your-projects)** sections below before activating this workflow on **existing Projects**. Once activated on a Project there is no way to rollback to the standard one anymore.
-
-New Projects on the other hand, can be safely created and used with this workflow.
-
-:::
-
 The **Enhanced Project Workflow** feature aims at providing a better developer experience when working with Mia-Platform Console, as well as pave the way for the adoption of previously unavailable opportunities, such as the [GitOps deployment strategy](/development_suite/deploy/gitops-based/index.md).
 
 ## Benefits of the Enhanced Workflow
