@@ -44,7 +44,6 @@ On this page we keep you aligned on the most important issues:
     - New Dev Portal for public API reference
     - Better integration with 3rd party plugins
 - **Mia-Platform Fast Data**
-~~Questo testo è barrato.~~
   - ~~Domain Decoupling~~
   - ~~Full Event-Driven Architecture~~
   - ~~No-code/Low-code~~
