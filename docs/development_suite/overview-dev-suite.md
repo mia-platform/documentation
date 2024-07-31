@@ -4,24 +4,24 @@ title: Console Overview
 sidebar_label: Console Overview
 sidebar_order: 0
 ---
-This page will give you a brief overview of **Mia-Platform Console**, explain **why it's important**, highlight the **advantages of adopting this internal platform solution** and provide a **brief description of its architecture**. 
+This page will give you a brief overview of **Mia-Platform Console**, explain **why it's important**, highlight the **advantages of adopting this solution** and provide a **brief description of its architecture**. 
 
 ## Product overview 
 
-In an evolving, omnichannel market, successful enterprises must operate and innovate like tech companies by:
+In an ever-changing market, successful enterprises must operate and innovate like tech companies by:
 
-* Building and launching digital products **quickly**; for example, reducing the time-to-market for a new app from months to weeks.
-* Viewing market changes as **opportunities**, such as rapidly adopting new technologies.
+* Building and launching digital products **quickly**; reducing the time-to-market for a new app from months to weeks.
+* Viewing market changes as **opportunities**, to rapidly adopting new technologies.
 * Having the **flexibility** to quickly adjust to changes in demand by easily increasing or decreasing scaling system capacity in response to traffic fluctuations.
-* **Integrating** with various tools, partners, and ecosystems.
+* **Integrating** with various tools, partners and technological ecosystems.
 
-Modern companies achieve this through an Internal Developer Platform (IDP). **Mia-Platform Console** is the tool that best fits this need, enabling you to quickly and easily build your own fully customized IDP. Mia-Platform Console also allow you to industrialize, manage, and simplify cloud-native development and operations such as connecting your cluster (even across multiple cloud providers), designing your application from services to APIs, orchestrating workflows and so on.
+Modern companies achieve this through an Internal Developer Platform (IDP). **Mia-Platform Console** is a Platform Builder that enables you to quickly and easily build your own fully customized IDP. It allows you to industrialize, manage, and simplify cloud-native development and operations such as connecting your cluster (even across multiple cloud providers), designing your application from services to APIs, orchestrating workflows and so on.
 
 ![Mia-Platform Console Overview](img/Mia-Platform-infographic-overview.png)
 
 ## Why Mia-Platform Console
 
-Mia-Platform Console manages the entire software lifecycle seamlessly and unify your IT department under one integrated platform. Simplify cloud-native development while maintaining complete governance and control over your processes.
+Mia-Platform Console manages the entire software lifecycle seamlessly and unify your IT department under one integrated open platform. Simplify cloud-native development while maintaining complete governance and control over your processes.
 
 * **Clear Governance**: Establish streamlined, standardized pathways for software delivery and integrate governance rules directly into your development workflows, ensuring consistency, compliance, and efficiency throughout the entire development process. This can involve tracking the evolution of projects, identifying key characteristics of each project, and centrally visualizing resources. These practices help maintain transparency and facilitate effective management.
 * **Self-service Approach**: Build and manage an Internal Developer Platform (IDP) that empowers development teams by providing the necessary tools and resources in a self-service mode. This enables them to develop efficiently and autonomously without dependency on other departments. For example, teams can create test environments independently, build microservices with standardized and pre-configured CI/CD pipelines, and access all necessary information, such as logging and monitoring, without having to request it from other teams or departments.
@@ -31,10 +31,10 @@ Mia-Platform Console manages the entire software lifecycle seamlessly and unify 
 
 Mia-Platform Console serves the whole team (Developer, Operations and Platform Engineering) involved in software development because it brings several advantages to the development of an Internal Developer Platform.
 
-- **Governance & controls**: Manage runtime resources across hybrid and multi-cloud architectures, connect clusters, establish self-service environments and enforce RBAC policies, by creating 'paved roads'. You can also establish project templates that standardize developer tools and the ability to choose and connect your own provider such as Git.
+- **Governance & Controls**: Manage runtime resources across hybrid and multi-cloud architectures, connect clusters, establish self-service environments and enforce RBAC policies, by creating 'paved roads'. You can also establish project templates that standardize developer tools and the ability to choose and connect your own provider such as Git.
 Using a Software Catalog, each team owns one or a group of projects.
 
-* **Productivity & quality**: Software can be built in a unified environment that offers secure, self-service capabilities. By leveraging the GitOps methodology, applications can be exposed and deployed seamlessly from a centralized setup.
+* **Productivity & Quality**: Software can be built in a unified environment that offers secure, self-service capabilities. By leveraging the GitOps methodology, applications can be exposed and deployed seamlessly from a centralized setup.
 Enhance your development speed with ready-to-use services or by directly uploading Docker images.
 
 * **Resilience & Observability**: Ensure long-term system integrity through advanced observability tools, metrics, and alerting mechanisms.
@@ -46,11 +46,11 @@ Leverage the **[Marketplace](/marketplace/overview_marketplace.md)** to accelera
 
 ## Hierarchical Organization of Mia-Platform Console
 
-Mia-Platform Console is organized into hierarchical levels to help users navigate its structure effectively. Starting from the highest level down to the most detailed, this section provides a quick guide for understanding the architecture.
+The Mia-Platform Console is structured hierarchically to facilitate efficient navigation for users. This section offers a concise guide to understanding its architecture, starting from the highest level down to the most detailed.
 
-- **Console:** The overarching workspace and management environment, serving as the primary gateway to the platform.
-- **Company:** An organizational entity that acts as a container for projects. It can represent the entire organization or a specific operational unit.
-- **Project:** A structured collection of microservices, configurations, and data. It might represent a full digital system or a specific component.
+- **Console**: The overarching workspace and management environment, serving as the primary gateway to the platform.
+- **Companies**: Organizational entities,one company acts as a container for projects. They can represent the entire organization or specific operational units.
+- **Projects**: Structured collections of microservices, configurations, and data within a Company. A project might represent a digital system, a specific component or a Package Business Capability (PBC).
 - **Project Sections:** Designated areas within a project that delineate and organize functionalities and tasks.
 
 This structure ensures clear and scalable management of resources and activities within Mia-Platform Console.
