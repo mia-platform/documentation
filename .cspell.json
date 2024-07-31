@@ -355,7 +355,8 @@
     "Dynatrace",
     "logr",
     "ODBC",
-    "RDBMS"
+    "RDBMS",
+    "pkce"
   ],
   "dictionaries": [
     "softwareTerms",
