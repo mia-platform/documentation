@@ -1778,5 +1778,13 @@
   "/docs/development_suite/webhooks-and-events/events": {
     "destination": "/docs/console/company-configuration/events",
     "addedOn": "2024-07-17"
+  },
+  "/docs/runtime_suite_tools/mlp/options": {
+    "destination": "/docs/runtime_suite_tools/mlp/overview",
+    "addedOn": "2024-07-31"
+  },
+  "/docs/runtime_suite_tools/mlp/deploy": {
+    "destination": "/docs/runtime_suite_tools/mlp/overview",
+    "addedOn": "2024-07-31"
   }
 }

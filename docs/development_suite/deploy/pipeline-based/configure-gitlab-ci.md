@@ -45,8 +45,8 @@ Where:
 - `ENVIRONMENT_VARIABLES_PREFIX`: is used as the **Global prefix** for the variables managed in the Project section of the Console (check [here](/console/project-configuration/manage-environment-variables/manage-environment-variables-with-gitlab.md#how-to-differentiate-your-variable-from-one-environment-to-another) for more details);
 - `BASE_PATH`: points to the folder of the repository where the Mia-Platform Console is saving the workload's manifests;
 - `OVERLAY_PATH`: points to the `overlays` folder relative to the selected deploy environment. This folder contains the Kustomize configuration files (check [here](/console/project-configuration/kustomize-your-configurations/manage-a-kustomize-project.md) for details);
-- `DESTINATION_PATH`: the folder where `mlp` will store the manifests after the [`interpolate`](/runtime_suite_tools/mlp/30_interpolate.md) process;
-- `GENERATE_FILE`: points to the `mlp.yaml` file that contains the configuration of the Kubernetes secrets that will be [generated](/runtime_suite_tools/mlp/40_generate.md) by `mlp`;
+- `DESTINATION_PATH`: the folder where `mlp` will store the manifests after the [`interpolate`](/runtime_suite_tools/mlp/50_interpolate.md) process;
+- `GENERATE_FILE`: points to the `mlp.yaml` file that contains the configuration of the Kubernetes secrets that will be [generated](/runtime_suite_tools/mlp/30_generate.md) by `mlp`;
 - `VARIABLES_FILE`: points to the `variables.env` file for the selected deploy environment. This file contains the configuration of the Public Variables created via Mia-Platform Console (check [here](/development_suite/api-console/api-design/public_variables.md) for more details);
 
 :::info
