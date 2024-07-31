@@ -28,13 +28,17 @@ Depending on the version requested, any specification provided by your services 
 
 ### Subswaggers endpoints
 
-The service also exposes three routes to get the subswaggers list:
+The service exposes three routes to get the subswaggers list:
 
 - `/swagger/subswaggers/`
 - `/openapi/v3/subswaggers/`
 - `/openapi/v3-1/subswaggers/`
 
 They accept the boolean query parameter `includeAll`. If `true`, the subswaggers list includes the option `ALL`. By default it's `true`.
+
+It also exposes a route to get the API Portal UI config:
+
+- `/ui-config`
 
 ### Static route
 
