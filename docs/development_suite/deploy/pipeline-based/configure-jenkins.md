@@ -90,7 +90,7 @@ to enable the configuration review (and improve the deploy history). [Check here
 
 When creating a new Project in a Company that has Jenkins Provider set, the Console will perform two important actions:
 
-- based on the [Project Template](/development_suite/company/project-blueprint.md) of choice, the Console will [create Jenkins job automatically](#how-to-automatically-create-jenkins-job-on-project-creation);
+- based on the [Project Template](/console/company-configuration/project-blueprint.md) of choice, the Console will [create Jenkins job automatically](#how-to-automatically-create-jenkins-job-on-project-creation);
 - The Project configuration `Pipelines` JSON will be defined as follows:
 
 ```json
@@ -169,7 +169,7 @@ where:
 - `STATUS`: is the status of the pipeline. It can be `success`, `failed`, `canceled`, `skipped`;
 - `AUTHENTICATION_TOKEN`: is the token to authenticate the request. The token is associated to a Console service account as explained [here](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication).
 
-It is available a command in `miactl`, `miactl deploy add status`, to add the status of the pipeline. [Click here](/cli/miactl/commands.md#deploy) to see more details.
+It is available a command in `miactl`, `miactl deploy add status`, to add the status of the pipeline. [Click here](https://FIXME/cli/miactl/commands.md#deploy) to see more details.
 In the below example, there is an example of the update of the status using `miactl`.
 
 ##### Jenkinsfile example
