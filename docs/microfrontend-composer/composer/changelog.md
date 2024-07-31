@@ -10,6 +10,40 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.2] - 2024-07-25
+
+### Fixed
+
+- fixed add new label strings
+
+### Versioning
+
+- Updated `@micro-lc/post-channel` version
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.7.3`
+
+### Removed
+
+- Package `post-channel`
+
+## [1.9.1] - 2024-07-18
+
+### Fixed
+
+- Enforcing of translation labels uniqueness
+- Edit label drawer showing incorrect data
+
+## [1.9.0] - 2024-07-12
+
+### Added
+
+- Support for multilanguage in iframe preview
+- Translations tab to manage labels and languages
+- Components Explorer
+
+### Versioning
+
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.7.1`
+
 ## [1.8.2] - 2024-07-01
 
 ### Fixed

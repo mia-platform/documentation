@@ -35,9 +35,9 @@ To do that you can:
 * Click on the _Clusters_ menu;
 * Click on the _Add cluster connection_ button (or editing an existing one);
 * Insert cluster's details, until you reach the _Advanced_ section of the "Cluster creation stepper";
-* Insert the proxy's URL and, if you need it, a TLS certificate, as reported in [this documentation page](/development_suite/clusters-management/connect-and-manage-cluster.mdx#step-4-advanced).
+* Insert the proxy's URL and, if you need it, a TLS certificate, as reported in [this documentation page](/console/company-configuration/clusters-management/connect-and-manage-cluster.mdx#step-4-advanced).
 
-![Add cluster connection 4](../../development_suite/clusters-management/img/add-cluster-connection-4.png)
+![Add cluster connection 4](../../console/company-configuration/clusters-management/img/add-cluster-connection-4.png)
 
 :::warning
 If you have a __Pure License__ Mia-Platform Console instance and the Mia-Platform Console is installed on the same runtime environment, you won't need the proxy because the communications between the Mia-Platform Console and the cluster will be internal.
@@ -134,7 +134,7 @@ The agent should already be installed on the Kubernetes cluster.
 :::
 
 1. Navigate in the GitLab repository of the project you want to Deploy on Kubernetes with the GitLab Agent;
-2. create a `.gitlab/agents/<agent_name>` folder. 
+2. create a `.gitlab/agents/<agent_name>` folder.
 The project could be dedicated for the Agent or it could be a project of an existing application.
 3. create a `config.yaml` file (__<u>IMPORTANT:</u>__ `yaml`, not `yml`) in the `<agent-name>` folder, which contains the config of the agent;
 

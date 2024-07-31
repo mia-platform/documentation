@@ -21,7 +21,7 @@ More specifically, a user can add, edit, and delete a webhook for a Company. To 
 By clicking on "Webhooks" you will be redirected to the related section, in which (assuming you already have added some webhooks) you can see a table containing some information about the webhooks:
 
 * **Target URL**: the HTTP URL that will be called when the event is triggered;
-* **Events**: the name of the events the webhook should listen to. Check them out [here](/development_suite/webhooks-and-events/events.mdx);
+* **Events**: the name of the events the webhook should listen to. Check them out [here](/console/company-configuration/events.mdx);
 * **Last Event**: information regarding the last event intercepted by the webhook. The column shows the status (success or error), date and time of dispatch of the event, and, via appropriate icon, more specific information about the event itself, i.e., event type and status code.
 
 You can filter table data by events, add a webhook, edit/delete a specific webhook using the related button associated with its table row, or access its detail page.
