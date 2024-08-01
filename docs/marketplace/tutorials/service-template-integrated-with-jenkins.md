@@ -64,7 +64,8 @@ We are going to create the service template in the Marketplace using `miactl` an
   miactl marketplace apply -f jenkins-service-template.yaml
   ```
 
-- In the linked repository create the Jenkins pipeline template at `services/node.xml`, this will instruct Jenkins to build the service when a new commit is pushed to the repository and run the pipeline as defined in the linked `Jenkinsfile`. This template will be interpolated every time a new service is created from the template.
+- In the linked repository create the Jenkins pipeline template at `services/node.xml`, this will instruct Jenkins to build the service when a new commit is pushed to the repository and run the
+pipeline as defined in the linked `Jenkinsfile`. This template will be interpolated every time a new service is created from the template.
 
   ```xml
   <flow-definition plugin="workflow-job@1400.v7fd111b_ec82f">
@@ -123,25 +124,32 @@ We are going to create the service template in the Marketplace using `miactl` an
         <configVersion>2</configVersion>
         <userRemoteConfigs>
           <hudson.plugins.git.UserRemoteConfig>
-            <url>https://git.tools.mia-platform.eu/platform/console/marketplace/pipelines/jenkins-pipelines.git</url>
-            <credentialsId>GitlabMiaPlatformToken</credentialsId>
+            <url>PIPELINE_URL</url>
+            <credentialsId>PIPELINE_TOKEN</credentialsId>
           </hudson.plugins.git.UserRemoteConfig>
         </userRemoteConfigs>
         <branches>
           <hudson.plugins.git.BranchSpec>
-            <name>*/main</name>
+            <name>PIPELINE_BRANCH</name>
           </hudson.plugins.git.BranchSpec>
         </branches>
         <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
         <submoduleCfg class="empty-list" />
         <extensions />
       </scm>
-      <scriptPath>build/node/Jenkinsfile</scriptPath>
+      <scriptPath>JENKINSFILE_PATH</scriptPath>
       <lightweight>true</lightweight>
     </definition>
     <triggers />
     <disabled>false</disabled>
   </flow-definition>
+  ```
+  
+  Here we define a pipeline that will be triggered by a webhook on the repository of the service and will clone the pipeline repository at `PIPELINE_URL` and run the pipeline defined in the `JENKINSFILE_PATH`.
+  The configuration of the `GenericTrigger` reported here is specific to Azure DevOps, and is instructed to extract the correct branch name of the service repository from the webhook payload.
+  For GitLab hosted repository use the following configuration:
+
+  ```xml
   ```
 
   - create the build pipeline definition `Jenkinsfile`
@@ -183,7 +191,7 @@ In the Project design section create a new microservice from the template you cr
 
 ## 3. Configure the Jenkins instance
 
-In order to receive the webhook events, you need to configure the Jenkins instance by installing one of the following plugins:
+To receive the webhook events, you need to configure the Jenkins instance by installing one of the following plugins:
 
 - If your Project is hosted on a GitLab instance, install the `GitLab` plugin
 - Otherwise, install `Generic Webhook Trigger` plugin
