@@ -12,7 +12,7 @@ sidebar_label: Create Views
 ## Create a new View
 
 :::danger
-From [CRUD service v7.0.0](/runtime_suite/crud-service/overview_and_usage.md), it is not possible the creation of Views cointaining [encrypted fields](/runtime_suite/crud-service/encryption_configuration.md).  
+From [CRUD service v7.0.0](/runtime_suite/crud-service/10_overview_and_usage.md), it is not possible the creation of Views cointaining [encrypted fields](/runtime_suite/crud-service/30_encryption_configuration.md).  
 Until the issue is resolved, if you need to define Views containing encrypted fields, we recommend downgrading CRUD service to [v6.10.3](https://github.com/mia-platform/crud-service/releases/tag/v6.10.3).
 :::
 
