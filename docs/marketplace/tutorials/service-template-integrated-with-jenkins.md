@@ -147,12 +147,55 @@ pipeline as defined in the linked `Jenkinsfile`. This template will be interpola
   
   Here we define a pipeline that will be triggered by a webhook on the repository of the service and will clone the pipeline repository at `PIPELINE_URL` and run the pipeline defined in the `JENKINSFILE_PATH`.
   The configuration of the `GenericTrigger` reported here is specific to Azure DevOps, and is instructed to extract the correct branch name of the service repository from the webhook payload.
-  For GitLab hosted repository use the following configuration:
+  
+  For GitLab hosted repository use the following configuration inside `<triggers>`:
 
   ```xml
+  <com.dabsquared.gitlabjenkins.GitLabPushTrigger plugin="gitlab-plugin@1.8.1">
+    <spec></spec>
+    <triggerOnPush>true</triggerOnPush>
+    <triggerToBranchDeleteRequest>false</triggerToBranchDeleteRequest>
+    <triggerOnMergeRequest>true</triggerOnMergeRequest>
+    <triggerOnlyIfNewCommitsPushed>false</triggerOnlyIfNewCommitsPushed>
+    <triggerOnPipelineEvent>false</triggerOnPipelineEvent>
+    <triggerOnAcceptedMergeRequest>false</triggerOnAcceptedMergeRequest>
+    <triggerOnClosedMergeRequest>false</triggerOnClosedMergeRequest>
+    <triggerOnApprovedMergeRequest>true</triggerOnApprovedMergeRequest>
+    <triggerOpenMergeRequestOnPush>never</triggerOpenMergeRequestOnPush>
+    <triggerOnNoteRequest>true</triggerOnNoteRequest>
+    <noteRegex>Jenkins please retry a build</noteRegex>
+    <ciSkip>true</ciSkip>
+    <skipWorkInProgressMergeRequest>true</skipWorkInProgressMergeRequest>
+    <labelsThatForcesBuildIfAdded></labelsThatForcesBuildIfAdded>
+    <setBuildDescription>true</setBuildDescription>
+    <branchFilterType>All</branchFilterType>
+    <includeBranchesSpec></includeBranchesSpec>
+    <excludeBranchesSpec></excludeBranchesSpec>
+    <sourceBranchRegex></sourceBranchRegex>
+    <targetBranchRegex></targetBranchRegex>
+    <secretToken>%SECRET_TOKEN%</secretToken>
+    <pendingBuildName></pendingBuildName>
+    <cancelPendingBuildsOnUpdate>false</cancelPendingBuildsOnUpdate>
+  </com.dabsquared.gitlabjenkins.GitLabPushTrigger>
   ```
 
-  - create the build pipeline definition `Jenkinsfile`
+  In the previous snippets you can use the following interpolation variables:
+
+  - `mia_template_service_name_placeholder` name of the service, as specified in the Project
+  - `mia_template_project_id_placeholder` the identifier of the Project
+  - `mia_template_image_name_placeholder` the image name of the service, as specified in the Project
+  - `%CUSTOM_PLUGIN_PROJECT_NAME%` name of the Project 
+  - `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%` service description
+  - `%CUSTOM_PLUGIN_CREATOR_USERNAME%` username of the user who created the service
+  - `%CUSTOM_PLUGIN_PROJECT_FULL_PATH%` the full path of the Project in the Git provider
+  - `%GIT_PROVIDER_BASE_URL%` the base URL of the Git provider hosting the service repository
+  - `%GIT_PROVIDER_GROUP%` the group of service repository
+  - `%GIT_PROVIDER_PROJECT%` the name of the service repository
+  - `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%` the full path of the service repository
+  - `%NEXUS_HOSTNAME%` registry hostname 
+  - `%SECRET_TOKEN%`secret token used to trigger the pipeline
+
+- create the build pipeline definition `Jenkinsfile`
 
   ```groovy
   pipeline {
@@ -195,4 +238,3 @@ To receive the webhook events, you need to configure the Jenkins instance by ins
 
 - If your Project is hosted on a GitLab instance, install the `GitLab` plugin
 - Otherwise, install `Generic Webhook Trigger` plugin
-
