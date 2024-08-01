@@ -89,11 +89,23 @@ module.exports = {
         in: "header",
         name: "secret",
       },
+      oidc: {
+        authorizationUrl: '{{authorizationUrl}}',
+        flow: 'accessCode',
+        scopes: {
+          openid: 'openId scope',
+        },
+        tokenUrl: '{{tokenUrl}}',
+        type: 'oauth2',
+      },
     },
     security: [
       {
         APISecretHeader: [],
       },
+      {
+        oidc: ['openapi']
+      }
     ],
   },
 };
