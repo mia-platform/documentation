@@ -58,6 +58,21 @@ We are going to create the service template in the Marketplace using `miactl` an
   - `<GIT_BRANCH>` is the branch of the repository
   - `<GIT_PROJECT_PATH>` is the path of the repository (TODO: is it the project ID? or what exactly?)
 
+  For Jenkins, it's possible to customize the trigger behavior based on the git provider of choice, as an example, this `resources.services.nodejs-template.pipelines.jenkins` configuration will instruct the git provider to trigger the pipeline on every push to the repository:
+
+  ```yaml
+  gitWebhookOptions:
+    gitlab:
+      gitPush: true
+    azure-devops:
+      events:
+        - type: git.push
+          filter:
+            branch: master
+  ```
+
+  For more information on the available events check the provider documentation.
+
 - Apply the resource using `miactl`
 
   ```sh
