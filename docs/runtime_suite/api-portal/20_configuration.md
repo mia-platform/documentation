@@ -42,6 +42,8 @@ For example, if the selected category has `categoryUrl = ../category1.json`, the
 * `/api/openapi/raw/openapi/v3/category1.json` and `/api/openapi/raw/openapi/v3/category1.json/yaml`
 * `/api/openapi/raw/openapi/v3-1/category1.json` and `/api/openapi/raw/openapi/v3-1/category1.json/yaml`
 
+Every time `/api/openapi/json` is called, it also calls GET `/api/openapi/raw/ui-config` which returns an object with the configurations needed for `swagger-ui`. At the moment is an object like: `{ oauthConfig: {...} }` where `oauthConfig` contains the [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
+
 
 ## Environment variables
 
