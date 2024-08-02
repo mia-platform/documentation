@@ -60,7 +60,6 @@ sequenceDiagram
         "FORCE_DEPLOY_WHEN_NO_SEMVER": true or false,
         "KUBE_NAMESPACE": NAMESPACE_NAME,
         "TRIGGER_ID": RANDOM_ID,
-        "REVISION": REVISION_TO_TRIGGER,
 
         // Deprecated parameters
         "revision": REVISION_TO_TRIGGER,
