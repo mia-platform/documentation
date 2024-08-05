@@ -412,10 +412,6 @@ Let's use "Core Business" as name of the project you want to use the AKV secrets
 * insert `akv-secret` as a secret name;
 * insert the secret key, that **must be the same of the secret on AKV**.
 
-:::info
-The secret key can be interpolated. This can be useful if you use one AKV for more runtime environments and, consequently, the name of a secret can be different in different environments.
-:::
-
 ![project-design-environment-variable-from-secret](../img/project-design-environment-variable-from-secret.png)
 
 Now if you save, the console will generate the files needed by the External Secret Operator in order to generate the `akv-secret` k8s Secret, containing the AKV secrets.
