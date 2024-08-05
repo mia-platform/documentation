@@ -204,3 +204,25 @@ Please be sure to validate the configuration with the following <a download targ
 :::info
 For additional information about more advanced properties that can be defined in the swagger-aggregator configuration (e.g., `subSwaggers` property) visit [this page](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration).
 :::
+
+### Security
+In order to change the default security method edit the items `baseSwagger.securityDefinitions` and `baseSwagger.security` in the configuration file. 
+
+Here is an example of how to enable bearer token authorization according to the [official open api documentation](https://swagger.io/docs/specification/authentication/bearer-authentication)
+
+```
+"baseSwagger": {
+    "securityDefinitions": {
+      "BearerToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "security": [
+      {
+        "BearerToken": []
+      }
+    ]
+  }
+```
