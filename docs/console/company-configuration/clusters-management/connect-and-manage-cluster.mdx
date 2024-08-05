@@ -129,7 +129,10 @@ The values to be entered at creation will then be:
 
 * **Access Token URL**: `https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token`, where `{tenant}` is the value of "Directory (tenant) ID" (in case you are using the public instance of AKS);
 * **Client ID**: the value of "Application (client) ID";
-* **Scope**: the value of the client ID of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the Azure Kubernetes Service AAD Server is `my-client-id`, the scope will be `my-client-id/.default`.
+* **Scope**: the value of the "Application ID" of the Azure Kubernetes Service AAD Server application + `/.default`. So, for example if the Azure Kubernetes Service AAD Server is `my-client-id`, the scope will be `my-client-id/.default`, **without the protocol**.
+The Azure Kubernetes Service AAD Server application is showed on Azure as an external application and it is automatically created by Azure itself:
+
+![azure-k8s-service-aad-server](./img/azure-k8s-service-aad-server.png)
 
 <Tabs groupId="credentialType" queryString>
 <TabItem value="client-credentials" label="Client credentials" default>
