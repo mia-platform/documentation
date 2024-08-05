@@ -1192,7 +1192,9 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Description**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
 
-To enable the single view update message generation you need to enable the environment variable flag SEND_SV_UPDATE_TO_KAFKA. If you also want to include the before-after fields inside the message set to true the environment variable ADD_BEFORE_AFTER_CONTENT.
+:::caution
+To enable the single view update message generation you need to enable the environment variable flag `SEND_SV_UPDATE_TO_KAFKA` of the Single View Creator. If you also want to include the before-after fields inside the message set to true the environment variable `ADD_BEFORE_AFTER_CONTENT`.
+:::
 #### Message format v1.0.0
 
 This version of Single View Update event is emitted by default in Single View Creator version `v6.x.x`.
