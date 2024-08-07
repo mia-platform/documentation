@@ -56,7 +56,7 @@ We are going to create the service template in the Marketplace using `miactl` an
   - `<SERVICE_ARCHIVE_URL>` is the URL of the service archive in `.tar.gz` or `.zip`, it contains the source code of the service
   - `<GIT_PROVIDER_ID>` is the ID of the Git provider that hosts the Jenkins pipeline template repository
   - `<GIT_BRANCH>` is the branch of the repository
-  - `<GIT_PROJECT_PATH>` is the path of the repository (TODO: is it the project ID? or what exactly?)
+  - `<GIT_PROJECT_PATH>` is the path of the repository
 
   For Jenkins, it's possible to customize the trigger behavior based on the git provider of choice, as an example, this `resources.services.nodejs-template.pipelines.jenkins` configuration will instruct the git provider to trigger the pipeline on every push to the repository:
 
