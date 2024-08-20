@@ -16,7 +16,7 @@ This guide requires that you have:
 - The Company has a project reachable externally, otherwise create one by referring to this [guide](/console/project-configuration/create-a-project.mdx).
 - The `Microfrontend Composer Toolkit` application created and exposed to view the Backoffice frontend. Follow this section of the [guide](/microfrontend-composer/tutorials/basics.mdx#setup-the-microservices) to do so.
 - The response from the Backoffice endpoint can be embedded within an iframe. See this [link](/development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
-- Miactl tool installed and using the context with the `my-tenant-id` setted as company ID and `my-project-id` setted as project ID. The instruction are on this [link](/cli/miactl/overview)
+- Miactl tool installed consulting the guide on this [link](/cli/miactl/overview)
 
 
 ## 1. Register Backoffice Extension
@@ -24,7 +24,7 @@ This guide requires that you have:
 Once that all requisites are satisfied, you can register the Backoffice as an extension using the following command:
 
 ```sh
-miactl extensions apply -f ./<relative-path>/my-extension.json
+miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json
 ```
 
 where in the file `my-extension.json` there are the info to register:
@@ -44,14 +44,14 @@ where in the file `my-extension.json` there are the info to register:
   ],
   "iconName": "PiProjectorScreenChartLight",
   "menu": {
-    "id": "backoffice-route,",
+    "id": "backoffice-route",
     "labelIntl": {
       "en": "Integrated Backoffice",
       "it": "Backoffice integrato"
     }
   },
   "category": {
-    "id": "my-menu-group,",
+    "id": "my-menu-group",
     "labelIntl": {
       "en": "My Menu Group",
       "it": "Il mio gruppo menu"
@@ -89,7 +89,7 @@ Successfully applied extension with id `my-extension-id`
 If you need to correct or modify your newly registered extension, you can do so using the same miactl command and specifing the extension ID with the proper flag:
 
 ```sh
-miactl extensions apply -f ./<relative-path>/my-extension.json --extension-id my-extension-id
+miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-tenant-id -f ./<relative-path>/my-extension.json --extension-id my-extension-id 
 ```
 
 <details>
@@ -143,12 +143,12 @@ You can use the `list` and `get` commands to verify that the registration is don
 
 **List command**
 ```sh
-miactl extensions list
+miactl extensions list --endpoint https://<my-console-domain>/ --company-id my-tenant-id
 ```
 
 **Get command**
 ```sh
-miactl extensions get --extension-id my-extension-id
+miactl extensions get --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id my-extension-id
 ```
 
 where the `list` command returns all the registered extensions on the company `my-tenant-id`, instead the `get` command returns only the requested extension with all its info.
@@ -158,7 +158,7 @@ where the `list` command returns all the registered extensions on the company `m
 After registering you can proceed with its activation on a project using the `activate` command:
 
 ```sh
-miactl extensions activate --extension-id my-extension-id
+miactl extensions activate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --project-id my-project-id --extension-id my-extension-id
 ```
 
 **Response on success**
@@ -183,7 +183,7 @@ Once that the new extension is correctly registered and activated, the final res
 To restore the initial state of the Console, you can deactivate the new extension using the `deactivate` command:
 
 ```sh
-miactl extensions deactivate --extension-id my-extension-id
+miactl extensions deactivate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --project-id my-project-id --extension-id my-extension-id
 ```
 
 **Response on success**
@@ -198,7 +198,7 @@ Now, the extension should no longer be visible in the Console.
 To perform a complete cleanup and remove the newly registered extension, you can use the `delete` command:
 
 ```sh
-miactl extensions delete --extension-id my-extension-id
+miactl extensions delete --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id my-extension-id
 ```
 
 **Response on success**
