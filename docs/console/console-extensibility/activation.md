@@ -46,7 +46,7 @@ Using overrides allows you to modify one or more routes within the registered ex
 
 The properties that can be modified by the override coincide with the properties of the routes registered with the extension already explained [here](/console/console-extensibility/registration.md#how-to-configure-correctly-the-extension-menu-item)
 
-:::danger
+:::info
 The activation overrides could not be applied using miactl 
 :::
 

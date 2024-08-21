@@ -23,7 +23,11 @@ When accessing this section for the first time or from the extensions table, you
 - `Visibility`: Check the contexts in which you want to make your extension visible. If no boxes are checked, the extension will be inactive.
 
 :::info
-The category options depend on the selected destination area, and if the destination area is set to `Company Overview` then visibility can only be applied to the `Whole Company` context.
+The `Category` options are based on the selected destination area.
+:::
+
+:::info
+The `Visibility` can be applied only on the `Whole Company` context when the `Company Overview` destination area is selected.
 :::
 
 ![create extension modal](./img/create-extension-modal.png)

@@ -82,10 +82,13 @@ The route `GET /api/extensibility/tenants/{tenantId}/extensions` allows you to r
 - `tenantId`: insert the tenant ID of the Company which you want to retrieve the registered extensions of
 
 **Query Params**
-- `resolveDetails`: returns the extension list resolving all the details (`permissions`, `visibilities`, `menu` and `category.`) if defined
+- `resolveDetails`: returns the extension list resolving all the details (`permissions`, `visibilities`, `menu` and `category`) if defined
 
 **Response on success**
-Array of registered extensions info:
+Array of registered extensions info.
+
+<details>
+<summary>Extension Info Schema</summary>
 
 ```json
 {
@@ -116,6 +119,7 @@ Array of registered extensions info:
 ```
 
 The `visibilities` key in the response in which specific context the extension is active, instead the other ones are the same info applied when the extension is been registered. This keys are explained above in the [how to register your extension](#how-to-register-your-extension) paragraph.
+</details>
 
 :::tip
 **[See the example in the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
@@ -130,7 +134,10 @@ You can retrieve also the info of a specific registered extension using the rout
 - `extensionId`: insert the extension ID of the desired extension
 
 **Response on success**
-Array of registered extensions info:
+Array of registered extensions info.
+
+<details>
+<summary>Extension Info Schema</summary>
 
 ```json
 {
@@ -161,6 +168,7 @@ Array of registered extensions info:
 ```
 
 The `visibilities` key in the response in which specific context the extension is active, instead the other ones are the same info applied when the extension is been registered. This keys are explained above in the [how to register your extension](#how-to-register-your-extension) paragraph.
+</details>
 
 :::tip
 **[See the example in the tutorial page](/console/tutorials/create-extension.md#2-check-that-the-new-extension-is-registered)**
