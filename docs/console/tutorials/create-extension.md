@@ -16,7 +16,7 @@ This guide requires that you have:
 - The Company has a project reachable externally, otherwise create one by referring to this [guide](/console/project-configuration/create-a-project.mdx).
 - The `Microfrontend Composer Toolkit` application created and exposed to view the Backoffice frontend. Follow this section of the [guide](/microfrontend-composer/tutorials/basics.mdx#setup-the-microservices) to do so.
 - The response from the Backoffice endpoint can be embedded within an iframe. See this [link](/development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
-- Miactl tool installed consulting the guide on this [link](/cli/miactl/overview)
+- Miactl tool installed consulting the guide on this [link](/cli/miactl/20_setup.md)
 
 
 ## 1. Register Backoffice Extension
@@ -169,8 +169,6 @@ Successfully activated extension `my-extension-id` for project: `my-project-id`
 :::info
 The extension can be activated on any projects inside the Company `my-tenant-id` changing the project ID in the miactl context.
 :::
-
-<!-- TODO: Dobbiamo dire che gli overrides si possono impostare solo tramite API o rimaniamo sul semplice? -->
 
 ## 4. Enjoy the final result
 

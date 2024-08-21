@@ -65,8 +65,8 @@ The `menu` key is required and has the following keys:
 This key is not required, in fact if it is omitted the extension menu item will be placed outside of any group menu. 
 The `category` key, if it is defined, has the following info:
 - `id` (_required_): it is the identifier of a menu group where you want to attach the menu item. It is possible to choose an existing category id documented on the [supported locations page](/console/console-extensibility/locations.md) or create a new `category` specifing also its `labelIntl` and `order`. 
-- `labelIntl`: the label to be used on the new category menu item. This field requires an object JSON `{"en": string, "it": string}` so that the label text is internationalized. **It should not be defined if the choosen category id already exists.** 
-- `order`: it is an optionally numeric value used to sort in ascending order the category items on the sidebar considering that during the rendering, the `category` menu are sorted first and then the menu items attached on a specific `category` menu. **It should not be defined if the choosen category id already exists.** 
+- `labelIntl`: the label to be used on the new category menu item. This field requires an object JSON `{"en": string, "it": string}` so that the label text is internationalized. **It should not be defined if the chosen category id already exists.** 
+- `order`: it is an optionally numeric value used to sort in ascending order the category items on the sidebar considering that during the rendering, the `category` menu are sorted first and then the menu items attached on a specific `category` menu. **It should not be defined if the chosen category id already exists.** 
 
 
 **IconName**
