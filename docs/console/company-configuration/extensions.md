@@ -4,71 +4,71 @@ title: Manage Extensions
 sidebar_label: Manage Extensions
 ---
 
-Le estensioni permettono di ampliare la sidebar della Console con nuove sezioni private rispetto alla Company e sono utili per integrare strumenti esterni che si possono embeddare dentro un iframe.
+Extensions allow expanding the Console sidebar with new sections that are usable exclusively in the Company where they are registered and are useful for integrating external tools that can be embedded inside an iframe.
 
 ## Extension Manager
 
-Le estensioni possono essere gestite attraverso un gestionale apposito alla voce `Extensibility` presente sulla pagina di Overview della Company ed è visibile e utilizzabile solo da chi ha il ruolo di Company Owner.
+Extensions can be managed through a dedicated management section called `Extensibility` placed in the Company Overview page and **only Company Owners have permission to see and use it**.
 
-<!-- TODO: immagine placeholder -->
+![extension placeholder](./img/extension-placeholder.png)
 
 ## Create Extension
 
-Accedendo la prima volta in questa sezione o dalla tabella delle estensioni è possibile creare nuove estensioni cliccando sul bottone `Create Extension`. Si aprirà così un modale con i seguenti campi da compilare:
+When accessing this section for the first time or from the extensions table, you can create new extensions by clicking the `Create Extension` button. This will open a modal with the following fields to fill:
 
-- `Extension name` (_required_): scegli un nome per la tua estensione
-- `Entry URL` (_required_): inserisci un URL della pagina web che dovrà essere caricata accedendo al menu item della tua estensione e embeddata dentro un iframe
-- `Destination Area` (_required_): seleziona la destinazione in cui verrà inserito il menu item della tua estensione
-- `Category`(_required_): seleziona uno dei gruppi di menu che conterrà il menu item della tua estensione
-- `Visibility`: metti un check sui contesti in cui vuoi rendere visibile la tua estensione. Se non è presente alcun check l'estensione risulterà disattiva.
+- `Extension name` (_required_): Choose a name for your extension
+- `Entry URL` (_required_): Enter the URL of the web page that will load when accessing your extension menu item and be embedded inside an iframe
+- `Destination Area` (_required_): Select the destination where your extension menu item will be placed
+- `Category` (_required_): Select one of the menu groups that will contain your extension menu item
+- `Visibility`: Check the contexts in which you want to make your extension visible. If no boxes are checked, the extension will be inactive.
 
 :::info
-Le categories options dipendono dalla destination area selezionata e se la destination area viene impostata su `Company Overview` allora la visibility potrà essere applicata solo sulla voce `Whole Company`.
+The category options depend on the selected destination area, and if the destination area is set to `Company Overview` then visibility can only be applied to the `Whole Company` context.
 :::
 
-<!-- TODO: immagine create extension modal -->
+![create extension modal](./img/create-extension-modal.png)
+![visibility creating extension](./img/visibility-creating-extension.png)
 
-Compilando i campi cosi come nell'esempio sopra, si potrà refreshare la pagina e verificare che l'estensione è stata aggiunta alla sidebar ed è accessibile.
+After creating the extension as shown in the example above, you can refresh the page and verify that the extension has been added to the sidebar and is accessible.
 
-<!-- TODO: immagine new extension -->
+![new extension preview](./img/new-extension-preview.png)
 
 ## Extensions Table
 
-Se esiste almeno un estensione sulla sezione `Extensibility` si può consultare una tabella con tutte le estensioni esistenti sulla Company.
+If there is at least one extension in the `Extensibility` section, you can view a table with all the existing extensions for the Company.
 
-<!-- immagine tabella estensioni -->
+![extensions table](./img/extensions-table.png)
 
-Su questa pagina si può:
-- creare nuove estensioni con il relativo bottone `Create Extension` in alto a destra 
-- eliminare una delle estensioni in tabella cliccando sul relativo cestino
-- accedere alla pagina di dettaglio di un estensione cliccando sul suo name 
+On this page, you can:
+- Create new extensions using the `Create Extension` button at the top right
+- Delete an extension from the table by clicking on the trash icon
+- Access the detail page of an extension by clicking on its name
 
 ## Extension Detail
 
-La pagina di dettaglio di un estensione permette di consultare le informazioni principali che caratterizzano l'estensione registrate, che possono anche essere modificate attravero i relativi bottoni di `Edit`.  
+The extension detail page allows you to view the main information that characterizes the registered extension, which can also be modified through the corresponding `Edit` buttons.
 
-<!-- immagine dettaglio estensione -->
+![extension detail](./img/extension-detail.png)
 
 ### Extension Info
 
-Sulla card di `Extension Info` si trovano le informazioni identificative dell'estensione, dei quali si possono modificare solo name e entry URL. 
+The `Extension Info` card contains the identifying information of the extension, where only the name and entry URL can be edited.
 
-<!-- immagine edit extension info -->
+![edit extension info](./img/edit-extension-info.png)
 
 ### Extension Location
 
-Sulla card di `Extension Location` si trovano le informazioni relative al posizionamento del menu item dell'estensione all'interno della Console. Queste informazioni sono interamente modificabili con il relativo modale di modifica.
+The `Extension Location` card contains the information related to the positioning of the extension's menu item within the Console. These details are fully editable through the corresponding edit modal.
 
-<!-- immagine edit extension location -->
+![edit extension destination](./img/edit-extension-destination.png)
 
 ### Extension Visibility
 
-Sulla card di `Extension Visibility` viene indicato in quali contesti è attiva e visibile l'estensione. Questa informazione può essere modificata in qualsiasi momento dal relativo modale di modifica.
+The `Extension Visibility` card shows in which contexts the extension is active and visible. This information can be modified at any time through the corresponding edit modal.
 
-<!-- immagine edit extension info -->
+![edit extension visibility](./img/edit-extension-visibility.png)
 
 :::info
-Cosi come in creazione, la Visibility è vincolata alla Destination Area impostata sull'estensione, infatti se è stato impostata la Destination Area su `Company Overview` allora la visibility potrà essere applicata solo sulla voce `Whole Company`.
+Just as during creation, Visibility is tied to the Destination Area set for the extension. For example, if the Destination Area is set to `Company Overview`, then visibility can only be applied to the `Whole Company` option.
 :::
 
-<!-- immagine edit extension visibility -->
