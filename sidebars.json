@@ -653,7 +653,7 @@
         },
         {
           "type": "category",
-          "label": "GitOps deployment strategy (BETA)",
+          "label": "GitOps deployment strategy",
           "link": {
             "id": "development_suite/deploy/gitops-based/gitops-based",
             "type": "doc"
