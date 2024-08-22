@@ -6,7 +6,7 @@ sidebar_label: Overview
 
 :::caution
 Please notice that the information explained in the following page, regarding the deployment of a Data Catalog Agent,
-are valid only for Console projects adopting the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md).
+are valid only for Console projects adopting the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md).
 
 The Data Catalog Agent can not be deployed in projects adopting the older Console workflow.
 :::
