@@ -168,7 +168,7 @@ This feature is only available to Projects that use [**Enhanced Project Workflow
 
 When using the **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you can:
 
-- compare the newly generated Kubernetes menifest files with the ones deployed on the cluster
+- compare the newly generated Kubernetes manifest files with the ones deployed on the cluster
 - review generated Kubernetes files from the Console or download them as a `.tar.gz` archive.
 
 Such functionalities are available through the respective buttons in the  `Configuration Files `card.

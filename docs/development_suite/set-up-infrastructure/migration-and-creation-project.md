@@ -63,7 +63,7 @@ When using `PUSH` mode (pipeline-based deploy) all secrets providers supported i
 
 When using `PULL` mode (GitOps-based deploy), only Secrets stored in Vault are currently supported. 
 
-:::warning
+:::caution
 Altough Standard Workflow allows you to interpolate Secret Variables on your Project, we discourage this usage pattern. This practice opens severe security implications, exposing values that are supposed to be secret as plain text when inspecting containers on Kubernetes.  
 To avoid this bad practice to be used, Secret Variables interpolation is **not supported** on the Enhanced Project Workflow. Please make sure to fix any Secret Variable usage before migrating to the Enhanced Workflow.
 :::
@@ -104,11 +104,10 @@ The final repository structure should be similar to the following:
 │ └ .....
 ```
 
-:::info
+:::caution
 All the contents of the `environments` directory are generated from scratch each time, any additional file that is not managed by the Console will be overwritten!
 :::
 
-<br />
 The migration process for the git repository differs depending on whether the Project is using kustomize or not.  
 Follow the right section for your Project to correctly update the git repository:
 

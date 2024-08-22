@@ -4,7 +4,7 @@ title: Manage Revisions and Versions
 sidebar_label: Manage Revisions and Versions
 ---
 
-In the project with the Enhanced Workflow the `Revisions` and `Versions` replacing the concept of `Branches` and `Tags` because the Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**.
+In Projects adopting the Enhanced Workflow, `Revisions` and `Versions` replace the concept of `Branches` and `Tags`. The Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**.
 
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Project Overview area.
 
@@ -16,7 +16,7 @@ Developers can manage *revisions* and *versions* from the dedicated sections ins
 
 ## Versions Section
 
-Versions works as immutable snapshots of the configuration in a particular moment, with their description and release note, can be viewed and deleted through the versions management page:
+Versions work as immutable snapshots of the configuration in a particular moment, with their description and release note. They can be viewed and deleted through the versions management page:
 
 :::info
 Versions can only be deleted by Project Administrators.
@@ -54,7 +54,11 @@ Once a snapshot is loaded, a warning message will appear as an overlay at the bo
 
 ![snapshot-view-on-design](img/snapshot-view-on-design.png)
 
-It is also possible to leave the snapshot review also in the revision status popover or to save changes in a new revision or discard them.
+From the revision status popover it is also possible to:
+
+- exit the snapshot
+- discard snapshot changes without exiting the snapshot review
+- save snapshot changes to a new revision
 
 ![snapshot-view-actions](img/snapshot-view-actions.png)
 
@@ -64,7 +68,7 @@ In the [Project Settings](/console/project-configuration/project-settings.md) se
 
 :::info
 If no default revision is specified, the Console will use `main` as the default revision.
-This revision will be an empty configuration if no other `main` branch was previously created on the Project.
+This revision will have an empty configuration if no other `main` branch was previously created on the Project.
 :::
 
 ## Best Practices

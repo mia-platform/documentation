@@ -4,7 +4,7 @@ title: New Deployment Workflow
 sidebar_label: New Deployment Workflow
 ---
 
-Another significant change is the way Console configurations are saved and deployed: Kubernetes **configurations will be generated and committed** to the Git repository only **during the deployment process**.
+The Enhanced Project Workflow introduces significant changes in the way Console configurations are saved and deployed: Kubernetes **configurations will be generated and committed** to the Git repository only **during the deployment process**.
 
 :::caution
 When deploying your configurations to the cluster, keep in mind that only the changes pushed to the repository default branch will be considered.
