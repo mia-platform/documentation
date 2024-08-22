@@ -29,9 +29,16 @@ Versions can only be deleted by Project Administrators.
 The Enhanced Workflow feature replaces the `Commit History` with the `Revision History`. 
 The Revision History allows to keep track of how a revision has changed over time, tracking all past snapshots of the Project configuration saved by the users.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+
+![Revision History Button](img/revision-history-button.png)
+
+</div>
+
+Once that a revision is selected, its history is accessible in the Design Area by clicking the related icon in the branch action popover as shown in the image above.
+
 ![Revision History modal](img/revision-history.png)
 
-The revision history is accessible by clicking the related icon inside the branch selection area.
 It contains the list of snapshots of the Project configuration on the current revision or version, created each time it has been saved.  
 It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it.
 Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
@@ -70,6 +77,22 @@ In the [Project Settings](/console/project-configuration/project-settings.md) se
 If no default revision is specified, the Console will use `main` as the default revision.
 This revision will have an empty configuration if no other `main` branch was previously created on the Project.
 :::
+
+## Version History
+
+As the Revision History, there is also the Version History that list all the versions created on the Project.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+
+![Version History Button](img/version-history-button.png)
+
+</div>
+
+Open the Version History, selecting any version in the Design Area and clicking the related icon in the branch action popover as shown in the image above.
+
+![Version History modal](img/version-history-modal.png)
+
+The table shows the name of each version with other useful info as the author name, the creation date and the description. Expanding the collapsed row of each versions it is possible to read also its release note, if provided and clicking on the version name you can load directly the version configuration in the Design area.
 
 ## Best Practices
 
