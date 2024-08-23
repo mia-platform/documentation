@@ -175,7 +175,7 @@ The "Advanced" tab allows the user to visualize advanced information and perform
 
 ### Enhanced Workflow
 
-If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md), users will see a card that illustrates the required steps to perform the migration.
+If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/overview.md), users will see a card that illustrates the required steps to perform the migration.
 
  ![Workflow migration card](./img/settings-workflow-migration-card.png)
 
