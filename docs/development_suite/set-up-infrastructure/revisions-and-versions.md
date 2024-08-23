@@ -80,7 +80,7 @@ This revision will have an empty configuration if no other `main` branch was pre
 
 ## Version History
 
-As the Revision History, there is also the Version History that list all the versions created on the Project.
+Similarly to the Revision History, the Version History lists all the versions created on the Project.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
 
@@ -88,11 +88,11 @@ As the Revision History, there is also the Version History that list all the ver
 
 </div>
 
-Open the Version History, selecting any version in the Design Area and clicking the related icon in the branch action popover as shown in the image above.
+To open the Version History, select any version in the Design Area and click the related icon in the branch action popover as shown in the image above.
 
 ![Version History modal](img/version-history-modal.png)
 
-The table shows the name of each version with other useful info as the author name, the creation date and the description. Expanding the collapsed row of each versions it is possible to read also its release note, if provided and clicking on the version name you can load directly the version configuration in the Design area.
+The table shows the name of each version with other useful info such as the author's name, the creation date and the description. Expanding the collapsed row of each version makes it possible to read its release note (if provided), and by clicking on the version name you can load the version configuration directly in the Design area.
 
 ## Best Practices
 
