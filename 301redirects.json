@@ -1735,6 +1735,10 @@
     "destination": "/docs/console/tutorials/create-extension-tutorial",
     "addedOn": "2024-05-20"
   },
+  "/docs/marketplace/tutorials/project-template-integrated-with-jenkins": {
+    "destination": "/docs/marketplace/tutorials/service-template-integrated-with-jenkins",
+    "addedOn": "2024-07-16"
+  },
   "/docs/development_suite/company/overview": {
     "destination": "/docs/console/company-configuration/overview",
     "addedOn": "2024-07-17"
@@ -1778,5 +1782,13 @@
   "/docs/development_suite/webhooks-and-events/events": {
     "destination": "/docs/console/company-configuration/events",
     "addedOn": "2024-07-17"
+  },
+  "/docs/runtime_suite_tools/mlp/options": {
+    "destination": "/docs/runtime_suite_tools/mlp/overview",
+    "addedOn": "2024-07-31"
+  },
+  "/docs/runtime_suite_tools/mlp/deploy": {
+    "destination": "/docs/runtime_suite_tools/mlp/overview",
+    "addedOn": "2024-07-31"
   }
 }

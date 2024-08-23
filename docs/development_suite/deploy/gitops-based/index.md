@@ -4,10 +4,6 @@ title: GitOps deployment strategy
 sidebar_label: GitOps deployment strategy
 ---
 
-:::caution
-This is a **BETA** feature and, as such, is currently under active development. It requires the activation of the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) in order to be used.
-:::
-
 **GitOps** is a modern approach to managing and automating the deployment of applications and infrastructure in a software development lifecycle. 
 By enabling the new **Enhanced Project Workflow** on a Console project, it is possible to adopt a GitOps deployment strategy instead of the classic pipeline-based one.
 

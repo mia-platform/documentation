@@ -383,8 +383,27 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
-          "type": "doc"
+          "label": "Enhanced Project Workflow",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/revisions-and-versions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/migration-and-creation-project",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/new-deployment-workflow",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "console/project-configuration/docker-registry-configuration",
@@ -634,7 +653,7 @@
         },
         {
           "type": "category",
-          "label": "GitOps deployment strategy (BETA)",
+          "label": "GitOps deployment strategy",
           "link": {
             "id": "development_suite/deploy/gitops-based/gitops-based",
             "type": "doc"
@@ -1573,7 +1592,7 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
+          "id": "marketplace/tutorials/service-template-integrated-with-jenkins",
           "type": "doc"
         }
       ]
@@ -1800,6 +1819,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v13.0.6", "type": "doc" },
         { "id": "release-notes/v13.0.5", "type": "doc" },
         { "id": "release-notes/v13.0.4", "type": "doc" },
         { "id": "release-notes/v13.0.3", "type": "doc" },
