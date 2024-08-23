@@ -8,7 +8,7 @@ sidebar_label: Activate Extensions
 
 An extension registered on a Company can be activated to be used in the Console. Activation can occur in contexts defined by the extension and can only be done if you have the role of Company Owner on the Company on which the extension is registered.
 
-The activation can be done using the API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` that can be accessed via the API Portal under the tags `Companies` or `Extensibility`.
+The activation can be done using the API `POST /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/activation` that can be accessed via miactl `extensions activate` command or via the API Portal under the tags `Companies` or `Extensibility`.
 
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to activate is registered
@@ -46,9 +46,13 @@ Using overrides allows you to modify one or more routes within the registered ex
 
 The properties that can be modified by the override coincide with the properties of the routes registered with the extension already explained [here](/console/console-extensibility/registration.md#how-to-configure-correctly-the-extension-menu-item)
 
+:::info
+The activation overrides could not be applied using miactl 
+:::
+
 # Deactivate an extension
 
-An extension activation can be terminated at any point using the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation`. This functionality is accessible through the API Portal under the tags `Companies` or `Extensibility`. Please note that the Company Owner role within the respective Company where the extension is activated is required for this action.
+An extension activation can be terminated at any point using the API `DELETE /api/extensibility/tenants/{tenantId}/extensions/{extensionId}/{contextType}/{contextId}/activation`. This functionality is accessible through the miactl `extensions deactivate` command or via the API Portal under the tags `Companies` or `Extensibility`. Please note that the Company Owner role within the respective Company where the extension is activated is required for this action.
 
 **Path Params**
 - `tenantId`: insert the tenant ID of the Company on which the extension to deactivate is registered
