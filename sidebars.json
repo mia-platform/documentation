@@ -383,8 +383,27 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
-          "type": "doc"
+          "label": "Enhanced Project Workflow",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/revisions-and-versions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/migration-and-creation-project",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/new-deployment-workflow",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "console/project-configuration/docker-registry-configuration",
@@ -634,7 +653,7 @@
         },
         {
           "type": "category",
-          "label": "GitOps deployment strategy (BETA)",
+          "label": "GitOps deployment strategy",
           "link": {
             "id": "development_suite/deploy/gitops-based/gitops-based",
             "type": "doc"
