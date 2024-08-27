@@ -41,4 +41,8 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ### Upgrade from last Console v12 to v13.0.0
 
-With v13 a new microservice has been added to the Console application, you can configure it using the `extensibilityManagerService` value to better suite your scaling needs.
+With v13 a new microservice has been added to the Console application, you can configure it using the `extensibilityManagerService` value to better suite your scaling needs
+
+:::tip
+Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
+:::
