@@ -10,6 +10,17 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.1.0] - 2024-08-26
+
+### Added
+
+- Added support to Oauth 2.0 authorization
+
+### Fixed
+
+- Changed warning note on download modal
+- Fix scroll
+
 ## [2.0.1] - 2024-07-11
 
 ### Added
