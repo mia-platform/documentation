@@ -75,6 +75,10 @@ module.exports = {
       ],
     },
   ],
+  oauthConfig: {
+    clientId: 'clientId',
+    usePkceWithAuthorizationCodeGrant: true,
+  }
   baseSwagger: {
     swagger: "2.0",
     consumes: ["application/json"],
@@ -85,11 +89,23 @@ module.exports = {
         in: "header",
         name: "secret",
       },
+      oidc: {
+        authorizationUrl: '{{authorizationUrl}}',
+        flow: 'accessCode',
+        scopes: {
+          openid: 'openId scope',
+        },
+        tokenUrl: '{{tokenUrl}}',
+        type: 'oauth2',
+      },
     },
     security: [
       {
         APISecretHeader: [],
       },
+      {
+        oidc: ['openapi']
+      }
     ],
   },
 };
@@ -103,6 +119,8 @@ There are two ways to provide a description:
 - using the field `description`: requires a simple string;
 - using the field `descriptionMarkdownFilePath`: requires the path of a _MarkDown_ file with the description of the swagger (if specified, the content will be shown in the Swagger UI instead of the description).
 :::
+
+The `oauthConfig` object contains the configuration useful for the OAuth 2.0 authentication. It's the same of the [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
 
 The `baseSwagger` object contains the first-level configurations of the final merged swagger. Besides all the fields defined by either [OpenApi 2.0](https://swagger.io/specification/v2/) or [OpenApi 3.0](https://swagger.io/specification/) specifications.
 

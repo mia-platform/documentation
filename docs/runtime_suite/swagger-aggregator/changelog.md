@@ -10,6 +10,16 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.8.0] 2024-08-26
+
+### Added
+
+- Added GET `/ui-config` endpoint to retrieve the config for the API Portal UI.
+
+### Updated
+
+- Updated Api Portal image version to `2.1.0`
+
 ## [3.7.0] 2024-07-11
 
 ### Added
