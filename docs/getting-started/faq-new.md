@@ -1,5 +1,38 @@
 # FAQ
 
+### [Cronjob for API Call with Error Handling](https://github.com/mia-platform/community/discussions/4)
+#### How is possible to create a cronjob that calls an internal api without adding too much overhead and also make sure that the cronjob results in Error/Warning state in case the endpoint returns an errorCode (4xx/5xx)?
+It is possible to create a CronJob from the Mia-Platform Console (e.g. with the curl image) and assert for the response status code to be 200.
+
+An example of the CronJob:
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: your-cronjob-name
+spec:
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  schedule: YOUR_SCHEDULE
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        metadata:
+          name: your-cronjob-name
+        spec:
+          containers:
+            - name: your-container-name
+              image: curlimages/curl
+              command: ["/bin/sh"]
+              args: [
+                "-c",
+                "[ $(curl SERVICE_URL ... -v -o /dev/stderr -w '%{http_code}') -eq 200 ]"
+              ]
+          restartPolicy: Never
+```
+
 ### How can I configure "subswaggers" in the Swagger-Aggregator for the API portal?
 
 To correctly configure "subswaggers" in the Swagger-Aggregator, ensure that the path expression is set properly. One option is to use `path.startsWith('/doc-gen/')` to include all routes under this path in the desired category. This setup allows you to display the routes in the correct section of the API portal.
