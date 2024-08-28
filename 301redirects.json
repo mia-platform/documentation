@@ -29,15 +29,15 @@
     "tocheck": true
   },
   "/docs/fast_data/configuration/realtime_updater/common":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
+    "destination": "/docs/fast_data/configuration/realtime-updater",
     "addedOn": "2023-06-15"
   },
   "/docs/fast_data/configuration/realtime_updater":  {
-    "destination": "/docs/fast_data/configuration/realtime-updater/overview",
+    "destination": "/docs/fast_data/configuration/realtime-updater",
     "addedOn": "2024-02-21"
   },
   "/docs/fast_data/configuration/realtime_updater/low_code":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
+    "destination": "/docs/fast_data/configuration/realtime-updater",
     "addedOn": "2023-06-15"
   },
   "/docs/fast_data/configuration/single_view_trigger": {
