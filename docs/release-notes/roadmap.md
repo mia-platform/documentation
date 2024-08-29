@@ -43,15 +43,14 @@ On this page we keep you aligned on the most important issues:
     - Support Ingress Controller
     - New Dev Portal for public API reference
     - Better integration with 3rd party plugins
-- **Mia-Platform Fast Data**
-  - ~~Domain Decoupling~~
-  - ~~Full Event-Driven Architecture~~
-  - ~~No-code/Low-code~~
-  - ~~New Data Connectors~~
-  - ~~Runtime Management~~
-  - ~~Pre-release Testing of No Code config~~
-  - Data Catalog
-  - Control Plane Enhancements
+- **Mia-Platform Data Fabric**
+  - _Fast Data_
+    - New Fast data pipeline UX configuration in Design Area
+    - Fast Data Control Plane at Company level
+    - Pre/Post data filtering logics on Fast Data pipelines
+  - _Data Catalog_
+    - Data Catalog application new features
+    - Data Lineage solution with Fast Data integration
 - **Mia-Platform Marketplace**
   - Improved Marketplace Governance
   - Marketplace management through Miactl
