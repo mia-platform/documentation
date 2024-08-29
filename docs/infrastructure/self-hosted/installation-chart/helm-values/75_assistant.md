@@ -67,7 +67,7 @@ The Helm Chart will require including the API key for both the embedding model a
 The service is already configured to use the following models:
 
 - [`text-embedding-3-small`](https://platform.openai.com/docs/guides/embeddings) as Embedding model
-- [`gpt-3.5-turbo`](https://platform.openai.com/docs/models/gpt-3-5-turbo) as Large Language Model (LLM)
+- [`gpt-4o-mini`](https://platform.openai.com/docs/models/gpt-4o-mini) as Large Language Model (LLM)
 
 :::info
 Please note that using these models has a cost, which is detailed on the [Pricing](https://openai.com/api/pricing/) page of the OpenAI documentation.
