@@ -1823,6 +1823,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v13.1.0", "type": "doc" },
         { "id": "release-notes/v13.0.6", "type": "doc" },
         { "id": "release-notes/v13.0.5", "type": "doc" },
         { "id": "release-notes/v13.0.4", "type": "doc" },
