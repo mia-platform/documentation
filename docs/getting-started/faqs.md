@@ -58,7 +58,7 @@ A custom message adapter won't fully solve the issue, as the Projection Storer (
 
 ### [Debugging a Flow Manager application locally](https://github.com/mia-platform/community/discussions/495)
 #### How can I debug a Flow Manager application locally when the microservices are implemented in Node.js?
-You can debug a Node.js microservice locally using Visual Studio Code's "JavaScript Debug Terminal" found in the "Run and Debug" section. If your microservice interacts with the Flow Manager or other services, mock them using external tools like Mockoon or mock-server to simulate their behavior. This allows you to debug without needing to deploy and wait for pipeline processes.
+You can debug a Node.js microservice locally using Visual Studio Code's "JavaScript Debug Terminal" found in the "Run and Debug" section. If your microservice interacts with the Flow Manager or other services, mock them using external tools mock-server to simulate their behavior. This allows you to debug without needing to deploy and wait for pipeline processes.
 
 ### [Retrieving Entries Without __STATE__ Field via CRUD](https://github.com/mia-platform/community/discussions/478)
 #### How can I retrieve MongoDB entries without the __STATE__ field using the CRUD service?
