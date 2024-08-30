@@ -206,7 +206,7 @@ Yes, you can use CRUD Service Views to aggregate data from multiple collections 
 
 To ensure your React application correctly retrieves static files when deployed on a non-root path, you can try the following solutions:
 
-* Add a Base Tag to index.html: Include a <base href="/your-path/" /> tag in your index.html file. This instructs the browser to prepend /your-path/ to all relative URLs in the application.
+* Add a Base Tag to index.html: Include a `<base href="/your-path/" />` tag in your index.html file. This instructs the browser to prepend /your-path/ to all relative URLs in the application.
 * Modify the homepage Field in package.json: Set the homepage field in your package.json to /your-path/. This ensures that when the application is bundled, the paths to static files are correctly adjusted to include the base path.
 * Force a Trailing Slash in the URL: Ensure that the URL used to access the application ends with a trailing slash (e.g., /your-path/). This helps in correctly resolving the relative URLs for static files.
 
