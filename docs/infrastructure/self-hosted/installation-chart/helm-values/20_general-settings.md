@@ -65,6 +65,8 @@ If you want to fine tune resources for specific services the proper documentatio
 | `configurations.redis.password` | string |        The password used for redis instance         |  |    ✅     |
 | `configurations.redis.tls` | boolean | tls connection to redis enabled | false |    ✅     |
 | `configurations.redis.tlsCACert` | string | CA for the TLS configuration to connect to the redis instance. This is effective only if `configurations.redis.tls` set to `true`. |  |    ✅     |
+| `configurations.redis.mode` | string | Configure the redis mode. Supported mode are `normal` and `sentinel` | normal |    ✅     |
+| `configurations.redis.masterName` | string | redis master name. It only works used with `sentinel` mode |  |    ✅     |
 
 ### Self-Signed CA Bundles
 

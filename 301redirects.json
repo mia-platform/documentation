@@ -29,15 +29,15 @@
     "tocheck": true
   },
   "/docs/fast_data/configuration/realtime_updater/common":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
+    "destination": "/docs/fast_data/configuration/realtime-updater",
     "addedOn": "2023-06-15"
   },
   "/docs/fast_data/configuration/realtime_updater":  {
-    "destination": "/docs/fast_data/configuration/realtime-updater/overview",
+    "destination": "/docs/fast_data/configuration/realtime-updater",
     "addedOn": "2024-02-21"
   },
   "/docs/fast_data/configuration/realtime_updater/low_code":  {
-    "destination": "/docs/fast_data/configuration/realtime_updater",
+    "destination": "/docs/fast_data/configuration/realtime-updater",
     "addedOn": "2023-06-15"
   },
   "/docs/fast_data/configuration/single_view_trigger": {
@@ -1734,6 +1734,10 @@
   "/docs/console/console-extensibility/extension-example-tutorial": {
     "destination": "/docs/console/tutorials/create-extension-tutorial",
     "addedOn": "2024-05-20"
+  },
+  "/docs/marketplace/tutorials/project-template-integrated-with-jenkins": {
+    "destination": "/docs/marketplace/tutorials/service-template-integrated-with-jenkins",
+    "addedOn": "2024-07-16"
   },
   "/docs/development_suite/company/overview": {
     "destination": "/docs/console/company-configuration/overview",

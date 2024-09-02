@@ -8,7 +8,7 @@ sidebar_label: Merge of configurations
 During the merge process, please remember that:
 
 - changes made inside the _Visualize_ section are not included and any modifications to the configuration must be manually applied after the merge
-- changes made inside the _Advanced_ section can be merged if the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) is enabled, otherwise its content must be manually updated after the merge
+- changes made inside the _Advanced_ section can be merged if the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/overview.md) is enabled, otherwise its content must be manually updated after the merge
 - all configuration files manually managed inside the project repository (such as pipelines for CI/CD operations or the content of the `mlp.yaml` file used by **mlp**) are not included in the merge process and must be manually updated
 
 If your project might have updates related to these points, please remember to check these configurations after the merge to ensure you have your branch up-to-date.

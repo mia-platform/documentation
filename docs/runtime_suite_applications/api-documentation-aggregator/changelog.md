@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.0.2] - 2024-08-26
+
+- Updated `swager-aggregator` to version `3.8.0`
+
 ## [2.0.1] - 2024-07-12
 
 - Updated `swager-aggregator` to version `3.7.0`

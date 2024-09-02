@@ -100,7 +100,7 @@ spec:
   template:
     spec:
       containers:
-      - image: hello-world:latest
+      - image: goodbye-world:latest
 ```
 
 First off, you need to create the patch containing the sidecar container specification in the environment of interest (e.g. development).
@@ -161,4 +161,117 @@ With the example above, the `istio-proxy` container will be added to deployments
 
 :::info
 You can apply labels to microservices inside the Design section of the Mia-Platform Console, or, in case of Self-Hosted installation, you can [set default labels](/marketplace/add_to_marketplace/contributing_overview.md#common-to-microservice-items-plugins-templates-examples) to the microservices created from Marketplace.
+:::
+
+### Enable **High Availability** for business critical microservices
+
+Sometimes you need to be sure about the availability of few business critical microservices due to different reasons:
+* kubernetes cluster update;
+* start of a new business campaign;
+* ...
+
+In order to do that you probably want some microservice in *High Availability*.
+:::info
+The _High Availability_ is a characteristic of a system, an application, a service, that guarantee operability without intervention, even if there are problems on an instance of it.
+:::
+
+Using *Kustomize* and the *Mia-Platform Console* you can add advanced configurations to your business critical microservices.
+
+:::warning
+The following **is a basic example** that allows you to replicate and distribute replicas of services on different nodes of your cluster.
+
+Remember to always check your specific needs and customize the patch files based on the topology of your infrastructure and your requirements.
+:::
+
+In this example is showed how to guarantee that, on each business critical microservice, you have:
+* 3 up and running replicas;
+* replicas distributed through different nodes of the cluster.
+
+Of course we need to focus just on business critical services, so we will use a specific label to identify the right targets.
+The label is:
+> **highAvailability**: *true*
+
+Let's assume we have this following deployments:
+```yml
+# file: ./configuration/helloworld.deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    highAvailability: "true"
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: hello-world:latest
+---
+# file: ./configuration/goodbyeworld.deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goodbye-world
+  labels:
+    highAvailability: "false"
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: goodbye-world:latest
+```
+
+We expect to have the High Availability enabled on the `hello-world` service only, since the `goodbye-world` one doesn't have `highAvailability: true`.
+To do that we can use the following Kustomize configurations:
+```yml
+# file: ./overlays/PROD/high-availability.patch.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: not-important
+spec:
+  replicas: 3
+  template:
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              highAvailability: "true"
+
+# file: ./overlays/PROD/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../configuration
+
+patches:
+- path: high-availability.patch.yaml
+  target:
+    kind: Deployment
+    labelSelector: highAvailability=true
+```
+
+How can the files above let use reach our goal?
+* **replicas: 3** &rarr; in this way, all services that match the condition will have 3 static replicas (of course you can increase this number if you want more replicas);
+* **topologySpreadConstraints** &rarr; property that allows to describe the topology of your infrastructure and how the pods are distributed;
+  * **maxSkew** &rarr; the degree to which Pods may be unevenly distributed. We set it to **1**, to have at most 1 different replica among nodes;
+  * **topologyKey** &rarr; the topology key to be used for the pods distribution. We set it to **kubernetes.io/hostname**, that contains the k8s node;
+  * **whenUnsatisfiable** &rarr; what k8s must do if the condition is not satisfiable. Setting it to **ScheduleAnyway** ensure us the replica will be scheduled anyway.
+
+:::tip
+The **topologySpreadConstraints** is a very rich and powerful property.
+It allows you to control how Pods are spread across your cluster among failure-domains such as regions, zones, nodes, and other user-defined topology domains. This can help to achieve high availability as well as efficient resource utilization.
+
+Look at the [k8s official documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/) for more.
+:::
+
+The result, by deploying this **after** [**decorating your business critical services**](/development_suite/api-console/api-design/services.md#labels-configuration) with the *highAvailability: true* label, is having 3 replicas of the services, spread across your cluster nodes.
+
+:::warning
+If you have the [Horizontal Pod Autoscaler enabled](/development_suite/api-console/api-design/replicas.md) on some microservices, the value of the *static replicas* you set will not work.
+To fix that be sure to adjust the `minReplicas` value of the HPA through the Console page, otherwise some service could have just one replica &rarr; not High Availability.
 :::

@@ -26,44 +26,42 @@ On this page we keep you aligned on the most important issues:
     - Company/Profile management optimization
     - Enhanced Runtime Resources Monitoring and management
     - Extended FinOps integration
-    - Enhanced Runtime Resources Monitoring and management
+    - Customizable Home Page
+    - Customizable metrics dashboards
   - _DevX_
-    - Improved Navigation Flow
-    - Better Product Feedback Loop
     - Enhanced CLI
-    - Start Manually a CronJob
-    - Pair with AI
+    - Enhanced Pair with AI
     - Improved Vault integrations
-    - AI integration
   - _Extensibility_
-    - Gitops Tools support
-    - Support Endpoint Listener
     - New K8s auth
     - Better integration with 3rd party plugins
     - Support Ingress Controller
+    - Extend your Console with Microfrontend Composer
     - New Dev Portal for public API reference
-    - Better integration with 3rd party plugins
-- **Mia-Platform Fast Data**
-  - Domain Decoupling
-  - Full Event-Driven Architecture
-  - No-code/Low-code
-  - New Data Connectors
-  - Runtime Management
-  - Pre-release Testing of No Code config
-  - Data Catalog
-  - Control Plane Enhancements
+    - Native Multi-runtime and Serverless support (e.g. Lambda)
+    - Integration with other tools (Jira, Github, ...) to gather metrics
+- **Mia-Platform Data Fabric**
+  - _Fast Data_
+    - New Fast data pipeline UX configuration in Design Area
+    - Fast Data Control Plane at Company level
+    - Pre/Post data filtering logics on Fast Data pipelines
+  - _Data Catalog_
+    - Data Catalog application new features
+    - Data Lineage solution with Fast Data integration
 - **Mia-Platform Marketplace**
   - Improved Marketplace Governance
   - Marketplace management through Miactl
   - Improved Marketplace Monitoring
-  - Enhanced Navigation
+  - Enhanced PBC (Application) Lifecycle
+  - Modular PBCs
 - **Components**
   - _Microfrontend Composer_
-    - No Code Functions
     - Custom Template Management
     - Drag & Drop components
+    - New Component Library
   - _Flow Manager_
-    - No Code Functions
+    - Enhanced No Code configuration
+    - Retry functionality
 
 ## How to contribute to the roadmap
 

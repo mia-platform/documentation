@@ -66,11 +66,10 @@ This Javascript file should export a default async generator function with the f
 - `strategyContext`: object made of two properties:
   - `logger`: [Pino logger](https://github.com/pinojs/pino)
   - `dbMongo`: the configured [MongoDB Database](https://mongodb.github.io/node-mongodb-native/5.2/classes/Db.html) instance where the projections are stored
-- `updateEvent`: The [Projection Updates](/fast_data/concepts/inputs_and_outputs.md#projection-update) message.
+- `updateEvent`: The Update Event object created from the [Projection Update](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) message.
 
 The function _yields_ one or more identifier retrieved from the update event. 
 
-:::tip Examples
 Here's a couple of examples example of what a custom strategy could look like:
 
 <details>
@@ -101,6 +100,31 @@ module.exports = async function* myCustomStrategy ({ logger, dbMongo }, { after 
 
 </p>
 </details>
+
+While we only extracted the `after` property in the examples before, the whole object has actually the following structure:
+
+```typescript
+{
+    operationType: string
+    operationTimestamp: string
+    before?: Document | null
+    after?: Document | null
+    primaryKeys: (string | number | symbol)[]
+    __internal__kafkaInfo: {
+      timestamp: string
+      topic: string
+      key: string
+      partition: number
+      offset: number
+  };
+}
+```
+
+:::important
+You might notice that it does not look quite like the incoming `pr-update` message you might have,
+this is because we transform the message into a unique format to represent the various versions of the message.
+So if you switch your Real-time Updater (pr-update version 1.0) for a Projection Storer (pr-update version 2.0)
+your manual strategy will still work exactly as it did before.
 :::
 
 </TabItem>

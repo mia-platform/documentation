@@ -163,12 +163,12 @@ It is not recommended to activate the checkbox in a production runtime environme
 ### Export and review configuration files
 
 :::info
-This feature is only available to Projects that use [**Enhanced Project Workflow**](/development_suite/set-up-infrastructure/enhanced-project-workflow.md).
+This feature is only available to Projects that use [**Enhanced Project Workflow**](/development_suite/set-up-infrastructure/overview.md).
 :::
 
 When using the **Enhanced Project Workflow**, Kubernetes files are generated on deployment. After selecting the desired revision (or version), you can:
 
-- compare the generated Kubernetes files with the previous version
+- compare the newly generated Kubernetes manifest files with the ones deployed on the cluster
 - review generated Kubernetes files from the Console or download them as a `.tar.gz` archive.
 
 Such functionalities are available through the respective buttons in the  `Configuration Files `card.
@@ -178,10 +178,10 @@ Such functionalities are available through the respective buttons in the  `Confi
 #### Compare Changes
 
 :::info
-This feature is only available to Projects that use [**Enhanced Project Workflow**](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) and `GitLab`, `GitHub` or `Azure` as CI/CD provider.
+This feature is only available to Projects that use [**Enhanced Project Workflow**](/development_suite/set-up-infrastructure/overview.md) and `GitLab`, `GitHub` or `Azure` as CI/CD provider.
 :::
 
-By clicking on the `Compare changes` button, a diff-editor will show the differences between the configurations of the selected version and the previous one in a side-by-side view.
+By clicking on the `Compare changes` button, a diff-editor will show the differences between the k8s configurations of the selected revision or version and the already deployed ones in a side-by-side view.
 
 On the bottom, a button allows you to download the configurations files as a `.tar.gz` archive.
 
