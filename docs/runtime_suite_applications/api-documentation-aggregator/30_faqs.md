@@ -13,7 +13,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 ### How can I change the title?
 
 The title is related to the documentation version and it corresponds to the `title` key in the `info` object of the [Open Api specification document](https://swagger.io/resources/open-api/).
-To change it, you have to edit the Swagger Aggregator [configuration](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
+To change it, you have to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
 
 Example of `swagger-aggregator.json`:
 
@@ -25,7 +25,7 @@ Example of `swagger-aggregator.json`:
 
 ### How can I change the grey badge next to the title?
 
-The grey badge next to the title is related to the documentation version and it corresponds to the `version` key in the `info` object of the [Open Api specification document](https://swagger.io/resources/open-api/). To change it, you have to edit the Swagger Aggregator [configuration](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
+The grey badge next to the title is related to the documentation version and it corresponds to the `version` key in the `info` object of the [Open Api specification document](https://swagger.io/resources/open-api/). To change it, you have to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
 
 Example of `swagger-aggregator.json`:
 
@@ -39,7 +39,7 @@ Example of `swagger-aggregator.json`:
 
 Those information are related to the `info` object of the [Open Api specification document](https://swagger.io/resources/open-api/).
 
-To change it, you have to edit the Swagger Aggregator [configuration](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration.md): you have to add the `info` key in the `baseSwagger` object and make sure to write a compliant Open API [info](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#info-object) object
+To change it, you have to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md): you have to add the `info` key in the `baseSwagger` object and make sure to write a compliant Open API [info](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md#info-object) object
 
 Example of `swagger-aggregator.json`:
 
@@ -77,7 +77,7 @@ If you edit the `baseSwagger` object, you have to include ALL the information ne
 
 ### How can I change the route to which is exposed the API Portal?
 
-By default, the API Portal is exposed on `/documentations/api-portal`. You can change it going to the [Endpoints](../../development_suite/api-console/api-design/endpoints.md) section:
+By default, the API Portal is exposed on `/documentations/api-portal`. You can change it going to the [Endpoints](/development_suite/api-console/api-design/endpoints.md) section:
 1. Delete the `/documentations/api-portal` endpoint
 2. Create a new endpoint with you custom route, with type `Microservice` and `api-portal` as microservice.
 
@@ -88,19 +88,19 @@ If you already have the `swagger-aggregator` and the `api-portal` microservices 
 1. Change the `swagger-aggregator` version and set the `3.7.0` or one above.
 2. Delete the `api-portal` microservice
 
-Then go to the [Endpoints](../../development_suite/api-console/api-design/endpoints.md) section and:
+Then go to the [Endpoints](/development_suite/api-console/api-design/endpoints.md) section and:
 
 1. Delete the endpoint on which the `API Portal` is exposed.
 2. Create a new endpoint with the same route on which the `API Portal` was exposed, with type `Microservice` and `swagger-aggregator` as microservice.
 3. Edit the `Rewrite Base Path` of the endpoint just created and set it to `/swagger`
 
 :::note
-Using this option, you can't control the `API Portal` version. To see which version you are using, check the [Changelog](../../runtime_suite/swagger-aggregator/changelog.md)
+Using this option, you can't control the `API Portal` version. To see which version you are using, check the [Changelog](/runtime_suite/swagger-aggregator/changelog.md)
 :::
 
 ### How can I authenticate my endpoints with OAuth 2.0?
 
-To enable OAuth 2.0 authentication you need to edit the Swagger Aggregator [configuration](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding inside the `baseSwagger`:
+To enable OAuth 2.0 authentication you need to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding inside the `baseSwagger`:
 
 1. the [`securityDefinition` object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#security-definitions-object) configured with the correct **Swagger 2.0 compliant**
 2. the `security` array listing the [security requirements](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#security-requirement-object)
@@ -136,7 +136,7 @@ For example:
 The following information are applicable to a Swagger Aggregator version greater or equal than `3.8.0` and an API Portal version greater or equal than `2.1.0`.
 :::
 
-To enable OAuth 2.0 authentication you need to edit the Swagger Aggregator [configuration](../../development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding at first level the `oauthConfig` object containing the desired [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
+To enable OAuth 2.0 authentication you need to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding at first level the `oauthConfig` object containing the desired [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
 
 For example:
 ```json
