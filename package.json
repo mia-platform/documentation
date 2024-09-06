@@ -60,5 +60,5 @@
     "prop-types": "^15.8.1",
     "semver-utils": "^1.1.4"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.4.1"
 }
