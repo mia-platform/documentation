@@ -1598,6 +1598,10 @@
         {
           "id": "marketplace/tutorials/service-template-integrated-with-jenkins",
           "type": "doc"
+        },
+        {
+          "id": "marketplace/tutorials/fully-functioning-rag-application",
+          "type": "doc"
         }
       ]
     },

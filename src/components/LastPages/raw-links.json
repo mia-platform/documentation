@@ -420,6 +420,10 @@
     "title": "Create a service template integrated with Jenkins"
   },
   {
+    "url": "/marketplace/tutorials/fully-functioning-rag-application",
+    "title": "Create a fully functioning RAG application"
+  },
+  {
     "url": "/microfrontend-composer/back-kit/overview",
     "title": "Overview"
   },
