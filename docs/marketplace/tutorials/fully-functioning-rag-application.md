@@ -29,12 +29,14 @@ The [API Documentation Aggregator](../../runtime_suite_applications/api-document
 
 Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (using the existing one with the available listener), the _AI RAG Template_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
 
-Finally, in the sidebar, click on _Microservices_, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new [API Portal](../../runtime_suite/api-portal/10_overview.md).
+![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
+
+Finally, we add the [API Portal](../../runtime_suite/api-portal/10_overview.md). If it is not already included in the project, click on _Microservices_ menu in the sidebar, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
 
 Once you have created these services, you can safely save the configuration.
 
-
 ## 2. Configure the AI Rag Template service
+
 The next step is to configure the _AI RAG Template_ service. From the design section, navigate to the _Microservices_ page and select the service (the default name is _ai-rag-template_, but you may have changed its name). From there, click on the _Environment Variables_ tab where you need to modify the following values:
 
 - `MONGODB_CLUSTER_URI`: This is the full connection string to MongoDB.
@@ -93,6 +95,8 @@ After having configured the config map, we can save the configuration and move t
 
 From the _deploy_ section, we can deploy the new configuration. After verifying that the services are up, we can check if the application is running by accessing the chatbot frontend. The frontend is accessible through the automatically generated endpoint `/` (e.g., if the project is hosted at `https://my-project.console.my-company.com`, the frontend will be accessible at the same URL).
 
+![Assistant Playground homepage](../img/assistant-playground-home.png)
+
 The frontend will display a page with an input field where we can communicate with the chatbot. However, at this point, we don't have any embeddings, so specific questions may not give us the expected response.
 
 To see the list of all the APIs exposed by the configured services, we can go to the swagger UI of the _API Portal_. It can be accessed at the endpoint `/documentations/api-portal`. In the list of APIs, we can find two APIs with the tag _Embeddings_: `POST api/embeddings/generate` and `GET api/embeddings/status`.
@@ -104,7 +108,11 @@ Generating embeddings is an asynchronous task, meaning that the response is retu
 - If the response is `{"status": "running"}`, it means the process is still ongoing.
 - If the response is `{"status": "idle"}`, it means there are no active processes at the moment (indicating that the previous process has finished).
 
-With this information, we can start generating our embeddings. We can make a request to the `api/embeddings/generate` API by expanding the corresponding card and clicking on "Try it out". In the request body, we need to provide the following information:
+With this information, we can start generating our embeddings. We can make a request to the `api/embeddings/generate` API by expanding the corresponding card and clicking on "Try it out".
+
+![Embeddings generate API](../img/embeddings-generate-api.png)
+
+In the request body, we need to provide the following information:
 
 - `url` (mandatory): The starting page from which we want to generate embeddings.
 - `filterPath` (optional): A more specific path that will be used as a filter when finding new pages to download and analyze.
@@ -129,6 +137,8 @@ It is a good idea to check the service logs to ensure that everything is progres
 ## 4. Enjoy
 
 Once the process is over, there's no need to re-deploy or restart any service: after a few moments, the MongoDB Vector Index will be updated and the frontend application is ready to give us meaningful answers based on the embeddings generated.
+
+![Assistant Playground working](../img/assistant-playground-working.png)
 
 ## Troubleshooting
 
