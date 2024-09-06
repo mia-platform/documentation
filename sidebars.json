@@ -1107,6 +1107,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/runtime_management/control_plane_operator",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/runtime_management/workloads",
           "type": "doc"
         },
