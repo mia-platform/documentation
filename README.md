@@ -48,7 +48,7 @@ the directory of the project and install all dependencies simply running:
 yarn install
 ```
 
-This command rapidly launch the site on <http://localhost:3000> and open up a browser window:
+This command rapidly launch the site on http://localhost:3000 and open up a browser window:
 
 ```shell
 yarn start
@@ -63,7 +63,7 @@ yarn build
 yarn serve
 ```
 
-This command starts a local development server, the site will be reachable on <http://localhost:3000> window. To see changes you have to restart the server.
+This command starts a local development server, the site will be reachable on http://localhost:3000 window. To see changes you have to restart the server.
 
 > :warning: The Search is configured to **not working locally**.  
 

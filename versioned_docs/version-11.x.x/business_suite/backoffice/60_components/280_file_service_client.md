@@ -307,12 +307,12 @@ triggers a DELETE call to `/avatar.jpg`
 | property      | attribute | type                             | default | description                                      |
 | ------------- | --------- | -------------------------------- | ------- | ------------------------------------------------ |
 | `basePath`    | -         | string                           | -       | the URL base path to which to send HTTP requests |
-| `headers`     | -         | {[key: string]: string}          | -       | headers to add when an HTTP request is sent      |
+| `headers`     | -         | \{[key: string]: string\}          | -       | headers to add when an HTTP request is sent      |
 | `credentials` | -         | 'include'\|'omit'\|'same-origin' | -       | credentials policy to apply to HTTP requests     |
 | `basePath`    | -         | string                           | -       | the URL base path to which to send HTTP requests |
-| `headers`     | -         | {[key: string]: string}          | -       | headers to add when an HTTP request is sent      |
+| `headers`     | -         | \{[key: string]: string\}          | -       | headers to add when an HTTP request is sent      |
 | `credentials` | -         | 'include'\|'omit'\|'same-origin' | -       | credentials policy to apply to HTTP requests     |
-| `queryParams` | -         | [QueryParams](#queryparams)      | {"download": 1,"downloadWithOriginalName": 1, "useOriginalName": 1} | query parameters to be passed to the Files Service, according to [its interface][query-params] |
+| `queryParams` | -         | [QueryParams](#queryparams)      | \{"download": 1,"downloadWithOriginalName": 1, "useOriginalName": 1\} | query parameters to be passed to the Files Service, according to [its interface][query-params] |
 
 #### QueryParams
 

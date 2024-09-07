@@ -172,7 +172,8 @@ For more details concerning the filter properties, visit [this section](/runtime
 
 Here you can find some ready to use example of different identity providers that you can use for authentication.
 
-<details><summary><b>Auth0</b></summary>
+<details>
+<summary><b>Auth0</b></summary>
 <p>
 
 ```yaml title=http-filters.yaml
@@ -236,7 +237,8 @@ Here you can find some ready to use example of different identity providers that
 </p>
 </details>
 
-<details><summary><b>Microsoft Active Directory</b></summary>
+<details>
+<summary><b>Microsoft Active Directory</b></summary>
 <p>
 
 ```yaml title=http-filters.yaml

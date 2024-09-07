@@ -49,7 +49,8 @@ The category list is constantly updated, check with your Mia-Platform referent f
 | `data-catalog`    | Add-ons - Data Catalog                 |
 | `fast-data-connectors` | Add-ons - Fast Data Connectors    |
 
-<details><summary>Example of a Plugin</summary>
+<details>
+<summary>Example of a Plugin</summary>
 <p>
 
 ```json

@@ -499,7 +499,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ### Fixed
 
-- Removed module preload in production (<https://github.com/umijs/qiankun/issues/1957>)
+- Removed module preload in production (https://github.com/umijs/qiankun/issues/1957)
 - Fixed editor height
 
 ### Changed

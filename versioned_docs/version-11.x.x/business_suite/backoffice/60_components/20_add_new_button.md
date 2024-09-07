@@ -105,8 +105,8 @@ clicking the rendered button triggers to navigate to route "/orders-list" in a n
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`browseOnButtonClick`| - |[ClickPayload](#clickpayload)|{}|when provided with a valid schema, overrides the button default on-click behavior allowing an `href` linking|
-|`initialValues`| - |[AddNewPayload][add-new]|{}|arguments to pass upon click |
+|`browseOnButtonClick`| - |[ClickPayload](#clickpayload)|\{\}|when provided with a valid schema, overrides the button default on-click behavior allowing an `href` linking|
+|`initialValues`| - |[AddNewPayload][add-new]|\{\}|arguments to pass upon click |
 
 
 #### ClickPayload

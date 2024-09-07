@@ -211,7 +211,8 @@ If some unexpected error happens during the execution of your custom function, r
 
 
 
-<details><summary>Final Configuration</summary>
+<details>
+<summary>Final Configuration</summary>
 When you have to apply the second database connection to the aggregation file, you need to define just the custom field function.
 
 ```json title=aggregation.json
@@ -243,6 +244,3 @@ When you have to apply the second database connection to the aggregation file, y
 }
 ```
 </details>
-
-
-

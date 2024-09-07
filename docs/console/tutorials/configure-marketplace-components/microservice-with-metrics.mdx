@@ -62,7 +62,8 @@ Go to the `shipping-costs` micro-service configuration: since the Service Monito
 This section enables on Deploy the creation of a Service Monitor resource, that will instruct the monitoring system to collect metrics every 60 seconds from the `/-/metrics` endpoint.  
 Now save the configuration with the current version of the micro-service containing the _Prometheus Client_ and release it.
 
-<details><summary>Access the metrics endpoint:</summary>
+<details>
+<summary>Access the metrics endpoint:</summary>
 <p>
 
 If you have a direct access with `kubectl` to the environment you have deployed your application, try to access locally the `shipping-cost` micro-service using port-forwarding on port 3000
@@ -79,12 +80,12 @@ curl localhost:3000/-/metrics
 
 You should receive a `text/plain` content type having a structure like this:
 
-
 ```
 # HELP custom_shipping_cost_metric mia platform plugin custom metric
 # TYPE custom_shipping_cost_metric counter Custom metric to count shipping costs requests
 custom_shipping_cost_metric = 0
 ```
+
 </p>
 </details>
 
@@ -137,7 +138,8 @@ Also, since we wanna group metrics based on the status code provided by the endp
 
 Now, you can release the changes on the micro-service and release the new version. By performing http requests, you can see from the metrics endpoint the increase of the metric `custom_shipping_cost_metric`.
 
-<details><summary>Test the behavior of your metrics:</summary>
+<details>
+<summary>Test the behavior of your metrics:</summary>
 <p>
 
 Metrics can be tested also by using TDD! Let's take the `shipping-cost` unit test written during the previous tutorial and add an additional assert for the metrics response.

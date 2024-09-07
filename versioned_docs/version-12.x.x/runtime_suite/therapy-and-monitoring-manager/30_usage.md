@@ -348,8 +348,8 @@ If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the h
 - **key**(*string*): the identifier for the updated therapy or monitoring.
 - **name**(*string*):  the event name, which is `TMM/TherapyUpdated/v1` for therapies and `TMM/MonitoringUpdated/v1` for monitorings.
 - **payload**(*object*):
-  - <**originalTherapy**||**originalMonitoring**>(*object*): The original therapy  or monitoring (before the update).
-  - <**currentTherapy**||**currentMonitoring**>(*object*): The updated therapy or monitoring (after the update).
+  - **originalTherapy**||**originalMonitoring**(*object*): The original therapy  or monitoring (before the update).
+  - **currentTherapy**||**currentMonitoring**(*object*): The updated therapy or monitoring (after the update).
 
 ### `DELETE /<therapies|monitorings>/:id`
 

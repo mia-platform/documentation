@@ -613,8 +613,8 @@ where [LocalizedText][localized-text] is either a string or an object mapping la
 | `allowNavigation` | `allow-navigation` | boolean \| 'show-editor' | true | When true, objects and arrays are displayed as a clickable label which allows navigating to nested objects and arrays if a dataSchema is specified. When 'show-editor', the navigation is allowed, and the object/array fields are displayed in a JSON editor. When false, the navigation is not allowed, and the object/array fields are displayed in a JSON editor |
 | `width` | - | string \| number | - | Width of the modal |
 | `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | Max items to fetch on regex live search |
-| `customLabels` | - | [CustomLabels](#customlabels) \| {insert: CustomLabels, update: CustomLabels} | - | Custom localized texts shown as title and CTA button label |
-| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| {onSave: RequireConfirmOpts, onSave: RequireConfirmOpts} | false | Whether or not the component should request confirmation before closing and/or before saving |
+| `customLabels` | - | [CustomLabels](#customlabels) \| \{insert: CustomLabels, update: CustomLabels\} | - | Custom localized texts shown as title and CTA button label |
+| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| \{onSave: RequireConfirmOpts, onSave: RequireConfirmOpts\} | false | Whether or not the component should request confirmation before closing and/or before saving |
 |`allowObjectAsTable`|`allow-object-as-table`|boolean|false|allows to visualize objects and arrays without specific format and a dataschema in both a editor and read-only table|
 |`extraEndpoint`|`extra-endpoint`|string| - |when specified, it is possible to perform a POST request to an external collection specified by the endpoint |
 |`height`|`height`|string|'60vh'|height of the modal |

@@ -362,9 +362,9 @@ The other component labels are set to their default values.
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
 |`endpoint`|`endpoint`|string|"/api/v1/bk-notification-center"|API endpoint for HTTP calls|
-|`headers`| - |{ [x: string]: string; }|{}|headers included in any HTTP request|
+|`headers`| - |\{ [x: string]: string; \}|\{\}|headers included in any HTTP request|
 |`limit`|`limit`|number|10|controls pagination limit while fetching notifications|
-|`locales`| - |[PartialTranslations](#partialtranslations)|{}|key-value list to customize components default labels|
+|`locales`| - |[PartialTranslations](#partialtranslations)|\{\}|key-value list to customize components default labels|
 |`clickStrategy`|`click-strategy`|[ClickStrategies](#clickstrategies)|"default"|strategy to implement upon clicking a notification|
 |`limitQueryParam`|`limit-query-param`|string"limit"|the query parameter which controls notification pagination page size while fetching data|
 |`skipQueryParam`|`skip-query-param`|string|"skip"|the query parameter which controls notification pagination skip while fetching data|

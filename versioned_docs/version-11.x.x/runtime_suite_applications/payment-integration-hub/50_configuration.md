@@ -139,7 +139,7 @@ The user could perform the additional steps reported below in order to create Mo
   - create `transactions_saga_view` schema as the schema below
   - paste the following pipeline and fields
     <details>
-      <summary>Pipeline</summary>
+    <summary>Pipeline</summary>
 
     ```json
     [
@@ -489,12 +489,12 @@ The user could perform the additional steps reported below in order to create Mo
         }
       }
     }
-  ]
+    ]
     ```
     </details>
 
     <details>
-      <summary>Fields</summary>
+    <summary>Fields</summary>
 
     ```json
     [
@@ -695,7 +695,7 @@ The user could perform the additional steps reported below in order to create Mo
   - create `subscriptions_saga_view` schema as the schema below
   - paste the following pipeline and fields
   <details>
-      <summary>Pipeline</summary>
+    <summary>Pipeline</summary>
 
     ```json
     [
@@ -1039,12 +1039,12 @@ The user could perform the additional steps reported below in order to create Mo
         }
       }
     }
-  ]
+    ]
     ```
-    </details>
+  </details>
 
-    <details>
-      <summary>Fields</summary>
+  <details>
+    <summary>Fields</summary>
 
     ```json
     [
@@ -1203,7 +1203,7 @@ The user could perform the additional steps reported below in order to create Mo
     }
   ]
     ```
-    </details>
+</details>
 
 4. Create endpoint for the MongoDB view previously created `subscriptions_saga_view`
   - Create a new endpoint on the endpoint section `/subscriptions-saga-view`
@@ -1216,7 +1216,7 @@ The user could perform the additional steps reported below in order to create Mo
   - create `adaptive_checkout_view` schema as the schema below
   - paste the following pipeline and fields
   <details>
-      <summary>Pipeline</summary>
+    <summary>Pipeline</summary>
 
     ```json
     [
@@ -1526,12 +1526,12 @@ The user could perform the additional steps reported below in order to create Mo
         }
       }
     }
-  ]
+    ]
     ```
-    </details>
+  </details>
 
-    <details>
-      <summary>Fields</summary>
+  <details>
+   <summary>Fields</summary>
 
     ```json
     [
@@ -1612,9 +1612,9 @@ The user could perform the additional steps reported below in order to create Mo
         "nullable":false,
         "sensitivityValue":0
     }
-  ]
+    ]
     ```
-    </details>
+  </details>
 
 6. Create endpoint for the MongoDB view previously created `adaptive-checkout-view`
   - Create a new endpoint on the endpoint section `/adaptive-checkout-view`

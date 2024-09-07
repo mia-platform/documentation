@@ -169,7 +169,8 @@ Here is described the interface of the custom message adapter function:
 
 Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
 
-<details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
+<details>
+<summary>Custom Message Adapter Function (messageAdapter.js)</summary>
 <p>
 
 ```javascript
@@ -221,7 +222,8 @@ function extractKey(obj, wantedKeys) {
 </p>
 </details>
 
-<details><summary>Custom Message Adapter Function (with empty payload management - messageAdapter.js)</summary>
+<details>
+<summary>Custom Message Adapter Function (with empty payload management - messageAdapter.js)</summary>
 <p>
 
 ```javascript
@@ -326,7 +328,8 @@ in the type expected by the data model for that specific field on which the cast
 
 Below you can find several examples about implementation of cast functions.
 
-<details><summary>Custom Cast Function (mapToAddressType.js)</summary>
+<details>
+<summary>Custom Cast Function (mapToAddressType.js)</summary>
 <p>
 
 ```javascript
@@ -364,7 +367,8 @@ try {
 </p>
 </details>
 
-<details><summary>Custom Cast Function (castToTitleCase.js)</summary>
+<details>
+<summary>Custom Cast Function (castToTitleCase.js)</summary>
 <p>
 
 ```javascript
@@ -653,7 +657,8 @@ defined cast function.
 Below is presented an example of Projection Storer working configuration, both `JSON` and `YAML` formats, which are the ones
 supported by the service.
 
-<details><summary>Projection Storer configuration (JSON)</summary>
+<details>
+<summary>Projection Storer configuration (JSON)</summary>
 <p>
 
 ```json
@@ -827,7 +832,8 @@ supported by the service.
 </p>
 </details>
 
-<details><summary>Projection Storer configuration (YAML)</summary>
+<details>
+<summary>Projection Storer configuration (YAML)</summary>
 <p>
 
 ```yaml
@@ -1125,4 +1131,3 @@ Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_d
 A detailed explanation of how the Single View Trigger Generator service should be introduced and how to migrate Fast Data
 from _standard_ to _event-driven_ architecture is provided [here](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator)
 :::
-

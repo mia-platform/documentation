@@ -39,7 +39,8 @@ Here's the AsyncApi specification of the message and some examples of the differ
 
 #### IBM InfoSphere Data Replication for DB2
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -78,7 +79,8 @@ channels:
 
 Examples:
 
-<details><summary>Upsert operation</summary>
+<details>
+<summary>Upsert operation</summary>
 <p>
 
 ```json
@@ -97,7 +99,8 @@ Examples:
 </p>
 </details>
 
-<details><summary>Delete operation</summary>
+<details>
+<summary>Delete operation</summary>
 <p>
 
 ```json
@@ -114,7 +117,8 @@ Examples:
 
 #### Oracle Golden Gate
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -170,7 +174,8 @@ channels:
 
 Examples:
 
-<details><summary>Insert operation</summary>
+<details>
+<summary>Insert operation</summary>
 <p>
 
 ```json
@@ -190,7 +195,8 @@ Examples:
 </p>
 </details>
 
-<details><summary>Delete operation</summary>
+<details>
+<summary>Delete operation</summary>
 <p>
 
 ```json
@@ -212,7 +218,8 @@ Examples:
 
 #### Debezium
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -269,7 +276,8 @@ channels:
 
 Examples:
 
-<details><summary>Insert operation</summary>
+<details>
+<summary>Insert operation</summary>
 <p>
 
 ```json
@@ -292,7 +300,8 @@ Examples:
 </p>
 </details>
 
-<details><summary>Delete operation</summary>
+<details>
+<summary>Delete operation</summary>
 <p>
 
 ```json
@@ -329,7 +338,8 @@ Example: `test-tenant.PROD.restaurants-db.reviews-collection.pr-update`
 
 **Description**: The Projection Update or `pr-update` message informs the listener (typically the Single View Trigger Generator) that a Projection's record has been updated, inserted or deleted.
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -435,7 +445,8 @@ channels:
 
 Example:
 
-<details><summary>Insert operation</summary>
+<details>
+<summary>Insert operation</summary>
 <p>
 
 ```json
@@ -507,7 +518,8 @@ This section covers the inputs and outputs concerning the Single View's aggregat
 This event is created as a result of a strategy execution.
 It is stored on MongoDB and is very similar to the [Single View Trigger Message](#single-view-trigger-message) on Kafka.
 
-<details><summary>JsonSchema specification</summary>
+<details>
+<summary>JsonSchema specification</summary>
 <p>
 
 ```json
@@ -609,7 +621,8 @@ It is stored on MongoDB and is very similar to the [Single View Trigger Message]
 
 Example:
 
-<details><summary>MongoDB record</summary>
+<details>
+<summary>MongoDB record</summary>
 <p>
 
 ```json
@@ -653,7 +666,8 @@ This method is deprecated in favor of [sv-trigger](#single-view-trigger-message)
 
 **Description**: Projection changes can also be sent to kafka when enabling the GENERATE_KAFKA_PROJECTION_CHANGES environment variable in the Real-Time Updater.
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -718,7 +732,8 @@ channels:
 
 Example:
 
-<details><summary>Kafka PC message</summary>
+<details>
+<summary>Kafka PC message</summary>
 <p>
 
 ```json
@@ -759,7 +774,8 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-trigger`
 
 **Description**: The Single View Trigger Message or `sv-trigger` informs the listener that a Single View must be regenerated. This event is also created as a result of a strategy execution so you should configure your Fast Data system to generate either Single View Trigger Messages or [Projection Changes](#projection-changes).
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -840,7 +856,8 @@ channels:
 
 Example:
 
-<details><summary>Trigger message</summary>
+<details>
+<summary>Trigger message</summary>
 <p>
 
 ```json
@@ -909,7 +926,8 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-update`
 
 **Description**: The Single View Update or `sv-update` informs the listener that a specific Single View record has been updated. This is used generally for statistical purposes, like knowing how many Single Views per minute our system can process, but it can also be used to keep a history of the changes since it can contain (although disabled by the default) the before and after values of the Single View record.
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -1001,7 +1019,8 @@ channels:
 
 Example:
 
-<details><summary>Update message</summary>
+<details>
+<summary>Update message</summary>
 <p>
 
 ```json
@@ -1039,7 +1058,8 @@ Example:
 
 **Description**: A Single View Error is an event that warns us something went wrong with the aggregation of a Single View in the Single View Creator.
 
-<details><summary>JsonSchema specification</summary>
+<details>
+<summary>JsonSchema specification</summary>
 <p>
 
 ```json
@@ -1102,7 +1122,8 @@ Example:
 
 Example:
 
-<details><summary>MongoDB record</summary>
+<details>
+<summary>MongoDB record</summary>
 <p>
 
 ```json
@@ -1140,7 +1161,8 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.svc-events`
 
 **Description**: The Single View Events or `svc-events` informs the listener that a single view has been successfully updated.
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -1228,7 +1250,8 @@ channels:
 
 Example:
 
-<details><summary>Events example</summary>
+<details>
+<summary>Events example</summary>
 <p>
 
 ```json
@@ -1270,7 +1293,8 @@ Example: `test-tenant.PROD.restaurants-db.reviews-sv.sv-before-after`
 
 **Description**: The Single View Before After Message is an additional event used for debugging purposes, which contains both the previous and the current state of the Single View once it has been updated.
 
-<details><summary>AsyncApi specification</summary>
+<details>
+<summary>AsyncApi specification</summary>
 <p>
 
 ```yaml
@@ -1357,7 +1381,8 @@ channels:
 
 Example:
 
-<details><summary>Update operation</summary>
+<details>
+<summary>Update operation</summary>
 <p>
 
 ```json

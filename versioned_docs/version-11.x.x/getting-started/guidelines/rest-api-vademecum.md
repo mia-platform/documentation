@@ -144,11 +144,11 @@ Here you can find an example of REST calls for a resource called `vehicle`. The 
 |------------|------------------- |-----------------------|-----------------------|---------------------------------------------------------|
 | **GET**    | host/vehicles/     | Empty Body            | Array of JSON Objects | List of all vehicles. Filters through query parameters.              |
 | **POST**   | host/vehicles/     | JSON Object           | JSON Object           | Create a new vehicle.                                                 |
-| **PUT**    | host/vehicles/{id} | JSON Object           | JSON Object           | Complete editing of the vehicle with id = {id}.                              |
+| **PUT**    | host/vehicles/\{id\} | JSON Object           | JSON Object           | Complete editing of the vehicle with id = \{id\}.                              |
 | **PUT**    | host/vehicles/bulk | Array of JSON Objects | Array of JSON Objects | Complete editing of all the vehicles included in the array.                  |
-| **PATCH**  | host/vehicles/{id} | JSON Object           | JSON Object           | Partial editing of the vehicle with id = {id}.                              |
+| **PATCH**  | host/vehicles/\{id\} | JSON Object           | JSON Object           | Partial editing of the vehicle with id = \{id\}.                              |
 | **PATCH**  | host/vehicles/bulk | Array of JSON Objects | Array of JSON Objects | Partial editing of all the vehicles included in the array.                  |
-| **DELETE** | host/vehicles/{id} | Empty Body            | Empty Body            | Delete of the vehicle with id = {id}.                                  |
+| **DELETE** | host/vehicles/\{id\} | Empty Body            | Empty Body            | Delete of the vehicle with id = \{id\}.                                  |
 
 ## Answer Results
 

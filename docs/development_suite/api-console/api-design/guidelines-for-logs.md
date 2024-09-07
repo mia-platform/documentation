@@ -20,7 +20,8 @@ Possible parsers are:
 
 - `mia-json`: parse log lines as JSON data structures, including nested fields.
 
-  <details><summary>Example:</summary>
+  <details>
+  <summary>Example:</summary>
   <p>
   A possible log that can be parsed is:
   
@@ -45,7 +46,8 @@ Possible parsers are:
   <remoteAddress> <remoteHostname> [<time>] "<requestMethod> <requestURL> HTTP/<requestHTTPVersion>" <statusCode> <responseSize> "<HTTPReferer>" "<userAgent>" - <responseTime> - <reqId>
   ```
   where `time` is in the format `%Y-%m-%dT%H:%M:%S%z`.
-  <details><summary>Example:</summary>
+  <details>
+  <summary>Example:</summary>
   <p>
   A possible log that can be accepted by the parser is:
   

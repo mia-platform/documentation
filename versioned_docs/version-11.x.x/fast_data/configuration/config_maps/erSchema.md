@@ -74,7 +74,8 @@ In the example presented above, the relationship between the two entities could 
 
 ### Constants
 
-<details><summary>ER Schema Configuration with constant value to validate the condition</summary>
+<details>
+<summary>ER Schema Configuration with constant value to validate the condition</summary>
 
 <p>
 
@@ -118,7 +119,8 @@ Remember that `__constant__[]` is deprecated, and it will be removed in future v
 
 Conditions can also use [MongoDB Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/), such as `$or` and `$and`.
 
-<details><summary>ER Schema Configuration with MongoDB Query and Projection Operators</summary>
+<details>
+<summary>ER Schema Configuration with MongoDB Query and Projection Operators</summary>
 
 <p>
 
@@ -161,7 +163,8 @@ Normally when we write an ER Schema we think about declaring a condition in only
 The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator.md#aggregation).
 As you may know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
 
-<details><summary>ER Schema Configuration with Strategy and Aggregation</summary>
+<details>
+<summary>ER Schema Configuration with Strategy and Aggregation</summary>
 
 <p>
 
@@ -367,7 +370,8 @@ Moreover, the user will be notified if, by mistake, one or more conditions refer
 
 ## Real use case example
 
-<details><summary>Food Delivery ER schema configuration</summary>
+<details>
+<summary>Food Delivery ER schema configuration</summary>
 <p>
 
 ```json

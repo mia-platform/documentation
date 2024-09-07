@@ -87,7 +87,7 @@ The Dropdon Button configured as follows provides two actions:
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`label`| - |[LocalizedText][localization]|{}|dropdown label |
+|`label`| - |[LocalizedText][localization]|\{\}|dropdown label |
 |`iconId`|`icon-id`|string| - |defines which icon should be rendered in the dropdown, if this property is not defined or doesn't match any icon no icon will be rendered |
 |`iconPlacement`| - |"default" \| "left" \| "right"|"default"|defines where icon should be rendered, either left or right defaulting on left |
 |`listenToLoadingData`|`listen-to-loading-data`|boolean|false|configures the dropdown to be loading when trigger by a loading-data event |

@@ -488,7 +488,7 @@ In the first case, each element of the array is a `tag`-`properties` pair, respe
 | property     | type                 | values | description                            |
 | ------------ | -------------------- | ------ | -------------------------------------- |
 | `tag`        | string               | string | custom component to mount              |
-| `properties` | {[key: string]: any} | object | properties injected into the component |
+| `properties` | \{[key: string]: any\} | object | properties injected into the component |
 
 It is often useful mounting the [Button][bk-button] components inside the actions columns of the Table because of its flexibility.
 
@@ -697,7 +697,7 @@ The property `browseOnRowSelect` allows to navigate to a specified link when a t
 | ---------------- | -------------------- | ------------------------- | ------------------------------------------------- |
 | `href`           | string               | -                         | link reference. Only relative links are accepted. |
 | `target`         | string               | -                         | where to open the href. Defaults to "_self"       |
-| `query`          | {[key: string]: any} | -                         | query parameters                                  |
+| `query`          | \{[key: string]: any\} | -                         | query parameters                                  |
 | `navigationType` | string               | "push", "replace", "href" | method used for navigation if target is "_self"   |
 
 Where `navigationType` values are mapped to navigation methods as follows:
@@ -1557,12 +1557,12 @@ Please remember that `maxLines` and `fitParentContainer` properties cannot be us
 |`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
 |`maxLines`|`max-lines`|number| - |force lines that will be displayed together. It can't be used with `fitParentContainer` |
 |`fitParentContainer`|`fit-parent-container`|boolean|false|Make the table fit the parent container height. It can't be used with `maxLines`|
-|`navigationRowActions`| - |[NavigationDataActions](#navigationdataactions)| {"kind": "icons", "actions": [{ "requireConfirm": true, "type": "delete", "disableInReadonly": true}]} |actions in nested objects.|
+|`navigationRowActions`| - |[NavigationDataActions](#navigationdataactions)| \{"kind": "icons", "actions": [\{ "requireConfirm": true, "type": "delete", "disableInReadonly": true\}]\} |actions in nested objects.|
 |`openFileInViewerRegex`| - |[FileInViewerRegex](#fileinviewerregex)| - |regex expressions, matched against file values to request a preview of the file or for it to be downloaded. |
 |`resizableColumns`|`resizable-columns`|boolean|false|whether the table columns can be resized. When `true`, columns can be resized from the table header|
 |`rowActions`| - |[DataActions](#dataactions)| - |list of actions to render per row |
 |`showArrayPopover`|`show-array-popover`|boolean|false|whether to display a popup on mouse-over on array cells, showing their value. Not available for arrays of objects or arrays of arrays.|
-|`fixedColumns`| - | number \| {'left': number; 'right': number} | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
+|`fixedColumns`| - | number \| \{'left': number; 'right': number\} | - |either the number of columns to fix from left or an object containing how many columns to fix from left and/or right|
 |`displayedDataPath`| - | string | - | specify an object path as datasource for displayed data |
 |`highlightedRows`| - | [QueryStyleRule](#querystylerule) \| QueryStyleRule[] | - | highlights rows matched by a mongo-like queries |
 

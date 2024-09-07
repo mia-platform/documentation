@@ -64,8 +64,8 @@ In order to implement the flow depicted above, you can perform the following ste
       | -------------------------------| ---------------------------------------------------------------------------  |
       | USERINFO_URL                   | http://authentication-service/userinfo                                       |
       | CUSTOM_USER_ID_KEY             | userID                                                                       |
-      | HEADERS_TO_PROXY               | <header of the client's request containing the token> (e.g. `Authorization`) |
-      | AUTHORIZATION_HEADERS_TO_PROXY | <header of the client's request containing the token> (e.g. `Authorization`) |
+      | HEADERS_TO_PROXY               | \<header of the client's request containing the token\> (e.g. `Authorization`) |
+      | AUTHORIZATION_HEADERS_TO_PROXY | \<header of the client's request containing the token\> (e.g. `Authorization`) |
       | USER_PROPERTIES_TO_PROXY       | userID,groups                                                                |
 
 3. Secure the endpoint

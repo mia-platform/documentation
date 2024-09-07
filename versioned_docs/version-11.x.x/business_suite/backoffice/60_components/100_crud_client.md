@@ -594,13 +594,13 @@ triggers a request like this
 |property|attribute|type|default|description|
 |--------|------- |----|-------|-----------|
 |`basePath`|-|string|-|the URL base path to which to send HTTP requests|
-|`headers`|-|{[key: string]: string}|-|headers to add when an HTTP request is sent|
+|`headers`|-|\{[key: string]: string\}|-|headers to add when an HTTP request is sent|
 |`credentials`|-|'include'\|'omit'\|'same-origin'|-|credentials policy to apply to HTTP requests|
 |`appendTrailingSlash`|`append-trailing-slash`|boolean|true|should append a trailingSlash to URLs|
 |`bootstrapTimeout`|`bootstrap-timeout`|number|1000|value in ms before default bootstrap starts and no `change-query` was received|
 |`dataSchema`|-|[ExtendedJSONSchema7Definition][data-schema]|-|data-schema describing which field to retrieve from CRUD collection|
 |`enableDefinitiveDelete`|`enable-definitive-delete`|boolean|false|when `true`, http DELETE cannot be rolled back|
-|`initialEvent`|-|[ChangeQueryPayload][change-query]|{pageSize: 25, pageNumber: 1}|in case of no `change-query` received within `botstrapTimout` milliseconds from connection to DOM, an initial [change-query][change-query] event with this payload will be thrown|
+|`initialEvent`|-|[ChangeQueryPayload][change-query]|\{pageSize: 25, pageNumber: 1\}|in case of no `change-query` received within `botstrapTimout` milliseconds from connection to DOM, an initial [change-query][change-query] event with this payload will be thrown|
 |`keepStateWhileDuplicating`|`keep-state-while-duplicating`|boolean|false|if `true` duplicate will keep the original record \_\_STATE\_\_|
 |`shouldIncludeProjections`|`should-include-projections`|boolean|true|should append projection when exporting from CRUD service|
 |`keepPageCount`|`keep-page-count`|boolean|false|should attempt to stay on current page after successful CRUD operation|

@@ -404,7 +404,7 @@ Visualization options concern any web component that is going to render a given 
 | `template`                    | [LocalizedText][localized-text] | template of how to visualize the value in the cell                                                |
 | `joinDelimiter`               | `string`                        | delimiter to visualize array items as a single string                                             |
 | `tag`                         | `string`                        | tag to use when embedding a custom component                                                      |
-| `properties`                  | { [x: string]: any }            | properties for the embedded custom component                                                      |
+| `properties`                  | \{ [x: string]: any \}            | properties for the embedded custom component                                                      |
 
 | `iconMap` option | values                    | description       |
 | ---------------- | ------------------------- | ----------------- |

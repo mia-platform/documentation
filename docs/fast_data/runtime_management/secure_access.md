@@ -126,7 +126,8 @@ corresponding section, each of them with an empty value.
 Filling the variables listed above allows to generate a complete configuration at deploy time. An example of such configuration for Okta
 can be fond in the panel below.
 
-<details><summary>Authentication Service | Configuration Example (with variables to be interpolated)</summary>
+<details>
+<summary>Authentication Service | Configuration Example (with variables to be interpolated)</summary>
 
 ```json title=config.json
 {
@@ -222,7 +223,8 @@ secret environment variables in the _Project Overview_ section:
 | CP_REDIS_USERNAME        | username of the Redis account to be employed by the authentication-service for accessing Redis                                                         |
 | CP_REDIS_PASSWORD        | password of the Redis account to be employed by the authentication-service for accessing Redis                                                         |
 
-<details><summary>Redis Auth Service | Configuration Example (with variables to be interpolated)</summary>
+<details>
+<summary>Redis Auth Service | Configuration Example (with variables to be interpolated)</summary>
 
 ```text title=redis.conf
 ## GENERIC ##
@@ -280,7 +282,8 @@ By default the `Fast Data Control Plane With Access Control` application creates
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
 collection definition ready for being imported, in case it may be necessary to move or replicate the collection in another Console project. 
 
-<details><summary>Control Plane Users Collection Definition (import ready)</summary>
+<details>
+<summary>Control Plane Users Collection Definition (import ready)</summary>
 
 ```json
 {
@@ -706,7 +709,8 @@ fd_control_plane_allow_edit {
 }
 ```
 
-<details><summary>Authorization Management Policies Tests</summary>
+<details>
+<summary>Authorization Management Policies Tests</summary>
 
 ```rego
 package policies
@@ -979,7 +983,8 @@ the needed indexes, which speeds up reading roles from the database.
 In case you would like to import the _roles_ collection in another project where Rönd is not active (for example a project [dedicated to users management](#tips)),
 here is provided the definition, which can be imported using the dedicated button in the _MongoDB CRUDs_ section in the _Design_ area.
 
-<details><summary>Control Plane Roles Collection Definition (import ready)</summary>
+<details>
+<summary>Control Plane Roles Collection Definition (import ready)</summary>
 
 ```json
 {
@@ -1174,7 +1179,8 @@ Eventually, once users (subjects) and roles are defined on the database, it is t
 the _bindings_ collection. Similarly to _roles_ collection, the collection is managed in Console by Rönd and it adopts the
 definition provided below:
 
-<details><summary>Control Plane Bindings Collection Definition (import ready)</summary>
+<details>
+<summary>Control Plane Bindings Collection Definition (import ready)</summary>
 
 ```json
 {
@@ -1463,7 +1469,8 @@ In case you would like to customize those pages here are provided their configur
 the roles and one for their bindings. These configuration can be loaded either as config map of [micro-lc](https://micro-lc.io/docs/) service
 or within the advanced tab of the corresponding page in the Composer.
 
-<details><summary>Control Plane Users Page</summary>
+<details>
+<summary>Control Plane Users Page</summary>
 
 ```json title=users-config.json
 {
@@ -1926,7 +1933,8 @@ or within the advanced tab of the corresponding page in the Composer.
 ```
 
 </details>
-<details><summary>Roles Page</summary>
+<details>
+<summary>Roles Page</summary>
 
 ```json title=roles-config.json
 {
@@ -2353,7 +2361,8 @@ or within the advanced tab of the corresponding page in the Composer.
 ```
 
 </details>
-<details><summary>Bindings Page</summary>
+<details>
+<summary>Bindings Page</summary>
 
 ```json title=bindings-config.json
 {

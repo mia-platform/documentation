@@ -22,7 +22,8 @@ The Projection Changes Schema is made of the following fields:
 * `identifier`: The projection changes identifier object that will be generated to match the single view document. Every key of the object will be a key of the identifier and every value of the object will be replaced with the `BASE_PROJECTION` documents found by the strategy
 
 
-<details><summary>Projection Changes Configuration</summary>
+<details>
+<summary>Projection Changes Configuration</summary>
 <p>
 
 ```json
@@ -57,7 +58,8 @@ each path that requires using a custom function should specify as identifier the
 where within squared brackets is provided the filename containing the custom function.
 
 
-<details><summary>Projection Changes Configuration with function loading</summary>
+<details>
+<summary>Projection Changes Configuration with function loading</summary>
 <p>
 
 ```json
@@ -87,7 +89,8 @@ As you can see, in this example we're referencing a file called `myCustomFunctio
 - `document`: the document of the *base projection* found by the strategy up to this point
 
 
-<details><summary>Custom function</summary>
+<details>
+<summary>Custom function</summary>
 <p>
 
 ```js

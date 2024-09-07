@@ -385,7 +385,8 @@ For more information regarding release stages, take a look at the [components li
 
 ## Examples
 
-<details><summary>Example Service configuration</summary>
+<details>
+<summary>Example Service configuration</summary>
 <p>
 
 ```json
@@ -499,7 +500,8 @@ For more information regarding release stages, take a look at the [components li
 </p>
 </details>
 
-<details><summary>Example Application configuration</summary>
+<details>
+<summary>Example Application configuration</summary>
 <p>
 
 ```json

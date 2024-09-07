@@ -114,7 +114,7 @@ key | example value | Comment
 `blocked` | false | bringing this field to **true** you can choose to block the collection. No one will be able to create new fields.
 `icon` | book | in this [link](https://fontawesome.com/icons) you will be able to see all the available icons to display in your menu
 `order` | 10 | indicates the order of a collection within a category. With 10 will be the first to appear. It is advisable to follow the tens rule here too.
-`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the FOO BAR property from associations and services. it will be written like this: {"idAssocServices": {"$ne": "FOO BAR"}}
+`baseQuery` | "" | base query allows you to apply a general filter of visibility - It must follow the rules of logical expressions. An example would be: to hide the FOO BAR property from associations and services. it will be written like this: \{"idAssocServices": \{"$ne": "FOO BAR"\}\}
 `highlight` | "" | in this string you can enter the name of a collection property (boolean only) that when it is true will be highlighted in the CMS.
 `confirmBeforeEdit` | "" | if true, enable double check before save
 `imageLinkBaseUrl` | "" | a custom URL used to replace the base URL

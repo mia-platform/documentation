@@ -29,7 +29,8 @@ Control Plane can be customized using the following environment variables:
 
 The Config Map is a JSON file that must adhere to a specific schema. Below, we outline the schema and provide an example.
 
-<details><summary>ConfigMap Schema</summary>
+<details>
+<summary>ConfigMap Schema</summary>
 <p>
 
 ```json
@@ -194,14 +195,14 @@ The Config Map is a JSON file that must adhere to a specific schema. Below, we o
                                             },
                                             "configuration": {
                                                 "type": "object",
-                                                "description": "Kafka driver configurations. See <https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html>",
+                                                "description": "Kafka driver configurations. See https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html",
                                                 "required": [
                                                     "bootstrap.servers"
                                                 ],
                                                 "properties": {
                                                     "bootstrap.servers": {
                                                         "type": "string",
-                                                        "description": "A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. See <https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html#bootstrap-servers>"
+                                                        "description": "A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. See https://docs.confluent.io/platform/current/installation/configuration/producer-configs.html#bootstrap-servers"
                                                     },
                                                     "client.id": {
                                                         "type": "string"
@@ -357,7 +358,7 @@ The Config Map is a JSON file that must adhere to a specific schema. Below, we o
                                 },
                                 "updates": {
                                     "type": "object",
-                                    "description": "When mongodb connection is direct, instead of a collection `watch` <https://www.mongodb.com/docs/manual/reference/method/db.collection.watch/>, the persistence layer polls the collection with a given `updates.millis` interval",
+                                    "description": "When mongodb connection is direct, instead of a collection `watch` https://www.mongodb.com/docs/manual/reference/method/db.collection.watch/, the persistence layer polls the collection with a given `updates.millis` interval",
                                     "properties": {
                                         "millis": {
                                             "default": 2000,
@@ -478,7 +479,8 @@ The Config Map is a JSON file that must adhere to a specific schema. Below, we o
 </p>
 </details>
 
-<details><summary>Example of ConfigMap</summary>
+<details>
+<summary>Example of ConfigMap</summary>
 <p>
 
 ```json

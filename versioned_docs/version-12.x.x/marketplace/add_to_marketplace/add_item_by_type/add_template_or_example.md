@@ -140,7 +140,8 @@ Here is some useful advice to strengthen your items:
  - **`.mia-platform/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
 
 
-<details><summary>Example of a Start From Code Template</summary>
+<details>
+<summary>Example of a Start From Code Template</summary>
 
 ```json
 {

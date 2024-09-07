@@ -322,7 +322,7 @@ sidebar_label: CHANGELOG
 
 ### Fixed
 
-- Removed module preload in production (<https://github.com/umijs/qiankun/issues/1957>)
+- Removed module preload in production (https://github.com/umijs/qiankun/issues/195>)
 - Fixed editor height
 
 ### Changed

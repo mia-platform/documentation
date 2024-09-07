@@ -116,7 +116,7 @@ Each cell of "status" column includes a Chip component having label and color-co
 | property   | attribute | type                            | default | description             |
 | ---------- | --------- | ------------------------------- | ------- | ----------------------- |
 | `value`    | -         | [LocalizedText][localized-text] | -       | status value.           |
-| `valueMap` | -         | {[value: string]: any;}         | -       | map of possible values. |
+| `valueMap` | -         | \{[value: string]: any;\}       | -       | map of possible values. |
 
 ### Listens to
 

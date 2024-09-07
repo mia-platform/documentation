@@ -337,8 +337,8 @@ This is accomplished by emitting either a [create-data-with-file] or an [update-
 | `allowNavigation` | `allow-navigation` | boolean \| 'show-editor' | true | When true, objects and arrays are displayed as a clickable label which allows navigating to nested objects and arrays if a dataSchema is specified. When 'show-editor', the navigation is allowed, and the object/array fields are displayed in a JSON editor. When false, the navigation is not allowed, and the object/array fields are displayed in a JSON editor |
 | `width` | - | string \| number | - | Width of the drawer |
 | `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | Max items to fetch on regex live search |
-| `customLabels` | - | [CustomLabels](#customlabels) \| {insert: CustomLabels, update: CustomLabels} | - | Custom localized texts shown as title and CTA button label |
-| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| {onSave: RequireConfirmOpts, onSave: RequireConfirmOpts} | false | Whether or not the component should request confirmation before closing and/or before saving |
+| `customLabels` | - | [CustomLabels](#customlabels) \| \{insert: CustomLabels, update: CustomLabels\} | - | Custom localized texts shown as title and CTA button label |
+| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| \{onSave: RequireConfirmOpts, onSave: RequireConfirmOpts\} | false | Whether or not the component should request confirmation before closing and/or before saving |
 
 
 #### RequireConfirmOpts

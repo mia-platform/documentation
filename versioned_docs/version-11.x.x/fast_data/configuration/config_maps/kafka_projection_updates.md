@@ -17,7 +17,8 @@ The Kafka Projection Updates is made of the following fields:
 - `strategy`: Strategy you want to use onto this projection. You can choose between `__automatic__` and `__fromFile__`
 
 
-<details><summary>Projection Updates Configuration</summary>
+<details>
+<summary>Projection Updates Configuration</summary>
 
 <p>
 
@@ -46,7 +47,8 @@ There will be different behaviors based on the strategy value:
 
   Here's an example of what that file could look like (let's say our `CUSTOM_STRATEGY` is called `myCustomStrategy`):
 
-  <details><summary>Custom Strategy</summary>
+<details>
+<summary>Custom Strategy</summary>
 
   <p>
 
@@ -58,4 +60,4 @@ There will be different behaviors based on the strategy value:
   ```
 
   </p>
-  </details>
+</details>

@@ -14,7 +14,7 @@ The template comes with a set of APIs already integrated with Fido systems.
 
 This API performs a get request to Fido system to check if the user is authenticated correctly. Client information is given by the environment variables `APIKEY_FIDO`. The service calls the Fido API and returns its response.
 
-### GET - fido/{customerId}
+### GET - fido/\{customerId\}
 
 This API allows to retrieve a user that was previously data enriched/valuated or validated.
 

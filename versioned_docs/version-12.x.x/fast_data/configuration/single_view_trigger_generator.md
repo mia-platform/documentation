@@ -122,7 +122,8 @@ Mind that only one producer and consumer must be configured at a time so the ser
 
 At the moment you can only configure your consumer with kafka which will read `pr-update` messages from the Real-Time Updater. To configure it you must follow the JsonSchema specification below.
 
-<details><summary>Kafka consumer config JsonSchema</summary>
+<details>
+<summary>Kafka consumer config JsonSchema</summary>
 <p>
 
 ```json
@@ -254,7 +255,8 @@ For the producers you can choose between two options: Kafka or MongoDB ([`sv-tri
 
 With MongoDB you will save Projection Changes on the DB just like the Real-Time Updater does. With Kafka instead it will send `sv-trigger` messages which will also be read by the Single View Creator by changing its configuration to do so. Here's the configuration specification for both:
 
-<details><summary>MongoDB producer config JsonSchema</summary>
+<details>
+<summary>MongoDB producer config JsonSchema</summary>
 <p>
 
 ```json
@@ -274,7 +276,8 @@ With MongoDB you will save Projection Changes on the DB just like the Real-Time 
 </p>
 </details>
 
-<details><summary>Kafka producer config JsonSchema</summary>
+<details>
+<summary>Kafka producer config JsonSchema</summary>
 <p>
 
 ```json
@@ -484,4 +487,3 @@ Below you can find a list of example configurations, based on the two different 
 
 </p>
 </details>
-

@@ -158,7 +158,8 @@ The **listeners** field of an application is an Object where the object `key` is
 
 ## Example of an Application configuration
 
-<details><summary>Click to expand an example of Application configuration</summary>
+<details>
+<summary>Click to expand an example of Application configuration</summary>
 <p>
 
 ```json
@@ -391,7 +392,8 @@ The **listeners** field of an application is an Object where the object `key` is
 </details>
 
 
-<details><summary>Example Application with Envoy and Listeners</summary>
+<details>
+<summary>Example Application with Envoy and Listeners</summary>
 <p>
 
 ```json

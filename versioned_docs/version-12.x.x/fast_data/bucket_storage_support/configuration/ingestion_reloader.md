@@ -46,7 +46,8 @@ In order to connect and authenticate correctly with the bucket and Kafka, please
 
 ## Routes
 
-<details><summary>Openapi file of the Ingestion Reloader</summary>
+<details>
+<summary>Openapi file of the Ingestion Reloader</summary>
 <p>
 
 ```yaml
@@ -330,4 +331,3 @@ The function performs custom filtering logic on the payload, checking if a speci
 If the condition is met, the function returns `true`; otherwise, it returns `false`.
 
 Please note that this is just an example, and you can customize the `check` function in the script to implement your own custom filtering logic based on the requirements of your re-ingestion process.
-

@@ -1683,7 +1683,6 @@
           "link": {
             "id": "marketplace/add_to_marketplace/contributing_overview",
             "type": "doc"
-
           },
           "items": [
             {
@@ -1823,14 +1822,38 @@
         "id": "release-notes/versions"
       },
       "items": [
-        { "id": "release-notes/v13.1.0", "type": "doc" },
-        { "id": "release-notes/v13.0.6", "type": "doc" },
-        { "id": "release-notes/v13.0.5", "type": "doc" },
-        { "id": "release-notes/v13.0.4", "type": "doc" },
-        { "id": "release-notes/v13.0.3", "type": "doc" },
-        { "id": "release-notes/v13.0.2", "type": "doc" },
-        { "id": "release-notes/v13.0.1", "type": "doc" },
-        { "id": "release-notes/v13.0.0", "type": "doc" }
+        {
+          "id": "release-notes/v13.1.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.6",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.5",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.4",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.3",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.0",
+          "type": "doc"
+        }
       ]
     },
     {

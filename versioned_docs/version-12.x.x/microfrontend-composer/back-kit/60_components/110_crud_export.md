@@ -110,7 +110,7 @@ Otherwise, a result event is emitted right after the download request has been i
 | property                   | attribute                    | type                                         | default | description                                                                     |
 | -------------------------- | ---------------------------- | -------------------------------------------- | ------- | ------------------------------------------------------------------------------- |
 | `basePath`                 | -                            | string                                       | -       | the URL base path to which to send HTTP requests                                |
-| `headers`                  | -                            | {[key: string]: string}                      | -       | headers to add when an HTTP request is sent                                     |
+| `headers`                  | -                            | \{[key: string]: string\}                      | -       | headers to add when an HTTP request is sent                                     |
 | `credentials`              | -                            | 'include'\|'omit'\|'same-origin'             | -       | credentials policy to apply to HTTP requests                                    |
 | `dataSchema`               | -                            | [ExtendedJSONSchema7Definition][data-schema] | -       | data-schema describing which field to retrieve from CRUD collection             |
 | `nativeDownload`           | `native-download`            | boolean                                      | -       | when `true` it skips frontend blob parsing and uses browser native download API |

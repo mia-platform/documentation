@@ -739,7 +739,7 @@ On the contrary, actions of type `event` prompt a result event to be emitted fro
 
 | property | attribute | type | default | description |
 |----------|-----------|------|---------|-------------|
-|`content`| - |[LocalizedText][localization]|{}|button content |
+|`content`| - |[LocalizedText][localization]|\{\}|button content |
 |`danger`|`danger`|boolean| - |danger flag |
 |`disableOnAction`|`disable-on-action`|boolean|false|configures the button to be disabled while action is in progress |
 |`disabled`|`disabled`|boolean|false|button disabled property |

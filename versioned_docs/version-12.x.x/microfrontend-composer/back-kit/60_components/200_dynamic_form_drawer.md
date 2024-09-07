@@ -1173,12 +1173,12 @@ Note how each entry of array fields is singularly matched against the query. Onl
 | `allowNavigation` | `allow-navigation` | boolean \| 'show-editor' | true | When true, objects and arrays are displayed as a clickable label which allows navigating to nested objects and arrays if a dataSchema is specified. When 'show-editor', the navigation is allowed, and the object/array fields are displayed in a JSON editor. When false, the navigation is not allowed, and the object/array fields are displayed in a JSON editor |
 | `width` | - | string \| number | - | Width of the drawer |
 | `omitSubmit` | `omit-submit` | boolean | false | Whether or not to include the default submit button |
-| `actions` | - | [ButtonWithClose](#buttonwithclose)[] \| {insert: ButtonWithClose[]; select: ButtonWithClose[]} | - | Actions added as buttons to the footer |
+| `actions` | - | [ButtonWithClose](#buttonwithclose)[] \| \{insert: ButtonWithClose[]; select: ButtonWithClose[]\} | - | Actions added as buttons to the footer |
 | `liveSearchItemsLimit` | `live-search-items-limit` | number | 10 | Max items to fetch on regex live search |
-| `customLabels` | - | [CustomLabels](#customlabels) \| {insert: CustomLabels, update: CustomLabels} | - | Custom localized texts shown as title and CTA button label |
-| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| {onSave: RequireConfirmOpts, onSave: RequireConfirmOpts} | false | Whether or not the component should request confirmation before closing and/or before saving |
-| `onSuccess` | - | [Action][action][] \| {insert: Action[], update: Action[]} | - | Action executed after successful submit |
-| `onFail` | - | [Action][action][] \| {insert: Action[], update: Action[]} | - | Action executed after failing submit |
+| `customLabels` | - | [CustomLabels](#customlabels) \| \{insert: CustomLabels, update: CustomLabels\} | - | Custom localized texts shown as title and CTA button label |
+| `requireConfirm` | - | boolean \| [RequireConfirmOpts](#requireconfirmopts) \| \{onSave: RequireConfirmOpts, onSave: RequireConfirmOpts\} | false | Whether or not the component should request confirmation before closing and/or before saving |
+| `onSuccess` | - | [Action][action][] \| \{insert: Action[], update: Action[]\} | - | Action executed after successful submit |
+| `onFail` | - | [Action][action][] \| \{insert: Action[], update: Action[]\} | - | Action executed after failing submit |
 | `lookupQueries` | - | [LookupQueries](#lookupqueries) | - | Extra queries when fetching options for lookup fields in [views](#working-with-views) |
 | `conditionalOptions` | - | [ConditionalOption](#conditionaloption)[] | - | Allows specifying dynamic conditions for form-options (hidden / disabled / readonly) to be applied |
 | `conditionalValues` | - | [Condition](#condition)[] | - | Allows specifying dynamic conditions for resetting field |
