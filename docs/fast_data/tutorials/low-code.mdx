@@ -821,7 +821,7 @@ Here's the Low-Code representation of the aggregation:
     - `city` is mapped to the field `city` from the `registry` projection.
     - `state` is mapped to the field `state` from the `registry` projection.
     - `orders` is mapped to referred to the dedicated `ORDERS` configuration, where:
-      - `joinDependency` is used to define that this dependency is the result of a 1:N relation (1 registry to N orders), so to define that each element of `orders` will have its own `order` dependency
+      - `joinDependency` is used to define that this dependency is the result of a 1&#58;N relation (1 registry to N orders), so to define that each element of `orders` will have its own `order` dependency
       - `dependencies` are the dependencies that will be used to calculate the order list:
         - `order`  is the dependency that will be used to get the order information directly from the Projection, where the condition `registry_to_order` is contained in the ER Schema and will be used as a query to the get the `orders` documents.
       - `mapping` defines the relation between single view fields and projection fields, using the `dependency` defined before

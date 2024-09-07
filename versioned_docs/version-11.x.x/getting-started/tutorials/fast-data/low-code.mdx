@@ -699,7 +699,7 @@ in case you want to reset the aggregation by changing the Base Projection, you h
     - **The "state"** is the field state from the Registry projection.
     - **The "orders"** is the calculated field that will be used to get the order list from the Order Projection.
 - **"ORDERS"** is the configMap that will be used to explain how the order list will be calculated.
-  - **The "joinDependency"** is used to define that this dependency is a 1:N (1 registry to N orders), and to define that the property returned will be an array of "order" objects
+  - **The "joinDependency"** is used to define that this dependency is a 1&#58;N (1 registry to N orders), and to define that the property returned will be an array of "order" objects
   - **The "dependencies"** are the dependencies that will be used to calculate the order list.
     - **The "order"**  is the dependency that will be used to get the order information directly from the Projection, with the condition explained in the ER-Schema (registry_to_order) as a search condition to the Projection documents.
   - **The "mapping"** are the fields from the Order Projection that will be used to calculate the order fields in the array of orders returned from the ORDERS config.
