@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.3] - 2024-09-06
+
+### Updated
+
+- Template is now optional when creating a new compose page
+
 ## [1.9.2] - 2024-07-25
 
 ### Fixed
@@ -52,7 +58,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## [1.8.1] - 2024-06-11
 
-### Changed
+###  Changed
 
 - Configurator stays in loading state if service not found
 
@@ -94,7 +100,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 - Dynamic routes removed from router.json (Dynamic Sidebar implementation)
 
-### Fixed
+###  Fixed
 
 - Fixed edit page modal title copy
 
@@ -160,7 +166,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 - Changed doc links
 - Hashed build entrypoint `index.js` and `css` files
 
-### Fixed
+###  Fixed
 
 - Editors correctly hints and validates content against schemas
 - `aclExpression` property is now supported by editors schema validation
@@ -171,7 +177,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## [1.5.0] - 2023-10-20
 
-### Versioning
+###  Versioning
 
 - `BACK_KIT_VERSION` to `1.4.4`
 - `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.2`
@@ -186,7 +192,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 - Added support for `aclExpression` property of components and components object properties
 
-### Versioning
+###  Versioning
 
 - `BACK_KIT_VERSION` to `1.4.1`
 - `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.1`
