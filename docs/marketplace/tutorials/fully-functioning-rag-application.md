@@ -70,7 +70,7 @@ The next step is to configure the _AI RAG Template_ service. From the design sec
 Since this is information that you don't want to have visible to anyone, it is preferable to include this information as [project variables](/console/project-configuration/manage-environment-variables/index.md).
 :::
 
-After updating the environment variables of the service, it is time to update the config map: click on the _ConfigMaps & Secrets_ tab and you will be redirected to the Config Map configuration page.
+After updating the environment variables of the _AI RAG Template_ service, it is time to update the config map: click on the _ConfigMaps & Secrets_ tab and you will be redirected to the Config Map configuration page.
 
 The _AI RAG Template_ is created with a precompiled config map that includes all the required keys, but the values need to be included.
 
