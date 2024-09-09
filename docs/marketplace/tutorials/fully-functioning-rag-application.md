@@ -148,4 +148,4 @@ Check the logs of the _AI RAG Template_. At the very beginning, it should say wh
 
 ### The frontend is not visible.
 
-Make sure you have correctly configured the ingress route, for example, with Traefik. You can refer to the [documentation](https://docs.mia-platform.eu/docs/infrastructure/paas/tools/traefik) for more information on how to configure Traefik.
+Make sure you have correctly configured the ingress route, for example, with Traefik (you can refer to the [documentation](/infrastructure/paas/tools/traefik) for more information on how to configure it).
