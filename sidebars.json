@@ -1099,11 +1099,15 @@
       },
       "items": [
         {
-          "id": "fast_data/runtime_management/control_plane",
+          "id": "fast_data/runtime_management/control_plane_frontend",
           "type": "doc"
         },
         {
-          "id": "fast_data/runtime_management/control_plane_frontend",
+          "id": "fast_data/runtime_management/control_plane_fabric_bff",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane",
           "type": "doc"
         },
         {

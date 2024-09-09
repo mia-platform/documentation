@@ -1,77 +1,130 @@
 ---
 id: control_plane_frontend
-title: Control Plane Frontend
-sidebar_label: Frontend
+title: Control Plane UI
+sidebar_label: Control Plane UI
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Runtime Management has a dedicated frontend that interacts with [Control Plane](/fast_data/runtime_management/control_plane.mdx).
+Runtime Management has a dedicated frontend that interacts with [Control Plane](/fast_data/runtime_management/control_plane.mdx) via the [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx).
 
-This frontend:
+This frontend enable the user to:
 
-- retrieves pipelines information, to show them in dedicated canvas;
-- opens web socket connections to the Control Plane, to receive updates about the state of a given pipeline;
-- sends JSON-RPC commands to the Control Plane, after the user interacts with a pipeline to pause or resume one or more data streams.  
+- manage runtimes views;
+- retrieve pipelines details;
+- visualize pipelines structure and receive live updates about the state of the underlying Fast Data Runtime;
+- execute actions on pipelines state, that is pausing or resuming one or more data streams;
 
 ## Configuration
 
-By default, the Control Plane application exposes its frontend over the `/` base path. 
+In this section is explained how the Control Plane service should be configured in order to properly satisfy the requests.
 
-This value can be overridden by using the environment `BASE_PATH` with `/<your path>/` as value.
+### Environment Variables
 
-On the Endpoint section, remember to use `/<your path>` as [rewrite base path](/development_suite/api-console/api-design/endpoints.md#about-rewrite-base-path).
+Control Plane UI can be customized using the following environment variables:
+
+| Name         | Required | Description                                                  | Default Value     |
+|--------------|----------|--------------------------------------------------------------|-------------------|
+| `BASE_PATH`  | &check;  | Path prefix to be added to all the frontend resources        | `/control-plane/` |
+| `COMPANY_ID` | &check;  | The identifier of the company from which runtimes are loaded |                   |
+
+As effect of them, by default the Control Plane application exposes its frontend over the `/control-plane/` base path.
+This value can be overridden by changing the environment variable `BASE_PATH` with `/<your-base-path>/` as value.
+
+Bear in mind that changing the `BASE_PATH` environment variable requires to change also the [rewrite base path](/development_suite/api-console/api-design/endpoints.md#about-rewrite-base-path) of exposed endpoint to `/<your-base-path>`.
+
+:::info
+The `COMPANY_ID` environment variable is quite relevant, since it indicates which projects can be potentially accessed and managed by Control Plane application.
+To retrieve it, either contact your Company Owner or open your Company Overview page and observe the URL displayed in the browser search bar.
+The `company-id` value is the one set in the path `<console-base-url>/tenants/:company-id/projects`.
+:::
+
+### Endpoints
+
+In order to allow incoming traffic from outside to Control Plane Frontend, it is necessary to configure the main service endpoint. This can be configured in the `Endpoints` page of Console Design section, as explained [here](/development_suite/api-console/api-design/endpoints.md).
+
+| Endpoint         | Rewrite Base Path | Microservice       | Description                                 |
+|------------------|-------------------|--------------------|---------------------------------------------|
+| `/control-plane` | `/control-plane`  | `control-plane-fe` | Base path from which the frontend is served |
 
 :::tip
-Control Plane frontend can also be embedded as an iFrame, to be used as an extension of Mia Platform Console.
-For more details on how to setup it in the Runtime area of the console, please read the dedicated [Console Extension Documentation](/console/console-extensibility/overview.md).
+Please, ensure that:
+- in case `BASE_PATH` environment variable has been changed on the service, the Rewrite Base path must be changed accordingly
+- in case the security layer is enabled, remember to flag the `Authetication required` checkbox
+:::
 
-Here is provided an example of payload specific for the Fast Data Runtime Management, which can be employed in [extension registration API](/console/console-extensibility/registration.md#how-to-register-your-extension):
+### Enable Websocket support
 
-```json
-{
-    "name": "Fast Data Control Plane",
-    "contexts": [
-        "project"
-    ],
-    "description": "This extension enables teams to monitor and interact with Fast Data Runtime deployed in a Console project",
-    "entry": "https://<address-of-your-project-exposing-control-plane>",
-    "extensionType": "iframe",
-    "routes": [
-        {
-            "id": "fast-data-runtime",
-            "locationId": "runtime",
-            "renderType": "category",
-            "labelIntl": {
-                "en": "Fast Data Runtime",
-                "it": "Fast Data Runtime"
-            }
-        },
-        {
-            "id": "fast-data-control-plane",
-            "locationId": "runtime",
-            "parentId": "fast-data-runtime",
-            "destinationPath": "/<your path>",
-            "icon": {
-                "name": "PiAirTrafficControl"
-            },
-            "labelIntl": {
-                "en": "Control Plane",
-                "it": "Control Plane"
-            }
-        }
-    ]
+Control Plane Frontend relies on websocket for providing live updates to displayed data. By default, [websocket protocol upgrade](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection) is not supported by API Gateways that can be found in Mia-Platform Marketplace.
+Consequently, it is necessary to carry out a manual update of your API Gateway configuration in Console [Advanced Section](/development_suite/api-console/advanced-section/index.md).
+
+Below are provided the configuration for the API Gateways that can be configured out of the box in Console. These configurations both use endpoint `/fast-data/feedback` as the one
+where the websocket communications should be enabled. In case `Fabric BFF` service exposes the feedback endpoint elsewhere, please update the configuration accordingly, if needed.
+
+For more details on the selected endpoint, please read the [endpoint paragraph](/fast_data/runtime_management/control_plane.mdx#endpoints) of Control Plane service documentation.
+
+#### Envoy
+
+When using Envoy as API Gateway the additional configuration for supporting websocket protocol upgrade needs to be inserted in the file `api-gateway-envoy/patches.yml`.
+
+```yaml title=api-gateway-envoy/patches.yml
+- listener_name: frontend
+  # https://www.envoyproxy.io/docs/envoy/v1.30.1/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-msg-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-upgradeconfig
+  'filter_chains.0.filters.0.typed_config.upgrade_configs':
+    upgrade_type: "websocket"
+```
+
+:::caution
+Please notice that the above configuration:
+- affects only the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
+-  is specific for the `frontend` listener of Envoy. In case it has been decided to expose the Fast Data Control Plane
+  system under a [different listener](/development_suite/api-console/api-design/listeners.md), take into account of updating the configuration accordingly.
+:::
+
+#### Nginx
+
+When using Nginx as API Gateway the additional configuration for supporting websocket protocol upgrade needs to be inserted in the file `api-gateway/server-extension.conf`.
+
+```nginx title=api-gateway/server-extension.conf
+location /fast-data/feedback {
+    proxy_pass http://$proxy_name$proxy_url;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection upgrade;
 }
 ```
 
-Finally, remember also to properly setup Control Plane endpoints as [described here](/fast_data/runtime_management/control_plane.mdx#endpoints).
-:::
+### Embed as Console Extension
+
+Fast Data Control Plane UI can be embedded as an extension of Mia-Platform Console using [Mia-Platform Platforge](/release-notes/mia-platform-v13.mdx#platforge-enhance-extensibility).
+In this manner, Control Plane UI can be accessed seamlessly through the same interface without requiring your Console users to open another application in their browser.
+
+In order to achieve so, Mia-Platform Console offers an integrated tool for [managing extensions](/console/company-configuration/extensions.md) that streamlines the registration procedure.
+The main information needed for registering Control Plane UI as extension is the production URL where the frontend is served. In case it is not already known, it should be possible to retrieve it
+by following these instructions:
+
+- select your project where the Fast Data Control Plane application has been configured
+- navigate to `Overview > Environments` page and select your production environment
+- from the opened page, press the edit button, select and copy the `Project URL`
+- combine the configured Control Plane Frontend base path with the URL obtained in the previous step
+
+Furthermore, since at the moment a Console Extension can be added <u>only as an iFrame</u>, it is necessary to relax the Control Plane Frontend endpoint configuration to support it in Console. As a result,
+the API Gateway in front of the Control Plane Frontend would add the proper value to the `X-Frame-Options` header. Indeed, such header is set to `SAMEORIGIN` by default to prevent embedding deployed applications in other websites.
+
+To edit the header value, please head to the `Endpoints` page and select the main endpoint for Control Plane Frontend. Within the `Endpoint Settings` card, select the `Advanced` tab and then choose `Any Origin` from `Iframe embedding options`, as shown in the following image:
+
+![Endpoint Any Origin](./img/endpoint_any_origin.png)
 
 ## Pipelines Overview
 
-When user accesses Control Plane frontend, an overview section shows the list of Fast Data pipelines released on that runtime environment.  
-
+When users access Control Plane frontend, an overview section shows the list of Fast Data pipelines released on that runtime environment.
 In particular, two types of pipelines are shown: [Domain pipelines](/fast_data/runtime_management/overview.mdx#domain-pipeline) and [Single View pipelines](/fast_data/runtime_management/overview.mdx#single-view-pipeline).
 
 ![Pipelines Overview](img/pipelines_overview.png)
@@ -82,7 +135,7 @@ Once clicked on a pipeline, the user will be redirected to the pipeline detail p
 
 ## States of Data Streams
 
-In this section we are going to describe in detail how the different states of the Fast data system at runtime are represented in the pipeline, and what actions the user can take to interact on the pipeline.  
+In this section we are going to describe in detail how the different states of the Fast data system at runtime are represented in the pipeline, and what actions the user can take to interact with the pipeline.
 
 Along a pipeline, it is possible to identify different graphical elements useful for representing the various states of your data streams 
 in real-time and for highlighting architectural aspects of your Fast Data configuration.

@@ -77,6 +77,7 @@ Among the services provided by both applications, there are the two services in 
 
 - [`control-plane`](/fast_data/runtime_management/control_plane.mdx), which is responsible for dispatching control actions to the registered Fast Data runtimes and receiving from them the feedbacks to display in the dedicated UI
 - [`control-plane-fe`](/fast_data/runtime_management/control_plane_frontend.mdx), which exposes the UI for visualizing Fast Data runtimes, their state and interact with them
+- [`fabric-bff`](/fast_data/runtime_management/control_plane_fabric_bff.mdx), which is in charge of processing requests for Control Plane made by the corresponding frontend
 
 Please remember that, in order to properly access Fast Data Runtime Management application, it is necessary to fill in all the necessary configurations the services require.
 
@@ -94,6 +95,16 @@ Its main responsibilities are
 - forward collected feedbacks to the main Control Plane instance so that user can visualize the updated state
 
 The Control Plane Operator is available from the Mia-Platform Marketplace as a plugin, which comes with a blueprint of the configuration to speed up its setup.
+
+---
+## Architecture
+
+In the diagram below is shown how the different services are linked together. In particular, the Control Plane FE connects with the main
+Control Plane service via both REST APIs and Websocket, while Control Plane and Control Plane Operators communicate through GRPC channels.
+
+In particular, in the Data Fabric Project is highlighted which components the Fast Data Control Plane applications releases.
+
+![Control Plane solution architecture](./img/control_plane_arch.svg)
 
 ---
 
@@ -262,8 +273,10 @@ Now, you are equipped with the basic concepts for understanding how Fast Data Ru
 
 Here are some useful links to start adopting Runtime Management features into your Fast Data solution:
 
-- visit the dedicated [documentation page](/fast_data/runtime_management/control_plane.mdx) for configuring the Control Plane service to your specific needs;
 - visit the dedicated [documentation page](/fast_data/runtime_management/control_plane_frontend.mdx) to learn how to interact with the frontend provided by the Runtime Management;
+- visit the dedicated [documentation page](/fast_data/runtime_management/control_plane.mdx) for configuring the Control Plane service to your specific needs;
+- visit the dedicated [documentation page](/fast_data/runtime_management/control_plane_fabric_bff.mdx) for configuring the Fabric BFF service to your specific needs;
+- visit the dedicated [documentation page](/fast_data/runtime_management/control_plane_operator.mdx) for configuring the Control Plane Operator service to your specific needs;
 - visit the [workload section](/fast_data/runtime_management/workloads.mdx) to learn how to let new or existing Fast Data microservices interact with the Control Plane;
 - visit the [guide about secure access](/fast_data/runtime_management/secure_access.md) if you want to have your Control Plane managed through authorization mechanisms;
 - visit the [compatibility matrix](/fast_data/runtime_management/compatibility_matrix.md) to check whether your infrastructure and Fast Data services are already equipped to support Fast Data Runtime Management.
