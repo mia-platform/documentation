@@ -107,7 +107,7 @@ More specifically, here is a detailed list of the meaning of each property:
 - the `vectorStore.collectionName` is the name of the collection where the embeddings will be saved
 - the `vectorStore.indexName` is the name of the [MongoDB Search Vector Index](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/), with `vector_index` as suggested name; this is a particular index that the service will automatically create or update at the startup
 - the `vectorStore.relevanceScoreFn` is the name of the _similarity search function_ used to retrieve the embedding documents; MongoDB includes three different available functions: `cosine` (suggested), `euclidean` and `dotProduct`
-- the `vectorStore.embeddingKey` is the name of the field where to save the embedding of a single document, in the shape of a multidimensional array; we suggest using the default value `embedding`
+- the `vectorStore.embeddingKey` is the name of the field where the embeddings of a single document are saved, in the shape of a multidimensional array; we suggest using the default value `embedding`
 - the `vectorStore.textKey` is the name of the field that contains the original text used to be transformed into embeddings, and that will be used to help the chatbot return the answer; we suggest using the default value `text`
 - the `vectorStore.maxDocumentsToRetrieve` is the maximum number of documents that will be extracted and used to help the chatbot return the answer; the default value is `3`, but it is usually suggested to use a value between `2` and `5`, depending on how big the collection of the embeddings is
 
