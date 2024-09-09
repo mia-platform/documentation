@@ -46,7 +46,7 @@ First, search for and select the **API Documentation Aggregator**. This will ins
 The [API Documentation Aggregator](/runtime_suite_applications/api-documentation-aggregator/10_overview.md) is not required for the chatbot to function, but it is recommended for using the _AI RAG Template_ APIs to generate the embeddings. You can also refer to the instructions [in this tutorial](/console/tutorials/configure-marketplace-components/api-portal.mdx).
 :::
 
-Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (using the existing one with the available listener), the _AI RAG Template_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
+Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (you can use the previously created one with the available listener), the _AI RAG Template_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
 
 ![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
