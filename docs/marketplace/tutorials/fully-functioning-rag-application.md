@@ -155,7 +155,7 @@ It is a good idea to check the service logs to ensure that everything is progres
 
 ## 4. Enjoy
 
-Once the process is over, there's no need to re-deploy or restart any service: after a few moments, the MongoDB Vector Index will be updated and the frontend application is ready to give us meaningful answers based on the embeddings generated.
+Once the process is over, there's no need to re-deploy or restart any service: after a few moments, the MongoDB Vector Index will be updated and the frontend application will be ready to give us meaningful answers based on the generated embeddings.
 
 ![Assistant Playground working](../img/assistant-playground-working.png)
 
