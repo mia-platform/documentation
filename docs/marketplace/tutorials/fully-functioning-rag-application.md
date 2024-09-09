@@ -165,7 +165,7 @@ Once the process is over, there's no need to re-deploy or restart any service: a
 
 Check the logs of the _AI RAG Template_. At the very beginning, it should say whether the MongoDB Vector Search Index has been created/updated or if it failed for any reason (e.g. database temporarily not accessible or the collection does not exists yet). In any case the service will start.
 
-You may need to restart the pod of the service manually create/update the index.
+You may need to restart the service pod or manually create (or update) the index.
 
 ### The frontend is not visible
 
