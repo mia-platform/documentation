@@ -6,9 +6,9 @@ sidebar_label: Create a fully functioning RAG application
 
 In this tutorial, we will learn how to create a fully functioning RAG application in a Mia-Platform project in just a few minutes. We will cover the setup of the necessary services and the generation of embeddings from any webpage. This will allow us to easily set up a chatbot that is ready to assist and provide help on the subject.
 
-To accomplish this, we will utilize the Marketplace application called "AI RAG Chat". This application includes the "AI RAG Template", which leverages the APIs provided by [OpenAI](https://openai.com/) to create a Chatbot. Additionally, we will use the "AI RAG Chat", a small frontend application written in React that provides a quick chat system to communicate with the service.
+To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes the **AI RAG Template**, which leverages the APIs provided by [OpenAI](https://openai.com/) to create a Chatbot. Additionally, we will use the **AI RAG Template Chat**, a small frontend application written in React that provides a quick chat system to communicate with the service.
 
-Furthermore, we will install the "API Documentation Aggregator" application and the "API Portal" from the templates. These will enable us to easily send HTTP requests to the AI RAG Template service in order to generate the embeddings.
+Furthermore, we will install the **API Documentation Aggregator** application and the **API Portal** from the templates. These will enable us to easily send HTTP requests to the AI RAG Template service in order to generate the embeddings.
 
 The prerequisites for this tutorial are as follows:
 
@@ -21,17 +21,17 @@ We start a new project by creating two applications: the **API Documentation Agg
 
 To begin, navigate to the design section and click on _Applications_ in the sidebar. Then, select _Create new Application_.
 
-First, search for and select the **API Documentation Aggregator**. This will install the [_API Gateway_](runtime_suite/api-gateway/10_overview.md) and the [_Swagger Aggregator_](runtime_suite/swagger-aggregator/10_overview.md), along with several endpoints to expose the Swagger UI for viewing the APIs exposed by the configured services and retrieving the OpenAPI compliant schema.
+First, search for and select the **API Documentation Aggregator**. This will install the [_API Gateway_](/runtime_suite/api-gateway/10_overview.md) and the [_Swagger Aggregator_](/runtime_suite/swagger-aggregator/10_overview.md), along with several endpoints to expose the Swagger UI for viewing the APIs exposed by the configured services and retrieving the OpenAPI compliant schema.
 
 :::note
-The [API Documentation Aggregator](runtime_suite_applications/api-documentation-aggregator/10_overview.md) is not required for the chatbot to function, but it is recommended for using the _AI RAG Template_ APIs to generate the embeddings. You can also refer to the instructions [in this tutorial](console/tutorials/configure-marketplace-components/api-portal.mdx).
+The [API Documentation Aggregator](/runtime_suite_applications/api-documentation-aggregator/10_overview.md) is not required for the chatbot to function, but it is recommended for using the _AI RAG Template_ APIs to generate the embeddings. You can also refer to the instructions [in this tutorial](/console/tutorials/configure-marketplace-components/api-portal.mdx).
 :::
 
 Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (using the existing one with the available listener), the _AI RAG Template_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
 
 ![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
-Finally, we add the [API Portal](runtime_suite/api-portal/10_overview.md). If it is not already included in the project, click on _Microservices_ menu in the sidebar, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
+Finally, we add the [API Portal](/runtime_suite/api-portal/10_overview.md). If it is not already included in the project, click on _Microservices_ menu in the sidebar, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
 
 Once you have created these services, you can safely save the configuration.
 
@@ -48,7 +48,7 @@ The next step is to configure the _AI RAG Template_ service. From the design sec
 :::
 
 :::warning
-Since this is information that you don't want to have visible to anyone, it is preferable to include this information as [project variables](console/project-configuration/manage-environment-variables/index.md).
+Since this is information that you don't want to have visible to anyone, it is preferable to include this information as [project variables](/console/project-configuration/manage-environment-variables/index.md).
 :::
 
 After updating the environment variables of the service, it is time to update the config map: click on the _ConfigMaps & Secrets_ tab and you will be redirected to the Config Map configuration page.
