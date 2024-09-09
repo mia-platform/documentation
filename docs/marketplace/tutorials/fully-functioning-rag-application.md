@@ -141,7 +141,7 @@ Let's try with part of the Mia-Platform documentation:
 ```json
 {
     "url": "https://docs.mia-platform.eu/docs/fast_data/what_is_fast_data",
-    "filterPath": "https://docs.mia-platform.eu/docs/fast-data"
+    "filterPath": "https://docs.mia-platform.eu/docs/fast_data"
 }
 ```
 
