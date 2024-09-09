@@ -122,7 +122,7 @@ To see the list of all the APIs exposed by the configured services, we can go to
 
 The `POST api/embeddings/generate` API allows us to generate embeddings starting from a webpage. The service will download the page, extract all the text, and generate embeddings from it. It will also search for links on the page and recursively generate embeddings from the linked pages that have the same domain and follow the specified filter path.
 
-Generating embeddings is an asynchronous task, meaning that the response is returned immediately, but the generation process continues in the background. To check the status of the generation process, we can use the `GET api/embeddings/status` API:
+Generating embeddings is an asynchronous task that can take a while to complete, meaning that the API response is returned immediately, but the generation process continues in the background. To check the status of the generation process, we can use the `GET api/embeddings/status` API:
 
 - If the response is `{"status": "running"}`, it means the process is still ongoing.
 - If the response is `{"status": "idle"}`, it means there are no active processes at the moment (indicating that the previous process has finished).
