@@ -6,7 +6,10 @@ sidebar_label: Create a fully functioning RAG application
 
 In this tutorial, we will learn how to create a fully functioning RAG application in a Mia-Platform project in just a few minutes. We will cover the setup of the necessary services and the generation of embeddings from any webpage. This will allow us to easily set up a chatbot that is ready to assist and provide help on the subject.
 
-To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes the **AI RAG Template**, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_ from pieces of text extracted from a website. Additionally, we will use the **AI RAG Template Chat**, a small frontend application written in React that provides a quick chat system to communicate with the service.
+To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes:
+
+ - the **AI RAG Template** service, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_ from pieces of text extracted from a website.
+ - the **AI RAG Template Chat** service, a small frontend application written in React that provides a simple chat interface to communicate with the chatbot.
 
 Furthermore, we will install the **API Documentation Aggregator** application and the **API Portal** from the templates. These will enable us to easily send HTTP requests to the AI RAG Template service in order to generate the embeddings.
 
@@ -50,7 +53,7 @@ Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _A
 
 ![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
-Finally, we add the [API Portal](/runtime_suite/api-portal/10_overview.md). If it is not already included in the project, click on _Microservices_ menu in the sidebar, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
+Finally, create the [API Portal](/runtime_suite/api-portal/10_overview.md). If it is not already included in the project, navigate to the _Microservices_ section, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
 
 Once you have created these services, you can safely save the configuration.
 
@@ -67,14 +70,14 @@ The next step is to configure the _AI RAG Template_ service. From the design sec
 :::
 
 :::warning
-Since this is information that you don't want to have visible to anyone, it is preferable to include this information as [project variables](/console/project-configuration/manage-environment-variables/index.md).
+To ensure this information remains secure, it is recommended to include it as [project variables](/console/project-configuration/manage-environment-variables/index.md).
 :::
 
 After updating the environment variables of the _AI RAG Template_ service, it is time to update the config map: click on the _ConfigMaps & Secrets_ tab and you will be redirected to the Config Map configuration page.
 
 The _AI RAG Template_ is created with a precompiled config map that includes all the required keys, but the values need to be included.
 
-To be more specific, the configuration should be as follows:
+Here is an example of what the configuration should look like:
 
 ```json
 {
@@ -96,7 +99,7 @@ To be more specific, the configuration should be as follows:
 }
 ```
 
-To be more specific:
+More specifically, here is a detailed list of the meaning of each property:
 
 - the `llm.name` key is the LLM model among those available from [OpenAI](https://platform.openai.com/docs/models), suggested are `gpt-4o` and `gpt-4o-mini`
 - the `embeddings.name` key is the Embedding model used to generate embeddings, among those available from [OpenAI](https://platform.openai.com/docs/models/embeddings), the suggested is `text-embedding-3-small`
