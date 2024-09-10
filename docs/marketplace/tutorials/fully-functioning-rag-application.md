@@ -68,7 +68,7 @@ The next step is to configure the _AI RAG Template_ service. From the design sec
 - `LLM_API_KEY`: An API key to use when communicating with OpenAI for generating services. It should also be the same as the OpenAI API key.
 
 :::note
-`EMBEDDING_API_KEY` and `LLM_API_KEY` will have the same value: they are the API key that you can generate from [OpenAI](https://platform.openai.com).
+`EMBEDDING_API_KEY` and `LLM_API_KEY` will have the same value: they are the API key that you can generate from [related page on the OpenAI Developer Dashboard](https://platform.openai.com/api-keys).
 :::
 
 :::warning
@@ -156,7 +156,7 @@ We click on the `Execute` button and receive an immediate response indicating th
 You can run only one generation process at time. In case you try to call again the `/api/embeddings/generate` API while a process is still ongoing, you will receive a `409 Conflict`.
 :::
 
-The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped. It is a good idea to [check the service logs of the pod](/development_suite/monitoring/resources/pods) to ensure that everything is progressing smoothly.
+The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped. It is a good idea to [check the service logs of the pod](../../development_suite/monitoring/resources/pods.md) to ensure that everything is progressing smoothly.
 
 ## 4. Enjoy
 
