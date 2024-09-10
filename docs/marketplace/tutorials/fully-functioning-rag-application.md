@@ -156,7 +156,7 @@ We click on the `Execute` button and receive an immediate response indicating th
 You can run only one generation process at time. In case you try to call again the `/api/embeddings/generate` API while a process is still ongoing, you will receive a `409 Conflict`.
 :::
 
-The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped. It is a good idea to [check the service logs of the pod](../../development_suite/monitoring/resources/pods.md) to ensure that everything is progressing smoothly.
+The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped. It is a good idea to [check the service logs of the pod](/development_suite/monitoring/resources/pods.md) to ensure that everything is progressing smoothly.
 
 ## 4. Enjoy
 
