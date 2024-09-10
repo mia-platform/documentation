@@ -4,7 +4,7 @@ title: Create a fully functioning RAG application
 sidebar_label: Create a fully functioning RAG application
 ---
 
-In this tutorial, we will learn how to create a fully functioning RAG application in a Mia-Platform project in just a few minutes. We will cover the setup of the necessary services and the generation of embeddings from any webpage. This will allow us to easily set up a chatbot that is ready to assist and provide help on the subject.
+In this tutorial, we will learn how to create a fully functioning RAG application in a Mia-Platform project in just a few minutes. We will cover the setup of the necessary services and the operations required to have a chatbot that is ready to assist and provide help on specific topics based on the documents provided.
 
 To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes the **AI RAG Template**, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_ from pieces of text extracted from a website. Additionally, we will use the **AI RAG Template Chat**, a small frontend application written in React that provides a quick chat system to communicate with the service.
 
@@ -19,9 +19,9 @@ The prerequisites for this tutorial are as follows:
 
 RAG stands for Retrieval-Augmented Generation, and it is a process to enhance the knowledge of a LLM (large language model), which is an algorithm capable of generating text in natural language. The goal of RAG is to create applications that can communicate with users and answer questions related to specific topics.
 
-To understand how RAG works, let's consider an example. Imagine you want to create a chatbot that can answer questions about the internal documentation of the product your company sells. This documentation can be extensive, consisting of multiple files, just like this documentation. To handle this large amount of text, it can be divided into smaller pieces called "chunks". These chunks can be split in various ways, such as by paragraph, by page, or by the semantic meaning of the text. Each chunk can then be transformed into a single document and stored in a database.
+To understand how RAG works, let's consider an example. Imagine you want to create a chatbot that can answer questions about the internal documentation of the product your company sells. Imagine this documentation is hosted in a website, just like this documentation. It can be extensive, consisting of multiple files. To handle this large amount of text, it can be divided into smaller pieces called _chunks_. These chunks can be split in various ways, such as by paragraph, by page, or by the semantic meaning of the text. Each chunk can then be transformed into a single document and stored in a database.
 
-This will allow us to compare the question asked by a user to the text saved in the database. In order to efficiently retrieve documents from the database, we need to find a reliable method to compare the meaning of the question with the meaning of the chunks we want to use. To achieve this, we can create embeddings of our chunks. The text is given to a mathematical model that will generate a multidimensional vector composed of millions of values between 0 and 1, effectively representing the meaning of the text.
+This will allow us to compare the question asked by a user with the text saved in the database. In order to efficiently retrieve documents from the database, we need to find a reliable method to compare the meaning of the question with the meaning of the chunks we want to use. To achieve this, we can create [_embeddings_](https://platform.openai.com/docs/guides/embeddings): the text is given to a mathematical model that will generate a multidimensional vector composed of millions of values between 0 and 1, effectively representing the meaning of the text. Then, we will save the generated embeddings in the database along with the chunk of text used to create them.
 
 By doing this, whenever our chatbot receives a question, we can:
 
@@ -30,7 +30,8 @@ By doing this, whenever our chatbot receives a question, we can:
 - Retrieve the matched documents and use their text to ensure that the chatbot provides an appropriate answer.
 
 OpenAI has several [embedding models](https://platform.openai.com/docs/guides/embeddings/embedding-models), and MongoDB proposes the [Vector Search Index](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/) to efficiently search in a database for documents where embeddings are similar in meaning to our question.
-The embeddings from the internal documentation can be created only once, or whenever there is an important update. There are several methods to execute this process. If the documentation is available on a website, the most common and straightforward approach is to perform [web scraping](https://en.wikipedia.org/wiki/Web_scraping). This involves downloading all the pages of the website, removing any unnecessary information such as HTML tags, headers, footers, and styles, and generating embeddings from the remaining text.
+
+Since embeddings are stored in a database, we do not need to generate them every time we need to run the service. However they should be replaced with new embeddings when the documents (e.g. our the internal documentation of our product) receive important updates. There are several methods to generate these embeddings. If the documentation is available on a website, the most common and straightforward approach is to perform [web scraping](https://en.wikipedia.org/wiki/Web_scraping). This involves downloading all the pages of the website, recursively fetch all the other pages from the same website connected by hyperlinks, then removing any unnecessary information such as HTML tags, headers, footers, and styles, and generating embeddings from the remaining text.
 
 The **AI RAG Template** is a perfect example of a tool that can perform all these operations. It provides automatic connections to the OpenAI servers and the MongoDB database, allowing for seamless handling of Vector Indexes. Additionally, it can generate embeddings by simply providing a URL. With this template, creating a RAG application can be done in just a few minutes.
 
@@ -145,13 +146,13 @@ Let's try with part of the Mia-Platform documentation:
 }
 ```
 
-We click on the `Execute` button and receive an immediate response indicating that the embedding generation has started. At this point, we simply need to wait for the process to complete by sending requests to the `/api/embeddings/status` API.
+We click on the `Execute` button and receive an immediate response indicating that the embedding generation has started. At this point, we simply need to wait for the process to complete. To verify if the process is finished, you can send a request to the `/api/embeddings/status` API. If the response body includes `{ "status": "running" }`, it means that the webpages are still being scraped and embeddings are still being generated. You can call the API multiple times, and when the response includes `{ "status": "idle" }`, then the process is concluded.
 
 :::info
-The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped.
-
-It is a good idea to check the service logs to ensure that everything is progressing smoothly.
+You can run only one generation process at time. In case you try to call again the `/api/embeddings/generate` API while a process is still ongoing, you will receive a `409 Conflict`.
 :::
+
+The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped. It is a good idea to [check the service logs of the pod](/development_suite/monitoring/resources/pods) to ensure that everything is progressing smoothly.
 
 ## 4. Enjoy
 
