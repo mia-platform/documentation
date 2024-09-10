@@ -70,7 +70,7 @@ Here can be found an example of configuration that assumes Fabric BFF and Contro
 
 ```json
 {
-  ...
+  // ...other fabric bff configurations
   "controlPlane": {
     "rest": {
       "target": "<control-plane-service-name>"                // when protocol is http, it is not necessary specifying it. When port is not specified, it is assumed the 80 is employed
@@ -79,7 +79,7 @@ Here can be found an example of configuration that assumes Fabric BFF and Contro
       "target": "http://<control-plane-service-name>:50051"   // it is important to notice that GRPC connection use a different port from the REST target
     }
   },
-  ...
+  // ...other fabric bff configurations
 }
 ```
 
@@ -100,14 +100,14 @@ An example of persistence configuration can be seen below:
 
 ```json
 {
-  ...
+  // ...other fabric bff configurations
   "persistence": {
     "configuration": {
       "url": "<connection-string>",
       "database": "<database-name>"
     }
-  }
-  ...
+  },
+  // ...other fabric bff configurations
 }
 ```
 
@@ -130,10 +130,29 @@ Here can be found a configuration example:
 
 ```json
 {
-  ...
+  // ...other fabric bff configurations
   "settings": {
     "apiPrefix": "/",
     "auditUserHeader": "miauserid"
   }
 }
 ```
+
+## Endpoints
+
+In the table below is provided the list of endpoints that should be [defined in Console](/development_suite/api-console/api-design/endpoints.md) and assigned to Fabric BFF service.
+
+| Endpoint     | Rewrite Base Path | Microservice | Description                                                 |
+|--------------|-------------------|--------------|-------------------------------------------------------------|
+| `/fast-data` | `/fast-data`      | `fabric-bff` | Groups all the requests related to Control Plane operations |
+
+### Routes
+
+Under the endpoint specified above, the following routes are served by Fabric BFF
+
+| Route                 | Type      | Method | Description                                                                                                                                                                         |
+|-----------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/fast-data/feedback` | Websocket | GET    | Opens a websocket connection with the client to receive updates<br/>of runtimes and pipelines                                                                                       |
+| `/fast-data/control`  | REST      | HEAD   | Verifies whether the pipeline _change state action_ can be carried<br/>out by current user                                                                                          |
+| `/fast-data/control`  | REST      | POST   | Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend to change pipelines state                                                                              |
+| `/fast-data/*`        | REST      | *      | Other routes are forwarded towards Control Plane service.<br/>For more details please read [corresponding documentation](/fast_data/runtime_management/control_plane.mdx#endpoints) |
