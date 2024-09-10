@@ -8,7 +8,7 @@ In this tutorial, we will learn how to create a fully functioning RAG applicatio
 
 To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes:
 
-- the **AI RAG Template** service, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_ from pieces of text extracted from a website.
+- the **AI RAG Template** service, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_, encoded definitions coming from pieces of text extracted from a website.
 - the **AI RAG Template Chat** service, a small frontend application written in React that provides a simple chat interface to communicate with the chatbot.
 
 Furthermore, we will install the **API Documentation Aggregator** application and the **API Portal** from the templates. These will enable us to easily send HTTP requests to the AI RAG Template service to store additional documents in a database in a way that can be used by the service to answer questions.
