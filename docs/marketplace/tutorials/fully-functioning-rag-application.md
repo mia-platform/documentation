@@ -6,7 +6,10 @@ sidebar_label: Create a fully functioning RAG application
 
 In this tutorial, we will learn how to create a fully functioning RAG application in a Mia-Platform project in just a few minutes. We will cover the setup of the necessary services and the operations required to have a chatbot that is ready to assist and provide help on specific topics based on the documents provided.
 
-To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes the **AI RAG Template**, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_ from pieces of text extracted from a website. Additionally, we will use the **AI RAG Template Chat**, a small frontend application written in React that provides a quick chat system to communicate with the service.
+To accomplish this, we will utilize the Marketplace application called **AI RAG Chat**. This application includes:
+
+ - the **AI RAG Template** service, which leverages the APIs provided by [OpenAI](https://openai.com/) to receive answers to questions in natural language, and to create _embeddings_ from pieces of text extracted from a website.
+ - the **AI RAG Template Chat** service, a small frontend application written in React that provides a simple chat interface to communicate with the chatbot.
 
 Furthermore, we will install the **API Documentation Aggregator** application and the **API Portal** from the templates. These will enable us to easily send HTTP requests to the AI RAG Template service in order to generate the embeddings.
 
@@ -47,11 +50,11 @@ First, search for and select the **API Documentation Aggregator**. This will ins
 The [API Documentation Aggregator](/runtime_suite_applications/api-documentation-aggregator/10_overview.md) is not required for the chatbot to function, but it is recommended for using the _AI RAG Template_ APIs to generate the embeddings. You can also refer to the instructions [in this tutorial](/console/tutorials/configure-marketplace-components/api-portal.mdx).
 :::
 
-Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (using the existing one with the available listener), the _AI RAG Template_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
+Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (you can use the previously created one with the available listener), the _AI RAG Template_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
 
 ![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
-Finally, we add the [API Portal](/runtime_suite/api-portal/10_overview.md). If it is not already included in the project, click on _Microservices_ menu in the sidebar, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
+Finally, create the [API Portal](/runtime_suite/api-portal/10_overview.md). If it is not already included in the project, navigate to the _Microservices_ section, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
 
 Once you have created these services, you can safely save the configuration.
 
@@ -59,7 +62,7 @@ Once you have created these services, you can safely save the configuration.
 
 The next step is to configure the _AI RAG Template_ service. From the design section, navigate to the _Microservices_ page and select the service (the default name is _ai-rag-template_, but you may have changed its name). From there, click on the _Environment Variables_ tab where you need to modify the following values:
 
-- `MONGODB_CLUSTER_URI`: This is the full connection string to MongoDB.
+- `MONGODB_CLUSTER_URI`: This is the full connection string to MongoDB (refer to the [official MongoDB documentation](https://www.mongodb.com/docs/guides/atlas/connection-string/#procedure) to find it).
 - `EMBEDDING_API_KEY`: An API key to use when communicating with OpenAI for generating services. It should be the same as the OpenAI API key.
 - `LLM_API_KEY`: An API key to use when communicating with OpenAI for generating services. It should also be the same as the OpenAI API key.
 
@@ -68,14 +71,14 @@ The next step is to configure the _AI RAG Template_ service. From the design sec
 :::
 
 :::warning
-Since this is information that you don't want to have visible to anyone, it is preferable to include this information as [project variables](/console/project-configuration/manage-environment-variables/index.md).
+To ensure this information remains secure, it is recommended to include it as [project variables](/console/project-configuration/manage-environment-variables/index.md).
 :::
 
-After updating the environment variables of the service, it is time to update the config map: click on the _ConfigMaps & Secrets_ tab and you will be redirected to the Config Map configuration page.
+After updating the environment variables of the _AI RAG Template_ service, it is time to update the config map: click on the _ConfigMaps & Secrets_ tab and you will be redirected to the Config Map configuration page.
 
 The _AI RAG Template_ is created with a precompiled config map that includes all the required keys, but the values need to be included.
 
-To be more specific, the configuration should be as follows:
+Here is an example of what the configuration should look like:
 
 ```json
 {
@@ -97,7 +100,7 @@ To be more specific, the configuration should be as follows:
 }
 ```
 
-To be more specific:
+More specifically, here is a detailed list of the meaning of each property:
 
 - the `llm.name` key is the LLM model among those available from [OpenAI](https://platform.openai.com/docs/models), suggested are `gpt-4o` and `gpt-4o-mini`
 - the `embeddings.name` key is the Embedding model used to generate embeddings, among those available from [OpenAI](https://platform.openai.com/docs/models/embeddings), the suggested is `text-embedding-3-small`
@@ -105,7 +108,7 @@ To be more specific:
 - the `vectorStore.collectionName` is the name of the collection where the embeddings will be saved
 - the `vectorStore.indexName` is the name of the [MongoDB Search Vector Index](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/), with `vector_index` as suggested name; this is a particular index that the service will automatically create or update at the startup
 - the `vectorStore.relevanceScoreFn` is the name of the _similarity search function_ used to retrieve the embedding documents; MongoDB includes three different available functions: `cosine` (suggested), `euclidean` and `dotProduct`
-- the `vectorStore.embeddingKey` is the name of the field where to save the embedding of a single document, in the shape of a multidimensional array; we suggest using the default value `embedding`
+- the `vectorStore.embeddingKey` is the name of the field where the embeddings of a single document are saved, in the shape of a multidimensional array; we suggest using the default value `embedding`
 - the `vectorStore.textKey` is the name of the field that contains the original text used to be transformed into embeddings, and that will be used to help the chatbot return the answer; we suggest using the default value `text`
 - the `vectorStore.maxDocumentsToRetrieve` is the maximum number of documents that will be extracted and used to help the chatbot return the answer; the default value is `3`, but it is usually suggested to use a value between `2` and `5`, depending on how big the collection of the embeddings is
 
@@ -123,7 +126,7 @@ To see the list of all the APIs exposed by the configured services, we can go to
 
 The `POST api/embeddings/generate` API allows us to generate embeddings starting from a webpage. The service will download the page, extract all the text, and generate embeddings from it. It will also search for links on the page and recursively generate embeddings from the linked pages that have the same domain and follow the specified filter path.
 
-Generating embeddings is an asynchronous task, meaning that the response is returned immediately, but the generation process continues in the background. To check the status of the generation process, we can use the `GET api/embeddings/status` API:
+Generating embeddings is an asynchronous task that can take a while to complete, meaning that the API response is returned immediately, but the generation process continues in the background. To check the status of the generation process, we can use the `GET api/embeddings/status` API:
 
 - If the response is `{"status": "running"}`, it means the process is still ongoing.
 - If the response is `{"status": "idle"}`, it means there are no active processes at the moment (indicating that the previous process has finished).
@@ -142,7 +145,7 @@ Let's try with part of the Mia-Platform documentation:
 ```json
 {
     "url": "https://docs.mia-platform.eu/docs/fast_data/what_is_fast_data",
-    "filterPath": "https://docs.mia-platform.eu/docs/fast-data"
+    "filterPath": "https://docs.mia-platform.eu/docs/fast_data"
 }
 ```
 
@@ -156,7 +159,7 @@ The process may take a few seconds to several minutes, depending on the number o
 
 ## 4. Enjoy
 
-Once the process is over, there's no need to re-deploy or restart any service: after a few moments, the MongoDB Vector Index will be updated and the frontend application is ready to give us meaningful answers based on the embeddings generated.
+Once the process is over, there's no need to re-deploy or restart any service: after a few moments, the MongoDB Vector Index will be updated and the frontend application will be ready to give us meaningful answers based on the generated embeddings.
 
 ![Assistant Playground working](../img/assistant-playground-working.png)
 
@@ -166,7 +169,7 @@ Once the process is over, there's no need to re-deploy or restart any service: a
 
 Check the logs of the _AI RAG Template_. At the very beginning, it should say whether the MongoDB Vector Search Index has been created/updated or if it failed for any reason (e.g. database temporarily not accessible or the collection does not exists yet). In any case the service will start.
 
-You may need to restart the pod of the service manually create/update the index.
+You may need to restart the service pod or manually create (or update) the index.
 
 ### The frontend is not visible
 
