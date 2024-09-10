@@ -4,5 +4,136 @@ title: Fabric BFF
 sidebar_label: Fabric BFF
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import FabricBFFSchema from "@site/static/schemas/data-fabric-bff.config.schema.json"
+import FabricBFFCredentialsViewer from "./snippets/fabric_bff_credentials_viewer.mdx"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
+Fabric BFF, as suggested by the name, works as Backend For Frontend for Control Plane UI and it mediates requests between the frontend and Control Plane service.
+Besides, it exposes the Websocket interface that enables live updates on Control Plane UI and the JSON RPC APIs for controlling Fast Data state.
+
+## Configuration
+
+_Configuration of Fabric BFF_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+
+### Environment Variables
+
+Fabric BFF can be customized using the following environment variables:
+
+| Name                         | Required | Description                                                                                                              | Default Value                       |
+|------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `HTTP_PORT`                  | -        | This variable determines the TCP port where the  **HTTP controller** binds its listener                                  | 3000                                |
+| `LOG_LEVEL`                  | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn` | `info`                              |
+| `BFF_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file                                                                               | `~/.fd/data-fabric-bff/config.json` |
+
+### Config Map
+
+The configuration of the service is handled by a JSON file whose location is defined by the `BFF_CONFIGURATION_FILEPATH`. When instantiating
+ [Control Plane application](/runtime_suite_applications/fast-data-control-plane/10_overview.md) from Marketplace, Fabric BFF service configuration is generated with
+a dedicated Config Map, named `fabric-bff-configuration`. This file contains a template configuration that should help in configuring the service
+
+<SchemaViewer schema={FabricBFFSchema} />
+
+In the paragraphs below are explained the main properties of the Fabric BFF configuration file.
+
+#### Console Communication
+
+In order for Control Plane solution to know which [Runtimes](/fast_data/runtime_management/overview.mdx#runtime) are available for monitoring by
+[Runtime Views](/fast_data/runtime_management/overview.mdx#runtime-view) the service needs to contact Mia-Platform Console and retrieve the list of Projects that should be accessible from this Control Plane instance.
+
+To achieve so it is necessary to create a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md) on your Mia-Platform Console instance and
+assign the proper permissions to list the Console projects of interest. In particular, The service account credentials then have to set within the `console` property of Fabric BFF service.
+
+In particular:
+
+- `target` &rarr; specifies the base URL of your Mia-Platform Console instance
+- `auth` &rarr; defines how the Fabric BFF service should authenticate on Mia-Platform Console APIs
+
+This is and example of `console` property configuration:
+
+<FabricBFFCredentialsViewer />
+
+:::tip
+The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+- `console.target`
+- `console.auth.credentials.clientId`
+- `console.auth.credentials.clientKeyId`
+- `console.auth.credentials.privateKey`
+:::
+
+#### Control Plane Communication
+
+Communication between Fabric BFF and Control Plane services occur both via GRPC and HTTP REST requests. For this reason its necessary to
+configure on the Fabric BFF the addresses where to reach Control Plane service. This can done by setting the properties `rest` and `grpc` of `controlPlane` field in the Fabric BFF configuration.
+In both properties `target` field should be set to the address where Control Plane service exposes the corresponding one.
+
+Here can be found an example of configuration that assumes Fabric BFF and Control Plane services are deployed within the same K8s namespace:
+
+```json
+{
+  ...
+  "controlPlane": {
+    "rest": {
+      "target": "<control-plane-service-name>"                // when protocol is http, it is not necessary specifying it. When port is not specified, it is assumed the 80 is employed
+    },
+    "grpc": {
+      "target": "http://<control-plane-service-name>:50051"   // it is important to notice that GRPC connection use a different port from the REST target
+    }
+  },
+  ...
+}
+```
+
+#### Persistence Layer
+
+:::info
+Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data, such as the one related to operations auditing.
+:::
+
+In order to carry out all its operations, Fabric BFF requires a _persistence layer_ where relevant information are stored. This configuration can be set under
+the `persistence.configuration` key of the configuration file. The main properties are:
+
+- `url` &rarr; the connection string to your MongoDB instance;
+- `database` &rarr; the database name where to search for the  collections relevant to Fabric BFF service. Please notice that setting this property will **override** the database
+name potentially set in the connection string;
+
+An example of persistence configuration can be seen below:
+
+```json
+{
+  ...
+  "persistence": {
+    "configuration": {
+      "url": "<connection-string>",
+      "database": "<database-name>"
+    }
+  }
+  ...
+}
+```
+
+:::tip
+The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+- `persistence.configuration.url`
+- `persistence.configuration.database`
+:::
+
+#### Service Settings
+
+Additionally, the Fabric BFF service itself has a set of properties for changing its behavior. Here are listed the available ones within `settings` properties:
+
+- `apiPrefix` &rarr; the base path applied to all the exposed routes. It defaults to `/`;
+- `auditUserHeader` &rarr; specifies in which HTTP header can be found the user identifier set by the authentication system. The value of this header will be employed to correlate requests stored by
+    the auditing system with the user that performed them. When using Mia-Platform Authenticaton and Authorization services this property can be set to `miauserid`.
+    In case it is not set the auditing system does not correlate users with requests;
+
+Here can be found a configuration example:
+
+```json
+{
+  ...
+  "settings": {
+    "apiPrefix": "/",
+    "auditUserHeader": "miauserid"
+  }
+}
+```

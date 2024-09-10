@@ -27,18 +27,11 @@ Control Plane UI can be customized using the following environment variables:
 | Name         | Required | Description                                                  | Default Value     |
 |--------------|----------|--------------------------------------------------------------|-------------------|
 | `BASE_PATH`  | &check;  | Path prefix to be added to all the frontend resources        | `/control-plane/` |
-| `COMPANY_ID` | &check;  | The identifier of the company from which runtimes are loaded |                   |
 
 As effect of them, by default the Control Plane application exposes its frontend over the `/control-plane/` base path.
 This value can be overridden by changing the environment variable `BASE_PATH` with `/<your-base-path>/` as value.
 
 Bear in mind that changing the `BASE_PATH` environment variable requires to change also the [rewrite base path](/development_suite/api-console/api-design/endpoints.md#about-rewrite-base-path) of exposed endpoint to `/<your-base-path>`.
-
-:::info
-The `COMPANY_ID` environment variable is quite relevant, since it indicates which projects can be potentially accessed and managed by Control Plane application.
-To retrieve it, either contact your Company Owner or open your Company Overview page and observe the URL displayed in the browser search bar.
-The `company-id` value is the one set in the path `<console-base-url>/tenants/:company-id/projects`.
-:::
 
 ### Endpoints
 
@@ -114,6 +107,10 @@ by following these instructions:
 - navigate to `Overview > Environments` page and select your production environment
 - from the opened page, press the edit button, select and copy the `Project URL`
 - combine the configured Control Plane Frontend base path with the URL obtained in the previous step
+
+:::tip
+Considering the capability of Fast Data Control Plane to manage multiple runtimes, it is recommended to embed the Control Plane Frontend at Company level (set _Destination Area_ property to `Company Overview`).
+:::
 
 Furthermore, since at the moment a Console Extension can be added <u>only as an iFrame</u>, it is necessary to relax the Control Plane Frontend endpoint configuration to support it in Console. As a result,
 the API Gateway in front of the Control Plane Frontend would add the proper value to the `X-Frame-Options` header. Indeed, such header is set to `SAMEORIGIN` by default to prevent embedding deployed applications in other websites.
@@ -271,7 +268,7 @@ With a simple click on a play/pause button located at the top of each main Fast 
 ![Control Plane Bulk Action](img/bulk_action.gif)
 
 :::tip 
-Bulk actions are useful in case of large data pipelines and to speed-up the runtime management: 
+Bulk actions are useful in case of large data pipelines and to speed up the runtime management:
 one example is in case of an [Initial Load management process](/fast_data/concepts/data_loading.mdx#initial-load). 
 
 In fact, with the first deploy of Fast Data pipelines on a runtime environment, the overall pipelines are set in `paused` state as default. 

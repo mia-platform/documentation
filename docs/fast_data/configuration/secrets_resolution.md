@@ -78,7 +78,9 @@ environment variable can be written in `base64` format.
 
 ## File Reference
 
-The field is populated by the content of [a file mounted inside the microservice](/development_suite/api-console/api-design/services.md#configmaps).
+The field is populated by the content of [a file mounted inside the microservice](/development_suite/api-console/api-design/services.md#secrets), such as file a K8s secret.
+
+To help in creating K8s secrets it is available [`mpl`](/runtime_suite_tools/mlp/30_generate.md) tool which automate secrets creation of the ones configured in the `mlp.yaml` file that can be found within your Console Project repository.
 
 ### Full Content
 
@@ -96,9 +98,12 @@ The field is populated by the content of [a file mounted inside the microservice
 }
 ```
 
-### .ini Key
+Using the above configuration the service will load the whole file content within the configuration property (in this case `some-secret-field`).
 
-If the chosen file is a `.ini` file with key-value pair values, it's possible to specify a key that needs to be interpolated.
+### Single key from .ini file
+
+Secret resolution of files supports also the `.ini` format, that is a file with key-value pair values.
+Consequently, it is possible to specify which key within the selected file should be loaded in the microservice configmap's property.
 
 ```json
 {
@@ -108,9 +113,19 @@ If the chosen file is a `.ini` file with key-value pair values, it's possible to
       "url": {
         "type": "file",
         "path": "/path/to/file.ini",
-        "key": "<KEY NAME>"
+        "key": "KEY_NAME"
       }
     }
   }
 }
 ```
+
+For example, let's consider the above configuration and the following `.ini` file:
+
+```ini
+KEY_NAME=cool-secret
+OTHER_KEY=uninteresting-secret
+```
+
+which is mounted as secret in the microservice at the path `/path/to/file.ini`. As a result, the value that
+the microservice will read when accessing the config property `some-secret-field` is `cool-secret` associated to `KEY_NAME` key.
