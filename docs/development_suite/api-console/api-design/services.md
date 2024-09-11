@@ -232,7 +232,7 @@ The fact that the information are provided through environment variables **decou
 because environment variables are a standard way to provide configuration to applications.
 
 This is particularly useful in scenarios where your application needs to know information about the Pod it is running in, 
-but you don't want it to access the Kubernetes APIs to obtain them or to hardcode that information into the application itself.
+but you don't want it or you can't to access the Kubernetes APIs to obtain them or to hardcode that information into the application itself.
 
 It is also useful for accessing to Console Project specific information, which are always available
 through dedicated [annotations](/development_suite/api-console/api-design/services.md#annotations-configuration) and [labels](/development_suite/api-console/api-design/services.md#labels-configuration).
