@@ -240,7 +240,7 @@ through dedicated [annotations](/development_suite/api-console/api-design/servic
 This can allow you, for example, to know the name of the Console Project where the Microservice is deployed, the name of the environment and other information 
 that you can use for monitoring, logging or even application logic purposes.
 
-Pods for example can also communicate their name to other Pods in the same namespace, so that they can be used as a unique identifier for purposes such as leader-election among multiple replicas.
+Pods for example can also communicate their name to other Pods in the same namespace, so that it can be used as a unique identifier for purposes such as leader-election among multiple replicas.
 
 ##### Configuration
 
