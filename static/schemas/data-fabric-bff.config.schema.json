@@ -21,12 +21,12 @@
             "credentials": {
               "clientId": {
                 "type": "file",
-                "path": "/run/secrets/fabric-bff.ini",
+                "path": "/run/secrets/data-fabric/fabric-bff.ini",
                 "key": "FABRIC_CLIENT_ID"
               },
               "clientSecret": {
                 "type": "file",
-                "path": "/run/secrets/fabric-bff.ini",
+                "path": "/run/secrets/data-fabric/fabric-bff.ini",
                 "key": "FABRIC_M2M_CLIENT_SECRET"
               }
             }
@@ -45,7 +45,7 @@
         "configuration": {
           "url": {
             "type": "file",
-            "path": "/run/secrets/fabric-bff.ini",
+            "path": "/run/secrets/data-fabric/fabric-bff.ini",
             "key": "MONGODB_URL"
           },
           "database": "data-fabric-db"

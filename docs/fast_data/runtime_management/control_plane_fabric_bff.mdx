@@ -19,17 +19,18 @@ _Configuration of Fabric BFF_ is a straightforward process that involves setting
 
 Fabric BFF can be customized using the following environment variables:
 
-| Name                         | Required | Description                                                                                                              | Default Value                       |
-|------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| `HTTP_PORT`                  | -        | This variable determines the TCP port where the  **HTTP controller** binds its listener                                  | 3000                                |
-| `LOG_LEVEL`                  | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn` | `info`                              |
-| `BFF_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file                                                                               | `~/.fd/data-fabric-bff/config.json` |
+| Name                          | Required | Description                                                                                                                | Default Value                       |
+|-------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `HTTP_PORT`                   | -        | This variable determines the TCP port where the **HTTP controller** binds its listener                                    | 3000                                |
+| `LOG_LEVEL`                   | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`   | `info`                              |
+| `BFF_CONFIGURATION_FILEPATH`  | -        | Set the location of the configuration file                                                                                 | `~/.fd/data-fabric-bff/config.json` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | -        | The URL to a gRPC endpoint of an OpenTelemetry Collector. Specifying this value enables the OTel tracing within th service |                                     |
 
 ### Config Map
 
 The configuration of the service is handled by a JSON file whose location is defined by the `BFF_CONFIGURATION_FILEPATH`. When instantiating
  [Control Plane application](/runtime_suite_applications/fast-data-control-plane/10_overview.md) from Marketplace, Fabric BFF service configuration is generated with
-a dedicated Config Map, named `fabric-bff-configuration`. This file contains a template configuration that should help in configuring the service
+a dedicated Config Map, named `fabric-bff-configuration`. This file contains a template configuration that should help in configuring the service.
 
 <SchemaViewer schema={FabricBFFSchema} />
 
@@ -62,7 +63,7 @@ The following properties support [secret resolution](/fast_data/configuration/se
 
 #### Control Plane Communication
 
-Communication between Fabric BFF and Control Plane services occur both via GRPC and HTTP REST requests. For this reason its necessary to
+Communication between Fabric BFF and Control Plane services occur both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason its necessary to
 configure on the Fabric BFF the addresses where to reach Control Plane service. This can done by setting the properties `rest` and `grpc` of `controlPlane` field in the Fabric BFF configuration.
 In both properties `target` field should be set to the address where Control Plane service exposes the corresponding one.
 
@@ -85,11 +86,17 @@ Here can be found an example of configuration that assumes Fabric BFF and Contro
 
 #### Persistence Layer
 
+
 :::info
 Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data, such as the one related to operations auditing.
 :::
 
-In order to carry out all its operations, Fabric BFF requires a _persistence layer_ where relevant information are stored. This configuration can be set under
+:::caution
+The MongoDB database selected for storing Control Plane data **must be configured to have [`replicaSet` enabled](https://www.mongodb.com/docs/manual/replication/)**, since
+Fabric BFF exploits features that can be used only when a `replicaSet` is available.
+:::
+
+In order to carry out all its operations, Fabric BFF requires a _persistence layer_ where relevant information, such as auditing details, are stored. This configuration can be set under
 the `persistence.configuration` key of the configuration file. The main properties are:
 
 - `url` &rarr; the connection string to your MongoDB instance;
@@ -103,8 +110,8 @@ An example of persistence configuration can be seen below:
   // ...other fabric bff configurations
   "persistence": {
     "configuration": {
-      "url": "<connection-string>",
-      "database": "<database-name>"
+      "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
+      "database": "<data-fabric-database-name>"
     }
   },
   // ...other fabric bff configurations
@@ -123,7 +130,7 @@ Additionally, the Fabric BFF service itself has a set of properties for changing
 
 - `apiPrefix` &rarr; the base path applied to all the exposed routes. It defaults to `/`;
 - `auditUserHeader` &rarr; specifies in which HTTP header can be found the user identifier set by the authentication system. The value of this header will be employed to correlate requests stored by
-    the auditing system with the user that performed them. When using Mia-Platform Authenticaton and Authorization services this property can be set to `miauserid`.
+    the auditing system with the user that performed them. When using Mia-Platform Authentication and Authorization services this property can be set to `miauserid`.  
     In case it is not set the auditing system does not correlate users with requests;
 
 Here can be found a configuration example:

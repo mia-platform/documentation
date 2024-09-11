@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "type": "object",
+  "required": [
+    "cache",
+    "persistence"
+  ],
+  "properties": {
+    "cache": {
+      "$ref": "#/definitions/RedisCache"
+    },
+    "persistence": {
+      "$ref": "#/definitions/MongodbPersistence"
+    },
+    "settings": {
+      "$ref": "#/definitions/Settings"
+    }
+  },
+  "examples": [
+    {
+      "cache": {
+        "url": {
+          "type": "file",
+          "path": "/run/secrets/data-fabric/control-plane.ini",
+          "key": "REDIS_URL"
+        }
+      },
+      "persistence": {
+        "configuration": {
+          "type": "file",
+          "path": "/run/secrets/data-fabric/control-plane.ini",
+          "key": "MONGODB_URL"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "MongodbConfiguration": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "database": {
+          "description": "Optional database name. It selects which database to be employed for storing data (it overrides the one provided in the connection string when it is set)",
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "description": "MongoDB connection string",
+          "allOf": [
+            {
+              "$ref": "#/definitions/secret"
+            }
+          ]
+        }
+      }
+    },
+    "MongodbPersistence": {
+      "description": "Settings describing how to connect to the underlying MongoDB Database and which collection should be employed",
+      "type": "object",
+      "required": [
+        "configuration"
+      ],
+      "properties": {
+        "configuration": {
+          "description": "MongoDB connection settings",
+          "allOf": [
+            {
+              "$ref": "#/definitions/MongodbConfiguration"
+            }
+          ]
+        }
+      }
+    },
+    "RedisCache": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "$ref": "#/definitions/secret"
+        }
+      }
+    },
+    "Settings": {
+      "description": "Service specific configurations",
+      "type": "object",
+      "properties": {
+        "apiPrefix": {
+          "description": "Prefix path that it is applied to all the exposed APIs, except from the status ones",
+          "default": "",
+          "type": "string"
+        },
+        "auditUserHeader": {
+          "description": "Header containing the user unique identifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "secret": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "key",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "path",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

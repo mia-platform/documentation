@@ -3,3 +3,84 @@ id: control_plane_operator
 title: Control Plane Operator Configuration
 sidebar_label: Control Plane Operator
 ---
+
+import StateChannelSchema from "@site/static/schemas/fast-data-control-plane-state.schema.json"
+import FeedbackChannelSchema from "@site/static/schemas/fast-data-control-plane-feedback.schema.json"
+import SchemaViewer from "../snippets/schema_viewer.mdx"
+
+---
+
+## State Persistence
+
+The Control Plane stores for each runtime the latest state of all pipelines (either domain or single view) and its artifacts in a MongoDB collection,
+that is queried directly by the service at startup to retrieve the latest available state.
+
+:::info
+To discover more about state persistence configuration, you can check [its dedicated section](?control-plane-configuration=persistence#persistence)
+:::
+
+This collection can change on the basis of the user interactions through the frontend.
+
+## Runtime Communication
+
+Communications to/from runtime's workloads happen through two different channels, namely _State Channel_ and _Feedback Channel_.
+
+:::info
+To discover more about channels configuration, you can check [its dedicated section](?control-plane-configuration=runtime#runtime)
+:::
+
+### State Channel
+
+The _State Channel_ is where the Control Plane sends the current state of each pipeline. Each pipeline has a general state, that can be overridden.
+
+For each pipeline, there could be different `overrides` that can change individually the state of a particular artifact.
+
+Also, each artifact can have additional `overrides` for each stage of the pipeline where is employed.
+
+The state that can be set at pipeline level, or artifact level, or stage level is an _Activation State_: it can either `pause` or `resume`,
+which will be used by workloads to stop/resume consumption of data.
+
+<SchemaViewer schema={StateChannelSchema} />
+
+### Feedback Channel
+
+The _Feedback Channel_ is where the workloads will notify the Control Plane about the state of their artifacts. This is needed to inform the Control Plane that:
+
+- the artifacts are up-and-running;
+- the workloads have their state updated correctly after a message from the state channel
+
+The workloads will send messages through the feedback channel **periodically**.
+
+<SchemaViewer schema={FeedbackChannelSchema} />
+
+---
+
+### gRPC
+
+Both feedback and state channels can be managed by a [gRPC](https://grpc.io/) server instance managed by the Control Plane,
+which creates a [bi-directional streaming remote procedure call](https://grpc.io/docs/what-is-grpc/core-concepts/#bidirectional-streaming-rpc) that:
+
+- receives feedbacks from workloads
+- dispatch states to services
+
+##### Example
+
+```json
+{
+    // ...other control plane configurations
+    "runtime": {
+        "feedback": {
+          "type": "grpc"
+        },
+        "state": {
+          "type": "grpc"
+        }
+    }
+    // ...other control plane configurations
+}
+```
+
+:::info
+By default, the gRPC server is exposed over the default gRPC protocol port (`50051`).
+This value can be overridden in the [`settings` section](?control-plane-configuration=settings#settings)
+:::
