@@ -1,7 +1,7 @@
 ---
-id: fully-functioning-rag-application
-title: Create a fully functioning RAG application
-sidebar_label: Create a fully functioning RAG application
+id: create-a-rag-application
+title: Create a RAG Application
+sidebar_label: Create a RAG Application
 ---
 
 In this tutorial, we will learn how to create a fully functioning RAG application in a Mia-Platform project in just a few minutes. We will cover the setup of the necessary services and the operations required to have a chatbot that is ready to assist and provide help on specific topics based on the documents provided.
@@ -111,7 +111,7 @@ More specifically, here is a detailed list of the meaning of each property:
 - the `vectorStore.relevanceScoreFn` is the name of the _similarity search function_ used to retrieve the embedding documents; MongoDB includes three different available functions: `cosine` (suggested), `euclidean` and `dotProduct`
 - the `vectorStore.embeddingKey` is the name of the field where the embeddings of a single document are saved, in the shape of a multidimensional array; we suggest using the default value `embedding`
 - the `vectorStore.textKey` is the name of the field that contains the original text used to be transformed into embeddings, and that will be used to help the chatbot return the answer; we suggest using the default value `text`
-- the `vectorStore.maxDocumentsToRetrieve` is the maximum number of documents that will be extracted and used to help the chatbot return the answer; the default value is `3`, but it is usually suggested to use a value between `2` and `5`, depending on how big the collection of the embeddings is
+- the `vectorStore.maxDocumentsToRetrieve` is the maximum number of documents that will be extracted and used to help the chatbot return the answer; the default value is `3`, but it is usually suggested to use a value between `2` and `5`, depending on how big the collection of the embeddings is (if the content is small then `2` would be more than enough; on the other hand if there is a lot of content is better to set this value to `5`)
 
 After having configured the config map, we can save the configuration and move to the deploy.
 
