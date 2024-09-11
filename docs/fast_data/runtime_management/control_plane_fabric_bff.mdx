@@ -19,12 +19,12 @@ _Configuration of Fabric BFF_ is a straightforward process that involves setting
 
 Fabric BFF can be customized using the following environment variables:
 
-| Name                          | Required | Description                                                                                                                | Default Value                       |
-|-------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| `HTTP_PORT`                   | -        | This variable determines the TCP port where the **HTTP controller** binds its listener                                    | 3000                                |
-| `LOG_LEVEL`                   | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`   | `info`                              |
-| `BFF_CONFIGURATION_FILEPATH`  | -        | Set the location of the configuration file                                                                                 | `~/.fd/data-fabric-bff/config.json` |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | -        | The URL to a gRPC endpoint of an OpenTelemetry Collector. Specifying this value enables the OTel tracing within th service |                                     |
+| Name                          | Required | Description                                                                                                                       | Default Value                       |
+|-------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `HTTP_PORT`                   | -        | This variable determines the TCP port where the **HTTP controller** binds its listener                                            | 3000                                |
+| `LOG_LEVEL`                   | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`          | `info`                              |
+| `BFF_CONFIGURATION_FILEPATH`  | -        | Set the location of the configuration file                                                                                        | `~/.fd/data-fabric-bff/config.json` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | -        | The URL to a GRPC endpoint of an OpenTelemetry Collector.<br/>Specifying this value enables the support for OpenTelemetry tracing |                                     |
 
 ### Config Map
 

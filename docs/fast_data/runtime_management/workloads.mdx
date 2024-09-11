@@ -10,10 +10,10 @@ import SchemaViewer from "../snippets/schema_viewer.mdx";
 import ControlPlaneSchema from "@site/static/schemas/fast-data-control-plane-client-config.schema.json"
 import JSWorkloadSnippet from "./snippets/js-workload-configuration.md"
 
-This section helps you configure new or existing Fast Data services so that they can communicate with the Control Plane.
+This section helps you configure new or existing Fast Data services so that they can communicate with the Control Plane Operator.
 
 :::note Compatibility Matrix
-To see if your microservices have support for your Control Plane version, give a look at the [compatibility matrix section](/fast_data/runtime_management/compatibility_matrix.md).
+To see if your microservices have support for your Control Plane Operator version, give a look at the [compatibility matrix section](/fast_data/runtime_management/compatibility_matrix.md).
 :::
 
 As mentioned in the [Overview section](/fast_data/runtime_management/overview.mdx#workload), a service configured
@@ -81,10 +81,10 @@ configuration for Projection Storer service can be found in the service [configu
 
 :::info gRPC Host Resolution
 
-To enable gRPC communication between the Control Plane and the Fast Data runtime, services within the Fast Data runtime should reference
-the gRPC server contained in the Control Plane using its corresponding [Kubernetes hostname](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/).
+To enable gRPC communication between the Control Plane Operator and the Fast Data runtime, services within the Fast Data runtime should reference
+the gRPC server contained in the Control Plane Operator using its corresponding [Kubernetes hostname](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/).
 
-For example, consider a use case where we have a Control Plane microservice named `fd-control-plane-grpc`.
+For example, consider a use case where we have a Control Plane Operator service named `control-plane-operator`.
 Then, workloads should have the `settings` properties configured as follows:
 
 ```json
@@ -92,8 +92,8 @@ Then, workloads should have the `settings` properties configured as follows:
   // ...
   "settings": {
     "grpc": {
-      "host": "fd-control-plane-grpc" 
-      // or fd-control-plane-grpc.svc.cluster.local, etc...
+      "host": "control-plane-operator" 
+      // or control-plane-operator.svc.cluster.local, etc...
     }
   }
   // ...
@@ -101,86 +101,6 @@ Then, workloads should have the `settings` properties configured as follows:
 ```
 
 :::
-
-### Secrets Resolution
-
-The following fields contain secrets that can be managed using the [Fast Data Secrets Resolution mechanism](/fast_data/configuration/secrets_resolution.md):
-
-- `runtime.feedback.configuration.['bootstrap.servers']`
-- `runtime.feedback.configuration.['sasl.username']`
-- `runtime.feedback.configuration.['sasl.password']`
-- `runtime.feedback.configuration.['ssl.truststore.certificates']`
-- `runtime.feedback.configuration.['ssl.keystore.key']`
-- `runtime.feedback.configuration.['ssl.key.password']`
-- `runtime.feedback.configuration.['ssl.keystore.certificate.chain']`
-- `runtime.state.configuration.['bootstrap.servers']`
-- `runtime.state.configuration.['sasl.username']`
-- `runtime.state.configuration.['sasl.password']`
-- `runtime.state.configuration.['ssl.truststore.certificates']`
-- `runtime.state.configuration.['ssl.keystore.key']`
-- `runtime.state.configuration.['ssl.key.password']`
-- `runtime.state.configuration.['ssl.keystore.certificate.chain']`
-
-### Examples
-
-Here are listed some configuration examples that you can use as a starting point for your workloads.
-
-<details>
-<summary>Workload Configuration with Kafka Channels</summary>
-<p>
-
-```json
-{
-    "state": {
-      "type": "kafka",
-      "channel": "actionTopic",
-      "configuration": {
-        "bootstrap.servers": "localhost:9092",
-        "client.id": "test-factory",
-        "sasl.mechanism": "plain",
-        "group.id": "groupId",
-        "ssl.enabled": false
-      }
-    },
-    "feedback": {
-      "type": "kafka",
-      "configuration": {
-        "bootstrap.servers": "localhost:9092",
-        "client.id": "test-factory",
-        "sasl.mechanism": "plain",
-        "heartbeat.ms": 2500,
-        "ssl.enabled": false
-      },
-      "channel": "heartbeatTopic"
-    }
-}
-```
-
-</p>
-</details>
-
-<details>
-<summary>Workload Configuration with gRPC Channels</summary>
-<p>
-
-```json
-{
-  "state": {
-    "type": "grpc"
-  },
-  "feedback": {
-    "type": "grpc"
-  },
-  "settings": {
-    "grpc": {
-      "host": "fd-control-plane"
-    }
-  }
-}
-```
-
-</p>
-</details>
 
 ## Bind Microservices to Runtime
 
