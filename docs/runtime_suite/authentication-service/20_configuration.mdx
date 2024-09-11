@@ -27,7 +27,7 @@ The environment variables needed by the service are:
 - **DELAY_SHUTDOWN_SECONDS** (default: 10): the amount of seconds waited before closing the service when performing a graceful shutdown;
 - **REDIS_MODE** (default: `normal`, introduced in `v3.5.0`): defines the redis mode (`normal` or `sentinel`);
 - **REDIS_HOSTS** (_required_): a comma-separated list of the Redis hosts; The hosts must be in the form `ipaddress:6379`. When `REDIS_MODE=normal`, specify only one host;
-- **REDIS_HOST** ( _DEPRECATED_ since `v3.5.0`, _required_ if `REDIS_HOSTS` is not set): the Redis host, with the port; this is deprecated: use `REDIS_HOSTS` instead. It is still supported for retrocompatibility only when `REDIS_MODE=normal`;
+- **REDIS_HOST** ( _DEPRECATED_ since `v3.5.0`, _required_ if `REDIS_HOSTS` is not set): the Redis host, with the port; this is deprecated: use `REDIS_HOSTS` instead. It is still supported for retro-compatibility only when `REDIS_MODE=normal`;
 - **REDIS_USERNAME** (_optional_): the username to authenticate to Redis. Leave blank if the server does not require authentication.
 - **REDIS_PASSWORD** (_optional_): the password to authenticate to Redis. Leave blank if the server does not require authentication.
 - **REDIS_MASTER_NAME** (_required_ if `REDIS_MODE=sentinel`): the name of the master of your Redis Sentinel configuration
@@ -57,7 +57,7 @@ The environment variables needed by the service are:
 
 ## Configurations file
 
-The configurations file required by the _Authentication Service_ is in the JSON format. The file stores the configurations required by the Identity Providers to be used for authenticaton of your applications.
+The configurations file required by the _Authentication Service_ is in the JSON format. The file stores the configurations required by the Identity Providers to be used for authentication of your applications.
 
 :::caution
 
@@ -101,8 +101,8 @@ The app configuration contains:
 - **refreshCookieCustomAttributes** (_optional_): an object with a sid cookie custom configuration. If not set a default configuration will be applied, more information [here](./30_usage.md#website-cookie-configuration)
   - **domain** (_optional_): sets the `Domain` attribute to the cookie to a value of your choice. By default, the attribute is not added.
   - **path** (default: `/`): sets the `Path` attribute to the cookie to a value of your choice. By default, the value is set to `/`.
-  - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.  
-  
+  - **sameSite** (_optional_): sets the `SameSite` attribute to the cookie, allowed values are `Lax` and `Strict`. By default, the attribute is set to `Lax`.
+
 Here an example of the service configuration:
 
 ```json
@@ -142,7 +142,7 @@ You can retrieve most of the URLs needed for the configuration from the [OpenID 
 
 ## Users collection
 
-To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the _USERS_CRUD_BASE_URL_ environment variable. Remember to set the default state of the endpoint to _PUBLIC_.
+To correctly configure the service, it is important to configure the CRUD collection with the internal endpoint set in the _USERS_CRUD_BASE_URL_ environment variable. Remember also to set the default state of the endpoint to _PUBLIC_.
 
 Fields in the CRUD collection must be the following:
 
@@ -156,6 +156,7 @@ Fields in the CRUD collection must be the following:
 | providerUserId | String          | ✅       |
 | realm          | String          | ✅       |
 | metadata       | Object          | ❌       |
+| permissions    | Array of string | ❌       |
 
 The fields `groups`, `providerId`, and `realm` are obtained from the service configuration described above.
 
@@ -165,8 +166,244 @@ The `metadata` field can be used to store any kind of information about the user
 
 It is not recommended to store additional fields at the root of the collection, as future versions of the authentication service could introduce new fields with clashing names.
 Nest any additional information about the user under the `metadata` field.
-
 :::
+
+In order to simplify and speedup the setup of Users collection, here it is provided its definition ready to be imported in the CRUD page of Console design section.
+
+<details>
+<summary>Users Collection Definition (import ready)</summary>
+
+```json
+{
+  "data": {
+    "collections": {
+      "users": {
+        "id": "users",
+        "description": "Collection of users",
+        "name": "users",
+        "tags": [
+          "collection"
+        ],
+        "fields": [
+          {
+            "name": "_id",
+            "description": "_id",
+            "type": "ObjectId",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "creatorId",
+            "description": "creatorId",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "createdAt",
+            "description": "createdAt",
+            "type": "Date",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "updaterId",
+            "description": "updaterId",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "updatedAt",
+            "description": "updatedAt",
+            "type": "Date",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "__STATE__",
+            "description": "__STATE__",
+            "type": "string",
+            "required": true,
+            "nullable": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          },
+          {
+            "name": "groups",
+            "type": "Array_string",
+            "required": false,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "required": false,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "required": false,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          },
+          {
+            "name": "providerId",
+            "type": "string",
+            "required": true,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          },
+          {
+            "name": "providerUserId",
+            "type": "string",
+            "required": true,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          },
+          {
+            "type": "string",
+            "required": true,
+            "nullable": false,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false,
+            "sensitivityValue": 0,
+            "name": "realm"
+          },
+          {
+            "type": "RawObject",
+            "required": false,
+            "nullable": false,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false,
+            "sensitivityValue": 0,
+            "name": "metadata"
+          },
+          {
+            "name": "permissions",
+            "type": "Array_string",
+            "required": false,
+            "nullable": false,
+            "sensitivityValue": 0,
+            "encryptionEnabled": false,
+            "encryptionSearchable": false
+          }
+        ],
+        "internalEndpoints": [
+          {
+            "basePath": "/users",
+            "defaultState": "PUBLIC"
+          }
+        ],
+        "type": "collection",
+        "indexes": [
+          {
+            "name": "_id",
+            "type": "normal",
+            "unique": true,
+            "fields": [
+              {
+                "name": "_id",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "name": "createdAt",
+            "type": "normal",
+            "unique": false,
+            "fields": [
+              {
+                "name": "creatdAt",
+                "order": -1
+              }
+            ]
+          },
+          {
+            "name": "stateIndex",
+            "type": "normal",
+            "unique": false,
+            "fields": [
+              {
+                "name": "__STATE__",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "name": "nameSearch",
+            "type": "normal",
+            "unique": false,
+            "fields": [
+              {
+                "name": "email",
+                "order": 1
+              },
+              {
+                "name": "name",
+                "order": 1
+              },
+              {
+                "name": "__STATE__",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "name": "upsertSupport",
+            "type": "normal",
+            "unique": false,
+            "fields": [
+              {
+                "name": "providerId",
+                "order": 1
+              },
+              {
+                "name": "providerUserId",
+                "order": 1
+              },
+              {
+                "name": "realm",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "branchName": "master",
+    "exportTimestamp": "2024-09-06T12:53:56.133Z",
+    "isImported": false,
+    "pathRefType": "revisions",
+    "projectId": "",
+    "projectName": ""
+  }
+}
+```
+
+</details>
 
 ## How to configure providers
 
