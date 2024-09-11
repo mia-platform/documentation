@@ -157,7 +157,6 @@ Here below are listed all the properties that you can provide for each microserv
 - **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by the Console.  
   In particular, for each of them you need to provide:
   - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
-  - **`description`** (optional): a brief description of the variable
   - **`readOnly`** (default: false): a boolean that represents if you can change the value of the variable through the Console
   - **`description`** (optional): a brief description of the variable
   - **`managedBy`** (optional): a string that represents the Console section that manages the variable. For now, it can be empty or `fast-data`. It only works used in combination with the `readOnly` property set to `true`.
