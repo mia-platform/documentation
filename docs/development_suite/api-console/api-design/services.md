@@ -181,12 +181,12 @@ If you want more information about configuring the microservice container ports,
 
 ### Environment Variables Configuration
 
-In this section, you can manage, add and delete the environment variables associated to a microservice.
+In this section, you can manage, add and delete the environment variables associated with a microservice.
 The environment variable will be available at runtime within the microservice container.
 
 ![service-detail-variable-new](img/service-detail-variable-new.png)
 
-To add a new environment variable you will have to specify which type of value you are going to use, among **Plain Text**, **From Secret**, **From ConfigMap** and **From Downward API**, as explained in the next paragraphs.
+To add a new environment variable, you must specify which type of value you will use, among **Plain Text**, **From Secret**, **From ConfigMap** and **From Downward API**, as explained in the next paragraphs.
 
 #### Plain Text
 
