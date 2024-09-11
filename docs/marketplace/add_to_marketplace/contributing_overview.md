@@ -183,7 +183,7 @@ Here below are listed all the properties that you can provide for each microserv
   When `valueType: downwardAPI`, the following field is **required**:
   - **`fieldPath`**: the field path of the Downward API that contains the value of the variable.
   
-  It can be any of the following Pod-level fields: `metadata.name`, `metadata.namespace`, `metadata.labels`, `metadata.uid`, `spec.serviceAccountName`, `spec.nodeName`, `status.hostIP`, `status.podIP`, `status.podIPs`, `metadata.annotations['<KEY>]` (where `<KEY>` is the name of a valid annotation key), `metadata.labels['<KEY>']` (where `<KEY>` is the name of a valid label key).
+  It can be any of the following Pod-level fields: `metadata.name`, `metadata.namespace`, `metadata.labels`, `metadata.uid`, `spec.serviceAccountName`, `spec.nodeName`, `status.hostIP`, `status.podIP`, `status.podIPs`, `metadata.annotations['<KEY>]`, where `<KEY>` is the name of a valid annotation key, `metadata.labels['<KEY>']`, where `<KEY>` is the name of a valid label key.
 
   It can also be any of the following Container-level fields: `resource.limits.cpu`, `resource.requests.cpu`, `resource.limits.memory`, `resource.requests.memory`, `resource.limits.ephemeral-storage`, `resource.requests.ephemeral-storage`.
   
