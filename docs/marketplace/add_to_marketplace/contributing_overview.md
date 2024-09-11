@@ -157,17 +157,40 @@ Here below are listed all the properties that you can provide for each microserv
 - **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by the Console.  
   In particular, for each of them you need to provide:
   - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
+  - **`description`** (optional): a brief description of the variable
+  - **`readOnly`** (default: false): a boolean that represents if you can change the value of the variable through the Console
+  - **`description`** (optional): a brief description of the variable
+  - **`managedBy`** (optional): a string that represents the Console section that manages the variable. For now, it can be empty or `fast-data`. It only works used in combination with the `readOnly` property set to `true`.
+    
+  - **`valueType`** (default: `plain`): the field controls whether the value of the variable is provided by the user or by a Kubernetes resource; at the moment, *Plain Text*, *Config Maps*, *Secrets* and *Downward API* are supported. 
+  
+  When `valueType: plain`, the following field is **required**:
   - **`value`**: the variable default value; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values).
-  - **`description`**: a brief description of the variable
-  - **`readOnly`**: a boolean that represents if you can change the value of the variable through the Console
-  You can also define a variable whose value will be provided by a kubernetes secret. In this case, you need to provide:
-  - **`valueType`**: must be set to `secret`
+
+  When `valueType: secret`, the following fields are **required**:
   - **`secretName`**: the name of the secret that contains the value of the variable
   - **`secretKey`**: the key of the secret that contains the value of the variable
-  - **`description`**: a brief description of the variable
-  - **`readOnly`**: a boolean that represents if you can change the value of the variable through the Console
+  
   Be aware that the secret must be created in the same namespace where the service will be deployed. Since the secret cannot be created through the Console, the user must be made aware of this requirement when they want to deploy the service.
-  It is advisable to make the `readOnly` property `false`, to allow users to change the secret reference in case they have it with another name or key for whatever reason.
+  It is recommended to let the `readOnly` property set to `false` (the default), to allow users to change the secret reference in case they have it with another name or key for any reason.
+
+  When `valueType: configmap`, the following fields are **required**:
+  - **`configMapName`**: the name of the ConfigMap that contains the value of the variable
+  - **`configMapFileName`**: the key of the ConfigMap that contains the value of the variable
+
+  We recommend to set the ConfigMap accordingly to the `defaultConfigMaps` property, seen in the next section.
+  It is also recommended to let the `readOnly` property set to `false` (the default), to allow users to change the ConfigMap reference in case they have it with another name or file name for any reason.
+
+  When `valueType: downwardAPI`, the following field is **required**:
+  - **`fieldPath`**: the field path of the Downward API that contains the value of the variable.
+  
+  It can be any of the following Pod-level fields: `metadata.name`, `metadata.namespace`, `metadata.labels`, `metadata.uid`, `spec.serviceAccountName`, `spec.nodeName`, `status.hostIP`, `status.podIP`, `status.podIPs`, `metadata.annotations['<KEY>]` (where `<KEY>` is the name of a valid annotation key), `metadata.labels['<KEY>']` (where `<KEY>` is the name of a valid label key).
+
+  It can also be any of the following Container-level fields: `resource.limits.cpu`, `resource.requests.cpu`, `resource.limits.memory`, `resource.requests.memory`, `resource.limits.ephemeral-storage`, `resource.requests.ephemeral-storage`.
+  
+  In case a container-level field is provided, the following field is also **required**:
+  - **`containerName`**: the name of the container where the field is located. It is **required** only if the field is a container-level field; it must be **omitted for pod-level fields**.
+
 - **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   In particular, for each of them you need to provide:  
   - **`name`**: the name of the ConfigMap
