@@ -222,7 +222,7 @@ Please refer to the dedicated [ConfigMaps](/development_suite/api-console/api-de
 
 #### From Downward API
 
-This type represents a value that is obtained from the Kubernetes [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#downwardapi-resourceFieldRef).
+This type represents a value that is obtained from the Kubernetes [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/).
 
 Downward API allows you to expose information about a Pod to itself, such as the Pod's name, namespace, IP address, resource limits, label and annotations values or other information.
 
