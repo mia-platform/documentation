@@ -194,7 +194,7 @@ For a **Plain Text** value, you have to specify the **Key** and the **Value** of
 
 **Value** can also be an interpolated string, to do so the value to be interpolated needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
 
-As usual, the `VALUE_TO_INTERPOLATE` can be a [Public Variable](/development_suite/api-console/api-design/public_variables) key or a [Project Environment Variable](/console/project-configuration/manage-environment-variables/) key.
+As usual, the `VALUE_TO_INTERPOLATE` can be a [Public Variable](/development_suite/api-console/api-design/public_variables.md) key or a [Project Environment Variable](/console/project-configuration/manage-environment-variables/index.md) key.
 
 #### From Secret
 
