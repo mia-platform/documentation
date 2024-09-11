@@ -225,12 +225,29 @@ Please refer to the dedicated [ConfigMaps](/development_suite/api-console/api-de
 This type represents a value that is obtained from the Kubernetes [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#downwardapi-resourceFieldRef).
 
 Downward API allows you to expose information about a Pod to itself, such as the Pod's name, namespace, IP address, resource limits, label and annotations values or other information.
-The fact that the information are provided through environment variables **decouples the application in the container from the Kubernetes API**, because environment variables are a standard way to provide configuration to applications.
+
+##### Why should I use the Downward API?
+
+The fact that the information are provided through environment variables **decouples the application in the container from the Kubernetes API**, 
+because environment variables are a standard way to provide configuration to applications.
+
+This is particularly useful in scenarios where your application needs to know information about the Pod it is running in, 
+but you don't want it to access the Kubernetes APIs to obtain them or to hardcode that information into the application itself.
+
+It is also useful for accessing to Console Project specific information, which are always available
+through dedicated [annotations](/development_suite/api-console/api-design/services.md#annotations-configuration) and [labels](/development_suite/api-console/api-design/services.md#labels-configuration).
+
+This can allow you, for example, to know the name of the Console Project where the Microservice is deployed, the name of the environment and other information 
+that you can use for monitoring, logging or even application logic purposes.
+
+Pods for example can also communicate their name to other Pods in the same namespace, so that they can be used as a unique identifier for purposes such as leader-election among multiple replicas.
+
+##### Configuration
 
 You need to specify the **Key** and the **Field Path** from which this value can be retrieved, along with an optional **Description**.
 Other information may be required according to the selected Field Path value, as explained in the following paragraphs.
 
-#### Available Field Paths
+##### Available Field Paths
 
 The Field Path can be selected from a dropdown list, which contains a subset of the [Downward API available fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#available-fields).
 
@@ -243,7 +260,7 @@ Along with Pod-level fields, [Container-level fields](https://kubernetes.io/docs
 
 If one of the Container-level fields is selected, the **Container Name** must be filled with the name of a container in the Pod. A dropdown list with the available containers is provided.
 
-### Editing an Environment Variable
+#### Editing an Environment Variable
 
 If the variable is not read-only, it can be edited with the according button on the right side of the table.
 
@@ -255,7 +272,7 @@ The **Key** field is not editable, if you need to change the key you have to del
 
 :::
 
-### Import Environment Variables from a `.env` file
+#### Import Environment Variables from a `.env` file
 
 It is possible to import multiple **Plain Text** variables from a `.env` file by using the dedicated button.  
 A variable definition in the `.env` file has to be contained in a single line and must follow one of the formats below:
