@@ -15,6 +15,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.15.0] - 2024-09-12
+
+### Added
+
+- `deploy add status` command
+- `deploy trigger` command
+
+### Changed
+
+- updated `extension apply` command to support new request body schema
+- deprecate `deploy` command
+- update go version to 1.23.1
+- `marketplace list-versions` command removed from alpha build
+- update mergo to v1.0.1
+- update cobra to v1.8.1
+- update oauth2 to v0.23.0
+- update sync to v0.8.0
+- update text to v0.18.0
+
+### BREAKING
+
+- updated `extension apply` command to support new request body schema. The older version of miactl will not be
+	compatible with the Console version upper or equal to 13.2.0.
+
 ## [v0.14.0] - 2024-07-25
 
 ### Added
@@ -283,7 +307,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.14.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.15.0...HEAD
+[v0.15.0]: https://github.com/mia-platform/miactl/compare/v0.14.0...v0.15.0
 [v0.14.0]: https://github.com/mia-platform/miactl/compare/v0.13.0...v0.14.0
 [v0.13.0]: https://github.com/mia-platform/miactl/compare/v0.12.2...v0.13.0
 [v0.12.2]: https://github.com/mia-platform/miactl/compare/v0.12.1...v0.12.2
