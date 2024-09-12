@@ -1,6 +1,6 @@
 ---
 id: control_plane_operator
-title: Control Plane Operator Configuration
+title: Control Plane Operator
 sidebar_label: Control Plane Operator
 ---
 
@@ -25,12 +25,21 @@ Configuration of _Control Plane Operator_ is a straightforward process that invo
 
 Control Plane service can be customized using the following environment variables:
 
-| Name                                 | Required | Description                                                                                                                       | Default Value                            |
-|--------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| `GRPC_PORT`                          | -        | This variable determines the TCP port where the **gRPC controller** binds its listener                                            | 50051                                    |
-| `LOG_LEVEL`                          | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`          | `info`                                   |
-| `FD_OPERATOR_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file                                                                                        | `~/.fd/control_plane/configuration.json` |
-| `OTEL_EXPORTER_OTLP_ENDPOINT`        | -        | The URL to a GRPC endpoint of an OpenTelemetry Collector.<br/>Specifying this value enables the support for OpenTelemetry tracing |                                          |
+| Name                                 | Required | Description                                                                                                                                                                                                                 | Default Value                            |
+|--------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
+| `GRPC_PORT`                          | -        | This variable determines the TCP port where the **gRPC controller** binds its listener                                                                                                                                      | 50051                                    |
+| `LOG_LEVEL`                          | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`                                                                                                    | `info`                                   |
+| `FD_OPERATOR_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file                                                                                                                                                                                  | `~/.fd/control_plane/configuration.json` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT`        | -        | The URL to a GRPC endpoint of an OpenTelemetry Collector.<br/>Specifying this value enables the support for OpenTelemetry tracing                                                                                           |                                          |
+| `MIA_PLATFORM_EU_TENANT`             | &check;  | Identifier of the company that contains the project where this service is configured.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration |                                          |
+| `APP_KUBERNETES_IO_PART_OF`          | &check;  | Identifier of the project where this service is configured.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                           |                                          |
+| `MIA_PLATFORM_EU_STAGE`              | &check;  | Environment where this service is deployed to.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                                        |                                          |
+
+:::tip
+This is how environment variables using Downward API should look like under Control Plane Operator microservice page of Console Design section:
+
+![Environment Variables from Downward API](./img/env_vars_downward_api.png)
+:::
 
 ### Config Map
 
