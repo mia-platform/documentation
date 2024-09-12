@@ -17,8 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## 3.10.0 - 10-09-2024
 
-## 3.10.0-rc.0 - 2024-09-05
-
 ### Added
 
 - introduce `permissions` custom claim, which can be employed by other services to restrict the access to resources specified by the permissions granted to the user.
