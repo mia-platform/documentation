@@ -127,6 +127,18 @@ The fields `value` and `key` are of type *Buffer*, `offset` and `timestamp` are 
 
 The `primaryKeys` is an array of strings which are the primary keys of the projection whose topic is linked.
 
+:::tip
+Starting from `v7.8.0`, the Real-Time Updater can accept a message adapter written as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+```js title=esmMessageAdapter.js
+export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+  // ...adapter logic
+}
+```
+
+This definition is also supported by versions `v6.1.0` and `v.5.5.0`.
+:::
+
 
 ## Kafka Projection Updates Configuration
 
@@ -208,6 +220,18 @@ For more information please refer to the [Projection Changes Schema](/fast_data/
 The mount path used for these configurations is: `/home/node/app/configurations/castFunctionsFolder`.  
 
 In this folder you have all the generated [Cast Functions](/fast_data/configuration/cast_functions.md) definitions. This configuration is read-only since you can configure it from its dedicated section of the Console.
+
+:::tip
+Starting from `v7.8.0`, the Real-Time Updater can accept a cast function having [the new signature](/fast_data/configuration/cast_functions.md#new-signature), which accepts the whole ingestion message as first parameter and it's defined as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+```js title=newCastFunction.js
+export default function myNewCastFunction(messageObject, fieldName, logger) {
+  return messageObject[fieldName];
+}
+```
+
+This definition is also supported by versions `v6.1.0` and `v.5.5.0`.
+:::
 
 ### MAP_TABLE configurations
 
