@@ -8,10 +8,10 @@
   ],
   "properties": {
     "cache": {
-      "$ref": "#/definitions/RedisCache"
+      "$ref": "#/definitions/Cache"
     },
     "persistence": {
-      "$ref": "#/definitions/MongodbPersistence"
+      "$ref": "#/definitions/Persistence"
     },
     "settings": {
       "$ref": "#/definitions/Settings"
@@ -20,13 +20,17 @@
   "examples": [
     {
       "cache": {
-        "url": {
-          "type": "file",
-          "path": "/run/secrets/data-fabric/control-plane.ini",
-          "key": "REDIS_URL"
+        "type": "redis",
+        "configuration": {
+          "url": {
+            "type": "file",
+            "path": "/run/secrets/data-fabric/control-plane.ini",
+            "key": "REDIS_URL"
+          }
         }
       },
       "persistence": {
+        "type": "mongodb",
         "configuration": {
           "type": "file",
           "path": "/run/secrets/data-fabric/control-plane.ini",
@@ -36,7 +40,29 @@
     }
   ],
   "definitions": {
-    "MongodbConfiguration": {
+    "Cache": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/RedisCache"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "redis"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "MongodbPersistence": {
       "type": "object",
       "required": [
         "url"
@@ -60,22 +86,27 @@
         }
       }
     },
-    "MongodbPersistence": {
-      "description": "Settings describing how to connect to the underlying MongoDB Database and which collection should be employed",
-      "type": "object",
-      "required": [
-        "configuration"
-      ],
-      "properties": {
-        "configuration": {
-          "description": "MongoDB connection settings",
-          "allOf": [
-            {
-              "$ref": "#/definitions/MongodbConfiguration"
+    "Persistence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/MongodbPersistence"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "mongodb"
+              ]
             }
-          ]
+          }
         }
-      }
+      ]
     },
     "RedisCache": {
       "type": "object",

@@ -13,7 +13,7 @@ Besides, it exposes the Websocket interface that enables live updates on Control
 
 ## Configuration
 
-_Configuration of Fabric BFF_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+Configuration of _Fabric BFF_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
 
 ### Environment Variables
 
@@ -109,6 +109,7 @@ An example of persistence configuration can be seen below:
 {
   // ...other fabric bff configurations
   "persistence": {
+    "type": "mongodb",
     "configuration": {
       "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
       "database": "<data-fabric-database-name>"

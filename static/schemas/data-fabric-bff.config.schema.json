@@ -42,6 +42,7 @@
         }
       },
       "persistence": {
+        "type": "mongodb",
         "configuration": {
           "url": {
             "type": "file",
@@ -85,7 +86,7 @@
       ]
     },
     "persistence": {
-      "$ref": "#/definitions/MongodbPersistence"
+      "$ref": "#/definitions/Persistence"
     },
     "settings": {
       "$ref": "#/definitions/Settings"
@@ -234,7 +235,7 @@
         }
       }
     },
-    "MongodbConfiguration": {
+    "MongodbPersistence": {
       "type": "object",
       "required": [
         "url"
@@ -258,23 +259,6 @@
         }
       }
     },
-    "MongodbPersistence": {
-      "description": "Settings describing how to connect to the underlying MongoDB Database and which collection should be employed",
-      "type": "object",
-      "required": [
-        "configuration"
-      ],
-      "properties": {
-        "configuration": {
-          "description": "MongoDB connection settings",
-          "allOf": [
-            {
-              "$ref": "#/definitions/MongodbConfiguration"
-            }
-          ]
-        }
-      }
-    },
     "OpenLineageSettings": {
       "description": "Settings describing the connections with OpenLineage service",
       "type": "object",
@@ -291,6 +275,28 @@
           ]
         }
       }
+    },
+    "Persistence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [
+            "configuration",
+            "type"
+          ],
+          "properties": {
+            "configuration": {
+              "$ref": "#/definitions/MongodbPersistence"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "mongodb"
+              ]
+            }
+          }
+        }
+      ]
     },
     "RestProxy": {
       "description": "Configuration regarding the Control Plane APIs that are proxied by the BFF",
