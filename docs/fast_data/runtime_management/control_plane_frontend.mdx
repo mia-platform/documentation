@@ -4,9 +4,6 @@ title: Control Plane UI
 sidebar_label: Control Plane UI
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 Fast Data Runtime Management solution has a dedicated frontend that allows interacting with [Control Plane](/fast_data/runtime_management/control_plane.mdx) via [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)
 component.
 
@@ -16,6 +13,9 @@ This frontend enables the user to:
 - retrieve pipelines details;
 - visualize pipelines structure and receive live updates about the state of the underlying Fast Data Runtime;
 - execute actions on pipelines state, that is pausing or resuming one or more data streams;
+
+![Fast Data Control Plane embedded in Console](./img/control_plane_in_console.png)
+> Fast Data Runtime Management solution embedded in Mia-Platform Console, with visibility at Company level.
 
 ## Configuration
 
@@ -36,7 +36,7 @@ Bear in mind that changing the `BASE_PATH` environment variable requires to chan
 
 ### Endpoints
 
-In order to allow incoming traffic from outside to Control Plane Frontend, it is necessary to configure the main service endpoint. This can be configured in the `Endpoints` page of Console Design section, as explained [here](/development_suite/api-console/api-design/endpoints.md).
+In order to allow incoming traffic from outside to Control Plane Frontend, it is necessary to configure the main service endpoint. This can be configured in the `Endpoints` page of Console Design area, as explained [here](/development_suite/api-console/api-design/endpoints.md).
 
 | Endpoint         | Rewrite Base Path | Microservice       | Description                                 |
 |------------------|-------------------|--------------------|---------------------------------------------|

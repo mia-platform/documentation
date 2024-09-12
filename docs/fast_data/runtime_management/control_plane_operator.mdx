@@ -36,7 +36,7 @@ Control Plane service can be customized using the following environment variable
 | `MIA_PLATFORM_EU_STAGE`              | &check;  | Environment where this service is deployed to.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                                        |                                          |
 
 :::tip
-This is how environment variables using Downward API should look like under Control Plane Operator microservice page of Console Design section:
+This is how environment variables using Downward API should look like under Control Plane Operator microservice page of Console Design area:
 
 ![Environment Variables from Downward API](./img/env_vars_downward_api.png)
 :::
@@ -116,7 +116,7 @@ as [feedback](#feedback-message).
 
 Thus, it is necessary to advertise the port where the gRPC controller is exposed by Control Plane service, which by default is the `50051`.
 This operation can be achieved by setting the proper port to the list of [_Container Ports_](/development_suite/api-console/api-design/microservice-container-ports.md)
-that can be found in the Console Design section, under the specific microservice resource. In the image below it is shown how
+that can be found in the Console Design area, under the specific microservice resource. In the image below it is shown how
 the container ports card should appear: 
 
 ![Control Plane Operator microservice ports](./img/control_plane_operator_ports.png)

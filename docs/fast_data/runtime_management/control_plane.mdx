@@ -149,7 +149,7 @@ In this manner Control Plane Operators can register themselves on the main Contr
 are received and Fast Data Runtimes states are sent back.
 
 Thus, it is necessary to advertise the port where the gRPC controller is exposed by Control Plane service, which by default is the `50051`. This operation can be achieved by adding the proper port
-to the list of [_Container Ports_](/development_suite/api-console/api-design/microservice-container-ports.md) that can be found in the Console Design section, under the specific microservice resource. The expected list, based on default configuration, is shown below in the image.
+to the list of [_Container Ports_](/development_suite/api-console/api-design/microservice-container-ports.md) that can be found in the Console Design area, under the specific microservice resource. The expected list, based on default configuration, is shown below in the image.
 
 ![Control Plane microservice ports](./img/control_plane_ports.png)
 
@@ -169,7 +169,7 @@ In case Control Plane service should be configured to be reachable from outside 
 different from the one where Fast Data Runtimes are deployed, a few extra advanced configuration steps are necessary. These are listed here:
 
 - **Introduce further Envoy [`cluster`](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto) to expose the gRPC port of Control Plane service through the API Gateway.**  
-  This can be obtained by opening your Mia-Platform Console Project and selecting the Advanced tab from the Design section sidebar. Within this area of Console it is possible
+  This can be obtained by opening your Mia-Platform Console Project and selecting the Advanced tab from the Design area's sidebar. Within this area of Console it is possible
   to extend Envoy API Gateway default configuration, by editing the file `api-gateway-envoy/clusters.yaml` with the following content:
   
   ```yaml title=api-gateway-envoy/clusters.yaml
