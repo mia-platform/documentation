@@ -179,53 +179,107 @@ For each container port, you have to define:
 If you want more information about configuring the microservice container ports, visit [this page](/development_suite/api-console/api-design/microservice-container-ports.md).
 :::
 
-### Environment Variable Configuration
+### Environment Variables Configuration
 
-In this section, you can manage, add and delete the environment variables associated to your microservice.  
+In this section, you can manage, add and delete the environment variables associated with a microservice.
+The environment variable will be available at runtime within the microservice container.
 
-To add a new environment variable you will have to specify which type of value you are going to use.  
-Currently, the following types exist:
+![service-detail-variable-new](img/service-detail-variable-new.png)
 
-* **Plain Text**: values belonging to this type are strings that define the value that we want to associate to that specific environment variable key. For this type it is necessary to specify the **Value** that we want to link to that specific environment variable. **Value** can also be an interpolated string, to do so the value to interpolate needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
-* **From Secret**: this type represents a value that is obtained from a Kubernetes Secret. For this type, it is necessary to specify the **Secret Name** and the **Secret Key** from which this value can be retrieved.
-* **From ConfigMap**: use this type to load a file of a ConfigMap into an environment variable, the **ConfigMap Name** and the **ConfigMap File Name** must be provided.
+To add a new environment variable, you must specify which type of value you will use, among **Plain Text**, **From Secret**, **From ConfigMap** and **From Downward API**, as explained in the next paragraphs.
+
+#### Plain Text
+
+For a **Plain Text** value, you have to specify the **Key** and the **Value** of the environment variable, along with an optional **Description**.
+
+**Value** can also be an interpolated string, to do so the value to be interpolated needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
+
+As usual, the `VALUE_TO_INTERPOLATE` can be a [Public Variable](/development_suite/api-console/api-design/public_variables.md) key or a [Project Environment Variable](/console/project-configuration/manage-environment-variables/index.md) key.
+
+#### From Secret
+
+This type represents a value that is obtained from a Kubernetes Secret.
+
+You need to specify the **Key**, **Secret Name** and the **Secret Key** from which this value can be retrieved, along with an optional **Description**.
+
+Only Secrets configured in the Project configuration are suggested, but you can also insert a custom Secret Name if you know it is deployed on the cluster, making sure it is accessible from the namespace where the microservice is deployed.
+
+#### From ConfigMap
+
+Use this type to load a file of a ConfigMap into an environment variable; the **Key**, **ConfigMap Name** and **ConfigMap File Name** must be provided, along with an optional **Description**.
+
+The ConfigMap can be chosen among the ones configured in the Project configuration.
 
 :::warning
+
 We always suggest mounting ConfigMaps on the files system and using environment variables *From ConfigMap* when necessary and only with small-sized files.
+
 :::
 
 :::info
 Please refer to the dedicated [ConfigMaps](/development_suite/api-console/api-design/services.md#configmaps) and [Secrets](/development_suite/api-console/api-design/services.md#secrets) sections for more information about how to manage them using the Console.
 :::
 
-Therefore, for each variable, you have to define:
+#### From Downward API
 
-* **Key** (*required*)
+This type represents a value that is obtained from the Kubernetes [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/).
 
-* **Value Type** (*required*)
+Downward API allows you to expose information about a Pod to itself, such as the Pod's name, namespace, IP address, resource limits, label and annotations values or other information.
 
-* **Value** (*not required, present only if **Value Type** is Plain Text*)
+##### Why should I use the Downward API?
 
-* **Secret Name** (*present and required only if **Value Type** is From Secret*)
+The fact that the information are provided through environment variables **decouples the application in the container from the Kubernetes API**, 
+because environment variables are a standard way to provide configuration to applications.
 
-* **Secret Key** (*present and required only if **Value Type** is From Secret*)
+This is particularly useful in scenarios where your application needs to know information about the Pod it is running in, 
+but you don't want it or you can't access the Kubernetes APIs to obtain them or to hardcode that information into the application itself.
 
-* **ConfigMap Name** (*present and required only if **Value Type** is From ConfigMap*)
+It is also useful for accessing to Console Project specific information, which are always available
+through dedicated [annotations](/development_suite/api-console/api-design/services.md#annotations-configuration) and [labels](/development_suite/api-console/api-design/services.md#labels-configuration).
 
-* **ConfigMap File Name** (*present and required only if **Value Type** is From ConfigMap*)
+This can allow you, for example, to know the name of the Console Project where the Microservice is deployed, the name of the environment and other information 
+that you can use for monitoring, logging or even application logic purposes.
 
-* **Description**
+Pods for example can also communicate their name to other Pods in the same namespace, so that it can be used as a unique identifier for purposes such as leader-election among multiple replicas.
 
-It is also possible to import multiple **Plain Text** variables from a `.env` file by using the dedicated button.  
+##### Configuration
+
+You need to specify the **Key** and the **Field Path** from which this value can be retrieved, along with an optional **Description**.
+Other information may be required according to the selected Field Path value, as explained in the following paragraphs.
+
+##### Available Field Paths
+
+The Field Path can be selected from a dropdown list, which contains a subset of the [Downward API available fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#available-fields).
+
+All the [Pod-level fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#downwardapi-fieldRef) are available, except for the ones not injectable through environment variables.
+
+If one of `metadata.labels['<KEY>']` or `metadata.annotations['<KEY>']` is selected, the **Label Key** or **Annotation Key** form field must be filled with the `<KEY>` value. 
+Labels and Annotations configured in the current Microservice are suggested, but you can also insert any custom label or annotation key; Kubernetes will populate the value at runtime if it exists.
+
+Along with Pod-level fields, [Container-level fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#downwardapi-resourceFieldRef) are also available, except for `requests.hugepages-*` and `limits.hugepages-*`.
+
+If one of the Container-level fields is selected, the **Container Name** must be filled with the name of a container in the Pod. A dropdown list with the available containers is provided.
+
+#### Editing an Environment Variable
+
+If the variable is not read-only, it can be edited with the according button on the right side of the table.
+
+A form will appear with the current value of the variable.
+
+:::info
+
+The **Key** field is not editable, if you need to change the key you have to delete the variable and create a new one.
+
+:::
+
+#### Import Environment Variables from a `.env` file
+
+It is possible to import multiple **Plain Text** variables from a `.env` file by using the dedicated button.  
 A variable definition in the `.env` file has to be contained in a single line and must follow one of the formats below:
 
 * Basic: `ENV_VAR_KEY=env_var_value`
 * Single Quoted: `ENV_VAR_KEY='env_var_value'`
 * Double Quoted: `ENV_VAR_KEY="env_var\nvalue"`, where the string `"\n"` is converted to a newline character
-
- ![service-detail-variable-new](img/service-detail-variable-new.png)
-
-You can find more information about environment variables at this [link](/console/project-configuration/manage-environment-variables/index.md) of Mia-Platform Docs.
 
 ### Labels Configuration
 
