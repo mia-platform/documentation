@@ -49,6 +49,12 @@ is a need for updating any specific detail, please look for more information at 
 
 #### Authentication Service
 
+:::caution
+In order to follow through this guide it is necessary to ensure that at least version `v3.10.0` of Authentication Service has been configured.  
+Earlier versions do not fully support `permissions` key in `/user-info` details and therefore they would not be retrieved
+when checking for user's authorization
+:::
+
 The service configuration is created with a set of preconfigured variables, such as the connection to Redis
 (see the [paragraph below](#redis-configuration)), and a config map that lists the supported applications.
 Within the config map that contains the known applications it is already possible
@@ -61,7 +67,7 @@ which ones are supported and how to configure the desired one in place of Okta.
 
 The configuration of included application only requires to set up few public and secret environment variables to be operational.
 These variables are summarized in the tables below, divided for location where they should be stored. In fact, the former ones
-should be added under the _Variables_ tab of _Project Overview_ section, while the latter can be configured in the _Public Variables_ of the _Design_ section.
+should be added under the _Variables_ tab of _Project Overview_ area, while the latter can be configured in the _Public Variables_ of the _Design_ section.
 
 | Secret Variable       | Explanation                                                               |
 |-----------------------|---------------------------------------------------------------------------|
@@ -157,7 +163,7 @@ To provide the proper value, please generate a private key, for example as follo
 ssh-keygen -t rsa -b 4096 -m PEM -f private.key
 ```
 
-and then create the corresponding environment variable `CP_JWT_CLIENT_PRIVATE_KEY` in the _Variables_ tab of _Console Project Overview_ section.  
+and then create the corresponding environment variable `CP_JWT_CLIENT_PRIVATE_KEY` in the _Variables_ tab of _Console Project Overview_ area.  
 Finally, please ensure that on the `authentication-service`, located under the _Microservices_ section in the Console _Design_ area,
 the environment `MIA_JWT_TOKEN_PRIVATE_KEY_FILE_PATH` is set to `/secrets/private-key.pem` (where the folder is driven
 by the secret mount path and the file name corresponds to the `key` property set in the `mlp.yaml` configuration entry).
@@ -176,9 +182,8 @@ when requested from an iFrame.
 
 #### CRUD Service
 
-No further configuration is needed for this service, other than ensuring that environment variable MONGODB_URL is correctly set,
-that is either interpolated from a [Project Secret Variable](/console/project-configuration/manage-environment-variables/index.md)
-or loaded from a K8s secret.
+No further configuration is needed for this service, other than ensuring that environment variable `MONGODB_URL` is correctly set,
+that is either interpolated from a [Project Secret Variable](/console/project-configuration/manage-environment-variables/index.md) or loaded from a K8s secret.
 
 #### Redis Configuration
 
@@ -220,7 +225,7 @@ to insert the Redis configurations shown below.
   ```
     
 The provided Redis configuration describes disk persistence management (in-memory only) and introduce a dedicated user with their ACLs.
-To complete the configuration it is necessary to create the following secret environment variables in the _Project Overview_ section:
+To complete the configuration it is necessary to create the following secret environment variables in the _Project Overview_ area:
 
 | Secret Variable          | Explanation                                                                                                                                            |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -230,7 +235,7 @@ To complete the configuration it is necessary to create the following secret env
 
 ### Endpoints
 
-Below is reported the list of endpoints created with the Control Plane application instantiation. Please
+Below is reported the list of endpoints related to the authentication flow that are created with the instantiation of Control Plane application. Please
 ensure that they are exposed with the proper security options.
 
 | Endpoint        | Service                | Authentication Required | User Group Permission |
@@ -243,8 +248,9 @@ ensure that they are exposed with the proper security options.
 | `/userinfo`     | authentication-service |            ✅            | true                  |
 | `/apps`         | authentication-service |            -            | true                  |
 
-Knowing these endpoints are exposed, it is now possible to configure the redirect urls that some Identity Providers, such as Okta or Auth0, require to complete
-the application registration. These endpoints will be then employed during the authentication flow to constrain the redirects
+Knowing these endpoints are exposed, it is now possible to configure the redirect urls that some Identity Providers,
+such as Okta or Auth0, require to complete the application registration.
+These endpoints will be then employed during the authentication flow to constrain the redirects
 the Identity Provider can perform. In this case the endpoint that should be configured are the following ones:
 
 - Sign-in redirect URIs → `<project-base-url>/web-login/oauth/callback`
@@ -255,7 +261,7 @@ where `<project-base-url>` is the base url where the project of interest is expo
 ### Collections
 
 The authentication flow via the `authentication-service` requires also the introduction of a CRUD Collection, where
-users details are saved upon successful login. These user (_subject_) information can then be employed in the authorization flow, which is
+users details are saved upon successful login. These user information can then be employed in the authorization flow, which is
 described later.  
 By default the `Fast Data Control Plane` application creates the collection for you and instantiates the CRUD Service,
 which is employed by the authentication service to access the collection. Additionally, below it is also provided the
@@ -384,30 +390,7 @@ collection definition ready for being imported, in case it may be necessary to m
             "nullable": false,
             "sensitivityValue": 0,
             "encryptionEnabled": false,
-            "encryptionSearchable": false,
-            "schema": {
-              "properties": {
-                "permissions": {
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "read:pipelines",
-                      "control:pipelines",
-                      "read:connections",
-                      "update:connections",
-                      "delete:connections",
-                      "read:runtimes",
-                      "update:runtimes",
-                      "read:data-assets",
-                      "update:metadata-assets",
-                      "read:users",
-                      "update:users"
-                    ]
-                  }
-                }
-              }
-            }
+            "encryptionSearchable": false
           },
           {
             "name": "permissions",
@@ -522,7 +505,7 @@ collection definition ready for being imported, in case it may be necessary to m
 ### Advanced
 
 In this section are described additional tweaks to be carried out on the API Gateway (Envoy), that enhance the interaction with
-the runtime system and allow the solution to support authentication.
+the runtime system and allow this solution to support authentication.
 
 These modifications should be inserted in the proper file in the **Advanced** section of the Console _Design_ area, under
 the key `api-gateway-envoy`.
@@ -539,7 +522,7 @@ This configuration edit should be inserted in the file `local-replies.yml` and i
 page every time a 401 HTTP error is encountered by the system. This ensures that the users authenticate before returning
 to the page they were trying to browse.
 
-```yml title=local-replies.yml
+```yml title=api-gateway-envoy/local-replies.yml
 - listener_name: frontend
   filter:
     status_code_filter:
@@ -569,26 +552,33 @@ to the page they were trying to browse.
 ```
 
 :::note
-If you're using API Gateway with Nginx, consider using [this approach for automatic redirects](/runtime_suite_applications/secure-api-gateway/20_configuration.md#nginx).
+If you're using API Gateway with Nginx, please consider using [this approach for automatic redirects](/runtime_suite_applications/secure-api-gateway/20_configuration.md#nginx).
 :::
 
-## Authorization
+## Authorization Flow
 
-In this section are described which resources should be configured in order to properly grant the access
+In this section are described which resources and permissions should be configured in order to properly grant the access
 to the Fast Data Runtime Management solution only to authorized users.
 
 ### Services
 
+Upon application instantiation, the following services should have been generated for handling the authorization flow within your project:
+
+- [`authentication-service`](/runtime_suite/authorization-service/10_overview.md), which is in charge of verifying whether an
+authenticated user has been granted the permissions to access the resource they are requesting. This service works in tandem
+with `api-gateway` and `authentication-service` to fulfill its role;
+
 #### Authorization Service
 
-This service is introduced with the application creation and it is already preconfigured with all the necessary configurations.
+This service is introduced when creating the application and it is already preconfigured with all the necessary configurations.
 In case the service already exists in your project, please ensure the following environment variables on the service contain
-the following values
+the these values below:
 
-| Environment Variable | Value                                                                                                                                          |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| HEADERS_TO_PROXY     | connection,upgrade,sec-websocket-protocol,sec-websocket-version,x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host |
-| USERINFO_URL         | http://authentication-service/userinfo                                                                                                         |
+| Environment Variable     | Value                                                                                                                                          |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| HEADERS_TO_PROXY         | connection,upgrade,sec-websocket-protocol,sec-websocket-version,x-request-id,request-id,cookie,authorization,client-type,host,x-forwarded-host |
+| USERINFO_URL             | http://authentication-service/userinfo                                                                                                         |
+| USER_PROPERTIES_TO_PROXY | provider,email,username,name,permissions,metadata                                                                                              |
 
 In order to support real-time updates in the Fast Data Runtime Management system, it is important to allow proxying the following
 headers:
@@ -597,53 +587,85 @@ headers:
 - [`sec-websocket-protocol`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#websocket-specific_headers)
 - [`sec-websocket-version`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#websocket-specific_headers)
 
+In addition, `USER_PROPERTIES_TO_PROXY` must be edited to include also `permissions` key, so that `permissions` property is loaded, checked
+and then forwarded to the underlying components.
 
-
-Afterward, the link process executes in these steps:
-
-- from the users collection `cp-users` is selected the user that needs to be associated
-- from the found user the `_id` field is extracted as string value
-- the `_id` string value is inserted as value in the `subjects` array of the binding representing the role of interest
-to be associated with the selected user
-
-For example, let's suppose that the details of _Alice_ user are the ones below:
-
-```json
-{
-    "_id" : ObjectId("6606e94a0e85630ccda72486"),
-    "__STATE__" : "PUBLIC",
-    "providerId" : "okta",
-    "providerUserId" : "user-id",
-    "realm" : "my-kingdom",
-    "createdAt" : ISODate("2024-03-29T16:16:10.037+0000"),
-    "creatorId" : "public",
-    "email" : "alice@platform.world",
-    "groups" : [],
-    "name" : "Alice",
-    "updatedAt" : ISODate("2024-04-08T16:23:12.364+0000"),
-    "updaterId" : "public",
-    "username" : ""
-}
-```
 ### Endpoints
 
 In addition to the endpoints described in the [Authentication Flow](#endpoints) section, here are described the ones that expose
 all the functionalities of Fast Data Runtime Management system, both the frontend and backend components.
-The backend endpoints must be protected by Rönd with the appropriate [policies](#policies), as described in the table below.
 
-Please notice that in case the policies were configured in [Control Plane settings](#control-plane), then no manual route needs to be added
-in the _Authorization Management_ section, since they are inferred from the OpenAPI Specification exposed by the service itself.  
-For further details on manual routes definition, please visit the specific [documentation](/development_suite/api-console/api-design/authorization.md#manual-routes-tab). 
+| Endpoint         | Service          | Authentication Required | User Group Permission              |
+|------------------|------------------|:-----------------------:|------------------------------------|
+| `/fast-data`     | fabric-bff       |            ✅            | `permissions["control:pipelines"]` |
+| `/control-plane` | control-plane-fe |            ✅            | `true`                             |
 
-| Endpoint                                  | Service          | Authentication Required | User Group Permission |           Policy            |
-| ----------------------------------------- | ---------------- | :---------------------: | --------------------- | :-------------------------: |
-| `/control-plane`                          | control-plane-fe |           ✅            | true                  |              -              |
-| `/control-plane/fast-data`                | control-plane    |           ✅            | true                  | fd_control_plane_allow_edit |
-| `/control-plane/fast-data/configurations` | control-plane    |           ✅            | true                  | fd_control_plane_allow_view |
-| `/control-plane/fast-data/:id/feedback`   | control-plane    |           ✅            | true                  | fd_control_plane_allow_view |
+### Routes
+
+In order to finely control which operations a user can carry out over Control Plane APIs, a set of permissions has been devised, which
+is listed here:
+
+| Permission          | Context                                                                    |
+|---------------------|----------------------------------------------------------------------------|
+| `read:pipelines`    | allow visualizing pipeline list and structure                              |
+| `control:pipelines` | enables changing pipelines state (`pause` / `resume`)                      |
+| `read:runtimes`     | enables listing which runtime views are available and their status         |
+| `update:runtimes`   | allow creating, updating or deleting runtime views                         |
+| `read:users`        | enables a user to access the user management application in read-only mode |
+| `update:users`      | enables a user to edit users details in the user management application    |
 
 :::caution
-Please ensure that all these endpoints are set with _Authentication Required_ in their security details tab.
+Please, beware that:
+- these **permissions are Company-wise**, that is once a user gets the permissions to update a pipeline state, it can
+change it for all the pipelines. Currently, there is no filter mechanism that allows a user to manage only Fast Data Runtimes of projects
+they can access to;
+- the **default permissions configuration make them independent one from another**. A users needs to obtain both
+_read_ and _update_ permissions to use all the _Control Plane UI_ features and fully manage Fast Data Runtimes.  
+For example, a user with `control:pipelines` permissions can effectively change the state of a pipeline, but only in case it knows
+the pipeline identifier beforehand, since it cannot list the existing pipelines; 
+:::
+
+The permissions described in the table above needs then to be applied to all the different routes exposed by Control Plane application,
+so that each operation is covered with the correct grant.
+
+| Endpoint                                  | Type      | Method | User Group Permissions                                         |
+|-------------------------------------------|-----------|--------|----------------------------------------------------------------|
+| `/fast-data/feedback`                     | Websocket | GET    | `permissions["read:pipelines"]`                                |
+| `/fast-data/control`                      | REST      | HEAD   | `permissions["control:pipelines"]`                             |
+| `/fast-data/control`                      | REST      | POST   | `permissions["control:pipelines"]`                             |
+| `/fast-data/runtimes/items`               | REST      | GET    | `permissions["read:runtimes"]`                                 |
+| `/fast-data/runtimes/items`               | REST      | POST   | `permissions["update:runtimes"]`                               |
+| `/fast-data/runtimes/items/:id`           | REST      | GET    | `permissions["read:runtimes"]`                                 |
+| `/fast-data/runtimes/items/:id`           | REST      | PATCH  | `permissions["update:runtimes"]`                               |
+| `/fast-data/runtimes/items/:id`           | REST      | DELETE | `permissions["update:runtimes"]`                               |
+| `/fast-data/runtimes/items/:id/pipelines` | REST      | GET    | `permissions["read:runtimes"]`                                 |
+| `/fast-data/runtimes/stats`               | REST      | GET    | `permissions["read:runtimes"]`                                 |
+
+:::caution
+Please ensure that all these endpoints and subsequent routes are set with _Authentication Required_ in their security details tab.
+:::
+
+Furthermore, when **publicly** exposing the gRPC services of main Control Plane instance, we recommend to introduce a security measure to prevent
+unwanted communications. This can be obtained by setting a [Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme)
+on your ingress controller or an [API key](/development_suite/api-console/api-design/api_key.md) to be verified by the Authorization Service.
+
+Configuration of an API Key can be carried out directly in Console as explained [here](/development_suite/api-console/api-design/api_key.md#create-a-new-api-key),
+whereas in this [documentation page](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) is explained
+how to protect an endpoint with it.
+In the table below are listed which exposed endpoints should be protected by API Key,
+assuming the name assigned to the `clientType` is `control_plane_operator`:
+
+| Endpoint                                    | Type | API Key required | User Group Permissions                   |
+|---------------------------------------------|------|:----------------:|------------------------------------------|
+| `/grpc.reflection.v1.ServerReflection`      | gRPC |     &check;      | `clientType == "control_plane_operator"` |
+| `/grpc.reflection.v1alpha.ServerReflection` | gRPC |     &check;      | `clientType == "control_plane_operator"` |                                                             |
+| `/control_plane_fabric.RuntimeManagement`   | gRPC |     &check;      | `clientType == "control_plane_operator"` |
+| `/control_plane_fabric.ControlPlane`        | gRPC |     &check;      | `clientType == "control_plane_operator"` |
+| `/control_plane_fabric.FastDataControl`     | gRPC |     &check;      | `clientType == "control_plane_operator"` |
+
+:::tip
+Upon securing gRPC endpoints with an API Key, please remember to [add the needed header](/fast_data/runtime_management/control_plane_operator.mdx#upstream)
+(`secret`) to the configuration of all your _Control Plane Operators_.
 :::
 
 ## Users Management
@@ -655,7 +677,7 @@ would be a nice add-on to simplify these actions and to reduce errors related to
 This can be achieved thanks to the [Microfrontend Composer](/microfrontend-composer/what-is.md) tool, which allows crafting
 and configuring web pages and applications. In particular, it is possible to build the pages for listing the users,
 
-An example of application that can be created is show in the picture below:
+An example of application that can be created is shown in the picture below:
 
 ![Screenshot of application created via Microfrontend Composer](img/users_web_app.png)
 
@@ -1187,26 +1209,52 @@ They can be upgraded whenever an update is available.
 
 ### Endpoints
 
-Here are described the endpoints that should be exposed from the project for the users management application. It is
-important to notice that the Rönd policies on CRUD Service endpoints must be created manually. 
+Here are reported the endpoints that should be exposed from the project in order to enable users managements: 
 
-| Endpoint                   | Service  | Authentication Required | User Group Permission |        Policy         |
-|----------------------------|----------|:-----------------------:|-----------------------|:---------------------:|
-| `/micro-lc-configurations` | micro-lc |            ✅            | true                  |           -           |
-| `/control-plane-manager`   | micro-lc |            ✅            | groups.admin          |           -           |
-| `/rond/rbac-bindings`      | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
-| `/rond/rbac-roles`         | crud     |            ✅            | groups.admin          | allow_manage_cp_users |
-| `/users`                   | crud     |            ✅            | groups.admin          |       allow_all       |
+| Endpoint                   | Service    | Authentication Required | User Group Permission                                          |
+|----------------------------|------------|:-----------------------:|----------------------------------------------------------------|
+| `/micro-lc-configurations` | micro-lc   |            ✅            | `true`                                                         |
+| `/mgmt`                    | micro-lc   |            ✅            | `true`                                                         |
+| `/authz/users`             | crud       |            ✅            | `permissions["read:users"]` \|\| `permissions["update:users"]` |
+
+### Routes
+
+In additions to endpoints definitions provided above, in order to further refine who can manage the users and their permissions for Fast Data
+Runtime Management system, each endpoint sub-route should define the specific permission grant that user require to own in order to
+successfully access the requested resource. The following table provides a recap of each route with the needd permissions. 
+
+| Endpoint                  | Type | Method | User Group Permissions                                         |
+|---------------------------|------|--------|----------------------------------------------------------------|
+| `/mgmt/users`             | REST | GET    | `permissions["read:users"]` \|\| `permissions["update:users"]` |
+| `/authz/users/`           | REST | GET    | `permissions["read:users"]`                                    |
+| `/authz/users/export`     | REST | GET    | `permissions["read:users"]`                                    |
+| `/authz/users/count`      | REST | GET    | `permissions["read:users"]`                                    |
+| `/authz/users/:id`        | REST | GET    | `permissions["read:users"]`                                    |
+| `/authz/users/`           | REST | POST   | `permissions["update:users"]`                                  |
+| `/authz/users/bulk`       | REST | POST   | `permissions["update:users"]`                                  |
+| `/authz/users/upsert-one` | REST | POST   | `permissions["update:users"]`                                  |
+| `/authz/users/state`      | REST | POST   | `permissions["update:users"]`                                  |
+| `/authz/users/:id/state`  | REST | POST   | `permissions["update:users"]`                                  |
+| `/authz/users/`           | REST | DELETE | `permissions["update:users"]`                                  |
+| `/authz/users/:id`        | REST | DELETE | `permissions["update:users"]`                                  |
+| `/authz/users/`           | REST | PATCH  | `permissions["update:users"]`                                  |
+| `/authz/users/`           | REST | PATCH  | `permissions["update:users"]`                                  |
 
 :::caution
-Please ensure that all these endpoints are set with _Authentication Required_ in their security details tab.
+Please ensure that all these endpoints and routes are set with _Authentication Required_ in their security details tab.
 :::
 
-:::info
-Adding the `admin` group to User Group Permission of the endpoints configuration requires users to belong to the group `admin`,
-that is, their record on the database should contain the value `admin` under the property `groups`.
+### The First User
 
-This is an example of user record which belongs to the `admins` group:
+Upon releasing this user management solution, the users table will be empty. Consequently, nobody may enter
+the application from frontend at the beginning. To grant the permissions to the `admin` user, that is the one that usually first
+performs the login procedure, it is necessary to either edit the database record associated to such user and insert the needed permissions,
+or to temporarily remove the permissions from `/authz/users/` endpoint's routes till at least the first user
+has been granted the read/edit users permissions.
+
+Below is presented the procedure to grant the needed permissions for managing users of Fast Data Control Plane application.
+
+Let's start by observing a record of `users` collection:
 
 ```json
 {
@@ -1215,30 +1263,54 @@ This is an example of user record which belongs to the `admins` group:
   "providerId" : "okta",
   "providerUserId" : "user-id",
   "realm" : "my-kingdom",
-  "createdAt" : ISODate("2024-03-29T16:16:10.037+0000"),
+  "createdAt" : ISODate("2024-03-29T16:00:00.000+0000"),
   "creatorId" : "public",
   "email" : "alice@platform.world",
-  "groups" : [
-    // here the admin group has been added to the user
-    "admin"
-  ],
+  "groups" : [],
   "name" : "Alice",
-  "updatedAt" : ISODate("2024-04-08T16:23:12.364+0000"),
+  "updatedAt" : ISODate("2024-09-13T14:00:00.000+0000"),
   "updaterId" : "public",
-  "username" : ""
+  "username" : "",
+  "permissions": [
+    // add here the necessary permissions, such as "read:users", "update:users"
+  ]
 }
 ```
 
-🚨🚨🚨  
-Please notice that <u>until no user is assigned to the `admin` group, then no user would be able to manage the users, roles and bindings</u>.
-Therefore, either the group is added to the user via editing database record or the `admin` group is set in User Group Permission only after the first
-subject is assigned to the `admin` group via the application UI.  
-🚨🚨🚨
-:::
+The above document is created the first time a user logs in through the configured Authentication Flow. As it can be seen,
+the user does not belong to any `groups` nor it owns any `permissions`. In order to grant `Alice` the rank of _user master_ (admin)
+it is sufficient to add these permissions as strings to the `permissions` array:
 
-## Tips
+- `read:users`
+- `update:users`
+
+Afterward, `Alice` user needs to log out of the application and login again to obtain such permissions
+and be able to manage further application users.
 
 :::note
-The _users_ collection is filled in every time a new user first login in the application, so that on that collection it may only be needed to add the `admin` group
-to the relevant users.
+We acknowledge this procedure of managing users does not provide a seamless experience.
+We are working to improve this and reduce configuration friction.
 :::
+
+### Managing User Permissions
+
+Every time a user logs in for the first time in the Fast Data Control Plane application, the _users_ collection
+is filled with the corresponding user record. Consequently, in order for them to be able to access Fast Data Control Plane
+features they need to receive the proper permissions, that can be granted through the dedicated UI.
+
+![Users Management UI](./img/users_management_ui.png)
+> Example of Users Management UI that is generated by the Fast Data Control Plane application
+
+Opening the users management frontend, which can be reached by default at the path `/mgmt/users` under the domain
+exposed by your Mia-Platform Console project, the first thing that be observed is the users table. This
+table lists all the users that ever logged in Fast Data Control Plane application, alongside their details and permissions.
+
+To update a user's permissions, please search for such user and click on its entry in the table. It will open a modal window
+showing a set of user's details and scrolling it will be possible to access the list of permissions.
+
+![Users Management UI](./img/edit_user_permissions.png)
+> Modal window showing the `permissions` field with the values that can be set in the array
+
+Once the needed permissions are added to the `permissions`, click the _Update Data_ button to store the changes.
+Now, the user who has just received the new permissions **must log out and login again** to be able to access Fast Data
+Control Plane UI with the new set of grants.
