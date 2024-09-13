@@ -1355,17 +1355,6 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/data_catalog/overview_data_catalog",
-          "type": "doc"
-        }
-      ],
-      "label": "Data Catalog",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
           "id": "fast_data/troubleshooting/fast_data_error_codes",
           "type": "doc"
         },
@@ -1419,6 +1408,20 @@
       ],
       "label": "FAQ",
       "type": "category"
+    }
+  ],
+  "dataCatalog": [
+    {
+      "id": "data_catalog/overview_data_catalog",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_frontend",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/secure_access",
+      "type": "doc"
     }
   ],
   "gettingStarted": [

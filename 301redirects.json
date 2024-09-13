@@ -1790,5 +1790,9 @@
   "/docs/runtime_suite_tools/mlp/deploy": {
     "destination": "/docs/runtime_suite_tools/mlp/overview",
     "addedOn": "2024-07-31"
+  },
+  "/docs/fast_data/data_catalog/overview_data_catalog": {
+    "destination": "/docs/data_catalog/overview_data_catalog",
+    "addedOn": "2024-09-13"
   }
 }

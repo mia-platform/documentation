@@ -20,7 +20,7 @@ The System of Record is then created.
 
 :::note
 In case it is not possible to find the button `Create new System of Record`, it means that a project may have been configured
-to expose Systems of Record under the [Data Catalog](/fast_data/data_catalog/overview.md) feature, which allows to visualize them in a read-only fashion.
+to expose Systems of Record under the [Data Catalog](/data_catalog/overview.md) feature, which allows to visualize them in a read-only fashion.
 :::
 
 ## Delete a System of Record

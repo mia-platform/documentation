@@ -4,6 +4,11 @@ title: Data Catalog Overview
 sidebar_label: Overview
 ---
 
+Describe here the NEW Data Catalog overview
+
+OLD MATERIAL
+
+
 :::caution
 Please notice that the information explained in the following page, regarding the deployment of a Data Catalog Agent,
 are valid only for Console projects adopting the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md).
@@ -41,7 +46,7 @@ which replaces the Systems of Record page in this particular case.
 Within this page, which is shown in the figure, it will be possible to see the list of System of Record that have
 been generated starting from the metadata extracted by the Data Catalog Agent.
 
-![Data Catalog in System of Record page](../img/data_catalog_systems_view.png)
+![Data Catalog in System of Record page](img/data_catalog_systems_view.png)
 
 Selecting a specific System of Record it is possible to observe which tables are associated with the system and for
 each table it is visible which fields compose it, alongside the field types and their properties.
@@ -52,4 +57,4 @@ the Data Catalog Agent so that the source systems can add or remove fields witho
 
 An example of a table view is displayed in the figure below, which allows to editing description and GDPR regulation fields:
 
-![Data Catalog Table view page](../img/data_catalog_readonly_fields.png)
+![Data Catalog Table view page](img/data_catalog_readonly_fields.png)

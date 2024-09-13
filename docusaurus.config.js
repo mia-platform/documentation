@@ -61,6 +61,12 @@ async function createConfig() {
           },
           {
             type: 'doc',
+            docId: "data_catalog/overview_data_catalog",
+            label: "Data Catalog",
+            activeBaseRegex: "(docs|docs/\\d.x)/data_catalog"
+          },
+          {
+            type: 'doc',
             docId: "microfrontend-composer/what-is",
             label: "Microfrontend Composer",
             activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
