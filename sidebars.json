@@ -1119,6 +1119,10 @@
           "type": "doc"
         },
         {
+          "id": "fast_data/runtime_management/cp_database_setup",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/runtime_management/secure_access",
           "type": "doc"
         },
