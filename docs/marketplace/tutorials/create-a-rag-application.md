@@ -64,11 +64,11 @@ Once you have created these services, you can safely save the configuration.
 The next step is to configure the _AI RAG Template_ service. From the design section, navigate to the _Microservices_ page and select the service (the default name is _ai-rag-template_, but you may have changed its name). From there, click on the _Environment Variables_ tab where you need to modify the following values:
 
 - `MONGODB_CLUSTER_URI`: This is the full connection string to MongoDB (refer to the [official MongoDB documentation](https://www.mongodb.com/docs/guides/atlas/connection-string/#procedure) to find it).
-- `EMBEDDING_API_KEY`: An API key to use when communicating with OpenAI for generating services. It should be the same as the OpenAI API key.
+- `EMBEDDINGS_API_KEY`: An API key to use when communicating with OpenAI for generating services. It should be the same as the OpenAI API key.
 - `LLM_API_KEY`: An API key to use when communicating with OpenAI for generating services. It should also be the same as the OpenAI API key.
 
 :::note
-`EMBEDDING_API_KEY` and `LLM_API_KEY` will have the same value: they are the API key that you can generate from [related page on the OpenAI Developer Dashboard](https://platform.openai.com/api-keys).
+`EMBEDDINGS_API_KEY` and `LLM_API_KEY` will have the same value: they are the API key that you can generate from [related page on the OpenAI Developer Dashboard](https://platform.openai.com/api-keys).
 :::
 
 :::warning
