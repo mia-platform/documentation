@@ -356,7 +356,8 @@
     "logr",
     "ODBC",
     "RDBMS",
-    "pkce"
+    "pkce",
+    "sors"
   ],
   "dictionaries": [
     "softwareTerms",
