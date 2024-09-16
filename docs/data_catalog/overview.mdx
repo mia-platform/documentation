@@ -4,30 +4,101 @@ title: Data Catalog Overview
 sidebar_label: Overview
 ---
 
-Describe here the NEW Data Catalog overview
+A **Data Catalog** is a crucial tool for managing and governing data within an organization.  
+It serves as a centralized and organized repository of metadata that describes the company’s data, including its origins, characteristics, and relationships.  
+The catalog provides a clear and detailed overview of the available data resources, facilitating their access, management, and informed use.
 
-OLD MATERIAL
+In today’s business landscape, characterized by a growing volume of data generated and consumed, a Data Catalog becomes essential for several reasons:
 
+* **Data Governance**: Data governance involves controlling and managing data to ensure it is accurate, consistent, and compliant with regulations. A Data Catalog helps organizations maintain data quality and ensures proper and secure data use, aiding in adherence to company policies and external regulations.
 
-:::caution
-Please notice that the information explained in the following page, regarding the deployment of a Data Catalog Agent,
-are valid only for Console projects adopting the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md).
+* **Data Discovery**: With the increasing complexity of business information systems and the proliferation of data, finding and accessing the right data can become challenging. A Data Catalog provides tools for searching and discovering data, improving efficiency and reducing the time needed to find information coming from numerous and heterogenous system of records.
 
-The Data Catalog Agent can not be deployed in projects adopting the older Console workflow.
-:::
+* **Regulations and Compliance**: Organizations are subject to numerous regulations and data management laws, such as GDPR in Europe and CCPA in California. A Data Catalog facilitates compliance by tracking and documenting data origins and flows, supporting auditing and reporting activities.
 
-:::caution
-At the moment, if a project is configured to work with the Data Catalog, in the same Project will not be possible to configure anything regarding Fast Data.
-In the next releases, a dedicated section to handle the Data Catalog will be provided.
-:::
+* **Data Policies**: Company data policies define how data should be managed, shared, and protected. A Data Catalog helps ensure that these policies are adhered to, providing visibility and control over data management practices.
 
-A Mia-Platform Console Project can be configured to work as a Data Catalog, that is a centralized 
-location where it is possible to collect metadata concerning all the data assets of an organization.
-:::tip
-The Mia-Platform Console Project can be configured to work as a Data Catalog if you configure a Data Catalog Agent in your project. Refer to the [documentation](/runtime_suite_templates/data-catalog/10_overview.md) to understand how to set it up.
-:::
-Within the project, it is possible to [set up](/runtime_suite_templates/data-catalog/20_configuration.md) our Data Catalog Agent, which can be configured to connect to different sources,
-such as:
+Many are the challenges that companies have to deal with every day:
+
+* **Data Integration**: Companies often face difficulties in integrating data from different sources. Without a centralized view, obtaining a unified and coherent perspective of the data is challenging.
+
+* **Data Quality**: Maintaining data quality and accuracy is another continuous challenge, especially when data is dispersed across various systems and formats.
+
+* **Security and Privacy**: Ensuring that sensitive data is protected and that privacy regulations are followed and guaranteed is crucial but complex.
+
+* **Data Access and Utilization**: Facilitating access to the right data for the right people without compromising security can be difficult to manage without a centralized system.
+
+## Data Catalog key features
+
+In order to help companies solve all these challenges, Mia-Platform Data Catalog offers a range of features designed to simplify data management and governance:
+
+* **Data Cataloging**: Organizes and collects available information about company's system of records, tables and columns , making it easy for an analyst to find and understand the data needed for a report.
+
+* **Metadata Management**: Provides full management of custom properties to be assigned to the collected assets for metadata enrichment.
+
+* **Search and Discovery**: Allows users to search for and discover data using advanced queries and filters on tags and custom properties. Advanced search capabilities enables a data scientist to quickly find specific assets for data analysis.
+
+* **Collaborative Environment**: Enables users to collaborate in searching and enriching assets in the same centralized source of truth, facilitating knowledge sharing on assets.
+
+* **Policy Management and Access Control**: Allows to establish customized data classification levels and tagging based on data sensitivity, ensuring that asset information is handled according to its classification, such as public, internal, or confidential. Moreover, it enables access control on users, which can have read-only permessions or also matadata enrichment capabilities on assets. This ensures that only authorized users can view or modify certain data.
+
+## The Importance of Metadata Enrichment in a Data Catalog
+
+**Metadata enrichment** is a critical aspect of managing data assets within a Data Catalog.  
+Metadata enrichment refers to the process of enhancing the existing metadata with additional information that provides more context, detail, and value to the data assets.  
+This additional layer of metadata can significantly improve the usability, discoverability, and governance of data assets.  
+Here is summarized why metadata enrichment is so important:
+
+* **Enhanced Data Discoverability**: Enriching metadata helps users find relevant data more efficiently. By adding descriptive information, keywords, and data classifications, users can perform more precise searches and filters, thus improving the speed and accuracy of data discovery.
+
+* **Improved Data Understanding**: Enriched metadata provides users with a clearer understanding of what the data represents, how it should be used, and its relevance to specific business contexts. This helps users to make more informed decisions.
+
+* **Data Quality and Consistency**: By standardizing and enriching metadata, organizations can ensure consistency in data descriptions and definitions across various datasets. This reduces ambiguity and discrepancies, leading to more reliable and high-quality data.
+
+* **Facilitating Compliance and Governance**: Enriched metadata supports compliance efforts by clearly documenting data ownership, sensitivity levels, and regulatory requirements. This is crucial for adhering to data protection laws and internal policies.
+
+* **Enhanced Collaboration**: Detailed and enriched metadata facilitates better collaboration among teams by providing a shared understanding of data assets.
+
+## Main Data Catalog stakeholders
+
+Within an organization, several stakeholders can benefit from using Mia-Platform Data Catalog:
+
+* **Data Analysts and Data Scientists**: Benefit from faster search and better understanding of data, accelerating analysis times and improving the effectiveness of their research.
+
+* **Data Engineers**: Use the catalog to understand data origins and transformations, facilitating the design and maintenance of data flows.
+
+* **Business Intelligence (BI) Professionals**: Can more effectively find and use data for analysis and reporting, improving the quality of business insights.
+
+* **Chief Data Officers (CDO) and Data Governance Teams**: Use the Data Catalog to implement and monitor data governance policies, ensuring compliance with regulations and maintaining data quality.
+
+* **Compliance and Audit Teams**: Gain from the catalog’s ability to facilitate regulatory compliance and internal audits.
+
+* **Business Users and Decision Makers**: Can access the necessary data and information for informed decision-making, thanks to the availability and clarity of data resources.
+
+## Benefits of Using Mia-Platform Data Catalog
+
+Adopting Mia-Platform Data Catalog offers numerous benefits:
+
+* **Increased Efficiency**: Reduces the time required to find and access data, optimizing work processes and increasing productivity.
+
+* **Data Quality Assurance**: Helps maintain data quality through centralized management and monitoring of data information.
+
+* **Compliance Facilitation**: Supports adherence to regulations and laws, aiding in audit and reporting activities.
+
+* **Improved Collaboration**: Enhances collaboration between teams by providing a common space for sharing data information and knowledge.
+
+* **Decision Support**: Provides decision-makers with a solid foundation of accurate and well-organized data for informed and strategic decisions.
+
+## Setup Mia-Platform Data Catalog
+
+Start to setup your Data Catalog Project in Mia-Platform Console.  
+Find in the Marketplace:
+
+* Data Catalog application (LINK TO BE INSERTED), that offers pre-configured bundle of resources that allows you to easily instantiate and deploy a working Data Catalog product.
+* Data Catalog Agent (LINK TO BE INSERTED), that is in charge of extracting metadata regarding the several tables and data structures existing on configured
+sources (System of Records) of your company, in order to populate the information inside your Data Catalog to start the experience within Data Catalog frontend
+
+Actually, thanks to Data Catalog Agent, it is possible to acquire metadata coming from different supported System of Records:  
 
 - Oracle Database
 - Postgres Database
@@ -35,26 +106,6 @@ such as:
 - Microsoft SQL Server Database
 - Mia-Platform CRUD Service
 - Salesforce SObjects API
+- SAP HANA
 
-This agent is in charge of extracting metadata regarding the several tables and data structures existing on configured
-sources (System of Record) and forward them to Mia-Platform Console for storing them in the dedicated project.
-Example of metadata are the tables' names, their fields' names and their corresponding type.
-
-Once the Data Catalog Agent has run for the first time and it has extracted at least one System of Record, in the design section
-of the specific Console project, it will be possible to explore these set of System of Record under the Data Catalog page,
-which replaces the Systems of Record page in this particular case.  
-Within this page, which is shown in the figure, it will be possible to see the list of System of Record that have
-been generated starting from the metadata extracted by the Data Catalog Agent.
-
-![Data Catalog in System of Record page](img/data_catalog_systems_view.png)
-
-Selecting a specific System of Record it is possible to observe which tables are associated with the system and for
-each table it is visible which fields compose it, alongside the field types and their properties.
-
-As a user, it will be then possible to edit _description_ and _GDPR regulation_ properties of each table field, which are retained upon saving
-the project. These changes, executed on the _user-defined_ properties, are preserved across multiple metadata synchronizations performed by
-the Data Catalog Agent so that the source systems can add or remove fields without affecting existing ones. 
-
-An example of a table view is displayed in the figure below, which allows to editing description and GDPR regulation fields:
-
-![Data Catalog Table view page](img/data_catalog_readonly_fields.png)
+In summary, a Data Catalog is an essential tool for effective data management. It offers a comprehensive solution for cataloging, discovering, governing, and complying with data requirements, providing significant benefits in terms of efficiency, quality, and transparency. Implementing a Data Catalog not only optimizes data management but also contributes to robust governance and improves analytical and decision-making capabilities within the organization.
