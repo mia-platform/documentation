@@ -1224,7 +1224,7 @@ Here are reported the endpoints that should be exposed from the project in order
 
 In additions to endpoints definitions provided above, in order to further refine who can manage the users and their permissions for Fast Data
 Runtime Management system, each endpoint sub-route should define the specific permission grant that user require to own in order to
-successfully access the requested resource. The following table provides a recap of each route with the needd permissions. 
+successfully access the requested resource. The following table provides a recap of each route with the needed permissions. 
 
 | Endpoint                  | Type | Method | User Group Permissions                                         |
 |---------------------------|------|--------|----------------------------------------------------------------|
