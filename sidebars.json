@@ -1420,7 +1420,19 @@
       "type": "doc"
     },
     {
+      "id": "data_catalog/data_catalog_fabric_bff",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_open_lineage",
+      "type": "doc"
+    },
+    {
       "id": "data_catalog/data_catalog_secure_access",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_compatibility_matrix",
       "type": "doc"
     }
   ],
