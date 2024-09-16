@@ -613,33 +613,35 @@ is listed here:
 The permissions described in the table above needs then to be applied to all the different routes exposed by Data Catalog application,
 so that each operation is covered with the correct grant.
 
-| Endpoint                                                 | Type | Method | User Group Permissions                  |
-|----------------------------------------------------------|------|--------|-----------------------------------------|
-| /assets/search                                           | REST | GET    | `permissions["read:data-assets"]`       |
-| /tags                                                    | REST | GET    | `permissions["read:data-assets"]`       |
-| /sors/:dataset-id                                        | REST | GET    | `permissions["read:data-assets"]`       |
-| /sors/:dataset-id/custom-properties/:name                | REST | POST   | `permissions["update:metadata-assets"]` |
-| /sors/:dataset-id/custom-properties/:name                | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /sors/:dataset-id/custom-properties/:name                | REST | DELETE | `permissions["update:metadata-assets"]` |
-| /sors/:dataset-id/description                            | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /sors/:dataset-id/tags                                   | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /tables/:dataset-id                                      | REST | GET    | `permissions["read:data-assets"]`       |
-| /tables/:dataset-id/custom-properties/:name              | REST | POST   | `permissions["update:metadata-assets"]` |
-| /tables/:dataset-id/custom-properties/:name              | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /tables/:dataset-id/custom-properties/:name              | REST | DELETE | `permissions["update:metadata-assets"]` |
-| /tables/:dataset-id/description                          | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /tables/:dataset-id/tags                                 | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /columns/:dataset-id/:field-name                         | REST | GET    | `permissions["read:data-assets"]`       |
-| /columns/:dataset-id/:field-name/custom-properties/:name | REST | POST   | `permissions["update:metadata-assets"]` |
-| /columns/:dataset-id/:field-name/custom-properties/:name | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /columns/:dataset-id/:field-name/custom-properties/:name | REST | DELETE | `permissions["update:metadata-assets"]` |
-| /columns/:dataset-id/:field-name/description             | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /columns/:dataset-id/:field-name/tags                    | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /metadata-registry/                                      | REST | GET    | `permissions["read:data-assets"]`       |
-| /metadata-registry/                                      | REST | POST   | `permissions["update:metadata-assets"]` |
-| /metadata-registry/:name                                 | REST | GET    | `permissions["read:data-assets"]`       |
-| /metadata-registry/:name                                 | REST | PATCH  | `permissions["update:metadata-assets"]` |
-| /metadata-registry/:name                                 | REST | DELETE | `permissions["update:metadata-assets"]` |
+| Endpoint                                                   | Type | Method | User Group Permissions                  |
+|------------------------------------------------------------|------|--------|-----------------------------------------|
+| `/assets/search`                                           | REST | GET    | `permissions["read:data-assets"]`       |
+| `/tags/count`                                              | REST | GET    | `permissions["read:data-assets"]`       |
+| `/tags/items`                                              | REST | GET    | `permissions["read:data-assets"]`       |
+| `/sors/:dataset-id`                                        | REST | GET    | `permissions["read:data-assets"]`       |
+| `/sors/:dataset-id/custom-properties/:name`                | REST | POST   | `permissions["update:metadata-assets"]` |
+| `/sors/:dataset-id/custom-properties/:name`                | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/sors/:dataset-id/custom-properties/:name`                | REST | DELETE | `permissions["update:metadata-assets"]` |
+| `/sors/:dataset-id/description`                            | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/sors/:dataset-id/tags`                                   | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/tables/:dataset-id`                                      | REST | GET    | `permissions["read:data-assets"]`       |
+| `/tables/:dataset-id/custom-properties/:name`              | REST | POST   | `permissions["update:metadata-assets"]` |
+| `/tables/:dataset-id/custom-properties/:name`              | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/tables/:dataset-id/custom-properties/:name`              | REST | DELETE | `permissions["update:metadata-assets"]` |
+| `/tables/:dataset-id/description`                          | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/tables/:dataset-id/tags`                                 | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/columns/:dataset-id/:field-name`                         | REST | GET    | `permissions["read:data-assets"]`       |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | POST   | `permissions["update:metadata-assets"]` |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | DELETE | `permissions["update:metadata-assets"]` |
+| `/columns/:dataset-id/:field-name/description`             | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/columns/:dataset-id/:field-name/tags`                    | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/metadata-registry/count`                                 | REST | GET    | `permissions["read:data-assets"]`       |
+| `/metadata-registry/items`                                 | REST | GET    | `permissions["read:data-assets"]`       |
+| `/metadata-registry/items`                                 | REST | POST   | `permissions["update:metadata-assets"]` |
+| `/metadata-registry/items/:name`                           | REST | GET    | `permissions["read:data-assets"]`       |
+| `/metadata-registry/items/:name`                           | REST | PATCH  | `permissions["update:metadata-assets"]` |
+| `/metadata-registry/items/:name`                           | REST | DELETE | `permissions["update:metadata-assets"]` |
 
 :::caution
 Please ensure that all these endpoints and subsequent routes are set with _Authentication Required_ in their security details tab.

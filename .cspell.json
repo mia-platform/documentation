@@ -357,7 +357,9 @@
     "ODBC",
     "RDBMS",
     "pkce",
-    "sors"
+    "sors",
+    "CCPA",
+    "HANA"
   ],
   "dictionaries": [
     "softwareTerms",
