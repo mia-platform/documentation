@@ -16,10 +16,20 @@ Describe here the NEW Data Catalog overview
 - Should we move the documentation of Data Catalog Agent from the Agent to this group?
 - Add link to each of the doc page (interesting links - as it happens on runtime management page)
 - Add simple images here - in the Frontend page let's put a screenshot for each page (home, search result, custom properties, metadata enrichment page, custom properties vs unknown properties)
+- Mention OpenLineage standard + add link to project and discuss how we store dataset details using such format
 
 ![Data Catalog UI](./img/data_catalog_home.png)
 
 ---
+
+## Architecture
+
+In the diagram below is shown how the different services are linked together. In particular, the Data Catalog FE connects with the Open Lineage service via REST APIs to retrieve
+the necessary data. Open Lineage service reads datasets assets from the database where Data Catalog Agent has written the information about all the configured external connections.
+
+In particular, in the Data Fabric Project is highlighted which components the Fast Data Control Plane applications releases.
+
+![Data Catalog Architecture](./img/data_catalog_arch.svg)
 
 ---
 
