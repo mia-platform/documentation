@@ -52,7 +52,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.8",
     "@swc/core": "^1.7.24",
-    "eslint": "^8.57.0",
+    "eslint": "^9.10.0",
     "eslint-plugin-react": "7.36.1",
     "front-matter": "^4.0.2",
     "git-list-updated": "^1.2.1",
