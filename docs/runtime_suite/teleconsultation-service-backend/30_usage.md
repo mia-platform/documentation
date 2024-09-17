@@ -14,7 +14,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The following sections explain the details about the endpoints exposed from the **Teleconsultation Service Backend**.
 
-This service has been develop based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*][auth0-client].
+This service has been developed based on the assumption that the user authentication method uses **auth0** as auth provider and the platform service [*auth0 Client*][auth0-client].
 
 In Kaleyra there's the concept of _duration_ for a Room.
 If a Room has a duration, then after the duration expires, the Room is unavailable.
@@ -47,12 +47,19 @@ The service will create a kaleyra room only if all participants' data is specifi
 
 #### Body parameters
 
-##### participants (required) 
-**Type**: `array of string` (only accepted if the service is configured to interact with auth0) or `object`<br />
-**Description**: The list of participants to the call. If a list of string is provided, each element of the array needs to be an auth0's user id of the participant. If an object is provided, you must specify:
+##### participants (required)
+
+**Type**: `array of string` (accepted if the service is configured to interact with auth0 or another service to fetch users info) or `object`
+
+**Description**: The list of participants to the call.
+
+If a list of string is provided, each element of the array needs to be an Auth0 user id of the participant (if `AUTH_SERVICE` is defined) or a custom id that identifies the users (if also `CUSTOM_ID_USERS_API_ENDPOINT` is defined).
+
+If an object is provided, you must specify:
+
 - the expected `number` of participants;
 - an array of participants' `data`, containing, for each participant:
-  - a `userExternalId` to be used in GET requests to retrieve the correct link for a given user, if interaction with auth0 is enabled, it must be the auth0 id of the participant,
+  - a `userId` to be used in GET requests to retrieve the correct link for a given user, if interaction with auth0 is enabled, it must be the auth0 id of the participant,
   - the `groups` (required if auth0 dependency is enabled, not supported otherwise) to be assigned to the user (one of those listed in any of the `privileges.$.groups` array of the service configuration file),
   - the `fullName` (required if auth0 dependency is enabled, not supported otherwise) to be show by the frontend,
   - the `language` to be used by the frontend.
@@ -113,15 +120,15 @@ curl -X POST "https://my_project_url/teleconsultation" \
            "number": 3,
            "data": [
               {
-                "userExternalId": "user1_auth0_id",
+                "userId": "user1_auth0_id",
                 "language": "it"
               },
               {
-                "userExternalId": "user2_auth0_id",
+                "userId": "user2_auth0_id",
                 "language": "it"
               },
               {
-                "userExternalId": "user3_auth0_id",
+                "userId": "user3_auth0_id",
                 "language": "it"
               }
             ]
@@ -139,11 +146,11 @@ curl -X POST "https://my_project_url/teleconsultation" \
            "number": 3,
            "data": [
               {
-                "userExternalId": "user1_auth0_id",
+                "userId": "user1_auth0_id",
                 "language": "it"
               },
               {
-                "userExternalId": "user2_auth0_id",
+                "userId": "user2_auth0_id",
                 "language": "it"
               }
             ]
@@ -162,13 +169,13 @@ curl -X POST "https://my_project_url/teleconsultation" \
            "number": 3,
            "data": [
               {
-                "userExternalId": "user1_external_id",
+                "userId": "user1_external_id",
                 "groups": ["doctor"],
                 "fullName": "Joe Smith",
                 "language": "it"
               }
               {
-                "userExternalId": "user3_external_id",
+                "userId": "user3_external_id",
                 "groups": ["patient"],
                 "fullName": "Jane Doe,
                 "language": "it"
@@ -215,7 +222,7 @@ Updates a teleconsultation whose id is equal to roomId.
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
 
 :::note
-Kaleyra does not support the possibility to make changes existing rooms. 
+Kaleyra does not support the possibility to make changes in existing rooms.
 
 For this reason, the Kaleyra room is created only if all participants data is provided. If the Kaleyra room has already been created and a change having effects on its features is requested, the existing Kaleyra room is deleted and a new one is created. If all participants' data has been provided, starting from [`IMMUTABLE_PERIOD_MS`][environment-variables] milliseconds before the starting time of the call, the service will refuse all the change requests to the teleconsultation instance. See [`GET /teleconsultation/:roomId`][get-teleconsultation-room-id] documentation to understand how the service grants that participants cannot access a Kaleyra room as long as it could be replaced by a new one. 
 :::
@@ -223,6 +230,12 @@ For this reason, the Kaleyra room is created only if all participants data is pr
 #### Body parameters
 
 Same body parameters of the POST request are allowed, but only the ones to be modified are required to be provided.
+
+:::info
+
+**v1.8.0** The participants can use a custom id different from the auth0 id if `CUSTOM_ID_USERS_API_ENDPOINT` is defined.
+
+:::
 
 **PATCH Request Examples**
 
@@ -244,15 +257,15 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
            "number": 3,
            "data": [
               {
-                "userExternalId": "user1_auth0_id",
+                "userId": "user1_auth0_id",
                 "language": "it"
               },
               {
-                "userExternalId": "user2_auth0_id",
+                "userId": "user2_auth0_id",
                 "language": "it"
               },
               {
-                "userExternalId": "user3_auth0_id",
+                "userId": "user3_auth0_id",
                 "language": "it"
               }
             ]
@@ -270,11 +283,11 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
            "number": 3,
            "data": [
               {
-                "userExternalId": "user1_auth0_id",
+                "userId": "user1_auth0_id",
                 "language": "it"
               },
               {
-                "userExternalId": "user2_auth0_id",
+                "userId": "user2_auth0_id",
                 "language": "it"
               }
             ]
@@ -293,13 +306,13 @@ curl -X PATCH "https://my_project_url/teleconsultation/room_xyz" \
            "number": 3,
            "data": [
               {
-                "userExternalId": "user1_external_id",
+                "userId": "user1_external_id",
                 "groups": ["doctor"],
                 "fullName": "Joe Smith",
                 "language": "it"
               }
               {
-                "userExternalId": "user3_external_id",
+                "userId": "user3_external_id",
                 "groups": ["patient"],
                 "fullName": "Jane Doe,
                 "language": "it"
@@ -332,10 +345,14 @@ Kaleyra does not support the possibility to make changes existing rooms. For thi
 
 #### Body parameters
 
-The data of the participant to be added, that is:
-  - a `userExternalId` to be used in GET requests to retrieve the correct link for a given user, if interaction with auth0 is enabled, it must be the auth0 id of the participant,
-  - the `group` (required if auth0 dependency is enabled, not supported otherwise) to be assigned to the user (one of those listed in any of the `privileges.$.groups` array of the service configuration file),
-  - the `fullName` (required if auth0 dependency is enabled, not supported otherwise) to be show by the frontend,
+The data of the participant to be added.
+
+When the interaction with Auth0 is enabled is sufficient to specify the `userId`. It must be the auth0 id of the participant, or a custom id that identifies the user if `CUSTOM_ID_USERS_API_ENDPOINT` is defined;
+
+When there is no interaction with auth0 enabled:
+
+  - the `group` (required if auth0 dependency is enabled, not supported otherwise) to be assigned to the user (one of those listed in any of the `privileges.$.groups` array of the service configuration file);
+  - the `fullName` (required if auth0 dependency is enabled, not supported otherwise) to be show by the frontend;
   - the `language` to be used by the frontend.
 
 
@@ -345,7 +362,7 @@ With auth0 dependency and all a priori known participants:
 ```
 curl -X POST "https://my_project_url/teleconsultation/room_xyz/participants/data" \
      -d '{
-          "userExternalId": "user3_auth0_id",
+          "userId": "user3_auth0_id",
           "language": "it"
      }'
 ```
@@ -355,7 +372,7 @@ Without auth0 dependency:
 ```
 curl -X POST "https://my_project_url/teleconsultation/room_xyz/participants/data" \
      -d '{
-          "userExternalId": "user1_external_id",
+          "userId": "user1_external_id",
           "groups": ["doctor"],
           "fullName": "Joe Smith",
           "language": "it"
