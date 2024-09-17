@@ -15,6 +15,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.8.5]
+
+- Fix style dashboard
+- Added timeline settings component
+- Added timeline component
+- Added Report Collapsable card in `ck-patient-dashboard`
+- Added `ck-medical-records`
+
+## [v2.8.4]
+
+- Patient Last Detection card added
+- Patient Data card added
+- Patient Appointment card added
+- Patient Clinical Diary card added
+- Patient Device card added
+
+## [v2.8.3]
+
+- Patient Dashboard added
+- Patient Monitoring card added
+
 ## [v2.8.2]
 
 - Update add-plan-modal to edit devices
