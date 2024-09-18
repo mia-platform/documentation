@@ -38,16 +38,32 @@ In the paragraphs below are explained the main properties of the Fabric BFF conf
 
 #### Console Communication
 
-In order for Control Plane solution to know which [Runtimes](/fast_data/runtime_management/overview.mdx#runtime) are available for monitoring by
-[Runtime Views](/fast_data/runtime_management/overview.mdx#runtime-view) the service needs to contact Mia-Platform Console and retrieve the list of Projects that should be accessible from this Control Plane instance.
+In order for Control Plane application to know which [Runtimes](/fast_data/runtime_management/overview.mdx#runtime) are available for monitoring, and therefore which ones can be included in
+[Runtime Views](/fast_data/runtime_management/overview.mdx#runtime-view), the service needs to contact Mia-Platform Console and retrieve the list of Projects that should be accessible from this Control Plane instance.
 
-To achieve so it is necessary to create a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md) on your Mia-Platform Console instance and
-assign the proper permissions to list the Console projects of interest. In particular, The service account credentials then have to set within the `console` property of Fabric BFF service.
+To achieve so, it is first necessary that your Company Owner creates a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md)
+on your Mia-Platform Console instance and assign to it the proper permissions for listing the Console projects of interest.
+For example, it could be possible to assign the role of `guest` at Company level while granting
+the `reporter` role to all the project that should be visible by Control Plane.
 
-In particular:
+Once the service account has been registered, your Company Owner needs to hand over to you its credentials, which are:
+
+- `client-id` &rarr; unique identifier generated for this the service account
+- [Client Secret Basic] `client-secret` &rarr; a string representing the secret needed by the service account to authenticate
+- [Private Key JWT] `client-key-id` &rarr; unique identifier of the key employed for generating for this the service account
+- [Private Key JWT] `private-key` &rarr; private key in PEM format
+
+These details then should be inserted in your Fabric BFF service configuration under the `console` property. In particular, the fields to be set are:
 
 - `target` &rarr; specifies the base URL of your Mia-Platform Console instance
-- `auth` &rarr; defines how the Fabric BFF service should authenticate on Mia-Platform Console APIs
+- `auth` &rarr; defines how the Fabric BFF service should authenticate on Mia-Platform Console APIs, that is the service account credentials
+
+:::caution
+It is responsibility of your Company Owner to ensure that service account credentials are properly processed according to your company security policies.
+
+Furthermore, it is of <u>extreme importance</u> understanding that **any** Control Plane user will be able to list the project name
+and available environments of all the projects that can be accessed by the service account configured on Fabric BFF. 
+:::
 
 This is and example of `console` property configuration:
 
