@@ -132,6 +132,7 @@ In the table below is provided the list of endpoints that should be [defined in 
 
 Under the endpoint specified above, the following routes are served by Fabric BFF
 
-| Route             | Type | Method | Description                                                                                                                                                                                             |
-|-------------------|------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `/data-catalog/*` | REST | *      | Routes prefixed with `/data-catalog/` are forwarded towards Open Lineage<br/>service. For more details please read [corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#endpoints) |
+| Route                        | Type      | Method | Description                                                                                                                                                                                             |
+|------------------------------|-----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/data-catalog/bulk-actions` | Websocket | *      | Route for handling async operations over multiple datasets records                                                                                                                                      |
+| `/data-catalog/*`            | REST      | *      | Routes prefixed with `/data-catalog/` are forwarded towards Open Lineage<br/>service. For more details please read [corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#endpoints) |
