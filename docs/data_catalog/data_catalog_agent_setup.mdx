@@ -4,5 +4,19 @@ title: Data Catalog Agent Setup
 sidebar_label: Data Catalog Agent Setup
 ---
 
-Here write how to setup DCA to populate the Data Catalog content.
-Remember to introduce the Data Catalog Agent as a fundamental component of the system (without it no data schema is retrieved)
+Once Data Catalog application has been deployed and ready to be used, it is time to collect and gather data schemas from your systems
+and transform them into data assets that can browsed from Data Catalog UI.  
+This duty is in charge of the [Data Catalog Agent](/runtime_suite_templates/data-catalog/10_overview.md), which is a component that
+connects to all of your configured systems, extracts data schemas from them and forward them to the configured target.
+
+For an in-depth explanation on how to configure Data Catalog Agent it is possible to read the dedicated [documentation section](/runtime_suite_templates/data-catalog/20_configuration.md).
+
+In the context of Data Catalog, it is important to notice that Data Catalog Agent **must** be configured with `target` set to `mongodb`, so that
+the Agent would write the data assets definition in the appropriate collection of configured database.  
+The collection, named `open-lineage-datasets`, is the same from which OpenLineage component of Data Catalog
+solution will read to fulfill requests performed from the Data Catalog UI.
+
+:::tip
+Data Catalog Agent is a fundamental component of Data Catalog solution, since it imports, parse and process data schemas
+into a format ready for Data Catalog. Without configuring and running it, searching for data assets on Data Catalog will yield only empty results.
+:::
