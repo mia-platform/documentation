@@ -30,12 +30,14 @@ Many are the challenges that companies have to deal with every day:
 
 ## Mia-Platform Data Catalog
 
-In order to help companies solve all these challenges, we offer Mia-Platform Data Catalog, a core component of Mia-Platform products suite and a powerful tool for the Data Governance.  
-With Mia-Platform, it is possible to take advantage of the synergies among the data products Data Catalog and Fast Data, paving the way to the implementation of a Data Fabric solution.
+In order to help companies solve all these challenges, we offer **Mia-Platform Data Catalog**, a core component of Mia-Platform suite and a powerful tool for the Data Governance.  
+With Mia-Platform, it is possible to take advantage of the synergies with [**Fast Data**](/fast_data/what_is_fast_data.md) product, paving the way to the implementation of a Data Fabric solution.
 
 ![Data Catalog UI](./img/data_catalog_home.png)
 
-Mia-Platform Data Catalog offers many powerful features for your Data Product:
+### Key features
+
+Mia-Platform Data Catalog offers many powerful features for building your Data Product:
 
 * **Data Cataloging**: Organizes and collects available information about company's system of records, tables and columns , making it easy for an analyst to find and understand the data needed for a report.
 
@@ -47,7 +49,7 @@ Mia-Platform Data Catalog offers many powerful features for your Data Product:
 
 * **Policy Management and Access Control**: Allows to establish customized data classification levels and tagging based on data sensitivity, ensuring that asset information is handled according to its classification, such as public, internal, or confidential. Moreover, it enables access control on users, which can have read-only permissions or also metadata enrichment capabilities on assets. This ensures that only authorized users can view or modify certain data.
 
-## The Importance of Metadata Enrichment in a Data Catalog
+### Metadata Enrichment
 
 **Metadata enrichment** is a critical aspect of managing data assets within a Data Catalog.  
 Metadata enrichment refers to the process of enhancing the existing metadata with additional information that provides more context, detail, and value to the data assets.  
@@ -64,7 +66,7 @@ Here is summarized why metadata enrichment is so important:
 
 * **Enhanced Collaboration**: Detailed and enriched metadata facilitates better collaboration among teams by providing a shared understanding of data assets.
 
-## Main Data Catalog stakeholders
+### Main stakeholders
 
 Within an organization, several stakeholders can benefit from using Mia-Platform Data Catalog:
 
@@ -80,7 +82,7 @@ Within an organization, several stakeholders can benefit from using Mia-Platform
 
 * **Business Users and Decision Makers**: Can access the necessary data and information for informed decision-making, thanks to the availability and clarity of data resources.
 
-## Benefits of Using Mia-Platform Data Catalog
+### Benefits
 
 Adopting Mia-Platform Data Catalog offers numerous benefits:
 
@@ -122,12 +124,14 @@ and decision-making capabilities within the organization.
 
 ## Architecture
 
-In the diagram below is shown how the different services are linked together. In particular, the Data Catalog FE connects with the Open Lineage service via REST APIs to retrieve
+In the diagram below is shown how the services involved in the aforementioned Marketplace components are linked together. In particular, the Data Catalog FE connects with the Open Lineage service via REST APIs to retrieve
 the necessary data. Open Lineage service reads datasets assets from the database where Data Catalog Agent has written the information about all the configured external connections.
 
 In particular, in the Data Fabric Project is highlighted which components the Data Catalog applications releases.
 
 ![Data Catalog Architecture](./img/data_catalog_arch.svg)
+
+The following paragraph provides useful links to go into detail about the various components that enable the adoption of our Data Catalog solution.
 
 ---
 
