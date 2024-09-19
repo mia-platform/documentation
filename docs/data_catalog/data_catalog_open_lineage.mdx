@@ -14,11 +14,17 @@ Open Lineage service allows to:
 * visualize data assets details and metadata
 * update data assets metadata
 
-TODO:
-- Mention OpenLineage standard + add link to project and discuss how we store dataset details using such format
+Under the hood, data assets are stored adopting an extended version of [OpenLineage Dataset](https://openlineage.io/docs/spec/facets/dataset-facets/) format,
+from which we borrowed the name for this component.  
+It has been decided to build Data Catalog upon [OpenLineage project](https://openlineage.io/), which is an open platform that provides
+an _"open standard for lineage data collection"_, to enable the possibility for future integration with lineage systems and other tools supporting it.  
+In fact, we strongly believe that adopting a common standard for sharing data products description will be fundamental
+to foster data products exchange among parties and ease discovering how these products are employed across the different systems.
 
-
-
+:::note
+In the following documentation, when we reference OpenLineage, we mainly intend the service we provide as a component of Data Catalog application.
+Whenever we refer to [OpenLineage](https://openlineage.io/) project or standard, we will provide a link to its documentation.
+:::
 
 In the following paragraphs are described Open Lineage service configuration and communication interfaces.
 
@@ -42,7 +48,7 @@ Control Plane service can be customized using the following environment variable
 
 The configuration of the service is handled by a JSON file whose location is defined by the `OPEN_LINEAGE_CONFIGURATION_FILEPATH`. When instantiating
 \[Data Catalog application\] TODO: PUT LINK from Marketplace, Open Lineage service configuration is generated with
-a dedicated Config Map, named `open-lineage-configuration`.  
+a dedicated Config Map, named `open-lineage-config`.  
 This file contains a template configuration that should help in configuring the service.
 
 <SchemaViewer schema={openLineageSchema} example={openLineageConfigExample} />

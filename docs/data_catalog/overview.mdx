@@ -110,7 +110,11 @@ Actually, thanks to Data Catalog Agent, it is possible to acquire metadata comin
 - Salesforce SObjects API
 - SAP HANA
 
-In summary, a Data Catalog is an essential tool for effective data management. It offers a comprehensive solution for cataloging, discovering, governing, and complying with data requirements, providing significant benefits in terms of efficiency, quality, and transparency. Implementing a Data Catalog not only optimizes data management but also contributes to robust governance and improves analytical and decision-making capabilities within the organization.
+In summary, a Data Catalog is an essential tool for effective data management. It offers a comprehensive solution for cataloging, discovering, governing,
+and complying with data requirements, providing significant benefits in terms of efficiency, quality, and transparency.
+Implementing a Data Catalog not only optimizes data management but also contributes to robust governance and improves analytical
+and decision-making capabilities within the organization.
+
 ---
 
 ## Architecture
@@ -118,7 +122,7 @@ In summary, a Data Catalog is an essential tool for effective data management. I
 In the diagram below is shown how the different services are linked together. In particular, the Data Catalog FE connects with the Open Lineage service via REST APIs to retrieve
 the necessary data. Open Lineage service reads datasets assets from the database where Data Catalog Agent has written the information about all the configured external connections.
 
-In particular, in the Data Fabric Project is highlighted which components the Fast Data Control Plane applications releases.
+In particular, in the Data Fabric Project is highlighted which components the Data Catalog applications releases.
 
 ![Data Catalog Architecture](./img/data_catalog_arch.svg)
 
