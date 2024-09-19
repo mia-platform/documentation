@@ -26,22 +26,109 @@ When accessing Data Catalog frontend, users land to the home section of the Data
 
 Here, the starting point to navigate among assets that populate the Data Catalog is represented by the searchbar.  
 
-INSERT AN IMAGE WITH A SEARCH LIST RESULTS  
-
 Given the huge cardinality of assets that may be retrieved on this tool (SoRs, Tables, Columns), it is possible to fine tune your search results thanks to advanced search filter options:
 - by **asset types** (SoR, Table, Column): only results that match the selected asset type are returned;
 - by **tags**: only assets that cointains at least one of the chosen tags are returned;
 - by **custom filters**: only assets that present a match with all the values defined on the selected custom properties are returned (in this paragraph, (INSERTING THE CORRECT LINK), the custom property concept is well-described).
 
+INSERT AN IMAGE WITH A SEARCH LIST RESULTS
+
+In the image above, it is possible to see how results of a search are displayed. The `Matches` column helps the user to identify which are the search elements that fit the search query.  
+The research is very powerful. What is entered as input to the search bar is searched not only on the asset name, but also on all the metadata in the information of the specific assets. As a result, therefore, it can be observed from the example that the search returns not only match results relatively to the name, but also to other information present in other assets with names which differ from the search input content.  
+
 To start a completely new search, users can easily click on the `Clear all` button a the top-right of the search page to reset all the previously setup search parameters.
 
 ### Asset details navigation 
 
-here insert navigation pattern, search at the top right, and last viewed; moreover, for each asset type the internal structure of pages
+Once the serched asset is found among the search returned elements, click on it to enter its details page.  
+
+INSERT AN IMAGE WITH THE DETAILS OF A TABLE PAGE
+
+At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table "PIPPO" detail page; from the breadcrumb it is noticeable that table "PIPPO" belongs to System of Records "PLUTO".  
+In case the user wants to easily move from table "PIPPO" to SoR "PLUTO" without coming back to the search page to find "PLUTO" asset, with a simple click on "PLUTO" user can enter its detail page. Instead, if user wants to choose another table belonging to SoR "PLUTO", by clicking on the button to the right of the current table name, the list of tables of that SoR is shown and selectable.
+
+INSERT AN IMAGE WITH THE LIST OF TABLES FROM BREADCRUMB SELECTION
+
+In case the user wants to go back to the page with the items returned by the search query, a click on the “Assets” button located at the beginning of the breadcrumb will take back to the “Assets” tab where there is the result of the last search performed.  
+
+In case user wants to perform a quick search among assets without using al the Advanced search capabilities of the home section of the Data Catalog, anywhere during assets navigation there is the possibility to perform a new search from searchbar located at the top-right page.
+
+Finally, at the bottom of Data Catalog homepage, the **Last Viewed** section shows the last visited assets by the user. In this way, it is very easy to go back to a recent visited asset.
+
+#### SoR detail page
+
+The SoR detail page shows the following two tabs:
+* **General**, that shows a first **Details** section with asset details about name, provider info, number of contained tables, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+* **Tables**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
+
+INSERT IMAGE OF SOR DETAILS PAGE
+
+#### Table detail page
+
+The Table detail page shows the following two tabs:
+* **General**, that shows a first **Details** section with asset details about name, its SoR name, number of table columns, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+* **Columns**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
+
+INSERT IMAGE OF TABLE DETAILS PAGE 
+
+#### Column detail page
+
+The Column detail page shows a first **Details** section with asset details such as name, its table name, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+
+INSERT IMAGE OF COLUMN DETAILS PAGE 
 
 ### Management of custom properties
 
-### Enrichment and management of unknown properties
+One of the core features of Mia-Platform Data Catalog is the full management of custom properties for metadata enrichment on assets.
+
+INSERT IMAGE OF CUSTOM PROPERTIES MANAGEMENT PAGE
+
+By accessing the Custom Properties area, users with enough permiessions can define and manage properties that can be associated to assets in order to perform metadata enrichment.  
+A custom property can be associated to one or more asset type (SoR, Table, Column).  
+There are different type of custom properties supported:
+* Text
+* Integer
+* Number 
+* Boolean
+* URL
+* Date
+* Options
+    * Single choice allowed
+    * Multiple choice allowed
+
+#### Create custom property
+
+In the following image, the creation of a new custom property is diplayed. In addition to the Name, Type and Applicable asset types fields, it is possible to optionally add a description to the custom property.  
+
+INSERT THE IMAGE OF CREATION FORM OF A CUSTOM PROPERTY
+
+Once created, the specific custom property can be applicable on each asset that fits the asset type defined for the propertya. For example, the "PAPERINO" property can be applied on solely Table asset type. Therefore, when accessing any table present on Data Catalog, user can add "PAPERINO" property on it and insert a value compliant with "PAPERINO" custom property type for metadata enrichment on that specific table.
+
+#### Edit custom property
+
+Users with enough permissions can modify a custom property.
+
+INSERT THE IMAGE OF EDIT FORM OF A CUSTOM PROPERTY
+
+:::caution 
+Pay attention when editing a custom property, it may already be applied and valorized on many assets!  
+Modifications on a custom property may lead to inconsistencies on metadata retrieve for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
+:::
+
+#### Delete custom property
+
+Users with enough permissions can delete a custom property.
+
+INSERT THE IMAGE OF DELETE FORM OF A CUSTOM PROPERTY
+
+:::caution 
+Pay attention when deleting a custom property, it may already be applied and valorized on many assets!  
+The deletion of a custom property may lead to inconsistencies on metadata retrieve for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
+:::
+
+### Metadata Enrichment
+
+#### Unknown custom properties
 
 ### Bulk Actions
 (In the future, bulk actions and more)
