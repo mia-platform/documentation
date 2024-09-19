@@ -25,9 +25,10 @@ In this section is explained how the Control Plane service should be configured 
 
 Control Plane UI can be customized using the following environment variables:
 
-| Name         | Required | Description                                                  | Default Value     |
-|--------------|----------|--------------------------------------------------------------|-------------------|
-| `BASE_PATH`  | &check;  | Path where the frontend will be accessible in the browser        | `/control-plane/` |
+| Name                     | Required | Description                                                    | Default Value     |
+|--------------------------|----------|----------------------------------------------------------------|-------------------|
+| `BASE_PATH`              | &check;  | Path where the frontend will be accessible in the browser      | `/control-plane/` |
+| `CONTROL_PLANE_BASE_URL` |          | Base path where the backend APIs would be called from frontend |                   |
 
 As a consequence, by default the Control Plane application exposes its frontend over the `/control-plane/` base path.
 This value can be overridden by changing the environment variable `BASE_PATH` with `/<your-base-path>/` as value.

@@ -10,7 +10,7 @@ Currently only MongoDB is supported as underlying database for storing the appli
 
 :::caution
 It is highly recommended to employ a **dedicated** database / namespace to store Fast Data Runtime Management data. This allows
-restricting which applications have access to the management collections and permits to keep the necessary collections
+restricting which applications have access to the management collections and keeping the necessary collections
 all under the same location without additional clutter from other projects.
 :::
 
@@ -27,8 +27,8 @@ within as a Docker image, which can be run within your namespace every time a ne
 
 ## CLI Configuration
 
-Running the CLI inside your project can be done exploiting a K8s cronjob. In this [documentation page](/development_suite/api-console/api-design/jobs-cronjob.md) it is described how it can be configured, while here
-are highlighted which specific configurations of the K8s manifest:
+Running the CLI inside your project can be done leveraging a K8s cronjob. In this [documentation page](/development_suite/api-console/api-design/jobs-cronjob.md)
+it is described how it can be configured, while here are highlighted which values within the K8s manifest need to be updated:
 
 - `<URL_TO_CONTAINER_REGISTRY>` &rarr; is the url to your Container Registry of reference;
 - `data-fabric/fabric-admin` &rarr; image is employed, which should be found within your Container Registry;
@@ -43,7 +43,7 @@ to modify collections (`collMod`), so that the CLI can add a schema validation o
 might be different from the one employed within Fast Data Runtime Management application, where only reading and writing is sufficient;
 :::
 
-Here, is provided an example of cronjob definition.
+Here, is provided an example of cronjob definition, with values listed above as placeholders for the real ones:
 
 ```yaml
 apiVersion: batch/v1
