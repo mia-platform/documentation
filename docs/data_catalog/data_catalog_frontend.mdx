@@ -4,17 +4,47 @@ title: Data Catalog UI
 sidebar_label: Data Catalog UI
 ---
 
-Data Catalog solution allows visualizing collected data and interact with their metadata through an ad-hoc frontend,
-which communicates with [Open Lineage](/data_catalog/data_catalog_open_lineage.mdx) backend
+**Mia-Platform Data Catalog** solution provides a centralized place wherein users can have a detailed overview of the available data assets, facilitating the consultation and allowing to perform metadata enrichment on them.  
+Data Catalog frontend communicates with [Open Lineage](/data_catalog/data_catalog_open_lineage.mdx) backend
 via [Fabric BFF](/data_catalog/data_catalog_fabric_bff.mdx) component.
 
-This frontend enables the user to:
-
-- search among their datasets for a specific dataset (System of Record), a table or a column, which are Data Catalog assets
-- visualize metadata (_description_, _tags_, _custom properties_) associated to data assets collected by Data Catalog
-
 ![Data Catalog embedded in Console](./img/data_catalog_in_console.png)
-> Data Catalog solution embedded in Mia-Platform Console, with visibility at Company level.
+
+## Features
+
+Mia-Platform Data Catalog frontend offers a user-friendly UI that allows users to navigate data assets and to perform a series of actions useful for data governance and metadata enrichment.  
+In particular, when navigating the catalog, it is possible to identify three different asset types:  
+* **SoR** (System of Records)
+* **Table** (tables belonging to a specific SoR)
+* **Column** (columns retrieved for a specific table).  
+
+In the following paragraphs, all Data Catalog features are described in detail.
+
+### Asset discovery
+
+When accessing Data Catalog frontend, users land to the home section of the Data Catalog.
+
+Here, the starting point to navigate among assets that populate the Data Catalog is represented by the searchbar.  
+
+INSERT AN IMAGE WITH A SEARCH LIST RESULTS  
+
+Given the huge cardinality of assets that may be retrieved on this tool (SoRs, Tables, Columns), it is possible to fine tune your search results thanks to advanced search filter options:
+- by **asset types** (SoR, Table, Column): only results that match the selected asset type are returned;
+- by **tags**: only assets that cointains at least one of the chosen tags are returned;
+- by **custom filters**: only assets that present a match with all the values defined on the selected custom properties are returned (in this paragraph, (INSERTING THE CORRECT LINK), the custom property concept is well-described).
+
+To start a completely new search, users can easily click on the `Clear all` button a the top-right of the search page to reset all the previously setup search parameters.
+
+### Asset details navigation 
+
+here insert navigation pattern, search at the top right, and last viewed; moreover, for each asset type the internal structure of pages
+
+### Management of custom properties
+
+### Enrichment and management of unknown properties
+
+### Bulk Actions
+(In the future, bulk actions and more)
 
 ## Configuration
 
@@ -74,21 +104,3 @@ To edit the header value, please head to the `Endpoints` page and select the mai
 
 ![Endpoint Any Origin](./img/endpoint_any_origin.png)
 
-## Features
-
-Frontend description (To figure out whether to split across multiple pages)  
-
-Introduce the concept of Data Catalog assets (SoR, Table, Column | what are each of them in the context of Data Catalog) 
-
-- Add simple images here - in the Frontend page let's put a screenshot for each page (home, search result, custom properties, metadata enrichment page, custom properties vs unknown properties)
-
-### Homepage and advanced search functionality
-
-### Navigation
-
-### Management of custom properties
-
-### Enrichment and management of unknown properties
-
-### Bulk Actions
-(In the future, bulk actions and more)
