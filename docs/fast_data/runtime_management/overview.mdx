@@ -73,7 +73,7 @@ Below is shown the Marketplace application page where the term `control plane` h
 
 ![Control Plane Marketplace](img/marketplace_runtime_management_app_selection.png)
 
-Among the services provided by both applications, there are the two services in charge of deploying the Fast Data Runtime Management solution, which are:
+Among the services provided by both applications, there are the three services in charge of deploying the Fast Data Runtime Management solution, which are:
 
 - [`control-plane`](/fast_data/runtime_management/control_plane.mdx), which is responsible for dispatching control actions to the registered Fast Data runtimes and receiving from them the feedbacks to display in the dedicated UI
 - [`control-plane-fe`](/fast_data/runtime_management/control_plane_frontend.mdx), which exposes the UI for visualizing Fast Data runtimes, their state and interact with them
@@ -128,21 +128,21 @@ Upon receiving this command, the involved artifacts will be in a `running` state
 ### Runtime
 
 Within the context of Fast Data Control Plane, a _runtime_ corresponds to [a deploy environment of Mia Console](/development_suite/monitoring/introduction.md),
-where an instance of Control Plane Operator has been deployed. In particular, a runtime can be identified across Fast Data Control Plane solution by the triple:
+where an instance of Control Plane Operator has been deployed. In particular, a runtime can be identified across Fast Data Control Plane solution by these three parameters:
 
 - [Console company](/console/company-configuration/overview.md)
 - [Console project](/console/project-configuration/index.md)
 - Deploy environment
 
 For example, let's suppose we created a company `Supermarkets` and a project `Warehouse`. The configurations of this specific `Warehouse` project, deployed in the environment `PREPRODUCTION`,
-compose a _runtime_ for the Control Plane.
+composes a _runtime_ for the Control Plane.
 In case those same configurations of `Warehouse` project were released in another environment, such as `PRODUCTION`, then those would be treated as another _runtime_ different from the one mentioned earlier.
 
 The main Control Plane instance can manage one or more runtimes, once they are registered by each deployed Control Plane Operator.
 
 ### Runtime View
 
-Within the context of Fast Data Control Plane, a _runtime view_ corresponds to a group of one or more [_runtimes_](#runtime) that are logically clustered together. These grouping
+Within the context of Fast Data Control Plane, a _runtime view_ corresponds to a group of one or more [_runtimes_](#runtime) that are logically clustered together. These groupings
 may either arise from business requirements or spontaneously depending on how Console projects are linked among them.
 
 For example, one may decide to group together runtimes based on their deployed environment, such as `test`, `preprod`, `production`,

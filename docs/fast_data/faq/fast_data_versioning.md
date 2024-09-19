@@ -76,7 +76,7 @@ at runtime. In the table below is described which service versions support being
 
 ### Compatibility Matrix
 
-Please visit the [dedicated page](/fast_data/runtime_management/compatibility_matrix.md) where further compatibility details are detailed.
+Please visit the [dedicated page](/fast_data/runtime_management/compatibility_matrix.md) where further compatibility details are explained.
 
 ## Bucket Storage Support
 

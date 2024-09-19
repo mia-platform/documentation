@@ -93,7 +93,7 @@ Here can be found an example of configuration that assumes Fabric BFF and Contro
       "target": "<control-plane-service-name>"                // when protocol is http, it is not necessary specifying it. When port is not specified, it is assumed the 80 is employed
     },
     "grpc": {
-      "target": "http://<control-plane-service-name>:50051"   // it is important to notice that GRPC connection use a different port from the REST target
+      "target": "http://<control-plane-service-name>:50051"   // it is important to notice that GRPC connection uses a different port from the REST target
     }
   },
   // ...other fabric bff configurations
@@ -104,7 +104,7 @@ Here can be found an example of configuration that assumes Fabric BFF and Contro
 
 
 :::info
-Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data, such as the one related to operations auditing.
+Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data, such as the one related to operations' auditing.
 :::
 
 :::caution

@@ -27,9 +27,9 @@ Control Plane UI can be customized using the following environment variables:
 
 | Name         | Required | Description                                                  | Default Value     |
 |--------------|----------|--------------------------------------------------------------|-------------------|
-| `BASE_PATH`  | &check;  | Path prefix to be added to all the frontend resources        | `/control-plane/` |
+| `BASE_PATH`  | &check;  | Path where the frontend will be accessible in the browser        | `/control-plane/` |
 
-As effect of them, by default the Control Plane application exposes its frontend over the `/control-plane/` base path.
+As a consequence, by default the Control Plane application exposes its frontend over the `/control-plane/` base path.
 This value can be overridden by changing the environment variable `BASE_PATH` with `/<your-base-path>/` as value.
 
 Bear in mind that changing the `BASE_PATH` environment variable requires to change also the [rewrite base path](/development_suite/api-console/api-design/endpoints.md#about-rewrite-base-path) of exposed endpoint to `/<your-base-path>`.
@@ -54,7 +54,7 @@ Control Plane Frontend relies on websocket for providing live updates to display
 Consequently, it is necessary to carry out a manual update of your API Gateway configuration in Console [Advanced Section](/development_suite/api-console/advanced-section/index.md).
 
 Below are provided the configuration for the API Gateways that can be configured out of the box in Console. These configurations both use endpoint `/fast-data/feedback` as the one
-where the websocket communications should be enabled. In case `Fabric BFF` service exposes the feedback endpoint elsewhere, please update the configuration accordingly, if needed.
+where the websocket communications should be enabled. In case `Fabric BFF` service exposes the feedback endpoint elsewhere, please update the configuration accordingly.
 
 For more details on the selected endpoint, please read the [endpoint paragraph](/fast_data/runtime_management/control_plane.mdx#endpoints) of Control Plane service documentation.
 
@@ -73,7 +73,7 @@ When using Envoy as API Gateway the additional configuration for supporting webs
 Please notice that the above configuration:
 - affects only the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.29.3/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
 -  is specific for the `frontend` listener of Envoy. In case it has been decided to expose the Fast Data Control Plane
-  system under a [different listener](/development_suite/api-console/api-design/listeners.md), take into account of updating the configuration accordingly.
+  system under a [different listener](/development_suite/api-console/api-design/listeners.md), remember to update the configuration accordingly.
 :::
 
 #### Nginx

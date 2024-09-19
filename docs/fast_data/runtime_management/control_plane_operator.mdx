@@ -15,7 +15,7 @@ Fast Data Control Plane Operator is a service that has to be deployed in each [F
 * expose an interface towards Fast Data [workloads](/fast_data/runtime_management/overview.mdx#workload) to allow a bidirectional communication with them where it can:
     * forward on the [state channel](#state-channel) the desired state that has been requested by users;
     * gather actual workloads state from the [feedback channel](#feedback-channel);
-* send to the main Control Plane instance the workloads state (e.g. whether they are up-and-running, _active_ or _paused_) with respect to the [Fast Data Pipeline](/fast_data/runtime_management/overview.mdx#pipeline) they are linked to;
+* send to the main Control Plane instance the workloads state (e.g. whether they are up-and-running, _active_ or _paused_) of the [Fast Data Pipeline](/fast_data/runtime_management/overview.mdx#pipeline) they are linked to;
 
 ## Configuration
 
@@ -31,9 +31,9 @@ Control Plane service can be customized using the following environment variable
 | `LOG_LEVEL`                          | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`                                                                                                    | `info`                                   |
 | `FD_OPERATOR_CONFIGURATION_FILEPATH` | -        | Set the location of the configuration file                                                                                                                                                                                  | `~/.fd/control_plane/configuration.json` |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`        | -        | The URL to a GRPC endpoint of an OpenTelemetry Collector.<br/>Specifying this value enables the support for OpenTelemetry tracing                                                                                           |                                          |
-| `MIA_PLATFORM_EU_TENANT`             | &check;  | Identifier of the company that contains the project where this service is configured.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration |                                          |
-| `APP_KUBERNETES_IO_PART_OF`          | &check;  | Identifier of the project where this service is configured.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                           |                                          |
-| `MIA_PLATFORM_EU_STAGE`              | &check;  | Environment where this service is deployed to.<br/>This is retrieve exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                                        |                                          |
+| `MIA_PLATFORM_EU_TENANT`             | &check;  | Identifier of the company that contains the project where this service is configured.<br/>This is retrieved exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration |                                          |
+| `APP_KUBERNETES_IO_PART_OF`          | &check;  | Identifier of the project where this service is configured.<br/>This is retrieved exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                           |                                          |
+| `MIA_PLATFORM_EU_STAGE`              | &check;  | Environment where this service is deployed to.<br/>This is retrieved exploiting [Downward API](/development_suite/api-console/api-design/services.md#from-downward-api) configuration                                        |                                          |
 
 :::tip
 This is how environment variables using Downward API should look like under Control Plane Operator microservice page of Console Design area:
@@ -65,7 +65,7 @@ An example of a simple configuration is shown here, where it is assumed that Con
 }
 ```
 
-The `url` can use both `http` and `https` protocol, although the formed is deduced as default. The latter can be configured as default connection
+The `url` can use both `http` and `https` protocol, although the former is used as default. The latter can be configured as default connection
 protocol setting the property `assume_http2` to `true`.  
 Furthermore, it is possible to customize the request headers by adding ad-hoc ones within the property `headers`. This can be useful for setting an
 `Authorization` header or an API key in the expected header.
@@ -96,7 +96,7 @@ The following properties support [secret resolution](/fast_data/configuration/se
 
 Control Plane Operator requires an additional configuration file to learn the topology of Fast Data Pipelines deployed within the runtime
 of execution. Such information is _automatically_ generated and added by Fast Data Configurator to the Control Plane Operator
-when it recognizes it as a known plugin, that is Control Plane Operator service has been instantiated from Mia-Platform Marketplace.
+when it recognizes it as a known plugin, that is when Control Plane Operator service has been instantiated from Mia-Platform Marketplace.
 
 :::danger
 
@@ -114,7 +114,7 @@ Control Plane Operator service **must** be reachable through [gRPC](https://grpc
 deployed in its namespace. In this manner Fast Data Workloads can receive [state updates](#state-message) and send back their actual status
 as [feedback](#feedback-message).
 
-Thus, it is necessary to advertise the port where the gRPC controller is exposed by Control Plane service, which by default is the `50051`.
+Thus, it is necessary to expose the port where the gRPC controller runs in the Control Plane service, which by default is the `50051`.
 This operation can be achieved by setting the proper port to the list of [_Container Ports_](/development_suite/api-console/api-design/microservice-container-ports.md)
 that can be found in the Console Design area, under the specific microservice resource. In the image below it is shown how
 the container ports card should appear: 
@@ -149,10 +149,10 @@ The state that can be set at pipeline level, or artifact level, or execution sta
 ### Feedback Channel
 
 The _Feedback Message_ defines the format for workloads to notify the Control Plane Operator about the state of their artifacts.
-The information that can be extracted from these messages are:
+The information that can be extracted from these messages is:
 
 - which artifacts are up-and-running;
-- which workloads have already successfully reconciled their state with the one request in the latest _State Message_;  
+- which workloads have already successfully reconciled their state with the one requested in the latest _State Message_;  
 
 Workloads connected to a Control Plane Operator **periodically** generate and send these messages through the established bidirectional channel.
 
