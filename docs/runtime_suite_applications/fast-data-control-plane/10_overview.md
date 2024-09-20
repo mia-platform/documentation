@@ -10,65 +10,8 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-_Fast Data Control Plane_ is an application designed to manage the runtime deployment of Fast Data within a Kubernetes environment, using the [Runtime Management](/fast_data/runtime_management/overview.mdx) suite.
+_Fast Data Control Plane_ is an application designed to manage runtime deployment of one or more Fast Data within Kubernetes environment, using the [Runtime Management](/fast_data/runtime_management/overview.mdx) suite.
 
 :::tip
-Check the [Runtime Management](/fast_data/runtime_management/overview.mdx) documentation for more information on its features and how to use the Control Plane frontend.
+Check the [Runtime Management](/fast_data/runtime_management/overview.mdx) documentation for more information on its features and how to use the Control Plane components.
 :::
-
-Its core functionality includes the ability to alter, store, and reset the runtime state of microservices that constitute Mia-Platform Fast Data solution.
-
-:::note
-Check the [Control Plane Configuration](/fast_data/runtime_management/control_plane.mdx) documentation for more information on how to configure the Control Plane application.
-:::
-
-## Resources
-
-With the Marketplace application you will have all the required resources to start using Runtime Management.
-
-### Microservices
-
-The application will create (or use if already been defined) the following microservices:
-
-- [Envoy API Gateway](/runtime_suite/envoy-api-gateway/overview.md)
-- [Control Plane backend](/fast_data/runtime_management/control_plane.mdx), having a gRPC full-duplex connection channel
-- [Control Plane frontend](/fast_data/runtime_management/control_plane_frontend.mdx), used by the end-user to interact with the Control Plane 
-
-### Config Maps
-
-The application will create a Config Map (named `control-plane-configuration` by default) having the following JSON configuration file.
-
-```json title={configuration.json}
-{
-  "runtime": {
-    "feedback": {
-      "type": "grpc"
-    },
-    "state": {
-      "type": "grpc"
-    }
-  },
-  "persistence": {
-    "type": "mongodb",
-    "configuration": {
-      "url": "{{MONGODB_URL}}"
-    },
-    "collection": {
-      "name": "{{MONGODB_COLLECTION}}"
-    }
-  }
-}
-```
-
-### Endpoints
-
-The following endpoints will be attached to the API Gateway:
-
-- `/`: which will redirect to the Control Plane frontend;
-- `/fast-data` where the Control Plane backend will be exposed
-
-### Secure Access
-
-If you want to setup Control Plane with authorization and authentication mechanisms, there is a dedicated application.
-
-To learn more about it, you can visit [its own documentation page](/fast_data/runtime_management/secure_access.md).
