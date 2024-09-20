@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.5.2"
+      "version": "11.1.5"
     },
     {
       "type": "datasource",
@@ -83,12 +83,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "How many bytes are read from and written to the ingestion channel (e.g. Kafka) per seconds",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -102,6 +104,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -163,9 +166,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by(service)(kafka_consumer_fetch_manager_bytes_consumed_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "sum by(service)(kafka_consumer_fetch_manager_bytes_consumed_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "interval": "",
-          "legendFormat": "Input",
+          "legendFormat": "{{service}} - Input",
           "range": true,
           "refId": "A"
         },
@@ -175,28 +178,30 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "-sum by(service)(kafka_producer_outgoing_byte_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "-sum by(service)(kafka_producer_outgoing_byte_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "interval": "",
-          "legendFormat": "Output",
+          "legendFormat": "{{service}} - Output",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "IO Bytes Rate [v8+]",
+      "title": "IO Bytes Throughput [Projection Storer only]",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "Shows the service CPU actual usage and the deploy request/limit",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -211,6 +216,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -324,7 +330,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", container=~\"$rtu\", k8sCluster=\"$cluster\"}) by (container)",
+          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"$namespace\", container=~\"$service_selector\", k8sCluster=\"$cluster\"}) by (container)",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
@@ -333,10 +339,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"cpu\"}\n)",
+          "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$service_selector\", resource=\"cpu\"}\n)",
           "hide": false,
           "legendFormat": "CPU Request",
           "range": true,
@@ -348,7 +354,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"cpu\"}\n)",
+          "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$service_selector\", resource=\"cpu\"}\n)",
           "hide": false,
           "legendFormat": "CPU Limit",
           "range": true,
@@ -361,14 +367,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "Shows the service RAM actual consumption and the deploy request/limit",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -383,6 +391,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -497,7 +506,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", image!=\"\"}) by (container)",
+          "expr": "sum(container_memory_working_set_bytes{job=\"kubelet\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$service_selector\", image!=\"\"}) by (container)",
           "hide": false,
           "legendFormat": "{{container}}",
           "range": true,
@@ -506,10 +515,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"memory\"}\n)",
+          "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$service_selector\", resource=\"memory\"}\n)",
           "hide": false,
           "legendFormat": "RAM Request",
           "range": true,
@@ -521,7 +530,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$rtu\", resource=\"memory\"}\n)",
+          "expr": "sum(\n    kube_pod_container_resource_limits{job=\"kube-state-metrics\", k8sCluster=\"$cluster\", namespace=\"$namespace\", container=~\"$service_selector\", resource=\"memory\"}\n)",
           "hide": false,
           "legendFormat": "RAM Limit",
           "range": true,
@@ -536,12 +545,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "How many ingestion events are read from and written to the ingestion channel (e.g. Kafka) per seconds - This value is computed directly on the service",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -555,6 +566,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
             "pointSize": 5,
@@ -616,9 +628,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by(service)(kafka_consumer_fetch_manager_records_consumed_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "sum by(service)(kafka_consumer_fetch_manager_records_consumed_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "interval": "",
-          "legendFormat": "Input",
+          "legendFormat": "{{service}} - Input",
           "range": true,
           "refId": "A"
         },
@@ -628,41 +640,30 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "-sum by(service)(kafka_producer_record_send_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "-sum by(service)(kafka_producer_record_send_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "interval": "",
-          "legendFormat": "Output",
+          "legendFormat": "{{service}} - Output",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "Input",
-          "range": true,
-          "refId": "C"
         }
       ],
-      "title": "IO Messages Rate [v8+]",
+      "title": "IO Messages Throughput [Projection Storer only]",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "Shows the number of service service replicas deployed",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -677,6 +678,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
             "pointSize": 5,
@@ -737,7 +739,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by(deployment)(kube_deployment_status_replicas_available{k8sCluster=\"$cluster\", namespace=~\"$namespace\", deployment=~\"$rtu\"})",
+          "expr": "sum by(deployment)(kube_deployment_status_replicas_available{k8sCluster=\"$cluster\", namespace=~\"$namespace\", deployment=~\"$service_selector\"})",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -751,12 +753,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "How many ingestion events are read from and written to the ingestion channel (e.g. Kafka) per seconds - This uses a message counter onto which is applied the rate function to obtain the throughput",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -771,6 +775,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
             "pointSize": 5,
@@ -812,7 +817,7 @@
         "y": 27
       },
       "id": 35,
-      "interval": "1m",
+      "interval": "2m",
       "options": {
         "legend": {
           "calcs": [],
@@ -832,14 +837,14 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by(service)(rate(kafka_consumer_fetch_manager_records_consumed_total{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__rate_interval]))",
+          "expr": "sum by(service)(rate(kafka_consumer_fetch_manager_records_consumed_total{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[2m]))",
           "interval": "",
           "legendFormat": "{{service}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Messages Consumption Rate [v7+]",
+      "title": "Messages Consumption Rate",
       "type": "timeseries"
     },
     {
@@ -858,14 +863,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "Display for each ingestion topic the number of messages that have still to be consumed by the service",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -879,6 +886,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -940,7 +948,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum by(service, topic)(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "sum by(service, topic)(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "legendFormat": "{{service}} - {{topic}}",
           "range": true,
           "refId": "A"
@@ -952,14 +960,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "https://kafka.apache.org/documentation/#consumer_fetch_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -973,6 +983,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1034,7 +1045,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_consumer_fetch_manager_fetch_size_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_consumer_fetch_manager_fetch_size_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Average Fetch Size",
           "range": true,
@@ -1043,10 +1054,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_consumer_fetch_manager_fetch_size_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_consumer_fetch_manager_fetch_size_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Fetch Size",
           "range": true,
@@ -1061,12 +1072,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "https://kafka.apache.org/documentation/#consumer_fetch_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1081,6 +1094,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1139,10 +1153,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_consumer_fetch_manager_fetch_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_consumer_fetch_manager_fetch_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Fetch Latency",
           "range": true,
@@ -1154,7 +1168,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_consumer_fetch_manager_fetch_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_consumer_fetch_manager_fetch_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Fetch Latency",
           "range": true,
@@ -1167,14 +1181,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "https://kafka.apache.org/documentation/#consumer_group_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1189,6 +1205,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1250,7 +1267,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_consumer_coordinator_join_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_consumer_coordinator_join_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Join Time",
           "range": true,
@@ -1259,10 +1276,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_consumer_coordinator_join_time_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_consumer_coordinator_join_time_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Join Time",
           "range": true,
@@ -1277,12 +1294,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "https://kafka.apache.org/documentation/#consumer_group_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1297,6 +1316,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1355,10 +1375,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_consumer_coordinator_sync_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_consumer_coordinator_sync_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Sync Time",
           "range": true,
@@ -1370,7 +1390,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_consumer_coordinator_sync_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_consumer_coordinator_sync_time_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Sync Time",
           "range": true,
@@ -1383,14 +1403,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "https://kafka.apache.org/documentation/#consumer_group_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1405,6 +1427,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1466,7 +1489,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_consumer_coordinator_commit_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_consumer_coordinator_commit_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Commit Latency",
           "range": true,
@@ -1475,10 +1498,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_consumer_coordinator_commit_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_consumer_coordinator_commit_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Commit Latency",
           "range": true,
@@ -1493,12 +1516,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "https://kafka.apache.org/documentation/#consumer_group_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1513,6 +1538,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1571,10 +1597,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_consumer_coordinator_rebalance_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_consumer_coordinator_rebalance_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Rebalance Latency",
           "range": true,
@@ -1586,7 +1612,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_consumer_coordinator_rebalance_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_consumer_coordinator_rebalance_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Rebalance Latency",
           "range": true,
@@ -1612,14 +1638,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "https://kafka.apache.org/documentation/#producer_sender_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1634,6 +1662,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1695,7 +1724,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_producer_request_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_producer_request_latency_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Request Latency Across Replicas",
           "range": true,
@@ -1704,10 +1733,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_producer_request_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_producer_request_latency_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Request Latency Across Replicas",
           "range": true,
@@ -1722,12 +1751,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "https://kafka.apache.org/documentation/#producer_sender_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1742,6 +1773,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1800,10 +1832,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(kafka_producer_request_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "sum(kafka_producer_request_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Request Rate",
           "range": true,
@@ -1815,7 +1847,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "sum(kafka_producer_response_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "sum(kafka_producer_response_rate{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Response Rate",
           "range": true,
@@ -1828,14 +1860,16 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "${datasource}"
       },
+      "description": "https://kafka.apache.org/documentation/#producer_sender_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1849,6 +1883,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -1910,7 +1945,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_producer_batch_size_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_producer_batch_size_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Average Fetch Size",
           "range": true,
@@ -1919,10 +1954,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "max(kafka_producer_batch_size_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "max(kafka_producer_batch_size_max{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Max Fetch Size",
           "range": true,
@@ -1937,12 +1972,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "https://kafka.apache.org/documentation/#producer_sender_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -1956,6 +1993,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2014,10 +2052,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_producer_compression_rate_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_producer_compression_rate_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Request Rate",
           "range": true,
@@ -2032,12 +2070,14 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "https://kafka.apache.org/documentation/#producer_sender_monitoring",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -2052,6 +2092,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 1,
             "pointSize": 5,
@@ -2110,10 +2151,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "avg(kafka_producer_io_wait_time_ns_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
+          "expr": "avg(kafka_producer_io_wait_time_ns_avg{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
           "hide": false,
           "legendFormat": "Avg Wait Time Across Replicas",
           "range": true,
@@ -2124,7 +2165,7 @@
       "type": "timeseries"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2132,1082 +2173,1212 @@
         "y": 85
       },
       "id": 22,
-      "panels": [],
-      "title": "Execution Statistics",
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Distribution of the time employed to process all the topic-partitions received within within a batch of ingestion messages. Note: commit phase not included",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 86
+          },
+          "id": 23,
+          "interval": "1m",
+          "options": {
+            "displayMode": "gradient",
+            "maxVizHeight": 300,
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "delta"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(le)(ps_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Batch Processing Time [s]",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Percentiles of the time to process all the topic-partitions received within within a batch of ingestion messages. Note: commit phase not included",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 6,
+            "y": 86
+          },
+          "id": 32,
+          "interval": "1m",
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.01, sum by (service, le)(rate(ps_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.01",
+              "range": true,
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.5, sum by (service, le)(rate(ps_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.5",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.95, sum by (service, le)(rate(ps_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "0.95",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.99, sum by (service, le)(rate(ps_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.99",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Batch Processing Time Statistics",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Distribution of the time employed to take the raw ingestion messages and transform into projection events (cast + project operations)",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 86
+          },
+          "id": 25,
+          "interval": "1m",
+          "options": {
+            "displayMode": "gradient",
+            "maxVizHeight": 300,
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "delta"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(le)(ps_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Projection Records Preparation Processing Time [s]",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Percentiles of the time employed to take the raw ingestion messages and transform into projection events (cast + project operations)",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 18,
+            "y": 86
+          },
+          "id": 30,
+          "interval": "1m",
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.01, sum by (service, le)(rate(ps_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.01",
+              "range": true,
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.5, sum by (service, le)(rate(ps_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.5",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.95, sum by (service, le)(rate(ps_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "0.95",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.99, sum by (service, le)(rate(ps_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.99",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Projection Records Preparation Time Statistics",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Distribution of the time employed to process a single topic-partition within a batch of ingestion messages",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 94
+          },
+          "id": 24,
+          "interval": "1m",
+          "options": {
+            "displayMode": "gradient",
+            "maxVizHeight": 300,
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "delta"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(le)(ps_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Batch Partition Processing Time [s]",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Percentiles of the time to process a single topic-partition within a batch of ingestion messages",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 6,
+            "y": 94
+          },
+          "id": 33,
+          "interval": "1m",
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.01, sum by (service, le)(rate(ps_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.01",
+              "range": true,
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.5, sum by (service, le)(rate(ps_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.5",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.95, sum by (service, le)(rate(ps_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "0.95",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.99, sum by (service, le)(rate(ps_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.99",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Batch Partition Processing Time Statistics",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Distribution of the time employed to store projection records onto the configured storage system",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 12,
+            "y": 94
+          },
+          "id": 26,
+          "interval": "1m",
+          "options": {
+            "displayMode": "gradient",
+            "maxVizHeight": 300,
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "delta"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(le)(ps_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Storage Processing Time [s]",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Percentiles of the time employed to store projection records onto the configured storage system",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 18,
+            "y": 94
+          },
+          "id": 31,
+          "interval": "1m",
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.01, sum by (service, le)(rate(ps_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.01",
+              "range": true,
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.5, sum by (service, le)(rate(ps_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.5",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.95, sum by (service, le)(rate(ps_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "0.95",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.99, sum by (service, le)(rate(ps_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.99",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Storage Processing Time Statistics",
+          "type": "stat"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Distribution of the time employed to send the pr-update events onto the outgoing channel",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 0,
+            "y": 102
+          },
+          "id": 27,
+          "interval": "1m",
+          "options": {
+            "displayMode": "gradient",
+            "maxVizHeight": 300,
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "namePlacement": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "delta"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true,
+            "sizing": "auto",
+            "valueMode": "color"
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(le)(ps_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"})",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Producer Processing Time [s]",
+          "type": "bargauge"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Percentiles of the time to send the pr-update events onto the outgoing channel",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 6,
+            "x": 6,
+            "y": 102
+          },
+          "id": 34,
+          "interval": "1m",
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "percentChangeColorMode": "standard",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showPercentChange": false,
+            "textMode": "auto",
+            "wideLayout": true
+          },
+          "pluginVersion": "11.1.5",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.01, sum by (service, le)(rate(ps_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.01",
+              "range": true,
+              "refId": "D"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.5, sum by (service, le)(rate(ps_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.5",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.95, sum by (service, le)(rate(ps_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "instant": false,
+              "legendFormat": "0.95",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "histogram_quantile(0.99, sum by (service, le)(rate(ps_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__range])))",
+              "format": "heatmap",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "0.99",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Producer Processing Time Statistics",
+          "type": "stat"
+        }
+      ],
+      "title": "Execution Statistics [Projection Storer only]",
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Commit phase not included",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 86
-      },
-      "id": 23,
-      "interval": "1m",
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "delta"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(le)(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Batch Processing Time [s]",
-      "transformations": [],
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
-        "y": 86
-      },
-      "id": 32,
-      "interval": "1m",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.01",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.5",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "0.95",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_consumer_batch_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.99",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Batch Processing Time Statistics",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 86
-      },
-      "id": 25,
-      "interval": "1m",
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "delta"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(le)(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Projection Records Preparation Processing Time [s]",
-      "transformations": [],
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 86
-      },
-      "id": 30,
-      "interval": "1m",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.01",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.5",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "0.95",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_records_preparation_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.99",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Projection Records Preparation Time Statistics",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 94
-      },
-      "id": 24,
-      "interval": "1m",
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "delta"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(le)(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Batch Partition Processing Time [s]",
-      "transformations": [],
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
-        "y": 94
-      },
-      "id": 33,
-      "interval": "1m",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.01",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.5",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "0.95",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_consumer_partition_processing_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.99",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Batch Partition Processing Time Statistics",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 94
-      },
-      "id": 26,
-      "interval": "1m",
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "delta"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(le)(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Storage Processing Time [s]",
-      "transformations": [],
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 94
-      },
-      "id": 31,
-      "interval": "1m",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.01",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.5",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "0.95",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_storage_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.99",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Storage Processing Time Statistics",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 102
-      },
-      "id": 27,
-      "interval": "1m",
-      "options": {
-        "displayMode": "gradient",
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "delta"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "valueMode": "color"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(le)(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"})",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Producer Processing Time [s]",
-      "transformations": [],
-      "type": "bargauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 6,
-        "y": 102
-      },
-      "id": 34,
-      "interval": "1m",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.01, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.01",
-          "range": true,
-          "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.5, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.5",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.95, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "instant": false,
-          "legendFormat": "0.95",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "histogram_quantile(0.99, sum by (service, le)(rate(rtu_processor_producer_bucket{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[$__range])))",
-          "format": "heatmap",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "0.99",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Producer Processing Time Statistics",
-      "transformations": [],
-      "type": "stat"
-    },
-    {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 110
+        "y": 86
       },
       "id": 36,
-      "panels": [],
-      "title": "Others",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "smooth",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 0,
-        "y": 111
-      },
-      "id": 29,
-      "interval": "2m",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "9.5.2",
-      "targets": [
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(collection)(rate(mongodb_driver_commands_seconds_count{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$rtu\"}[2m]))",
-          "format": "time_series",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
+          "description": "Average rate time employed by the MongoDB driver to create/update/delete projection records on the database",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 0,
+            "y": 87
+          },
+          "id": 29,
+          "interval": "2m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(collection)(rate(mongodb_driver_commands_seconds_count{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__rate_interval]))",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Mongo Driver Commands Execution Time By Collection",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ops"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 12,
+            "y": 87
+          },
+          "id": 37,
+          "interval": "2m",
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.5.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum by(status)(rate(ps_parse_message_total{k8sCluster=\"$cluster\",namespace=\"$namespace\",service=~\"$service_selector\"}[$__rate_interval]))",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Parsed Messages",
+          "type": "timeseries"
         }
       ],
-      "title": "Mongo Driver Commands Execution Time By Collection",
-      "transformations": [],
-      "type": "timeseries"
+      "title": "Others",
+      "type": "row"
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
-        },
+        "current": {},
         "hide": 0,
         "includeAll": false,
         "multi": false,
@@ -3224,7 +3395,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "${datasource}"
         },
         "definition": "label_values(kube_pod_info,k8sCluster)",
         "hide": 0,
@@ -3265,27 +3436,23 @@
         "type": "query"
       },
       {
-        "allValue": ".*rtu.*|.*realtime.*",
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+        "current": {
+          "selected": true,
+          "text": ".*rtu.*|.*realtime.*|.*projection-storer.*",
+          "value": ".*rtu.*|.*realtime.*|.*projection-storer.*"
         },
-        "definition": "label_values(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\"},service)",
         "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "rtu",
-        "options": [],
-        "query": {
-          "query": "label_values(kafka_consumer_fetch_manager_records_lag{k8sCluster=\"$cluster\",namespace=\"$namespace\"},service)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 2,
-        "regex": "",
+        "name": "service_selector",
+        "options": [
+          {
+            "selected": true,
+            "text": ".*rtu.*|.*realtime.*|.*projection-storer.*",
+            "value": ".*rtu.*|.*realtime.*|.*projection-storer.*"
+          }
+        ],
+        "query": ".*rtu.*|.*realtime.*|.*projection-storer.*",
         "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
+        "type": "textbox"
       }
     ]
   },
@@ -3295,8 +3462,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Fast Data Real-Time Updater",
+  "title": "Fast Data ingestion services",
   "uid": "cffd3308-202a-41a2-9c0e-743457536fb8",
-  "version": 44,
+  "version": 68,
   "weekStart": ""
 }
