@@ -112,7 +112,7 @@ INSERT THE IMAGE OF EDIT FORM OF A CUSTOM PROPERTY
 
 :::caution 
 Pay attention when editing a custom property, it may already be applied and valorized on many assets!  
-Modifications on a custom property may lead to inconsistencies on metadata retrieve for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
+Modifications on a custom property may lead to inconsistencies on metadata retrieval for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
 :::
 
 #### Delete custom property
@@ -123,12 +123,62 @@ INSERT THE IMAGE OF DELETE FORM OF A CUSTOM PROPERTY
 
 :::caution 
 Pay attention when deleting a custom property, it may already be applied and valorized on many assets!  
-The deletion of a custom property may lead to inconsistencies on metadata retrieve for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
+The deletion of a custom property may lead to inconsistencies on metadata retrieval for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
 :::
 
 ### Metadata Enrichment
 
+Once custom properties have been defined, metadata data can be applicable on the assets.  
+As previously described on the [Asset details navigation](#asset-details-navigation) documentation section, for all the asset types (SoR, Table, Column) it is possible to perform metadata enrichment.  
+In particular, on the asset it is possible to enter tags, description and to add/edit/remove metadata based on those custom properties applicable to that specific asset type.  
+To do this, simply click the `Add property` button of the **Custom properties** section in the General tabl of an asset.  
+Once clicked, a popover lets user to choose among a list of applicable custom properties; one selected one property, it is possible to enter a metadata value for enriching that asset info.  
+Then, once added, user can modify the value previously inserted or decide to remove it from that asset.
+
+INSERT AN IMAGE WITH FOCUS ONTO CUSTOM PROPERTIES CARD
+
+:::caution
+Please note that removing a custom property means removing a metadata value saved on DB for that specific asset. The custom property remains applicable on all the other assets that match the expected asset type, and it is possible to re-assign and valorize that custom property on that asset.
+:::
+
 #### Unknown custom properties
+
+Sometimes, it may happen that some users with enough permissions [modify](#edit-custom-property) or [delete](#delete-custom-property) a custom property.  
+Modifications or deletions can lead to inconsistencies on metadata retrieval for some assets that have been enriched with that custom property.  
+Mismatches could be due to:
+* changes on the custom property name
+* changes on the asset types for which the custom property is applicable
+* changes on the custom property type (or range of values allowed to be defined for that custom properties; i.e. custom properties of type options)  
+
+For all these cases, the frontend can no more be able to correctly interpret a metadata defined on the asset. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the **Unknown Custom Properties** section of the asset.
+
+INSERT AN IMAGE WITH REPORTED SOME UNKNOWN CUSTOM PROPERTIES
+
+In these cases, users with enough permissions can decide to restore the custom property to be newly interpretable by the frontend or to remove the metadata from the asset.
+
+##### Restore unknown custom property
+
+A custom property that cannot be correctly interpreted by frontend can be restored.
+
+INSERT AN IMAGE WITH THE RESTORE ACTIONS
+
+The result of this action leads to a re-creation of the custom property.  
+
+In case the type mismatches, or the value is no more compliant with how that custom property is defined, user with enough permissions can instead enter the [Custom Properties](#management-of-custom-properties) section and arrange and modify accordingly the existent custom property in order to allow the info to be correctly interpreted by frontend.  
+
+:::caution
+Please pay attention when modifying an existent custom property. The main reasons have been already reported in the [Edit custom property](#edit-custom-property) section.
+:::
+
+##### Remove unknown custom property
+
+In case the unknown metadata can be definitely removed from the specific asset, users with enough permissions can decide to opt for its removal.
+
+INSERT AN IMAGE WITH THE REMOVAL ACTIONS
+
+:::caution
+Please note that this action leads to the removal of the metadata value saved on DB for that specific asset. The custom property remains instead applied on all the other assets that match the expected asset type.
+:::
 
 ### Bulk Actions
 (In the future, bulk actions and more)
