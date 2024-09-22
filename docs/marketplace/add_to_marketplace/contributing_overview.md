@@ -86,7 +86,9 @@ The Marketplace is composed of items with the following types.
 - **Plugins**: items for which users have no access to the actual code. Users will still be able to download their Docker image, in order to configure and use them within their Projects.
 - **Templates** and **Examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their Project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
 - **Applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
-- **Proxy**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in this [section](/development_suite/api-console/api-design/proxy.md).  
+- **Proxies**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in [this section](/development_suite/api-console/api-design/proxy.md).
+- **Sidecars**: secondary utility containers running side by side with the main container in the same host. Find more [here](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md)
+- **Custom Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/console/design-your-projects/custom-resources#publish-a-custom-resource-inside-the-marketplace.md)
 
 :::note
 
@@ -224,7 +226,17 @@ The final result will be as follows:
 
 ![Console-custom-service](img/dev-console-custom-service.png)
 
+### Set controlled versions for your Marketplace resources and make them available to users (available only for Plugins & Custom Resources of type k8s)
 
+Marketplace creators have the possibility to manage some types of resources (at the moment, Microservice Plugins and Custom Resources of type k8s) through a governance based on a versioning system. 
+This means that, for these types of resources, it is possible to establish a more structured and transparent lifecycle management system, providing users access to all the versions of a resource and allowing them to see the release notes of each version and select and instantiate the version that best suits their configuration needs among the ones made available by the Marketplace creator. 
+
+Versioning of Marketplace resources implies that those resources under versioning governance are composed by some "controlled fields" that contribute to the definition of the version and which, therefore, cannot be changed “in place” by the user, but only through the creation of a new version of the resource.
+
+For instance, a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin. 
+For Custom Resources of type k8s the governance is quite similar: since Custom Resources of type k8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
+
+ Such a structured approach will streamline resource management and ensure compatibility and stability across different use cases.
 
 ### The Release Stage of a new item and Coming Soon
 
