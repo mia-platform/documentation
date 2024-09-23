@@ -7,15 +7,223 @@ sidebar_label: Control Plane UI
 Fast Data Runtime Management solution has a dedicated frontend that allows interacting with [Control Plane](/fast_data/runtime_management/control_plane.mdx) via [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)
 component.
 
+![Fast Data Control Plane embedded in Console](./img/control_plane_in_console.png)
+> Fast Data Runtime Management solution embedded in Mia-Platform Console, with visibility at Company level.
+
+## Features
+
 This frontend enables the user to:
 
 - manage runtimes views;
 - retrieve pipelines details;
 - visualize pipelines structure and receive live updates about the state of the underlying Fast Data Runtime;
-- execute actions on pipelines state, that is pausing or resuming one or more data streams;
+- execute actions on pipelines state, that is pausing or resuming one or more data streams
 
-![Fast Data Control Plane embedded in Console](./img/control_plane_in_console.png)
-> Fast Data Runtime Management solution embedded in Mia-Platform Console, with visibility at Company level.
+In the next paragraph, all these features are described in detail.
+
+### Runtime Views Management
+
+Users with enough permissions can manage [**Runtime Views**](/fast_data/runtime_management/overview.mdx#runtime-view) inside Control Plane frontend.  
+Thanks to Runtime Views, it is possible to group together runtime environments belonging to your Company Projects.  
+In other words, the Fast Data Runtime View is a **logical entity** that aims at grouping together Fast Data runtime environments; these logical groupings may either arise from business requirements or spontaneously depending on how Console projects are related each other.  
+
+#### Create Runtime View
+
+Click on the top-right button to start adding a Runtime View.  
+
+INSERT THE CREATE RUNTIME VIEW IMAGE
+
+Choose a name that identifies the Runtime View, and optionally insert proper tags to better describe it.  
+Then, select among the available runtime environments of your Company Projects.
+
+:::caution
+In order for a _runtime_ to be recognized and managed by the main Control Plane instance, it has to belong to **one and only one** _runtime view_. Consequently,
+_runtimes_ that do not belong to any _runtime view_ are <u>simply ignored</u> by the system, while it is forbidden for a _runtime_ to belong to multiple _runtime views_.
+:::
+
+Once runtimes have been selected, click `Create View` button.
+
+#### Edit Runtime View
+
+It is possible to modify a Runtime View, by choosing to click the `Edit Runtime View` option from the multi-action button at the right of the related table item identifying that runtime view.  
+
+INSERT THE EDIT RUNTIME VIEW IMAGE
+
+In particular, it is possible to change runtime view Name, tags, and assigned runtime environments.
+
+:::caution
+In case a runtime environment is already assigned to another runtime view, this is not selectable among the list of available runtimes to be chosen.
+:::
+
+#### Delete Runtime View
+
+It is possible to delete a Runtime View, by choosing to click the `Delete Runtime View` option from the multi-action button at the right of the related table item identifying that runtime view.  
+
+INSERT THE DELETE RUNTIME VIEW IMAGE
+
+:::caution
+When confirming the delete action, the runtime view will be permanently deleted, without the possibility to revert it.
+:::
+
+### Pipelines Overview
+
+Within a runtime view, the list of Fast Data pipelines released on the runtime environments that have been assigned to that view are displayed.
+In particular, two types of pipelines are shown: [Domain pipelines](/fast_data/runtime_management/overview.mdx#domain-pipeline) and [Single View pipelines](/fast_data/runtime_management/overview.mdx#single-view-pipeline).
+
+![Pipelines Overview](img/pipelines_overview.png)
+
+User can search a pipeline of interest, or filter on the type of pipeline (either _Domain_ or _Single View_).
+
+Once clicked on a pipeline, the user will be redirected to the pipeline detail page. It is a canvas where all the stages and states of the pipeline are rendered.
+
+### States of Data Streams
+
+In this section we are going to describe in detail how the different states of the Fast data system at runtime are represented in the pipeline, and what actions the user can take to interact with the pipeline.
+
+Along a pipeline, it is possible to identify different graphical elements useful for representing the various states of your data streams 
+in real-time and for highlighting architectural aspects of your Fast Data configuration.
+
+For each data streams, an action button is provided in an initial state, which may change based on:
+- the feedback provided by the workloads managing the data streams;
+- the configuration of the workloads
+
+:::tip
+From Control Plane settings located at the bottom-right of the canvas, user can decide to switch-off / switch-on the animation of the running streams.
+:::
+
+#### Running
+
+When messages consumption is active along a data stream, the __running__ state is rendered. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Running State](img/running_state.png)
+
+  </div>
+</div>
+
+This means that the Fast Data workloads involved in consuming events on that data stream are in `running` state.  
+
+#### Paused
+
+When messages consuption is paused along a data stream, the __paused__ state is rendered. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Paused State](img/paused_state.png)
+
+  </div>
+</div>
+
+This means that the Fast Data workloads involved on that data stream are in `paused` state and 
+their are not consuming messages along that data stream.
+
+#### Loading
+
+When user interacts with the frontend in order to perform play/pause actions along data streams, a loading state is rendered, meaning 
+that an action is going to be performed on that data stream and control plane has sent the command to the involved microservice and 
+is waiting for a feedback from that specific microservice.  
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Loading State](img/loading_state.png)
+
+  </div>
+</div>
+
+Typically, after a loading state, if action succeeds, the data stream will change its state from paused to running or viceversa; if action does not succeed, an error will be displayed to user and the data stream will not change its status.
+
+#### Unsupported
+
+Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Unsupported State](img/unsupported_state.png)
+
+  </div>
+</div>
+
+For example, this status appears in the ingestion phase, where is not possible to alter the behavior of a CDC acquiring events from external sources.
+
+#### Disabled
+
+There could be the case in which a play/pause action cannot be performed by user. 
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Disabled State](img/disabled_state.png)
+
+  </div>
+</div>
+
+This status can appear in the Single View pipeline's artifacts belonging to the Landing stage, 
+since their actions are managed by a domain pipeline.
+
+#### Unknown
+
+The unknown status appears when Control Plane system is not able to identify the state of a certain data stream.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '500px'}}> 
+
+![Unknown State](img/unknown_state.png)
+
+  </div>
+</div>
+
+This status can appear when: 
+
+- there may be some misconfigurations on the Fast Data pipeline;
+- workloads are not sending their feedback to the Control Plane.
+
+### Monitoring and Interacting with pipelines
+
+From Control Plane frontend, user can monitor the status of each Fast Data pipeline in real-time and interact with 
+it by pausing/resuming messages consumption on the available data streams. 
+
+#### Pause and Resume
+
+It's possible to click on the play/pause buttons distributed along the various data streams of the pipeline.  
+
+![Control Plane Interaction](img/pipeline_artifact_interaction.gif)
+
+Once clicked on the button, a [Loading state](#loading) appears and a message on the top of the frontend shows a countdown of 5s within 
+which the user can decide to revoke the triggered action:
+
+- if revoked, the previous state will be restored without any impact on Fast Data runtime; 
+
+or
+
+- if not, Control Plane will receive the command and send the corresponding state to the target microservice involved on that data stream. 
+
+After the loading state, if the action is successful, the data stream will accordingly change its status in either [running](#running) or [paused](#paused).
+
+#### Bulk actions
+
+_Bulk actions_ can enhance user experience in interacting with pipelines. 
+
+With a simple click on a play/pause button located at the top of each main Fast Data architectural step 
+(Ingestion, Landing, Collected, Curated phases), user can pause all the active data streams, or can resume all the paused ones.
+
+![Control Plane Bulk Action](img/bulk_action.gif)
+
+:::tip 
+Bulk actions are useful in case of large data pipelines and to speed up the runtime management:
+one example is in case of an [Initial Load management process](/fast_data/concepts/data_loading.mdx#initial-load). 
+
+In fact, with the first deploy of Fast Data pipelines on a runtime environment, the overall pipelines are set in `paused` state as default. 
+
+Consequently, in order to efficiently manage the Initial load of the Fast Data system, user can leverage bulk actions on a step-by-step process 
+along the different pipeline phases.
+
+In this way, ingestion of huge datasets can be performed without saturating the underlying infrastructure, without damaging other data streams running at the same runtime. 
+:::
 
 ## Configuration
 
@@ -120,163 +328,3 @@ the API Gateway in front of the Control Plane Frontend would add the proper valu
 To edit the header value, please head to the `Endpoints` page and select the main endpoint for Control Plane Frontend. Within the `Endpoint Settings` card, select the `Advanced` tab and then choose `Any Origin` from `Iframe embedding options`, as shown in the following image:
 
 ![Endpoint Any Origin](./img/endpoint_any_origin.png)
-
-## Pipelines Overview
-
-When users access Control Plane frontend, an overview section shows the list of Fast Data pipelines released on that runtime environment.
-In particular, two types of pipelines are shown: [Domain pipelines](/fast_data/runtime_management/overview.mdx#domain-pipeline) and [Single View pipelines](/fast_data/runtime_management/overview.mdx#single-view-pipeline).
-
-![Pipelines Overview](img/pipelines_overview.png)
-
-The user can search a pipeline of interest, or filter on the type of pipeline (either _Domain_ or _Single View_).
-
-Once clicked on a pipeline, the user will be redirected to the pipeline detail page. It is a canvas where all the stages of a pipeline are rendered.
-
-## States of Data Streams
-
-In this section we are going to describe in detail how the different states of the Fast data system at runtime are represented in the pipeline, and what actions the user can take to interact with the pipeline.
-
-Along a pipeline, it is possible to identify different graphical elements useful for representing the various states of your data streams 
-in real-time and for highlighting architectural aspects of your Fast Data configuration.
-
-For each data streams, an action button is provided in an initial state, which may change based on:
-- the feedback provided by the workloads managing the data streams;
-- the configuration of the workloads
-
-:::tip
-From Control Plane settings located at the bottom-right of the canvas, user can decide to switch-off / switch-on the animation of the running streams.
-:::
-
-### Running
-
-When messages consumption is active along a data stream, the __running__ state is rendered. 
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Running State](img/running_state.png)
-
-  </div>
-</div>
-
-This means that the Fast Data workloads involved in consuming events on that data stream are in `running` state.  
-
-### Paused
-
-When messages consuption is paused along a data stream, the __paused__ state is rendered. 
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Paused State](img/paused_state.png)
-
-  </div>
-</div>
-
-This means that the Fast Data workloads involved on that data stream are in `paused` state and 
-their are not consuming messages along that data stream.
-
-### Loading
-
-When user interacts with the frontend in order to perform play/pause actions along data streams, a loading state is rendered, meaning 
-that an action is going to be performed on that data stream and control plane has sent the command to the involved microservice and 
-is waiting for a feedback from that specific microservice.  
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Loading State](img/loading_state.png)
-
-  </div>
-</div>
-
-Typically, after a loading state, if action succeeds, the data stream will change its state from paused to running or viceversa; if action does not succeed, an error will be displayed to user and the data stream will not change its status.
-
-### Unsupported
-
-Depending on the configured Fast Data architecture, sometimes the unsupported status can appear along a data pipeline. 
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Unsupported State](img/unsupported_state.png)
-
-  </div>
-</div>
-
-For example, this status appears in the ingestion phase, where is not possible to alter the behavior of a CDC acquiring events from external sources.
-
-### Disabled
-
-There could be the case in which a play/pause action cannot be performed by user. 
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Disabled State](img/disabled_state.png)
-
-  </div>
-</div>
-
-This status can appear in the Single View pipeline's artifacts belonging to the Landing stage, 
-since their actions are managed by a domain pipeline.
-
-### Unknown
-
-The unknown status appears when Control Plane system is not able to identify the state of a certain data stream.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '500px'}}> 
-
-![Unknown State](img/unknown_state.png)
-
-  </div>
-</div>
-
-This status can appear when: 
-
-- there may be some misconfigurations on the Fast Data pipeline;
-- workloads are not sending their feedback to the Control Plane.
-
-## Monitoring and Interacting with pipelines
-
-From Control Plane frontend, user can monitor the status of each Fast Data pipeline in real-time and interact with 
-it by pausing/resuming messages consumption on the available data streams. 
-
-### Pause and Resume
-
-It's possible to click on the play/pause buttons distributed along the various data streams of the pipeline.  
-
-![Control Plane Interaction](img/pipeline_artifact_interaction.gif)
-
-Once clicked on the button, a [Loading state](#loading) appears and a message on the top of the frontend shows a countdown of 5s within 
-which the user can decide to revoke the triggered action:
-
-- if revoked, the previous state will be restored without any impact on Fast Data runtime; 
-
-or
-
-- if not, Control Plane will receive the command and send the corresponding state to the target microservice involved on that data stream. 
-
-After the loading state, if the action is successful, the data stream will accordingly change its status in either [running](#running) or [paused](#paused).
-
-### Bulk actions
-
-_Bulk actions_ can enhance user experience in interacting with pipelines. 
-
-With a simple click on a play/pause button located at the top of each main Fast Data architectural step 
-(Ingestion, Landing, Collected, Curated phases), user can pause all the active data streams, or can resume all the paused ones.
-
-![Control Plane Bulk Action](img/bulk_action.gif)
-
-:::tip 
-Bulk actions are useful in case of large data pipelines and to speed up the runtime management:
-one example is in case of an [Initial Load management process](/fast_data/concepts/data_loading.mdx#initial-load). 
-
-In fact, with the first deploy of Fast Data pipelines on a runtime environment, the overall pipelines are set in `paused` state as default. 
-
-Consequently, in order to efficiently manage the Initial load of the Fast Data system, user can leverage bulk actions on a step-by-step process 
-along the different pipeline phases.
-
-In this way, ingestion of huge datasets can be performed without saturating the underlying infrastructure, without damaging other data streams running at the same runtime. 
-:::

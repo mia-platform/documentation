@@ -59,11 +59,11 @@ This application can be found in the Marketplace by looking it up in using the k
 This option should appear as _Fast Data Control Plane_, which will provide all the configurations of _Fast Data Control Plane_ solution,
 alongside the resources needed for introducing an authorization layer (see box tip below for more information).
 
-:::tip Set RBAC for secure application access
+:::tip Set secure application access
 
 As Control Plane is a powerful tool for governing Fast Data at runtime, it is important to ensure that only authorized users can access and interact with it, especially if the interaction is performed on a Fast Data production environment.
 
-By combining different capabilities and tools offered and managed in Mia-Platform Suite, Control Plane can be setup with a solid authorization security layer, and RBAC mechanisms can be built on top of it.
+By combining different capabilities and tools offered and managed in Mia-Platform Suite, Control Plane can be setup with a solid authorization security layer, and permissions control mechanisms can be built on top of it.
 
 To find out how to better address this goal, please visit the related [documentation page](/fast_data/runtime_management/secure_access.md) that explains how to manage the Fast Data Control Plane With Access Control.
 :::
@@ -142,7 +142,7 @@ The main Control Plane instance can manage one or more runtimes, once they are r
 ### Runtime View
 
 Within the context of Fast Data Control Plane, a _runtime view_ corresponds to a group of one or more [_runtimes_](#runtime) that are logically clustered together. These groupings
-may either arise from business requirements or spontaneously depending on how Console projects are linked among them.
+may either arise from business requirements or spontaneously depending on how Console projects are related each other.
 
 For example, one may decide to group together runtimes based on their deployed environment, such as `test`, `preprod`, `production`,
 or based on their business units, such as split the Fast Data runtimes related to warehouse from the ones managing customers and orders.
