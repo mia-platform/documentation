@@ -1663,6 +1663,11 @@
               "id": "marketplace/add_to_marketplace/add_item_by_type/add_sidecar",
               "label": "Create a Sidecar Marketplace Item",
               "type": "doc"
+            },
+            {
+              "id": "marketplace/add_to_marketplace/add_item_by_type/add_custom_resource",
+              "label": "Create a Custom Resource Marketplace Item",
+              "type": "doc"
             }
           ]
         },
