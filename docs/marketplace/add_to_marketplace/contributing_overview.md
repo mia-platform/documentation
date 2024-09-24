@@ -4,8 +4,6 @@ title: Create your Company Marketplace
 sidebar_label: Company Marketplace
 ---
 
-<!--TODO: order 66 on CMS references -->
-
 In this section, we dive into the process of creating a new item for your **Company Marketplace**, analyzing the main differences between different types of items and providing some configuration examples.
 
 ## Public and Company Marketplace
@@ -23,27 +21,12 @@ There are different methods to manage your Company Marketplace items. They are d
 
 ## Creation of an Company Marketplace item
 
-Creation of a Marketplace item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
-
-You have two ways to upload the item file:
-
-- by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool (recommended)
-- by creating it in the CMS
-
-Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
-The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
+Creation of a Marketplace item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool.
 
 :::info
-To create Marketplace items you need to be a *Company Owner* or a *Project Administrator* at Company level.
-
-Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
-The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
-
 If you want to make your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
-:::
 
-:::info
-To learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
+Also, to learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
 :::
 
 ### Marketplace item visibility and the `tenantId` field
@@ -114,25 +97,11 @@ Here below are listed all the properties that must be provided for each type of 
   - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on Marketplace items in a Console project; includes information about the changes introduced by the new version.
   - **`security`**: a boolean to indicate if the item is security-related
 
-### Adding images
-
-The procedure of adding images differs if you are using CMS or `miactl`.
-
-#### With `miactl`
-
-To upload the *image* and *supportedByImage* with the `miactl marketplace apply` command, you need to add the respective `image` and `supportedByImage` keys to the object.
+:::info
+To upload the *image* and *supportedByImage*, you can use the `miactl marketplace apply` command adding the respective `image` and `supportedByImage` keys to the object.
 
 Refer to the [related miactl documentation](/cli/miactl/30_commands.md#apply) to know the exact specifications of such object.
-
-#### With the CMS
-
-It is possible to add images using dedicated input fields:  
-
-![upload-images](img/cms-upload-image.png) ![upload-images](img/cms-upload-supported-by-image.png)
-
-The final result will be as follows:  
-
-![Console-custom-service](img/dev-console-custom-service.png)
+:::
 
 ### Set controlled versions for your Marketplace resources and make them available to users
 
@@ -186,20 +155,17 @@ Attemps to modify the `resources` property will cause an error, and the item wil
 
 ### The Release Stage of a Marketplace Item
 
-From the CMS of the Console, users can associate items with a **release stage** label that will help users identify the maturity of the item.
+When creating or updating a Marketplace item, the user can add information to help users identifying the maturity of the item.
 
-There are 2 fields that define the release stage of an item: `comingSoon` and `releaseStage`.
+There are 2 fields that define the release stage of an item:
 
-The `comingSoon` field is boolean, setting it to true will show the "Coming Soon" label and will prevent users to use the item.
-
-The `releaseStage` field can have the following values
-
-- preview
-- beta
-- stable
-- deprecated
-
-The fields are not required: if not specified, no label will be shown on the item.
+- the `comingSoon` field is boolean, setting it to true will show the *Coming Soon* label and will prevent users to use the item
+- the `releaseStage` field can have the following values:
+  - *preview*
+  - *beta*
+  - *stable* (default)
+  - *deprecated*
+  a label will shown on the item according to the value of the field, except for the *stable* stage
 
 :::info
 Setting both the `releaseStage` and the `comingSoon` fields is not permitted and would lead to inconsistencies; please set either field or none according to the item lifecycle status.

@@ -11,7 +11,7 @@ They are basically defined by two fields:
 - the `apiVersion` field, which is the API version of the resource
 - the `kind` field, which is the kind of the resource
 
-Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace, using the `miactl` tool or via _CMS_. They are defined with the usual marketplace item schema, by having the _type_ field equal to `custom-resource`.
+Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace, using the `miactl` tool. They are defined with the usual marketplace item schema, by having the _type_ field equal to `custom-resource`.
 
 Custom resources items in the Marketplace supports _versioning_, allowing to update the resource without overwriting the previous ones.
 

@@ -8,7 +8,6 @@ There are three main methods to create, modify and delete Marketplace items:
 
 * (recommended) Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 * Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
-* (deprecated) Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md).
 
 ## How to use `miactl` to manage the Marketplace
 
@@ -107,6 +106,7 @@ The file contents will look like this:
   "type": "plugin"
 }
 ```
+
 </details>
 
 You also want users to write services in your brand new programming language, `Acme.Js`.
@@ -168,6 +168,7 @@ To do this, you need to create a [Template](/marketplace/templates/mia_templates
   }
 }
 ```
+
 </details>
 
 To highlight the potentialities of `Acme.Js` and introduce your users to the new programming language, you also decide to provide a working [Example](/marketplace/examples/mia_examples.md) with minimal business code.
@@ -217,6 +218,7 @@ To highlight the potentialities of `Acme.Js` and introduce your users to the new
   }
 }
 ```
+
 </details>
 
 
@@ -231,7 +233,8 @@ miactl marketplace apply -f myAwesomeService.json -f myAcmeJsTemplate.json -f my
 This command will create the Marketplace items and upload the images along with them.
 
 A message will confirm the operation, returning some information as shown here below:
-```
+
+```sh
 3 of 3 items have been successfully applied:
 
   ID                        ITEM ID             NAME                 STATUS   
@@ -242,6 +245,7 @@ A message will confirm the operation, returning some information as shown here b
 ```
 
 After the upload, the image keys will be replaced with the `imageUrl` and the `supportedByImageUrl`; to obtain the updated version of an item, use the `get` command:
+
 ```sh
 miactl marketplace get 65368hf0c91d871a87afbcbf > myAwesomeService.json
 
@@ -251,10 +255,8 @@ miactl marketplace get 65368hf0c91d871a87afdase > myAcmeJsExample.json
 ```
 
 :::tip
-
 The local file fields won't be updated after the item creation.
 We recommend to always download a new copy afterwards to keep your local copy up to date.
-
 :::
 
 From now on, the items you created will be visible as a clickable card inside the Internal Company Marketplace section of the Console.
@@ -338,11 +340,3 @@ If you want, you can recreate the item on the Marketplace again by applying the 
 
 To contribute to the Mia-Platform Marketplace using this method, start by opening an issue [here](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+). This issue will outline the necessary information for your request.  
 Subsequently, a Mia-Platform representative will take over the issue and contact you to collaboratively plan the addition of the component to the Mia-Platform Marketplace, following the guidelines described on [this documentation page](/marketplace/add_to_marketplace/contributing_overview.md).
-
-### Using the CMS
-
-To make a Marketplace item of your Company accessible to other Companies, you first need to create it in the CMS. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so,
-
-If the item is already present, just edit it, following the [related section](#enabling-the-visibility-to-all-companies).
-
-
