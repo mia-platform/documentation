@@ -33,7 +33,7 @@ Only the `services` field must be configured for an application configuration to
 
 ### Configure Services
 
-The `service` object has the same structure found in the Plugins, Templates and Examples, as explained in the [dedicated paragraph](/marketplace/add_to_marketplace/contributing_overview.md#common-to-microservice-items-plugins-templates-examples).
+The `service` object has the same structure found in the Plugins, Templates and Examples, as explained in the [dedicated paragraph](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md#properties-of-plugin-resources).
 
 Thus, if you plan to add a plugin, a template, or an example to your application you can follow the same configuration. Remember to add general details to every microservice, such as name and description.
 

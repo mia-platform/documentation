@@ -15,7 +15,7 @@ Both methods will be explained in the following paragraphs.
 
 ### Accessibility to other Companies
 
-To make a Marketplace item of your Company accessible to other Companies, you first need to create it. Follow the instructions on [this page](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component) to do so.
+To make a Marketplace item of your Company accessible to other Companies, you first need to create it. Follow the instructions on [this page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item) to do so.
 
 When creating your Marketplace item, you can make it accessible to other companies by editing its `visibility` property. Specifically, set the `allTenants` property inside the `visibility` object to "true".  
 After editing, the visibility property should look like this:

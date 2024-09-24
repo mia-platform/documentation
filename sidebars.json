@@ -1639,7 +1639,7 @@
           "label": "Create your Company Marketplace",
           "type": "category",
           "link": {
-            "id": "marketplace/add_to_marketplace/contributing_overview",
+            "id": "marketplace/add_to_marketplace/create_your_company_marketplace",
             "type": "doc"
 
           },

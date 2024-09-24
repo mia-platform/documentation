@@ -36,7 +36,7 @@ You have developed a new service (for example a NodeJS service)
 called "My Awesome Service". The service is a plugin, i.e. users are only required to configure it and deploy it in their project.
 You now want it to be available in the Marketplace of your Company.
 
-First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/contributing_overview.md#how-to-configure-a-new-component).
+First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item).
 Save the file, for example as `myAwesomeService.json` file.
 
 The file contents will look like this:
@@ -339,4 +339,4 @@ If you want, you can recreate the item on the Marketplace again by applying the 
 ## Open an issue on Mia-Platform Github community page
 
 To contribute to the Mia-Platform Marketplace using this method, start by opening an issue [here](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+). This issue will outline the necessary information for your request.  
-Subsequently, a Mia-Platform representative will take over the issue and contact you to collaboratively plan the addition of the component to the Mia-Platform Marketplace, following the guidelines described on [this documentation page](/marketplace/add_to_marketplace/contributing_overview.md).
+Subsequently, a Mia-Platform representative will take over the issue and contact you to collaboratively plan the addition of the component to the Mia-Platform Marketplace, following the guidelines described on [this documentation page](/marketplace/add_to_marketplace/create_your_company_marketplace.md).

@@ -1,5 +1,5 @@
 ---
-id: contributing_overview
+id: create_your_company_marketplace
 title: Create your Company Marketplace
 sidebar_label: Company Marketplace
 ---
@@ -88,8 +88,8 @@ Here below are listed all the properties that must be provided for each type of 
 - **`itemId`** (required): the ID identifying the item in the Marketplace
 - **`description`**: a brief description (10 to 20 words) regarding the service functionalities
 - **`type`**: the type of your item (plugin, template, example, application, or proxy)
-- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/marketplace/add_to_marketplace/contributing_overview.md#the-release-stage-of-a-new-item) later on this page)
-- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](/marketplace/add_to_marketplace/contributing_overview.md#category-list) are listed below.
+- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/marketplace/add_to_marketplace/create_your_company_marketplace.md#the-release-stage-of-a-new-item) later on this page)
+- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](/marketplace/add_to_marketplace/create_your_company_marketplace.md#category-list) are listed below.
 - **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
 - **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
 - **`version`**: the version of the item. It is an object composed by the following properties:

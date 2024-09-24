@@ -4,18 +4,19 @@ title: Create a Plugin
 sidebar_label: Create a Plugin
 ---
 
-Plugins are ready-to-use microservices that only need some configuration from the user to work.
-
-To configure a Plugin, make sure you followed the [common Marketplace item creation steps](/marketplace/add_to_marketplace/contributing_overview.md#creation-of-a-marketplace-item), then follow the paragraphs below to finalize the configuration.
+Plugins are ready-to-use microservices that only need some configuration from the user to work. They are defined by the *type* field with value `plugin` in the item document.
 
 ## Where to host plugins
 
 The plugin must be hosted as a **Docker image**.  
 
-The Docker image should be pushed on an accessible registry. 
+The Docker image should be pushed on an accessible registry.
 If you wish to use the **Mia-Platform private registry**, your Mia-Platform referent will provide the credentials to do it.
 
 The Docker image must be specified in the `dockerImage` field in the service Marketplace document.
+
+:::info
+In versioned marketplace plugins, the `dockerImage` field depends on the version of the plugin used to install the microservice to the project. This means that, in the *Design* section, the `dockerImage` field is *read-only*, and cannot be modified, unless the user decides to detach the microservice or update the plugin to a different Marketplace item version.
 
 The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:  
 

@@ -86,7 +86,7 @@ Microservices templates, using [Mia-Platform Service Libraries](/libraries/mia-s
 
 ### Can I create my own templates?
 
-Yes, you can. Follow this [guideline](/marketplace/add_to_marketplace/contributing_overview.md) and [open an issue here with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item). We will be happy to help you!
+Yes, you can. Follow this [guideline](/marketplace/add_to_marketplace/create_your_company_marketplace.md) and [open an issue here with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item). We will be happy to help you!
 
 ### Is communication between microservice available with protocols others than HTTP?
 
