@@ -605,14 +605,13 @@ all the functionalities of Fast Data Runtime Management system, both the fronten
 In order to finely control which operations a user can carry out over Control Plane APIs, a set of permissions has been devised, which
 is listed here:
 
-| Permission          | Context                                                                    |
-|---------------------|----------------------------------------------------------------------------|
-| `read:pipelines`    | allow visualizing pipeline list and structure                              |
-| `control:pipelines` | enables changing pipelines state (`pause` / `resume`)                      |
-| `read:runtimes`     | enables listing which runtime views are available and their status         |
-| `update:runtimes`   | allow creating, updating or deleting runtime views                         |
-| `read:users`        | enables a user to access the user management application in read-only mode |
-| `update:users`      | enables a user to edit users details in the user management application    |
+| Permission          | Context                                                                                  |
+|---------------------|------------------------------------------------------------------------------------------|
+| `read:pipelines`    | allows listing runtimes, their status and visualizing their pipelines list and structure |
+| `control:pipelines` | enables changing pipelines state (`pause` / `resume`)                                    |
+| `update:runtimes`   | enables creating, updating or deleting runtime views                                     |
+| `read:users`        | enables a user to access the user management application in read-only mode               |
+| `update:users`      | enables a user to edit users details in the user management application                  |
 
 :::caution
 Please, beware that:
@@ -628,18 +627,18 @@ the pipeline identifier beforehand, since it cannot list the existing pipelines;
 The permissions described in the table above needs then to be applied to all the different routes exposed by Control Plane application,
 so that each operation is covered with the correct grant.
 
-| Endpoint                                  | Type      | Method | User Group Permissions                                         |
-|-------------------------------------------|-----------|--------|----------------------------------------------------------------|
-| `/fast-data/feedback`                     | Websocket | GET    | `permissions["read:pipelines"]`                                |
-| `/fast-data/control`                      | REST      | HEAD   | `permissions["control:pipelines"]`                             |
-| `/fast-data/control`                      | REST      | POST   | `permissions["control:pipelines"]`                             |
-| `/fast-data/runtimes/items`               | REST      | GET    | `permissions["read:runtimes"]`                                 |
-| `/fast-data/runtimes/items`               | REST      | POST   | `permissions["update:runtimes"]`                               |
-| `/fast-data/runtimes/items/:id`           | REST      | GET    | `permissions["read:runtimes"]`                                 |
-| `/fast-data/runtimes/items/:id`           | REST      | PATCH  | `permissions["update:runtimes"]`                               |
-| `/fast-data/runtimes/items/:id`           | REST      | DELETE | `permissions["update:runtimes"]`                               |
-| `/fast-data/runtimes/items/:id/pipelines` | REST      | GET    | `permissions["read:runtimes"]`                                 |
-| `/fast-data/runtimes/stats`               | REST      | GET    | `permissions["read:runtimes"]`                                 |
+| Endpoint                                  | Type      | Method | User Group Permissions             |
+|-------------------------------------------|-----------|--------|------------------------------------|
+| `/fast-data/feedback`                     | Websocket | GET    | `permissions["read:pipelines"]`    |
+| `/fast-data/control`                      | REST      | HEAD   | `permissions["control:pipelines"]` |
+| `/fast-data/control`                      | REST      | POST   | `permissions["control:pipelines"]` |
+| `/fast-data/runtimes/items`               | REST      | GET    | `permissions["read:pipelines"]`    |
+| `/fast-data/runtimes/items`               | REST      | POST   | `permissions["update:runtimes"]`   |
+| `/fast-data/runtimes/items/:id`           | REST      | GET    | `permissions["read:pipelines"]`    |
+| `/fast-data/runtimes/items/:id`           | REST      | PATCH  | `permissions["update:runtimes"]`   |
+| `/fast-data/runtimes/items/:id`           | REST      | DELETE | `permissions["update:runtimes"]`   |
+| `/fast-data/runtimes/items/:id/pipelines` | REST      | GET    | `permissions["read:pipelines"]`    |
+| `/fast-data/runtimes/stats`               | REST      | GET    | `permissions["read:pipelines"]`    |
 
 :::caution
 Please ensure that all these endpoints and subsequent routes are set with _Authentication Required_ in their security details tab.
@@ -853,10 +852,6 @@ or within the advanced tab of the corresponding page in the Composer.
             "enum": [
               "read:pipelines",
               "control:pipelines",
-              "read:connections",
-              "update:connections",
-              "delete:connections",
-              "read:runtimes",
               "update:runtimes",
               "read:data-assets",
               "update:metadata-assets",
@@ -871,10 +866,6 @@ or within the advanced tab of the corresponding page in the Composer.
               "enum": [
                 "read:pipelines",
                 "control:pipelines",
-                "read:connections",
-                "update:connections",
-                "delete:connections",
-                "read:runtimes",
                 "update:runtimes",
                 "read:data-assets",
                 "update:metadata-assets",
