@@ -1,27 +1,27 @@
 ---
 id: contributing_overview
-title:  Manage your Company Marketplace
-sidebar_label:  Internal Company Marketplace
+title: Create your Company Marketplace
+sidebar_label: Company Marketplace
 ---
 
-In this section, we dive into the process of creating a new item for your **Internal Company Marketplace**, analyzing the main differences between different types of items and providing some configuration examples.
+<!--TODO: order 66 on CMS references -->
 
-## Public and Internal Company Marketplace
+In this section, we dive into the process of creating a new item for your **Company Marketplace**, analyzing the main differences between different types of items and providing some configuration examples.
 
-As a Console user, you can access both Mia-Platform public Marketplace catalog and your Internal Company Marketplace. 
-While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the **Internal Company Marketplace** is a Company-specific private space where to create and manage the items which are available only for your Company.
+## Public and Company Marketplace
+
+As a Console user, you can access both Mia-Platform public Marketplace catalog and your Company Marketplace.
+While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the **Company Marketplace** is a Company-specific private space where to create and manage the items which are available only for your Company.
 
 The **Mia-Platform public Marketplace** is the place where every Company can find most of the items needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
 
 However, a Company might want to have its own internal Marketplace, fulfilled also with items that must not be shared with everyone else outside the Company.
 
 :::info
-
-There are different methods to manage your Internal Company Marketplace items. They are described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
-
+There are different methods to manage your Company Marketplace items. They are described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
 :::
 
-## Creation of an Internal Company Marketplace item
+## Creation of an Company Marketplace item
 
 Creation of a Marketplace item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console.
 
@@ -34,7 +34,6 @@ Company Owners and Project Administrators can create, delete and update those Ma
 The Console Super User role, instead, has permission to manage all Marketplace items from the CMS without any limitations.
 
 :::info
-
 To create Marketplace items you need to be a *Company Owner* or a *Project Administrator* at Company level.
 
 Company Owners and Project Administrators can create, delete and update those Marketplace items exclusively available for their Company, but they cannot manage public Marketplace items.  
@@ -44,9 +43,7 @@ If you want to make your Marketplace item accessible to other Companies, you can
 :::
 
 :::info
-
 To learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
-
 :::
 
 ### Marketplace item visibility and the `tenantId` field
@@ -56,18 +53,17 @@ When creating a new Marketplace item, you always need to set the `tenantId` rela
 You can also contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
 
 :::caution
-
 Not setting the `tenantId` is no longer supported and deprecated.
 Elements without `tenantId` will be public even if the `visibility.public` field is not set.
 
 This behavior might change in the next Console releases.
 
 If you have any item without the `tenantId` property set, we recommend to do the following:
+
 - set the `tenantId` to any of your companies;
 - set the `visibility` field according to your needs. See the [related doc](/marketplace/add_to_marketplace/marketplace_items_accessibility.md#marketplace-item-visibility) for more information on this point.
 
 :::
-
 
 ## Marketplace items
 
@@ -91,9 +87,7 @@ The Marketplace is composed of items with the following types.
 - **Custom Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
 
 :::note
-
 Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
-
 :::
 
 ## How to configure a new item
@@ -107,105 +101,19 @@ Refer to the [detailed explanation by type](#marketplace-items-example-and-expla
 Here below are listed all the properties that must be provided for each type of item:
 
 - **`name`** (required): the item name appearing in the Marketplace card
+- **`tenantId`** (required): the ID of the Company the item belongs to
+- **`itemId`** (required): the ID identifying the item in the Marketplace
 - **`description`**: a brief description (10 to 20 words) regarding the service functionalities
 - **`type`**: the type of your item (plugin, template, example, application, or proxy)
-- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](#the-release-stage-of-a-new-item) later on this page)
-- **`categoryId` **: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](#category-list) are listed below.
+- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/marketplace/add_to_marketplace/contributing_overview.md#the-release-stage-of-a-new-item) later on this page)
+- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](/marketplace/add_to_marketplace/contributing_overview.md#category-list) are listed below.
 - **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
-- **`tenantId`** (required): the ID of the Company the item belongs to
 - **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
+- **`version`**: the version of the item. It is an object composed by the following properties:
+  - **`name`** (required): the actual version of the item. We suggest to use the [Semantic Versioning](https://semver.org/) format.
+  - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on Marketplace items in a Console project; includes information about the changes introduced by the new version.
+  - **`security`**: a boolean to indicate if the item is security-related
 
-### Common to microservice items (Plugins, Templates, Examples)
-
-:::info
-
-This step does not apply to Applications
-
-:::
-
-Each property described in the following paragraphs regarding the microservices configuration must be configured under the property `resources/services/:serviceId` as follows:
-
-```json
-{
-  "name": "Service Name",
-  ...
-  "resources": {
-    "services": {
-      "service-id": {
-        "defaultEnvironmentVariables": [...],
-        "defaultConfigMaps": [...],
-        ...
-      }
-    }
-  }
-}
-```
-
-The serviceId **must** be in `kebab-case` format.
-
-Here below are listed all the properties that you can provide for each microservice item:
-  
-- **`itemId`**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
-- **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
-  In particular, for each of them you need to provide:  
-  - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
-  - **`value`**: the variable default value
-- **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
-  In particular, for each of them you need to provide:  
-  - **`name`**: the name of the ConfigMap
-  - **`mountPath`**: the directory where the ConfigMap data will be added  
-  
-  You can also provide:
-  - **`files`**: a list of files where the ConfigMap data will be stored. Each file should be an object with the following properties:
-    - **`name`**: the name of the file
-    - **`content`**: the initial content of the file
-  - **`usePreserve`**: a boolean the indicates whether the existing files and directories in the mountPath directory should be preserved or not. If not set, it will be considered as false.
-- **`defaultSecrets`**: the default secrets, if any, to be mounted inside the container of the  microservice.
-  In particular, for each of them you need to provide:  
-  - **`name`**: the name of the secret file  
-- **`defaultProbes`**: the readiness and liveness paths of the service. By modifying the map of the probes, you can overwrite the default paths applied by DevOps Console.
-- **`defaultLogParser`**: one of the following log parser types:
-  - `mia-plain`: collects logs but does not parse them
-  - `mia-json`: parses JSON logs based on the documented format
-  - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
-- **`defaultAnnotations`**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation). The annotations that start with `mia-platform.eu` are reserved, you are not allowed to use them.
-  The field is an array of objects that represent the labels. Each object has the following fields:
-  - `name`: the name of the label,
-  - `value`: the value of the label,
-  - `description`: description of the label,
-  - `readOnly`: boolean that represent if you can change the value of the label through the
-- **`defaultLabels`**: the service labels, which can be used to categorize, group, and select your service. The labels that start with `mia-platform.eu` are reserved, you are not allowed to use them.
-  The field is an array of objects that represent the labels. Each object has the following fields:
-  - `name`: the name of the label,
-  - `value`: the value of the label,
-  - `description`: description of the label,
-  - `readOnly`: boolean that represent if you can change the value of the label through the Console
-- **`defaultDocumentationPath`**: the APIs documentation path.
-- **`defaultResources`**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
-- **`visibility`**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
-  - **`allTenants`**: a boolean that indicates whether your service should be visible to all other Companies, making it accessible if set to `true`.
-  - **`public`**: a boolean that indicates wether the Marketplace item is public and visible also to not logged in users.
-- **`providerId`**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
-
-:::caution
-
-Please note that in this configuration **`min`** corresponds to the **`request`** value while **`max`** corresponds to the **`limit`** value specified in the Kubernetes documentation.  
-
-In addition, measurement units are required. Resources are expressed in terms of milliCPUs (m) and MebiBytes 
-(Mi) respectively for CPU and Memory.
-
-:::
-
-#### Configure Console Links
-
-A service created from the Marketplace can feature custom links to other Console pages, managed by different microfrontend Plugins. To configure them on newly created services set up new objects in the `links` property for each template or plugin you wish.
-
-A link is an object shaped as follows:
-
-- **`label`** *string* (required): the label to be shown in the link button, does not support internationalization and it is shown right next to a  *View* copy (e.g. with the label set to **Resource** the resulting button will be **View Resource**);
-- **`targetSection`** *string* (required): the name of the registered microfrontend where the link should land (e.g. `flow-manager`);
-- **`enableIf`** *string*: the name of a feature toggle to be used to optionally display the link.
-  
 ### Adding images
 
 The procedure of adding images differs if you are using CMS or `miactl`.
@@ -226,19 +134,57 @@ The final result will be as follows:
 
 ![Console-custom-service](img/dev-console-custom-service.png)
 
-### Set controlled versions for your Marketplace resources and make them available to users (available only for Plugins & Custom Resources of type k8s)
+### Set controlled versions for your Marketplace resources and make them available to users
 
-Marketplace creators have the possibility to manage some types of resources (at the moment, Plugins and Custom Resources of type k8s) through a governance based on a versioning system.
+:::info
+This feature is currently available for the [Plugin](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md) and [Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) types.
+:::
+
+Marketplace creators have now the possibility to manage some types of resources (at the moment, Plugins and Custom Resources of type k8s) through a governance based on a versioning system.
+
 This means that, for these types of resources, it is possible to establish a more structured and transparent lifecycle management system, providing users access to all the versions of a resource and allowing them to see the release notes of each version and select and instantiate the version that best suits their configuration needs among the ones made available by the Marketplace creator.
 
-Versioning of Marketplace resources implies that those resources under versioning governance are composed by some "controlled fields" that contribute to the definition of the version and which, therefore, cannot be changed “in place” by the user, but only through the creation of a new version of the resource.
+This versioning system also provides significant advantages in a feature-branch design workflow, effectively leveragin different versions of the same marketplace item across various branches of a project.
 
-For instance, a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin.
-For Custom Resources of type k8s the governance is quite similar: since Custom Resources of type k8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
+For instance, we imagine to have a project with three different branches: *dev*, *stage* and *main*, with the latter being the branch with the official configuration. Let's also imagine to have installed in all the three services the *CRUD Service* plugin, which includes different versions.
+
+In this scenario we can have:
+
+- the `main` branch with the `6.6.0` version, which is the supported version in our project
+- we can use the the version `6.10.0` in the `stage` branch where the latest manual tests and verifications are performed before to be included in the `main` branch
+- at the same time we can experiment and test features using the version `7.0.0` in your `dev` branch without affecting the other branches and the existing configurations
+
+This approach facilitates a smooth upgrade process, enables thorough testing of new features, and ensures compatibility across different stages of your project lifecycle. This flexibility allows for testing new versions in development environments while maintaining stable versions in production.
+
+#### Version dependent properties
+
+Versioning of Marketplace resources implies that those resources under versioning governance are composed by some *dependent fields* that contribute to the definition of the version and which, therefore, cannot be changed “in place” by the user, but only through the creation of a new version of the resource.
+
+For instance:
+
+- a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin
+- for Custom Resources of type K8s the governance is quite similar: since Custom Resources of type K8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
+
+By defining these fields as *version dependent*, we ensure that these are not editable by the user when they add a marketplace item to their project: whenever a new Microservice is created starting from a versioned Marketplace plugin, the `dockerImage` field will be automatically shown as read-only, and the user will be able to change it only by actually checking for other versions of the plugin.
 
 Such a structured approach will streamline resource management and ensure compatibility and stability across different use cases.
 
-### The Release Stage of a new item and Coming Soon
+#### Editing a versioned resource
+
+Versioned resources are defined to be immutable, to avoid that updates might overwrite the previous configuration. However, it is possible to edit in case we need to update changes to their metadata (e.g. the release note or the description of the marketplace item - because of typos or other reasons).
+
+Editing a versioned resource is possible via `miactl`, however the following fields cannot be edited:
+
+- `itemId`
+- `tenantId`
+- the `name` property inside `version`
+- the `resources` property, that includes the specific resource definition
+
+Since marketplace items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a completely new marketplace item, completely separated from the previous one.
+
+Attemps to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
+
+### The Release Stage of a Marketplace Item
 
 From the CMS of the Console, users can associate items with a **release stage** label that will help users identify the maturity of the item.
 
@@ -256,9 +202,7 @@ The `releaseStage` field can have the following values
 The fields are not required: if not specified, no label will be shown on the item.
 
 :::info
-
 Setting both the `releaseStage` and the `comingSoon` fields is not permitted and would lead to inconsistencies; please set either field or none according to the item lifecycle status.
-
 :::
 
 Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section for details about each specific release stage.
@@ -270,3 +214,5 @@ Refer to the detailed explanations and examples for each item type:
 - [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md)
 - [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md)
 - [Applications](/marketplace/add_to_marketplace/add_item_by_type/add_application.md)
+- [Sidecars](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md)
+- [Custom Resources](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
