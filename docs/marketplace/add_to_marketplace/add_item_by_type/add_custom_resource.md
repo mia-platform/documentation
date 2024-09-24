@@ -15,7 +15,7 @@ Custom resources can be added to your project by creating one anew or by install
 
 Custom resources items in the Marketplace supports _versioning_, allowing to update the resource without overwriting the previous ones.
 
-## Custom Resource 
+## Custom Resource definition
 
 Inside the panel there is the JSON Schema to use to create a resource with _type_ `custom-resource` you want to add to the marketplace.
 
@@ -194,7 +194,7 @@ resources:
 
 Please note that:
 
- -the `type: custom-resource` is required to specify that this resource is a custom resource
+- the `type: custom-resource` is required to specify that this resource is a custom resource
 - the `version` property is included, to define this item as a version `1.0.0` with a specific release note: versions are not mandatory but highly suggested to avoid to overwrite previous versions
 
 ### Publish a new custom resource via `miactl`
@@ -217,7 +217,7 @@ You should receive a success response similar to this one:
   66423781fdd3d6dd3ca62b7b  my-custom-resource  Created 
 ```
 
-You just created your custom resourced, which is now available on your `Internal Company Marketplace`.
+You just created your custom resourced, which is now available on your `Company Marketplace`.
 
 ### Update the custom resource via `miactl`
 
