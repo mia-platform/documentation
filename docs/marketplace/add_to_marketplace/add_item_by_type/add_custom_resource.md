@@ -237,7 +237,7 @@ A versioned custom resource can be updated only if changes apply to the followin
 - `providerId`
 - `visibility`
 
-Considering also the fact that custom resources are defined by the `apiVersion` and the `kind`, in case of updates on the resources you need to actually create a new marketplace item with a different version, and up-to-date release note and the resource with the updates you require.
+Considering also the fact that custom resources are defined by the `apiVersion` and the `kind`: in case of updates on the resource you need to actually create a new marketplace item with a different version (possibly with a release note) and the resource with the updates you require.
 
 You can add the new Marketplace item with the `miactl marketplace apply` explained before.
 
@@ -252,3 +252,5 @@ In case you lost the original resource file (or simply you do not have it anymor
 ```bash
 miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-custom-resource.yaml
 ```
+
+You can use the result as a template to modify the resource you want to update.

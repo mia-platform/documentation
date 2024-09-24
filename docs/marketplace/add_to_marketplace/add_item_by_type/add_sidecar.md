@@ -1,7 +1,7 @@
 ---
 id: add_sidecar
-title: Publish your sidecar to the Marketplace
-sidebar_label: Create a sidecar
+title: Publish your Sidecar to the Marketplace
+sidebar_label: Create a Sidecar
 ---
 
 [Sidecar containers](/development_suite/api-console/api-design/microservice-containers.md#sidecar-containers) are secondary utility containers running side by side with the [main container](/development_suite/api-console/api-design/microservice-containers.md#main-container) in the same host.

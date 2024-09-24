@@ -49,7 +49,13 @@ The category list is constantly updated, check with your Mia-Platform referent f
 | `data-catalog`    | Add-ons - Data Catalog                 |
 | `fast-data-connectors` | Add-ons - Fast Data Connectors    |
 
-<details><summary>Example of a Plugin</summary>
+## Example of a Plugin
+
+The following is an example of the manifest a plugin, called _MongoDB Reader_, released with version `1.0.0`.
+
+This manifest can be used to add the element to the Marketplace.
+
+<details><summary>Plugin manifest</summary>
 <p>
 
 ```json
@@ -59,6 +65,11 @@ The category list is constantly updated, check with your Mia-Platform referent f
   "type": "plugin",
   "categoryId": "database",
   "tenantId": "my-tenant",
+  "itemId": "mongodb-reader",
+  "version": {
+    "name": "1.0.0",
+    "releaseNote": "Initial release"
+  },
   "visibility": {
     "allTenants": true
   },
@@ -85,6 +96,7 @@ The category list is constantly updated, check with your Mia-Platform referent f
     }
   ],
   "repositoryUrl": "https://git.tools.mia-platform.eu/platform/core/mongodb-reader",
+  "providerId": "gitlab",
   "documentation": {
     "type": "markdown",
     "url": "https://raw.githubusercontent.com/mia-platform-marketplace/Node-Template/master/README.md"
@@ -164,6 +176,24 @@ The category list is constantly updated, check with your Mia-Platform referent f
 ```
 
 </p>
-
-
 </details>
+
+### Edit a marketplace item
+
+While there are no restrictions on modifying an unversioned plugin, if the item already includes a version, only the following fields can be modified:
+
+- `name`
+- `description`
+- `imageUrl`
+- `supportedByImageUrl`
+- `supportedBy`
+- `categoryId`
+- `repositoryUrl`
+- `publishOnMiaDocumentation`
+- `documentation`
+- `comingSoon`
+- `releaseStage`
+- `providerId`
+- `visibility`
+
+Any modification on any other field will result in an error.
