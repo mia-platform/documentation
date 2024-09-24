@@ -686,7 +686,7 @@ An example of application that can be created is shown in the picture below:
 ### Microfrontend Composer
 
 :::caution
-In order to use Microfrontend Composer in Console it is necessary to purchase the dedicated license. Nonetheless,
+In order to use Microfrontend Composer in Console it is necessary to purchase the dedicated license. For more information, please ask to your Mia-Platform referent. Nonetheless,
 the application will create tha _user management_ pages, but those won't be easily editable from the Composer configurator.
 :::
 
