@@ -43,8 +43,14 @@ In order for Control Plane application to know which [Runtimes](/fast_data/runti
 
 To achieve so, it is first necessary that your Company Owner creates a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md)
 on your Mia-Platform Console instance and assign to it the proper permissions for listing the Console projects of interest.
-For example, it could be possible to assign the role of `guest` at Company level while granting
-the `reporter` role to all the project that should be visible by Control Plane.
+
+:::tip Service account permissions assignment
+Pay attention to the level of access to the resources that you assign to the Service Account. 
+For Control Plane use case, a good practice may be to assign the role of `guest` at Company level while granting
+the `reporter` role to all the projects that should be visible by Control Plane.
+About permissions assignment, it is possible to go even more granular in case you want to allow visibility only to a subset of runtime environments of a specific project; in fact, to do that, you may opt to assign the role of `guest` even at Project level while granting
+the `reporter` role solely to those runtime environments that should be visible by Control Plane for a specific project.
+:::
 
 Once the service account has been registered, your Company Owner needs to hand over to you its credentials, which are:
 

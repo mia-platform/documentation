@@ -7,6 +7,8 @@ sidebar_label: Control Plane UI
 Fast Data Runtime Management solution has a dedicated frontend that allows interacting with [Control Plane](/fast_data/runtime_management/control_plane.mdx) via [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)
 component.
 
+(**CHECK THE IMAGE**)
+
 ![Fast Data Control Plane embedded in Console](./img/control_plane_in_console.png)
 > Fast Data Runtime Management solution embedded in Mia-Platform Console, with visibility at Company level.
 
@@ -23,7 +25,7 @@ In the next paragraph, all these features are described in detail.
 
 ### Runtime Views Management
 
-Users with enough permissions can manage [**Runtime Views**](/fast_data/runtime_management/overview.mdx#runtime-view) inside Control Plane frontend.  
+Users with enough permissions can manage [Runtime Views](/fast_data/runtime_management/overview.mdx#runtime-view) inside Control Plane frontend.  
 Thanks to Runtime Views, it is possible to group together runtime environments belonging to your Company Projects.  
 In other words, the Fast Data Runtime View is a **logical entity** that aims at grouping together Fast Data runtime environments; these logical groupings may either arise from business requirements or spontaneously depending on how Console projects are related each other.  
 
@@ -67,7 +69,9 @@ When confirming the delete action, the runtime view will be permanently deleted,
 
 ### Pipelines Overview
 
-Within a runtime view, the list of Fast Data pipelines released on the runtime environments that have been assigned to that view are displayed.
+(**CHECK THE IMAGE**)
+
+Within a runtime view, the list of Fast Data pipelines released on the runtime environments that have been assigned to that view is displayed.
 In particular, two types of pipelines are shown: [Domain pipelines](/fast_data/runtime_management/overview.mdx#domain-pipeline) and [Single View pipelines](/fast_data/runtime_management/overview.mdx#single-view-pipeline).
 
 ![Pipelines Overview](img/pipelines_overview.png)
@@ -227,7 +231,7 @@ In this way, ingestion of huge datasets can be performed without saturating the 
 
 ## Configuration
 
-In this section is explained how the Control Plane service should be configured in order to properly satisfy the requests.
+In this section is explained how the Control Plane Frontend service should be configured in order to properly satisfy the requests.
 
 ### Environment Variables
 
@@ -254,7 +258,7 @@ In order to allow incoming traffic from outside to Control Plane Frontend, it is
 :::tip
 Please, ensure that:
 - in case `BASE_PATH` environment variable has been changed on the service, the Rewrite Base path must be changed accordingly
-- in case the security layer is enabled, remember to flag the `Authetication required` checkbox
+- in case the security layer is enabled, remember to flag the `Authentication required` checkbox
 :::
 
 ### Enable Websocket support

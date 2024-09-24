@@ -51,11 +51,15 @@ This Fast Data Runtime Management flexibility, enables strategic management of t
 The Fast Data Runtime Management solution is distributed as a [Mia-Platform Marketplace application](/marketplace/applications/mia_applications.md), which automatically
 instantiates most of the needed resources and pre-populate configuration files with default values that are quick to edit.
 
+:::tip Configure control plane in a dedicated Project
+
 We strongly recommend to configure such application into a **dedicated Console Project** (for example one named _Data Fabric_) that can be reached from all the other ones.
 In this manner the Fast Data Runtime Management software can run mostly independently of the actual Fast Data runtimes, so that updates to them still allow to receive and visualize
 the Fast Data states from all the others runtimes.
 
-This application can be found in the Marketplace by looking it up in using the keyword `control plane`, which will present you with an option for instantiating its configuration.
+:::
+
+Control Plane application (**LINK TO THE MARKETPLACE ITEM DOCS**) can be found in the Marketplace by looking it up in using the keyword `control plane`, which will present you with an option for instantiating its configuration.
 This option should appear as _Fast Data Control Plane_, which will provide all the configurations of _Fast Data Control Plane_ solution,
 alongside the resources needed for introducing an authorization layer (see box tip below for more information).
 
@@ -68,11 +72,13 @@ By combining different capabilities and tools offered and managed in Mia-Platfor
 To find out how to better address this goal, please visit the related [documentation page](/fast_data/runtime_management/secure_access.md) that explains how to manage the Fast Data Control Plane With Access Control.
 :::
 
-Below is shown the Marketplace application page where the term `control plane` has been looked up. In case this application is not available in your Marketplace, please contact your Console administrator to verify the Fast Data license is active for your company.
+Below is shown the Marketplace application page where the term `control plane` has been looked up. In case this application is not available in your Marketplace, please contact your Console administrator to verify if the Fast Data license is active for your Company.
+
+(**CHANGE THE FOLLOWING IMAGE**)
 
 ![Control Plane Marketplace](img/marketplace_runtime_management_app_selection.png)
 
-Among the services provided by both applications, there are the three services in charge of deploying the Fast Data Runtime Management solution, which are:
+Among the services provided by Control Plane application, the main components in charge of deploying the Fast Data Runtime Management solution are:
 
 - [`control-plane`](/fast_data/runtime_management/control_plane.mdx), which is responsible for dispatching control actions to the registered Fast Data runtimes and receiving from them the feedbacks to display in the dedicated UI
 - [`control-plane-fe`](/fast_data/runtime_management/control_plane_frontend.mdx), which exposes the UI for visualizing Fast Data runtimes, their state and interact with them
@@ -93,7 +99,7 @@ Its main responsibilities are:
 - gather from the Fast Data services deployed in its namespace the current state for the Fast Data Runtime
 - forward collected feedbacks to the main Control Plane instance so that user can visualize the updated state
 
-The Control Plane Operator is available from the Mia-Platform Marketplace as a plugin, which comes with a blueprint of the configuration to speed up its setup.
+The Control Plane Operator is available as a [Mia-Platform Marketplace plugin](/plugins/mia-platform-plugins.md), which comes with a blueprint of the configuration to speed up its setup.
 
 ---
 ## Architecture
@@ -126,16 +132,16 @@ Upon receiving this command, the involved artifacts will be in a `running` state
 
 ### Runtime
 
-Within the context of Fast Data Control Plane, a _runtime_ corresponds to [a deploy environment of Mia Console](/development_suite/monitoring/introduction.md),
-where an instance of Control Plane Operator has been deployed. In particular, a runtime can be identified across Fast Data Control Plane solution by these three parameters:
+Within the context of Fast Data Control Plane, a _runtime_ corresponds to [a runtime environment of Mia-Platform Console](/development_suite/monitoring/introduction.md),
+where it is expected that an instance of Control Plane Operator has been deployed. In particular, a runtime can be identified across Fast Data Control Plane solution by these three parameters:
 
 - [Console company](/console/company-configuration/overview.md)
 - [Console project](/console/project-configuration/index.md)
-- Deploy environment
+- [Console runtime environment](/development_suite/monitoring/introduction.md)
 
-For example, let's suppose we created a company `Supermarkets` and a project `Warehouse`. The configurations of this specific `Warehouse` project, deployed in the environment `PREPRODUCTION`,
+For example, let's suppose we created a Company `Supermarkets` and a Project `Warehouse`. The configurations of this specific `Warehouse` Project, deployed in the environment `PREPRODUCTION`,
 composes a _runtime_ for the Control Plane.
-In case those same configurations of `Warehouse` project were released in another environment, such as `PRODUCTION`, then those would be treated as another _runtime_ different from the one mentioned earlier.
+In case those same configurations of `Warehouse` Project were released in another environment, such as `PRODUCTION`, then those would be treated as another _runtime_ different from the one mentioned earlier.
 
 The main Control Plane instance can manage one or more runtimes, once they are registered by each deployed Control Plane Operator.
 
