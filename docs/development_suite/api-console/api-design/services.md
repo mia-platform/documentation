@@ -56,8 +56,6 @@ If you are using GitLab and don't see any option in *Git repository owner*, it m
 
 ![service-example](img/service-example.png)
 
-![service-template](img/service-template.png)
-
 Finally to create the Microservice push **create**.
 
 :::warning
@@ -82,13 +80,15 @@ The only requirement to import an external Microservice is that the Docker Image
 Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the following information:
 
 * **Name** (*required*): this is the internal hostname;  
-
 * **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s;
+
 :::info
   Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
-  - `hostname` is the registry hostname where the docker image is hosted
-  - `imagename` is the docker image name
-  - `tag` is the version of the docker image
+
+* `hostname` is the registry hostname where the docker image is hosted
+* `imagename` is the docker image name
+* `tag` is the version of the docker image
+
 :::
 
 * **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
@@ -115,10 +115,25 @@ The detail of each microservice is divided in the following sections:
 
 ### Microservice
 
-In this section, you can edit microservice's Docker Image Name (this field remains required) and description.
-Moreover, with a flag, you can decide to show or not the microservice in the documentation.
+In this section, you can view some base information about the mciroservice, and update some information regarding it, like the description and the API documentation path.
+
+In case your microservice has been created manually from a Docker Image or from a Marketplace Template or a Marketplace Example, you can also configure the *Docker Image Name*.
 
 ![service-detail-new](img/service-detail-new.png)
+
+If the microservice has been created from a versioned Marketplace plugin, the *Docker Image Name* is shown in *read-only* mode and cannot be changed, since the it is managed by the Marketplace plugin itself.
+
+![Detail of a service generated from a versioned Marketplace plugin](img/versioned-service.png)
+
+In case you want to manually update the Docker Image Name, you can click on the right-side menu button where a menu will pop-up. From there you can either *select a different version* or *detach the microservice from the Marketplace plugin*.
+
+Selecting a different version will open a modal window where all the versions available for that Marketplace plugin will be listed. You can use this modal window also to get more information about the versions, such as the description, the Docker Image name referenced and the release note, plus also to be aware of versions in *beta* or that are flagged with the *Coming Soon* badge.
+
+From there you can select one of the available versions in order to update the Docker Image.
+
+![Change version of a service generated from a Marketplace plugin](img/marketplace-version-selection.png)
+
+*Detach from Marketplace* will cause the microservice to be separated from the Marketplace plugin and becoming a manually configured microservice (**NOTE**: detaching a microservice is an operation that cannot be reverted, causing to lose any information about updates on this item).
 
 ### Microservice Configuration
 
