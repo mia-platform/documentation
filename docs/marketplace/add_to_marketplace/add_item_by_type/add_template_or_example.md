@@ -44,12 +44,12 @@ Your template has to let an easy reading of the environment variables. Furthermo
 
 To work correctly, each template, or the service library on which depends, needs some specific environment variables:
 
-* `USERID_HEADER_KEY`
-* `USER_PROPERTIES_HEADER_KEY`
-* `GROUPS_HEADER_KEY`
-* `CLIENTTYPE_HEADER_KEY`
-* `BACKOFFICE_HEADER_KEY`
-* `MICROSERVICE_GATEWAY_SERVICE_NAME`
+- `USERID_HEADER_KEY`
+- `USER_PROPERTIES_HEADER_KEY`
+- `GROUPS_HEADER_KEY`
+- `CLIENTTYPE_HEADER_KEY`
+- `BACKOFFICE_HEADER_KEY`
+- `MICROSERVICE_GATEWAY_SERVICE_NAME`
 
 Check out the [Node.js service template](https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/255233ce35ec7748bb4120057dc36fcd2bb3f983/Dockerfile#L29-L30) to see an example.
 
@@ -70,10 +70,10 @@ The service must be well documented and the field `documentation` helps in it.
 In fact, during service creation, it is possible to access the service documentation by clicking on `View documentation` button, which will appear only if the `documentation` field has been filled correctly.  
 Two properties must be specified inside `documentation`:  
 
-* `type`, currently only two types exist:
-* `markdown`: represents a markdown file (with `.md` file extension), for example, a `README.md` file inside a Git repository.
-* `externalLink`: represents a link to an external website page, for example to Mia Platform documentation.
-* `url`, contains the URL where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).  
+- `type`, currently only two types exist:
+- `markdown`: represents a markdown file (with `.md` file extension), for example, a `README.md` file inside a Git repository.
+- `externalLink`: represents a link to an external website page, for example to Mia Platform documentation.
+- `url`, contains the URL where the markdown file can be retrieved (if its type is `markdown`), or the link where the user should be redirected (if its of type `externalLink`).  
 
 :::info
 
@@ -87,17 +87,17 @@ Once the user creates a new microservice starting from your template or example,
 
 The files of your template repository can contain some special placeholders that will be replaced by the Console at the creation of the new microservice:
 
-* `mia_template_image_name_placeholder`: name of the docker image entered by the user;
-* `%CUSTOM_PLUGIN_PROJECT_NAME%`: name (label) of the Console project;
-* `mia_template_project_id_placeholder`: id of the Console project;
-* `mia_template_service_name_placeholder`: service name chosen by the user;
-* `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%`: description of the service chosen by the user;
-* `%CUSTOM_PLUGIN_CREATOR_USERNAME%`: username of the user who created the service;
-* `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%`: full path of the repository of the Git provider;
-* `%GIT_PROVIDER_PROJECT%`: name of the Git project entered by the user (e.g. GitHub repository or Gitlab project).
-* `%GIT_PROVIDER_GROUP%`: name of the group of Projects entered by the user (e.g. GitHub organization or Gitlab group).
-* `%GIT_PROVIDER_BASE_URL%`: URL base of the Git provider.
-* `%NEXUS_HOSTNAME%`: docker registry hostname.
+- `mia_template_image_name_placeholder`: name of the docker image entered by the user;
+- `%CUSTOM_PLUGIN_PROJECT_NAME%`: name (label) of the Console project;
+- `mia_template_project_id_placeholder`: id of the Console project;
+- `mia_template_service_name_placeholder`: service name chosen by the user;
+- `%CUSTOM_PLUGIN_SERVICE_DESCRIPTION%`: description of the service chosen by the user;
+- `%CUSTOM_PLUGIN_CREATOR_USERNAME%`: username of the user who created the service;
+- `%CUSTOM_PLUGIN_PROJECT_GIT_PATH%`: full path of the repository of the Git provider;
+- `%GIT_PROVIDER_PROJECT%`: name of the Git project entered by the user (e.g. GitHub repository or Gitlab project).
+- `%GIT_PROVIDER_GROUP%`: name of the group of Projects entered by the user (e.g. GitHub organization or Gitlab group).
+- `%GIT_PROVIDER_BASE_URL%`: URL base of the Git provider.
+- `%NEXUS_HOSTNAME%`: docker registry hostname.
 
 :::warning
 
@@ -107,10 +107,10 @@ Consider changing them with the releveant placeholders described above.
 
 :::
 
-* `%CUSTOM_PLUGIN_IMAGE_NAME%`: name of the docker image entered by the user
-* `%CUSTOM_PLUGIN_PROJECT_ID%`: id of the Console project;
-* `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%`: id of the Console project;
-* `%CUSTOM_PLUGIN_SERVICE_NAME%`: service name chosen by the user.
+- `%CUSTOM_PLUGIN_IMAGE_NAME%`: name of the docker image entered by the user
+- `%CUSTOM_PLUGIN_PROJECT_ID%`: id of the Console project;
+- `%CUSTOM_PLUGIN_PROJECT_NAMESPACE%`: id of the Console project;
+- `%CUSTOM_PLUGIN_SERVICE_NAME%`: service name chosen by the user.
 
 ## Categories List
 
@@ -130,13 +130,13 @@ The category list is constantly updated, check with your Mia-Platform referent f
 
 Here is some useful advice to strengthen your items:
 
-* **Test**: each service must have well-tested code;
-* **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
+- **Test**: each service must have well-tested code;
+- **Logs**: each service should display the logs, to inform users about the actions they are currently performing and if any errors have been found during their execution.
 
 ## Tips & Tricks
 
-* **Where to host the zip with the code**: If you code your template on GitHub you can access the zip file using the URL `https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz`
-* **`.mia-platform/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
+- **Where to host the zip with the code**: If you code your template on GitHub you can access the zip file using the URL `https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz`
+- **`.mia-template/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
 
 <details><summary>Example of a Start From Code Template</summary>
 

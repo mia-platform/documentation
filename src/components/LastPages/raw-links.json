@@ -416,8 +416,12 @@
     "title": "MongoDB Compatibility Matrix"
   },
   {
-    "url": "/marketplace/tutorials/project-template-integrated-with-jenkins",
-    "title": "Create a project template integrated with Jenkins"
+    "url": "/marketplace/tutorials/service-template-integrated-with-jenkins",
+    "title": "Create a service template integrated with Jenkins"
+  },
+  {
+    "url": "/marketplace/tutorials/create-a-rag-application",
+    "title": "Create a RAG Application"
   },
   {
     "url": "/microfrontend-composer/back-kit/overview",

@@ -1,8 +1,11 @@
 {
   "MD013": {
-    "line_length": -1
+    "line_length": 200
   },
   "MD033": {
     "allowed_elements": ["nobr", "sup", "a", "p", "details", "summary"]
+  },
+  "MD004": {
+    "style": "dash"
   }
 }

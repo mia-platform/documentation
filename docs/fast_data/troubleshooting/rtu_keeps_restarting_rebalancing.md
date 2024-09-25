@@ -6,7 +6,7 @@ sidebar_label: RTU restarting/rebalancing
 
 ## Problem
 
-The Real-Time Updater begins to restart or rebalance in an infinite loop; Usually this happens when you have a peak of input data from the ingestion topics, like in an Initial Load case for example.
+The Real-Time Updater begins to restart or rebalance in an infinite loop; Usually this happens when you have a peak of input data from the ingestion topics, like in an [Initial Load case](/fast_data/concepts/data_loading.mdx#initial-load) for example.
 
 ## Cause
 
@@ -33,11 +33,11 @@ To stop running the strategies you must disable the projections changes generati
 
 ### 2. Consume all the ingestion messages in queue
 
-Wait for the Real-Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real-Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real-Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our Grafana dashboards for [Kafka Messages](/fast_data/monitoring/dashboards/kafka_messages.md) or [Real-Time Updaters](/fast_data/monitoring/dashboards/real_time_updater.md) (v7.5.5+).
+Wait for the Real-Time Updaters to consume all the ingestion messages in queue (if possible, scale up the Real-Time Updaters to do it faster). Once the consumer lag is at 0, make sure no more messages are consumed while performing the Single View regeneration. To do so, scale the Real-Time Updaters replicas down to 0. This will accumulate the incoming ingestion messages in their topics, so you can resume the consumption later. To verify the consumers' lag we recommend to use our Grafana dashboards for [Kafka Messages](/fast_data/monitoring/dashboards/kafka_messages.md) or [Ingestion services](/fast_data/monitoring/dashboards/ingestion_services.md).
 
 ### 3. Manually generate the Projection Changes to trigger all the Single Views' regeneration
 
-Here you need to create a custom script that calculates the identifiers for each Single View document, maps them in the [Projection Change](/fast_data/inputs_and_outputs.md#projection-change) format and inserts them into your MongoDB. [Check out our example NodeJS script](#custom-script-example).
+Here you need to perform a [full-refresh operation](/fast_data/concepts/data_loading.mdx#full-refresh) that calculates the identifiers for each Single View document, maps them in the [Projection Change](/fast_data/concepts/inputs_and_outputs.md#projection-change) format and inserts them into your MongoDB.
 
 ### 4. Let the Single View Creators regenerate all the Single Views' documents
 
@@ -54,58 +54,7 @@ Once all the Single Views have been regenerated, restore the Fast Data's normal 
 You may have accumulated a great amount of messages in the ingestion topics during this process, so you may need to apply this solution again until normality is restored.
 :::
 
-## Useful resources
-
-### Custom script example
-
-This script creates the identifiers from the Single View's documents and inserts them on MongoDB in the Projection Change format. This script should be enough to be used in simple use cases by just changing `myId` with your identifier.
-
-```javascript
-const { MongoClient } = require('mongodb')
-
-const MONGODB_URL = 'mongo-url'
-const PROJECTION_COLLECTION = 'pr-collection'
-const PROJECTION_CHANGES_COLLECTION = 'pc-collection'
-const SINGLE_VIEW_NAME = 'sv-name'
-
-async function main() {
-  const client = new MongoClient(MONGODB_URL)
-  await client.connect()
-
-  const prCollection = client.db().collection(PROJECTION_COLLECTION)
-  const pcCollection = client.db().collection(PROJECTION_CHANGES_COLLECTION)
-
-  // get the projections' documents' cursor
-  const cursor = prCollection.find({})
-
-  // for each document
-  while (cursor.hasNext()) {
-    // create the identifier object
-    const doc = await cursor.next()
-    const identifier = {
-      myId: doc.myId // Change this!
-    }
-
-    // map the identifier to the projection change object
-    const projectionChange = {
-      identifier,
-      type: SINGLE_VIEW_NAME,
-      changes: [{ state: "NEW" }]
-    }
-
-    // insert the projection change
-    await pcCollection.updateOne({
-      type: SINGLE_VIEW_NAME,
-      identifier,
-    }, { $set: projectionChange }, { upsert: true })  }
-
-  await client.close()
-}
-
-main()
-```
-
-### How do I optimize my strategies
+## How do I optimize my strategies
 
 **Low Code strategies**:
 - Make sure you create an index for each foreign key defined in you ER Schema. You'll also want to add the `__STATE__` field in those indexes so you'll need to create [Compound Indexes](https://www.mongodb.com/docs/manual/core/index-compound/).

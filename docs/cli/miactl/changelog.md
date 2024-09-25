@@ -15,7 +15,61 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.12.2] - 2024-03-07
+## [v0.15.0] - 2024-09-12
+
+### Added
+
+- `deploy add status` command
+- `deploy trigger` command
+
+### Changed
+
+- updated `extension apply` command to support new request body schema
+- deprecate `deploy` command
+- update go version to 1.23.1
+- `marketplace list-versions` command removed from alpha build
+- update mergo to v1.0.1
+- update cobra to v1.8.1
+- update oauth2 to v0.23.0
+- update sync to v0.8.0
+- update text to v0.18.0
+
+### BREAKING
+
+- updated `extension apply` command to support new request body schema. The older version of miactl will not be
+	compatible with the Console version upper or equal to 13.2.0.
+
+## [v0.14.0] - 2024-07-25
+
+### Added
+
+- `extensions get` command
+
+### Fixed
+
+- deploy status now sends the environment query params
+
+## [v0.13.0] - 2024-06-26
+
+### Added
+
+- `extensions list` command
+- `extensions apply` command
+- `extensions delete` command
+- `extensions activate` command
+- `extensions deactivate` command
+- `context use` autocomplete contexts with tab
+
+### Changed
+
+- update go version to 1.22.3
+- update logr to v1.4.2
+- update oauth2 to v0.20.0
+- update sync to v0.7.0
+- update text to v0.15.0
+- introduced Printer interface with Table implementation
+
+## [v0.12.2] - 2024-03-07
 
 ## Changed
 
@@ -26,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update uuid to v1.6.0
 - update oauth2 to v0.18.0
 
-## [0.12.1] - 2024-02-29
+## [v0.12.1] - 2024-02-29
 
 ### Changed
 
@@ -37,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fixed open browser feature on Linux
 - fixed typo in flag parameter for triggering a new release
 
-## [0.12.0] - 2024-02-05
+## [v0.12.0] - 2024-02-05
 
 ### Added
 
@@ -57,7 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fixed typos
 
-## [0.11.0] - 2024-01-15
+## [v0.11.0] - 2024-01-15
 
 ### BREAKING
 
@@ -89,7 +143,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - remove conflicting shortand flag `-v` from `miactl marketplace delete` command
 - creation of basic auth service account
 
-## [0.10.0] - 2023-12-20
+## [v0.10.0] - 2023-12-20
 
 ### BREAKING
 
@@ -127,7 +181,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `runtime logs` now is working correctly for pods with more than one container
 
-## [0.9.0] - 2023-11-15
+## [v0.9.0] - 2023-11-15
 
 ### Added
 
@@ -146,7 +200,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update sync to v0.5.0
 - update text to v0.14.0
 
-## [0.8.0] - 2023-10-10
+## [v0.8.0] - 2023-10-10
 
 ### Changed
 
@@ -166,13 +220,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - events command
 - version command
 
-## [0.7.0] - 2023-06-26
+## [v0.7.0] - 2023-06-26
 
 ### Added
 
 - create service account with jwt authentication
 
-## [0.6.1] - 2023-06-12
+## [v0.6.1] - 2023-06-12
 
 ### Added
 
@@ -183,7 +237,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - error during saving context configuration in particular cases
 
-## [0.6.0] - 2023-06-08
+## [v0.6.0] - 2023-06-08
 
 ### Changed
 
@@ -198,7 +252,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - if you use a url that ends with `/` as endpoint, the remote calls are not broken anymore
 
-## [0.5.0] - 2023-05-10
+## [v0.5.0] - 2023-05-10
 
 ### Changed
 
@@ -208,7 +262,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - new command for listing the user companies
 
-## [0.4.0] - 2023-04-07
+## [v0.4.0] - 2023-04-07
 
 ### Changed
 
@@ -218,13 +272,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - new project list command
 - the user now can create contexts for multiple scenarios and consoles
 
-## [0.3.1] - 2022-01-21
+## [v0.3.1] - 2022-01-21
 
 ### Fixed
 
 - fix warning installing with brew (issue 55)
 
-## [0.3.0] - 2021-06-22
+## [v0.3.0] - 2021-06-22
 
 ### Added
 
@@ -243,30 +297,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - drop support to go v1.13 and v.14
 
-## [0.2.0] - 2020-04-27
+## [v0.2.0] - 2020-04-27
 
 - get history of deployments for a specific project environment
 - add get projects command
 
-## [0.1.0] - 2020-04-14
+## [v0.1.0] - 2020-04-14
 
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.12.2...HEAD
-[0.12.2]: https://github.com/mia-platform/miactl/compare/v0.12.1...v0.12.2
-[0.12.1]: https://github.com/mia-platform/miactl/compare/v0.12.0...v0.12.1
-[0.12.0]: https://github.com/mia-platform/miactl/compare/v0.11.0...v0.12.0
-[0.11.0]: https://github.com/mia-platform/miactl/compare/v0.10.0...v0.11.0
-[0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
-[0.9.0]: https://github.com/mia-platform/miactl/compare/v0.8.0...v0.9.0
-[0.8.0]: https://github.com/mia-platform/miactl/compare/v0.7.0...v0.8.0
-[0.7.0]: https://github.com/mia-platform/miactl/compare/v0.6.1...v0.7.0
-[0.6.1]: https://github.com/mia-platform/miactl/compare/v0.6.0...v0.6.1
-[0.6.0]: https://github.com/mia-platform/miactl/compare/v0.5.0...v0.6.0
-[0.5.0]: https://github.com/mia-platform/miactl/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/mia-platform/miactl/compare/v0.3.1...v0.4.0
-[0.3.1]: https://github.com/mia-platform/miactl/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/mia-platform/miactl/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/mia-platform/miactl/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/mia-platform/miactl/releases/tag/v0.1.0
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.15.0...HEAD
+[v0.15.0]: https://github.com/mia-platform/miactl/compare/v0.14.0...v0.15.0
+[v0.14.0]: https://github.com/mia-platform/miactl/compare/v0.13.0...v0.14.0
+[v0.13.0]: https://github.com/mia-platform/miactl/compare/v0.12.2...v0.13.0
+[v0.12.2]: https://github.com/mia-platform/miactl/compare/v0.12.1...v0.12.2
+[v0.12.1]: https://github.com/mia-platform/miactl/compare/v0.12.0...v0.12.1
+[v0.12.0]: https://github.com/mia-platform/miactl/compare/v0.11.0...v0.12.0
+[v0.11.0]: https://github.com/mia-platform/miactl/compare/v0.10.0...v0.11.0
+[v0.10.0]: https://github.com/mia-platform/miactl/compare/v0.9.0...v0.10.0
+[v0.9.0]: https://github.com/mia-platform/miactl/compare/v0.8.0...v0.9.0
+[v0.8.0]: https://github.com/mia-platform/miactl/compare/v0.7.0...v0.8.0
+[v0.7.0]: https://github.com/mia-platform/miactl/compare/v0.6.1...v0.7.0
+[v0.6.1]: https://github.com/mia-platform/miactl/compare/v0.6.0...v0.6.1
+[v0.6.0]: https://github.com/mia-platform/miactl/compare/v0.5.0...v0.6.0
+[v0.5.0]: https://github.com/mia-platform/miactl/compare/v0.4.0...v0.5.0
+[v0.4.0]: https://github.com/mia-platform/miactl/compare/v0.3.1...v0.4.0
+[v0.3.1]: https://github.com/mia-platform/miactl/compare/v0.3.0...v0.3.1
+[v0.3.0]: https://github.com/mia-platform/miactl/compare/v0.2.0...v0.3.0
+[v0.2.0]: https://github.com/mia-platform/miactl/compare/v0.1.0...v0.2.0
+[v0.1.0]: https://github.com/mia-platform/miactl/releases/tag/v0.1.0

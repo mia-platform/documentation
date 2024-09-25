@@ -10,13 +10,76 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.3] - 2024-09-06
+
+### Updated
+
+- Template is now optional when creating a new compose page
+
+## [1.9.2] - 2024-07-25
+
+### Fixed
+
+- fixed add new label strings
+
+### Versioning
+
+- Updated `@micro-lc/post-channel` version
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.7.3`
+
+### Removed
+
+- Package `post-channel`
+
+## [1.9.1] - 2024-07-18
+
+### Fixed
+
+- Enforcing of translation labels uniqueness
+- Edit label drawer showing incorrect data
+
+## [1.9.0] - 2024-07-12
+
+### Added
+
+- Support for multilanguage in iframe preview
+- Translations tab to manage labels and languages
+- Components Explorer
+
+### Versioning
+
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.7.1`
+
+## [1.8.2] - 2024-07-01
+
+### Fixed
+
+- No crud endpoints cause CRUD Client edit crash
+
+## [1.8.1] - 2024-06-11
+
+###  Changed
+
+- Configurator stays in loading state if service not found
+
+## [1.8.0] - 2024-06-10
+
+### Added
+
+- Support for multiple Micro-lc Middleware services
+- Package `microfrontend-configurator-bridge`
+
 ## [1.7.4] - 2024-05-03
+
+### Added
+
+- Support for CRUD schema generation from Mongo Single Views
 
 ## [1.7.3] - 2024-05-03
 
 ### Added
 
-- Support for CRUD schema generation from Mongo view, Projections, and Single Views
+- Support for CRUD schema generation from Mongo view and Projections
 
 ### Changed
 
@@ -37,7 +100,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 - Dynamic routes removed from router.json (Dynamic Sidebar implementation)
 
-### Fixed
+###  Fixed
 
 - Fixed edit page modal title copy
 
@@ -103,7 +166,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 - Changed doc links
 - Hashed build entrypoint `index.js` and `css` files
 
-### Fixed
+###  Fixed
 
 - Editors correctly hints and validates content against schemas
 - `aclExpression` property is now supported by editors schema validation
@@ -114,7 +177,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## [1.5.0] - 2023-10-20
 
-### Versioning
+###  Versioning
 
 - `BACK_KIT_VERSION` to `1.4.4`
 - `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.2`
@@ -129,7 +192,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 - Added support for `aclExpression` property of components and components object properties
 
-### Versioning
+###  Versioning
 
 - `BACK_KIT_VERSION` to `1.4.1`
 - `MICRO_LC_ORCHESTRATOR_VERSION` to `2.2.1`

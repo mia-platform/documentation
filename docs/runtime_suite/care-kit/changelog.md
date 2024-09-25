@@ -15,6 +15,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.8.5]
+
+- Fix style dashboard
+- Added timeline settings component
+- Added timeline component
+- Added Report Collapsable card in `ck-patient-dashboard`
+- Added `ck-medical-records`
+
+## [v2.8.4]
+
+- Patient Last Detection card added
+- Patient Data card added
+- Patient Appointment card added
+- Patient Clinical Diary card added
+- Patient Device card added
+
+## [v2.8.3]
+
+- Patient Dashboard added
+- Patient Monitoring card added
+
+## [v2.8.2]
+
+- Update add-plan-modal to edit devices
+- Update add-plan-modal to include devices on create
+
+## [v2.8.1]
+
+- Updated `am-calendar` to use backoffice color theme
+- Fix bug in `am-calendar` that made component disappear when all the resources are filtered out
+- Added `eventResourceId` property to `am-calendar` that allows to indicate witch event property is used by the calendar to link it with the resource
+- Update the event that `am-calendar` sends to open the modal to book a slot. Now `ck-book-slot-modal` listents to add-new event
+
+## [v2.8.0]
+
+- Added `ck-availability-modal`
+- Added translation support to import-users and reset-password components
+- Added jobUpsert parameter to import users job
+
 ## [v2.7.0]
 
 - Added `ck-book-slot-modal`

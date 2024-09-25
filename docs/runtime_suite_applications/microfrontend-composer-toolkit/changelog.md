@@ -15,6 +15,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.12] - 2024-09-20
+
+- Updated `back-kit` to version `1.5.7`
+
+## [3.4.11] - 2024-07-17
+
+- Fixed versions of `middleware` and `micro-lc`
+
+## [3.4.10] - 2024-07-12
+
+- Updated `back-kit` to version `1.5.6`
+
+## [3.4.9] - 2024-06-28
+
+- Updated `back-kit` to version `1.5.5`
+
+## [3.4.8] - 2024-06-14
+
+- Updated `back-kit` to version `1.5.4`
+- Updated `middleware` to version `3.2.2`
+- Updated `micro-lc` to version `2.4.2`
+
+## [3.4.7] - 2024-06-03
+
+- Updated `back-kit` to version `1.5.3`
+- Updated `middleware` to version `3.2.0`
+
 ## [3.4.6] - 2024-05-06
 
 - Updated `back-kit` to version `1.5.1`

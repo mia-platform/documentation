@@ -47,12 +47,17 @@ miactl context set CONTEXT [flags]
 
 Available flags for the command:
 
+- `--auth-name`, to set the name of the authentication to use (discover more on the [dedicated documentation section](#auth))
 - `--endpoint`, to set the Console endpoint
 - `--certificate-authority`, to provide the path to a custom CA certificate
 - `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
 - `--company-id`, to set the ID of the desired Company
 - `--project-id`, to set the ID of the desired Project
 - `--environment`, to set the environment scope for the command
+
+:::warning
+If you want to use `miactl` with a _Service Account_, **remember to specify** the  `--auth-name` flag, otherwise _miactl_ will try to perform a _User Login_, opening the browser for authentication the user.
+:::
 
 ### use
 
@@ -83,6 +88,7 @@ miactl context auth NAME [flags]
 ```
 
 Available flags:
+
 - `--client-id string`: the client ID of the service account
 - `--client-secret string`: the client secret of the service account
 - `-h, --help`: help for auth
@@ -546,12 +552,23 @@ Available flags for the command:
 
 ## deploy
 
+The `deploy` command allows you to manage the deployment of your Projects.
+
+Available subcommands are the following ones:
+
+```sh
+  trigger       Trigger a deploy pipeline
+  add status    Add a new deploy status
+```
+
+### trigger
+
 This command allows you to trigger the deploy pipeline for the selected Project.
 
 Usage:
 
 ```sh
-miactl deploy ENVIRONMENT [flags]
+miactl deploy trigger ENVIRONMENT [flags]
 ```
 
 Available flags for the command:
@@ -565,6 +582,218 @@ Available flags for the command:
 - `--deploy-type`, to select a deploy type (default is `smart_deploy`)
 - `--no-semver`, to force the deploy without `semver`
 - `--revision`, to specify the revision of the commit to deploy
+
+### add status
+
+This command allows you to add a new deploy status for the selected trigger id pipelines of the Project,
+only for those integration which trigger the pipeline with a trigger id (e.g. Jenkins integration).
+
+Usage:
+
+```sh
+miactl deploy add status STATUS [flags]
+```
+
+where `STATUS` must be one of: `success`, `failed`, `canceled`, `skipped`.
+
+Available flags for the command:
+
+- `--endpoint`, to set the Console endpoint
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+- `--project-id`, to set the ID of the desired Project
+- `--trigger-id`, to specify the trigger id to update
+
+## extensions
+
+The `extensions` command allows you to manage Company extensions.
+
+Available subcommands are the following ones:
+
+```sh
+  list        List registered extensions
+  get         Retrieve data of a specific extension
+  apply       Create or update an extension
+  activate    Activate an extension
+  deactivate  Deactivate an extension
+  delete      Delete extension
+```
+
+### list
+
+The `extensions list` command helps you gathering available extension in your Company
+
+Usage:
+
+```sh
+miactl extensions list [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--resolve-details` to evaluate all the extension details including `visibilities`, `menu`, `category` and `permissions`
+
+### get
+
+The `extensions get` command helps you gathering information about a specific extension in your Company
+
+Usage:
+
+```sh
+miactl extensions get [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--extension-id` to set the ID of the desired extension.
+- `--output=json|yaml` to control the printed output format.
+
+### apply
+
+The `extensions apply` command can be used to register new extensions or update an existing one.
+
+It accepts an Extension Manifest either in `yaml` or `json` format
+
+<details>
+<summary>Example JSON Manifest</summary>
+
+```json
+{
+  "name": "Extension 1",
+  "description": "My extension 1",
+  "entry": "https://example.com/",
+  "activationContexts": ["project"],
+  "destination": {
+    "id": "runtime",
+    "path": "/"
+  },
+  "iconName": "PiHardDrives",
+  "menu": {
+    "id": "extension-1",
+    "labelIntl": {
+        "en": "SomeLabel",
+        "it": "SomeLabelInItalian"
+    },
+    "order": 200.0,
+  },
+  "category": {
+    "id": "workloads",
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>Example YAML Manifest</summary>
+
+```yaml
+name: Extension 1
+description: My extension 1
+entry: https://example.com/
+activationContexts:
+  - project
+destination:
+  id: runtime
+  path: "/"
+iconName: PiHardDrives
+menu:
+  id: extension-1
+  labelIntl:
+    en: SomeLabel
+    it: SomeLabelInItalian
+  order: 200
+category:
+  id: workloads
+```
+
+</details>
+
+Usage:
+
+```sh
+miactl extensions apply [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--file-path` (`-f`) **required** to specify the path to the extension manifest
+- `--extension-id` to set the ID of the extension, required for updating an existing extension.
+
+:::tip
+In order to specify whether a create or an update is needed you have to use the `--extension-id`
+flag or specify the `extensionId` property in the manifest file.
+
+You can get the **extension id** by using the [extensions list](#list-5) command or
+in the apply response after creating the extension.
+:::
+
+### activate
+
+The `extensions activate` command can be used to activate an existing extension.
+
+:::tip
+Please note that, based on provided `contexts`, an extension can be activated for the whole Company or for specific Projects.
+
+By using the `routes.locationId` option, you can specify where the extension is available, therefore
+you can create an extension shown on the Project runtime and activate it for the whole Company context.
+Such extension will be visible by all the Projects.
+
+For further information checkout the [official documentation](../../console/console-extensibility/extension-activation).
+:::
+
+Usage:
+
+```sh
+miactl extensions activate [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--project-id` to set the ID of the desired project, if specified, the extension will be activated only for this project only
+- `--extension-id` **required** to set the ID of the extension
+
+### deactivate
+
+The `extensions deactivate` command can be used to deactivate an existing extension.
+
+:::tip
+Please note that if an extension has been activated on the whole Company it can't be deactivated on a specific Project;
+you have to deactivate on the whole Company and activate it on the desired Projects.
+:::
+
+Usage:
+
+```sh
+miactl extensions deactivate [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--project-id` to set the ID of the desired project, if specified, the extension will be deactivated only for this project only
+- `--extension-id` **required** to set the ID of the extension.
+
+### delete
+
+The `extensions delete` command can be used to delete an existing extension.
+
+Usage:
+
+```sh
+miactl extensions delete [flags]
+```
+
+Available flags for the command:
+
+- `--company-id` to set the ID of the desired Company
+- `--extension-id` **required** to set the ID of the extension, required for updating an existing extension.
 
 ## runtime
 
@@ -701,7 +930,7 @@ View and manage Marketplace items
 
 All the subcommands inherit the following flags:
 
-```
+```sh
       --auth-name string               the name of the miactl auth to use
       --certificate-authority string   path to a cert file for the certificate authority for the selected endpoint
       --company-id string              the ID of the Company
@@ -718,7 +947,7 @@ List Marketplace items
 
 #### Synopsis
 
-List the Marketplace items that the current user can access. 
+List the Marketplace items that the current user can access.
 
 #### Usage
 
@@ -728,7 +957,7 @@ miactl marketplace list --company-id company-id [FLAGS]...
 
 #### Flags
 
-*   `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Marketplace items from other companies.
+- `--public` - if this flag is set, the command fetches not only the items from the requested company, but also the public Marketplace items from other companies.
 
 ### get
 
@@ -736,27 +965,10 @@ Get a Marketplace item
 
 #### Synopsis
 
-##### Stable version
-
-Get a single Marketplace item
-
-You need to specify the ObjectID of the item with the flag object-id
-
-```bash
-miactl marketplace get --object-id object-id [FLAGS]...
-```
-
-##### Alpha version
-
-:::warning
-
-This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
-
-:::
-
 Get a single Marketplace item
 
 You need to specify either:
+
 - the companyId, itemId and version, via the respective flags (recommended). The company-id flag can be omitted if it is already set in the context.
 - the ObjectID of the item with the flag object-id
 
@@ -764,7 +976,7 @@ Passing the ObjectID is expected only when dealing with deprecated Marketplace i
 Otherwise, it is preferable to pass the tuple companyId-itemId-version.
 
 ```bash
-miactl marketplace get { --item-id item-id --version version } | --object-id object-id [FLAGS]...
+miactl marketplace get { --item-id item-id --version version } | --object-id objectID [FLAGS]...
 ```
 
 ### delete
@@ -773,27 +985,10 @@ Delete a Marketplace item
 
 #### Synopsis
 
-##### Stable version
-
-Delete a single Marketplace item
-
-You need to specify the ObjectID of the item with the flag object-id
-
-```bash
-miactl marketplace get --object-id object-id [FLAGS]...
-```
-
-#### ALPHA version
-
-:::warning
-
-This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
-
-:::
-
 Delete a single Marketplace item
 
 You need to specify either:
+
 - the companyId, itemId and version, via the respective flags (recommended). The company-id flag can be omitted if it is already set in the context.
 - the ObjectID of the item with the flag object-id
 
@@ -831,16 +1026,15 @@ You can retrieve the updated item with the "get" command.
 
 You can also specify the "supportedByImage" in a similar way.
 
-Be aware that the presence of both "image" and "imageUrl" and/or of both "supportedByImage" and "supportedByImageUrl" is ambiguous and raises an error .
+Be aware that the presence of both "image" and "imageUrl" and/or of both "supportedByImage" and "supportedByImageUrl" is ambiguous and raises an error.
 
-```
+```bash
 miactl marketplace apply { -f file-path }... } [flags]
 ```
 
 #### Examples
 
-
-```
+```bash
 
 # Apply the configuration of the file myFantasticGoTemplate.json located in the current directory to the Marketplace
 miactl marketplace apply -f myFantasticGoTemplate.json
@@ -854,18 +1048,12 @@ miactl marketplace apply -f myFantasticGoTemplates
 
 #### Options
 
-```
+```bash
   -f, --file stringArray   paths to JSON/YAML files or folder of files containing a Marketplace item definition
   -h, --help               help for apply
 ```
 
-### list-versions (ALPHA)
-
-:::warning
-
-This command is in ALPHA state. This means that it can be subject to breaking changes in the next versions of miactl.
-
-:::
+### list-versions
 
 List all the available versions of a specific Marketplace item.
 
@@ -873,6 +1061,6 @@ List all the available versions of a specific Marketplace item.
 
 The flag `--item-id` or `-i` accepts the `itemId` of the Item.
 
-```
+```bash
 miactl marketplace list-versions -i some-item
 ```

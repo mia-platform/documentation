@@ -20,6 +20,11 @@ This card presents a summary in which the **name** and **description** given to 
 - **Team Contact**: contact information associated with the Project (typically, the Project owner's email);
 - **Color (Hex)**: color of the top bar of the Project-related card on the homepage (in hexadecimal format);
 - **Technologies**: tags specifying the different technologies and programming languages used within the Project.
+- **Default Revision**: the default revision of the project. If it is not specified the Console uses `main` as default value, that will correspond to an empty configuration if no other `main` branch was previously created on the Project.
+
+:::info
+The `Default Revision` setting is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md) enabled.
+:::
 
 The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
 
@@ -77,7 +82,7 @@ This card allows users to manage some options regarding Project deployment.
 - **Deployment strategy**: specifies whether the Project deployment follows a [GitOps-based approach](/development_suite/deploy/gitops-based/index.md) or a [pipeline-based approach](/development_suite/deploy/pipeline-based/index.md).
 
   :::info
-  The choice of the deployment strategy is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) enabled. Standard Projects only support a pipeline-based deployment strategy.
+  The choice of the deployment strategy is only available on Projects with the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md) enabled. Standard Projects only support a pipeline-based deployment strategy.
   :::
   
     - In **Pull mode**, through a GitOps tool connection, Project configurations saved on the Git repository are always consistent with the Project’s Runtime configurations
@@ -103,17 +108,15 @@ This card gives the user the ability to view and change some runtime settings.
 
 ![runtime settings](./img/settings-runtime-settings.png)
 
-Specifically, the **Monitoring** tags allow you to choose between the different supported monitoring systems.
+Specifically, the **Monitoring** configuration lets you choose between the different supported monitoring systems to gather metrics from your [Project microservices](/development_suite/api-console/api-design/microservice-monitoring.md).
 
-The above information can be edited by clicking on the "Edit" button, which will open the modal below. It will then be sufficient to edit the fields to be updated and click the "Save changes" button to implement the change.
+:::info
+[Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator/blob/master/README.md#prometheus-operator) is currently the only supported monitoring system.
+When using the Monitoring configuration tab in the Design section, the Console is responsible for defining and provisioning `ServiceMonitor` and `PodMonitor` based on your microservices configuration.
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '700px'}}>
-
-![edit runtime settings](./img/settings-edit-runtime-settings.png)
-
-  </div>
-</div>
+`ServiceMonitor` and `PodMonitor` are specific [Kubernetes Custom Resources](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions),
+defined by the Prometheus Operator, that help configuring [Prometheus scraping mechanism](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
+:::
 
 ### Security features
 
@@ -172,17 +175,11 @@ The "Advanced" tab allows the user to visualize advanced information and perform
 
 ### Enhanced Workflow
 
-:::info
-This is a **BETA** feature and, as such, is currently under active development.
-
-It can be safely used but there may be still be some missing features, check the [roadmap section](/development_suite/set-up-infrastructure/enhanced-project-workflow.md#roadmap-and-future-improvements) below to find out more.
-:::
-
-If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md), users will see a card that illustrates the required steps to perform the migration.
+If the Project has not been configured to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/overview.md), users will see a card that illustrates the required steps to perform the migration.
 
  ![Workflow migration card](./img/settings-workflow-migration-card.png)
 
- There are some necessary [manual adjustments](/development_suite/set-up-infrastructure/enhanced-project-workflow.md#migrating-your-projects) to be made to ensure everything works fine after the migration is completed. The user will be asked to confirm that all steps have been addressed before continuing. 
+ There are some necessary [manual adjustments](/development_suite/set-up-infrastructure/overview.md#migrating-your-projects) to be made to ensure everything works fine after the migration is completed. The user will be asked to confirm that all steps have been addressed before continuing. 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '700px'}}>

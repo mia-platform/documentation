@@ -157,6 +157,7 @@ The `slotPermissions` and `appointmentPermissions` properties are not added to s
 | `popoverConfig` | [EventBoxPopoverConfig](#eventboxpopoverconfig) | false | - | Object that contains the name of the properties used to populate the popover that appears when an event is hovered |
 | `resourceConfig` | [ResourceConfig](#resourceconfig) | false | - | Object that contains the name of the resource properties used to populate the header containing the resource information and the endpoint from which the resources are fetched |
 | `resourceId` | string | false | resourceId | Provides a unique identifier for each resource in the resources array. Each event should have the same property to be shown in its calendar resource column |
+| `eventResourceId` | string | false | resourceId | Provides a unique identifier for each event. Each Resource should have the same property to be shown in its calendar resource column |
 | `reminderMilliseconds` | number | false | 90000 | Number of milliseconds before the booked appointment that the reminder is sent |
 | `slotConfig` | [SlotConfig](#slotconfig) | - | - | Object that contains the name of the appointments properties used to populate free slot and the draggable modal |
 | `view` | 'month' \| 'week' \| 'day' | false | week | The current view value of the calendar. Determines the visible 'view'  |

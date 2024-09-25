@@ -20,7 +20,8 @@
       "urandom",
       "CTYPE",
       "uuidgen",
-      "micro-lc"
+      "micro-lc",
+      "microlc"
     ],
     "flagWords": [],
     "ignorePaths": [],

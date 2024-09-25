@@ -78,6 +78,10 @@
         {
           "id": "console/tutorials/protect-your-endpoints-with-policies",
           "type": "doc"
+        },
+        {
+          "id": "console/tutorials/create-extension-tutorial",
+          "type": "doc"
         }
       ]
     },
@@ -163,16 +167,16 @@
       "type": "category",
       "label": "Company Configuration",
       "link": {
-        "id": "development_suite/company/overview",
+        "id": "console/company-configuration/overview",
         "type": "doc"
       },
       "items": [
         {
-          "id": "development_suite/company/create-company",
+          "id": "console/company-configuration/create-company",
           "type": "doc"
         },
         {
-          "id": "development_suite/company/configuration",
+          "id": "console/company-configuration/configuration",
           "type": "doc"
         },
         {
@@ -184,16 +188,16 @@
           "type": "category",
           "label": "Clusters",
           "link": {
-            "id": "development_suite/clusters-management/overview",
+            "id": "console/company-configuration/clusters-management/overview",
             "type": "doc"
           },
           "items": [
             {
-              "id": "development_suite/clusters-management/cluster-setup",
+              "id": "console/company-configuration/clusters-management/cluster-setup",
               "type": "doc"
             },
             {
-              "id": "development_suite/clusters-management/connect-and-manage-cluster",
+              "id": "console/company-configuration/clusters-management/connect-and-manage-cluster",
               "type": "doc"
             }
           ]
@@ -256,15 +260,15 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/company/project-blueprint",
+          "id": "console/company-configuration/project-blueprint",
           "type": "doc"
         },
         {
-          "id": "development_suite/governance/design-overview",
+          "id": "console/company-configuration/design-overview",
           "type": "doc"
         },
         {
-          "id": "development_suite/license-metrics/license-metrics",
+          "id": "console/company-configuration/license-metrics",
           "type": "doc"
         },
         {
@@ -273,14 +277,18 @@
           "label": "Manage Webhooks",
           "link": {
             "type": "doc",
-            "id": "development_suite/webhooks-and-events/webhooks"
+            "id": "console/company-configuration/webhooks"
           },
           "items": [
             {
-              "id": "development_suite/webhooks-and-events/events",
+              "id": "console/company-configuration/events",
               "type": "doc"
             }
           ]
+        },
+        {
+          "id": "console/company-configuration/extensions",
+          "type": "doc"
         }
       ]
     },
@@ -379,8 +387,27 @@
           "type": "doc"
         },
         {
-          "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
-          "type": "doc"
+          "label": "Enhanced Project Workflow",
+          "type": "category",
+          "collapsed": true,
+          "link": {
+            "id": "development_suite/set-up-infrastructure/enhanced-project-workflow",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "development_suite/set-up-infrastructure/revisions-and-versions",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/migration-and-creation-project",
+              "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/new-deployment-workflow",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "console/project-configuration/docker-registry-configuration",
@@ -630,7 +657,7 @@
         },
         {
           "type": "category",
-          "label": "GitOps deployment strategy (BETA)",
+          "label": "GitOps deployment strategy",
           "link": {
             "id": "development_suite/deploy/gitops-based/gitops-based",
             "type": "doc"
@@ -655,10 +682,6 @@
       "items": [
         {
           "id": "console/console-extensibility/extensibility-overview",
-          "type": "doc"
-        },
-        {
-          "id": "console/console-extensibility/extension-example-tutorial",
           "type": "doc"
         },
         {
@@ -1024,16 +1047,31 @@
       ]
     },
     {
-      "id": "fast_data/inputs_and_outputs",
-      "type": "doc"
-    },
-    {
-      "id": "fast_data/the_basics",
-      "type": "doc"
-    },
-    {
-      "id": "fast_data/architecture",
-      "type": "doc"
+      "type": "category",
+      "label": "Concepts",
+      "collapsed": true,
+      "items": [
+        {
+          "id": "fast_data/concepts/glossary",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/inputs_and_outputs",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/the_basics",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/architecture",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/concepts/data_loading",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "fast_data/realtime_updater",
@@ -1081,10 +1119,6 @@
           "type": "doc"
         }
       ]
-    },
-    {
-      "id": "fast_data/glossary",
-      "type": "doc"
     },
     {
       "collapsed": true,
@@ -1216,6 +1250,10 @@
         {
           "id": "fast_data/connectors/debezium_cdc",
           "type": "doc"
+        },
+        {
+          "id": "fast_data/connectors/debezium_connect_cdc",
+          "type": "doc"
         }
       ],
       "label": "Connectors",
@@ -1296,7 +1334,7 @@
               "type": "doc"
             },
             {
-              "id": "fast_data/monitoring/dashboards/real_time_updater",
+              "id": "fast_data/monitoring/dashboards/ingestion_services",
               "type": "doc"
             },
             {
@@ -1341,6 +1379,10 @@
         },
         {
           "id": "fast_data/troubleshooting/rtu_violates_unique_keys",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/troubleshooting/debezium",
           "type": "doc"
         }
       ],
@@ -1554,7 +1596,11 @@
       "label": "Tutorials",
       "items": [
         {
-          "id": "marketplace/tutorials/project-template-integrated-with-jenkins",
+          "id": "marketplace/tutorials/service-template-integrated-with-jenkins",
+          "type": "doc"
+        },
+        {
+          "id": "marketplace/tutorials/create-a-rag-application",
           "type": "doc"
         }
       ]
@@ -1786,6 +1832,14 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v13.1.1", "type": "doc" },
+        { "id": "release-notes/v13.1.0", "type": "doc" },
+        { "id": "release-notes/v13.0.6", "type": "doc" },
+        { "id": "release-notes/v13.0.5", "type": "doc" },
+        { "id": "release-notes/v13.0.4", "type": "doc" },
+        { "id": "release-notes/v13.0.3", "type": "doc" },
+        { "id": "release-notes/v13.0.2", "type": "doc" },
+        { "id": "release-notes/v13.0.1", "type": "doc" },
         { "id": "release-notes/v13.0.0", "type": "doc" }
       ]
     },

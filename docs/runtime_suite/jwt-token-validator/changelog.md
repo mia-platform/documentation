@@ -15,6 +15,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.1.2 - 03-06-2024
+
+### Changed
+
+- updated library `github.com/golang-jwt/jwt` to version v5
+- do not throw error the first time token is not valid
+
 ## 1.1.1 - 05-03-2024
 
 - fixed `audience` schema handling in configuration. The field can now properly handle strings and arrays of strings.

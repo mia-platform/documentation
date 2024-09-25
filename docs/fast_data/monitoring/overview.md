@@ -111,17 +111,30 @@ Mind that the only thing that changes from one metric to another is the `collect
 
 #### Kafka Exporter Configuration
 
-Kafka exporter service configuration is quite easy, the only thing you need to do is make sure the variables in the `Microservice configuration - Args` section are properly defined.
+Kafka exporter service configuration is quite easy, the only thing you need to do is make sure the variables in the [Microservice configuration - Args](/development_suite/api-console/api-design/services.md#microservice-configuration) section are properly defined.
 
-Example of what the variables values could look like in the `Public variables` section:
+Some of the variables are filled from the `Public variables` section:
 
 ```bash
-KAFKA_BROKERS="my.broker.hostname:9093,my.second.broker.hostname:9093"
 KAFKA_SASL_USERNAME="username"
 KAFKA_SASL_PASSWORD="password"
 KAFKA_SASL_MECHANISM="scram-sha256" # Mind there's no `-` between `sha` and `256`
 KAFKA_EXPORTER_TOPIC_FILTER="my.topics.prefix.*"
 KAFKA_EXPORTER_GROUP_FILTER="my.consumer.groups.prefix.*"
+```
+
+For the Kafka brokers definition, you have to define each of them separately by the usage
+of the `kafka.server` flag, so that the arguments of the microservice would look as follows:
+
+```bash
+--kafka.server=<your first kafka broker>
+--kafka.server=<your second kafka broker>
+// ... other kafka brokers
+--sasl.enabled
+--sasl.username={{KAFKA_SASL_USERNAME}}
+--sasl.password={{KAFKA_SASL_PASSWORD}}"
+--sasl.mechanism={{KAFKA_SASL_MECHANISM}}
+--tls.insecure-skip-tls-verify
 ```
 
 ## Dashboards
@@ -132,6 +145,6 @@ You can create any custom dashboards using the metrics provided by the Fast Data
 - [Debezium CDC Dashboard](/fast_data/monitoring/dashboards/debezium_cdc.md)
 - [Kafka Messages Dashboard](/fast_data/monitoring/dashboards/kafka_messages.md)
 - [Projection Changes Dashboard](/fast_data/monitoring/dashboards/projection_changes.md)
-- [Real Time Updater Dashboard](/fast_data/monitoring/dashboards/real_time_updater.md)
+- [Ingestion services Dashboard](/fast_data/monitoring/dashboards/ingestion_services.md)
 - [Single Views Dashboard](/fast_data/monitoring/dashboards/single_views.md)
 - [Unmapped fields Dashboard](/fast_data/monitoring/dashboards/unmapped_fields.md)

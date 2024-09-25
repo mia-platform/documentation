@@ -28,7 +28,7 @@ The configurations file required by the *Flow Manager* is in the JSON format and
 - **communicationProtocols**: the section dedicated to the [*Communication protocols*](#communication-protocols) used to communicate with other services
 - **persistencyManagement**: the section that contains the configurations of the [*Persistency manager*](#persistency-manager) used to get and update the saga
 - **machineDefinition**: the core section, with the [*Finite state machine* configurations](#machine-definition), used by the *Flow Manager* to drive the saga through the flow
-- **settings**: the section dedicated to general [Settings](#settings). If not defined, no additional settings are enabled. 
+- **settings** (starting from version `2.6.0`): the section dedicated to general [Settings](#settings). If not defined, no additional settings are enabled. 
 
 :::note
 The configurations file is validated by the *Flow Manager*, pay attention to the schema rules, or the service will not be deployed. The first three sections above are required and must not be empty when you deploy.
@@ -500,15 +500,16 @@ Each state must have the following configurations:
 - **outputCommand**: a JSON Object that contains the details of the command to send in output when the saga lands on the state (it is not mandatory since a state may not need to send any command):
   - **channel** (required): the ID of the *channel* used to send the command (**NB.** must exist into the *communicationProtocols* configurations)
   - **label** (required): the label of the command (usually is a imperative sentence, e.g. *updateTheRequest*)
-  - **hook**: a JSON Object that contains the details of the custom function to generate the payload of the command
+  - **hook** (starting from version `2.6.0`): a JSON Object that contains the details of the custom function to generate the payload of the command
     - **type** (required): only ```file``` is accepted
     - **encoding**: accepted values are ```plain``` and ```base64```. By default it is ```plain```
     - **content** (required): the custom function implementation encoded accordingly, the signature is described in the [Command Hook section](#command-hook)
-- **sideEffects**: an array containing ```outputCommand``` objects to execute alongside the main Command in a fire-and-forget manner
+- **sideEffects** (starting from version `2.6.0`): an array containing ```outputCommand``` objects to execute alongside the main Command in a fire-and-forget manner
 - **outgoingTransitions**: a list of JSON Objects that contain the details of events available to be received on the current state (if a unexpected event is received, the *Flow Manager* will log an error and ignore it; it is mandatory because a state may not point to other states (e.g. a final one)):
   - **inputEvent** (required): a string with the event that will trigger the transition from the current state
   - **targetState** (required): the ID of the state to land on (**NB.** must exist a state with this ID)
   - **businessEventId**: the ID of the [business event](#business-events-of-the-machine) (**NB.** must exist in the *businessEvents* list)
+  - **payloadValidationSchema** (starting from version `2.6.5`): a [JSON schema](https://json-schema.org/) object against which the event payload should be validated
 
 ### Business states of the machine
 
@@ -536,6 +537,10 @@ Following the configurations of the business states:
 
 ### Command hook
 
+:::caution
+This feature is available starting from version `2.6.0`.
+:::
+
 The Command hook is a custom function to generate command payload. 
 
 It takes as input an object with two fields: the entire Saga entity and the message label of the command; the output is an object with the payload to use. 
@@ -558,6 +563,10 @@ export default ({ saga, messageLabel }) => { return { payload: { sagaId: saga.sa
 
 ## Settings
 
+:::caution
+This feature is available starting from version `2.6.0`.
+:::
+
 Here is the list of supported additional settings:
 
 - **deepMergeMetadata**: a JSON Object that defines if Metadata must be deep merged or not. This operation is implemented with the [Lodash mergeWith function](https://lodash.com/docs/4.17.15#mergeWith), by default the ```customizer``` function is undefined
@@ -566,6 +575,7 @@ Here is the list of supported additional settings:
     - **type** (required): only ```file``` is accepted
     - **encoding**: accepted values are ```plain``` and ```base64```. By default it is ```plain```
     - **content** (required): the ```customizer``` function implementation encoded accordingly
+- **throwOnUnexpectedEvents** (starting from version `2.6.5`): a boolean value that defines if an event received while the saga is in a state that does not list the event label in its outgoing transitions should throw (this will cause the `/event` route to respond with an error)
 
 ## Configuration example
 
@@ -788,7 +798,14 @@ The following example configurations can be used as templates.
           {
             "inputEvent": "redirectTheUserToThePaymentPageError",
             "targetState": "sagaFailed",
-            "businessEventId": 0
+            "businessEventId": 0,
+            "payloadValidationSchema": {
+              "type": "object",
+              "properties": {
+                "reason": { "type": "string" }
+              },
+              "required": ["reason"]
+            }
           }
         ]
       },

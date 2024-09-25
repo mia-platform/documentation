@@ -6,13 +6,13 @@ sidebar_label: Available Locations
 
 # Available Extension Locations
 
-The Console allows you to embed extensions at specific locations that already contain menu items and groups, which can also be used by our extensions. These locations are:
+The Console allows you to embed extensions at specific locations defining the `destination.id` and these locations already contain menu items and groups which can also be used by our extensions. These locations are:
 
-- **Tenant** with locationId `tenant`
-- **Project** with locationId `project`
-- **Runtime** with locationId `runtime`
+- **Tenant** with destinationId `tenant`
+- **Project** with destinationId `project`
+- **Runtime** with destinationId `runtime`
 
-Each location has already menu groups that can be used as `category` route to which attach new menu item with your extension. 
+Each location has already menu groups that can be used as `category` id to which attach new menu item with your extension. 
 
 ## Tenant
 
@@ -24,14 +24,14 @@ Each location has already menu groups that can be used as `category` route to wh
   </div>
 </div>
 
-This location is found on sections related to the Company on the URLs with prefix `/tenants/:tenantId` that represent the location path. As visible from the image, the sidebar already contains menu groups that can be used via parentId:
+This location is found on sections related to the Company on the URLs with prefix `/tenants/:tenantId` that represent the location path. As visible from the image, the sidebar already contains menu groups that can be used via categoryId:
 
-- **GENERAL GROUP** (parentId: `general`)
-- **INFRASTRUCTURE GROUP** (parentId: `infrastructure`)
-- **GOVERNANCE GROUP** (parentId: `governance`)
-- **ACCESS MANAGEMENT GROUP** (parentId: `access-management`)
-- **ADMINISTRATION GROUP** (parentId: `administration`)
-- **EXTENSIBILITY GROUP** (parentId: `extensibility`)
+- **GENERAL GROUP** (categoryId: `general`)
+- **INFRASTRUCTURE GROUP** (categoryId: `infrastructure`)
+- **GOVERNANCE GROUP** (categoryId: `governance`)
+- **ACCESS MANAGEMENT GROUP** (categoryId: `access-management`)
+- **ADMINISTRATION GROUP** (categoryId: `administration`)
+- **EXTENSIBILITY GROUP** (categoryId: `extensibility`)
 
 ## Project
 
@@ -43,12 +43,12 @@ This location is found on sections related to the Company on the URLs with prefi
   </div>
 </div>
 
-This location is found on sections related to the Project overview on the URLs with prefix `/projects/:projectId` that represent the location path. As visible from the image, the sidebar already contains menu groups that can be used via parentId:
+This location is found on sections related to the Project overview on the URLs with prefix `/projects/:projectId` that represent the location path. As visible from the image, the sidebar already contains menu groups that can be used via categoryId:
 
-- **GENERAL GROUP** (parentId: `general`)
-- **ADMINISTRATION GROUP** (parentId: `administration`)
-- **RUNTIME GROUP** (parentId: `runtime`)
-- **ACCESS MANAGEMENT GROUP** (parentId: `access-management`)
+- **GENERAL GROUP** (categoryId: `general`)
+- **ADMINISTRATION GROUP** (categoryId: `administration`)
+- **RUNTIME GROUP** (categoryId: `runtime`)
+- **ACCESS MANAGEMENT GROUP** (categoryId: `access-management`)
 
 ## Runtime
 
@@ -60,9 +60,9 @@ This location is found on sections related to the Project overview on the URLs w
   </div>
 </div>
 
-This location is found on the Runtime section of a Project on the URLs with prefix `/projects/:projectId/monitoring/environments/:envId` that represent the location path. As visible from the image, the sidebar already contains menu groups that can be used via parentId:
+This location is found on the Runtime section of a Project on the URLs with prefix `/projects/:projectId/monitoring/environments/:envId` that represent the location path. As visible from the image, the sidebar already contains menu groups that can be used via categoryId:
 
-- **WORKLOADS GROUP** (parentId: `workloads`)
+- **WORKLOADS GROUP** (categoryId: `workloads`)
 
 :::warning
 Extensions routes placed in a specific location are visible only if the extension is activated in a context that includes that location. For this reason, an extension activated on the Project context cannot be seen if its routes are located on the `Tenant` location.

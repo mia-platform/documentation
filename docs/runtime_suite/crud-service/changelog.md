@@ -15,9 +15,68 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## 7.0.2 - 2024-05-06
+## 7.2.0 - 2024-09-23
 
-## 7.0.2-rc.0 - 2024-04-24
+### Added
+
+- introduce support for Array of ObjectIds at document root level
+- introduce support for `$size` operator in `_q` for fields of type `array`
+
+### Fixed
+
+- enable bom stripping when importing CSV files
+- change CSV _escape_ character to align it with CSV field _quote_ character, as recommended by [RFC 4180](https://datatracker.ietf.org/doc/html/rfc4180)
+
+## 7.1.1 - 2024-08-29
+
+### Changed
+
+- extend to `/bulk` endpoint the requests preprocessing performed on exposed routes of View with lookup feature enabled
+
+## 7.1.0 - 2024-08-26
+
+### Added
+
+- new optional environment variable `CRYPT_SHARED_LIB_PATH` that specify
+where `crypt_shared` MongoDB dynamic library is located. This variable
+is already set within the Docker image and it points to the correct location, so that it is not necessary to customize it.
+
+### Changed
+
+- replace `mongocryptd` libraries with Mongo `crypt_shared`
+- upgrade NodeJS version in Docker image to v20.17.0
+- enforce quoting all strings in CSV export to prevent issues with delimiter character
+
+### Fixed
+
+- when the service was configured to run with the (CSFLE)[https://www.mongodb.com/docs/manual/core/csfle/] feature enabled and a Mongo View was defined alongside the collections models, the service crashed at startup due to an incompatibility between Mongo Views and the auto-encryption feature.  
+This issue has been resolved and the service can now properly start, creating the Mongo Views even in such situation.
+
+## 7.0.4 - 2024-06-28
+
+### Fixed
+
+- bug that made compilers collide with collections having the same prefix.
+
+## 7.0.3 - 2024-06-20
+
+### Changed
+
+- hooks and serializer compiler are not registered anymore on every `httpInterface.js`, but only once in `index.js`, to avoid multiple registers for collections;
+- validator compiler is still applied to each HTTP interface to avoid OOM, but it has been moved to `compilers.js`;
+- `AdditionalCaster` class does not need to compute the fields that are either `ObjectId`, `Date`, or `Geopoint`: in the new `castItem` method, field types are inferred with the `instanceof` keyword;
+- upgrade NodeJS version in Docker image to v20.14.0
+- added `await` keyword when registering Fastify plugins
+
+### Fixed
+
+- fixed projection example in json schema generator
+- `serializerCompiler` has been added to use explicitly [`fastifiy-fast-json`](https://github.com/fastify/fast-json-stringify), along with `AdditionalCaster`  
+- `$eq` operator can now be used also for array fields
+- [#286](https://github.com/mia-platform/crud-service/issues/286): `/-/schemas` accept header defaults to `application/json`
+- [#326](https://github.com/mia-platform/crud-service/issues/326): `/schemas` and `/-/schemas` endpoints now return also `required` property
+
+## 7.0.2 - 2024-05-06
 
 ### Added
 
@@ -59,6 +118,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - updated NodeJS version in Dockerfile to v20.11.0
 - updated `@fastify/mongodb` to v8.0.0
 - updated `@fastify/multipart` to v8.0.0
+
+## 6.10.2 - 2024-06-06
+
+### Changed
+
+- upgrade NodeJS version in Docker image to v20.14.0
+
+## 6.10.1 - 2024-05-17
+
+- fixed projection example in json schema generator
+
 
 ## 6.10.0 - 2024-02-01
 

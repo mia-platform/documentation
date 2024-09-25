@@ -18,9 +18,11 @@ For an overview of which are Real-Time Updater's features, it is possible to rea
 :::
 
 :::danger
-Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture).
-However, it supports all the others architecture where [Projection Record Updates](/fast_data/inputs_and_outputs.md#projection-update-message) messages are emitted by the service as
-triggers for the Fast Data downstream components. This means that, in order to use the Projection Storer, it will
+Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/concepts/architecture.md#standard-architecture).
+However, it supports all the others architecture where [Projection Record Updates](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) messages are emitted by the service as
+triggers for the Fast Data downstream components. 
+
+This means that, in order to use the Projection Storer, it will
 be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) plugin to actually trigger the generation of Single Views.
 :::
 
@@ -97,8 +99,10 @@ It is the data source identifier (a name) describing from which system the servi
 Records on the origin system may get deleted and consequently a change event requesting the removal of a document from a projection
 is produced. When the service reads this event, it is possible to define which behavior is adopted in processing the delete operation,
 depending on your needs.  
+
 Indeed, the service can be configured to apply a _soft delete_ policy, meaning that projections records are not delete from the storage system, but
 they are marked as `DELETED`, so that downstream components would not read those records when aggregating the Single View records.
+
 On the contrary, the service can also adopt a _hard delete_ policy, where there projection record is removed immediately from the storage system.
 
 This flag determines whether the _soft delete_ policy is enabled, which by default it is.
@@ -130,16 +134,19 @@ message formats employed by some Change Data Capture systems (CDC), which are:
     ```
 
 In addition to the already existing message adapters, it is also possible to provide to the service a _user-defined function_
-that acts as message adapter. This function takes as input the incoming message associated to a projection, the list of
+that acts as message adapter, written in Javascript. 
+
+This function takes as input the incoming message associated to a projection, the list of
 primary key fields expected for that projection and the service logger. Its goal is to process the message and produce
 an object containing the description of the parsed message in a common format.  
+
 Thus, besides defining the usage of `custom` message adapter type, in the configuration it is also necessary to provide the location of the file
 containing the custom message adapter function. For example:
 
 ```json
 "dataSourceAdapter": {
   "type":  "custom"
-  "filepath": "/app/extensions/messageAdapter.kt"
+  "filepath": "/app/extensions/messageAdapter.js"
 }
 ```
 
@@ -193,6 +200,16 @@ Here is described the interface of the custom message adapter function:
 ```
 
 Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
+
+:::tip
+Starting from `v1.3.0`, the Projection Storer can accept a message adapter written as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+```js title=esmMessageAdapter.js
+export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+  // ...adapter logic
+}
+```
+:::
 
 <details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
 <p>
@@ -307,10 +324,12 @@ try {
 </details>
 
 :::caution
-Within the custom message adapter script file it is possible to define multiple functions. However, it is mandatory
+Within the custom message adapter script file it is possible to define multiple functions. 
+
+If you are not relying on ESM module definition, however, it is mandatory
 to define a function named `messageAdapter`, which will be treated as the entry point for the custom message adapter.
 
-Moreover, to support both Projection Storer and Real-Time Updater services, the `module.export` instruction must be
+In this case, to support both Projection Storer and Real-Time Updater services, the `module.export` instruction must be
 added, but encapsulated within a try/catch block as shown below:
 ```js
 try {
@@ -370,6 +389,16 @@ the function's implementation.
 Considering the implementation of these cast functions, they expect as input two parameters, that are the _value_ the field
 to be transformed and the _field name_ represented as `string`. The output of the cast functions should be a single value
 in the type expected by the data model for that specific field on which the cast function is applied.
+
+:::tip
+Starting from `v1.3.0`, the Projection Storer can accept a cast function having [the new signature](/fast_data/configuration/cast_functions.md#new-signature), which accepts the whole ingestion message as first parameter and it's defined as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+```js title=newCastFunction.js
+export default function myNewCastFunction(messageObject, fieldName, logger) {
+  return messageObject[fieldName];
+}
+```
+:::
 
 Below you can find several examples about implementation of cast functions.
 
@@ -1457,9 +1486,9 @@ As explained earlier, Projection Storer service is in charge only of importing, 
 Computing which Single View should be re-created given a specific change event is now a responsibility of the [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md),
 which should be configured accordingly. In this [page](/fast_data/configuration/single_view_trigger_generator.mdx) can be found an explanation on how to configure it.
 
-In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/architecture.md#standard-architecture), which means
+In case the System of Record of your concern is currently adopting a Fast Data [_standard_ architecture](/fast_data/concepts/architecture.md#standard-architecture), which means
 the Real-Time Updater was responsible also of triggering Single Views re-generation, the Single View Trigger Generator plugin has to be introduced in the system, since
-Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/architecture.md#event-driven-architecture).
+Projection Storer only supports Fast Data [_event-driven_ architectures](/fast_data/concepts/architecture.md#event-driven-architecture).
 
 A detailed explanation of how the Single View Trigger Generator service should be introduced and how to migrate Fast Data
 from _standard_ to _event-driven_ architecture is provided [here](/fast_data/single_view_trigger_generator.md#migration-guide-for-adopting-single-view-trigger-generator)

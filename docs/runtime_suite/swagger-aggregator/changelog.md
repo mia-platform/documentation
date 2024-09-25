@@ -10,6 +10,28 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.8.0] 2024-08-26
+
+### Added
+
+- Added GET `/ui-config` endpoint to retrieve the config for the API Portal UI.
+
+### Updated
+
+- Updated Api Portal image version to `2.1.0`
+
+## [3.7.0] 2024-07-11
+
+### Added
+
+- Added `subswaggersInDescription` query parameter to `/swagger/*`, `/openapi/v3/*` and `/openapi/v3-1/*` endpoints
+- APi Portal v2.0.1 is now served from Docker image
+
+### Versioning
+
+- `ajv` to `^8.16.0`
+- Dev dependencies updated
+
 ## [3.6.0] 2024-04-11
 
 ### Updated
@@ -42,7 +64,6 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 ## [3.5.0] 2023-07-04
 
 ### Added
-
 
 - `PREVENT_REQUEST_BODY_CONFLICTS` environment variable, to prevent the request body aggregation during the conversion from Swagger 2 to OpenAPI Specification v3. It is equivalent to the `resolveInternal` [parameter of the `swagger2openapi` library](https://github.com/Mermade/oas-kit/blob/main/packages/swagger2openapi/README.md#a-command-line) used for the conversion.
 

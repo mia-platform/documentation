@@ -4,7 +4,7 @@ title: Single Views Configuration
 sidebar_label: Single Views
 ---
 
-In this document we guide you through the configuration of [Single Views](/fast_data/the_basics.md#single-view-sv) directly in the Console.
+In this document we guide you through the configuration of [Single Views](/fast_data/concepts/the_basics.md#single-view-sv) directly in the Console.
 
 ## Create the Single View
 
@@ -22,11 +22,60 @@ To define the custom fields, indexes and internal endpoints of your single view 
 
 ![Fast Data Single View Fields](../img/single-view-detail-fields.png)
 
-The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](/development_suite/api-console/api-design/crud_advanced.md#create-a-new-crud). To know more about indexes [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
+### Import Single view fields
+
+In addition to manually manually creating your CRUD fields, it is also possible to import them:
+
+- from a [JSON schema](#how-to-create-the-fields-of-your-single-view-by-importing-a-json)
+- from a [data sample](#generate-single-view-fields-from-data-sample)
+
+This simplify the schema definition whenever it has already been defined somewhere else or a record representative of your dataset is available.
+
+#### How to create the fields of your single view by importing a JSON
+
+From the Import fields **from JSON schema** button, the supported field types are the same as those described in the [dedicated section of the MongoDB CRUD](/development_suite/api-console/api-design/crud_advanced.md#how-to-create-the-fields-of-your-crud-by-importing-a-json), since single views are treated as CRUD collections.
+
+#### Generate single view fields from data sample
+
+In the card `Fields` in Single Views, you can upload a data sample to generate fields by clicking on the appropriate button. Doing this will replace the current fields with those contained within the file.
+The supported file extension are: `.csv` and `.json`.
+
+Example json
+
+```json
+[
+  {
+    "field1": "anyString",
+    "field2": "true",
+    "field3": "123"
+  }
+]
+```
+
+Example CSV
+
+```csv
+field1,field2,field3
+false,anyString,123
+```
+
+At the end of the upload an internal function will try to cast the types correctly, otherwise it will treat them as strings by default.
+
+:::note
+Import of fields is supported only for the following data types: `String`, `Number`, `Boolean` or `Date`. For example, you cannot import fields of type object.
+In Case some fields are not in the correct format, they will be ignored.
+:::
+
+:::caution
+You cannot import fields with the same name as one of the metadata fields. If this happens, a warning will be displayed and the import won't be successful
+:::
+
+The type fields supported are the same of the collection you can create in the [MongoDB CRUD section](/development_suite/api-console/api-design/crud_advanced.md#create-a-new-crud).  
+To know more about indexes [click here](/runtime_suite/crud-service/10_overview_and_usage.md#indexes).
 
 ## Create the Single View Creator service
 
-You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](/fast_data/inputs_and_outputs.md#projection-change) event occurs.
+You need to create a **Single View Creator** to update or delete a Single View when a [Projection Changes](/fast_data/concepts/inputs_and_outputs.md#projection-change) event occurs.
 
 A Single View can be updated by many Single View Creator. Each Single View Creator should be linked to one System of Record through Projection Changes.
 
@@ -182,7 +231,7 @@ This scenario brings to a problem: The Single View Creator will have to re-gener
 
 To prevent this problem, a new infrastructure has been designed:
 
-![SV-Patch infrastructure](../img/fastdata-architecture-standard-svpatch.svg)
+![SV-Patch infrastructure](../concepts/img/fastdata-architecture-standard-svpatch.svg)
 
 The Idea is to configure a second Single View Creator with the sole purpose of performing SV-Patch operations.
 This second service will consume pr-update messages from the Real-Time Updater which will be generated only for specific projections.

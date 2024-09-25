@@ -4,7 +4,7 @@ title: ER Schema Configuration
 sidebar_label: ER Schema
 ---
 
-In this document we guide you through the configuration of the ER Schema (`erSchema.json`), one of the configuration files required by the [Single View Creator](/fast_data/architecture.md#single-view-creator-svc), [Real-Time Updater](/fast_data/architecture.md#real-time-updater-rtu) and [Single View Trigger Generator](/fast_data/architecture.md#single-view-trigger-generator-svtg) in a low-code situation.
+In this document we guide you through the configuration of the ER Schema (`erSchema.json`), one of the configuration files required by the [Single View Creator](/fast_data/concepts/architecture.md#single-view-creator-svc), [Real-Time Updater](/fast_data/concepts/architecture.md#real-time-updater-rtu) and [Single View Trigger Generator](/fast_data/concepts/architecture.md#single-view-trigger-generator-svtg) in a low-code situation.
 
 :::tip
 If you want to try the Fast Data Low Code with a simple example, here's a step-by-step [tutorial](/fast_data/tutorials/low-code.mdx)
@@ -12,7 +12,7 @@ If you want to try the Fast Data Low Code with a simple example, here's a step-b
 
 ## Overview
 
-The ER Schema, or Entity-Relation Schema, defines the relationships between Fast Data collections, which include [Projections](/fast_data/the_basics.md#projection), [Single Views](/fast_data/the_basics.md#single-view-sv) and [CRUD Collections](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
+The ER Schema, or Entity-Relation Schema, defines the relationships between Fast Data collections, which include [Projections](/fast_data/concepts/the_basics.md#projection), [Single Views](/fast_data/concepts/the_basics.md#single-view-sv) and [CRUD Collections](/development_suite/api-console/api-design/crud_advanced.md#what-is-a-crud).
 
 :::caution
 Don't forget to [declare your relationships both ways](#direction-of-the-relationships)!
@@ -158,7 +158,7 @@ Conditions can also use [MongoDB Query and Projection Operators](https://www.mon
 
 Normally when we write an ER Schema we think about declaring a condition in only one direction but this is not enough.
 
-The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/plugin.md#aggregation).
+The generation of the Single View can actually be split in two main blocks, the [Strategy](/fast_data/concepts/the_basics.md#strategies) and the [Aggregation](/fast_data/configuration/single_view_creator/plugin.md#aggregation).
 As you may know, the Strategy is the process by which given an update on a projection document it tells the Aggregation which Single Views need to be re-aggregated. So, given the nature of the whole process, the relationships are explored in the __opposite__ way in which the Aggregation explores them.
 
 <details><summary>ER Schema Configuration with Strategy and Aggregation</summary>

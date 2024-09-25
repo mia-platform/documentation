@@ -15,6 +15,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.7] - 2024-09-20
+
+### Fixed
+
+- fixed validation for integer types in input form fields in bk-form-modal component
+- fixed filter by special characters in bk-expanded-filters
+- fixed conversion of boolean fields in csv export
+
+## [1.5.6] - 2024-07-12
+
+### Added
+
+- added default export for web components package
+- enriched manifests
+
+### Fixed
+
+- fixed validation error on array object fields in accordion
+- fixed date picker error on array object fields in accordion form
+- fixed flag allowNavigation to navigate array of objects
+
+## [1.5.5] - 2024-06-28
+
+### Fixed
+
+- fixed `bk-table` fit parent on resize
+- fixed half hidden tooltip in editor
+- fixed error for required array of dates in forms
+
+## [1.5.4] - 2024-06-13
+
+### Added
+
+- added custom events for bk-dynamic-form-modal and bk-dynamic-form-drawer
+
+## [1.5.3] - 2024-06-03
+
+### Fixed
+
+- fixed logout redirect
+- fixed broken link in readonly file fields
+
+## [1.5.2] - 2024-05-16
+
+### Fixed
+
+- fixed duplicated options in bk-export-modal
+- fixed undefined value in bk-card for boolean type
+
 ## [1.5.1] - 2024-05-03
 
 ### Added
@@ -196,6 +245,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `bk-layout` shows the user menu when `user` context is defined (when fetch request to api is successful). This fix will show an empty user `name` if not provided
 - `bk-layout` manifest `userInfoUrl` was missing the mock fetch implementation
 - `bk-layout` manifest `userInfoUrl.userPropertiesMapping` fixed key overwrite
+
 ### Added
 
 - Support for `CRUD Service` import functionality is available through components `bk-import-modal` and `bk-crud-client`

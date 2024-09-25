@@ -110,9 +110,17 @@ mv ${MYSQL_NAME}/lib/* lib/x86_64-unknown-linux-gnu/mysql
 
 No further actions beside editing `.gitlab-ci.yml` are required.
 
+### Mia CRUD Service: add support
+
+By default, running the CI of this project produces an artifact with Mia CRUD Service support since it does not require any specific drivers.
+
+### Salesforce SObjects API: add support
+
+By default, running the CI of this project produces an artifact with Salesforce SObjects support since it does not require any specific drivers.
+
 ## Cronjob Configuration
 
-From your project select `CronJobs` > `Create new CronJob`, insert a unique name for the job, an optional description, the full name of the docker image created by your CI job. It will come in the form `<URL TO REGISTRY>/<NAME OF PROJECT>/data-catalog-agent:<TAG>`. Also insert a `CronJob schedule` using the [k8s syntax](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#writing-a-cronjob-spec).
+From your project select `CronJobs` > `Create new CronJob`, insert a unique name for the job, an optional description, the full name of the docker image created by your CI job. It will come in the form `<URL TO REGISTRY>/data-catalog/agent:<TAG>`. Also insert a `CronJob schedule` using the [k8s syntax](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#writing-a-cronjob-spec).
 
 By clicking on create, you need to configure:
 
@@ -223,7 +231,7 @@ An extra `encoding` field equal to `base64` can be used to specify a pre-read de
 
 Secretable fields are marked in the following sections.
 
-### Connections
+## Connections
 
 A list of entries to connect to datasources via supported integration methods. The general recipe is:
 
@@ -233,6 +241,9 @@ A list of entries to connect to datasources via supported integration methods. T
     "<CONNECTION_NAME>": {
       "type": "<INTEGRATION_METHOD>",
       "configuration": {
+        // depends on the integration method
+      },
+      "settings": {
         // depends on the integration method
       }
     }
@@ -247,11 +258,14 @@ Available integration methods are:
 
 Such drivers come often in the form of a [`dynamic shared object`](https://en.wikipedia.org/wiki/Shared_library) and must be embedded with the binary and available at runtime (see the template repository README file).
 
-#### ODBC
+A non-required object `settings` can be added to the connection configuration to define the following additional properties: 
+  - `namespace`: string that overrides the default connection name;
+  - `batchSize`: number that defines the number of tables that can be paginated in a odbc query. if not specified, 1000 tables for query will be retrieved.
+  - `columnBatchSize`: number that defines the number of columns that are expected to be processed by each batch iteration. if not specified, 20 columns for batch will be used.
 
-##### PostgreSQL
+### PostgreSQL
 
-To configure a **PostgreSQL** connection use:
+To configure a **PostgreSQL** ODBC connection use:
 
 ```json
 {
@@ -289,13 +303,13 @@ or use an inline ODBC connection string
 
 Other keys are `host` and `port` which for a **PostgreSQL** connection are defaulted to `0.0.0.0` and `5432`. Any other configuration parameter can be appended using the key `flags` which must be a semicolon separated string.
 
-###### Secretable fields
+#### Secretable fields
 
 `uid`, `pwd` or `params` support secrets
 
-##### Oracle
+### Oracle
 
-To configure an **Oracle** connection use:
+To configure an **Oracle** ODBC connection use:
 
 ```json
 {
@@ -328,7 +342,7 @@ to access a `tnsnames.ora` file where the DBQ name can be resolved
         "params": {
           "uid": "test_user",
           "pwd": "password",
-          //                                              👇 this must be defined in your tnsnames.ora file
+          // 👇 this must be defined in your tnsnames.ora file
           "dbq": "DRIVER=oracle;UID=user;PWD=p4ssw0rd;DBQ=DATABASE_NAME"
         }
       }
@@ -361,11 +375,76 @@ in case you don't want to add the environment variable, the content of one entry
 Other keys are:
 
 - `version` which can be neglected **UNLESS USING ORACLE 11g** since it [does not support](https://docs.oracle.com/database/121/LNPLS/release_changes.htm#LNPLS113) pagination via `OFFSET ? ROWS FETCH FIRST ? ROWS ONLY`.
+
+  :::caution
+
+  `version` MUST be explicit at `configuration` level.
+  ```json
+  {
+    "type": "odbc",
+    "configuration": {
+      "vendor": "oracle",
+      "version": 11,
+      "params": { /** ... */ }
+    }
+  }
+  ```
+  :::
+
 - `flags` which will be added, as a string, to the connection like `"flags": "DBA=R;"`, for the available flags check [oracle documentation: 25.4.1 Format of the Connection String](https://docs.oracle.com/en/database/oracle/oracle-database/21/adfns/odbc-driver.html#GUID-618B141E-DD46-4907-99C2-486E801CA878).
 
-:::caution
-`version` MUST be explicit if "11".
-:::
+- `options` field for _oracle_ odbc configurations: this field defines the tables that will be used for retrieve the metadata.
+  If not specified, `user` option will be used as default. Three options available:
+
+  - `user`: tables `user_tables`, `user_views` and `user_mviews` will be used. No filter needs to be specified since they default to the user's schema.
+    ```json
+    {
+      "type": "odbc",
+      "configuration": {
+        "vendor": "oracle",
+        "params": { /** ... */ },
+        "options": {
+          "user"
+        }
+      }
+    }
+    ```
+  - `all`: tables `all_tables`, `all_views` and `all_mviews` will be used. Optionally, a list of schemas needs to be provided in `owners` field to filter the desired schemas.
+    ```json
+    {
+      "type": "odbc",
+      "configuration": {
+        "vendor": "oracle",
+        "params": { /** ... */ },
+        "options": {
+          "all": {
+            "owners": ["some_schema_name"]
+          }
+        }
+      }
+    }
+    ```
+  - `dba`: tables `dba_tables`, `dba_views` and `dba_mviews` will be used. Optionally, a list of schemas needs to be provided in `owners` field to filter the desired schemas.
+    ```json
+    {
+      "type": "odbc",
+      "configuration": {
+        "vendor": "oracle",
+        "params": { /** ... */ },
+        "options": {
+          "dba": {
+            "owners": ["some_schema_name"]
+          }
+        }
+      }
+    }
+    ```
+
+    :::caution 
+
+    In this case, remember that password needs to be written in the form of `<password> AS SYSDBA`.
+
+    ::: 
 
 Connection with an [oracle wallet](https://docs.oracle.com/en/database/oracle/oracle-database/19/dbimi/using-oracle-wallet-manager.html#GUID-D0AA8373-B0AC-4DD8-9FA9-403E345E5A71) is also [supported](https://docs.oracle.com/en/cloud/paas/autonomous-database/serverless/adbsb/connect-prepare-oci-wallets.html#GUID-EFAFA00E-54CC-47C7-8C71-E7868279EF3B):
 
@@ -380,13 +459,13 @@ Also the environment variable must be set:
 
 1. The `TNS_ADMIN` environment variable must be set **explicitly** unless defaulted to `/home/agent/oracle/admin`
 
-###### Secretable fields
+#### Secretable fields
 
 `uid`, `pwd` or `params` support secrets
 
-##### MS SQL server
+### MS SQL server
 
-To configure a **MS SQL Server** connection use:
+To configure a **MS SQL Server** ODBC connection use:
 
 ```json
 {
@@ -424,13 +503,13 @@ or use an inline ODBC connection string:
 
 Other keys are `host` and `port` which for a **PostgreSQL** connection are defaulted to `0.0.0.0` and `1433`. Any [extra connection property](https://learn.microsoft.com/en-us/sql/connect/odbc/dsn-connection-string-attribute?view=sql-server-ver16) can be added via the key `flags` which will be added, as a string, to the connection, as a semicolon separated string. It is quite useful, for local development purposes to add the flag `"TrustServerCertificate=yes"`.
 
-###### Secretable fields
+#### Secretable fields
 
 `uid`, `pwd` or `params` support secrets
 
-##### MySQL
+### MySQL
 
-To configure a **MySQL** connection use:
+To configure a **MySQL** ODBC connection use:
 
 ```json
 {
@@ -468,13 +547,11 @@ or use an inline ODBC connection string:
 
 Other keys are `host` and `port` which for a **PostgreSQL** connection are defaulted to `0.0.0.0` and `3306`. Any [extra connection property](https://dev.mysql.com/doc/connector-odbc/en/connector-odbc-configuration-connection-parameters.html) can be added via the key `flags` which will be added, as a string, to the connection, as a semicolon separated string.
 
-###### Secretable fields
+#### Secretable fields
 
 `uid`, `pwd` or `params` support secrets
 
-#### HTTP
-
-##### Mia CRUD Service
+### Mia CRUD Service
 
 To configure a **Mia CRUD Service** connection use:
 
@@ -488,6 +565,7 @@ To configure a **Mia CRUD Service** connection use:
         "params": {
           "baseUrl": "http://mia-crud-service:3000",
           "endpoint": "/-/schemas",
+          "healthcheck": "/-/healthz",
           "headers": {
             "accept": "application/x-ndjson"
           }
@@ -500,9 +578,55 @@ To configure a **Mia CRUD Service** connection use:
 
 The driver basically calls the `/-/schemas` URL to extract all the data models from MongoDB. Since the response is, of course, a JSON Schema, some information in the `ddl` object may be missing, like the `size` of the properties.
 
-##### Salesforce SObjects
+Additionally, the version of the CRUD Service is obtained from the `/-/healthz` endpoint.
 
-To configure a **Salesforce SObjects** connection you can use two authentication methods:
+In case custom `tls` parameters are required such as a custom root CA or an insecure HTTPS connection,
+use the parameter `tls` with keys `insecure` and/or `certificate`:
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {
+      "type": "http",
+      "configuration": {
+        ...,
+        "params": {
+          "tls": {
+            "insecure": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+or
+
+```json
+{
+  "connections": {
+    "<CONNECTION_NAME>": {
+      "type": "http",
+      "configuration": {
+        ...,
+        "params": {
+          "tls": {
+            "certificate": {
+              "type": "file",
+              "path": "/path/to/root/CA"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Salesforce SObjects
+
+To configure a **Salesforce SObjects** HTTP connection you can use two authentication methods:
 
 * [jwt-bearer](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5):
   ```json
@@ -573,7 +697,7 @@ If not all the `SObjects` are retrieved you'll have to follow these steps to exp
 - Click on "Object Settings" inside the new Permission Set, then, for each standard SObject, update the visibility in the desired way (e.g. View All, Modify All)
 - Assign the new Permission Set to the user with "Salesforce Integration" user license and "Salesforce API Only System Integrations" profile
 
-###### JWT Authorization
+#### JWT Authorization
 
 To be able to connect to the Salesforce API using the JWT Bearer flow you will need to follow the next steps.
 
@@ -588,13 +712,13 @@ To be able to connect to the Salesforce API using the JWT Bearer flow you will n
    
 Now you should have everything you need to fill out the configuration parameters. If you are using a testing instance you'll need to set the param `loginUrl` to `https://test.salesforce.com/`.
 
-###### Secretable fields
+#### Secretable fields
 
 `clientId`, `username`, `clientSecret`, `password`, `securityToken` or `privateKey` support secrets
 
-### Targets
+## Targets
 
-There are 3 targets available:
+There are 4 targets available:
 
 1. [**default**] stdout
 2. file
@@ -603,9 +727,11 @@ There are 3 targets available:
 For each listed connection, after metadata is retrieved, `agent` **sequentially** sends data to the target as:
 
 - `json` for `stdout` and `file`
-- [`ndjson`](https://ndjson.org/) for `mia-console`
+- [`ndjson`](https://github.com/ndjson/ndjson-spec) for `mia-console`
 
 The final content is an `array` of models. Model spec is given in the form of a <a download target="_blank" href="/docs_files_to_download/data-catalog/model.schema.json">JSON schema</a>.
+
+### Standard Output 
 
 To explicitly configure the `stdout` target use:
 
@@ -617,6 +743,8 @@ To explicitly configure the `stdout` target use:
   }
 }
 ```
+
+### File
 
 To configure the `file` target use:
 
@@ -640,6 +768,8 @@ which will save output files in the folder `./output`. To override this use:
   }
 }
 ```
+
+### MIA Console
 
 To configure the `mia-console` target use:
 
@@ -679,6 +809,6 @@ on `type` `mia-console` the auth endpoint can be customized using `oauthTokenEnd
 1. customizing the revision using the field `revision`
 2. or customizing the overall url using the field `dataCatalogEndpoint`
 
-###### Secretable fields
+#### Secretable fields
 
 `clientId`, `clientKeyId`, or `privateKey` support secrets

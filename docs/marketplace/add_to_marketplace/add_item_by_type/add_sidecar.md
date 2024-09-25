@@ -4,13 +4,16 @@ title: Publish your Sidecar to the Marketplace
 sidebar_label: Create a Sidecar
 ---
 
-[Sidecar containers](/development_suite/api-console/api-design/microservice-containers.md#sidecar-containers) are secondary utility containers running side by side with the [main container](/development_suite/api-console/api-design/microservice-containers.md#main-container) in the same host.
+[Sidecar containers](/development_suite/api-console/api-design/microservice-containers.md#sidecar-containers) are secondary utility containers
+running side by side with the [main container](/development_suite/api-console/api-design/microservice-containers.md#main-container) in the same host.
 
 Sidecars can be added to your Project from the Marketplace or directly specifying a docker image.
 
-Sometimes you may want to add your sidecar to multiple Services. Adding the sidecar from docker image and setting up the correct values for the sidecar configuration for each Service might be a little tricky and error prone.
+Sometimes you may want to add your sidecar to multiple Services.
+Adding the sidecar from docker image and setting up the correct values for the sidecar configuration for each Service might be a little tricky and error prone.
 
-To ease this process, Mia-Platform Console allows you to define your sidecar resource in the Marketplace. This way, you can define once the correct sidecar configuration and then replicate it every time you need to add it in your Projects.
+To ease this process, Mia-Platform Console allows you to define your sidecar resource in the Marketplace.
+This way, you can define once the correct sidecar configuration and then replicate it every time you need to add it in your Projects.
 
 ### Define the sidecar resource
 
@@ -40,7 +43,8 @@ Note the `"type": "sidecar"` is required to specify that this resource is a side
 
 ### Publish a new sidecar resource via `miactl`
 
-This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
+This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md),
+the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
 
 To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
 
@@ -98,7 +102,8 @@ Done! Your sidecar resource has been updated and all the new instances will now 
 
 ### Customize your sidecar definition
 
-In these examples, the configuration defines a very simple sidecar resource by specifying only the docker image of the sidecar application and exposing it to the `5000` port of the container, but you can define `ConfigMaps`, `Probes` or `Environment Variables` too.  
+In these examples, the configuration defines a very simple sidecar resource by specifying only the docker image of the sidecar application and exposing it to the `5000` port of the container,
+but you can define `ConfigMaps`, `Probes` or `Environment Variables` too.  
 To do this, create a more specific sidecar definition following the `json-schema` below.
 
 <details>

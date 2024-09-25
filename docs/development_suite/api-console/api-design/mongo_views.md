@@ -11,6 +11,10 @@ sidebar_label: Create Views
 
 ## Create a new View
 
+:::info
+The creation of Views cointaining [encrypted fields](/runtime_suite/crud-service/30_encryption_configuration.md) is supported for [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md) versions < v7.0.0 and >= v7.1.0.  
+Please, pay attention to the CRUD service version when using this feature.
+:::
 ![create view form](img/create_mongodb_view.png)
 
 To create a new MongoDB View, you need to access the **MongoDB Views** menu from the **Data Models** section. From here, to access the creation page, simply click on the **Create new View** button.
@@ -39,7 +43,7 @@ When you create a new view, the console will set a default pipeline which return
 
 :::note
 The whole aggregation pipeline is going to be performed on-demand on each request the view received.   
-If you expect to perform complex aggregation with many collections involved, or several amounts of documents involved in each request, you may consider using a [**Fast Data Single View**](/fast_data/the_basics.md#single-view-sv) instead. In fact, a MongoDB View perform aggregation on reading, the Fast Data Single View perform the aggregation on writing of the source collections (called [**Projections**](/fast_data/the_basics.md#projection)) and it's so a better choice for data-intensive aggregation.
+If you expect to perform complex aggregation with many collections involved, or several amounts of documents involved in each request, you may consider using a [**Fast Data Single View**](/fast_data/concepts/the_basics.md#single-view-sv) instead. In fact, a MongoDB View perform aggregation on reading, the Fast Data Single View perform the aggregation on writing of the source collections (called [**Projections**](/fast_data/concepts/the_basics.md#projection)) and it's so a better choice for data-intensive aggregation.
 :::
 
 :::caution
@@ -63,6 +67,21 @@ Unlike MongoDB CRUD, you cannot set indexes on these views' fields instead, beca
 The [CRUD Service](/runtime_suite/crud-service/10_overview_and_usage.md) will handle your data model and expose its API to the services within your project. If you need to make the API consumable from the external of your namespace, you can create an [Endpoint](/development_suite/api-console/api-design/endpoints.md) of type `MongoDB View` connected to one of the `Internal Endpoints` of your view. 
 
 Since the internal endpoint of a MongoDB View can be used only for reading operations, the endpoint will expose only `GET` routes as well.
+
+From version `13.0.2` of Mia-Platform Console, endpoints connected to [writable Views](/runtime_suite/crud-service/50_writable_views.md) will expose the following routes:
+- `DELETE/:id`
+- `GET/`
+- `GET/:id`
+- `GET/export`
+- `GET/count`
+- `GET/schema`
+- `GET/lookup/:id`
+- `PATCH/:id`
+- `POST/`
+
+:::caution
+Switching from writable to non writable views (and vice versa) and saving the configuration may result in losing some custom parameters on the endpoint routes. Please pay attention when performing this operation.
+:::
 
 :::caution
 When exposing data through an endpoint, it's necessary for documents to have a `__STATE__` field to facilitate accurate filtering. If the aggregation process generates objects without this field, the endpoint will consistently return an empty array as its output.

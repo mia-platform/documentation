@@ -27,6 +27,15 @@ If you are looking for instructions to configure the service in appointments or 
 
 :::info
 
+**v2.4.0**
+Since v2.4.0 a new service configuration field is supported: `isNotificationManagerAsync`.
+
+The `isNotificationManagerAsync` configuration field, disabled by default, allows you to send notification through the [Notification Manager][notification-manager-doc] asynchronously.
+
+:::
+
+:::info
+
 **v2.3.0**
 Since v2.3.0 a new service configuration field is supported: `isNotificationManagerAvailable`.
 
@@ -119,11 +128,19 @@ A reference presentation of each available field is provided in the following ta
 | `isTeleconsultationAvailable` | No | `false` | If the teleconsultation service is available, enable the integration to generate teleconsultation links. |
 | `isMessagingAvailable` | No | `false` | If the messaging service is available, enable the integration to send messages and reminders. |
 | `isNotificationManagerAvailable` | No | `false` | If the [Notification Manager][notification-manager-doc] service is available, enable the integration to send messages and set reminders. |
+| `isNotificationManagerAsync` | No | `false` | If the call to the [Notification Manager][notification-manager-doc] should be executed asynchronously |
 | `isTimerAvailable` | No | `false` | If the timer service is available, enable the integration to set reminders. |
 | `isUserAvailable` | No | `false` | If the resources crud path is available, enable to recover resource's information for `POST /searches/first-available-slot/` endpoint. |
 | `isFlexibleSlotAvailable` | No | `false` | If you can create availabilities without setting a fixed slot duration. | 
 | `isParticipantStatusAvailable` | No | `false` | If additional status information about the participants are stored in the [appointments CRUD][crud-appointments]. | 
 | `defaultLockDurationMs` | No | - | The default duration of the temporary slot lock (in milliseconds). |
+
+:::danger
+
+**v2.4.0**
+If the configuration filed `isNotificationManagerAsync` is set to true the call to the [Notification Manager][notification-manager-doc] is no longer awaited. If any errors occur during the sending of the notification they will not be present in `errors` array of the response.
+
+:::
 
 :::danger
 

@@ -17,14 +17,14 @@ In particular, you need to have already set up your Console and configured these
 
 - **Company**: a company is a resource that has governance on all the projects it contains.
   It also provides the default information (providers, environments, CI/CD integration, and cluster information) that will be inherited by newly created projects.
-  To create a company, please refer to the [create company guide](/development_suite/company/create-company.md).
+  To create a company, please refer to the [create company guide](/console/company-configuration/create-company.md).
 
 - **Git Provider**: the Git Provider is the resource that will be used by the Console to correctly retrieve the third-party service configurations needed by your projects.
   You can create a Git Provider for your company by following the procedure described [here](/console/company-configuration/providers/configure-provider.mdx).
 
 - **Template**: a template is a repository with pre-filled configurations. Each company can have one or more templates.
   The template allows you to pre-fill resources in your Project and start similar projects with the same configurations.
-  In short, it constitutes a base from which your Project will be created. [Here](/development_suite/company/project-blueprint.md) you can find a guide on how to handle Project templates.
+  In short, it constitutes a base from which your Project will be created. [Here](/console/company-configuration/project-blueprint.md) you can find a guide on how to handle Project templates.
 
 
 Once you have at least a provider, a company, and a template correctly configured, you will be able to create a new Project.
@@ -43,7 +43,7 @@ The Project creation process is divided into three phases:
    * **Company** (_required_): the company that you want to create your Project into, selected from a list of pre-configured companies. As mentioned before, selecting a specific company allows you to keep the same configuration for different projects;
    * **Project name** (_required_): the name of your Project. It will be shown in the Project card in the Home section of the Console;
    * **Description**: the description of your Project. It will be shown in the Project card in the Home section of the Console.
-   * **Project workflow**: you can specify whether to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/enhanced-project-workflow.md) or keep using the standard one.
+   * **Project workflow**: you can specify whether to use the [Enhanced Project Workflow](/development_suite/set-up-infrastructure/overview.md) or keep using the standard one.
 
 <br/>
 
@@ -104,19 +104,11 @@ The Project creation process is divided into three phases:
       There are two different possibilities: use an already existent Azure DevOps Project with multiple
       Console Project inside it or create an Azure DevOps Project for each Console Project.
 
-      #### A single Azure DevOps Project with multiple configurations repository
+      The path should be: `organization-name/azure-devops-project-name/_git/repository-name`.
+      If the Azure Devops project already exists (e.g. if the project at the url `https://dev.azure.com/mia-platform-devops/Test` exists)
+      it will be created a new repository for the Console project configurations.
 
-      It corresponds to the **path where your Azure Project is reachable** with the repository name appended: the pattern is _organization-name/project-name/repository-name_.
-
-      For example, if your Project is reachable at the URL **`https://dev.azure.com/mia-platform-devops/Test`**, <br/>
-      and the repository is named `my-repository`, then the corresponding must be **`mia-platform-devops/Test/my-repository`**.
-
-      #### An Azure DevOps Project for each Console Project
-
-      It corresponds to the **organization where to create the Project** with the repository name appended: the pattern is _organization-name/repository-name_.
-
-      For example, if your organization is reachable at the URL **`https://dev.azure.com/mia-platform-devops`**, <br/>
-      and the repository is named `my-repository` then the value must be **`mia-platform-devops/my-repository`**.
+      Otherwise, if the Azure Devops project does not exists, it will be created (if permission are enough).
 
     </TabItem>
 

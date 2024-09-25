@@ -15,6 +15,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] 2024-05-23
+
+- Update Node.js to v20 (LTS)
+
+### Added
+
+- Add custom helper to format values according to locale
+- Add DEFAULT_LOCALE environment variable
+
 ## [1.6.0] 2023-11-22
 
 ### Changed

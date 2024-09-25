@@ -46,3 +46,10 @@ curl --request GET
 :::info
 Check out the [manage the security of your endpoints section](/development_suite/api-console/api-design/endpoints.md#manage-the-security-of-your-endpoints) to know in detail how to write the user group expression
 :::
+
+:::tip
+Remember that if you set the `client-key` header, for security reasons its content will be always evaluated, even if you are calling an "unsecured" endpoint that does not need the API Key.
+For this reason, remember to always set the `client-key` header with a valid secret, otherwise **you will get an Authorization error.**
+
+This happens because the API Key client-type evaluation is done by the `api-gateway` before the `authorization-service` security checks, as reported [here](/console/tutorials/configure-marketplace-components/auth-architecture/static-api-key.md#definition).
+:::
