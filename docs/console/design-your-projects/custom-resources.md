@@ -3,7 +3,7 @@ id: custom-resources
 title: Create Custom Resources
 sidebar_label: Create Custom Resources
 ---
-
+<!-- TODO: Add info about the versioned Custom Resources from Marketplace -->
 ## How to use the Custom Resources
 
 A Custom Resource allows you to define custom objects that are not part of the standard Console supported resources.
@@ -21,15 +21,6 @@ It is possible to manage the Custom Resource from inside the Design section of t
 
 It is possible to create a new Custom Resource from Marketplace or from scratch.
 
-#### Create a Custom Resource from Marketplace
-
-To create a resource from Marketplace, you need to select the Custom Resource you want to create.
-
-At the moment, the only supported Custom Resources to create are the ones inside the internal Company marketplace.  
-To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl` ([see here for details](#publish-a-custom-resource-inside-the-marketplace)).
-
-![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
-
 #### Create a Custom Resource from Scratch
 
 To create a resource from scratch, you need to provide the following information:
@@ -41,6 +32,21 @@ To create a resource from scratch, you need to provide the following information
 In creation, you will see the preview of the generated manifest.
 
 ![Create from scratch](./img/custom-resources/create-from-scratch.png)
+
+#### Create a Custom Resource from Marketplace
+
+To create a resource from Marketplace, you need to select the Custom Resource you want to create.
+
+At the moment, the only supported Custom Resources to create are the ones inside the [Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md).
+To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl` ([see here for details](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)).
+
+![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
+
+Marketplace could contain *versioned* Custom Resources. In that case, when selecting the Custom Resource to create, you will see the available versions and you can also choose which version you prefer to use.
+
+![Create from Marketplace a versioned Custom Resource](./img/custom-resources/create-from-marketplace-versioned.png)
+
+In this case, you can only modify the *name* of the Custom Resource: the *Kind* and the *apiVersion* are managed by the versioned marketplace item, and you cannot modify them manually, either during the creation or the update.
 
 ### Update a Custom Resource
 
@@ -58,68 +64,23 @@ The Custom Resource has some supported fields, other fields will be ignored. The
 
 ![Update](./img/custom-resources/update-gateway-custom-resource.png)
 
+If the Custom Resource comes from a versioned Marketplace item, you cannot modify the *apiVersion* and the *kind* fields. Attempts to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
+
+To update these fields, you can select a new version, by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu. By doing so, a modal window will open to show you all the available versions of the Custom Resource, and you can select the one you want to use.
+
+![Change version](./img/custom-resources/change-custom-resource-version.png)
+
+Inside the modal you can also see the *apiVersion* and the *kind* of the Custom Resource selected, to give you a better idea of what version you are selecting.
+
+In case you need to update the *apiVersion* and the *kind* fields manually, completely changing the configuration of the Custom Resource, you can do so by clicking the *Detach from Marketplace* button on the menu: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable. However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
+
 ### Delete a Custom Resource
 
-To delete a Custom Resource, you have to click on the delete button in the detail page of the Custom Resource.
+To delete a Custom Resource, you have to click on the delete button at the bottom of the page.
 
 You need to insert the Custom Resource name and click on the delete button.
 
 ![Delete Custom Resource](./img/custom-resources/delete.png)
-
-## Publish a Custom Resource inside the Marketplace
-
-It is possible to add the Custom Resource inside the Company Marketplace using [miactl](/marketplace/add_to_marketplace/manage_marketplace_items.md).
-
-For example, Custom Resources can be used to configure the `Traefik IngressRoute`. In order to add the Custom Resource Marketplace item that allows you to create a `Traefik IngressRoute` you can use the Mia-Platform Marketplace manifest below:
-
-```yaml
-name: 'Traefik IngressRoute'
-description: The configuration of the IngressRoute resource for Traefik
-type: custom-resource
-categoryId: kubernetes-custom-resource
-documentation:
-  type: externalLink
-  url: 'https://docs.mia-platform.eu/docs/infrastructure/paas/tools/traefik#expose-an-endpoint'
-resources:
-  name: "default"
-  meta:
-    apiVersion: traefik.io/v1alpha1
-    kind: IngressRoute
-  labels:
-    - name: app.kubernetes.io/instance
-      value: "ingress-controller"
-  spec:
-    entryPoints:
-      - "websecure"
-    routes:
-      - match: Host(`{{PROJECT_HOST}}`)
-        kind: Rule
-        services:
-        - name: "api-gateway"
-          port: 8080
-itemId: traefik-ingressroute
-imageUrl: <IMAGE_URL>
-supportedByImageUrl: <SUPPORTED_BY_IMAGE_URL>
-supportedBy: <YOUR_COMPANY_NAME>
-tenantId: <YOUR_COMPANY_ID>
-```
-
-:::tip
-Remember to change the file, replacing the placeholders with the correct values!
-:::
-
-The placeholders in the file above are meant to be used with the following values:
-
-- `<IMAGE_URL>`: the URL of the image that represents the Custom Resource;
-- `<SUPPORTED_BY_IMAGE_URL>`: the URL of the image that represents the company that supports the Custom Resource;
-- `<YOUR_COMPANY_NAME>`: the name of the company that supports the Custom Resource;
-- `<YOUR_COMPANY_ID>`: the ID of the company that in which you are creating the Custom Resource.
-
-Once the configuration are ready, you can use miactl to add the Custom Resource to the Company Marketplace (remember to set the correct company id):
-
-```bash
-miactl marketplace apply --file-path ./path-to-file-folder --company-id <YOUR_COMPANY_ID>
-```
 
 ## Future Improvements
 
