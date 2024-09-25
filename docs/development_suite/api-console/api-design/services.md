@@ -135,6 +135,12 @@ From there you can select one of the available versions in order to update the D
 
 *Detach from Marketplace* will cause the microservice to be separated from the Marketplace plugin and becoming a manually configured microservice (**NOTE**: detaching a microservice is an operation that cannot be reverted, causing to lose any information about updates on this item).
 
+:::info
+A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created. This means that it has been created before the support of versioning in the Marketplace was implemented.
+
+However, it does not mean that this version is not supported anymore, or it is less secure: verify the other available versions to see what it fits better your needs. In case of further questions, please contact the Marketplace item creator.
+:::
+
 ### Microservice Configuration
 
 In this section, you can manage the resources dedicated to your microservice:

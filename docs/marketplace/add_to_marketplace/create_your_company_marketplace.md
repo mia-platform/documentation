@@ -75,8 +75,6 @@ Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visua
 
 ## How to configure a new item
 
-Each Marketplace item is identified by a specific data model (a JSON document).
-
 In the following section we'll explore the common fields shared by all marketplace item types.
 
 Refer to the [detailed explanation by type](#marketplace-items-example-and-explanation) for the type-specific fields and examples of working JSON marketplace items entities.
@@ -96,6 +94,8 @@ Here below are listed all the properties that must be provided for each type of 
   - **`name`** (required): the actual version of the item. We suggest to use the [Semantic Versioning](https://semver.org/) format.
   - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on Marketplace items in a Console project; includes information about the changes introduced by the new version.
   - **`security`**: a boolean to indicate if the item is security-related
+
+Each marketplace item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version`** name properties. So, when you need to create a new Marketplace item, be sure to provide unique values for these properties.
 
 :::info
 To upload the *image* and *supportedByImage*, you can use the `miactl marketplace apply` command adding the respective `image` and `supportedByImage` keys to the object.
@@ -124,19 +124,15 @@ In this scenario we can have:
 - at the same time we can experiment and test features using the version `7.0.0` in your `dev` branch without affecting the other branches and the existing configurations
 
 This approach facilitates a smooth upgrade process, enables thorough testing of new features, and ensures compatibility across different stages of your project lifecycle. This flexibility allows for testing new versions in development environments while maintaining stable versions in production.
-
-#### Version dependent properties
-
-Versioning of Marketplace resources implies that those resources under versioning governance are composed by some *dependent fields* that contribute to the definition of the version and which, therefore, cannot be changed “in place” by the user, but only through the creation of a new version of the resource.
-
-For instance:
-
-- a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin
-- for Custom Resources of type K8s the governance is quite similar: since Custom Resources of type K8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
-
-By defining these fields as *version dependent*, we ensure that these are not editable by the user when they add a marketplace item to their project: whenever a new Microservice is created starting from a versioned Marketplace plugin, the `dockerImage` field will be automatically shown as read-only, and the user will be able to change it only by actually checking for other versions of the plugin.
-
 Such a structured approach will streamline resource management and ensure compatibility and stability across different use cases.
+
+#### How to create a new versione for your resource
+
+To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).
+
+Also, to provide continuity to the definition of the other versions of the same resource, the `tenantId` and the `itemId` properties must be the same for all the versions of the same resource.
+
+You can create a new version of a Marketplace item either if there is already that resource on the Marketplace without a version. In that case the non-versioned item will be still available in the Console, where will be shown with a *N/A* value for the version.
 
 #### Editing a versioned resource
 
@@ -152,6 +148,17 @@ Editing a versioned resource is possible via `miactl`, however the following fie
 Since marketplace items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a completely new marketplace item, completely separated from the previous one.
 
 Attemps to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
+
+#### Version dependent properties
+
+Versioning of Marketplace resources implies that those resources under versioning governance are composed by some *dependent fields* that contribute to the definition of the version and which, therefore, cannot be changed “in place” by the user, but only through the creation of a new version of the resource.
+
+For instance:
+
+- a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin
+- for Custom Resources of type K8s the governance is quite similar: since Custom Resources of type K8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
+
+By defining these fields as *version dependent*, we ensure that these are not editable by the user when they add a marketplace item to their project: whenever a new Microservice is created starting from a versioned Marketplace plugin, the `dockerImage` field will be automatically shown as read-only, and the user will be able to change it only by actually checking for other versions of the plugin.
 
 ### The Release Stage of a Marketplace Item
 

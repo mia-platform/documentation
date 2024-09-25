@@ -74,6 +74,12 @@ Inside the modal you can also see the *apiVersion* and the *kind* of the Custom 
 
 In case you need to update the *apiVersion* and the *kind* fields manually, completely changing the configuration of the Custom Resource, you can do so by clicking the *Detach from Marketplace* button on the menu: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable. However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
 
+:::info
+A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created. This means that it has been created before the support of versioning in the Marketplace was implemented.
+
+However, it does not mean that this version is not supported anymore, or it is less secure: verify the other available versions to see what it fits better your needs. In case of further questions, please contact the Marketplace item creator.
+:::
+
 ### Delete a Custom Resource
 
 To delete a Custom Resource, you have to click on the delete button at the bottom of the page.
