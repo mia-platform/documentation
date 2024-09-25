@@ -1712,7 +1712,7 @@
             },
             {
               "id": "marketplace/add_to_marketplace/add_item_by_type/add_custom_resource",
-              "label": "Create a Custom R Marketplace Item",
+              "label": "Create a Custom Resource Marketplace Item",
               "type": "doc"
             }
           ]
