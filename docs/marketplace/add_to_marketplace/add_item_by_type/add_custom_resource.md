@@ -4,7 +4,9 @@ title: Publish your Custom Resources to the Marketplace
 sidebar_label: Create a Custom Resource
 ---
 
-It is possible to include in the Marketplace Kubernetes [Custom Resources](/console/design-your-projects/custom-resources.md) to extend the Kubernetes API or include your own API into the project.
+when working in the design section of a project you can define and configure custom resources, such resources may be created from the marketplace and you can add your own Custom Resources to the marketplace, this is how..
+
+When designing your project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
 
 They are basically defined by two fields:
 
