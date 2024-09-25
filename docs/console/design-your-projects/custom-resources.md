@@ -3,7 +3,6 @@ id: custom-resources
 title: Create Custom Resources
 sidebar_label: Create Custom Resources
 ---
-<!-- TODO: Add info about the versioned Custom Resources from Marketplace -->
 ## How to use the Custom Resources
 
 A Custom Resource allows you to define custom objects that are not part of the standard Console supported resources.
