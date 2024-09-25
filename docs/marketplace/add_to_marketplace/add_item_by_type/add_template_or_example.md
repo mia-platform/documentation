@@ -8,7 +8,7 @@ A **Template** is a base repository from which users can build a new Microservic
 
 **Examples** are similar to Templates, the only difference is they provide a basic implementation of the business logic for a specific use case, that users can use as a starting point for their custom implementation.
 
-Template and Examples are very similar to [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_plugin) items: make sure you followed the creation steps, then follow the paragraphs below to finalize the configuration.
+Template and Examples are very similar to [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md) items: make sure you followed the creation steps, then follow the paragraphs below to finalize the configuration.
 
 ## The target
 

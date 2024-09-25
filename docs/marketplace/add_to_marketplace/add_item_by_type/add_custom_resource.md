@@ -235,7 +235,7 @@ You just created your custom resourced, which is now available on your `Company 
 
 You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format). 
 
-In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](./add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
 Given that Custom Resources are defined by their `apiVersion` and `kind`, when updating a resource, you should create a new marketplace item with a different version. This new version should include a release note and contain the resource with your required updates.
 
