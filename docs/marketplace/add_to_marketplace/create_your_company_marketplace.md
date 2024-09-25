@@ -142,12 +142,20 @@ Editing a versioned resource is possible via `miactl`, however the following fie
 
 - `itemId`
 - `tenantId`
-- the `name` property inside `version`
+- the `name` property inside `version` object
 - the `resources` property, that includes the specific resource definition
 
 Since marketplace items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a completely new marketplace item, completely separated from the previous one.
 
 Attemping to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
+
+Also, the following fields are editable only in case the permission `marketplace.root.manage` has been granted to the user:
+- `supportedBy`
+- `supportedByImage`
+- `publishOnMiaDocumentation`
+- `visibility`
+
+More information about these permissions are available in the [](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions)
 
 #### Version dependent properties
 
