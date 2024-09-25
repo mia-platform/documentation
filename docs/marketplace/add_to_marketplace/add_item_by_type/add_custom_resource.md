@@ -4,8 +4,6 @@ title: Publish your Custom Resources to the Marketplace
 sidebar_label: Create a Custom Resource
 ---
 
-when working in the design section of a project you can define and configure custom resources, such resources may be created from the marketplace and you can add your own Custom Resources to the marketplace, this is how..
-
 When designing your project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
 
 They are basically defined by two fields:
@@ -209,7 +207,7 @@ Please note that:
 - the `type: custom-resource` is required to specify that this resource is a Custom Resource
 - the `version` property is included, to define this item as a version `1.0.0` with a specific release note: versions are not mandatory but highly suggested to avoid to overwrite previous versions
 
-### Publish a new Custom Resource via `miactl`
+### Publish a new Custom Resource
 
 This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
 
@@ -231,7 +229,7 @@ You should receive a success response similar to this one:
 
 You just created your custom resourced, which is now available on your `Company Marketplace`.
 
-### Update the Custom Resource via `miactl`
+### Update the Custom Resource
 
 You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format). 
 
