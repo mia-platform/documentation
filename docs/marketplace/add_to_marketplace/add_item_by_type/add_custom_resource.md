@@ -11,7 +11,7 @@ They are basically defined by two fields:
 - the `apiVersion` field, which is the API version of the resource
 - the `kind` field, which is the kind of the resource
 
-Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace, using the `miactl` tool. They are defined with the usual marketplace item schema, by having the _type_ field equal to `custom-resource`.
+Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace, using the `miactl` tool. They are defined with the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), by having the _type_ field equal to `custom-resource`.
 
 Custom resources items in the Marketplace supports _versioning_, allowing to update the resource without overwriting the previous ones.
 
@@ -91,11 +91,9 @@ Inside the panel there is the JSON Schema to use to create a resource with _type
         "properties": {
             "type": {
                 "type": "string",
-                "enum": [
-                    "input"
-                ]
+                "enum": ["input"]
+                }
             }
-        }
         }
     },
     "service": {
@@ -141,7 +139,7 @@ Inside the panel there is the JSON Schema to use to create a resource with _type
 </p>
 </details>
 
-A simple example in YAML of a Custom Resource that follows the schema is the following:
+A simple example in YAML of a Custom Resource that follows the schema is [`kube-green`](https://kube-green.dev/):
 
 <details>
 <summary>SleepInfo</summary>
