@@ -618,8 +618,10 @@ so that each operation is covered with the correct grant.
 | Route                                                      | Type      | Method | User Group Permissions                  |
 |------------------------------------------------------------|-----------|--------|-----------------------------------------|
 | `/assets/search`                                           | REST      | GET    | `permissions["read:data-assets"]`       |
+| `/assets/search-parents`                                   | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/tags/count`                                              | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/tags/items`                                              | REST      | GET    | `permissions["read:data-assets"]`       |
+| `/tags/search`                                             | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/sors/:dataset-id`                                        | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/sors/:dataset-id/custom-properties/:name`                | REST      | POST   | `permissions["update:metadata-assets"]` |
 | `/sors/:dataset-id/custom-properties/:name`                | REST      | PATCH  | `permissions["update:metadata-assets"]` |
@@ -644,6 +646,7 @@ so that each operation is covered with the correct grant.
 | `/metadata-registry/items/:name`                           | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/metadata-registry/items/:name`                           | REST      | PATCH  | `permissions["update:metadata-assets"]` |
 | `/metadata-registry/items/:name`                           | REST      | DELETE | `permissions["update:metadata-assets"]` |
+| `/metadata-registry/search`                                | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/bulk-actions`                                            | Websocket | GET    | `permissions["update:bulk-action"]`     |
 
 :::caution

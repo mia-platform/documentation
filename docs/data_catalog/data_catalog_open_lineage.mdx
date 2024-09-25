@@ -185,9 +185,11 @@ Here are described which routes Open Lineage service serves:
 | Endpoint                                                   | Type | Method | Description                                                           |
 |------------------------------------------------------------|------|--------|-----------------------------------------------------------------------|
 | `/assets/search`                                           | REST | GET    | Search for dataset assets and their metadata                          |                                         
-| `/tags/count`                                              | REST | GET    | Count how many unique tags exists among all data assets               |                                                  
+| `/assets/search-parents`                                   | REST | GET    | Search for name of system of record or table name                     |
+| `/tags/count`                                              | REST | GET    | Count how many unique tags exists among all data assets               |
 | `/tags/items`                                              | REST | GET    | List existing tags associated to data assets                          |                                                  
-| `/sors/:dataset-id`                                        | REST | GET    | Retrieve selected _System of Record_ details and metadata             |                                      
+| `/tags/search`                                             | REST | GET    | Search for a specific tag value                                       |
+| `/sors/:dataset-id`                                        | REST | GET    | Retrieve selected _System of Record_ details and metadata             |
 | `/sors/:dataset-id/custom-properties/:name`                | REST | POST   | Create a custom property for selected _System of Record_              |              
 | `/sors/:dataset-id/custom-properties/:name`                | REST | PATCH  | Change a custom property value for selected _System of Record_        |              
 | `/sors/:dataset-id/custom-properties/:name`                | REST | DELETE | Remove a custom property for selected _System of Record_              |              
@@ -210,4 +212,5 @@ Here are described which routes Open Lineage service serves:
 | `/metadata-registry/items`                                 | REST | POST   | Create a custom property definition                                   |                                    
 | `/metadata-registry/items/:name`                           | REST | GET    | Retrieve the definition details of a custom property                  |                               
 | `/metadata-registry/items/:name`                           | REST | PATCH  | Change the definition of a custom property (e.g. type or description) |                               
-| `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                   |                               
+| `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                   |
+| `/metadata-registry/search`                                | REST | GET    | Search for a specific metadata registry of interest                   |
