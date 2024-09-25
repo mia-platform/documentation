@@ -113,7 +113,7 @@ Marketplace creators have now the possibility to manage some types of resources 
 
 This means that, for these types of resources, it is possible to establish a more structured and transparent lifecycle management system, providing users access to all the versions of a resource and allowing them to see the release notes of each version and select and instantiate the version that best suits their configuration needs among the ones made available by the Marketplace creator.
 
-This versioning system also provides significant advantages in a feature-branch design workflow, effectively leveragin different versions of the same marketplace item across various branches of a project.
+This versioning system also provides significant advantages in a feature-branch design workflow, effectively leveraging different versions of the same Marketplace item across various branches of a project.
 
 For instance, we imagine to have a project with three different branches: *dev*, *stage* and *main*, with the latter being the branch with the official configuration. Let's also imagine to have installed in all the three services the *CRUD Service* plugin, which includes different versions.
 
