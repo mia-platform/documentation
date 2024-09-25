@@ -133,12 +133,24 @@ From there you can select one of the available versions in order to update the D
 
 ![Change version of a service generated from a Marketplace plugin](img/marketplace-version-selection.png)
 
-*Detach from Marketplace* will cause the microservice to be separated from the Marketplace plugin and becoming a manually configured microservice (**NOTE**: detaching a microservice is an operation that cannot be reverted, causing to lose any information about updates on this item).
+*Detach from Marketplace* will cause the microservice to be separated from the Marketplace plugin and becoming a manually configured microservice. Read more in the [dedicated section below](#detach-a-service-from-the-marketplace).
 
 :::info
 A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created. This means that it has been created before the support of versioning in the Marketplace was implemented.
 
 However, it does not mean that this version is not supported anymore, or it is less secure: verify the other available versions to see what it fits better your needs. In case of further questions, please contact the Marketplace item creator.
+:::
+
+### Detach a service from the Marketplace
+
+Services created starting from Marketplace are shown in the detail page with a badge that notifies the user the original Marketplace item. This will allow the user to always be aware of the original Marketplace item, to have certain fields set as *read-only* (like the *Docker Image* field) but also to check if there are any updates on the service.
+
+In case you need full control of the service, you can decide to *detach* the service from the Marketplace item. This will allow you to edit the service as you wish, without any restrictions.
+
+You can do that by clicking on the *Detach from Marketplace* button in the menu located to the right side of the page, in the *Detail* tab of the service.: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable. However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
+
+:::info
+Detaching a microservice is an operation that cannot be reverted, causing to lose any information about updates on this item.
 :::
 
 ### Microservice Configuration
