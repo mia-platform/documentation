@@ -347,6 +347,6 @@ This manifest can be used to add the element to the Marketplace.
 </p>
 </details>
 
-### Edit a marketplace item
+## Edit a marketplace item
 
 While there are no restrictions on modifying an unversioned plugin, if the item already includes a version you can modify only the metadata of the item (such as the description, the image, the visibility, the release note of the version, etc.). In this case, you can find more information on the related section of the ["Create your Company Marketplace" guide](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
