@@ -64,7 +64,7 @@ The Custom Resource has some supported fields, other fields will be ignored. The
 
 ![Update](./img/custom-resources/update-gateway-custom-resource.png)
 
-If the Custom Resource comes from a versioned Marketplace item, you cannot modify the *apiVersion* and the *kind* fields. Attempts to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
+If the Custom Resource comes from a versioned Marketplace item, you cannot modify the *apiVersion* and the *kind* fields. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
 To update these fields, you can select a new version, by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu. By doing so, a modal window will open to show you all the available versions of the Custom Resource, and you can select the one you want to use.
 
