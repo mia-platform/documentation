@@ -14,7 +14,7 @@ For example, it is possible to:
 
 ## How to manage a Custom Resource
 
-It is possible to manage the Custom Resource from inside the Design section of the Console.
+It is possible to manage the Custom Resource from inside the Design section of the Console, in the dedicated area called *Custom Resources*.
 
 ### Create a Custom Resource
 
@@ -34,10 +34,11 @@ In creation, you will see the preview of the generated manifest.
 
 #### Create a Custom Resource from Marketplace
 
-To create a resource from Marketplace, you need to select the Custom Resource you want to create.
+:::info
+To allow users to add a Custom Resource to their project from marketplace, you need to apply it using `miactl` ([see here for details](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)).
+:::
 
-At the moment, the only supported Custom Resources to create are the ones inside the [Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md).
-To allow the user to create a Custom Resource from marketplace, you need to apply it using `miactl` ([see here for details](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)).
+To create a resource from Marketplace, you need to select the Custom Resource you want to create.
 
 ![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
 
@@ -69,7 +70,7 @@ To update these fields, you can select a new version, by clicking on the icon at
 
 ![Change version](./img/custom-resources/change-custom-resource-version.png)
 
-Inside the modal you can also see the *apiVersion* and the *kind* of the Custom Resource selected, to give you a better idea of what version you are selecting.
+Inside the modal you can also see the *apiVersion* and the *kind* of the Custom Resource of the selected version, to give you a better idea of what configuration you are selecting.
 
 In case you need to update the *apiVersion* and the *kind* fields manually, completely changing the configuration of the Custom Resource, you can do so by clicking the *Detach from Marketplace* button on the menu: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable. However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
 

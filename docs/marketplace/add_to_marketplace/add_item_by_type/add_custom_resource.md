@@ -1,10 +1,10 @@
 ---
 id: add_custom_resource
-title: Publish your custom resources to the Marketplace
+title: Publish your Custom Resources to the Marketplace
 sidebar_label: Create a Custom Resource
 ---
 
-It is possible to include in the Marketplace Kubernetes [custom resources](/console/design-your-projects/custom-resources.md) to extend the Kubernetes API or include your own API into the project.
+It is possible to include in the Marketplace Kubernetes [Custom Resources](/console/design-your-projects/custom-resources.md) to extend the Kubernetes API or include your own API into the project.
 
 They are basically defined by two fields:
 
@@ -164,7 +164,7 @@ name: sleepInfo
 ## Defined the new Custom Resource
 
 ::: info
-In the paragraphs to follow, wwe are going to use the `miactl` tool to show how to create a new Custom Resource.
+In the paragraphs to follow, we are going to use the `miactl` tool to show how to create a new Custom Resource.
 :::
 
 First of all, we need to create a new file that includes the marketplace information and the Custom Resource that we want to add.
@@ -237,9 +237,9 @@ You can update a Custom Resource Marketplace item by using the same `miactl mark
 
 In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](./add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
-Considering also the fact that custom resources are defined by the `apiVersion` and the `kind`: in case of updates on the resource you need to actually create a new marketplace item with a different version (possibly with a release note) and the resource with the updates you require.
+Given that Custom Resources are defined by their `apiVersion` and `kind`, when updating a resource, you should create a new marketplace item with a different version. This new version should include a release note and contain the resource with your required updates.
 
-#### Update non-versioned custom resources
+#### Update non-versioned Custom Resources
 
 In case the Custom Resource you need to update is not versioned, you can update it always by using the `miactl marketplace apply` command, passing the company id (`tenantId` of your resource) and the resource file you created before with the modifications you need.
 
