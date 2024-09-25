@@ -81,11 +81,16 @@ Refer to the [detailed explanation by type](#marketplace-items-example-and-expla
 
 Here below are listed all the properties that must be provided for each type of item:
 
+The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:
+
 - **`name`** (required): the item name appearing in the Marketplace card
 - **`tenantId`** (required): the ID of the Company the item belongs to
 - **`itemId`** (required): the ID identifying the item in the Marketplace
 - **`description`**: a brief description (10 to 20 words) regarding the service functionalities
 - **`type`**: the type of your item (plugin, template, example, application, or proxy)
+- **`documentation`**: information about the documentation of your item. It is an object composed by:
+  - **`type`**: the type of documentation. It can be `externalLink` or `markdown`
+  - **`url`**: the URL of the documentation. It can be an external URL or an internal one
 - **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/marketplace/add_to_marketplace/create_your_company_marketplace.md#the-release-stage-of-a-new-item) later on this page)
 - **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](/marketplace/add_to_marketplace/create_your_company_marketplace.md#category-list) are listed below.
 - **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)

@@ -8,53 +8,17 @@ Plugins are ready-to-use microservices that only need some configuration from th
 
 ## Where to host plugins
 
-The plugin must be hosted as a **Docker image**.  
+In the Mia-Platform Console, you can design your project by adding microservices coming from existing elements in the Marketplace. Plugins are ready-to-use microservices that only need some configuration from the user to work. You do not need to download the repository and/or review the code: the plugin is available in a registry so you only need the *Docker Image name* and you are ready to go.
 
-The Docker image should be pushed on an accessible registry.
-If you wish to use the **Mia-Platform private registry**, your Mia-Platform referent will provide the credentials to do it.
-
-The Docker image must be specified in the `dockerImage` field in the service Marketplace document.
+To add your own *plugin* to the Company Marketplace, you have to host the plugin as a **Docker image**, that should be pushed on an accessible registry. This Docker image name must be specified in the `dockerImage` field in the service Marketplace document.
 
 :::info
 In versioned marketplace plugins, the `dockerImage` field depends on the version of the plugin used to install the microservice to the project. This means that, in the *Design* section, the `dockerImage` field is *read-only*, and cannot be modified, unless the user decides to detach the microservice or update the plugin to a different Marketplace item version.
-
-The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:
-
-```json
-{
-  "documentation" : {
-    "type" : "externalLink",
-    "url" : "https://docs.my-plugin.com/docs/configuration"
-  }
-}
-```
-
-## Categories List
-
-The category list is constantly updated, check with your Mia-Platform referent for the updated list.
-
-| ID                | Description                            |
-|-------------------|----------------------------------------|
-| `notification`    | Core Plugins - Notifications           |
-| `business`        | Add-ons - Data Visualization           |
-| `addonsecurity`   | Add-ons - Security                     |
-| `stream`          | Add-ons - Data Stream                  |
-| `monitoring`      | Add-ons - Monitoring                   |
-| `addgeo`          | Add-ons - Geolocation                  |
-| `payments`        | Add-ons - Payments                     |
-| `fast-data`       | Add-ons - Fast Data                    |
-| `frontendbuilder` | Add-ons - Frontend Builders            |
-| `healthcare`      | Add-ons - Healthcare                   |
-| `utility`         | Add-ons - Utilities                    |
-| `scoring`         | Add-ons - Scoring Manager              |
-| `data-catalog`    | Add-ons - Data Catalog                 |
-| `fast-data-connectors` | Add-ons - Fast Data Connectors    |
-
-### Properties of Plugin resources
-
-:::info
-The following information applies also to [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md).
 :::
+
+## Definition of a Plugin resource
+
+Plugins should follow the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item). The _type_ field must be equal to `plugin`, with the content of the field `resources` to include only a property called `services`. Inside the `services` object, you should specify *only one property*, which is the plugin name as the key and the plugin configuration as the value.
 
 Each property described in the following paragraphs regarding the microservices configuration must be configured under the property `resources/services/:serviceId` as follows:
 
@@ -64,7 +28,7 @@ Each property described in the following paragraphs regarding the microservices 
   ...
   "resources": {
     "services": {
-      "service-id": {
+      "<<your-service-id>>": {
         "defaultEnvironmentVariables": [...],
         "defaultConfigMaps": [...],
         ...
@@ -74,11 +38,19 @@ Each property described in the following paragraphs regarding the microservices 
 }
 ```
 
-The serviceId **must** be in `kebab-case` format and should not exceed the length of 63 characters.
+Instead of `<<your-service-id>>`, you must include the identifier of your service, which **must** be in `kebab-case` format and should not exceed the length of 63 characters.
+
+:::info
+The definition of services, and the following information related to the list of fields applies also to [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md). The difference is that the `services` object in Templates and Examples can include more than one key, which means more than one service.
+:::
 
 Here below are listed all the properties that you can provide for each microservice item:
   
 - **`itemId`**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
+- **`providerId`**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
+- **`visibility`**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
+  - **`allTenants`**: a boolean that indicates whether your service should be visible to all other Companies, making it accessible if set to `true`.
+  - **`public`**: a boolean that indicates wether the Marketplace item is public and visible also to not logged in users.
 - **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by the Console.  
   In particular, for each of them you need to provide:
   - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
@@ -147,10 +119,6 @@ Here below are listed all the properties that you can provide for each microserv
   - `readOnly`: boolean that represent if you can change the value of the label through the Console
 - **`defaultDocumentationPath`**: the APIs documentation path.
 - **`defaultResources`**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
-- **`visibility`**: this property determines the visibility of the Marketplace item you are creating. If not set, the service will only be visible within the specified Company mentioned in the tenantId property.
-  - **`allTenants`**: a boolean that indicates whether your service should be visible to all other Companies, making it accessible if set to `true`.
-  - **`public`**: a boolean that indicates wether the Marketplace item is public and visible also to not logged in users.
-- **`providerId`**: the id of the provider that should be used to perform Git operations on your Marketplace item repository. If left unset, your project Git provider will be used instead.
 
 :::caution
 Please note that in this configuration **`min`** corresponds to the **`request`** value while **`max`** corresponds to the **`limit`** value specified in the Kubernetes documentation.  
@@ -158,7 +126,7 @@ Please note that in this configuration **`min`** corresponds to the **`request`*
 In addition, measurement units are required. Resources are expressed in terms of milliCPUs (`m`) and MebiBytes (`Mi`) respectively for CPU and Memory.
 :::
 
-#### Interpolating Default Labels, Annotations, and Environment Variables Values
+### Interpolating Default Labels, Annotations, and Environment Variables Values
 
 The values of the `defaultLabels`, `defaultAnnotations`, and `defaultEnvironmentVariables` fields can contain placeholders that will be replaced with the actual values when a Console user creates the service.
 
@@ -169,9 +137,7 @@ Here is an exhaustive list of the placeholders that can be used:
 - `%COMPANY_ID%`: the ID of the company that owns the project.
 - `%TENANT_ID%`: alias for `%COMPANY_ID%`.
 
-##### Example
-
-Suppose you create a Marketplace item of type `plugin`, with the following `defaultEnvironmentVariables`:
+As example, suppose you create a Marketplace item of type `plugin`, with the following `defaultEnvironmentVariables`:
 
 ```json
 [
@@ -208,7 +174,7 @@ Failing to comply with these limitations will result in an error when deploying 
 Any unrecognized placeholder will be left as is in the final value.
 :::
 
-#### Configure Console Links
+### Configure Console Links
 
 A service created from the Marketplace can feature custom links to other Console pages, managed by different microfrontend Plugins. To configure them on newly created services set up new objects in the `links` property for each plugin you wish.
 
@@ -218,7 +184,28 @@ A link is an object shaped as follows:
 - **`targetSection`** *string* (required): the name of the registered microfrontend where the link should land (e.g. `flow-manager`);
 - **`enableIf`** *string*: the name of a feature toggle to be used to optionally display the link.
 
-## Example of a Plugin
+### Categories List
+
+The category list is constantly updated, check with your Mia-Platform referent for the updated list.
+
+| ID                | Description                            |
+|-------------------|----------------------------------------|
+| `notification`    | Core Plugins - Notifications           |
+| `business`        | Add-ons - Data Visualization           |
+| `addonsecurity`   | Add-ons - Security                     |
+| `stream`          | Add-ons - Data Stream                  |
+| `monitoring`      | Add-ons - Monitoring                   |
+| `addgeo`          | Add-ons - Geolocation                  |
+| `payments`        | Add-ons - Payments                     |
+| `fast-data`       | Add-ons - Fast Data                    |
+| `frontendbuilder` | Add-ons - Frontend Builders            |
+| `healthcare`      | Add-ons - Healthcare                   |
+| `utility`         | Add-ons - Utilities                    |
+| `scoring`         | Add-ons - Scoring Manager              |
+| `data-catalog`    | Add-ons - Data Catalog                 |
+| `fast-data-connectors` | Add-ons - Fast Data Connectors    |
+
+## Create a new Plugin
 
 The following is an example of the manifest a plugin, called *MongoDB Reader*, released with version `1.0.0`.
 
@@ -233,7 +220,7 @@ This manifest can be used to add the element to the Marketplace.
   "description": "Provide MongoDB aggregation pipelines as REST API.",
   "type": "plugin",
   "categoryId": "database",
-  "tenantId": "my-tenant",
+  "tenantId": "my-company-id",
   "itemId": "mongodb-reader",
   "version": {
     "name": "1.0.0",
@@ -242,28 +229,8 @@ This manifest can be used to add the element to the Marketplace.
   "visibility": {
     "allTenants": true
   },
-  "image": [
-    {
-      "_id": "5db0105743875a0011618815",
-      "name": "MongoDB Reader.png",
-      "file": "image.png",
-      "size": 1532,
-      "location": "/path/to/your/image.png",
-      "sync": 0,
-      "trash": 0
-    }
-  ],
-  "supportedByImage": [
-    {
-      "_id": "5db0106143875a0011618816",
-      "name": "MiaPlatform.png",
-      "file": "imageSupport.png",
-      "size": 139694,
-      "location": "/path/to/your/imageSupport.png",
-      "sync": 0,
-      "trash": 0
-    }
-  ],
+  "image": "/path/to/your/image.png",
+  "supportedByImage": "/path/to/your/imageSupport.png",
   "repositoryUrl": "https://git.tools.mia-platform.eu/platform/core/mongodb-reader",
   "providerId": "gitlab",
   "documentation": {
@@ -273,8 +240,8 @@ This manifest can be used to add the element to the Marketplace.
   "resources": {
     "services": {
       "mongodb-reader": {
-        "type": "plugin",
         "name": "mongodb-reader",
+        "componentId": "mongodb-reader",
         "description": "Provide MongoDB aggregation pipelines as REST API.",
         "repositoryUrl": "https://git.tools.mia-platform.eu/platform/core/mongodb-reader",
         "dockerImage": "nexus.mia-platform.eu/core/mongodb-reader:2.0.4",
@@ -286,9 +253,6 @@ This manifest can be used to add the element to the Marketplace.
           {
             "name": "HTTP_PORT",
             "value": 8080
-          }
-          {
-            ...
           }
         ],
         "defaultConfigMaps": [
@@ -303,42 +267,7 @@ This manifest can be used to add the element to the Marketplace.
             ]
           }
         ],
-        "defaultSecrets": [
-          {
-            "name": "my-secret",
-            "mountPath": "/home/node/app/secret",
-          }
-        ],
-        "defaultResources": {
-          "cpuLimits": {
-            "min": "10m",
-            "max": "100m"
-          },
-          "memoryLimits": {
-            "min": "100Mi",
-            "max": "300Mi"
-          }
-        },
-        "defaultProbes": {
-          "liveness": {
-            "path": "/-/healthz"
-          },
-          "readiness": {
-            "path": "/-/ready"
-          }
-        },
-        "defaultLogParser": "mia-json",
-        "defaultDocumentationPath": "/documentation/json",
-        "componentId": "myId",
-        // if type is example or template archiveUrl is required, while pipelines is optional
-        "archiveUrl": "https://git.tools.mia-platform.eu/api/v4/projects/238/repository/archive.tar.gz",
-        "pipelines": {
-          "gitlab-ci": {
-            "path":"/path/to/your/pipeline/file/name.yml/raw"
-          }
-        }
       },
-    // if the type is application, more than one object can be inserted, allowing you to define more than one microservice configuration.
     }
   } 
 }
@@ -347,6 +276,32 @@ This manifest can be used to add the element to the Marketplace.
 </p>
 </details>
 
-## Edit a marketplace item
+## Publish a new Plugin
 
-While there are no restrictions on modifying an unversioned plugin, if the item already includes a version you can modify only the metadata of the item (such as the description, the image, the visibility, the release note of the version, etc.). In this case, you can find more information on the related section of the ["Create your Company Marketplace" guide](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
+
+To upload the example resource defined above (`mongodb-reader`) to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
+
+```bash
+> miactl marketplace apply -f ./mongodb-reader.json --company-id my-company-id
+```
+
+You should receive a success response similar to this one:
+
+```bash
+1 of 1 items have been successfully applied:
+
+  OBJECT ID                 ITEM ID             STATUS   
+
+  66423781fdd3d6dd3ca62b7b  mongodb-reader  Created 
+```
+
+You just created your plugin, which is now available on your `Company Marketplace`.
+
+## Update the Plugin
+
+You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format).
+
+While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields taht cannot be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+
+Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource. Of course you can do that always with `miactl marketplace apply` by using the same `itemId` and the same `tenantId` but with a new `name` inside the `version` field.

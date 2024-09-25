@@ -159,7 +159,7 @@ name: sleepInfo
 </p>
 </details>
 
-## Defined the new Custom Resource
+## Create a new Custom Resource
 
 ::: info
 In the paragraphs to follow, we are going to use the `miactl` tool to show how to create a new Custom Resource.
@@ -227,7 +227,7 @@ You should receive a success response similar to this one:
   66423781fdd3d6dd3ca62b7b  my-custom-resource  Created 
 ```
 
-You just created your custom resourced, which is now available on your `Company Marketplace`.
+You just created your custom resource, which is now available on your `Company Marketplace`.
 
 ### Update the Custom Resource
 
