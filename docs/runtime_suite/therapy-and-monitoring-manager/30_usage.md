@@ -361,16 +361,16 @@ These endpoints return 404 if no therapy or monitoring with given id is found.
 
 Detections represent tasks performed by the patient and are related to therapies or monitorings. The data model is the following:
 
-| Name                   | Required (Yes/No)   | Description                                                             |
-|------------------------|---------------------|-------------------------------------------------------------------------|
-| planType               | Yes                 | Type of plan - `therapy` or `monitoring` - the detection refers to.   |
-| planId                 | Yes                 | Identifier of the therapy or monitoring plan the detection refers to. |
-| value                  | Only for monitoring | The detection value is an arbitrary object and must match the validation schema defined by the associated prototype. Note that the association between the prototype and the detection is not available in the detection data model, but it is defined at the therapy or monitoring level. |
-| planId                 | Yes                 | Identifier of the therapy or monitoring plan the detection refers to. |
-| observedAt             | Yes                 | Date/time at which the detection has been performed. |
-| isCompliant | Yes                 | It indicates if the detection is compliant to what the physician has descripted in the plan. This value is submitted by the patient. |
-| doctorId               | No                  | Identifier of the doctor that creates the detection. Note that the doctor that creates the detection can be different from the physician that created the monitoring or therapy plan. |
-| patientId              | Yes                 | Identifier of the patient that creates the detection. |
+| Name        | Required (Yes/No)   | Description                                                                                                                                                                                                                                                                                |
+|-------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| planType    | Yes                 | Type of plan - `therapy` or `monitoring` - the detection refers to.                                                                                                                                                                                                                        |
+| planId      | Yes                 | Identifier of the therapy or monitoring plan the detection refers to.                                                                                                                                                                                                                      |
+| value       | Only for monitoring | The detection value is an arbitrary object and must match the validation schema defined by the associated prototype. Note that the association between the prototype and the detection is not available in the detection data model, but it is defined at the therapy or monitoring level. |
+| planId      | Yes                 | Identifier of the therapy or monitoring plan the detection refers to.                                                                                                                                                                                                                      |
+| observedAt  | Yes                 | Date/time at which the detection has been performed.                                                                                                                                                                                                                                       |
+| isCompliant | No                  | It indicates if the detection is compliant to what the physician has descripted in the plan. This value is submitted by the patient.                                                                                                                                                       |
+| doctorId    | No                  | Identifier of the doctor that creates the detection. Note that the doctor that creates the detection can be different from the physician that created the monitoring or therapy plan.                                                                                                      |
+| patientId   | Yes                 | Identifier of the patient that creates the detection.                                                                                                                                                                                                                                      |
 
 If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the handler will send a request to the `POST /notification-events/` endpoint of the Notification Manager, including the following information in the request body:
 - **key** (string): the identifier of the deleted therapy or monitoring.
@@ -388,6 +388,117 @@ This endpoint accepts the following CRUD-like query parameters:
 - filtering: `_q`, `_st_` or any CRUD field name, such as `planType` and `planId`.
 
 This endpoint returns 200 and an array with the detections matching the query.
+
+### `GET /detections/chart-data`
+
+:::caution
+
+This endpoint currently works only with measurement prototypes whose schema matches detections looking like this:
+
+```json
+{
+  "period": {
+    "startDate": "2024-05-21T15:45:59Z"
+  },
+  "observations": [
+    {
+      "code": "https://loinc.org/8480-6",
+      "name": "Systolic blood pressure",
+      "unit": "mmHg",
+      "value": 123.01009605363296,
+      "annotation": {
+        "irregularHeartBeat": "false",
+        "measuredUnit": "mmHg"
+      }
+    },
+    {
+      "code": "https://loinc.org/8462-4",
+      "name": "Diastolic blood pressure",
+      "unit": "mmHg",
+      "value": 79.00398425200707,
+      "annotation": {
+        "irregularHeartBeat": "false",
+        "measuredUnit": "mmHg"
+      }
+    },
+    {
+      "code": "https://loinc.org/8867-4",
+      "name": "Heart rate",
+      "unit": "bpm",
+      "value": 66,
+      "annotation": {
+        "irregularHeartBeat": "false",
+        "measuredUnit": "mmHg"
+      }
+    }
+  ]
+}
+```
+
+:::
+
+Retrieve all the detections matching the query filters and converts them to a format suitable for rendering with [`ck-chart`][ck-chart].
+
+#### Request
+
+The request must include the `filters` query parameter and you must pass at least the `planId`, while you can optionally specify a time range through the `observedAt` parameter.
+
+```json
+[
+  {
+    "property":"recordedAt",
+    "operator":"between",
+    "value":[
+      "2023-03-01T12:44:52.428Z",
+      "2023-05-31T12:44:55.428Z"
+    ]
+  },
+  {
+    "property":"planId",
+    "operator":"equal",
+    "value":"668253dd1f4092358e249610"
+  }
+]
+```
+
+The request must set the `accept-language` HTTP header to allow the TMM to return the correctly localized chart labels.
+
+#### Response
+
+A successful response (status code `200`) is issued and the body contains an array of available health data series based on the monitoring plan prototype, like the following:
+
+```json
+[
+  {
+    "name": "systolicBloodPressure [Pa]",
+    "data": [
+      {
+        "x": 1716819504000,
+        "y": 16400
+      }
+    ]
+  },
+  {
+    "name": "diastolicBloodPressure [Pa]",
+    "data": [
+      {
+        "x": 1716819504000,
+        "y": 10533
+      }
+    ]
+  }
+]
+```
+
+If something goes wrong during the request, the response will have a `3xx`, `4xx` or `5xx` status code and a payload looking like this:
+
+```json
+{
+  "statusCode": "400",
+  "error": "Bad request",
+  "message": "Exception description"
+}
+```
 
 ### `GET /detections/count`
 
@@ -426,6 +537,75 @@ The body of the request must contain a JSON object representing a valid detectio
 This endpoint returns 200 and an object with an `_id` field containing the ID of the created CRUD record.
 
 This endpoint returns 400 and a body with the structure shown below if the detection is not valid:
+
+```json
+{
+  "statusCode": 400,
+  "error": "Invalid CRUD Resource",
+  "message": "Detection is not valid",
+  "requestId": "<Request ID>",
+  "resource": {
+    "planType": "monitoring",
+    "planId": "abc123",
+    "isCompliant": true,
+    "value": {
+      "minimumBloodPressure": 97,
+      "maximumBloodPressure": 134
+    },
+    "observedAt": "2022-06-01T10:00:00.000Z",
+    "doctorId": "auth0|doctorId",
+    "patientId": "auth0|patientId"
+  },
+  "validationErrors": [
+    "The detection value is required for monitoring plans.",
+    "The 'observedAt' string does not represent a valid date/time.",
+    "The 'observedAt' date/time cannot be later than now."
+  ],
+}
+```
+
+### `POST /detections/bulk`
+
+Insert multiple detection in the CRUD and, for each detection, performs the following operations:
+
+- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds;
+- if the [`NOTIFICATION_MANAGER_URL` environment variable][environment-variables] is set, send a notification to the physician through the Notification Manager service.
+
+This endpoint is a proxy to the CRUD `POST /bulk` endpoint.
+
+The body of the request must contain a JSON array of objects representing valid detections, like:
+
+```json
+[
+  {
+    "planType": "therapy",
+    "planId": "drug-therapy-123",
+    "value": {
+      "drugName": "Nexovorin",
+      "drugDosage": "50mg",
+    },
+    "observedAt": "2022-06-01T10:00:00.000Z",
+    "doctorId": "auth0|doctorId",
+    "patientId": "auth0|patientId"
+  },
+  {
+    "planType": "monitoring",
+    "planId": "blood-pressure-456",
+    "value": {
+      "minimumBloodPressure": 75,
+      "maximumBloodPressure": 118
+    },
+    "observedAt": "2022-06-01T12:00:00.000Z",
+    "doctorId": "auth0|doctorId",
+    "patientId": "auth0|patientId"
+  },
+]
+```
+
+This endpoint returns 200 and a list of objects with an `_id` field containing the ID of the corresponding CRUD records.
+
+The detections are processed in sequence and the endpoint returns an error as soon as it encounters a detection that is not valid; therefore, if multiple detections are not valid, you would only receive the errors related to the first invalid one.
+In such scenario the endpoint returns 400 and a body with the structure shown below.
 
 ```json
 {
@@ -575,6 +755,7 @@ This endpoint supports the following query parameters:
 This endpoint returns 200 and a list of the prototypes matching the query.
 
 - A response with a prototype example for therapies:
+
 ```json
 [{
   "identifier": "drugPrescription",
@@ -678,7 +859,7 @@ This endpoint supports the following query parameters:
 
 - filtering with detection properties: `identifier`, `type` and `name`.
 
-This endpoint returns 200 and the number of prototypes matching the query. 
+This endpoint returns 200 and the number of prototypes matching the query.
 
 ## Adherence and compliance
 
@@ -742,6 +923,13 @@ The computation is performed for each plan according to the following algorithm,
 3. Compute if the ratio from the previous step, expressed as percentage and rounded to the closest integer, is greater or equal than the `complianceMinimumPercentage` threshold set for the plan.
 4. If the condition at the previous step is satisfied, the patient is reported as compliant.
 
+## Errors
+
+| Error code             | Message                                          | How to address                                                                                     |
+|------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `PROTOTYPES_DUPLICATED` | One or more prototypes have the same identifier | Check that all prototypes have a unique identifier, even if they are loaded from multiple sources. |
+| `PROTOTYPES_VALIDATION_FAILED` | One or more prototypes are not valid | Check that all prototypes are valid according to [their schema][prototype-data-model]. |
+
 
 [crontab-guru]: https://crontab.guru/ "Crontab.guru"
 
@@ -750,5 +938,8 @@ The computation is performed for each plan according to the following algorithm,
 
 [configuration]: ./20_configuration.md "Configuration page"
 [environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
+[prototype-data-model]: 20_configuration.md#prototype-data-model
 
 [therapy-monitoring]: #therapy--monitoring "Therapy & Monitoring | Usage"
+
+[ck-chart]: /runtime_suite/care-kit/20_components/70_ck-chart.md

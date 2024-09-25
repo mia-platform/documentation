@@ -289,5 +289,14 @@
         "thresholdValue"
       ]
     }
+  },
+  {
+    "name": "assignedDevices",
+    "type": "Array_string",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
   }
 ]

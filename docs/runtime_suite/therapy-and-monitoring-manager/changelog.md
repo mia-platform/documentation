@@ -15,6 +15,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] 2024-09-11
+
+- Update Node.js to v20 (LTS)
+
+### Added
+
+- Add `assignedDevices` field to `monitorings`
+- Add `deviceId` field to `detections`
+- Add `PROTOTYPES_SERVICE_URL` env var to fetch prototypes from an external HTTP service
+- Add `POST /detections/bulk` endpoint to create multiple detections
+- Add `POST /detections/chart-data` endpoint to get data in a format suitable for rendering with [`ck-chart`][ck-chart]
+
+### Fixed
+
+- With CRUD Service v6.9.0 or later the CRUD `GET /export` returns data in JSON format instead of NDJSON with default HTTP client headers
+
 ## [0.3.0] 2023-11-28
 
 ### Added
@@ -87,3 +103,6 @@ Detections routes, previously called `Observations`, have been renamed.
 - PATCH /monitorings/:id must prevent plan updates if observations were submitted
 - Patching therapy or monitorings returns unexpected error 'Invalid CRUD Resource'
 - Fix issues detected during internal demo
+
+
+[ck-chart]: /runtime_suite/care-kit/20_components/70_ck-chart.md
