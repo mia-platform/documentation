@@ -87,7 +87,7 @@ The following properties support [secret resolution](/fast_data/configuration/se
 
 Communication between Fabric BFF and Control Plane services occur both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason its necessary to
 configure on the Fabric BFF the addresses where to reach Control Plane service. This can done by setting the properties `rest` and `grpc` of `controlPlane` field in the Fabric BFF configuration.
-In both properties `target` field should be set to the address where Control Plane service exposes the corresponding one.
+In both properties, the `target` field should be set to the address where Control Plane service exposes the corresponding one.
 
 Here can be found an example of configuration that assumes Fabric BFF and Control Plane services are deployed within the same K8s namespace:
 
