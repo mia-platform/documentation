@@ -126,7 +126,7 @@ In this scenario we can have:
 This approach facilitates a smooth upgrade process, enables thorough testing of new features, and ensures compatibility across different stages of your project lifecycle. This flexibility allows for testing new versions in development environments while maintaining stable versions in production.
 Such a structured approach will streamline resource management and ensure compatibility and stability across different use cases.
 
-#### How to create a new versione for your resource
+#### How to create a new version for your resource
 
 To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).
 
@@ -147,7 +147,7 @@ Editing a versioned resource is possible via `miactl`, however the following fie
 
 Since marketplace items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a completely new marketplace item, completely separated from the previous one.
 
-Attemps to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
+Attemping to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
 
 #### Version dependent properties
 
