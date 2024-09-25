@@ -18,7 +18,7 @@ The Docker image must be specified in the `dockerImage` field in the service Mar
 :::info
 In versioned marketplace plugins, the `dockerImage` field depends on the version of the plugin used to install the microservice to the project. This means that, in the *Design* section, the `dockerImage` field is *read-only*, and cannot be modified, unless the user decides to detach the microservice or update the plugin to a different Marketplace item version.
 
-The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:  
+The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:
 
 ```json
 {
@@ -74,15 +74,46 @@ Each property described in the following paragraphs regarding the microservices 
 }
 ```
 
-The serviceId **must** be in `kebab-case` format.
+The serviceId **must** be in `kebab-case` format and should not exceed the length of 63 characters.
 
 Here below are listed all the properties that you can provide for each microservice item:
   
 - **`itemId`**: a unique item id that can be used to identify the item and all the services generated from it. Each service created using this item will have the identifier value in the **sourceComponentId** property.
-- **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by DevOps Console.  
-  A list is expected, for each of them you need to provide:  
+- **`defaultEnvironmentVariables`**: the environment variables that will overwrite the default environment variables applied by the Console.  
+  In particular, for each of them you need to provide:
   - **`name`**: the variable name (generally, a key written in `UPPER_SNAKE_CASE`)
-  - **`value`**: the variable default value
+  - **`readOnly`** (default: false): a boolean that represents if you can change the value of the variable through the Console
+  - **`description`** (optional): a brief description of the variable
+  - **`managedBy`** (optional): a string that represents the Console section that manages the variable. For now, it can be empty or `fast-data`. It only works used in combination with the `readOnly` property set to `true`.
+    
+  - **`valueType`** (default: `plain`): the field controls whether the value of the variable is provided by the user or by a Kubernetes resource; at the moment, *Plain Text*, *Config Maps*, *Secrets* and *Downward API* are supported.
+  
+  When `valueType: plain`, the following field is **required**:
+  - **`value`**: the variable default value; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values).
+
+  When `valueType: secret`, the following fields are **required**:
+  - **`secretName`**: the name of the secret that contains the value of the variable
+  - **`secretKey`**: the key of the secret that contains the value of the variable
+  
+  Be aware that the secret must be created in the same namespace where the service will be deployed. Since the secret cannot be created through the Console, the user must be made aware of this requirement when they want to deploy the service.
+  It is recommended to let the `readOnly` property set to `false` (the default), to allow users to change the secret reference in case they have it with another name or key for any reason.
+
+  When `valueType: configmap`, the following fields are **required**:
+  - **`configMapName`**: the name of the ConfigMap that contains the value of the variable
+  - **`configMapFileName`**: the key of the ConfigMap that contains the value of the variable
+
+  We recommend to set the ConfigMap accordingly to the `defaultConfigMaps` property, seen in the next section.
+  It is also recommended to let the `readOnly` property set to `false` (the default), to allow users to change the ConfigMap reference in case they have it with another name or file name for any reason.
+
+  When `valueType: downwardAPI`, the following field is **required**:
+  - **`fieldPath`**: the field path of the Downward API that contains the value of the variable.
+  
+  It can be any of the following Pod-level fields: `metadata.name`, `metadata.namespace`, `metadata.labels`, `metadata.uid`, `spec.serviceAccountName`, `spec.nodeName`, `status.hostIP`, `status.podIP`, `status.podIPs`, `metadata.annotations['<KEY>]`, where `<KEY>` is the name of a valid annotation key, `metadata.labels['<KEY>']`, where `<KEY>` is the name of a valid label key.
+
+  It can also be any of the following Container-level fields: `resource.limits.cpu`, `resource.requests.cpu`, `resource.limits.memory`, `resource.requests.memory`, `resource.limits.ephemeral-storage`, `resource.requests.ephemeral-storage`.
+  
+  In case a container-level field is provided, the following field is also **required**:
+  - **`containerName`**: the name of the container where the field is located. It is **required** only if the field is a container-level field; it must be **omitted for pod-level fields**.
 - **`defaultConfigMaps`**: the default ConfigMaps, if any, that will be mounted inside the container of the microservice.  
   A list is expected, for each of them you need to provide:  
   - **`name`**: the name of the ConfigMap
@@ -101,17 +132,18 @@ Here below are listed all the properties that you can provide for each microserv
   - `mia-plain`: collects logs but does not parse them
   - `mia-json`: parses JSON logs based on the documented format
   - `mia-nginx`: parses logs of Nginx that were created using templates and services of Mia-Platform (website and api-gateway)
-- **`defaultAnnotations`**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation). The annotations that start with `mia-platform.eu` are reserved, you are not allowed to use them.
+- **`defaultAnnotations`**: the service annotations, which can be used to provide additional information about your services for various purposes (such as configuration, monitoring, or automation).
+  The annotations that start with `mia-platform.eu` are reserved, you are not allowed to use them.
   The field is an array of objects that represent the labels. Each object has the following fields:
-  - `name`: the name of the label,
-  - `value`: the value of the label,
+  - `name`: the name of the annotation
+  - `value`: the value of the annotation; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values).
   - `description`: description of the label,
   - `readOnly`: boolean that represent if you can change the value of the label through the
 - **`defaultLabels`**: the service labels, which can be used to categorize, group, and select your service. The labels that start with `mia-platform.eu` are reserved, you are not allowed to use them.
   The field is an array of objects that represent the labels. Each object has the following fields:
-  - `name`: the name of the label,
-  - `value`: the value of the label,
-  - `description`: description of the label,
+  - `name`: the name of the label
+  - `value`: the value of the label; it can contain placeholders that will be replaced with the actual values when the service is created, as explained in the [interpolation section](#interpolating-default-labels-annotations-and-environment-variables-values).
+  - `description`: description of the label
   - `readOnly`: boolean that represent if you can change the value of the label through the Console
 - **`defaultDocumentationPath`**: the APIs documentation path.
 - **`defaultResources`**: CPU and memory limitations of the service, which can be used to overwrite the default limitations imposed by DevOps Console for these parameters.
@@ -126,6 +158,56 @@ Please note that in this configuration **`min`** corresponds to the **`request`*
 In addition, measurement units are required. Resources are expressed in terms of milliCPUs (`m`) and MebiBytes (`Mi`) respectively for CPU and Memory.
 :::
 
+#### Interpolating Default Labels, Annotations, and Environment Variables Values
+
+The values of the `defaultLabels`, `defaultAnnotations`, and `defaultEnvironmentVariables` fields can contain placeholders that will be replaced with the actual values when a Console user creates the service.
+
+Here is an exhaustive list of the placeholders that can be used:
+
+- `%MICROSERVICE_NAME%`: the name of the created microservice
+- `%PROJECT_ID%`: the human-readable ID of the project. It is a dash-separated string generated by the Console when a project is created, based on the project name.
+- `%COMPANY_ID%`: the ID of the company that owns the project.
+- `%TENANT_ID%`: alias for `%COMPANY_ID%`.
+
+##### Example
+
+Suppose you create a Marketplace item of type `plugin`, with the following `defaultEnvironmentVariables`:
+
+```json
+[
+  ...,
+  {
+    "name": "SOME_ENV_VAR",
+    "value": "ms name: %MICROSERVICE_NAME%; project id: %PROJECT_ID%; company id: %COMPANY_ID%"
+  }
+]
+```
+
+For example, given a Project with the id `my-project` and a Company with the ID `my-company`, a Console user creates a Microservice from such plugin, naming the Microservice `my-ms`.
+
+The microservice will be created with the env var `SOME_ENV_VAR` set as follows:
+
+```json
+{
+   "name": "SOME_ENV_VAR",
+   "value": "ms name: my-ms; project id: my-project; company id: my-company"
+}
+```
+
+:::caution
+Be aware of the limitations of the values where the placeholders will be interpolated.
+For example, the labels values are limited to 63 characters, so the interpolated value must not exceed this limit.
+Annotations have a limit of 256 characters, so the interpolated value must not exceed this limit.
+
+Refer to Kubernetes documentation of [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) and [labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) for more information about the limits of the resources.
+
+Failing to comply with these limitations will result in an error when deploying the service.
+:::
+
+:::info
+Any unrecognized placeholder will be left as is in the final value.
+:::
+
 #### Configure Console Links
 
 A service created from the Marketplace can feature custom links to other Console pages, managed by different microfrontend Plugins. To configure them on newly created services set up new objects in the `links` property for each plugin you wish.
@@ -138,7 +220,7 @@ A link is an object shaped as follows:
 
 ## Example of a Plugin
 
-The following is an example of the manifest a plugin, called _MongoDB Reader_, released with version `1.0.0`.
+The following is an example of the manifest a plugin, called *MongoDB Reader*, released with version `1.0.0`.
 
 This manifest can be used to add the element to the Marketplace.
 
