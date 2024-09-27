@@ -186,49 +186,6 @@ The configuration has the following main sections:
 }
 ```
 
-### Secret support
-
-In k8s environments secrets can be injected in a running workload as an environment variable,
-as a standalone file or a INI key in a standalone file. Such secrets may be base64 encoded.
-
-_Data Catalog Agent_ configuration supports referencing such secrets inline in selected fields of the
-JSON configuration file. When the field supports secrets you may write a plain string or objects.
-
-In case of a string the secret is considered `plain` and written in the config file.
-In case of an object with `env` guard like:
-
-```json
-{
-  "type": "env",
-  "key": "MY_SECRET_ENV_VAR"
-}
-```
-
-the agent will use the content of the env var `MY_SECRET_ENV_VAR`. An extra `encoding` field equal
-to `base64` can be used to specify a pre-read decoded to use.
-
-In case of an object with `file` guard like:
-
-```json
-{
-  "type": "file",
-  "path": "/path/to/secret"
-}
-```
-
-it will use the content of the file on such `path`. If the file is formatted as an `ini` file a `key` may
-be specified
-
-```json
-{
-  "type": "file",
-  "path": "/path/to/secret",
-  "key": "CONNECTION_STRING"
-}
-```
-
-An extra `encoding` field equal to `base64` can be used to specify a pre-read decoded to use.
-
 Secretable fields are marked in the following sections.
 
 ## Connections
@@ -305,7 +262,7 @@ Other keys are `host` and `port` which for a **PostgreSQL** connection are defau
 
 #### Secretable fields
 
-`uid`, `pwd` or `params` support secrets
+`uid`, `pwd` or `params` support [secrets resolution](/fast_data/configuration/secrets_resolution.md).
 
 ### Oracle
 
@@ -461,7 +418,7 @@ Also the environment variable must be set:
 
 #### Secretable fields
 
-`uid`, `pwd` or `params` support secrets
+`uid`, `pwd` or `params` support [secrets resolution](/fast_data/configuration/secrets_resolution.md).
 
 ### MS SQL server
 
@@ -505,7 +462,7 @@ Other keys are `host` and `port` which for a **PostgreSQL** connection are defau
 
 #### Secretable fields
 
-`uid`, `pwd` or `params` support secrets
+`uid`, `pwd` or `params` support [secrets resolution](/fast_data/configuration/secrets_resolution.md).
 
 ### MySQL
 
@@ -549,7 +506,7 @@ Other keys are `host` and `port` which for a **PostgreSQL** connection are defau
 
 #### Secretable fields
 
-`uid`, `pwd` or `params` support secrets
+`uid`, `pwd` or `params` support [secrets resolution](/fast_data/configuration/secrets_resolution.md).
 
 ### Mia CRUD Service
 
@@ -714,22 +671,27 @@ Now you should have everything you need to fill out the configuration parameters
 
 #### Secretable fields
 
-`clientId`, `username`, `clientSecret`, `password`, `securityToken` or `privateKey` support secrets
+`clientId`, `username`, `clientSecret`, `password`, `securityToken` or `privateKey` support [secrets resolution](/fast_data/configuration/secrets_resolution.md).
 
 ## Targets
 
 There are 4 targets available:
 
-1. [**default**] stdout
-2. file
-3. mia-console
+1. [**default**] `stdout`
+2. `mongodb`
+2. `file`
+3. `mia-console`
 
 For each listed connection, after metadata is retrieved, `agent` **sequentially** sends data to the target as:
 
-- `json` for `stdout` and `file`
-- [`ndjson`](https://github.com/ndjson/ndjson-spec) for `mia-console`
+- `json` for `stdout` and `file`;
+- [`ndjson`](https://github.com/ndjson/ndjson-spec) for `mia-console`.
+- [`BSON`](https://bsonspec.org/) for `mongodb`
 
-The final content is an `array` of models. Model spec is given in the form of a <a download target="_blank" href="/docs_files_to_download/data-catalog/model.schema.json">JSON schema</a>.
+The final content is an `array` of models, where the format of its records changes accordingly to the target: 
+
+- `stdout`, `file` and `mia-console`: the models are written in the native agent format, which is defined in the following <a download target="_blank" href="/docs_files_to_download/data-catalog/agent.model.schema.json">JSON schema</a>;
+- `mongodb`: the models are written in a format that is supported by the [Data Catalog](/data_catalog/overview.mdx) application, as defined in the following <a download target="_blank" href="/docs_files_to_download/data-catalog/catalog.model.schema.json">JSON schema</a>;
 
 ### Standard Output 
 
@@ -743,6 +705,29 @@ To explicitly configure the `stdout` target use:
   }
 }
 ```
+
+### MongoDB
+
+The MongoDB target enables Data Catalog Agent to feed data from external sources to the [Data Catalog](/data_catalog/overview.mdx) application. 
+
+To configure the `mongodb` target use:
+
+```js
+{
+  // ...
+  "target": {
+    "type": "mongodb",
+    "url": "mongodb://test:27017/?replicaSet=rs", // 👈 mongodb connection string: the database must be a replica set
+    "database": "test_database", // 👈 if defined, it will be used as default database to store the models
+  }
+}
+```
+
+The target will write the content of the connections to a MongoDB replica set database, in a collection named `open-lineage-datasets`.
+
+:::tip
+To enforce document validation on that collection, be sure to run [Data Catalog Configuration Scripts](/data_catalog/database_setup.mdx) before executing the agent.
+:::
 
 ### File
 
@@ -770,6 +755,10 @@ which will save output files in the folder `./output`. To override this use:
 ```
 
 ### MIA Console
+
+:::caution
+This target has been **deprecated** in favour of [`mongodb`](#mongodb) to support [Data Catalog](/data_catalog/overview.mdx) solution.
+:::
 
 To configure the `mia-console` target use:
 

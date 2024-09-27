@@ -15,6 +15,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] - 2024-09-20
+
+### Added
+
+#### Targets
+
+- `mongodb` target. Models will be stored on a dedicated collection with the following target configuration:
+  ```json
+  {
+    // ...
+    "target": {
+      "type": "mongodb",
+      "url": "mongodb://test:27017/?replicaSet=rs", // 👈 mongodb connection string: the database must be a replica set
+      "database": "test_database", // 👈 if defined, it will be used as default database to store the models
+    }
+  }
+  ```
+  
+  The record will be stored in a collection named `open-lineage-datasets`.
+  
+  > **NOTE:**
+  >
+  > To use MongoDB as a target, the database must be configured as a replica set.
+
+### Updated
+
+- _Data Catalog Agent_ bumped to version `0.6.4`
+
 ## [1.3.1] - 2024-07-31
 
 ### Updated
