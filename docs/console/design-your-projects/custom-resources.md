@@ -43,11 +43,11 @@ To create a resource from Marketplace, you need to select the Custom Resource yo
 
 ![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
 
-Marketplace could contain *versioned* Custom Resources. In that case, when selecting the Custom Resource to create, you will see the available versions and you can also choose which version you prefer to use.
+The Marketplace could contain *versioned* Custom Resources. In that case, when selecting the Custom Resource to create, you will see the available versions and you will be able to select the one you prefer.
 
 ![Create from Marketplace a versioned Custom Resource](./img/custom-resources/create-from-marketplace-versioned.png)
 
-In this case, you can only modify the *name* of the Custom Resource: the *Kind* and the *apiVersion* are managed by the versioned marketplace item, and you cannot modify them manually, either during the creation or the update.
+In this case, you can only modify the *name* of the Custom Resource: the *kind* and the *apiVersion* fields are managed by the versioned marketplace item, so you cannot modify them manually, neither during the creation nor the update.
 
 ### Update a Custom Resource
 
