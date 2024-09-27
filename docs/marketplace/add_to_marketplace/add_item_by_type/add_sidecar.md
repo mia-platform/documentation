@@ -1,7 +1,7 @@
 ---
 id: add_sidecar
-title: Publish your sidecar to the Marketplace
-sidebar_label: Create a sidecar
+title: Publish your Sidecar to the Marketplace
+sidebar_label: Create a Sidecar
 ---
 
 [Sidecar containers](/development_suite/api-console/api-design/microservice-containers.md#sidecar-containers) are secondary utility containers
@@ -49,7 +49,7 @@ the Command Line Interface by Mia-Platform designed to interact with the Mia-Pla
 To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
 
 ```bash
-> miactl marketplace apply -f ./my-sidecar.ymal --company-id my-company-id
+> miactl marketplace apply -f ./my-sidecar.yaml --company-id my-company-id
 ```
 
 You should receive a success response similar to this one:
@@ -70,7 +70,7 @@ In the previous section we created our first sidecar resource. Now we want to up
 As a first step, retrieve the sidecar definition from `miactl`:
 
 ```bash
-> miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-sidecar-update.ymal
+> miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-sidecar-update.yaml
 ```
 
 Then update the `my-sidecar` docker image version changing the relative line in the `my-sidecar-update.yaml` file.
@@ -82,10 +82,10 @@ resources:
   dockerImage: ghcr.io/my-sidecar:2.0
 ```
 
-And finally, run the same `miactl` command, passing the updated `my-sidecar-update.ymal` file:
+And finally, run the same `miactl` command, passing the updated `my-sidecar-update.yaml` file:
 
 ```bash
-> miactl marketplace apply -f ./my-sidecar-udapte.ymal --company-id my-company-id
+> miactl marketplace apply -f ./my-sidecar-udapte.yaml --company-id my-company-id
 ```
 
 You will receive a similar response with `STATUS: Updated`
