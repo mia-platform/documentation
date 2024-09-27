@@ -8,17 +8,23 @@ Plugins are ready-to-use microservices that only need some configuration from th
 
 ## Where to host plugins
 
-In the Mia-Platform Console, you can design your project by adding microservices coming from existing elements in the Marketplace. Plugins are ready-to-use microservices that only need some configuration from the user to work. You do not need to download the repository and/or review the code: the plugin is available in a registry so you only need the *Docker Image name* and you are ready to go.
+In the Mia-Platform Console, you can design your project by adding microservices coming from existing elements in the Marketplace.
+Plugins are ready-to-use microservices that only need some configuration from the user to work.
+You do not need to download the repository and/or review the code: the plugin is available in a registry so you only need the *Docker Image name* and you are ready to go.
 
-To add your own *plugin* to the Company Marketplace, you have to host the plugin as a **Docker image**, that should be pushed on an accessible registry. This Docker image name must be specified in the `dockerImage` field in the service Marketplace document.
+To add your own *plugin* to the Company Marketplace, you have to host the plugin as a **Docker image**, that should be pushed on an accessible registry.
+This Docker image name must be specified in the `dockerImage` field in the service Marketplace document.
 
 :::info
-In versioned marketplace plugins, the `dockerImage` field depends on the version of the plugin used to install the microservice to the project. This means that, in the *Design* section, the `dockerImage` field is *read-only*, and cannot be modified, unless the user decides to detach the microservice or update the plugin to a different Marketplace item version.
+In versioned marketplace plugins, the `dockerImage` field depends on the version of the plugin used to install the microservice to the project.
+This means that, in the *Design* section, the `dockerImage` field is *read-only*, and cannot be modified, unless the user decides to detach the microservice or update the plugin to a different Marketplace item version (which means, selecting a different Docker image).
 :::
 
 ## Definition of a Plugin resource
 
-Plugins should follow the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item). The _type_ field must be equal to `plugin`, with the content of the field `resources` to include only a property called `services`. Inside the `services` object, you should specify *only one property*, which is the plugin name as the key and the plugin configuration as the value.
+Plugins should follow the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item).
+The *type* field must be equal to `plugin`, and the content of the field `resources` to include only a property called `services`.
+Inside the `services` object, you should specify *only one property*, which is the plugin name as the key and the plugin configuration as the value.
 
 Each property described in the following paragraphs regarding the microservices configuration must be configured under the property `resources/services/:serviceId` as follows:
 
@@ -41,7 +47,7 @@ Each property described in the following paragraphs regarding the microservices 
 Instead of `<<your-service-id>>`, you must include the identifier of your service, which **must** be in `kebab-case` format and should not exceed the length of 63 characters.
 
 :::info
-The definition of services, and the following information related to the list of fields applies also to [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md). The difference is that the `services` object in Templates and Examples can include more than one key, which means more than one service.
+The definition of services, and the following information related to the list of fields applies also to [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md), with the difference that the `services` object in Templates and Examples can include more than one key, which means more than one service.
 :::
 
 Here below are listed all the properties that you can provide for each microservice item:
@@ -176,7 +182,8 @@ Any unrecognized placeholder will be left as is in the final value.
 
 ### Configure Console Links
 
-A service created from the Marketplace can feature custom links to other Console pages, managed by different microfrontend Plugins. To configure them on newly created services set up new objects in the `links` property for each plugin you wish.
+A service created from the Marketplace can feature custom links to other Console pages, managed by different microfrontend Plugins.
+To configure them on newly created services set up new objects in the `links` property for each plugin you wish.
 
 A link is an object shaped as follows:
 
@@ -304,4 +311,5 @@ You can update a Custom Resource Marketplace item by using the same `miactl mark
 
 While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields that cannot be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
-Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource. Of course you can do that always with `miactl marketplace apply` by using the same `itemId` and the same `tenantId` but with a new `name` inside the `version` field.
+Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource.
+Of course you can do that always with `miactl marketplace apply` by using the same `itemId` and the same `tenantId` but with a new `name` inside the `version` field.

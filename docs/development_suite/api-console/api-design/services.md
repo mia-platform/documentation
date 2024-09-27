@@ -81,6 +81,8 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 
 - **Name** (*required*): this is the internal hostname;  
 - **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s;
+- **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
+- **Description** (*optional*): this is the description of your microservice.
 
 :::info
   Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
@@ -90,10 +92,6 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 - `tag` is the version of the docker image
 
 :::
-
-- **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
-
-- **Description** (*optional*): this is the description of your microservice.
 
 ![service-docker-image](img/service-docker-image.png)
 
@@ -115,9 +113,9 @@ The detail of each microservice is divided in the following sections:
 
 ### Microservice
 
-In this section, you can view some base information about the microservice, and update some information regarding it, like the description and the API documentation path.
+In this section, you can review and update some base information about the microservice, like the description and the API documentation path.
 
-In case your microservice has been created manually from a Docker Image or from a Marketplace Template or a Marketplace Example, you can also configure the *Docker Image Name*.
+In case your microservice has been created manually from a Docker Image or from a Marketplace Template/Example, you can also configure the *Docker Image Name*.
 
 ![service-detail-new](img/service-detail-new.png)
 
@@ -125,9 +123,11 @@ If the microservice has been created from a versioned Marketplace plugin, the *D
 
 ![Detail of a service generated from a versioned Marketplace plugin](img/versioned-service.png)
 
-In case you want to manually update the Docker Image Name, you can click on the right-side menu button where a menu will pop-up. From there you can either *select a different version* or *detach the microservice from the Marketplace plugin*.
+In case you want to manually update the Docker Image Name, you can click on the right-side menu button where a menu will pop-up.
+From there you can either *select a different version* or *detach the microservice from the Marketplace plugin*.
 
-Selecting a different version will open a modal window where all the versions available for that Marketplace plugin will be listed. You can use this modal window also to get more information about the versions, such as the description, the Docker Image name referenced and the release note, plus also to be aware of versions in *beta* or that are flagged with the *Coming Soon* badge.
+Selecting a different version will open a modal window where all the versions available for that Marketplace plugin will be listed.
+You can use this modal window also to get more information about the versions, such as the description, the Docker Image name referenced and the release note, plus also to be aware of versions in *beta* or that are flagged with the *Coming Soon* badge.
 
 From there you can select one of the available versions in order to update the Docker Image.
 
@@ -143,11 +143,13 @@ However, it does not mean that this version is not supported anymore, or it is l
 
 ### Detach a service from the Marketplace
 
-Services created starting from Marketplace are shown in the detail page with a badge that notifies the user the original Marketplace item. This will allow the user to always be aware of the original Marketplace item, to have certain fields set as *read-only* (like the *Docker Image* field) but also to check if there are any updates on the service.
+Services created starting from Marketplace are shown in the detail page with a badge that notifies the user the original Marketplace item.
+This will allow the user to always be aware of the original Marketplace item, to have certain fields set as *read-only* (like the *Docker Image* field) but also to check if there are any updates on the service.
 
 In case you need full control of the service, you can decide to *detach* the service from the Marketplace item. This will allow you to edit the service as you wish, without any restrictions.
 
-You can do that by clicking on the *Detach from Marketplace* button in the menu located to the right side of the page, in the *Detail* tab of the service.: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable. However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
+You can do that by clicking on the *Detach from Marketplace* button in the menu located to the right side of the page, in the *Detail* tab of the service:this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
+However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
 
 :::info
 Detaching a microservice is an operation that cannot be reverted, causing to lose any information about updates on this item.

@@ -65,20 +65,25 @@ The Custom Resource has some supported fields, other fields will be ignored. The
 
 ![Update](./img/custom-resources/update-gateway-custom-resource.png)
 
-If the Custom Resource comes from a versioned Marketplace item, you cannot modify the *apiVersion* and the *kind* fields. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
+Custom Resources created from Marketplace items can not have the `apiVersion` and the `kind` fields modified. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
-To update these fields, you can select a new version, by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu. By doing so, a modal window will open to show you all the available versions of the Custom Resource, and you can select the one you want to use.
+Different versions of the Marketplace item might include updates to these fields.
+In case you need to change the `apiVersion` or the `kind` you can select a new version, by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu. 
+A modal window will open to show you all the available versions of the Custom Resource, and you can select the one you want to use.
 
 ![Change version](./img/custom-resources/change-custom-resource-version.png)
 
-Inside the modal you can also see the *apiVersion* and the *kind* of the Custom Resource of the selected version, to give you a better idea of what configuration you are selecting.
+Inside the modal you can also see the `apiVersion` and the `kind` of the Custom Resource of the selected version, to give you a better idea of the configuration you are selecting.
 
-In case you need to update the *apiVersion* and the *kind* fields manually, completely changing the configuration of the Custom Resource, you can do so by clicking the *Detach from Marketplace* button on the menu: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable. However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
+In case you need to update the `apiVersion` and the `kind` fields manually, completely changing the configuration of the Custom Resource, you can do so by clicking the *Detach from Marketplace* button on the menu:this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
+However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
 
 :::info
-A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created. This means that it has been created before the support of versioning in the Marketplace was implemented.
+A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created.
+This means that it has been created before the support of versioning in the Marketplace was implemented.
 
-However, it does not mean that this version is not supported anymore, or it is less secure: verify the other available versions to see what it fits better your needs. In case of further questions, please contact the Marketplace item creator.
+However, it does not mean that this version is not supported anymore, or it is less secure:
+verify the other available versions to see what it fits better your needs. In case of further questions, please contact the Marketplace item creator.
 :::
 
 ### Delete a Custom Resource

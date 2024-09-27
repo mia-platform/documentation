@@ -27,111 +27,111 @@ Inside the panel there is the JSON Schema to use to create a resource with _type
     "type": "object",
     "additionalProperties": false,
     "properties": {
-    "name": {
-        "type": "string"
-    },
-    "generator": {
-        "type": "object",
-        "properties": {
-        "type": {
-            "type": "string",
-            "enum": ["template"]
-        },
-        "configurationBaseFolder": {
+        "name": {
             "type": "string"
         },
-        "templates": {
+        "generator": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["template"]
+                },
+                "configurationBaseFolder": {
+                    "type": "string"
+                },
+                "templates": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "template": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "fileExtension": {
+                                "type": "string",
+                                "description": "The extension of the file to generate. If not set, default is .yml"
+                            },
+                            "folderName": {
+                                "type": "string",
+                                "description": "The name of the folder where the file will be created, below the configurationBaseFolder"
+                            }
+                        },
+                        "required": [
+                            "template",
+                            "name"
+                        ]
+                    }
+                }
+            },
+            "required": ["type", "templates"]
+        },
+        "meta": {
+            "type": "object",
+            "properties": {
+                "kind": {
+                    "type": "string"
+                },
+                "apiVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "spec": {
+            "type": "object"
+        },
+        "attributes": {
+            "type": "object",
+            "description": "Attributes to be used to generate the form to manage the Custom Resource",
+            "additionalProperties": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["input"]
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "properties": {
+                "archive": {
+                    "type": "string"
+                }
+            }
+        },
+        "labels": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "template": {
-                        "type": "string"
-                    },
                     "name": {
                         "type": "string"
                     },
-                    "fileExtension": {
-                        "type": "string",
-                        "description": "The extension of the file to generate. If not set, default is .yml"
-                    },
-                    "folderName": {
-                        "type": "string",
-                        "description": "The name of the folder where the file will be created, below the configurationBaseFolder"
+                    "value": {
+                        "type": "string"
                     }
-                },
-                "required": [
-                    "template",
-                    "name"
-                ]
+                }
             }
-        }
         },
-        "required": ["type", "templates"]
-    },
-    "meta": {
-        "type": "object",
-        "properties": {
-            "kind": {
-                "type": "string"
-            },
-            "apiVersion": {
-                "type": "string"
-            }
-        }
-    },
-    "spec": {
-        "type": "object"
-    },
-    "attributes": {
-        "type": "object",
-        "description": "Attributes to be used to generate the form to manage the Custom Resource",
-        "additionalProperties": {
-        "type": "object",
-        "properties": {
-            "type": {
-                "type": "string",
-                "enum": ["input"]
+        "annotations": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
                 }
             }
         }
-    },
-    "service": {
-        "type": "object",
-        "properties": {
-        "archive": {
-            "type": "string"
-        }
-        }
-    },
-    "labels": {
-        "type": "array",
-        "items": {
-        "type": "object",
-        "properties": {
-            "name": {
-                "type": "string"
-            },
-            "value": {
-                "type": "string"
-            }
-        }
-        }
-    },
-    "annotations": {
-        "type": "array",
-        "items": {
-        "type": "object",
-        "properties": {
-            "name": {
-                "type": "string"
-            },
-            "value": {
-                "type": "string"
-            }
-        }
-        }
-    }
     }
 }
 ```
