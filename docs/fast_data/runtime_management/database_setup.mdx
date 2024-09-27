@@ -32,7 +32,6 @@ it is described how it can be configured, while here are highlighted which value
 
 - `<URL_TO_CONTAINER_REGISTRY>` &rarr; is the url to your Container Registry of reference;
 - `data-fabric/fabric-admin` &rarr; image is employed, which should be found within your Container Registry;
-- `<TAG>` &rarr; is the latest stable version of CLI image;
 - `suspend` &rarr; the cronjob must be released as suspended, since it should be launched manually only once;
 - `<NAME_CONTAINER_REGISTRY_SECRET>` &rarr; name of the secret where are contained the credentials for connecting to your Container Registry;
 - `MONGODB_ADMIN_URL` &rarr; connection string to your MongoDB database.
@@ -76,7 +75,8 @@ spec:
             - name: <NAME_CONTAINER_REGISTRY_SECRET>
           containers:
             - name: fabric-control-plane-admin
-              image: <URL_TO_CONTAINER_REGISTRY>/data-fabric/fabric-admin:<TAG>
+              # current latest stable version of the image is 0.1.0
+              image: <URL_TO_CONTAINER_REGISTRY>/data-fabric/fabric-admin:0.1.0
               args: [
                 "all",
                 "init",
