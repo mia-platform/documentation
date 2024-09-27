@@ -8,8 +8,8 @@ When designing your project in the Mia-Platform Console, you can define and conf
 
 They are basically defined by two fields:
 
-- the `apiVersion` field, which is the API version of the resource
-- the `kind` field, which is the kind of the resource
+- the `apiVersion` field, which is the version of the kubernetes API used by that resource
+- the `kind` field, which is the specific resource type of the resource
 
 Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace, using the `miactl` tool. They are defined with the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), by having the _type_ field equal to `custom-resource`.
 
@@ -231,9 +231,10 @@ You just created your custom resource, which is now available on your `Company M
 
 ### Update the Custom Resource
 
-You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format). 
+You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format).
 
-In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified.
+For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
 Given that Custom Resources are defined by their `apiVersion` and `kind`, when updating a resource, you should create a new marketplace item with a different version. This new version should include a release note and contain the resource with your required updates.
 
