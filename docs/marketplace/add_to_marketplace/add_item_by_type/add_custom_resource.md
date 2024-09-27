@@ -11,9 +11,10 @@ They are basically defined by two fields:
 - the `apiVersion` field, which is the version of the kubernetes API used by that resource
 - the `kind` field, which is the specific resource type of the resource
 
-Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace, using the `miactl` tool. They are defined with the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), by having the _type_ field equal to `custom-resource`.
+Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace.
+They are defined with the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), by having the _type_ field equal to `custom-resource`.
 
-Custom resources items in the Marketplace supports _versioning_, allowing to update the resource without overwriting the previous ones.
+Custom resource items in the Marketplace support _versioning_, allowing you to update a resource without overwriting its previous versions. 
 
 ## Custom Resource definition
 
