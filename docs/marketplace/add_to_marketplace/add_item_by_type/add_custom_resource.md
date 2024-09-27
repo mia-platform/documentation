@@ -164,6 +164,8 @@ name: sleepInfo
 
 ::: info
 In the paragraphs to follow, we are going to use the `miactl` tool to show how to create a new Custom Resource.
+
+Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
 :::
 
 First of all, we need to create a new file that includes the marketplace information and the Custom Resource that we want to add.
