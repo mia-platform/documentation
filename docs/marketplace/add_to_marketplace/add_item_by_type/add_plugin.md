@@ -302,6 +302,6 @@ You just created your plugin, which is now available on your `Company Marketplac
 
 You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format).
 
-While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields taht cannot be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields that cannot be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
 Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource. Of course you can do that always with `miactl marketplace apply` by using the same `itemId` and the same `tenantId` but with a new `name` inside the `version` field.
