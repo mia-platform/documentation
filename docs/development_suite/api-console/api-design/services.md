@@ -127,7 +127,7 @@ In case you want to manually update the Docker Image Name, you can click on the 
 From there you can either *select a different version* or *detach the microservice from the Marketplace plugin*.
 
 Selecting a different version will open a modal window where all the versions available for that Marketplace plugin will be listed.
-You can use this modal window also to get more information about the versions, such as the description, the Docker Image name referenced and the release note, plus also to be aware of versions in *beta* or that are flagged with the *Coming Soon* badge.
+You can use this modal window also to get more information about the versions, such as the release note and the Docker Image name referenced, plus also to be aware of versions that are flagged with the *Coming Soon* badge.
 
 From there you can select one of the available versions in order to update the Docker Image.
 
