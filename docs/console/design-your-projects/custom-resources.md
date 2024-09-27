@@ -67,9 +67,9 @@ The Custom Resource has some supported fields, other fields will be ignored. The
 
 Custom Resources created from Marketplace items can not have the `apiVersion` and the `kind` fields modified. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
-Different versions of the Marketplace item might include updates to these fields.
-In case you need to change the `apiVersion` or the `kind` you can select a new version, by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu. 
-A modal window will open to show you all the available versions of the Custom Resource, and you can select the one you want to use.
+Each version of the Custom Resource defines specific values for these fields.
+You can select a new version by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu.
+A modal window will open, where you can see the available versions of the Custom Resource and select the one you want to use.
 
 ![Change version](./img/custom-resources/change-custom-resource-version.png)
 
@@ -82,8 +82,7 @@ However, you will not be able to use the Marketplace versioning feature anymore,
 A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created.
 This means that it has been created before the support of versioning in the Marketplace was implemented.
 
-However, it does not mean that this version is not supported anymore, or it is less secure:
-verify the other available versions to see what it fits better your needs. In case of further questions, please contact the Marketplace item creator.
+However, it does not mean that this version is not supported anymore, or that it is less secure: check out the available versions and choose the one that fits your needs. In case of further questions, please contact the Marketplace item creator.
 :::
 
 ### Delete a Custom Resource
