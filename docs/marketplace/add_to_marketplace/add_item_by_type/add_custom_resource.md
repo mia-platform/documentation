@@ -212,8 +212,6 @@ Please note that:
 
 ### Publish a new Custom Resource
 
-This section describes the steps required to publish a sidecar resource to the Marketplace via [miactl](/cli/miactl/10_overview.md), the Command Line Interface by Mia-Platform designed to interact with the Mia-Platform Console. Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
-
 To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
 
 ```bash
