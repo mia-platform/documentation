@@ -47,8 +47,9 @@ on your Mia-Platform Console instance and assign to it the proper permissions fo
 :::tip Good practices in permissions assignment
 Pay attention to the level of access to the resources that you assign to the Service Account. 
 For Control Plane use case, a good practice may be to assign the role of `guest` at Company level while granting
-the `reporter` role to all the projects that should be visible by Control Plane.
-About permissions assignment, it is possible to go even more granular in case you want to allow visibility only to a subset of runtime environments of a specific project; in fact, to do that, you may opt to assign the role of `guest` even at Project level while granting
+the `reporter` role to all the projects that should be visible by Control Plane.  
+About permissions assignment, it is possible to go even more granular in case you want to allow visibility only to a subset of runtime environments of a specific project.
+In fact, to do that, you may opt to assign the role of `guest` even at Project level while granting
 the `reporter` role solely to those runtime environments that should be visible by Control Plane.
 :::
 
