@@ -14,7 +14,8 @@ Please ensure that versions shown in the matrix are respected in your deployed e
 | Service                                                                  | Version | MongoDB | Redis  |
 |--------------------------------------------------------------------------|---------|---------|--------|
 | [Control Plane](/fast_data/runtime_management/control_plane.mdx)         | 0.1.0   | \>=5.0  | \>=7.0 |
-| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx) | 0.1.0   | \>=5.0  | \>=7.0 |
+| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx) | 0.1.0   | \>=5.0  | _N/A_  |
+<p><sup>*</sup><em>N/A</em> means the service does not depend on the resource</p>
 
 ## Fast Data services
 
