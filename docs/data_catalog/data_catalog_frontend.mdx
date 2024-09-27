@@ -8,6 +8,8 @@ sidebar_label: Data Catalog UI
 Data Catalog frontend communicates with [Open Lineage](/data_catalog/data_catalog_open_lineage.mdx) backend
 via [Fabric BFF](/data_catalog/data_catalog_fabric_bff.mdx) component.
 
+(**TO CHANGE THIS IMAGE**)
+
 ![Data Catalog embedded in Console](./img/data_catalog_in_console.png)
 
 ## Features
@@ -22,34 +24,44 @@ In the following paragraphs, all Data Catalog features are described in detail.
 
 ### Asset discovery
 
-When accessing Data Catalog frontend, users land to the home section of the Data Catalog.
+When accessing Data Catalog frontend, user lands to the home section of the Data Catalog, where there is a searchbar that represents the starting point to navigate among Data Catalog assets.
 
-Here, the starting point to navigate among assets that populate the Data Catalog is represented by the searchbar.  
+Given the large cardinality of assets that can be retrieved on this tool (SoR, Tables, Columns), it is possible to fine-tune search results through both the search-context setting and advanced search filtering options.  
 
-Given the huge cardinality of assets that may be retrieved on this tool (SoRs, Tables, Columns), it is possible to fine tune your search results thanks to advanced search filter options:
+#### Search-context
+
+Next to the search bar, the search context can be set to better circumscribe the search scope. For example, if the System of Records within which you want to perimeter the search results is already known, you can from the search context enter that specific SoR. All results returned from the search will be assets belonging to the context of that specific SoR. To refine the search scope even more, it is also possible from the context to select a table.
+
+#### Advanced filters
+
+To refine the search to make it even more granular, it is also possible to apply filters:
+
 - by **asset types** (SoR, Table, Column): only results that match the selected asset type are returned;
 - by **tags**: only assets that contains at least one of the chosen tags are returned;
-- by **custom filters**: only assets that present a match with all the values defined on the selected custom properties are returned (in this paragraph, (INSERTING THE CORRECT LINK), the custom property concept is well-described).
+- by **custom filters**: only assets that present a match with all the values defined on the selected custom properties are returned (in [this paragraph](#custom-properties-management), the custom property concept is well-described).
 
-INSERT AN IMAGE WITH A SEARCH LIST RESULTS
+#### Search results
 
-In the image above, it is possible to see how results of a search are displayed. The `Matches` column helps the user to identify which are the search elements that fit the search query.  
+In the following image, it is possible to see how results of a search are displayed.
+
+(**INSERT AN IMAGE WITH A SEARCH LIST RESULTS**)
+
+The `Matches` column helps the user to identify which are the search elements that fit the search query.  
 The research is very powerful. What is entered as input to the search bar is searched not only on the asset name, but also on all the metadata in the information of the specific assets. As a result, therefore, it can be observed from the example that the search returns not only match results relatively to the name, but also to other information present in other assets with names which differ from the search input content.  
 
-To start a completely new search, users can easily click on the `Clear all` button a the top-right of the search page to reset all the previously setup search parameters.
+To start a completely new search, users can easily click on the `Clear all` button at the top-right of the search page to reset all the previously setup search parameters.
 
 ### Asset details navigation 
 
 Once the searched asset is found among the search returned elements, click on it to enter its details page.  
 
-INSERT AN IMAGE WITH THE DETAILS OF A TABLE PAGE
+(**INSERT AN IMAGE WITH THE DETAILS OF A TABLE PAGE**)
 
-At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table "TO-BE-CORRECTLY-NAMED" detail page; from the breadcrumb it is noticeable that table "TO-BE-CORRECTLY-NAMED" belongs to System of Records "TO-BE-CORRECTLY-NAMED".  
-In case the user wants to easily move from table "TO-BE-CORRECTLY-NAMED" to SoR "TO-BE-CORRECTLY-NAMED" without coming back to the search page to find "TO-BE-CORRECTLY-NAMED" asset, with a simple click on "TO-BE-CORRECTLY-NAMED" user can enter its detail page. Instead, if user wants to choose another table belonging to SoR "TO-BE-CORRECTLY-NAMED", by clicking on the button to the right of the current table name, the list of tables of that SoR is shown and selectable.
+At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table "TO-BE-CORRECTLY-NAMED" detail page; from the breadcrumb it is noticeable that table "TO-BE-CORRECTLY-NAMED" belongs to System of Records "TO-BE-CORRECTLY-NAMED".
 
-INSERT AN IMAGE WITH THE LIST OF TABLES FROM BREADCRUMB SELECTION
+In case the user wants to easily move from table "TO-BE-CORRECTLY-NAMED" to SoR "TO-BE-CORRECTLY-NAMED" without coming back to the search page to find "TO-BE-CORRECTLY-NAMED" asset, with a simple click on "TO-BE-CORRECTLY-NAMED" user can enter its detail page.
 
-In case the user wants to go back to the page with the items returned by the search query, a click on the “Assets” button located at the beginning of the breadcrumb will take back to the “Assets” tab where there is the result of the last search performed.  
+In case the user wants to go back to the page with the items returned by the search query, a click on the `Assets` button located at the beginning of the breadcrumb will take back to the Assets tab where there is the result of the last search performed.  
 
 In case user wants to perform a quick search among assets without using al the Advanced search capabilities of the home section of the Data Catalog, anywhere during assets navigation there is the possibility to perform a new search from searchbar located at the top-right page.
 
@@ -61,7 +73,7 @@ The SoR detail page shows the following two tabs:
 * **General**, that shows a first **Details** section with asset details about name, provider info, number of contained tables, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Tables**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 
-INSERT IMAGE OF SOR DETAILS PAGE
+(**INSERT IMAGE OF SOR DETAILS PAGE**)
 
 #### Table detail page
 
@@ -69,23 +81,23 @@ The Table detail page shows the following two tabs:
 * **General**, that shows a first **Details** section with asset details about name, its SoR name, number of table columns, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Columns**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 
-INSERT IMAGE OF TABLE DETAILS PAGE 
+(**INSERT IMAGE OF TABLE DETAILS PAGE**) 
 
 #### Column detail page
 
 The Column detail page shows a first **Details** section with asset details such as name, its table name, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 
-INSERT IMAGE OF COLUMN DETAILS PAGE 
+(**INSERT IMAGE OF COLUMN DETAILS PAGE**) 
 
 ### Custom Properties Management
 
 One of the core features of Mia-Platform Data Catalog is the full management of custom properties for metadata enrichment on assets.
 
-INSERT IMAGE OF CUSTOM PROPERTIES MANAGEMENT PAGE
+(**INSERT IMAGE OF CUSTOM PROPERTIES MANAGEMENT PAGE**)
 
 By accessing the Custom Properties area, users with enough permissions can define and manage properties that can be associated to assets in order to perform metadata enrichment.  
 A custom property can be associated to one or more asset type (SoR, Table, Column).  
-There are different type of custom properties supported:
+There are different types of custom properties supported:
 * Text
 * Integer
 * Number 
@@ -100,7 +112,7 @@ There are different type of custom properties supported:
 
 In the following image, the creation of a new custom property is diplayed. In addition to the Name, Type and Applicable asset types fields, it is possible to optionally add a description to the custom property.  
 
-INSERT THE IMAGE OF CREATION FORM OF A CUSTOM PROPERTY
+(**INSERT THE IMAGE OF CREATION FORM OF A CUSTOM PROPERTY**)
 
 Once created, the specific custom property can be applicable on each asset that fits the asset type defined for the property. For example, the "TO-BE-CORRECTLY-NAMED" property can be applied on solely Table asset type. Therefore, when accessing any table present on Data Catalog, user can add "TO-BE-CORRECTLY-NAMED" property on it and insert a value compliant with "TO-BE-CORRECTLY-NAMED" custom property type for metadata enrichment on that specific table.
 
@@ -108,22 +120,22 @@ Once created, the specific custom property can be applicable on each asset that 
 
 Users with enough permissions can modify a custom property.
 
-INSERT THE IMAGE OF EDIT FORM OF A CUSTOM PROPERTY
+(**INSERT THE IMAGE OF EDIT FORM OF A CUSTOM PROPERTY**)
 
 :::caution 
 Pay attention when editing a custom property, it may already be applied and valorized on many assets!  
-Modifications on a custom property may lead to inconsistencies on metadata retrieval for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
+Modifications on a custom property may lead to inconsistencies on metadata retrieval for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, <u>the information on the asset is not lost</u>, it remains saved on DB, but on the UI that metadata will be located inside the **Unknown custom properties** section of the asset, that is described [here](#unknown-custom-properties).
 :::
 
 #### Delete custom property
 
 Users with enough permissions can delete a custom property.
 
-INSERT THE IMAGE OF DELETE FORM OF A CUSTOM PROPERTY
+(**INSERT THE IMAGE OF DELETE FORM OF A CUSTOM PROPERTY**)
 
 :::caution 
 Pay attention when deleting a custom property, it may already be applied and valorized on many assets!  
-The deletion of a custom property may lead to inconsistencies on metadata retrieval for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the Unknown Custom Properties section of the asset, that is described [here](#unknown-custom-properties).
+The deletion of a custom property may lead to inconsistencies on metadata retrieval for those assets. In this case, the frontend may no more be able to correctly interpret that metadata. Anyway, when this scenario happens, <u>the information on the asset is not lost</u>, it remains saved on DB, but on the UI that metadata will be located inside the **Unknown custom properties** section of the asset, that is described [here](#unknown-custom-properties).
 :::
 
 ### Metadata Enrichment
@@ -135,7 +147,11 @@ To do this, simply click the `Add property` button of the **Custom properties** 
 Once clicked, a popover lets user to choose among a list of applicable custom properties; one selected one property, it is possible to enter a metadata value for enriching that asset info.  
 Then, once added, user can modify the value previously inserted or decide to remove it from that asset.
 
-INSERT AN IMAGE WITH FOCUS ONTO CUSTOM PROPERTIES CARD
+:::info
+Take in consideration that it is possible to empty the value of the field only for custom properties of type Text (*empty string*) and of type Options (*empty array*), without the need to remove the custom property from the specific asset.
+:::
+
+(**INSERT AN IMAGE WITH FOCUS ONTO CUSTOM PROPERTIES CARD**)
 
 :::caution
 Please note that removing a custom property means removing a metadata value saved on DB for that specific asset. The custom property remains applicable on all the other assets that match the expected asset type, and it is possible to re-assign and valorize that custom property on that asset.
@@ -145,14 +161,15 @@ Please note that removing a custom property means removing a metadata value save
 
 Sometimes, it may happen that some users with enough permissions [modify](#edit-custom-property) or [delete](#delete-custom-property) a custom property.  
 Modifications or deletions can lead to inconsistencies on metadata retrieval for some assets that have been enriched with that custom property.  
+
 Mismatches could be due to:
 * changes on the custom property name
 * changes on the asset types for which the custom property is applicable
 * changes on the custom property type (or range of values allowed to be defined for that custom properties; i.e. custom properties of type options)  
 
-For all these cases, the frontend can no more be able to correctly interpret a metadata defined on the asset. Anyway, when this scenario happens, the information on the asset is not lost, it remains saved on DB, but on the UI that metadata will be located inside the **Unknown Custom Properties** section of the asset.
+For all these cases, the frontend can no more be able to correctly interpret a metadata defined on the asset. Anyway, when this scenario happens, <u>the information on the asset is not lost</u>, it remains saved on DB, but on the UI that metadata will be located inside the **Unknown custom properties** section of the asset.
 
-INSERT AN IMAGE WITH REPORTED SOME UNKNOWN CUSTOM PROPERTIES
+(**INSERT AN IMAGE WITH REPORTED SOME UNKNOWN CUSTOM PROPERTIES**)
 
 In these cases, users with enough permissions can decide to restore the custom property to be newly interpretable by the frontend or to remove the metadata from the asset.
 
@@ -160,11 +177,11 @@ In these cases, users with enough permissions can decide to restore the custom p
 
 A custom property that cannot be correctly interpreted by frontend can be restored.
 
-INSERT AN IMAGE WITH THE RESTORE ACTIONS
+(**INSERT AN IMAGE WITH THE RESTORE ACTIONS**)
 
 The result of this action leads to a re-creation of the custom property.  
 
-In case the type mismatches, or the value is no more compliant with how that custom property is defined, user with enough permissions can instead enter the [Custom Properties](#management-of-custom-properties) section and arrange and modify accordingly the existent custom property in order to allow the info to be correctly interpreted by frontend.  
+In case the type mismatches, or the value is no more compliant with how the custom property is configured, user with enough permissions can instead enter the [Custom Properties](#management-of-custom-properties) section and arrange and modify accordingly the existent custom property in order to allow the info to be correctly interpreted by frontend.  
 
 :::caution
 Please pay attention when modifying an existent custom property. The main reasons have been already reported in the [Edit custom property](#edit-custom-property) section.
@@ -172,16 +189,17 @@ Please pay attention when modifying an existent custom property. The main reason
 
 ##### Remove unknown custom property
 
-In case the unknown metadata can be definitely removed from the specific asset, users with enough permissions can decide to opt for its removal.
+In case the unknown metadata is no more consistent or useful on the specific asset, users can opt for its removal.
 
-INSERT AN IMAGE WITH THE REMOVAL ACTIONS
+(**INSERT AN IMAGE WITH THE REMOVAL ACTIONS**)
 
 :::caution
 Please note that this action leads to the removal of the metadata value saved on DB for that specific asset. The custom property remains instead applied on all the other assets that match the expected asset type.
 :::
 
 ### Bulk Actions
-(In the future, bulk actions and more)
+
+(**TO-DO: DESCRIPTION AND IMAGE**)
 
 ## Configuration
 

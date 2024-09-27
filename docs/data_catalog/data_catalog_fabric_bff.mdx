@@ -27,8 +27,8 @@ Fabric BFF can be customized using the following environment variables:
 
 ### Config Map
 
-The configuration of the service is handled by a JSON file whose location is defined by the `BFF_CONFIGURATION_FILEPATH`. When instantiating
-\[Data Catalog application\] TODO: PUT LINK from Marketplace, Fabric BFF service configuration is generated with
+The configuration of the service is handled by a JSON file whose location is defined by the `BFF_CONFIGURATION_FILEPATH`.  
+When instantiating Data Catalog application **TO-DO: PUT LINK from Marketplace**, Fabric BFF service configuration is generated with
 a dedicated Config Map, named `fabric-bff-config`. This file contains a template configuration that should help in configuring the service.
 
 <SchemaViewer schema={bffSchema} example={bffConfigExample}/>
@@ -37,7 +37,7 @@ In the paragraphs below are explained the main properties of the Fabric BFF conf
 
 #### Open Lineage Communication
 
-Communication between Fabric BFF and Open Lineage services occur both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason its necessary to
+Communication between Fabric BFF and Open Lineage services occurs both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason it is necessary to
 configure on the Fabric BFF the addresses where to reach Open Lineage service. This can be done by setting the properties `rest` and `grpc` of `openLineage` field in the Fabric BFF configuration.
 In both properties `target` field should be set to the address where Open Lineage service exposes the corresponding one.
 

@@ -18,7 +18,7 @@ may be followed, adapted according to your needs or taken just as an inspiration
 
 ## Requirements
 
-- access to \[Data Catalog\] TODO: PUT LINK application, which automatically
+- access to Data Catalog **TO-DO: PUT LINK application**, which automatically
   scaffold the configurations regarding microservices, collections, endpoints and variables needed for releasing Data Catalog
   solution and protecting its access. Generated resources need to be further customized depending on your needs and credentials.
 - an introduction to [Envoy](https://envoyproxy.io/), which is employed as API Gateway by the application. It is also
@@ -176,7 +176,7 @@ In case more details are needed on this latter part, please head over to the `au
 No further configuration is needed for this service.
 
 :::tip
-In case it is needed to \[embed Data Catalog solution within Mia-Platform Console\] TODO: PUT LINK ,
+In case it is needed to [embed Data Catalog solution within Mia-Platform Console](/data_catalog/data_catalog_frontend.mdx#embed-as-console-extension),
 please ensure that login site version greater or equal to `v8.1.2` which supports handling authentication both via redirect and as popup
 when requested from an iFrame.
 :::
@@ -249,7 +249,7 @@ ensure that they are exposed with the proper security options.
 | `/userinfo`     | authentication-service |            ✅            | true                  |
 | `/apps`         | authentication-service |            -            | true                  |
 
-Knowing these endpoints are exposed, it is now possible to configure the redirect urls that some Identity Providers,
+Knowing these endpoints are exposed, it is now possible to configure the redirect URLs that some Identity Providers,
 such as Okta or Auth0, require to complete the application registration.
 These endpoints will be then employed during the authentication flow to constrain the redirects
 the Identity Provider can perform. In this case the endpoint that should be configured are the following ones:
