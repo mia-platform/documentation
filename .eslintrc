@@ -63,7 +63,7 @@
   },
   "overrides": [
     {
-      "files": ["./**/*.md"],
+      "files": ["./**/*.md", "./**/*.mdx"],
       "rules": {
         "no-trailing-spaces": 0
       }

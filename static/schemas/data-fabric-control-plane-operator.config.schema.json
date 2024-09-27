@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Configuration",
+  "type": "object",
+  "required": [
+    "upstream"
+  ],
+  "properties": {
+    "upstream": {
+      "$ref": "#/definitions/Upstream"
+    }
+  },
+  "examples": [
+    {
+      "upstream": {
+        "url": "http://control-plane.<namespace>.svc.cluster.local:50051"
+      }
+    },
+    {
+      "upstream": {
+        "url": "https://external-url-to-access-control-plane",
+        "headers": {
+          "secret": {
+            "type": "env",
+            "key": "CP_OPERATOR_API_KEY"
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "Upstream": {
+      "type": "object",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "assume_http2": {
+          "default": false,
+          "type": "boolean"
+        },
+        "headers": {
+          "default": {},
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/secret"
+          }
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "secret": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "key",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "const": "env"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "path",
+            "type"
+          ],
+          "properties": {
+            "encoding": {
+              "type": "string",
+              "enum": [
+                "base64"
+              ]
+            },
+            "key": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "type": {
+              "const": "file"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

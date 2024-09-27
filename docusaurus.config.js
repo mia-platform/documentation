@@ -17,7 +17,7 @@ async function createConfig() {
     themes: ["docusaurus-json-schema-plugin"],
     themeConfig: {
       prism: {
-        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],
+        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx'],
       },
       image: "img/documentation-link-preview.png",
       algolia: {
