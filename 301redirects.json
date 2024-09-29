@@ -1794,5 +1794,9 @@
   "/docs/fast_data/data_catalog/overview_data_catalog": {
     "destination": "/docs/data_catalog/overview_data_catalog",
     "addedOn": "2024-09-13"
+  },
+  "/docs/fast_data/monitoring/dashboards/real_time_updater": {
+    "destination": "/docs/fast_data/monitoring/dashboards/ingestion_services",
+    "addedOn": "2024-09-20"
   }
 }

@@ -53,12 +53,12 @@
     "@babel/eslint-parser": "^7.24.8",
     "@swc/core": "^1.7.24",
     "eslint": "^8.57.0",
-    "eslint-plugin-react": "7.35.2",
+    "eslint-plugin-react": "7.36.1",
     "front-matter": "^4.0.2",
     "git-list-updated": "^1.2.1",
     "git-tag": "^0.2.0",
     "prop-types": "^15.8.1",
     "semver-utils": "^1.1.4"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.4.1"
 }

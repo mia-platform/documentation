@@ -15,6 +15,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] 2024-08-29
+
+- Update Node.js to v20 (LTS)
+
+### Added
+
+- Add optional environment variable `CUSTOM_ID_USERS_API_ENDPOINT` to allow custom user ids for teleconsultation participants
+
 ## [1.7.0] 2024-02-13
 
 - Added possibility to set virtual background for user group from configMap

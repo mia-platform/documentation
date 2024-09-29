@@ -20,7 +20,7 @@ on which service is compatible with the others, which versions should be skipped
 
 | Real-Time-Updater | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.x       |       1.0.x       |             3.1.x             |        6.4.x        |
+|       7.9.x       |       1.3.x       |             3.3.x             |        6.7.x        |
 
 ### Compatibility Matrix
 
@@ -47,7 +47,7 @@ is `v7.5.4`
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       7.5.7       |             3.1.4             |        6.4.0        |
+|       7.9.0       |             3.3.2             |        6.7.1        |
 
 ### Projection Storer Support
 
@@ -66,7 +66,7 @@ the final aggregated Single View.
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       1.0.1       |             3.1.4             |        6.4.0        |
+|       1.3.0       |             3.3.2             |        6.7.1        |
 
 
 ### Runtime Management Support
@@ -76,9 +76,7 @@ at runtime. In the table below is described which service versions support being
 
 ### Compatibility Matrix
 
-| Control Plane | Real-Time Updater | Projection Storer | Single View Trigger Generator | Single View Creator |
-|:-------------:|:-----------------:|:-----------------:|:-----------------------------:|:-------------------:|
-|     1.0.0     |         ❌         |         ❌         |               ❌               |       >=6.4.0       |
+Please visit the [dedicated page](/fast_data/runtime_management/compatibility_matrix.md) where further compatibility details are explained.
 
 ## Bucket Storage Support
 
