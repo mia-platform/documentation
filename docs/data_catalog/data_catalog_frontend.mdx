@@ -32,6 +32,8 @@ Given the large cardinality of assets that can be retrieved on this tool (SoR, T
 
 Next to the search bar, the search context can be set to better circumscribe the search scope. For example, if the System of Records within which you want to perimeter the search results is already known, you can from the search context enter that specific SoR. All results returned from the search will be assets belonging to the context of that specific SoR. To refine the search scope even more, it is also possible from the context to select a table.
 
+(**INSERT AN IMAGE WITH A ZOOM ON THE SEARCH CONTEXT**)
+
 #### Advanced filters
 
 To refine the search to make it even more granular, it is also possible to apply filters:
@@ -39,6 +41,8 @@ To refine the search to make it even more granular, it is also possible to apply
 - by **asset types** (SoR, Table, Column): only results that match the selected asset type are returned;
 - by **tags**: only assets that contains at least one of the chosen tags are returned;
 - by **custom filters**: only assets that present a match with all the values defined on the selected custom properties are returned (in [this paragraph](#custom-properties-management), the custom property concept is well-described).
+
+(**INSERT AN IMAGE WITH A ZOOM ON ADVANCED FILTERS**)
 
 #### Search results
 
@@ -55,11 +59,11 @@ To start a completely new search, users can easily click on the `Clear all` butt
 
 Once the searched asset is found among the search returned elements, click on it to enter its details page.  
 
-(**INSERT AN IMAGE WITH THE DETAILS OF A TABLE PAGE**)
+![Details of a table page](./img/table_details_page.png)
 
-At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table "TO-BE-CORRECTLY-NAMED" detail page; from the breadcrumb it is noticeable that table "TO-BE-CORRECTLY-NAMED" belongs to System of Records "TO-BE-CORRECTLY-NAMED".
+At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table `orders-details` detail page; from the breadcrumb it is noticeable that table `orders-details` belongs to System of Records `crud-books`.
 
-In case the user wants to easily move from table "TO-BE-CORRECTLY-NAMED" to SoR "TO-BE-CORRECTLY-NAMED" without coming back to the search page to find "TO-BE-CORRECTLY-NAMED" asset, with a simple click on "TO-BE-CORRECTLY-NAMED" user can enter its detail page.
+In case the user wants to easily move from table `orders-details` to SoR `crud-books` without coming back to the search page to find `crud-books` asset, with a simple click on `crud-books` user can enter its detail page.
 
 In case the user wants to go back to the page with the items returned by the search query, a click on the `Assets` button located at the beginning of the breadcrumb will take back to the Assets tab where there is the result of the last search performed.  
 
@@ -73,7 +77,7 @@ The SoR detail page shows the following two tabs:
 * **General**, that shows a first **Details** section with asset details about name, provider info, number of contained tables, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Tables**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 
-(**INSERT IMAGE OF SOR DETAILS PAGE**)
+![Details of a SoR page](./img/sor_details_page.png)
 
 #### Table detail page
 
@@ -81,19 +85,19 @@ The Table detail page shows the following two tabs:
 * **General**, that shows a first **Details** section with asset details about name, its SoR name, number of table columns, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Columns**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 
-(**INSERT IMAGE OF TABLE DETAILS PAGE**) 
+![Details of a table page](./img/table_details_page.png)
 
 #### Column detail page
 
 The Column detail page shows a first **Details** section with asset details such as name, its table name, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 
-(**INSERT IMAGE OF COLUMN DETAILS PAGE**) 
+![Details of a column page](./img/column_details_page.png)
 
 ### Custom Properties Management
 
 One of the core features of Mia-Platform Data Catalog is the full management of custom properties for metadata enrichment on assets.
 
-(**INSERT IMAGE OF CUSTOM PROPERTIES MANAGEMENT PAGE**)
+![Custom properties management page](./img/custom_properties_management_page.png)
 
 By accessing the Custom Properties area, users with enough permissions can define and manage properties that can be associated to assets in order to perform metadata enrichment.  
 A custom property can be associated to one or more asset type (SoR, Table, Column).  
@@ -112,15 +116,15 @@ There are different types of custom properties supported:
 
 In the following image, the creation of a new custom property is diplayed. In addition to the Name, Type and Applicable asset types fields, it is possible to optionally add a description to the custom property.  
 
-(**INSERT THE IMAGE OF CREATION FORM OF A CUSTOM PROPERTY**)
+![Custom property creation](./img/custom_property_creation.png)
 
-Once created, the specific custom property can be applicable on each asset that fits the asset type defined for the property. For example, the "TO-BE-CORRECTLY-NAMED" property can be applied on solely Table asset type. Therefore, when accessing any table present on Data Catalog, user can add "TO-BE-CORRECTLY-NAMED" property on it and insert a value compliant with "TO-BE-CORRECTLY-NAMED" custom property type for metadata enrichment on that specific table.
+Once created, the specific custom property can be applicable on each asset that fits the asset type defined for the property. For example, the property can be applied on solely Table asset type. Therefore, when accessing any table present on Data Catalog, user can add this property on it and insert a value compliant with its custom property type for metadata enrichment on that specific table.
 
 #### Edit custom property
 
 Users with enough permissions can modify a custom property.
 
-(**INSERT THE IMAGE OF EDIT FORM OF A CUSTOM PROPERTY**)
+![Custom property edit](./img/custom_property_edit.png)
 
 :::caution 
 Pay attention when editing a custom property, it may already be applied and valorized on many assets!  
@@ -131,7 +135,7 @@ Modifications on a custom property may lead to inconsistencies on metadata retri
 
 Users with enough permissions can delete a custom property.
 
-(**INSERT THE IMAGE OF DELETE FORM OF A CUSTOM PROPERTY**)
+![Custom property delete](./img/custom_property_delete.png)
 
 :::caution 
 Pay attention when deleting a custom property, it may already be applied and valorized on many assets!  
@@ -151,7 +155,7 @@ Then, once added, user can modify the value previously inserted or decide to rem
 Take in consideration that it is possible to empty the value of the field only for custom properties of type Text (*empty string*) and of type Options (*empty array*), without the need to remove the custom property from the specific asset.
 :::
 
-(**INSERT AN IMAGE WITH FOCUS ONTO CUSTOM PROPERTIES CARD**)
+![Custom properties card](./img/custom_properties_card.png)
 
 :::caution
 Please note that removing a custom property means removing a metadata value saved on DB for that specific asset. The custom property remains applicable on all the other assets that match the expected asset type, and it is possible to re-assign and valorize that custom property on that asset.
@@ -169,7 +173,7 @@ Mismatches could be due to:
 
 For all these cases, the frontend can no more be able to correctly interpret a metadata defined on the asset. Anyway, when this scenario happens, <u>the information on the asset is not lost</u>, it remains saved on DB, but on the UI that metadata will be located inside the **Unknown custom properties** section of the asset.
 
-(**INSERT AN IMAGE WITH REPORTED SOME UNKNOWN CUSTOM PROPERTIES**)
+![Unknown custom properties card](./img/unknown_custom_properties_card.png)
 
 In these cases, users with enough permissions can decide to restore the custom property to be newly interpretable by the frontend or to remove the metadata from the asset.
 
@@ -177,7 +181,7 @@ In these cases, users with enough permissions can decide to restore the custom p
 
 A custom property that cannot be correctly interpreted by frontend can be restored.
 
-(**INSERT AN IMAGE WITH THE RESTORE ACTIONS**)
+![Restore unknown custom property](./img/restore_unknown_custom_property.png)
 
 The result of this action leads to a re-creation of the custom property.  
 
@@ -191,7 +195,7 @@ Please pay attention when modifying an existent custom property. The main reason
 
 In case the unknown metadata is no more consistent or useful on the specific asset, users can opt for its removal.
 
-(**INSERT AN IMAGE WITH THE REMOVAL ACTIONS**)
+![Remove unknown custom property](./img/remove_unknown_custom_property.png)
 
 :::caution
 Please note that this action leads to the removal of the metadata value saved on DB for that specific asset. The custom property remains instead applied on all the other assets that match the expected asset type.
