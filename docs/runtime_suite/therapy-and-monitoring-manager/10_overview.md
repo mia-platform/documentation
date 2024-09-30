@@ -120,7 +120,8 @@ The service allows you to create, update and delete monitorings for patients, su
 * the minimum percentage value for which a patient is considered adherent to monitoring with respect to reported detections;
 * the minimum percentage value for which a patient is considered compliant to monitoring with respect to reported detections;
 * the detections thresholds;
-* if adherence and/or compliance metrics should be calculated.
+* if adherence and/or compliance metrics should be calculated;
+* the assigned devices that the patient can use to collect health data.
 
 ## Detections
 
@@ -129,7 +130,8 @@ The service allows tracking actions performed by the patient concerning a specif
 * the reference to the therapy or monitoring to which the detection is linked;
 * the value of the detection (this value is an arbitrary object; for example, a detection for the blood pressure could have two fields, the minimum and a maximum value measured);
 * the compliance of the detection with respect to what prescribed by the physician;
-* the date of the detection; 
+* the date of the detection;
+* the id of the device used to collect the data.
 
 :::note
 
@@ -144,7 +146,15 @@ Please note that the date the detection was entered may be different from the da
 
 The prototypes define the specifications of acceptable values related to monitoring detections or therapy directives.
 
-These prototypes are nothing but JSON Schema that are applied to monitoring detections or therapy directives to validate the respective values. These prototypes are defined at the microservice configuration level.
+These prototypes are nothing but JSON Schema that are applied to monitoring detections or therapy directives to validate the respective values. These prototypes can be defined at the microservice configuration level and/or retrieved from the CRUD service or a generic HTTP service returning an array of valid prototypes.
+
+:::tip
+
+If you are retrieving the prototypes from a CRUD Service, please configure it to return all the available prototypes in the response to the `GET /` endpoint without query parameters, since we do not support pagination when fetching prototypes.
+
+We recommend setting the maximum number of documents returned by the CRUD Service through its `CRUD_MAX_LIMIT` environment variable, based on the number of prototypes you are using, or turning the limits off by setting its `CRUD_LIMIT_CONSTRAINT_ENABLED` environment variable to false.
+
+:::
 
 The prototypes should be used to validate the doctor directives or patient detections and ensure they are reliable, in particular to prevent human errors when submitting values read from a medical device.
 

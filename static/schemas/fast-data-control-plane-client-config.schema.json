@@ -2,6 +2,21 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "title": "Control Plane Client JSON Schema Configuration",
+    "examples": [
+        {
+            "state": {
+                "type": "grpc"
+            },
+            "feedback": {
+                "type": "grpc"
+            },
+            "settings": {
+                "grpc": {
+                    "host": "control-plane-operator"
+                }
+            }
+        }
+    ],
     "definitions": {
         "settings": {
             "title": "Settings",
@@ -51,99 +66,6 @@
             }
         },
         "connections": {
-            "kafka": {
-                "configuration": {
-                    "title": "Kafka Configuration",
-                    "type": "object",
-                    "required": [
-                        "bootstrap.servers",
-                        "client.id"
-                    ],
-                    "properties": {
-                        "bootstrap.servers": {
-                            "type": "string",
-                            "description": "https://kafka.js.org/docs/configuration"
-                        },
-                        "client.id": {
-                            "type": "string",
-                            "description": "https://kafka.js.org/docs/configuration#client-id"
-                        },
-                        "sasl.mechanism": {
-                            "type": "string",
-                            "enum": [
-                                "plain",
-                                "scram-sha-256",
-                                "scram-sha-512"
-                            ],
-                            "default": "plain",
-                            "description": "https://kafka.js.org/docs/configuration#plain-scram-example"
-                        },
-                        "sasl.username": {
-                            "type": "string"
-                        },
-                        "sasl.password": {
-                            "type": "string"
-                        },
-                        "ssl.enabled": {
-                            "type": "boolean",
-                            "description": "https://kafka.js.org/docs/configuration#ssl",
-                            "default": true
-                        },
-                        "ssl.ca.location": {
-                            "type": "string",
-                            "description": "https://kafka.js.org/docs/configuration#ssl"
-                        },
-                        "ssl.cert.location": {
-                            "type": "string",
-                            "description": "https://kafka.js.org/docs/configuration#ssl"
-                        },
-                        "ssl.key.location": {
-                            "type": "string",
-                            "description": "https://kafka.js.org/docs/configuration#ssl"
-                        }
-                    },
-                    "additionalProperties": true
-                },
-                "producer": {
-                    "title": "Kafka Producer Configuration",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/connections/kafka/configuration"
-                        },
-                        {
-                            "$ref": "#/definitions/heartbeat"
-                        }
-                    ]
-                },
-                "consumer": {
-                    "title": "Kafka Consumer Configuration",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/connections/kafka/configuration"
-                        },
-                        {
-                            "type": "object",
-                            "properties": {
-                                "group.id": {
-                                    "type": "string",
-                                    "description": "https://kafka.js.org/docs/1.12.0/consuming#a-name-options-a-options"
-                                },
-                                "retry.attempts": {
-                                    "type": "number",
-                                    "default": 3
-                                },
-                                "retry.delay": {
-                                    "type": "number",
-                                    "default": 1500
-                                }
-                            },
-                            "required": [
-                                "group.id"
-                            ]
-                        }
-                    ]
-                }
-            },
             "grpc": {
                 "title": "Grpc Connection Configuration",
                 "properties": {
@@ -162,26 +84,6 @@
             "description": "This section contains the configuration of the state channel that will received commands from Control Plane",
             "oneOf": [
                 {
-                    "title": "Controller Kafka Configuration",
-                    "properties": {
-                        "type": {
-                            "const": "kafka"
-                        },
-                        "channel": {
-                            "type": "string"
-                        },
-                        "configuration": {
-                            "$ref": "#/definitions/connections/kafka/consumer"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "type",
-                        "channel",
-                        "configuration"
-                    ]
-                },
-                {
                     "$ref": "#/definitions/connections/grpc"
                 }
             ]
@@ -191,26 +93,6 @@
             "type": "object",
             "description": "This section contains the configuration of the feedback channel that will send heartbeat messages to the Control Plane.",
             "oneOf": [
-                {
-                    "title": "Feedback Kafka Configuration",
-                    "properties": {
-                        "type": {
-                            "const": "kafka"
-                        },
-                        "channel": {
-                            "type": "string"
-                        },
-                        "configuration": {
-                            "$ref": "#/definitions/connections/kafka/producer"
-                        }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                        "type",
-                        "channel",
-                        "configuration"
-                    ]
-                },
                 {
                     "$ref": "#/definitions/connections/grpc"
                 }

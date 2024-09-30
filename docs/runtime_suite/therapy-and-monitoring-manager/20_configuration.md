@@ -18,16 +18,9 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 |-------------------------------------------|----------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **HTTP_PORT**                             | No       | 3000                | The port exposed by the service.                                                                                                                             |
 | **LOG_LEVEL**                             | No       | `info`              | The level of the log: `trace`, `debug`, `info`, `warn`, `error`, `fatal`.                                                                                    |
-| **PROTOTYPES_CONFIG_FILE_PATH**           | Yes      | -                   | Path of the config map file containing the prototypes.                                                                                                       |
+| **PROTOTYPES_CONFIG_FILE_PATH**           | No       | -                   | Path of the config map file containing the prototypes.                                                                                                       |
+| **PROTOTYPES_SERVICE_URL**                | No       | -                   | URL of an HTTP service returning an array of prototypes.                                                                                     |
 | **CRUD_SERVICE_URL**                      | No       | http://crud-service | HTTP(S) URL of the CRUD service.                                                                                                                             |
-| **KAFKA_BROKERS_LIST**                    | No       | -                   |                                                                                                                                                              |
-| **KAFKA_CLIENT_ID**                       | No       | -                   |                                                                                                                                                              |
-| **KAFKA_GROUP_ID**                        | No       | -                   |                                                                                                                                                              |
-| **KAFKA_COMMANDS_TOPIC_NAME**             | No       | -                   |                                                                                                                                                              |
-| **KAFKA_EVENTS_TOPIC_NAME**               | No       | -                   |                                                                                                                                                              |
-| **KAFKA_AUTH_METHOD**                     | No       | -                   |                                                                                                                                                              |
-| **KAFKA_SASL_USERNAME**                   | No       | -                   |                                                                                                                                                              |
-| **KAFKA_SASL_PASSWORD**                   | No       | -                   |                                                                                                                                                              |
 | **MONITORINGS_CRUD_NAME**                 | No       | monitorings         | Name of the CRUD collection containing the monitorings.                                                                                                      |
 | **THERAPIES_CRUD_NAME**                   | No       | therapies           | Name of the CRUD collection containing the therapies.                                                                                                        |
 | **DETECTIONS_CRUD_NAME**                  | No       | detections          | Name of the CRUD collection containing the detections.                                                                                                       |
@@ -49,7 +42,13 @@ The Therapy and Monitoring Manager can be configured to fit the specific scenari
 
 As described in the [overview section][overview], the prototypes are essentially JSON Schemas to apply to the monitoring detections entered by a patient or therapy directives entered by the physician in order to validate the corresponding values.
 
-You must define the prototypes inside a config map, setting the `PROTOTYPES_CONFIG_FILE_PATH` environment variable with its path. The config map must be a JSON file containing an array of prototypes.
+The service will load the prototypes from the following locations (in the given order):
+
+1. a config map specified in the `PROTOTYPES_CONFIG_FILE_PATH` environment variable and containing an array of prototypes in JSON format;
+
+2. an HTTP service specified in the `PROTOTYPES_SERVICE_URL` environment variable, returning a JSON response containing an array of prototypes.
+
+If one or more prototypes have the same identifier, a [`PROTOTYPES_DUPLICATED` error][errors] is raised and the service fails to start.
 
 A prototype example can be used to validate detections related to blood pressure. In this case a typical detection is an object composed by two integer values, the minimum and the maximum blood pressure, which must be within a certain range. For instance, entering a maximum blood pressure to 600 is not acceptable. The corresponding prototype would define a JSON Schema validating the fact that the detection value is an object composed by two integer values which must be within specific ranges to be considered valid.
 
@@ -242,6 +241,7 @@ The `directives` field will have the fields specified in the prototype schema, d
 | isPatientCompliant              | `boolean`         | No                | No                |
 | isPatientCompliantLastUpdatedAt | `Date`            | No                | No                |
 | thresholds                      | `Array of object` | No                | No                |
+| assignedDevices                 | `Array of string` | No                | No                |
 
 For the field `thresholds` you should add the following JSON Schema to the CRUD configuration:
 
@@ -327,7 +327,8 @@ If you use the integrated validation service, field names in the `value` object 
 | observedAt  | `Date`    | Yes               | No                |
 | doctorId    | `string`  | No                | No                |
 | patientId   | `string`  | Yes               | No                |
-| isCompliant | `boolean` | Yes               | No                |
+| isCompliant | `boolean` | No                | No                |
+| deviceId    | `string`  | No                | No                |
 
 ## Thresholds validation
 
@@ -393,3 +394,5 @@ The TMM currently generates the following events you can refer in the configurat
 [crud-monitorings]: #monitorings "Monitorings | CRUD collections | Configuration"
 [environment-variables]: #environment-variables "Environment variables | Configuration"
 [external-validation-service-api]: #external-validation-service-api "External Validation Service API | Thresholds validation | Configuration"
+
+[errors]: ./30_usage.md#errors

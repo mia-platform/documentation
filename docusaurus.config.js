@@ -17,7 +17,7 @@ async function createConfig() {
     themes: ["docusaurus-json-schema-plugin"],
     themeConfig: {
       prism: {
-        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin'],
+        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx'],
       },
       image: "img/documentation-link-preview.png",
       algolia: {
@@ -58,6 +58,12 @@ async function createConfig() {
             docId: "fast_data/what_is_fast_data",
             label: "Fast Data",
             activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
+          },
+          {
+            type: 'doc',
+            docId: "data_catalog/overview_data_catalog",
+            label: "Data Catalog",
+            activeBaseRegex: "(docs|docs/\\d.x)/data_catalog"
           },
           {
             type: 'doc',
