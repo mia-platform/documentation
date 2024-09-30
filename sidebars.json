@@ -1099,15 +1099,27 @@
       },
       "items": [
         {
-          "id": "fast_data/runtime_management/control_plane",
-          "type": "doc"
-        },
-        {
           "id": "fast_data/runtime_management/control_plane_frontend",
           "type": "doc"
         },
         {
+          "id": "fast_data/runtime_management/control_plane_fabric_bff",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/control_plane_operator",
+          "type": "doc"
+        },
+        {
           "id": "fast_data/runtime_management/workloads",
+          "type": "doc"
+        },
+        {
+          "id": "fast_data/runtime_management/cp_database_setup",
           "type": "doc"
         },
         {
@@ -1355,17 +1367,6 @@
       "collapsed": true,
       "items": [
         {
-          "id": "fast_data/data_catalog/overview_data_catalog",
-          "type": "doc"
-        }
-      ],
-      "label": "Data Catalog",
-      "type": "category"
-    },
-    {
-      "collapsed": true,
-      "items": [
-        {
           "id": "fast_data/troubleshooting/fast_data_error_codes",
           "type": "doc"
         },
@@ -1419,6 +1420,40 @@
       ],
       "label": "FAQ",
       "type": "category"
+    }
+  ],
+  "dataCatalog": [
+    {
+      "id": "data_catalog/overview_data_catalog",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_frontend",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_fabric_bff",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_open_lineage",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/dc_database_setup",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_agent_setup",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_secure_access",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_compatibility_matrix",
+      "type": "doc"
     }
   ],
   "gettingStarted": [

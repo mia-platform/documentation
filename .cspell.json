@@ -356,7 +356,10 @@
     "logr",
     "ODBC",
     "RDBMS",
-    "pkce"
+    "pkce",
+    "sors",
+    "CCPA",
+    "HANA"
   ],
   "dictionaries": [
     "softwareTerms",

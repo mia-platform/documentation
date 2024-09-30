@@ -1,0 +1,138 @@
+---
+id: data_catalog_fabric_bff
+title: Fabric BFF
+sidebar_label: Fabric BFF
+---
+
+import bffSchema from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.config.schema.json"
+import bffConfigExample from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.example.json"
+import SchemaViewer from "../../src/components/SchemaViewer"
+
+Fabric BFF, as suggested by the name, works as Backend For Frontend for Data Catalog UI and it mediates requests between frontend and Data Catalog service.
+
+## Configuration
+
+Configuration of _Fabric BFF_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
+
+### Environment Variables
+
+Fabric BFF can be customized using the following environment variables:
+
+| Name                          | Required | Description                                                                                                                       | Default Value                       |
+|-------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `HTTP_PORT`                   | -        | This variable determines the TCP port where the **HTTP controller** binds its listener                                            | 3000                                |
+| `LOG_LEVEL`                   | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`          | `info`                              |
+| `BFF_CONFIGURATION_FILEPATH`  | -        | Set the location of the configuration file                                                                                        | `~/.fd/data-fabric-bff/config.json` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | -        | The URL to a GRPC endpoint of an OpenTelemetry Collector.<br/>Specifying this value enables the support for OpenTelemetry tracing |                                     |
+
+### Config Map
+
+The configuration of the service is handled by a JSON file whose location is defined by the `BFF_CONFIGURATION_FILEPATH`.  
+When instantiating [Data Catalog application](/runtime_suite_applications/data-catalog/10_overview.md), Fabric BFF service configuration is generated with
+a dedicated Config Map, named `fabric-bff-config`. This file contains a template configuration that should help in configuring the service.
+
+<SchemaViewer schema={bffSchema} example={bffConfigExample}/>
+
+In the paragraphs below are explained the main properties of the Fabric BFF configuration file.
+
+#### Open Lineage Communication
+
+Communication between Fabric BFF and Open Lineage services occurs both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason it is necessary to
+configure on the Fabric BFF the addresses where to reach Open Lineage service. This can be done by setting the properties `rest` and `grpc` of `openLineage` field in the Fabric BFF configuration.
+In both properties `target` field should be set to the address where Open Lineage service exposes the corresponding one.
+
+Here can be found an example of configuration that assumes Fabric BFF and Open Lineage services are deployed within the same K8s namespace:
+
+```json
+{
+  // ...other fabric bff configurations
+  "openLineage": {
+    "rest": {
+      "target": "<open-lineage-service-name>"                // when protocol is http, it is not necessary specifying it. When port is not specified, it is assumed the 80 is employed
+    },
+    "grpc": {
+      "target": "http://<open-lineage-service-name>:50051"   // it is important to notice that GRPC connection use a different port from the REST target
+    }
+  },
+  // ...other fabric bff configurations
+}
+```
+
+#### Persistence Layer
+
+
+:::info
+Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data, such as the one related to operations auditing.
+:::
+
+:::caution
+The MongoDB database selected for storing Data Catalog data **must be configured to have [`replicaSet` enabled](https://www.mongodb.com/docs/manual/replication/)**, since
+Fabric BFF exploits features that can be used only when a `replicaSet` is available.
+:::
+
+In order to carry out all its operations, Fabric BFF requires a _persistence layer_ where relevant information, such as auditing details, are stored. This configuration can be set under
+the `persistence.configuration` key of the configuration file. The main properties are:
+
+- `url` &rarr; the connection string to your MongoDB instance;
+- `database` &rarr; the database name where to search for the  collections relevant to Fabric BFF service. Please notice that setting this property will **override** the database
+name potentially set in the connection string;
+
+An example of persistence configuration can be seen below:
+
+```json
+{
+  // ...other fabric bff configurations
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
+      "database": "<data-fabric-database-name>"
+    }
+  },
+  // ...other fabric bff configurations
+}
+```
+
+:::tip
+The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+- `persistence.configuration.url`
+- `persistence.configuration.database`
+:::
+
+#### Service Settings
+
+Additionally, the Fabric BFF service itself has a set of properties for changing its behavior. Here are listed the available ones within `settings` properties:
+
+- `apiPrefix` &rarr; the base path applied to all the exposed routes. It defaults to `/`;
+- `auditUserHeader` &rarr; specifies in which HTTP header can be found the user identifier set by the authentication system. The value of this header will be employed to correlate requests stored by
+the auditing system with the user that performed them. When using Mia-Platform Authentication and Authorization services this property can be set to `miauserid`.  
+In case it is not set the auditing system does not correlate users with requests;
+
+Here can be found a configuration example:
+
+```json
+{
+  // ...other fabric bff configurations
+  "settings": {
+    "apiPrefix": "/",
+    "auditUserHeader": "miauserid"
+  }
+}
+```
+
+## Endpoints
+
+In the table below is provided the list of endpoints that should be [defined in Console](/development_suite/api-console/api-design/endpoints.md) and assigned to Fabric BFF service.
+
+| Endpoint            | Rewrite Base Path   | Microservice | Description                                                    |
+|---------------------|---------------------|--------------|----------------------------------------------------------------|
+| `/api/data-catalog` | `/api/data-catalog` | `fabric-bff` | Groups all the requests related to<br/>Open Lineage operations |
+
+### Routes
+
+Under the endpoint specified above, the following routes are served by Fabric BFF
+
+| Route                        | Type      | Method | Description                                                                                                                                                                                             |
+|------------------------------|-----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/data-catalog/bulk-actions` | Websocket | *      | Route for handling async operations over multiple datasets records                                                                                                                                      |
+| `/data-catalog/*`            | REST      | *      | Routes prefixed with `/data-catalog/` are forwarded towards Open Lineage<br/>service. For more details please read [corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#endpoints) |
