@@ -1794,5 +1794,9 @@
   "/docs/fast_data/monitoring/dashboards/real_time_updater": {
     "destination": "/docs/fast_data/monitoring/dashboards/ingestion_services",
     "addedOn": "2024-09-20"
+  },
+  "/docs/marketplace/add_to_marketplace/contributing_overview": {
+    "destination": "/docs/marketplace/add_to_marketplace/create_your_company_marketplace",
+    "addedOn": "2024-09-30"
   }
 }
