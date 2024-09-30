@@ -11,9 +11,9 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
 _Data Catalog_ is a Mia-Platform Marketplace application designed to configure in your Console project the
-components of [Data Catalog](/docs/data-catalog/overview.mdx) solution.  
+components of [Data Catalog](/docs/data_catalog/overview.mdx) solution.  
 It streamlines adding the necessary microservices, endpoints and configuration maps providing blueprint
 from which further customization can be executed to build and deploy an ad-hoc Data Catalog solution.
 
 An in depth explanation of what is Mia-Platform Data Catalog, which are its components and how to configure them
-can be found in the documentation section dedicated to the [product](/docs/data-catalog/overview.mdx).
+can be found in the documentation section dedicated to the [product](/docs/data_catalog/overview.mdx).
