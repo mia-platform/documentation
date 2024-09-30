@@ -1,0 +1,21 @@
+{
+  "openLineage": {
+    "rest": {
+      "target": "http://open-lineage"
+    },
+    "grpc": {
+      "target": "http://open-lineage:50051"
+    }
+  },
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": {
+        "type": "file",
+        "path": "/run/secrets/data-fabric/fabric-bff.ini",
+        "key": "MONGODB_URL"
+      },
+      "database": "data-fabric-db"
+    }
+  }
+}
