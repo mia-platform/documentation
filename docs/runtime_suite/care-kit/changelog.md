@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v2.8.5]
 
+- Fix calendar event box width
 - Fix style dashboard
 - Added timeline settings component
 - Added timeline component
