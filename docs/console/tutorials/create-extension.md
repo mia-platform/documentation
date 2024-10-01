@@ -18,8 +18,11 @@ This guide requires that you have:
 - The response from the Backoffice endpoint can be embedded within an iframe. See this [link](/development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) for more information.
 - Miactl tool installed consulting the guide on this [link](/cli/miactl/20_setup.md)
 
-
 ## 1. Register Backoffice Extension
+
+> **TIP:**  
+> Before proceeding make sure that `miactl` is updated to the latest version.  
+> Follow [setup `miactl`][setup-miactl] for more details.
 
 Once that all requisites are satisfied, you can register the Backoffice as an extension using the following command:
 
@@ -77,7 +80,6 @@ These registered routes are rendered as a menu item with label `Integrated Backo
 - define the `category.id` value using an [existing menu groups](/console/console-extensibility/locations.md) corresponding to the chosen location applied as `destination.id` (e.g. `runtime` for the project location). In this case the `category.labelIntl` and `category.order` should be undefined.
 - not define the `category` field, so that the menu item will not be attached on any menu group 
 :::
-
 
 **Response on success**
 ```markdown
@@ -205,3 +207,6 @@ Successfully deleted extension from Company
 ```
 
 You can repeat [step 2](#2-check-that-the-new-extension-is-registered) to verify that the extension has been successfully removed.
+
+<!-- Links -->
+[setup-miactl]: ../../cli/miactl/20_setup#installation
