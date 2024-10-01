@@ -119,6 +119,7 @@ The properties of the CRUD are:
 - **formAvailabilityDate** (optional), of type *string*, which is the date when the form will be available.
 - **formExpirationDate** (optional), of type *string*, which is the expiration date of the form.
 - **formExpirationMessage** (optional), of type *string*, which is the expiration message of the form.
+- **formExpirationTitle** (optional), of type *string*, which is the expiration title of the form.
 
 :::note
 
@@ -262,6 +263,8 @@ Here you can find an example of a *formVisualizerOptions* object:
 {
   "autosaveIntervalValueMs": 5000,
   "messageToBeShownOnExpiredForm": "This form is expired!",
+  "titleToBeShownOnExpiredForm": "Expired Form",
+  "v2.0.2": "Error",
   "exportFields": [
     "_id",
     "__STATE__",
@@ -301,6 +304,18 @@ The value of the auto save interval must be set in milliseconds (from 1 second t
 :::note
 
 There is a default value for `messageToBeShownOnExpiredForm` which is `This form is expired!`.
+
+:::
+
+:::note
+
+There is a default value for `titleToBeShownOnExpiredForm` which is `Error`.
+
+:::
+
+:::info
+
+**v2.0.6**. Custom title setting setting is available only since version 2.0.6
 
 :::
 
