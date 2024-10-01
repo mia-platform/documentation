@@ -30,7 +30,13 @@ Given the large cardinality of assets that can be retrieved on this tool (SoR, T
 
 Next to the search bar, the search context can be set to better circumscribe the search scope. For example, if the System of Records within which you want to perimeter the search results is already known, you can from the search context enter that specific SoR. All results returned from the search will be assets belonging to the context of that specific SoR. To refine the search scope even more, it is also possible from the context to select a table.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '600px'}}>
+
 ![Search context](./img/search_context.png)
+
+  </div>
+</div>
 
 #### Advanced filters
 
@@ -40,7 +46,13 @@ To refine the search to make it even more granular, it is also possible to apply
 - by **tags**: only assets that contains at least one of the chosen tags are returned;
 - by **custom filters**: only assets that present a match with all the values defined on the selected custom properties are returned (in [this paragraph](#custom-properties-management), the custom property concept is well-described).
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '900px'}}>
+
 ![Advanced search filters](./img/advanced_search_filters.png)
+
+  </div>
+</div>
 
 #### Search results
 
@@ -114,7 +126,13 @@ There are different types of custom properties supported:
 
 In the following image, the creation of a new custom property is diplayed. In addition to the Name, Type and Applicable asset types fields, it is possible to optionally add a description to the custom property.  
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![Custom property creation](./img/custom_property_creation.png)
+
+  </div>
+</div>
 
 Once created, the specific custom property can be applicable on each asset that fits the asset type defined for the property. For example, the property can be applied on solely Table asset type. Therefore, when accessing any table present on Data Catalog, user can add this property on it and insert a value compliant with its custom property type for metadata enrichment on that specific table.
 
@@ -122,7 +140,13 @@ Once created, the specific custom property can be applicable on each asset that 
 
 Users with enough permissions can modify a custom property.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![Custom property edit](./img/custom_property_edit.png)
+
+  </div>
+</div>
 
 :::caution 
 Pay attention when editing a custom property, it may already be applied and valorized on many assets!  
@@ -133,7 +157,13 @@ Modifications on a custom property may lead to inconsistencies on metadata retri
 
 Users with enough permissions can delete a custom property.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![Custom property delete](./img/custom_property_delete.png)
+
+  </div>
+</div>
 
 :::caution 
 Pay attention when deleting a custom property, it may already be applied and valorized on many assets!  
@@ -179,7 +209,13 @@ In these cases, users with enough permissions can decide to restore the custom p
 
 A custom property that cannot be correctly interpreted by frontend can be restored.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![Restore unknown custom property](./img/restore_unknown_custom_property.png)
+
+  </div>
+</div>
 
 The result of this action leads to a re-creation of the custom property.  
 
@@ -193,7 +229,13 @@ Please pay attention when modifying an existent custom property. The main reason
 
 In case the unknown metadata is no more consistent or useful on the specific asset, users can opt for its removal.
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![Remove unknown custom property](./img/remove_unknown_custom_property.png)
+
+  </div>
+</div>
 
 :::caution
 Please note that this action leads to the removal of the metadata value saved on DB for that specific asset. The custom property remains instead applied on all the other assets that match the expected asset type.
@@ -206,7 +248,13 @@ From the search list results, user can decide to select one or more assets; then
 
 A modal opens showing the number and type of assets selected (SoR, table, column). Then the user can choose which fields are to be bulk edited: you can select the asset details description, tags, or choose a list of custom properties that are consistent with the type of assets that have been selected for bulk edit.  
 
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '700px'}}>
+
 ![Bulk actions](./img/bulk_actions.png)
+
+  </div>
+</div>
 
 In particular, for each selected field, the user can choose to clear the field value on all those selected assets, or to overwrite the any already existent value with a new one set by the user during the bulk edit flow.
 
