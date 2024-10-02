@@ -59,4 +59,4 @@ cosign verify-attestation --type spdxjson --key "${KEY}" nexus.mia-platform.eu/c
 ```
 
 [supply-chain attacks]: https://en.wikipedia.org/wiki/Supply_chain_attack
-[here]: /public-keys/static/public-keys/mia-platform-pubkey-2023-10-01.pem "Mia-Platform PEM-encoded public key"
+[here]: /public-keys/mia-platform-pubkey-2023-10-01.pem "Mia-Platform PEM-encoded public key"
