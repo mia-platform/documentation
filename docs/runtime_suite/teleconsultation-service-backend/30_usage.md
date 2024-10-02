@@ -334,7 +334,7 @@ curl -X PATCH "https://my_project_url/teleconsultation" \
      }'
 ```
 
-### POST /teleconsultation/:roomId/participants/data
+### ~~POST /teleconsultation/:roomId/participants/data~~  (Deleted from version 2.0.0) 
 
 Pushes a new teleconsultation participant in the `participants.data` array of the teleconsultation instance having id equal to roomId.
 **roomId** is the **_id** field returned by the CRUD of a specific teleconsultation.
@@ -618,7 +618,6 @@ Uploads the image specified by virtual_background for the company.
 **Example POST Request:**
 ```
 curl -X POST "https://my_project_url/settings/background-image" \
---header 'apikey: your_api_key' \
 --header 'content-type: multipart/form-data; boundary=multipart-boundary' \
 --form virtual_background=your_path_to_file'
 ```
@@ -664,7 +663,6 @@ Updates the default background image for the company, specified by the body para
 **Example PATCH Request:**
 ```
 curl -X PATCH "https://my_project_url/settings/update" \
---header 'apikey: your_api_key' \
 --data '{
 "background_alias":"3e4d0683d78be3a884b7a60028644f57"
 }'
