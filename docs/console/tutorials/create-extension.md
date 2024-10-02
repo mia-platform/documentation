@@ -22,7 +22,7 @@ This guide requires that you have:
 
 :::tip
 Before proceeding make sure that `miactl` is updated to the latest version.  
-Follow [setup `miactl`][setup-miactl] for more details.
+Follow [`miactl` setup page][setup-miactl] for more details.
 :::
 
 Once that all requisites are satisfied, you can register the Backoffice as an extension using the following command:
