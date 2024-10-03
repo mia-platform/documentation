@@ -4,18 +4,17 @@ title: Create Custom Resources
 sidebar_label: Create Custom Resources
 ---
 
-## What is a Custom Resource?
-
 A Custom Resource allows you to define custom objects that are not part of the standard Console resources and can be used to extend the Console capabilities. It provides a way to write configurations that can be translated into different configuration-as-code elements.
 
 ## How to use the Custom Resource
 
 With Custom Resources it is possible to:
 
-- configure Kubernetes Custom Resources that are managed by the cluster (e.g. the Traefik `IngressRoute`);
-- generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx).
+- configure Kubernetes Custom Resources that are managed by the cluster (e.g. the Traefik `IngressRoute`)
+- generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx)
+- configure resources for virtually any runtime using templates that are populated with custom values at deployment time
 
-To learn more about possible use cases, you can read the [dedicated section](#use-cases)
+To learn more about possible use cases, you can go to the [dedicated section](./use-cases.md)
 
 ## How to manage a Custom Resource in Console
 
@@ -35,7 +34,7 @@ To create a resource from scratch, you need to provide the following information
 
 In creation, you will see the preview of the generated manifest.
 
-![Create from scratch](./img/custom-resources/create-from-scratch.png)
+![Create from scratch](./img/create-from-scratch.png)
 
 #### Create a Custom Resource from Marketplace
 
@@ -45,11 +44,11 @@ To allow users to add a Custom Resource to their project from marketplace, you n
 
 To create a resource from Marketplace, you need to select the Custom Resource you want to create.
 
-![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
+![Create from Marketplace](./img/create-from-marketplace.png)
 
 The Marketplace could contain *versioned* Custom Resources. In that case, when selecting the Custom Resource to create, you will see the available versions and you will be able to select the one you prefer.
 
-![Create from Marketplace a versioned Custom Resource](./img/custom-resources/create-from-marketplace-versioned.png)
+![Create from Marketplace a versioned Custom Resource](./img/create-from-marketplace-versioned.png)
 
 In this case, you can only modify the *name* of the Custom Resource: the *kind* and the *apiVersion* fields are managed by the versioned marketplace item, so you cannot modify them manually, neither during the creation nor the update.
 
@@ -67,7 +66,7 @@ The Custom Resource has some supported fields, other fields will be ignored. The
   - **annotations**: the annotations of the Custom Resource, it can be any key/value pair;
 - **spec** (*required*): the spec of the Custom Resource, it can be any object.
 
-![Update](./img/custom-resources/update-gateway-custom-resource.png)
+![Update](./img/update-gateway-custom-resource.png)
 
 Custom Resources created from Marketplace items can not have the `apiVersion` and the `kind` fields modified. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
@@ -75,7 +74,7 @@ Each version of the Custom Resource defines specific values for these fields.
 You can select a new version by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu.
 A modal window will open, where you can see the available versions of the Custom Resource and select the one you want to use.
 
-![Change version](./img/custom-resources/change-custom-resource-version.png)
+![Change version](./img/change-custom-resource-version.png)
 
 Inside the modal you can also see the `apiVersion` and the `kind` of the Custom Resource of the selected version, to give you a better idea of the configuration you are selecting.
 
@@ -95,7 +94,7 @@ To delete a Custom Resource, you have to click on the delete button at the botto
 
 You need to insert the Custom Resource name and click on the delete button.
 
-![Delete Custom Resource](./img/custom-resources/delete.png)
+![Delete Custom Resource](./img/delete.png)
 
 ## How to manage a Custom Resource in the Marketplace
 
@@ -114,52 +113,6 @@ The `apiVersion` field must be set to `custom-generator.console.mia-platform.eu/
 :::
 
 After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment, when the template is populated with user-provided values, and the resulting files are stored in a dedicated folder as defined in the Marketplace item specification.
-
-## Use cases
-
-The following examples showcase how users can leverage Custom Resources in different scenarios.
-
-### Traefik IngressRoute
-
-In this use case, the user manages Kubernetes Ingress routing for Traefik. They can either copy an existing Traefik IngressRoute Custom Resource Definition (CRD) directly into the editor in Console, or create a new one from scratch. This approach provides users with fine-tuned control over how Ingress routes are configured.
-
-Alternatively, users can opt to create the resource from the Marketplace. This version offers simplified management of key configuration fields, such as the host and service name, making the process more accessible for users who may not need the full flexibility of direct CRD management.
-
-This use case is ideal for users who require granular control over routing rules and protocols, or for those who prefer a simplified way to handle basic Ingress configurations.
-
-### kube-green SleepInfo
-
-This use case involves using [kube-green](https://kube-green.dev/) to automate sleep schedules for Kubernetes clusters in order to optimize resource usage. Like the Traefik IngressRoute use case, users can manage the SleepInfo CRD directly within the Console. This resource can be used to define when a cluster should "sleep", reducing its resource usage, during non-peak hours.
-
-However, unlike the previous example, this resource is typically activated only in non-production environments, such as development or staging, to prevent disruptions in production-critical services.
-
-This use case is particularly beneficial for organizations that want to reduce the CO2 footprint of their clusters and optimize resource costs in environments that don't require constant uptime.
-
-### AWS Lambda
-
-AWS Lambda functions can be managed in different ways, depending on the user’s needs. One option allows users to create a Kubernetes custom resource for Lambda directly from the Marketplace. The Lambda function is managed by an operator within the Kubernetes cluster, and users can write the Lambda code directly from the Console.
-
-Another option is for the user to create a custom resource from the Marketplace that generates a code repository for the Lambda function. In this case, users can develop the Lambda code separately and then package it into a Docker image.
-
-A third approach is to manage AWS Lambda functions via CloudFormation. This method is ideal for users who prefer working with AWS-native tools and infrastructure-as-code patterns.
-
-These three options provide different levels of flexibility for users who require integration with AWS infrastructure.
-
-### Amazon EC2
-
-This use case is similar to the AWS Lambda example but focuses on the creation of EC2 instances. Users can either generate a Kubernetes CRD to manage EC2 instances through an operator in the cluster or generate Terraform files to manage infrastructure outside of Kubernetes.
-
-The first approach, using Kubernetes operators, allows users to create and manage EC2 instances directly through their Kubernetes environment. The second approach, which involves generating Terraform files, offers a more advanced option for users needing to manage complex cloud infrastructure across multiple environments.
-
-This flexibility allows users to choose between simple, Kubernetes-native management or more comprehensive infrastructure-as-code practices using Terraform, depending on their project needs.
-
-### MongoDB Atlas Creation
-
-This use case involves managing MongoDB Atlas databases with Kubernetes custom resources. Users can manage a MongoDB Atlas database by leveraging a Kubernetes operator, defining essential credentials like username, password, and the database name via Custom Resources in the Console.
-
-For more advanced use cases, users can write a custom resource that generates a Terraform file, which can be used to manage MongoDB Atlas with greater control, including configurations for scaling, backups, and security settings.
-
-This approach provides a straightforward method for managing small-scale database setups via the Kubernetes operator, while advanced users can opt for full Terraform-based management to integrate MongoDB with broader infrastructure.
 
 ## Future Improvements
 
