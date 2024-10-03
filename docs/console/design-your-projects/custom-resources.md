@@ -145,6 +145,22 @@ A third approach is to manage AWS Lambda functions via CloudFormation. This meth
 
 These three options provide different levels of flexibility for users who require integration with AWS infrastructure.
 
+### Amazon EC2
+
+This use case is similar to the AWS Lambda example but focuses on the creation of EC2 instances. Users can either generate a Kubernetes CRD to manage EC2 instances through an operator in the cluster or generate Terraform files to manage infrastructure outside of Kubernetes.
+
+The first approach, using Kubernetes operators, allows users to create and manage EC2 instances directly through their Kubernetes environment. The second approach, which involves generating Terraform files, offers a more advanced option for users needing to manage complex cloud infrastructure across multiple environments.
+
+This flexibility allows users to choose between simple, Kubernetes-native management or more comprehensive infrastructure-as-code practices using Terraform, depending on their project needs.
+
+### MongoDB Atlas Creation
+
+This use case involves managing MongoDB Atlas databases with Kubernetes custom resources. Users can manage a MongoDB Atlas database by leveraging a Kubernetes operator, defining essential credentials like username, password, and the database name via Custom Resources in the Console.
+
+For more advanced use cases, users can write a custom resource that generates a Terraform file, which can be used to manage MongoDB Atlas with greater control, including configurations for scaling, backups, and security settings.
+
+This approach provides a straightforward method for managing small-scale database setups via the Kubernetes operator, while advanced users can opt for full Terraform-based management to integrate MongoDB with broader infrastructure.
+
 ## Future Improvements
 
 In the future, we plan to add more features to the Resources, such as:
