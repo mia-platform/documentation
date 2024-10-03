@@ -4,16 +4,20 @@ title: Create Custom Resources
 sidebar_label: Create Custom Resources
 ---
 
-## How to use the Custom Resources
+## What is a Custom Resource?
 
-A Custom Resource allows you to define custom objects that are not part of the standard Console supported resources.
+A Custom Resource allows you to define custom objects that are not part of the standard Console resources and can be used to extend the Console capabilities. It provides a way to write configurations that can be translated into different configuration-as-code elements.
 
-For example, it is possible to:
+## How to use the Custom Resource
 
-- configure Kubernetes Custom Resource that are managed by the cluster (e.g. the Traefik `IngressRoute`);
+With Custom Resources it is possible to:
+
+- configure Kubernetes Custom Resources that are managed by the cluster (e.g. the Traefik `IngressRoute`);
 - generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx).
 
-## How to manage a Custom Resource
+To learn more about possible use cases, you can read the [dedicated section](#use-cases)
+
+## How to manage a Custom Resource in Console
 
 It is possible to manage the Custom Resource from inside the Design section of the Console, in the dedicated area called *Custom Resources*.
 
@@ -93,10 +97,31 @@ You need to insert the Custom Resource name and click on the delete button.
 
 ![Delete Custom Resource](./img/custom-resources/delete.png)
 
+## How to manage a Custom Resource in the Marketplace
+
+Users with appropriate permissions can manage the lifecycle of a Custom Resource on the Marketplace, being able to publish their own Custom Resources and update them.
+
+Custom Resources are published to the Marketplace using the `custom-resource` type in the marketplace item schema. Versioning is supported, allowing users to make updates without overwriting previous versions of the Custom Resource.
+
+To learn more on how to add a Custom Resource to the Marketplace, see the [Add Custom Resource to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) section.
+
+### Template-based Custom Resource management
+
+Certain Custom Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. Templates are stored as strings and interpolated at deployment time.
+
+:::info
+The `apiVersion` field must be set to `custom-generator.console.mia-platform.eu/v1` to dynamically generate the resource from the Marketplace.
+:::
+
+After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment, when the template is populated with user-provided values, and the resulting files are stored in a dedicated folder as defined in the Marketplace item specification.
+
+## Use cases
+
+<!-- TODO -->
+
 ## Future Improvements
 
 In the future, we plan to add more features to the Resources, such as:
 
-- the ability to add a custom template to be interpolated to generate the manifest;
 - see the Custom Resources runtime inside the Runtime Section of the Console;
 - manage Custom Resource with a specific dynamically generated UI.
