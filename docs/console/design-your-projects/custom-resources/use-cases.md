@@ -7,7 +7,7 @@ sidebar_label: Use Cases
 The following examples showcase how users can leverage **Custom Resources** in different scenarios.
 
 :::tip
-Find out all there is to know about Custom Resources in the [dedicated section](./custom-resources.md).
+Find out all there is to know about Custom Resources in the [dedicated section](/console/design-your-projects/custom-resources/custom-resources.md).
 :::
 
 ### Traefik IngressRoute

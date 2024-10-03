@@ -14,7 +14,7 @@ With Custom Resources it is possible to:
 - generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx)
 - configure resources for virtually any runtime using templates that are populated with custom values at deployment time
 
-To learn more about possible use cases, you can go to the [dedicated section](./use-cases.md)
+To learn more about possible use cases, you can go to the [dedicated section](/console/design-your-projects/custom-resources/use-cases.md)
 
 ## How to manage a Custom Resource in Console
 

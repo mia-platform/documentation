@@ -4,7 +4,7 @@ title: Publish your Custom Resources to the Marketplace
 sidebar_label: Create a Custom Resource
 ---
 
-When designing your project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
+When designing your project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
 
 They are basically defined by two fields:
 
