@@ -10,11 +10,14 @@ A Custom Resource allows you to define custom objects that are not part of the s
 
 With Custom Resources it is possible to:
 
-- configure Kubernetes Custom Resources that are managed by the cluster (e.g. the Traefik `IngressRoute`)
-- generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx)
 - configure resources for virtually any runtime using templates that are populated with custom values at deployment time
+- configure Kubernetes Custom Resources that are managed by the cluster (e.g. the Traefik `IngressRoute`)
 
 To learn more about possible use cases, you can go to the [dedicated section](/console/design-your-projects/custom-resources/use-cases.md)
+
+:::tip
+You can also use Custom Resources together with the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx) to generate manifests for different runtimes.
+:::
 
 ## How to manage a Custom Resource in Console
 
