@@ -10,21 +10,7 @@ The following examples showcase how users can leverage **Custom Resources** in d
 Find out all there is to know about Custom Resources in the [dedicated section](/console/design-your-projects/custom-resources/custom-resources.md).
 :::
 
-### Traefik IngressRoute
-
-In this use case, the user manages Kubernetes Ingress routing for Traefik. They can either copy an existing Traefik IngressRoute Custom Resource Definition (CRD) directly into the editor in Console, or create a new one from scratch. This approach provides users with fine-tuned control over how Ingress routes are configured.
-
-Alternatively, users can opt to create the resource from the Marketplace. This version offers simplified management of key configuration fields, such as the host and service name, making the process more accessible for users who may not need the full flexibility of direct CRD management.
-
-This use case is ideal for users who require granular control over routing rules and protocols, or for those who prefer a simplified way to handle basic Ingress configurations.
-
-### kube-green SleepInfo
-
-This use case involves using [kube-green](https://kube-green.dev/) to automate sleep schedules for Kubernetes clusters in order to optimize resource usage. Like the Traefik IngressRoute use case, users can manage the SleepInfo CRD directly within the Console. This resource can be used to define when a cluster should "sleep", reducing its resource usage, during non-peak hours.
-
-However, unlike the previous example, this resource is typically activated only in non-production environments, such as development or staging, to prevent disruptions in production-critical services.
-
-This use case is particularly beneficial for organizations that want to reduce the CO2 footprint of their clusters and optimize resource costs in environments that don't require constant uptime.
+## Template-based Custom Resources
 
 ### AWS Lambda
 
@@ -51,3 +37,55 @@ This use case involves managing MongoDB Atlas databases with Kubernetes custom r
 For more advanced use cases, users can write a custom resource that generates a Terraform file, which can be used to manage MongoDB Atlas with greater control, including configurations for scaling, backups, and security settings.
 
 This approach provides a straightforward method for managing small-scale database setups via the Kubernetes operator, while advanced users can opt for full Terraform-based management to integrate MongoDB with broader infrastructure.
+
+## Kubernetes-specific Custom Resources
+
+### Traefik IngressRoute
+
+In this use case, the user manages Kubernetes Ingress routing for Traefik. They can either copy an existing Traefik IngressRoute Custom Resource Definition (CRD) directly into the editor in Console, or create a new one from scratch. This approach provides users with fine-tuned control over how Ingress routes are configured.
+
+Alternatively, users can opt to create the resource from the Marketplace. This version offers simplified management of key configuration fields, such as the host and service name, making the process more accessible for users who may not need the full flexibility of direct CRD management.
+
+This use case is ideal for users who require granular control over routing rules and protocols, or for those who prefer a simplified way to handle basic Ingress configurations.
+
+Here is an example of a Traefik IngressRoute Custom Resource:
+
+```yaml
+name: traefik-ingressroute
+  meta:
+    apiVersion: traefik.io/v1alpha1
+    kind: IngressRoute
+  labels:
+    - name: app.kubernetes.io/instance
+      value: ingress-controller
+  spec:
+    entryPoints:
+      - websecure
+    routes:
+      - match: Host(`{{PROJECT_HOST}}`)
+        kind: Rule
+        services:
+        - name: api-gateway
+          port: 8080
+```
+
+### kube-green SleepInfo
+
+This use case involves using [kube-green](https://kube-green.dev/) to automate sleep schedules for Kubernetes clusters in order to optimize resource usage. Like the Traefik IngressRoute use case, users can manage the SleepInfo CRD directly within the Console. This resource can be used to define when a cluster should "sleep", reducing its resource usage, during non-peak hours.
+
+However, unlike the previous example, this resource is typically activated only in non-production environments, such as development or staging, to prevent disruptions in production-critical services.
+
+This use case is particularly beneficial for organizations that want to reduce the CO2 footprint of their clusters and optimize resource costs in environments that don't require constant uptime.
+
+Here is an example of a kube-green SleepInfo Custom Resource:
+
+```yaml
+name: sleepInfo
+meta:
+    apiVersion: kube-green.com/v1alpha1
+    kind: SleepInfo
+spec:
+    sleepAt: "20:00"
+    timeZone: Europe/Rome
+    weekdays: "1-5"
+```
