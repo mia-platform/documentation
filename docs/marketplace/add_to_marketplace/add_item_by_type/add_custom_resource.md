@@ -197,14 +197,60 @@ Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with 
 
 ### Define the new Marketplace item
 
-First of all, we need to create a new file that includes the Marketplace item information and the Custom Resource that we want to add. Here is an example of Marketplace item definition for a Custom Resource:
+First of all, we need to create a new file that includes the Marketplace item information and the Custom Resource that we want to add.
+
+Here is an example of Marketplace item definition for a template-based Custom Resource:
 
 <details>
-<summary>my-custom-resource.yaml</summary>
+<summary>template-custom-resource.yaml</summary>
 <p>
 
 ```yaml
-name: 'Traefik IngressRoute'
+name: Google Cloud Function External
+description: Google Function Template with external repository handled by Developer Team
+type: custom-resource
+tenantId: my-company-id
+itemId: google-function-external-template
+image:
+  localPath: ../../images/google-cloud-functions.png
+supportedByImage:
+  localPath: ../../images/mia-platform-logo.png
+categoryId: serverless
+version:
+  name: 1.0.0
+  releaseNote: Initial release
+resources:
+  meta:
+    apiVersion: custom-generator.console.mia-platform.eu/v1
+    kind: GoogleFunctionTemplateGenerator
+  name: my-google-function
+  spec:
+    targetRuntime: nodejs20.x
+    helloMessage: Say hello from your Cloud Function
+    targetRepositoryId: 1234
+  generator:
+    configurationBaseFolder: googlecloudfunctions
+    templates:
+      - name: configs
+        template: |
+          TARGET_RUNTIME=%spec.targetRuntime%
+          HELLO_MESSAGE=%spec.helloMessage%
+          TARGET_REPOSITORY_ID=%spec.targetRepositoryId%
+        fileExtension: env
+    type: template
+```
+
+</p>
+</details>
+
+Here is an example of Marketplace item definition for a Kubernetes-specific Custom Resource:
+
+<details>
+<summary>k8s-custom-resource.yaml</summary>
+<p>
+
+```yaml
+name: Traefik IngressRoute
 description: The configuration of the IngressRoute resource for Traefik
 type: custom-resource
 tenantId: my-company-id
@@ -215,26 +261,26 @@ supportedBy: my-company-id
 categoryId: kubernetes-custom-resource
 version:
   name: 1.0.0
-  releaseNote: 'Initial release'
+  releaseNote: Initial release
 documentation:
   type: externalLink
-  url: 'https://docs.mia-platform.eu/docs/infrastructure/paas/tools/traefik#expose-an-endpoint'
+  url: https://docs.mia-platform.eu/docs/infrastructure/paas/tools/traefik#expose-an-endpoint
 resources:
-  name: "default"
+  name: default
   meta:
     apiVersion: traefik.io/v1alpha1
     kind: IngressRoute
   labels:
     - name: app.kubernetes.io/instance
-      value: "ingress-controller"
+      value: ingress-controller
   spec:
     entryPoints:
-      - "websecure"
+      - websecure
     routes:
       - match: Host(`{{PROJECT_HOST}}`)
         kind: Rule
         services:
-        - name: "api-gateway"
+        - name: api-gateway
           port: 8080
 ```
 
