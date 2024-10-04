@@ -4,16 +4,22 @@ title: Create Custom Resources
 sidebar_label: Create Custom Resources
 ---
 
-## How to use the Custom Resources
+A Custom Resource allows you to define custom objects that are not part of the standard Console resources and can be used to extend the Console capabilities. It provides a way to write configurations that can be translated into different configuration-as-code elements.
 
-A Custom Resource allows you to define custom objects that are not part of the standard Console supported resources.
+## How to use the Custom Resource
 
-For example, it is possible to:
+With Custom Resources it is possible to:
 
-- configure Kubernetes Custom Resource that are managed by the cluster (e.g. the Traefik `IngressRoute`);
-- generate manifests for different runtimes using the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx).
+- configure resources for virtually any runtime using templates that are populated with custom values at deployment time
+- configure Kubernetes Custom Resources that are managed by the cluster (e.g. the Traefik `IngressRoute`)
 
-## How to manage a Custom Resource
+To learn more about possible use cases, you can go to the [dedicated section](/console/design-your-projects/custom-resources/use-cases.md)
+
+:::tip
+You can also use Custom Resources together with the [External Configuration Generator](/console/company-configuration/providers/extensions/orchestrator-generator/overview.mdx) to generate manifests for different runtimes.
+:::
+
+## How to manage a Custom Resource in Console
 
 It is possible to manage the Custom Resource from inside the Design section of the Console, in the dedicated area called *Custom Resources*.
 
@@ -31,7 +37,7 @@ To create a resource from scratch, you need to provide the following information
 
 In creation, you will see the preview of the generated manifest.
 
-![Create from scratch](./img/custom-resources/create-from-scratch.png)
+![Create from scratch](./img/create-from-scratch.png)
 
 #### Create a Custom Resource from Marketplace
 
@@ -41,11 +47,11 @@ To allow users to add a Custom Resource to their project from marketplace, you n
 
 To create a resource from Marketplace, you need to select the Custom Resource you want to create.
 
-![Create from Marketplace](./img/custom-resources/create-from-marketplace.png)
+![Create from Marketplace](./img/create-from-marketplace.png)
 
 The Marketplace could contain *versioned* Custom Resources. In that case, when selecting the Custom Resource to create, you will see the available versions and you will be able to select the one you prefer.
 
-![Create from Marketplace a versioned Custom Resource](./img/custom-resources/create-from-marketplace-versioned.png)
+![Create from Marketplace a versioned Custom Resource](./img/create-from-marketplace-versioned.png)
 
 In this case, you can only modify the *name* of the Custom Resource: the *kind* and the *apiVersion* fields are managed by the versioned marketplace item, so you cannot modify them manually, neither during the creation nor the update.
 
@@ -63,7 +69,7 @@ The Custom Resource has some supported fields, other fields will be ignored. The
   - **annotations**: the annotations of the Custom Resource, it can be any key/value pair;
 - **spec** (*required*): the spec of the Custom Resource, it can be any object.
 
-![Update](./img/custom-resources/update-gateway-custom-resource.png)
+![Update](./img/update-gateway-custom-resource.png)
 
 Custom Resources created from Marketplace items can not have the `apiVersion` and the `kind` fields modified. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
@@ -71,7 +77,7 @@ Each version of the Custom Resource defines specific values for these fields.
 You can select a new version by clicking on the icon at the top right corner of the badge, near the version name, and selecting the *Change version* option from the pop-up menu.
 A modal window will open, where you can see the available versions of the Custom Resource and select the one you want to use.
 
-![Change version](./img/custom-resources/change-custom-resource-version.png)
+![Change version](./img/change-custom-resource-version.png)
 
 Inside the modal you can also see the `apiVersion` and the `kind` of the Custom Resource of the selected version, to give you a better idea of the configuration you are selecting.
 
@@ -91,12 +97,48 @@ To delete a Custom Resource, you have to click on the delete button at the botto
 
 You need to insert the Custom Resource name and click on the delete button.
 
-![Delete Custom Resource](./img/custom-resources/delete.png)
+![Delete Custom Resource](./img/delete.png)
+
+## How to manage a Custom Resource in the Marketplace
+
+Users with appropriate permissions can manage the lifecycle of a Custom Resource on the Marketplace, being able to publish their own Custom Resources and update them.
+
+Custom Resources are published to the Marketplace using the `custom-resource` type in the marketplace item schema. Versioning is supported, allowing users to make updates without overwriting previous versions of the Custom Resource.
+
+To learn more on how to add or manage a Custom Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) section.
+
+### Template-based Custom Resource management
+
+:::info
+Please note that template-based Custom Resources are only supported in Projects using the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md).
+:::
+
+By default, Custom Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. The `apiVersion` field is also set to the special value `custom-generator.console.mia-platform.eu/v1`, necessary to dynamically generate the resource from the Marketplace.
+
+Templates are stored as strings and interpolated at deployment time using the [mustache template system](https://mustache.github.io/). After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment: during this process the template is populated with user-provided values, and the resulting files are stored in a dedicated folder in the Project repository, as defined in the Marketplace item specification.
+
+Here is a sequence of what happens when a template-based Custom Resource is deployed:
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant Console
+  User->>Console: Save configuration with template-based Custom Resource<br/>generated from Marketplace
+  Console-->>User: Configuration saved
+  User->>Console: Deploy the configuration
+  Console->>Console: Get custom resource from the Marketplace
+  Console->>Console: Interpolate the template with user-defined values
+  Console->>Console: Generate configuration files and store them in a dedicated folder
+  Console-->>User: Deployment successful
+```
+
+:::info
+Deploying template-based Custom Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline, in order to handle the additional files generated from the template.
+:::
 
 ## Future Improvements
 
 In the future, we plan to add more features to the Resources, such as:
 
-- the ability to add a custom template to be interpolated to generate the manifest;
 - see the Custom Resources runtime inside the Runtime Section of the Console;
 - manage Custom Resource with a specific dynamically generated UI.

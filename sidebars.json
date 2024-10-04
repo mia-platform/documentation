@@ -486,8 +486,19 @@
           "type": "doc"
         },
         {
-          "id": "console/design-your-projects/custom-resources",
-          "type": "doc"
+          "collapsed": true,
+          "link": {
+            "id": "console/design-your-projects/custom-resources/custom-resources",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "console/design-your-projects/custom-resources/custom-resources-use-cases",
+              "type": "doc"
+            }
+          ],
+          "label": "Custom Resources",
+          "type": "category"
         },
         {
           "id": "development_suite/api-console/api-design/decorators",

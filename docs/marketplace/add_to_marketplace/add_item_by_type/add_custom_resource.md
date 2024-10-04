@@ -4,21 +4,20 @@ title: Publish your Custom Resources to the Marketplace
 sidebar_label: Create a Custom Resource
 ---
 
-When designing your project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
+When designing your Project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
 
-They are basically defined by two fields:
+Custom Resources are basically defined by two fields:
 
-- the `apiVersion` field, which is the version of the kubernetes API used by that resource
+- the `apiVersion` field, which should be set to `custom-generator.console.mia-platform.eu/v1` for generic template-based Custom Resources, or to the version of the Kubernetes API used by the resource in case of Kubernetes-specific Custom Resources
 - the `kind` field, which is the specific resource type of the resource
 
-Custom resources can be added to your project by creating one anew or by installing an existing one from the Marketplace.
-They are defined with the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), by having the _type_ field equal to `custom-resource`.
+A Custom Resource can be created from scratch or from an existing Marketplace item and added to your Project. Custom Resources on the Marketplace follow the base Marketplace item schema defined in the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), with the _type_ field set to `custom-resource`.
 
-Custom resource items in the Marketplace support _versioning_, allowing you to update a resource without overwriting its previous versions. 
+Custom resource items in the Marketplace also support _versioning_, allowing you to update a resource without overwriting its previous versions. 
 
 ## Custom Resource definition
 
-Inside the panel there is the JSON Schema to use to create a resource with _type_ `custom-resource` you want to add to the marketplace.
+The following JSON Schema can be used to create a Marketplace item with _type_ `custom-resource`.
 
 <details><summary>JSON Schema</summary>
 <p>
@@ -140,7 +139,35 @@ Inside the panel there is the JSON Schema to use to create a resource with _type
 </p>
 </details>
 
-A simple example in YAML of a Custom Resource that follows the schema is [`kube-green`](https://kube-green.dev/):
+This schema can be used to define both available types of Custom Resources: generic **template-based** Custom Resources, and **Kubernetes-specific** ones.
+
+Here is an example of a template-based Custom Resource:
+
+<details>
+<summary>ExternalOrchestratorLambda</summary>
+<p>
+
+```yaml
+name: ExternalOrchestratorLambda
+meta:
+    kind: ExternalOrchestratorLambda
+    apiVersion: custom-generator.console.mia-platform.eu/v1
+spec:
+  code: the code
+generator:
+  type: template
+  configurationBaseFolder: base-folder-name
+  templates:
+    - template: this template can take some values from the spec, such as %spec.code%
+      name: template-name
+      fileExtension: json # default is yaml
+      folderName: template-folder-name
+```
+
+</p>
+</details>
+
+Here is an example of a Kubernetes-specific Custom Resource, used to configure [`kube-green`](https://kube-green.dev/):
 
 <details>
 <summary>SleepInfo</summary>
@@ -148,10 +175,10 @@ A simple example in YAML of a Custom Resource that follows the schema is [`kube-
 
 ```yaml
 name: sleepInfo
-  meta:
+meta:
     apiVersion: kube-green.com/v1alpha1
     kind: SleepInfo
-  spec:
+spec:
     sleepAt: "20:00"
     timeZone: Europe/Rome
     weekdays: "1-5"
@@ -163,15 +190,67 @@ name: sleepInfo
 ## Create a new Custom Resource
 
 ::: info
-In the paragraphs to follow, we are going to use the `miactl` tool to show how to create a new Custom Resource.
+In the following paragraphs, we are going to use the `miactl` tool to create a new Custom Resource.
 
 Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
 :::
 
-First of all, we need to create a new file that includes the marketplace information and the Custom Resource that we want to add.
+### Define the new Marketplace item
+
+First of all, we need to create a new file that includes the Marketplace item information and the Custom Resource that we want to add.
+
+Here is an example of Marketplace item definition for a template-based Custom Resource:
+
+<details>
+<summary>template-custom-resource.yaml</summary>
+<p>
 
 ```yaml
-name: 'Traefik IngressRoute'
+name: Google Cloud Function External
+description: Google Function Template with external repository handled by Developer Team
+type: custom-resource
+tenantId: my-company-id
+itemId: google-function-external-template
+image:
+  localPath: ../../images/google-cloud-functions.png
+supportedByImage:
+  localPath: ../../images/mia-platform-logo.png
+categoryId: serverless
+version:
+  name: 1.0.0
+  releaseNote: Initial release
+resources:
+  meta:
+    apiVersion: custom-generator.console.mia-platform.eu/v1
+    kind: GoogleFunctionTemplateGenerator
+  name: my-google-function
+  spec:
+    targetRuntime: nodejs20.x
+    helloMessage: Say hello from your Cloud Function
+    targetRepositoryId: 1234
+  generator:
+    configurationBaseFolder: googlecloudfunctions
+    templates:
+      - name: configs
+        template: |
+          TARGET_RUNTIME=%spec.targetRuntime%
+          HELLO_MESSAGE=%spec.helloMessage%
+          TARGET_REPOSITORY_ID=%spec.targetRepositoryId%
+        fileExtension: env
+    type: template
+```
+
+</p>
+</details>
+
+Here is an example of Marketplace item definition for a Kubernetes-specific Custom Resource:
+
+<details>
+<summary>k8s-custom-resource.yaml</summary>
+<p>
+
+```yaml
+name: Traefik IngressRoute
 description: The configuration of the IngressRoute resource for Traefik
 type: custom-resource
 tenantId: my-company-id
@@ -182,37 +261,40 @@ supportedBy: my-company-id
 categoryId: kubernetes-custom-resource
 version:
   name: 1.0.0
-  releaseNote: 'Initial release'
+  releaseNote: Initial release
 documentation:
   type: externalLink
-  url: 'https://docs.mia-platform.eu/docs/infrastructure/paas/tools/traefik#expose-an-endpoint'
+  url: https://docs.mia-platform.eu/docs/infrastructure/paas/tools/traefik#expose-an-endpoint
 resources:
-  name: "default"
+  name: default
   meta:
     apiVersion: traefik.io/v1alpha1
     kind: IngressRoute
   labels:
     - name: app.kubernetes.io/instance
-      value: "ingress-controller"
+      value: ingress-controller
   spec:
     entryPoints:
-      - "websecure"
+      - websecure
     routes:
       - match: Host(`{{PROJECT_HOST}}`)
         kind: Rule
         services:
-        - name: "api-gateway"
+        - name: api-gateway
           port: 8080
 ```
+
+</p>
+</details>
 
 Please note that:
 
 - the `type: custom-resource` is required to specify that this resource is a Custom Resource
-- the `version` property is included, to define this item as a version `1.0.0` with a specific release note: versions are not mandatory but highly suggested to avoid to overwrite previous versions
+- the `version` property is included, to define this item as a version `1.0.0` with a specific release note: versions are not mandatory but highly suggested to avoid overwriting existing resources.
 
-### Publish a new Custom Resource
+### Publish the new Custom Resource
 
-To upload the resource to the marketplace, run the following command, specifying the file name and your Company (tenant) id:
+To upload the resource to the Marketplace, run the following command, specifying the file name and your Company (tenant) id:
 
 ```bash
 > miactl marketplace apply -f ./my-custom-resource.yaml --company-id my-company-id
@@ -232,18 +314,18 @@ You just created your custom resource, which is now available on your `Company M
 
 ### Update the Custom Resource
 
-You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format).
+You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` command explained before, by including an updated file (either in `json` or `yaml` format).
+
+When updating a Custom Resource, it is recommended to create a new version of the Marketplace item to avoid overwriting the existing one. The new version should contain the updated resource definition and a release note detailing the changes.
 
 In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified.
 For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
-Given that Custom Resources are defined by their `apiVersion` and `kind`, when updating a resource, you should create a new marketplace item with a different version. This new version should include a release note and contain the resource with your required updates.
-
 #### Update non-versioned Custom Resources
 
-In case the Custom Resource you need to update is not versioned, you can update it always by using the `miactl marketplace apply` command, passing the company id (`tenantId` of your resource) and the resource file you created before with the modifications you need.
+In case the Custom Resource you need to update is not versioned, you can update it by using the `miactl marketplace apply` command, passing the company id (`tenantId` of your resource) and the resource file you created before with the modifications you need.
 
-Since this is a non-versioned element, there are no limitations on apply changes. However ensure you use the same `itemId` and the same `tenantId` of the resource you want to update.
+Since this is a non-versioned element, all field values can be updated without limitations. However, please make sure to use the same `itemId` and the same `tenantId` of the resource you want to update.
 
 In case you lost the original resource file (or simply you do not have it anymore), you can retrieve it from the Marketplace by using the `miactl marketplace get` command:
 
