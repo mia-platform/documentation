@@ -266,9 +266,10 @@ In this section is explained how the Control Plane service should be configured 
 
 Data Catalog UI can be customized using the following environment variables:
 
-| Name        | Required | Description                                           | Default Value    |
-|-------------|----------|-------------------------------------------------------|------------------|
-| `BASE_PATH` | &check;  | Path prefix to be added to all the frontend resources | `/data-catalog/` |
+| Name                    | Required | Description                                                    | Default Value    |
+|-------------------------|----------|----------------------------------------------------------------|------------------|
+| `BASE_PATH`             | &check;  | Path prefix to be added to all the frontend resources          | `/data-catalog/` |
+| `DATA_CATALOG_BASE_URL` |          | Base path where the backend APIs would be called from frontend |                  |
 
 As effect of them, by default the Data Catalog application exposes its frontend over the `/data-catalog/` base path.
 This value can be overridden by changing the environment variable `BASE_PATH` with `/<your-base-path>/` as value.
@@ -290,6 +291,56 @@ Please, ensure that:
 - in case `BASE_PATH` environment variable has been changed on the service, the Rewrite Base path must be changed accordingly
 - in case the security layer is enabled, remember to flag the `Authetication required` checkbox
 :::
+
+
+### Enable Websocket support
+
+Data Catalog Frontend relies on websocket for providing updates when interacting with the feature of  metadata [_bulk edit_](#bulk-actions).
+By default, [websocket protocol upgrade](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism#upgrading_to_a_websocket_connection)
+is not supported by API Gateways that can be found in Mia-Platform Marketplace.
+Consequently, it is necessary to carry out a manual update of your API Gateway configuration in Console [Advanced Section](/development_suite/api-console/advanced-section/index.md).
+
+Below are provided the configuration for the API Gateways that can be configured out of the box in Console. These configurations both use endpoint `/data-catalog/bulk-actions` as the one
+where the websocket communications should be enabled. In case `Fabric BFF` service exposes the bulk edit endpoint elsewhere, please update the configuration accordingly.
+
+For more details on the websocket endpoint, please read the [endpoint paragraph](/data_catalog/data_catalog_open_lineage.mdx#endpoints) of Open Lineage service documentation.
+
+#### Envoy
+
+When using Envoy as API Gateway the additional configuration for supporting websocket protocol upgrade needs to be inserted in the file `api-gateway-envoy/patches.yml`.
+
+```yaml title=api-gateway-envoy/patches.yml
+- listener_name: frontend
+  # https://www.envoyproxy.io/docs/envoy/v1.31.1/api-v3/extensions/filters/network/http_connection_manager/v3/http_connection_manager.proto#envoy-v3-api-msg-extensions-filters-network-http-connection-manager-v3-httpconnectionmanager-upgradeconfig
+  'filter_chains.0.filters.0.typed_config.upgrade_configs':
+    upgrade_type: "websocket"
+```
+
+:::caution
+Please notice that the above configuration:
+- affects only the first [filter chain](https://www.envoyproxy.io/docs/envoy/v1.31.1/api-v3/config/listener/v3/listener_components.proto#config-listener-v3-filterchain) and subsequently the first [filter](https://www.envoyproxy.io/docs/envoy/v1.31.1/api-v3/config/listener/v3/listener_components.proto#envoy-v3-api-msg-config-listener-v3-filter) definition.
+-  is specific for the `frontend` listener of Envoy. In case it has been decided to expose the Data Catalog solution
+under a [different listener](/development_suite/api-console/api-design/listeners.md), remember to update the configuration accordingly.
+:::
+
+#### Nginx
+
+When using Nginx as API Gateway the additional configuration for supporting websocket protocol upgrade needs to be inserted in the file `api-gateway/server-extension.conf`.
+
+```nginx title=api-gateway/server-extension.conf
+location /data-catalog/bulk-actions {
+    proxy_pass http://$proxy_name$proxy_url;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection upgrade;
+}
+```
 
 ### Embed as Console Extension
 
