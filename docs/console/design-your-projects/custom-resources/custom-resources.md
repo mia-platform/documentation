@@ -105,7 +105,7 @@ Users with appropriate permissions can manage the lifecycle of a Custom Resource
 
 Custom Resources are published to the Marketplace using the `custom-resource` type in the marketplace item schema. Versioning is supported, allowing users to make updates without overwriting previous versions of the Custom Resource.
 
-To learn more on how to add a Custom Resource to the Marketplace, see the [Add Custom Resource to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) section.
+To learn more on how to add or manage a Custom Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) section.
 
 ### Template-based Custom Resource management
 
@@ -113,15 +113,27 @@ To learn more on how to add a Custom Resource to the Marketplace, see the [Add C
 Please note that template-based Custom Resources are only supported in Projects using the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md).
 :::
 
-Certain Custom Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. The `apiVersion` field is also set to the special value `custom-generator.console.mia-platform.eu/v1`, necessary to dynamically generate the resource from the Marketplace.
+By default, Custom Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. The `apiVersion` field is also set to the special value `custom-generator.console.mia-platform.eu/v1`, necessary to dynamically generate the resource from the Marketplace.
 
-Templates are stored as strings and interpolated at deployment time. After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment: during this process the template is populated with user-provided values, and the resulting files are stored in a dedicated folder in the Project repository, as defined in the Marketplace item specification.
+Templates are stored as strings and interpolated at deployment time using the [mustache template system](https://mustache.github.io/). After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment: during this process the template is populated with user-provided values, and the resulting files are stored in a dedicated folder in the Project repository, as defined in the Marketplace item specification.
 
-It is important to note that deploying template-based Custom Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline.
+Here is a sequence of what happens when a template-based Custom Resource is deployed:
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant Console
+  User->>Console: Save configuration with template-based Custom Resource<br/>generated from Marketplace
+  Console->>User: Configuration saved
+  User->>Console: Deploy the configuration
+  Console->>Console: Get custom resource from the Marketplace
+  Console->>Console: Interpolate the template with user-defined values
+  Console->>Console: Generate configuration files and store them in a dedicated folder
+  Console->>User: Deployment successful
+```
 
 :::info
-To learn more about how to create and manage template-based Custom Resources on the Marketplace, please refer to the dedicated section.
-<!-- TODO: add link to the dedicated section -->
+It is important to note that deploying template-based Custom Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline.
 :::
 
 ## Future Improvements
