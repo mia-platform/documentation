@@ -124,16 +124,16 @@ sequenceDiagram
   participant User
   participant Console
   User->>Console: Save configuration with template-based Custom Resource<br/>generated from Marketplace
-  Console->>User: Configuration saved
+  Console-->>User: Configuration saved
   User->>Console: Deploy the configuration
   Console->>Console: Get custom resource from the Marketplace
   Console->>Console: Interpolate the template with user-defined values
   Console->>Console: Generate configuration files and store them in a dedicated folder
-  Console->>User: Deployment successful
+  Console-->>User: Deployment successful
 ```
 
 :::info
-It is important to note that deploying template-based Custom Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline.
+Deploying template-based Custom Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline, in order to handle the additional files generated from the template.
 :::
 
 ## Future Improvements

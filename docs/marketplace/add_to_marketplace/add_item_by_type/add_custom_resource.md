@@ -158,7 +158,7 @@ generator:
   type: template
   configurationBaseFolder: base-folder-name
   templates:
-    - template: this template can be {{interpolated}}
+    - template: this template can take some values from the spec, such as {{spec.code}}
       name: template-name
       fileExtension: json # default is yaml
       folderName: template-folder-name

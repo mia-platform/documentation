@@ -22,6 +22,68 @@ A third approach is to manage AWS Lambda functions via CloudFormation. This meth
 
 These three options provide different levels of flexibility for users who require integration with AWS infrastructure.
 
+Here is an example of a template-based Custom Resource that creates a Lambda function:
+
+<details>
+<summary>AWS Lambda</summary>
+<p>
+
+```yaml
+name: my-lambda-function
+meta:
+    kind: LambdaTemplateGenerator
+    apiVersion: custom-generator.console.mia-platform.eu/v1
+spec:
+    targetRuntime: nodejs20.x
+    zipCode: 'exports.handler = async (event) => ({ statusCode: 200, body: JSON.stringify("Hello from Lambda!") })'
+    memorySize: 1024
+    timeout: 60
+    id: MyFunction
+generator:
+    type: template
+    configurationBaseFolder: aws-cloudformation
+    templates:
+    - name: lambda
+        template: |
+        AWSTemplateFormatVersion: '2010-09-09'
+        Resources:
+            Fn%spec.id%:
+            Type: AWS::Lambda::Function
+            Properties:
+                %#spec.role%
+                Role: %spec.role%
+                %/spec.role%
+                %^spec.role%
+                Role: arn:aws:iam::694348909644:role/lambda-role
+                %/spec.role%
+                FunctionName: %metadata.name%
+                Handler: index.handler
+                Runtime: %spec.targetRuntime%
+                Code:
+                %#spec.zipCode%
+                ZipFile: |
+                    %spec.zipCode%
+                %/spec.zipCode%
+                %#spec.s3Code%
+                S3Bucket: %spec.s3Code.bucketName%
+                S3Key: %metadata.name%.zip
+                %/spec.s3Code%
+                MemorySize: %spec.memorySize%
+                Timeout: %spec.timeout%
+            FunctionUrl%spec.id%:
+            Type: AWS::Lambda::Url
+            Properties:
+                TargetFunctionArn: !Ref Fn%spec.id%
+                AuthType: NONE
+        Outputs:
+            PublicUrl:
+            Value: !GetAtt FunctionUrl%spec.id%.FunctionUrl
+            Description: The public URL to access the Lambda function
+```
+
+</p>
+</details>
+
 ### Amazon EC2
 
 This use case is similar to the AWS Lambda example but focuses on the creation of EC2 instances. Users can either generate a Kubernetes CRD to manage EC2 instances through an operator in the cluster or generate Terraform files to manage infrastructure outside of Kubernetes.
@@ -50,6 +112,10 @@ This use case is ideal for users who require granular control over routing rules
 
 Here is an example of a Traefik IngressRoute Custom Resource:
 
+<details>
+<summary>Traefik IngressRoute</summary>
+<p>
+
 ```yaml
 name: traefik-ingressroute
   meta:
@@ -69,6 +135,9 @@ name: traefik-ingressroute
           port: 8080
 ```
 
+</p>
+</details>
+
 ### kube-green SleepInfo
 
 This use case involves using [kube-green](https://kube-green.dev/) to automate sleep schedules for Kubernetes clusters in order to optimize resource usage. Like the Traefik IngressRoute use case, users can manage the SleepInfo CRD directly within the Console. This resource can be used to define when a cluster should "sleep", reducing its resource usage, during non-peak hours.
@@ -78,6 +147,10 @@ However, unlike the previous example, this resource is typically activated only 
 This use case is particularly beneficial for organizations that want to reduce the CO2 footprint of their clusters and optimize resource costs in environments that don't require constant uptime.
 
 Here is an example of a kube-green SleepInfo Custom Resource:
+
+<details>
+<summary>kube-green SleepInfo</summary>
+<p>
 
 ```yaml
 name: sleepInfo
@@ -89,3 +162,6 @@ spec:
     timeZone: Europe/Rome
     weekdays: "1-5"
 ```
+
+</p>
+</details>
