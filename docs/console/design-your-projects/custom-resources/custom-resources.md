@@ -106,13 +106,20 @@ To learn more on how to add a Custom Resource to the Marketplace, see the [Add C
 
 ### Template-based Custom Resource management
 
-Certain Custom Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. Templates are stored as strings and interpolated at deployment time.
-
 :::info
-The `apiVersion` field must be set to `custom-generator.console.mia-platform.eu/v1` to dynamically generate the resource from the Marketplace.
+Please note that template-based Custom Resources are only supported in Projects using the [Enhanced Workflow](/development_suite/set-up-infrastructure/overview.md).
 :::
 
-After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment, when the template is populated with user-provided values, and the resulting files are stored in a dedicated folder as defined in the Marketplace item specification.
+Certain Custom Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. The `apiVersion` field is also set to the special value `custom-generator.console.mia-platform.eu/v1`, necessary to dynamically generate the resource from the Marketplace.
+
+Templates are stored as strings and interpolated at deployment time. After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment: during this process the template is populated with user-provided values, and the resulting files are stored in a dedicated folder in the Project repository, as defined in the Marketplace item specification.
+
+It is important to note that deploying template-based Custom Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline.
+
+:::info
+To learn more about how to create and manage template-based Custom Resources on the Marketplace, please refer to the dedicated section.
+<!-- TODO: add link to the dedicated section -->
+:::
 
 ## Future Improvements
 
