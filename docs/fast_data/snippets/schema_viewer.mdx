@@ -18,4 +18,9 @@ import CodeBlock from '@theme/CodeBlock';
 </CodeBlock>
 
 </TabItem>
+
+<TabItem value="example" label="Example">
+    <CodeBlock language="json">{props.schema?.examples?.length > 0 ? JSON.stringify(props.schema?.examples?.[0], null, 2) : "example not provided"}</CodeBlock>
+</TabItem>
+
 </Tabs>

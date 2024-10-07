@@ -15,6 +15,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.2.0 - 2024-09-23
+
+### Added
+
+- introduce support for Array of ObjectIds at document root level
+- introduce support for `$size` operator in `_q` for fields of type `array`
+
+### Fixed
+
+- enable bom stripping when importing CSV files
+- change CSV _escape_ character to align it with CSV field _quote_ character, as recommended by [RFC 4180](https://datatracker.ietf.org/doc/html/rfc4180)
+
+## 7.1.1 - 2024-08-29
+
+### Changed
+
+- extend to `/bulk` endpoint the requests preprocessing performed on exposed routes of View with lookup feature enabled
+
 ## 7.1.0 - 2024-08-26
 
 ### Added

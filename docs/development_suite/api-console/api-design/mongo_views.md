@@ -11,11 +11,10 @@ sidebar_label: Create Views
 
 ## Create a new View
 
-:::danger
-From [CRUD service v7.0.0](/runtime_suite/crud-service/10_overview_and_usage.md), it is not possible the creation of Views cointaining [encrypted fields](/runtime_suite/crud-service/30_encryption_configuration.md).  
-Until the issue is resolved, if you need to define Views containing encrypted fields, we recommend downgrading CRUD service to [v6.10.3](https://github.com/mia-platform/crud-service/releases/tag/v6.10.3).
+:::info
+The creation of Views cointaining [encrypted fields](/runtime_suite/crud-service/30_encryption_configuration.md) is supported for [CRUD service](/runtime_suite/crud-service/10_overview_and_usage.md) versions < v7.0.0 and >= v7.1.0.  
+Please, pay attention to the CRUD service version when using this feature.
 :::
-
 ![create view form](img/create_mongodb_view.png)
 
 To create a new MongoDB View, you need to access the **MongoDB Views** menu from the **Data Models** section. From here, to access the creation page, simply click on the **Create new View** button.

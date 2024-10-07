@@ -16,13 +16,13 @@ You can create a Microservice from the Marketplace section of Console. To learn 
 
 You can create a Microservice by:
 
-* **using a Plugin**: a ready-to-use Microservice
+- **using a Plugin**: a ready-to-use Microservice
 
-* **using a Template**: a starting point to create a new Microservice
+- **using a Template**: a starting point to create a new Microservice
 
-* **using an Example**: an existing and ready-to-use model
+- **using an Example**: an existing and ready-to-use model
 
-* **uploading a Docker Image Name**: an existing Docker image of a Microservice
+- **uploading a Docker Image Name**: an existing Docker image of a Microservice
 
 ![new-examples](./img/Marketplace-categories.png)
 
@@ -40,23 +40,21 @@ In the [Marketplace](/marketplace/overview_marketplace.md) you can find a list o
 
 Whether you select Example or Template, you can create your microservice by filling in the following information:
 
-* **Name of the Microservice** (*required*): this is the internal hostname
+- **Name of the Microservice** (*required*): this is the internal hostname
 
-* **Description** (*optional*): this is the description of your microservice
+- **Description** (*optional*): this is the description of your microservice
 
-* **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
+- **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
 
 :::warning
 If you are using GitLab and don't see any option in *Git repository owner*, it means that you have no access to the GitLab group where the project resides: please contact your console administrator to solve this issue.
 :::
 
-* **Git Repository Name** (*required*): name of the git repository of the service
+- **Git Repository Name** (*required*): name of the git repository of the service
 
-* **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "company/service-name:tag"). It will be filled with the docker host during the service generation
+- **Docker Image Name** (*required*): docker image of the service. It should not have the docker host (e.g. "company/service-name:tag"). It will be filled with the docker host during the service generation
 
 ![service-example](img/service-example.png)
-
-![service-template](img/service-template.png)
 
 Finally to create the Microservice push **create**.
 
@@ -81,19 +79,19 @@ At this [link](/development_suite/api-console/api-design/custom_microservice_get
 The only requirement to import an external Microservice is that the Docker Image needs to be already built.
 Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the following information:
 
-* **Name** (*required*): this is the internal hostname;  
+- **Name** (*required*): this is the internal hostname;  
+- **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the k8s cluster;
+- **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
+- **Description** (*optional*): this is the description of your microservice.
 
-* **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the cluster k8s;
 :::info
   Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
-  - `hostname` is the registry hostname where the docker image is hosted
-  - `imagename` is the docker image name
-  - `tag` is the version of the docker image
+
+- `hostname` is the registry hostname where the docker image is hosted
+- `imagename` is the docker image name
+- `tag` is the version of the docker image
+
 :::
-
-* **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
-
-* **Description** (*optional*): this is the description of your microservice.
 
 ![service-docker-image](img/service-docker-image.png)
 
@@ -108,49 +106,87 @@ For a step-by-step guide on creating a microservice using a Docker image, refer 
 Microservices, and workloads in general, are the most important entity in your Project architecture as they hold the core business
 logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables, files, exposed ports and many others.
 
-* **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
-* **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
+- **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
+- **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
 
 The detail of each microservice is divided in the following sections:
 
 ### Microservice
 
-In this section, you can edit microservice's Docker Image Name (this field remains required) and description.
-Moreover, with a flag, you can decide to show or not the microservice in the documentation.
+In this section, you can review and update some base information about the microservice, like the description and the API documentation path.
+
+In case your microservice has been created manually from a Docker Image or from a Marketplace Template/Example, you can also configure the *Docker Image Name*.
 
 ![service-detail-new](img/service-detail-new.png)
+
+If the microservice has been created from a versioned Marketplace plugin, the *Docker Image Name* is shown in *read-only* mode and cannot be changed, since the it is managed by the Marketplace plugin itself.
+
+![Detail of a service generated from a versioned Marketplace plugin](img/versioned-service.png)
+
+In case you want to manually update the Docker Image Name, you can click on the right-side menu button where a menu will pop-up.
+From there you can either *select a different version* or *detach the microservice from the Marketplace plugin*.
+
+Selecting a different version will open a modal window where all the versions available for that Marketplace plugin will be listed.
+You can use this modal window also to get more information about the versions, such as the release note and the Docker Image name referenced, plus also to be aware of versions that are flagged with the *Coming Soon* badge.
+
+From there you can select one of the available versions in order to update the Docker Image.
+
+![Change version of a service generated from a Marketplace plugin](img/marketplace-version-selection.png)
+
+*Detach from Marketplace* will cause the microservice to be separated from the Marketplace plugin and becoming a manually configured microservice. Read more in the [dedicated section below](#detach-a-service-from-the-marketplace).
+
+:::info
+A version labelled with *N/A* refers to a Marketplace item that did not include a version when it was created. This means that it has been created before the support of versioning in the Marketplace was implemented.
+
+However, it does not mean that this version is not supported anymore, or that it is less secure: check out the available versions and choose the one that fits your needs.
+In case of further questions, please contact the Marketplace item creator.
+:::
+
+### Detach a service from the Marketplace
+
+Services created starting from Marketplace are shown in the detail page with a badge that notifies the user the original Marketplace item.
+This will allow the user to always be aware of the original Marketplace item, to have certain fields set as *read-only* (like the *Docker Image* field) but also to check if there are any updates on the service.
+
+In case you need full control of the service, you can decide to *detach* the service from the Marketplace item. This will allow you to edit the service as you wish, without any restrictions.
+
+You can do that by clicking on the *Detach from Marketplace* button in the menu located to the right side of the page, in the *Detail* tab of the service:this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
+However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
+
+:::info
+Detaching a microservice is an operation that cannot be reverted, causing to lose any information about updates on this item.
+:::
 
 ### Microservice Configuration
 
 In this section, you can manage the resources dedicated to your microservice:
 
-* **Memory Resources**: You have to specify the minimum number of mebibytes (Mi) that the container needs and the maximum number of mebibytes (Mi) that it can use.
+- **Memory Resources**: You have to specify the minimum number of mebibytes (Mi) that the container needs and the maximum number of mebibytes (Mi) that it can use.
 
-* **CPU Resources**: You have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
+- **CPU Resources**: You have to specify the minimum number of 'thousandth of a core' (m) that the container needs and the maximum number of 'thousandth of a core' (m) that it can use.
 
-* **Static replicas**: You have to specify the number of replicas of your microservice.  
+- **Static replicas**: You have to specify the number of replicas of your microservice.  
   When a new microservice is created its default value is *1*.
 
   It is possible to have two different behaviors when a microservice has a [hpa](/development_suite/api-console/api-design/replicas.md) configured.
-  * *static replicas greater than 0*: the *hpa replicas* has priority and so they will be used.
-  * *static replicas equals 0*: the *static replicas* has priority and so no microservice will be deployed.
+  - *static replicas greater than 0*: the *hpa replicas* has priority and so they will be used.
+  - *static replicas equals 0*: the *static replicas* has priority and so no microservice will be deployed.
 
   :::note
   A static replicas value can not be interpolated by an environment variable
   :::
 
-* **Log Parser** (*required*): You can select which parser will handle your microservice logs.  
+- **Log Parser** (*required*): You can select which parser will handle your microservice logs.  
   Currently, you can parse log in the following ways:
-  * *mia-json*: it parses json logs based on the documented format
-  * *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-Platform (website and api-gateway)
-  * *mia-plain*: it collects logs but it does not parse them
-  * *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
+  - *mia-json*: it parses json logs based on the documented format
+  - *mia-nginx*: it parses logs of nginx that were created using templates and services of Mia-Platform (website and api-gateway)
+  - *mia-plain*: it collects logs but it does not parse them
+  - *not collected*: it is the default option, it does not collect logs and they are not sent to Elastic
 
 :::info
   See more about the log parsers on the [guidelines](/development_suite/api-console/api-design/guidelines-for-logs.md)
 :::
 
-* **Args**: You can specify the arguments for the [command](https://kubernetes.io/docs/tasks/inject-data-application/_print/#define-a-command-and-arguments-when-you-create-a-pod) of your microservice container.  
+- **Args**: You can specify the arguments for the [command](https://kubernetes.io/docs/tasks/inject-data-application/_print/#define-a-command-and-arguments-when-you-create-a-pod) of your microservice container.  
 Each argument should be on a new line and by default no arguments are specified.
 
  ![service-detail-configuration](img/service-detail-configuration.png)
@@ -163,15 +199,12 @@ Each argument should be on a new line and by default no arguments are specified.
 
 In this section you can manage the microservice container ports. Note that if no container port is set, the microservice will be unreachable by any other service in the Project.
 
-For each container port, you have to define: 
+For each container port, you have to define:
 
-* **Port name** (*required*)
-
-* **Port** (*required, default value: 80*)
-
-* **Target port** (*default value: 3000*)
-
-* **Protocol** (*default: TCP*)
+- **Port name** (*required*)
+- **Port** (*required, default value: 80*)
+- **Target port** (*default value: 3000*)
+- **Protocol** (*default: TCP*)
 
 ![container-ports-section](img/container-ports-card.png)
 
@@ -179,53 +212,107 @@ For each container port, you have to define:
 If you want more information about configuring the microservice container ports, visit [this page](/development_suite/api-console/api-design/microservice-container-ports.md).
 :::
 
-### Environment Variable Configuration
+### Environment Variables Configuration
 
-In this section, you can manage, add and delete the environment variables associated to your microservice.  
+In this section, you can manage, add and delete the environment variables associated with a microservice.
+The environment variable will be available at runtime within the microservice container.
 
-To add a new environment variable you will have to specify which type of value you are going to use.  
-Currently, the following types exist:
+![service-detail-variable-new](img/service-detail-variable-new.png)
 
-* **Plain Text**: values belonging to this type are strings that define the value that we want to associate to that specific environment variable key. For this type it is necessary to specify the **Value** that we want to link to that specific environment variable. **Value** can also be an interpolated string, to do so the value to interpolate needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
-* **From Secret**: this type represents a value that is obtained from a Kubernetes Secret. For this type, it is necessary to specify the **Secret Name** and the **Secret Key** from which this value can be retrieved.
-* **From ConfigMap**: use this type to load a file of a ConfigMap into an environment variable, the **ConfigMap Name** and the **ConfigMap File Name** must be provided.
+To add a new environment variable, you must specify which type of value you will use, among **Plain Text**, **From Secret**, **From ConfigMap** and **From Downward API**, as explained in the next paragraphs.
+
+#### Plain Text
+
+For a **Plain Text** value, you have to specify the **Key** and the **Value** of the environment variable, along with an optional **Description**.
+
+**Value** can also be an interpolated string, to do so the value to be interpolated needs to be enclosed by two pairs of curly braces, for example `{{VALUE_TO_INTERPOLATE}}`.
+
+As usual, the `VALUE_TO_INTERPOLATE` can be a [Public Variable](/development_suite/api-console/api-design/public_variables.md) key or a [Project Environment Variable](/console/project-configuration/manage-environment-variables/index.md) key.
+
+#### From Secret
+
+This type represents a value that is obtained from a Kubernetes Secret.
+
+You need to specify the **Key**, **Secret Name** and the **Secret Key** from which this value can be retrieved, along with an optional **Description**.
+
+Only Secrets configured in the Project configuration are suggested, but you can also insert a custom Secret Name if you know it is deployed on the cluster, making sure it is accessible from the namespace where the microservice is deployed.
+
+#### From ConfigMap
+
+Use this type to load a file of a ConfigMap into an environment variable; the **Key**, **ConfigMap Name** and **ConfigMap File Name** must be provided, along with an optional **Description**.
+
+The ConfigMap can be chosen among the ones configured in the Project configuration.
 
 :::warning
+
 We always suggest mounting ConfigMaps on the files system and using environment variables *From ConfigMap* when necessary and only with small-sized files.
+
 :::
 
 :::info
 Please refer to the dedicated [ConfigMaps](/development_suite/api-console/api-design/services.md#configmaps) and [Secrets](/development_suite/api-console/api-design/services.md#secrets) sections for more information about how to manage them using the Console.
 :::
 
-Therefore, for each variable, you have to define:
+#### From Downward API
 
-* **Key** (*required*)
+This type represents a value that is obtained from the Kubernetes [Downward API](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/).
 
-* **Value Type** (*required*)
+Downward API allows you to expose information about a Pod to itself, such as the Pod's name, namespace, IP address, resource limits, label and annotations values or other information.
 
-* **Value** (*not required, present only if **Value Type** is Plain Text*)
+##### Why should I use the Downward API?
 
-* **Secret Name** (*present and required only if **Value Type** is From Secret*)
+The fact that the information are provided through environment variables **decouples the application in the container from the Kubernetes API**, 
+because environment variables are a standard way to provide configuration to applications.
 
-* **Secret Key** (*present and required only if **Value Type** is From Secret*)
+This is particularly useful in scenarios where your application needs to know information about the Pod it is running in, 
+but you don't want it or you can't access the Kubernetes APIs to obtain them or to hardcode that information into the application itself.
 
-* **ConfigMap Name** (*present and required only if **Value Type** is From ConfigMap*)
+It is also useful for accessing to Console Project specific information, which are always available
+through dedicated [annotations](/development_suite/api-console/api-design/services.md#annotations-configuration) and [labels](/development_suite/api-console/api-design/services.md#labels-configuration).
 
-* **ConfigMap File Name** (*present and required only if **Value Type** is From ConfigMap*)
+This can allow you, for example, to know the name of the Console Project where the Microservice is deployed, the name of the environment and other information 
+that you can use for monitoring, logging or even application logic purposes.
 
-* **Description**
+Pods for example can also communicate their name to other Pods in the same namespace, so that it can be used as a unique identifier for purposes such as leader-election among multiple replicas.
 
-It is also possible to import multiple **Plain Text** variables from a `.env` file by using the dedicated button.  
+##### Configuration
+
+You need to specify the **Key** and the **Field Path** from which this value can be retrieved, along with an optional **Description**.
+Other information may be required according to the selected Field Path value, as explained in the following paragraphs.
+
+##### Available Field Paths
+
+The Field Path can be selected from a dropdown list, which contains a subset of the [Downward API available fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#available-fields).
+
+All the [Pod-level fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#downwardapi-fieldRef) are available, except for the ones not injectable through environment variables.
+
+If one of `metadata.labels['<KEY>']` or `metadata.annotations['<KEY>']` is selected, the **Label Key** or **Annotation Key** form field must be filled with the `<KEY>` value. 
+Labels and Annotations configured in the current Microservice are suggested, but you can also insert any custom label or annotation key; Kubernetes will populate the value at runtime if it exists.
+
+Along with Pod-level fields, [Container-level fields](https://kubernetes.io/docs/concepts/workloads/pods/downward-api/#downwardapi-resourceFieldRef) are also available, except for `requests.hugepages-*` and `limits.hugepages-*`.
+
+If one of the Container-level fields is selected, the **Container Name** must be filled with the name of a container in the Pod. A dropdown list with the available containers is provided.
+
+#### Editing an Environment Variable
+
+If the variable is not read-only, it can be edited with the according button on the right side of the table.
+
+A form will appear with the current value of the variable.
+
+:::info
+
+The **Key** field is not editable, if you need to change the key you have to delete the variable and create a new one.
+
+:::
+
+#### Import Environment Variables from a `.env` file
+
+It is possible to import multiple **Plain Text** variables from a `.env` file by using the dedicated button.  
 A variable definition in the `.env` file has to be contained in a single line and must follow one of the formats below:
 
-* Basic: `ENV_VAR_KEY=env_var_value`
-* Single Quoted: `ENV_VAR_KEY='env_var_value'`
-* Double Quoted: `ENV_VAR_KEY="env_var\nvalue"`, where the string `"\n"` is converted to a newline character
-
- ![service-detail-variable-new](img/service-detail-variable-new.png)
-
-You can find more information about environment variables at this [link](/console/project-configuration/manage-environment-variables/index.md) of Mia-Platform Docs.
+- Basic: `ENV_VAR_KEY=env_var_value`
+- Single Quoted: `ENV_VAR_KEY='env_var_value'`
+- Double Quoted: `ENV_VAR_KEY="env_var\nvalue"`, where the string `"\n"` is converted to a newline character
 
 ### Labels Configuration
 
@@ -235,14 +322,12 @@ The labels are only of type *Plain Text*.
 
 For each label, you have to define:
 
-* **Key** (*required*)
-
-* **Value** (*required*)
-
-* **Description**
+- **Key** (*required*)
+- **Value** (*required*)
+- **Description**
 
 :::info
-**Label keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.  
+**Label keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.
 For more information regarding the syntax check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set).
 :::
 
@@ -270,14 +355,14 @@ The annotations are only of type *Plain Text*.
 
 For each annotation, you have to define:
 
-* **Key** (*required*)
+- **Key** (*required*)
 
-* **Value** (*required*)
+- **Value** (*required*)
 
-* **Description**
+- **Description**
 
 :::info
-**Annotation keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.  
+**Annotation keys** are composed by a prefix and a name, separated by a slash (/). The prefix part is optional and cannot be longer than 253 characters. The name segment is required and must be 63 characters or less.
 For more information regarding the syntax check out the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set).
 :::
 
@@ -316,11 +401,9 @@ There are two kinds of custom configurations: **ConfigMaps** and **Secrets**.
 
  With the button 'Add a Configuration', you can add a custom configuration by defining:
 
-* **Type** (*required*): This is the type of your configuration: *configmap* or *secret*.
-
-* **Configuration Name** (*required*): This is the name of your configuration.
-
-* **Runtime Mount Path**: Path inside the service where you want to mount the directory.
+- **Type** (*required*): This is the type of your configuration: *configmap* or *secret*.
+- **Configuration Name** (*required*): This is the name of your configuration.
+- **Runtime Mount Path**: Path inside the service where you want to mount the directory.
 
 Moreover, you can decide to preserve files and directories already existing in the Runtime Mount Path directory, by activating the related checkbox.
 
@@ -439,18 +522,18 @@ In this section, we will list all the information necessary to correctly configu
 
 In order to correctly configure your Node service to handle additional CA certs, you should add a custom configuration with the following data:
 
-* **Type**: `Secret`
-* **Configuration Name**: `additional-ca-certificates` (which is the name of the previously generated secret)
-* **Runtime Mount Path**: `/home/node/app/tls`
+- **Type**: `Secret`
+- **Configuration Name**: `additional-ca-certificates` (which is the name of the previously generated secret)
+- **Runtime Mount Path**: `/home/node/app/tls`
 
 Then, click on the submit button to confirm your choices.
 
 Finally, you should create a new environment variable passing the following data:
 
-* **Key**: `NODE_EXTRA_CA_CERTS`
-* **Value Type**: `Plain Text`
-* **Value**: `/home/node/app/tls/additional-ca.pem` (which is the mountpath of your configuration file concatenated with your certificate file)
-* **Description** (*optional*): any description that may help you.
+- **Key**: `NODE_EXTRA_CA_CERTS`
+- **Value Type**: `Plain Text`
+- **Value**: `/home/node/app/tls/additional-ca.pem` (which is the mountpath of your configuration file concatenated with your certificate file)
+- **Description** (*optional*): any description that may help you.
 
 Once saved all these changes, you should see the volume correctly mounted in the generated deployment file.
 
@@ -458,9 +541,9 @@ Once saved all these changes, you should see the volume correctly mounted in the
 
 If, for any reason, the Console lacks some functionality that you may need, you can switch to the Raw Manifest configuration mode and write your own kubernetes manifest files:
 
-* *Deployment file*: defines how the pod in Kubernetes is built (container, probes, ports).
-* *Service file*: defines how to contact your deployment.
-* *Configmaps*: configuration files that are mounted on the containers.
+- *Deployment file*: defines how the pod in Kubernetes is built (container, probes, ports).
+- *Service file*: defines how to contact your deployment.
+- *Configmaps*: configuration files that are mounted on the containers.
 
 ### Enabling raw manifest configuration mode
 

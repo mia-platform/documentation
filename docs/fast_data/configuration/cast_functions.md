@@ -37,25 +37,57 @@ To define your own custom cast functions click on the *Create* button above the 
 | Returned Type | Select      | &check;     | The type of the value that has to be returned                                                       |
 | Expression    | JS Function | -    | The javascript implementation of the cast function. It needs to be an exported function as default. |
 
-### Let's see an example
+### Old Signature
 
-Name: `castToIntBase10`
-Returned Type: `Number`
-Expression:
+Let's consider a simple use case where we want to convert a number into a integer of base 10. This means we will create the following cast function:
 
-```javascript
-module.exports = function (valueToCast, fieldName, logger) {
-  return parseInt(valueToCast, 10)
-}
-```
+- Name: `castToIntBase10`
+- Returned Type: `Number`
+- Expression:
+  ```javascript
+  module.exports = function (valueToCast, fieldName, logger) {
+    return parseInt(valueToCast, 10)
+  }
+  ```
 
-As you can see in the example above, the cast function accepts three arguments:
+The cast function accepts three arguments:
 
-- **valueToCast**: it is the value as it's received from the data source
-- **fieldName**: the name of the field associated with the value (e.g.: *restaurantName*)
+- **valueToCast**: it is the value as it's received from the data source;
+- **fieldName**: the name of the field associated with the value (e.g.: `restaurantName`);
 - **logger**: the logger you can use to log in your function (an instance of the [Pino logger](https://github.com/pinojs/pino)).
 
-To know the technical limitation you have in your cast function, [read here](#technical-limitation)
+To know the technical limitation you have in your cast function, [read here](#technical-limitation).
+
+### New Signature
+
+Starting from the following service versions:
+
+- `realtime-updater`:
+  - `^7.8.0`
+  - `6.1.0`
+  - `5.5.0` 
+- `projection-storer@^1.3.0`
+
+is possible to use a new cast function signature, that needs to be defined as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+Let's rewrite the example from the [previous paragraph](#old-signature):
+
+- Name: `castToIntBase10`
+- Returned Type: `Number`
+- Expression:
+  ```javascript
+  export default function (messageObject, fieldName, logger) {
+    return parseInt(messageObject[fieldName], 10)
+  }
+  ```
+
+The cast function accepts three arguments:
+
+- **messageObject**: it is the whole ingestion message as it's received from the data source;
+- **fieldName**: the name of the field associated with the value (e.g.: `restaurantName`)
+- **logger**: a basic logger you can use to log in your function (having methods `info`, `warn`, `error`, `debug` and `trace`).
+
+To know the technical limitation you have in your cast function, [read here](#technical-limitation).
 
 ## How and when are the Default Cast Functions updated?
 
@@ -95,8 +127,16 @@ Let’s analyze each case in the next sections:
 
 ## Technical limitation
 
+There are some technical limitations to consider while designing your cast function.
+
+### Old Signature
+
 In your custom cast functions you can import only the node modules present in the following list:
 
 - [lodash.get](https://github.com/lodash/lodash/tree/4.4.2-npm-packages/lodash.get)
 - [mongodb](https://github.com/mongodb/mongo/tree/r3.6.0)
 - [ramda](https://github.com/ramda/ramda/tree/v0.27.1)
+
+### New Signature
+
+The new cast function is sandboxed: this means that you can only rely on the global scope of a standard Javascript runtime.  

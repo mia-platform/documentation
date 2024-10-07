@@ -8,16 +8,14 @@ A **Template** is a base repository from which users can build a new Microservic
 
 **Examples** are similar to Templates, the only difference is they provide a basic implementation of the business logic for a specific use case, that users can use as a starting point for their custom implementation.
 
-To configure Template and Examples, make sure you followed the [common Marketplace item creation steps](/marketplace/add_to_marketplace/contributing_overview.md#creation-of-a-marketplace-item), then follow the paragraphs below to finalize the configuration.
+Templates and Examples are very similar to [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md): make sure you follow the creation steps, then read the paragraphs below to learn how to finalize the configuration.
 
 ## The target
 
 Your template should make the creation of microservices easier by providing a specific technology ready-to-use model.
 
 :::info
-
 For simplicity, in this tutorial, the word **template** refers to both Template and Examples, since they have a common configuration.
-
 :::
 
 ### Test
@@ -59,7 +57,7 @@ Check out the [Node.js service template](https://github.com/mia-platform-marketp
 
 The item template must be hosted on a remote **Git repository**.
 
- The URL to the tar.gz version of the Git project must be specified in the `archiveUrl` field, optionally you can specify either the `sha` or the `ref` as query parameters. If you don't have access to CMS, this should be provided to your Mia-Platform referent in form of a Git clone URL.
+The URL to the tar.gz version of the Git project must be specified in the `archiveUrl` field, optionally you can specify either the `sha` or the `ref` as query parameters.
 
 The service should ensure a Continuous Integration (CI) to update the service image any time his code is modified, through the `pipelines` field you can set up the CI file by yourself or use instead Mia-Platform pipeline templates.  
 
@@ -67,7 +65,7 @@ To use the templates provided by Mia-Platform, you can contact your referent to 
 
 When creating your microservice, the Console will also generate a CI file (e.g. `.gitlab-ci.yml`) alongside the service files.
 
-- The service must be well documented and the field `documentation` helps in it.
+The service must be well documented and the field `documentation` helps in it.
 
 In fact, during service creation, it is possible to access the service documentation by clicking on `View documentation` button, which will appear only if the `documentation` field has been filled correctly.  
 Two properties must be specified inside `documentation`:  

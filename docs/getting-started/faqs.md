@@ -320,7 +320,7 @@ No, it's not mandatory. However, starting from a [Mia-Platform Template](/market
 
 ### Can I create my own templates?
 #### How can I create custom templates for my microservices?
-Yes, you can. Follow this [guideline](/marketplace/add_to_marketplace/contributing_overview.md) and [open an issue with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item).
+Yes, you can. Follow this [guideline](/marketplace/add_to_marketplace/create_your_company_marketplace.md) and [open an issue with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item).
 
 ### How can I change the state of a document?
 #### What is the process to change the state of a document in CRUD?

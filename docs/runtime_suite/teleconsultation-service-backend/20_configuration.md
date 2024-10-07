@@ -41,77 +41,104 @@ The microservice requires the `ADDITIONAL_HEADERS_TO_PROXY` environment variable
 The microservice requires the `TELECONSULTATION_SERVICE_CONFIG_PATH`  environment variable to specify the path where the  `JSON` config file is stored.
 If no path is defined a default configuration will be used. 
 The default configuration is the following:
-```
+
+```json
 {
-  privileges: {
-    basic: {
-      groups: [
-        'customer',
+  "privileges": {
+    "basic": {
+      "groups": [
+        "patient",
       ],
-      tools: {
-        chat: true,
-        screen_sharing: true,
-        file_upload: true,
-        whiteboard: true,
-        snapshot: true,
-        live_edit: true,
-        live_pointer: true,
-        present_to_everyone: true,
+      "tools": {
+        "chat": true,
+        "screen_sharing": true,
+        "file_upload": true,
+        "whiteboard": true,
+        "snapshot": true,
+        "live_edit": true,
+        "live_pointer": true,
+        "present_to_everyone": true,
       },
     },
-    plus: {
-      groups: [
-        'doctor',
+    "plus": {
+      "groups": [
+        "doctor",
       ],
-      tools: {
-        chat: true,
-        screen_sharing: true,
-        file_upload: true,
-        whiteboard: true,
-        snapshot: true,
-        live_edit: true,
-        live_pointer: true,
-        present_to_everyone: true,
+      "tools": {
+        "chat": true,
+        "screen_sharing": true,
+        "file_upload": true,
+        "whiteboard": true,
+        "snapshot": true,
+        "live_edit": true,
+        "live_pointer": true,
+        "present_to_everyone": true,
       },
     },
   },
-  theme: {
-    light: {
-      primaryColor: '#fff',
-      accentColor: '#480ca8',
+  "theme": {
+    "light": {
+      "primaryColor": "#fff",
+      "accentColor": "#480ca8",
     },
-    dark: {
-      primaryColor: '#003049',
-      accentColor: '#d62828',
+    "dark": {
+      "primaryColor": "#003049",
+      "accentColor": "#d62828",
     },
   },
-  environment: 'sandbox',
-  mode: 'window',
-  companyLogo: {
-    url: 'https://www.insert.url.it',
+  "environment": "sandbox",
+  "mode": "window",
+  "companyLogo": {
+    "url": "https://www.insert.url.it",
   },
+  "customUserId": {
+    "source": "_id",
+    "target": "authUserId"
+}
 }
 ```
 
 Update the `JSON` configuration file in the ConfigMaps section according to your needs.
 
+#### Custom user id
+
+:::info
+
+**v1.8.0** The custom user id feature is available from v1.8.0 onwards.
+
+:::
+
+When the `CUSTOM_ID_USERS_API_ENDPOINT` environment variable is specified it is possible, for each participant, to resolve a custom user id (`customUserId.source`) received from a client, like a MongoDB `_id` or an email address, into the corresponding Auth0 id (`customUserId.target`), required by the service to perform authentication and authorization.
+The Teleconsultation Service then looks for the user with the given MongoDb `_id` or email address and returns the corresponding identity provider id (Auth0 is the only IDP currently supported).
+These two fields can be customized specifying different values for the `source` and `target` fields under the `customUserId` configuration option:
+
+```json
+"customUserId": {
+  "source": "The name of the field containing the user ID received from a client, like a MongoDB `_id` or email address",
+  "target": "The name of the field containing the user ID of the identity provider, like Auth0 `sub`"
+}
+```
+
+
+
 ### Environment Variables
 
 The Teleconsultation Service Backend accepts the environment variables described in the following table.
 
-| Name                                     | Required | Default | Minimum version | Description                                                                                                                                                                                                       |
-|------------------------------------------|----------|---------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **BANDYER_API_SECRET_KEY**               | Yes      | -       | 1.0.0           | API Secret Key to use in order to communicate with Kaleyra's APIs.                                                                                                                                                |
-| **BANDYER_BASE_URL**                     | Yes      | -       | 1.0.0           | Name of the Kaleyra API endpoint.                                                                                                                                                                                 |
-| **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | 1.0.0           | Full path of the updated file defined in the [previous section][environment-variables].                                                                                                                          |
-| **TELECONSULTATIONS_CRUD_NAME**          | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the teleconsultations.                                                                                                                                                  |
-| **USER_ID_MAP_CRUD_NAME**                | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.                                                                                                           |
-| **AUTH_SERVICE**                         | No       | -       | 1.0.0           | Name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration][configuration]). |
-| **DEFAULT_CLIENT_TYPE**                  | No       | -       | 1.0.0           | Name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.                                                                                                    |
-| **UNLIMITED_TELECONSULTATION**           | No       | `true`  | 1.1.2           | If the teleconsultation duration is infinite.                                                                                                                                                                     |
-| **LIVE_TELECONSULTATION**                | No       | `true`  | 1.3.0           | If the teleconsultation ends when a participant leaves the call and the number of the remaining participants are less than two.                                                                                   |
-| **IMMUTABLE_PERIOD_MS**                  | No       | 0       | 1.2.1           | How much time (in milliseconds) before the scheduled start date you can join the teleconsultation room and you can no longer update the teleconsultation.                                                         |
-| **TELECONSULTATION_DELETE_UPLOADS**      | No       | `false` | 1.5.0           | If set to `true`, the files uploaded during a teleconsultation are deleted when the call ends.                                                                                                                    |
+| Name                                     | Required | Default | Minimum version | Description                                                                                                                                                                                                |
+|------------------------------------------|----------|---------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **BANDYER_API_SECRET_KEY**               | Yes      | -       | 1.0.0           | API Secret Key to use in order to communicate with Kaleyra's APIs.                                                                                                                                         |
+| **BANDYER_BASE_URL**                     | Yes      | -       | 1.0.0           | Name of the Kaleyra API endpoint.                                                                                                                                                                          |
+| **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | 1.0.0           | Full path of the updated file defined in the [previous section][environment-variables].                                                                                                                    |
+| **TELECONSULTATIONS_CRUD_NAME**          | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the teleconsultations.                                                                                                                                           |
+| **USER_ID_MAP_CRUD_NAME**                | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.                                                                                                    |
+| **AUTH_SERVICE**                         | No       | -       | 1.0.0           | Name of the authentication service; if not provided, the operating mode without auth0 dependency is used (see [Teleconsultation Service Backend Configuration][configuration]).                            |
+| **CUSTOM_ID_USERS_API_ENDPOINT**         | No       | -       | 1.8.0           | The url of the API used to retrieve the Auth0 users id from the given custom user id (e.g. http://user-manager-service/users/ or http://crud-service/users/). It works only with **AUTH_SERVICE** defined. |
+| **DEFAULT_CLIENT_TYPE**                  | No       | -       | 1.0.0           | Name of the application that auth0-client uses to retrieve data of the users involved in the teleconsultation.                                                                                             |
+| **UNLIMITED_TELECONSULTATION**           | No       | `true`  | 1.1.2           | If the teleconsultation duration is infinite.                                                                                                                                                              |
+| **LIVE_TELECONSULTATION**                | No       | `true`  | 1.3.0           | If the teleconsultation ends when a participant leaves the call and the number of the remaining participants are less than two.                                                                            |
+| **IMMUTABLE_PERIOD_MS**                  | No       | 0       | 1.2.1           | How much time (in milliseconds) before the scheduled start date you can join the teleconsultation room and you can no longer update the teleconsultation.                                                  |
+| **TELECONSULTATION_DELETE_UPLOADS**      | No       | `false` | 1.5.0           | If set to `true`, the files uploaded during a teleconsultation are deleted when the call ends.                                                                                                             |
 
 :::caution
 

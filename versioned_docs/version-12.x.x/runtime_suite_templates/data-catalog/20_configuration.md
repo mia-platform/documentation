@@ -158,7 +158,7 @@ spec:
                 name: data-catalog-agent-configuration
 ```
 
-Now create a new file in the config map called `configuration.json`. This file must be a valid _Data Catalog Agent_ <a download target="_blank" href="/docs_files_to_download/data-catalog/configuration.schema.json">configuration</a>.
+Now create a new file in the config map called `configuration.json`. This file must be a valid _Data Catalog Agent_ <a download target="_blank" href="/docs_files_to_download/data-catalog-agent/configuration.schema.json">configuration</a>.
 
 ## Data Catalog Agent Configuration
 
@@ -355,7 +355,7 @@ For each listed connection, after metadata is retrieved, `agent` **sequentially*
 - `json` for `stdout` and `file`
 - [`ndjson`](https://ndjson.org/) for `mia-console`
 
-The final content is an `array` of models. Model spec is given in the form of a <a download target="_blank" href="/docs_files_to_download/data-catalog/model.schema.json">JSON schema</a>.
+The final content is an `array` of models. Model spec is given in the form of a <a download target="_blank" href="/docs_files_to_download/data-catalog-agent/model.schema.json">JSON schema</a>.
 
 To explicitly configure the `stdout` target use:
 

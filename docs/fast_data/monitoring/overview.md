@@ -145,6 +145,6 @@ You can create any custom dashboards using the metrics provided by the Fast Data
 - [Debezium CDC Dashboard](/fast_data/monitoring/dashboards/debezium_cdc.md)
 - [Kafka Messages Dashboard](/fast_data/monitoring/dashboards/kafka_messages.md)
 - [Projection Changes Dashboard](/fast_data/monitoring/dashboards/projection_changes.md)
-- [Real Time Updater Dashboard](/fast_data/monitoring/dashboards/real_time_updater.md)
+- [Ingestion services Dashboard](/fast_data/monitoring/dashboards/ingestion_services.md)
 - [Single Views Dashboard](/fast_data/monitoring/dashboards/single_views.md)
 - [Unmapped fields Dashboard](/fast_data/monitoring/dashboards/unmapped_fields.md)

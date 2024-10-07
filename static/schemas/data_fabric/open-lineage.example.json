@@ -1,0 +1,23 @@
+{
+  "cache": {
+    "type": "redis",
+    "configuration": {
+      "url": {
+        "type": "file",
+        "path": "/run/secrets/data-fabric/open-lineage.ini",
+        "key": "REDIS_URL"
+      }
+    }
+  },
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": {
+        "type": "file",
+        "path": "/run/secrets/data-fabric/open-lineage.ini",
+        "key": "MONGODB_URL"
+      },
+      "database": "data-fabric-db"
+    }
+  }
+}

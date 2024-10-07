@@ -15,6 +15,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2024-09-24
+
+### Fixed
+
+- When Control Plane Operator closes the grpc client the Projection Storer is able to reconnect to it again when it re-opens without having to restart the service
+
+### Update
+
+- update service dependencies and Java build image to `21.0.4_7-jdk-jammy` 
+
+## [1.3.0] - 2024-06-04
+
+### Added
+
+- added support for JS ESM modules, in particular 
+    - support for new cast function signature, that is:
+      ```js
+      export default function(messageObject, fieldName, logger) {
+        const myValue = messageObject[fieldName]
+        // do some custom logic...
+        return myValue
+      }
+      ```
+    - kafka message adapter can be loaded as ESM modules, for example:
+      ```js
+      export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+        // ...adapter logic
+      }
+      ```
+
+### Fixed
+
+- cast function are executed with their own separate bindings, to avoid naming clash.
+- when a Javascript custom cast function returns a mixed untyped Object (e.g. `[1, 2, 1.2]`), 
+  now the service properly maps the type of each element into the internal one.
+
 ## [1.2.3] - 2024-05-27
 
 ### Fixed

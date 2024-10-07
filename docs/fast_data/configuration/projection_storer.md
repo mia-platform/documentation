@@ -20,7 +20,9 @@ For an overview of which are Real-Time Updater's features, it is possible to rea
 :::danger
 Projection Storer plugin does not support the Fast Data [_standard_ architecture](/fast_data/concepts/architecture.md#standard-architecture).
 However, it supports all the others architecture where [Projection Record Updates](/fast_data/concepts/inputs_and_outputs.md#projection-update-message) messages are emitted by the service as
-triggers for the Fast Data downstream components. This means that, in order to use the Projection Storer, it will
+triggers for the Fast Data downstream components. 
+
+This means that, in order to use the Projection Storer, it will
 be necessary to instantiate a [Single View Trigger Generator](/fast_data/single_view_trigger_generator.md) plugin to actually trigger the generation of Single Views.
 :::
 
@@ -97,8 +99,10 @@ It is the data source identifier (a name) describing from which system the servi
 Records on the origin system may get deleted and consequently a change event requesting the removal of a document from a projection
 is produced. When the service reads this event, it is possible to define which behavior is adopted in processing the delete operation,
 depending on your needs.  
+
 Indeed, the service can be configured to apply a _soft delete_ policy, meaning that projections records are not delete from the storage system, but
 they are marked as `DELETED`, so that downstream components would not read those records when aggregating the Single View records.
+
 On the contrary, the service can also adopt a _hard delete_ policy, where there projection record is removed immediately from the storage system.
 
 This flag determines whether the _soft delete_ policy is enabled, which by default it is.
@@ -130,16 +134,19 @@ message formats employed by some Change Data Capture systems (CDC), which are:
     ```
 
 In addition to the already existing message adapters, it is also possible to provide to the service a _user-defined function_
-that acts as message adapter. This function takes as input the incoming message associated to a projection, the list of
+that acts as message adapter, written in Javascript. 
+
+This function takes as input the incoming message associated to a projection, the list of
 primary key fields expected for that projection and the service logger. Its goal is to process the message and produce
 an object containing the description of the parsed message in a common format.  
+
 Thus, besides defining the usage of `custom` message adapter type, in the configuration it is also necessary to provide the location of the file
 containing the custom message adapter function. For example:
 
 ```json
 "dataSourceAdapter": {
   "type":  "custom"
-  "filepath": "/app/extensions/messageAdapter.kt"
+  "filepath": "/app/extensions/messageAdapter.js"
 }
 ```
 
@@ -193,6 +200,16 @@ Here is described the interface of the custom message adapter function:
 ```
 
 Taking into account the above details, it is possible to implement _user-defined functions_ in Javascript.
+
+:::tip
+Starting from `v1.3.0`, the Projection Storer can accept a message adapter written as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+```js title=esmMessageAdapter.js
+export default function myEsmMessageAdapter(message, primaryKeys, logger) {
+  // ...adapter logic
+}
+```
+:::
 
 <details><summary>Custom Message Adapter Function (messageAdapter.js)</summary>
 <p>
@@ -307,10 +324,12 @@ try {
 </details>
 
 :::caution
-Within the custom message adapter script file it is possible to define multiple functions. However, it is mandatory
+Within the custom message adapter script file it is possible to define multiple functions. 
+
+If you are not relying on ESM module definition, however, it is mandatory
 to define a function named `messageAdapter`, which will be treated as the entry point for the custom message adapter.
 
-Moreover, to support both Projection Storer and Real-Time Updater services, the `module.export` instruction must be
+In this case, to support both Projection Storer and Real-Time Updater services, the `module.export` instruction must be
 added, but encapsulated within a try/catch block as shown below:
 ```js
 try {
@@ -370,6 +389,16 @@ the function's implementation.
 Considering the implementation of these cast functions, they expect as input two parameters, that are the _value_ the field
 to be transformed and the _field name_ represented as `string`. The output of the cast functions should be a single value
 in the type expected by the data model for that specific field on which the cast function is applied.
+
+:::tip
+Starting from `v1.3.0`, the Projection Storer can accept a cast function having [the new signature](/fast_data/configuration/cast_functions.md#new-signature), which accepts the whole ingestion message as first parameter and it's defined as a [default ESM module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#default_exports_versus_named_exports).
+
+```js title=newCastFunction.js
+export default function myNewCastFunction(messageObject, fieldName, logger) {
+  return messageObject[fieldName];
+}
+```
+:::
 
 Below you can find several examples about implementation of cast functions.
 
@@ -710,7 +739,7 @@ defined cast function.
 
 ### Runtime Management Config
 
-Starting from version `v1.1.0` of Projection Storer service it is possible to instruct it to `pause` and `resume` the
+Starting from version `v1.1.1` of Projection Storer service it is possible to instruct it to `pause` and `resume` the
 consumption of change events from ingestion topics. This feature is enabled by specifying the Control Plane configuration
 in [the dedicated section](/fast_data/runtime_management/workloads.mdx?workload=ps#projection-storer) of the configuration page.
 
@@ -722,7 +751,7 @@ provide the corresponding feedback back to the Control Plane service.
 By design, every service interacting with the Control Plane starts up in a `paused` state, unless the Control Plane
 has already resumed the data stream before.
 
-Therefore, when the Projection Storer starts up, <u>consumption from ingestion topics will not start automatically</u>.
+Therefore, when the Projection Storer starts up, **<u>consumption from ingestion topics will not start automatically</u>**.
 
 In this case, you just need to [send a `resume` command](/fast_data/runtime_management/control_plane_frontend.mdx#pause-and-resume)
 to one of the projections managed by the Projection Storer.
@@ -734,8 +763,8 @@ the top level in the configuration file is identified by the `controlPlane` prop
 #### State
 
 This field describe which communication protocol is employed for receiving the Fast Data _state_ from the
-Fast Data Control Plane instance. This can happen directly via [GRPC](https://grpc.io/) or indirectly via
-a topic on a Kafka broker. Here are detailed the fields to be configured depending on the selected communication protocol.
+Fast Data Control Plane Operator instance. Currently, state changes can be received via [GRPC](https://grpc.io/).
+Here are detailed the fields to be configured depending on the selected communication protocol.
 
 ##### GRPC
 
@@ -744,38 +773,12 @@ a topic on a Kafka broker. Here are detailed the fields to be configured dependi
 | `type`          | `string` | &check;  |         |
 
 When `type` is set to `grpc` then no further configuration under this field is needed by the service.
-
-:::info
-GRPC communication protocol support is available since version `v1.1.1` of Projection Storer
-:::
-
-##### Kafka
-
-| Property        | Type     | Required | Default |
-|-----------------|----------|----------|---------|
-| `type`          | `string` | &check;  |         |
-| `channel`       | `string` | &check;  |         |
-| `configuration` | `object` | &check;  |         |
-
-When `type` is set to `kafka` then it is necessary to specify from which `channel`, that is the Kafka topic,
-Fast Data state events should be read and the Kafka configuration properties to be passed to the [Kafka Consumer](https://kafka.apache.org/documentation/#consumerconfigs).
-
-:::caution
-In order to guarantee global order on Fast Data states emitted by Fast Data Control Plane instance, configured
-topic must have a single partition, from which all the Fast Data services will read the current state to be applied.
-:::
-
-:::note
-The following Kafka Consumer properties cannot be customized by the user, since are managed by the service:
-- `key.deserializer`
-- `value.deserializer`
-:::
 
 #### Feedback
 
 This field describe which communication protocol is employed for sending a _feedback_ as heartbeat to the
-Fast Data Control Plane instance. This can happen directly via [GRPC](https://grpc.io/) or indirectly via
-a topic on a Kafka broker. Here are detailed the fields to be configured depending on the selected communication protocol.
+Fast Data Control Plane Operator instance. Currently, feedback emission is supported via [GRPC](https://grpc.io/).
+Here are detailed the fields to be configured depending on the selected communication protocol.
 
 ##### GRPC
 
@@ -784,30 +787,6 @@ a topic on a Kafka broker. Here are detailed the fields to be configured dependi
 | `type`          | `string` | &check;  |         |
 
 When `type` is set to `grpc` then no further configuration under this field is needed by the service.
-
-:::info
-GRPC communication protocol support is available since version `v1.1.1` of Projection Storer
-:::
-
-##### Kafka
-
-| Property        | Type     | Required | Default |
-|-----------------|----------|----------|---------|
-| `type`          | `string` | &check;  |         |
-| `channel`       | `string` | &check;  |         |
-| `configuration` | `object` | &check;  |         |
-
-When `type` is set to `kafka` then it is necessary to specify on which `channel`, that is the Kafka topic,
-service feedback events should be produced and the Kafka configuration properties to be passed
-to the [Kafka Producer](https://kafka.apache.org/documentation/#producerconfigs).
-
-:::note
-The following Kafka Producer properties cannot be customized by the user, since are managed by the service:
-- `acks`
-- `enable.idempotence`
-- `key.deserializer`
-- `value.deserializer`
-:::
 
 #### Shared Settings
 
@@ -817,7 +796,7 @@ The following Kafka Producer properties cannot be customized by the user, since 
 
 The property `settings` under the Control Plane `settings` field contains a set of configurations that are shared by both
 `state` and `feedback` components. In particular, there is a property `grpc` that allows to specify the `host` and the
-`port` of the Fast Data Control Plane instance that expose the GRPC server.
+`port` of the Fast Data Control Plane Operator instance that expose the GRPC server.
 
 ---
 
@@ -827,18 +806,11 @@ the configuration panel is shown in the screenshot here:
 
 ![control plane panel in projection storer config page](img/projection_storer_control_plane.png)
 
-Below are provided three examples of how Control Plane settings can be configured for the Projection Storer service. These
-are:
-
-- GRPC feedback loop: both Fast Data _state_ and service _feedback_ transit over GRPC communication protocol. This is the
-**recommended** configuration, since it is better suited for this kind of inter-service communication and it does not require
-any additional external resource.
-- Kafka feedback loop: both Fast Data _state_ and service _feedback_ transit between services as Kafka messages
-- Kafka + GRPC feedback loop: Fast Data _state_ is read from a Kafka topic as a message while and service _feedback_ is
-sent directly to the Fast Data Control Plane instance via GRPC.
+Below is provided an examples of how Control Plane settings can be configured for the Projection Storer service. In particular,
+this leverage a GRPC bidirectional stream as feedback loop, where both Fast Data _state_ and service _feedback_ transit over GRPC communication protocol.
 
 <details><summary>Control Plane Configuration | GRPC feedback loop</summary>
-This configuration enables both state and feedback component to connect to the GRPC server on the Fast Data Control Plane instance.
+This configuration enables both state and feedback component to connect to the GRPC server on the Fast Data Control Plane Operator instance.
 <p>
 
 ```json
@@ -852,90 +824,7 @@ This configuration enables both state and feedback component to connect to the G
     },
     "settings": {
       "grpc": {
-        "host": "<fd-control-plane-k8s-service-name>",
-        "port": 50051
-      }
-    }
-  },
-  "bindings": {
-    ...
-  }
-}
-```
-
-</p>
-</details>
-
-<details><summary>Control Plane Configuration | Kafka feedback loop</summary>
-<p>
-
-```json
-"controlPlane": {
-  "settings": {
-    "state": {
-      "type": "kafka",
-      "channel": "<control-plane-state-topic>",
-      "configuration": {
-        "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-state",
-        "bootstrap.servers": "localhost:9092",
-        "group.id": "galaxy.fast-data.DEV.inventory-projection-storer-control-plane",
-        /* the following properties define the authentication parameters - please update or remove them after copying the example config */
-        "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
-        "sasl.mechanism": "SCRAM-SHA-256",
-        "security.protocol": "SASL_SSL",
-        "max.poll.records": 1000,
-        "max.poll.timeout": 1000
-      }
-    },
-    "feedback": {
-      "type": "kafka",
-      "channel": "<control-plane-feedback-topic>",
-      "configuration": {
-        "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-feedback",
-        "bootstrap.servers": "localhost:9092",
-        /* the following properties define the authentication parameters - please update or remove them after copying the example config */
-        "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
-        "sasl.mechanism": "SCRAM-SHA-256",
-        "security.protocol": "SASL_SSL"
-      }
-    }
-  },
-  "bindings": {
-    ...
-  }
-}
-```
-
-</p>
-</details>
-
-<details><summary>Control Plane Configuration | Kafka+GRPC feedback loop</summary>
-<p>
-
-```json
-"controlPlane": {
-  "settings": {
-    "state": {
-      "type": "kafka",
-      "channel": "<control-plane-state-topic>",
-      "configuration": {
-        "client.id": "galaxy.fast-data.DEV.inventory-projection-storer-state",
-        "bootstrap.servers": "localhost:9092",
-        "group.id": "galaxy.fast-data.DEV.inventory-projection-storer-control-plane",
-        /* the following properties define the authentication parameters - please update or remove them after copying the example config */
-        "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"<username>\" password=\"<password>\";",
-        "sasl.mechanism": "SCRAM-SHA-256",
-        "security.protocol": "SASL_SSL",
-        "max.poll.records": 1000,
-        "max.poll.timeout": 1000
-      }
-    },
-    "feedback": {
-      "type": "grpc"
-    },
-    "settings": {
-      "grpc": {
-        "host": "<fd-control-plane-k8s-service-name>",
+        "host": "<control-plane-operator-service-name>",
         "port": 50051
       }
     }
