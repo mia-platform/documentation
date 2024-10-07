@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Events allow users to be notified when certain operations are performed in the Console.
 
-## Event types
+## Event properties
 
 All the events triggered by the Console share some common properties:
 
@@ -20,6 +20,10 @@ All the events triggered by the Console share some common properties:
 | `payload`        | `object` | Contains the event-specific payload                            |
 
 
+## Event types
+
+Below are explained the events that can be triggered by the Console.
+
 ### Project Created
 
 This event will be triggered when a Project is created successfully.
@@ -27,10 +31,12 @@ This event will be triggered when a Project is created successfully.
 <Tabs>
 <TabItem value="project-created-table" label="Event Payload" default>
 
-|  Property   |  Value   |                              Description                               |
-| ----------- | -------- | ---------------------------------------------------------------------- |
-| `tenantId`  | `string` | The identifier of the Company the Project belongs to                   |
-| `projectId` | `string` | The identifier of the newly created Project                            |
+|  Property          |  Value   |                              Description                                 |
+| ------------------ | -------- | ------------------------------------------------------------------------ |
+| `tenantId`         | `string` | The identifier of the Company the Project belongs to                     |
+| `projectId`        | `string` | The identifier of the newly created Project                              |
+| `sourceTemplateId` | `string` | The identifier of the project template used to create the Project        |
+| `project`          | `object` | [The Project metadata](#project) (ideally, the whole Project resource)   |
 
 </TabItem>
 <TabItem value="example" label="Example" default>
