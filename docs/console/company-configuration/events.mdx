@@ -47,7 +47,9 @@ This event will be triggered when a Project is created successfully.
   "eventTimestamp": 123456,
   "payload": {
     "tenantId": "my-company-id",
-    "projectId": "0000000000000001"
+    "projectId": "0000000000000001",
+    "sourceTemplateId": "0000000000000002",
+    "project": {...}
   }
 }
 ```
@@ -76,7 +78,14 @@ This event will be triggered when a Project is created successfully.
         "tenantId": {
           "type": "string",
           "description": "The identifier of the Company the Project belongs to"
-        }
+        },
+        "sourceTemplateId": {
+          "type": "string",
+          "description": "The identifier of the project template used to create the Project"
+        },
+        
+        // See the Project metadata below
+        "project": {...} 
       },
       "type": "object"
     }
