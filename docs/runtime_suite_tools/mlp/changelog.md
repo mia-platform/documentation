@@ -15,6 +15,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.0-beta.2] - 2024-10-04
+
+### Changed
+
+- update to go 1.23.2
+
+### Fixed
+
+- hydrate command now add metadata to kustomize file to avoid "empty kubernetes file"
+	errors during deploy
+
 ## [v2.0.0-beta.1] - 2024-09-19
 
 ### Changed
@@ -176,7 +187,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release 🎉🎉🎉
 
-[Unreleased]: https://github.com/mia-platform/mlp/compare/v2.0.0-beta.1...HEAD
+[Unreleased]: https://github.com/mia-platform/mlp/compare/v2.0.0-beta.2...HEAD
+[v2.0.0-beta.2]: https://github.com/mia-platform/mlp/compare/v2.0.0-beta.1...v2.0.0-beta.2
 [v2.0.0-beta.1]: https://github.com/mia-platform/mlp/compare/v2.0.0-beta...v2.0.0-beta.1
 [v2.0.0-beta]: https://github.com/mia-platform/mlp/compare/v1.2.3...v2.0.0-beta
 [v1.2.3]: https://github.com/mia-platform/mlp/compare/v1.2.2...v1.2.3
