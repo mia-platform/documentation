@@ -419,6 +419,17 @@
       "collapsed": true,
       "items": [
         {
+          "collapsed": true,
+          "type": "category",
+          "label": "Videos",
+          "items": [
+            {
+              "id": "development_suite/api-console/api-design/videos/flow-manager",
+              "type": "doc"
+            }
+          ]
+        },
+        {
           "id": "development_suite/api-console/api-design/overview",
           "type": "doc"
         },
