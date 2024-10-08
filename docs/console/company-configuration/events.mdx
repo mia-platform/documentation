@@ -31,12 +31,12 @@ This event will be triggered when a Project is created successfully.
 <Tabs>
 <TabItem value="project-created-table" label="Event Payload" default>
 
-|  Property          |  Value   |                              Description                                 |
-| ------------------ | -------- | ------------------------------------------------------------------------ |
-| `tenantId`         | `string` | The identifier of the Company the Project belongs to                     |
-| `projectId`        | `string` | The identifier of the newly created Project                              |
-| `sourceTemplateId` | `string` | The identifier of the project template used to create the Project        |
-| `project`          | `object` | [The Project metadata](#project) (ideally, the whole Project resource)   |
+|  Property          |  Value   |                                                        Description                                                           |
+| ------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `tenantId`         | `string` | The identifier of the Company the Project belongs to                                                                         |
+| `projectId`        | `string` | The identifier of the newly created Project                                                                                  |
+| `sourceTemplateId` | `string` | The identifier of the project template used to create the Project                                                            |
+| `project`          | `object` | The Project metadata (ideally, the whole Project resource, plus some additional information related to the creation process) |
 
 </TabItem>
 <TabItem value="example" label="Example" default>
