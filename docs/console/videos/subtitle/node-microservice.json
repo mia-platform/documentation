@@ -13,11 +13,11 @@
     },
     {
       "startTimeString": "00:01:29,200",
-      "endTimeString": "00:01:41,440 ",
+      "endTimeString": "00:01:43,000 ",
       "text": "So let's go over here to the left hand side menu and click on \"Save configuration\". While saving the configuration, you have to write a title commit: fo this example, let's go ahead and write \"commit books.3\"."
     },
     {
-      "startTimeString": "00:01:41,440",
+      "startTimeString": "00:01:43,000",
       "endTimeString": "00:01:55,280 ",
       "text": "Perfect, once you're happy with that go ahead and save that. Now your configuration is being saved and loaded. Perfect, everything is up to date now and we just need to move to the deploy section."
     },
