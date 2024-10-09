@@ -675,23 +675,25 @@ Now you should have everything you need to fill out the configuration parameters
 
 ## Targets
 
-There are 4 targets available:
+There are 5 different targets available:
 
 1. [**default**] `stdout`
-2. `mongodb`
-2. `file`
-3. `mia-console`
+2. `mia-open-lineage`
+3. `mongodb`
+4. `file`
+5. `mia-console` (**deprecated**)
 
 For each listed connection, after metadata is retrieved, `agent` **sequentially** sends data to the target as:
 
-- `json` for `stdout` and `file`;
-- [`ndjson`](https://github.com/ndjson/ndjson-spec) for `mia-console`.
+- `json` for `stdout` and `file`
+- [`ndjson`](https://github.com/ndjson/ndjson-spec) for `mia-console`
 - [`BSON`](https://bsonspec.org/) for `mongodb`
+- an extended version of [Open Lineage](https://openlineage.io/), serialized according to the selected database type for `mia-open-lineage`
 
 The final content is an `array` of models, where the format of its records changes accordingly to the target: 
 
-- `stdout`, `file` and `mia-console`: the models are written in the native agent format, which is defined in the following <a download target="_blank" href="/docs_files_to_download/data-catalog-agent/agent.model.schema.json">JSON schema</a>;
-- `mongodb`: the models are written in a format that is supported by the [Data Catalog](/data_catalog/overview.mdx) application, as defined in the following <a download target="_blank" href="/docs_files_to_download/data-catalog-agent/catalog.model.schema.json">JSON schema</a>;
+- `stdout`, `file`, `mongodb` and `mia-console`: the models are written in the native agent format, which is defined in the following <a download target="_blank" href="/docs_files_to_download/data-catalog-agent/agent.model.schema.json">JSON schema</a>;
+- `mia-open-lineage`: the models are written in a format that is supported by the [Data Catalog](/data_catalog/overview.mdx) application, as defined in the following <a download target="_blank" href="/docs_files_to_download/data-catalog-agent/catalog.model.schema.json">JSON schema</a>;
 
 ### Standard Output 
 
@@ -706,28 +708,59 @@ To explicitly configure the `stdout` target use:
 }
 ```
 
-### MongoDB
+### Mia OpenLineage
 
-The MongoDB target enables Data Catalog Agent to feed data from external sources to the [Data Catalog](/data_catalog/overview.mdx) application. 
+The Mia OpenLineage target enables Data Catalog Agent to feed data from external sources to the [Data Catalog](/data_catalog/overview.mdx) application. This
+target may write the extracted schemas into different data sources, depending on the configuration.
 
-To configure the `mongodb` target use:
+:::note
+Currently, only MongoDB (v5+) is supported as `type` in configuration object of `mia-open-lineage` target.
+:::
 
-```js
+To configure the `mia-open-lineage` target use:
+
+```json
 {
   // ...
   "target": {
-    "type": "mongodb",
-    "url": "mongodb://test:27017/?replicaSet=rs", // 👈 mongodb connection string: the database must be a replica set
-    "database": "test_database", // 👈 if defined, it will be used as default database to store the models
+    "type": "mia-open-lineage",
+    "configuration": {
+      "type": "mongodb",
+      "url": "mongodb://test:27017/?replicaSet=rs", // 👈 database connection string: in case of MongoDB, the database MUST be a replica set
+      "database": "test_database", // 👈 if defined, it will be used as database where to store the models
+      "collection": "open-lineage-datasets", // 👈 if defined, it will be used as collection where to store the models
+    }
   }
 }
 ```
 
-The target will write the content of the connections to a MongoDB replica set database, in a collection named `open-lineage-datasets`.
+The target will write the content of the connections to a MongoDB replica set database, in the collection selected or by default in the one named as `open-lineage-datasets`.
+This collection must be same to the one configured for [`open-lineage` service](/data_catalog/data_catalog_open_lineage.mdx#datasets-persistence-layer). Therefore, it is
+recommended to just configure the _connection string_ and the _database_ properties, leaving the _collection_ to its default value.
 
 :::tip
-To enforce document validation on that collection, be sure to run [Data Catalog Configuration Scripts](/data_catalog/database_setup.mdx) before executing the agent.
+To enforce document validation on datasets collection, please ensure that [Data Catalog Configuration Scripts](/data_catalog/database_setup.mdx) is run at least once before launching the agent.
 :::
+
+### MongoDB
+
+The MongoDB target enables Data Catalog Agent to feed data from external sources directly into a MongoDB collection. 
+
+To configure the `mongodb` target use:
+
+```json
+{
+  // ...
+  "target": {
+    "type": "mongodb",
+    "url": "mongodb://test:27017/?replicaSet=rs", // 👈 mongodb connection string: the database MUST be a replica set
+    "database": "test_database", // 👈 if defined, it will be used as default database to store the models
+    "collection": "agent_collection", // 👈 if defined, it will be used as default collection to store the models
+  }
+}
+```
+
+The target will write the content of the connections to a MongoDB replica set database, in the collection selected or by default in the one named as `open-lineage-datasets`.
 
 ### File
 
@@ -754,10 +787,10 @@ which will save output files in the folder `./output`. To override this use:
 }
 ```
 
-### MIA Console
+### Mia Console
 
 :::caution
-This target has been **deprecated** in favour of [`mongodb`](#mongodb) to support [Data Catalog](/data_catalog/overview.mdx) solution.
+This target has been **deprecated** in favour of [`mia-open-lineage`](#mia-openlineage) to support [Data Catalog](/data_catalog/overview.mdx) solution.
 :::
 
 To configure the `mia-console` target use:
