@@ -1,0 +1,280 @@
+1
+00:00:00,680 --> 00:00:05,800
+Hi everyone and welcome to the Mia-Platform tutorials! Today we're going to be taking a look  
+
+2
+00:00:05,800 --> 00:00:12,520
+at Flow Managers. In this tutorial we will see how to create and expose a Flow Manager service.  
+
+3
+00:00:12,520 --> 00:00:18,200
+The Flow Manager is a Saga Orchestrator capable of managing flows, structured by leveraging the  
+
+4
+00:00:18,200 --> 00:00:25,640
+architectural pattern named Saga pattern using the command-and orchestration-approach. Since this can  
+
+5
+00:00:25,640 --> 00:00:31,640
+help you govern the interaction to complete various tasks and to guard data consistency,  
+
+6
+00:00:31,640 --> 00:00:37,240
+Flow Manager can simplify your work when you want to model complex flows involving the interaction  
+
+7
+00:00:37,240 --> 00:00:43,480
+of several services. To begin with, we begin in the design section of the Mia-Platform Console. We  
+
+8
+00:00:43,480 --> 00:00:49,080
+go ahead and click on "Create a microservice" from the marketplace over here. We look for the Flow  
+
+9
+00:00:49,080 --> 00:00:55,760
+Manager option - here you can see that we have a core plugin called Flow Manager service. Let's  
+
+10
+00:00:55,760 --> 00:01:02,520
+go ahead and give that a name. The given name by default is "Flow Manager Service". This is a Saga  
+
+11
+00:01:02,520 --> 00:01:07,960
+Orchestrator capable of managing flows structured by using the architectural pattern named The Saga  
+
+12
+00:01:07,960 --> 00:01:13,880
+pattern. Let's go ahead and create that. Here you can see all of the configurations of this  
+
+13
+00:01:13,880 --> 00:01:19,400
+microservice. Now, we're going to go ahead into the new section called "The View Flow Manager"  
+
+14
+00:01:19,400 --> 00:01:25,840
+section. This is where you can see this on a canvas. To begin with you can see the start,  
+
+15
+00:01:25,840 --> 00:01:33,480
+the creation event and the states. Let's go ahead and link a microservice first. Perfect,  
+
+16
+00:01:33,480 --> 00:01:38,760
+your microservice is now linked. We're going to use the example of a Payment Orchestrator.  
+
+17
+00:01:38,760 --> 00:01:43,720
+So there's a creation event after start, and then you move into the first state. We don't want this  
+
+18
+00:01:43,720 --> 00:01:47,840
+to be the final state, we're going to add some more states to this example, so let's go ahead and  
+
+19
+00:01:47,840 --> 00:01:53,520
+click on "Add State". This will be our next state, and let's go ahead and add another state - this  
+
+20
+00:01:53,520 --> 00:02:00,640
+will be our third state. Now let's go ahead and change the configurations. So let's go ahead to  
+
+21
+00:02:00,640 --> 00:02:05,440
+this event, on the right hand side, you can change the name of the event. So for this example we're  
+
+22
+00:02:05,440 --> 00:02:13,680
+going to use the the example of payment. So let's go ahead and put it as "Payment-begins". This is  
+
+23
+00:02:13,680 --> 00:02:19,160
+an e-commerce example of any e-commerce platform where you're going to try to make a payment.  
+
+24
+00:02:19,160 --> 00:02:23,880
+Perfect, now that we're happy with that we're in the first state. Now you can see that the first  
+
+25
+00:02:23,880 --> 00:02:29,640
+state - we're going to go ahead and change it to "Not-final", and we're going to rename this  
+
+26
+00:02:29,640 --> 00:02:40,680
+state "Payment-initiated". Perfect, that's our first state. Now we have two possible options:  
+
+27
+00:02:40,680 --> 00:02:46,240
+one is that the payment takes place properly and the second one is that the payment fails.  
+
+28
+00:02:46,240 --> 00:02:54,200
+So let's go ahead and create a connection to our next state. This would be in the category of the  
+
+29
+00:02:54,200 --> 00:03:00,040
+payment taking place successfully, so this would be "Payment-successful". Here you can select the  
+
+30
+00:03:00,040 --> 00:03:06,040
+group. For this let's just go ahead and select the same group, "Group 0", and you can see that this  
+
+31
+00:03:06,040 --> 00:03:12,000
+is going to be a final state, so let's go ahead and click on "Is final". Perfect, once we're  
+
+32
+00:03:12,000 --> 00:03:17,240
+happy with that we'll go ahead and look at our next state. This would be in the example of the  
+
+33
+00:03:17,240 --> 00:03:24,400
+payment failing, so let's go ahead and rename that to "Payment-failed". For this let's not select  
+
+34
+00:03:24,400 --> 00:03:29,760
+"Group 0", let's make a new group. Let's go ahead and click on "New state group", here you can see  
+
+35
+00:03:30,400 --> 00:03:38,120
+you can name the group "Payment-failed". This will be in the color red just to display that  
+
+36
+00:03:38,120 --> 00:03:42,400
+the payment is failed, and click on "Save". Now you can see the payment  
+
+37
+00:03:42,400 --> 00:03:56,920
+is failed and this is a separate state. Let's go ahead and connect this as well.
+
+38
+00:03:56,920 --> 00:04:01,280
+Perfect, let's go ahead and we've connected these. Now you can see there is an event  
+
+39
+00:04:01,280 --> 00:04:06,600
+between these two states. Let's click on the event so we can see all of the properties.  
+
+40
+00:04:06,600 --> 00:04:11,440
+Here we see the name, the group, the source state is "Payment-initiated",  
+
+41
+00:04:11,440 --> 00:04:19,800
+the target state is "Payment-successful". For this, let's name it as "Successful-payment".
+
+42
+00:04:19,800 --> 00:04:25,080
+That would be the event taking place before we get to that state. For this one,  
+
+43
+00:04:25,080 --> 00:04:29,720
+let's go ahead and put "Unsuccessful-payment".
+
+44
+00:04:31,760 --> 00:04:36,120
+This would display that the event that's necessary to take place before we reach the payment fail  
+
+45
+00:04:36,120 --> 00:04:42,080
+state is an unsuccessful payment. What we can also do is make sure that this one is a final state  
+
+46
+00:04:42,080 --> 00:04:49,080
+as well. As you can see here, we have created a very basic chart in which you can see all of the  
+
+47
+00:04:49,080 --> 00:04:54,120
+states and all of the steps and events you have to go through to reach the final state. Here you  
+
+48
+00:04:54,120 --> 00:05:03,560
+can also see the type of communication, so there are commands, protocols, hooks and side effects.  
+
+49
+00:05:03,560 --> 00:05:08,920
+Let's go ahead and set up a command for "Group 0 - Payment-initiated". As you can see here there are  
+
+50
+00:05:08,920 --> 00:05:13,440
+no available commands, so we're going to create a new command. Let's go ahead and click on "New  
+
+51
+00:05:13,440 --> 00:05:19,000
+command".Here you can see that you can insert a label or a name for your command, so let's go  
+
+52
+00:05:19,000 --> 00:05:26,240
+ahead and give it the name "Payment-orchestrated". You can enter any description that you would like  
+
+53
+00:05:26,240 --> 00:05:31,200
+and then click on "Next". Here you can see you have the option to enable hooks: if you turn  
+
+54
+00:05:31,200 --> 00:05:37,080
+this on, you can either use an existing hook from a layer of drop down or you can go ahead  
+
+55
+00:05:37,080 --> 00:05:42,200
+and click on "Set custom hooks", where you can set your custom hooks.For this example I choose  
+
+56
+00:05:42,200 --> 00:05:47,640
+not to enable hooks. Let's go ahead and click on "Next" and then we enter the communication  
+
+57
+00:05:47,640 --> 00:05:53,320
+protocol. Again, you can use an existing protocol appearing in this drop-down menu if you have any,  
+
+58
+00:05:53,320 --> 00:06:00,000
+or create a new protocol. I'm going to go ahead and create a new protocol and name it "Payments".  
+
+59
+00:06:00,000 --> 00:06:05,040
+You can choose between Kafka and Rest. For this example I'm just going to use Rest.  
+
+60
+00:06:05,040 --> 00:06:11,320
+Here you can see that your protocol type can be HTTP or HTTPS. You can enter an endpoint.  
+
+61
+00:06:11,320 --> 00:06:18,200
+For this example I'm going to enter the endpoint "Result". You can enter a path, you can enter a  
+
+62
+00:06:18,200 --> 00:06:23,520
+port and a method, which can either be post, put or patch. Once you're happy with this,  
+
+63
+00:06:23,520 --> 00:06:30,360
+let's go ahead and click on "Save". Perfect, you have now initiated a command which is called  
+
+64
+00:06:30,360 --> 00:06:37,760
+"Payment-orchestration". As you can see here in the final display that this is your start state,  
+
+65
+00:06:37,760 --> 00:06:42,640
+your payment has begun, it has been initiated and the command "Payment-orchestrated" is  
+
+66
+00:06:42,640 --> 00:06:47,200
+being run. There are two events that could take place: one is a successful payment,  
+
+67
+00:06:47,200 --> 00:06:52,040
+which would take you to "Payment-successful", a final state; and you can also have unsuccessful  
+
+68
+00:06:52,040 --> 00:06:57,120
+payment which would take you to "Payment-failed" which is also a final state. This is how you can  
+
+69
+00:06:57,120 --> 00:07:02,120
+use the Flow Manager service on the Mia-Platform Console. As always, if you have any questions  
+
+70
+00:07:02,120 --> 00:07:15,720
+feel free to reach out to us via email or book a demo call with us. Thank you so much for watching!
+
