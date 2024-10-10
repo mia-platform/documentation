@@ -13,7 +13,7 @@ Extensions can be managed through a dedicated section called **Extensibility** p
 
 :::info
 Only **Company Owners** have the necessary permissions to see and use this section.
-Morevover, extensions are **only accessible within the Company** they are registered into.
+Moreover, extensions are **only accessible within the Company** they are registered into.
 :::
 
 ![extension placeholder](./img/extensions/extension-placeholder.png)
