@@ -195,6 +195,12 @@ You can add a new container registry by clicking on the "Add Container Registry"
 
 Through the dedicated buttons on the right of each row, you can edit or delete the container registry.
 
+#### How Image Pull Secret are configured to Kubernetes
+
+When creating Kubernetes manifests of the Project service deployments, the Console will create and insert an array of `imagePullSecrets` in the `spec` section of the `Deployment` resource. This array will contain all the names of the Image Pull Secrets configured in the Console.
+
+The configuration applies to all the Microservices and CronJobs of the Project.
+
 ## Advanced
 
 The "Advanced" tab allows the user to visualize advanced information and perform sensitive operations.
