@@ -5,7 +5,7 @@ sidebar_label: Project Settings
 ---
 
 Once you have created your Project, you can visualize and change its settings through the "Settings" section of the Console, within the "Project Overview" area.
-The settings are grouped by subject area through dedicated tabs, explained in detail below.
+The settings are grouped by subject area through dedicated tabs, as explained below.
 
 ## General
 
