@@ -5,7 +5,7 @@ sidebar_label: Project Blueprint
 ---
 
 Through the "Project Blueprint" section at the Company level, it is possible to set some common properties for all Projects that will be created in that Company.
-The settings are grouped by subject area through dedicated tabs, explained in detail below.
+The settings are grouped by subject area through dedicated tabs, as explained below.
 
 ## Project Templates
 
