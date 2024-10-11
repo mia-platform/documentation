@@ -4,8 +4,7 @@ title: Manage Extensions
 sidebar_label: Manage Extensions
 ---
 
-Extensions allow expanding Console capabilities by adding custom pages to the sidebar navigation, to provide users with new pages
-tailored to your Company needs or to integrate external tools with a seamless experience within the product.
+Extensions allow expanding Console capabilities by adding custom pages to the sidebar navigation. This allows you to provide users with new pages tailored to your Company's needs or integrate external tools with a seamless experience within the product.
 
 ## Extension Manager
 
