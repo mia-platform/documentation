@@ -32,7 +32,7 @@ such as making sure `x-frame-options` header or the `frame-ancestors` Content S
 You can add a new extension to your Company at any moment; creating an extension requires the following configurations to be set:
 
 - **Extension name** (*required*): the name for your extension
-- **Entry URL** (*required*): the URL of the web page that will load when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
+- **Entry URL** (*required*): the URL of the web page that will be displayed when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
 - **Destination Area** (*required*): the destination where your extension menu item will be placed
 - **Category** (*required*): the menu category that will contain the extension menu item
 - **Visibility**: contexts in which you want to make your extension visible. If nothing is checked, the extension will be inactive.
