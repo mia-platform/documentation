@@ -190,10 +190,18 @@ You can add a new container registry by clicking on the "Add Container Registry"
 - **Name**: the name of the container registry. It is used to identify the container registry in the Console, you can choose any name you prefer.
 - **Registry Hostame**: the hostname of the container registry. It refers to the container registry URL, for example, `docker.io` for Docker Hub.
 - **Image Pull Secret Name**: the name of the Image Pull Secret that will be used by Kubernetes to pull images from the container registry. Notice that the Secret must be present in the Kubernetes cluster where the Project is deployed, the Console won't create it for you.
+- **Default Registry**: if enabled, the container registry will be set as the default one for the Project. Notice that if the Project has only one container registry, it will be set as the default one automatically.
 
 ![add container registry](./img/add-container-registry.png)
 
 Through the dedicated buttons on the right of each row, you can edit or delete the container registry.
+
+:::info
+
+If a Project has not been configured with any container registry, the Docker Image field of the Templates and Examples will allow you to insert the Docker image directly, 
+behaving like before the introduction of the container registries feature.
+
+:::
 
 #### How Image Pull Secret are configured to Kubernetes
 
