@@ -30,7 +30,7 @@ such as making sure `x-frame-options` header or the `frame-ancestors` Content S
 
 ## Add new Extension
 
-In any moment, you can add a new extensions to your Company; creating an extension requires the following configurations to be filled:
+You can add a new extension to your Company at any moment; creating an extension requires the following configurations to be set:
 
 - **Extension name** (*required*): the name for your extension
 - **Entry URL** (*required*): the URL of the web page that will load when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
