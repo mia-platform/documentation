@@ -35,12 +35,14 @@ You can add a new extension to your Company at any moment; creating an extension
 - **Entry URL** (*required*): the URL of the web page that will be displayed when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
 - **Destination Area** (*required*): the destination where your extension menu item will be placed
 - **Category** (*required*): the menu category that will contain the extension menu item
+
+:::info
+The available **Category** options depend on the selected **Destination Area**.
+:::
 - **Visibility**: You might want to make your extension visible on the whole Company, or maybe just on a few Projects. This field lets you set the contexts in which you want to make your extension visible. If nothing is checked, the extension will be inactive.
 
 :::info
-The **Category** options are based on the selected destination area.
-
-The **Visibility** can be applied only on the *Whole Company* context when the *Company Overview* destination area is selected.
+When the *Company Overview* destination area is selected, the only available **Visibility** option will be the *Whole Company*.
 :::
 
 ![create extension modal](./img/extensions/create-extension-modal.png)
@@ -88,5 +90,5 @@ The *Extension Visibility* card shows in which contexts the extension is active 
 
 :::info
 Just as during creation, Visibility is tied to the Destination Area set for the extension.
-For example, if the Destination Area is set to *Company Overview*, then visibility can only be applied to the *Whole Company* option.
+For example, if the Destination Area is set to *Company Overview*, the only available visibility option will be *Whole Company*.
 :::
