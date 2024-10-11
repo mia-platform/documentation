@@ -23,7 +23,7 @@ In the Console, follow these steps:
       * **Description** (*optional*): this is the description of your Microservice
       * **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
       * **GitLab Repository name**: the gitlab repository name that you want for your Microservice
-      * **Docker image name**: the docker image name, you can leave the default one too
+      * **Docker image name**: the docker image name, you can leave the default one too. You can choose the Container Registry from a dropdown list, which contains the [Container Registries configured in the Project Settings](/console/project-configuration/project-settings#container-registries).
  4. Then click on `Create` button
 
 Now you have a customization interface and you can optionally customize some configuration if you want.
