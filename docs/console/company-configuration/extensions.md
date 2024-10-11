@@ -35,7 +35,7 @@ You can add a new extension to your Company at any moment; creating an extension
 - **Entry URL** (*required*): the URL of the web page that will be displayed when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
 - **Destination Area** (*required*): the destination where your extension menu item will be placed
 - **Category** (*required*): the menu category that will contain the extension menu item
-- **Visibility**: contexts in which you want to make your extension visible. If nothing is checked, the extension will be inactive.
+- **Visibility**: You might want to make your extension visible on the whole Company, or maybe just on a few Projects. This field lets you set the contexts in which you want to make your extension visible. If nothing is checked, the extension will be inactive.
 
 :::info
 The **Category** options are based on the selected destination area.
