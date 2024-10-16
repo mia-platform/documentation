@@ -40,7 +40,7 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
             },
             "resourceId": {
               "type": "string",
-              "description": "The plural name fot the custom resource definition."
+              "description": "The plural name for the custom resource definition."
             }
           }
         },
