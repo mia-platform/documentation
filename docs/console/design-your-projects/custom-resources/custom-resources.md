@@ -51,9 +51,23 @@ To create a resource from Marketplace, you need to select the Custom Resource yo
 
 The Marketplace could contain *versioned* Custom Resources. In that case, when selecting the Custom Resource to create, you will see the available versions and you will be able to select the one you prefer.
 
+<!--- TODO: add image with new fields 'type' (select: disabled: default 'kubernetes'), and 'resourceId' (text: default: sleepinfos)  --->
 ![Create from Marketplace a versioned Custom Resource](./img/create-from-marketplace-versioned.png)
 
 In this case, you can only modify the *name* of the Custom Resource: the *kind* and the *apiVersion* fields are managed by the versioned marketplace item, so you cannot modify them manually, neither during the creation nor the update.
+
+### View a Custom Resource Details
+
+After creation, you can see the details of a custom resource accessing the dedicated voice in the side menu of the custom resource section.
+
+![View a Custom Resource Details](./img/view-details.png)
+
+From version 13.2.3, if the resource have been committed on your project configuration and have been deployed, you can monitor the runtime status of the resource in the [dedicated section] of the console.
+
+:::caution
+For the resource to be correctly visible, be sure the `resourceId` field is properly set to the plural name of the resource in its [Custom Resource Definition](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
+:::
+
 
 ### Update a Custom Resource
 
@@ -71,6 +85,7 @@ The Custom Resource has some supported fields, other fields will be ignored. The
 
 ![Update](./img/update-gateway-custom-resource.png)
 
+<!--- TODO: add image with new fields 'type' (select: disabled: default 'kubernetes'), and 'resourceId' (text: default: sleepinfos)  --->
 Custom Resources created from Marketplace items can not have the `apiVersion` and the `kind` fields modified. Attempting to do so will result in an error badge shown in the UI, and the updates on the manifest will be ignored.
 
 Each version of the Custom Resource defines specific values for these fields.
@@ -153,6 +168,4 @@ Deploying template-based Custom Resources for different runtimes than Kubernetes
 ## Future Improvements
 
 In the future, we plan to add more features to the Resources, such as:
-
-- see the Custom Resources runtime inside the Runtime Section of the Console;
 - manage Custom Resource with a specific dynamically generated UI.

@@ -30,6 +30,20 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
         "name": {
             "type": "string"
         },
+        "runtime": {
+          "type": "object", 
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["kubernetes"],
+              "description": "The type of the custom resource. At the moment the only supported type by the marketplace is 'kubernetes'"
+            },
+            "resourceId": {
+              "type": "string",
+              "description": "The plural name fot the custom resource definition."
+            }
+          }
+        },
         "generator": {
             "type": "object",
             "properties": {
@@ -183,6 +197,9 @@ spec:
     sleepAt: "20:00"
     timeZone: Europe/Rome
     weekdays: "1-5"
+runtime:
+  type: kubernetes
+  resourceId: sleepinfos
 ```
 
 </p>
@@ -274,6 +291,9 @@ resources:
   labels:
     - name: app.kubernetes.io/instance
       value: ingress-controller
+  runtime:
+    type: kubernetes
+    resourceId: ingressroutes
   spec:
     entryPoints:
       - websecure
