@@ -6,8 +6,7 @@ slug: "/development_suite/monitoring/resources/jobs"
 ---
 
 
-A [Custom Resource](/console/design-your-projects/custom-resources/custom-resources.md) allows you to define custom objects that are not part of the standard Console resources and can be used to extend the Console capabilities.
-If deployed, the information on the Custom Resources for the project can be accessed in the section `Custom Resources` of the sidebar in the `Runtime`section.
+If deployed, the information on the [Custom Resources](/console/design-your-projects/custom-resources/custom-resources.md) for the project can be accessed in the section `Custom Resources` of the sidebar in the `Runtime`section.
 
 :::caution
 If you created the custom resource from a marketplace template prior to Console release v13.2.3, the Custom Resources will not be visible by default. 
