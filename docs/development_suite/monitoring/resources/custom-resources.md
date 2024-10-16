@@ -9,6 +9,12 @@ slug: "/development_suite/monitoring/resources/jobs"
 A [Custom Resource](/console/design-your-projects/custom-resources/custom-resources.md) allows you to define custom objects that are not part of the standard Console resources and can be used to extend the Console capabilities.
 If deployed, the information on the Custom Resources for the project can be accessed in the section `Custom Resources` of the sidebar in the `Runtime`section.
 
+:::caution
+If you created the custom resource from a marketplace template prior to Console release v13.2.3, the Custom Resources will not be visible by default. 
+To make these visible, please ensure to [update your Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md#update-a-custom-resource) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition.
+:::
+
+
 ### Custom Resource instances
 
 By selecting a particular Custom Resource type listed from the sidebar, it is possible to view the list of all the active instances in the cluster.
