@@ -10,8 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-In order to configure the **Teleconsultation Service**, you need to deploy two services: the **Teleconsultation Service Backend** and the **Teleconsultation Service Frontend**.
-Both are available in the Marketplace.
+In order to configure the **Teleconsultation Service**, you need to deploy two services: the **Teleconsultation Service Backend** and the **Teleconsultation Service Frontend**, both available in the Marketplace.
 
 ## Teleconsultation Service Backend Configuration
 
@@ -78,7 +77,7 @@ The default configuration is the following:
   },
   "theme": {
     "light": {
-      "primaryColor": "#fff",
+      "primaryColor": "#ffffff",
       "accentColor": "#480ca8",
     },
     "dark": {
@@ -128,7 +127,7 @@ The Teleconsultation Service Backend accepts the environment variables described
 | Name                                     | Required | Default | Minimum version | Description                                                                                                                                                                                                |
 |------------------------------------------|----------|---------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **BANDYER_API_SECRET_KEY**               | Yes      | -       | 1.0.0           | API Secret Key to use in order to communicate with Kaleyra's APIs.                                                                                                                                         |
-| **BANDYER_BASE_URL**                     | Yes      | -       | 1.0.0           | Name of the Kaleyra API endpoint.                                                                                                                                                                          |
+| **BANDYER_BASE_URL**                     | Yes      | -       | 1.0.0           | Base url of the Kaleyra API. From the service version **2.0.0** it must be updated to the Bandyer API v2 base url.                                                                                         |
 | **TELECONSULTATION_SERVICE_CONFIG_PATH** | No       | -       | 1.0.0           | Full path of the updated file defined in the [previous section][environment-variables].                                                                                                                    |
 | **TELECONSULTATIONS_CRUD_NAME**          | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the teleconsultations.                                                                                                                                           |
 | **USER_ID_MAP_CRUD_NAME**                | No       | -       | 1.0.0           | Name of the endpoint of the CRUD with all the user_ids (e.g. receivedUserId, bandyerId), for each user.                                                                                                    |
@@ -140,6 +139,12 @@ The Teleconsultation Service Backend accepts the environment variables described
 | **IMMUTABLE_PERIOD_MS**                  | No       | 0       | 1.2.1           | How much time (in milliseconds) before the scheduled start date you can join the teleconsultation room and you can no longer update the teleconsultation.                                                  |
 | **TELECONSULTATION_DELETE_UPLOADS**      | No       | `false` | 1.5.0           | If set to `true`, the files uploaded during a teleconsultation are deleted when the call ends.                                                                                                             |
 
+:::warning
+
+From the Teleconsultation Service version **v2.0.0** the **BANDYER_BASE_URL** must be configured with the Bandyer v2 API base url.
+
+:::
+
 :::caution
 
 Since v1.5.0, you can set the `TELECONSULTATION_DELETE_UPLOADS` environment variable to `true` in order to automatically delete the files uploaded by the participants during the teleconsultation session. Remember that this operation is performed every time the call is interrupted, even if that happens for external causes, like network connectivity issues. Once the participants join the teleconsultation again, if the feature is enabled they will have to upload again all the files, unless they already downloaded a copy on their devices.  
@@ -148,7 +153,7 @@ Since v1.5.0, you can set the `TELECONSULTATION_DELETE_UPLOADS` environment vari
 
 :::tip
 
-If the appointment starts at 11:00 and you want the doctor to be able to start the teleconsultation session earlier than the scheduled appointment date, you simply have to set the   `IMMUTABLE_PERIOD_MS` environment variable accordingly. So, for example, to allow the session to start up to ten minutes before the scheduled date, you can simply set `IMMUTABLE_PERIOD_MS` to 600000 (ten minutes expressed in milliseconds). If the participants join the call after 10:50, the session starts automatically as soon as they are connected.
+If the appointment starts at 11:00 and you want the doctor to be able to start the teleconsultation session earlier than the scheduled appointment date, you simply have to set the `IMMUTABLE_PERIOD_MS` environment variable accordingly. So, for example, to allow the session to start up to ten minutes before the scheduled date, you can simply set `IMMUTABLE_PERIOD_MS` to 600000 (ten minutes expressed in milliseconds). If the participants join the call after 10:50, the session starts automatically as soon as they are connected.
 
 Also remember that, in such scenario, after 10:50 the teleconsultation room would be no longer changeable, including the participants, so we recommend setting a value that leaves room for last minute changes, for example if the appointment need to be assigned to a different doctor.
 
@@ -322,7 +327,7 @@ Example:
 ```
 "theme": {
   "light": {
-    "primaryColor": "#fff",
+    "primaryColor": "#ffffff",
     "accentColor": "#480ca8"
   },
   "dark": {
