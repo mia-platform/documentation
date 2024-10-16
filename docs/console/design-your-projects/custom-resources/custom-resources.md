@@ -60,15 +60,6 @@ In this case, you can only modify the *name* of the Custom Resource: the *kind* 
 
 After creation, you can see the details of a custom resource accessing the dedicated voice in the side menu of the custom resource section.
 
-![View a Custom Resource Details](./img/view-details.png)
-
-From version 13.2.3, if the resource have been committed on your project configuration and have been deployed, you can monitor the runtime status of the resource in the [dedicated section] of the console.
-
-:::caution
-For the resource to be correctly visible, be sure the `resourceId` field is properly set to the plural name of the resource in its [Custom Resource Definition](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
-:::
-
-
 ### Update a Custom Resource
 
 Once you have created a Custom Resource, it will be possible to update it. Click on the Custom Resource you want to update in the sidebar, and you will see a YAML editor.
