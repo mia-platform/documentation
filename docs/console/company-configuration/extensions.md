@@ -21,6 +21,7 @@ There are different extension types supported:
 
 - iframe: allows you to embed web pages in Console using an `<iframe>` tag
 - External link: these extensions will be shown as menu items in the sidebar but opened in a new window on click
+- Composer page: allows you to compose a web page by means of a [`micro-lc`](https://micro-lc.io/) configuration
 
 :::tip
 Embedding a web app as an *iframe* extension may require additional configurations,
@@ -32,13 +33,14 @@ such as making sure `x-frame-options` header or the `frame-ancestors` Content S
 You can add a new extension to your Company at any moment; creating an extension requires the following configurations to be set:
 
 - **Extension name** (*required*): the name for your extension
-- **Entry URL** (*required*): the URL of the web page that will be displayed when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
 - **Destination Area** (*required*): the destination where your extension menu item will be placed
 - **Category** (*required*): the menu category that will contain the extension menu item
 
 :::info
 The available **Category** options depend on the selected **Destination Area**.
 :::
+- **Entry URL** (*required for iframe and External link extensions*): the URL of the web page that will be displayed when accessing your extension (This will be embedded inside an iframe or opened in a new window depending on the extension type)
+- **Template**: A `micro-lc` configuration you might want to initialize your extension with. Available only for Composer page extensions.
 - **Visibility**: You might want to make your extension visible on the whole Company, or maybe just on a few Projects. This field lets you set the contexts in which you want to make your extension visible. If nothing is checked, the extension will be inactive.
 
 :::info
@@ -75,6 +77,12 @@ The extension detail page allows you to view the main information that character
 The *Extension Info* card contains the identifying information for the extension, where only the name and entry URL can be edited.
 
 ![edit extension info](./img/extensions/edit-extension-info.png)
+
+### Extension Configuration
+
+If the current extension is of type Composer page, the badge will display the *Edit page with MFE Composer* button which brings the user to a page where it can edit the extension's `micro-lc` configuration.
+
+![edit extension configuration](./img/extensions/edit-extension-configuration.png)
 
 ### Extension Location
 
