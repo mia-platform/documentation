@@ -21,7 +21,7 @@ There are different extension types supported:
 
 - iframe: allows you to embed web pages in Console using an `<iframe>` tag
 - External link: these extensions will be shown as menu items in the sidebar but opened in a new window on click
-- Composer page: allows you to compose a web page by means of a `micro-lc` configuration
+- Composer page: allows you to compose a web page by means of a [`micro-lc`](https://micro-lc.io/) configuration
 
 :::tip
 Embedding a web app as an *iframe* extension may require additional configurations,
