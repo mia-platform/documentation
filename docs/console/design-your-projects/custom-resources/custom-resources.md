@@ -139,6 +139,4 @@ Deploying template-based Custom Resources for different runtimes than Kubernetes
 ## Future Improvements
 
 In the future, we plan to add more features to the Resources, such as:
-
-- see the Custom Resources runtime inside the Runtime Section of the Console;
 - manage Custom Resource with a specific dynamically generated UI.
