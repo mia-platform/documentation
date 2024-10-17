@@ -478,6 +478,50 @@ For debugging purposes, a logger is still provided via internal bindings, but it
 within cast functions at levels higher than `debug`.
 :::
 
+
+#### SSL Certificates
+
+| Property | Type     | Required | Default |
+|----------|----------|----------|---------|
+| `ssl`    | `object` | -        | `null`  |
+
+Sometimes it is required that the service connects to external dependencies, such the storage component, using TLS/SSL connection. While enabling the SSL can be configured at component
+level, it might be necessary to extend the available certificates and define client key and certificate the service need to adopt for connecting to the external dependencies.  
+This can be achieved by configuring the JVM Trust Store and the corresponding JVM Key Store.
+
+:::info
+One utility command that can be employed to create JVM key store is [`keytool`](https://docs.oracle.com/en/java/javase/21/docs/specs/man/keytool.html).
+:::
+
+In particular, these stores can be added to the service specifying the fields `trustStore` and `keyStore` under the `ssl` property of the service settings.
+Within each field there are following two attributes:
+
+- `location` &rarr; filepath where the key store in JKS format is located
+- `password` &rarr; password string for accessing the key store
+
+Here can be seen an example of configuration that includes a custom Trust Store and Key Store: 
+
+```json
+"ssl": {
+  "trustStore": {
+    "location": "/path/to/truststore.jks",
+    "password": "<ts-password>"
+  },
+  "keyStore": {
+    "location": "/path/to/keystore.jks",
+    "password": "<ks-password>"
+  }
+}
+```
+
+:::tip
+The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+
+- `ssl.trustStore.password`
+- `ssl.keyStore.password`
+
+:::
+
 ### Consumer
 
 | Property        | Type     | Required | Default |
@@ -526,6 +570,10 @@ The following Kafka Consumer properties cannot be customized by the user, since 
 - `value.deserializer`
 :::
 
+:::tip
+The fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+:::
+
 ### Producer
 
 | Property        | Type     | Required | Default |
@@ -565,6 +613,10 @@ The following Kafka Producer properties cannot be customized by the user, since 
 - `value.deserializer`
 :::
 
+:::tip
+The fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+:::
+
 ### Storage
 
 | Property        | Type     | Required | Default   |
@@ -577,10 +629,11 @@ which are its configuration properties. Currently only MongoDB is supported as s
 
 #### MongoDB Configuration
 
-When MongoDB is selected as a storage system for the Projection Storer service, it requires the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/)
-and the _name_ of the database the service will connect to. The database name is not necessary in case it is already
-specified in the connection string, although it is recommended to set it in case the connection string is shared
-with other services.
+When MongoDB is selected as a storage system for the Projection Storer service, the configuration property is composed as follows:
+
+- `url` &rarr; the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/) to the MongoDB cluster, which is required for the service to start up,
+- `database` &rarr; the name of the database the service will connect to. Although this field is optional, since it is extracted from the connection string if available, it is recommended to set it up, especially in cases where the connection string to the MongoDB cluster is shared among different components.
+- `ssl.enabled` &rarr; a string flag (either `"false"` or `"true"`) that declare whether the service should connect to the MongoDB cluster using [TLS/SSL](https://www.mongodb.com/docs/manual/tutorial/configure-ssl-clients/). By default, SSL connection is disabled. 
 
 This is an example of storage configuration when `mongodb` is selected as type:
 
@@ -593,6 +646,9 @@ This is an example of storage configuration when `mongodb` is selected as type:
   }
 }
 ```
+:::tip
+The fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+:::
 
 ### Projections Config
 
