@@ -33,7 +33,7 @@ such as making sure `x-frame-options` header or the `frame-ancestors` Content S
 You can add a new extension to your Company at any moment; creating an extension requires the following configurations to be set:
 
 - **Extension name** (*required*): the name for your extension
-- **Destination Area** (*required*): the destination where your extension menu item will be placed
+- **Destination Area** (*required*): the area in Console where your extension menu item will be placed
 - **Category** (*required*): the menu category that will contain the extension menu item
 
 :::info
