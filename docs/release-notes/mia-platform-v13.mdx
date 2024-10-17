@@ -5,6 +5,18 @@ sidebar_label: v13 Overview
 image: "img/release-note-link-preview.png"
 ---
 
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
+
 **Welcome to Mia-Platform v13!**
 
 # Compose your Platform
@@ -74,23 +86,17 @@ The main benefits for the user can be summarized by the following:
 
 Let's go in deep with the new Features:
 
-### Enrich Meta Data and list all your data assets: Data Catalog
+### Data Catalog Application <Highlight color="#25c2a0">v13.3.0 - Fall Release</Highlight>
 
-Let's welcome our first release of **Data Catalog**, designed to provide the data governance teams and data analysts with a centralized location where all metadata concerning the data assets of an organization are collected.
+Mia-Platform product suite is finally enriched with a new core component, the **Data Catalog** application, an essential tool for performing Data Discovery and Data Governance on your Company data assets.
 
-Set up our Data Catalog Agent, to connect to different external sources, such as Oracle Database, Salesforce, Postgres Database, MySQL Database, Microsoft SQL Server Database, and to extract all metadata existing on your organization's System of Records.
+![Data Catalog home](img/data_catalog_home.png)
 
-Through Mia-Platform Console, it is possible to:
+Mia-Platform Data Catalog serves as a centralized repository of metadata that provides a clear and detailed overview of the Company data assets, reducing time for Data Discovery and empowering Data Governance Teams with powerful metadata management features.
 
-- Keep metadata up to date with the external System of Records
-- Navigate data models in a centralized place
-- Enrich metadata with descriptions and GDPR regulation properties for each table field
-- Export your data models in .csv format
-- Make metadata usable via Data Catalog API from third-party systems and custom frontends
+Thanks to Data Catalog, it becomes easier to provide a space for your teams to share data information and knowledge, to improve data quality thanks to custom metadata enrichment capabilities and to maintain adherence to numerous data management regulations and laws, such as GDPR in Europe.
 
-![Data Catalog Architecture](img/data-catalog-architecture.png)
-
-To learn more, please refer to the [documentation](/runtime_suite_templates/data-catalog-agent/10_overview.md).
+To find out how Data Catalog works and all the benefits for your Company Data Governance, visit the [official documentation](/data_catalog/overview.mdx)!
 
 ### Seamless Runtime Management with Fast Data Control Plane
 
