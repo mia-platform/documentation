@@ -9,9 +9,9 @@ export const Highlight = ({children, color}) => (
   <span
     style={{
       backgroundColor: color,
-      borderRadius: '2px',
+      borderRadius: '8px',
       color: '#fff',
-      padding: '0.2rem',
+      padding: '0.3rem',
     }}>
     {children}
   </span>
@@ -86,7 +86,7 @@ The main benefits for the user can be summarized by the following:
 
 Let's go in deep with the new Features:
 
-### Data Catalog Application <Highlight color="#25c2a0">v13.3.0 - Fall Release</Highlight>
+### Data Catalog Application | <Highlight color="#1890FF">v13 - Fall Release</Highlight>  
 
 Mia-Platform product suite is finally enriched with a new core component, the **Data Catalog** application, an essential tool for performing Data Discovery and Data Governance on your Company data assets.
 
@@ -94,16 +94,20 @@ Mia-Platform product suite is finally enriched with a new core component, the **
 
 Mia-Platform Data Catalog serves as a centralized repository of metadata that provides a clear and detailed overview of the Company data assets, reducing time for Data Discovery and empowering Data Governance Teams with powerful metadata management features.
 
-Thanks to Data Catalog, it becomes easier to provide a space for your teams to share data information and knowledge, to improve data quality thanks to custom metadata enrichment capabilities and to maintain adherence to numerous data management regulations and laws, such as GDPR in Europe.
+Thanks to Data Catalog, you can reduce Data Discovery time with advanced search capabilities, maintain adherence to numerous data management regulations and laws, such as GDPR in Europe, provide a centralized space for your teams to share data information and knowledge, and improve data quality with powerful metadata enrichment features!
 
-To find out how Data Catalog works and all the benefits for your Company Data Governance, visit the [official documentation](/data_catalog/overview.mdx)!
+To find out how it works and all the benefits of Mia-Platform Data Catalog, please refer to the related [documentation](/data_catalog/overview.mdx).
 
 ### Seamless Runtime Management with Fast Data Control Plane
 
 Mia-Platform Fast Data has been empowered with a Runtime Management solution, the **Fast Data Control Plane**.
 
-This Fast Data suite component provides a general overview of the Fast Data pipelines released on the runtime environment, and allows to monitor and govern the execution of your Fast Data system.
-From its user-friendly web interface, you can pause and resume the consumption of data streams along Fast Data pipelines with just a few clicks to strategically allocate resources consumption and efficiently utilize them during peak demand processes.
+This Fast Data suite component acts as the single central access point for governing the Fast Data Runtime of your entire Company.  
+Fast Data Control Plane application provides a general overview of the Fast Data pipelines released on the runtime environment, and allows to monitor and govern the execution of your Fast Data system.  
+From its user-friendly web interface, you can pause and resume the consumption of data streams along Fast Data pipelines with just a few clicks to strategically allocate resources consumption and efficiently utilize them during peak demand processes.  
+
+![Fast Data Control Plane](img/fd-control-plane.gif)
+
 Many are the benefits of adopting the Fast Data control plane in your Fast Data Projects, for example:
 
 - **Optimize Resource Allocation**, by strategically pausing and resuming the consumption of data streams along the Fast Data pipelines
@@ -111,9 +115,7 @@ Many are the benefits of adopting the Fast Data control plane in your Fast Data 
 - **Performance Testing and Simulation**, to simulate different scenarios for performance testing by observing your system behavior under various conditions
 - **Enhanced System Reliability**, allowing you to gracefully handle unexpected situations and/or system maintenance periods while minimizing system downtime.
 
-![Fast Data Control Plane](img/fd-control-plane.gif)
-
-To learn more, please refer to the [documentation](/fast_data/runtime_management/overview.mdx).
+To learn more, please refer to the related [documentation](/fast_data/runtime_management/overview.mdx).
 
 ### Streamline how you build your Sagas, now No-Code
 
