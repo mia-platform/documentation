@@ -20,4 +20,4 @@ The available Kubernetes resources are:
 - [**Jobs**](/development_suite/monitoring/resources/jobs.md):
 - [**Namespaces**](/development_suite/monitoring/resources/namespace.md):
 
-From version 13.2.3, if properly configured and deployed through the Console, you will also be able to monitor the status of one or more [**Custom Resources**](/console/design-your-projects/custom-resources/custom-resources.md) in the _Custom Resources_ section of the sidebar.
+From version 13.3.0, if properly configured and deployed through the Console, you will also be able to monitor the status of one or more [**Custom Resources**](/console/design-your-projects/custom-resources/custom-resources.md) in the _Custom Resources_ section of the sidebar.
