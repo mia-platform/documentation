@@ -478,50 +478,6 @@ For debugging purposes, a logger is still provided via internal bindings, but it
 within cast functions at levels higher than `debug`.
 :::
 
-
-#### SSL Certificates
-
-| Property | Type     | Required | Default |
-|----------|----------|----------|---------|
-| `ssl`    | `object` | -        | `null`  |
-
-Sometimes it is required that the service connects to external dependencies, such the storage component, using TLS/SSL connection. While enabling the SSL can be configured at component
-level, it might be necessary to extend the available certificates and define client key and certificate the service need to adopt for connecting to the external dependencies.  
-This can be achieved by configuring the JVM Trust Store and the corresponding JVM Key Store.
-
-:::info
-One utility command that can be employed to create JVM key store is [`keytool`](https://docs.oracle.com/en/java/javase/21/docs/specs/man/keytool.html).
-:::
-
-In particular, these stores can be added to the service specifying the fields `trustStore` and `keyStore` under the `ssl` property of the service settings.
-Within each field there are following two attributes:
-
-- `location` &rarr; filepath where the key store in JKS format is located
-- `password` &rarr; password string for accessing the key store
-
-Here can be seen an example of configuration that includes a custom Trust Store and Key Store: 
-
-```json
-"ssl": {
-  "trustStore": {
-    "location": "/path/to/truststore.jks",
-    "password": "<ts-password>"
-  },
-  "keyStore": {
-    "location": "/path/to/keystore.jks",
-    "password": "<ks-password>"
-  }
-}
-```
-
-:::tip
-The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
-
-- `ssl.trustStore.password`
-- `ssl.keyStore.password`
-
-:::
-
 ### Consumer
 
 | Property        | Type     | Required | Default |
@@ -571,7 +527,7 @@ The following Kafka Consumer properties cannot be customized by the user, since 
 :::
 
 :::tip
-The fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+All the fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
 :::
 
 ### Producer
@@ -614,7 +570,7 @@ The following Kafka Producer properties cannot be customized by the user, since 
 :::
 
 :::tip
-The fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+All the fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
 :::
 
 ### Storage
@@ -647,8 +603,46 @@ This is an example of storage configuration when `mongodb` is selected as type:
 }
 ```
 :::tip
-The fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+All the fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
 :::
+
+##### SSL Connection
+
+Sometimes it is required that the service connects to the storage using TLS/SSL connection. This can be achieved by setting field `ssl.enabled` to the string `"true"`
+under the storage configuration properties.
+
+In addition to enabling SSL, it might also be necessary to extend which certificates are available to the system
+and define client key and certificate that the service needs to adopt for connecting to the data source.  
+This can be obtained by configuring the JVM Trust Store and the corresponding JVM Key Store.
+
+:::info
+One utility command that can be employed to create JVM key store is [`keytool`](https://docs.oracle.com/en/java/javase/21/docs/specs/man/keytool.html).
+:::
+
+In particular, these stores can be added to the service specifying the following fields in the configuration:
+
+- `ssl.enabled` &rarr; whether the connection to the database should use TLS/SSL. It is disabled by default
+- `ssl.trustStore.location` &rarr; filepath where the trust store in JKS format is located
+- `ssl.trustStore.password` &rarr; password string for accessing the trust store
+- `ssl.keyStore.location` &rarr; filepath where the key store in JKS format is located
+- `ssl.keyStore.password` &rarr; password string for accessing the key store
+
+Here can be seen an example of configuration that enables SSL and includes a custom Trust Store and Key Store:
+
+```json
+"storage": {
+  "type": "mongodb",
+  "configuration": {
+    "url": "mongodb://localhost:27017/fast-data-inventory-local",
+    "database": "fast-data-inventory-local"
+    "ssl.enabled": "true",
+    "ssl.trustStore.location": "/path/to/truststore.jks",
+    "ssl.trustStore.password": "<ts-password>",
+    "ssl.keyStore.location": "/path/to/keystore.jks",
+    "ssl.keyStore.password": "<ks-password>"
+  }
+}
+```
 
 ### Projections Config
 
@@ -1292,7 +1286,7 @@ mentioned above were downloaded and execute the following command:
 rtu-to-ps project -cc <filepath-to-api-console-config> \
   -fdc <filepath-to-fast-data-config> \
   -s <name-system-of-record>
-  -r <name-service-to-migrate-linked-to-system-of-record> \
+  -r <name-service-to-migrate-linked-to-system-of-record>
 ```
 
 :::info
