@@ -100,7 +100,8 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
             "type": "object",
             "properties": {
                 "archive": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "URL for an tar.gz archive to be used to generate a new repository"
                 }
             }
         },
