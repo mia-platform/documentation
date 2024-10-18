@@ -30,6 +30,20 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
         "name": {
             "type": "string"
         },
+        "runtime": {
+          "type": "object", 
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["kubernetes"],
+              "description": "The type of the custom resource. At the moment the only supported type by the marketplace is 'kubernetes'"
+            },
+            "resourceId": {
+              "type": "string",
+              "description": "The plural name for the custom resource definition."
+            }
+          }
+        },
         "generator": {
             "type": "object",
             "properties": {
@@ -183,6 +197,9 @@ spec:
     sleepAt: "20:00"
     timeZone: Europe/Rome
     weekdays: "1-5"
+runtime:
+  type: kubernetes
+  resourceId: sleepinfos
 ```
 
 </p>
@@ -274,6 +291,9 @@ resources:
   labels:
     - name: app.kubernetes.io/instance
       value: ingress-controller
+  runtime:
+    type: kubernetes
+    resourceId: ingressroutes
   spec:
     entryPoints:
       - websecure
@@ -299,6 +319,40 @@ To upload the resource to the Marketplace, run the following command, specifying
 
 ```bash
 > miactl marketplace apply -f ./my-custom-resource.yaml --company-id my-company-id
+```
+
+As example, if you want to create a new version to update the `runtime` property of you Custom Resource, an example valid yaml can be the following:
+
+```yaml
+name: Traefik IngressRoute
+type: custom-resource
+tenantId: my-company-id
+itemId: traefik-ingressroute
+supportedBy: my-company-id
+categoryId: kubernetes-custom-resource
+version:
+  name: 1.0.0-next
+  releaseNote: Next release
+resources:
+  name: default
+  meta:
+    apiVersion: traefik.io/v1alpha1
+    kind: IngressRoute
+  labels:
+    - name: app.kubernetes.io/instance
+      value: ingress-controller
+  runtime:
+    type: kubernetes
+    resourceId: ingressroutes
+  spec:
+    entryPoints:
+      - websecure
+    routes:
+      - match: Host(`{{PROJECT_HOST}}`)
+        kind: Rule
+        services:
+          - name: api-gateway
+            port: 8080
 ```
 
 You should receive a success response similar to this one:

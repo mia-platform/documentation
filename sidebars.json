@@ -754,6 +754,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/monitoring/resources/custom-resources",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/monitoring/dashboard",
           "type": "doc"
         }
