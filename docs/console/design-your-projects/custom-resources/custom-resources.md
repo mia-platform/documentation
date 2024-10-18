@@ -68,6 +68,9 @@ The Custom Resource has some supported fields, other fields will be ignored. The
   - **labels**: the labels of the Custom Resource, it can be any key/value pair;
   - **annotations**: the annotations of the Custom Resource, it can be any key/value pair;
 - **spec** (*required*): the spec of the Custom Resource, it can be any object.
+- **runtime**: the runtime attributes of the Custom Resource. From version _v13.3.0_, these properties are used to infer the status of the resource and show it in the _Runtime_ section of the Console.
+  - **type**: The type of the custom resource. If valued, the only supported value for this field is `kubernetes`.
+  - **resourceId**: The plural name for the Kubernetes custom resource definition.
 
 ![Update](./img/update-gateway-custom-resource.png)
 
