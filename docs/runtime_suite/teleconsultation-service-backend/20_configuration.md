@@ -85,8 +85,6 @@ The default configuration is the following:
       "accentColor": "#d62828",
     },
   },
-  "environment": "sandbox",
-  "mode": "window",
   "companyLogo": {
     "url": "https://www.insert.url.it",
   },
@@ -177,12 +175,6 @@ The Teleconsultation Service Configuration is a JSON object with 6 root properti
 -   _required_:  `true`;
 -   _description_: contains 2 types of users (*basic* and *plus*) and their privileges details for the call (e.g. The tools they can use during the call).
 
-**2. environment**
-
--   _type_: string;
--   _required_:  `true`;
--   _description_: can assumes two values: _sandbox_ or _production_. Specify the Kaleyra environment's you want to use.
-
 **3. theme**
 
 -   _type_: object;
@@ -221,8 +213,6 @@ The `JSON` file is structured like the following example:
     "basic": {...},
     "plus": {...}
   },
-  "environment": "sandbox",
-  "mode": "window",
   "theme": {
     "light": {...},
     "dark": {...}
