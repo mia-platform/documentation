@@ -118,7 +118,7 @@ By default, Custom Resources available in the Marketplace are built using templa
 Templates are stored as strings and interpolated at deployment time using the [mustache template system](https://mustache.github.io/). After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment: during this process the template is populated with user-provided values, and the resulting files are stored in a dedicated folder in the Project repository, as defined in the Marketplace item specification.
 
 :::tip
-You can leverage templates to generate multiple files to be written in your configuration repository.\
+You can leverage templates to generate multiple files to be written in your configuration repository.
 :::
 
 Here is a sequence of what happens when a template-based Custom Resource is deployed:
