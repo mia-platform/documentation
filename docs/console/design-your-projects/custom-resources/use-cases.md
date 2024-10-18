@@ -14,15 +14,22 @@ Find out all there is to know about Custom Resources in the [dedicated section](
 
 ### AWS Lambda
 
-AWS Lambda functions can be managed in different ways, depending on the user’s needs. One option allows users to create a Kubernetes custom resource for Lambda directly from the Marketplace. The Lambda function is managed by an operator within the Kubernetes cluster, and users can write the Lambda code directly from the Console.
+AWS Lambda functions can be managed in different ways, depending on the user’s needs. One option allows users to create a Kubernetes custom resource for Lambda directly from the Marketplace.
+The Lambda function is managed by an operator within the Kubernetes cluster, and users can write the Lambda code directly from the Console.
 
-Another option is for the user to create a custom resource from the Marketplace that generates a code repository for the Lambda function. In this case, users can develop the Lambda code separately and then package it into a Docker image.
+Another option is for the user to create a custom resource from the Marketplace that generates a code repository for the Lambda function.
+In this case, users can develop the Lambda code separately and then package it into a Docker image.
 
 A third approach is to manage AWS Lambda functions via CloudFormation. This method is ideal for users who prefer working with AWS-native tools and infrastructure-as-code patterns.
 
 These three options provide different levels of flexibility for users who require integration with AWS infrastructure.
 
 Here is an example of a template-based Custom Resource that creates a Lambda function:
+
+:::tip
+This CR features code directly within the configuration; in real-world scenario you might want the lambda codebase
+to be versioned in a Git repository
+:::
 
 <details>
 <summary>AWS Lambda</summary>
@@ -86,19 +93,25 @@ generator:
 
 ### Amazon EC2
 
-This use case is similar to the AWS Lambda example but focuses on the creation of EC2 instances. Users can either generate a Kubernetes CRD to manage EC2 instances through an operator in the cluster or generate Terraform files to manage infrastructure outside of Kubernetes.
+This use case is similar to the AWS Lambda example but focuses on the creation of EC2 instances.
+Users can either generate a Kubernetes CRD to manage EC2 instances through an operator in the cluster or generate Terraform files to manage infrastructure outside of Kubernetes.
 
-The first approach, using Kubernetes operators, allows users to create and manage EC2 instances directly through their Kubernetes environment. The second approach, which involves generating Terraform files, offers a more advanced option for users needing to manage complex cloud infrastructure across multiple environments.
+The first approach, using Kubernetes operators, allows users to create and manage EC2 instances directly through their Kubernetes environment.
+The second approach, which involves generating Terraform files, offers a more advanced option for users needing to manage complex cloud infrastructure across multiple environments.
 
 This flexibility allows users to choose between simple, Kubernetes-native management or more comprehensive infrastructure-as-code practices using Terraform, depending on their project needs.
 
 ### MongoDB Atlas Creation
 
-This use case involves managing MongoDB Atlas databases with Kubernetes custom resources. Users can manage a MongoDB Atlas database by leveraging a Kubernetes operator, defining essential credentials like username, password, and the database name via Custom Resources in the Console.
+Similarly to [Amazon EC2](#amazon-ec2), it is possible to manage MongoDB Atlas databases with custom resources as well.
+Users can manage a MongoDB Atlas database by leveraging the [Kubernetes operator](https://www.mongodb.com/products/integrations/kubernetes/atlas-kubernetes-operator),
+defining essential credentials like username, password, and the database name via Custom Resources in the Console.
 
-For more advanced use cases, users can write a custom resource that generates a Terraform file, which can be used to manage MongoDB Atlas with greater control, including configurations for scaling, backups, and security settings.
+For more advanced use cases, users can write a custom resource that generates Terraform files,
+which can be used to manage MongoDB Atlas with greater control, including configurations for scaling, backups, and security settings.
 
-This approach provides a straightforward method for managing small-scale database setups via the Kubernetes operator, while advanced users can opt for full Terraform-based management to integrate MongoDB with broader infrastructure.
+This approach provides a straightforward method for managing small-scale database setups via the Kubernetes operator,
+while advanced users can opt for full Terraform-based management to integrate MongoDB with broader infrastructure.
 
 ## Kubernetes-specific Custom Resources
 
