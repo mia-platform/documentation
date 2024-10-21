@@ -10,7 +10,7 @@ If deployed, the information on the [Custom Resources](/console/design-your-proj
 
 :::caution
 If you created the custom resource from a marketplace template prior to Console release v13.3.0, the Custom Resources will not be visible by default. 
-Please ensure to [update your Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md#upgrade-the-custom-resource-to-the-console-v1330) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition, otherwise the custom resources won't be visible in the section even if the resource is active.
+Please ensure to [update your Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md#update-a-custom-resource-to-the-console-v1330) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition, otherwise the custom resources won't be visible in the section even if the resource is active.
 :::
 
 
