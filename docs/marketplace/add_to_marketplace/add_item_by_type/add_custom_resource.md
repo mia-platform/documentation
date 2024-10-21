@@ -327,40 +327,6 @@ To upload the resource to the Marketplace, run the following command, specifying
 > miactl marketplace apply -f ./my-custom-resource.yaml --company-id my-company-id
 ```
 
-As example, if you want to create a new version to update the `runtime` property of you Custom Resource, an example valid yaml can be the following:
-
-```yaml
-name: Traefik IngressRoute
-type: custom-resource
-tenantId: my-company-id
-itemId: traefik-ingressroute
-supportedBy: my-company-id
-categoryId: kubernetes-custom-resource
-version:
-  name: 1.0.0-next
-  releaseNote: Next release
-resources:
-  name: default
-  meta:
-    apiVersion: traefik.io/v1alpha1
-    kind: IngressRoute
-  labels:
-    - name: app.kubernetes.io/instance
-      value: ingress-controller
-  runtime:
-    type: kubernetes
-    resourceId: ingressroutes
-  spec:
-    entryPoints:
-      - websecure
-    routes:
-      - match: Host(`{{PROJECT_HOST}}`)
-        kind: Rule
-        services:
-          - name: api-gateway
-            port: 8080
-```
-
 You should receive a success response similar to this one:
 
 ```bash
@@ -396,3 +362,12 @@ miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-custom-resource
 ```
 
 You can use the result as a template to modify the resource you want to update.
+
+### Update a Custom Resource to the Console v13.3.0
+
+If you've upgraded to Console release v13.3.0, you can now view the status of your Current Resources directly in the Runtime section. To enable this feature, please follow the instructions above to update the schema or publish a new version to include the following fields in `runtime` property in its definition:
+```yaml
+  runtime:
+    type: kubernetes # "The type of the custom resource
+    resourceId: sleepinfos # The plural name for the custom resource definition
+```
