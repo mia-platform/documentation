@@ -6,7 +6,7 @@ sidebar_label: 'Use Case: UDP'
 
 Envoy allows to accept UDP requests.
 
-The Mia-Platform Console helps to configure the Envoy API Gateway with the advanced section.
+The Mia-Platform Console helps to configure the Envoy API Gateway using the advanced section.
 
 ### Create the udp listener
 
@@ -31,11 +31,11 @@ The Mia-Platform Console helps to configure the Envoy API Gateway with the advan
 ```
 
 This configuration creates a listener named `udp` that accepts and proxies UDP traffic. 
-The listener listen on the port 33333 for incoming UDP packets accepting from any address.
+The listener monitors on the port 33333 for incoming UDP packets accepting from any address.
 
-As listener configuration we set a maximum size for incoming packets to 9000 bytes.
+In this configuration we set a maximum size for incoming packets to 9000 bytes. If not set, the default is 1500 bytes. 
 
-We also define a proxy filter that indicates `udp_cluster` as cluster to which forward the traffic and sets a timeout of 60 seconds.
+We also define a proxy filter that indicates `udp_cluster` as cluster to forward the traffic to. Then sets a timeout of 60 seconds.
 
 ### Create the udp cluster
 
