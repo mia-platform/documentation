@@ -7,34 +7,29 @@ The Mia-Platform Software Catalog is a centralized solution that enables organiz
 
 ![overview table](./img/table-overview.png)
 
-Here are the **key challenges** that a software catalog addresses:
+Here are the **key challenges** that a software catalog addresses.
 
-- **Lack of visibility**: Without a centralized system, it’s difficult to keep track software assets and their health, leading to confusion and inefficiency.
-
-- **Duplication of efforts**: Without a software catalog, teams may unknowingly develop or maintain duplicate services or tools, wasting time and resources.
-
-- **Onboarding and knowledge transfer**: New team members or teams may struggle to understand the existing software lecosystem without a complete catalog, which can slow down the onboarding and knowledge transfer process. 
-
-- **Accountability and ownership**: Without defined ownership details, it becomes challenging to assign responsibility for maintaining and updating software, leading to delays in issue resolution.
-
+- **Lack of visibility**: without a centralized system, it’s difficult to keep track software assets and their health, leading to confusion and inefficiency.
+- **Duplication of efforts**: without a software catalog, teams may unknowingly develop or maintain duplicate services or tools, wasting time and resources.
+- **Onboarding and knowledge transfer**: new team members or teams may struggle to understand the existing software ecosystem without a complete catalog, which can slow down the onboarding and knowledge transfer process. 
+- **Accountability and ownership**: without defined ownership details, it becomes challenging to assign responsibility for maintaining and updating software, leading to delays in issue resolution.
 
 ## Items
 
-An Item is the basic unit of the Software Catalog and represents a software resource available for use within Mia-Platform projects.
-
-Software catalog immagine
+An **item** is the basic unit of the Software Catalog and represents a software resource available for use within Mia-Platform projects.
 
 ### Item types
 
 The catalog supports the following item types:
-- *Plugin*: a ready-to-use microservice that can be easily integrated;
-- *Template*: a basic repository with boilerplate code to start creating a microservice;
-- *Example*: a pre-configured model with business logic, ready to modify for custom needs;
-- *Application*: a set of resources that includes plugins, templates, examples and other components;
-- *Infrastructure Resource*: defines custom objects beyond the standard Console-supported resources;
-- *Side car*: a secondary container that enhances microservices with features like security, logging, or data synchronization;
-- *Proxy*: centralizes external API access and cross-namespace microservice communication, simplifying configuration;
-- *Extension*: expands the Console with custom sections.
+
+- *plugin*: a ready-to-use microservice that can be easily integrated;
+- *template*: a basic repository with boilerplate code to start creating a microservice;
+- *example*: a pre-configured model with business logic, ready to modify for custom needs;
+- *application*: a set of resources that includes plugins, templates, examples and other components;
+- *infrastructure Resource*: defines custom objects beyond the standard Console-supported resources;
+- *sidecar*: a secondary container that enhances microservices with features like security, logging, or data synchronization;
+- *proxy*: centralizes external API access and cross-namespace microservice communication, simplifying configuration;
+- *extension*: expands the Console with custom sections.
 
 Please refer to [this documentation](/marketplace/add_to_marketplace/create_your_company_marketplace.md#item-types) for more details on item types.
 
@@ -48,19 +43,18 @@ The versioning system in the Software Catalog provides detailed control over the
 
 Each version includes key information, such as the release date and whether it is marked as the latest version. Additionally, if available, you can view the associated release notes to understand what changes or improvements were made in that particular version.
 
-In cases where a version is listed as N/A, it indicates a default version for an item that supports versioning but has not yet had any versions added. New versions can be introduced if needed.
+In cases where a version is listed as *N/A*, it indicates a default version for an item that supports versioning but has not yet had any versions added. New versions can be introduced if needed.
 
 ### Items Lifecycle
 
 Each item in the Software Catalog is associated with a lifecycle status that reflects its current phase of development and maintenance. The available lifecycle statuses are:
 
-- Coming soon
-- Preview
-- Beta
-- Stable
-- Deprecated
+- coming soon
+- preview
+- beta
+- stable
+- deprecated
 
-For a more detailed explanation of each status, please refer to section [The Release Stage of a Marketplace Item
-](/marketplace/add_to_marketplace/create_your_company_marketplace.md#the-release-stage-of-a-marketplace-item) of the documentation.
+For a more detailed explanation of each status, please refer to the [dedicated section](/marketplace/add_to_marketplace/create_your_company_marketplace.md#the-release-stage-of-a-marketplace-item) of the documentation.
 
 A lifecycle status indicates where an item stands in its lifecycle, from its initial creation to its active use, and eventually to being deprecated when it's no longer maintained or supported. This helps users quickly understand the maturity and stability of an item.

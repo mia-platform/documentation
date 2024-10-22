@@ -76,7 +76,7 @@ async function createConfig() {
               {
                 type: 'doc',
                 docId: "software-catalog/overview",
-                label: "Software Catalg",
+                label: "Software Catalog",
                 activeBaseRegex: "(docs|docs/\\d.x)/software-catalog"
               },
               {
