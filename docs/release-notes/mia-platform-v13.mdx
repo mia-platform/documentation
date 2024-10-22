@@ -38,7 +38,7 @@ Let's go in deep with the new Features:
 
 We have strengthened our Platforge Extensibility Kit by adding the possibility to add extensions from Console UI and enriching the type of supported extensions. You can now extend your Console by embedding iFrames, adding External Links & composing your pages with Microfrontend Composer within a dedicated "Extensions" section, accessible to Company Owners within the Platforge section at Company level.
 
-Customizing your Mia-Platform Console has never been so easy: simply select the type of extension, the desired Area and Sidebar section from the options, and choose what you want to show your users!
+Customizing your Mia-Platform Console has never been so easy: simply select the type of extension, the desired Area and where to display it from the available options, then choose what you want to show your users!
 
 ### Extend Frontend of Mia-Platform Console with iFrames
 
@@ -55,23 +55,25 @@ To learn more, please refer to the [documentation](/console/console-extensibilit
 
 ## Infrastructure Management
 
-### Support to all infrastructure Resources in Console | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+### Support to all infrastructure Resources | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
 
-TO DO
+With this Fall release we have officially introduced the possibility to manage the provisioning of your infrastructure, configuring - at the Design level - your Infrastructure Resources.  
+Within the Design of your Console you can then see a new "Infrastructure" section entirely dedicated to Infrastructure as Code! 
+
+To discover more, please refer to the [documentation page](/console/design-your-projects/custom-resources.md) and check out some useful [use cases](/console/design-your-projects/custom-resources/custom-resources-use-cases.md).
+
+### Support of Kubernetes Resources in Runtime area | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+
+We finalised the support for Kubernetes type Resources by introducing the possibility of monitoring such resources at Runtime once deployed.  
+For each resource you will be able to access its detail where you will see the respective Describe and Events that are generated, similarly to the other resources in the Runtime Area.
+
+To discover more, you can refer to the [documentation](/console/design-your-projects/custom-resources/custom-resources.md).
 
 ### Manage custom Resources through Console
 
 You can now manage and configure custom objects that are not part of the standard Console supported resources using the classic user interface of the Console. This feature further expands the Console domain over user's entire workloads, enabling greater operability, governance, and control over systems.
 
 ![Custom Resources](img/custom-resources.png)
-
-### Support of Custom Resources in the Runtime area
-
-With the v13.3.0 it is now possible to monitor directly in the Runtime area all the Custom Resources deployed for your project, on each environment on it.
-
-For each resource you will be able to access its detail where you will see the respective Describe and Events that are generated, similarly to the other resources in the Runtime Area.
-
-To discover more, please refer to the [documentation](/console/design-your-projects/custom-resources/custom-resources.md).
 
 ### React to Console actions using Webhooks
 
@@ -149,7 +151,8 @@ With Mia-Platform Software Catalog, you can:
 
 ### Versioning management for Marketplace resources | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
 
-TO DO
+versioning for Marketplace resources is now available in Mia-Platform Console, allowing users to view, select, and manage different versions of Plugins and infrastructure Resources. Users can choose the version that best fits their needs and easily switch between versions.  
+If you want to discover more, head to the [dedicated section](/marketplace/add_to_marketplace/create_your_company_marketplace.md#set-controlled-versions-for-your-marketplace-resources-and-make-them-available-to-users) inside the [Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) documentation page.
 
 ### Streamline how you build your Sagas, now No-Code
 
