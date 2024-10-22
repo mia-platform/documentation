@@ -12,9 +12,9 @@ Here is described the compatibility between Fast Data Control Plane application 
 Please ensure that versions shown in the matrix are respected in your deployed environments. 
 
 | Service                                                                  | Version | MongoDB | Redis  |
-|--------------------------------------------------------------------------|---------|---------|--------|
+| ------------------------------------------------------------------------ | ------- | ------- | ------ |
 | [Control Plane](/fast_data/runtime_management/control_plane.mdx)         | 0.1.0   | \>=5.0  | \>=7.0 |
-| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx) | 0.1.0   | \>=5.0  | _N/A_  |
+| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx) | 0.1.x   | \>=5.0  | _N/A_  |
 <p><sup>*</sup><em>N/A</em> means the service does not depend on the resource</p>
 
 ## Fast Data services
@@ -23,5 +23,15 @@ Here is provided the compatibility matrix between Control Plane Operator and the
 Please ensure that your services respects the following matrix. 
 
 | [Control Plane Operator](/fast_data/runtime_management/control_plane_operator.mdx) | [PS](/fast_data/configuration/projection_storer.md#runtime-management-config) | [RTU](/fast_data/configuration/realtime-updater/realtime-updater.md#runtime-management) | [SVTG](/fast_data/configuration/single_view_trigger_generator.mdx#runtime-management) | [SVC](/fast_data/configuration/single_view_creator/index.md#runtime-management) |
-|:----------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|
+| :--------------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 |                                       0.1.0                                        |                                   \>=1.2.0                                    |                                        \>=7.8.0                                         |                                       \>=3.3.1                                        |                                    \>=6.7.0                                     |
+
+## Service Latest Versions
+
+| Service                                                                            | Version |
+| ---------------------------------------------------------------------------------- | ------- |
+| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)           | 0.1.1   |
+| [Control Plane](/fast_data/runtime_management/control_plane.mdx)                   | 0.1.0   |
+| [Control Plane Operator](/fast_data/runtime_management/control_plane_operator.mdx) | 0.1.0   |
+| [Control Plane Frontend](/fast_data/runtime_management/control_plane_frontend.mdx) | 0.4.1   |
+| [Fabric Admin](/fast_data/runtime_management/database_setup.mdx)                   | 0.1.1   |
