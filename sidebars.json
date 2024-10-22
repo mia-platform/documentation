@@ -615,6 +615,10 @@
                 {
                   "id": "development_suite/api-console/advanced-section/api-gateway-envoy/timeouts",
                   "type": "doc"
+                },
+                {
+                  "id": "development_suite/api-console/advanced-section/api-gateway-envoy/udp",
+                  "type": "doc"
                 }
               ],
               "label": "Envoy API Gateway",
