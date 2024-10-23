@@ -312,11 +312,11 @@ The changes are now reflected to the Console.
 ### Update of versioned items
 
 Marketplace items of type *Plugin* and *Custom Resources* require a *version* object to determine the differences of the plugin definition over time.
-In case you need to update the definition, you can update a versioned item only if you need to change some base fields (more details on the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace) page), otherwise you can do so by creating a new version.
+In case you need to update the definition, you can update a versioned item only if you need to change some base fields (more details on the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) page), otherwise you can do so by creating a new version.
 
 You can create a new version of the plugin via [miactl](/cli/miactl/10_overview.md) by simply executing the `apply` command, in the same way as explained above, ensuring that the `itemId` and `tenantId` are the same but with a new version, and of course the `resource` object updated.
 
-As explained in the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace) page, we suggest to follow the [Semantic Versioning](https://semver.org/) convention when defining the version of your item.
+As explained in the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) page, we suggest to follow the [Semantic Versioning](https://semver.org/) convention when defining the version of your item.
 This will help you to keep track of the changes you made to the item over time, and help you understand the best version to use when configuring your project.
 
 ### Delete an item
