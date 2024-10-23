@@ -124,7 +124,7 @@ If the microservice has been created from a versioned Marketplace plugin, the *D
 ![Detail of a service generated from a versioned Marketplace plugin](img/versioned-service.png)
 
 :::info
-If you have the *Marketplace Notifications* [feature preview](/console/project-configuration/project-settings.md#feature-preview) enabled you will be informed in the detail page if one or more of your microservices attached to a Marketplace item have updates with an icon next to the version name.
+Anytime you access to the configuration page of your plugin, you will be informed if the related Marketplace item have updates with an icon next to the version name.
 
 ![Detail of the Microservice badge, with the icon to notify a new version available](img/marketplace-notification.png)
 

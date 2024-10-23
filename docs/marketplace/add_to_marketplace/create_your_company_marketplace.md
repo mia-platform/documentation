@@ -148,7 +148,7 @@ We suggest to follow these guidelines when assigning a version to your item, in 
  ![List of marketplace versions](./img/version_list.png)
 
 ::: info
-If you have the *Marketplace Notifications* [feature preview](/console/project-configuration/project-settings.md#feature-preview) enabled you will be informed if one or more of your microservices attached to a Marketplace item have updates.
+Also you will be informed if one or more of your resources attached to a Marketplace item have updates.
 
 You can find a list of all the updates at the bottom of the sidebar menu with the list of all your services, as well as inside the detail page of the service that can be updated.
 
