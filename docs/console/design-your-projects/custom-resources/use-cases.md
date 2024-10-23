@@ -4,27 +4,27 @@ title: Use Cases
 sidebar_label: Use Cases
 ---
 
-The following examples showcase how users can leverage **Custom Resources** in different scenarios.
+The following examples showcase how users can leverage **Infrastructure Resources** in different scenarios.
 
 :::tip
-Find out all there is to know about Custom Resources in the [dedicated section](/console/design-your-projects/custom-resources/custom-resources.md).
+Find out all there is to know about Infrastructure Resources in the [dedicated section](/console/design-your-projects/custom-resources/custom-resources.md).
 :::
 
-## Template-based Custom Resources
+## Template-based Infrastructure Resources
 
 ### AWS Lambda
 
-AWS Lambda functions can be managed in different ways, depending on the user’s needs. One option allows users to create a Kubernetes custom resource for Lambda directly from the Marketplace.
+AWS Lambda functions can be managed in different ways, depending on the user’s needs. One option allows users to create a Custom Kubernetes Resource for Lambda directly from the Marketplace.
 The Lambda function is managed by an operator within the Kubernetes cluster, and users can write the Lambda code directly from the Console.
 
-Another option is for the user to create a custom resource from the Marketplace that generates a code repository for the Lambda function.
+Another option is for the user to create an Infrastructure Resource from the Marketplace that generates a code repository for the Lambda function.
 In this case, users can develop the Lambda code separately and then package it into a Docker image.
 
 A third approach is to manage AWS Lambda functions via CloudFormation. This method is ideal for users who prefer working with AWS-native tools and infrastructure-as-code patterns.
 
 These three options provide different levels of flexibility for users who require integration with AWS infrastructure.
 
-Here is an example of a template-based Custom Resource that creates a Lambda function:
+Here is an example of a template-based Infrastructure Resource that creates a Lambda function:
 
 :::tip
 This CR features code directly within the configuration; in real-world scenario you might want the lambda codebase
@@ -103,27 +103,27 @@ This flexibility allows users to choose between simple, Kubernetes-native manage
 
 ### MongoDB Atlas Creation
 
-Similarly to [Amazon EC2](#amazon-ec2), it is possible to manage MongoDB Atlas databases with custom resources as well.
+Similarly to [Amazon EC2](#amazon-ec2), it is possible to manage MongoDB Atlas databases with Infrastructure Resources as well.
 Users can manage a MongoDB Atlas database by leveraging the [Kubernetes operator](https://www.mongodb.com/products/integrations/kubernetes/atlas-kubernetes-operator),
-defining essential credentials like username, password, and the database name via Custom Resources in the Console.
+defining essential credentials like username, password, and the database name via Infrastructure Resources in the Console.
 
-For more advanced use cases, users can write a custom resource that generates Terraform files,
+For more advanced use cases, users can write a Infrastructure Resources that generates Terraform files,
 which can be used to manage MongoDB Atlas with greater control, including configurations for scaling, backups, and security settings.
 
 This approach provides a straightforward method for managing small-scale database setups via the Kubernetes operator,
 while advanced users can opt for full Terraform-based management to integrate MongoDB with broader infrastructure.
 
-## Kubernetes-specific Custom Resources
+## Custom Kubernetes-specific Resources
 
 ### Traefik IngressRoute
 
-In this use case, the user manages Kubernetes Ingress routing for Traefik. They can either copy an existing Traefik IngressRoute Custom Resource Definition (CRD) directly into the editor in Console, or create a new one from scratch. This approach provides users with fine-tuned control over how Ingress routes are configured.
+In this use case, the user manages Kubernetes Ingress routing for Traefik. They can either copy an existing Traefik IngressRoute Infrastructure Resource Definition (CRD) directly into the editor in Console, or create a new one from scratch. This approach provides users with fine-tuned control over how Ingress routes are configured.
 
 Alternatively, users can opt to create the resource from the Marketplace. This version offers simplified management of key configuration fields, such as the host and service name, making the process more accessible for users who may not need the full flexibility of direct CRD management.
 
 This use case is ideal for users who require granular control over routing rules and protocols, or for those who prefer a simplified way to handle basic Ingress configurations.
 
-Here is an example of a Traefik IngressRoute Custom Resource:
+Here is an example of a Traefik IngressRoute Infrastructure Resource:
 
 <details>
 <summary>Traefik IngressRoute</summary>
@@ -159,7 +159,7 @@ However, unlike the previous example, this resource is typically activated only 
 
 This use case is particularly beneficial for organizations that want to reduce the CO2 footprint of their clusters and optimize resource costs in environments that don't require constant uptime.
 
-Here is an example of a kube-green SleepInfo Custom Resource:
+Here is an example of a kube-green SleepInfo Infrastructure Resource:
 
 <details>
 <summary>kube-green SleepInfo</summary>

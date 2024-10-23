@@ -1,21 +1,25 @@
 ---
 id: add_custom_resource
-title: Publish your Custom Resources to the Marketplace
-sidebar_label: Create a Custom Resource
+title: Publish your Infrastructure Resources to the Marketplace
+sidebar_label: Create an Infrastructure Resource
 ---
 
-When designing your Project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
+When designing your Project in the Mia-Platform Console, you can define and configure [Infrastructure Resources](/console/design-your-projects/custom-resources/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. 
 
-Custom Resources are basically defined by two fields:
+An infrastructure resource may be either Kubernetes type, and thus refer to a particular Custom Kubernetes Resource, or to Non-Kubernetes ones (Lambda functions, Terraform resources, etc.).
 
-- the `apiVersion` field, which should be set to `custom-generator.console.mia-platform.eu/v1` for generic template-based Custom Resources, or to the version of the Kubernetes API used by the resource in case of Kubernetes-specific Custom Resources
+Here we explain how you can add your own Infrastructure Resources to the Marketplace.
+
+Infrastructure Resources are basically defined by two fields:
+
+- the `apiVersion` field, which should be set to `custom-generator.console.mia-platform.eu/v1` for generic template-based Infrastructure Resources, or to the version of the Kubernetes API used by the resource in case of Kubernetes-specific Custom Resources
 - the `kind` field, which is the specific resource type of the resource
 
-A Custom Resource can be created from scratch or from an existing Marketplace item and added to your Project. Custom Resources on the Marketplace follow the base Marketplace item schema defined in the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), with the _type_ field set to `custom-resource`.
+An Infrastructure Resource can be created from scratch or from an existing Marketplace item and added to your Project. Infrastructure Resources on the Marketplace follow the base Marketplace item schema defined in the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), with the _type_ field set to `custom-resource`.
 
-Custom resource items in the Marketplace also support _versioning_, allowing you to update a resource without overwriting its previous versions.
+Infrastructure resource items in the Marketplace also support _versioning_, allowing you to update a resource without overwriting its previous versions. 
 
-## Custom Resource definition
+## Infrastructure Resource definition
 
 The following JSON Schema can be used to create a Marketplace item with _type_ `custom-resource`.
 
@@ -29,6 +33,20 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
     "properties": {
         "name": {
             "type": "string"
+        },
+        "runtime": {
+          "type": "object", 
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["kubernetes"],
+              "description": "The type of the Infrastructure resource. At the moment the only supported type by the marketplace is 'kubernetes'"
+            },
+            "resourceId": {
+              "type": "string",
+              "description": "The plural name for the Infrastructure resource definition."
+            }
+          }
         },
         "generator": {
             "type": "object",
@@ -85,7 +103,7 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
         },
         "attributes": {
             "type": "object",
-            "description": "Attributes to be used to generate the form to manage the Custom Resource",
+            "description": "Attributes to be used to generate the form to manage the Infrastructure Resource",
             "additionalProperties": {
             "type": "object",
             "properties": {
@@ -140,9 +158,9 @@ The following JSON Schema can be used to create a Marketplace item with _type_ `
 </p>
 </details>
 
-This schema can be used to define both available types of Custom Resources: generic **template-based** Custom Resources, and **Kubernetes-specific** ones.
+This schema can be used to define both available types of Infrastructure Resources: generic **template-based** Infrastructure Resources, and **Kubernetes-specific** ones.
 
-Here is an example of a template-based Custom Resource:
+Here is an example of a template-based Infrastructure Resource:
 
 <details>
 <summary>ExternalOrchestratorLambda</summary>
@@ -168,7 +186,7 @@ generator:
 </p>
 </details>
 
-Here is an example of a Kubernetes-specific Custom Resource, used to configure [`kube-green`](https://kube-green.dev/):
+Here is an example of a Kubernetes-specific Infrastructure Resource, used to configure [`kube-green`](https://kube-green.dev/):
 
 <details>
 <summary>SleepInfo</summary>
@@ -183,24 +201,27 @@ spec:
     sleepAt: "20:00"
     timeZone: Europe/Rome
     weekdays: "1-5"
+runtime:
+  type: kubernetes
+  resourceId: sleepinfos
 ```
 
 </p>
 </details>
 
-## Create a new Custom Resource
+## Create a new Infrastructure Resource
 
 ::: info
-In the following paragraphs, we are going to use the `miactl` tool to create a new Custom Resource.
+In the following paragraphs, we are going to use the `miactl` tool to create a new Infrastructure Resource.
 
 Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
 :::
 
 ### Define the new Marketplace item
 
-First of all, we need to create a new file that includes the Marketplace item information and the Custom Resource that we want to add.
+First of all, we need to create a new file that includes the Marketplace item information and the Infrastructure Resource that we want to add.
 
-Here is an example of Marketplace item definition for a template-based Custom Resource:
+Here is an example of Marketplace item definition for a template-based Infrastructure Resource:
 
 <details>
 <summary>template-custom-resource.yaml</summary>
@@ -244,7 +265,7 @@ resources:
 </p>
 </details>
 
-Here is an example of Marketplace item definition for a Kubernetes-specific Custom Resource:
+Here is an example of Marketplace item definition for a Kubernetes-specific Infrastructure Resource:
 
 <details>
 <summary>k8s-custom-resource.yaml</summary>
@@ -274,6 +295,9 @@ resources:
   labels:
     - name: app.kubernetes.io/instance
       value: ingress-controller
+  runtime:
+    type: kubernetes
+    resourceId: ingressroutes
   spec:
     entryPoints:
       - websecure
@@ -299,7 +323,7 @@ Versions are not mandatory but highly recommended to avoid overwriting existing 
 Also, it is required to follow the [Semantic Versioning](https://semver.org/) convention when creating new versions: this convention is used to group the different versions of the same marketplace items and determine the _latest_ version that will be used by the Console to help the user to determine the best version to use and be notified of further updates.
 :::
 
-### Publish the new Custom Resource
+### Publish the new Infrastructure Resource
 
 To upload the resource to the Marketplace, run the following command, specifying the file name and your Company (tenant) id:
 
@@ -319,19 +343,19 @@ You should receive a success response similar to this one:
 
 You just created your custom resource, which is now available on your `Company Marketplace`.
 
-### Update the Custom Resource
+### Update the Infrastructure Resource
 
-You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` command explained before, by including an updated file (either in `json` or `yaml` format).
+You can update a Infrastructure Resource Marketplace item by using the same `miactl marketplace apply` command explained before, by including an updated file (either in `json` or `yaml` format).
 
-When updating a Custom Resource, it is recommended to create a new version of the Marketplace item to avoid overwriting the existing one.
+When updating a Infrastructure Resource, it is recommended to create a new version of the Marketplace item to avoid overwriting the existing one.
 The new version should contain the updated resource definition and a release note detailing the changes.
 
-In case you are trying to overwrite a versioned Marketplace Custom Resource, remember that only few fields can be modified.
+In case you are trying to overwrite a versioned Marketplace Infrastructure Resource, remember that only few fields can be modified.
 For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
-#### Update non-versioned Custom Resources
+#### Update non-versioned Infrastructure Resources
 
-In case the Custom Resource you need to update is not versioned, you can update it by using the `miactl marketplace apply` command, passing the company id (`tenantId` of your resource) and the resource file you created before with the modifications you need.
+In case the Infrastructure Resource you need to update is not versioned, you can update it by using the `miactl marketplace apply` command, passing the company id (`tenantId` of your resource) and the resource file you created before with the modifications you need.
 
 Since this is a non-versioned element, all field values can be updated without limitations. However, please make sure to use the same `itemId` and the same `tenantId` of the resource you want to update.
 
@@ -342,3 +366,12 @@ miactl marketplace get --object-id 66423781fdd3d6dd3ca62b7b > my-custom-resource
 ```
 
 You can use the result as a template to modify the resource you want to update.
+
+#### Update a Custom Kubernetes Resource in order to see it in the Runtime Area
+
+If you've upgraded to Console release v13.3.0, you can now view the status of your Current Kubernetes Resources directly in the Runtime section. To enable this feature, please follow the instructions above to update the schema or publish a new version to include the following fields in `runtime` property in its definition:
+```yaml
+  runtime:
+    type: kubernetes # "The type of the Custom Kubernetes resource
+    resourceId: sleepinfos # The plural name for the Custom Kubernetes resource definition
+```
