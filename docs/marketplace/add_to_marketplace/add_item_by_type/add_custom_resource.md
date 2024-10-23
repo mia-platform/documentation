@@ -294,9 +294,9 @@ Please note that:
 - the `version` property is required and must be composed by its _name_, e.g. to define this item as a version `1.0.0`, and the _releaseNote_ to highlight the latest updates of said release
 
 :::info
-Versions are not mandatory but highly suggested to avoid overwriting existing resources.
+Versions are not mandatory but highly recommended to avoid overwriting existing resources.
 
-Also, it is suggested to follow the [Semantic Versioning](https://semver.org/) convention when creating new versions: this convention is used to group the different versions of the same marketplace items and determine the _latest_ version that will be used by the Console to help the user to determine the best version to use and be notified of further updates.
+Also, it is required to follow the [Semantic Versioning](https://semver.org/) convention when creating new versions: this convention is used to group the different versions of the same marketplace items and determine the _latest_ version that will be used by the Console to help the user to determine the best version to use and be notified of further updates.
 :::
 
 ### Publish the new Custom Resource
