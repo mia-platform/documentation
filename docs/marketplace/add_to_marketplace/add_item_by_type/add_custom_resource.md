@@ -1,10 +1,14 @@
 ---
 id: add_custom_resource
-title: Publish your Custom Resources to the Marketplace
-sidebar_label: Create a Custom Resource
+title: Publish your Infrastructure Resources to the Marketplace
+sidebar_label: Create an Infrastructure Resource
 ---
 
-When designing your Project in the Mia-Platform Console, you can define and configure [Custom Resources](/console/design-your-projects/custom-resources/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. Here we explain how you can add your own Custom Resources to the Marketplace.
+When designing your Project in the Mia-Platform Console, you can define and configure [Infrastructure Resources](/console/design-your-projects/custom-resources/custom-resources.md), either from scratch or from the existing resources already included in the Marketplace. 
+
+An infrastructure resource may be either Kubernetes type, and thus refer to a particular Custom Kubernetes Resource, or to Non-Kubernetes ones (Lambda functions, Terraform resources, etc.).
+
+Here we explain how you can add your own Infrastructure Resources to the Marketplace.
 
 Custom Resources are basically defined by two fields:
 
