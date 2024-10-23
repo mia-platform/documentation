@@ -315,7 +315,7 @@ If you want to do so, you must create a new version of the resource: for more in
 Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource.
 
 :::info
-Versions are not mandatory but highly suggested to avoid overwriting existing resources.
+Versions are not mandatory but highly recommended to avoid overwriting existing resources.
 
 Also, it is required to follow the [Semantic Versioning](https://semver.org/) convention when creating new versions: this convention is used to group the different versions of the same marketplace items and determine the _latest_ version that will be used by the Console to help the user to determine the best version to use and be notified of further updates.
 :::
