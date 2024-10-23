@@ -218,7 +218,6 @@ To highlight the potentialities of `Acme.Js` and introduce your users to the new
 
 </details>
 
-
 Notice that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exist and that their path is correct.
 
 To create the items on the Marketplace, open up a terminal in directory where the files are placed and run this command:
@@ -271,9 +270,7 @@ Further information about the `apply` command can be found in the [dedicated doc
 ### Update an item
 
 :::info
-
 You need to have *Company Owner* or *Project Administrator* role at Company level to perform this action
-
 :::
 
 Imagine now that you noticed that the description of "My Awesome Service" is not correct and you want to change it.
@@ -283,6 +280,7 @@ First of all, download and save the latest version of the item configuration:
 ```sh
 miactl marketplace get ITEM_ID > myAwesomeService.json
 ```
+
 where `ITEM_ID` is an alphanumerical id of the Marketplace item.  
 If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
 
@@ -310,6 +308,16 @@ You will see the outcome of the operation in the command output:
 ```
 
 The changes are now reflected to the Console.
+
+### Update of versioned items
+
+Marketplace items of type *Plugin* and *Custom Resources* require a *version* object to determine the differences of the plugin definition over time.
+In case you need to update the definition, you can update a versioned item only if you need to change some base fields (more details on the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) page), otherwise you can do so by creating a new version.
+
+You can create a new version of the plugin via [miactl](/cli/miactl/10_overview.md) by simply executing the [`apply`](/cli/miactl/30_commands.md#apply) command, in the same way as explained above, ensuring that the `itemId` and `tenantId` are the same but with a new version, and of course the `resource` object updated.
+
+As explained in the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) page, we suggest to follow the [Semantic Versioning](https://semver.org/) convention when defining the version of your item.
+This will help you to keep track of the changes you made to the item over time, and help you understand the best version to use when configuring your project.
 
 ### Delete an item
 

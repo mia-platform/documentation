@@ -123,11 +123,22 @@ If the microservice has been created from a versioned Marketplace plugin, the *D
 
 ![Detail of a service generated from a versioned Marketplace plugin](img/versioned-service.png)
 
+:::info
+If you have the *Marketplace Notifications* [feature preview](/console/project-configuration/project-settings.md#feature-preview) enabled you will be informed in the detail page if one or more of your microservices attached to a Marketplace item have updates with an icon next to the version name.
+
+![Detail of the Microservice badge, with the icon to notify a new version available](img/marketplace-notification.png)
+
+This is the best way to be aware of updates of your Marketplace plugins.
+:::
+
 In case you want to manually update the Docker Image Name, you can click on the right-side menu button where a menu will pop-up.
 From there you can either *select a different version* or *detach the microservice from the Marketplace plugin*.
 
 Selecting a different version will open a modal window where all the versions available for that Marketplace plugin will be listed.
+
 You can use this modal window also to get more information about the versions, such as the release note and the Docker Image name referenced, plus also to be aware of versions that are flagged with the *Coming Soon* badge.
+
+A small tag will also inform you which is the *latest* version of the plugin, the latest stable version released.
 
 From there you can select one of the available versions in order to update the Docker Image.
 

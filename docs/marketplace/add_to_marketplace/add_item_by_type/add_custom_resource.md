@@ -13,7 +13,7 @@ Custom Resources are basically defined by two fields:
 
 A Custom Resource can be created from scratch or from an existing Marketplace item and added to your Project. Custom Resources on the Marketplace follow the base Marketplace item schema defined in the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), with the _type_ field set to `custom-resource`.
 
-Custom resource items in the Marketplace also support _versioning_, allowing you to update a resource without overwriting its previous versions. 
+Custom resource items in the Marketplace also support _versioning_, allowing you to update a resource without overwriting its previous versions.
 
 ## Custom Resource definition
 
@@ -291,7 +291,13 @@ resources:
 Please note that:
 
 - the `type: custom-resource` is required to specify that this resource is a Custom Resource
-- the `version` property is included, to define this item as a version `1.0.0` with a specific release note: versions are not mandatory but highly suggested to avoid overwriting existing resources.
+- the `version` property is required and must be composed by its _name_, e.g. to define this item as a version `1.0.0`, and the _releaseNote_ to highlight the latest updates of said release
+
+:::info
+Versions are not mandatory but highly recommended to avoid overwriting existing resources.
+
+Also, it is required to follow the [Semantic Versioning](https://semver.org/) convention when creating new versions: this convention is used to group the different versions of the same marketplace items and determine the _latest_ version that will be used by the Console to help the user to determine the best version to use and be notified of further updates.
+:::
 
 ### Publish the new Custom Resource
 
@@ -317,9 +323,10 @@ You just created your custom resource, which is now available on your `Company M
 
 You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` command explained before, by including an updated file (either in `json` or `yaml` format).
 
-When updating a Custom Resource, it is recommended to create a new version of the Marketplace item to avoid overwriting the existing one. The new version should contain the updated resource definition and a release note detailing the changes.
+When updating a Custom Resource, it is recommended to create a new version of the Marketplace item to avoid overwriting the existing one.
+The new version should contain the updated resource definition and a release note detailing the changes.
 
-In case you are trying to update a versioned Marketplace Custom Resource, remember that only few fields can be modified.
+In case you are trying to overwrite a versioned Marketplace Custom Resource, remember that only few fields can be modified.
 For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
 
 #### Update non-versioned Custom Resources
