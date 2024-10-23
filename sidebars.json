@@ -1923,5 +1923,15 @@
       "id": "release-notes/support-policy",
       "type": "doc"
     }
+  ],
+  "software-catalog": [
+    {
+      "id": "software-catalog/overview",
+      "type": "doc"
+    },
+    {
+      "id": "software-catalog/ui",
+      "type": "doc"
+    }
   ]
 }
