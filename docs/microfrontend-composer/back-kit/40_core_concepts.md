@@ -191,6 +191,26 @@ the resulting configuration is:
 }
 ```
 
+#### $dateNow
+
+`$dateNow` allows to get the current date and time in ISO format.
+
+For instance, given the dynamic configuration:
+
+```json
+{
+  "dateTime": "{{ $dateNow }}",
+}
+```
+
+the resulting configuration is:
+
+```json
+{
+  "dateTime": "2024-10-15T12:37:41.302Z",
+}
+```
+
 ### Template - ConfigMap
 
 Some components allow to specify an object with fields `template`-`configMap` instead of a value for their dynamically configurable properties.

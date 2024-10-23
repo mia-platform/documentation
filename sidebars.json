@@ -754,6 +754,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/monitoring/resources/custom-resources",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/monitoring/dashboard",
           "type": "doc"
         }
@@ -1889,10 +1893,12 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v13.3.0", "type": "doc" },
         { "id": "release-notes/v13.2.1", "type": "doc" },
         { "id": "release-notes/v13.2.0", "type": "doc" },
         { "id": "release-notes/v13.1.1", "type": "doc" },
         { "id": "release-notes/v13.1.0", "type": "doc" },
+        { "id": "release-notes/v13.0.7", "type": "doc" },
         { "id": "release-notes/v13.0.6", "type": "doc" },
         { "id": "release-notes/v13.0.5", "type": "doc" },
         { "id": "release-notes/v13.0.4", "type": "doc" },
@@ -1920,6 +1926,16 @@
     },
     {
       "id": "release-notes/support-policy",
+      "type": "doc"
+    }
+  ],
+  "software-catalog": [
+    {
+      "id": "software-catalog/overview",
+      "type": "doc"
+    },
+    {
+      "id": "software-catalog/ui",
       "type": "doc"
     }
   ]

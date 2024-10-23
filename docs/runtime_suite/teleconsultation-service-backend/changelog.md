@@ -15,6 +15,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] 2024-10-10
+
+### BREAKING CHANGES
+
+- If no company theme or logo is specified in the service configuration, no default is provided and no update is performed when service starts
+- Deleted API `POST /teleconsultation/:roomId/participants/data`
+
+### Changed
+
+- Change the **BANDYER_BASE_URL** environment variable to use the Kaleyra API `v2.0.0`
+- Use Kaleyra REST API v2 to create a room
+- Use Kaleyra REST API v2 to generate credentials for a user
+- Use Kaleyra REST API v2 to delete a room
+- Use Kaleyra REST API v2 to get the room uploads
+- Updated API `DELETE /teleconsultation/:roomId/uploads` with Kaleyra REST API v2
+- Use Kaleyra REST API v2 to update the company theme
+- Remove default company theme and skip update at bootstrap if not specified
+- Use Kaleyra REST API v2 to update the company logo
+- Remove default company logo and skip update at bootstrap if not specified
+- Updated API `POST /settings/background-image` for being compatible with Kaleyra REST API v2
+- Updated API `PATCH /settings/update` for being compatible with Kaleyra REST API v2
+- Updated API `GET /teleconsultation/:roomId` for being compatible with Kaleyra REST API v2
+
 ## [1.8.0] 2024-08-29
 
 - Update Node.js to v20 (LTS)

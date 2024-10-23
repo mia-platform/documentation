@@ -139,6 +139,22 @@ Also, to provide continuity to the definition of the other versions of the same 
 
 You can create a new version of a Marketplace item either if there is already that resource on the Marketplace without a version. In that case the non-versioned item will be still available in the Console, where will be shown with a *N/A* value for the version.
 
+If there are multiple version of the same item, one of these versions will be used as *latest version*.
+This is the version that will be used as a reference when you will create a new microservice or a new resource choosing the item from the Marketplace.
+
+The latest version is going to be the one with the highest version, according to the [Semantic Versioning rules](https://semver.org/).
+We suggest to follow these guidelines when assigning a version to your item, in order to easily determine which one is the latest.
+
+ ![List of marketplace versions](./img/version_list.png)
+
+::: info
+Also you will be informed if one or more of your resources attached to a Marketplace item have updates.
+
+You can find a list of all the updates at the bottom of the sidebar menu with the list of all your services, as well as inside the detail page of the service that can be updated.
+
+ ![Design page with notifications of new Marketplace versions](./img/versions_notifications.png)
+:::
+
 #### Editing a versioned resource
 
 Versioned resources are defined to be immutable, to avoid that updates might overwrite the previous configuration. However, it is possible to edit in case we need to update changes to their metadata (e.g. the release note or the description of the marketplace item - because of typos or other reasons).
@@ -150,11 +166,12 @@ Editing a versioned resource is possible via `miactl`, however the following fie
 - the `name` property inside `version` object
 - the `resources` property, that includes the specific resource definition
 
-Since marketplace items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a completely new marketplace item, completely separated from the previous one.
+Since marketplace items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a new marketplace item, completely separated from the previous one.
 
 Attemping to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
 
 Also, the following fields are editable only in case the permission `marketplace.root.manage` has been granted to the user:
+
 - `supportedBy`
 - `supportedByImage`
 - `publishOnMiaDocumentation`

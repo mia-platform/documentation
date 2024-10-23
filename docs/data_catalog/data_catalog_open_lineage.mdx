@@ -214,3 +214,12 @@ Here are described which routes Open Lineage service serves:
 | `/metadata-registry/items/:name`                           | REST | PATCH  | Change the definition of a custom property (e.g. type or description) |                               
 | `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                   |
 | `/metadata-registry/search`                                | REST | GET    | Search for a specific metadata registry of interest                   |
+
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.0 to 0.1.1
+
+Configure and execute the [Fabric Sync cronjob](/data_catalog/data_catalog_agent_setup.mdx#sync-assets) before releasing the service.
