@@ -63,7 +63,6 @@ Here below are listed all the properties that you can provide for each microserv
   - **`readOnly`** (default: false): a boolean that represents if you can change the value of the variable through the Console
   - **`description`** (optional): a brief description of the variable
   - **`managedBy`** (optional): a string that represents the Console section that manages the variable. For now, it can be empty or `fast-data`. It only works used in combination with the `readOnly` property set to `true`.
-    
   - **`valueType`** (default: `plain`): the field controls whether the value of the variable is provided by the user or by a Kubernetes resource; at the moment, *Plain Text*, *Config Maps*, *Secrets* and *Downward API* are supported.
   
   When `valueType: plain`, the following field is **required**:
@@ -300,7 +299,7 @@ You should receive a success response similar to this one:
 
   OBJECT ID                 ITEM ID             STATUS   
 
-  66423781fdd3d6dd3ca62b7b  mongodb-reader  Created 
+  66423781fdd3d6dd3ca62b7b  mongodb-reader      Created 
 ```
 
 You just created your plugin, which is now available on your `Company Marketplace`.
@@ -309,7 +308,16 @@ You just created your plugin, which is now available on your `Company Marketplac
 
 You can update a Custom Resource Marketplace item by using the same `miactl marketplace apply` explained before, by including an updated file (either in `json` or `yaml` format).
 
-While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields that cannot be modified. For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields that cannot be modified.
+
+If you want to do so, you must create a new version of the resource: for more information, refer to the [dedicated section on the _Create your Company Marketplace_ page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-create-a-new-version-of-your-resource).
 
 Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource.
+
+:::info
+Versions are not mandatory but highly suggested to avoid overwriting existing resources.
+
+Also, it is suggested to follow the [Semantic Versioning](https://semver.org/) convention when creating new versions: this convention is used to group the different versions of the same marketplace items and determine the _latest_ version that will be used by the Console to help the user to determine the best version to use and be notified of further updates.
+:::
+
 Of course you can do that always with `miactl marketplace apply` by using the same `itemId` and the same `tenantId` but with a new `name` inside the `version` field.
