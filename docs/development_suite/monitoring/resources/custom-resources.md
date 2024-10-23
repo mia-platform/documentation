@@ -21,7 +21,7 @@ By selecting a particular Custom Resource type listed from the sidebar, it is po
 
 ![list](../img/custom_resources.png)
 
-by clicking on a row from the table, is possible to see the description the events of the Custom Resource instance.
+by clicking on a row from the table, is possible to see the description the events of the resource instance.
 
 #### Custom Kubernetes Resource describe
 
@@ -29,7 +29,7 @@ In the `Custom Resources` section, under the `Describe` tab, you can find the de
 
 ![describe](../img/describe_custom_resources.png)
 
-Using the dedicated buttons `Export to YAML`, the describe of the Custom Resource can be downloaded as YAML file. 
+Using the dedicated buttons `Export to YAML`, the describe of the resource can be downloaded as YAML file. 
 
 #### Namespace events
 
