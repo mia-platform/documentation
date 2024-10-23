@@ -94,7 +94,7 @@ However, it does not mean that this version is not supported anymore, or that it
 :::
 
 :::info
-If you have the *Marketplace Notifications* [feature preview](/console/project-configuration/project-settings.md#feature-preview) enabled you will be informed in the detail page if one or more of your microservices attached to a Marketplace item have updates with an icon next to the version name.
+Anytime you access to the configuration page of your resource, you will be informed if the related Marketplace item have updates with an icon next to the version name.
 
 ![Detail of the Resource badge, with the icon to notify a new version available](img/marketplace-notification.png)
 
