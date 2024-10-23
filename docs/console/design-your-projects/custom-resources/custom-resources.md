@@ -81,6 +81,8 @@ A modal window will open, where you can see the available versions of the Custom
 
 Inside the modal you can also see the `apiVersion` and the `kind` of the Custom Resource of the selected version, to give you a better idea of the configuration you are selecting.
 
+A small tag will also inform you which is the *latest* version of the plugin, the latest stable version released.
+
 In case you need to update the `apiVersion` and the `kind` fields manually, completely changing the configuration of the Custom Resource, you can do so by clicking the *Detach from Marketplace* button on the menu:this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
 However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
 
@@ -89,6 +91,14 @@ A version labelled with *N/A* refers to a Marketplace item that did not include 
 This means that it has been created before the support of versioning in the Marketplace was implemented.
 
 However, it does not mean that this version is not supported anymore, or that it is less secure: check out the available versions and choose the one that fits your needs. In case of further questions, please contact the Marketplace item creator.
+:::
+
+:::info
+If you have the *Marketplace Notifications* [feature preview](/console/project-configuration/project-settings.md#feature-preview) enabled you will be informed in the detail page if one or more of your microservices attached to a Marketplace item have updates with an icon next to the version name.
+
+![Detail of the Resource badge, with the icon to notify a new version available](img/marketplace-notification.png)
+
+This is the best way to be aware of updates of your Marketplace plugins.
 :::
 
 ### Delete a Custom Resource
