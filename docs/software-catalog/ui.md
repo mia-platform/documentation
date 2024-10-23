@@ -1,7 +1,7 @@
 ---
 id: ui
 title: Software Catalog UI
-sidebar_label: UI
+sidebar_label: Software Catalog UI
 ---
 
 Mia-Platform Software Catalog tracks and stores information about all the components that make up your infrastructure. You can view all the items by navigating to `Software Catalog > All Items`. Additionally, you can explore the item details.

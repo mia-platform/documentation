@@ -35,88 +35,86 @@ async function createConfig() {
         hideOnScroll: false,
         title: "Mia-Platform Docs",
         logo: {alt: "Mia_Platform logo", src: "img/logo.png"},
-        items: [
-          {
+        items: [{
+          type: 'doc',
+          docId: "getting-started/mia-platform-overview",
+          label: "Getting Started",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
+        },
+        {
+          label: "Products",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
+          type: "dropdown",
+          items: [{
             type: 'doc',
-            docId: "getting-started/mia-platform-overview",
-            label: "Getting Started",
-            position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
-          },
-          {
-            label: "Products",
-            position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
-            type: "dropdown",
-            items: [
-              {
-                type: 'doc',
-                docId: "development_suite/overview-dev-suite",
-                label: "Console",
-                activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
-              },
-              {
-                type: 'doc',
-                docId: "fast_data/what_is_fast_data",
-                label: "Fast Data",
-                activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
-              },
-              {
-                type: 'doc',
-                docId: "data_catalog/overview_data_catalog",
-                label: "Data Catalog",
-                activeBaseRegex: "(docs|docs/\\d.x)/data_catalog"
-              },
-              {
-                type: 'doc',
-                docId: "microfrontend-composer/what-is",
-                label: "Microfrontend Composer",
-                activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
-              },
-              {
-                type: 'doc',
-                docId: "software-catalog/overview",
-                label: "Software Catalog",
-                activeBaseRegex: "(docs|docs/\\d.x)/software-catalog"
-              },
-              {
-                type: 'doc',
-                docId: "marketplace/overview_marketplace",
-                label: "Marketplace",
-                activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
-              }
-            ]
-          },
-          {
-            label: "Infrastructure",
-            position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
-            type: "doc",
-            docId: "infrastructure/infrastructure_overview"
+            docId: "development_suite/overview-dev-suite",
+            label: "Console",
+            activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
           },
           {
             type: 'doc',
-            docId: "release-notes/versions",
-            label: "Release Notes",
-            position: "left",
-            activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
+            docId: "fast_data/what_is_fast_data",
+            label: "Fast Data",
+            activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
           },
           {
-            href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
-            position: "left",
-            label: "Support"
+            type: 'doc',
+            docId: "data_catalog/overview_data_catalog",
+            label: "Data Catalog",
+            activeBaseRegex: "(docs|docs/\\d.x)/data_catalog"
           },
           {
-            href: "https://github.com/mia-platform/community/discussions",
-            position: "left",
-            label: "Community"
+            type: 'doc',
+            docId: "microfrontend-composer/what-is",
+            label: "Microfrontend Composer",
+            activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
           },
           {
-            type: "docsVersionDropdown",
-            position: "right",
-            dropdownItemsBefore: [],
-            dropdownItemsAfter: []
+            type: 'doc',
+            docId: "software-catalog/overview",
+            label: "Software Catalog",
+            activeBaseRegex: "(docs|docs/\\d.x)/software-catalog"
+          },
+          {
+            type: 'doc',
+            docId: "marketplace/overview_marketplace",
+            label: "Marketplace",
+            activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
           }
+          ]
+        },
+        {
+          label: "Infrastructure",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
+          type: "doc",
+          docId: "infrastructure/infrastructure_overview"
+        },
+        {
+          type: 'doc',
+          docId: "release-notes/versions",
+          label: "Release Notes",
+          position: "left",
+          activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
+        },
+        {
+          href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
+          position: "left",
+          label: "Support"
+        },
+        {
+          href: "https://github.com/mia-platform/community/discussions",
+          position: "left",
+          label: "Community"
+        },
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownItemsBefore: [],
+          dropdownItemsAfter: []
+        }
         ],
       },
       footer: {
