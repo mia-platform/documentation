@@ -1803,12 +1803,8 @@
     "destination": "/docs/marketplace/add_to_marketplace/create_your_company_marketplace",
     "addedOn": "2024-09-30"
   },
-  "/docs/fast_data/cast_functions/#cast-function-default": {
-    "destination": "/docs/fast_data/configuration/cast_functions#default-cast-functions",
-    "addedOn": "2024-10-22"
-  },
-  "/docs/fast_data/cast_functions/#create-a-custom-cast-function": {
-    "destination": "/docs/fast_data/configuration/cast_functions#create-a-custom-cast-function",
-    "addedOn": "2024-10-22"
+  "/docs/fast_data/cast_functions": {
+    "destination": "/docs/fast_data/configuration/cast_functions",
+    "addedOn": "2024-10-23"
   }
 }
