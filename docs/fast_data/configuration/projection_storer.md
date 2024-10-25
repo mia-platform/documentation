@@ -357,9 +357,9 @@ existing functions:
 - `castToString` → convert the input value into a string
 - `castToInteger` → convert the input value into an integer number
 - `castToFloat` → convert the input value into a decimal number
-- `castUnixTimestampToISOString` → convert the input value from a Unix timestamp (e.g. `1695141357284`) to the same timestamp in ISO 8601 format (e.g. `2023-09-19T16:35:57.284Z`)
+- `castUnixTimestampToISOString` → convert the input value from a [Unix timestamp](https://www.unixtimestamp.com/) (e.g. `1695141357284`) to the same timestamp in ISO 8601 format (e.g. `2023-09-19T16:35:57.284Z`)
 - `castStringToBoolean` → convert the string value `true` and `false` to their corresponding boolean value
-- `castToDate` → convert a string or a number into a Date object
+- `castToDate` → convert a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Datetime string (e.g. `2024-10-21T10:52:38.642Z`) or a Unix timestamp into a Date object with UTC as timezone
 - `castToObject` → parse a JSON object represented as string into a JSON object 
 - `castToArrayOfObject` → parse a JSON array represented as string into a JSON array
 
@@ -526,6 +526,10 @@ The following Kafka Consumer properties cannot be customized by the user, since 
 - `value.deserializer`
 :::
 
+:::tip
+All the fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+:::
+
 ### Producer
 
 | Property        | Type     | Required | Default |
@@ -565,6 +569,10 @@ The following Kafka Producer properties cannot be customized by the user, since 
 - `value.deserializer`
 :::
 
+:::tip
+All the fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+:::
+
 ### Storage
 
 | Property        | Type     | Required | Default   |
@@ -577,10 +585,11 @@ which are its configuration properties. Currently only MongoDB is supported as s
 
 #### MongoDB Configuration
 
-When MongoDB is selected as a storage system for the Projection Storer service, it requires the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/)
-and the _name_ of the database the service will connect to. The database name is not necessary in case it is already
-specified in the connection string, although it is recommended to set it in case the connection string is shared
-with other services.
+When MongoDB is selected as a storage system for the Projection Storer service, the configuration property is composed as follows:
+
+- `url` &rarr; the [_connections string_](https://www.mongodb.com/docs/manual/reference/connection-string/) to the MongoDB cluster, which is required for the service to start up,
+- `database` &rarr; the name of the database the service will connect to. Although this field is optional, since it is extracted from the connection string if available, it is recommended to set it up, especially in cases where the connection string to the MongoDB cluster is shared among different components.
+- `ssl.enabled` &rarr; a string flag (either `"false"` or `"true"`) that declare whether the service should connect to the MongoDB cluster using [TLS/SSL](https://www.mongodb.com/docs/manual/tutorial/configure-ssl-clients/). By default, SSL connection is disabled. 
 
 This is an example of storage configuration when `mongodb` is selected as type:
 
@@ -590,6 +599,47 @@ This is an example of storage configuration when `mongodb` is selected as type:
   "configuration": {
     "url": "mongodb://localhost:27017/fast-data-inventory-local",
     "database": "fast-data-inventory-local"
+  }
+}
+```
+:::tip
+All the fields under configuration property support [secret resolution](/fast_data/configuration/secrets_resolution.md).
+:::
+
+##### SSL Connection
+
+Sometimes it is required that the service connects to the storage using TLS/SSL connection. This can be achieved by setting field `ssl.enabled` to the string `"true"`
+under the storage configuration properties.
+
+In addition to enabling SSL, it might also be necessary to extend which certificates are available to the system
+and define client key and certificate that the service needs to adopt for connecting to the data source.  
+This can be obtained by configuring the JVM Trust Store and the corresponding JVM Key Store.
+
+:::info
+One utility command that can be employed to create JVM key store is [`keytool`](https://docs.oracle.com/en/java/javase/21/docs/specs/man/keytool.html).
+:::
+
+In particular, these stores can be added to the service specifying the following fields in the configuration:
+
+- `ssl.enabled` &rarr; whether the connection to the database should use TLS/SSL. It is disabled by default
+- `ssl.trustStore.location` &rarr; filepath where the trust store in JKS format is located
+- `ssl.trustStore.password` &rarr; password string for accessing the trust store
+- `ssl.keyStore.location` &rarr; filepath where the key store in JKS format is located
+- `ssl.keyStore.password` &rarr; password string for accessing the key store
+
+Here can be seen an example of configuration that enables SSL and includes a custom Trust Store and Key Store:
+
+```json
+"storage": {
+  "type": "mongodb",
+  "configuration": {
+    "url": "mongodb://localhost:27017/fast-data-inventory-local",
+    "database": "fast-data-inventory-local"
+    "ssl.enabled": "true",
+    "ssl.trustStore.location": "/path/to/truststore.jks",
+    "ssl.trustStore.password": "<ts-password>",
+    "ssl.keyStore.location": "/path/to/keystore.jks",
+    "ssl.keyStore.password": "<ks-password>"
   }
 }
 ```
@@ -1236,7 +1286,7 @@ mentioned above were downloaded and execute the following command:
 rtu-to-ps project -cc <filepath-to-api-console-config> \
   -fdc <filepath-to-fast-data-config> \
   -s <name-system-of-record>
-  -r <name-service-to-migrate-linked-to-system-of-record> \
+  -r <name-service-to-migrate-linked-to-system-of-record>
 ```
 
 :::info
