@@ -19,14 +19,18 @@ Here you can find all the artifacts and the starting version when they are being
 
 | Container Image | Starting Tag |
 | --- | --- |
-| nexus.mia-platform.eu/console/backend | v10.0.0 |
+| nexus.mia-platform.eu/rond-authz/rond | v1.12.9 |
+| nexus.mia-platform.eu/rond-authz/rond | v1.12.9 |
+| nexus.mia-platform.eu/microlc/micro-lc | 2.4.3 |
+| nexus.mia-platform.eu/microlc/middleware | 3.3.3|
 
 Our PEM-encoded public key can be downloaded [here] and you can see and example of verification of the signature
 using cosing:
 
 ```shell
 KEY=https://docs.mia-platform.eu/public-keys/mia-platform-pubkey-2023-10-01.pem
-cosign verify --key "${KEY}" nexus.mia-platform.eu/console/backend:v10.0.0
+IMAGE=<image tag>
+cosign verify --key "${KEY}" "${IMAGE}"
 ```
 
 ## Software Bill of Materials
@@ -39,7 +43,8 @@ using cosign:
 
 ```shell
 KEY=https://docs.mia-platform.eu/public-keys/mia-platform-pubkey-2023-10-01.pem
-cosign verify-attestation --type spdxjson --key "${KEY}" nexus.mia-platform.eu/console/backend:v10.0.0
+IMAGE=<image tag>
+cosign verify-attestation --type spdxjson --key "${KEY}" "${IMAGE}"
 ```
 
 This command will download the raw attestation verifying that nothing has been tampered, to see the actual payload
@@ -47,7 +52,8 @@ you can pass the result to `jq` to extract the in-toto attestation containing th
 
 ```shell
 KEY=https://docs.mia-platform.eu/public-keys/mia-platform-pubkey-2023-10-01.pem
-cosign verify-attestation --type spdxjson --key "${KEY}" nexus.mia-platform.eu/console/backend:v10.0.0 | jq '.payload | @base64d | fromjson'
+IMAGE=<image tag>
+cosign verify-attestation --type spdxjson --key "${KEY}" "${IMAGE}" | jq '.payload | @base64d | fromjson'
 ```
 
 Additionally with a tool like `grype` that can check a SBOM against a vulnerability database you can always check if
@@ -55,7 +61,8 @@ a vulnerability has been found after the artifact build:
 
 ```shell
 KEY=https://docs.mia-platform.eu/public-keys/mia-platform-pubkey-2023-10-01.pem
-cosign verify-attestation --type spdxjson --key "${KEY}" nexus.mia-platform.eu/console/backend:v10.0.0 | jq '.payload | @base64d | fromjson | .predicate' | grype
+IMAGE=<image tag>
+cosign verify-attestation --type spdxjson --key "${KEY}" "${IMAGE}" | jq '.payload | @base64d | fromjson | .predicate' | grype
 ```
 
 [supply-chain attacks]: https://en.wikipedia.org/wiki/Supply_chain_attack
