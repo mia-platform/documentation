@@ -187,8 +187,8 @@ This section allows you to view, add, edit, and delete container registries.
 
 You can add a new container registry by clicking on the "Add Container Registry" button. This will open a modal where you can insert the required information to add a new container registry:
 
-- **Name**: the name of the container registry. It is used to identify the container registry in the Console, you can choose any name you prefer.
-- **Registry Hostame**: the hostname of the container registry. It refers to the container registry URL, for example, `docker.io` for Docker Hub.
+- **Name**: the name of the container registry. You can choose any name you prefer. It is used to identify the container registry in the Console, therefore it is unique within the Project.
+- **Registry Hostame**: the hostname of the container registry. It refers to the container registry URL, for example, `docker.io` for Docker Hub. Multiple container registries can have the same hostname, since they might have different credentials.
 - **Image Pull Secret Name**: the name of the Image Pull Secret that will be used by Kubernetes to pull images from the container registry. Notice that the Secret must be present in the Kubernetes cluster where the Project is deployed, the Console won't create it for you.
 - **Default Registry**: if enabled, the container registry will be set as the default one for the Project, meaning it will be the default selected when creating a new service from a Template or Example. Notice that if the Project has only one container registry, it will be set as the default one automatically.
 
@@ -203,9 +203,10 @@ behaving like before the introduction of the container registries feature.
 
 :::
 
-#### How Image Pull Secret are configured to Kubernetes
+### How Image Pull Secret are configured to Kubernetes
 
-When creating Kubernetes manifests of the Project service deployments, the Console will create and insert an array of `imagePullSecrets` in the `spec` section of the `Deployment` resource. This array will contain all the names of the Image Pull Secrets configured in the Console.
+When creating Kubernetes manifests of the Project service deployments, the Console will create and insert an array of `imagePullSecrets` in the `spec` section of the `Deployment` 
+This array contains all the names of the Image Pull Secrets configured in the Console, along with the Image Pull Secrets configured in the Container Registries section.
 
 The configuration applies to all the Microservices and CronJobs of the Project.
 
