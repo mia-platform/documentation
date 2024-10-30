@@ -2,7 +2,7 @@
 id: custom-resources
 title: Monitor your Custom Kubernetes Resources
 sidebar_label: Monitor your Custom Kubernetes Resources
-slug: "/development_suite/monitoring/resources/jobs"
+slug: "/development_suite/monitoring/resources/custom-resources"
 ---
 
 
