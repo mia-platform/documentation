@@ -25,6 +25,7 @@ The service use the following environment variable:
 - **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
 - **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
+- **ADDITIONAL_HEADERS_TO_REDACT** (optional): comma separated values of additional headers to redact when logging. The following headers are always redacted: `Authorization`, `Cookie`, `Proxy-Authorization`, `Set-Cookie` and `Www-Authenticate`;
 
 :::caution
 **ALLOW_PROXY_OPTIMIZER** will be dismissed with the next major release. The not optimized proxy functionality and the retry feature is deprecated and will be dismissed too.
