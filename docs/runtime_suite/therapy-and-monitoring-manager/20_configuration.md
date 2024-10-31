@@ -88,7 +88,15 @@ A prototype example can be used to validate detections related to blood pressure
       "en": "Maximum pressure",
       "it": "Pressione massima"
     }
-  }
+  },
+  "values": {
+    "minimumBloodPressure": { 
+      "path": "observations[0].value"
+    },
+    "maximumBloodPressure": { 
+      "path": "observations[1].value"
+    }
+  },
 }
 ```
 
@@ -173,6 +181,8 @@ Note that, modifying an identifier in an already running system can lead to inco
 * **Schema**: the property containing the schema used to validate the detection value or therapy directives. The schema must follow [JSON Schema 7][json-schema-draft7].
 
 * **Labels**: the labels for the schema fields, each one can be a string or translation object.
+
+* **values**: the values for the schema fields, each one must be an object containing the path of the field in the detection value containing the corresponding value to compare against the thresholds.
 
 * **Hints**: the hints for the schema fields, each one can be a string or translation object. This is only supported by therapy directives, to provide a list of admitted or suggested values for the field. 
 
@@ -319,16 +329,18 @@ If you use the integrated validation service, field names in the `value` object 
 
 :::
 
-| Name        | Type      | Required (Yes/No) | Nullable (Yes/No) |
-|-------------|-----------|-------------------|-------------------|
-| planType    | `string`  | Yes               | No                |
-| planId      | `string`  | Yes               | No                |
-| value       | `Object`  | No                | No                |
-| observedAt  | `Date`    | Yes               | No                |
-| doctorId    | `string`  | No                | No                |
-| patientId   | `string`  | Yes               | No                |
-| isCompliant | `boolean` | No                | No                |
-| deviceId    | `string`  | No                | No                |
+| Name               | Type              | Required (Yes/No) | Nullable (Yes/No) |
+|--------------------|-------------------|-------------------|-------------------|
+| planType           | `String`          | Yes               | No                |
+| planId             | `String`          | Yes               | No                |
+| value              | `Object`          | No                | No                |
+| observedAt         | `Date`            | Yes               | No                |
+| doctorId           | `String`          | No                | No                |
+| patientId          | `String`          | Yes               | No                |
+| isCompliant        | `Boolean`         | No                | No                |
+| deviceId           | `String`          | No                | No                |
+| thresholds         | `Array of object` | No                | No                |
+| thresholdsExceeded | `Boolean`         | No                | No                |
 
 ## Thresholds validation
 
