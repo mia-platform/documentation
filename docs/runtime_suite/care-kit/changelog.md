@@ -39,8 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v2.8.2]
 
-- Update add-plan-modal to edit devices
-- Update add-plan-modal to include devices on create
+- Update `add-plan-modal` to edit devices
+- Update `add-plan-modal` to include devices on create
 
 ## [v2.8.1]
 
