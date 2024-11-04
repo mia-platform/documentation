@@ -1,13 +1,13 @@
 ---
 id: bundling
-title: Bundling your webcomponents with vite
+title: Bundling your Web Components with vite
 sidebar_label: Bundling
 sidebar_position: 30
 ---
 
-The aim of this section is to highlight some features we found useful to bundle webcomponents together.
+The aim of this section is to highlight some features we found useful to bundle Web Components together.
 
-Let's say we have a bunch of webcomponents such as
+Let's say we have a bunch of Web Components such as
 
 ```text
 ├── my-button
@@ -23,7 +23,7 @@ Let's say we have a bunch of webcomponents such as
 |
 ```
 
-The most important thing to remember is that webcomponent definitions must appear once and they must not repeat themself even accidentally (the bundler might mess up with the tree of dependencies).
+The most important thing to remember is that Web Component definitions must appear once and they must not repeat themself even accidentally (the bundler might mess up with the tree of dependencies).
 
 Another point of attention must be the desired output: whether the library will be consumed by browsers only or could be made available to Node.js environments as development resource, say by publishing an npm library.
 
@@ -109,11 +109,11 @@ export default defineConfig({
 })
 ```
 
-Be aware that runtime loading of webcomponents is a key factor here. The browser `window` won't be able to follow dynamic imports in order to wait page `onload` event, which means that loading multiple webcomponents from different bundles might make them appear at different times. A consistent visualization is instead guaranteed when the components are loaded together, at least to a further degree.
+Be aware that runtime loading of Web Components is a key factor here. The browser `window` won't be able to follow dynamic imports in order to wait page `onload` event, which means that loading multiple Web Components from different bundles might make them appear at different times. A consistent visualization is instead guaranteed when the components are loaded together, at least to a further degree.
 
-This remark does not rule out separate bundles. For instance `micro-lc` is bundled separately with respect to its loading webcomponent, which by default shows spinning hexagons until `micro-lc` fires an `onload` event. `mlc-loading-animation` loads first and is safe to assume won't need `micro-lc` to be loaded to start its work.
+This remark does not rule out separate bundles. For instance `micro-lc` is bundled separately with respect to its loading Web Component, which by default shows spinning hexagons until `micro-lc` fires an `onload` event. `mlc-loading-animation` loads first and is safe to assume won't need `micro-lc` to be loaded to start its work.
 
-A components library providing buttons, tables, forms, is definitively an example of a set of webcomponents which must be bundled together:
+A components library providing buttons, tables, forms, is definitively an example of a set of Web Components which must be bundled together:
 
 1. they load together avoiding weird flashes
 2. they reuse chunks of code like stylesheets
