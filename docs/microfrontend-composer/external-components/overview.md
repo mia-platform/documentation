@@ -5,7 +5,7 @@ sidebar_label: Overview
 sidebar_position: 10
 ---
 
-The Configurator layout/advanced sections provide tools to visualize [composable pages](/microfrontend-composer/composer/20_compose_pages.md) which are made of webcomponents. For instance, the Configurator [main layout](/microfrontend-composer/composer/10_structure.md#layout) is a web page build with webcomponents.
+The Configurator layout/advanced sections provide tools to visualize [composable pages](/microfrontend-composer/composer/20_compose_pages.md) which are made of Web Components. For instance, the Configurator [main layout](/microfrontend-composer/composer/10_structure.md#layout) is a web page build with Web Components.
 
 Components usually are provided by JavaScript libraries like:
 
@@ -22,7 +22,7 @@ The `sources` field has its own [JSON schema](https://raw.githubusercontent.com/
 
 for further references, check out the [micro-lc documentation](https://micro-lc.io/docs/guides/applications/compose#plugin-configuration) on composable page `sources`.
 
-The only limitation, left to the user to check, is not to define the same webcomponent twice or more from different libraries. This might happen when different composable pages have different versions of the same library. The Configurator will not complain but errors might arise when the final website is deployed.
+The only limitation, left to the user to check, is not to define the same Web Component twice or more from different libraries. This might happen when different composable pages have different versions of the same library. The Configurator will not complain but errors might arise when the final website is deployed.
 
 The default configuration of the Configurator section, once the [application](/runtime_suite_applications/microfrontend-composer-toolkit/10_overview.md) is added to your Console project, on the branch you're currently working on, is preset to use the components library [@micro-lc/bk-web-components](https://www.jsdelivr.com/package/npm/@micro-lc/bk-web-components), which is well-suited to visualize data through tables, cards and galleries.
 
@@ -153,21 +153,21 @@ The following actions need to be addressed:
 
 ## No/Low-code Components Configuration
 
-```tip
-To view your external components, you may need to [configure](/microfrontend-composer/composer/30_configurator_settings.md#source-maps) the correct reverse proxying in the Configurator Service Worker .
-```
+:::tip
+To view your external components, you may need to [configure](/microfrontend-composer/composer/30_configurator_settings.md#source-maps) the correct reverse proxying in the Configurator Service Worker.
+:::
 
-Any HTML tag (native or custom) is eligible to be configured in the `low-code` configuration section, which is label by the tab `Advanced`.
+Any HTML tag (native or custom) is eligible to be configured in the `low-code` configuration section, which is label by the tab _Advanced_.
 
-Any custom webcomponent must be defined in at most one of the `sources` entries to be displayed in the preview otherwise it will not render anything beside an empty tag.
+Any custom Web Component must be defined in at most one of the `sources` entries to be displayed in the preview otherwise it will not render anything beside an empty tag.
 
-The absence of a custom webcomponent definition does not break the preview of a compose page, but somewhat limits the user experience of the whole section.
+The absence of a custom Web Component definition does not break the preview of a compose page, but somewhat limits the user experience of the whole section.
 
-Any `low-code` configuration can be performed in the `Advanced` section in the form of plain JSON editing. Such editing is guided by the basic schema of a [compose page](https://github.com/micro-lc/micro-lc/blob/main/packages/interfaces/schemas/v2/plugin.schema.json), and is embedded in the editing IDE of the `Advanced` section.
+Any `low-code` configuration can be performed in the _Advanced_ section in the form of plain JSON editing. Such editing is guided by the basic schema of a [compose page](https://github.com/micro-lc/micro-lc/blob/main/packages/interfaces/schemas/v2/plugin.schema.json), and is embedded in the editing IDE of the _Advanced_ section.
 
-`no-code` section, labelled by the tab `Layout` is aware of any defined custom webcomponent. To configure a webcomponent using the `no-code` section, the component itself must provide a dynamically imported manifest which describe itself to the configurator and allows the spawning of forms and modals apt to the task of filling webcomponent properties according to the proper type and schema validation.
+The `no-code` section, labelled by the tab _Layout_, is aware of any defined custom Web Component. To configure a Web Component using the `no-code` section, the component itself must provide a dynamically imported manifest which describe itself to the configurator and allows the spawning of forms and modals apt to the task of filling Web Component properties according to the proper type and schema validation.
 
-There are different layers of integration for custom webcomponents with the `no-code` Configurator section:
+There are different layers of integration for custom Web Components with the `no-code` Configurator section:
 
 1. editing properties using forms and modals
 2. open/show when selected on the [left components list](/microfrontend-composer/composer/10_structure.md#layout)
@@ -175,7 +175,7 @@ There are different layers of integration for custom webcomponents with the `no-
 
 ### No-Code Properties Editing: `__manifest`
 
-A webcomponent must explain to the configurator how it can be configured. Roughly any webcomponent scaffolding looks like:
+A Web Component must explain to the configurator how it can be configured. Roughly any Web Component scaffolding looks like:
 
 ```typescript
 class MyCustomComponent extends HTMLElement {
@@ -185,7 +185,7 @@ class MyCustomComponent extends HTMLElement {
 }
 ```
 
-A webcomponent which exposes a static getter `__manifest` as per the following snippet:
+A Web Component which exposes a static getter `__manifest` as per the following snippet:
 
 ```typescript
 import type { Manifest } from '@micro-lc/compose-toolkit'
@@ -208,21 +208,21 @@ static get __manifest(): Promise<Manifest> {
 }
 ```
 
-The **manifest** file, after JSON-stringify process, must validate an [extension](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/template.schema.json) of a draft-07  [JSON schema](https://json-schema.org) where the `type` is always `object` and the field `properties` is an object listing the configurable properties of the custom webcomponent.
+The **manifest** file, after JSON-stringify process, must validate an [extension](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/template.schema.json) of a draft-07  [JSON schema](https://json-schema.org) where the `type` is always `object` and the field `properties` is an object listing the configurable properties of the custom Web Component.
 
-Any object property has also a _special_ key `__mia_configuration` which allows to customize labels in the Configurator `Layout` section. The `__mia_configuration` key is not mandatory and does not affect the no-code configuration features on custom webcomponents.
+Any object property has also a _special_ key `__mia_configuration` which allows to customize labels in the Configurator _Layout_ section. The `__mia_configuration` key is not mandatory and does not affect the no-code configuration features on custom Web Components.
 
-Check out [the webcomponent manifest](/microfrontend-composer/external-components/manifest.md) for further details.
+Check out [the Web Component manifest](/microfrontend-composer/external-components/manifest.md) for further details.
 
 ### Open/Show On Select: `__focus_handler`, `__unfocus_handler`
 
-When a custom webcomponent has an open/close, hidden/shown behavior, like a modal or a collapsible drawer, the Configurator previews must be informed on how to make such item to appear and disappear. Considering the case of a modal, its initial state could be `closed`. A user interaction is often required to trigger its opening.
+When a custom Web Component has an open/close, hidden/shown behavior, like a modal or a collapsible drawer, the Configurator previews must be informed on how to make such item to appear and disappear. Considering the case of a modal, its initial state could be `closed`. A user interaction is often required to trigger its opening.
 
-When clicking the webcomponent label on the left menu list corresponding to the modal, the presence of a `__focus_handler` function allows to mock the user action needed to open the component real context.
+When clicking the Web Component label on the left menu list corresponding to the modal, the presence of a `__focus_handler` function allows to mock the user action needed to open the component real context.
 
 Once left menu selection is over, an `__unfocus_handler` is called to perform cleanup operations.
 
-The webcomponent must implement the following interface:
+The Web Component must implement the following interface:
 
 <!-- cSpell:disable -->
 ```typescript
@@ -242,9 +242,31 @@ class MyCustomComponent extends HTMLElement implements FocusableComponent {
 ```
 <!-- cSpell:enable -->
 
+### List custom components in Components Explorer
+
+The [Components Explorer](/microfrontend-composer/composer/10_structure.md#components-explorer) section of the configurator is instructed to try and list all the Web Components libraries that appear in the Composer `sources`.
+
+For a library to be visualized in the explorer, its entry point has to declare a **default export** with the following type:
+
+```typescript
+type LibraryMeta = {
+  /** Name of the library */
+  libraryName: string
+
+  /** List of the library Web Component tags */
+  components: string[]
+}
+```
+
+:::tip
+If you are bundling your library with Vite, make sure to set the property `build.rollupOptions.preserveEntrySignatures` to `allow-extension` in your Vite config file.
+:::
+
+The explorer will list all the components in library meta and will show for each of them information taken from their [manifests](/microfrontend-composer/external-components/manifest.md) (if present).
+
 ## Bundling
 
-As previously mentioned, webcomponents are served to the Configurator via library bundles. The recommended way to proceed is:
+As previously mentioned, Web Components are served to the Configurator via library bundles. The recommended way to proceed is:
 
 1. either an ESM bundle
 <!-- cSpell:disable-next-line -->
@@ -252,11 +274,11 @@ As previously mentioned, webcomponents are served to the Configurator via librar
 
 Due to the nature of [manifests](/microfrontend-composer/external-components/manifest.md) and their retrieval dynamic policy, the ESM option is more than recommended.
 
-Webcomponents can be build with any library (lit, stencil, and so on...) or going fully native. Examples with `lit` are provided [`@micro-lc/layout`](https://github.com/@micro-lc/layout) library while `micro-lc` [itself](https://github.com/micro-lc/micro-lc/main/packages/orchestrator/src/web-component/micro-lc.ts) is an example of a native webcomponent.
+Web Components can be build with any library (lit, stencil, and so on...) or going fully native. Examples with `lit` are provided [`@micro-lc/layout`](https://github.com/@micro-lc/layout) library while `micro-lc` [itself](https://github.com/micro-lc/micro-lc/main/packages/orchestrator/src/web-component/micro-lc.ts) is an example of a native Web Component.
 
-`vite` turned out to be very natural and comfortable tool to bundle and inspect webcomponents by embedding them in a test html page. The bundler, which is `rollup` provides the capabilities to:
+`vite` turned out to be very natural and comfortable tool to bundle and inspect Web Components by embedding them in a test html page. The bundler, which is `rollup` provides the capabilities to:
 
-1. select which sources to use as entry points. For instance, webcomponents can be bundled separately or all together in a unique bundle. Your use case is the only reference on whether to go the former or the latter way;
+1. select which sources to use as entry points. For instance, Web Components can be bundled separately or all together in a unique bundle. Your use case is the only reference on whether to go the former or the latter way;
 2. separate external sources, like manifests;
 3. add external assets like images, fonts and so on...
 

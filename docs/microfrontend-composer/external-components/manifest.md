@@ -1,42 +1,31 @@
 ---
 id: manifest
-title: The Webcomponent Manifest
+title: The Web Component Manifest
 sidebar_label: Manifest
 sidebar_position: 20
 ---
 
-Any webcomponent is or aims to be:
+Any Web Component is or aims to be:
 
 1. an HTML tag
 2. a CSS encapsulated environment
 3. a JS business logic unit
 
-As HTML tag, a custom webcomponent has `attributes` and `properties`. Moreover a pair `attribute` and `property` can be coupled by reflecting changes: a change on the former is mirrored on the latter, and viceversa.
+As HTML tag, a custom Web Component has `attributes` and `properties`. Moreover a pair `attribute` and `property` can be coupled by reflecting changes: a change on the former is mirrored on the latter, and viceversa.
 
 ## Basics
 
-The Configurator layout section queries the webcomponents to discover their properties/attributes using a static getter promise called a _Manifest_.
+The Configurator layout section queries the Web Components to discover their metadata and their properties/attributes using a static getter promise called a _Manifest_.
+
+The `__manifest` static getter must return a JavaScript object containing information on the component metadata, properties and attributes, and API mocks.
 
 :::tip
-You can use the [JSON schema](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/manifest.schema.json) to check your components manifests.
+You can use the [JSON schema](https://raw.githubusercontent.com/micro-lc/compose-toolkit/main/schemas/manifest.schema.json) to get information on the supported properties and to check your components manifests.
 :::
 
-The `__manifest` static getter must return a JavaScript object that has a key `type` which must be `object` (to be JSON schema compatible) and a map of `properties`.
+As an example, consider the following custom button component
 
-```typescript
-const manifest = {
-  type: 'object',
-  properties: {
-    // list of properties
-  }
-}
-```
-
-A custom button might look like:
-
-```typescript
-// my-button.ts
-
+```typescript title=my-button.ts
 import { LitElement } from 'lit'
 
 class MyButton extends LitElement {
@@ -48,14 +37,13 @@ class MyButton extends LitElement {
 }
 ```
 
-and thus will instruct the Configurator preview section with the following manifest
+The component exposes the static getter `__manifest` thus instructing the Configurator preview section with the following manifest
 
-```typescript
-// manifest.ts
+```typescript title=manifest.ts
 import type { Manifest } from '@micro-lc/compose-toolkit'
 
 const manifest = {
-  type: 'object',
+  label: 'My awesome button',
   properties: {
     hidden: {
       type: 'boolean'
@@ -66,9 +54,11 @@ const manifest = {
 export default manifest
 ```
 
-In the outlined example, the Configurator layout section will provide its configuration form with a boolean toggle for the `hidden` property.
+## Attribute and properties
 
-Types can be **almost** anything that JSON schema provides:
+The component attributes and properties can be described using the `properties` key of the manifest, which should be an object mapping the component properties to a JSON schema.
+
+Properties types can be **almost** anything that JSON schema provides:
 
 1. `boolean`
 2. `string`
@@ -85,13 +75,11 @@ Complex properties such as objects and arrays are also handled in a `no-code` fa
 
 The most basic visualization for an `object` without a schema is an IDE-like editor, with basic JSON validation capabilities. Likewise an array has a `no-code` item selector, which again, without schema will spawn an IDE-like editor for each one of its items.
 
-The owner/developer of custom webcomponents can enforce `no-code` configurability by nesting the component manifest.
+The owner/developer of custom Web Components can enforce `no-code` configurability by nesting the component manifest.
 
 For instance:
 
-```typescript
-// my-button.ts
-
+```typescript title=my-button.ts
 import { LitElement } from 'lit'
 
 interface Action {
@@ -110,12 +98,10 @@ class MyButton extends LitElement {
 
 can be described by the following manifest
 
-```typescript
-// manifest.ts
+```typescript title=manifest.ts
 import type { Manifest } from '@micro-lc/compose-toolkit'
 
 const manifest: Manifest = {
-  type: 'object',
   properties: {
     action: {
       type: 'object',
@@ -132,17 +118,15 @@ export default manifest
 
 Despite the `action` being an object, the Configurator layout section will spawn a modal (which can have potentially infinite levels of nesting) to configure `type` as a string with at most 2 fixed values and `url` as a string.
 
-## Mia's Configuration Advanced
+### Mia's Configuration Advanced
 
-The Webcomponent manifest is a superset of a compliant draft-07 JSON schema. The Configurator guarantees to display a `no-code` comfortable version of each property.
+The Web Component manifest is a superset of a compliant draft-07 JSON schema. The Configurator guarantees to display a `no-code` comfortable version of each property.
 
-Beside this specification, Configurator can enforce some extra logic using a special property, available to any webcomponent property or nested property: `__mia_configuration`.
+Beside this specification, Configurator can enforce some extra logic using a special property, available to any Web Component property or nested property: `__mia_configuration`.
 
 Let's consider a custom button
 
-```typescript
-// my-button.ts
-
+```typescript title=my-button.ts
 import { LitElement } from 'lit'
 
 class MyButton extends LitElement {
@@ -156,12 +140,10 @@ class MyButton extends LitElement {
 
 with manifest
 
-```typescript
-// manifest.ts
+```typescript title=manifest.ts
 import type { Manifest } from '@micro-lc/compose-toolkit'
 
 const manifest = {
-  type: 'object',
   properties: {
     hidden: {
       type: 'boolean'
@@ -231,16 +213,14 @@ export interface MiaConfiguration {
 }
 ```
 
-### The `oneOfGuard` key
+#### The `oneOfGuard` key
 
 Suppose your property is a JSON `oneOf` an there's a guard key which allows to distinguish non-overlapping types. For instance:
 
-```typescript
-// manifest.ts
+```typescript title=manifest.ts
 import type { Manifest } from '@micro-lc/compose-toolkit'
 
 const manifest = {
-  type: 'object',
   properties: {
     action: {
       type: 'object',
@@ -273,7 +253,7 @@ By using `oneOfGuard` set to `type` Configurator layout section is able to provi
 
 If the user selects `http-post` then 2 string input will appear in order to configure `url` and `payload`, otherwise an IDE-like editor will allow to type directly the `payload` property since no schema was provided.
 
-### The `schema-hint` key
+#### The `schema-hint` key
 
 Configurator provides some types that are well known and often used in order to avoid writing down a repeating JSON schema multiple times.
 
@@ -290,7 +270,7 @@ Configurator provides some types that are well known and often used in order to 
    projection, or a Fast Data Single View.
 10. A `micro-lc/applications` is the list of currently configured applications in the Configurator initial section.
 
-### The `shared-key` key
+#### The `shared-key` key
 
 JSON schema supports referencing of property definitions. Despite not being a fixed pattern there's a recommendation for draft-07 which suggests to use the key `definitions` at the first level of your JSON configuration. In the most recent drafts it will be substituted by the `$defs` keyword.
 
