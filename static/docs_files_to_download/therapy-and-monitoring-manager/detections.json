@@ -1,39 +1,45 @@
 [
-  { "name": "_id", "description": "_id", "type": "ObjectId", "required": true, "nullable": false },
+  {
+    "name": "_id",
+    "type": "ObjectId",
+    "required": true,
+    "nullable": false,
+    "description": "_id"
+  },
   {
     "name": "creatorId",
-    "description": "creatorId",
     "type": "string",
     "required": true,
-    "nullable": false
+    "nullable": false,
+    "description": "creatorId"
   },
   {
     "name": "createdAt",
-    "description": "createdAt",
     "type": "Date",
     "required": true,
-    "nullable": false
+    "nullable": false,
+    "description": "createdAt"
   },
   {
     "name": "updaterId",
-    "description": "updaterId",
     "type": "string",
     "required": true,
-    "nullable": false
+    "nullable": false,
+    "description": "updaterId"
   },
   {
     "name": "updatedAt",
-    "description": "updatedAt",
     "type": "Date",
     "required": true,
-    "nullable": false
+    "nullable": false,
+    "description": "updatedAt"
   },
   {
     "name": "__STATE__",
-    "description": "__STATE__",
     "type": "string",
     "required": true,
-    "nullable": false
+    "nullable": false,
+    "description": "__STATE__"
   },
   {
     "name": "planType",
@@ -57,15 +63,6 @@
     "name": "value",
     "type": "RawObject",
     "required": false,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "observedAt",
-    "type": "Date",
-    "required": true,
     "nullable": false,
     "sensitivityValue": 0,
     "encryptionEnabled": false,
@@ -99,9 +96,36 @@
     "encryptionSearchable": false
   },
   {
+    "name": "observedAt",
+    "type": "Date",
+    "required": true,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
     "name": "deviceId",
     "type": "string",
-    "required": true,
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "thresholds",
+    "type": "Array_RawObject",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "thresholdsExceeded",
+    "type": "boolean",
+    "required": false,
     "nullable": false,
     "sensitivityValue": 0,
     "encryptionEnabled": false,
