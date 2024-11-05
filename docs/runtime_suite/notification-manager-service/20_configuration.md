@@ -345,6 +345,85 @@ The properties used by the service are the following.
 | emitters     | `Array of string` | No       | List of emitters that should trigger the sending of notifications.                                                                    |
 | reminders    | `Array of string` | No       | List of reminders to set, expressed as [ISO 8601 duration][iso-8601-duration] strings (for example, `P1D` for one day and `PT1H` for an hour before).      |
 
+## Views
+
+### Notification messages view
+
+:::info
+
+This view is required by the following endpoints and must be enabled explicitly by setting the [`NOTIFICATIONS_MESSAGES_VIEW_NAME` environment variable][environment-variables]:
+
+- [GET /notification-messages/count][get-notification-messages-count]
+- [GET /notification-messages/][get-notification-messages]
+
+By default, the view is not enabled and these endpoints are not available. 
+
+:::
+
+This [MongoDB view][mongodb-view] runs an aggregation pipeline on the [notifications CRUD collection][crud-notifications] to return a distinct document for each message sent, i.e. each element in the notification `messages` array field.
+
+The MongoDB view must have the properties listed in the following table.
+
+| Name           | Type     | Required | Description                                                            |
+|----------------|----------|----------|------------------------------------------------------------------------|
+| notificationId | `String` | No       | CRUD _id of the notification.                                          |
+| recipient      | `String` | No       | ID of the user the message was sent to.                                |
+| event          | `String` | No       | The name of the event.                                                 |
+| date           | `Date`   | No       | When the message was sent.                                             |
+| status         | `String` | No       | If the message was processed correctly (`SUCCESS`) or not (`FAILURE`). |
+| channel        | `String` | No       | Name of the channel the message was sent on.                           |
+| templateName   | `String` | No       | Name of the template used to send the message on the channel.          |
+| message        | `Object` | No       | The details about the message sent (title, subtitle, body, etc.)       |
+
+This is the aggregation pipeline, that you can customize for example by adding additional fields.
+
+```json
+[
+  {
+    "$match": {
+      "__STATE__": "PUBLIC"
+    }
+  },
+  {
+    "$unwind": {
+      "path": "$messages"
+    }
+  },
+  {
+    "$project": {
+      "_id": {
+        "$concat": [
+          {
+            "$toString": "$_id"
+          },
+          "-",
+          "$messages.channel",
+          "-",
+          "$messages.templateName"
+        ]
+      },
+      "creatorId": "$creatorId",
+      "createdAt": "$createdAt",
+      "updaterId": "$updaterId",
+      "updatedAt": "$updatedAt",
+      "__STATE__": "$__STATE__",
+      "notificationId": {
+        "$toString": "$_id"
+      },
+      "recipient": "$recipient",
+      "event": "$event.name",
+      "date": "$createdAt",
+      "status": "$messages.status",
+      "channel": "$messages.channel",
+      "templateName": "$messages.templateName",
+      "message": "$messages.service.message"
+    }
+  }
+]
+```
+
+The `_id` field is computed dinamically based on the notification `_id` and is unique across all messages.
+
 ## Environment variables
 
 :::info
@@ -385,6 +464,7 @@ If `USERS_API_ENDPOINT` is not set, the users data is retrieved as in previous v
 | **EVENTS_SETTINGS_CRUD_NAME**        | Yes                 | -       | *        | Name of the CRUD collection containing event settings.                                                                                         |
 | **NOTIFICATIONS_CRUD_NAME**          | Yes                 | -       | *        | Name of the CRUD collection containing statistics about notifications sent.                                                                    |
 | **NOTIFICATIONS_SETTINGS_CRUD_NAME** | Yes                 | -       | *        | Name of the CRUD collection containing the notifications settings.                                                                             |
+| **NOTIFICATIONS_MESSAGES_VIEW_NAME** | No                  | -       | >= 2.4.0 | Name of the MongoDB view containing the notification messages.                                                                                 |
 | **MAIL_SERVICE_URL**                 | Email notifications | -       | *        | URL of the SES Mail Notification Service. Required if you want to send e-mails.                                                                |
 | **SMS_SERVICE_URL**                  | SMS notifications   | -       | *        | URL of the SMS Service. Required if you want to send SMS.                                                                                      |
 | **FILE_SERVICE_URL**                 | Email attachments   | -       | *        | URL of the File Service. Required if you want to send emails with attachments.                                                                 |
@@ -392,11 +472,11 @@ If `USERS_API_ENDPOINT` is not set, the users data is retrieved as in previous v
 | **KAFKA_CLIENT_ID**                  | Push notifications  | -       | *        | Required if you want to send push notifications.                                                                                               |
 | **KAFKA_BROKERS**                    | Push notifications  | -       | *        | List of comma separated brokers address. Required if you want to send push notifications.                                                      |
 | **KAFKA_TOPICS**                     | Push notifications  | -       | *        | List of comma separated topics. Required if you want to send push notifications.                                                               |
-| **KAFKA_AUTH_MECHANISM**             | Push notifications  | -       | *        | Authentication mechanism, used only if `KAFKA_USERNAME` and `KAFKA_PASSWORD` have a value. Defaults to `PLAIN`.                                |
+| **KAFKA_AUTH_MECHANISM**             | Push notifications  | PLAIN   | *        | Authentication mechanism, used only if `KAFKA_USERNAME` and `KAFKA_PASSWORD` have a value.                                                     |
 | **KAFKA_USERNAME**                   | Push notifications  | -       | *        |                                                                                                                                                |
 | **KAFKA_PASSWORD**                   | Push notifications  | -       | *        |                                                                                                                                                |
-| **KAFKA_CONNECTION_TIMEOUT**         | Push notifications  | -       | *        | Time in milliseconds to wait for a successful connection. Defaults to 1000.                                                                    |
-| **KAFKA_AUTHENTICATION_TIMEOUT**     | Push notifications  | -       | *        | Time in milliseconds to wait for a successful authentication. Defaults to 1000.                                                                |
+| **KAFKA_CONNECTION_TIMEOUT**         | Push notifications  | 1000    | *        | Time in milliseconds to wait for a successful connection.                                                                                      |
+| **KAFKA_AUTHENTICATION_TIMEOUT**     | Push notifications  | 1000    | *        | Time in milliseconds to wait for a successful authentication.                                                                                  |
 | **KAFKA_EVENTS_TOPIC_NAME**          | No                  | -       | *        | Name of the Kafka topic for incoming events. If not set, automatic notifications via Kafka are disabled.                                       |
 | **KAFKA_ERRORS_TOPIC_NAME**          | No                  | -       | *        | Name of the Kafka topic for unknown events. If not set, automatic notifications via Kafka are disabled.                                        |
 | **KAFKA_CONSUMER_GROUP**             | No                  | -       | *        | Name of the Kafka consumer group for Kafka topic for incoming events.                                                                          |
@@ -406,7 +486,7 @@ If `USERS_API_ENDPOINT` is not set, the users data is retrieved as in previous v
 | **CUSTOM_HANDLERS_FOLDER**           | Custom handlers     | -       | *        | The path to the directory containing the definitions (i.e. the configmaps) of the custom handlers.                                             |
 | **GOOGLE_APPLICATION_CREDENTIALS**   | Push notifications  | -       | >= 2.2.0 | The application credentials given by Firebase. Must be loaded from a [secret][service-secrets].                                                |
 | **DEFAULT_LOCALE**                   | No                  | -       | >= 2.3.0 | A [BCP 47 language tag][bcp-47-language-tag] used as default locale by [`toLocale` custom helper][message-interpolation] in message templates. |
-| **USERS_API_ENDPOINT**                   | No                  | -       | >= 2.3.0 | The url of the API queried to fetch users data.                                                                                          |
+| **USERS_API_ENDPOINT**               | No                  | -       | >= 2.3.0 | The url of the API queried to fetch users data.                                                                                                |
 
 ## Channels configuration
 
@@ -817,6 +897,7 @@ The following default reminder event handlers both filter the notification setti
 [rond]: https://rond-authz.io/
 [twilio-invalid-number]: https://www.twilio.com/docs/api/errors/21212
 
+[mongodb-view]: /development_suite/api-console/api-design/mongo_views.md
 [appointment-manager]: /runtime_suite/appointment-manager/10_overview.md
 [files-service]: /runtime_suite/files-service/configuration.mdx
 [localized-strings]: /microfrontend-composer/back-kit/40_core_concepts.md
@@ -829,6 +910,7 @@ The following default reminder event handlers both filter the notification setti
 [crud-events]: #events-crud
 [crud-events-settings]: #event-settings-crud
 [crud-notification-settings]: #notification-settings-crud
+[crud-notifications]: #notifications-crud
 [crud-users]: #users-crud
 [environment-variables]: #environment-variables
 [service-configuration]: #service-configuration
@@ -840,3 +922,5 @@ The following default reminder event handlers both filter the notification setti
 [patch-event-settings]: ./30_usage.md#patch-event-settingsid
 [post-event-settings]: ./30_usage.md#post-event-settings
 [delete-event-settings]: ./30_usage.md#delete-event-settingsid
+[get-notification-messages-count]: ./30_usage.md#get-notification-messagescount
+[get-notification-messages]: ./30_usage.md#get-notification-messages
