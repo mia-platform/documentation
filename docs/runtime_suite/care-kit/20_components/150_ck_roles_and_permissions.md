@@ -60,8 +60,8 @@ Upon completing an action, a feedback message will be displayed, indicating succ
 
 | property                | type     | required | default | description                                                                                     |
 |-------------------------|----------|----------|---------|-------------------------------------------------------------------------------------------------|
-| `rolesManagementEndpoint` | `string` | false    | /roles/    | Endpoint used to retrieve data of the roles. (See [Roles endpoint schema](#roles-endpoint-schema) for more informations).             |
-| `permissionsManagementEndpoint`        | `string` | false    | /permissions/        |  Endpoint used to retrieve data of the permissions. (See [Permissions endpoint schema](#permissions-endpoint-schema) for more informations).     |
+| `rolesManagementEndpoint` | `string` | false    | /roles/    | Endpoint used to retrieve data of the roles. (See [Roles endpoint schema](#roles-endpoint-schema) for more information).             |
+| `permissionsManagementEndpoint`        | `string` | false    | /permissions/        |  Endpoint used to retrieve data of the permissions. (See [Permissions endpoint schema](#permissions-endpoint-schema) for more information).     |
 | `width`                 | `string` or `number` | false    | 70%   | The width of the modal. It must a valid CSS value.                                               |
 | `readOnly`    | `boolean` | false    | false    | When set to `true`, this value ensures the modal is in read-only mode, preventing user input. |
 
@@ -150,19 +150,20 @@ graph TD
 ```
 
 ### Notes
+
 Remember, the permissions for a role will always consist of the leaf node values, but the permissionsManagementEndpoint must provide the entire tree structure, including internal nodes, for the modal to work properly.
 
-When adding a new permission, such as "Scrittura" under a new category "Documenti" the permissionsManagementEndpoint must return:
+When adding a new permission, such as "Read" under a new category "Documents" the permissionsManagementEndpoint must return:
 
-- An internal node for the "Documenti" category with the value "documents".
-- A leaf node for the "Scrittura" permission with the value "documents.write".
+- An internal node for the "Documents" category with the value "documents".
+- A leaf node for the "Read" permission with the value "documents.write".
 
 This ensures that the frontend can properly display the hierarchy of permissions.
 
 The expected response format in this case would be:
 ```json
 [
-  { "label": "Documenti", "value": "documents", "type": "internalNode" },
-  { "label": "Scrittura", "value": "documents.write", "type": "leaf" }
+  { "label": "Documents", "value": "documents", "type": "internalNode" },
+  { "label": "Write", "value": "documents.write", "type": "leaf" }
 ]
 ```
