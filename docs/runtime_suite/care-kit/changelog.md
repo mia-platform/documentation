@@ -15,6 +15,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.9.0]
+
+- Added `roles-and-permissions-modal` web component
+- Fix medical records loading data
+- Fix `add-plan-modal` handling of adherence and compliance on edit
+
 ## [v2.8.5]
 
 - Fix calendar event box width
@@ -39,8 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v2.8.2]
 
-- Update add-plan-modal to edit devices
-- Update add-plan-modal to include devices on create
+- Update `add-plan-modal` to edit devices
+- Update `add-plan-modal` to include devices on create
 
 ## [v2.8.1]
 
