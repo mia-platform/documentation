@@ -208,16 +208,9 @@ async function handler(request, reply) {
 
 ### Audit Trail
 
-:::caution
+This template provides out-of-the-box support for audit logs, which are designed to track meaningful events happening inside and across your microservices for auditing purposes.
 
-Audit logs require additional microservices and advanced configurations on the logging stack.
-Please take a look at [*Audit Trail* documentation][audit-logs] for details on how to properly configure your environment before using audit logs.
-
-:::
-
-This template provides out-of-the-box support for audit logs, which are designed to track meaningful events happening inside and across our microservices for auditing purposes.
-
-Audit logs are a subset of application logs having a custom logging level and expected to contain structured information, that can be later queried to answer common questions about systems and users activities and behaviors. For additional information about audit logs, please look at the [Audit Trail section][audit-logs].
+Audit logs are a subset of application logs with a custom logging level and expected to contain structured information, that can be later queried to answer common questions about systems and users activities and behaviors.
 
 The audit log configuration is specified at the bottom of the `index.js` file:
 
@@ -226,9 +219,6 @@ module.exports.options = {
   logger: {
     customLevels: {
       audit: AUDIT_TRAIL_LOG_LEVEL,
-    },
-    hooks: {
-      logMethod,
     },
   },
 }
@@ -242,11 +232,11 @@ async function handler(request, reply) {
 }
 ```
 
-The first argument should be an object containing event metadata, that are persisted on MongoDB to performs advanced queries. To guarantee that audit logs from different services can be correlated, we strongly recommend to follow the standard data model illustrated in the [*Audit Trail* data model section][audit-logs-data-model].
+The first argument should be an object containing event metadata, that are persisted on MongoDB to performs advanced queries.
 
-Under the hood, audit logs have a custom log level which is used to filter them from other application logs and save them to a MongoDB collection.
+Under the hood, audit logs have a custom log level which is used to filter them from other application logs.
 By default, the log level is named `audit` and has `1100` as numeric value.
-Setting a log level strictly greater than 1000 to identify audit logs serves the purpose of avoid conflicts with existing log levels and ensure the audit logs are correctly filtered downstream and forwarded to MongoDB.
+Setting a log level strictly greater than 1000 serves the purpose of avoid conflicts with existing log levels and ensure the audit logs are correctly filtered downstream and forwarded to MongoDB.
 
 :::danger
 
@@ -254,30 +244,41 @@ Be careful when setting the `LOG_LEVEL` environment variable of your service: yo
 
 :::
 
-So, given the example above, the resulting log will have a structure looking like this:
+So, given the example above, the resulting log on MongoDB will have a structure looking like this:
 
 ```json
 {
-  "level": 1100,
+  "version": "1.0.0",
+  "timestamp": "2024-04-30T09:12:06.095Z",
+  "checksum": {
+    "algorithm": "sha512",
+    "value": "e474e95adfb31ef4cac7d992732a43d65e3313c852bd5e318dd84087b39ab62b19ff4c5590a6d5d5055ee5e3669c384c55eff0f36fe090205bd67d92d4aa9381"
+  },
+  "metadata": {
+    "level": 1100,
+    "msg": "Hello World Audit Log",
+    "event": "MiaCare/HelloWorld/v1",
+    "severity": "INFO"
+  },
   "message": "Hello World Audit Log",
-  "auditLog": {
-    "version": "1.0.0",
-    "timestamp": "2024-04-30T09:12:06.095Z",
-    "checksum": {
-      "algorithm": "sha512",
-      "value": "e474e95adfb31ef4cac7d992732a43d65e3313c852bd5e318dd84087b39ab62b19ff4c5590a6d5d5055ee5e3669c384c55eff0f36fe090205bd67d92d4aa9381"
-    },
-    "metadata": {
-      "event": "MiaCare/HelloWorld/v1",
-      "severity": "INFO"
-    }
-  }
+  "rawLog": "{\"level\":1100,\"msg\":\"Hello World Audit Log\", ...}"
 }
 ```
 
-A new field called `auditLog` is added to the log entry, containing some generated fields (`version`, `timestamp` and `checksum`), while the `metadata` field contains the original object passed as first argument to the logging method. Only the content of the `auditLog` field will be persisted to MongoDB.
+The audit logs are enriched with several fields and converted to a canonical form before being stored into MongoDB:
 
-If you configure your environment to process audit logs as illustrated in the [*Audit Trail* architecture documentation][audit-logs-architecture], due to technical requirements of the logging infrastructure, you should add a new label to your microservice, called `mia-care.io/audit-trail` with value `true`, to signal which services are generating audit logs and therefore minimize the amount of application logs to be processed and avoid performance bottlenecks that could cause logs loss.
+- `version`: the version of the audit logs reference schema;
+- `timestamp`: when the audit log was recorded;
+- `checksum`: this checksum is generated automatically from the original log (available in the `rawLog` field);
+- `metadata`: this field contains all the log fields, including the ones passed as first argument to the logger;
+- `message`: this field contains the original log message (currently the message must be in the log `msg` field);
+- `rawLog`: the original log, as emitted by the application logger.
+
+:::tip
+
+If you need to record when the even occurred, you should pass it explicitly as field of the object passed as first argument to the logger, so it's recorded in the metadata and available later for querying.   
+
+:::
 
 ## Expose an endpoint to your microservice
 
@@ -318,6 +319,7 @@ Congratulations! You can now start developing your own NodeJS microservice!
 [fastify-plugins]: https://www.fastify.io/docs/latest/Reference/Plugins/
 [github-jira-prepare-commit-msg]: https://github.com/bk201-/jira-prepare-commit-msg
 [husky]: https://typicode.github.io/husky/
+
 [mia-console-paas]: https://console.cloud.mia-platform.eu/login
 [mia-console-create-microservice]: /development_suite/api-console/api-design/services.md#how-to-create-a-microservice-from-an-example-or-from-a-template
 [mia-console-deploy]: /development_suite/deploy/overview.md
@@ -325,7 +327,3 @@ Congratulations! You can now start developing your own NodeJS microservice!
 [mia-marketplace]: /marketplace/overview_marketplace.md
 [mia-nexus]: https://nexus.mia-platform.eu/
 [mia-node-template-index]: https://github.com/mia-platform-marketplace/Node.js-Custom-Plugin-Template/blob/master/index.js
-
-[audit-logs]: 30_audit_trail.md
-[audit-logs-architecture]: 30_audit_trail.md#architecture
-[audit-logs-data-model]: 30_audit_trail.md#data-model
