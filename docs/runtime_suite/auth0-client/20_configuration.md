@@ -25,6 +25,8 @@ The Auth0-Client service accepts the following environment variables:
 - __REDIS_USERNAME__: defines the redis username to be used for authentication
 - __REDIS_PASSWORD__: defines the redis password to be used for authentication
 - __REDIS_HOSTS__ (__required__): defines the redis hosts
+- __REDIS_TLS__ (__default: `false`__): when `true`, enables the TLS connection to Redis
+- __REDIS_TLS_CACERT__: defines the path to the Redis server CA, if not public (this is effective only if `REDIS_TLS` is set to `true`)
 - __ORIGINAL_PROTOCOL_HEADER__ (__required__): defines the original protocol header
 - __SERVICE_CONFIG_FILE_NAME__ (__required__): defines the service config name
 - __SERVICE_CONFIG_PATH__ (__required__): defines the service config path
