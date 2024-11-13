@@ -111,7 +111,7 @@ Refer to the [related miactl documentation](/cli/miactl/30_commands.md#apply) to
 ### Set controlled versions for your Marketplace resources and make them available to users
 
 :::info
-This feature is currently available for the [Plugin](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md) and [Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) types.
+This feature is currently available for the [Plugin](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md), [Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md), [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md) types.
 :::
 
 Marketplace creators have now the possibility to manage some types of resources (at the moment, Plugins and Custom Resources of type k8s) through a governance based on a versioning system.
