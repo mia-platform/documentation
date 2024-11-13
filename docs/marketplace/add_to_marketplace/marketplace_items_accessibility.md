@@ -6,8 +6,12 @@ sidebar_label: Make your Marketplace items available to other Companies
 
 ## Enabling the visibility to all Companies
 
-* (recommended) Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
-* Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
+- SaaS:
+  - open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community) or contact your Mia-Platform referent.
+- Self-Hosted:
+  - assign the [`marketplace.root.manage`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions) permission
+  and use [`miactl apply`](/cli/miactl/30_commands.md#apply-1) to change the item visibility
+  - (_Deprecated_): use the [Console Backoffice](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
 
 Both methods will be explained in the following paragraphs.
 
