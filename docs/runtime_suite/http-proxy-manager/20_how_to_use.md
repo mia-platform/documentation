@@ -10,8 +10,21 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-Once the _Proxy Manager_ is up and running, you can contact each external service defined in the configuration by sending a request to the proxy at a specific endpoint, which corresponds to the **basePath** field provided in the configuration.
+Once the _Proxy Manager_ is up and running, you can contact each external service defined in the configuration by sending a request to it at a specific endpoint, which corresponds to the **basePath** field provided in the configuration.
 
-For example, if in the configuration you defined a service with **targetBaseUrl**: `http://example.org` and **basePath**: `/example`, you can tell the proxy to forward your request to this service by calling the `/example` endpoint. 
+All the subroutes exposed by the external service will also be reachable through the proxy.
 
-All the routes exposed by the external service will also be reachable through the proxy.
+## Example of usage
+
+Let's suppose that a user wants to use the Proxy Manager to fetch some data from the endpoint `https://third-party-service.com/api/data`.
+
+The user can define a proxy with the following configuration:
+
+```json
+{
+  "targetBaseUrl": "https://third-party-service.com/api",
+  "basePath": "/third-party-api"
+}
+```
+
+Now the `/third-party-api/data` endpoint can be called to fetch the data from the third-party service.

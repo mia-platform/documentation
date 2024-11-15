@@ -10,11 +10,11 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-This service proxies http calls to external services.
+This service proxies HTTP calls to external services.
 
 ## Environment variables
 
-The service use the following environment variable:
+The service use the following environment variables:
 
 - **CONFIGURATION_PATH** (required for *static* configuration): the file path of the service configuration file;
 - **CONFIGURATION_FILE_NAME** (required for *static* configuration): the filename of the service configuration file (without the extension);
@@ -45,6 +45,8 @@ In case the former method (*Config Map*) is selected, please use [variables inte
 
 This prevents to store those sensitive values as plain text in the project repository.
 :::
+
+### Configuration schema
 
 The configuration must follow this schema:
 
@@ -134,6 +136,7 @@ The configuration must follow this schema:
 ```
 
 The **proxies** array contains one item for each external service that has to by proxied.
+
 A proxy can have the following fields:
 - **targetBaseUrl**: the url of the external service. This is a required field and has to start with an *http* or *https* scheme. Possible path parameters from the base path can be referenced and added to the url with the `{param-name}` syntax (**only for static configuration**).
 - **basePath**: the name of the related endpoint exposed by the _Proxy Manager_. This is a required field and has to start with a `/`.
@@ -160,7 +163,7 @@ Path parameters inside **targetBaseUrl** and **basePath** are only allowed for t
 
 ## Dynamic configuration
 
-The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema defined before.
+The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema specified in the [configuration schema](#configuration-schema).
 
 :::caution
 The *dynamic configuration* has the technical limitation of using just the first path component as **basePath**. This limitation comes from the inability to determine the CRUD's search query. Due to this limitation path parameters are not allowed inside **targetBaseUrl** and **basePath**.
@@ -169,6 +172,132 @@ The *dynamic configuration* has the technical limitation of using just the first
 :::
 
 In order to configure correctly the CRUD collection, you can **import** the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
+
+### Proxies collection management
+
+The service exposes a set of endpoints to manage the proxies collection:
+
+#### GET `/proxies`
+
+Returns the list of proxies. The API accepts the `basePath` query parameter to filter the list of proxies, and returns a paginated response. The API never returns sensitive data like the `clientSecret` or `password` for the proxies.
+
+##### Query parameters
+
+- `basePath` (optional): filters the list of proxies by the proxy base path.
+- `page` (optional): the page number of the paginated response. Default value is 1.
+- `per_page` (optional): the number of returned items per page. Default value is 25.
+
+##### Example response
+
+```json
+[
+  {
+    "authentication": "oauth2",
+    "tokenIssuerUrl": "http://external-service.com/auth/oauth/token",
+    "targetBaseUrl": "https://external-service.com",
+    "basePath": "/external-service",
+    "grantType": "client_credentials",
+    "clientId": "6779ef20e75817b79602",
+    // client secret is not returned
+  },
+  {
+    "authentication": "none",
+    "targetBaseUrl": "https://other-service.com",
+    "basePath": "/other-service",
+  }
+]
+```
+
+#### POST `/proxies`
+
+Creates a new proxy. The API request body accepts a proxy matching the *proxy* schema specified in the [configuration schema](#configuration-schema).
+
+##### Example request body
+
+```json
+{
+  "targetBaseUrl": "https://external-service.com",
+  "basePath": "/external-service",
+  // other fields are optional
+}
+```
+
+##### Example response
+
+`proxy_1234`: the id of the created proxy on the CRUD collection.
+
+#### PATCH `/proxies/{id}`
+
+Updates an existing proxy. The API requires the *id* path parameter, representing its object id on the CRUD collection. It returns the updated proxy as a whole, except for sensitive fields like the `clientSecret` or the `password`.
+
+##### Path parameters
+
+- `id`: the object id of the proxy to update.
+
+##### Example request body
+
+```json
+{
+  "basePath": "/updated-url",
+  "authentication": "none",
+  "username": null, // unsets the username
+  "password": null, // unsets the password
+}
+```
+
+##### Example response
+
+```json
+{
+  "basePath": "/updated-url",
+  "targetBaseUrl": "https://external-service.com",
+  "authentication": "none",
+  // other unchanged fields
+}
+```
+
+#### PATCH `/proxies`
+
+Updates an existing proxy. The API accepts the `basePath` query parameter to determine the proxy to update. It returns the updated proxies count.
+
+##### Query parameters
+
+- `basePath` (required): selects the proxy to update by its unique base path.
+
+##### Example request body
+
+```json
+{
+  "basePath": "/updated-url",
+  "authentication": "none",
+  "username": null, // unsets the username
+  "password": null, // unsets the password
+}
+```
+
+##### Example response
+
+```json
+{
+  "count": 1,
+}
+```
+
+:::info  
+Both PATCH APIs accept a request body containing the fields to update.  
+In order to unset a specific field, the corresponding property in the request body must be explicitly set to `null`. Not setting the property or setting it to `undefined`  will not unset the field.
+:::
+
+#### DELETE `/proxies`
+
+Deletes one or more proxies. The API accepts the `basePath` query parameter to determine the single proxy to delete or `basePathPrefix` to delete all the proxies with a basePath starting with the provided prefix.
+
+##### Query parameters
+
+At least one of the two following parameters needs to be specified.
+
+- `basePath`: selects the proxy to delete by its unique base path.
+- `basePathPrefix`: selects the proxies to delete by a shared base path prefix.
 
 ### Recommendations
 
