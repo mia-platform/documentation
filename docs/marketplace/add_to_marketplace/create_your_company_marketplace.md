@@ -67,7 +67,7 @@ The Marketplace is composed of items with the following types.
 - **Applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
 - **Proxies**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in [this section](/development_suite/api-console/api-design/proxy.md).
 - **Sidecars**: secondary utility containers running side by side with the main container in the same host. Find more [here](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md)
-- **Custom Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
+- **Infrastructure Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
 
 :::note
 Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
@@ -87,7 +87,7 @@ The service documentation of your plugin will be accessible from a specific link
 - **`tenantId`** (required): the ID of the Company the item belongs to
 - **`itemId`** (required): the ID identifying the item in the Marketplace
 - **`description`**: a brief description (10 to 20 words) regarding the service functionalities
-- **`type`**: the type of your item (plugin, template, example, application, or proxy)
+- **`type`**: the type of your item (plugin, template, example, application, proxy, etc...)
 - **`documentation`**: information about the documentation of your item. It is an object composed by:
   - **`type`**: the type of documentation. It can be `externalLink` or `markdown`
   - **`url`**: the URL of the documentation. It can be an external URL or an internal one
@@ -111,10 +111,10 @@ Refer to the [related miactl documentation](/cli/miactl/30_commands.md#apply) to
 ### Set controlled versions for your Marketplace resources and make them available to users
 
 :::info
-This feature is currently available for the [Plugin](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md) and [Custom Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) types.
+This feature is currently available for the [Plugin](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md) and [Infrastructure Resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) types.
 :::
 
-Marketplace creators have now the possibility to manage some types of resources (at the moment, Plugins and Custom Resources of type k8s) through a governance based on a versioning system.
+Marketplace creators have now the possibility to manage some types of resources (at the moment, Plugins and Infrastructure Resources of type k8s) through a governance based on a versioning system.
 
 This means that, for these types of resources, it is possible to establish a more structured and transparent lifecycle management system, providing users access to all the versions of a resource and allowing them to see the release notes of each version and select and instantiate the version that best suits their configuration needs among the ones made available by the Marketplace creator.
 
@@ -147,7 +147,7 @@ We suggest to follow these guidelines when assigning a version to your item, in 
 
  ![List of marketplace versions](./img/version_list.png)
 
-::: info
+:::info
 Also you will be informed if one or more of your resources attached to a Marketplace item have updates.
 
 You can find a list of all the updates at the bottom of the sidebar menu with the list of all your services, as well as inside the detail page of the service that can be updated.
@@ -177,7 +177,7 @@ Also, the following fields are editable only in case the permission `marketplace
 - `publishOnMiaDocumentation`
 - `visibility`
 
-More information about these permissions are available in the [](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions)
+More information about these permissions are available in the [permissions documentation](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
 
 #### Version dependent properties
 
@@ -186,7 +186,7 @@ Versioning of Marketplace resources implies that those resources under versionin
 For instance:
 
 - a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin
-- for Custom Resources of type K8s the governance is quite similar: since Custom Resources of type K8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
+- for Infrastructure Resources of type K8s the governance is quite similar: since Infrastructure Resources of type K8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
 
 By defining these fields as *version dependent*, we ensure that these are not editable by the user when they add a marketplace item to their project: whenever a new Microservice is created starting from a versioned Marketplace plugin, the `dockerImage` field will be automatically shown as read-only, and the user will be able to change it only by actually checking for other versions of the plugin.
 
@@ -218,4 +218,4 @@ Refer to the detailed explanations and examples for each item type:
 - [Templates and Examples](/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example.md)
 - [Applications](/marketplace/add_to_marketplace/add_item_by_type/add_application.md)
 - [Sidecars](/marketplace/add_to_marketplace/add_item_by_type/add_sidecar.md)
-- [Custom Resources](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)
+- [Infrastructure Resources](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)

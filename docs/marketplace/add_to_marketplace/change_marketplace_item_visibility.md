@@ -24,7 +24,7 @@ Once the repository configuration is complete, the final operational step involv
 
 ## Porting an existing item to the Public Marketplace
 
-For porting a Marketplace item from public to private, the procedure is very similar to the one previously discussed for porting an item from public to private. In this case, the first step is to create the new item in the public Marketplace, following the procedure to make your Marketplace item available to other companies as well.
+For porting a Marketplace item from private to public, the procedure is very similar to the one previously discussed for porting an item from public to private. In this case, the first step is to create the new item in the public Marketplace, following the procedure to make your Marketplace item available to other companies as well.
 
 Once this procedure is completed, and the item is effectively available on the public Marketplace, you can proceed with retiring the private item. This involves removing the Item Configuration and its related configurations such as repositories and pipelines.
 

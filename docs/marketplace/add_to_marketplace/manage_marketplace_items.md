@@ -4,7 +4,7 @@ title:  Manage Marketplace Items
 sidebar_label:  Manage Marketplace Items
 ---
 
-There are three main methods to create, modify and delete Marketplace items:
+There are two main methods to create, modify and delete Marketplace items:
 
 - (recommended) Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 - Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
