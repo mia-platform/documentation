@@ -4,6 +4,17 @@ title: Catalog and Marketplace Items Visibility
 sidebar_label: Catalog and Marketplace Items Visibility
 ---
 
+## Company Software Catalog and Mia-Platform Marketplace
+
+As a Console user, you can access both Mia-Platform public Marketplace and your Company Software Catalog.
+While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the **Company Software Catalog** is a Company-specific private space where to create and manage the items which are available only for your Company.
+
+The **Mia-Platform public Marketplace** is the place where every Company can find most of the items needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
+
+However, a Company might want to have its own internal Catalog, fulfilled also with items that must not be shared with everyone else outside the Company.
+
+---
+
 The Marketplace is an essential tool within the Development Platform, designed to empower developers with maximum autonomy in their development activities. As such, it offers a vast library of ready-to-use components that are highly dynamic. Consequently, there may arise a need for an item that initially started as a public asset within the Marketplace to be restricted for use by a single Company. In the opposite scenario, an item that began as private for exclusive use by one Company may need to become publicly available to all Companies.
 
 This guide aims to assist the reader in transforming Marketplace items concerning their visibility within Companies: from public to private, or vice versa, from private to public.

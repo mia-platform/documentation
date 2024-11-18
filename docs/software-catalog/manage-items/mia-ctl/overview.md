@@ -4,6 +4,8 @@ title:  Mia-ctl
 sidebar_label:  Mia-ctl
 ---
 
+Creation of a item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool.
+
 ## How to use `miactl` to manage the Marketplace
 
 First of all, you need to setup `miactl`, as explained in the [dedicated doc](/cli/miactl/20_setup.md).

@@ -4,9 +4,10 @@ title:  Manage Items
 sidebar_label:  Manage Items
 ---
 
-There are two main methods to create, modify and delete Marketplace items:
+There are three main methods to create, modify and delete items:
 
-- (recommended) Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
+- (recommended) Use Software Catalog UI
+- Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 - Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
 
 
@@ -15,34 +16,12 @@ There are two main methods to create, modify and delete Marketplace items:
 To contribute to the Mia-Platform Marketplace using this method, start by opening an issue [here](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+). This issue will outline the necessary information for your request.
 Subsequently, a Mia-Platform representative will take over the issue and contact you to collaboratively plan the addition of the component to the Mia-Platform Marketplace, following the guidelines described on [this documentation page](/marketplace/add_to_marketplace/create_your_company_marketplace.md).
 
-## Public and Company Marketplace
 
-As a Console user, you can access both Mia-Platform public Marketplace catalog and your Company Marketplace.
-While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the **Company Marketplace** is a Company-specific private space where to create and manage the items which are available only for your Company.
+### Item visibility and the `tenantId` field
 
-The **Mia-Platform public Marketplace** is the place where every Company can find most of the items needed to set up its Project architecture. It is publicly available on Mia-Platform Console, meaning that all Companies can view and make use of its items.
+When creating a new item, you always need to set the `tenantId` related to the Company you are creating the item in.
 
-However, a Company might want to have its own internal Marketplace, fulfilled also with items that must not be shared with everyone else outside the Company.
-
-:::info
-There are different methods to manage your Company Marketplace items. They are described in details in the [related page](/marketplace/add_to_marketplace/manage_marketplace_items.md)
-:::
-
-## Creation of an Company Marketplace item
-
-Creation of a Marketplace item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool.
-
-:::info
-If you want to make your Marketplace item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
-
-Also, to learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
-:::
-
-### Marketplace item visibility and the `tenantId` field
-
-When creating a new Marketplace item, you always need to set the `tenantId` related to the Company you are creating the item in.
-
-You can also contribute to the **Mia-Platform Marketplace** by making your Marketplace item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
+You can also contribute to the **Mia-Platform Marketplace** by making your item accessible to other Companies: visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md) for further information on this point.
 
 :::caution
 Not setting the `tenantId` is no longer supported and deprecated.
@@ -55,6 +34,12 @@ If you have any item without the `tenantId` property set, we recommend to do the
 - set the `tenantId` to any of your companies;
 - set the `visibility` field according to your needs. See the [related doc](/marketplace/add_to_marketplace/marketplace_items_accessibility.md#marketplace-item-visibility) for more information on this point.
 
+:::
+
+:::info
+If you want to make your item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+
+Also, to learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
 :::
 
 ## Marketplace items
