@@ -13,7 +13,7 @@ If you created one or more Custom Kubernetes Resource from a marketplace templat
 
 Please ensure to [update your resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md#update-a-custom-resource-to-the-console-v1330) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition, otherwise the Custom Kubernetes Resources won't be visible in the section even if the resource is active.
 
-Furthermore, for the moment the resources created **from scratch** will not be visible in the Runtime area. We will introduce support in future versions
+Furthermore, the resources created **from scratch** will not be visible in the Runtime area. We will introduce the support in future versions of the Console.
 :::
 
 
