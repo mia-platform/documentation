@@ -15,7 +15,8 @@ The `JWT Token Validator` service allows verifying if a given JWT token is valid
 ## Usage
 
 The service exposes the `GET-/verify` endpoint that validates a JWT token.
-The JWT token is passed to the endpoint inside the header `Authorization: Bearer <JWT token>`
+The JWT token is passed to the endpoint inside the header `Authorization: Bearer <JWT token>`.
+Alternatively JWT token can be passed inside the `sid` cookie.
 
 The endpoint will return:
 
