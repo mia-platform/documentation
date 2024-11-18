@@ -1,5 +1,5 @@
 ---
-id: catalog-and-marketplace
+id: overview-catalog-and-marketplace
 title: Catalog and Marketplace Items Visibility
 sidebar_label: Catalog and Marketplace Items Visibility
 ---
