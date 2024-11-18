@@ -96,6 +96,12 @@ Please visit the [dedicated page](/fast_data/runtime_management/compatibility_ma
 Here are listed all the services version that are affected by a known issue that prevents the plugins
 from working as intended.
 
+### Projection Storer
+
+- `v1.0.0 - v1.3.3`: default `castToDate` cast function was running an invalid logic when converting Unix timestamps (expected in millisecond).
+In fact, timestamps in the range `[-2147483648, 2147483647]`, corresponding to dates between `1969-12-07T03:28:36.352Z` and `1970-01-25T20:31:23.647Z`, were not converted appropriately.
+It is highly recommended to upgrade your services to version `v1.3.4` or newer
+
 ### Single View Trigger Generator
 
 - `v3.1.0`: the introduction of message validation on existing messages was too strict causing the discard of all the
