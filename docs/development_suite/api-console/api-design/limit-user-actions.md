@@ -95,7 +95,7 @@ The API for updating the rules on a Companty is defined as follows.
 - verb: `PATCH`
 - path: `/api/backend/tenants/:tenantId/rules`
 
-Authentication required
+**Authentication required**
 
 ##### Body
 
