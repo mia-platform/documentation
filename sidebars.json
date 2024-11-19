@@ -1894,7 +1894,16 @@
             "id": "software-catalog/manage-items/software-catalog-ui/ui",
             "type": "doc"
           },
-          "items": []
+          "items": [
+            {
+              "id": "software-catalog/manage-items/software-catalog-ui/create/overview-software-catalog-create",
+              "type": "doc"
+            },
+            {
+              "id": "software-catalog/manage-items/software-catalog-ui/delete/overview-software-catalog-delete",
+              "type": "doc"
+            }
+          ]
         },
         {
           "type": "category",
@@ -1908,7 +1917,7 @@
             {
               "type": "category",
               "collapsed": true,
-              "label": "Create an Item",
+              "label": "Create Item",
               "link": {
                 "id": "software-catalog/manage-items/mia-ctl/create/overview-mia-ctl-create",
                 "type": "doc"

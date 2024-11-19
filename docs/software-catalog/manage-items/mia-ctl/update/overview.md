@@ -1,10 +1,10 @@
 ---
 id: overview-mia-ctl-update
-title:  Update an Item
-sidebar_label:  Update an Item
+title:  Update item
+sidebar_label:  Update item
 ---
 
-### Update an item
+### Update item
 
 :::info
 You need to have *Company Owner* or *Project Administrator* role at Company level to perform this action

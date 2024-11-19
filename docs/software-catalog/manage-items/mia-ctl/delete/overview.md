@@ -1,10 +1,10 @@
 ---
 id: overview-mia-ctl-delete
-title:  Delete an Item
-sidebar_label:  Delete an Item
+title:  Delete item
+sidebar_label:  Delete item
 ---
 
-### Delete an item
+### Delete item
 
 :::info
 You need either the *Company Owner* or *Project Administrator* role at Company level to perform this action

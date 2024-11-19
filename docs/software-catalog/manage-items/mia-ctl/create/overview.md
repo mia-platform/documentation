@@ -1,10 +1,10 @@
 ---
 id: overview-mia-ctl-create
-title:  Create an Item
-sidebar_label:  Create an Item
+title:  Create item
+sidebar_label:  Create item
 ---
 
-### Create an item
+### Create item
 
 :::info
 
