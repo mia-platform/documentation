@@ -59,6 +59,7 @@ For **compose pages**, available fields are:
 - _input mode_: whether the page configuration is saved inline (_inline_ option) or in a separate file (_external_ option);
 - _configurations manager endpoint_ (only if input mode is _external_): endpoint from which the configuration file can be fetched;
 - _configuration source_ (only if input mode is _external_): name of the file containing the page configuration;
+- _fetch config on mount_ (only if input mode is _external_): whether the configuration should be fetched at each application mount;
 - _template_ (only if input mode is _external_): a [configuration template](./20_compose_pages.md#templates) carrying a pre-defined, pre-arranged set of components.
 
 ![Page compose options](img/structure_page-compose-options.png)
@@ -102,7 +103,8 @@ From left to right, available actions are:
 
 Through the _Layout_ tab you can configure your frontend [layout](https://micro-lc.io/docs/guides/layout) components in a no-code fashion.
 
-In this tab, the configurator is divided into three sections: 
+In this tab, the configurator is divided into three sections:
+
 - a left menu that lists the components composing the layout,
 - a central live, interactive preview, and
 - a right menu where single component properties can be configured.
@@ -167,7 +169,7 @@ Components will also have a special property called `aclExpression`, which can b
 
 The property is configurable at two levels.
 
-- On a **component level** from the properties form itself to limit the presence of the whole component definition. 
+- On a **component level** from the properties form itself to limit the presence of the whole component definition.
   
   For example, with the following configuration
 
@@ -175,14 +177,13 @@ The property is configurable at two levels.
 
   the layout component will not be included if the configuration is not fetched by a user with the _admin_ group.
 
-- On a **property level** for all the properties (and sub-properties) of type `object`. 
+- On a **property level** for all the properties (and sub-properties) of type `object`.
   
   For example, with the following configuration
   
   ![ACL property](img/structure_layout-acl-property.png)
 
   the property `logo` of the layout will not be included if the configuration is not fetched by a user with the _admin_ group.
-
 
 ## Settings
 
