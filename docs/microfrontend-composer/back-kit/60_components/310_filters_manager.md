@@ -78,7 +78,7 @@ In particular, filters on properties that include within their data-schema descr
 
 are not included in the list of filters that is displayed by the Filters Manger. Nonetheless, the Filters Manger still requests the filter to be applied.
 
-### Persisten filters
+### Persistent filters
 
 Property `saveFilters` allows to save filters to [local-storage].
 Filters are saved in local-storage through a key which can be customized with property `localStorageKey`, and defaults to `bk-filters-manager-store-` followed by the pathname of the current URL.
