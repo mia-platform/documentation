@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Update
 
-- update service dependencies and Java build image to `21.0.4_7-jdk-jammy` 
+- update service dependencies and Java build image to `21.0.4_7-jdk-jammy`
 
 ## [1.3.0] - 2024-06-04
 
