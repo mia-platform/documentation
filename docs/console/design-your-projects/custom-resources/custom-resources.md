@@ -36,6 +36,11 @@ To create a resource from scratch, you need to provide the following information
 - **name**: the name of the Infrastructure Resource. It will be used to generate the manifest, and cannot be changed during updates;
 - **apiVersion**: the apiVersion of the Infrastructure Resource, it can be any string. If you are creating a Custom Kubernetes Resource, it must be the apiVersion of the Infrastructure Resource Definition;
 - **kind**: the kind of the Infrastructure Resource, it can be any string. If you are creating a Custom Kubernetes Resource, it must be the kind of the Infrastructure Resource Definition.
+- **type**: the type of the Infrastructure Resource. 
+
+If the type of the Infrastructure Resource is set to  'kubernetes', the following extra field is available:
+
+- **resourceId**: The plural name for the Kubernetes Infrastructure resource definition. If set, the resource will be visible in the [Runtime](/development_suite/monitoring/resources/custom-resources.md) section of the console.
 
 In creation, you will see the preview of the generated manifest.
 
