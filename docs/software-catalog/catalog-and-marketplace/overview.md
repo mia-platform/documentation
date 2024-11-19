@@ -37,7 +37,7 @@ Managing the visibility of items can be done through three main methods:
   and use one of the following two methods:
     - the metadata section of the item in the Software Catalog to adjust visibility settings.
     - [`miactl apply`](/cli/miactl/30_commands.md#apply-1) to change the item visibility
-  - (_Deprecated_): use the [Console Backoffice](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
+  - (_Deprecated_): use the [Console Backoffice](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your item accessible to other Companies.
 
 
 ## Public Visibility
@@ -74,9 +74,8 @@ The repositories and pipelines should only be deleted if they have not been reus
 
 ## Enabling the visibility to all Companies
 
-To make a item of your Company accessible to other Companies, you first need to create it. Follow the instructions on [this page](/software-catalog/manage-items/overview.md) to do so.
+To make an item from your Company accessible to other Companies, you need to modify its `visibility` property. Specifically, set the `allTenants` property within the `visibility` object to "true".
 
-When creating your item, you can make it accessible to other companies by editing its `visibility` property. Specifically, set the `allTenants` property inside the `visibility` object to "true".  
 After editing, the visibility property should look like this:
 
 ```json
