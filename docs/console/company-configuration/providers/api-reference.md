@@ -178,14 +178,16 @@ curl --location --request POST 'https://console-url/api/backend/tenants/my-examp
 </details>
 
 :::info Supported credential types
-As discussed [here](/console/company-configuration/providers/configure-provider.mdx#step-3-credentials), different types of providers support different types of credentials. The following table shows the credential types supported by each provider, referring to the data model shown above:
+As discussed [here](/console/company-configuration/providers/configure-provider.mdx#step-3-credentials),
+different types of providers support different types of credentials.
+The following table shows the credential types supported by each provider, referring to the data model shown above:
 
 | Credentials Type   | Providers                                                             |
 | ------------------ |:---------------------------------------------------------------------:|
 | token              | gitlab, github, bitbucket, azure-devops, vault, jenkins               |
 | m2m                | vault                                                                 |
-| client_credentials | jenkins                                                               |
-:::
+| client_credentials | jenkins, azure-devops                                                 |
+
 :::caution Data model update
 The fields `capabilities` and `expirationDate` (within `credentials`) have been introduced starting from version 10.8 of the Console.
 :::
@@ -321,6 +323,7 @@ Examples of request bodies specific to each provider type are shown below. In th
 </Tabs>
 
 ### PATCH
+
 To edit an existing provider, you need to call the respective API as follows:
 
 ```sh
