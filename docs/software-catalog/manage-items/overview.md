@@ -4,9 +4,9 @@ title:  Manage Items
 sidebar_label:  Manage Items
 ---
 
-There are three main methods to create, modify and delete items:
+There are three main methods to create, edit and delete items:
 
-- (recommended) Use Software Catalog UI
+- (recommended) Directly from the Software Catalog, following the 
 - Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 - Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
 
@@ -32,17 +32,17 @@ This behavior might change in the next Console releases.
 If you have any item without the `tenantId` property set, we recommend to do the following:
 
 - set the `tenantId` to any of your companies;
-- set the `visibility` field according to your needs. See the [related doc](/marketplace/add_to_marketplace/marketplace_items_accessibility.md#marketplace-item-visibility) for more information on this point.
+- set the `visibility` field according to your needs. See the [related doc](/software-catalog/catalog-and-marketplace/overview.md) for more information on this point.
 
 :::
 
 :::info
-If you want to make your item accessible to other Companies, you can visit [this page](/marketplace/add_to_marketplace/marketplace_items_accessibility.md).
+If you want to make your item accessible to other Companies, you can visit [this page](/software-catalog/catalog-and-marketplace/overview.md#Enabling-the-visibility-to-all-Companies).
 
-Also, to learn how to migrate an item from the public to private internal Marketplace and vice versa, please refer to the [dedicated page](/marketplace/add_to_marketplace/change_marketplace_item_visibility.md).
+Also, to learn how to migrate an item from the public to private internal catalog and vice versa, please refer to the [dedicated page](/software-catalog/catalog-and-marketplace/overview.md#public-visibility).
 :::
 
-## Marketplace items
+## Software Catalog Items
 
 A Marketplace **Item** (also referred to as **Component**) is the basic unit of the Marketplace and represents a software resource available for use within Mia-Platform Projects.
 
@@ -69,7 +69,7 @@ Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visua
 
 ## How to configure a new item
 
-In the following section we'll explore the common fields shared by all marketplace item types.
+In the following section we'll explore the common fields shared by all item types.
 
 Refer to the [detailed explanation by type](#marketplace-items-example-and-explanation) for the type-specific fields and examples of working JSON marketplace items entities.
 
@@ -94,7 +94,7 @@ The service documentation of your plugin will be accessible from a specific link
   - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on Marketplace items in a Console project; includes information about the changes introduced by the new version.
   - **`security`**: a boolean to indicate if the item is security-related
 
-Each marketplace item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version`** name properties. So, when you need to create a new Marketplace item, be sure to provide unique values for these properties.
+Each item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version`** name properties. So, when you need to create a new Marketplace item, be sure to provide unique values for these properties.
 
 :::info
 To upload the *image* and *supportedByImage*, you can use the `miactl marketplace apply` command adding the respective `image` and `supportedByImage` keys to the object.
