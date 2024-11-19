@@ -6,16 +6,9 @@ sidebar_label:  Manage Items
 
 There are three main methods to create, edit and delete items:
 
-- (recommended) Directly from the Software Catalog, following the 
+- (recommended) Use Software Catalog UI
 - Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
 - Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
-
-
-## Open an issue on Mia-Platform Github community page
-
-To contribute to the Mia-Platform Marketplace using this method, start by opening an issue [here](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+). This issue will outline the necessary information for your request.
-Subsequently, a Mia-Platform representative will take over the issue and contact you to collaboratively plan the addition of the component to the Mia-Platform Marketplace, following the guidelines described on [this documentation page](/software-catalog/manage-items/overview.md).
-
 
 ### Item visibility and the `tenantId` field
 
@@ -54,7 +47,7 @@ To use a Marketplace item in a Project, a user have to **create** it; depending 
 
 ### Item Types
 
-The Marketplace is composed of items with the following types.
+The Software Catalog support the following item types.
 
 - **Plugins**: items for which users have no access to the actual code. Users will still be able to download their Docker image, in order to configure and use them within their Projects.
 - **Templates** and **Examples**: archives for which a new repository is generated. The developer will have direct access to the new repository (created in their Project scope) and will be able to evolve its code at will. A template is a repository that, net of the development environment and framework setup, is empty; an example, instead, also implements some features tailored to help the user better familiarize with the development environment.  
@@ -64,7 +57,7 @@ The Marketplace is composed of items with the following types.
 - **Infrastructure Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)
 
 :::note
-Marketplace items are identified by a **Category** (e.g. Data Stream, Data Visualization, Insurance, Healthcare... ).
+Items can be assigned a **Category** (e.g., Data Stream, Data Visualization, Insurance, Healthcare, etc.) to help organize and identify them.
 :::
 
 ## How to configure a new item
@@ -74,8 +67,6 @@ In the following section we'll explore the common fields shared by all item type
 Refer to the [detailed explanation by type](#marketplace-items-example-and-explanation) for the type-specific fields and examples of working JSON marketplace items entities.
 
 Here below are listed all the properties that must be provided for each type of item:
-
-The service documentation of your plugin will be accessible from a specific link in the Marketplace, you also need to provide the documentation URL of your plugin and this must be inserted in the `documentation` field:
 
 - **`name`** (required): the item name appearing in the Marketplace card
 - **`tenantId`** (required): the ID of the Company the item belongs to
@@ -91,13 +82,13 @@ The service documentation of your plugin will be accessible from a specific link
 - **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
 - **`version`**: the version of the item. It is an object composed by the following properties:
   - **`name`** (required): the actual version of the item. We suggest to use the [Semantic Versioning](https://semver.org/) format.
-  - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on Marketplace items in a Console project; includes information about the changes introduced by the new version.
+  - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on items in a Console project; includes information about the changes introduced by the new version.
   - **`security`**: a boolean to indicate if the item is security-related
 
-Each item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version`** name properties. So, when you need to create a new Marketplace item, be sure to provide unique values for these properties.
+Each item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version`** name properties. So, when you need to create a new item, be sure to provide unique values for these properties.
 
 :::info
-To upload the *image* and *supportedByImage*, you can use the `miactl marketplace apply` command adding the respective `image` and `supportedByImage` keys to the object.
+To upload the *image* and *supportedByImage*, you can also use the `miactl marketplace apply` command adding the respective `image` and `supportedByImage` keys to the object.
 
 Refer to the [related miactl documentation](/cli/miactl/30_commands.md#apply) to know the exact specifications of such object.
 :::
@@ -105,10 +96,10 @@ Refer to the [related miactl documentation](/cli/miactl/30_commands.md#apply) to
 ### Set controlled versions for your Marketplace resources and make them available to users
 
 :::info
-This feature is currently available for the [Plugin](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md) and [Infrastructure Resource](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md) types.
+This feature is currently available for the [Plugin](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md), [Infrastructure Resource](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md), [Templates and Examples](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) types.
 :::
 
-Marketplace creators have now the possibility to manage some types of resources (at the moment, Plugins and Infrastructure Resources of type k8s) through a governance based on a versioning system.
+Marketplace creators have now the possibility to manage some types of resources through a governance based on a versioning system.
 
 This means that, for these types of resources, it is possible to establish a more structured and transparent lifecycle management system, providing users access to all the versions of a resource and allowing them to see the release notes of each version and select and instantiate the version that best suits their configuration needs among the ones made available by the Marketplace creator.
 

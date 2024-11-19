@@ -30,9 +30,15 @@ To create an item, please follow [this](/software-catalog/manage-items/overview.
 
 Managing the visibility of items can be done through three main methods:
 
-* (recommended) Use the metadata section of the item in the Software Catalog to adjust visibility settings.
-* Use the [CMS](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your item accessible to other Companies.
-* Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
+- PaaS Console installation:
+  - open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community) or contact your Mia-Platform referent.
+- On-Premise Console installation:
+  - assign the [`marketplace.root.manage`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions) permission
+  and use one of the following two methods:
+    - the metadata section of the item in the Software Catalog to adjust visibility settings.
+    - [`miactl apply`](/cli/miactl/30_commands.md#apply-1) to change the item visibility
+  - (_Deprecated_): use the [Console Backoffice](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your Marketplace item accessible to other Companies.
+
 
 ## Public Visibility
 
