@@ -14,7 +14,7 @@ There are three main methods to create, edit and delete items:
 
 An **Item** (also referred to as a **Component**) is the basic unit of creating a resource within the catalog and represents a software resource that can be utilized in Mia-Platform Projects.
 
-Based on the visibility level of the item, it may be made available in the [Mia-Platform Marketplace](/marketplace/overview.md), which hosts various types of items designed for different use cases.
+Based on the visibility level of the item, it may be made available in the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md), which hosts various types of items designed for different use cases.
 
 Directly from the Mia-Platofrm Marketplace, users can instatiate items into their Projects, integrating them to streamline development and configuration workflows.
 
