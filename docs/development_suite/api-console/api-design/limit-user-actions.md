@@ -1,5 +1,7 @@
 # Granular role-based access control
 
+> This feature is not currently generally available, but is only available as a Closed Preview. For more information and to enable it on your Company, contact your Mia-Platform representative
+
 This feature introduces a mechanism for managing user interactions within the application by restricting specific actions based on user roles and specified rules.
 
 If a user try to save a configuration after performing some changes that are forbidden by the configured the rules, the saving is blocked and an error is returned.
