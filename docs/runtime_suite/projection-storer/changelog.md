@@ -15,6 +15,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.4] - 2024-11-19
+
+### Fix
+
+- the logic of provided cast function `castToDate` has been overhauled, so that dates represented as Unix timestamp
+in millisecond that ranges from `-2147483648` (`1969-12-07T03:28:36.352Z`) to `2147483647` (`1970-01-25T20:31:23.647Z`)
+are now properly converted into their expected date.
+
 ## [1.3.3] - 2024-10-25
 
 ### Fix
