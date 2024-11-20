@@ -16,7 +16,7 @@ An **Item** (also referred to as a **Component**) is the basic unit of creating 
 
 Based on the visibility level of the item, it may be made available in the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md), which hosts various types of items designed for different use cases.
 
-Directly from the Mia-Platofrm Marketplace, users can instatiate items into their Projects, integrating them to streamline development and configuration workflows.
+Directly from the Mia-Platform Marketplace, users can instantiate items into their Projects, integrating them to streamline development and configuration workflows.
 
 ### Item Types
 
