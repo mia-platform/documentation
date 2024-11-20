@@ -1,3 +1,9 @@
+---
+id: limit-user-actions
+title: Limit User Actions
+sidebar_label: Limit User Actions
+---
+
 # Granular role-based access control
 
 > This feature is not currently generally available, but is only available as a Closed Preview. For more information and to enable it on your Company, contact your Mia-Platform representative
