@@ -23,6 +23,7 @@ The service use the following environment variables:
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 - **HTTP_PORT** (optional, default to `8080`): port where the web server is exposed;
 - **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
+- **EXPOSE_MANAGEMENT_APIS** (optional, default `false`): allows to control whether or not [management APIs](./20_how_to_use.md#management-api) are exposed by the service (please note that this flag can be used only when running in dynamic configuration mode);
 - **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
 - **ADDITIONAL_HEADERS_TO_REDACT** (optional): comma separated values of additional headers to redact when logging. The following headers are always redacted: `Authorization`, `Cookie`, `Proxy-Authorization`, `Set-Cookie` and `Www-Authenticate`;
@@ -30,6 +31,7 @@ The service use the following environment variables:
 :::caution
 **ALLOW_PROXY_OPTIMIZER** will be dismissed with the next major release. The not optimized proxy functionality and the retry feature is deprecated and will be dismissed too.
 :::
+
 ## Static configuration
 
 This service requires a configuration file that provides all the different details regarding the external services to be proxied.
@@ -52,86 +54,86 @@ The configuration must follow this schema:
 
 ```json
 {
-    "type": "object",
-    "properties": {
-        "proxies": {
+  "type": "object",
+  "properties": {
+    "proxies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["targetBaseUrl","basePath"],
+        "properties": {
+          "authentication": {
+            "type": "string",
+            "enum": ["none","oauth2"],
+            "default": "none"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "clientSecret": {
+            "type": "string"
+          },
+          "tokenIssuerUrl": {
+            "type": "string"
+          },
+          "tokenIssuerValidationPath": {
+            "type": "string"
+          },
+          "targetBaseUrl": {
+            "type": "string",
+            "pattern": "^https?:\\/\\/[a-zA-Z0-9.:_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
+          },
+          "basePath": {
+            "type": "string",
+            "pattern": "^\\/[a-zA-Z0-9_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
+          },
+          "grantType": {
+            "type": "string",
+            "enum": ["client_credentials","password"],
+            "default": "client_credentials"
+          },
+          "authType": {
+            "type": "string",
+            "enum": ["client_secret_basic"],
+            "default": "client_secret_basic"
+          },
+          "additionalAuthFields": {
+            "type": "object",
+            "default": null
+          },
+          "headersToProxy": {
             "type": "array",
             "items": {
-                "type": "object",
-                "required": ["targetBaseUrl","basePath"],
-                "properties": {
-                    "authentication": {
-                        "type": "string",
-                        "enum": ["none","oauth2"],
-                        "default": "none"
-                    },
-                    "username": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    },
-                    "clientId": {
-                        "type": "string"
-                    },
-                    "clientSecret": {
-                        "type": "string"
-                    },
-                    "tokenIssuerUrl": {
-                        "type": "string"
-                    },
-                    "tokenIssuerValidationPath": {
-                        "type": "string"
-                    },
-                    "targetBaseUrl": {
-                        "type": "string",
-                        "pattern": "^https?:\\/\\/[a-zA-Z0-9.:_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
-                    },
-                    "basePath": {
-                        "type": "string",
-                        "pattern": "^\\/[a-zA-Z0-9_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
-                    },
-                    "grantType": {
-                        "type": "string",
-                        "enum": ["client_credentials","password"],
-                        "default": "client_credentials"
-                    },
-                    "authType": {
-                        "type": "string",
-                        "enum": ["client_secret_basic"],
-                        "default": "client_secret_basic"
-                    },
-                    "additionalAuthFields": {
-                        "type": "object",
-                        "default": null
-                    },
-                    "headersToProxy": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "default": []
-                    },
-                    "additionalHeaders": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": ["name","value"]
-                        },
-                        "default": []
-                    }
+              "type": "string"
+            },
+            "default": []
+          },
+          "additionalHeaders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
                 }
-            }
+              },
+              "required": ["name","value"]
+            },
+            "default": []
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -173,133 +175,7 @@ The *dynamic configuration* has the technical limitation of using just the first
 
 In order to configure correctly the CRUD collection, you can **import** the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
 
-### Proxies collection management
-
-The service exposes a set of endpoints to manage the proxies collection:
-
-#### GET `/proxies`
-
-Returns the list of proxies. The API accepts the `basePath` query parameter to filter the list of proxies, and returns a paginated response. The API never returns sensitive data like the `clientSecret` or `password` for the proxies.
-
-##### Query parameters
-
-- `basePath` (optional): filters the list of proxies by the proxy base path.
-- `page` (optional): the page number of the paginated response. Default value is 1.
-- `per_page` (optional): the number of returned items per page. Default value is 25.
-
-##### Example response
-
-```json
-[
-  {
-    "authentication": "oauth2",
-    "tokenIssuerUrl": "http://external-service.com/auth/oauth/token",
-    "targetBaseUrl": "https://external-service.com",
-    "basePath": "/external-service",
-    "grantType": "client_credentials",
-    "clientId": "6779ef20e75817b79602",
-    // client secret is not returned
-  },
-  {
-    "authentication": "none",
-    "targetBaseUrl": "https://other-service.com",
-    "basePath": "/other-service",
-  }
-]
-```
-
-#### POST `/proxies`
-
-Creates a new proxy. The API request body accepts a proxy matching the *proxy* schema specified in the [configuration schema](#configuration-schema).
-
-##### Example request body
-
-```json
-{
-  "targetBaseUrl": "https://external-service.com",
-  "basePath": "/external-service",
-  // other fields are optional
-}
-```
-
-##### Example response
-
-`proxy_1234`: the id of the created proxy on the CRUD collection.
-
-#### PATCH `/proxies/{id}`
-
-Updates an existing proxy. The API requires the *id* path parameter, representing its object id on the CRUD collection. It returns the updated proxy as a whole, except for sensitive fields like the `clientSecret` or the `password`.
-
-##### Path parameters
-
-- `id`: the object id of the proxy to update.
-
-##### Example request body
-
-```json
-{
-  "basePath": "/updated-url",
-  "authentication": "none",
-  "username": null, // unsets the username
-  "password": null, // unsets the password
-}
-```
-
-##### Example response
-
-```json
-{
-  "basePath": "/updated-url",
-  "targetBaseUrl": "https://external-service.com",
-  "authentication": "none",
-  // other unchanged fields
-}
-```
-
-#### PATCH `/proxies`
-
-Updates an existing proxy. The API accepts the `basePath` query parameter to determine the proxy to update. It returns the updated proxies count.
-
-##### Query parameters
-
-- `basePath` (required): selects the proxy to update by its unique base path.
-
-##### Example request body
-
-```json
-{
-  "basePath": "/updated-url",
-  "authentication": "none",
-  "username": null, // unsets the username
-  "password": null, // unsets the password
-}
-```
-
-##### Example response
-
-```json
-{
-  "count": 1,
-}
-```
-
-:::info  
-Both PATCH APIs accept a request body containing the fields to update.  
-In order to unset a specific field, the corresponding property in the request body must be explicitly set to `null`. Not setting the property or setting it to `undefined`  will not unset the field.
-:::
-
-#### DELETE `/proxies`
-
-Deletes one or more proxies. The API accepts the `basePath` query parameter to determine the single proxy to delete or `basePathPrefix` to delete all the proxies with a basePath starting with the provided prefix.
-
-##### Query parameters
-
-At least one of the two following parameters needs to be specified.
-
-- `basePath`: selects the proxy to delete by its unique base path.
-- `basePathPrefix`: selects the proxies to delete by a shared base path prefix.
-
-### Recommendations
+## Recommendations
 
 It is recommended to add the following indexes to your CRUD collection:
 - a *unique* index for field **basePath** (to guarantee proxy uniqueness),
