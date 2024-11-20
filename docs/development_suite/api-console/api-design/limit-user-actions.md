@@ -4,21 +4,21 @@ title: Limit User Actions
 sidebar_label: Limit User Actions
 ---
 
-# Granular role-based access control
+# Design changes Fine-Grained Access Control
 
 :::info
-This feature is not currently generally available, but is only available as a Closed Preview. For more information and to enable it on your Company, contact your Mia-Platform referent
+This feature is currently available exclusively as a **Closed Preview** and is not yet generally available. For more information and to request its activation for your Company, please contact your Mia-Platform referent.
 :::
 
-This feature introduces a mechanism for managing user interactions within the application by restricting specific actions based on user roles and specified rules.
+This feature introduces a mechanism for managing user interactions within the application by restricting specific actions based on user roles and specified rules in the Design section.
 
-If a user try to save a configuration after performing some changes that are forbidden by the configured the rules, the saving is blocked and an error is returned.
+If a user attempts to save a configuration after performing some changes that are forbidden by the configured rules, the saving is blocked and an error is returned.
 
 *Rules* and *user roles* can be configured at both the Project and the Company levels.
 The following logic is applied:
 
-- **Rules**: project and company rules are combined together without conflict, as only disallow rules are used.  
-- **User Roles**: If a user has roles assigned at the project level, only those roles are applied. If no project-level roles are assigned, the roles defined at the company level are used instead.
+- **Rules**: Project and Company rules are combined together without conflict, as only disallow rules are used.  
+- **User Roles**: If a user has roles assigned at the project level, only those roles used to find the applicable rules. If no project-level roles are assigned, the roles defined at the company level are used instead.
 
 ## Configuration definition
 
@@ -113,7 +113,7 @@ This API is meant for internal use and will be subject to breaking changes.
 
 The **body** of the request the structure described in [Configuration definition](#configuration-definition)
 
-### Examples
+### Use Case Examples
 
 Here are some examples of request bodies for updating Project or Company rules (the body is the same for the two API)
 
@@ -160,7 +160,7 @@ Prevent creation of the resource `secrets` to the role `maintainer`
 }
 ```
 
-Through jsonpath syntax, more complex rules can be configured. The following rule for example prevent the creation of a services of a specific type (`custom-resource`) to the role `maintainer`
+Through jsonpath syntax, more complex rules can be configured. The following rule for example prevents the creation of a services of a specific type (`custom-resource`) to the role `maintainer`
 
 ```json
 {
