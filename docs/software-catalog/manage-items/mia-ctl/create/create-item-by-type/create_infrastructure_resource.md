@@ -211,7 +211,7 @@ runtime:
 
 ## Create a new Infrastructure Resource
 
-::: info
+:::info
 In the following paragraphs, we are going to use the `miactl` tool to create a new Infrastructure Resource.
 
 Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.

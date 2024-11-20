@@ -8,7 +8,7 @@ The Mia-Platform Marketplace contains several code resources that facilitate a f
 
 In the Marketplace, you will be able to choose from a set of **items**, also called **components**, to easily set up a single microservice or a bundle of resources **with predefined and tested functionalities**.
 
-The Marketplace components types you can use include:
+The types of Marketplace components you can use include:
 
 * **[Plugin](/plugins/mia-platform-plugins.md)**: a ready-to-use Microservice.  
 
@@ -17,6 +17,12 @@ The Marketplace components types you can use include:
 * **[Example](/marketplace/examples/mia_examples.md)**: a specific use-case, a ready-to-use model to create a new Microservice. On the contrary of the Template, an Example already contains some ready to use business logic code, that you can later modify to match your exact needs.
 
 * **[Application](/marketplace/applications/mia_applications.md)**: a bundle of resources including Plugins, Templates, and Examples, but also Endpoints, Collections, and Public Variables.
+
+* **[Proxy](/development_suite/api-console/api-design/proxy.md)**: specific configurations used to invoke APIs that are external to the current project, but may be provided by an external service or another project.
+
+* **[Sidecars](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md)**: secondary utility containers running side by side with the main container in the same host.
+
+* **[Infrastructure Resources](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)**: custom objects that are not part of the standard Console supported resources.
 
 :::info
 
@@ -82,3 +88,28 @@ The item will be marked as **Deprecated**. While you can still use it if necessa
 It's important to consider the alternatives to a deprecated item. Using updated and supported items ensures better performance, security, and compatibility.
 
 :::
+
+### Set controlled versions for your Marketplace resources and make them available to users
+
+:::info
+This feature is currently available for the [Plugin](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md), [Infrastructure Resource](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md), [Templates and Examples](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) types.
+:::
+
+Marketplace creators have now the possibility to manage some types of resources through a governance based on a versioning system.
+
+This means that, for these types of resources, it is possible to establish a more structured and transparent lifecycle management system, providing users access to all the versions of a resource and allowing them to see the release notes of each version and select and instantiate the version that best suits their configuration needs among the ones made available by the Marketplace creator.
+
+This versioning system also provides significant advantages in a feature-branch design workflow, effectively leveraging different versions of the same Marketplace item across various branches of a project.
+
+![CRUD-version](./img/item-version.png)
+
+For instance, we imagine to have a project with three different revisions: *dev*, *stage* and *main*, with the latter being the branch with the official configuration. Let's also imagine to have installed in all the three revisions the *CRUD Service* plugin, which includes different versions.
+
+In this scenario we can have:
+
+- the `main` branch with the `6.6.0` version, which is the supported version in our project
+- we can use the the version `6.10.0` in the `stage` branch where the latest manual tests and verifications are performed before to be included in the `main` branch
+- at the same time we can experiment and test features using the version `7.0.0` in your `dev` branch without affecting the other branches and the existing configurations
+
+This approach facilitates a smooth upgrade process, enables thorough testing of new features, and ensures compatibility across different stages of your project lifecycle. This flexibility allows for testing new versions in development environments while maintaining stable versions in production.
+Such a structured approach will streamline resource management and ensure compatibility and stability across different use cases.
