@@ -10,11 +10,11 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-This service proxies http calls to external services.
+This service proxies HTTP calls to external services.
 
 ## Environment variables
 
-The service use the following environment variable:
+The service use the following environment variables:
 
 - **CONFIGURATION_PATH** (required for *static* configuration): the file path of the service configuration file;
 - **CONFIGURATION_FILE_NAME** (required for *static* configuration): the filename of the service configuration file (without the extension);
@@ -23,12 +23,15 @@ The service use the following environment variable:
 - **LOG_LEVEL** (optional, default to `info`): level of the log. It could be trace, debug, info, warn, error, fatal;
 - **HTTP_PORT** (optional, default to `8080`): port where the web server is exposed;
 - **SERVICE_PREFIX** (optional): path prefix for all the specified endpoints (different from the status routes);
+- **EXPOSE_MANAGEMENT_APIS** (optional, default `false`): allows to control whether or not [management APIs](./20_how_to_use.md#management-api) are exposed by the service (please note that this flag can be used only when running in dynamic configuration mode);
 - **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
+- **ADDITIONAL_HEADERS_TO_REDACT** (optional): comma separated values of additional headers to redact when logging. The following headers are always redacted: `Authorization`, `Cookie`, `Proxy-Authorization`, `Set-Cookie` and `Www-Authenticate`;
 
 :::caution
 **ALLOW_PROXY_OPTIMIZER** will be dismissed with the next major release. The not optimized proxy functionality and the retry feature is deprecated and will be dismissed too.
 :::
+
 ## Static configuration
 
 This service requires a configuration file that provides all the different details regarding the external services to be proxied.
@@ -45,94 +48,97 @@ In case the former method (*Config Map*) is selected, please use [variables inte
 This prevents to store those sensitive values as plain text in the project repository.
 :::
 
+### Configuration schema
+
 The configuration must follow this schema:
 
 ```json
 {
-    "type": "object",
-    "properties": {
-        "proxies": {
+  "type": "object",
+  "properties": {
+    "proxies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["targetBaseUrl","basePath"],
+        "properties": {
+          "authentication": {
+            "type": "string",
+            "enum": ["none","oauth2"],
+            "default": "none"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "clientSecret": {
+            "type": "string"
+          },
+          "tokenIssuerUrl": {
+            "type": "string"
+          },
+          "tokenIssuerValidationPath": {
+            "type": "string"
+          },
+          "targetBaseUrl": {
+            "type": "string",
+            "pattern": "^https?:\\/\\/[a-zA-Z0-9.:_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
+          },
+          "basePath": {
+            "type": "string",
+            "pattern": "^\\/[a-zA-Z0-9_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
+          },
+          "grantType": {
+            "type": "string",
+            "enum": ["client_credentials","password"],
+            "default": "client_credentials"
+          },
+          "authType": {
+            "type": "string",
+            "enum": ["client_secret_basic"],
+            "default": "client_secret_basic"
+          },
+          "additionalAuthFields": {
+            "type": "object",
+            "default": null
+          },
+          "headersToProxy": {
             "type": "array",
             "items": {
-                "type": "object",
-                "required": ["targetBaseUrl","basePath"],
-                "properties": {
-                    "authentication": {
-                        "type": "string",
-                        "enum": ["none","oauth2"],
-                        "default": "none"
-                    },
-                    "username": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    },
-                    "clientId": {
-                        "type": "string"
-                    },
-                    "clientSecret": {
-                        "type": "string"
-                    },
-                    "tokenIssuerUrl": {
-                        "type": "string"
-                    },
-                    "tokenIssuerValidationPath": {
-                        "type": "string"
-                    },
-                    "targetBaseUrl": {
-                        "type": "string",
-                        "pattern": "^https?:\\/\\/[a-zA-Z0-9.:_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
-                    },
-                    "basePath": {
-                        "type": "string",
-                        "pattern": "^\\/[a-zA-Z0-9_-]+(\\/((\\{[a-zA-Z0-9_-]+\\})|[a-zA-Z0-9_-]+))*\\/?$"
-                    },
-                    "grantType": {
-                        "type": "string",
-                        "enum": ["client_credentials","password"],
-                        "default": "client_credentials"
-                    },
-                    "authType": {
-                        "type": "string",
-                        "enum": ["client_secret_basic"],
-                        "default": "client_secret_basic"
-                    },
-                    "additionalAuthFields": {
-                        "type": "object",
-                        "default": null
-                    },
-                    "headersToProxy": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "default": []
-                    },
-                    "additionalHeaders": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": ["name","value"]
-                        },
-                        "default": []
-                    }
+              "type": "string"
+            },
+            "default": []
+          },
+          "additionalHeaders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
                 }
-            }
+              },
+              "required": ["name","value"]
+            },
+            "default": []
+          }
         }
+      }
     }
+  }
 }
 ```
 
 The **proxies** array contains one item for each external service that has to by proxied.
+
 A proxy can have the following fields:
 - **targetBaseUrl**: the url of the external service. This is a required field and has to start with an *http* or *https* scheme. Possible path parameters from the base path can be referenced and added to the url with the `{param-name}` syntax (**only for static configuration**).
 - **basePath**: the name of the related endpoint exposed by the _Proxy Manager_. This is a required field and has to start with a `/`.
@@ -159,7 +165,7 @@ Path parameters inside **targetBaseUrl** and **basePath** are only allowed for t
 
 ## Dynamic configuration
 
-The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema defined before.
+The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema specified in the [configuration schema](#configuration-schema).
 
 :::caution
 The *dynamic configuration* has the technical limitation of using just the first path component as **basePath**. This limitation comes from the inability to determine the CRUD's search query. Due to this limitation path parameters are not allowed inside **targetBaseUrl** and **basePath**.
@@ -169,7 +175,7 @@ The *dynamic configuration* has the technical limitation of using just the first
 
 In order to configure correctly the CRUD collection, you can **import** the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
 
-### Recommendations
+## Recommendations
 
 It is recommended to add the following indexes to your CRUD collection:
 - a *unique* index for field **basePath** (to guarantee proxy uniqueness),

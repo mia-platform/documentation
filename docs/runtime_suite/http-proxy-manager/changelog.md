@@ -15,6 +15,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.2.0 - 15-11-2024
+
+### Added
+
+- Added GET `/-/proxies` API
+- Added POST `/-/proxies` API
+- Added DELETE `/-/proxies` API
+- Added PATCH `/-/proxies/:proxyId` API
+- Added PATCH `/-/proxies` API
+
+### Refactor
+
+- internal component refactor and improved standard library usage
+
+### Fixed
+
+- sanitize target base url trailing slash to prevent `//` token in final path
+
+## 3.1.0 - 2024-10-29
+
+### Added
+
+- `ADDITIONAL_HEADERS_TO_REDACT` environment variable to set additional headers to redact in logs
+
+### Security
+
+- Redacted sensitive headers in logs
+
 ## 3.0.0 - 2023-09-14
 
 ### BREAKING CHANGES
