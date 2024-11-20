@@ -6,7 +6,9 @@ sidebar_label: Limit User Actions
 
 # Granular role-based access control
 
-> This feature is not currently generally available, but is only available as a Closed Preview. For more information and to enable it on your Company, contact your Mia-Platform representative
+:::info
+This feature is not currently generally available, but is only available as a Closed Preview. For more information and to enable it on your Company, contact your Mia-Platform referent
+:::
 
 This feature introduces a mechanism for managing user interactions within the application by restricting specific actions based on user roles and specified rules.
 
@@ -75,9 +77,10 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 
 The API for updating the rules on a Project is defined as follows
 
-> **NOTE**  
-> This API is meant for internal use and will be subject to breaking changes.
->
+:::info
+**NOTE**  
+This API is meant for internal use and will be subject to breaking changes.
+:::
 
 #### Request
 
@@ -94,9 +97,10 @@ The **body** of the request has the structure described in [Configuration defini
 
 The API for updating the rules on a Companty is defined as follows.
 
-> **NOTE**  
-> This API is meant for internal use and will be subject to breaking changes.
->
+:::info
+**NOTE**  
+This API is meant for internal use and will be subject to breaking changes.
+:::info
 
 #### Request
 
