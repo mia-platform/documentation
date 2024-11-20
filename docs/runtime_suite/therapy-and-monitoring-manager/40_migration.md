@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 This document provides information to migrate from a previous version of the service.
 
-## 0.6.0
+## 0.5.1
 
 No change required from previous version.
 
