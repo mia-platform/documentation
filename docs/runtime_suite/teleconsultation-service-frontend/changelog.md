@@ -15,6 +15,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.0.1 2024-10-29
+
+- Fixed restart call button copy and style
+- Fixed CSP configuration
+
+## 2.0.0 2024-10-15
+
+- Upgrade dependencies and CI/CD pipeline
+
 ## 1.5.1 2024-03-13
 
 - Added spanish locale

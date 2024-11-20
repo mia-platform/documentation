@@ -113,7 +113,7 @@ curl --request POST \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'client-key: client-key' \
-  --data '{"firstName":"Mario","lastName":"Rossi","birthDate":"12-03-1987"}'
+  --data '{"firstName":"John","lastName":"Doe","birthDate":"12-03-1987"}'
 ```
 
 in response, you will get a JSON object like this:

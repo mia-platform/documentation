@@ -357,9 +357,9 @@ existing functions:
 - `castToString` → convert the input value into a string
 - `castToInteger` → convert the input value into an integer number
 - `castToFloat` → convert the input value into a decimal number
-- `castUnixTimestampToISOString` → convert the input value from a [Unix timestamp](https://www.unixtimestamp.com/) (e.g. `1695141357284`) to the same timestamp in ISO 8601 format (e.g. `2023-09-19T16:35:57.284Z`)
+- `castUnixTimestampToISOString` → convert the input value from a [Unix timestamp](https://www.unixtimestamp.com/) in milliseconds (e.g. `1695141357284`) to the same timestamp in ISO 8601 format (e.g. `2023-09-19T16:35:57.284Z`)
 - `castStringToBoolean` → convert the string value `true` and `false` to their corresponding boolean value
-- `castToDate` → convert a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Datetime string (e.g. `2024-10-21T10:52:38.642Z`) or a Unix timestamp into a Date object with UTC as timezone
+- `castToDate` → convert a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) Datetime string (e.g. `2024-10-21T10:52:38.642Z`) or a Unix timestamp in milliseconds into a Date object with UTC as timezone
 - `castToObject` → parse a JSON object represented as string into a JSON object 
 - `castToArrayOfObject` → parse a JSON array represented as string into a JSON array
 

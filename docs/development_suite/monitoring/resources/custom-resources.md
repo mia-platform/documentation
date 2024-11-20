@@ -2,7 +2,7 @@
 id: custom-resources
 title: Monitor your Custom Kubernetes Resources
 sidebar_label: Monitor your Custom Kubernetes Resources
-slug: "/development_suite/monitoring/resources/jobs"
+slug: "/development_suite/monitoring/resources/custom-resources"
 ---
 
 
@@ -12,6 +12,7 @@ If deployed, the information on the [Custom Resources](/console/design-your-proj
 If you created one or more Custom Kubernetes Resource from a marketplace template **prior** to Console release v13.3.0, the resources **will not be visible by default**. 
 
 Please ensure to [update your resource](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md#update-a-custom-resource-to-the-console-v1330) version via [miactl](/cli/miactl/10_overview.md) to one that has the properties `resourceId` and `type` correctly set in the `runtime` object field of its definition, otherwise the Custom Kubernetes Resources won't be visible in the section even if the resource is active.
+
 :::
 
 

@@ -177,6 +177,7 @@ For each prototype you need to define:
 - the name;
 - the schema;
 - the labels for the schema fields (**required** only if you use the TMM with the companion FE component);
+- the values for the schema fields (**required** only if you use the TMM with the companion FE component);
 - the hints for the schema fields (only for therapy directives, should provide a list of admitted or suggested values for a schema field).
 
 TMM supports localization for `name`, `labels` and `hints`, using a syntax like the following (`en` is ISO 639-1 language code for English, `it` for Italian):
@@ -195,6 +196,14 @@ TMM supports localization for `name`, `labels` and `hints`, using a syntax like 
     "diet": {
       "en": "Diet",
       "it": "Dieta"
+    }
+  },
+  "values": {
+    "bodyTemperature": { 
+      "path": "observations[0].value"
+    },
+    "diet": { 
+      "path": "observations[1].value"
     }
   },
   "hints": {
@@ -413,6 +422,41 @@ The integrated validation system currently supports the following threshold vali
   "thresholdValue": [50, 100]
 }
 ```
+
+:::warning
+
+The value of the `propertyName` should be the path to the value of the specific attributes in the prototype schema. If your schema is not a plan object you can use the `values` on the prototype to specify the path.
+Here you can find the examples:
+
+- If you have a plane object the `propertyName` will be simply equal to that record like `systolicBloodPresure`  or `diastolicBloodPresure`.
+```json
+{
+  "systolicBloodPresure": 120,
+  "diastolicBloodPresure": 66
+}
+```
+
+- If you have a a complicated schema the `propertyName` should be equal to that path of the value like `observations[0].value` for `systolicBloodPresure` and `observations[1].value`  for  the value of `diastolicBloodPresure`.
+```json
+{
+  "period": {
+    "startDate": "2024-01-01"
+  },
+  "observations": [
+    {
+      "code": "systolicBloodPresure",
+      "unit": "mmHg",
+      "value": 120
+    },
+    {
+      "code": "diastolicBloodPresure",
+      "unit": "mmHg",
+      "value": 66
+    }
+  ]
+}
+```
+:::
 
 :::danger
 

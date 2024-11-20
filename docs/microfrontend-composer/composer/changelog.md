@@ -10,6 +10,18 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.5] - 2024-11-15
+
+### Added
+
+- Added `fetchConfigOnMount` in compose application options modal
+
+## [1.9.4] - 2024-11-11
+
+### Fixed
+
+- Fixed translations tab visibility
+
 ## [1.9.3] - 2024-09-06
 
 ### Updated

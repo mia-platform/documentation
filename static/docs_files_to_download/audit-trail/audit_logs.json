@@ -42,25 +42,25 @@
     "description": "__STATE__"
   },
   {
-    "name": "planType",
+    "name": "version",
     "type": "string",
-    "required": true,
+    "required": false,
     "nullable": false,
     "sensitivityValue": 0,
     "encryptionEnabled": false,
     "encryptionSearchable": false
   },
   {
-    "name": "planId",
-    "type": "string",
-    "required": true,
+    "name": "timestamp",
+    "type": "Date",
+    "required": false,
     "nullable": false,
     "sensitivityValue": 0,
     "encryptionEnabled": false,
     "encryptionSearchable": false
   },
   {
-    "name": "value",
+    "name": "metadata",
     "type": "RawObject",
     "required": false,
     "nullable": false,
@@ -69,7 +69,16 @@
     "encryptionSearchable": false
   },
   {
-    "name": "doctorId",
+    "name": "checksum",
+    "type": "RawObject",
+    "required": false,
+    "nullable": false,
+    "sensitivityValue": 0,
+    "encryptionEnabled": false,
+    "encryptionSearchable": false
+  },
+  {
+    "name": "message",
     "type": "string",
     "required": false,
     "nullable": false,
@@ -78,53 +87,8 @@
     "encryptionSearchable": false
   },
   {
-    "name": "patientId",
+    "name": "rawLog",
     "type": "string",
-    "required": true,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "isCompliant",
-    "type": "boolean",
-    "required": false,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "observedAt",
-    "type": "Date",
-    "required": true,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "deviceId",
-    "type": "string",
-    "required": false,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "thresholds",
-    "type": "Array_RawObject",
-    "required": false,
-    "nullable": false,
-    "sensitivityValue": 0,
-    "encryptionEnabled": false,
-    "encryptionSearchable": false
-  },
-  {
-    "name": "thresholdsExceeded",
-    "type": "boolean",
     "required": false,
     "nullable": false,
     "sensitivityValue": 0,
