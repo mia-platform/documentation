@@ -18,11 +18,11 @@ If a user attempts to save a configuration after performing some changes that ar
 The following logic is applied:
 
 - **Rules**: Project and Company rules are combined together without conflict, as only disallow rules are used.  
-- **User Roles**: If a user has roles assigned at the project level, only those roles used to find the applicable rules. If no project-level roles are assigned, the roles defined at the company level are used instead.
+- **User Roles**: If a user has roles assigned at the Project level, only those roles used to find the applicable rules. If no Project-level roles are assigned, the roles defined at the Company level are used instead.
 
 ## Configuration definition
 
-To enable this feature the `project` or `tenant` `configurationManagement.saveChangesRules` field of the configuration must be set with a list of objects with the following structure:
+To enable this feature the `Project` or `Company` `configurationManagement.saveChangesRules` field of the configuration must be set with a list of objects with the following structure:
 
 | Field               | Type        | Description                                   | Optional |
 | ------------------- | ----------- | --------------------------------------------- | -------- |
