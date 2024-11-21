@@ -24,6 +24,8 @@ The types of Marketplace components you can use include:
 
 * **[Infrastructure Resources](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)**: custom objects that are not part of the standard Console supported resources.
 
+* **[Extensions](/console/company-configuration/extensions.md)**: custom page that enhances Console capabilities by integrating it into the sidebar navigation.
+
 :::info
 
 Mia-Platform supported Templates and Example source code is open source software, hosted on public Git repositories.

@@ -4,8 +4,6 @@ title:  Delete item
 sidebar_label:  Delete item
 ---
 
-### Delete item
-
 :::info
 You need either the *Company Owner* or *Project Administrator* role at Company level to perform this action
 :::

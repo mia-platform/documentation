@@ -28,6 +28,7 @@ The Software Catalog support the following item types.
 - **Proxies**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in [this section](/development_suite/api-console/api-design/proxy.md).
 - **Sidecars**: secondary utility containers running side by side with the main container in the same host. Find more [here](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md)
 - **Infrastructure Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)
+- **Extensions**: custom page that enhances Console capabilities by integrating it into the sidebar navigation.
 
 :::note
 Items can be assigned a **Category** (e.g., Data Stream, Data Visualization, Insurance, Healthcare, etc.) to help organize and identify them.

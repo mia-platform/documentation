@@ -4,8 +4,6 @@ title: Delete item or Version
 sidebar_label: Delete item or Version
 ---
 
-# Deleting an Item or a Version
-
 If an item is versionable, you can delete any specific version of the item by using the dedicated Delete button available for each version. This allows you to remove individual versions without affecting the entire item or other versions.
 
 ![delete version](./img/delete-version.png)

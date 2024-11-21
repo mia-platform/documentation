@@ -4,9 +4,7 @@ title: Create item
 sidebar_label: Create item
 ---
 
-## Item creation
-
-To create a new item in the catalog, click on the "Create Item" button. This will open a user interface (UI) that guides you through the item creation process. The process is divided into the following steps:
+To create a new item in the catalog, click on the "Add Item" button. This will open a user interface (UI) that guides you through the item creation process. The process is divided into the following steps:
 
 1. **Select the Item Type**
 Choose the type of item you want to create from the available options. This will determine the set of fields and attributes you need to provide during the creation process.

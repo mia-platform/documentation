@@ -4,8 +4,6 @@ title:  Create item
 sidebar_label:  Create item
 ---
 
-### Create item
-
 :::info
 
 You need to have *Company Owner* or *Project Administrator* role at Company level to perform this action
