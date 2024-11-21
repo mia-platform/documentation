@@ -1,7 +1,7 @@
 ---
-id: limit-user-actions
-title: Limit User Actions
-sidebar_label: Limit User Actions
+id: fine-grained-access-control
+title: Design Fine-Grained Access Control
+sidebar_label: Fine-Grained Access Control
 ---
 
 # Design changes Fine-Grained Access Control
@@ -70,6 +70,36 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 | ------------------------- | --------------------------------------------------------------------------------------------------- |
 | `endpoints.security.edit` | block edit of the fields [`public`, `acl`, `secreted`] of `endpoints` and `routes` inside endpoints |
 |                           |                                                                                                     |
+
+## Fetching and configuring rules with `miactl`
+
+:::info
+The following `miactl` commands will be introduced in version 0.16.0 of miactl, which is not yet released.
+:::
+
+```bash
+miactl company rules list --company-id=my-company
+miactl company rules list --company-id=my-company --project-id=my-project
+miactl company rules update --company-id=my-company  -f ~/my-rules.json
+miactl company rules update --company-id=my-company --project-id=my-project  -f ~/my-rules.json
+```
+
+Example for the file `my-rules.json`:
+
+```json
+[
+ {
+  "roleIds": ["developer"],
+  "disallowedRuleSet": [
+   {"ruleId": "endpoint.security.edit"}
+  ]
+ }
+]
+```
+
+:::info
+For comprehensive information on these `miactl` commands, visit the dedicated section in the [miactl documentation](https://docs.mia-platform.eu/docs/cli/miactl/commands)
+:::
 
 ## Configuring rules via API
 
@@ -205,51 +235,4 @@ Below are some **examples of request bodies** for the Update Rules API. The requ
     ]
   }
 }
-```
-
-## Fetching and configuring rules via `miactl`
-
-### list
-
-List available rules for the Company or for a specific Project.
-
-Usage:
-
-```sh
-miactl company rules list [flags]
-```
-
-Available flags for the command:
-
-- `--company-id`, the id of the Company
-- `--project-id`, the id of the Project (if provided the command will print available rules for the project,
-  together with the rules inherited from the Company)
-
-### update
-
-Update rules for a Company or for a specific Project
-
-Usage:
-
-```sh
-miactl company rules update [flags]
-```
-
-Available flags for the command:
-
-- `--company-id`, the id of the Company
-- `--project-id`, the id of the Project (if provided the command will update the rules for the specified Project only)
-- `-f`, path to the file where the rules are saved
-
-File example:
-
-```json
-[
- {
-  "roleIds": ["developer"],
-  "disallowedRuleSet": [
-   {"ruleId": "endpoint.security.edit"}
-  ]
- }
-]
 ```
