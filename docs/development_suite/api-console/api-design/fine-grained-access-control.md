@@ -98,7 +98,7 @@ Example for the file `my-rules.json`:
 ```
 
 :::info
-For comprehensive information on these `miactl` commands, visit the dedicated section in the [miactl documentation](https://docs.mia-platform.eu/docs/cli/miactl/commands)
+For the full specifications about the commands refer to the [related miactl documentation](/cli/miactl/30_commands.md)
 :::
 
 ## Configuring rules via API
