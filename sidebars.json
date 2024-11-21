@@ -1466,6 +1466,10 @@
       "type": "doc"
     },
     {
+      "id": "data_catalog/data_catalog_job_runner",
+      "type": "doc"
+    },
+    {
       "id": "data_catalog/data_catalog_open_lineage",
       "type": "doc"
     },
@@ -1752,7 +1756,6 @@
           "link": {
             "id": "marketplace/add_to_marketplace/create_your_company_marketplace",
             "type": "doc"
-
           },
           "items": [
             {
@@ -1897,20 +1900,62 @@
         "id": "release-notes/versions"
       },
       "items": [
-        { "id": "release-notes/v13.3.0", "type": "doc" },
-        { "id": "release-notes/v13.2.1", "type": "doc" },
-        { "id": "release-notes/v13.2.0", "type": "doc" },
-        { "id": "release-notes/v13.1.1", "type": "doc" },
-        { "id": "release-notes/v13.1.0", "type": "doc" },
-        { "id": "release-notes/v13.0.8", "type": "doc" },
-        { "id": "release-notes/v13.0.7", "type": "doc" },
-        { "id": "release-notes/v13.0.6", "type": "doc" },
-        { "id": "release-notes/v13.0.5", "type": "doc" },
-        { "id": "release-notes/v13.0.4", "type": "doc" },
-        { "id": "release-notes/v13.0.3", "type": "doc" },
-        { "id": "release-notes/v13.0.2", "type": "doc" },
-        { "id": "release-notes/v13.0.1", "type": "doc" },
-        { "id": "release-notes/v13.0.0", "type": "doc" }
+        {
+          "id": "release-notes/v13.3.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.2.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.2.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.1.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.1.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.8",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.7",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.6",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.5",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.4",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.3",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.0",
+          "type": "doc"
+        }
       ]
     },
     {

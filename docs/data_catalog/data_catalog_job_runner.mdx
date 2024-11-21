@@ -1,0 +1,150 @@
+---
+id: data_catalog_job_runner
+title: Job Runner
+sidebar_label: Job Runner
+---
+
+import runnerSchema from "@site/static/schemas/data_fabric/data-catalog-job-runner.config.schema.json"
+import bffConfigExample from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.example.json"
+import SchemaViewer from "../../src/components/SchemaViewer"
+
+Data Catalog _Job Runner_ can trigger the execution of different jobs that can update the state of the Data Catalog solution. 
+
+The service keeps an internal queue where different requests sent by the Data Catalog UI are processed and executed, while collecting feedback
+that can be sent back to clients that need to obtain information about the status of the current jobs that are running.
+
+## Available Jobs
+
+Here are listed the main jobs that the service can execute. 
+
+### Data Catalog Agent
+
+_Data Catalog Agent_ is a routine that, given a connection, queries datasources for the data schemas of the resources they own and stores them into the Data Catalog storage layer
+as documents compliant to the [Open Lineage specification](https://openlineage.io/).
+
+In the context of databases, it provides facilities to:
+
+1. query tables schemas
+2. aggregate them in a unique asset (JSON format)
+
+For this reason, it requires [Open Database Connectivity (ODBC)](https://en.wikipedia.org/wiki/Open_Database_Connectivity) drivers to connect to external DBMS.
+The service comes already with the required ODBC drivers of the vendors that are already supported by the Data Catalog solution.
+
+### Data Catalog Sync
+
+_Data Catalog Sync_ is a routine that is executed always after a _Data Catalog Agent job_: its duty is to align the datasets retrieved by the Agent and convert them
+into assets that can be managed by the Data Catalog application.
+
+## Configuration
+
+### Environment Variables
+
+Fabric BFF can be customized using the following environment variables:
+
+| Name                          | Required | Description                                                                                                                       | Default Value                       |
+|-------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| `GRPC_PORT`                   | -        | This variable determines the TCP port where the **GRPC controller** binds its listener                                            | 50051                               |
+| `LOG_LEVEL`                   | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`          | `info`                              |
+| `JOB_RUNNER_FOLDER`           | -        | Set the location of the configuration files                                                                                       | `~/.fd/job-runner`                  |
+| `ODBCINI`                     | -        | Optional full path where a user custom defined `.odbc.ini` can be used to retrieve user defined data sources                      |                                     |
+
+### Config Maps
+
+The [main configuration](#main-configuration) of the service is handled by a `config.json`, while an additional list of secret is located in the `secrets.json` file.
+
+Both files located at the path defined by the `JOB_RUNNER_FOLDER`.
+
+#### Main Configuration
+
+When instantiating [Data Catalog application](/runtime_suite_applications/data-catalog/10_overview.md), Job Runner service configuration is generated with
+a dedicated Config Map, named `job-runner-config`. This file contains a template configuration that should help in configuring the service.
+
+<SchemaViewer schema={runnerSchema} example={bffConfigExample}/>
+
+In the paragraph below is explained how to configure the persistence layer.
+
+##### Persistence Layer
+
+
+:::info
+Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data.
+:::
+
+:::caution
+The MongoDB database selected for storing Data Catalog data **must be configured to have [`replicaSet` enabled](https://www.mongodb.com/docs/manual/replication/)**, since
+Job Runner exploits features that can be used only when a `replicaSet` is available.
+:::
+
+In order to carry out all its operations, Job Runner requires a _persistence layer_ where relevant information, such as auditing details, are stored. This configuration can be set under
+the `persistence.configuration` key of the configuration file. The main properties are:
+
+- `url` &rarr; the connection string to your MongoDB instance;
+- `database` &rarr; the database name where to search for the  collections relevant to Job Runner service. Please notice that setting this property will **override** the database
+name potentially set in the connection string;
+
+An example of persistence configuration can be seen below:
+
+```json
+{
+  "persistence": {
+    "type": "mongodb",
+    "configuration": {
+      "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
+      "database": "<data-fabric-database-name>"
+    }
+  }
+}
+```
+
+:::tip
+The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+- `persistence.configuration.url`
+- `persistence.configuration.database`
+:::
+
+#### Secrets Names Configuration
+
+To let the Data Catalog UI be aware of possible secret that can be used within connection definitions, the service can be configured with a `secret.json` file
+located at the `JOB_RUNNER_FOLDER`.
+
+The corresponding JSON is a key-value pair representation where:
+
+- the keys represent the __secret name__ that can be used by external services as reference when triggering a job;
+- the values repesent a secret (that can be either represent according to [Fast Data secret resolution](/fast_data/configuration/secrets_resolution.md))
+
+<details>
+<summary>Example Configuration</summary>
+
+```json
+{
+  "secretPlain": "{{MY_PLAIN_SECRET}}",
+  "secretEnv": {
+    "type": "env",
+    "key": "EXAMPLE_ENV"
+  },
+  "secretFile": {
+    "type": "file",
+    "path": "/run/secrets/job_runner/example.ini",
+    "key": "EXAMPLE_ENV"
+  }
+}
+```
+
+</details>
+
+:::caution
+When the service receives a request to trigger a job, it will first try to reselove the secrets contained in the request by looking at the entries of this file: 
+if no secret can be found, the service will try to read the corresponding secret from the process environment. 
+:::
+### Enable gRPC communications
+
+The request exchanged between Fabric BFF and Job Runner services are performed through [gRPC](https://grpc.io/).
+
+Thus, on Job Runner service is necessary to advertise the port where the gRPC controller is exposed, which by default is the `50051`.
+This operation can be achieved by setting the proper port to the list of [_Container Ports_](/development_suite/api-console/api-design/microservice-container-ports.md)
+that can be found in the Console Design area, under the specific microservice resource.
+
+:::tip
+When instantiating Data Catalog application, _Container Ports_ are pre-filled with all the needed ports using their default value.  
+In case either the HTTP or the gRPC port chosen through [environment variables](#environment-variables) has been edited, please change the _Container Ports_ accordingly.
+:::
