@@ -87,7 +87,12 @@ This API is meant for internal use and will be subject to breaking changes.
 - verb: `PATCH`
 - path: `/api/backend/projects/:projectId/rules`
 
-**Authentication required**
+##### Security
+
+| Security                | Check                           |
+|-------------------------|---------------------------------|
+| Authentication required | ✅                              |
+| RBAC permissions        | console.company.details.update  |
 
 ##### Body
 
@@ -107,7 +112,12 @@ This API is meant for internal use and will be subject to breaking changes.
 - verb: `PATCH`
 - path: `/api/backend/tenants/:tenantId/rules`
 
-**Authentication required**
+##### Security
+
+| Security                | Check                           |
+|-------------------------|---------------------------------|
+| Authentication required | ✅                              |
+| RBAC permissions        | console.company.details.update  |
 
 ##### Body
 
