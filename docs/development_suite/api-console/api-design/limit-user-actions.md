@@ -222,7 +222,7 @@ miactl company rules list [flags]
 Available flags for the command:
 
 - `--company-id`, the id of the Company
-- `--project-id`, the id of the Project (if provided the command will print avilable rules for the project,
+- `--project-id`, the id of the Project (if provided the command will print available rules for the project,
   together with the rules inherited from the Company)
 
 ### update
