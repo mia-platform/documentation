@@ -73,9 +73,13 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 
 ## Fetching and configuring rules with `miactl`
 
-:::info
-The following `miactl` commands will be introduced in version 0.16.0 of miactl, which is not yet released.
+:::tip
+The following commands are available from [miactl v0.16.0](https://github.com/mia-platform/miactl/releases/tag/v0.16.0), make sure you upgrade.
+
+For the full command specification, please refer to the [related miactl documentation](/cli/miactl/30_commands.md#rules).
 :::
+
+Command examples:
 
 ```bash
 miactl company rules list --company-id=my-company
@@ -96,10 +100,6 @@ Example for the file `my-rules.json`:
  }
 ]
 ```
-
-:::info
-For the full specifications about the commands refer to the [related miactl documentation](/cli/miactl/30_commands.md)
-:::
 
 ## Configuring rules via API
 
