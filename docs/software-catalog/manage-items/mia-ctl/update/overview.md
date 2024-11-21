@@ -53,5 +53,5 @@ In case you need to update the definition, you can update a versioned item only 
 
 You can create a new version of the plugin via [miactl](/cli/miactl/10_overview.md) by simply executing the [`apply`](/cli/miactl/30_commands.md#apply) command, in the same way as explained above, ensuring that the `itemId` and `tenantId` are the same but with a new version, and of course the `resource` object updated.
 
-As explained in the [Create your Company Marketplace](/software-catalog/manage-items/overview.md) page, we suggest to follow the [Semantic Versioning](https://semver.org/) convention when defining the version of your item.
+As explained in the [Create your Company Marketplace](/software-catalog/manage-items/overview.md) page, you must follow the [Semantic Versioning](https://semver.org/) convention when defining the version of your item.
 This will help you to keep track of the changes you made to the item over time, and help you understand the best version to use when configuring your project.
