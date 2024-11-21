@@ -535,6 +535,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/api-console/api-design/fine-grained-access-control",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/api-console/api-design/listeners",
           "type": "doc"
         },
