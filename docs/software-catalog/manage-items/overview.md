@@ -39,7 +39,7 @@ In the following section we'll explore the common fields shared by all item type
 
 Refer to the [detailed explanation by type](#marketplace-items-example-and-explanation) for the type-specific fields and examples of working JSON items entities.
 
-Here below are listed all the properties that must be provided for each type of item:
+Here below are listed all the properties that should be provided for each type of item:
 
 - **`name`** (required): the item name
 - **`tenantId`** (required): the ID of the Company the item belongs to
