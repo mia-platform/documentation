@@ -1458,8 +1458,23 @@
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_frontend",
-      "type": "doc"
+      "type": "category",
+      "label": "Data Catalog UI",
+      "collapsed": true,
+      "link": {
+        "id": "data_catalog/frontend/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "data_catalog/frontend/data_catalog_assets",
+          "type": "doc"
+        },
+        {
+          "id": "data_catalog/frontend/data_catalog_connections",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "data_catalog/data_catalog_fabric_bff",
