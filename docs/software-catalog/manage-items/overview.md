@@ -54,7 +54,7 @@ Here below are listed all the properties that should be provided for each type o
 - **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
 - **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
 - **`version`**: the version of the item. It is an object composed by the following properties:
-  - **`name`** (required): the actual version of the item. We suggest to use the [Semantic Versioning](https://semver.org/) format.
+  - **`name`** (required): the actual version of the item. You must use the [Semantic Versioning](https://semver.org/) format.
   - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on items in a Console project; includes information about the changes introduced by the new version.
   - **`security`**: a boolean to indicate if the item is security-related
 
