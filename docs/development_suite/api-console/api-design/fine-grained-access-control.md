@@ -1,10 +1,10 @@
 ---
 id: fine-grained-access-control
-title: Design Fine-Grained Access Control
+title: Fine-Grained Access Control in Design
 sidebar_label: Fine-Grained Access Control
 ---
 
-# Design changes Fine-Grained Access Control
+# Fine-Grained Access Control in Design
 
 :::info
 This feature is currently available exclusively as a **Closed Preview** and is not yet generally available. For more information and to request its activation for your Company, please contact your Mia-Platform referent.
@@ -107,8 +107,7 @@ For the full specifications about the commands refer to the [related miactl docu
 
 The API for updating the rules on a Project is defined as follows
 
-:::info
-**NOTE**  
+:::caution
 This API is meant for internal use and will be subject to breaking changes.
 :::
 
@@ -132,10 +131,9 @@ The **body** of the request has the structure described in [Configuration defini
 
 The API for updating the rules on a Company is defined as follows.
 
-:::info
-**NOTE**  
+:::caution
 This API is meant for internal use and will be subject to breaking changes.
-:::info
+:::
 
 #### Request
 
