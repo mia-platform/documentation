@@ -58,7 +58,7 @@ Here below are listed all the properties that must be provided for each type of 
   - **`releaseNote`**: a release note that will be displayed to the user when selecting the item during creation or updates based on items in a Console project; includes information about the changes introduced by the new version.
   - **`security`**: a boolean to indicate if the item is security-related
 
-Each item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version`** name properties. So, when you need to create a new item, be sure to provide unique values for these properties.
+Each item is identified by the values of the **`tenantId`**, the **`itemId`** and the **`version.name`** properties. So, when you need to create a new item, be sure to provide unique values for these properties.
 
 :::info
 To upload the *image* and *supportedByImage*, you can also use the `miactl marketplace apply` command adding the respective `image` and `supportedByImage` keys to the object.
