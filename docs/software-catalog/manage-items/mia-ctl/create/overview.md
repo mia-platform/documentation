@@ -1,25 +1,8 @@
 ---
-id: manage_marketplace_items
-title:  Manage Marketplace Items
-sidebar_label:  Manage Marketplace Items
+id: overview-mia-ctl-create
+title:  Create item
+sidebar_label:  Create item
 ---
-
-There are three main methods to create, modify and delete Marketplace items:
-
-- (recommended) Use [`miactl`](/cli/miactl/10_overview.md), the Mia-Platform command line interface tool.
-- Open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community).
-
-## How to use `miactl` to manage the Marketplace
-
-First of all, you need to setup `miactl`, as explained in the [dedicated doc](/cli/miactl/20_setup.md).
-
-With the `miactl marketplace` subcommands, you can perform several actions, described here below.
-
-:::tip
-If you need to handle many Marketplace items, we suggest the adoption of a [Declarative Approach](/marketplace/add_to_marketplace/declarative_marketplace.md).
-:::
-
-### Create an item
 
 :::info
 
@@ -33,7 +16,7 @@ You have developed a new service (for example a NodeJS service)
 called "My Awesome Service". The service is a plugin, i.e. users are only required to configure it and deploy it in their project.
 You now want it to be available in the Marketplace of your Company.
 
-First of all, you need to create a JSON file as explained in [this guide](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item).
+First of all, you need to create a JSON file as explained in [this guide](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
 Save the file, for example as `myAwesomeService.json` file.
 
 The file contents will look like this:
@@ -266,81 +249,3 @@ For example, here is "My Awesome Service"'s card:
 Further information about the `apply` command can be found in the [dedicated doc](/cli/miactl/30_commands.md#apply).
 
 :::
-
-### Update an item
-
-:::info
-You need to have *Company Owner* or *Project Administrator* role at Company level to perform this action
-:::
-
-Imagine now that you noticed that the description of "My Awesome Service" is not correct and you want to change it.
-
-First of all, download and save the latest version of the item configuration:
-
-```sh
-miactl marketplace get ITEM_ID > myAwesomeService.json
-```
-
-where `ITEM_ID` is an alphanumerical id of the Marketplace item.  
-If you don't know the item id, use the `miactl marketplace list` command to list all the Marketplace Items. You can easily locate the one of interest by looking for its name.
-
-:::tip
-
-It is suggested to always download the Marketplace item just before updating it to make sure it works on the latest version.
-
-:::
-
-Edit your file following the steps described in the [Modifying the Marketplace Item](#enabling-the-visibility-to-all-companies);
-once you are happy with the changes, save the file and apply it to the Marketplace:
-
-```sh
-miactl marketplace apply -f myAwesomeService.json
-```
-
-You will see the outcome of the operation in the command output:
-
-```sh
-1 of 1 items have been successfully applied:
-
-  ID                        ITEM ID             NAME                 STATUS   
-
-  65368hf0c91d871a87afbcbf  my-awesome-service  My Awesome Service   Updated
-```
-
-The changes are now reflected to the Console.
-
-### Update of versioned items
-
-Marketplace items of type *Plugin* and *Custom Resources* require a *version* object to determine the differences of the plugin definition over time.
-In case you need to update the definition, you can update a versioned item only if you need to change some base fields (more details on the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) page), otherwise you can do so by creating a new version.
-
-You can create a new version of the plugin via [miactl](/cli/miactl/10_overview.md) by simply executing the [`apply`](/cli/miactl/30_commands.md#apply) command, in the same way as explained above, ensuring that the `itemId` and `tenantId` are the same but with a new version, and of course the `resource` object updated.
-
-As explained in the [Create your Company Marketplace](/marketplace/add_to_marketplace/create_your_company_marketplace.md) page, we suggest to follow the [Semantic Versioning](https://semver.org/) convention when defining the version of your item.
-This will help you to keep track of the changes you made to the item over time, and help you understand the best version to use when configuring your project.
-
-### Delete an item
-
-:::info
-You need either the *Company Owner* or *Project Administrator* role at Company level to perform this action
-:::
-
-Imagine you notice that the service "My Awesome Service" is no longer useful for your Company and so you want to delete it.
-
-You can delete an item from the Marketplace by means of the `delete` command:
-
-```sh
-miactl marketplace delete --object-id=<objectId>
-```
-
-> The `object-id` is the `ID` you get when you apply the template, it is not the `itemId`
-
-The item is then deleted from the Marketplace.
-
-The deletion is permanent, but the file on your machine will not be deleted.
-If you want, you can recreate the item on the Marketplace again by applying the file.
-
-## Open an issue on Mia-Platform Github community page
-
-To contribute to the Mia-Platform Marketplace using this method, start by opening an issue [here](https://github.com/mia-platform/community/issues/new?assignees=%40mia-platform%2Fsig-marketplace&labels=marketplace&projects=&template=marketplace-contribution.yaml&title=%5BNew+marketplace+item%5D%3A+). This issue will outline the necessary information for your request.
-Subsequently, a Mia-Platform representative will take over the issue and contact you to collaboratively plan the addition of the component to the Mia-Platform Marketplace, following the guidelines described on [this documentation page](/marketplace/add_to_marketplace/create_your_company_marketplace.md).

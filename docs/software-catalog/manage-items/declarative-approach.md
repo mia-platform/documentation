@@ -1,7 +1,7 @@
 ---
-id: declarative_marketplace
-title: Manage your Marketplace Items with a Declarative Approach
-sidebar_label: Marketplace Declarative Approach
+id: declarative-approach
+title: Manage your Items with a Declarative Approach
+sidebar_label: Declarative Approach
 ---
 
 In addition to the basic use of the tool through individual application commands, such as list, get, and resource deletion, a *declarative* approach is recommended. This approach is based on the use of [miactl](/cli/miactl/10_overview.md) in combination with a [Git Provider and a CI/CD system](/console/company-configuration/providers/overview.md).
@@ -82,7 +82,7 @@ Root
 
 The item names are purely indicative, this example is only to explain a potential use-case.
 
-The JSON and YAML files above follow the structure explained [in the related documentation](/marketplace/add_to_marketplace/manage_marketplace_items.md).
+The JSON and YAML files above follow the structure explained [in the related documentation](/software-catalog/manage-items/overview.md).
 
 Here is an example of the Inventory System plugin config file:
 

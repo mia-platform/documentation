@@ -31,7 +31,7 @@ The catalog supports the following item types:
 - *proxy*: centralizes external API access and cross-namespace microservice communication, simplifying configuration;
 - *extension*: expands the Console with custom sections.
 
-Please refer to [this documentation](/marketplace/add_to_marketplace/create_your_company_marketplace.md#item-types) for more details on item types.
+Please refer to [this documentation](/software-catalog/manage-items/overview.md#item-types) for more details on item types.
 
 ### Items Versioning
 
@@ -39,7 +39,7 @@ Please refer to [this documentation](/marketplace/add_to_marketplace/create_your
 This feature is currently available for the Plugin and Infrastructure Resource types.
 :::
 
-The versioning system in the Software Catalog provides detailed control over the different iterations of each item. For technical details on how versioning works, please refer to [this documentation](/marketplace/add_to_marketplace/create_your_company_marketplace.md#item-types).
+The versioning system in the Software Catalog provides detailed control over the different iterations of each item. For technical details on how versioning works, please refer to [this documentation](/software-catalog/manage-items/overview.md#item-types).
 
 Each version includes key information, such as the release date and whether it is marked as the latest version. Additionally, if available, you can view the associated release notes to understand what changes or improvements were made in that particular version.
 
@@ -55,6 +55,6 @@ Each item in the Software Catalog is associated with a lifecycle status that ref
 - stable
 - deprecated
 
-For a more detailed explanation of each status, please refer to the [dedicated section](/marketplace/add_to_marketplace/create_your_company_marketplace.md#the-release-stage-of-a-marketplace-item) of the documentation.
+For a more detailed explanation of each status, please refer to the [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-a-marketplace-item) of the documentation.
 
 A lifecycle status indicates where an item stands in its lifecycle, from its initial creation to its active use, and eventually to being deprecated when it's no longer maintained or supported. This helps users quickly understand the maturity and stability of an item.

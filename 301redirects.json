@@ -1806,5 +1806,45 @@
   "/docs/fast_data/cast_functions": {
     "destination": "/docs/fast_data/configuration/cast_functions",
     "addedOn": "2024-10-23"
+  },
+  "/docs/marketplace/add_to_marketplace/create_your_company_marketplace": {
+    "destination": "/docs/software-catalog/manage-items/overview-manage-items",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/add_item_by_type/add_plugin": {
+    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/add_item_by_type/add_template_or_example": {
+    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/add_item_by_type/add_application": {
+    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/add_item_by_type/add_sidecar": {
+    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource": {
+    "destination": "/docs/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/manage_marketplace_items": {
+    "destination": "/docs/software-catalog/manage-items/overview-manage-items",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/marketplace_items_accessibility": {
+    "destination": "/docs/software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/change_marketplace_item_visibility": {
+    "destination": "/docs/software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
+    "addedOn": "2024-11-19"
+  },
+  "/docs/marketplace/add_to_marketplace/declarative_marketplace": {
+    "destination": "/docs/software-catalog/manage-items/declarative-approach",
+    "addedOn": "2024-11-19"
   }
 }
