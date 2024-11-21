@@ -46,7 +46,7 @@ A `disallowedRuleSet` can be configured in 3 ways:
 
 ### Via `jsonPath`
 
-The `jsonPath` field is used to extract the target resource. On this resource the edit operation is prevented.
+The `jsonPath` field is used to extract a target resource applying a JSONPath expression on the JSON structure of the configuration. On the extracted resource are not permitted any updates.
 
 ### Via `jsonPath` and `processingOptions`
 
@@ -71,7 +71,7 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 | `endpoints.security.edit` | block edit of the fields [`public`, `acl`, `secreted`] of `endpoints` and `routes` inside endpoints |
 |                           |                                                                                                     |
 
-## Configuring Rules Via API
+## Configuring rules via API
 
 ### Updating rules on a Project
 
@@ -95,7 +95,7 @@ The **body** of the request has the structure described in [Configuration defini
 
 ### Updating rules on a Company
 
-The API for updating the rules on a Companty is defined as follows.
+The API for updating the rules on a Company is defined as follows.
 
 :::info
 **NOTE**  
@@ -113,32 +113,30 @@ This API is meant for internal use and will be subject to breaking changes.
 
 The **body** of the request the structure described in [Configuration definition](#configuration-definition)
 
-### Use Case Examples
+Below are some **examples of request bodies** for the Update Rules API. The request body format is identical for both the Update Project and Update Company APIs.
 
-Here are some examples of request bodies for updating Project or Company rules (the body is the same for the two API)
-
-Prevent edit of the `dockerImage` of all services to the role `maintainer`
+- prevent edit of the `dockerImage` of all services to the role `maintainer`
 
 ```json
-{
-    "configurationManagement": {
-        "saveChangesRules": [
-            {
-                "disallowedRuleSet": [
-                    {
-                        "jsonPath": "$.services.*.dockerImage"
-                    },
-                ],
-                "roleIds": [
-                    "maintainer"
-                ]
-            }
-        ]
-    }
-}
+  {
+      "configurationManagement": {
+          "saveChangesRules": [
+              {
+                  "disallowedRuleSet": [
+                      {
+                          "jsonPath": "$.services.*.dockerImage"
+                      },
+                  ],
+                  "roleIds": [
+                      "maintainer"
+                  ]
+              }
+          ]
+      }
+  }
 ```
 
-Prevent creation of the resource `secrets` to the role `maintainer`
+- prevent creation of the resource `secrets` to the role `maintainer`
 
 ```json
 {
@@ -160,7 +158,7 @@ Prevent creation of the resource `secrets` to the role `maintainer`
 }
 ```
 
-Through jsonpath syntax, more complex rules can be configured. The following rule for example prevents the creation of a services of a specific type (`custom-resource`) to the role `maintainer`
+- prevent the creation of a services of a specific type (`custom-resource`) to the role `maintainer`
 
 ```json
 {
@@ -180,7 +178,7 @@ Through jsonpath syntax, more complex rules can be configured. The following rul
 }
 ```
 
-Configure the predefined rule with `ruleId` "endpoints.security.edit" to the role `maintainer`
+- configure the predefined rule with `ruleId` "endpoints.security.edit" to the role `maintainer`
 
 ```json
 {
@@ -197,4 +195,51 @@ Configure the predefined rule with `ruleId` "endpoints.security.edit" to the rol
     ]
   }
 }
+```
+
+## Fetching and configuring rules via `miactl`
+
+### list
+
+List available rules for the Company or for a specific Project.
+
+Usage:
+
+```sh
+miactl company rules list [flags]
+```
+
+Available flags for the command:
+
+- `--company-id`, the id of the Company
+- `--project-id`, the id of the Project (if provided the command will print avilable rules for the project,
+  together with the rules inherited from the Company)
+
+### update
+
+Update rules for a Company or for a specific Project
+
+Usage:
+
+```sh
+miactl company rules update [flags]
+```
+
+Available flags for the command:
+
+- `--company-id`, the id of the Company
+- `--project-id`, the id of the Project (if provided the command will update the rules for the specified Project only)
+- `-f`, path to the file where the rules are saved
+
+File example:
+
+```json
+[
+ {
+  "roleIds": ["developer"],
+  "disallowedRuleSet": [
+   {"ruleId": "endpoint.security.edit"}
+  ]
+ }
+]
 ```
