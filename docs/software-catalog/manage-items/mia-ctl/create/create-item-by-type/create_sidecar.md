@@ -1,5 +1,5 @@
 ---
-id: add_sidecar
+id: create_sidecar
 title: Publish your Sidecar to the Marketplace
 sidebar_label: Create a Sidecar
 ---

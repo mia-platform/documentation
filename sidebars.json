@@ -1743,68 +1743,6 @@
     },
     {
       "collapsed": true,
-      "label": "Marketplace Management",
-      "type": "category",
-      "items": [
-        {
-          "label": "Create your Company Marketplace",
-          "type": "category",
-          "link": {
-            "id": "marketplace/add_to_marketplace/create_your_company_marketplace",
-            "type": "doc"
-
-          },
-          "items": [
-            {
-              "id": "marketplace/add_to_marketplace/add_item_by_type/add_plugin",
-              "label": "Create a Plugin Marketplace Item",
-              "type": "doc"
-            },
-            {
-              "id": "marketplace/add_to_marketplace/add_item_by_type/add_template_or_example",
-              "label": "Create a Template or Example Marketplace Item",
-              "type": "doc"
-            },
-            {
-              "id": "marketplace/add_to_marketplace/add_item_by_type/add_application",
-              "label": "Create an Application Marketplace Item",
-              "type": "doc"
-            },
-            {
-              "id": "marketplace/add_to_marketplace/add_item_by_type/add_sidecar",
-              "label": "Create a Sidecar Marketplace Item",
-              "type": "doc"
-            },
-            {
-              "id": "marketplace/add_to_marketplace/add_item_by_type/add_custom_resource",
-              "label": "Create a Custom Resource Marketplace Item",
-              "type": "doc"
-            }
-          ]
-        },
-        {
-          "id": "marketplace/add_to_marketplace/manage_marketplace_items",
-          "type": "doc",
-          "label": "Manage Marketplace Items"
-        },
-        {
-          "id": "marketplace/add_to_marketplace/marketplace_items_accessibility",
-          "type": "doc"
-        },
-        {
-          "id": "marketplace/add_to_marketplace/change_marketplace_item_visibility",
-          "type": "doc",
-          "label": "Change Marketplace Items Visibility"
-        },
-        {
-          "id": "marketplace/add_to_marketplace/declarative_marketplace",
-          "type": "doc",
-          "label": "Marketplace Declarative Approach"
-        }
-      ]
-    },
-    {
-      "collapsed": true,
       "items": [
         {
           "collapsed": true,
@@ -1940,7 +1878,91 @@
       "type": "doc"
     },
     {
-      "id": "software-catalog/ui",
+      "type": "category",
+      "collapsed": true,
+      "label": "Manage Items",
+      "link": {
+        "id": "software-catalog/manage-items/overview-manage-items",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "type": "category",
+          "collapsed": true,
+          "label": "Software Catalog UI",
+          "link": {
+            "id": "software-catalog/manage-items/software-catalog-ui/ui",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "id": "software-catalog/manage-items/software-catalog-ui/create/overview-software-catalog-create",
+              "type": "doc"
+            },
+            {
+              "id": "software-catalog/manage-items/software-catalog-ui/delete/overview-software-catalog-delete",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "collapsed": true,
+          "label": "Mia-ctl",
+          "link": {
+            "id": "software-catalog/manage-items/mia-ctl/overview-mia-ctl",
+            "type": "doc"
+          },
+          "items": [
+            {
+              "type": "category",
+              "collapsed": true,
+              "label": "Create Item",
+              "link": {
+                "id": "software-catalog/manage-items/mia-ctl/create/overview-mia-ctl-create",
+                "type": "doc"
+              },
+              "items": [
+                {
+                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin",
+                  "type": "doc"
+                },
+                {
+                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example",
+                  "type": "doc"
+                },
+                {
+                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application",
+                  "type": "doc"
+                },
+                {
+                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar",
+                  "type": "doc"
+                },
+                {
+                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource",
+                  "type": "doc"
+                }
+              ]
+            },
+            {
+              "id": "software-catalog/manage-items/mia-ctl/update/overview-mia-ctl-update",
+              "type": "doc"
+            },
+            {
+              "id": "software-catalog/manage-items/mia-ctl/delete/overview-mia-ctl-delete",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "software-catalog/manage-items/declarative-approach",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "id": "software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
       "type": "doc"
     }
   ]

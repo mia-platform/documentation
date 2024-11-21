@@ -1,5 +1,5 @@
 ---
-id: add_custom_resource
+id: create_infrastructure_resource
 title: Publish your Infrastructure Resources to the Marketplace
 sidebar_label: Create an Infrastructure Resource
 ---
@@ -15,7 +15,7 @@ Infrastructure Resources are basically defined by two fields:
 - the `apiVersion` field, which should be set to `custom-generator.console.mia-platform.eu/v1` for generic template-based Infrastructure Resources, or to the version of the Kubernetes API used by the resource in case of Kubernetes-specific Custom Resources
 - the `kind` field, which is the specific resource type of the resource
 
-An Infrastructure Resource can be created from scratch or from an existing Marketplace item and added to your Project. Infrastructure Resources on the Marketplace follow the base Marketplace item schema defined in the ["Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#how-to-configure-a-new-item), with the _type_ field set to `custom-resource`.
+An Infrastructure Resource can be created from scratch or from an existing Marketplace item and added to your Project. Infrastructure Resources on the Marketplace follow the base Marketplace item schema defined in the ["Create your Company Marketplace" page](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item), with the _type_ field set to `custom-resource`.
 
 Infrastructure resource items in the Marketplace also support _versioning_, allowing you to update a resource without overwriting its previous versions. 
 
@@ -211,7 +211,7 @@ runtime:
 
 ## Create a new Infrastructure Resource
 
-::: info
+:::info
 In the following paragraphs, we are going to use the `miactl` tool to create a new Infrastructure Resource.
 
 Make sure to [configure miactl](/cli/miactl/20_setup.md) before proceeding with the next steps.
@@ -351,7 +351,7 @@ When updating a Infrastructure Resource, it is recommended to create a new versi
 The new version should contain the updated resource definition and a release note detailing the changes.
 
 In case you are trying to overwrite a versioned Marketplace Infrastructure Resource, remember that only few fields can be modified.
-For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/marketplace/add_to_marketplace/create_your_company_marketplace.md#editing-a-versioned-resource).
+For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/software-catalog/manage-items/overview.md#editing-a-versioned-resource).
 
 #### Update non-versioned Infrastructure Resources
 
