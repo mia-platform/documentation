@@ -446,7 +446,7 @@ Available flags for the command:
 Rules command helps you manage different rules for configuration update for the whole Company or specific Projects.
 
 :::tip
-This feature is currently in closed preview and may be subject to breaking changes, reach out to your Mia-Platform referent
+This feature is currently in closed preview and may be subject to breaking changes, reach out to your Mia-Platorm referent
 if you are interested in use it.
 :::
 
@@ -463,7 +463,7 @@ miactl company rules list [flags]
 Available flags for the command:
 
 - `--company-id`, the id of the Company
-- `--project-id`, the id of the Project (if provided the command will print available rules for the project,
+- `--project-id`, the id of the Project (if provided the command will print avilable rules for the project,
   together with the rules inherited from the Company)
 
 #### update
