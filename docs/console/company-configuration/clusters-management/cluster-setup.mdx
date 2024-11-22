@@ -36,7 +36,8 @@ You can choose between the automatic procedure and the manual one.
 
   ### ClusterRole
 
-  Next, we must define the roles needed by the previously created service account. These are the minimal roles required by the Console to work.
+  Next, make sure to define the roles needed by the previously created service account. 
+  These are the minimal roles required by the Console to work.
 
   Here is the template to quickly define them:
 
@@ -158,9 +159,34 @@ You can choose between the automatic procedure and the manual one.
         - {{NAME_OF_THE_SERVICE_ACCOUNT_USED_FOR_THE_DEPLOY}}
   ```
 
+  #### Monitoring custom resources from the Console
+
+  Follow these guidelines to configure the custom resources. 
+  You need to make sure that the Console has the correct permissions 
+  to display the information to the users.
+
+  Here is an example to show how to give the correct permissions to custom resource definitions:
+  
+  ```yaml
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  # ...
+  rules:
+    # For each custom resource definitions we need to add:
+    - apiGroups:
+        - "<custom-resource-definitions.group>"
+      resources:
+        - "<custom-resource-definitions.names.plural>"
+      verbs:
+        - get
+        - list
+  ```
+
+  After adding the necessary permissions follow this [guide](/console/design-your-projects/custom-resources/custom-resources.md) to see your custom resources in the Console.
+
   ### ClusterRoleBindings
 
-  Finally, we **must** associate the roles with the service account using the `ClusterRoleBindings` that can be created using the following template:
+  Finally, make sure to associate the roles with the service account using the `ClusterRoleBindings` that can be created using the following template:
 
   ```yaml
   apiVersion: rbac.authorization.k8s.io/v1
