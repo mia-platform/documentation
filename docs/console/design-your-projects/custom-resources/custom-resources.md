@@ -9,7 +9,7 @@ A Infrastructure Resource allows you to define custom objects that are not part 
 An Infrastructure resource may be either Kubernetes type, and thus refer to a particular Custom Kubernetes Resource, or to Non-Kubernetes ones (Lambda functions, Terraform resources, etc.).
 
 :::info
-In order to monitor your custom resources in the monitoring area, you must give permissions to the console service account. Please follow the guide found [here](/console/company-configuration/clusters-management/cluster-setup.mdx?type=manual#monitoring-custom-resources-from-the-console)
+In order to visualize your custom resources in the monitoring area, you must give permissions to the console service account. Please follow the guide found [here](/console/company-configuration/clusters-management/cluster-setup.mdx?type=manual#monitoring-custom-resources-from-the-console)
 :::
 
 ## How to use the Infrastructure Resource
