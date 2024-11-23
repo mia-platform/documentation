@@ -1471,6 +1471,10 @@
           "type": "doc"
         },
         {
+          "id": "data_catalog/frontend/data_lineage",
+          "type": "doc"
+        },
+        {
           "id": "data_catalog/frontend/data_catalog_connections",
           "type": "doc"
         }
