@@ -37,10 +37,6 @@ With Mia-Platform, it is possible to take advantage of the synergies with [**Fas
 
 ### Key features
 
-<!---
-INTEGRARE CON LINEAGE 
--->
-
 Mia-Platform Data Catalog offers many powerful features for building your Data Product:
 
 * **Data Cataloging**: Organizes and collects available information about company's system of records, tables and columns, making it easy for an analyst to find and understand the data needed for a report.
@@ -52,6 +48,8 @@ Mia-Platform Data Catalog offers many powerful features for building your Data P
 * **Collaborative Environment**: Enables users to collaborate in searching and enriching assets in the same centralized source of truth, facilitating knowledge sharing on assets.
 
 * **Policy Management and Access Control**: Allows to establish customized data classification levels and tagging based on data sensitivity, ensuring that asset information is handled according to its classification, such as public, internal, or confidential. Moreover, it enables access control on users, which can have read-only permissions or also metadata enrichment capabilities on assets. This ensures that only authorized users can view or modify certain data.
+
+* **Data Lineage**: Allows to track the origin and flow of data through systems to help understand how data are transformed and used through various business processes, useful to identify and resolve data quality issues.
 
 ### Metadata Enrichment
 
@@ -102,24 +100,17 @@ Adopting Mia-Platform Data Catalog offers numerous benefits:
 
 ## Setup Mia-Platform Data Catalog
 
-<!---
-MODIFICARE QUESTO PARAGRAFO RIMUOVENDO L'AGENT
--->
-
 Start to setup your Data Catalog Project in Mia-Platform Console.  
-Find in the Marketplace:
+Find in the Marketplace the [Data Catalog Application](/runtime_suite_applications/data-catalog/10_overview.md), that offers pre-configured bundle of resources that allows you to easily instantiate and deploy a working Data Catalog product. Give a look at the following [documentation page](/data_catalog/frontend/overview.mdx) to see how to navigate Mia-Platform Data Catalog. Among application resources there is a service in charge of extracting metadata regarding the several tables and data structures existing on configured
+sources (System of Records) of your company, in order to populate the information inside your Data Catalog to start the experience within Data Catalog frontend.
 
-* [Data Catalog Application](/runtime_suite_applications/data-catalog/10_overview.md), that offers pre-configured bundle of resources that allows you to easily instantiate and deploy a working Data Catalog product. Give a look at the following [documentation page](/data_catalog/frontend/overview.mdx) to see how to navigate Mia-Platform Data Catalog.
-* [Data Catalog Agent](/runtime_suite_templates/data-catalog-agent/10_overview.md), that is in charge of extracting metadata regarding the several tables and data structures existing on configured
-sources (System of Records) of your company, in order to populate the information inside your Data Catalog to start the experience within Data Catalog frontend. Give a look at the following [documentation page](/data_catalog/data_catalog_agent_setup.mdx) to see how to setup the Data Catalog Agent to retrieve assets information and populate your Data Catalog.
-
-Actually, thanks to Data Catalog Agent, it is possible to acquire metadata coming from different supported System of Records:  
+Actually, it is possible to acquire metadata coming from different supported System of Records:  
 
 - Oracle Database
 - Postgres Database
 - MySQL Database
 - Microsoft SQL Server Database
-- Mia-Platform CRUD Service
+- Mia-Platform MongoDB CRUD Service
 - Salesforce SObjects API
 - SAP HANA
 
@@ -150,7 +141,7 @@ The following paragraph provides useful links to go into detail about the variou
 ## Useful Resources
 
 <!---
-AGGIORNARE
+FARE UN CHECK
 -->
 
 Here are some useful links to learn more about Mia-Platform Data Catalog features and configuration steps:

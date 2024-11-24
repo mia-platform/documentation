@@ -65,7 +65,6 @@ In the paragraph below is explained how to configure the persistence layer.
 
 ##### Persistence Layer
 
-
 :::info
 Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data.
 :::
@@ -136,6 +135,7 @@ The corresponding JSON is a key-value pair representation where:
 When the service receives a request to trigger a job, it will first try to reselove the secrets contained in the request by looking at the entries of this file: 
 if no secret can be found, the service will try to read the corresponding secret from the process environment. 
 :::
+
 ### Enable gRPC communications
 
 The request exchanged between Fabric BFF and Job Runner services are performed through [gRPC](https://grpc.io/).

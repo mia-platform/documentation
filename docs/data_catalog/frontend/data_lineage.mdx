@@ -8,6 +8,10 @@ sidebar_label: Data Lineage
 
 Data lineage is a critical feature for understanding, visualizing, and describing the flow and transformations of data within an organization. By offering a detailed visualization of data dependencies and relationships, it enables users to perform impact analyses, ensure compliance, and identify potential bottlenecks or issues in data workflows.  
 
+<!---
+INSERT IMAGE
+-->
+
 The **Data Lineage UI** provides two levels of visualization:  
 - At the **Table Level**, users can explore granular relationships between individual tables, analyze transformations, and manage metadata or simulated scenarios.  
 - At the **System of Record (SoR) Level**, users can view a high-level summary of aggregated relationships across databases, derived from the detailed table-level lineage.  
@@ -18,63 +22,147 @@ These levels of lineage are designed to complement each other, offering both gra
 
 Within the Data Lineage UI, users will encounter two types of assets: **real** and **virtual**. Both asset types can represent either **tables** or **Systems of Record (SoRs)**, making the lineage system highly flexible.  
 
-**Real assets** are derived directly from the Data Catalog, reflecting physical entities present in the organization's data environment. Examples include database tables or established Systems of Record containing production data. Metadata enrichment is fully supported for these assets, and their relationships —when automatically inferred— are immutable within the canvas.
+**Real assets** are derived directly from the Data Catalog, reflecting physical entities present in the organization's data environment. 
 
-**Virtual assets**, on the other hand, are created manually by users. They can be particularly beneficial in scenarios where real-world relationships are incomplete, under development, or unavailable. For instance, during the planning phase of a new data pipeline, users can create virtual tables to represent the expected data structures and link them with virtual jobs to simulate transformations. Similarly, virtual SoRs allow users to group tables conceptually, even if the underlying system is not yet fully integrated into the Data Catalog. This functionality empowers teams to perform proactive analyses and collaborative planning, ensuring a seamless transition from concept to implementation.
+<!---
+INSERT IMAGE
+-->
+
+Examples include database tables or established Systems of Record containing production data. Metadata enrichment is fully supported for these assets, and their relationships —when automatically inferred— are immutable within the canvas.
+
+**Virtual assets**, on the other hand, are created manually by users. They can be particularly beneficial in scenarios where real-world relationships are incomplete, under development, or unavailable. 
+
+<!---
+INSERT IMAGE
+-->
+
+For instance, during the planning phase of a new data pipeline, users can create virtual tables to represent the expected data structures and link them with virtual jobs to simulate transformations. Similarly, virtual SoRs allow users to group tables conceptually, even if the underlying system is not yet fully integrated into the Data Catalog. This functionality empowers teams to perform proactive analyses and collaborative planning, ensuring a seamless transition from concept to implementation.
 
 ## Table-Level Lineage
 
-The **table-level lineage canvas** provides visualization of how tables are interconnected between each others. The navigation starts by centering the canvas around a **Base Table**, which serves as the starting point for exploration. The base table refers to the asset the user is on while browsing the Data Catalog and for which user wants to view the lineage. By default, when entering the lineage canvas, the system displays one level of relationships to the left (upstream) and right (downstream) of the Base Table. Users can expand the lineage incrementally, level by level, to explore more complex relationships and dependencies.
+The **table-level lineage canvas** provides visualization of how tables are interconnected between each others. 
 
-This canvas not only visualizes the flow of data but also offers tools for enriching the lineage with virtual assets, creating new relationships, and inspecting existing ones. It acts as a workspace where users can model, document, describe, and analyze their data transformations in detail.
+<!---
+INSERT IMAGE
+-->
+
+The navigation starts by centering the canvas around a **Base Table**, which serves as the starting point for exploration. The base table refers to the asset the user is on while browsing the Data Catalog and for which user wants to view the lineage. By default, when entering the lineage canvas, the system displays one level of relationships to the left (upstream) and right (downstream) of the Base Table. Users can expand the lineage incrementally, level by level, to explore more complex relationships and dependencies.
+
+This canvas not only visualizes the flow of data but also offers capabilities for enriching the lineage with virtual assets, creating new relationships, and inspecting existing ones. It acts as a workspace where users can model, document, describe, and analyze their data transformations in detail.
 
 By clicking on the name of an asset diplayed inside the lineage canvas, it is possible to move to its lineage, centered with it as the new Base asset.
 
 ### Enriching the Lineage
+
+At table-lineage level, users with enough permissions can enrich the lineage information to better document and describe valuable information about how data flows and is treated along its lineage.
 
 #### Creating and Linking Tables
 
 Users can create new Virtual Tables directly within the canvas. These tables can be linked to existing tables—either real or virtual—by defining relationships through Virtual Jobs. When a Virtual Table is created, the system automatically generates a Virtual Job entity that refers to the relationship with the connected asset. This ensures that new tables are immediately integrated into the lineage, allowing for seamless exploration and enrichment.  
 It is possible to:  
 - Create a virtual table from establish a link with either a real table or another existing virtual one
+
+<!---
+INSERT IMAGE
+-->
+
 - Link an existing table (both real and virtual) to an existing one (both real and virtual)  
+
+<!---
+INSERT IMAGE
+-->
 
 #### Adding/Removing Virtual SoR on a virtual table
 
 Virtual Tables can also be associated with Virtual SoRs, enabling users to group them conceptually under larger organizational units. These associations help maintain clarity in complex data ecosystems and provide additional context for downstream analyses.  
+
+<!---
+INSERT IMAGE
+-->
+
 Then, from the canvas, it is possible to remove the association with a virtual SoR.
 
+<!---
+INSERT IMAGE
+-->
+
 #### Deletion of Virtual Table
 
-It is possible to delete a Virtual Table from its asset detail page. When a Virtual Table is deleted from the lineage canvas, its relationships, such as Virtual Jobs linking it to other tables, are also removed. However, any Virtual SoR that the deleted table was associated with remains unaffected.   
+It is possible to delete a Virtual Table from its asset detail page. 
+
+<!---
+INSERT IMAGE
+-->
+
+When a Virtual Table is deleted from the lineage canvas, its relationships, such as Virtual Jobs linking it to other tables, are also removed. However, any Virtual SoR that the deleted table was associated with remains unaffected.   
 This behavior ensures that the deletion of a Virtual Table impacts only its immediate relationships, maintaining the integrity of other virtual or real assets in the lineage. Similarly, if a Virtual SoR no longer has any associated tables, it will still persist within the system, providing users the flexibility to repurpose it or associate it to new Virtual Tables later. This separation of relationships and existence allows for a modular and non-destructive approach to lineage management.
 
-#### Deletion of Virtual Table
+#### Deletion of Virtual SoR
 
-It is possible to delete a Virtual SoR from its asset detail page. When deleting a virtual SoR, its reference to all the virtual tables associated to it is automatically removed.
+It is possible to delete a Virtual SoR from its asset detail page. 
+
+<!---
+INSERT IMAGE
+-->
+
+When deleting a virtual SoR, its reference to all the virtual tables associated to it is automatically removed.
 
 #### Managing Jobs: Real and Virtual
 
-**Real Jobs** represent transformations or dependencies automatically inferred from runtime pipeline configurations. They are read-only within the lineage canvas, ensuring that the relationships accurately reflect the underlying physical processes. For each Real Job, users can inspect a detailed view that includes a description and a snippet of code, if retrieved, showcasing the logic of the transformation. This transparency allows users to understand exactly how data flows between tables and ensures that relationships are grounded in real-world configurations.  
+**Real Jobs** represent transformations or dependencies automatically inferred from runtime pipeline configurations. They are read-only within the lineage canvas, ensuring that the relationships accurately reflect the underlying physical processes. 
 
-**Virtual Jobs**, on the other hand, are fully customizable and can be created, modified, or deleted directly within the canvas. These jobs allow users to model planned transformations or describe physically relationships still not retrived inside Data Catalog. Each Virtual Job includes an editable description field where users can document about the type of process (such ETL, filtering, replica, aggregation), its purpose or expected behavior. If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal the related table from the canvas.
+<!---
+INSERT IMAGE
+-->
+
+For each Real Job, users can inspect a detailed view that includes a description and a snippet of code, if retrieved, showcasing the logic of the transformation. This transparency allows users to understand exactly how data flows between tables and ensures that relationships are grounded in real-world configurations.  
+
+**Virtual Jobs**, on the other hand, are fully customizable and can be created, modified, or deleted directly within the canvas. These jobs allow users to model planned transformations or describe physically relationships still not retrived inside Data Catalog. 
+
+<!---
+INSERT IMAGE
+-->
+
+Each Virtual Job includes an editable description field where users can document about the type of process (such ETL, filtering, replica, aggregation), its purpose or expected behavior. If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal the related table from the canvas.
 
 #### Interaction with Lineage Elements
 
-Users can interact with relationships between tables —represented as arrows— to inspect or manage the underlying jobs. Clicking on an arrow opens a drawer containing a list of all Real and Virtual Jobs that define the relationship. From here, users can also add new Virtual Jobs, update existing ones or delete them.
+Users can interact with relationships between tables —represented as arrows— to inspect or manage the underlying jobs. Clicking on an arrow opens a drawer containing a list of all Real and Virtual Jobs that define the relationship. 
+
+<!---
+INSERT IMAGE
+-->
+
+From here, users can also add new Virtual Jobs, update existing ones or delete them.
 
 ## System-of-Record-Level Lineage
 
 ### Overview and Purpose
 
-The **System of Record (SoR) Level Lineage** offers a high-level summary of data flows, showing aggregated relationships across Systems of Records. Unlike the detailed table-level lineage, this view is read-only and serves as an overview of how larger organizational units interact. It provides a macro perspective, making it easier to identify dependencies or potential bottlenecks at a strategic level.  
+The **System of Record (SoR) Level Lineage** offers a high-level summary of data flows, showing aggregated relationships across Systems of Records. 
+
+<!---
+INSERT IMAGE
+-->
+
+Unlike the detailed table-level lineage, this view is read-only and serves as an overview of how larger organizational units interact. It provides a macro perspective, making it easier to identify dependencies or potential bottlenecks at a strategic level.  
 
 The SoR Lineage derives its information from the underlying table-level lineage. Each SoR relation reflects the combined relationships of their respective tables. For example, if multiple tables within two SoRs are connected by jobs, these relationships are aggregated and represented as a single arrow in the SoR Lineage view.  
 
 ### Exploring Relations at SoR-level
 
-Clicking on a arrow between two SoRs opens a drawer that displays all the jobs contributing to the relationship. This includes both Real and Virtual Jobs, and each job is clearly labeled to indicate its type. Users can filter the list to focus on jobs involving specific ingoing or outgoing tables, making it easier to pinpoint relevant transformations or dependencies.  
+Clicking on a arrow between two SoRs opens a drawer that displays all the jobs contributing to the relationship. This includes both Real and Virtual Jobs, and each job is clearly labeled to indicate its type. 
+
+<!---
+INSERT IMAGE
+-->
+
+Users can filter the list to focus on jobs involving specific ingoing or outgoing tables, making it easier to pinpoint relevant transformations or dependencies.  
 In case there are tables beloging to the same SoR that are related each others, the information about the number of existing jobs intra-SoR is easily reported on the specific SoR entity inside the lineage canvas. 
+
+<!---
+INSERT IMAGE
+-->
 
 While no modifications can be made at this level, the SoR Lineage provides critical insights into how data moves across systems, helping users identify areas for optimization or further investigation.
 
