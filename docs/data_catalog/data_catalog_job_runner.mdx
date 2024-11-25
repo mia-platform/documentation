@@ -5,7 +5,6 @@ sidebar_label: Job Runner
 ---
 
 import runnerSchema from "@site/static/schemas/data_fabric/data-catalog-job-runner.config.schema.json"
-import bffConfigExample from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.example.json"
 import SchemaViewer from "../../src/components/SchemaViewer"
 
 Data Catalog _Job Runner_ can trigger the execution of different jobs that can update the state of the Data Catalog solution. 
@@ -48,22 +47,18 @@ Fabric BFF can be customized using the following environment variables:
 | `JOB_RUNNER_FOLDER`           | -        | Set the location of the configuration files                                                                                       | `~/.fd/job-runner`                  |
 | `ODBCINI`                     | -        | Optional full path where a user custom defined `.odbc.ini` can be used to retrieve user defined data sources                      |                                     |
 
-### Config Maps
+### Main Configuration
 
-The [main configuration](#main-configuration) of the service is handled by a `config.json`, while an additional list of secret is located in the `secrets.json` file.
-
-Both files located at the path defined by the `JOB_RUNNER_FOLDER`.
-
-#### Main Configuration
+The [main configuration](#main-configuration) of the service is handled by a `config.json`, located at the path defined by the `JOB_RUNNER_FOLDER`.
 
 When instantiating [Data Catalog application](/runtime_suite_applications/data-catalog/10_overview.md), Job Runner service configuration is generated with
 a dedicated Config Map, named `job-runner-config`. This file contains a template configuration that should help in configuring the service.
 
-<SchemaViewer schema={runnerSchema} example={bffConfigExample}/>
+<SchemaViewer schema={runnerSchema}/>
 
 In the paragraph below is explained how to configure the persistence layer.
 
-##### Persistence Layer
+#### Persistence Layer
 
 :::info
 Currently only [MongoDB](https://mongodb.com/) is supported as persistence layer for storing relevant data.
@@ -101,10 +96,10 @@ The following properties support [secret resolution](/fast_data/configuration/se
 - `persistence.configuration.database`
 :::
 
-#### Secrets Names Configuration
+### Secrets Names Configuration
 
-To let the Data Catalog UI be aware of possible secret that can be used within connection definitions, the service can be configured with a `secret.json` file
-located at the `JOB_RUNNER_FOLDER`.
+To let the Data Catalog UI be aware of possible secret that can be used within connection definitions, the service can be additionaly 
+configured with a `secret.json` file located at the `JOB_RUNNER_FOLDER`.
 
 The corresponding JSON is a key-value pair representation where:
 
@@ -136,7 +131,7 @@ When the service receives a request to trigger a job, it will first try to resel
 if no secret can be found, the service will try to read the corresponding secret from the process environment. 
 :::
 
-### Enable gRPC communications
+### gRPC Services
 
 The request exchanged between Fabric BFF and Job Runner services are performed through [gRPC](https://grpc.io/).
 
@@ -148,3 +143,16 @@ that can be found in the Console Design area, under the specific microservice re
 When instantiating Data Catalog application, _Container Ports_ are pre-filled with all the needed ports using their default value.  
 In case the gRPC port chosen through [environment variables](#environment-variables) has been edited, please change the _Container Ports_ accordingly.
 :::
+
+Here are listed the main services that are exposed by the service.
+
+- `OdbcClient`: service responsible to retrieve information about the status of the ODBC driver
+  - `ListDrivers`: unary RPC returning the list of drivers configured within the service;
+  - `ListDataSources`: unary RPC returning the list of data sources configured within the service.
+- `Configuration`: service responsible to retrieve information about the main configuration of the service.
+  - `ListSecretNames`: unary RPC returning the names of secrets configured in the [Secret Names Configuration section](#secret-names-configuration).
+- `JobRunner`: service responsible to interact with the JobRunner service:
+  - `Run`: unary RPC that receive the context of a job and executes it, returning the corresponding identifier;
+  - `List`: unary RPC returning the list of jobs that have been executed by the service;
+  - `Status`: server streaming RPC returning feedback messages from the active jobs.  
+

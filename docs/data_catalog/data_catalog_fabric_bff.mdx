@@ -220,3 +220,15 @@ Under the endpoint specified above, the following routes are served by Fabric BF
 | `/connections/items/:id`     | REST      | GET    | Route for reading a given connection configured for the data catalog application.                                                                                                                                     |
 | `/connections/items/:id`     | REST      | GET    | Route for updating a given connection configured for the data catalog application.                                                                                                                                    |
 | `/connections/items/:id`     | REST      | DELETE | Route for deleting a given connection configured for the data catalog application.                                                                                                                                    |
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.1 to 0.2.0
+
+- Update the configuration of the service to enable [Console Communication](#console-communication) and [Job Runner](#job-runner-communication);
+- Add the following set of routes in the endpoint section of your project, along with their permissions:
+  - `/job-runner/*` and `/job-runner/feedback`
+  - `/open-lineage/*`
+  - `/connections/*` 
