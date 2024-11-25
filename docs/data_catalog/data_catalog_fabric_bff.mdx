@@ -5,7 +5,7 @@ sidebar_label: Fabric BFF
 ---
 
 import bffSchema from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.config.schema.json"
-import SchemaViewer from "../../src/components/SchemaViewer"
+import SchemaViewer from "./../fast_data/snippets/schema_viewer.mdx"
 import FabricBFFCredentialsViewer from "./../fast_data/runtime_management/snippets/fabric_bff_credentials_viewer.mdx"
 
 Fabric BFF, as suggested by the name, works as Backend For Frontend for Data Catalog UI and it mediates requests between frontend and the following services:
@@ -13,7 +13,7 @@ Fabric BFF, as suggested by the name, works as Backend For Frontend for Data Cat
 - [Data Catalog Open Lineage](/data_catalog/data_catalog_open_lineage.mdx), to retrieve details about assets and their enrichment;
 - [Data Catalog Job Runner](/data_catalog/data_catalog_job_runner.mdx), to launch job executions and retrieve their status.
 
-Moreover, the BFF exposes API to manage Data Catalog Connections from the [dedicated UI section](/data_catalog/frontend/data_catalog_connections.mdx).
+Moreover, the BFF offers API to manage Data Catalog Connections from the [dedicated UI section](/data_catalog/frontend/data_catalog_connections.mdx).
 
 ## Configuration
 
@@ -227,8 +227,11 @@ Here are the migration steps to perform between each version of the service.
 
 ### From 0.1.1 to 0.2.0
 
+The following steps needs to be followed:
+
+- Run [`fabric_admin:0.2.0` cronjob](/data_catalog/database_setup.mdx#cli-configuration) to update persistence layer collections schemas;
 - Update the configuration of the service to enable [Console Communication](#console-communication) and [Job Runner](#job-runner-communication);
-- Add the following set of routes in the endpoint section of your project, along with their permissions:
+- Add the following set of routes in the endpoint section of your project, along with [their permissions](/data_catalog/secure_access.mdx#endpoints-1):
   - `/job-runner/*` and `/job-runner/feedback`
   - `/open-lineage/*`
   - `/connections/*` 

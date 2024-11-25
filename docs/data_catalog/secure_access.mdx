@@ -596,13 +596,13 @@ and then forwarded to the underlying components.
 In addition to the endpoints described in the [Authentication Flow](#endpoints) section, here are described the ones that expose
 all the functionalities of Data Catalog system, both the frontend and backend components.
 
-| Endpoint            | Service         | Authentication Required | User Group Permission |
-|---------------------|-----------------|:-----------------------:|-----------------------|
-| `/api/connections`  | fabric-bff      |            ✅           | `false`               |
-| `/api/data-catalog` | fabric-bff      |            ✅           | `false`               |
-| `/api/job-runner`   | fabric-bff      |            ✅           | `false`               |
-| `/api/open-lineage` | fabric-bff      |            ✅           | `false`               |
-| `/data-catalog`     | data-catalog-fe |            ✅           | `true`                |
+| Endpoint            | Service         | Authentication Required | User Group Permission               |
+|---------------------|-----------------|:-----------------------:|-------------------------------------|
+| `/api/connections`  | fabric-bff      |            ✅           | `false`                             |
+| `/api/data-catalog` | fabric-bff      |            ✅           | `permissions["update:bulk-action"]` |
+| `/api/job-runner`   | fabric-bff      |            ✅           | `permissions["admin:connections"]`  |
+| `/api/open-lineage` | fabric-bff      |            ✅           | `false`                             |
+| `/data-catalog`     | data-catalog-fe |            ✅           | `true`                              |
 
 ### Routes
 
@@ -898,7 +898,9 @@ or within the advanced tab of the corresponding page in the Composer.
               "read:data-assets",
               "update:metadata-assets",
               "read:users",
-              "update:users"
+              "update:users",
+              "update:bulk-action",
+              "admin:connections"
             ]
           },
           "dataSchema": {
@@ -916,7 +918,9 @@ or within the advanced tab of the corresponding page in the Composer.
                 "read:data-assets",
                 "update:metadata-assets",
                 "read:users",
-                "update:users"
+                "update:users",
+                "update:bulk-action",
+                "admin:connections"
               ]
             }
           }
