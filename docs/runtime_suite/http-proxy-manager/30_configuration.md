@@ -27,7 +27,7 @@ The service use the following environment variables:
 - **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
 - **DISABLE_PROXY_CACHE** (optional, default `false`): allows to disable the in-memory proxy cache. Such cache is used to prevent excessive CRUD invocations (useful when you want to prevent any possible out-dated cache hit whenever the service is using Dynamic Configuration in the context of a scaled HA architecture)
-- **BASE_PATH_MATCHERS** (optional): comma-separated list of paths that are used to let the service handle complex base paths.
+- **BASE_PATH_MATCHERS** (optional): comma-separated list of paths that are used to let the service handle complex base paths when using dynamic proxy configuration (note: this function is not compatible with the non-optimized proxy configuration, make sure to set `ALLOW_PROXY_OPTIMIZER=true`).
 - **ADDITIONAL_HEADERS_TO_REDACT** (optional): comma separated values of additional headers to redact when logging. The following headers are always redacted: `Authorization`, `Cookie`, `Proxy-Authorization`, `Set-Cookie` and `Www-Authenticate`;
 
 :::caution
