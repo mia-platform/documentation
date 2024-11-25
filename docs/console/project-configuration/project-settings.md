@@ -170,7 +170,8 @@ If you are a Company Owner and want to enable this setting for all Projects in y
 ## Feature Preview
 
 The "Feature Preview" tab allows the user to visualize and activate features in early access on the specific Project, through a single card called "Feature Preview for your Project".
-the hostname of the container registry. It refers to the container registry URL, for example, `docker.io` for Docker Hub. It cannot be changed once the Container Registry is created.
+
+![feature preview](./img/settings-feature-preview.png)
 
 This card presents an overview of the features in early access that can be activated for the Project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.
 
