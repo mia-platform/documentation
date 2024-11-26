@@ -1806,5 +1806,9 @@
   "/docs/fast_data/cast_functions": {
     "destination": "/docs/fast_data/configuration/cast_functions",
     "addedOn": "2024-10-23"
+  },
+  "/docs/data_catalog/data_catalog_frontend": {
+    "destination": "/docs/data_catalog/frontend/overview",
+    "addedOn": "2024-11-26"
   }
 }

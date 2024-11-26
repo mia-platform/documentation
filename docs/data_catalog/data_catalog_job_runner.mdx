@@ -17,14 +17,16 @@ that can be sent back to clients that need to obtain information about the statu
 
 Here are listed the main jobs that the service can execute. 
 
-### Data Catalog Agent
+### Agent Dataset Sync
 
-_Data Catalog Agent_ is a routine that, given a __Connection__, queries datasources for the data schemas of the resources they own and stores them into the Data Catalog storage layer
-as documents compliant to the [Open Lineage specification](https://openlineage.io/). It provides facilities to:
+_Agent Dataset Sync_ is a procedure that queries datasources for the data schemas of the resources they own and stores them into the Data Catalog
+as documents compliant to the [Open Lineage specification](https://openlineage.io/). The job provides facilities to:
 
 1. query tables schemas;
 2. aggregate them in a unique JSON format;
-3. store the resulting datasets into the MongoDb database of the Data Catalog application
+3. store the resulting datasets into the MongoDb database of the Data Catalog application.
+
+This job can be triggered by configuring a __Connection__ from [its section in the Data Catalog UI](/data_catalog/frontend/data_catalog_connections.mdx).
 
 #### Odbc Connections
 
@@ -43,8 +45,33 @@ The service comes already equipped with the following ODBC drivers:
 
 ### Data Catalog Sync
 
-_Data Catalog Sync_ is a routine that is automatically scheduled after a _Data Catalog Agent job_: its duty is to align the datasets retrieved previously by the Agent
-and convert theminto assets that can be managed by the Data Catalog application.
+_Data Catalog Sync_ is a procedure that is automatically scheduled after an [_Agent Dataset Sync_](#agent-dataset-sync) job: 
+its duty is to align the datasets retrieved previously by the Agent and convert theminto assets that can be managed by the Data Catalog application.
+
+### Connection Cleanup
+
+_Connection Cleanup_ is a procedure that is launched automatically when a user [deletes a connection from the Data Catalog UI](/data_catalog/frontend/data_catalog_connections.mdx#delete-connection). 
+This job removes all the assets of a deleted connection from the Data Catalog.
+
+### Fast Data Jobs Sync 
+
+_Fast Data Jobs Sync_ is a procedure that generates [Open Lineage Jobs](https://openlineage.io/docs/spec/facets/job-facets/) from existing [Fast Data pipelines of the Runtime Management](/fast_data/runtime_management/overview.mdx)).
+
+This jobs can be linked to existing [Mia Platform CRUD connections](/data_catalog/frontend/data_catalog_connections.mdx#mia-platform)  where the proper namespace has been defined, so that they can be accessible
+from the [Data Lineage section](/data_catalog/frontend/data_lineage.mdx).
+
+#### Trigger Job
+
+To launch the _Fast Data Jobs Sync_ procedure you have to connect to the Job Runner container in your namespace and using tools such as [`grpcurl`](https://github.com/fullstorydev/grpcurl) or [`grpcui`](https://github.com/fullstorydev/grpcui).
+
+Here's an example request that you can make using `kubectl` and `grpcurl`:
+
+```bash
+# first, assuming 50051 as `GRPC_PORT`, port-forward the job runner service on local port
+kubectl port-forward svc/job-runner 50051
+# on another terminal process, call the `Run` service
+grpcurl -plaintext -d '{"openLineageFastDataJobSync": {}}' localhost:50051 job_runner_fabric.JobRunner.Run
+```
 
 ## Configuration
 
@@ -153,11 +180,11 @@ if no secret can be found, the service will try to read the corresponding secret
 
 ### ODBC Configuration
 
-An ODBC connection can configured either by the means of Connection String or Data Source Name (DSN).
+An ODBC connection can configured either by the means of __Connection Strings__ or __Data Source Names (DSN)__.
 
-Connection String is a string of key-value pairs where each of them represents a parameter of your connection.
+A __Connection String__ is a string of key-value pairs where each of them represents a parameter of your connection.
 
-Data Source Name (DSN) are symbolic names that can be linked to an ODBC connection. Job Runner service can read into a user-defined `.odbc.ini` file to load
+__Data Source Names (DSN)__ are symbolic names that can be linked to an ODBC connection. Job Runner service can read into a user-defined `.odbc.ini` file to load
 at runtime the ODBC connections that can be executed through DSN. The list of available DSN then can be used by the Data Catalog UI while configuring an ODBC connection.
 
 Job Runner reads DSN in its user-defined `.odbc.ini` located by default in the main configuration folder. To learn more about DSN and their connection parameters, 
@@ -427,7 +454,7 @@ Service responsible to retrieve information about the main configuration of the 
 ### Job Runner 
 
 Service responsible to interact with the JobRunner service. It has the following methods:
-  - `Run`: unary RPC that receive the context of a job and executes it, returning the corresponding identifier;
+  - `Run`: unary RPC that receive the context of [a job](#available-jobs) and executes it, returning the corresponding identifier;
   - `List`: unary RPC returning the list of jobs that have been executed by the service;
   - `Status`: server streaming RPC returning feedback messages from the active jobs.  
 

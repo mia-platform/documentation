@@ -8,7 +8,7 @@ sidebar_label: Connections Management
 ## Introduction to Connections
 
 Connections represent the source of truth of the Data Catalog. By retrieving their metadata, is possible use their assets 
-to perform actions such as [Enrichment](/data_catalog/frontend/data_catalog_assets.mdx) and [Lineage](/data_catalog/frontend/data_lineage.mdx).
+to perform actions such as [Asset Discovery](/data_catalog/frontend/data_catalog_assets.mdx) and [Lineage](/data_catalog/frontend/data_lineage.mdx).
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -22,7 +22,7 @@ The __Connections Panel__ provides the following features:
 
 - __Connections Creation__: the UI provides a creation wizard that let users define a new connection that contributes to Data Catalog assets;
 - __Connection Overview__: users can see and edit the parameters of a particular connection. Moreover, users can delete connections that are no longer needed;
-- __Connections Management__: users can see a list of connections that populate the Data Catalog application. From this table, users can run a Catalog Agent Sync Job of the Job Runner, to import connections assets in the Data Catalog.
+- __Connections Management__: users can see a list of connections that populate the Data Catalog application. From this table, users can trigger a [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) from the Job Runner, to import connections assets in the Data Catalog.
 
 :::caution
 This section of Data Catalog should be accessible only by administrators that have access to the connection credentials of external sources.
@@ -129,12 +129,12 @@ ODBC Providers can have two types of mode to perform the connection.
 
 ##### Oracle Query Settings
 
-__Oracle DB__ has also a section which can change the behavior of the underlying queries that the _Agent Job_ will
+__Oracle DB__ has also a section which can change the behavior of the underlying queries that the _Data Catalog Sync_ will
 perform while retrieving assets information. The following parameters can be tuned:
 
 - __Compatibility__: if the data source is an `ORACLE 11g` database, 
   this check should be active since the database [does not support](https://docs.oracle.com/database/121/LNPLS/release_changes.htm#LNPLS113) pagination via `OFFSET ? ROWS FETCH FIRST ? ROWS ONLY`;  
-- __Query Mode__: based on this option, the Agent Job will perform the scan query on a different set of views provided by Oracle. Three options are available:
+- __Query Mode__: based on this option, the [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) will perform the scan query on a different set of views provided by Oracle. Three options are available:
 
   - __User__: tables `user_tables`, `user_views` and `user_mviews` will be used. This represents the __default mode__ if no option has been provided;
   - __All__: tables `all_tables`, `all_views` and `all_mviews` will be used. 
@@ -245,6 +245,8 @@ by choosing a Company.
   </div>
 </div>
 
+If a Company has been configured, this connection can be read by the [Fast Data Jobs Sync](/data_catalog/data_catalog_job_runner.mdx#fast-data-jobs-sync) from the Job Runner,
+to generate Open Lineage Jobs from [Fast Data Pipelines of the Control Plane](/fast_data/runtime_management/overview.mdx). This means that the selected CRUD Service must be deployed in a project having Control Plane configured.
 :::tip
 To choose a Company, be sure that Fabric BFF has Console communication enabled. See [here](/data_catalog/data_catalog_fabric_bff.mdx#console-communication) for a detail explanation on how to setup this feature.
 :::
@@ -269,7 +271,7 @@ it's possible to set the connection as `insecure` and set a custom certificate i
 ### Agent Settings
 
 Once the main details of a connection has been defined, you can also tune runtime parameters
-of the Agent Job from the Job Runner. Here you can choose:
+of the [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) from the Job Runner. Here you can choose:
 
 - the __Batch Size__, a number that defines the number of assets that can be paginated in a query;
 - the __Column Batch Size__, a number that defines the amount of columns that are expected to be processed by each batch iteration.
@@ -287,7 +289,7 @@ a success message will redirect you to the [Connection Overview](#connection-ove
 
 ## Connection Overview
 
-After creating the connection, you can reach its overview of a connection either through the confirmation modal or the Connections Table.
+After creating the connection, you can reach its overview either through the confirmation modal or the __Connections Panel__.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -315,24 +317,45 @@ and start the procedure to remove a connection from the Data Catalog.
 </div>
 
 :::caution
-This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the Cleanub Job of the Job Runner.
+This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanub Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.
 :::
 
 ## Connections Management
 
 Once a connection has been defined and it's ready to be imported into the Data Catalog, you can start to synchronize its assets.
 
-In the main page of the Connections Panel, you can clik the `sync button` and schedule an Agent Dataset Sync job from the Job Runner.
-Once the action has been executed, the table entry of that connection will be updated by the Job Runner with information about the synchronization process. 
-
+In the main page of the Connections Panel, you can clik the `sync button` and schedule a [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) from the Job Runner.
+Once the action has been executed, the table entry of that connection will be updated by the Job Runner with information about the job status. 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
 
-![Connection Sync Running](./../img/connections_sync_running.png)
+![Connection Sync Catalog](./../img/connections_sync_catalog.png)
 
   </div>
 </div>
+
+Once the _[Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ is completed, a _[Fabric Sync Job](/data_catalog/data_catalog_job_runner.mdx#fabric-sync)_ will be executed automatically to store the assets retrieved from the data source into the Data Catalog.  
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '100%'}}>
+
+![Connection Sync Fabric](./../img/connections_sync_fabric.png)
+
+  </div>
+</div>
+
+Only one connection at a time will perform the synchronization: If more than one connecetion is synced at the same time, 
+the ones that are still not executed will be in a `Queue` state.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '100%'}}>
+
+![Connection Sync Queue](./../img/connections_sync_queue.png)
+
+  </div>
+</div>
+
 
 Once the synchronization has been completed, a `Sync Completed` message will be returned.
 
