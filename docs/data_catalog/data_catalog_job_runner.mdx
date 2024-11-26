@@ -8,8 +8,6 @@ import runnerSchema from "@site/static/schemas/data_fabric/data-catalog-job-runn
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-
 Data Catalog _Job Runner_ can trigger the execution of different jobs that can update the state of the Data Catalog solution. 
 
 The service keeps an internal queue where different requests sent by the Data Catalog UI are processed and executed, while collecting feedback
@@ -123,6 +121,8 @@ The corresponding JSON is a key-value pair representation where:
 <details>
 <summary>Example Configuration</summary>
 
+Consider the following sample `secrets.json`:
+
 ```json
 {
   "secretPlain": "{{MY_PLAIN_SECRET}}",
@@ -136,6 +136,12 @@ The corresponding JSON is a key-value pair representation where:
     "key": "EXAMPLE_ENV"
   }
 }
+```
+
+The [gRPC method `ListSecretNames`](#configuration-1) will return the following response:
+
+```json
+["secretPlain", "secretEnv", "secretFile"]
 ```
 
 </details>
@@ -161,7 +167,33 @@ Here are listed some example for the supported ODBC drivers:
 
 #### Oracle
 
+Job Runner needs additional configuration to run jobs towards Oracle databases. 
 
+With Oracle databases, connectivity can be handled with [`tnsnames.ora` files and/or wallets](https://docs.oracle.com/en/database/oracle/oracle-database/18/netrf/local-naming-parameters-in-tnsnames-ora-file.html#GUID-12C94B15-2CE1-4B98-9D0C-8226A9DDF4CB).
+
+#### Tsnames
+
+The service expects such assets in the Config Map located at `/opt/oracle/instantclient/network/admin/`, which must be checked to not owerwrite the content of the whole folder. 
+
+#### Wallets
+
+Oracle Wallet contains authentication and signal credentials of a database, which needs to be built with the whole service. 
+
+To add an oracle wallet to Job Runner service, you have to __replace the microservice container with a custom container located in your registry.
+This custom container consists of a `Dockerfile`, which uses the Job Runner service as base layer and adds on top of it the desired wallets.
+
+Once the custom wallets are copied into the container's `/opt/oracle/instantclient/network/admin/`, you can tune the `sqlora.net` file registering the path `/opt/oracle/instantclient/network/admin/`. 
+This path can be overridden by the means of the environment variable `TNS_ADMIN`. 
+
+```docker title=Dockerfile
+FROM nexus.mia-platform.eu/data-fabric/job-runner:<latest version>
+COPY <wallet location> /opt/oracle/instantclient/network/admin/
+
+COPY <<EOF /opt/oracle/instantclient/network/admin/sqlora.net
+WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/opt/oracle/instantclient/network/admin"))) SSL_SERVER_DN_MATCH=yes
+
+EOF
+```
 
 <Tabs groupId='oracle-odbc' queryString>
 
@@ -171,6 +203,12 @@ The list of all the available connection parameters can be found in the [officia
 
 ```
 driver=Oracle 23 ODBC driver;dbq=<SERVERNAME>;uid=<UID>;pwd=<PWD>;
+```
+
+Please note that `dbq` field can either be the an entry of your `tsnames.ora` file or an inline entry such as:
+
+```
+(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=0.0.0.0)(PORT=5041))(CONN ...))
 ```
 
 </TabItem>
@@ -212,7 +250,7 @@ MetadataIdDefault=F
 Password= 
 QueryTimeout=T
 ResultSets=T
-# 👇 ...here goes the DBQ field of the connection string
+# 👇 ...here goes the DBQ field of the connection string, or an entry name of a configured tsnames.ora
 ServerName= 
 SQLGetData extensions=F
 SQLTranslateErrors=F
@@ -310,7 +348,6 @@ You can refer to [the official documentation](https://learn.microsoft.com/en-us/
 
 ```
 Driver={ODBC Driver 18 for SQL Server};Server=<HOSTNAME>;Database=<DBNAME>;Uid=<USERNAME>;Pwd=<PWD>;TrustServerCertificate=yes
-
 ```
 
 </TabItem>
@@ -343,7 +380,6 @@ You can refer to [the official documentation](https://help.sap.com/docs/SAP_HANA
 
 ```
 Driver={Saphana HDBODBC};ServerNode=<HOSTNAME>:<PORT>;DatabaseName=<DBNAME>;UID=<USERNAME>;PWD=<PWD>;
-
 ```
 
 </TabItem>
@@ -364,37 +400,6 @@ ServerNode=
 </TabItem>
 </Tabs>
 
-
-### Oracle Support
-
-Job Runner needs additional configuration to run jobs towards Oracle databases. 
-
-With Oracle databases, connectivity can be handled with [`tnsnames.ora` files and/or wallets](https://docs.oracle.com/cd/B28359_01/network.111/b28317/tnsnames.htm#NETRF007).
-
-#### Tsnames
-
-The service expects such assets in the Config Map located at `/opt/oracle/instantclient/network/admin/`, which must be checked to not owerwrite the content of the whole folder. 
-
-#### Wallets
-
-Oracle Wallet contains authentication and signal credentials of a database, which needs to be built with the whole service. 
-
-To add an oracle wallet to Job Runner service, you have to __replace the microservice container with a custom container located in your registry.
-This custom container consists of a `Dockerfile`, which uses the Job Runner service as base layer and adds on top of it the desired wallets.
-
-Once the custom wallets are copied into the container's `/opt/oracle/instantclient/network/admin/`, you can tune the `sqlora.net` file registering the path `/opt/oracle/instantclient/network/admin/`. 
-This path can be overridden by the means of the environment variable `TNS_ADMIN`. 
-
-```docker title=Dockerfile
-FROM nexus.mia-platform.eu/data-fabric/job-runner:<latest version>
-COPY <wallet location> /opt/oracle/instantclient/network/admin/
-
-COPY <<EOF /opt/oracle/instantclient/network/admin/sqlora.net
-WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/opt/oracle/instantclient/network/admin"))) SSL_SERVER_DN_MATCH=yes
-
-EOF
-```
-
 ## gRPC Services
 
 The request exchanged between Fabric BFF and Job Runner services are performed through [gRPC](https://grpc.io/).
@@ -410,12 +415,18 @@ In case the gRPC port chosen through [environment variables](#environment-variab
 
 Here are listed the main services that are exposed by the service.
 
-- `OdbcClient`: service responsible to retrieve information about the status of the ODBC driver
+### ODBC Client
+
+Service responsible to retrieve information about the status of the ODBC driver. It has the following methods:
   - `ListDrivers`: unary RPC returning the list of drivers configured within the service;
   - `ListDataSources`: unary RPC returning the list of data sources configured within the service.
-- `Configuration`: service responsible to retrieve information about the main configuration of the service.
+### Configuration
+
+Service responsible to retrieve information about the main configuration of the service. It has the following methods:
   - `ListSecretNames`: unary RPC returning the names of secrets configured in the [Secret Names Configuration section](#secret-names-configuration).
-- `JobRunner`: service responsible to interact with the JobRunner service:
+### Job Runner 
+
+Service responsible to interact with the JobRunner service. It has the following methods:
   - `Run`: unary RPC that receive the context of a job and executes it, returning the corresponding identifier;
   - `List`: unary RPC returning the list of jobs that have been executed by the service;
   - `Status`: server streaming RPC returning feedback messages from the active jobs.  
