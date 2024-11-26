@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.8.1] 2024-11-25
+
+### Fixed
+
+- Changed `oauthFlows.password.tokenUrl` format from `uri` to `uri-reference` in OpenApi 3.1 schema
+
 ## [3.8.0] 2024-08-26
 
 ### Added
