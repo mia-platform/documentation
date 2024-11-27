@@ -269,7 +269,7 @@ The following routes are exposed over the `/open-lineage/*` base path.
 
 Here are the migration steps to perform between each version of the service.
 
-### From 0.1.1 to 0.2.0
+### From 0.1.x to 0.2.0
 
 The following steps needs to be followed:
 
@@ -278,7 +278,3 @@ The following steps needs to be followed:
   
   See [Routes paragraph](#open-lineage-routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
   to support the new permission `update:lineage`. 
-
-### From 0.1.0 to 0.1.1
-
-Configure and execute the [Fabric Sync cronjob](/data_catalog/data_catalog_agent_setup.mdx#sync-assets) before releasing the service.
