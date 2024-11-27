@@ -17,9 +17,9 @@ that can be sent back to clients that need to obtain information about the statu
 
 Here are listed the main jobs that the service can execute. 
 
-### Agent Dataset Sync
+### Agent Dataset Scan
 
-_Agent Dataset Sync_ is a procedure that queries datasources for the data schemas of the resources they own and stores them into the Data Catalog
+_Agent Dataset Scan_ is a procedure that queries datasources for the data schemas of the resources they own and stores them into the Data Catalog
 as documents compliant to the [Open Lineage specification](https://openlineage.io/). The job provides facilities to:
 
 1. query tables schemas;
@@ -45,7 +45,7 @@ The service comes already equipped with the following ODBC drivers:
 
 ### Data Catalog Sync
 
-_Data Catalog Sync_ is a procedure that is automatically scheduled after an [_Agent Dataset Sync_](#agent-dataset-sync) job: 
+_Data Catalog Sync_ is a procedure that is automatically scheduled after an [_Agent Dataset Scan_](#agent-dataset-scan) job: 
 its duty is to align the datasets retrieved previously by the Agent and convert theminto assets that can be managed by the Data Catalog application.
 
 ### Connection Cleanup
