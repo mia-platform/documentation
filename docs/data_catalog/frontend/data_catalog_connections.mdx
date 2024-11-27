@@ -20,7 +20,7 @@ to perform actions such as [Asset Discovery](/data_catalog/frontend/data_catalog
 
 The __Connections Panel__ provides the following features:
 
-- __Connections Creation__: the UI provides a creation wizard that let users define a new connection that contributes to Data Catalog assets;
+- __Connection Creation__: the UI provides a creation wizard that let users define a new connection that contributes to Data Catalog assets;
 - __Connection Overview__: users can see and edit the parameters of a particular connection. Moreover, users can delete connections that are no longer needed;
 - __Connections Management__: users can see a list of connections that populate the Data Catalog application. From this table, users can trigger a [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) from the Job Runner, to import connections assets in the Data Catalog.
 
@@ -226,12 +226,12 @@ For example, if you are using a testing instance, you'll need to set this field 
 #### Mia Platform
 
 __Mia Platform__ connection enables to retrieve assets from Mia Platform Console projects having
-data models stored on MongoDB through Crud Service.
+data models stored on MongoDB through [Crud Service](/runtime_suite/crud-service/10_overview_and_usage.md).
 
 The required information to setup the connection are:
 
 - the __Url__ where the CRUD Service is located;
-- the __Schemas Endpoint__ (usually `/-/schemas`) to retrieve the collections assets;
+- the [__Schemas Endpoint__](/runtime_suite/crud-service/10_overview_and_usage.md#get-schemas) (usually `/-/schemas`) to retrieve the collections assets;
 - the __Health Check Endpoint__ (usually `/-/healthz`) to retrieve the version of the CRUD Service.
 
 Additionally, it's possible to define the project and the environment where the CRUD Service is located in a Mia Platform Project

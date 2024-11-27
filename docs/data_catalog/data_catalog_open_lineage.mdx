@@ -207,10 +207,9 @@ within the same namespace, it is not necessary to publicly expose any endpoint o
 
 ### Routes
 
-Here are described which routes Open Lineage service serves:
+Here are described which routes Open Lineage service serves.
 
-<details>
-<summary>Data Catalog routes</summary>
+#### Data Catalog routes
 
 The following routes are exposed over the `/data-catalog/*` base path.
 
@@ -247,10 +246,7 @@ The following routes are exposed over the `/data-catalog/*` base path.
 | `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                                                       |
 | `/metadata-registry/search`                                | REST | GET    | Search for a specific metadata registry of interest                                                       |
 
-</details>
-
-<details>
-<summary>Open Lineage routes</summary>
+#### Open Lineage routes
 
 The following routes are exposed over the `/open-lineage/*` base path.
 
@@ -268,7 +264,6 @@ The following routes are exposed over the `/open-lineage/*` base path.
 | `/facets/storage/items/:id`                                | REST | GET    | Return the [OpenLineage](https://openlineage.io/) specification of a `virtual` system of record.          |
 | `/facets/storage/items/:id`                                | REST | DELETE | Delete a `virtual` system of record                                                                       |
 
-</details>
 
 ## Migration Guides
 
@@ -279,7 +274,10 @@ Here are the migration steps to perform between each version of the service.
 The following steps needs to be followed:
 
 - Run [`fabric_admin:0.2.0` cronjob](/data_catalog/database_setup.mdx#cli-configuration) to update persistence layer collections schemas;
-- Add the `/open-lineage/*` endpoints to your project's configuration, along with [their permissions](/data_catalog/secure_access.mdx#open-lineage-api). 
+- Add the `/open-lineage/*` endpoints to your project's configuration, along with [their permissions](/data_catalog/secure_access.mdx#open-lineage-api).
+  
+  See [Routes paragraph](#open-lineage-routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
+  to support the new permission `update:lineage`. 
 
 ### From 0.1.0 to 0.1.1
 

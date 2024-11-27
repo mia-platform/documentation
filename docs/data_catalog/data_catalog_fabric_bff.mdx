@@ -234,4 +234,7 @@ The following steps needs to be followed:
 - Add the following set of routes in the endpoint section of your project, along with [their permissions](/data_catalog/secure_access.mdx#endpoints-1):
   - `/job-runner/*` and `/job-runner/feedback`
   - `/open-lineage/*`
-  - `/connections/*` 
+  - `/connections/*`
+  
+  See [Routes paragraph](#routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
+  to support the new permission `admin:connections`. 
