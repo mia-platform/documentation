@@ -441,6 +441,63 @@ Available flags for the command:
 - `--context`, to specify a different context from the currently selected one
 - `--company-id`, to set the ID of the desired Company
 
+### rules
+
+Rules command helps you manage different rules for configuration update for the whole Company or specific Projects.
+
+:::tip
+This feature is currently in closed preview and may be subject to breaking changes, reach out to your Mia-Platform referent
+if you are interested in use it.
+:::
+
+#### list
+
+List available rules for the Company or for a specific Project.
+
+Usage:
+
+```sh
+miactl company rules list [flags]
+```
+
+Available flags for the command:
+
+- `--company-id`, the id of the Company
+- `--project-id`, the id of the Project (if provided the command will print available rules for the project,
+  together with the rules inherited from the Company)
+
+#### update
+
+Helps you update rules for a Company or for a specific Project
+
+Usage:
+
+```sh
+miactl company rules update [flags]
+```
+
+Available flags for the command:
+
+- `--company-id`, the id of the Company
+- `--project-id`, the id of the Project (if provided the command will update the rules for the specified Project only)
+- `-f`, path to the file where the rules are saved
+
+<details>
+<summary>File example</summary>
+
+```json
+[
+	{
+		"roleIds": ["developer"],
+		"disallowedRuleSet": [
+			{"ruleId": "endpoint.security.edit"}
+		]
+	}
+]
+```
+
+</details>
+
 ## project
 
 This command allows you to manage `miactl` Projects.

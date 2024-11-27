@@ -8,6 +8,10 @@ A Infrastructure Resource allows you to define custom objects that are not part 
 
 An Infrastructure resource may be either Kubernetes type, and thus refer to a particular Custom Kubernetes Resource, or to Non-Kubernetes ones (Lambda functions, Terraform resources, etc.).
 
+:::info
+In order to visualize your custom resources in the monitoring area, you must give permissions to the console service account. Please follow the guide found [here](/console/company-configuration/clusters-management/cluster-setup.mdx?type=manual#monitoring-custom-resources-from-the-console)
+:::
+
 ## How to use the Infrastructure Resource
 
 With Infrastructure Resources it is possible to:
@@ -49,7 +53,7 @@ In creation, you will see the preview of the generated manifest.
 #### Create an Infrastructure Resource from Marketplace
 
 :::info
-To allow users to add a Infrastructure Resource to their project from marketplace, you need to apply it using `miactl` ([see here for details](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md)).
+To allow users to add a Infrastructure Resource to their project from marketplace, you need to apply it using `miactl` ([see here for details](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)).
 :::
 
 To create a resource from Marketplace, you need to select the Infrastructure Resource you want to create.
@@ -125,7 +129,7 @@ Users with appropriate permissions can manage the lifecycle of a Infrastructure 
 
 Infrastructure Resources are published to the Marketplace using the `custom-resource` type in the marketplace item schema. Versioning is supported, allowing users to make updates without overwriting previous versions of the Infrastructure Resource.
 
-To learn more on how to add or manage a Infrastructure Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/marketplace/add_to_marketplace/add_item_by_type/add_custom_resource.md) section.
+To learn more on how to add or manage a Infrastructure Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md) section.
 
 ### Template-based Infrastructure Resource management
 

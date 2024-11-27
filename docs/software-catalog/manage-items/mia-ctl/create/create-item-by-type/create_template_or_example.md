@@ -1,5 +1,5 @@
 ---
-id: add_template_or_example
+id: create_template_or_example
 title: Create a Template or Example
 sidebar_label: Create a Template or Example
 ---
@@ -8,7 +8,7 @@ A **Template** is a base repository from which users can build a new Microservic
 
 **Examples** are similar to Templates, the only difference is they provide a basic implementation of the business logic for a specific use case, that users can use as a starting point for their custom implementation.
 
-Templates and Examples are very similar to [Plugins](/marketplace/add_to_marketplace/add_item_by_type/add_plugin.md): make sure you follow the creation steps, then read the paragraphs below to learn how to finalize the configuration.
+Templates and Examples are very similar to [Plugins](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md): make sure you follow the creation steps, then read the paragraphs below to learn how to finalize the configuration.
 
 ## The target
 
@@ -137,6 +137,13 @@ Here is some useful advice to strengthen your items:
 
 - **Where to host the zip with the code**: If you code your template on GitHub you can access the zip file using the URL `https://github.com/&lt;username&gt;/&lt;project-name&gt;/archive/&lt;branch&gt;.tar.gz`
 - **`.mia-template/` folder**: This folder is used to overwrite files in the main directory and won't be committed in the created repository; you can use it to provide a different README file to developers or to store the images and the marketplace item configuration
+- versions can be used to track technological or relevant updates in the template (e.g. to denote a new language version or core library used)
+
+:::info
+Versions are not mandatory but highly recommended to avoid overwriting existing resources.
+
+Please note that differently from other versioned items, template and examples do not support version updates and notifications.
+:::
 
 <details><summary>Example of a Start From Code Template</summary>
 

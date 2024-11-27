@@ -26,6 +26,8 @@ The service use the following environment variables:
 - **EXPOSE_MANAGEMENT_APIS** (optional, default `false`): allows to control whether or not [management APIs](./20_how_to_use.md#management-api) are exposed by the service (please note that this flag can be used only when running in dynamic configuration mode);
 - **ALLOW_PROXY_OPTIMIZER** (optional, default to `true`): boolean that enables optimized proxy using reverse proxy and preventing saving body request in memory. Be careful, this optimization does not perform any retry, thus it is strongly suggested to configure the token validation endpoint in your proxy configuration;
 - **DELAY_SHUTDOWN_SECONDS** (optional, default to `10` seconds): seconds to wait before starting the graceful shutdown. This delay is required in k8s to await for the DNS rotation;
+- **DISABLE_PROXY_CACHE** (optional, default `false`): allows to disable the in-memory proxy cache. Such cache is used to prevent excessive CRUD invocations (useful when you want to prevent any possible out-dated cache hit whenever the service is using Dynamic Configuration in the context of a scaled HA architecture)
+- **BASE_PATH_MATCHERS** (optional): comma-separated list of paths that are used to let the service handle complex base paths when using dynamic proxy configuration (note: this function is not compatible with the non-optimized proxy configuration, make sure to set `ALLOW_PROXY_OPTIMIZER=true`).
 - **ADDITIONAL_HEADERS_TO_REDACT** (optional): comma separated values of additional headers to redact when logging. The following headers are always redacted: `Authorization`, `Cookie`, `Proxy-Authorization`, `Set-Cookie` and `Www-Authenticate`;
 
 :::caution
@@ -167,10 +169,15 @@ Path parameters inside **targetBaseUrl** and **basePath** are only allowed for t
 
 The service requires a CRUD collection (named as you prefer) that provides all the different details regarding the external services to be proxied: each document **must** match the *proxy* schema specified in the [configuration schema](#configuration-schema).
 
-:::caution
-The *dynamic configuration* has the technical limitation of using just the first path component as **basePath**. This limitation comes from the inability to determine the CRUD's search query. Due to this limitation path parameters are not allowed inside **targetBaseUrl** and **basePath**.
+:::tip
+By default, when using the *dynamic configuration* only the first segment of the invoked path is used as base path to extract configurations from the database; in this scenario path parameters are not supported.
 
-**E.g.**: given a request with path `/one/two/three`, the **basePath** searched on CRUD is `/one`.
+**E.g.**: without `BASE_PATH_MATCHERS`, given a request with path `/one/two/three`, the **basePath** searched on CRUD is `/one`.
+
+Use the `BASE_PATH_MATCHERS` environment variable to provide one ore more base path matchers and let the service be able to extract more complex
+base paths from the database.
+
+Assuming you set `BASE_PATH_MATCHERS=/my-path/:param,/another-path/test-api` and then invoke `/my-path/123/some-other-api`, the **basePath** searched on CRUD will be `/my-path/123`.
 :::
 
 In order to configure correctly the CRUD collection, you can **import** the fields from this <a download target="_blank" href="/docs_files_to_download/http-proxy-manager/crud.fields.json">file</a>. This file already enables the Client Side Field Level Encryption (CSFLE) for those fields with sensitive data.
