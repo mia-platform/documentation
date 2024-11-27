@@ -33,15 +33,15 @@ This job can be triggered by configuring a __Connection__ from [its section in t
 In the context of databases, it requires [Open Database Connectivity (ODBC)](https://en.wikipedia.org/wiki/Open_Database_Connectivity) drivers to connect to external DBMS.
 The service comes already equipped with the following ODBC drivers:
 
-- ODBC Driver 18 for SQL Server,
-- MySQL ODBC 9.1 Unicode Driver,
-- MySQL ODBC 9.1 ANSI Driver,
-- MySQL ODBC 8.0 Unicode Driver,
-- MySQL ODBC 8.0 ANSI Driver,
-- PostgreSQL ANSI,
-- PostgreSQL Unicode,
-- Oracle 23 ODBC driver,
-- Saphana HDBODBC
+- `ODBC Driver 18 for SQL Server`,
+- `MySQL ODBC 9.1 Unicode Driver`,
+- `MySQL ODBC 9.1 ANSI Driver`,
+- `MySQL ODBC 8.0 Unicode Driver`,
+- `MySQL ODBC 8.0 ANSI Driver`,
+- `PostgreSQL ANSI`,
+- `PostgreSQL Unicode`,
+- `Oracle 23 ODBC driver`,
+- `Saphana HDBODBC`
 
 ### Data Catalog Sync
 
@@ -137,13 +137,13 @@ The following properties support [secret resolution](/fast_data/configuration/se
 
 ### Secrets Names Configuration
 
-To let the Data Catalog UI be aware of possible secret that can be used within connection definitions, the service can be additionaly 
+To let the Data Catalog UI be aware of possible secret that can be used within connection definitions, the service can be additionally 
 configured with a `secret.json` file located at the `JOB_RUNNER_FOLDER`.
 
 The corresponding JSON is a key-value pair representation where:
 
 - the keys represent the __secret name__ that can be used by external services as reference when triggering a job;
-- the values repesent a secret (that can be either represent according to [Fast Data secret resolution](/fast_data/configuration/secrets_resolution.md))
+- the values represent a secret (that can be either represent according to [Fast Data secret resolution](/fast_data/configuration/secrets_resolution.md))
 
 <details>
 <summary>Example Configuration</summary>
@@ -174,7 +174,7 @@ The [gRPC method `ListSecretNames`](#configuration-1) will return the following 
 </details>
 
 :::caution
-When the service receives a request to trigger a job, it will first try to reselove the secrets contained in the request by looking at the entries of this file: 
+When the service receives a request to trigger a job, it will first try to resolve the secrets contained in the request by looking at the entries of this file: 
 if no secret can be found, the service will try to read the corresponding secret from the process environment. 
 :::
 
@@ -198,9 +198,9 @@ Job Runner needs additional configuration to run jobs towards Oracle databases.
 
 With Oracle databases, connectivity can be handled with [`tnsnames.ora` files and/or wallets](https://docs.oracle.com/en/database/oracle/oracle-database/18/netrf/local-naming-parameters-in-tnsnames-ora-file.html#GUID-12C94B15-2CE1-4B98-9D0C-8226A9DDF4CB).
 
-#### Tsnames
+#### TS Names
 
-The service expects such assets in the Config Map located at `/opt/oracle/instantclient/network/admin/`, which must be checked to not owerwrite the content of the whole folder. 
+The service expects such assets in the Config Map located at `/opt/oracle/instantclient/network/admin/`, which must be checked to not overwrite the content of the whole folder. 
 
 #### Wallets
 
@@ -397,7 +397,7 @@ TrustServerCertificate=yes
 </TabItem>
 </Tabs>
 
-#### Saphana
+#### SAP HANA
 
 <Tabs groupId='saphana-odbc' queryString>
 
@@ -412,7 +412,7 @@ Driver={Saphana HDBODBC};ServerNode=<HOSTNAME>:<PORT>;DatabaseName=<DBNAME>;UID=
 </TabItem>
 <TabItem value="dsn" label="DSN">
 
-Here's an example of a `.odbc.ini` file containing a Saphana DSN. Username and password must be provided from the Data Catalog UI.
+Here's an example of a `.odbc.ini` file containing a SAP HANA DSN. Username and password must be provided from the Data Catalog UI.
 
 ```ini
 ; 👇 change the placeholder with your connection name

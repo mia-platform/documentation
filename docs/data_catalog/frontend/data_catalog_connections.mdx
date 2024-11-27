@@ -117,7 +117,7 @@ ODBC Providers can have two types of mode to perform the connection.
   </div>
 - __Data Source Name (DSN)__: users can choose between the available DSN configured in the Job Runner Service. 
   Users can also configure the DSN's username and password if those information are not available inside the DSN. 
-  Be aware that username and password are __mandatory__ for connections such as __MSSQL__ or __SAPHANA__.
+  Be aware that username and password are __mandatory__ for connections such as __MSSQL__ or __SAP HANA__.
 
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '100%'}}>
@@ -317,14 +317,14 @@ and start the procedure to remove a connection from the Data Catalog.
 </div>
 
 :::caution
-This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanub Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.
+This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanup Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.
 :::
 
 ## Connections Management
 
 Once a connection has been defined and it's ready to be imported into the Data Catalog, you can start to synchronize its assets.
 
-In the main page of the Connections Panel, you can clik the `sync button` and schedule an [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan) from the Job Runner.
+In the main page of the Connections Panel, you can click the `sync button` and schedule an [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan) from the Job Runner.
 Once the action has been executed, the table entry of that connection will be updated by the Job Runner with information about the job status. 
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -345,7 +345,7 @@ Once the _[Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#age
   </div>
 </div>
 
-Only one connection at a time will perform the synchronization: If more than one connecetion is synced at the same time, 
+Only one connection at a time will perform the synchronization: If more than one connection is synced at the same time, 
 the ones that are still not executed will be in a `Queue` state.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>

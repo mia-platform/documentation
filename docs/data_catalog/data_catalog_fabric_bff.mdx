@@ -85,7 +85,7 @@ Here can be found an example of configuration that assumes Fabric BFF and Job Ru
 
 #### Console Communication
 
-In order for Data Catalog UI to know which environemnts can be linked to [Mia Platform CRUD connections](#todo-crud-section), 
+In order for Data Catalog UI to know which environments can be linked to [Mia Platform CRUD connections](#todo-crud-section), 
 the service needs to contact Mia-Platform Console and retrieve the list of Projects that should be accessible from this Data Catalog instance.
 
 To achieve so, it is first necessary that your Company Owner creates a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md)
@@ -216,7 +216,7 @@ Under the endpoint specified above, the following routes are served by Fabric BF
 | `/job-runner/feedback`       | Websocket | *      | Route for receiving feedback messages by the jobs executed by the Job Runner                                                                                                                                            |
 | `/job-runner/*`              | REST      | *      | Routes prefixed with `/job-runner` are converted into gRPC requests towards Job Runner service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_job_runner.mdx#grpc-services)|
 | `/connections/items`         | REST      | GET    | Route for reading the list of connections configured for the data catalog application.                                                                                                                                  |
-| `/connections/items/`        | REST      | POST   | Route for creatin a connection for the data catalog application.                                                                                                                                                        |
+| `/connections/items/`        | REST      | POST   | Route for creating a connection for the data catalog application.                                                                                                                                                       |
 | `/connections/items/:id`     | REST      | GET    | Route for reading a given connection configured for the data catalog application.                                                                                                                                       |
 | `/connections/items/:id`     | REST      | GET    | Route for updating a given connection configured for the data catalog application.                                                                                                                                      |
 | `/connections/items/:id`     | REST      | DELETE | Route for deleting a given connection configured for the data catalog application.                                                                                                                                      |
