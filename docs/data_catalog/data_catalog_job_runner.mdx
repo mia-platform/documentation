@@ -62,16 +62,37 @@ from the [Data Lineage section](/data_catalog/frontend/data_lineage.mdx).
 
 #### Trigger Job
 
-To launch the _Fast Data Jobs Sync_ procedure you have to connect to the Job Runner container in your namespace and using tools such as [`grpcurl`](https://github.com/fullstorydev/grpcurl) or [`grpcui`](https://github.com/fullstorydev/grpcui).
+To launch the _Fast Data Jobs Sync_ procedure you have to manually invoke the gRPC method. 
 
-Here's an example request that you can make using `kubectl` and `grpcurl`:
+Data Catalog Application is shipped with an already pre-configured [`grpcui`](https://github.com/fullstorydev/grpcui),
+that is exposed under proper permissions as part of the [Secure Access microfrontend](/data_catalog/secure_access.mdx#microfrontend-composer).
 
-```bash
-# first, assuming 50051 as `GRPC_PORT`, port-forward the job runner service on local port
-kubectl port-forward svc/job-runner 50051
-# on another terminal process, call the `Run` service
-grpcurl -plaintext -d '{"openLineageFastDataJobSync": {}}' localhost:50051 job_runner_fabric.JobRunner.Run
-```
+From there, you can pick the `JobRunner` service, choose the `Run` method and then pick the `openLineageFastDataJobSync` option as request.
+
+![Users Management UI](./img/job_runner_manual_trigger.png)
+
+:::caution
+If you've defined a Data Catalog Application that didn't define a [`grpcui`](https://github.com/fullstorydev/grpcui) microservice, you can create one with the following parameters:
+
+- __Docker Image Name__: `fullstorydev/grpcui:v1.4.1`;
+- __Command Line Arguments__:
+  ```bash
+  -plaintext
+  -base-path=/ui/job-runner
+  -bind=0.0.0.0
+  -connect-fail-fast=false
+  job-runner:50051
+  ```
+- __Container Ports__:
+  - __Port Name__: `http`
+  - __Port__: 80
+  - __Target Port__: 8080
+  - __Protocol__: `TCP`
+- __Probe Types__: `TCP`
+
+Finally, you can add the endpoint `/ui/job-runner` (with rewrite base path as `/ui/job-runner`) having the permissions defined [in the Secure Access chapter](/data_catalog/secure_access.mdx#endpoints-2).
+Remember also to add `admin:producers` to the set of permissions. 
+:::
 
 ## Configuration
 
@@ -455,6 +476,6 @@ Service responsible to retrieve information about the main configuration of the 
 
 Service responsible to interact with the JobRunner service. It has the following methods:
   - `Run`: unary RPC that receive the context of [a job](#available-jobs) and executes it, returning the corresponding identifier;
-  - `List`: unary RPC returning the list of jobs that have been executed by the service;
-  - `Status`: server streaming RPC returning feedback messages from the active jobs.  
-
+  - `List`: unary RPC returning the list of jobs that are currently executed by the service;
+  - `History`: unary RPC returning the list of jobs that have been executed by the service;
+  - `Status`: server streaming RPC returning feedback messages from the active jobs. 

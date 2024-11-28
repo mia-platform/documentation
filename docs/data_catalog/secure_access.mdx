@@ -901,7 +901,8 @@ or within the advanced tab of the corresponding page in the Composer.
               "update:users",
               "update:bulk-action",
               "update:lineage",
-              "admin:connections"
+              "admin:connections",
+              "admin:producers"
             ]
           },
           "dataSchema": {
@@ -922,7 +923,8 @@ or within the advanced tab of the corresponding page in the Composer.
                 "update:users",
                 "update:bulk-action",
                 "update:lineage",
-                "admin:connections"
+                "admin:connections",
+                "admin:producers"
               ]
             }
           }
@@ -1253,15 +1255,24 @@ Before deploying, please verify that micro-lc public variables have been created
 These variables are employed by the Console to define the version of the service and libraries used by micro-lc at deploy time.
 They can be upgraded whenever an update is available.
 
+:::tip
+Besides the _Users Page_, the Composer comes with two additional pages of type `iFrame`:
+
+- __docs__: page showing Data Catalog documentation from this website;
+- __job_runner_ui__: page showing the application's [`grpcui`](https://github.com/fullstorydev/grpcui) interacting with the _Job Runner_ service.
+  See [here](/data_catalog/data_catalog_job_runner.mdx#trigger-job) to learn more about the interactions with _Job Runner_. 
+:::
+
 ### Endpoints
 
 Here are reported the endpoints that should be exposed from the project in order to enable users managements:
 
-| Endpoint                   | Service    | Authentication Required | User Group Permission                                          |
-|----------------------------|------------|:-----------------------:|----------------------------------------------------------------|
-| `/micro-lc-configurations` | micro-lc   |            ✅            | `true`                                                         |
-| `/mgmt`                    | micro-lc   |            ✅            | `true`                                                         |
-| `/authz/users`             | crud       |            ✅            | `permissions["read:users"]` \|\| `permissions["update:users"]` |
+| Endpoint                   | Service    | Authentication Required  | User Group Permission                                                    |
+|----------------------------|------------|:------------------------:|--------------------------------------------------------------------------|
+| `/micro-lc-configurations` | micro-lc   |            ✅            | `true`                                                                   |
+| `/mgmt`                    | micro-lc   |            ✅            | `true`                                                                   |
+| `/authz/users`             | crud       |            ✅            | `permissions["read:users"]` \|\| `permissions["update:users"]`           |
+| `/ui/job-runner`           | grpcui     |            ✅            | `permissions["admin:producers"]` \|\| `permissions["admin:connections"]` |
 
 ### Routes
 
