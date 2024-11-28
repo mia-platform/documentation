@@ -1,7 +1,7 @@
 ---
-id: overview-mia-ctl
-title:  Mia-ctl
-sidebar_label:  Mia-ctl
+id: overview-miactl
+title:  Miactl
+sidebar_label:  Miactl
 ---
 
 Creation of a item for your Company consists of two steps. The first is writing a Marketplace Item configuration file, then you have to upload it to the Console by using [`miactl`](/cli/miactl/10_overview.md), the official Mia-Platform CLI tool.

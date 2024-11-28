@@ -21,10 +21,10 @@ Follow the on-screen instructions to complete the item creation process. Once al
 
 ## Create a New Version
 
-Create a new version is available only for items that support versioning. To create a new version of an item, follow these steps:
+Create a new version is available only for items that support versioning. You can start the creation of a new version from either of the following options:
 
 #### From the Version Overview Page
-On the item’s overview page, you can create a new version by selecting the "Create New Version" option. Here, you can choose whether to start from an existing version or create the new version from scratch.
+On the item’s overview page, you can create a new version by selecting the "Add new version" option. Here, you can choose whether to start from an existing version or create the new version from scratch.
 
 ![create new version](./img/software-catalog-create-new-version.png)
 
