@@ -41,7 +41,7 @@ By selecting a version, you are taken to the details specific to that version. F
 The item detail page, which features two tabs.
 
 - **General**: this tab presents an initial Details section containing essential information about the item, including its name, general information, useful links, and tags.
-- **Specifics**: this tab displays a JSON representation containing detailed information specific to the item.
+- **Assets**: this tab displays a JSON representation containing detailed information specific to the item.
 
 These organized sections ensure that users can quickly find the information they need regarding the item and its specifications.
 

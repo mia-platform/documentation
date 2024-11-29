@@ -12,7 +12,7 @@ Choose the type of item you want to create from the available options. This will
 2. **Enter Metadata**
 Fill in the necessary metadata for the item. This typically includes basic information such as the name, description, category, and any other required attributes. 
 
-3. **Enter Specifics**
+3. **Enter Assets**
 After entering the metadata, you will need to specify additional details for the item. A default schema of resources will be provided to assist you in adding the relevant specifics. This schema serves as a template to help ensure all necessary information is included and formatted correctly.
 
 Follow the on-screen instructions to complete the item creation process. Once all steps are completed, you can save and submit the item to be added to the catalog.
