@@ -4,6 +4,10 @@ title: Data Catalog Asset Discovery
 sidebar_label: Asset Discovery
 ---
 
+<!---
+AGGIUNGERE REDIRECT
+-->
+
 When accessing Data Catalog frontend, user lands to the home section of the Data Catalog, where there is a searchbar that represents the starting point to navigate among Data Catalog assets.
 
 In particular, when navigating the catalog, it is possible to identify three different asset types:  
@@ -71,32 +75,34 @@ Finally, at the bottom of Data Catalog homepage, the **Last Viewed** section sho
 ### SoR detail page
 
 <!---
-INSERIRE LINEAGE
+MODIFICARE IMMAGINE
 -->
 
 The SoR detail page shows the following two tabs:
 * **General**, that shows a first **Details** section with asset details about name, provider info, number of contained tables, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Tables**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
+* **Lineage**, that shows a high-level lineage canvas displaying how a specific SoR is related to other SoRs. For more information about the SoRs-level lineage, visit the [related documentation](/data_catalog/frontend/data_lineage.mdx#system-of-record-level-lineage).
 
 ![Details of a SoR page](./../img/sor_details_page.png)
 
 ### Table detail page
 
 <!---
-INSERIRE LINEAGE
+MODIFICARE IMMAGINE
 -->
 
 The Table detail page shows the following two tabs:
 * **General**, that shows a first **Details** section with asset details about name, its SoR name, number of table columns, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Columns**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
+* **Lineage**, that shows the lineage canvas displaying how a specific table is related to other tables. For more information about the Table-level lineage, visit the [related documentation](/data_catalog/frontend/data_lineage.mdx#table-level-lineage).
 
 ![Details of a table page](./../img/table_details_page.png)
 
-### Column detail page
+:::info
+In case of a **Virtual Table** detail page, the Columns tab it is not present. To know more about the concept of `Virtual Asset`, please give a look at the [related documentation](/data_catalog/frontend/data_lineage.mdx#real-and-virtual-assets)
+:::
 
-<!---
-INSERIRE LINEAGE
--->
+### Column detail page
 
 The Column detail page shows a first **Details** section with asset details such as name, its table name, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 
