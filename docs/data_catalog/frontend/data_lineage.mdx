@@ -17,6 +17,7 @@ The **Data Lineage UI** provides two levels of visualization:
 - At the **System of Record (SoR) Level**, users can view a high-level summary of aggregated relationships across databases, derived from the detailed table-level lineage.  
 
 These levels of lineage are designed to complement each other, offering both granular insights and a holistic view of data flows. Together, they provide users with a powerful toolkit to monitor and understand their data ecosystem.
+
 ## Key concepts
 
 Here are listed some entities and concepts useful to understand the Data Lineage solution of Mia-Platform Data Catalog.
@@ -78,23 +79,37 @@ The navigation starts by centering the canvas around a **Base Table**, which ser
 
 This canvas not only displays the flow of data but also offers capabilities for enriching the lineage with virtual assets, creating new relationships, and inspecting existing ones. It acts as a workspace where users can model, document, describe, and analyze their data transformations in detail.
 
-By clicking on the name of an asset displayed inside the lineage canvas, it is possible to enter its detail page directly inside to its lineage, wherein it is treated as the new Base asset in the canvas.
+By clicking on the name of an asset displayed inside the lineage canvas, it is possible to enter its detail page directly inside to its lineage, wherein it is treated as the new Base asset in the canvas.  
 
-### Enriching the Lineage
+### Job details
 
-At table-lineage level, users with enough permissions can enrich the lineage information to better document and describe valuable information about how data flows and is treated along its lineage.
+Users can interact with relationships between tables —represented as arrows— to inspect or manage the underlying jobs.
 
-#### Creating and Linking Tables
-
-Users can create new Virtual Tables directly within the canvas. These tables can be linked to existing tables—either real or virtual—by defining relationships through Virtual Jobs. When a Virtual Table is created, the system automatically generates a Virtual Job entity that refers to the relationship with the connected asset. This ensures that new tables are immediately integrated into the lineage, allowing for seamless exploration and enrichment.  
-It is possible to:  
-- Create a virtual table from establish a link with either a real table or another existing virtual one
+By clicking on an arrow that links together two tables, it is possible to access the list of one or more Jobs which express the process of the data flow between the two tables.
 
 <!---
 INSERT IMAGE
 -->
 
-- Link an existing table (both real and virtual) to an existing one (both real and virtual)  
+User can easily identify real and virtual jobs by tags and job producer information. Moreover, it is possible to access the **Job detail** by clicking inside a specific job card.
+
+### Enriching the Lineage
+
+At Table-level lineage, users with enough permissions can enrich the lineage information to better document and describe valuable information about how data flows and is treated along its lineage.
+
+#### Creating and Linking Tables
+
+Users can create new Virtual Tables directly within the canvas. These tables can be linked to existing tables —either real or virtual— by defining relationships through Virtual Jobs. When a Virtual Table is created, the system automatically generates a Virtual Job entity that refers to the relationship with the linked asset. This ensures that new tables are immediately integrated into the lineage, allowing for seamless exploration and enrichment.  
+
+More specifically, inside the Table-level lineage, when hovering onto a table (real or virtual) in the lineage, user can click on the `+` button in order to:  
+
+- Create a virtual table to establish a link with that table
+
+<!---
+INSERT IMAGE
+-->
+
+- Link an existing table (both real and virtual) to the already existing one 
 
 <!---
 INSERT IMAGE
@@ -103,12 +118,13 @@ INSERT IMAGE
 #### Adding/Removing Virtual SoR on a virtual table
 
 Virtual Tables can also be associated with Virtual SoRs, enabling users to group them conceptually under larger organizational units. These associations help maintain clarity in complex data ecosystems and provide additional context for downstream analyses.  
+It is possible to easily associate a virtual SoR to the virtual table by clicking on the `+ Add system` displayed inside the virtual table entity in the canvas. From the popover, user can enter an already existing name (among the list of the available virtual SoRs), or creating in place a new virtual SoR.
 
 <!---
 INSERT IMAGE
 -->
 
-Then, from the canvas, it is possible to remove the association with a virtual SoR.
+Then, from the canvas, it is possible to remove the association with a virtual SoR by clicking on the `X` button displayed alongside the virtual SoR name.
 
 <!---
 INSERT IMAGE
@@ -122,8 +138,8 @@ It is possible to delete a Virtual Table from its asset detail page.
 INSERT IMAGE
 -->
 
-When a Virtual Table is deleted from the lineage canvas, its relationships, such as Virtual Jobs linking it to other tables, are also removed. However, any Virtual SoR that the deleted table was associated with remains unaffected.   
-This behavior ensures that the deletion of a Virtual Table impacts only its immediate relationships, maintaining the integrity of other virtual or real assets in the lineage. Similarly, if a Virtual SoR no longer has any associated tables, it will still persist within the system, providing users the flexibility to repurpose it or associate it to new Virtual Tables later. This separation of relationships and existence allows for a modular and non-destructive approach to lineage management.
+When a Virtual Table is deleted from the lineage canvas, its relationships, such as Virtual Jobs linking it to other tables, are also automatically removed.   
+This behavior ensures that the deletion of a Virtual Table impacts only its immediate relationships, maintaining the integrity of other virtual or real assets in the lineage. Similarly, if a Virtual SoR no longer has any associated virtuaal tables, it will still persist within the system, providing users the flexibility to repurpose it or associate it to new Virtual Tables later. This separation of relationships and existence allows for a modular and non-destructive approach to lineage management.
 
 #### Deletion of Virtual SoR
 
@@ -137,17 +153,28 @@ When deleting a virtual SoR, its reference to all the virtual tables associated 
 
 #### Managing virtual jobs
 
-If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal the related table from the canvas.
-
-#### Interaction with Lineage Elements
-
-Users can interact with relationships between tables —represented as arrows— to inspect or manage the underlying jobs. Clicking on an arrow opens a drawer containing a list of all Real and Virtual Jobs that define the relationship. 
+At Table-level lineage, a user with enough permission can create, edit and delete virtual jobs.  
+As already reported, a virtual job can be automatically created during the creation of a virtual table from the lineage canvas, as it is automatically related with an existent table. In case it is necessary to explain for example more than one process along a data flow, user can create another virtual job inside the relationship between two already linked tables. The creation button is available at the bottom of the Jobs list detail section as reported in the following image.
 
 <!---
 INSERT IMAGE
 -->
 
-From here, users can also add new Virtual Jobs, update existing ones or delete them.
+Once created, user can define a description for the new created job.
+
+:::info
+Please remind that jobs management feature is **available only for virtual Jobs**.
+:::
+
+User can also delete a virtual job. The `Delete Job` button is present inside the virtual job detail section.
+
+<!---
+INSERT IMAGE
+-->
+
+:::info
+If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal of the related table from the canvas, but it remains present among the Data Catalog assets.
+:::
 
 ## System-of-Record-Level Lineage
 
