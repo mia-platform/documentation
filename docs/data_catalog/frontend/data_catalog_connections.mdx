@@ -10,6 +10,10 @@ sidebar_label: Connections Management
 Connections represent the source of truth of the Data Catalog. By retrieving their metadata, is possible use their assets 
 to perform actions such as [Asset Discovery](/data_catalog/frontend/data_catalog_assets.mdx) and [Lineage](/data_catalog/frontend/data_lineage.mdx).
 
+<!---
+UPDATE IMAGE
+-->
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
 
@@ -20,9 +24,10 @@ to perform actions such as [Asset Discovery](/data_catalog/frontend/data_catalog
 
 The __Connections Panel__ provides the following features:
 
-- __Connection Creation__: the UI provides a creation wizard that let users define a new connection that contributes to Data Catalog assets;
-- __Connection Overview__: users can see and edit the parameters of a particular connection. Moreover, users can delete connections that are no longer needed;
-- __Connections Management__: users can see a list of connections that populate the Data Catalog application. From this table, users can trigger a [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) from the Job Runner, to import connections assets in the Data Catalog.
+- __View and Access Connections details__: an overview lets user to provide the list of connections, including detailed information for each (identifier, resource type, connection type, settings, and configuration).
+- __Create and Update Connections__: the UI provides a creation wizard that lets users define a new connection that contributes to Data Catalog assets; one created, it is possible to access its details and to update them if necessary;
+- __Delete Connections__: delete existing connections that are no more needed; this action brings also to the deletion of all the retrieved assets belonging to that specific connection;
+- __Import Data Assets from a Connection__: users can trigger a [Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync) from the Job Runner, to import connections assets in the Data Catalog.
 
 :::caution
 This section of Data Catalog should be accessible only by administrators that have access to the connection credentials of external sources.
@@ -33,7 +38,7 @@ See the [Secure Access section](/data_catalog/secure_access.mdx) to learn more a
 
 ### Input Management
 
-The information that can be provided inside the text fields that are accessible across this section can be of two types:
+The information useful for properly defining and configuring a connection can be of two types:
 
 - __Plain Text__: the field is a regular text field;
   <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -43,8 +48,8 @@ The information that can be provided inside the text fields that are accessible 
 
     </div>
   </div>
-- __Secret Name__: the field will be a text referencing a secret name defined within the _Job Runner service_ (see the paragraph Secrets Name Configuration for more details).
-  A dropdown can provide a list of suggestions containing existing secret names retrieved from the service itself. If a secret name that doesn't appear in the list is provided, the service will try to read
+- __Secret Name__: the field will be a text referencing a secret name defined within the _Job Runner service_ (see the [Secrets Name Configuration](/data_catalog/data_catalog_job_runner.mdx#secrets-names-configuration) paragraph for more details).
+  A dropdown can provide a list of suggestions containing existing secret names retrieved from the service itself. If a secret name that does not appear in the list is provided, the service will try to read
   that name from the environment variables of the service.
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '100%'}}>
@@ -60,7 +65,7 @@ Since a connection requires usually to provide sensible information (such as pas
 
 ## Create a Connection
 
-By clicking on the `Create Connection` button, users are guided through a creation wizard that defines the parameters to connect to a connection.
+By clicking on the `Create Connection` button, users are guided through a creation wizard that defines the parameters to properly establish a connection.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -72,26 +77,25 @@ By clicking on the `Create Connection` button, users are guided through a creati
 
 ### Connection Providers
 
-First of all, users needs to choose the provider they want to access from Data Catalog.
+First of all, users need to choose the provider they want to access from Data Catalog.
 The following providers are supported, which can be grouped into the following categories:
 
-- __HTTP Connections__:
-  - __Salesforce SObjects__: storage layer provided by Salesforce;
-  - __MIA Platform Crud Service__: data layer on __MongoDB__ provided by MIA Platform Console.
 - __ODBC Connections__: storage layer that can be reached using [Open Database Connectivity (ODBC)](https://en.wikipedia.org/wiki/Open_Database_Connectivity). The following providers are supported:
   - __Oracle DB__
   - __PostgreSQL__
   - __MySQL__
   - __Microsoft Server SQL__
   - __SAP Hana__
-
+- __HTTP Connections__:
+  - __Salesforce SObjects__: storage layer provided by Salesforce;
+  - __MIA Platform Crud Service__: data layer on __MongoDB__ provided by MIA Platform Console.
 
 ### Connection Details
 
 The Connection Details step will show the connection accordingly to the chosen provider. Regardless of the provider, users have to provide a unique _name_ for the connection, which will correspond to a __System of Record__ inside the Data Catalog.
 
 :::caution
-The name of a connection is an information that __can't__ be modified once the connection has been created.
+The name of a connection is an information that **cannot be modified** once the connection has been created.
 :::
 
 Now we explore all the details for each provider Data Catalog provides support.
@@ -107,7 +111,7 @@ For more details, [see the dedicated section](/data_catalog/data_catalog_job_run
 :::
 ODBC Providers can have two types of mode to perform the connection. 
 
-- __Connection String__: users needs only to pick a secret name referencing a connection string in the Job Runner Service.
+- __Connection String__: users need only to pick a secret name referencing a connection string in the Job Runner Service.
   <div style={{display: 'flex', justifyContent: 'center'}}>
     <div style={{display: 'flex', width: '100%'}}>
 
@@ -138,9 +142,9 @@ perform while retrieving assets information. The following parameters can be tun
 
   - __User__: tables `user_tables`, `user_views` and `user_mviews` will be used. This represents the __default mode__ if no option has been provided;
   - __All__: tables `all_tables`, `all_views` and `all_mviews` will be used. 
-    It's __strongly suggested__ to add a comma-separeted list of schemas in the dedicated field to only pick the tables of interest;
+    It is __strongly suggested__ to add a comma-separeted list of schemas in the dedicated field to only pick the tables of interest;
   - __DBA__: tables `dba_tables`, `dba_views` and `dba_mviews` will be used. 
-    It's __strongly suggested__ to add a comma-separeted list of schemas in the dedicated field to only pick the tables of interest.
+    It is __strongly suggested__ to add a comma-separeted list of schemas in the dedicated field to only pick the tables of interest.
 
 ---
 
@@ -164,7 +168,7 @@ you need the basic information of the Salesforce instance, such as its __Url__ a
 
 Make sure the user configured in the [Authentication card](#authentication) has the right permissions to retrieve all the `SObject`s you need.
 
-If not all the `SObjects` are retrieved you'll have to follow these steps to expose them through the API:
+If not all the `SObjects` are retrieved you will have to follow these steps to expose them through the API:
 
 **For custom `SObjects`**
 
@@ -201,7 +205,7 @@ To configure a **Salesforce SObjects** connection you can use two authentication
   To be able to connect to the Salesforce API using the JWT Bearer flow you will need to follow the next steps.
   
   1. Follow the steps one and two from this guide: https://help.salesforce.com/s/articleView?id=sf.connected_app_create_api_integration.htm&type=5
-  2. Then you'll need to upload your self-signed certificate in PEM format (step 5 from the guide). If you don't have a certificate follow these instructions:
+  2. Then you'll need to upload your self-signed certificate in PEM format (step 5 from the guide). If you do not have a certificate follow these instructions:
      1. Generate a rsa key with the command `openssl genrsa -out tls/key.pem`
      2. Then create a request to sign the certificate with this command `openssl req -new -key tls/key.pem -out tls/sf_connect.csr`
      3. Sign the request with you private key with `openssl x509 -signkey tls/key.pem -in tls/sf_connect.csr -req -out tls/sf_connect.crt`
@@ -226,7 +230,7 @@ For example, if you are using a testing instance, you'll need to set this field 
 #### Mia Platform
 
 __Mia Platform__ connection enables to retrieve assets from Mia Platform Console projects having
-data models stored on MongoDB through [Crud Service](/runtime_suite/crud-service/10_overview_and_usage.md).
+data models stored on MongoDB and managed through [Crud Service](/runtime_suite/crud-service/10_overview_and_usage.md).
 
 The required information to setup the connection are:
 
@@ -234,7 +238,7 @@ The required information to setup the connection are:
 - the [__Schemas Endpoint__](/runtime_suite/crud-service/10_overview_and_usage.md#get-schemas) (usually `/-/schemas`) to retrieve the collections assets;
 - the __Health Check Endpoint__ (usually `/-/healthz`) to retrieve the version of the CRUD Service.
 
-Additionally, it's possible to define the project and the environment where the CRUD Service is located in a Mia Platform Project
+Additionally, it is possible to define the project and the environment where the CRUD Service is located in a Mia Platform Project
 by choosing a Company.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -258,7 +262,7 @@ Users can also add additional headers to the request that will be executed by th
 To do so, click on the `Add Header` button to choose a key-value pair to add to the headers list. The value can also be a _secret name_ reference. 
 
 :::info
-There's no need to add the header `"accept": "application/x-ndjson"` since it's managed internally by the Job Runner service. 
+There is no need to add the header `"accept": "application/x-ndjson"` since it's managed internally by the Job Runner service. 
 :::
 
 ##### TLS
@@ -276,7 +280,7 @@ of the [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-
 - the __Batch Size__, a number that defines the number of assets that can be paginated in a query;
 - the __Column Batch Size__, a number that defines the amount of columns that are expected to be processed by each batch iteration.
 
-This section comes already with the values that will used by default in the Job Runner. Once you've clicked on the `Finish button`,
+This section comes already with the values that will used by default in the Job Runner. Once you have clicked on the `Finish button`,
 a success message will redirect you to the [Connection Overview](#connection-overview) of the newly connection.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -287,9 +291,10 @@ a success message will redirect you to the [Connection Overview](#connection-ove
   </div>
 </div>
 
-## Connection Overview
+## Access Connection details
 
-After creating the connection, you can reach its overview either through the confirmation modal or the __Connections Panel__.
+After having created the connection, it is reachable inside the list of connections displayed in the Connection Panel.  
+Then it is possible to access its Details pege.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -305,8 +310,12 @@ parameters provided by the user.
 
 ### Delete Connection
 
-From the menu button on the top-right corner of the page, is possible to click `Delete Connection` 
+From the menu button on the top-right corner of the page, it is possible to click `Delete Connection` 
 and start the procedure to remove a connection from the Data Catalog.
+
+<!---
+UPDATE IMAGE
+-->
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -316,16 +325,21 @@ and start the procedure to remove a connection from the Data Catalog.
   </div>
 </div>
 
-:::caution
-This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanup Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.
+:::danger
+This action __will remove any assets that has been imported from that connection in the Data Catalog__, by leveraging the [Connection Cleanup Job](/data_catalog/data_catalog_job_runner.mdx#connection-cleanup) of the Job Runner.  
+Please be careful when performing this action.
 :::
 
-## Connections Management
+## Import Data Assets from a Connection
 
-Once a connection has been defined and it's ready to be imported into the Data Catalog, you can start to synchronize its assets.
+Once a connection has been properly defined, the connection administrator can start importing its data assets synchronize them into the Data Catalog.
 
-In the main page of the Connections Panel, you can click the `sync button` and schedule an [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan) from the Job Runner.
-Once the action has been executed, the table entry of that connection will be updated by the Job Runner with information about the job status. 
+In the overview of the Connections Panel where all available connections are listed, user can click the `sync button` and schedule an [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan) from the Job Runner.
+Once the action has been executed, the table entry of that connection will be accordingly updated by the Job Runner with information about the triggered job status. 
+
+<!---
+UPDATE IMAGE
+-->
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -336,6 +350,10 @@ Once the action has been executed, the table entry of that connection will be up
 </div>
 
 Once the _[Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan)_ is completed, a _[Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ will be executed automatically to store the assets retrieved from the data source into the Data Catalog.  
+
+<!---
+UPDATE IMAGE
+-->
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -348,6 +366,10 @@ Once the _[Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#age
 Only one connection at a time will perform the synchronization: If more than one connection is synced at the same time, 
 the ones that are still not executed will be in a `Queue` state.
 
+<!---
+UPDATE IMAGE
+-->
+
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
 
@@ -357,7 +379,11 @@ the ones that are still not executed will be in a `Queue` state.
 </div>
 
 
-Once the synchronization has been completed, a `Sync Completed` message will be returned.
+Once the synchronization has been completed, user has evidence about the Job completion. Moreover, it is possible to have evidence of the last sync time.
+
+<!---
+UPDATE IMAGE
+-->
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
@@ -368,7 +394,11 @@ Once the synchronization has been completed, a `Sync Completed` message will be 
 </div>
 
 
-If there's an error with your connection parameters (for example, a secret that has not been found by the Job Runner), an error message will be returned by the process.
+If an error occurs during the process, it will be possible to access the Job Runner logs to better inspecting the causes of the failure.
+
+<!---
+UPDATE IMAGE
+-->
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
   <div style={{display: 'flex', width: '100%'}}>
