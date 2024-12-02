@@ -1929,38 +1929,38 @@
               "collapsed": true,
               "label": "Create Item",
               "link": {
-                "id": "software-catalog/manage-items/mia-ctl/create/overview-mia-ctl-create",
+                "id": "software-catalog/manage-items/miactl/create/overview-mia-ctl-create",
                 "type": "doc"
               },
               "items": [
                 {
-                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin",
+                  "id": "software-catalog/manage-items/miactl/create/create-item-by-type/create_plugin",
                   "type": "doc"
                 },
                 {
-                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example",
+                  "id": "software-catalog/manage-items/miactl/create/create-item-by-type/create_template_or_example",
                   "type": "doc"
                 },
                 {
-                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application",
+                  "id": "software-catalog/manage-items/miactl/create/create-item-by-type/create_application",
                   "type": "doc"
                 },
                 {
-                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar",
+                  "id": "software-catalog/manage-items/miactl/create/create-item-by-type/create_sidecar",
                   "type": "doc"
                 },
                 {
-                  "id": "software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource",
+                  "id": "software-catalog/manage-items/miactl/create/create-item-by-type/create_infrastructure_resource",
                   "type": "doc"
                 }
               ]
             },
             {
-              "id": "software-catalog/manage-items/mia-ctl/update/overview-mia-ctl-update",
+              "id": "software-catalog/manage-items/miactl/update/overview-mia-ctl-update",
               "type": "doc"
             },
             {
-              "id": "software-catalog/manage-items/mia-ctl/delete/overview-mia-ctl-delete",
+              "id": "software-catalog/manage-items/miactl/delete/overview-mia-ctl-delete",
               "type": "doc"
             }
           ]
