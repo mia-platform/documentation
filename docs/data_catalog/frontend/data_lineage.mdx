@@ -6,14 +6,14 @@ sidebar_label: Data Lineage
 
 ## Introduction to Data Lineage
 
-Data lineage is a critical feature for understanding, visualizing, and describing the flow and transformations of data within an organization. By offering a detailed visualization of data dependencies and relationships, it enables users to perform impact analyses, ensure compliance, and identify potential bottlenecks or issues in data workflows.  
+Data lineage is a useful feature for understanding, visualizing, and describing the flow and transformations of data within an organization. By offering a detailed visualization of data dependencies and relationships, it enables users to perform impact analyses, ensure compliance, and identify potential bottlenecks or issues in data workflows.  
 
 <!---
 INSERT IMAGE
 -->
 
 The **Data Lineage UI** provides two levels of visualization:  
-- At the **Table Level**, users can explore granular relationships between individual tables, analyze transformations, and manage metadata or simulated scenarios.  
+- At the **Table Level**, users can explore relationships between individual tables, analyze how data is transformed across tables and describe some useful information about those relations.  
 - At the **System of Record (SoR) Level**, users can view a high-level summary of aggregated relationships across databases, derived from the detailed table-level lineage.  
 
 These levels of lineage are designed to complement each other, offering both granular insights and a holistic view of data flows. Together, they provide users with a powerful toolkit to monitor and understand their data ecosystem.
@@ -22,13 +22,13 @@ These levels of lineage are designed to complement each other, offering both gra
 
 Within the Data Lineage UI, users will encounter two types of assets: **real** and **virtual**. Both asset types can represent either **tables** or **Systems of Record (SoRs)**, making the lineage system highly flexible.  
 
-**Real assets** are derived directly from the Data Catalog, reflecting physical entities present in the organization's data environment. 
+**Real assets** are derived directly from the Data Catalog, reflecting physical entities present in the organization's data environment that have been retrieved by the Data Catalog solution engine.
 
 <!---
 INSERT IMAGE
 -->
 
-Examples include database tables or established Systems of Record containing production data. Metadata enrichment is fully supported for these assets, and their relationships —when automatically inferred— are immutable within the canvas.
+Examples include database tables or established Systems of Record containing production data. Metadata enrichment is fully supported for these assets, and their relationships — when automatically inferred — are immutable within the canvas.
 
 **Virtual assets**, on the other hand, are created manually by users. They can be particularly beneficial in scenarios where real-world relationships are incomplete, under development, or unavailable. 
 
