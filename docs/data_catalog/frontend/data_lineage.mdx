@@ -17,8 +17,11 @@ The **Data Lineage UI** provides two levels of visualization:
 - At the **System of Record (SoR) Level**, users can view a high-level summary of aggregated relationships across databases, derived from the detailed table-level lineage.  
 
 These levels of lineage are designed to complement each other, offering both granular insights and a holistic view of data flows. Together, they provide users with a powerful toolkit to monitor and understand their data ecosystem.
+## Key concepts
 
-## Real and Virtual Assets
+Here are listed some entities and concepts useful to understand the Data Lineage solution of Mia-Platform Data Catalog.
+
+### Assets: Real and Virtual
 
 Within the Data Lineage UI, users will encounter two types of assets: **real** and **virtual**. Both asset types can represent either **tables** or **Systems of Record (SoRs)**, making the lineage system highly flexible.  
 
@@ -38,19 +41,44 @@ INSERT IMAGE
 
 For instance, during the planning phase of a new data pipeline, users can create virtual tables to represent the expected data structures and link them with virtual jobs to simulate transformations. Similarly, virtual SoRs allow users to group tables conceptually, even if the underlying system is not yet fully integrated into the Data Catalog. This functionality empowers teams to perform proactive analyses and collaborative planning, ensuring a seamless transition from concept to implementation.
 
-## Table-Level Lineage
+### Jobs: Real and Virtual
 
-The **table-level lineage canvas** provides visualization of how tables are interconnected between each others. 
+When navigating the lineage canvas, real and virtual assets are related each others by arrows that define the direction of the data flow and that contain one or more **Jobs**. A Job represents the descriptive content that explains the relationship between assets. As with assets, users can encounter two types of Jobs: **real** and **virtual**.  
+
+**Real Jobs** represent transformations or dependencies automatically inferred from runtime pipeline configurations. They are read-only within the lineage canvas, ensuring that the relationships accurately reflect the underlying physical processes. 
 
 <!---
 INSERT IMAGE
 -->
 
-The navigation starts by centering the canvas around a **Base Table**, which serves as the starting point for exploration. The base table refers to the asset the user is on while browsing the Data Catalog and for which user wants to view the lineage. By default, when entering the lineage canvas, the system displays one level of relationships to the left (upstream) and right (downstream) of the Base Table. Users can expand the lineage incrementally, level by level, to explore more complex relationships and dependencies.
+For each Real Job, users can inspect a detailed view that includes the job producer, a description and a snippet of code, if retrieved, showcasing the logic of the transformation. This transparency allows users to understand exactly how data flows between tables and ensures that relationships are grounded in real-world configurations.  
 
-This canvas not only visualizes the flow of data but also offers capabilities for enriching the lineage with virtual assets, creating new relationships, and inspecting existing ones. It acts as a workspace where users can model, document, describe, and analyze their data transformations in detail.
+:::info
+In case you have Fast-Data Projects adopting our [Mia-Platform Fast Data runtime solution](/fast_data/runtime_management/overview.mdx), it is possible to automatically retrieve and show inside the Data Lineage all the aggregation processes configured in order to populate and expose your Fast Data Single Views.  
+To know more about how to get all the Fast Data runtime information coming from the data pipelines of your Fast Data Projects, please refer to the [related documentation](/data_catalog/data_catalog_job_runner.mdxfast-data-jobs-sync).
+:::
 
-By clicking on the name of an asset diplayed inside the lineage canvas, it is possible to move to its lineage, centered with it as the new Base asset.
+**Virtual Jobs**, on the other hand, are fully customizable and can be created, modified, or deleted directly within the canvas. These jobs allow users to model planned transformations or describe physically relationships still not retrived inside Data Catalog. 
+
+<!---
+INSERT IMAGE
+-->
+
+Each Virtual Job includes the job producer and an editable description field where users can document about some relevant information such as the type of implemented process (e.g. ETL, filtering, replica, aggregation, other), the purpose or expected behavior.
+
+## Table-Level Lineage
+
+The **Table-level lineage canvas** provides visualization of how tables are interconnected between each others. In particular, user can access the lineage canvas from the dedicated tab inside the [Table detail page](/data_catalog/frontend/data_catalog_assets.mdx#table-detail-page).
+
+<!---
+INSERT IMAGE
+-->
+
+The navigation starts by centering the canvas around a **Base Table**, which serves as the starting point for exploration. The base table refers to the asset the user is on while browsing the Data Catalog and for which user wants to discover the lineage. By default, when entering the lineage canvas, the system displays one level of relationships to the left (upstream) and right (downstream) of the Base Table. Users can expand the lineage incrementally, level by level, to explore more complex relationships and dependencies.
+
+This canvas not only displays the flow of data but also offers capabilities for enriching the lineage with virtual assets, creating new relationships, and inspecting existing ones. It acts as a workspace where users can model, document, describe, and analyze their data transformations in detail.
+
+By clicking on the name of an asset displayed inside the lineage canvas, it is possible to enter its detail page directly inside to its lineage, wherein it is treated as the new Base asset in the canvas.
 
 ### Enriching the Lineage
 
@@ -107,23 +135,9 @@ INSERT IMAGE
 
 When deleting a virtual SoR, its reference to all the virtual tables associated to it is automatically removed.
 
-#### Managing Jobs: Real and Virtual
+#### Managing virtual jobs
 
-**Real Jobs** represent transformations or dependencies automatically inferred from runtime pipeline configurations. They are read-only within the lineage canvas, ensuring that the relationships accurately reflect the underlying physical processes. 
-
-<!---
-INSERT IMAGE
--->
-
-For each Real Job, users can inspect a detailed view that includes a description and a snippet of code, if retrieved, showcasing the logic of the transformation. This transparency allows users to understand exactly how data flows between tables and ensures that relationships are grounded in real-world configurations.  
-
-**Virtual Jobs**, on the other hand, are fully customizable and can be created, modified, or deleted directly within the canvas. These jobs allow users to model planned transformations or describe physically relationships still not retrived inside Data Catalog. 
-
-<!---
-INSERT IMAGE
--->
-
-Each Virtual Job includes an editable description field where users can document about the type of process (such ETL, filtering, replica, aggregation), its purpose or expected behavior. If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal the related table from the canvas.
+If a relationship between tables is defined solely by one Virtual Job, the deletion of that Virtual Job implies the automatic removal the related table from the canvas.
 
 #### Interaction with Lineage Elements
 
