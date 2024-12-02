@@ -1906,6 +1906,10 @@
               "type": "doc"
             },
             {
+              "id": "software-catalog/manage-items/software-catalog-ui/update/overview-software-catalog-update",
+              "type": "doc"
+            },
+            {
               "id": "software-catalog/manage-items/software-catalog-ui/delete/overview-software-catalog-delete",
               "type": "doc"
             }
