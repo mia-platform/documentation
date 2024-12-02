@@ -178,28 +178,26 @@ If a relationship between tables is defined solely by one Virtual Job, the delet
 
 ## System-of-Record-Level Lineage
 
-### Overview and Purpose
-
 The **System of Record (SoR) Level Lineage** offers a high-level summary of data flows, showing aggregated relationships across Systems of Records. 
 
 <!---
 INSERT IMAGE
 -->
 
-Unlike the detailed table-level lineage, this view is read-only and serves as an overview of how larger organizational units interact. It provides a macro perspective, making it easier to identify dependencies or potential bottlenecks at a strategic level.  
+Unlike the detailed table-level lineage, this view is **read-only** and serves as an overview of how larger organizational units interact. It provides a macro perspective, making it easier to identify dependencies or potential bottlenecks at a strategic level.  
 
 The SoR Lineage derives its information from the underlying table-level lineage. Each SoR relation reflects the combined relationships of their respective tables. For example, if multiple tables within two SoRs are connected by jobs, these relationships are aggregated and represented as a single arrow in the SoR Lineage view.  
 
 ### Exploring Relations at SoR-level
 
-Clicking on a arrow between two SoRs opens a drawer that displays all the jobs contributing to the relationship. This includes both Real and Virtual Jobs, and each job is clearly labeled to indicate its type. 
+Clicking on a arrow between two SoRs lets user to see the list of jobs defined at table-level contributing to the relationship. This includes both Real and Virtual Jobs, and each job is clearly labeled to indicate its type.  
+It is possible to filter the jobs list based on the table of the source System of Record where execution begins, and/or based on the table of the target System of Record where execution ends.  In this way, from a user perspective, it is easier to pinpoint relevant transformations or dependencies.
 
 <!---
 INSERT IMAGE
 -->
 
-Users can filter the list to focus on jobs involving specific ingoing or outgoing tables, making it easier to pinpoint relevant transformations or dependencies.  
-In case there are tables belonging to the same SoR that are related each others, the information about the number of existing jobs intra-SoR is easily reported on the specific SoR entity inside the lineage canvas. 
+In case tables belonging to the same SoR are related each other, inside the SoR-level lineage canvas the SoR entity displays the number of internal jobs present. User can click on it in order to check the list of intra-SoR processes across its tables, and to filter them on the basis of the selected source and/or target tables.  
 
 <!---
 INSERT IMAGE
