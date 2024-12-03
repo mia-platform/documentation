@@ -92,7 +92,7 @@ The following providers are supported, which can be grouped into the following c
   - __SAP Hana__
 - __HTTP Connections__:
   - __Salesforce SObjects__: storage layer provided by Salesforce;
-  - __MIA Platform Crud Service__: data layer on __MongoDB__ provided by MIA Platform Console.
+  - __MIA Platform CRUD__: data layer on __MongoDB__ provided by MIA Platform Console.
 
 ### Connection Details
 
@@ -231,9 +231,9 @@ For example, if you are using a testing instance, you'll need to set this field 
 
 ---
 
-#### Mia Platform
+#### Mia Platform CRUD
 
-__Mia Platform__ connection enables to retrieve assets from Mia Platform Console projects having
+__Mia Platform CRUD__ connection enables to retrieve assets from Mia Platform Console projects having
 data models stored on MongoDB and managed through [Crud Service](/runtime_suite/crud-service/10_overview_and_usage.md).
 
 The required information to setup the connection are:
@@ -261,6 +261,8 @@ If a Company has been configured, this connection can be read by the [Fast Data 
 to generate Open Lineage Jobs from [Fast Data Pipelines of the Control Plane](/fast_data/runtime_management/overview.mdx). This means that the selected CRUD Service must be deployed in a project having Control Plane configured.
 :::tip
 To choose a Company, be sure that Fabric BFF has Console communication enabled. See [here](/data_catalog/data_catalog_fabric_bff.mdx#console-communication) for a detail explanation on how to setup this feature.
+
+If Console communication has not been enabled or the Company you want to set is in a different Console, you can provide a custom Company identifier.
 :::
 
 ##### Headers
@@ -282,13 +284,19 @@ it's possible to set the connection as `insecure` and set a custom certificate i
 
 ### Agent Settings
 
+:::info
+Thi settings can be configured for all connections __excepts__ _Mia Platform CRUD_. 
+:::
+
 Once the main details of a connection has been defined, you can also tune runtime parameters
 of the [Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan) from the Job Runner. Here you can choose:
 
 - the __Batch Size__, a number that defines the number of assets that can be paginated in a query;
 - the __Column Batch Size__, a number that defines the amount of columns that are expected to be processed by each batch iteration.
 
-This section comes already with the values that will used by default in the Job Runner. Once you have clicked on the `Finish button`,
+This section comes already with the values that will used by default in the Job Runner. 
+
+Once you have clicked on the `Finish button`,
 a success message will redirect you to the [Connection Overview](#connection-overview) of the newly connection.  
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -298,10 +306,6 @@ a success message will redirect you to the [Connection Overview](#connection-ove
 
   </div>
 </div>
-
-<!---
-INSERIRE INFO PER PUNTUALIZZARE CHE PER IL CRUD CONNECTION E' DISABLED
--->
 
 ## Access Connection details
 
