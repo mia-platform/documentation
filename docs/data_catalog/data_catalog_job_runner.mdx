@@ -55,10 +55,14 @@ This job removes all the assets of a deleted connection from the Data Catalog.
 
 ### Fast Data Jobs Sync 
 
-_Fast Data Jobs Sync_ is a procedure that generates [Open Lineage Jobs](https://openlineage.io/docs/spec/facets/job-facets/) from existing [Fast Data pipelines of the Runtime Management](/fast_data/runtime_management/overview.mdx)).
+_Fast Data Jobs Sync_ is a procedure that generates [Open Lineage Jobs](https://openlineage.io/docs/spec/facets/job-facets/) from existing [Fast Data pipelines of the Runtime Management](/fast_data/runtime_management/overview.mdx).
 
 This jobs can be linked to existing [Mia Platform CRUD connections](/data_catalog/frontend/data_catalog_connections.mdx#mia-platform)  where the proper namespace has been defined, so that they can be accessible
 from the [Data Lineage section](/data_catalog/frontend/data_lineage.mdx).
+
+:::caution
+Please note that both _Control Plane_ and _Data Catalog_ applications __must be__ configured with the __same__ database.
+:::
 
 #### Trigger Job
 
@@ -71,7 +75,7 @@ From there, you can pick the `JobRunner` service, choose the `Run` method and th
 
 ![Users Management UI](./img/job_runner_manual_trigger.png)
 
-:::caution
+:::tip
 If you've defined a Data Catalog Application that didn't define a [`grpcui`](https://github.com/fullstorydev/grpcui) microservice, you can create one with the following parameters:
 
 - __Docker Image Name__: `fullstorydev/grpcui:v1.4.1`;
