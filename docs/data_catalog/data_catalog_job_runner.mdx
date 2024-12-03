@@ -479,3 +479,138 @@ Service responsible to interact with the JobRunner service. It has the following
   - `List`: unary RPC returning the list of jobs that are currently executed by the service;
   - `History`: unary RPC returning the list of jobs that have been executed by the service;
   - `Status`: server streaming RPC returning feedback messages from the active jobs. 
+
+## Migration Guides
+
+### From Data Catalog Agent 0.6.x or 0.7.x
+
+_Job Runner_ allows to run [Data Catalog Agent][data-catalog-agent] via scheduling instead of a kubernetes cronjob.
+
+Connections, previously configured on [Data Catalog Agent][data-catalog-agent], have a 1-to-1 mapping on _Job Runner_ data catalog agent sync jobs.
+
+The following features are **NOT** supported anymore:
+
+- connection via custom [Data Catalog Agent][data-catalog-agent] configuration (only connection-string and DSN allowed).
+- `settings.connectionName` parameter.
+- `target`.
+
+#### Migrate a custom configuration
+
+A [Data Catalog Agent][data-catalog-agent] connection is a key/value pair
+
+```json
+{
+    "my-connection": {
+        "type": "odbc",
+        "configuration": {
+            "vendor": "oracle",
+            ...
+        }
+    }
+}
+```
+
+and the [Connections UI](./frontend/data_catalog_connections.mdx) maps the `key` to the connection's `name` while the rest of the configuration is identical in case of a connection string.
+
+When not using connection strings but [Data Catalog Agent][data-catalog-agent] custom, per-vendor, configuration, the connection string must be extracted from those parameters.
+
+#### MS SQL Server
+
+The connection string must be in the form
+
+```plain
+Driver={};Server={},{};Database={};Uid={};Pwd={};{}
+```
+
+`Driver` must be one of the supported [MS SQL Server drivers](#odbc-connections).
+`Server` is a comma separated string formatted as `<IP>,<PORT>`. `Database` is the name of the remote catalog/schema. `Uid` and `Pwd` are the user credentials.
+Any additional flag must be a trailing semi-colon separated list of attributes.
+
+:::caution
+We recommend to store the connection string as a secret in the _Job Runner_ and reference it via UI
+:::
+
+The other supported connection is via [`DSN` names](#mssql)
+
+#### MySQL
+
+The connection string must be in the form
+
+```plain
+DRIVER={};SERVER={};PORT={};DATABASE={};UID={};PWD={};{}
+```
+
+`DRIVER` must be one of the supported [MySQL drivers](#odbc-connections) as reported by the [compatibility matrix](https://dev.mysql.com/doc/connector-odbc/en/connector-odbc-support-version-history.html).
+`SERVER` is the IP or Domain name of the database while `PORT` the socket port. `DATABASE` is the name of the remote catalog/schema. `UID` and `PWD` are the user credentials.
+Any additional flag must be a trailing semi-colon separated list of attributes.
+
+:::caution
+We recommend to store the connection string as a secret in the _Job Runner_ and reference it via UI
+:::
+
+The other supported connection is via [`DSN` names](#mysql)
+
+#### Oracle
+
+The connection string must be in the form
+
+```plain
+DRIVER={};UID={};PWD={};DBQ={};{}
+```
+
+`DRIVER` must be one of the supported [Oracle drivers](#odbc-connections).
+`UID` and `PWD` are the user credentials. `DBQ` is the reference of a name specified in the `tnsnames.ora` file (or inline).
+Any [additional flag](https://docs.oracle.com/en/database/oracle/oracle-database/23/odbcd/basic-programming-oracle-odbc.html#GUID-4B3ABFE7-3038-4975-8637-C71FFB2CD82A)
+must be a trailing semi-colon separated list of attributes.
+
+:::caution
+We recommend to store the connection string as a secret in the _Job Runner_ and reference it via UI
+:::
+
+The other supported connection is via [`DSN` names](#oracle)
+
+#### PostgreSQL
+
+The connection string must be in the form
+
+```plain
+DRIVER={};SERVER={};PORT={};DATABASE={};UID={};PWD={};{}
+```
+
+`DRIVER` must be one of the supported [PostgreSQL drivers](#odbc-connections).
+`SERVER` is the IP or Domain name of the database while `PORT` the socket port. `DATABASE` is the name of the remote catalog/schema. `UID` and `PWD` are the user credentials.
+Any [additional flag](https://odbc.postgresql.org/docs/config.html) must be a trailing semi-colon separated list of attributes.
+
+:::caution
+We recommend to store the connection string as a secret in the _Job Runner_ and reference it via UI
+:::
+
+The other supported connection is via [`DSN` names](#postgresql)
+
+#### PostgreSQL
+
+The connection string must be in the form
+
+```plain
+driver={};serverNode={}:{};databaseName={};UID={};PWD={};{}
+```
+
+`DRIVER` must be one of the supported [PostgreSQL drivers](#odbc-connections).
+`serverNode` is in the format `<IP>:<PORT>`. `databaseName` is the name of the remote catalog/schema. `UID` and `PWD` are the user credentials.
+Any additional flag must be a trailing semi-colon separated list of attributes.
+
+:::caution
+We recommend to store the connection string as a secret in the _Job Runner_ and reference it via UI
+:::
+
+The other supported connection is via [`DSN` names](#sap-hana)
+
+#### Migrate `settings.connectionName`
+
+Use the value directly in the Connections UI connection name.
+
+#### Targets
+
+Within _Data Catalog_ the `mia-open-lineage` target is the only one allowed and auto-configured from the _Job Runner_ persistence layer.
+
+[data-catalog-agent]: /runtime_suite_templates/data-catalog-agent/10_overview.md
