@@ -129,14 +129,15 @@ and decision-making capabilities within the organization.
 
 ## Architecture
 
-<!---
-REPLACE IMAGE
--->
+In the diagram below is shown how the services involved in the aforementioned Marketplace components are linked together. 
 
-In the diagram below is shown how the services involved in the aforementioned Marketplace components are linked together. In particular, the Data Catalog FE connects with the Open Lineage service via REST APIs to retrieve
-the necessary data. Open Lineage service reads datasets assets from the database where Data Catalog Agent has written the information about all the configured external connections.
+In particular, the Data Catalog FE interacts with the application's microservice through the [Fabric BFF](/data_catalog/data_catalog_fabric_bff.mdx). 
+This component manages also the _Connections_ that can be configured from the frontend to retrieve data from external sources.
 
-In particular, in the Data Fabric Project is highlighted which components the Data Catalog applications releases.
+To retrieve data from external sources, the [Job Runner](/data_catalog/data_catalog_job_runner.mdx) can schedule a job to launch an _Agent Dataset Scan_ task that will store them as _Datasets_.
+Other tasks can be scheduled, like the _Fast Data Sync_, that can retrieve pipelines from [Fast Data Control Plane](/fast_data/runtime_management/overview.mdx) and use them as _Lineage Jobs_.
+
+_Assets_ and _Lineage Jobs_ are managed by the [Open Lineage service](/data_catalog/data_catalog_open_lineage.mdx), which provides features to retrieve data.
 
 ![Data Catalog Architecture](./img/data_catalog_arch.svg)
 
@@ -145,10 +146,6 @@ The following paragraph provides useful links to go into detail about the variou
 ---
 
 ## Useful Resources
-
-<!---
-FARE UN CHECK
--->
 
 Here are some useful links to learn more about Mia-Platform Data Catalog features and configuration steps:
 
