@@ -144,7 +144,7 @@ Starting from version v13.5.0, the container registry hostname is not part anymo
 
 If you need to use a container registry hostname that is not present in the dropdown list, you have to create it in the Project Settings, or contact your Project Administrator or Company Owner to do it for you.
 
-In case a service already uses a container registry not in the list, a warning badge will advise the user to create it, or to choose a new one from the list. The project can still be saved with the unknown container registry, to avoid disruption.
+In case a service already uses a container registry not in the list, an informative badge will advise the user to create it, or to choose a new one from the list. The project can still be saved with the unknown container registry, to avoid disruption.
 
 :::
 
