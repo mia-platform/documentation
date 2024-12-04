@@ -4,10 +4,6 @@ title: Data Catalog Asset Discovery
 sidebar_label: Asset Discovery
 ---
 
-<!---
-INSERT REDIRECT
--->
-
 When accessing Data Catalog frontend, user lands to the home section of the Data Catalog, where there is a searchbar that represents the starting point to navigate among Data Catalog assets.
 
 In particular, when navigating the catalog, it is possible to identify three different asset types:  
@@ -80,6 +76,10 @@ The SoR detail page shows the following two tabs:
 * **Lineage**, that shows a high-level lineage canvas displaying how a specific SoR is related to other SoRs. For more information about the SoRs-level lineage, visit the [related documentation](/data_catalog/frontend/data_lineage.mdx#system-of-record-level-lineage).
 
 ![Details of a SoR page](./../img/sor_details_page.png)
+
+:::info
+In case of a **Virtual SoR** detail page, the provider info is not available, because it represents an asset manually created by the user. To know more about the concept of `Virtual Asset`, please give a look at the [related documentation](/data_catalog/frontend/data_lineage.mdx#real-and-virtual-assets)
+:::
 
 ### Table detail page
 
@@ -254,7 +254,3 @@ A modal opens showing the number and type of assets selected (SoR, table, column
 </div>
 
 In particular, for each selected field, the user can choose to clear the field value on all those selected assets, or to overwrite the any already existent value with a new one set by the user during the bulk edit flow.
-
-<!---
-Insert virtual assets and mentioning lineage 
--->
