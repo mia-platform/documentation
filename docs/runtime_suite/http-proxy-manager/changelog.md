@@ -15,6 +15,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.3.0 - 22-11-2024
+
+### Added
+
+- `BASE_PATH_MATCHERS`: to make it possible to fetch complex base paths when using dynamic configuration rather than taking the first segment only.
+- `DISABLE_PROXY_CACHE`: to make it possible to disable the in-memory proxy cache when using dynamic configuration.
+
 ## 3.2.0 - 15-11-2024
 
 ### Added
