@@ -140,7 +140,7 @@ The image name and the tag can be manually inserted in the dedicated input field
 
 :::caution
 
-Starting from version v13.x.x, the container registry hostname is not part anymore of the Docker Image Name manual input field, but it can only be selected from the dropdown list.
+Starting from version v13.5.0, the container registry hostname is not part anymore of the Docker Image Name manual input field, but it can only be selected from the dropdown list.
 
 If you need to use a container registry hostname that is not present in the dropdown list, you have to create it in the Project Settings, or contact your Project Administrator or Company Owner to do it for you.
 
