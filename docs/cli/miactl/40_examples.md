@@ -18,13 +18,13 @@ you can find some examples on how to create multiple contexts and then selecting
 Create a Context for a Company on the cloud instance:
 
 ```sh
-miactl context set paas-company --company-id <your-company-id>
+miactl context set paas-company --company-id <your-company-id> --endpoint https://console.cloud.mia-platform.eu
 ```
 
 Create a Context for specific Project in a Company on the cloud instance:
 
 ```sh
-miactl context set paas-project --company-id <your-company-id> --project-id <your-project-id>
+miactl context set paas-project --company-id <your-company-id> --project-id <your-project-id> --endpoint https://console.cloud.mia-platform.eu
 ```
 
 Create a Context for connecting on a self hosted instance:
