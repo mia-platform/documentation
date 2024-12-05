@@ -346,14 +346,6 @@ Once the action has been executed, the table entry of that connection will be ac
 
 Once the _[Agent Dataset Scan Job](/data_catalog/data_catalog_job_runner.mdx#agent-dataset-scan)_ is completed, a _[Data Catalog Sync Job](/data_catalog/data_catalog_job_runner.mdx#data-catalog-sync)_ will be executed automatically to store the assets retrieved from the data source into the Data Catalog.  
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '100%'}}>
-
-![Connection Sync Fabric](./../img/connections_sync_fabric.png)
-
-  </div>
-</div>
-
 Only one connection at a time will perform the synchronization. If more than one connection is synced at the same time, the ones that are still not executed will be in a `Queue` state.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
