@@ -195,11 +195,11 @@ Credentials entered at this stage, for security reasons, will never again be sho
 Depending on the provider selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each provider:
 
 | Credentials Type               | Providers                                                                |
-| ------------------------------ |:------------------------------------------------------------------------:|
+| ------------------------------ | ------------------------------------------------------------------------ |
 | Token                          | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins, Azure Key Vault |
 | M2M                            | Vault                                                                    |
-| Client Credentials             | Azure Key Vault,Jenkins                                                  |
-| Client Credentials Certificate | Azure Key Vault                                                          |
+| Client Credentials             | Azure Key Vault, Jenkins, Azure DevOps                                   |
+| Client Credentials Certificate | Azure Key Vault, Azure DevOps                                            |
 
 :::caution Assign the right scope to your credentials
 Make sure, when generating credentials on the respective provider sites, to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
