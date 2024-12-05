@@ -10,6 +10,15 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::caution
+This template has been __deprecated__. 
+
+Data Catalog UI now provides a section for [Connection Management](/data_catalog/frontend/data_catalog_connections.mdx), 
+which interacts with the [Job Runner](/data_catalog/data_catalog_job_runner.mdx) services to automatically scan data sources.
+:::
+
+
+
 _Data Catalog Agent_ is command line interface binary that queries datasources for the data schemas of the resources they own and sends them to a target. In the context of databases, it provides facilities to:
 
 1. query tables schemas
