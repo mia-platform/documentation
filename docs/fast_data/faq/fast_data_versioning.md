@@ -66,7 +66,7 @@ the final aggregated Single View.
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       1.3.2       |             3.3.2             |        6.7.1        |
+|       1.3.4       |             3.3.2             |        6.7.1        |
 
 
 ### Runtime Management Support

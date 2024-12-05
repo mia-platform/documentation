@@ -8,27 +8,54 @@ import openLineageSchema from "@site/static/schemas/data_fabric/open-lineage.con
 import openLineageConfigExample from "@site/static/schemas/data_fabric/open-lineage.example.json"
 import SchemaViewer from "../../src/components/SchemaViewer"
 
-Open Lineage service allows to:
+## Features
+
+Open Lineage service provides Catalog features and Data Lineage features to the Data Catalog UI.
+
+:::note
+In the following documentation, when we reference OpenLineage, we mainly intend the service we provide as a component of Data Catalog application.
+Whenever we refer to [OpenLineage](https://openlineage.io/) specification, we will provide a link to its documentation.
+:::
+
+### Data Cataloging
+
+The service expose API to:
 
 * search and retrieve data assets
 * visualize data assets details and metadata
 * update data assets metadata
 
 Under the hood, data assets are stored adopting an extended version of [OpenLineage Dataset](https://openlineage.io/docs/spec/facets/dataset-facets/) format,
-from which we borrowed the name for this component.  
+from which we borrowed the name for this component.
+
 It has been decided to build Data Catalog upon [OpenLineage project](https://openlineage.io/), which is an open platform that provides
 an _"open standard for lineage data collection"_, to enable the possibility for future integration with lineage systems and other tools supporting it.  
+
 In fact, we strongly believe that adopting a common standard for sharing data products description will be fundamental
 to foster data products exchange among parties and ease discovering how these products are employed across the different systems.
 
-:::note
-In the following documentation, when we reference OpenLineage, we mainly intend the service we provide as a component of Data Catalog application.
-Whenever we refer to [OpenLineage](https://openlineage.io/) project or standard, we will provide a link to its documentation.
-:::
+### Data Lineage
 
-In the following paragraphs are described Open Lineage service configuration and communication interfaces.
+The service exposes API to:
+
+* create lineage between assets;
+* create and manage virtual assets to define additional lineage definitions.
+
+Under the hood, lineage relationships between assets are adopting the definitions of [OpenLineage Jobs](https://openlineage.io/docs/spec/facets/job-facets/) format,
+which represents a _process_ between two or more assets.
+
+Assets like _Tables_ or _Systems of Record_ can be linked to other assets of the same type by the definition of a _Job_, that can either be `ingoing` or `outgoing`
+depending if the process is either `producing` or `consuming` the selected asset.
+
+When a Job is created through the Open Lineage service API, it will be marked as `virtual` since it represent a user-defined process.
+
+Moreover, the service manages the creation and deletion of `virtual` assets, to extend the representation of jobs across assets that may not be defined
+within the Data Catalog connections.
+
 
 ## Configuration
+
+In the following paragraphs are described Open Lineage service configuration and communication interfaces.
 
 Configuration of _Open Lineage_ is a straightforward process that involves setting up a ConfigMap and specifying essential environment variables.
 
@@ -180,46 +207,74 @@ within the same namespace, it is not necessary to publicly expose any endpoint o
 
 ### Routes
 
-Here are described which routes Open Lineage service serves:
+Here are described which routes Open Lineage service serves.
 
-| Endpoint                                                   | Type | Method | Description                                                           |
-|------------------------------------------------------------|------|--------|-----------------------------------------------------------------------|
-| `/assets/search`                                           | REST | GET    | Search for dataset assets and their metadata                          |                                         
-| `/assets/search-parents`                                   | REST | GET    | Search for name of system of record or table name                     |
-| `/tags/count`                                              | REST | GET    | Count how many unique tags exists among all data assets               |
-| `/tags/items`                                              | REST | GET    | List existing tags associated to data assets                          |                                                  
-| `/tags/search`                                             | REST | GET    | Search for a specific tag value                                       |
-| `/sors/:dataset-id`                                        | REST | GET    | Retrieve selected _System of Record_ details and metadata             |
-| `/sors/:dataset-id/custom-properties/:name`                | REST | POST   | Create a custom property for selected _System of Record_              |              
-| `/sors/:dataset-id/custom-properties/:name`                | REST | PATCH  | Change a custom property value for selected _System of Record_        |              
-| `/sors/:dataset-id/custom-properties/:name`                | REST | DELETE | Remove a custom property for selected _System of Record_              |              
-| `/sors/:dataset-id/description`                            | REST | PATCH  | Change the description associated to selected _System of Record_      |                          
-| `/sors/:dataset-id/tags`                                   | REST | PATCH  | Change the list of tags associated to selected _System of Record_     |                                 
-| `/tables/:dataset-id`                                      | REST | GET    | Retrieve selected _Table_ details and metadata                        |                                    
-| `/tables/:dataset-id/custom-properties/:name`              | REST | POST   | Create a custom property for selected _Table_                         |            
-| `/tables/:dataset-id/custom-properties/:name`              | REST | PATCH  | Change a custom property value for selected _Table_                   |            
-| `/tables/:dataset-id/custom-properties/:name`              | REST | DELETE | Remove a custom property for selected _Table_                         |            
-| `/tables/:dataset-id/description`                          | REST | PATCH  | Change the description associated to selected _Table_                 |                        
-| `/tables/:dataset-id/tags`                                 | REST | PATCH  | Change the list of tags associated to selected _Table_                |                               
-| `/columns/:dataset-id/:field-name`                         | REST | GET    | Retrieve selected _Column_ details and metadata                       |                       
-| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | POST   | Create a custom property for selected _Column_                        |
-| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | PATCH  | Change a custom property value for selected _Column_                  |
-| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | DELETE | Remove a custom property for selected _Column_                        |
-| `/columns/:dataset-id/:field-name/description`             | REST | PATCH  | Change the description associated to selected _Column_                |           
-| `/columns/:dataset-id/:field-name/tags`                    | REST | PATCH  | Change the list of tags associated to selected _Column_               |                  
-| `/metadata-registry/count`                                 | REST | GET    | Count how many custom properties definition exists                    |                                    
-| `/metadata-registry/items`                                 | REST | GET    | List custom properties definition                                     |                                    
-| `/metadata-registry/items`                                 | REST | POST   | Create a custom property definition                                   |                                    
-| `/metadata-registry/items/:name`                           | REST | GET    | Retrieve the definition details of a custom property                  |                               
-| `/metadata-registry/items/:name`                           | REST | PATCH  | Change the definition of a custom property (e.g. type or description) |                               
-| `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                   |
-| `/metadata-registry/search`                                | REST | GET    | Search for a specific metadata registry of interest                   |
+#### Data Catalog routes
+
+The following routes are exposed over the `/data-catalog/*` base path.
+
+| Endpoint                                                   | Type | Method | Description                                                                                               |
+|------------------------------------------------------------|------|--------|-----------------------------------------------------------------------------------------------------------|
+| `/assets/search`                                           | REST | GET    | Search for dataset assets and their metadata                                                              |                                         
+| `/assets/search-parents`                                   | REST | GET    | Search for name of system of record or table name                                                         |
+| `/tags/count`                                              | REST | GET    | Count how many unique tags exists among all data assets                                                   |
+| `/tags/items`                                              | REST | GET    | List existing tags associated to data assets                                                              |                                                  
+| `/tags/search`                                             | REST | GET    | Search for a specific tag value                                                                           |
+| `/sors/:dataset-id`                                        | REST | GET    | Retrieve selected _System of Record_ details and metadata                                                 |
+| `/sors/:dataset-id/custom-properties/:name`                | REST | POST   | Create a custom property for selected _System of Record_                                                  |              
+| `/sors/:dataset-id/custom-properties/:name`                | REST | PATCH  | Change a custom property value for selected _System of Record_                                            |              
+| `/sors/:dataset-id/custom-properties/:name`                | REST | DELETE | Remove a custom property for selected _System of Record_                                                  |              
+| `/sors/:dataset-id/description`                            | REST | PATCH  | Change the description associated to selected _System of Record_                                          |                          
+| `/sors/:dataset-id/tags`                                   | REST | PATCH  | Change the list of tags associated to selected _System of Record_                                         |                                 
+| `/tables/:dataset-id`                                      | REST | GET    | Retrieve selected _Table_ details and metadata                                                            |                                    
+| `/tables/:dataset-id/custom-properties/:name`              | REST | POST   | Create a custom property for selected _Table_                                                             |            
+| `/tables/:dataset-id/custom-properties/:name`              | REST | PATCH  | Change a custom property value for selected _Table_                                                       |            
+| `/tables/:dataset-id/custom-properties/:name`              | REST | DELETE | Remove a custom property for selected _Table_                                                             |            
+| `/tables/:dataset-id/description`                          | REST | PATCH  | Change the description associated to selected _Table_                                                     |                        
+| `/tables/:dataset-id/tags`                                 | REST | PATCH  | Change the list of tags associated to selected _Table_                                                    |                               
+| `/columns/:dataset-id/:field-name`                         | REST | GET    | Retrieve selected _Column_ details and metadata                                                           |                       
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | POST   | Create a custom property for selected _Column_                                                            |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | PATCH  | Change a custom property value for selected _Column_                                                      |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | DELETE | Remove a custom property for selected _Column_                                                            |
+| `/columns/:dataset-id/:field-name/description`             | REST | PATCH  | Change the description associated to selected _Column_                                                    |           
+| `/columns/:dataset-id/:field-name/tags`                    | REST | PATCH  | Change the list of tags associated to selected _Column_                                                   |                  
+| `/metadata-registry/count`                                 | REST | GET    | Count how many custom properties definition exists                                                        |                                    
+| `/metadata-registry/items`                                 | REST | GET    | List custom properties definition                                                                         |                                    
+| `/metadata-registry/items`                                 | REST | POST   | Create a custom property definition                                                                       |                                    
+| `/metadata-registry/items/:name`                           | REST | GET    | Retrieve the definition details of a custom property                                                      |                               
+| `/metadata-registry/items/:name`                           | REST | PATCH  | Change the definition of a custom property (e.g. type or description)                                     |                               
+| `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                                                       |
+| `/metadata-registry/search`                                | REST | GET    | Search for a specific metadata registry of interest                                                       |
+
+#### Open Lineage routes
+
+The following routes are exposed over the `/open-lineage/*` base path.
+
+| Endpoint                                                   | Type | Method | Description                                                                                               |
+|------------------------------------------------------------|------|--------|-----------------------------------------------------------------------------------------------------------|
+| `/jobs/from/system/:id/direction/:direction`               | REST | GET    | Retrieve a list of jobs given system of record.<br/> Jobs direction can either be `ingoing` or `outgoing` |
+| `/jobs/from/dataset/:id/direction/:direction`              | REST | GET    | Retrieve a list of jobs given a table.<br/> Jobs direction can either be `ingoing` or `outgoing`          |
+| `/jobs/items/:id`                                          | REST | DELETE | Delete a job between assets.                                                                              |
+| `/jobs/items/:id`                                          | REST | PATCH  | Update the details of a job.                                                                              |
+| `/jobs/items`                                              | REST | POST   | Create a job between assets.                                                                              |
+| `/datasets/items/:id`                                      | REST | GET    | Retrieve the lineage details of a dataset.                                                                |
+| `/datasets/items/:id`                                      | REST | PATCH  | Update the details of a `virtual` dataset.                                                                |
+| `/datasets/items/:id`                                      | REST | DELETE | Delete the details of a `virtual` dataset.                                                                |
+| `/dataset/items`                                           | REST | POST   | Create a virtual dataset.                                                                                  |
+| `/facets/storage/items/:id`                                | REST | GET    | Return the [OpenLineage](https://openlineage.io/) specification of a `virtual` system of record.          |
+| `/facets/storage/items/:id`                                | REST | DELETE | Delete a `virtual` system of record                                                                       |
 
 
 ## Migration Guides
 
 Here are the migration steps to perform between each version of the service.
 
-### From 0.1.0 to 0.1.1
+### From 0.1.x to 0.2.0
 
-Configure and execute the [Fabric Sync cronjob](/data_catalog/data_catalog_agent_setup.mdx#sync-assets) before releasing the service.
+The following steps needs to be followed:
+
+- Run [`fabric_admin:0.2.0` cronjob](/data_catalog/database_setup.mdx#cli-configuration) to update persistence layer collections schemas;
+- Add the `/open-lineage/*` endpoints to your project's configuration, along with [their permissions](/data_catalog/secure_access.mdx#open-lineage-api).
+  
+  See [Routes paragraph](#open-lineage-routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
+  to support the new permission `update:lineage`. 

@@ -1462,11 +1462,34 @@
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_frontend",
-      "type": "doc"
+      "type": "category",
+      "label": "Data Catalog UI",
+      "collapsed": true,
+      "link": {
+        "id": "data_catalog/frontend/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "data_catalog/frontend/data_catalog_assets",
+          "type": "doc"
+        },
+        {
+          "id": "data_catalog/frontend/data_lineage",
+          "type": "doc"
+        },
+        {
+          "id": "data_catalog/frontend/data_catalog_connections",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "data_catalog/data_catalog_fabric_bff",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_job_runner",
       "type": "doc"
     },
     {
@@ -1475,10 +1498,6 @@
     },
     {
       "id": "data_catalog/dc_database_setup",
-      "type": "doc"
-    },
-    {
-      "id": "data_catalog/data_catalog_agent_setup",
       "type": "doc"
     },
     {
@@ -1839,22 +1858,70 @@
         "id": "release-notes/versions"
       },
       "items": [
-        { "id": "release-notes/v13.4.0", "type": "doc" },
-        { "id": "release-notes/v13.3.0", "type": "doc" },
-        { "id": "release-notes/v13.2.1", "type": "doc" },
-        { "id": "release-notes/v13.2.0", "type": "doc" },
-        { "id": "release-notes/v13.1.2", "type": "doc" },
-        { "id": "release-notes/v13.1.1", "type": "doc" },
-        { "id": "release-notes/v13.1.0", "type": "doc" },
-        { "id": "release-notes/v13.0.8", "type": "doc" },
-        { "id": "release-notes/v13.0.7", "type": "doc" },
-        { "id": "release-notes/v13.0.6", "type": "doc" },
-        { "id": "release-notes/v13.0.5", "type": "doc" },
-        { "id": "release-notes/v13.0.4", "type": "doc" },
-        { "id": "release-notes/v13.0.3", "type": "doc" },
-        { "id": "release-notes/v13.0.2", "type": "doc" },
-        { "id": "release-notes/v13.0.1", "type": "doc" },
-        { "id": "release-notes/v13.0.0", "type": "doc" }
+        {
+          "id": "release-notes/v13.4.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.3.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.2.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.2.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.1.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.1.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.1.0",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.8",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.7",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.6",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.5",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.4",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.3",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.2",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.1",
+          "type": "doc"
+        },
+        {
+          "id": "release-notes/v13.0.0",
+          "type": "doc"
+        }
       ]
     },
     {
