@@ -55,7 +55,7 @@ We will use the following naming conventions:
 
 * **collection**: a set of FHIR resources in the FHIR Server
 * **entity**: an item in the context of the FHIR Adapter
-* **resource** or **FHIR resource**: an item in the context of the FHIR Server, that be belongs to a FHIR Server collection
+* **resource** or **FHIR resource**: an item in the context of the FHIR Server, that belongs to a FHIR Server collection
 * **property**: a field of a resource
 * **value**: the value of a property
 * **query string**: the filter set in the url query
@@ -77,7 +77,7 @@ If FHIR Adapter APIs are exposed under an API Key you have to pass the key into 
 
 ```bash
 curl --request GET \
-  --url 'https://your-url/v2/your-collection-name/' \
+  --url 'https://your-url/your-collection-name/' \
   --header 'accept: */*' \
   --header 'client-key: your-client-key'
 ```
@@ -109,7 +109,7 @@ For example, if you want to add a patient object, you need to perform the follow
 
 ```bash
 curl --request POST \
-  --url https://your-url/v2/patient/ \
+  --url https://your-url/Patient/ \
   --header 'accept: application/json' \
   --header 'content-type: application/json' \
   --header 'client-key: client-key' \
@@ -132,10 +132,10 @@ In this section you will see how to query a collection.
 
 #### Get a list of resources
 
-To list a collection, simply call the endpoint with a **GET**
+To list a collection, simply call the endpoint with a **GET**.
 
 ```bash
-curl -X GET https://your-url/v2/patient/ \
+curl -X GET https://your-url/Patient/ \
 -H  "accept: application/json"  \
 -H  "content-type: application/json" \
 -H  "client-key: client-key"
@@ -160,6 +160,18 @@ In response of this request you will get a JSON array that contains all the reso
 ]
 ```
 
+You can pass additional query parameters to filter the search results, like the patient first name:
+
+```bash
+curl -X GET https://your-url/Patient/?firstName=Luca \
+-H  "accept: application/json"  \
+-H  "content-type: application/json" \
+-H  "client-key: client-key"
+```
+
+You can pass as query parameter *_id* or any arbitrary string, as long as it does not start with the underscore character (`_`), since these names are reserved for [sort](#sort), [pagination](#paginate) and other future uses.
+For further info about translating query parameters for FHIR resources, please refer to the [Configuration section](30_configuration.md#search-settings).
+
 #### Get a single entity by _id
 
 To get just one entity, simply pass the *_id* of the document as path param.
@@ -167,7 +179,7 @@ To get just one entity, simply pass the *_id* of the document as path param.
 To get just one document read only one element, simply pass the *_id* of the document as path param.
 
 ```bash
-curl -X GET https://your-url/v2/patient/1234 \
+curl -X GET https://your-url/Patient/1234 \
 -H  "accept: application/json"  \
 -H  "content-type: application/json" \
 -H  "client-key: client-key"
@@ -192,11 +204,11 @@ It is possible to sort the list of entities returned by a `GET` passing to the q
 [-|empty]<property name>
 ```
 
-By default the sort id ascending, using - for descending. The following sort patient by firstname in alphabetical order.
+By default the sort is ascending, use `-` for descending. The following request sorts patients by first name in alphabetical order.
 
 ```bash
 curl --request GET \
-  --url 'https://your-url/v2/patient/?_s=firstName' \
+  --url 'https://your-url/Patient/?_s=firstName' \
   --header 'accept: application/json' \
   --header 'client-key: client-key'
 ```
@@ -214,7 +226,7 @@ This is an example of request that get *two documents per page* and you ask for 
 
 ```bash
 curl --request GET \
-  --url 'https://your-url/v2/patient/?_l=2&_sk=4' \
+  --url 'https://your-url/Patient/?_l=2&_sk=4' \
   --header 'accept: application/json' \
   --header 'client-key: client-key'
 ```
@@ -227,7 +239,7 @@ It may be helpful to know how many documents contains a list of documents. For t
 
 ```bash
 curl --request GET \
-  --url https://your-url/v2/patient/count 
+  --url https://your-url/Patient/count 
   --header "accept: application/json"
   --header "content-type: application/json"
   --header "client-key: client-key"
@@ -239,7 +251,18 @@ returns
 3
 ```
 
-**Note**: filters can be applied to the count.
+You can pass additional query parameters to filter the search results, like the patient first name:
+
+```bash
+curl --request GET \
+  --url https://your-url/Patient/count?firstName=Luca 
+  --header "accept: application/json"
+  --header "content-type: application/json"
+  --header "client-key: client-key"
+```
+
+You can pass as query parameter *_id* or any arbitrary string, as long as it does not start with the underscore character (`_`), since these names are reserved for [sort](#sort), [pagination](#paginate) and other future uses.
+For further info about translating query parameters for FHIR resources, please refer to the [Configuration section](30_configuration.md#search-settings).
 
 ### Update
 
@@ -249,7 +272,7 @@ You can update an entity, that means updating one or more resources in one or mo
 
 ```bash
 curl --request PATCH \
-  --url https://your-url/v2/patient/1234 \
+  --url https://your-url/Patient/1234 \
   --header 'Content-Type: application/json' \
   --data-raw '{
     "$set": {
@@ -265,7 +288,7 @@ You can delete an entity, that means deleting one ore more resources in one or m
 **Example**
 
 ```bash
-curl --request DELETE https://your-url/v2/patient/1234
+curl --request DELETE https://your-url/Patient/1234
 ```
 
 ### History
@@ -276,7 +299,7 @@ You can retrieve the history of a FHIR resource. The operations of the update ar
 
 ```bash
 curl --request GET \
-  --url https://your-url/v2/patient/1234/_history
+  --url https://your-url/Patient/1234/_history
   --header "accept: application/json"
   --header "content-type: application/json"
   --header "client-key: client-key"
