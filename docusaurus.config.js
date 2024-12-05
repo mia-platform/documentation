@@ -29,7 +29,7 @@ async function createConfig() {
       colorMode: {
         // "light" | "dark"
         defaultMode: "light",
-        disableSwitch: true,
+        disableSwitch: false,
       },
       navbar: {
         hideOnScroll: false,
@@ -41,58 +41,20 @@ async function createConfig() {
           height: 32,
           style: {padding: '2px 5px' }
         },
-        items: [{
-          type: 'doc',
-          docId: "intro/getting_started",
-          label: "Getting Started",
+        items: [
+        {
+          label: "Products",
           position: "left",
-          activeBaseRegex: "(docs|docs/\\d.x)/(getting_started/monitoring-dashboard|getting_started/performance-test|getting_started|overview|guidelines|tutorial)"
+          activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
+          type: "dropdown",
+          items: [{
+            type: 'doc',
+            docId: "p4samd/overview",
+            label: "P4SaMD",
+            activeBaseRegex: "(docs|docs/\\d.x)/p4samd"
+          }
+          ]
         },
-        // {
-        //   label: "Products",
-        //   position: "left",
-        //   activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|microfrontend-composer|fast_data|dev_portal)",
-        //   type: "dropdown",
-        //   items: [{
-        //     type: 'doc',
-        //     docId: "development_suite/overview-dev-suite",
-        //     label: "Console",
-        //     activeBaseRegex: "(docs|docs/\\d.x)/development_suite"
-        //   },
-        //   {
-        //     type: 'doc',
-        //     docId: "fast_data/what_is_fast_data",
-        //     label: "Fast Data",
-        //     activeBaseRegex: "(docs|docs/\\d.x)/fast_data"
-        //   },
-        //   {
-        //     type: 'doc',
-        //     docId: "microfrontend-composer/what-is",
-        //     label: "Microfrontend Composer",
-        //     activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
-        //   },
-        //   {
-        //     type: 'doc',
-        //     docId: "marketplace/overview_marketplace",
-        //     label: "Marketplace",
-        //     activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"
-        //   }
-        //   ]
-        // },
-        // {
-        //   label: "Infrastructure",
-        //   position: "left",
-        //   activeBaseRegex: "(docs|docs/\\d.x)/(development_suite|marketplace|libraries|tools|runtime_suite|business_suite|fast_data|dev_portal|infrastructure/infrastructure_overview)",
-        //   type: "doc",
-        //   docId: "infrastructure/infrastructure_overview"
-        // },
-        // {
-        //   type: 'doc',
-        //   docId: "release-notes/versions",
-        //   label: "Release Notes",
-        //   position: "left",
-        //   activeBaseRegex: "(docs|docs/\\d.x)/(release-notes|info/(version_policy|bug_policy|support-policy))"
-        // },
         {
           href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
           position: "left",
