@@ -1,5 +1,4 @@
 ---
-slug: /
 id: overview
 title: What is P4SaMD?
 sidebar_label: What is P4SaMD?
@@ -50,29 +49,21 @@ By combining these integrations into a single platform, P4SaMD becomes a unified
 
 Built on the foundation of the leading standards for SaMD development, **ISO 13485**, **IEC 62304**, and **ISO 14971**, P4SaMD offers a comprehensive suite of features designed to streamline development and ensure compliance:
 
-- **Guided SDLC (Software Development Life Cycle)**:  
-  A structured, IEC 62304-compliant development experience that reduces cognitive load and simplifies adherence to best practices.
+- **Guided SDLC (Software Development Life Cycle)**: A structured, IEC 62304-compliant development experience that reduces cognitive load and simplifies adherence to best practices.
 
-- **Configuration Management**:  
-  Centralized management of software configuration items, including SOUPs (Software of Unknown Provenance), with automated SBOM (Software Bill of Materials) generation.
+- **Configuration Management**: Centralized management of software configuration items, including SOUPs (Software of Unknown Provenance), with automated SBOM (Software Bill of Materials) generation.
 
-- **Traceability**:  
-  End-to-end traceability from requirements and risks to design, implementation, and verification, ensuring alignment with quality standards.
+- **Traceability**: End-to-end traceability from requirements and risks to design, implementation, and verification, ensuring alignment with quality standards.
 
-- **Verification**:  
-  Comprehensive support for design reviews, implementation validation, testing activities, and release verification.
+- **Verification**: Comprehensive support for design reviews, implementation validation, testing activities, and release verification.
 
-- **Automated Tests**:  
-  Extensive automation for unit, integration, and system testing, coupled with report generation, ensures robust verification and validation workflows.
+- **Automated Tests**: Extensive automation for unit, integration, and system testing, coupled with report generation, ensures robust verification and validation workflows.
 
-- **Automatic Reporting**:  
-  Automatic generation of Technical File documentation tailored to your Quality Management System (QMS), significantly reducing manual effort.
+- **Automatic Reporting**: Automatic generation of Technical File documentation tailored to your Quality Management System (QMS), significantly reducing manual effort.
 
-- **Risk Management**:  
-  Integrated tools for managing, verifying, and documenting risks, including Risk Control Measures (RCMs), in alignment with ISO 14971.
+- **Risk Management**: Integrated tools for managing, verifying, and documenting risks, including Risk Control Measures (RCMs), in alignment with ISO 14971.
 
-- **Seamless Integration**:  
-  Pre-configured integrations with state-of-the-art development tools (e.g., Jira, GitHub, GitLab, Jenkins) and the flexibility to build custom integrations to suit unique workflows.
+- **Seamless Integration**: Pre-configured integrations with state-of-the-art development tools (e.g., Jira, GitHub, GitLab, Jenkins) and the flexibility to build custom integrations to suit unique workflows.
 
 ### Why P4SaMD?
 

@@ -4,6 +4,11 @@
       "id": "p4samd/overview",
       "label": "What is P4SaMD?",
       "type": "doc"
+    },
+    {
+      "id": "p4samd/faq",
+      "label": "Frequently Asked Questions (FAQs)",
+      "type": "doc"
     }
   ]
 }
