@@ -359,7 +359,9 @@
     "pkce",
     "sors",
     "CCPA",
-    "HANA"
+    "HANA",
+    "pgsql",
+    "saphana",
   ],
   "dictionaries": [
     "softwareTerms",

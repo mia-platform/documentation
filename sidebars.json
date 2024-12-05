@@ -1462,11 +1462,34 @@
       "type": "doc"
     },
     {
-      "id": "data_catalog/data_catalog_frontend",
-      "type": "doc"
+      "type": "category",
+      "label": "Data Catalog UI",
+      "collapsed": true,
+      "link": {
+        "id": "data_catalog/frontend/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "data_catalog/frontend/data_catalog_assets",
+          "type": "doc"
+        },
+        {
+          "id": "data_catalog/frontend/data_lineage",
+          "type": "doc"
+        },
+        {
+          "id": "data_catalog/frontend/data_catalog_connections",
+          "type": "doc"
+        }
+      ]
     },
     {
       "id": "data_catalog/data_catalog_fabric_bff",
+      "type": "doc"
+    },
+    {
+      "id": "data_catalog/data_catalog_job_runner",
       "type": "doc"
     },
     {
@@ -1475,10 +1498,6 @@
     },
     {
       "id": "data_catalog/dc_database_setup",
-      "type": "doc"
-    },
-    {
-      "id": "data_catalog/data_catalog_agent_setup",
       "type": "doc"
     },
     {
@@ -1907,6 +1926,10 @@
               "type": "doc"
             },
             {
+              "id": "software-catalog/manage-items/software-catalog-ui/update/overview-software-catalog-update",
+              "type": "doc"
+            },
+            {
               "id": "software-catalog/manage-items/software-catalog-ui/delete/overview-software-catalog-delete",
               "type": "doc"
             }
@@ -1915,9 +1938,9 @@
         {
           "type": "category",
           "collapsed": true,
-          "label": "Mia-ctl",
+          "label": "Miactl",
           "link": {
-            "id": "software-catalog/manage-items/mia-ctl/overview-mia-ctl",
+            "id": "software-catalog/manage-items/mia-ctl/overview-miactl",
             "type": "doc"
           },
           "items": [

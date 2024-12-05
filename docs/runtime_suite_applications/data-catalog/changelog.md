@@ -15,6 +15,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [1.1.0] - 2024-12-04
 
-Initial release of Data Catalog application
+### Added
+
+- Added Open Lineage to monitor the lineage between your Data Catalog datasets
+
+## [1.0.0] - 2024-12-04
+
+- Initial release of Data Catalog application

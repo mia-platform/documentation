@@ -1,10 +1,8 @@
 ---
 id: overview-catalog-and-marketplace
-title: Catalog and Marketplace Items Visibility
-sidebar_label: Catalog and Marketplace Items Visibility
+title: Software Catalog and Mia-Platform Marketplace Items Visibility
+sidebar_label: Items Visibility
 ---
-
-## Software Catalog and Mia-Platform Marketplace Items visibility
 
 As a Console user, you can access both Mia-Platform public Marketplace and your Company Software Catalog.
 While the Mia-Platform public Marketplace is composed by all the items publicly available in the Mia-platform catalog, the **Software Catalog** is a Company-specific private space where to create and manage the items which are available only for your Company.
