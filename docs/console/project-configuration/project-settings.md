@@ -5,7 +5,7 @@ sidebar_label: Project Settings
 ---
 
 Once you have created your Project, you can visualize and change its settings through the "Settings" section of the Console, within the "Project Overview" area.
-The settings are grouped by subject area through a few tabs: "General", "Providers", "Workload & Runtime", "Feature Preview", and "Advanced".
+The settings are grouped by subject area through dedicated tabs, as explained below.
 
 ## General
 
@@ -69,6 +69,12 @@ The above information can be edited by clicking on the "Edit" button, which will
 
 :::note
 An imagePullSecret is a Kubernetes entity used to authenticate and authorize access to private container image registries. 
+:::
+
+:::caution
+
+This section is deprecated, it is recommended to use manage the container registries through the [dedicated settings](#container-registries).
+
 :::
 
 This card shows the user, in the form of a table, the list of names that will be used in deployment and cronjob files for pulling Docker images. The user has the option of adding new names through the "Add Image Pull Secret" button, which will open a simple modal asking for the secret name. Similarly, a secret can be edited and deleted using the appropriate icons at the respective row in the table.
@@ -168,6 +174,41 @@ The "Feature Preview" tab allows the user to visualize and activate features in 
 ![feature preview](./img/settings-feature-preview.png)
 
 This card presents an overview of the features in early access that can be activated for the Project. For each feature, an illustrative image and description are shown, and to turn it on/off it is sufficient to toggle the corresponding switch. Additional feature information can be accessed through the "View Documentation" button located at the bottom of the feature description.
+
+## Container Registries
+
+The container registries section allows you to manage the container registries you can use to store the Docker images of [Templates](/marketplace/templates/mia_templates.md) and [Examples](/marketplace/examples/mia_examples.md) created from the Marketplace.
+
+![container registries](./img/container-registries-table.png)
+
+The Project is created with a predefined set of container registries, as configured in the [Project Blueprint section](/console/company-configuration/project-blueprint.md).
+
+This section allows you to view, add, edit, and delete container registries.
+
+You can add a new container registry by clicking on the "Add Container Registry" button. This will open a modal where you can insert the required information to add a new container registry:
+
+- **Name**: the name of the container registry. You can choose any name you prefer. It is used to identify the container registry in the Console, therefore it is unique within the Project.
+- **Registry Hostame**: the hostname of the container registry. It refers to the container registry URL, for example, `docker.io` for Docker Hub. Multiple container registries can have the same hostname, since they might have different credentials. It cannot be changed once the Container Registry is created.
+- **Image Pull Secret Name**: the name of the Image Pull Secret that will be used by Kubernetes to pull images from the container registry. Notice that the Secret must be present in the Kubernetes cluster where the Project is deployed, the Console won't create it for you.
+- **Default Registry**: if enabled, the container registry will be set as the default one for the Project, meaning it will be the default selected when creating a new service from a Template or Example. Notice that if the Project has only one container registry, it will be set as the default one automatically.
+
+![add container registry](./img/add-container-registry.png)
+
+Through the dedicated buttons on the right of each row, you can edit or delete the container registry.
+
+:::info
+
+If a Project has not been configured with any container registry, the Docker Image field of the Templates and Examples will allow you to insert the Docker image directly, 
+behaving like before the introduction of the container registries feature.
+
+:::
+
+### How Image Pull Secret are configured to Kubernetes
+
+When creating Kubernetes manifests of the Project service deployments, the Console will create and insert an array of `imagePullSecrets` in the `spec` section of the `Deployment` 
+This array contains all the names of the Image Pull Secrets configured in the Console, along with the Image Pull Secrets configured in the Container Registries section.
+
+The configuration applies to all the Microservices and CronJobs of the Project.
 
 ## Advanced
 

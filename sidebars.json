@@ -1973,6 +1973,10 @@
               "type": "doc"
             },
             {
+              "id": "software-catalog/manage-items/software-catalog-ui/update/overview-software-catalog-update",
+              "type": "doc"
+            },
+            {
               "id": "software-catalog/manage-items/software-catalog-ui/delete/overview-software-catalog-delete",
               "type": "doc"
             }
@@ -1981,9 +1985,9 @@
         {
           "type": "category",
           "collapsed": true,
-          "label": "Mia-ctl",
+          "label": "Miactl",
           "link": {
-            "id": "software-catalog/manage-items/mia-ctl/overview-mia-ctl",
+            "id": "software-catalog/manage-items/mia-ctl/overview-miactl",
             "type": "doc"
           },
           "items": [

@@ -46,8 +46,8 @@ Whether you select Example or Template, you can create your microservice by fill
 
 - **GitLab Repository owner** (*required*): you have to select, from a list of options, where you want to save your microservice
 
-:::warning
-If you are using GitLab and don't see any option in *Git repository owner*, it means that you have no access to the GitLab group where the project resides: please contact your console administrator to solve this issue.
+:::caution
+If you are using GitLab and don't see any option in *Git repository owner*, it probably means that you have no access to the GitLab group where the project resides: please contact your console administrator to solve this issue.
 :::
 
 - **Git Repository Name** (*required*): name of the git repository of the service
@@ -59,11 +59,13 @@ If you are using GitLab and don't see any option in *Git repository owner*, it m
 Finally to create the Microservice push **create**.
 
 :::warning
-Once the service is created on your Git provider, you will not be able to delete it anymore from Console.
+
+Once the service is created on your Git provider, the Console won't be able to delete it. In case you need to delete the service, you have to do it manually from your Git provider.
+
 :::
 
 :::info
-When creating your microservice, the Console also generates a CI file (e.g. `.gitlab-ci.yml`) along side the service files.
+When creating your microservice, the Console also generates a CI/CD file (e.g. `.gitlab-ci.yml`) alongside the service files.
 This file is used to instruct your pipeline provider for continuous integration and continuous deployment.
 
 You can set up the CI file by yourself or use instead Mia-Platform pipeline templates.
@@ -79,12 +81,13 @@ At this [link](/development_suite/api-console/api-design/custom_microservice_get
 The only requirement to import an external Microservice is that the Docker Image needs to be already built.
 Once you select the card to upload a Docker image, you can see a new tab where you need to fill in the following information:
 
-- **Name** (*required*): this is the internal hostname;  
+- **Name** (*required*): this is the internal hostname;
 - **Docker Image Name** (*required*): the complete docker image name of the service. The docker image repository must be accessible by the k8s cluster;
 - **Repository URL** (*optional*): the URL to the repository hosting the microservice code. The user will be able to easily clone the repository from the service detail page later.
 - **Description** (*optional*): this is the description of your microservice.
 
 :::info
+
   Docker image names have the format `hostname/imagename:tag`, where hostname and tag are optional.
 
 - `hostname` is the registry hostname where the docker image is hosted
@@ -95,7 +98,7 @@ Once you select the card to upload a Docker image, you can see a new tab where y
 
 ![service-docker-image](img/service-docker-image.png)
 
-Finally to create the Microservice push **create**.
+Finally to create the Microservice click **Create**.
 
 :::info
 For a step-by-step guide on creating a microservice using a Docker image, refer to the [dedicated tutorial](/console/tutorials/microservice-from-docker-image.md).
@@ -104,31 +107,55 @@ For a step-by-step guide on creating a microservice using a Docker image, refer 
 ## Manage Microservices
 
 Microservices, and workloads in general, are the most important entity in your Project architecture as they hold the core business
-logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables, files, exposed ports and many others.
+logics. In the Console you can manage all the configuration that you may need in your Project lifecycle: from configuration variables to files, exposed ports and many others.
 
 - **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
-- **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both ssh and https.
+- **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both `ssh` and `https`.
 
-The detail of each microservice is divided in the following sections:
+The following paragraphs explain each section of the Microservice detail page.
 
 ### Microservice
 
 In this section, you can review and update some base information about the microservice, like the description and the API documentation path.
 
-In case your microservice has been created manually from a Docker Image or from a Marketplace Template/Example, you can also configure the *Docker Image Name*.
+#### Microservice Details
 
-![service-detail-new](img/service-detail-new.png)
+The Details card contains and lets you manage information such as the version, the docker image and the description of the microservice.
 
-If the microservice has been created from a versioned Marketplace plugin, the *Docker Image Name* is shown in *read-only* mode and cannot be changed, since the it is managed by the Marketplace plugin itself.
+In case your microservice has been created from a Plugin, the *Docker Image Name* is shown in *read-only* mode and cannot be changed, since the it is managed by the Plugin itself.
 
 ![Detail of a service generated from a versioned Marketplace plugin](img/versioned-service.png)
 
+Otherwise, if your microservice has been created manually from a Docker Image or from a Marketplace Template/Example, you can also configure the *Docker Image Name* through a dedicated input field.
+
+![service-detail-new](img/service-detail-new.png)
+
+The *Docker Image Name* is the name of the Docker image that will be used to deploy the microservice. It is composed by the container registry hostname, the image name and the tag.
+
+The container registry hostname can be changed with a dropdown list, which contains the [Container Registries configured in the Project Settings](/console/project-configuration/project-settings.md#container-registries).
+
+![Docker Image input field](img/microservices-docker-image-field.png)
+
+The image name and the tag can be manually inserted in the dedicated input field.
+
+:::caution
+
+Starting from version v13.5.0, the container registry hostname is not part anymore of the Docker Image Name manual input field, but it can only be selected from the dropdown list.
+
+If you need to use a container registry hostname that is not present in the dropdown list, you have to create it in the Project Settings, or contact your Project Administrator or Company Owner to do it for you.
+
+In case a service already uses a container registry not in the list, an informative badge will suggest the user to create it, or to choose a new one from the list. The project can still be saved with the unknown container registry, to avoid disruption.
+
+:::
+
 :::info
+
 Anytime you access to the configuration page of your plugin, you will be informed if the related Marketplace item have updates with an icon next to the version name.
 
 ![Detail of the Microservice badge, with the icon to notify a new version available](img/marketplace-notification.png)
 
 This is the best way to be aware of updates of your Marketplace plugins.
+
 :::
 
 In case you want to manually update the Docker Image Name, you can click on the right-side menu button where a menu will pop-up.

@@ -1847,12 +1847,16 @@
     "destination": "/docs/software-catalog/manage-items/declarative-approach",
     "addedOn": "2024-11-19"
   },
+  "/docs/software-catalog/manage-items/mia-ctl/overview-mia-ctl": {
+    "destination": "/docs/software-catalog/manage-items/mia-ctl/overview-miactl",
+    "addedOn": "2024-12-04"
+  },
   "/docs/data_catalog/data_catalog_frontend": {
     "destination": "/docs/data_catalog/frontend/overview",
-    "addedOn": "2024-11-26"
+    "addedOn": "2024-12-05"
   },
   "/docs/data_catalog/data_catalog_agent_setup": {
     "destination": "/docs/data_catalog/data_catalog_job_runner",
-    "addedOn": "2024-11-26"
+    "addedOn": "2024-12-05"
   }
 }
