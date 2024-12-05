@@ -177,7 +177,7 @@ For each prototype you need to define:
 - the name;
 - the schema;
 - the labels for the schema fields (**required** only if you use the TMM with the companion FE component);
-- the values for the schema fields (**required** only if you use the TMM with the companion FE component);
+- the values for the schema fields;
 - the hints for the schema fields (only for therapy directives, should provide a list of admitted or suggested values for a schema field).
 
 TMM supports localization for `name`, `labels` and `hints`, using a syntax like the following (`en` is ISO 639-1 language code for English, `it` for Italian):
@@ -423,48 +423,86 @@ The integrated validation system currently supports the following threshold vali
 }
 ```
 
-:::warning
-
-The value of the `propertyName` should be the path to the value of the specific attributes in the prototype schema. If your schema is not a plan object you can use the `values` on the prototype to specify the path.
-Here you can find the examples:
-
-- If you have a plane object the `propertyName` will be simply equal to that record like `systolicBloodPresure`  or `diastolicBloodPresure`.
-```json
-{
-  "systolicBloodPresure": 120,
-  "diastolicBloodPresure": 66
-}
-```
-
-- If you have a a complicated schema the `propertyName` should be equal to that path of the value like `observations[0].value` for `systolicBloodPresure` and `observations[1].value`  for  the value of `diastolicBloodPresure`.
-```json
-{
-  "period": {
-    "startDate": "2024-01-01"
-  },
-  "observations": [
-    {
-      "code": "systolicBloodPresure",
-      "unit": "mmHg",
-      "value": 120
-    },
-    {
-      "code": "diastolicBloodPresure",
-      "unit": "mmHg",
-      "value": 66
-    }
-  ]
-}
-```
-:::
-
 :::danger
 
-The integrated validation system is designed under the assumption that the property of the detection value referred by a threshold contains one or two numeric values. If the value is not a number or an array of two numbers, depending on the operator, an error is returned.
+The integrated validation system is designed under two assumptions.
+
+- The property of the detection referred by a threshold contains one or two numeric values; if the value is not a number or an array of two numbers, depending on the operator, an error is returned.
+- The `propertyName` is treated as the path of the field in the detection containing the value to compare against the threshold, unless a different path is specified under prototype `values`; see the next section for more information.
 
 :::
 
 Additional information about the API requirements and the setup of the external validation service are available in the [*Configuration* section][thresholds-validation].
+
+### Threshold evaluation
+
+When a detection is submitted, its value is checked against each threshold defined in the associated monitoring plan.
+
+In this context, the threshold `propertyName` is treated as the path of the field in the detection `value` object containing the numeric value to be validated.
+
+So, given a threshold looking like this:
+
+```json
+{
+  "propertyName": "systolicBloodPresure",
+  "thresholdOperator": "gt",
+  "thresholdValue": 130
+}
+```
+
+and a detection looking like this:
+
+```json
+{
+  "systolicBloodPresure": 120,
+  "diastolicBloodPresure": 75
+}
+```
+
+the TMM can assert that the `systolicBloodPresure` has a safe value, since `120` is lower than `130`.
+
+If your schema is not a plain object, but for example has array and/or nested fields, we recommend using the `values` field on the prototype to map the `propertyName` to the actual `path` and make the prototype configuration more human readable.
+
+So, given the same threshold as before and a detection looking like this:
+
+```json
+{
+  "period": {
+    "start": "2024-01-07T19:10:00Z",
+  },
+  "observations": [
+    {
+      "name": "Diastolic blood pressure",
+      "unit": "mmHg",
+      "value": 75
+    },
+    {
+      "name": "Systolic blood pressure",
+      "unit": "mmHg",
+      "value": 120
+    }
+  ]
+}
+```
+
+you can add the following `values` to the prototype:
+
+```json
+{
+  "values": {
+    "diastolicBloodPresure": { 
+      "path": "observations[0].value"
+    },
+    "systolicBloodPresure": { 
+      "path": "observations[1].value"
+    }
+  }
+}
+```
+
+which is basically a way to tell the TMM that the values of the `diastolicBloodPresure` and `systolicBloodPresure` properties can be found in the `value` field of the first and second object inside the `observations` array field, respectively.
+
+When the TMM needs to compare a detection against a thresholds, it first performs a lookup on the prototype `values` based on the threshold `propertyName`: if there is a match, like in our example for `systolicBloodPresure`, the TMM gets the value from the detection at the path specified in the `path` field of the prototype value (in our case `observations[1].value`).
 
 ## Notifications
 
