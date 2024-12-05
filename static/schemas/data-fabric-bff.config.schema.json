@@ -75,16 +75,6 @@
         }
       ]
     },
-    "openLineage": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/OpenLineageSettings"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
     "persistence": {
       "$ref": "#/definitions/Persistence"
     },
@@ -254,23 +244,6 @@
           "allOf": [
             {
               "$ref": "#/definitions/secret"
-            }
-          ]
-        }
-      }
-    },
-    "OpenLineageSettings": {
-      "description": "Settings describing the connections with OpenLineage service",
-      "type": "object",
-      "required": [
-        "rest"
-      ],
-      "properties": {
-        "rest": {
-          "description": "Configuration related to the exposed REST APIs that are proxied",
-          "allOf": [
-            {
-              "$ref": "#/definitions/RestProxy"
             }
           ]
         }

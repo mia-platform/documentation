@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [1.9.6] - 2024-11-29
+
+### Versioning
+
+- `VITE_MICRO_LC_PREVIEW_VERSION` to `0.7.5`
+
 ## [1.9.5] - 2024-11-15
 
 ### Added
