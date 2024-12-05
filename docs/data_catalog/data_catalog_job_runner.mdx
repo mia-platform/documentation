@@ -4,9 +4,13 @@ title: Job Runner
 sidebar_label: Job Runner
 ---
 
+import jobsSchema from "@site/static/schemas/data_fabric/data-catalog-job-runner-jobs.config.schema.json"
 import runnerSchema from "@site/static/schemas/data_fabric/data-catalog-job-runner.config.schema.json"
+import secretsSchema from "@site/static/schemas/data_fabric/data-catalog-job-runner-secret-names.config.schema.json"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import SchemaViewer from "./../fast_data/snippets/schema_viewer.mdx"
+import bffSchema from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.config.schema.json"
 
 Data Catalog _Job Runner_ can trigger the execution of different jobs that can update the state of the Data Catalog solution. 
 
@@ -104,8 +108,9 @@ Fabric BFF can be customized using the following environment variables:
 |-------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
 | `GRPC_PORT`                   | -        | This variable determines the TCP port where the **GRPC controller** binds its listener                                            | 50051                               |
 | `LOG_LEVEL`                   | -        | Specify the centralized application log level, choosing from options such as `debug`, `error`, `info`, `trace` or `warn`          | `info`                              |
-| `JOB_RUNNER_FOLDER`           | -        | Set the location of the configuration files                                                                                       | `~/job-runner`                      |
-| `ODBCINI`                     | -        | Optional full path where a custom `.odbc.ini` can be used to retrieve user defined data sources                                   | `~/job-runner/.odbc.ini`            |
+| `JOB_RUNNER_FOLDER`           | -        | Set the location of the configuration files                                                                                       | `~/.fd/job-runner`                  |
+| `FAST_DATA_JOBS_FOLDER`       | -        | Set the location of _Fast Data Jobs Sync_ configuration file.                                                                     | `~/.fd/fast-data-jobs`              |
+| `ODBCINI`                     | -        | Optional full path where a custom `.odbc.ini` can be used to retrieve user defined data sources                                   | `~/.fd/job-runner/.odbc.ini`        |
 
 ### Main Configuration
 
@@ -136,35 +141,25 @@ the `persistence.configuration` key of the configuration file. The main properti
 - `database` &rarr; the database name where to search for the  collections relevant to Job Runner service. Please notice that setting this property will **override** the database
 name potentially set in the connection string.
 
-Since the _Fast Data Job Sync_ may need to retrieve Control Plane pipelines from a different database, it's also possible to provide the aforementioned properties
-in two different keys, namely `controlPlane` and `dataCatalog`, which represents two different database where the jobs will read or write data.
+:::tip
+The following properties support [secrets resolution](/fast_data/configuration/secrets_resolution.md):
 
-An example of persistence configuration can be seen below:
+- `persistence.configuration.url`
+- `persistence.configuration.database`
+:::
 
-```json
-{
-  "persistence": {
-    "type": "mongodb",
-    "configuration": {
-      "url": "mongodb://<server>:27017/<default-database>?replicaSet=local",
-      "database": "<data-fabric-database-name>"
-    }
-  }
-}
-```
+### Fast Data Jobs Sync Configuration
+
+Since the _Fast Data Job Sync_ may need to retrieve Control Plane pipelines from a different database, it's also possible to provide an additional persistence configuration to
+specify the databases to retrieve data. This optional configuration can be read from a `config.json` file located at the path defined by the `FAST_DATA_JOBS_FOLDER` environment variable.
+
+<SchemaViewer schema={jobsSchema}/>
 
 :::tip
-The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+The following properties support [secrets resolution](/fast_data/configuration/secrets_resolution.md):
 
-- one database instance:
-  - `persistence.configuration.url`
-  - `persistence.configuration.database`
-- two database instances:
-  - `controlPlane.configuration.url`
-  - `controlPlane.configuration.database`
-  - `dataCatalog.configuration.url`
-  - `dataCatalog.configuration.database`
-
+- `controlPlane.configuration.url`
+- `controlPlane.configuration.database`
 :::
 
 ### Secrets Names Configuration
@@ -172,38 +167,12 @@ The following properties support [secret resolution](/fast_data/configuration/se
 To let the Data Catalog UI be aware of possible secret that can be used within connection definitions, the service can be additionally 
 configured with a `secret.json` file located at the `JOB_RUNNER_FOLDER`.
 
-The corresponding JSON is a key-value pair representation where:
+The configuration is a key-value pair JSON representation where:
 
-- the keys represent the __secret name__ that can be used by external services as reference when triggering a job;
-- the values represent a secret (that can be either represent according to [Fast Data secret resolution](/fast_data/configuration/secrets_resolution.md))
+- the keys represent the __secret name__ that can be used by external services as reference when triggering a job. This name will be made available by the [gRPC method `ListSecretNames`](#configuration-1) to the [Data Catalog Frontend](/data_catalog/frontend/data_catalog_connections.mdx#input-management) during Connection creation;
+- the values represent a secret (that can be represented according to [Fast Data secret resolution](/fast_data/configuration/secrets_resolution.md)).
 
-<details>
-<summary>Example Configuration</summary>
-
-Consider the following sample `secrets.json`:
-
-```json
-{
-  "secretPlain": "{{MY_PLAIN_SECRET}}",
-  "secretEnv": {
-    "type": "env",
-    "key": "EXAMPLE_ENV"
-  },
-  "secretFile": {
-    "type": "file",
-    "path": "/run/secrets/job_runner/example.ini",
-    "key": "EXAMPLE_ENV"
-  }
-}
-```
-
-The [gRPC method `ListSecretNames`](#configuration-1) will return the following response:
-
-```json
-["secretPlain", "secretEnv", "secretFile"]
-```
-
-</details>
+<SchemaViewer schema={secretsSchema}/>
 
 :::caution
 When the service receives a request to trigger a job, it will first try to resolve the secrets contained in the request by looking at the entries of this file: 
