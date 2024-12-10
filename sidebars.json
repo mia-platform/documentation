@@ -6,6 +6,22 @@
       "type": "doc"
     },
     {
+      "label": "Getting Started",
+      "type": "category",
+      "items": [
+        {
+          "id": "p4samd/installation",
+          "label": "Installation",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/configuration",
+          "label": "Configuration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
       "id": "p4samd/faq",
       "label": "Frequently Asked Questions (FAQs)",
       "type": "doc"
