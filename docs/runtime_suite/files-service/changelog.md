@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.10.2 - 2024-12-09
+
+### Added
+
+- ci: sbom generation
+
+### Updated
+
+- node 22 and several dependencies
+
 ## 2.10.1 - 2024-02-12
 
 ### Added
