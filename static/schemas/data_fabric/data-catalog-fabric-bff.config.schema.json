@@ -17,6 +17,16 @@
         }
       ]
     },
+    "controlPlane": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ControlPlaneSettings"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "jobRunner": {
       "anyOf": [
         {
@@ -44,59 +54,6 @@
       "$ref": "#/definitions/Settings"
     }
   },
-  "examples": [
-    {
-      "console": {
-        "rest": {
-          "target": {
-            "type": "env",
-            "key": "CONSOLE_BASE_URL"
-          },
-          "auth": {
-            "type": "oauth2",
-            "flow": "client_credentials",
-            "tokenEndpoint": "/api/m2m/oauth/token",
-            "credentials": {
-              "clientId": {
-                "type": "file",
-                "path": "/run/secrets/data-fabric/fabric-bff.ini",
-                "key": "FABRIC_CLIENT_ID"
-              },
-              "clientSecret": {
-                "type": "file",
-                "path": "/run/secrets/data-fabric/fabric-bff.ini",
-                "key": "FABRIC_M2M_CLIENT_SECRET"
-              }
-            }
-          }
-        }
-      },
-      "openLineage": {
-        "rest": {
-          "target": "http://open-lineage"
-        },
-        "grpc": {
-          "target": "http://open-lineage:50051"
-        }
-      },
-      "jobRunner": {
-        "grpc": {
-          "target": "http://job-runner:50051"
-        }
-      },
-      "persistence": {
-        "type": "mongodb",
-        "configuration": {
-          "url": {
-            "type": "file",
-            "path": "/run/secrets/data-fabric/fabric-bff.ini",
-            "key": "MONGODB_URL"
-          },
-          "database": "data-fabric-db"
-        }
-      }
-    }
-  ],
   "definitions": {
     "AuthContext": {
       "oneOf": [
@@ -182,6 +139,32 @@
         }
       }
     },
+    "ControlPlaneSettings": {
+      "description": "Settings describing the connections with Control Plane service",
+      "type": "object",
+      "required": [
+        "grpc",
+        "rest"
+      ],
+      "properties": {
+        "grpc": {
+          "description": "Configuration related to the inter-service communication with Control Plane service",
+          "allOf": [
+            {
+              "$ref": "#/definitions/GrpcProxy"
+            }
+          ]
+        },
+        "rest": {
+          "description": "Configuration related to the exposed REST APIs that are proxied",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RestProxy"
+            }
+          ]
+        }
+      }
+    },
     "GrpcProxy": {
       "description": "Configuration regarding the GRPC services called by the BFF",
       "type": "object",
@@ -222,7 +205,7 @@
       ],
       "properties": {
         "grpc": {
-          "description": "Configuration related to the gRPC service of JobRunner",
+          "description": "Configuration related to the bulk actions Data Catalog service",
           "allOf": [
             {
               "$ref": "#/definitions/GrpcProxy"
@@ -340,6 +323,32 @@
           "type": [
             "string",
             "null"
+          ]
+        },
+        "tls": {
+          "description": "Client TLS proxy settings",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TlsOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "TlsOptions": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/secret"
+            },
+            {
+              "type": "null"
+            }
           ]
         }
       }
