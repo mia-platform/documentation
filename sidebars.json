@@ -6,17 +6,28 @@
       "type": "doc"
     },
     {
-      "label": "Getting Started",
+      "label": "Installation",
       "type": "category",
       "items": [
         {
-          "id": "p4samd/installation",
-          "label": "Installation",
+          "id": "p4samd/system_requirement",
+          "label": "System Requirements",
           "type": "doc"
         },
         {
           "id": "p4samd/configuration",
           "label": "Configuration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "label": "Handbook",
+      "type": "category",
+      "items": [
+        {
+          "id": "p4samd/getting_started",
+          "label": "Getting Started",
           "type": "doc"
         }
       ]
