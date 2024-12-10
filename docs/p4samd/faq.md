@@ -51,10 +51,7 @@ In essence, Mia-Care P4SaMD builds upon the flexibility of Mia-Platform IDP, tai
 
 ### Is P4SaMD certified as SaMD?
 
-No, **Mia-Care P4SaMD is not a Software as a Medical Device (SaMD)**. It does not have a specific intended medical use and, as a result, cannot be certified as SaMD. However:
-
-- **Validated for SaMD Development**:  
-   Mia-Care P4SaMD is validated for use in developing SaMD solutions. This validation ensures that P4SaMD meets the requirements for reliability, quality, and compliance needed to support regulated software development.
+No, **Mia-Care P4SaMD is not a Software as a Medical Device (SaMD)**. It does not have a specific intended medical use and, as a result, cannot be certified as SaMD. However, Mia-Care P4SaMD is validated for use in developing SaMD solutions. This validation ensures that P4SaMD meets the requirements for reliability, quality, and compliance needed to support regulated software development.
 
 For more details about the validation process, refer to the next question or contact Mia-Care for documentation.
 
