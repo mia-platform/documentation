@@ -77,35 +77,35 @@ async function createConfig() {
         style: "dark",
         links: [{
           title: "Mia-Care P4SaMD",
-          items: [{
-            label: "How to install",
-            to: "/docs/info/how_to_install",
-          },
-          {
-            label: "Bug Policy",
-            to: "/docs/info/bug_policy",
-          },
-          {
-            label: "Supported browsers",
-            to: "/docs/info/supported_browser",
-          },
-          {
-            label: "Open Source Software",
-            to: "/docs/info/oss",
-          },
-          {
-            label: "Subprocessor",
-            to: "/docs/info/subprocessor",
-          },
-          {
-            label: "Service Level Agreement",
-            to: "/docs/info/mia_service_level_agreement",
-          },
-          {
-            label: "Audit Process",
-            to: "/docs/info/audit_process",
-          },
-          ],
+          // items: [{
+          //   label: "How to install",
+          //   to: "/docs/info/how_to_install",
+          // },
+          // {
+          //   label: "Bug Policy",
+          //   to: "/docs/info/bug_policy",
+          // },
+          // {
+          //   label: "Supported browsers",
+          //   to: "/docs/info/supported_browser",
+          // },
+          // {
+          //   label: "Open Source Software",
+          //   to: "/docs/info/oss",
+          // },
+          // {
+          //   label: "Subprocessor",
+          //   to: "/docs/info/subprocessor",
+          // },
+          // {
+          //   label: "Service Level Agreement",
+          //   to: "/docs/info/mia_service_level_agreement",
+          // },
+          // {
+          //   label: "Audit Process",
+          //   to: "/docs/info/audit_process",
+          // },
+          // ],
         },
         {
           title: "Company",
