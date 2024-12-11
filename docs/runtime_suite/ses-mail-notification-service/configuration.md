@@ -59,7 +59,7 @@ Here is a list of the variables used to configure the service:
 
 :::info
 
-The variable `REJECT_UNAUTHORIZED` is used to set the tls option `rejectUnauthorized`. For further information, ha a look at [this page](https://nodemailer.com/smtp/#3-allow-self-signed-certificates)
+The variable `REJECT_UNAUTHORIZED` is used to set the tls option `rejectUnauthorized`. For further information, have a look at [this page](https://nodemailer.com/smtp/#3-allow-self-signed-certificates)
 
 :::
 
