@@ -15,6 +15,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.5] - 2024-12-10
+
+### Added
+
+-  Added image signing and SBOM generation in pipeline
+
+### Fixed
+
+- following the introduction of SSL custom configuration in `v1.3.2`, SSL was assumed to be disabled
+when `ssl.enabled` property was not specified. This prevents the service to connect to database instances
+where SSL is active without configuring `ssl.enabled` to `true`. This release ensure that SSL configuration
+is not enforced to `false` when not provided by the user, aligning service behavior to the one prior to version `v1.3.2`. 
+
 ## [1.3.4] - 2024-11-19
 
 ### Fix
