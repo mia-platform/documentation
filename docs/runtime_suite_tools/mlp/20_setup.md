@@ -56,11 +56,11 @@ You can install `mlp` with the use of `curl` or `wget` and downloading the lates
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL https://github.com/mia-platform/mlp/releases/download/v2.0.0-rc/mlp-linux-amd64 -o /tmp/mlp
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/mlp/releases/download/v2.0.0-rc/mlp-linux-amd64 -o /tmp/mlp
 ```
 
 ```sh
-wget -q https://github.com/mia-platform/mlp/releases/download/v2.0.0-rc/mlp-linux-amd64 -O /tmp/mlp
+wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/mlp/releases/download/v2.0.0-rc/mlp-linux-amd64 -O /tmp/mlp
 ```
 
 After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
