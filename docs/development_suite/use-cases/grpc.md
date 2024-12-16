@@ -70,34 +70,14 @@ and you should obtain the response
 
 #### Configure envoy
 
-To expose the server with the Envoy API Gateway, you can [create an endpoint](/development_suite/api-console/api-design/endpoints.md) on `/` which point to the `grpc-service` microservice.
+To expose the server with the Envoy API Gateway, you can [create an endpoint](/development_suite/api-console/api-design/endpoints.md) on `/` which point to the `grpc-service` microservice, and pick the container port that binds the gRPC controller.
+When using Envoy, the endpoint accepts also requests with HTTP/2 protocol, allowing to use gRPC clients.
 
 :::info
 It is possible to expose a specific endpoint pointing to the correct microservice.  
 To contact the API, the client must have the `.proto` file loaded. Otherwise, the client try to contact the reflection method of the server, but it use a specific endpoint.  
 To expose an endpoint, remember that it is created from the method called. So, if we call the method `yages.Echo.Ping`, the path colled will be `/yages.Echo/Ping`. It is possible from the Console to expose an endpoint with basePath set to `/yages.Echo` and the rewritePath to `/yages.Echo`, and it works.
 :::
-
-gRPC is based on http2, so the cluster created in envoy must use http2. To configure so, from the advanced section in design area, open the `api-gateway-envoy/clusters.yaml` file. This file can overwrite the clusters configuration (see [here](/development_suite/api-console/advanced-section/api-gateway-envoy/extensions.md#clusters) the docs).
-The `http2_protocol_options` is the option necessary to make it works correctly, so you should add the following configuration:
-
-```yaml
-- "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
-  name: grpc-service
-  connect_timeout: 30s
-  type: LOGICAL_DNS
-  lb_policy: ROUND_ROBIN
-  http2_protocol_options: {}
-  load_assignment:
-    cluster_name: grpc-service
-    endpoints:
-    - lb_endpoints:
-      - endpoint:
-          address:
-            socket_address:
-              address: grpc-service
-              port_value: 80
-```
 
 It is now possible to test it using the port forward configuration method as showed in the [test with port-forward section](#test-with-port-forward).
 You should only change the port-forward command (if your API Gateway is created from Mia-Platform marketplace and the name of the service is `api-gateway`):
