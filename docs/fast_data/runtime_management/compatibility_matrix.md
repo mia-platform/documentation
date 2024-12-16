@@ -31,8 +31,8 @@ Please ensure that your services respects the following matrix.
 
 | Service                                                                            | Version |
 |------------------------------------------------------------------------------------|---------|
-| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)           | 0.2.0   |
+| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)           | 0.2.1   |
 | [Control Plane](/fast_data/runtime_management/control_plane.mdx)                   | 0.1.1   |
 | [Control Plane Operator](/fast_data/runtime_management/control_plane_operator.mdx) | 0.1.1   |
-| [Control Plane Frontend](/fast_data/runtime_management/control_plane_frontend.mdx) | 0.4.1   |
+| [Control Plane Frontend](/fast_data/runtime_management/control_plane_frontend.mdx) | 0.4.2   |
 | [Fabric Admin](/fast_data/runtime_management/database_setup.mdx)                   | 0.2.0   |

@@ -131,6 +131,10 @@ The following properties support [secret resolution](/fast_data/configuration/se
 - `console.auth.credentials.privateKey`
 :::
 
+A custom x509 certificate can be added to the default root keychain of certificates for any client/reversed-proxy reached by Fabric BFF.
+Custom certificate must be mounted on local file system of Fabric BFF and referenced in the configuration at 'settings.tls.certificate'
+as a [secret](/fast_data/configuration/secrets_resolution.md).
+
 #### Persistence Layer
 
 
