@@ -201,29 +201,42 @@ Here can be found a configuration example:
 
 In the table below is provided the list of endpoints that should be [defined in Console](/development_suite/api-console/api-design/endpoints.md) and assigned to Fabric BFF service.
 
-| Endpoint            | Rewrite Base Path   | Microservice | Description                                                    |
-|---------------------|---------------------|--------------|----------------------------------------------------------------|
-| `/api/data-catalog` | `/api/data-catalog` | `fabric-bff` | Groups all the requests related to<br/>Data Catalog operations |
-| `/api/open-lineage` | `/api/open-lineage` | `fabric-bff` | Groups all the requests related to<br/>Open Lineage operations |
-| `/api/connections`  | `/api/connections`  | `fabric-bff` | Groups all the requests related to<br/>Connections operations  |
-| `/api/job-runner`   | `/api/job-runner`   | `fabric-bff` | Groups all the requests related to<br/>Job Runner  operations  |
+| Endpoint            | Rewrite Base Path   | Microservice | Description                                                                                                                                                                                         |
+|---------------------|---------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/api/data-catalog` | `/api/data-catalog` | `fabric-bff` | Groups all the requests related to<br/>Data Catalog operations. For more details please refer [to the corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#data-catalog-routes) |
+| `/api/open-lineage` | `/api/open-lineage` | `fabric-bff` | Groups all the requests related to<br/>Open Lineage operations. For more details please refer [to the corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#open-lineage-routes) |
+| `/api/connections`  | `/api/connections`  | `fabric-bff` | Groups all the requests related to<br/>Connections operations                                                                                                                                       |
+| `/api/job-runner`   | `/api/job-runner`   | `fabric-bff` | Groups all the requests related to<br/>Job Runner  operations                                                                                                                                       |
 
 ### Routes
 
-Under the endpoint specified above, the following routes are served by Fabric BFF
+Here are described which routes Fabric BFF service serves.
+
+#### Connection routes
+
+The following routes are exposed over the `/api/connections` endpoint.
 
 | Route                        | Type      | Method | Description                                                                                                                                                                                                             |
 |------------------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `/data-catalog/bulk-actions` | Websocket | *      | Route for handling async operations over multiple datasets records                                                                                                                                                      |
-| `/data-catalog/*`            | REST      | *      | Routes prefixed with `/data-catalog/` are forwarded towards Open Lineage service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#endpoints)                |
-| `/open-lineage/*`            | REST      | *      | Routes prefixed with `/data-catalog/` are forwarded towards Open Lineage service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#endpoints)                |
-| `/job-runner/feedback`       | Websocket | *      | Route for receiving feedback messages by the jobs executed by the Job Runner                                                                                                                                            |
-| `/job-runner/*`              | REST      | *      | Routes prefixed with `/job-runner` are converted into gRPC requests towards Job Runner service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_job_runner.mdx#grpc-services)|
 | `/connections/items`         | REST      | GET    | Route for reading the list of connections configured for the data catalog application.                                                                                                                                  |
-| `/connections/items/`        | REST      | POST   | Route for creating a connection for the data catalog application.                                                                                                                                                       |
+| `/connections/items`         | REST      | POST   | Route for creating a connection for the data catalog application.                                                                                                                                                       |
 | `/connections/items/:id`     | REST      | GET    | Route for reading a given connection configured for the data catalog application.                                                                                                                                       |
 | `/connections/items/:id`     | REST      | GET    | Route for updating a given connection configured for the data catalog application.                                                                                                                                      |
 | `/connections/items/:id`     | REST      | DELETE | Route for deleting a given connection configured for the data catalog application.                                                                                                                                      |
+
+#### Job Runner routes
+
+The following routes are exposed over the `/api/job-runner` endpoint and are forwarded towards the [corresponding gRPC method.](/data_catalog/data_catalog_job_runner.mdx#grpc-services).
+
+| Route                        | Type      | Method | Description                                                                                                                                                                                                             |
+|------------------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/feedback`                  | Websocket | GET    | Route for receiving feedback messages from the `Status` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                  |
+| `/job-runner/*`              | REST      | *      | Routes prefixed with `/job-runner` are converted into gRPC requests towards Job Runner service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_job_runner.mdx#grpc-services)|
+| `/agent/drivers`             | REST      | GET    | Route for invoking the `ListDrivers` method of the [ODBC Client gRPC service.](/data_catalog/data_catalog_job_runner.mdx#odbc-client)                                                                                   |
+| `/agent/dsn`                 | REST      | GET    | Route for invoking the `ListDataSources` method of the [ODBC Client gRPC service.](/data_catalog/data_catalog_job_runner.mdx#odbc-client)                                                                               |
+| `/agent/sync`                | REST      | POST   | Route for invoking the `Run` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                                             |
+| `/agent/abort`               | REST      | POST   | Route for invoking the `Abort` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                                           |
+| `/agent/dsn`                 | REST      | GET    | Route for invoking the `ListSecretNames` method of the [Configuration gRPC service.](/data_catalog/data_catalog_job_runner.mdx#configuration-1)                                                                         |
 
 ## Migration Guides
 
