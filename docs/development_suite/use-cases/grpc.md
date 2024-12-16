@@ -71,6 +71,11 @@ and you should obtain the response
 #### Configure envoy
 
 To expose the server with the Envoy API Gateway, you can [create an endpoint](/development_suite/api-console/api-design/endpoints.md) on `/` which point to the `grpc-service` microservice, and pick the container port that binds the gRPC controller.
+
+:::tip
+Ensure that the _Use downstream protocol_ flag in the [_Advanced_ section](/development_suite/api-console/api-design/endpoints.md#manage-advanced-endpoint-parameters) is flagged, to ensure that the protocol used is inferred from the incoming request, allowing the protocol HTTP/2 to be used effectively.
+:::
+
 When using Envoy, the endpoint accepts also requests with HTTP/2 protocol, allowing to use gRPC clients.
 
 :::info
