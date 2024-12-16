@@ -36,6 +36,9 @@
           "path": "/run/secrets/data-fabric/control-plane.ini",
           "key": "MONGODB_URL"
         }
+      },
+      "settings": {
+        "apiPrefix": "/api"
       }
     }
   ],
