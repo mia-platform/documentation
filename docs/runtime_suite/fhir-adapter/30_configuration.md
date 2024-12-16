@@ -27,7 +27,11 @@ The following documentation assumes a prior knowledge about the FHIR standard. F
 
 ## Translation
 
-The configuration for the translation is expressed through a JSON file. The file is divided into 2 main sections: the definition of the FHIR references which compose an entity and the definition of the mappings.
+The configuration for the translation is expressed through a JSON file. The file is divided into 3 main sections:
+
+- the definition of the FHIR references which compose an entity;
+- the definition of the mappings between the entity and the FHIR resources;
+- the definition of the mappings between the API query parameters and FHIR resource search parameters.
 
 In order to describe the translation configuration, we will use the following example:
 
@@ -39,7 +43,13 @@ In order to describe the translation configuration, we will use the following ex
       "entityName": "Patient",
       "referencedByMainEntity": true,
       "refPropName": "subject.reference",
-      "toSave": true,
+      "toSave": true
+    }
+  ],
+  "searchSettings": [
+    {
+      "prop": "recordedAt",
+      "searchParam": "date"
     }
   ],
   "generic2FHIR": [
@@ -47,11 +57,11 @@ In order to describe the translation configuration, we will use the following ex
   ],
   "FHIR2generic": [
     ...
-  ]
+  ],
 }
 ```
 
-The configuration file is composed by 4 different main fields:
+The configuration file is composed by 5 different main fields:
 
 * **resource**: it is the name of the FHIR resource the mapping refers to. The name must be one of the available FHIR resources, since it used by the FHIR Adapter to contact the FHIR Server to save the resource. [Here](https://www.hl7.org/fhir/resourcelist.html) you can find the list of the available FHIR resources.
 
@@ -62,6 +72,10 @@ The configuration file is composed by 4 different main fields:
   Thus, looking at the above example, you can see that the clinical impression entity has information that must be stored in two different FHIR resources: `Patient` and `ClinicalImpression`. Since `ClinicalImpression` is set as main resource of the configuration record, you only need to add `Patient` in the **composition** field object.
 
   The meaning of the fields in a composition object is defined below.
+
+* **searchSettings**: it is the list of the mapping rules used to map the custom query parameters to the FHIR resource search parameters. When you pass some query parameters to a GET endpoint that accepts them, the FHIR Adapter automatically translates the original query parameter (`prop`) to the corresponding FHIR search parameter (`searchParam`).
+
+  Thus, looking at the above example, when you pass the `recordedAt` query parameter the FHIR Adapter is going to return the clinical impressions with a `date` field matching the value of the original query parameter.
 
 * **generic2FHIR**: it is the list of the mapping rules used to map a custom JSON to a FHIR standard JSON. In other words, is used in all those endpoint called with verbs `POST`, `PATCH` and `PUT`.
 
@@ -321,6 +335,38 @@ The same hold for the **generic2FHIR**. In this case the source resource must be
 For further information, please refer to the following running example.
 :::
 
+### Search settings
+
+When you are searching in a collection, you can map the original query parameter to a different FHIR search parameter to account for different naming conventions.
+For more details about the FHIR search parameters, please take a look at the [FHIR RESTful API documentation](https://hl7.org/fhir/http.html#search).
+
+The `searchSettings` field contains a list of objects, each defining a mapping from a query parameter and the corresponding FHIR resource search parameter:
+
+- **name**: the name of the original query parameter, that is passed to a FHIR Adapter GET endpoint;
+- **searchParam**: the name of the FHIR resource field used to filter.
+
+Considering the search settings provided in the example:
+
+```json
+[
+  {
+    "prop": "recordedAt",
+    "searchParam": "date"
+  }
+]
+```
+
+If you send a GET request looking like this:
+
+```bash
+curl -X GET https://your-url/ClinicalImpression/?recordedAt=2024-01-01T09:00:00Z \
+-H  "accept: application/json"  \
+-H  "content-type: application/json" \
+-H  "client-key: client-key"
+```
+
+the FHIR Adapter would return the clinical impressions recorded on 1st January 2024 at 09:00 UTC, or, in other word, whose `date` field matches the `2024-01-01T09:00:00Z` date/time value. 
+
 ## Running Example
 
 To better understand the translation configuration, let us take an overview on a real-case scenario configuration.
@@ -347,6 +393,12 @@ From the example you can see that the **FHIR2generic** translation differs from 
           "referencedByMainEntity": true,
           "refPropName": "subject.reference",
           "toSave": true,
+        }
+      ],
+      "searchSettings": [
+        {
+          "prop": "recordedAt",
+          "searchParam": "date"
         }
       ],
       "generic2FHIR": [

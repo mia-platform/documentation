@@ -51,7 +51,7 @@ To prevent the insertion of duplicated users in the database is necessary to def
 ## User Manager Configuration CRUD collection
 
 The User Manager Service requires a CRUD collection to store user group schemas and other group properties.
-This collection can be managed directly from the Backoffice, allowing also users that do not have access to the console
+This collection can be managed directly from the [Microfrontend Composer][microfrontend-composer], allowing also users that do not have access to the console
 to configure the user Manager Service.
 The collection can have any name you want, as long as you specify the correct name in the
 `UMS_CONFIG_CRUD_ENDPOINT` [environment variable][environment-variables].
@@ -60,7 +60,7 @@ The configuration collection needs the following service-specific fields.
 
 - **userGroup (required)** - `string`: unique group type for users (eg. admin, secretary, etc.).
 - **crudSchema (required)** - `object`: the JSON schema of the CRUD that stores the user data for the specific group.
-- **label (required)** - `string`: label displayed in the Backoffice lookup.
+- **label (required)** - `string`: label displayed in the [Microfrontend Composer][microfrontend-composer] lookup.
 - **authUserCreationDisabled** - `boolean`: if `true`, it disables the user creation in the authentication service for the given group (the user is only created in the CRUD).
 
 ## Auth0 Users Imports Jobs CRUD collection
@@ -175,10 +175,7 @@ When no file is provided, no additional properties will be added.
 
 ## Console Endpoint
 
-In order to use the User Manager Service from the Backoffice, you must create a dedicated endpoint to expose routes.
-If the Auth0 Client is used as authentication service, the API Key must be enabled in the endpoint,
-since it is used by the Auth0 Client to infer the client-type.
-
+In order to use the User Manager Service with [Microfrontend Composer][microfrontend-composer], you must [configure the API Gateway][api-gateway] and [create an endpoint][console-endpoint] to expose the service routes.
 
 ## Job Scheduler
 
@@ -218,7 +215,11 @@ sequenceDiagram
     UMS-->>-UI: completed job results
 ```
 
+
 [agenda-package]: https://www.npmjs.com/package/agenda "Agenda package documentation"
+[api-gateway]: /runtime_suite/api-gateway/10_overview.md
+[console-endpoint]: /development_suite/api-console/api-design/endpoints.md
+[microfrontend-composer]: /microfrontend-composer/overview.md
 [rond-config]: https://rond-authz.io/docs/configuration
 [rond-policy-integration]: https://rond-authz.io/docs/policy-integration
 

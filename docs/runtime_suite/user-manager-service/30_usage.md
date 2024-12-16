@@ -444,7 +444,24 @@ Note that in any case a user set to `DELETED` is never deleted from the CRUD wit
 
 #### Body
 
-The body of this request has the same interface of a CRUD service `POST /users/state` request, if used with the filters.
+The body of this request has the same interface of the CRUD service `POST /users/state` endpoint and expects a list of filters and transitions in the body, like:
+
+```json
+[
+  {
+    "filter": {
+      "_id": "66e19957f72ba7349eb7b7b2"
+    },
+    "stateTo": "TRASH"
+  },
+  {
+    "filter": {
+      "_id": "66e19957f72ba7349eb7b7b3"
+    },
+    "stateTo": "DELETED"
+  }
+]
+```
 
 #### Response
 

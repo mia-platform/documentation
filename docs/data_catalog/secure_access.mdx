@@ -176,7 +176,7 @@ In case more details are needed on this latter part, please head over to the `au
 No further configuration is needed for this service.
 
 :::tip
-In case it is needed to [embed Data Catalog solution within Mia-Platform Console](/data_catalog/data_catalog_frontend.mdx#embed-as-console-extension),
+In case it is needed to [embed Data Catalog solution within Mia-Platform Console](/data_catalog/frontend/overview.mdx#embed-as-console-extension),
 please ensure that login site version greater or equal to `v8.1.2` which supports handling authentication both via redirect and as popup
 when requested from an iFrame.
 :::
@@ -596,10 +596,13 @@ and then forwarded to the underlying components.
 In addition to the endpoints described in the [Authentication Flow](#endpoints) section, here are described the ones that expose
 all the functionalities of Data Catalog system, both the frontend and backend components.
 
-| Endpoint            | Service         | Authentication Required | User Group Permission |
-|---------------------|-----------------|:-----------------------:|-----------------------|
-| `/api/data-catalog` | fabric-bff      |            ✅            | `false`               |
-| `/data-catalog`     | data-catalog-fe |            ✅            | `true`                |
+| Endpoint            | Service         | Authentication Required | User Group Permission               |
+|---------------------|-----------------|:-----------------------:|-------------------------------------|
+| `/api/connections`  | fabric-bff      |            ✅           | `false`                             |
+| `/api/data-catalog` | fabric-bff      |            ✅           | `permissions["update:bulk-action"]` |
+| `/api/job-runner`   | fabric-bff      |            ✅           | `permissions["admin:connections"]`  |
+| `/api/open-lineage` | fabric-bff      |            ✅           | `false`                             |
+| `/data-catalog`     | data-catalog-fe |            ✅           | `true`                              |
 
 ### Routes
 
@@ -608,11 +611,31 @@ is listed here:
 
 | Permission               | Context                                                                              |
 |--------------------------|--------------------------------------------------------------------------------------|
+| `admin:connections`      | allow user to manage data catalog connections                                        |
 | `read:data-assets`       | allow visualizing data catalog records and their metadata                            |
 | `update:metadata-assets` | enable editing metadata associated to data catalog records                           |
 | `update:bulk-action`     | allow users performing the same operation in bulk over multiple data catalog records |
+| `update:lineage`         | allow users to update lineage information of assets                                  |
 
-The permissions described in the table above needs then to be applied to all the different routes exposed by Data Catalog application,
+:::caution
+Please ensure that all these endpoints and subsequent routes are set with _Authentication Required_ in their security details tab.
+:::
+
+#### Connections API
+
+The permissions described in the table above needs then to be applied to all the different routes exposed over `/api/connections/*`,
+so that each operation is covered with the correct grant.
+
+| Route                                                      | Type      | Method   | User Group Permissions                  |
+|------------------------------------------------------------|-----------|----------|-----------------------------------------|
+| `/items`                                                   | REST      | GET      | `permissions["admin:connections"]`      |
+| `/items`                                                   | REST      | POST     | `permissions["admin:connections"]`      |
+| `/items/:id`                                               | REST      | PATCH    | `permissions["admin:connections"]`      |
+| `/items/:id`                                               | REST      | DELETE   | `permissions["admin:connections"]`      |
+
+#### Data Catalog API
+
+The permissions described in the table above needs then to be applied to all the different routes exposed over `/api/data-catalog/*`,
 so that each operation is covered with the correct grant.
 
 | Route                                                      | Type      | Method | User Group Permissions                  |
@@ -649,9 +672,39 @@ so that each operation is covered with the correct grant.
 | `/metadata-registry/search`                                | REST      | GET    | `permissions["read:data-assets"]`       |
 | `/bulk-actions`                                            | Websocket | GET    | `permissions["update:bulk-action"]`     |
 
-:::caution
-Please ensure that all these endpoints and subsequent routes are set with _Authentication Required_ in their security details tab.
-:::
+#### Job Runner API
+
+The permissions described in the table above needs then to be applied to all the different routes exposed over `/api/job-runner/*`,
+so that each operation is covered with the correct grant.
+
+| Route                         | Type      | Method   | User Group Permissions                   |
+|------------------------------ |-----------|----------|------------------------------------------|
+| `/secret-names`               | REST      | GET      | `permissions["admin:connections"]`       |
+| `/agent/abort`                | REST      | POST     | `permissions["admin:connections"]`       |
+| `/agent/sync`                 | REST      | POST     | `permissions["admin:connections"]`       |
+| `/agent/dsn`                  | REST      | GET      | `permissions["admin:connections"]`       |
+| `/agent/drivers`              | REST      | GET      | `permissions["admin:connections"]`       |
+| `/feedback`                   | Websocket | GET      | `permissions["admin:connections"]`       |
+
+#### Open Lineage API
+
+The permissions described in the table above needs then to be applied to all the different routes exposed over `/api/open-lineage/*`,
+so that each operation is covered with the correct grant.
+
+| Route                                                      | Type      | Method   | User Group Permissions                  |
+|------------------------------------------------------------|-----------|----------|-----------------------------------------|
+| `/jobs/from/system/:id/direction/:direction`               | REST      | GET      | `permissions["read:data-assets"]`       |
+| `/jobs/from/system/:id/direction/:direction`               | REST      | GET      | `permissions["read:data-assets"]`       |
+| `/jobs/items`                                              | REST      | POST     | `permissions["update:lineage"]`         |
+| `/jobs/items/:id`                                          | REST      | PATCH    | `permissions["update:lineage"]`         |
+| `/jobs/items/:id`                                          | REST      | DELETE   | `permissions["update:lineage"]`         |
+| `/dataset/items/:id`                                       | REST      | GET      | `permissions["read:data-assets"]`       |
+| `/dataset/items`                                           | REST      | POST     | `permissions["update:lineage"]`         |
+| `/dataset/items/:id`                                       | REST      | PATCH    | `permissions["update:lineage"]`         |
+| `/dataset/items/:id`                                       | REST      | DELETE   | `permissions["update:lineage"]`         |
+| `/facets/storage/items/:id`                                | REST      | GET      | `permissions["read:data-assets"]`       |
+| `/facets/storage/items/:id`                                | REST      | DELETE   | `permissions["update:lineage"]`         |
+
 
 ## Users Management
 
@@ -846,7 +899,11 @@ or within the advanced tab of the corresponding page in the Composer.
               "read:data-assets",
               "update:metadata-assets",
               "read:users",
-              "update:users"
+              "update:users",
+              "update:bulk-action",
+              "update:lineage",
+              "admin:connections",
+              "admin:producers"
             ]
           },
           "dataSchema": {
@@ -864,7 +921,11 @@ or within the advanced tab of the corresponding page in the Composer.
                 "read:data-assets",
                 "update:metadata-assets",
                 "read:users",
-                "update:users"
+                "update:users",
+                "update:bulk-action",
+                "update:lineage",
+                "admin:connections",
+                "admin:producers"
               ]
             }
           }
@@ -1195,15 +1256,24 @@ Before deploying, please verify that micro-lc public variables have been created
 These variables are employed by the Console to define the version of the service and libraries used by micro-lc at deploy time.
 They can be upgraded whenever an update is available.
 
+:::tip
+Besides the _Users Page_, the Composer comes with two additional pages of type `iFrame`:
+
+- __docs__: page showing Data Catalog documentation from this website;
+- __job_runner_ui__: page showing the application's [`grpcui`](https://github.com/fullstorydev/grpcui) interacting with the _Job Runner_ service.
+  See [here](/data_catalog/data_catalog_job_runner.mdx#trigger-job) to learn more about the interactions with _Job Runner_. 
+:::
+
 ### Endpoints
 
 Here are reported the endpoints that should be exposed from the project in order to enable users managements:
 
-| Endpoint                   | Service    | Authentication Required | User Group Permission                                          |
-|----------------------------|------------|:-----------------------:|----------------------------------------------------------------|
-| `/micro-lc-configurations` | micro-lc   |            ✅            | `true`                                                         |
-| `/mgmt`                    | micro-lc   |            ✅            | `true`                                                         |
-| `/authz/users`             | crud       |            ✅            | `permissions["read:users"]` \|\| `permissions["update:users"]` |
+| Endpoint                   | Service    | Authentication Required  | User Group Permission                                                    |
+|----------------------------|------------|:------------------------:|--------------------------------------------------------------------------|
+| `/micro-lc-configurations` | micro-lc   |            ✅            | `true`                                                                   |
+| `/mgmt`                    | micro-lc   |            ✅            | `true`                                                                   |
+| `/authz/users`             | crud       |            ✅            | `permissions["read:users"]` \|\| `permissions["update:users"]`           |
+| `/ui/job-runner`           | grpcui     |            ✅            | `permissions["admin:producers"]` \|\| `permissions["admin:connections"]` |
 
 ### Routes
 

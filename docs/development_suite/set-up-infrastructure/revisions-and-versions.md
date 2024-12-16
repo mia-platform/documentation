@@ -4,7 +4,8 @@ title: Manage Revisions and Versions
 sidebar_label: Manage Revisions and Versions
 ---
 
-In Projects adopting the Enhanced Workflow, `Revisions` and `Versions` replace the concept of `Branches` and `Tags`. The Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**.
+In Projects adopting the Enhanced Workflow, `Revisions` and `Versions` replace the concept of `Branches` and `Tags`.
+The Console will not rely on the typical Git-based instruments anymore and will instead adopt a **new configuration management system**.
 
 Developers can manage *revisions* and *versions* from the dedicated sections inside the Project Overview area.
 
@@ -24,9 +25,9 @@ Versions can only be deleted by Project Administrators.
 
 ![Versions management page](img/versions-overview.png)
 
-## Revision history 
+## Revision history
 
-The Enhanced Workflow feature replaces the `Commit History` with the `Revision History`. 
+The Enhanced Workflow feature replaces the `Commit History` with the `Revision History`.
 The Revision History allows to keep track of how a revision has changed over time, tracking all past snapshots of the Project configuration saved by the users.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -41,17 +42,28 @@ Once that a revision is selected, its history is accessible in the Design Area b
 
 It contains the list of snapshots of the Project configuration on the current revision or version, created each time it has been saved.  
 It also includes useful information such as the snapshot date, author, associated message, and any tags associated with it.
-Moreover, the right-side button allows the user to visualize changes between the selected snapshot and the previous one, in order to better understand the configuration's evolution over time.
+Moreover, the document icon on the right side of the table allows the user to visualize changes between the selected snapshot and the previous one,
+in order to better understand the configuration's evolution over time.
 
 ![Diff Editor on Revision History modal](img/diff-editor-on-revision-history.png)
 
 :::tip
-From the revision history you can restore previous changes using the specific option in the contextual menu.
+From the revision history you can restore previous changes using the specific option in the contextual menu:
+click on the three dots icon, and then select *Restore these changes* to update the configuration to the selected snapshot.
 
 ![restore button](img/revision-history-restore-changes-button.png)
 :::
 
-#### Snaphot review 
+### Compare different revisions
+
+It is possible also to see the differences between to revisions by clicking *Select for compare* option in the menu of the revision you are interested:
+the selected revision will appear highlighted in the revision history and then you can select another revision by clicking the *Compare with selected* button.
+
+!["Compare with selected" button](img/compare-snapshots.png)
+
+After doing so, the comparison of the two configurations will be displayed to give the possibility to better understand the changes between the two revisions.
+
+### Snaphot review
 
 On the revision history, it is possible to click on a snapshot ID to access its configuration and review and edit it using the Design section.
 

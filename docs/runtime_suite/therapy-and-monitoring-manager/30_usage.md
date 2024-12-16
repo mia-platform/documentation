@@ -58,7 +58,7 @@ The therapy data model add the concept of `directives`, which is an object follo
 
 The monitoring data model add the concept of `notes` and `thresholds`. The notes field contains the physician prescriptions, while a threshold is an object with the following properties:
 
-* `propertyName`: name of the property on which the threshold is evaluated;
+* `propertyName`: name of the property on which the threshold is evaluated; it should correspond to the path of the detection field containing the value to compare against the threshold, if your detection have nested or array fields you should specify the mapping between the `propertyName` and its path under the prototype `values` field (more details in the [Overview section][threshold-evaluation]);
 * `thresholdOperator`: operator to use in the threshold evaluation. Available options are: `gt`, `lt`, `gte`, `lte`, `eq`, `between`, `notBetween`;
 * `thresholdValue`: the value with which to evaluate the threshold (a single number for `gt`, `lt`, `gte`, `lte` and `eq` operators, an array of two numbers indicating a range for the `between` and `notBetween` operators).
 
@@ -946,6 +946,7 @@ The computation is performed for each plan according to the following algorithm,
 
 [overview]: ./10_overview.md "Overview page"
 [adherence-compliance]: ./10_overview.md#adherence-and-compliance "Adherence and compliance | Overview"
+[threshold-evaluation]: ./10_overview.md#threshold-evaluation
 
 [configuration]: ./20_configuration.md "Configuration page"
 [environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"
