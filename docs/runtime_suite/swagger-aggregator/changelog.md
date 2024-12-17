@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.8.3] 2024-12-16
+
+### Fixed
+
+- `transformPaths` correctly handles situation where a path contains another (e.g., `/generate` and `/generateFromFile`)
+
 ## [3.8.2] 2024-11-27
 
 ### Security
