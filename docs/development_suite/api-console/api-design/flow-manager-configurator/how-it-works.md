@@ -35,7 +35,7 @@ The settings button is placed on the right side of the header. It provides a dro
 - Service configuration
 - Service settings
 - Unlink microservice (only for linked services)
-- New layout (only if you has not switch to the new layout yet)
+- New layout (only if you have not switch to the new layout yet)
 
 #### Persistency Management
 
@@ -46,6 +46,8 @@ The persistency management modal allows to configure the persistency method used
 #### Service configuration
 
 The Service Configuration modal allows you to download and copy the configuration of the Flow Manager Service, regardless of whether the service is linked to the configurator.
+
+![Service Configuration](img/service-configuration.png)
 
 #### Service settings
 
@@ -62,6 +64,8 @@ This feature is available starting from Flow Manager version `2.6.0`.
 :::info
 This feature is available starting from Flow Manager version `2.6.5`.
 :::
+
+![Service Settings](img/service-settings.png)
 
 #### Unlink Microservice
 
@@ -85,14 +89,14 @@ Events that link the same states are collapsed into a single edge.
 
 You can create new entities on the canvas in the following ways:
 
-- New States:
+- **New States**:
     - Click the Add state button located in the top-right corner of the canvas.
     - Double-click on an empty space within the canvas.
 
-- [New layout] New Logic Blocks: which includes commands/wait events and the external executor
+- [New layout] **New Logic Blocks**: which includes commands/wait events and the external executor
     - Drag and drop from the right handle of the source state to an empty area on the canvas.
 
-- New Events:
+- **New Events**:
     - [New layout] Drag and drop from the right handle of an external executor to the left handle of the target state or to an empty area of the canvas.
     - [Old layout] Drag and drop from the right handle of the source state to the left handle of the target state.
 
@@ -136,17 +140,13 @@ This tab contains the State Groups and Event Groups recap. It allows to open the
 
 ![Library Expanded](img/library-expanded.png)
 
-##### State Group
+- **State Group**
 
 [State group](/runtime_suite/flow-manager-service/30_configuration.md#business-states-of-the-machine) creation modal can be opened clicking the *Plus* button placed in the [library](#library) scenario. A form placed in the side panel allows to edit or delete the selected state group.
 
-![State Group](img/state-group.png)
-
-##### Event Group
+- **Event Group**
 
 [Event group](/runtime_suite/flow-manager-service/30_configuration.md#business-events-of-the-machine) creation modal can be opened clicking the *Plus* button placed in the [library](#library) scenario. A form placed in the side panel allows to edit or delete the selected event group.
-
-![Event Group](img/event-group.png)
 
 #### Communication
 
@@ -206,9 +206,9 @@ This form allows to edit or delete the [initial event](/runtime_suite/flow-manag
 
 ![Initial Event](img/initial-event.png)
 
-### [New Layout] Logic Block
+### Logic Block
 
-The Logic Block form allows you to edit or delete the selected logic block. It can be visualized by selecting a command or external executor on the canvas.
+[New Layout] The Logic Block form allows you to edit or delete the selected logic block. It can be visualized by selecting a command or external executor on the canvas.
 
 You can choose between two modes for the logic block:
 - Wait for an external event: In this case, you can manually enter the external executor.
