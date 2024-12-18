@@ -87,14 +87,15 @@ No edits are allowed in this mode.
 
 ## Highlight Mode
 
-The highlight mode allows the user to focus on a subset of states and events of the flow. The following rules are applied:
+The highlight mode allows the user to focus on a subset of states, logic blocks, and events of the flow. The following rules are applied:
 - Click on a turned off state &rarr; the state is highlighted
+- Click on a turned off logic block &rarr; the logic block is highlighted [visible only in the new layout]
 - Click on a turned off event (i.e. edge)
   - Case source and target states turned off &rarr; nothing is highlighted
   - Case source and target states highlighted &rarr; the event is highlighted
-  - Case only source state is highlighted &rarr; the event and every following state and event is highlighted up to the first bifurcation encountered
-  - Case only target state is highlighted &rarr; the event and every previous state and event is highlighted up to the first bifurcation encountered
-- Click on an highlighted state &rarr; the state, its incoming events and every following state and event is turned off if they are not highlighted by another branch
-- Click on an highlighted event &rarr; the event is turned off and every following state and event is turned off if they are not highlighted by another branch
+  - Case only source state is highlighted &rarr; the event and every following state, logic block and event is highlighted up to the first bifurcation encountered
+  - Case only target state is highlighted &rarr; the event and every previous state, logic block and event is highlighted up to the first bifurcation encountered
+- Click on an highlighted state &rarr; the state, its incoming events and every following state, logic block and event is turned off if they are not highlighted by another branch
+- Click on an highlighted event &rarr; the event is turned off and every following state, logic block and event is turned off if they are not highlighted by another branch
 
 ![Highlight Mode](img/highlight-mode.png)
