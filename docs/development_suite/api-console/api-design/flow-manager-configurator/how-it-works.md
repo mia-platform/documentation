@@ -28,14 +28,12 @@ The header is always displayed on top of the Configurator, it provides the follo
 
 - **History Buttons**: the history buttons are placed on the right side of the header. They provide the standard history actions: *undo* and *redo*. The history is based on actions that result in configuration changes: the maximum supported length is 10 actions.
 
-- **Settings**
-
-The settings button is placed on the right side of the header. It provides a dropdown menu with the following options:
-- Persistency Management
-- Service configuration
-- Service settings
-- Unlink microservice (only for linked services)
-- New layout (only if you have not switch to the new layout yet)
+- **Settings**: the settings button is placed on the right side of the header. It provides a dropdown menu with the following options:
+    - Persistency Management
+    - Service configuration
+    - Service settings
+    - Unlink microservice (only for linked services)
+    - New layout (only if you have not switch to the new layout yet)
 
 #### Persistency Management
 
