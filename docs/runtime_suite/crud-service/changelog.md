@@ -15,6 +15,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.2.2 - 2024-12-13
+
+### Changed
+
+- updated service dependencies
+- upgrade NodeJS version in Docker image to v22.12.0
+
+### CI
+
+- added step for generating SBOM (Software Bill of Materials)
+- added step for scanning the built image
+
 ## 7.2.1 - 2024-10-08
 
 ### Fixed
@@ -126,6 +138,19 @@ This issue has been resolved and the service can now properly start, creating th
 - updated `@fastify/mongodb` to v8.0.0
 - updated `@fastify/multipart` to v8.0.0
 
+## 6.10.4 - 2024-12-13
+
+### CI
+
+- added step for generating SBOM (Software Bill of Materials)
+- added step for scanning the built image
+
+## 6.10.3 - 2024-06-06
+
+### Changed
+
+- downgrade debian image to bullseye, aligning the behavior of the service with that prior to v6.10.1.
+
 ## 6.10.2 - 2024-06-06
 
 ### Changed
@@ -134,8 +159,9 @@ This issue has been resolved and the service can now properly start, creating th
 
 ## 6.10.1 - 2024-05-17
 
-- fixed projection example in json schema generator
+### Fixed
 
+- fixed projection example in json schema generator
 
 ## 6.10.0 - 2024-02-01
 

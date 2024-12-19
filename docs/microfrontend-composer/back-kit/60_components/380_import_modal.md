@@ -81,7 +81,9 @@ where [LocalizedText][localized-text] is either a string or an object mapping la
 
 ### Properties & Attributes
 
-None
+| property           | attribute                 | type             | default | description                                                           |
+| ------------------ | ------------------------- | ---------------- | ------- | --------------------------------------------------------------------- |
+| `method`           | -                         | string           | -       | HTTP method for import request. Can be 'POST' or 'PATCH'              |
 
 ### Listens to
 

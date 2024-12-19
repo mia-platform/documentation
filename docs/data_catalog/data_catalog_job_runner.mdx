@@ -54,8 +54,11 @@ its duty is to align the datasets retrieved previously by the Agent and convert 
 
 ### Connection Cleanup
 
-_Connection Cleanup_ is a procedure that is launched automatically when a user [deletes a connection from the Data Catalog UI](/data_catalog/frontend/data_catalog_connections.mdx#delete-connection). 
-This job removes all the assets of a deleted connection from the Data Catalog.
+_Connection Cleanup_ is a set of procedures that are launched automatically when a user [deletes a connection from the Data Catalog UI](/data_catalog/frontend/data_catalog_connections.mdx#delete-connection). 
+These jobs will delete all assets related to a connection. In particular:
+
+- `datasetsCleanupJob`: will delete Open Lineage datasets linked to a connection;
+- `jobsCleanupJob`: will delete all Jobs defined for the connection's datasets. 
 
 ### Fast Data Jobs Sync 
 
@@ -72,6 +75,7 @@ Data Catalog Application is shipped with an already pre-configured [`grpcui`](ht
 that is exposed under proper permissions as part of the [Secure Access microfrontend](/data_catalog/secure_access.mdx#microfrontend-composer).
 
 From there, you can pick the `JobRunner` service, choose the `Run` method and then pick the `openLineageFastDataJobSync` option as request.
+You need also to specify the name of the `producer` as a string parameter: this information will be displayed in the [Data Catalog UI Job Details section.](/data_catalog/frontend/data_lineage.mdx#job-details)
 
 ![Users Management UI](./img/job_runner_manual_trigger.png)
 
@@ -456,6 +460,7 @@ Service responsible to retrieve information about the main configuration of the 
 
 Service responsible to interact with the JobRunner service. It has the following methods:
   - `Run`: unary RPC that receive the context of [a job](#available-jobs) and executes it, returning the corresponding identifier;
+  - `Abort`: unary RPC that, given a job id, stops the execution of [a job](#available-jobs) currently executed by the service;
   - `List`: unary RPC returning the list of jobs that are currently executed by the service;
   - `History`: unary RPC returning the list of jobs that have been executed by the service;
   - `Status`: server streaming RPC returning feedback messages from the active jobs. 

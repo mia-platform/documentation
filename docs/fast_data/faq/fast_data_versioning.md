@@ -47,7 +47,7 @@ is `v7.5.4`
 
 | Real-Time-Updater | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       7.9.0       |             3.3.2             |        6.7.1        |
+|       7.9.1       |             3.3.3             |        6.7.2        |
 
 ### Projection Storer Support
 
@@ -66,7 +66,7 @@ the final aggregated Single View.
 
 | Projection Storer | Single View Trigger Generator | Single View Creator |
 |:-----------------:|:-----------------------------:|:-------------------:|
-|       1.3.4       |             3.3.2             |        6.7.1        |
+|       1.3.5       |             3.3.3             |        6.7.2        |
 
 
 ### Runtime Management Support

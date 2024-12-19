@@ -51,7 +51,14 @@ You can find more info about how to create an internal endpoint in the [CRUD doc
 
 These endpoint types all share the microservice property that allows you to link the endpoint to a specific microservice (or proxy) configured in your project.
 
-Upon creation of an endpoint linked to a microservice, you will be able to edit the _Rewrite Base Path_ parameter. This path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
+:::info
+When creating a new endpoint from a Microservice, you will have to select both the microservice and the container port to use.
+
+Ensure that the microservice uses the configured port to ensure that the endpoint is reachable.
+:::
+
+Upon creation of an endpoint linked to a microservice, you will be able to edit the _Rewrite Base Path_ parameter.
+This path is useful to customize the base path that is used when invoking APIs exposed by the linked microservice.
 
 #### Fast Data Projection
 
@@ -218,6 +225,7 @@ The **Advanced** tab is visible only if the Envoy API Gateway service is enabled
 - **Rate limit** (_integer_): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
 - **Request body size** (_decimal_): the maximum body size of user requests.
 - **Iframe embedding options**: the X-Frame-Options directive that is considered when the endpoint response should be embedded in an iframe;
+- **Protcol options**: this options instruct Envoy to process the request with the protocol coming from the downstream connection, allowing to dinamically infer the protocol to be used (HTTP/1.1 or HTTP/2);
 
 :::warning
 This `Iframe embedding` option is configurable only for the `Envoy API Gateway`, instead for `Nginx API Gateway` it is required to configure it manually using the `Advanced` section of the Console

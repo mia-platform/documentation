@@ -207,48 +207,49 @@ within the same namespace, it is not necessary to publicly expose any endpoint o
 
 ### Routes
 
-Here are described which routes Open Lineage service serves.
+Here are described which routes Open Lineage service serves over the corresponding endpoints of Fabric BFF microservice.
 
 #### Data Catalog routes
 
-The following routes are exposed over the `/data-catalog/*` base path.
+The following routes are exposed over the `/api/data-catalog` endpoint.
 
-| Endpoint                                                   | Type | Method | Description                                                                                               |
-|------------------------------------------------------------|------|--------|-----------------------------------------------------------------------------------------------------------|
-| `/assets/search`                                           | REST | GET    | Search for dataset assets and their metadata                                                              |                                         
-| `/assets/search-parents`                                   | REST | GET    | Search for name of system of record or table name                                                         |
-| `/tags/count`                                              | REST | GET    | Count how many unique tags exists among all data assets                                                   |
-| `/tags/items`                                              | REST | GET    | List existing tags associated to data assets                                                              |                                                  
-| `/tags/search`                                             | REST | GET    | Search for a specific tag value                                                                           |
-| `/sors/:dataset-id`                                        | REST | GET    | Retrieve selected _System of Record_ details and metadata                                                 |
-| `/sors/:dataset-id/custom-properties/:name`                | REST | POST   | Create a custom property for selected _System of Record_                                                  |              
-| `/sors/:dataset-id/custom-properties/:name`                | REST | PATCH  | Change a custom property value for selected _System of Record_                                            |              
-| `/sors/:dataset-id/custom-properties/:name`                | REST | DELETE | Remove a custom property for selected _System of Record_                                                  |              
-| `/sors/:dataset-id/description`                            | REST | PATCH  | Change the description associated to selected _System of Record_                                          |                          
-| `/sors/:dataset-id/tags`                                   | REST | PATCH  | Change the list of tags associated to selected _System of Record_                                         |                                 
-| `/tables/:dataset-id`                                      | REST | GET    | Retrieve selected _Table_ details and metadata                                                            |                                    
-| `/tables/:dataset-id/custom-properties/:name`              | REST | POST   | Create a custom property for selected _Table_                                                             |            
-| `/tables/:dataset-id/custom-properties/:name`              | REST | PATCH  | Change a custom property value for selected _Table_                                                       |            
-| `/tables/:dataset-id/custom-properties/:name`              | REST | DELETE | Remove a custom property for selected _Table_                                                             |            
-| `/tables/:dataset-id/description`                          | REST | PATCH  | Change the description associated to selected _Table_                                                     |                        
-| `/tables/:dataset-id/tags`                                 | REST | PATCH  | Change the list of tags associated to selected _Table_                                                    |                               
-| `/columns/:dataset-id/:field-name`                         | REST | GET    | Retrieve selected _Column_ details and metadata                                                           |                       
-| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | POST   | Create a custom property for selected _Column_                                                            |
-| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | PATCH  | Change a custom property value for selected _Column_                                                      |
-| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST | DELETE | Remove a custom property for selected _Column_                                                            |
-| `/columns/:dataset-id/:field-name/description`             | REST | PATCH  | Change the description associated to selected _Column_                                                    |           
-| `/columns/:dataset-id/:field-name/tags`                    | REST | PATCH  | Change the list of tags associated to selected _Column_                                                   |                  
-| `/metadata-registry/count`                                 | REST | GET    | Count how many custom properties definition exists                                                        |                                    
-| `/metadata-registry/items`                                 | REST | GET    | List custom properties definition                                                                         |                                    
-| `/metadata-registry/items`                                 | REST | POST   | Create a custom property definition                                                                       |                                    
-| `/metadata-registry/items/:name`                           | REST | GET    | Retrieve the definition details of a custom property                                                      |                               
-| `/metadata-registry/items/:name`                           | REST | PATCH  | Change the definition of a custom property (e.g. type or description)                                     |                               
-| `/metadata-registry/items/:name`                           | REST | DELETE | Remove a custom property definition                                                                       |
-| `/metadata-registry/search`                                | REST | GET    | Search for a specific metadata registry of interest                                                       |
+| Endpoint                                                   | Type      | Method | Description                                                                                               |
+|------------------------------------------------------------|-----------|--------|-----------------------------------------------------------------------------------------------------------|
+| `/assets/search`                                           | REST      | GET    | Search for dataset assets and their metadata                                                              |                                         
+| `/assets/search-parents`                                   | REST      | GET    | Search for name of system of record or table name                                                         |
+| `/bulk-actions`                                            | Websocket | GET    | Route for handling async operations over multiple datasets records                                        |
+| `/tags/count`                                              | REST      | GET    | Count how many unique tags exists among all data assets                                                   |
+| `/tags/items`                                              | REST      | GET    | List existing tags associated to data assets                                                              |                                                  
+| `/tags/search`                                             | REST      | GET    | Search for a specific tag value                                                                           |
+| `/sors/:dataset-id`                                        | REST      | GET    | Retrieve selected _System of Record_ details and metadata                                                 |
+| `/sors/:dataset-id/custom-properties/:name`                | REST      | POST   | Create a custom property for selected _System of Record_                                                  |              
+| `/sors/:dataset-id/custom-properties/:name`                | REST      | PATCH  | Change a custom property value for selected _System of Record_                                            |              
+| `/sors/:dataset-id/custom-properties/:name`                | REST      | DELETE | Remove a custom property for selected _System of Record_                                                  |              
+| `/sors/:dataset-id/description`                            | REST      | PATCH  | Change the description associated to selected _System of Record_                                          |                          
+| `/sors/:dataset-id/tags`                                   | REST      | PATCH  | Change the list of tags associated to selected _System of Record_                                         |                                 
+| `/tables/:dataset-id`                                      | REST      | GET    | Retrieve selected _Table_ details and metadata                                                            |                                    
+| `/tables/:dataset-id/custom-properties/:name`              | REST      | POST   | Create a custom property for selected _Table_                                                             |            
+| `/tables/:dataset-id/custom-properties/:name`              | REST      | PATCH  | Change a custom property value for selected _Table_                                                       |            
+| `/tables/:dataset-id/custom-properties/:name`              | REST      | DELETE | Remove a custom property for selected _Table_                                                             |            
+| `/tables/:dataset-id/description`                          | REST      | PATCH  | Change the description associated to selected _Table_                                                     |                        
+| `/tables/:dataset-id/tags`                                 | REST      | PATCH  | Change the list of tags associated to selected _Table_                                                    |                               
+| `/columns/:dataset-id/:field-name`                         | REST      | GET    | Retrieve selected _Column_ details and metadata                                                           |                       
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST      | POST   | Create a custom property for selected _Column_                                                            |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST      | PATCH  | Change a custom property value for selected _Column_                                                      |
+| `/columns/:dataset-id/:field-name/custom-properties/:name` | REST      | DELETE | Remove a custom property for selected _Column_                                                            |
+| `/columns/:dataset-id/:field-name/description`             | REST      | PATCH  | Change the description associated to selected _Column_                                                    |           
+| `/columns/:dataset-id/:field-name/tags`                    | REST      | PATCH  | Change the list of tags associated to selected _Column_                                                   |                  
+| `/metadata-registry/count`                                 | REST      | GET    | Count how many custom properties definition exists                                                        |                                    
+| `/metadata-registry/items`                                 | REST      | GET    | List custom properties definition                                                                         |                                    
+| `/metadata-registry/items`                                 | REST      | POST   | Create a custom property definition                                                                       |                                    
+| `/metadata-registry/items/:name`                           | REST      | GET    | Retrieve the definition details of a custom property                                                      |                               
+| `/metadata-registry/items/:name`                           | REST      | PATCH  | Change the definition of a custom property (e.g. type or description)                                     |                               
+| `/metadata-registry/items/:name`                           | REST      | DELETE | Remove a custom property definition                                                                       |
+| `/metadata-registry/search`                                | REST      | GET    | Search for a specific metadata registry of interest                                                       |
 
 #### Open Lineage routes
 
-The following routes are exposed over the `/open-lineage/*` base path.
+The following routes are exposed over the `/api/open-lineage` endpoint.
 
 | Endpoint                                                   | Type | Method | Description                                                                                               |
 |------------------------------------------------------------|------|--------|-----------------------------------------------------------------------------------------------------------|
