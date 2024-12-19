@@ -53,11 +53,11 @@ You can install `miactl` with the use of `curl` or `wget` and downloading the la
 choosing the correct platform and operating system:
 
 ```sh
-curl -fsSL https://github.com/mia-platform/miactl/releases/download/v0.16.0/miactl-linux-amd64 -o /tmp/miactl
+curl -fsSL --proto '=https' --tlsv1.2 https://github.com/mia-platform/miactl/releases/download/v0.16.0/miactl-linux-amd64 -o /tmp/miactl
 ```
 
 ```sh
-wget -q https://github.com/mia-platform/miactl/releases/download/v0.16.0/miactl-linux-amd64 -O /tmp/miactl
+wget -q --https-only --secure-protocol=TLSv1_2 https://github.com/mia-platform/miactl/releases/download/v0.16.0/miactl-linux-amd64 -O /tmp/miactl
 ```
 
 After you have downloaded the file you can validate it against the checksum you can find at this [url] running the
