@@ -69,7 +69,6 @@ The `ruleId` references a rule from a predefined set of rules, that define a spe
 | `ruleId`                  | Description                                                                                         |
 | ------------------------- | --------------------------------------------------------------------------------------------------- |
 | `endpoints.security.edit` | block edit of the fields [`public`, `acl`, `secreted`] of `endpoints` and `routes` inside endpoints |
-|                           |                                                                                                     |
 
 ## Fetching and configuring rules with `miactl`
 
