@@ -82,10 +82,9 @@ You can also refer to the instructions [in this tutorial](/console/tutorials/con
 Next, proceed to set up the application. When searching in the marketplace, search for **AI RAG Chat**. You can find two different results:
 
 - the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [plugin](/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
-- the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [template](/templates/mia-platform-templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
+- the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [template](/marketplace/templates/mia_templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
 
-<!-- TODO: Update this picture with the AI RAG Chat without beta and the AI RAG Chat Template -->
-![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
+![AI RAG Chat applications in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
 It will prompt you to create the _API Gateway_ (you can use the previously created one with the available listener), the _RAG Chatbot API_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
 
@@ -189,11 +188,11 @@ Additionally to what we have seen before, the configuration must also include:
 
 - if the `llm.type` is `azure`, then it is also required to add:
   - the `llm.deploymentName` key, which is the name of the deployment of the LLM
-  - the `llm.url` key, which is the enpdoint of the LLM
+  - the `llm.url` key, which is the endpoint of the LLM
   - the `llm.apiVersion` key, which is the API version of the LLM
 - if the `embeddings.type` is `azure`, then it is also required to add:
   - the `embeddings.deploymentName` key, which is the name of the deployment of the Embedding
-  - the `embeddings.url` key, which is the enpdoint of the Embedding
+  - the `embeddings.url` key, which is the endpoint of the Embedding
   - the `embeddings.apiVersion` key, which is the API version of the Embedding
 
 The content of `vectorStore` is the same as the one described in the previous section.
