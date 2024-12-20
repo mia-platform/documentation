@@ -12,6 +12,14 @@ To accomplish this, we will utilize the Marketplace application called **AI RAG 
 - the **RAG Chatbot API** service, which leverages the APIs provided by [OpenAI](https://openai.com/) or [Azure OpenAI](https://aka.ms/azure-openai) to receive answers to questions in natural language, and to create _embeddings_, encoded definitions coming from pieces of text extracted from a website.
 - the **AI RAG Template Chat** service, a small frontend application written in React that provides a simple chat interface to communicate with the chatbot.
 - the **API Gateway** service, that will be used to expose the endpoints to reach the frontend application and communicate with the service.
+- several endpoints to expose the necessary APIs from the services to use the application.
+
+:::info
+The _RAG Chatbot API_ is a plugin maintained and supported by Mia-Platform that includes all the necessary logic to build a full performing RAG application.
+
+However, if you need to deep dive into the code by yourself to create a more suitable and customized application, you can use the **AI RAG Chat Template** application:
+this application includes all the features above, but creates a clone of the [_AI RAG Template_](https://github.com/mia-platform/ai-rag-template) repository in your provider to allow you to customize it accordingly to your needs.
+:::
 
 Furthermore, we will install the **API Documentation Aggregator** application and the **API Portal** from the templates.
 These will enable us to easily send HTTP requests to the AI RAG Template service to store additional documents in a database in a way that can be used by the service to answer questions.
@@ -20,7 +28,7 @@ The prerequisites for this tutorial are as follows:
 
 - A connection string to a [MongoDB Atlas instance](https://www.mongodb.com/products/platform/atlas-database) (unfortunately, MongoDB on-premise installations do not currently support the [_Vector Search Index_](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/), required for this process).
 - One of the following:
-  - if you want to use _OpenAI_ as aprovider, an API key to communicate with [OpenAI](https://openai.com/)
+  - if you want to use _OpenAI_ as a provider, an API key to communicate with [OpenAI](https://openai.com/)
   - if you want to use _Azure_ as a provider, a functioning deployment of both an _Embedding model_ and an _Large Language Model_ (you can find more information on how to do this in the related [documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=cli)).
 
 ## How it works
@@ -35,7 +43,7 @@ These chunks can be split in various ways, such as by paragraph, by page, or by 
 
 This will allow us to compare the question asked by a user with the text saved in the database.
 In order to efficiently retrieve documents from the database, we need to find a reliable method to compare the meaning of the question with the meaning of the chunks we want to use.
-To achieve this, we can create [_embeddings_](https://platform.openai.com/docs/guides/embeddings): the text is given to a mathematical model that will generate a multidimensional vector composed of millions of values between 0 and 1, effectively representing the meaning of the text.
+To achieve this, we can create [_embeddings_](https://platform.openai.com/docs/guides/embeddings): the text is given to a mathematical model that will generate a multidimensional vector composed of hundreds of values between 0 and 1, effectively representing the meaning of the text.
 Then, we will save the generated embeddings in the database along with the chunk of text used to create them.
 
 By doing this, whenever our chatbot receives a question, we can:
@@ -51,8 +59,9 @@ However they should be replaced with new embeddings when the documents (e.g. our
 
 If the documentation is available on a website, the most common and straightforward approach is to perform [web scraping](https://en.wikipedia.org/wiki/Web_scraping).
 This involves downloading all the pages of the website, recursively fetch all the other pages from the same website connected by hyperlinks, then removing any unnecessary information such as HTML tags, headers, footers, and styles, and generating embeddings from the remaining text.
-
-The **RAG Chatbot API** is a perfect example of a tool that can perform all these operations. It provides automatic connections to the Azure/OpenAI servers and the MongoDB database, allowing for seamless handling of Vector Indexes. Additionally, it can generate embeddings by simply providing a URL. With this template, creating a RAG application can be done in just a few minutes.
+The **RAG Chatbot API** is a perfect example of a tool that can perform all these operations.
+It provides automatic connections to the Azure/OpenAI servers and the MongoDB database, allowing for seamless handling of Vector Indexes.
+Additionally, it can generate embeddings by simply providing a URL. With this template, creating a RAG application can be done in just a few minutes.
 
 Another approach to generate embeddings is to start from internal documents, that you might have in form of a text file, a PDF file or multiple files in an zip archive.
 The **RAG Chatbot API** includes another endpoint that where a file can be uploaded, and the embeddings will be generated automatically from the content of the file.
@@ -70,12 +79,19 @@ The [API Documentation Aggregator](/runtime_suite_applications/api-documentation
 You can also refer to the instructions [in this tutorial](/console/tutorials/configure-marketplace-components/api-portal.mdx).
 :::
 
-Next, proceed to set up the **AI RAG Chat**. It will prompt you to create the _API Gateway_ (you can use the previously created one with the available listener), the _RAG Chatbot API_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
+Next, proceed to set up the application. When searching in the marketplace, search for **AI RAG Chat**. You can find two different results:
 
+- the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [plugin](/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
+- the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [template](/templates/mia-platform-templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
+
+<!-- TODO: Update this picture with the AI RAG Chat without beta and the AI RAG Chat Template -->
 ![AI RAG Chat in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
+It will prompt you to create the _API Gateway_ (you can use the previously created one with the available listener), the _RAG Chatbot API_, and the _AI RAG Template Chat_, along with several endpoints to expose the service APIs for sending questions and generating embeddings.
+
 Finally, create the [API Portal](/runtime_suite/api-portal/10_overview.md).
-If it is not already included in the project, navigate to the _Microservices_ section, and then select _Create new microservice_. Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
+If it is not already included in the project, navigate to the _Microservices_ section, and then select _Create new microservice_.
+Choose _From Marketplace_, and on the following page, search for and create a new _API Portal_.
 
 Once you have created these services, you can safely save the configuration.
 
@@ -169,7 +185,7 @@ Here is an example of a valid configuration where both the embedding model used 
 }
 ```
 
-More specifically:
+Additionally to what we have seen before, the configuration must also include:
 
 - if the `llm.type` is `azure`, then it is also required to add:
   - the `llm.deploymentName` key, which is the name of the deployment of the LLM
@@ -200,7 +216,9 @@ In the list of APIs, we can find three APIs with the tag _Embeddings_:
 - `POST api/embeddings/generateFromFile` to generate embeddings from a file
 - `GET api/embeddings/status` to check the status of the generation process
 
-The `POST api/embeddings/generate` API allows us to generate embeddings starting from a webpage. The service will download the page, extract all the text, and generate embeddings from it. It will also search for links on the page and recursively generate embeddings from the linked pages that have the same domain and follow the specified filter path.
+The `POST api/embeddings/generate` API allows us to generate embeddings starting from a webpage.
+The service will download the page, extract all the text, and generate embeddings from it.
+It will also search for links on the page and recursively generate embeddings from the linked pages that have the same domain and follow the specified filter path.
 
 The embeddings generation, either from website or from file, can take a while.
 Because of this, it is an asynchronous task, meaning that the API response is returned immediately, but the generation process continues in the background.
@@ -208,6 +226,9 @@ To check the status of the generation process, we can use the `GET api/embedding
 
 - If the response is `{"status": "running"}`, it means the process is still ongoing.
 - If the response is `{"status": "idle"}`, it means there are no active processes at the moment (indicating that the previous process has finished).
+
+The process may take a few seconds to several minutes, depending on how much content from the webpages or the files need to be downloaded and scraped.
+It is a good idea to [check the service logs of the pod](/development_suite/monitoring/resources/pods.md) to ensure that everything is progressing smoothly.
 
 :::info
 You can run only one generation process at time. In case you try to call again the `/api/embeddings/generate` API while a process is still ongoing, you will receive a `409 Conflict`.
@@ -217,7 +238,7 @@ With this information, we can start generating our embeddings.
 
 ### Generate embeddings from a webpage
 
-From the _API Portal_ We can make a request to the `api/embeddings/generate` API by expanding the corresponding card and clicking on "Try it out".
+From the _API Portal_ we can make a request to the `api/embeddings/generate` API by expanding the corresponding card and clicking on "Try it out".
 
 ![Embeddings generate API](../img/embeddings-generate-api.png)
 
@@ -252,12 +273,27 @@ At this point, we simply need to wait for the process to complete. To verify if 
 If the response body includes `{ "status": "running" }`, it means that the webpages are still being scraped and embeddings are still being generated.
 You can call the API multiple times, and when the response includes `{ "status": "idle" }`, then the process is concluded.
 
-The process may take a few seconds to several minutes, depending on the number of webpages that need to be downloaded and scraped.
-It is a good idea to [check the service logs of the pod](/development_suite/monitoring/resources/pods.md) to ensure that everything is progressing smoothly.
-
 ### Generate embeddings from a file
 
-<!-- TODO -->
+If we want to generate embeddings from a file, we can go to the `api/embeddings/generateFromFile` API from the _API Portal_.
+By expanding the corresponding card and clicking on "Try it out", we can see that this time we are required to upload a file.
+
+![Embeddings generateFromFile API](../img/embeddings-generate-from-file-api.png)
+
+By clicking on _Choose file_ we can select a file from our local machine.
+Supported files are the following:
+
+- PDF files (`.pdf`)
+- Text files (`.txt`)
+- Markdown files (`.md`)
+- Archive files (`.zip`, `.tar`, `.gz`) that includes only PDF, text and markdown files
+
+:::info
+If you upload an archive file, please ensure that files contains only the required files in the root directory: other files or folders will be ignored.
+:::
+
+After a click to the `Execute` button, the service will start the embedding generation process.
+As explained above, we can check the status of the process by calling the `/api/embeddings/status` API until the response body includes `{ "status": "idle" }`, meaning the process is concluded.
 
 ## 4. Enjoy
 
@@ -269,7 +305,9 @@ Once the process is over, there's no need to re-deploy or restart any service: a
 
 ### I have generated the embeddings, but the chatbot still does not answer correctly to my questions
 
-Check the logs of the _RAG Chatbot API_. At the very beginning, it should say whether the MongoDB Vector Search Index has been created/updated or if it failed for any reason (e.g. database temporarily not accessible or the collection does not exists yet). In any case the service will start.
+Check the logs of the _RAG Chatbot API_.
+At the very beginning, it should say whether the MongoDB Vector Search Index has been created/updated or if it failed for any reason (e.g. database temporarily not accessible or the collection does not exists yet).
+In any case the service will start.
 
 You may need to restart the service pod or manually create (or update) the index.
 
