@@ -33,7 +33,7 @@ The header is always displayed on top of the Configurator, it provides the follo
     - Service configuration
     - Service settings
     - Unlink microservice (only for linked services)
-    - New layout (only if you have not switch to the new layout yet)
+    - New layout (only if you have not switched to the new layout yet)
 
 #### Persistency Management
 
