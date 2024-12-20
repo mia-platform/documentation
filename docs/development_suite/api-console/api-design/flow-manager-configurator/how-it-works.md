@@ -4,6 +4,11 @@ title: How does it work?
 sidebar_label: How it works
 ---
 
+:::caution
+The new Flow Manager Configurator layout, which includes the canvas view for external executors, is available starting from Console version **12.5.1**. Once you switch to the new layout, this action is irreversible.
+:::
+
+
 The following image represents what a user visualizes for a Flow Manager service linked to the Configurator.
 
 ![Default Scenario](img/default-scenario.png)
@@ -15,26 +20,20 @@ In order to describe the functionalities of the tool let's split the interface i
 
 ## Header
 
-The header is always displayed on top of the Configurator, it provides the following features.
+The header is always displayed on top of the Configurator, it provides the following features:
 
-### Flow Selector
+- **Flow Selector**: the flow selector component is placed on the left side of the header. It provides a dropdown menu which allows to switch from a Flow Manager service to another.
 
-The flow selector component is placed on the left side of the header. It provides a dropdown menu which allows to switch from a Flow Manager service to another.
+- **Go to microservice**: the *Go to microservice* button is placed on the right side of the header. It redirects the user to the Microservices section in Design Area, in particular to the linked Flow Manager microservice.
 
-### Go to microservice
+- **History Buttons**: the history buttons are placed on the right side of the header. They provide the standard history actions: *undo* and *redo*. The history is based on actions that result in configuration changes: the maximum supported length is 10 actions.
 
-The *Go to microservice* button is placed on the right side of the header. It redirects the user to the Microservices section in Design Area, in particular to the linked Flow Manager microservice.
-
-### History Buttons
-
-The history buttons are placed on the right side of the header. They provide the standard history actions: *undo* and *redo*. The history is based on actions that result in configuration changes: the maximum supported length is 10 actions.
-
-### Settings
-
-The settings button is placed on the right side of the header. It provides a dropdown menu with the following options:
-- Persistency Management
-- Deep Merge (only for Flow Manager version >= `2.6.0`)
-- Unlink microservice (only for linked services)
+- **Settings**: the settings button is placed on the right side of the header. It provides a dropdown menu with the following options:
+    - Persistency Management
+    - Service configuration
+    - Service settings
+    - Unlink microservice (only for linked services)
+    - New layout (only if you have not switched to the new layout yet)
 
 #### Persistency Management
 
@@ -42,15 +41,29 @@ The persistency management modal allows to configure the persistency method used
 
 ![Persistency Management](img/persistency-management.png)
 
-#### Deep Merge
+#### Service configuration
 
-The deep merge modal allows to configure the deep merge setting of the Flow Manager as described [here](/runtime_suite/flow-manager-service/30_configuration.md#settings).
+The Service Configuration modal allows you to download and copy the configuration of the Flow Manager Service, regardless of whether the service is linked to the configurator.
+
+![Service Configuration](img/service-configuration.png)
+
+#### Service settings
+
+The service settings modal includes:
+
+- Deep merge: allows to configure the deep merge setting of the Flow Manager as described [here](/runtime_suite/flow-manager-service/30_configuration.md#settings).
 
 :::info
 This feature is available starting from Flow Manager version `2.6.0`.
 :::
 
-![Deep Merge](img/deep-merge.png)
+- Events: Enabling the Events toggle configures the Flow Manager to respond with an error if an unexpected event is received. If the event is as expected, the Flow Manager will respond with an "OK" status.
+
+:::info
+This feature is available starting from Flow Manager version `2.6.5`.
+:::
+
+![Service Settings](img/service-settings.png)
 
 #### Unlink Microservice
 
@@ -58,9 +71,13 @@ The unlink microservice modal alerts the user before actually performing the [un
 
 ![Unlink Service](img/unlink-service.png)
 
+#### New Layout
+
+The New Layout modal allows you to switch to the new layout, which includes the canvas view for external executors. Once you switch to the new layout, this action is irreversible, and the option to switch will no longer be visible.
+
 ## Canvas
 
-The canvas component allows to actually visualize the configured flow: states are represented by nodes and events are represented by edges.
+The canvas component allows you to visualize the configured flow, with states and external executors represented as nodes, and events and commands represented as edges.
 
 :::info
 Events that link the same states are collapsed into a single edge.
@@ -68,23 +85,22 @@ Events that link the same states are collapsed into a single edge.
 
 ### Create Entities
 
-New states can be created in the following ways:
-- Click the *Add state* button placed on the top right corner of the canvas
-- Double click on canvas empty space.
+You can create new entities on the canvas in the following ways:
 
-New events can be created in the following way:
-- Drag and drop from the right handle of the source state to the left handle of the target state.
+- **New States**:
+    - Click the Add state button located in the top-right corner of the canvas.
+    - Double-click on an empty space within the canvas.
 
-In addition, it is possible to create both a state and an event at the same time:
-- Drag and drop from the right handle of the source state to an empty area of the canvas.
+- [New layout] **New Logic Blocks**: which includes commands/wait events and the external executor
+    - Drag and drop from the right handle of the source state to an empty area on the canvas.
 
-This will create a new state and a new event that link the source state to the new state.
+- **New Events**:
+    - [New layout] Drag and drop from the right handle of an external executor to the left handle of the target state or to an empty area of the canvas.
+    - [Old layout] Drag and drop from the right handle of the source state to the left handle of the target state.
 
-### Edit Entities
-
-Some properties of states and events can be edited directly on the canvas. In particular, both states and events position can be edited simply by dragging and dropping the entity into a new position.
-
-Finally, states with no command offer a select to set a command.
+Additionally, you can create
+- [New layout] a logic block, event, and state simultaneously by dragging and dropping from the right handle of the source state to the left handle of the target state.
+- [Old layout] both a state and an event at the same time by drag and drop from the right handle of the source state to an empty area of the canvas.
 
 ### Control Buttons
 
@@ -122,17 +138,13 @@ This tab contains the State Groups and Event Groups recap. It allows to open the
 
 ![Library Expanded](img/library-expanded.png)
 
-##### State Group
+- **State Group**
 
 [State group](/runtime_suite/flow-manager-service/30_configuration.md#business-states-of-the-machine) creation modal can be opened clicking the *Plus* button placed in the [library](#library) scenario. A form placed in the side panel allows to edit or delete the selected state group.
 
-![State Group](img/state-group.png)
-
-##### Event Group
+- **Event Group**
 
 [Event group](/runtime_suite/flow-manager-service/30_configuration.md#business-events-of-the-machine) creation modal can be opened clicking the *Plus* button placed in the [library](#library) scenario. A form placed in the side panel allows to edit or delete the selected event group.
-
-![Event Group](img/event-group.png)
 
 #### Communication
 
@@ -143,9 +155,9 @@ This tab contains the Commands, Protocols, Hooks and Side Effects recap. It allo
 ##### Command
 
 [Command](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) creation modal can be opened clicking the *Plus* button placed in the [communication](#communication) scenario. A wizard will help the creation process following these steps:
-1. set a label and an optional description
-2. set an optional hook (using an existing one or creating in place a new one)
-3. set a communication protocol (using an existing one or creating in place a new one)
+1. Set a label, an optional description, and optionally select or write the external executor (from the microservices already instantiated in the console)
+2. set a communication protocol (either using an existing one or creating a new one on the spot)
+3. set an optional hook  (either using an existing one or creating a new one on the spot).
 
 A form placed in the side panel allows to edit or delete the selected command. Moreover it allows to set a custom hook which is not registered in the hooks recap and thus cannot be reused elsewhere.
 
@@ -169,8 +181,8 @@ A form placed in the side panel allows to edit or delete the selected protocol.
 
 [Side effect](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) creation modal can be opened clicking the *Plus* button placed in the [communication](#communication) scenario. A wizard will help the creation process following these steps:
 1. set a label and an optional description
-2. set an optional hook (using an existing one or creating in place a new one)
-3. set a communication protocol (using an existing one or creating in place a new one)
+2. set a communication protocol (either using an existing one or creating a new one on the spot)
+3. set an optional hook  (either using an existing one or creating a new one on the spot).
 
 A form placed in the side panel allows to edit or delete the selected side effect. Moreover it allows to set a custom hook which is not registered in the hooks recap and thus cannot be reused elsewhere.
 
@@ -191,6 +203,16 @@ The "Is final" toggle is automatically disabled and set to `false` when an outgo
 This form allows to edit or delete the [initial event](/runtime_suite/flow-manager-service/30_configuration.md#machine-definition). It can be visualized selecting the initial event on the canvas.
 
 ![Initial Event](img/initial-event.png)
+
+### Logic Block
+
+[New Layout] The Logic Block form allows you to edit or delete the selected logic block. It can be visualized by selecting a command or external executor on the canvas.
+
+You can choose between two modes for the logic block:
+- Wait for an external event: In this case, you can manually enter the external executor.
+- Select a command: The external executor will be pre-filled with the executor associated with the command, but you can overwrite it if needed.
+
+![Logic Block](img/logic-block.png)
 
 ### Event
 
