@@ -15,10 +15,10 @@ To accomplish this, you will utilize the Marketplace application called **AI RAG
 - several endpoints to expose the necessary APIs from the services to use the application.
 
 :::info
-The _RAG Chatbot API_ is a plugin maintained and supported by Mia-Platform that includes all the necessary logic to build a fully functional RAG application.
+The _RAG Chatbot API_ is a ready-to-use Plugin maintained and supported by Mia-Platform that includes all the necessary logic to build a fully functional RAG application.
 
-However, if you need to deep-dive into the code by yourself to create a more suitable and customized application, you can use the **AI RAG Chat Template** application.
-This application includes all the features above, but creates a clone of the [_AI RAG Template_](https://github.com/mia-platform/ai-rag-template) repository in your provider to allow you to customize it accordingly to your needs.
+However, if you need to deep-dive into the code by yourself, to create a more suitable and customized application, you can use the **AI RAG Chat Template** application instead.
+The **AI RAG Chat Template** application includes all the features above, but creates a clone of the [_AI RAG Template_](https://github.com/mia-platform/ai-rag-template) repository in your provider to allow you to customize it accordingly to your needs.
 :::
 
 Furthermore, you will install the **API Documentation Aggregator** application and the **API Portal** from the templates.
@@ -64,7 +64,7 @@ It provides automatic connections to the Azure/OpenAI servers and the MongoDB da
 Additionally, it can generate embeddings by simply providing a URL. With this template, creating a RAG application can be done in just a few minutes.
 
 Another approach to generate embeddings is to start from internal documents, that you might have in form of a text file, a PDF file or multiple files in an zip archive.
-The **RAG Chatbot API** includes another endpoint that where a file can be uploaded, and the embeddings will be generated automatically from the content of the file.
+The **RAG Chatbot API** includes another endpoint where a file can be uploaded, and the embeddings will be generated automatically from the content of the file.
 
 ## 1. Install the required applications
 
@@ -81,8 +81,8 @@ You can also refer to the instructions [in this tutorial](/console/tutorials/con
 
 Next, proceed to set up the application. When searching in the marketplace, search for **AI RAG Chat**. You can find two different results:
 
-- the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [plugin](/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
-- the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [template](/marketplace/templates/mia_templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
+- the _AI RAG Chat_, which is the application where the _RAG Chatbot API_ is provided in form of a [Plugin](/plugins/mia-platform-plugins.md), maintained and supported by the Mia-Platform team
+- the _AI RAG Chat Template_, which is the application where the _RAG Chatbot API_ is provided in form of a [Template](/marketplace/templates/mia_templates.md) that will create a repository in your Git provider; while this template represents all the features of the plugin and it is fully functional, you can modify it by adding or removing features according to your needs
 
 ![AI RAG Chat applications in Marketplace](../img/ai-rag-chat-in-marketplace.png)
 
