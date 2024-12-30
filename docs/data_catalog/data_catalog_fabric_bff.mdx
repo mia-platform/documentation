@@ -93,11 +93,11 @@ on your Mia-Platform Console instance and assign to it the proper permissions fo
 
 :::tip Good practices in permissions assignment
 Pay attention to the level of access to the resources that you assign to the Service Account. 
-For Control Plane use case, a good practice may be to assign the role of `guest` at Company level while granting
-the `reporter` role to all the projects that should be visible by Control Plane.  
+For Data Catalog use case, a good practice may be to assign the role of `guest` at Company level while granting
+the `reporter` role to all the projects that should be visible by Data Catalog.  
 About permissions assignment, it is possible to go even more granular in case you want to allow visibility only to a subset of runtime environments of a specific project.
 In fact, to do that, you may opt to assign the role of `guest` even at Project level while granting
-the `reporter` role solely to those runtime environments that should be visible by Control Plane.
+the `reporter` role solely to those runtime environments that should be visible by Data Catalog.
 :::
 
 Once the service account has been registered, your Company Owner needs to hand over to you its credentials, which are:
@@ -115,7 +115,7 @@ These details then should be inserted in your Fabric BFF service configuration u
 :::caution
 It is responsibility of your Company Owner to ensure that service account credentials are properly processed according to your company security policies.
 
-Furthermore, it is of <u>extreme importance</u> understanding that **any** Control Plane user will be able to list the project name
+Furthermore, it is of <u>extreme importance</u> understanding that **any** Data Catalog user will be able to list the project name
 and available environments of all the projects that can be accessed by the service account configured on Fabric BFF. 
 :::
 
@@ -125,10 +125,10 @@ This is and example of `console` property configuration:
 
 :::tip
 The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
-- `console.target`
-- `console.auth.credentials.clientId`
-- `console.auth.credentials.clientKeyId`
-- `console.auth.credentials.privateKey`
+- `console.rest.target`
+- `console.rest.auth.credentials.clientId`
+- `console.rest.auth.credentials.clientKeyId`
+- `console.rest.auth.credentials.privateKey`
 :::
 
 A custom x509 certificate can be added to the default root keychain of certificates for any client/reversed-proxy reached by Fabric BFF.
