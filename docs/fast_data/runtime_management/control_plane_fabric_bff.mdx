@@ -187,6 +187,7 @@ Under the endpoint specified above, the following routes are served by Fabric BF
 
 | Route                 | Type      | Method | Description                                                                                                                                                                         |
 |-----------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/fast-data/feedback` | Websocket | HEAD   | Verifies whether the pipeline _update_ can be carried<br/>out by current user                                                                                                       |
 | `/fast-data/feedback` | Websocket | GET    | Opens a websocket connection with the client to receive updates<br/>of runtimes and pipelines                                                                                       |
 | `/fast-data/control`  | REST      | HEAD   | Verifies whether the pipeline _change state action_ can be carried<br/>out by current user                                                                                          |
 | `/fast-data/control`  | REST      | POST   | Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend to change pipelines state                                                                              |
