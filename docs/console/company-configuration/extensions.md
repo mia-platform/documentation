@@ -100,7 +100,6 @@ If the current extension is of type Composer page, the badge will display the _E
 This section is only available for extensions of type _Composer_.
 :::
 
-<!-- TODO: Do we have here a link with a comprehensible list of these APIs? -->
 It is also possible to configure the extension to communicate with other external APIs, as well with the Mia-Platform supported APIs.
 This could be useful for use cases such as retrieving data from an external backend to be shown in a UI created with the Composer.
 
@@ -140,7 +139,6 @@ Details will include the name of the URL to call and the authentication type use
 On the right side of the page there are menus to either update or delete the base URL, and change the credentials of the authentication.
 
 In the configuration page there will also be an URL next to the _Base URL to contact your APIs_ label. This URL is the one to be used to access the APIs from your endpoint.
-<!-- TODO: Are security reasons? Should I be more specific? -->
 In fact, for security reasons, the URL to be called is not the destination URL itself, but a different one that is the one that will be used to access the APIs
 through the Mia-Platform [HTTP Proxy Manager](/runtime_suite/http-proxy-manager/10_overview.md) that is already configured to handle the communication with the APIs.
 
