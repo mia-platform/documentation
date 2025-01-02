@@ -13,7 +13,6 @@ And to do so, you will be using to create using only [miactl](/cli/miactl/10_ove
 ## What you will build
 
 You are going to customize the sidebar of a Mia-Platform project by adding a new menu and a new link that, when clicked, will show an integrated Composer page.
-<!-- TODO: Should the Integration Connector Agent be part of the official Docs? Why can't I find it? -->
 This page will include a table with data extracted from an API coming from another project that uses the [Integration Connector Agent](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/10_overview.md) to connect to a [Jira](https://www.atlassian.com/software/jira) Data Source.
 
 The have the _Integration Connector Agent_ to work properly, you need a configured account on Jira, as well as a [MongoDB instance](https://www.mongodb.com/) available as a database support for the service.
@@ -113,7 +112,6 @@ It will open a new page where you can configure call to external APIs, such as t
 To configure such call, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following information:
 
 - _Destination URL_: it is the URL that includes the API to call. In this case, it is the URL of the project connected to Jira which depends on how you configured the project (e.g. `https://jira-issues.console.gcp.mia-platform.eu/`)
-<!-- TODO: Should I suggest to use authentication? -->
 - _Authentication required_: if activated, requires authentication to communicate with the API. If the endpoint requires authentication then leave it activated, otherwise you can disable it.
 
 If the authentication is required you will be required to include:
@@ -135,7 +133,6 @@ The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you
 
 ### 4. Update the Composer page
 
-<!-- TODO: How do I add the CRUD Client using the UI? -->
 Now that we can finally connect to the API, it is finally time to update the Composer page to include the [CRUD Client component](/microfrontend-composer/back-kit/60_components/100_crud_client.md) to allow the table to fetch the data to show.
 
 Go back to the _General_ tab to see to details of the extension and click to the _Edit with Composer_ button.
