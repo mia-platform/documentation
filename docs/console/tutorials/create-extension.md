@@ -39,7 +39,7 @@ The project requires to the following services:
 
 - the _Integration Connector Agent_ service, available, configured as explained in [the related documentation](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/20_install.md)
 - the [_API Gateway_](/runtime_suite/api-gateway/10_overview.md) service, to expose the API that the extension will call.
-- the [_CRUD Service_](/runtime_suite/crud_service/10_overview.md) to expose the endpoint used by the extension and to allow you to call it with some appropriate filters.
+- the [_CRUD Service_](/runtime_suite/crud-service/10_overview_and_usage.md) to expose the endpoint used by the extension and to allow you to call it with some appropriate filters.
 
 All the three services are available on the Mia-Platform [Marketplace](/marketplace/overview_marketplace.md): you can select the latest available version of each service without issues.
 
@@ -110,11 +110,11 @@ If you are not there anymore, you can return there clicking to the _Extensions_ 
 When you are there, click on the tab _Outbound calls_.
 It will open a new page where you can configure call to external APIs, such as the CRUD collection endpoint of the project connected to Jira.
 
-To configure such call, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following informations:
+To configure such call, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following information:
 
 - _Destination URL_: it is the URL that includes the API to call. In this case, it is the URL of the project connected to Jira which depends on how you configured the project (e.g. `https://jira-issues.console.gcp.mia-platform.eu/`)
 <!-- TODO: Should I suggest to use authentication? -->
-- _Authentication required_: if activated, requires authentication to communicate with the API. If the endpoint requirez authentication then leave it activated, otherwise you can disable it.
+- _Authentication required_: if activated, requires authentication to communicate with the API. If the endpoint requires authentication then leave it activated, otherwise you can disable it.
 
 If the authentication is required you will be required to include:
 
@@ -136,7 +136,7 @@ The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you
 ### 4. Update the Composer page
 
 <!-- TODO: How do I add the CRUD Client using the UI? -->
-Now that we can finally connect to the API, it is finally time to update the Composer page to include the [CRUD Client component](/microfrontend-composer/back-kit/components/crud_client.md) to allow the table to fetch the data to show.
+Now that we can finally connect to the API, it is finally time to update the Composer page to include the [CRUD Client component](/microfrontend-composer/back-kit/60_components/100_crud_client.md) to allow the table to fetch the data to show.
 
 Go back to the _General_ tab to see to details of the extension and click to the _Edit with Composer_ button.
 From there, you will be redirected to a page where you can see the current configuration of the composer page.
