@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-Due to licensing [CRUD SQL service](../../runtime_suite/crud-sql/overview) requires packaging with third-party software, unless your DataSource are PostgreSQL or MSSQL databases whose support is already included in the docker image of the plugins.
+Due to licensing [CRUD SQL service](../../runtime_suite/crud-postgresql/overview) requires packaging with third-party software, unless your DataSource are PostgreSQL or MSSQL databases whose support is already included in the docker image of the plugins.
 
 ## Service Configuration
 The CRUD SQL needs some environment variables, and a configurations file to work.
@@ -40,7 +40,7 @@ The tables should be included in separate JSON files in the folder defined with 
 | metadata         | Object             | &check;  | -             | Object that contains service support metadata to handle standard fields such as updatedAt or updaterId. |
 
 :::info
-For a more in-depth description of the configuration, you can refer to the [plugin configuration](../../runtime_suite/crud-sql/configuration).
+For a more in-depth description of the configuration, you can refer to the [plugin configuration](../../runtime_suite/crud-postgresql/configuration).
 :::
 
 ## Template Setup
