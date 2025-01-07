@@ -4,9 +4,8 @@ title: Getting started
 sidebar_label: Create your extension
 ---
 
-This tutorial is dedicated to the management of [extensions](/console/company-configuration/extensions.md),
-a feature that allows you to customize your company and/or your projects inside the Mia-Platform Console by including customized pages
-inside your Company page, the Project overview page or the Project Runtime page.
+This tutorial is dedicated to the management of [extensions](/console/company-configuration/extensions.md), a feature that allows you to customize your company and/or your projects 
+inside the Mia-Platform Console by including customized pages inside your Company page, the Project overview page or the Project Runtime page.
 
 And to do so, you will be using to create using only [miactl](/cli/miactl/10_overview.md), the command line interface application to communicate with the Mia-Platform Console APIs.
 
@@ -25,8 +24,6 @@ the official command line interface to access with the Mia-Platform APIs.
 This guide requires that you have full access to a Company on which you are Company Owner.
 The Company should include a project reachable externally (you can set up one by following the instructions in this [guide](/console/project-configuration/create-a-project.mdx))
 that will be configured to include the _Integration Connector Agent_.
-
-Additionally, you might want to have miactl tool installed consulting the guide on this [link](/cli/miactl/20_setup.md).
 
 ## Steps
 
@@ -74,19 +71,6 @@ In the modal that will show up, you can create the extension by choosing:
 - the _Category_, which is the group where the extension will be located (e.g. select _Administration_)
 
 The _Visibility_ should be automatically selected to _Whole Company_ to indicate that the extension is visible for those who will access to the Company page.
-
-:::tip
-You can limit extension visibility based on Console User Capabilities;
-for instance, if you want to show your extension only to users who can deploy a project, you can configure the `permissions` key defined in this way:
-
-```js
-{
-  "permissions": ["console.company.project.environment.deploy.trigger"]
-}
-```
-
-You can find out available capabilities in the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
-:::
 
 Finally, click on _Add extension_ to create your first extension and to be automatically redirected to its detail page.
 
@@ -171,9 +155,14 @@ After updating the Composer page, we can finally move to the Extension and see t
 
 ![The extension shows the table with the Jira information](./img/extensions-final-result.png)
 
-### Manage extensions with miactl
+## Additional guide: manage extensions with miactl
 
-#### Create and activate the extension
+In this section, we will explain how to create, review and activate extensions using [miactl](/cli/miactl/10_overview.md).
+
+Remember to install the CLI if you haven't done it yet by following the instructions in the [CLI installation](/cli/miactl/20_setup.md)section and
+to [set up the context](/cli/miactl/30_commands.md#context) with the Company ID where you want to create the extension.
+
+### Create and activate the extension
 
 You can also replicate the tutorial by creating the extension via _miactl_. In your CLI type the following command:
 
@@ -211,8 +200,17 @@ where `my-tenant-id` is the identifier of the company, and the `my-extension.jso
 
 You must ensure that the `configuration` field includes a valid Composer configuration for the page you want to show.
 
-:::info
-It is not possible for now, to include the configuration of outbounds calls and internal calls in JSON files to be used with miactl.
+:::tip
+You can limit extension visibility based on Console User Capabilities;
+for instance, if you want to show your extension only to users who can deploy a project, you can configure the `permissions` key defined in this way:
+
+```js
+{
+  "permissions": ["console.company.project.environment.deploy.trigger"]
+}
+```
+
+You can find out available capabilities in the [Identity and access management page](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#identity-capabilities-inside-console).
 :::
 
 After the creation, you have to activate the extension.
@@ -224,6 +222,10 @@ miactl extensions activate --endpoint https://<my-console-domain>/ --company-id 
 
 Replacing `my-tenant-id` and `extension-id` with the identifier of your company and the identifier of your extension.
 
+:::info
+It is not possible for now, to include the configuration of outbounds calls and internal calls in JSON files to be used with miactl.
+:::
+
 :::tip
 
 In case you need to update the extension using _miactl_, you can always use the `apply` command by including the `--extension-id` flag:
@@ -234,7 +236,7 @@ miactl extensions apply --endpoint https://<my-console-domain>/ --company-id my-
 
 :::
 
-#### Check if the extension exists
+### Check if the extension exists
 
 You can use the `list` and `get` commands to verify that the registration is done correctly:
 
@@ -246,9 +248,9 @@ miactl extensions list --endpoint https://<my-console-domain>/ --company-id my-t
 miactl extensions get --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id extension-id
 ```
 
-You can use this any time you need to check what extensions exists and are activated to further check if create/delete operations executed have been successful.
+You can use these commands any time you need to check what extensions exists and are activated to further check if create/delete operations executed have been successful.
 
-#### Deactivate and delete extensions
+### Deactivate and delete extensions
 
 To remove extensions, you can decide to _deactivate_ them (the extension still exists but it is not visible in Console anymore) or to definitely _delete_ them.
 
