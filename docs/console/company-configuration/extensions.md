@@ -104,11 +104,11 @@ It is also possible to configure the extension to communicate with other externa
 This could be useful for use cases such as retrieving data from an external backend to be shown in a UI created with the Composer.
 
 This configuration is possible in the detail page of the extension that, for _Composer_ extensions only, will include two tabs over the _General_ tab:
-the _Outbound calls_ tab and the _Internal calls_ tab.
+the _Outbound calls_ tab and the _Inbound calls_ tab.
 
 ### Outbound calls
 
-This tab allows you to configure the extension to communicate with other external APIs, by allowing to define a base URL to be called.
+This tab allows you to configure the extension to communicate with other external APIs, by allowing to configure a base URL to be used for all the outbound calls.
 It is also possible to define how to authenticate to the URL by including endpoint and the needed information for authentication.
 
 :::info
@@ -135,25 +135,35 @@ Once one of the available options is selected, below there will be the fields to
 ![Details of a configured outbound call](./img/extensions/extension-outbound-calls-detail.png)
 
 After the creation, the outbound call configured will be shown in the page.
+
 Details will include the name of the URL to call and the authentication type used with some useful information.
 On the right side of the page there are menus to either update or delete the base URL, and change the credentials of the authentication.
 
-In the configuration page there will also be an URL next to the _Base URL to contact your APIs_ label. This URL is the one to be used to access the APIs from your endpoint.
-In fact, for security reasons, the URL to be called is not the destination URL itself, but a different one that is the one that will be used to access the APIs
-through the Mia-Platform [HTTP Proxy Manager](/runtime_suite/http-proxy-manager/10_overview.md) that is already configured to handle the communication with the APIs.
+To execute requests from the extension to the external API, you can use the URL listed in the _Base URL to contact your APIs_ label.
+This automatically generated URL can be used as a proxy to the external API and, by replacing the part <YOUR_API> with the destination URL of the extension, you can
+have access to specific endpoints of the API.
 
-### Internal calls
+:::tip
+When executing a request to the external API, the identifier of the user that executed the request will be will be automatically added to the reques in the header `x-user-id`.
 
-The _Internal calls_ tab allows you to configure the extension to communicate with the Mia-Platform APIs,
+If you are connecing to a customized service, you can use this header to identify the user that executed the request and execute further operations, as example to retrieve the user roles
+using the [inbound calls](#inbound-calls) for customized operations or to include the user id in logs.
+:::
+
+### Inbound Calls
+
+The _Inbound calls_ tab allows you to configure the extension to communicate with the Mia-Platform APIs,
 using [Service Accounts](/development_suite/identity-and-access-management/manage-service-accounts.md) to leverage machine-to-machine communication.
+This feature is useful for cases where extensions that communicate with an external backend might need to perform operations on the console (such as deploy operations) or
+to retrieve further information (e.g. the list of projects in the company).
+
+You can create the Service Account associated to this extension in the _Inbound calls_ tab of the extension detail page, clicking the _Create service account_.
+
+![Create a new service account](./img/extensions/extension-inbound-calls-create.png)
 
 :::info
 Similarly to the Outbound calls, it is possible to configure only one service account for each extension.
 :::
-
-You can create the Service Account associated to this extension in the _Internal calls_ tab of the extension detail page, clicking the _Create service account_.
-
-![Create a new service account](./img/extensions/extension-internal-calls-create.png)
 
 The _Service account name_ field is required and it is the name of the service account to be created. It is used to identify the service account in the page,
 as well in the [Service Account page](/development_suite/identity-and-access-management/manage-service-accounts.md#managing-company-service-accounts)
@@ -165,13 +175,14 @@ The _Authentication method_ field is required and could be either:
 - via _JWT_, by including the JWT token in the authentication request
 
 :::info
-You can read more about authentication methods of Service Accounts in the [dedicated page](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication)
+You can read more about authentication methods of Service Accounts in the [dedicated page](/development_suite/identity-and-access-management/manage-service-accounts.md#service-account-authentication),
+including further explanation on how to use the authentication information to generate the bearer token to be used in any request to the Mia-Platform APIs.
 :::
 
 As usual when creating a Service Account, the Client ID and the Client Secret will be shown in the modal as a feedback of successful creation.
 You will need to store them in a secure place, as they will be needed to authenticate the requests to the APIs.
 
-When the Service Account is created, it will be shown in the _Internal calls_ tab of the extension detail page.
+When the Service Account is created, it will be shown in the _Inbound calls_ tab of the extension detail page.
 A menu on the right side of the page will allow to remove the link between the Service Account and the extension, in case communication with the APIS is not needed anymore.
 
 :::info
