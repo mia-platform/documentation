@@ -59,7 +59,7 @@ if it has been configured to be visible on the Company page, it will be automati
 
 ## Extensions Table
 
-If there is at least one extension, you can view a table with all the existing extensions for the Company.
+If there is at least one extension you can view a table with all the existing extensions for the Company.
 
 ![extensions table](./img/extensions/extensions-table.png)
 
@@ -78,8 +78,8 @@ The extension detail page allows you to view the main information that character
 It includes several cards to provide information about the extension, such as:
 
 - **Extension Info**: contains the identifying information for the extension, such as name and entry URL
-- **Extension Location**: contains the information related to the positioning of the extension menu item within the Console;
-- **Extension Visibility**: contains the information related to the visibility of the extension menu item within the Console;
+- **Extension Location**: contains the information related to the positioning of the extension menu item within the Console
+- **Extension Visibility**: contains the information related to the visibility of the extension menu item within the Console
 
 In each card, you can also find the _Edit_ button, which allows you to modify the information contained in the card.
 
@@ -101,7 +101,8 @@ This section is only available for extensions of type _Composer_.
 :::
 
 It is also possible to configure the extension to communicate with other external APIs, as well with the Mia-Platform supported APIs.
-This could be useful for use cases such as retrieving data from an external backend to be shown in a UI created with the Composer.
+This could be useful for use cases such as retrieving data from an external backend, which allows it to execute other requests to the Mia-Platform APIs to have additional information to return
+data to be shown in a UI created with the Composer.
 
 This configuration is possible in the detail page of the extension that, for _Composer_ extensions only, will include two tabs over the _General_ tab:
 the _Outbound calls_ tab and the _Inbound calls_ tab.
@@ -141,13 +142,13 @@ On the right side of the page there are menus to either update or delete the bas
 
 To execute requests from the extension to the external API, you can use the URL listed in the _Base URL to contact your APIs_ label.
 This automatically generated URL can be used as a proxy to the external API and, by replacing the part <YOUR_API> with the destination URL of the extension, you can
-have access to specific endpoints of the API.
+have access to specific endpoints of the API (as example, the url `http://console.cloud.mia-platform.eu/proxy/extensions/123456789012345678901234/api/v1/users/me` will be translated in `https://www.my-external-url.com/api/v1/users/me`).
 
 :::tip
-When executing a request to the external API, the identifier of the user that executed the request will be will be automatically added to the reques in the header `x-user-id`.
+When executing a request to the external API, the identifier of the user that executed the request will be automatically included to the request in the header `x-user-id`.
 
-If you are connecing to a customized service, you can use this header to identify the user that executed the request and execute further operations, as example to retrieve the user roles
-using the [inbound calls](#inbound-calls) for customized operations or to include the user id in logs.
+If you are connecting to a customized service, you can use this header to identify the user that executed the request and perform further operations, as example to retrieve the user roles
+using the [inbound calls](#inbound-calls) for customized operations or to save the user id in logs.
 :::
 
 ### Inbound Calls
@@ -155,7 +156,7 @@ using the [inbound calls](#inbound-calls) for customized operations or to includ
 The _Inbound calls_ tab allows you to configure the extension to communicate with the Mia-Platform APIs,
 using [Service Accounts](/development_suite/identity-and-access-management/manage-service-accounts.md) to leverage machine-to-machine communication.
 This feature is useful for cases where extensions that communicate with an external backend might need to perform operations on the console (such as deploy operations) or
-to retrieve further information (e.g. the list of projects in the company).
+to retrieve further information (e.g. the list of projects in the Company).
 
 You can create the Service Account associated to this extension in the _Inbound calls_ tab of the extension detail page, clicking the _Create service account_.
 
@@ -166,7 +167,7 @@ Similarly to the Outbound calls, it is possible to configure only one service ac
 :::
 
 The _Service account name_ field is required and it is the name of the service account to be created. It is used to identify the service account in the page,
-as well in the [Service Account page](/development_suite/identity-and-access-management/manage-service-accounts.md#managing-company-service-accounts)
+as well as in the [Service Account page](/development_suite/identity-and-access-management/manage-service-accounts.md#managing-company-service-accounts)
 and the [Identities (IAM) page](/development_suite/identity-and-access-management/manage-identities.md#managing-company-identities).
 
 The _Authentication method_ field is required and could be either:
@@ -179,13 +180,12 @@ You can read more about authentication methods of Service Accounts in the [dedic
 including further explanation on how to use the authentication information to generate the bearer token to be used in any request to the Mia-Platform APIs.
 :::
 
-As usual when creating a Service Account, the Client ID and the Client Secret will be shown in the modal as a feedback of successful creation.
-You will need to store them in a secure place, as they will be needed to authenticate the requests to the APIs.
+As usual when creating a Service Account, the Client ID and the Client Secret (if you chose the _ClientSecret_ authentication method, otherwise it will include the key ID - also known as _kid_)
+will be shown in the modal as a feedback of successful creation. You will need to store them in a secure place, as they will be needed to authenticate the requests to the APIs.
 
 When the Service Account is created, it will be shown in the _Inbound calls_ tab of the extension detail page.
 A menu on the right side of the page will allow to remove the link between the Service Account and the extension, in case communication with the APIS is not needed anymore.
 
 :::info
-When removing the Service Account from the extension page, you can also delete the Service Account itself, in case it is not needed anymore,
-by ensuring that the _Also delete the service account_ flag is activated.
+When detaching the Service Account from the extension, you can also delete the Service Account itself in case it is not needed anymore, by ensuring that the _Also delete the service account_ flag is activated.
 :::
