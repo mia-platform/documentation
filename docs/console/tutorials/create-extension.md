@@ -223,7 +223,7 @@ miactl extensions activate --endpoint https://<my-console-domain>/ --company-id 
 Replacing `my-tenant-id` and `extension-id` with the identifier of your company and the identifier of your extension.
 
 :::info
-It is not possible for now, to include the configuration of outbounds calls and internal calls in JSON files to be used with miactl.
+It is not possible for now, to include the configuration of outbounds calls and inbound calls in JSON files to be used with miactl.
 :::
 
 :::tip
