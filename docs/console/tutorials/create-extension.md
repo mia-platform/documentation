@@ -120,7 +120,8 @@ The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you
 
 ### 4. Update the Composer page
 
-Now that we can finally connect to the API, it is finally time to update the Composer page to include the [CRUD Client component](/microfrontend-composer/back-kit/60_components/100_crud_client.md) to allow the table to fetch the data to show.
+Now that we can finally connect to the API, it is finally time to update the Composer page to ensure it will load the data from the API.
+In order to do so, it is required to include the [CRUD Client component](/microfrontend-composer/back-kit/60_components/100_crud_client.md) to allow the table to fetch the data to show.
 
 From the extension detail page, go back to the _General_ tab to see to the details of the extension and click to the _Edit with Composer_ button.
 From there, you will be redirected to a page where you can see the current configuration of the composer page.
@@ -145,11 +146,43 @@ From the `Advanced` section, find the list of the table elements and add the fol
 This will attach the _CRUD Client_ component to the table, by fetching data from an URL defined in the `basePath` property (remember to update its value with the proxy URL created by the extension),
 and using as a data schema the schema automatically defined in the _Shared Properties_ tab.
 
-:::tip
+:::info
 You can update the Data Schema whenever you want by moving to the _Shared Properties_ tab and selecting _Data Schema_ from the table.
+An editor will show up allowing you to edit the schema by adding and updating the properties.
+
+A suitable example of data schema for this example is the following:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "_id": { "type": "string", "label": "ID" },
+    "key": { "type": "string", "label": "Key" },
+    "summary": { "type": "string", "label": "Summary" },
+    "description": { "type": "string", "label": "Description" },
+    "_eventId": { "type": "string", "label": "Event ID" },
+    "priority": { "type": "object", "label": "Priority" },
+    "__STATE__": {
+      "type": "string",
+      "label": "State",
+      "enum": [ "PUBLIC", "DRAFT", "TRASH", "DELETED" ]
+    }
+  }
+}
+```
+
 :::
 
-Remember to save your changes by clicking the _Apply_ button from the _Advanced_ tab when you finish these updates, then to finalize the configuration of the Composer page with the _Publish all changes_ button at the top-right side of the page.
+Remember to save your changes by clicking the _Apply_ button from the _Advanced_ tab when you finish these updates,
+then to finalize the configuration of the Composer page with the _Publish all changes_ button at the top-right side of the page.
+
+:::tip
+Before to move on, you now have the chance to further customize the page.
+While you have now included only the CRUD Client component, you can add more components to the page, as well as change options and the style of the page itself.
+
+You can refer to the [Microfrontend Composer documentation](/microfrontend-composer/what-is),
+and specifically to the[documentation of Back-kit](/microfrontend-composer/back-kit/10_overview.md) for more information on components, actions and their properties.
+:::
 
 ### 5. Call the extension
 
