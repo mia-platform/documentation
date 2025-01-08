@@ -82,7 +82,7 @@ Root
 
 The item names are purely indicative, this example is only to explain a potential use-case.
 
-The JSON and YAML files above follow the structure explained [in the related documentation](/software-catalog/manage-items/overview.md).
+The JSON and YAML files above follow the structure explained [in the related documentation](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
 
 Here is an example of the Inventory System plugin config file:
 

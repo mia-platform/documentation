@@ -36,7 +36,7 @@ Please refer to [this documentation](/software-catalog/manage-items/overview.md#
 ### Items Versioning
 
 :::info
-This feature is currently available for the Plugin and Infrastructure Resource types.
+This feature is currently available for the Plugin, Infrastructure Resource, Example and Template types.
 :::
 
 The versioning system in the Software Catalog provides detailed control over the different iterations of each item. For technical details on how versioning works, please refer to [this documentation](/software-catalog/manage-items/overview.md#item-types).
@@ -55,6 +55,6 @@ Each item in the Software Catalog is associated with a lifecycle status that ref
 - stable
 - deprecated
 
-For a more detailed explanation of each status, please refer to the [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-a-marketplace-item) of the documentation.
+For a more detailed explanation of each status, please refer to the [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-an-item) of the documentation.
 
 A lifecycle status indicates where an item stands in its lifecycle, from its initial creation to its active use, and eventually to being deprecated when it's no longer maintained or supported. This helps users quickly understand the maturity and stability of an item.
