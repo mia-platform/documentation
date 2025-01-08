@@ -12,16 +12,16 @@ And to do so, you will be using to create using only [miactl](/cli/miactl/10_ove
 ## What you will build
 
 You are going to customize the sidebar of a Mia-Platform project by adding a new menu and a new link that, when clicked, will show an integrated Composer page.
-This page will include a table with data extracted from an API coming from another project that uses the [Integration Connector Agent](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/10_overview.md) to connect to a [Jira](https://www.atlassian.com/software/jira) Data Source.
+For this example, this new Mia-Platform Console section will include a table with data extracted from an API coming from another project that uses the [Integration Connector Agent](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/10_overview.md), in order to connect to a [Jira](https://www.atlassian.com/software/jira) Data Source.
 
-The have the _Integration Connector Agent_ to work properly, you need a configured account on Jira, as well as a [MongoDB instance](https://www.mongodb.com/) available as a database support for the service.
+Please note that in order to make the _Integration Connector Agent_ work properly, you need a pre-configured account on Jira, as well as a [MongoDB instance](https://www.mongodb.com/) already available as a database support for the service.
 
 This tutorial will explain how to create an extension using the Mia-Platform Console, but there will be also small instruction using [`miactl`](/cli/miactl/10_overview.md),
 the official command line interface to access with the Mia-Platform APIs.
 
 ## Prerequisites
 
-This guide requires that you have full access to a Company on which you are Company Owner.
+This guide requires that you have full access to a Company in which you are Company Owner.
 The Company should include a project reachable externally (you can set up one by following the instructions in this [guide](/console/project-configuration/create-a-project.mdx))
 that will be configured to include the _Integration Connector Agent_.
 
@@ -31,7 +31,7 @@ that will be configured to include the _Integration Connector Agent_.
 
 The first part of the tutorial is not related to the extensions, but to prepare the project that you will use to connect with and to extract the Jira documents from.
 
-The project requires to the following services:
+The project requires the following services:
 
 - the _Integration Connector Agent_ service, available, configured as explained in [the related documentation](https://github.com/mia-platform/integration-connector-agent/blob/main/docs/20_install.md)
 - the [_API Gateway_](/runtime_suite/api-gateway/10_overview.md) service, to expose the API that the extension will call.
@@ -41,9 +41,9 @@ All the three services are available on the Mia-Platform [Marketplace](/marketpl
 
 Moreover, it is important to create the following endpoints:
 
-- an endpoint connected to the _Integration Connector Agent_ and with base path the [Jira webhook](https://developer.atlassian.com/server/jira/platform/webhooks/) created to communicate with the Jira APIs (e.g. `agent/webhook/jira`)
+- an endpoint connected to the _Integration Connector Agent_, with the [Jira webhook](https://developer.atlassian.com/server/jira/platform/webhooks/) as base path, created to communicate with the Jira APIs (e.g. `agent/webhook/jira`)
 - an endpoint connected to the _CRUD Service_, pointing to the CRUD collection that will store the documents extracted from Jira (e.g. `/jira-issues`);
-also consider if you need to have this endpoint can be protected by authentication or not
+also consider if you need to have this endpoint can be protected by authentication or not.
 
 :::info
 Remember to configure the project to correctly use the Ingress Route to expose the APIs, using [Traefik](/infrastructure/paas/tools/traefik.md) as example.
@@ -59,7 +59,7 @@ You can do that by accessing to your company page and, in the sidebar menu, clic
 ![Create your first extension](./img/extensions-create.png)
 
 From this page you will see the list of existing extensions, if there are, otherwise you'll be see a screen that suggest you to create your first extension.
-In any way, a button _Add extension_ is available and, after the click, a menu will show up to allow you to choose which type of extension you want to create.
+In both cases, a button _Add extension_ is available and, after clicking on it, a menu will show up to allow you to choose which type of extension you want to create.
 
 In this case, you will go with _Create with Composer_.
 
@@ -67,8 +67,8 @@ In the modal that will show up, you can create the extension by choosing:
 
 - the name of the extension (e.g. _My Jira Extension_)
 - the _Template_, which is a starting template for your composer page (you can start with a table by selecting _Table: base table_)
-- the _Destination Area_, in which section of the console the extension will be visible (select _Company Overview_ to have it viewable on the Company page)
-- the _Category_, which is the group where the extension will be located (e.g. select _Administration_)
+- the _Destination Area_, in which section of the Console the extension will be visible (e.g., select _Company Overview_ to make it visible in the Company page)
+- the _Category_, which is the group where the extension will be located (e.g., select _Administration_)
 
 The _Visibility_ should be automatically selected to _Whole Company_ to indicate that the extension is visible for those who will access to the Company page.
 
@@ -76,24 +76,24 @@ Finally, click on _Add extension_ to create your first extension and to be autom
 
 ![Details of the extension](./img/extensions-detail.png)
 
-The page will recap some information regarding the new extension, such is name, its identifier and where it will be shown.
-Also, you might notice that a new voice is available in the page sidebar, and it has the same name of the extension.
+The page will recap some information regarding the new extension, such its name, its identifier and where it will be shown.
+Also, you might notice that a new voice is available in the page sidebar, under the "ADMINISTRATOR" menu and it has the same name of the extension.
 
-This menu is in fact the extension you have just created. You can access to it, to show an empty table with a loader that, unfortunately, will not load anything.
+This menu item is in fact the extension you have just created. You can access to it, to show an empty table with a loader that, unfortunately, will not load anything.
 This happens because, right now, the table have no indication on where to find the data to show.
 But you are going to fix that.
 
 ### 3. Configure the Outbound calls
 
-First of all, you need to configure the extension to ensure that can execute server request to the API connected to the _Integration Connector Agent_, created [in the project that we previously configured](#1-prepare-the-integration-connector-agent-in-your-project).
+First of all, you need to configure the extension to ensure that it can execute server requests to the API connected to the _Integration Connector Agent_, created [in the project that we previously configured](#1-prepare-the-integration-connector-agent-in-your-project).
 
 To do that, you need to return to the page with the detail of the extension.
 If you are not there anymore, you can return there clicking to the _Extensions_ voice in the sidebar, then clicking on the name of the extension you just created.
 
 When you are there, click on the tab _Outbound calls_.
-It will open a new page where you can configure call to external APIs, such as the CRUD collection endpoint of the project connected to Jira.
+It will open a new page where you can configure calls to external APIs, such as the CRUD collection endpoint of the project connected to Jira.
 
-To configure such call, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following information:
+To configure such calls, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following information:
 
 - _Destination URL_: it is the URL that includes the API to call. In this case, it is the URL of the project connected to Jira which depends on how you configured the project (e.g. `https://jira-issues.console.gcp.mia-platform.eu/`)
 - _Authentication required_: if activated, requires authentication to communicate with the API. If the endpoint requires authentication then leave it activated, otherwise you can disable it.
@@ -105,11 +105,11 @@ If the authentication is required you will be required to include:
   - _Client ID / Client Secret_: using client credentials, other two fields will be available where you will be prompted to add the _Client ID_ and the _Client Secret_
   - _Username / Password_: easily understandable, you will also have to include username and password before to create the configuration
 
-Once you selected anything you need to successfully communicate with your external API, you can click to _Save Changes_ and right away see the configuration of the outbound calls updated.
+Once you selected anything you need to successfully communicate with your external API, you can click on _Save Changes_ and right away see the configuration of the outbound calls updated.
 
 ![Extension configured outbound calls](./img/extensions-outbounds-call-detail.png)
 
-You will notice right away that a new URL will be shown in this page that you have not configured by yourself: it just below the label _Base URL to contact your APIs_.
+You will notice right away that a new URL will be shown in this page that you have not configured by yourself, right below the label _Base URL to contact your APIs_.
 
 In fact, when you will try to call the API, you will not use the URL of the external project, but a specific Mia-Platform Console API (that will include the `/proxy/extensions/` path)
 that will call used as a dynamic gateway to find the API, handle authentication (if necessary) and execute the requests.
@@ -119,7 +119,7 @@ The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you
 
 Now that we can finally connect to the API, it is finally time to update the Composer page to include the [CRUD Client component](/microfrontend-composer/back-kit/60_components/100_crud_client.md) to allow the table to fetch the data to show.
 
-Go back to the _General_ tab to see to details of the extension and click to the _Edit with Composer_ button.
+From the extension detail page, go back to the _General_ tab to see to the details of the extension and click to the _Edit with Composer_ button.
 From there, you will be redirected to a page where you can see the current configuration of the composer page.
 
 From the `Advanced` section, find the list of the table elements and add the following JSON configuration:
@@ -214,7 +214,7 @@ You can find out available capabilities in the [Identity and access management p
 :::
 
 After the creation, you have to activate the extension.
-While this command is automatically executed from the Mia-Platform console, if you use _miactl_ you have to manually launch it using the `activate` command:
+While this command is automatically executed from the Mia-Platform Console, if you use _miactl_ you have to manually launch it using the `activate` command:
 
 ```sh
 miactl extensions activate --endpoint https://<my-console-domain>/ --company-id my-tenant-id --extension-id extension-id
