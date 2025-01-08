@@ -126,7 +126,7 @@ In order to do so, it is required to include the [CRUD Client component](/microf
 From the extension detail page, go back to the _General_ tab to see to the details of the extension and click to the _Edit with Composer_ button.
 From there, you will be redirected to a page where you can see the current configuration of the composer page.
 
-From the `Advanced` section, find the list of the table elements and add the following JSON configuration:
+From the `Advanced` section, find the list of the table elements, which should be located on the `content.content` path, and add the following JSON configuration:
 
 ```json
 {
@@ -142,6 +142,339 @@ From the `Advanced` section, find the list of the table elements and add the fol
     }
 }
 ```
+
+The entire configuration of the default table template with the CRUD Client will look like this:
+
+<details>
+    <summary>Composer configuration</summary>
+
+```json
+{
+  "definitions": {
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "label": "ID"
+        },
+        "key": {
+          "type": "string",
+          "label": "Key"
+        },
+        "summary": {
+          "type": "string",
+          "label": "Summary"
+        },
+        "description": {
+          "type": "string",
+          "label": "Description"
+        },
+        "_eventId": {
+          "type": "string",
+          "label": "Event ID"
+        },
+        "priority": {
+          "type": "object",
+          "label": "Priority"
+        },
+        "__STATE__": {
+          "type": "string",
+          "label": "State",
+          "enum": [
+            "PUBLIC",
+            "DRAFT",
+            "TRASH",
+            "DELETED"
+          ]
+        }
+      }
+    }
+  },
+  "content": {
+    "content": [
+      {
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "properties": {
+                  "content": "My Jira Extension"
+                },
+                "tag": "bk-title"
+              },
+              {
+                "tag": "bk-refresh-button",
+                "attributes": {
+                  "style": "margin-left: 14px; align-self: end;"
+                }
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "flex-grow: 1;"
+                }
+              },
+              {
+                "properties": {
+                  "placeholder": "Search..."
+                },
+                "tag": "bk-search-bar"
+              },
+              {
+                "tag": "bk-add-new-button",
+                "attributes": {
+                  "style": "display: none;"
+                }
+              },
+              {
+                "attributes": {
+                  "data-mia-label": "Filters button"
+                },
+                "properties": {
+                  "content": "",
+                  "clickConfig": {
+                    "type": "event",
+                    "actionConfig": {
+                      "label": "filter",
+                      "payload": {}
+                    }
+                  },
+                  "type": "outlined",
+                  "iconId": "FunnelPlotOutlined"
+                },
+                "tag": "bk-button"
+              }
+            ],
+            "attributes": {
+              "style": "display: flex; flex-direction: row; gap: 10px; padding: 0 20px;"
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "width: 100%; display: flex; justify-content: space-between;"
+            },
+            "content": [
+              {
+                "attributes": {
+                  "style": "flex-grow: 1; display: none;"
+                },
+                "properties": {
+                  "tabs": [
+                    {
+                      "key": "tab-1",
+                      "title": "Tab 1"
+                    }
+                  ]
+                },
+                "tag": "bk-tabs"
+              },
+              {
+                "attributes": {
+                  "style": "margin-right: 4px"
+                },
+                "properties": {
+                  "dataSchema": {
+                    "$ref": "#/definitions/dataSchema"
+                  },
+                  "filters": []
+                },
+                "tag": "bk-filters-manager"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "padding: 0 20px;"
+            },
+            "content": {
+              "tag": "bk-breadcrumbs",
+              "properties": {
+                "dataSchema": {
+                  "$ref": "#/definitions/dataSchema"
+                }
+              },
+              "attributes": {
+                "style": "display: none;"
+              }
+            }
+          }
+        ],
+        "tag": "header",
+        "attributes": {
+          "style": "display: flex; flex-direction: column; padding-top: 10px; background-color: white;"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "maxLines": 1000,
+              "rowActions": {
+                "kind": "icons",
+                "actions": [
+                  {
+                    "label": "Delete",
+                    "icon": "fas fa-trash",
+                    "kind": "event",
+                    "content": "delete-data",
+                    "meta": {
+                      "actionId": "delete-data"
+                    },
+                    "requireConfirm": true
+                  }
+                ]
+              },
+              "fitParentContainer": false
+            },
+            "tag": "bk-table"
+          },
+          {
+            "properties": {
+              "requireConfirm": {
+                "onClose": true,
+                "onSave": true
+              },
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "70vw",
+              "allowObjectAsTable": false,
+              "readonlyOnView": true
+            },
+            "tag": "bk-form-modal"
+          },
+          {
+            "tag": "bk-confirmation-modal"
+          },
+          {
+            "properties": {
+              "rootElementSelectors": "main.micro-lc-layout-content",
+              "successEventMap": {
+                "create-data": {
+                  "title": "Success",
+                  "content": "Data successfully created",
+                  "type": "success"
+                },
+                "update-data": {
+                  "title": "Success",
+                  "content": "Data successfully updated",
+                  "type": "success"
+                },
+                "delete-data": {
+                  "title": "Success",
+                  "content": "Data successfully deleted",
+                  "type": "success"
+                }
+              },
+              "errorEventMap": {
+                "create-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order creation",
+                  "type": "error"
+                },
+                "update-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order updated",
+                  "type": "error"
+                },
+                "delete-data": {
+                  "title": "Error",
+                  "content": "An error occurred during order deletion",
+                  "type": "error"
+                }
+              }
+            },
+            "tag": "bk-notifications"
+          }
+        ],
+        "tag": "main",
+        "attributes": {
+          "style": "flex-grow: 1; background-color: #f0f2f5; padding: 20px; overflow-y: auto;",
+          "data-mia-label": "Main"
+        }
+      },
+      {
+        "content": [
+          {
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              },
+              "width": "40vw"
+            },
+            "tag": "bk-filter-drawer"
+          }
+        ],
+        "tag": "aside"
+      },
+      {
+        "content": [
+          {
+            "tag": "bk-bulk-delete"
+          },
+          {
+            "tag": "bk-bulk-actions",
+            "properties": {
+              "dataSchema": {
+                "$ref": "#/definitions/dataSchema"
+              }
+            }
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "flex-grow: 1;"
+            }
+          },
+          {
+            "tag": "bk-footer",
+            "attributes": {
+              "style": "display: flex; justify-content: end; align-items: center;"
+            }
+          },
+          {
+            "tag": "bk-pagination",
+            "properties": {
+              "pageSize": 10
+            }
+          }
+        ],
+        "tag": "footer",
+        "attributes": {
+          "style": "display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px 20px; background-color: white; gap: 10px; position: sticky; bottom: 0; z-index: 10"
+        }
+      },
+      {
+        "properties": {
+          "basePath": "/proxy/extensions/123456789012345678901234/v2/jira-issues",
+          "dataSchema": {
+            "$ref": "#/definitions/dataSchema"
+          }
+        },
+        "tag": "bk-crud-client",
+        "attributes": {
+          "data-mia-label": "CRUD Client"
+        }
+      }
+    ],
+    "tag": "div",
+    "attributes": {
+      "style": "width: 100%; height: 100%; display: flex; flex-direction: column; position: relative;"
+    }
+  },
+  "sources": [
+    "https://cdn.mia-platform.eu/backoffice/bk-web-components/1.5.9/dist/bk-web-components.esm.js"
+  ]
+}
+```
+</details>
 
 This will attach the _CRUD Client_ component to the table, by fetching data from an URL defined in the `basePath` property (remember to update its value with the proxy URL created by the extension),
 and using as a data schema the schema automatically defined in the _Shared Properties_ tab.
@@ -224,7 +557,7 @@ where `my-tenant-id` is the identifier of the company, and the `my-extension.jso
   "menu": {
     "id": "jira-issues",
     "labelIntl": {
-      "en": "Jira Issues",
+      "en": "My Jira Extension",
       "it": "Issue su Jira"
     }
   },
