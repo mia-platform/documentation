@@ -51,7 +51,7 @@ Here below are listed all the properties that should be provided for each type o
   - **`type`**: the type of documentation. It can be `externalLink` or `markdown`
   - **`url`**: the URL of the documentation. It can be an external URL or an internal one
 - **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-an-item) later on this page)
-- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](/software-catalog/manage-items/overview.md#category-list) are listed below.
+- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The available category IDs are listed [here](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md#category-list).
 - **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
 - **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
 - **`version`**: the version of the item. It is an object composed by the following properties:
@@ -92,7 +92,7 @@ If you want to make your item accessible to other Companies, you can visit [this
 Also, to learn how to migrate an item from the public to private internal catalog and vice versa, please refer to the [dedicated page](/software-catalog/catalog-and-marketplace/overview.md#public-visibility).
 :::
 
-### Versioned resource
+### Versioned resources
 
 To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).
 

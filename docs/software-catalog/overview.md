@@ -39,7 +39,7 @@ Please refer to [this documentation](/software-catalog/manage-items/overview.md#
 This feature is currently available for the Plugin, Infrastructure Resource, Example and Template types.
 :::
 
-The versioning system in the Software Catalog provides detailed control over the different iterations of each item. For technical details on how versioning works, please refer to [this documentation](/software-catalog/manage-items/overview.md#item-types).
+The versioning system in the Software Catalog provides detailed control over the different iterations of each item. For technical details on how versioning works, please refer to [this documentation](/software-catalog/manage-items/overview.md#versioned-resources).
 
 Each version includes key information, such as the release date and whether it is marked as the latest version. Additionally, if available, you can view the associated release notes to understand what changes or improvements were made in that particular version.
 
