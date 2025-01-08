@@ -4,11 +4,10 @@ title: Getting started
 sidebar_label: Create your extension
 ---
 
-This tutorial is dedicated to the management of [extensions](/console/company-configuration/extensions.md), a feature that allows you to customize your company and/or your projects 
+This tutorial is dedicated to the management of [extensions](/console/company-configuration/extensions.md), a feature that allows you to customize your company and/or your projects
 inside the Mia-Platform Console by including customized pages inside your Company page, the Project overview page or the Project Runtime page.
 
-And to do so, you will be using to create using only [miactl](/cli/miactl/10_overview.md), the command line interface application to communicate with the Mia-Platform Console APIs.
-
+It explains how to create and configure a new extension using the dedicated feature of the Mia-Platform Console, with an additional guide on how to perform these operations using [miactl](/cli/miactl/10_overview.md).
 ## What you will build
 
 You are going to customize the sidebar of a Mia-Platform project by adding a new menu and a new link that, when clicked, will show an integrated Composer page.
