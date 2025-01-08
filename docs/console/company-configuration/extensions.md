@@ -113,9 +113,9 @@ This tab allows you to configure the extension to communicate with other externa
 It is also possible to define how to authenticate to the URL by including endpoint and the needed information for authentication.
 
 :::info
-While it is possible to call multiple endpoints with the same base URL, it is possible to configure one outbound call for each extension.
+While it is possible to call multiple endpoints with the same base URL, you can only configure one outbound call for each extension.
 
-If you need to call multiple endpoints with different urls, you can create multiple extensions.
+If you need to call multiple endpoints with different URLs, you can create multiple extensions.
 :::
 
 When accessing to the _Outbound calls_ tab, if it has not been configured yet, an empty page with the button _Setup outbound calls_ will be shown.
@@ -123,7 +123,7 @@ Clicking this button will open a modal where you can configure the outbound call
 
 ![Create a new outbound call](./img/extensions/extension-outbound-calls-create.png)
 
-The _Destination URL_ field is required and it is the base URL to be called.
+The _Destination URL_ field is required and it is the **Base URL** to be called.
 If you need to authenticate to this URL, keep the _Authentication required_ switch activated, then fill the _Authentication endpoint_ field with the endpoint to be called for authentication.
 
 The _Authentication type_ field will allow to select the type of authentication to be used. Currently supported are:
@@ -131,7 +131,7 @@ The _Authentication type_ field will allow to select the type of authentication 
 - _Client credentials_ with Client ID and Client Secret
 - _Basic_ with Username and Password
 
-Once one of the available options is selected, below there will be the fields to fill in order to complete the authentication configuration, before to finally save with the _Save Changes_ button.
+Once one of the available options is selected, below there will be the fields to fill in order to complete the authentication configuration. When you have filled in those fields, you can proceed by saving the configuration with the _Save Changes_ button.
 
 ![Details of a configured outbound call](./img/extensions/extension-outbound-calls-detail.png)
 
@@ -142,20 +142,20 @@ On the right side of the page there are menus to either update or delete the bas
 
 To execute requests from the extension to the external API, you can use the URL listed in the _Base URL to contact your APIs_ label.
 This automatically generated URL can be used as a proxy to the external API and, by replacing the part <YOUR_API> with the destination URL of the extension, you can
-have access to specific endpoints of the API (as example, the url `http://console.cloud.mia-platform.eu/proxy/extensions/123456789012345678901234/api/v1/users/me` will be translated in `https://www.my-external-url.com/api/v1/users/me`).
+have access to specific endpoints of the API (for instance, the URL `http://console.cloud.mia-platform.eu/proxy/extensions/123456789012345678901234/api/v1/users/me` will be translated in `https://www.my-external-url.com/api/v1/users/me`).
 
 :::tip
 When executing a request to the external API, the identifier of the user that executed the request will be automatically included to the request in the header `x-user-id`.
 
-If you are connecting to a customized service, you can use this header to identify the user that executed the request and perform further operations, as example to retrieve the user roles
-using the [inbound calls](#inbound-calls) for customized operations or to save the user id in logs.
+If you are connecting to a customized service, you can use this header to identify the user that executed the request and perform further operations, such as retrieving user roles
+using the [inbound calls](#inbound-calls) for customized operations or saving the user id in logs.
 :::
 
 ### Inbound Calls
 
 The _Inbound calls_ tab allows you to configure the extension to communicate with the Mia-Platform APIs,
 using [Service Accounts](/development_suite/identity-and-access-management/manage-service-accounts.md) to leverage machine-to-machine communication.
-This feature is useful for cases where extensions that communicate with an external backend might need to perform operations on the console (such as deploy operations) or
+This feature is useful for use cases where extensions that communicate with an external backend might need to perform operations on the Mia-Platform Console (such as deploy operations) or
 to retrieve further information (e.g. the list of projects in the Company).
 
 You can create the Service Account associated to this extension in the _Inbound calls_ tab of the extension detail page, clicking the _Create service account_.
