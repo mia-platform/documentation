@@ -60,7 +60,7 @@ You can do that by accessing to your company page and, in the sidebar menu, clic
 From this page you will see the list of existing extensions, if there are, otherwise you'll be see a screen that suggest you to create your first extension.
 In both cases, a button _Add extension_ is available and, after clicking on it, a menu will show up to allow you to choose which type of extension you want to create.
 
-In this case, you will go with _Create with Composer_.
+In this case, you will go with the _Create with Composer_ option.
 
 In the modal that will show up, you can create the extension by choosing:
 
@@ -80,7 +80,7 @@ Also, you might notice that a new voice is available in the page sidebar, under 
 
 This menu item is in fact the extension you have just created. You can access to it, to show an empty table with a loader that, unfortunately, will not load anything.
 This happens because, right now, the table have no indication on where to find the data to show.
-But you are going to fix that.
+But you are going to fix that by moving on the next step.
 
 ### 3. Configure the Outbound calls
 
@@ -91,6 +91,8 @@ If you are not there anymore, you can return there clicking to the _Extensions_ 
 
 When you are there, click on the tab _Outbound calls_.
 It will open a new page where you can configure calls to external APIs, such as the CRUD collection endpoint of the project connected to Jira.
+
+![Empty page of the Outbound calls configuration](./img/extensions-outbound-calls-empty.png)
 
 To configure such calls, you need to click on the _Setup outbounds calls_ button. A modal will show up, prompting you to add the following information:
 
@@ -106,13 +108,15 @@ If the authentication is required you will be required to include:
 
 Once you selected anything you need to successfully communicate with your external API, you can click on _Save Changes_ and right away see the configuration of the outbound calls updated.
 
-![Extension configured outbound calls](./img/extensions-outbounds-call-detail.png)
+![Extension configured outbound calls](./img/extensions-outbound-calls-detail.png)
 
 You will notice right away that a new URL will be shown in this page that you have not configured by yourself, right below the label _Base URL to contact your APIs_.
 
-In fact, when you will try to call the API, you will not use the URL of the external project, but a specific Mia-Platform Console API (that will include the `/proxy/extensions/` path)
-that will call used as a dynamic gateway to find the API, handle authentication (if necessary) and execute the requests.
-The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you want to connect to (in this case to `/v2/jira-issues`).
+In fact, when you will configure the Composer page to call the API, you will not use the URL of the external service, but a specific Mia-Platform Console API
+(that will include the `/proxy/extensions/` path) that will act as a proxy: a request will be sent to a specific endpoint of the Mia-Platform Console
+that will handle the authentication by calling the _Authentication Endpoint_ including the credentials configured, and then it will forward the original request to the external API.
+
+The URL ends with the `<YOUR_API>` letters, to be replaced with the endpoint you want to connect to (in this case to `/v2/jira-issues`). This will allow you to call any endpoint of the API.
 
 ### 4. Update the Composer page
 
