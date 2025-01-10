@@ -168,6 +168,33 @@ necessary to apply any further configuration. If in doubt, please contact your K
 In case Control Plane service should be configured to be reachable from outside your cluster, for example because your Fast Data Control Plane application is located in a cluster
 different from the one where Fast Data Runtimes are deployed, a few extra advanced configuration steps are necessary. These are listed here:
 
+- **Introduce further Envoy [`cluster`](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto) to expose the gRPC port of Control Plane service through the API Gateway.**  
+  This can be obtained by opening your Mia-Platform Console Project and selecting the Advanced tab from the Design area's sidebar. 
+  
+  :::info
+  This step is necessary if you are using Mia-Platform Console versions lower than v13.5.1. Otherwise, you can skip the modification to the file `api-gateway-envoy/clusters.yaml` here described.
+  :::
+  
+  Within this area of Console it is possible
+  to extend Envoy API Gateway default configuration, by editing the file `api-gateway-envoy/clusters.yaml` with the following content:
+
+  ```yaml title=api-gateway-envoy/clusters.yaml
+  - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+    name: control-plane
+    connect_timeout: 30s
+    http2_protocol_options:
+      max_concurrent_streams: 100
+    type: LOGICAL_DNS
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: control-plane
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+          address:
+            socket_address:
+              address: 'control-plane'
+              port_value: 50051
 - **Expose new subdomain from which Control Plane gets accessible** (assuming [`traefik`](https://traefik.io/traefik/) is employed as ingress controller)   
   In order to carry out this operation you first need to have access to the repository of the Console Project where Control Plane application has been configured.
   Within the project repository there is a folder named `overlays`, which should contains a folder for each environment available for the project.  
