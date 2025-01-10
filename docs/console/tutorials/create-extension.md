@@ -513,7 +513,7 @@ then to finalize the configuration of the Composer page with the _Publish all ch
 Before to move on, you now have the chance to further customize the page.
 While you have now included only the CRUD Client component, you can add more components to the page, as well as change options and the style of the page itself.
 
-You can refer to the [Microfrontend Composer documentation](/microfrontend-composer/what-is),
+You can refer to the [Microfrontend Composer documentation](/microfrontend-composer/what-is.md),
 and specifically to the[documentation of Back-kit](/microfrontend-composer/back-kit/10_overview.md) for more information on components, actions and their properties.
 :::
 
