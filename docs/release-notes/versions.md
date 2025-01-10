@@ -14,6 +14,7 @@ slug: "/release-notes/versions"
 | v13.3.0 | [Read the release notes](/release-notes/v13.3.0.md) |
 | v13.2.1 | [Read the release notes](/release-notes/v13.2.1.md) |
 | v13.2.0 | [Read the release notes](/release-notes/v13.2.0.md) |
+| v13.1.4 | [Read the release notes](/release-notes/v13.1.4.md) |
 | v13.1.3 | [Read the release notes](/release-notes/v13.1.3.md) |
 | v13.1.2 | [Read the release notes](/release-notes/v13.1.2.md) |
 | v13.1.1 | [Read the release notes](/release-notes/v13.1.1.md) |
