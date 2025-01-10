@@ -93,6 +93,8 @@ From `version 1.6.0` the Form-Service Frontend supports the possibility to retri
 #### Form Availability and Expiration date support
 From version `1.10.0` the Form Service enables the configuration of availability and expiration dates for forms via the `builder`. If either of these dates is defined and the relevant conditions are met, the form `visualizer` will trigger an error message, preventing the form from being rendered. You can customize the error title and message displayed for expired forms through the [configmap in the Form Service Backend](../form-service-backend/configuration).
 
+From version `2.1.1` the Form Servive allows you to edit the expired form metadata. After the form expiration date users are not allowed to change the `formSchema` and `formSubmittedUrl`. All the changes to the `formSchema` will be ignored.
+
 ## Further details
 
 Follow the pages below to know more about the *Form Service Frontend*:
