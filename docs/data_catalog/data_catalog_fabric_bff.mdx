@@ -85,7 +85,7 @@ Here can be found an example of configuration that assumes Fabric BFF and Job Ru
 
 #### Console Communication
 
-In order for Data Catalog UI to know which environments can be linked to [Mia Platform CRUD connections](#todo-crud-section), 
+In order for Data Catalog UI to know which environments can be linked to [Mia Platform CRUD connections](/data_catalog/frontend/data_catalog_connections.mdx#mia-platform-crud), 
 the service needs to contact Mia-Platform Console and retrieve the list of Projects that should be accessible from this Data Catalog instance.
 
 To achieve so, it is first necessary that your Company Owner creates a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md)
@@ -93,11 +93,11 @@ on your Mia-Platform Console instance and assign to it the proper permissions fo
 
 :::tip Good practices in permissions assignment
 Pay attention to the level of access to the resources that you assign to the Service Account. 
-For Control Plane use case, a good practice may be to assign the role of `guest` at Company level while granting
-the `reporter` role to all the projects that should be visible by Control Plane.  
+For Data Catalog use case, a good practice may be to assign the role of `guest` at Company level while granting
+the `reporter` role to all the projects that should be visible by Data Catalog.  
 About permissions assignment, it is possible to go even more granular in case you want to allow visibility only to a subset of runtime environments of a specific project.
 In fact, to do that, you may opt to assign the role of `guest` even at Project level while granting
-the `reporter` role solely to those runtime environments that should be visible by Control Plane.
+the `reporter` role solely to those runtime environments that should be visible by Data Catalog.
 :::
 
 Once the service account has been registered, your Company Owner needs to hand over to you its credentials, which are:
@@ -115,7 +115,7 @@ These details then should be inserted in your Fabric BFF service configuration u
 :::caution
 It is responsibility of your Company Owner to ensure that service account credentials are properly processed according to your company security policies.
 
-Furthermore, it is of <u>extreme importance</u> understanding that **any** Control Plane user will be able to list the project name
+Furthermore, it is of <u>extreme importance</u> understanding that **any** Data Catalog user with enough permissions for [connections management](/data_catalog/frontend/data_catalog_connections.mdx) will be able to view the project name
 and available environments of all the projects that can be accessed by the service account configured on Fabric BFF. 
 :::
 
@@ -125,10 +125,10 @@ This is and example of `console` property configuration:
 
 :::tip
 The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
-- `console.target`
-- `console.auth.credentials.clientId`
-- `console.auth.credentials.clientKeyId`
-- `console.auth.credentials.privateKey`
+- `console.rest.target`
+- `console.rest.auth.credentials.clientId`
+- `console.rest.auth.credentials.clientKeyId`
+- `console.rest.auth.credentials.privateKey`
 :::
 
 A custom x509 certificate can be added to the default root keychain of certificates for any client/reversed-proxy reached by Fabric BFF.
@@ -230,6 +230,7 @@ The following routes are exposed over the `/api/job-runner` endpoint and are for
 
 | Route                        | Type      | Method | Description                                                                                                                                                                                                             |
 |------------------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/feedback`                  | Websocket | HEAD   | Route used by Websocket for authentication.                                                                                                                                                                             |
 | `/feedback`                  | Websocket | GET    | Route for receiving feedback messages from the `Status` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                  |
 | `/job-runner/*`              | REST      | *      | Routes prefixed with `/job-runner` are converted into gRPC requests towards Job Runner service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_job_runner.mdx#grpc-services)|
 | `/agent/drivers`             | REST      | GET    | Route for invoking the `ListDrivers` method of the [ODBC Client gRPC service.](/data_catalog/data_catalog_job_runner.mdx#odbc-client)                                                                                   |

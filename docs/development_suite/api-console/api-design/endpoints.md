@@ -225,7 +225,7 @@ The **Advanced** tab is visible only if the Envoy API Gateway service is enabled
 - **Rate limit** (_integer_): the maximum frequency (in terms of requests per second) with which requests are forwarded to the underlying service;
 - **Request body size** (_decimal_): the maximum body size of user requests.
 - **Iframe embedding options**: the X-Frame-Options directive that is considered when the endpoint response should be embedded in an iframe;
-- **Protcol options**: this options instruct Envoy to process the request with the protocol coming from the downstream connection, allowing to dinamically infer the protocol to be used (HTTP/1.1 or HTTP/2);
+- **Protocol options**: this options instruct Envoy to process the request with the protocol coming from the downstream connection, allowing to dinamically infer the protocol to be used (HTTP/1.1 or HTTP/2);
 
 :::warning
 This `Iframe embedding` option is configurable only for the `Envoy API Gateway`, instead for `Nginx API Gateway` it is required to configure it manually using the `Advanced` section of the Console

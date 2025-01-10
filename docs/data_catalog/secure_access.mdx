@@ -599,8 +599,8 @@ all the functionalities of Data Catalog system, both the frontend and backend co
 | Endpoint            | Service         | Authentication Required | User Group Permission               |
 |---------------------|-----------------|:-----------------------:|-------------------------------------|
 | `/api/connections`  | fabric-bff      |            ✅           | `false`                             |
-| `/api/data-catalog` | fabric-bff      |            ✅           | `permissions["update:bulk-action"]` |
-| `/api/job-runner`   | fabric-bff      |            ✅           | `permissions["admin:connections"]`  |
+| `/api/data-catalog` | fabric-bff      |            ✅           | `false`                             |
+| `/api/job-runner`   | fabric-bff      |            ✅           | `false`                             |
 | `/api/open-lineage` | fabric-bff      |            ✅           | `false`                             |
 | `/data-catalog`     | data-catalog-fe |            ✅           | `true`                              |
 
@@ -670,6 +670,7 @@ so that each operation is covered with the correct grant.
 | `/metadata-registry/items/:name`                           | REST      | PATCH  | `permissions["update:metadata-assets"]` |
 | `/metadata-registry/items/:name`                           | REST      | DELETE | `permissions["update:metadata-assets"]` |
 | `/metadata-registry/search`                                | REST      | GET    | `permissions["read:data-assets"]`       |
+| `/bulk-actions`                                            | Websocket | HEAD   | `permissions["update:bulk-action"]`     |
 | `/bulk-actions`                                            | Websocket | GET    | `permissions["update:bulk-action"]`     |
 
 #### Job Runner API
@@ -685,6 +686,7 @@ so that each operation is covered with the correct grant.
 | `/agent/dsn`                  | REST      | GET      | `permissions["admin:connections"]`       |
 | `/agent/drivers`              | REST      | GET      | `permissions["admin:connections"]`       |
 | `/feedback`                   | Websocket | GET      | `permissions["admin:connections"]`       |
+| `/feedback`                   | Websocket | HEAD     | `permissions["admin:connections"]`       |
 
 #### Open Lineage API
 
@@ -698,10 +700,10 @@ so that each operation is covered with the correct grant.
 | `/jobs/items`                                              | REST      | POST     | `permissions["update:lineage"]`         |
 | `/jobs/items/:id`                                          | REST      | PATCH    | `permissions["update:lineage"]`         |
 | `/jobs/items/:id`                                          | REST      | DELETE   | `permissions["update:lineage"]`         |
-| `/dataset/items/:id`                                       | REST      | GET      | `permissions["read:data-assets"]`       |
-| `/dataset/items`                                           | REST      | POST     | `permissions["update:lineage"]`         |
-| `/dataset/items/:id`                                       | REST      | PATCH    | `permissions["update:lineage"]`         |
-| `/dataset/items/:id`                                       | REST      | DELETE   | `permissions["update:lineage"]`         |
+| `/datasets/items/:id`                                      | REST      | GET      | `permissions["read:data-assets"]`       |
+| `/datasets/items`                                          | REST      | POST     | `permissions["update:lineage"]`         |
+| `/datasets/items/:id`                                      | REST      | PATCH    | `permissions["update:lineage"]`         |
+| `/datasets/items/:id`                                      | REST      | DELETE   | `permissions["update:lineage"]`         |
 | `/facets/storage/items/:id`                                | REST      | GET      | `permissions["read:data-assets"]`       |
 | `/facets/storage/items/:id`                                | REST      | DELETE   | `permissions["update:lineage"]`         |
 

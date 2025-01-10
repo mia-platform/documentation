@@ -217,6 +217,7 @@ The following routes are exposed over the `/api/data-catalog` endpoint.
 |------------------------------------------------------------|-----------|--------|-----------------------------------------------------------------------------------------------------------|
 | `/assets/search`                                           | REST      | GET    | Search for dataset assets and their metadata                                                              |                                         
 | `/assets/search-parents`                                   | REST      | GET    | Search for name of system of record or table name                                                         |
+| `/bulk-actions`                                            | Websocket | HEAD   | Route used by Websocket for authentication.                                                               |
 | `/bulk-actions`                                            | Websocket | GET    | Route for handling async operations over multiple datasets records                                        |
 | `/tags/count`                                              | REST      | GET    | Count how many unique tags exists among all data assets                                                   |
 | `/tags/items`                                              | REST      | GET    | List existing tags associated to data assets                                                              |                                                  

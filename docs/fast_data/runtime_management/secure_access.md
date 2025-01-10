@@ -595,9 +595,9 @@ and then forwarded to the underlying components.
 In addition to the endpoints described in the [Authentication Flow](#endpoints) section, here are described the ones that expose
 all the functionalities of Fast Data Runtime Management system, both the frontend and backend components.
 
-| Endpoint         | Service          | Authentication Required | User Group Permission              |
-|------------------|------------------|:-----------------------:|------------------------------------|
-| `/fast-data`     | fabric-bff       |            ✅            | `permissions["control:pipelines"]` |
+| Endpoint         | Service          | Authentication Required  | User Group Permission              |
+|------------------|------------------|:------------------------:|------------------------------------|
+| `/fast-data`     | fabric-bff       |            ✅            | `false`                            |
 | `/control-plane` | control-plane-fe |            ✅            | `true`                             |
 
 ### Routes
@@ -629,6 +629,7 @@ so that each operation is covered with the correct grant.
 
 | Endpoint                                  | Type      | Method | User Group Permissions             |
 |-------------------------------------------|-----------|--------|------------------------------------|
+| `/fast-data/feedback`                     | Websocket | HEAD   | `permissions["read:pipelines"]`    |
 | `/fast-data/feedback`                     | Websocket | GET    | `permissions["read:pipelines"]`    |
 | `/fast-data/control`                      | REST      | HEAD   | `permissions["control:pipelines"]` |
 | `/fast-data/control`                      | REST      | POST   | `permissions["control:pipelines"]` |
