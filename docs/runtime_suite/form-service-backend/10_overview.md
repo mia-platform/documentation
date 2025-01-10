@@ -25,6 +25,18 @@ The backend service exposes the following APIs:
 - `GET /builder/schemas/{id}`: it returns one form by ID;
 - `PUT /builder/schemas/{id}`: it updates one form by ID.
 
+:::note
+
+After the form expiration date users are not allowed to change the `formSchema` and `formSubmittedUrl`. All the changes to the `formSchema` will be ignored.
+
+:::
+
+:::info
+
+**v2.1.1**. Edit expired form is available only since version 2.1.1 and will affect the `PUT /builder/schemas/{id}`
+
+:::
+
 ### Form Visualizer
 
 - `GET /visualizer/config`: it returns the configuration needed by the form visualizer;
