@@ -184,7 +184,7 @@ As discussed [here](/console/company-configuration/providers/configure-provider.
 | ------------------ |:---------------------------------------------------------------------:|
 | token              | gitlab, github, bitbucket, azure-devops, vault, jenkins               |
 | m2m                | vault                                                                 |
-| client_credentials | jenkins                                                               |
+| client_credentials | jenkins, azure-devops
 :::
 :::caution Data model update
 The fields `capabilities` and `expirationDate` (within `credentials`) have been introduced starting from version 10.8 of the Console.
@@ -271,6 +271,47 @@ Examples of request bodies specific to each provider type are shown below. In th
     "type": "token",
     "content": {
       "accessToken": "my-super-super-super-secret-token"
+    }
+  }
+}
+```
+
+```json
+{
+  "id": "azure-devops-id",
+  "label": "Azure DevOps",
+  "type": "azure-devops",
+  "urls": {
+    "apiBase": "https://dev.azure.com",
+    "base": "https://dev.azure.com"
+  },
+  "credentials": {
+    "type": "client_credentials",
+    "content": {
+      "clientId": "id",
+      "clientSecret": "secret",
+      "accessTokenURL": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
+    }
+  }
+}
+```
+
+```json
+{
+  "id": "azure-devops-id",
+  "label": "Azure DevOps",
+  "type": "azure-devops",
+  "urls": {
+    "apiBase": "https://dev.azure.com",
+    "base": "https://dev.azure.com"
+  },
+  "credentials": {
+    "type": "client_credentials_certificate",
+    "content": {
+      "clientId": "id",
+      "accessTokenURL": "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token",
+      "privateKeyBase64": "key-dot-pem-in-base64",
+      "certificateThumbprint": "the-certificate-thumbprint"
     }
   }
 }
