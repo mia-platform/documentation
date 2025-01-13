@@ -1553,7 +1553,7 @@ Please remember that `maxLines` and `fitParentContainer` properties cannot be us
 |`disableRowSelection`|`disable-row-selection`|boolean|false|when `true`, checkbox in the first column will not be displayed|
 |`disableRowSelectionChange`|`disable-row-selection-change`|boolean|false|when `true`, selecting a row through the checkbox in the first column does not trigger an event|
 |`initialSortDirection`| - |"descend" \| "ascend"| - |initial sorting direction to use when component bootstraps |
-|`initialSortProperty`|`initial-sort-property`|string| - |Initial property to sort on when component bootstraps |
+|`initialSortProperty`|`initial-sort-property`|string| - | initial property to sort on when component bootstraps, it must be used with `initialSortDirection`. |
 |`loadingOnStart`|`loading-on-start`|boolean|true|whether the table should be in loading state on connection|
 |`maxLines`|`max-lines`|number| - |force lines that will be displayed together. It can't be used with `fitParentContainer` |
 |`fitParentContainer`|`fit-parent-container`|boolean|false|Make the table fit the parent container height. It can't be used with `maxLines`|
