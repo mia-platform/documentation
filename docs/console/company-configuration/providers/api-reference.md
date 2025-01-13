@@ -258,6 +258,8 @@ Examples of request bodies specific to each provider type are shown below. In th
   </TabItem>
   <TabItem value="azure-devops" label="Azure DevOps">
 
+#### Example using credential type Token
+
 ```json
 {
   "id": "azure-devops-id",
@@ -275,6 +277,8 @@ Examples of request bodies specific to each provider type are shown below. In th
   }
 }
 ```
+
+#### Examples using OAuth 2.0
 
 ```json
 {
