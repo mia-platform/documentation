@@ -1858,5 +1858,25 @@
   "/docs/data_catalog/data_catalog_agent_setup": {
     "destination": "/docs/data_catalog/data_catalog_job_runner",
     "addedOn": "2024-12-05"
+  },
+  "/docs/runtime_suite/crud-postgresql/overview": {
+    "destination": "/docs/runtime_suite/crud-sql/overview",
+    "addedOn": "2025-01-14"
+  },
+  "/docs/runtime_suite/crud-postgresql/how_to_use": {
+    "destination": "/docs/runtime_suite/crud-sql/how_to_use",
+    "addedOn": "2025-01-14"
+  },
+  "/docs/runtime_suite/crud-postgresql/configuration": {
+    "destination": "/docs/runtime_suite/crud-sql/configuration",
+    "addedOn": "2025-01-14"
+  },
+  "/docs/runtime_suite/crud-postgresql/performance_overview": {
+    "destination": "/docs/runtime_suite/crud-sql/performance_overview",
+    "addedOn": "2025-01-14"
+  },
+  "/docs/runtime_suite/crud-postgresql/changelog": {
+    "destination": "/docs/runtime_suite/crud-sql/changelog",
+    "addedOn": "2025-01-14"
   }
 }
