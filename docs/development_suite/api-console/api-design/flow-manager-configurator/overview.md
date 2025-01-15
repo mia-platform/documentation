@@ -88,8 +88,7 @@ No edits are allowed in this mode.
 ## Highlight Mode
 
 The highlight mode allows the user to focus on a subset of states, logic blocks, and events of the flow. The following rules are applied:
-- Click on a turned off state &rarr; the state is highlighted
-- Click on a turned off logic block &rarr; the logic block is highlighted [visible only in the new layout]
+- Click on a turned off state &rarr; the state is highlighted. In the new layout, clicking on the state highlights both the state and the logic block (which consists of the command and external executor).
 - Click on a turned off event (i.e. edge)
   - Case source and target states turned off &rarr; nothing is highlighted
   - Case source and target states highlighted &rarr; the event is highlighted
