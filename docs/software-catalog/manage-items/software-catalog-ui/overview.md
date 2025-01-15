@@ -30,7 +30,7 @@ At the top of the page, a breadcrumb navigation trail provides users with a stra
 
 ### Versions
 
-If the item selected supports versioning, the first page will display a list of available versions. Each version includes key information such as the release date and, if available, a release note. For more details on versioning and how to manage it, please refer to [this documentation](/software-catalog/manage-items/overview.md#item-types).
+If the item selected supports versioning, the first page will display a list of available versions. Each version includes key information such as the release date and, if available, a release note. For more details on versioning and how to manage it, please refer to [this documentation](/software-catalog/manage-items/overview.md#versioned-resources).
 
 By selecting a version, you are taken to the details specific to that version. From there, you can continue to navigate between versions or other related items using the breadcrumb navigation at the top of the page, ensuring a smooth transition between different resources.
 
