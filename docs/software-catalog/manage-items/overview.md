@@ -38,7 +38,7 @@ Items can be assigned a **Category** (e.g., Data Stream, Data Visualization, Ins
 
 In the following section we'll explore the common fields shared by all item types.
 
-Refer to the [detailed explanation by type](#marketplace-items-example-and-explanation) for the type-specific fields and examples of working JSON items entities.
+Refer to the [detailed explanation by type](#items-example-and-explanation) for the type-specific fields and examples of working JSON items entities.
 
 Here below are listed all the properties that should be provided for each type of item:
 
@@ -50,8 +50,8 @@ Here below are listed all the properties that should be provided for each type o
 - **`documentation`**: information about the documentation of your item. It is an object composed by:
   - **`type`**: the type of documentation. It can be `externalLink` or `markdown`
   - **`url`**: the URL of the documentation. It can be an external URL or an internal one
-- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-a-new-item) later on this page)
-- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The [available category IDs](/software-catalog/manage-items/overview.md#category-list) are listed below.
+- **`comingSoon`** and **`releaseStage`**: properties to identify the maturity of the item (learn how to configure them in a [dedicated section](/software-catalog/manage-items/overview.md#the-release-stage-of-an-item) later on this page)
+- **`categoryId`**: a label to help categorize items by their purpose or use case. As specified before, categories are only created internally at Mia-Platform. The `categoryId` of a item uniquely specifies both the specific category and sub-category (e.g. Start from Code (category) - Node.js (subcategory) will be identified by the `categoryId` "nodejs"). The available category IDs are listed [here](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md#categories-list).
 - **`supportedBy`**: a label to identify the company that has produced the item (only used if `supportedByImage` is not provided)
 - **`imageUrl`** and **`supportedByImageUrl`**: respectively the image that will be associated with the item and the image that will be associated with the company that has produced it.
 - **`version`**: the version of the item. It is an object composed by the following properties:
@@ -92,7 +92,7 @@ If you want to make your item accessible to other Companies, you can visit [this
 Also, to learn how to migrate an item from the public to private internal catalog and vice versa, please refer to the [dedicated page](/software-catalog/catalog-and-marketplace/overview.md#public-visibility).
 :::
 
-### How to create a new version for your resource
+### Versioned resources
 
 To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).
 
@@ -120,18 +120,18 @@ You can find a list of all the updates at the bottom of the sidebar menu with th
 
 Versioned resources are defined to be immutable, to avoid that updates might overwrite previous configurations. However, they can still be edited if there is a need to update their metadata (e.g. the release note or the description of the  item due to typos or other reasons).
 
-Editing a versioned resource is possible via `miactl`, however the following fields cannot be edited:
+The following fields, however, cannot be edited:
 
 - `itemId`
 - `tenantId`
 - the `name` property inside `version` object
 - the `resources` property, that includes the specific resource definition
 
-Since items are defined by the `itemId`, the `tenantId` and the `version` name, attempt to modifying one of these three properties will cause the creation of a new item, completely separated from the previous one.
+Since items are defined by the `itemId`, the `tenantId` and the `version` name, attempting to modify one of these three properties will cause the creation of a new item, completely separated from the previous one.
 
-Attemping to modify the `resources` property will cause an error, and the item will not be updated. In that case, you need to create a new version of the item.
+Attemping to modify the `resources` property will cause an error, and the item will not be updated. In this case, you need to create a new version of the item.
 
-Also, the following fields are editable only in case the permission `marketplace.root.manage` has been granted to the user:
+Additionally, the following fields can only be edited if the `marketplace.root.manage` permission has been granted to the user:
 
 - `supportedBy`
 - `supportedByImage`
@@ -142,7 +142,7 @@ More information about these permissions are available in the [permissions docum
 
 #### Version dependent properties
 
-Versioning of resources means that resources under version control consist of certain *dependent fields* that contribute to defining the version. These fields cannot be modified directly by the user but can only be updated through the creation of a new version of the resource.
+Versioning of resources means that resources under version control consist of specific *dependent fields* that define the version. These fields cannot be modified directly by the user, they can only be updated by creating a new version of the resource.
 
 For instance:
 
@@ -162,14 +162,13 @@ There are 2 fields that define the release stage of an item:
   - *preview*
   - *beta*
   - *stable* (default)
-  - *deprecated*
-  a label will shown on the item according to the value of the field, except for the *stable* stage
+  - *deprecated* a label will shown on the item according to the value of the field, except for the *stable* stage
 
 :::info
 Setting both the `releaseStage` and the `comingSoon` fields is not permitted and would lead to inconsistencies; please set either field or none according to the item lifecycle status.
 :::
 
-Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-item-lifecycle) section for details about each specific release stage.
+Refer to the [Items Lifecycle](/marketplace/overview_marketplace.md#marketplace-items-lifecycle) section for details about each specific release stage.
 
 ### Items example and explanation
 

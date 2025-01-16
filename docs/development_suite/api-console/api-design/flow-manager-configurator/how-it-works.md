@@ -5,7 +5,7 @@ sidebar_label: How it works
 ---
 
 :::caution
-The new Flow Manager Configurator layout, which includes the canvas view for external executors, is available starting from Console version **12.5.1**. Once you switch to the new layout, this action is irreversible.
+The new Flow Manager Configurator layout, which includes the canvas view for external executors, is available starting from Console version **13.5.1**. Once you switch to the new layout, this action is irreversible.
 :::
 
 

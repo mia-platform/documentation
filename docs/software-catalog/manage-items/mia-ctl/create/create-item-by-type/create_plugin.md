@@ -310,7 +310,7 @@ You can update a Custom Resource Marketplace item by using the same `miactl mark
 
 While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields that cannot be modified.
 
-If you want to do so, you must create a new version of the resource: for more information, refer to the [dedicated section on the _Create your Company Marketplace_ page](/software-catalog/manage-items/overview.md#how-to-create-a-new-version-of-your-resource).
+If you want to do so, you must create a new version of the resource: for more information, refer to the [dedicated section on the _Create your Company Marketplace_ page](/software-catalog/manage-items/overview.md#versioned-resources).
 
 Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource.
 
