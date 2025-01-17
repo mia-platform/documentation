@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The ACL service is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 The ACL microservice is a [PRE Decorator](../../development_suite/api-console/api-design/decorators) whose purpose is to apply ACL rules for each request to indicate to the CRUD Service which rows or columns to filter.
 These ACL rules are based on the current user and his membership groups.
 
