@@ -9,33 +9,6 @@ The Flow Manager Configurator is a tool that allows to easily configure Flow Man
 ## Supported Versions
 
 The Flow Manager Configurator supports many Flow Manager versions, starting from version `2.0.0`.
-Below you can find a detailed list of supported versions.
-
-<details>
-  <summary>Supported versions</summary>
-  <ul>
-    <li>2.0.0</li>
-    <li>2.0.1</li>
-    <li>2.0.2</li>
-    <li>2.1.0</li>
-    <li>2.1.1</li>
-    <li>2.1.2</li>
-    <li>2.1.3</li>
-    <li>2.2.0</li>
-    <li>2.3.0</li>
-    <li>2.3.1</li>
-    <li>2.4.0</li>
-    <li>2.4.1</li>
-    <li>2.4.2</li>
-    <li>2.5.0</li>
-    <li>2.5.1</li>
-    <li>2.6.0</li>
-    <li>2.6.1</li>
-    <li>2.6.2</li>
-    <li>2.6.3</li>
-    <li>2.6.4</li>
-  </ul>
-</details>
 
 In case the Flow Manager version is not included in the supported version list, the Configurator will show a warning banner and the user will not be able to link the service.
 
