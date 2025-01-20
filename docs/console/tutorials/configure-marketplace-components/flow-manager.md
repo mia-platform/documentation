@@ -91,7 +91,11 @@ We need to update some Environment Variables of the Flow Manager microservice.
     </div>
   </div>
 
-In the _flow configuration_ ConfigMap, we can see the **saga.json** file that is provided to the service. It containts three properties (`machineDefinition`, `communicationProtocols` and `persistencyManagement`), that are, at the moment, set as empty object. We are going to modify their values in order to configure our flow manager.
+In the _flow configuration_ ConfigMap, we can see the **saga.json** file that is provided to the service. It containts three properties (`machineDefinition`, `communicationProtocols` and `persistencyManagement`), that are, at the moment, set as empty object. We are going to modify their values using the `Flow Manager Configurator` in order to configure our flow manager.
+
+To configure these properties move to the `Flow Manager` menu in the `Orchestrators` section, then click on the `Link microservice` button in the bottom of the page.
+
+![Link flow manager configurator to microservice](img/link-fm-configurator.png)
 
 ## Define a Finite State Machine
 We can start modelling our saga as a finite state machine, by configuring the `machineDefinition` property. This property contains the list of possible states and events that compose the saga.
