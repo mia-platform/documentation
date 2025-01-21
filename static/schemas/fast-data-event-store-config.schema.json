@@ -1,6 +1,26 @@
 {
     "type": "object",
     "title": "Event Store Config",
+    "examples": [
+        {
+            "consumer": {
+                "kafka": {
+                    "brokers": "localhost:9092,localhost:9093",
+                    "clientId": "client-id",
+                    "consumerGroupId": "group-id",
+                    "consumeFromBeginning": true,
+                    "logLevel": "NOTHING"
+                }
+            },
+            "producer": {
+                "mongo": {
+                    "url": "mongodb://localhost:27017",
+                    "dbName": "pc-sv-books-test",
+                    "maxBatchSize": 1000
+                }
+            }
+        }
+    ],
     "properties": {
         "consumer": {
             "title": "Consumer Configuration",
@@ -728,7 +748,7 @@
                                 },
                                 {
                                     "type": "object",
-                                    "title": "Compression Type",
+                                    "title": "Compression",
                                     "properties": {
                                         "compressionName": {
                                             "type": "string",
@@ -738,6 +758,18 @@
                                                 "none"
                                             ],
                                             "default": "none"
+                                        }
+                                    },
+                                    "additionalProperties": true
+                                },
+                                {
+                                    "type": "object",
+                                    "title": "Additional Configurations",
+                                    "properties": {
+                                        "maxBatchSize": {
+                                            "type": "number",
+                                            "description": "Max number of messages sent in each batch of the producer",
+                                            "default": 500
                                         }
                                     },
                                     "additionalProperties": true
@@ -755,77 +787,94 @@
                     "title": "MongoDB Configuration",
                     "properties": {
                         "mongo": {
-                            "type": "object",
-                            "properties": {
-                                "url": {
-                                    "anyOf": [
-                                        {
-                                            "type": "string"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "title": "Secret from Env",
-                                            "properties": {
-                                                "encoding": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "base64"
-                                                    ]
-                                                },
-                                                "key": {
+                            "allOf": [
+                                {
+                                    "type": "object",
+                                    "title": "MongoDB Connection Configuration",
+                                    "properties": {
+                                        "url": {
+                                            "anyOf": [
+                                                {
                                                     "type": "string"
                                                 },
-                                                "type": {
-                                                    "type": "string",
-                                                    "const": "env"
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from Env",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "env"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "key",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "title": "Secret from File",
+                                                    "properties": {
+                                                        "encoding": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "base64"
+                                                            ]
+                                                        },
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "path": {
+                                                            "type": "string"
+                                                        },
+                                                        "type": {
+                                                            "type": "string",
+                                                            "const": "file"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "path",
+                                                        "type"
+                                                    ],
+                                                    "additionalProperties": true
                                                 }
-                                            },
-                                            "required": [
-                                                "key",
-                                                "type"
                                             ],
-                                            "additionalProperties": true
+                                            "description": "Databse MongoDB URL in `mongodb://` format"
                                         },
-                                        {
-                                            "type": "object",
-                                            "title": "Secret from File",
-                                            "properties": {
-                                                "encoding": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "base64"
-                                                    ]
-                                                },
-                                                "key": {
-                                                    "type": "string"
-                                                },
-                                                "path": {
-                                                    "type": "string"
-                                                },
-                                                "type": {
-                                                    "type": "string",
-                                                    "const": "file"
-                                                }
-                                            },
-                                            "required": [
-                                                "path",
-                                                "type"
-                                            ],
-                                            "additionalProperties": true
+                                        "dbName": {
+                                            "type": "string",
+                                            "description": "Databse name"
                                         }
+                                    },
+                                    "required": [
+                                        "url",
+                                        "dbName"
                                     ],
-                                    "description": "Databse MongoDB URL in `mongodb://` format"
+                                    "additionalProperties": true
                                 },
-                                "dbName": {
-                                    "type": "string",
-                                    "description": "Databse name"
+                                {
+                                    "type": "object",
+                                    "title": "Additional Configurations",
+                                    "properties": {
+                                        "maxBatchSize": {
+                                            "type": "number",
+                                            "description": "Max number of messages sent in each batch of the producer",
+                                            "default": 500
+                                        }
+                                    },
+                                    "additionalProperties": true
                                 }
-                            },
-                            "required": [
-                                "url",
-                                "dbName"
-                            ],
-                            "additionalProperties": true
+                            ]
                         }
                     },
                     "required": [
