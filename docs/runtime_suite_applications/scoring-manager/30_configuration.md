@@ -1,6 +1,6 @@
 ---
 id: configuration
-title: Configuration
+title: Scoring Manager Configuration
 sidebar_label: Configuration
 ---
 
