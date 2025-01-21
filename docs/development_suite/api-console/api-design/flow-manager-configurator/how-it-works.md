@@ -110,16 +110,16 @@ Starting from the "Add State" button, you can also add shapes and notes to the c
 
 In detail:
 
-- Shapes: By clicking on the canvas, you can create a new shape and resize it according to your needs. You can also assign a name to the shape and change its color.
+- Shapes: by clicking on the canvas, you can create a new shape and resize it according to your needs. You can also assign a name to the shape and change its color.
 
-- Notes: By clicking on the canvas, you can create a new note and resize it as needed. The content can be written directly in the sidebar, and you can change the note's color.
+- Notes: by clicking on the canvas, you can create a new note and resize it as needed. The content can be written directly in the sidebar, and you can change the note color.
 
 ### Control Buttons
 
 Control buttons are placed in the corners of the canvas.
 
 Button placed in the top left corner provide the following features:
-- Searchbar &rarr; searches for states and events of the flow, clicking on an item will cause it to be centered and selected
+- Searchbar &rarr; searches for states, events and shapes of the flow, clicking on an item will cause it to be centered and selected
 
 Button placed in the top right corner provide the following features:
 - Download flow &rarr; exports an image representing the whole flow or the current view
