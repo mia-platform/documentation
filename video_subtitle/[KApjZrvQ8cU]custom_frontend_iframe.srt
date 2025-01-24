@@ -1,0 +1,80 @@
+1
+00:00:01,200 --> 00:00:06,200
+Hi everyone and welcome to the Mia-Platform
+tutorials. Today we're going to take a look at
+
+2
+00:00:06,200 --> 00:00:13,560
+Custom frontend as an IFrame. What is an IFrame?
+An IFrame is a simple way to embed a web page or
+
+3
+00:00:13,560 --> 00:00:19,960
+a web component in another web page or another web
+component. The most common use of an IFrame is to
+
+4
+00:00:19,960 --> 00:00:26,240
+load content from another page into another site
+within the page. The child site can load its own
+
+5
+00:00:26,240 --> 00:00:32,240
+content and cookies so sites may allow it where
+they don't allow direct hot linking content. Using
+
+6
+00:00:32,240 --> 00:00:37,600
+an IFrame is the accepted way to embed a YouTube
+video or a Google Maps content into your web
+
+7
+00:00:37,600 --> 00:00:45,160
+page. We brought this concept to our Mia-Platform
+Console. Since our Console is a tool born to embed
+
+8
+00:00:45,160 --> 00:00:50,520
+other Cloud Native tools, we have an interface
+where you can configure more advanced features
+
+9
+00:00:50,520 --> 00:00:57,000
+and our users can directly access a different
+interface within the console. For this example,
+
+10
+00:00:57,000 --> 00:01:01,440
+let's imagine that you are someone who uses
+Backstage and the Mia-Platform Console on a
+
+11
+00:01:01,440 --> 00:01:07,200
+regular working day. In this video we will enter
+the Core Enterprise Platform section in our
+
+12
+00:01:07,200 --> 00:01:13,880
+companies and we will go to the Backstage icon. As
+you can see, here you have the Mia-Platform demo
+
+13
+00:01:13,880 --> 00:01:19,360
+Backstage app within the Mia-Platform Console
+itself. Here you can enter as a guest user and
+
+14
+00:01:19,360 --> 00:01:24,960
+carry out with your proceedings. As you can see
+this is a super easy way for you to integrate
+
+15
+00:01:24,960 --> 00:01:30,640
+another web page into the Mia-Platform Console.
+We hope this was helpful and as always if you have
+
+16
+00:01:30,640 --> 00:01:41,320
+any questions feel free to reach out to us or book
+a demo on the Mia-Platform website. Thank you!
+
