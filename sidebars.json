@@ -106,6 +106,18 @@
           ]
         },
         {
+          "id": "console/videos/mia-assistant",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/manage-providers-in-console",
+          "type": "doc"
+        },
+        {
+          "id": "console/videos/custom-frontend-iframe",
+          "type": "doc"
+        },
+        {
           "id": "console/videos/connecting-cluster",
           "type": "doc"
         },

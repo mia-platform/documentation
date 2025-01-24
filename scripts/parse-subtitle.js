@@ -10,7 +10,7 @@ const parseSubtitle = (srt) => {
         const text = textLines
             .join("\n")
             .replace(/<[^>]*>/g, "")
-            .replace(/\{.*?\}/g, '')
+            .replace(/\{.*?\}/g, '');
         return {
             startTimeString,
             endTimeString,
@@ -32,7 +32,7 @@ const finalize = (data) => {
             currentStart = item.startTimeString;
         }
 
-        if (currentText.trim().endsWith('.')) {
+        if (currentText.trim().includes('.')) {
             result.push({
                 startTimeString: currentStart.replace(/(\r\n|\n|\r)/gm, " "),
                 endTimeString: item.endTimeString.replace(/(\r\n|\n|\r)/gm, " "),
