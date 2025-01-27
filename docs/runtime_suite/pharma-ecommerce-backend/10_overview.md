@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The _Pharma Ecommerce Backend_ is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 The **Pharma Ecommerce Backend** is a Mia-Platform plugin that provides APIs that can be used to create your own pharmaceutical e-commerce.
 
 It allows through its endpoints to:
