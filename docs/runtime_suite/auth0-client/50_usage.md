@@ -271,3 +271,11 @@ Signature `GET /users/import/status/:jobID/errors`
 Allows to retrieve import job errors.
 
 Returns the same body of Auth0 [GET /api/v2/jobs/{id}/errors](https://auth0.com/docs/api/management/v2/jobs/get-errors).
+
+
+## How to customize Auth0 login page
+
+By using the query parameters `prompt` and `action` in the `/authorize` endpoint you can forward these parameters to Auth0.
+
+- The `prompt=login` query parameter can be used to force a user to login/signup and to trigger re-authentication UI. See the [Auth0 documentation](https://auth0.com/docs/customize/login-pages/universal-login/customize-signup-and-login-prompts#terminology) for all the allowed values for `prompt` property.
+- The `action` parameter is not a standard Auth0 parameter. It gives you fine-grained control over your login page's UI. (e.g. `action=signup` may be used in your custom UI code to render signup instead of a login form).

@@ -331,7 +331,7 @@ The endpoints that support connections are the following:
 - `GET /users`: will filter connections in original request based on _ManagementClient_ supported connection, if none is provided all supported connections are used by default;
 - `POST /users`: will use the default connection from _ManagementClient_ if no connection is provided, otherwise will use the one provided (if supported).
 - `GET /users/active`: will return a list of the active users at the time the call is made.
-- 
+
 ## Supported redis modes
 
 This service handles the session saving into redis either the session id or the access token.
