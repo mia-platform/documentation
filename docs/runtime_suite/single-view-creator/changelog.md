@@ -15,6 +15,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.8.0] 2025-01-23
+
+### Added
+
+- `forceResume` setting field to `controlPlane.settings` that can either be a boolean or an object with a numeric field `timeout.ms`, defining the amount
+  of time for control plane pipelines to be resumed after an unsuccessful connection.
+
+### Changed
+
+- `controlPlane.settings` object now has both `state` and `feedback` marked as optional
+
+### Removed
+
+- `gRPC` Control Plane Feedback client
+- `Kafka` Control Plane client
+- deprecated environment variables `CONTROL_PLANE_ACTIONS_TOPIC` and `CONTROL_PLANE_KAFKA_GROUP_ID`
+
+## [6.7.3] 2025-01-16
+
+### Fixed
+
+- Reconnect Control Plane GRPC client when Control Plane Operator restarts
+
+### Updated
+
+- updated to `@mia-platform-internal/single-view-creator-lib@15.2.2`, which fixed a bug that was letting _Mongodb Projection Changes_ with `IN_PROGRESS` state not inheriting `__internal__kafkaInfo` properties, leading to malformed `sv-update` messages.
+
 ## [6.7.2] 2024-12-05
 
 ### Added
