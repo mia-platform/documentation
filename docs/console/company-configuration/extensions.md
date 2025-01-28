@@ -153,6 +153,10 @@ using the [inbound calls](#inbound-calls) for customized operations or saving th
 
 ### Inbound Calls
 
+:::info
+In order to use this feature you must have the `console.company.users.manage` permission as well.
+:::
+
 The _Inbound calls_ tab allows you to configure the extension to communicate with the Mia-Platform APIs,
 using [Service Accounts](/development_suite/identity-and-access-management/manage-service-accounts.md) to leverage machine-to-machine communication.
 This feature is useful for use cases where extensions that communicate with an external backend might need to perform operations on the Mia-Platform Console (such as deploy operations) or
