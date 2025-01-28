@@ -279,3 +279,10 @@ The following steps needs to be followed:
   
   See [Routes paragraph](#open-lineage-routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
   to support the new permission `update:lineage`. 
+
+### From 0.2.x to 0.3.0
+
+- A migration CLI must run to update data-fabric records. To do so, you must retrieve the docker image `data-fabric/fabric_admin:0.4.0` and run the following subcommand
+```shell
+docker run --pull=always <registry-url>/data-fabric/fabric-admin:latest open-lineage update-records --url=<MONGODB_URL>
+```
