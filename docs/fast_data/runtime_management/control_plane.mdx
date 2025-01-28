@@ -245,8 +245,8 @@ Here are described which routes Control Plane service serves
 | `/fast-data/runtimes/items/:id`             | REST | DELETE | Delete specified runtime view                                                                                             |
 | `/fast-data/runtimes/items/:id/pipelines`   | REST | GET    | Return the list of pipelines associated to specified rumtime                                                              |
 | `/fast-data/runtimes/stats`                 | REST | GET    | Return additional details for each runtime, such as the number of pipelines registered on them                            |
+| `/fast-data/runtimes/namespaces/usage`      | REST | GET    | Returns a list of registered namespaces with their usage status within runtime views                                      |
 | `/grpc.reflection.v1.ServerReflection`      | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |
 | `/grpc.reflection.v1alpha.ServerReflection` | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |                                                              |
 | `/control_plane_fabric.RuntimeManagement`   | gRPC |        | gRPC service that allows Control Plane Operator to register itself on the Control Plane                                   |
-| `/control_plane_fabric.ControlPlane`        | gRPC |        | gRPC service for exchanging Fast Data desired state and runtime feedback between Control Plane and Control Plane Operator |
-| `/control_plane_fabric.FastDataControl`     | gRPC |        | gRPC service for exchanging change actions and runtime feedback between Control Plane and Fabric BFF                      |
+| `/control_plane_intercomm.ControlPlane`     | gRPC |        | gRPC service for exchanging Fast Data desired state and runtime feedback between Control Plane and Control Plane Operator |
