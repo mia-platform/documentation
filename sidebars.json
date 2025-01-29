@@ -29,6 +29,11 @@
           "id": "p4samd/getting_started",
           "label": "Getting Started",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/software_items_table",
+          "label": "Software Items Table",
+          "type": "doc"
         }
       ]
     },
