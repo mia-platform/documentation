@@ -1,5 +1,5 @@
 ---
-id: software_items_table
+id: software_items
 title: Software Items
 sidebar_label: Software Items
 ---

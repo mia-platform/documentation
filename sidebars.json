@@ -41,8 +41,13 @@
           "type": "doc"
         },
         {
-          "id": "p4samd/handbook/software_items_table",
-          "label": "Software Items Table",
+          "id": "p4samd/handbook/software_items",
+          "label": "Software Items",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/insight_and_suggestions",
+          "label": "Insight and Suggestions",
           "type": "doc"
         }
       ]
