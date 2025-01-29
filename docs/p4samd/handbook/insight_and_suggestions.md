@@ -32,12 +32,12 @@ For Software Items suggestions, visit the [Software Items](./software_items#4-so
 
 ## Suggestions Indicators  
 
-In all tables, two types of icons appear in the **Suggestions column** to help users quickly identify and navigate suggestions:  
+Inside tables, two types of icons could appear in the **Suggestions column** to help users quickly identify and navigate suggestions:  
 
 
 |Icon| Meaning |
 |-------|-------|
-| ![alt text](img/suggestion_icon_cluste.png) | Indicates that one or more child Software Items have suggestions. |  
+| ![alt text](img/suggestion_icon_cluste.png) | Indicates that one or more child Software Items have suggestions.<br/> *Only for Software Items.* |  
 | ![alt text](img/suggestion_icon_number.png) | Displays the number of suggestions for the entity.<br/> Hovering over this icon reveals a **clickable menu** that directs the user to the **Suggestions Drawer** section. |
 
 By implementing these automated insights and suggestions, P4SaMD empowers users to efficiently manage compliance and enhance software quality.
