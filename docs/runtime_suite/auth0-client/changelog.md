@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add support for `prompt` and `action` query parameters set in `/authorize` endpoint 
+- Add support for `prompt` and `action` query parameters set in `/authorize` endpoint
 
 ## 3.7.1 - 07-11-2024
 
