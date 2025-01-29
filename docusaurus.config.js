@@ -65,12 +65,12 @@ async function createConfig() {
           position: "left",
           label: "Community"
         },
-        // {
-        //   type: "docsVersionDropdown",
-        //   position: "right",
-        //   dropdownItemsBefore: [],
-        //   dropdownItemsAfter: []
-        // }
+        {
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownItemsBefore: [],
+          dropdownItemsAfter: []
+        }
         ],
       },
       footer: {
@@ -201,6 +201,13 @@ async function createConfig() {
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
             lastVersion: "current",
+            versions: {
+              current: {
+                label: "2.0 (Current)",
+                path: "",
+                banner: "none"
+              },
+            },
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
               defaultSidebarItemsGenerator,
