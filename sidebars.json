@@ -34,6 +34,11 @@
           "id": "p4samd/sbom",
           "label": "Software Bill Of Materials (SBOM)",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/software_items_table",
+          "label": "Software Items Table",
+          "type": "doc"
         }
       ]
     },
