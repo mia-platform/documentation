@@ -65,7 +65,7 @@ This is divided into multiple tabs:
 - **Traceability**: Shows the linked issues (Requirements, Risks, Integration Tests, Changes), which are clickable.
 - **Suggestions**: Displays a list of suggestions, if any, to ensure the Software Item meets the ISO standards.
 
-| Suggestion | Title | Description |
+| IEC 62304 Reference Requirement | Title | Description |
 |-----------|-----------|----------|
 |[**5.3.1**] Transform software requirements into an ARCHITECTURE | Missing architecture reference | Each Software Item of class B or C must include a reference to its architecture. |
 |[**5.3.2**] Develop an ARCHITECTURE for the interfaces of SOFTWARE ITEMS | Missing interface architecture reference | Each Software Item of class B and class C must include a reference to the architecture of its interfaces. |
