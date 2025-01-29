@@ -26,8 +26,13 @@
       "type": "category",
       "items": [
         {
-          "id": "p4samd/getting_started",
+          "id": "p4samd/handbook/getting_started",
           "label": "Getting Started",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/software_verification",
+          "label": "Software Verification",
           "type": "doc"
         }
       ]
