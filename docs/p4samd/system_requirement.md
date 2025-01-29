@@ -4,6 +4,12 @@ title: System Requirements
 sidebar_label: System Requirements
 ---
 
+:::info
+
+Mia-Care P4SaMD is validated to develop SaMD, if you need additional documentation or information please [contact us][contact-us] or check the [FAQ section][faq].
+
+:::
+
 This page provides an overview of the system requirements necessary for deploying P4SaMD and explains how the installation process is carried out by the Mia-Care team.
 
 The deployment of Mia-Care P4SaMD involves a structured process to ensure compatibility with your existing infrastructure and alignment with regulatory and operational needs. It includes:
@@ -176,12 +182,16 @@ The components needed for the Kubernetes runtime are shown below.
 For every component is provided a set of recommended tools.
 Customers can customize the Kubernetes cluster setup based on tools available in their portfolio.
 
-| Component |  Mandatory | Recommended Tools |
-|:---|:---:|:---|
-| Ingress Controller | Yes | Traefik |
-| Certificate Manager | Optional | cert-manager |
-| Monitoring & Logging Stack | Optional | Grafana + Prometheus + Loki + Fluentd + Fluentbit |
-| Disaster Recovery | Optional | Velero |
+| Component                  | Mandatory | Recommended Tools                                 |
+|:---------------------------|:---------:|:--------------------------------------------------|
+| Ingress Controller         |    Yes    | Traefik                                           |
+| Certificate Manager        | Optional  | cert-manager                                      |
+| Monitoring & Logging Stack | Optional  | Grafana + Prometheus + Loki + Fluentd + Fluentbit |
+| Disaster Recovery          | Optional  | Velero                                            |
+
+### Enhanced workflow
+
+Mia-Care P4SaMD requires all Console projects to use [Enhanced Project Workflow][enhanced-project-workflow], since leverages GitOps integrations to provide observability and traceability over the project runtime.
 
 ## Installation Procedure
 
@@ -199,7 +209,6 @@ The installation of Mia-Care P4SaMD is a structured process performed exclusivel
    - Performance testing to ensure stability under expected workloads.
    - Validation of integrations to confirm compatibility with the overall ecosystem.
 
-
 4. **Installation of Mia-Care P4SaMD**: After verifying the successful installation of Mia-Platform IDP, the Mia-Care P4SaMD application is installed. This involves configuring the solution to align with the intended use and environment specifications.
 
 5. **Post-Installation Testing of Mia-Care P4SaMD**: Following the installation, comprehensive testing of Mia-Care P4SaMD is performed to validate:
@@ -213,3 +222,8 @@ The installation of Mia-Care P4SaMD is a structured process performed exclusivel
    - Approval and sign-off by the Mia-Care team, certifying that the system is operational and meets quality standards.
 
 This phased approach ensures a smooth deployment of Mia-Care P4SaMD, with high levels of reliability and performance, while adhering to strict security and compliance requirements. For further information or support, please contact Mia-Care's technical support team.
+
+
+[contact-us]: https://mia-care.io
+[enhanced-project-workflow]: https://docs.mia-platform.eu/docs/development_suite/set-up-infrastructure/enhanced-project-workflow
+[faq]: faq.md
