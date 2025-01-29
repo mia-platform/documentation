@@ -94,6 +94,10 @@ No, **Mia-Care P4SaMD does not provide automatic certification** for the softwar
 
 Using P4SaMD significantly reduces the effort needed to prepare for certification, but the certification itself must be conducted by an authorized body.
 
+### Does Mia-Care P4SaMD share data with third-party organizations?
+
+No, **Mia-Care P4SaMD** does not share any data with external parties. Organizational and technical measures based on international regulations and widely recognized standards are adopted to ensure availability, integrity and confidentiality of data collected from external tools and systems, like ALM (Application Lifecycle Management) tools, Software Development Lifecycle (SDLC) toolchains and Identity Providers (IDPs).
+
 ---
 
 If you have further questions or need additional assistance, feel free to reach out to our team. We are here to help you succeed with P4SaMD!
