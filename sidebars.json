@@ -29,6 +29,11 @@
           "id": "p4samd/getting_started",
           "label": "Getting Started",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/sbom",
+          "label": "Software Bill Of Materials (SBOM)",
+          "type": "doc"
         }
       ]
     },
