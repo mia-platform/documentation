@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The Doctor Service is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 The purpose of the doctor service is to do a complete _check_ of the services status in the project in which is deployed.
 
 To do this, the service will call a specific route, the `/-/check-up` one.
