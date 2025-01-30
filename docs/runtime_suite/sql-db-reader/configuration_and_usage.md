@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The SQL DB Reader plugin is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 A microservice that can generically read all the DBs compatible with standard SQL queries.
 
 Each profile defines the view on the DB and guarantees safety and reading flexibility.
