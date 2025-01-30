@@ -102,6 +102,18 @@ Then, workloads should have the `settings` properties configured as follows:
 
 :::
 
+### Force the Resume of Workload Operations 
+
+If for some reasons either the `Control Plane` or `Control Plane Operator` are unreachable during service startup, it can be forced the resume of workload's data streams
+after a certain timeout. This option can be tuned with the `settings.channel.forceResume` parameter, which can either be:
+
+- a boolean flag set to `true`, which will resume data streams after 15 seconds;
+- an object having a field `timeout.ms` that defines explicitly the number of milliseconds to wait before resuming data streams.
+
+:::info
+Please note that, even if the workload will resume the data stream, it will still try to connect to Control Plane until a successful connection will be established.
+:::
+
 ## Bind Microservices to Runtime
 
 Once a Control Plane configuration has been defined for one of the workloads above mentioned, upon saving,

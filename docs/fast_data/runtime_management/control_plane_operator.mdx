@@ -162,3 +162,12 @@ The information that can be extracted from these messages is:
 Workloads connected to a Control Plane Operator **periodically** generate and send these messages through the established bidirectional channel.
 
 <SchemaViewer schema={FeedbackChannelSchema} />
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.x to 0.3.0
+
+Control Plane Operator will accept workload connections only after it has been registered to the Control Plane. 
+To let the workloads resume their data stream processing if such registration process fails, you can configure their [Force Resume feature](/fast_data/runtime_management/workloads.mdx#force-the-resume-of-workload-operations).    
