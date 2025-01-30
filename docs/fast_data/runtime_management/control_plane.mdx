@@ -250,3 +250,30 @@ Here are described which routes Control Plane service serves
 | `/grpc.reflection.v1alpha.ServerReflection` | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |                                                              |
 | `/control_plane_fabric.RuntimeManagement`   | gRPC |        | gRPC service that allows Control Plane Operator to register itself on the Control Plane                                   |
 | `/control_plane_intercomm.ControlPlane`     | gRPC |        | gRPC service for exchanging Fast Data desired state and runtime feedback between Control Plane and Control Plane Operator |
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.x to 0.3.0
+
+Control Plane changes the activation default behavior of pipelines from 'pause' to 'resume'. This
+means that when a pipeline is first added it receives the command to 'resume' all its workloads.
+The behavior is not suitable to release control to Control Plane from production envirnments where
+Fast Data is currently running.
+
+If updating from version 0.1.x it is recommended to update the runtime current activation status by either:
+
+- recreting the runtime
+- use the api-portal/swagger and invoke a post on `<prefix>/fast-data/control` with body
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "resume",
+  "params": {
+    "runtime": "<ID OF THE RUNTIME>"
+  }
+}
+```
+
