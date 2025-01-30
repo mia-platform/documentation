@@ -4,17 +4,17 @@ title: Insight & Suggestions
 sidebar_label: Insight and Suggestions
 ---
 
-P4SaMD ensures compliance with **ISO 62304** rules by analyzing Software Items, Requirements, Risks, and Tests.<br/> It detects inconsistencies and suggests modifications to enhance compliance and reduce risks, streamlining medical software development. The user is guided by suggestions indicating necessary actions to achieve compliance, including mandatory, recommended, and optional improvements.
+P4SaMD ensures compliance with **IEC 62304** rules by analyzing Software Items, Requirements, Risks, and Tests.<br/> It detects inconsistencies and suggests modifications to enhance compliance and reduce risks, streamlining medical software development. The user is guided by suggestions indicating necessary actions to achieve compliance, including mandatory, recommended, and optional improvements.
 
 ## Overview
 
 Each suggestion includes:
 - **Gravity Check**: 
-  - **<span style={{color:'rgba(255, 84, 83, 1)'}}>Error</span>**: Actions that must be performed
-  - **<span style={{color:'rgba(246, 143, 31, 1)'}}>Warning</span>**:  Recommended actions to improve compliance
-  - **<span style={{color:'rgba(24, 144, 255, 1)'}}>Info</span>**: Optional actions to enhance software quality.
-- **Issue Resolution**: Users are warned about necessary actions to resolve detected issues.
-- **Actionable Guidance**: Clear instructions on what must be done.
+  - **<span style={{color:'rgba(255, 84, 83, 1)'}}>Error</span>**: Actions that must be performed;
+  - **<span style={{color:'rgba(246, 143, 31, 1)'}}>Warning</span>**:  Recommended actions to improve compliance;
+  - **<span style={{color:'rgba(24, 144, 255, 1)'}}>Info</span>**: Optional actions to enhance software quality;
+- **Issue Resolution**: Users are warned about necessary actions to resolve detected issues;
+- **Actionable Guidance**: Clear instructions on what must be done;
 - **Standard Reference**: The applicable IEC 62304 requirement, including the paragraph number, title, and explanation.
 ![alt text](img/suggestion_example.png)
 
