@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The Temporary Password Generator plugin is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 ## Summary
 The _Temporary Password Generator_ is a microservice that generates Temporary-Passwords associated with arbitrary data _(payload)_.
 The generated codes may be subsequently consumed by the _Temporary Password Generator_ and be converted into JWTs.
