@@ -12,6 +12,18 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The Notification Manager needs some configuration in order to be used effectively.
 
+:::warning
+
+The service generates the routing table at startup and stores it in a local cache.
+If you use multiple replicas, each replica stores a separate copy of the routing table, so if an incoming request updates the routing table, only the local copy of the instance processing the request will be updated.
+Therefore, if you use multiple replicas of the service, you should avoid calling the following endpoints, since they may introduce inconsistencies across the different replicas of the service in terms of how events are processed:
+
+- [DELETE /event-settings/:id][delete-event-settings]
+- [POST /event-settings][post-event-settings]
+- [PATCH /event-settings/:id][patch-event-settings]
+
+:::
+
 ## CRUD collections
 
 To use the Notification Manager you need to create the following CRUD collections:

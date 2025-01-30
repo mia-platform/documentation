@@ -478,6 +478,12 @@ This endpoint is a proxy to the `GET /` endpoint of the [event settings CRUD][cr
 
 :::
 
+:::warning
+
+This endpoint updates the local routing table, but changes are not propagated to all replicas, so avoid calling this endpoint while running multiple replicas of the service to not introduce inconsistencies across copies of the routing table stored on different replicas.
+
+:::
+
 The endpoint provides a way to delete event settings without the need to restart the microservice in order to register the change.
 
 This endpoint acts as a proxy to the `DELETE /:id` endpoint of the [event settings CRUD][crud-event-settings].
@@ -489,6 +495,12 @@ After deleting successfully the event settings, the routing table is automatical
 :::info
 
 **v2.1.0**. This endpoint is available only since v2.1.0.
+
+:::
+
+:::warning
+
+This endpoint updates the local routing table, but changes are not propagated to all replicas, so avoid calling this endpoint while running multiple replicas of the service to not introduce inconsistencies across copies of the routing table stored on different replicas.
 
 :::
 
@@ -510,6 +522,12 @@ Since the event settings must be unique for a given event, identified by the `ev
 :::info
 
 **v2.1.0**. This endpoint is available only since v2.1.0.
+
+:::
+
+:::warning
+
+This endpoint updates the local routing table, but changes are not propagated to all replicas, so avoid calling this endpoint while running multiple replicas of the service to not introduce inconsistencies across copies of the routing table stored on different replicas.
 
 :::
 
