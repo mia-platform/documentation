@@ -1,5 +1,5 @@
 ---
-id: software_items_table
+id: software_items
 title: Software Items
 sidebar_label: Software Items
 ---
@@ -46,14 +46,14 @@ Depending on the status of the software items, several fast actions are availabl
 
 | Status | Button | Description | Action |
 |:-------------:|:--------:|-----------|-----------|
-|![alt text](swi_ok.png)|  |The software item is in correct status |
-|![alt text](swi_missing_approval.png)|![alt text](swi_approve_btn.png)|The Software Item should be approved|Approve the item, if `SOUP` open a modal to fill required fields|
-|![alt text](swi_missing_version.png)|![alt text](swi_tag_btn.png)|Project \| Service need to be tagged |Redirect to console to create a tag|
-|![alt text](swi_invalid_version.png)|![alt text](swi_create_tag_btn.png)|Version is not following the semantic versioning |Redirect to console to edit a tag|
-|![alt text](swi_missing_implementation.png)|![alt text](swi_create_project_btn.png) ![alt text](swi_create_service_btn.png)|The Software Item is not implemented in the console  |Redirect to console create Project \| Service|
-|![alt text](swi_missing_design.png)|![alt text](swi_create_btn.png)|A Software Item was detected but not designed | Open modal to create a Software Item, If a design for a Software Item with the same name and version already exists, open modal to suggest duplicating|
-|![alt text](swi_version_unmatched.png)|        |Versions designed and detected are not matched| |
-|![alt text](swi_undetectable.png)|        |Software Item can't be detected| |
+|![alt text](img/swi_ok.png)|  |The software item is in correct status |
+|![alt text](img/swi_missing_approval.png)|![alt text](img/swi_approve_btn.png)|The Software Item should be approved|Approve the item, if `SOUP` open a modal to fill required fields|
+|![alt text](img/swi_missing_version.png)|![alt text](img/swi_tag_btn.png)|Project \| Service need to be tagged |Redirect to console to create a tag|
+|![alt text](img/swi_invalid_version.png)|![alt text](img/swi_create_tag_btn.png)|Version is not following the semantic versioning |Redirect to console to edit a tag|
+|![alt text](img/swi_missing_implementation.png)|![alt text](img/swi_create_project_btn.png) ![alt text](img/swi_create_service_btn.png)|The Software Item is not implemented in the console  |Redirect to console create Project \| Service|
+|![alt text](img/swi_missing_design.png)|![alt text](img/swi_create_btn.png)|A Software Item was detected but not designed | Open modal to create a Software Item, If a design for a Software Item with the same name and version already exists, open modal to suggest duplicating|
+|![alt text](img/swi_version_unmatched.png)|        |Versions designed and detected are not matched| |
+|![alt text](img/swi_undetectable.png)|        |Software Item can't be detected| |
 
 ## 4. Software Item Drawer
 Clicking on a row or the specific button will open a navigable drawer.
