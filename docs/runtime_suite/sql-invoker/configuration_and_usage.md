@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The SQL Invoker plugin is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 SQL Invoker is designed to invoke stored procedure and/or stored function. In this moment, the service supports only:
 
 - Stored procedures that does not return result sets and consequently:
