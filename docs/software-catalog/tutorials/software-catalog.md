@@ -49,7 +49,7 @@ To create a new item in the marketplace using the `Software Catalog`, follow the
    7. `Release Note Type` - choose if you want to handle the releases notes using `Markdown` or `External Link`
    8. `Repository URL` - add the link to the item's source code.
 
-For a detailed explaination of the required metadata please refere to [this guide](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
+For a detailed explanation of the required metadata please refere to [this guide](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
 
 5. **Define the item's assets** - which are the information needed by the Mia-Platform console to start-up and deploy your item on the runtime properly, like:
    1. `Container Ports` for each service included in the plug-in (typically a plug-in contains only one service)
