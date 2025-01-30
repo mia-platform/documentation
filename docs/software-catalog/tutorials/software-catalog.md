@@ -6,7 +6,7 @@ sidebar_label: Create a new Marketplace Item using the Software Catalog
 
 # Create your own Marketplace Item
 
-In this tutorial, we will learn how to publish a new item on the [Mia-Platform Marketplace](/marketplace/overview_marketplace.md) and manage its lifecycle using the [Software Catalog](/software-catalog/overview.md).
+In this tutorial, we will learn how to publish a new item on your own company's Marketplace and manage its lifecycle using the [Software Catalog](/software-catalog/overview.md).
 
 We will also explore the differences between using the Software Catalog to manage marketplace items and the alternative approach of using [miactl](/cli/miactl/10_overview.md).
 
@@ -61,13 +61,21 @@ For a detailed explanation of the required metadata please refere to [this guide
    7. `Repository Url` which is the url to the source code of the service
    8. `Docker Image` 
 
+:::caution
+The `Asstes` object have a different spec based on the `Item Type` the exaple provided in this guide is related to the components of item `Plug-In`
+:::
+
 For reference this is the `Assets` object configuration for an hypothetical plugin:
 
 ```json
 {
   "services": {
     "my-own-marketplace-component": {
+      "name": "my-own-marketplace-component",
       "componentId": "my-own-marketplace-component",
+      "description": "Example of a simple marketplace plug-in.",
+      "repositoryUrl": "<your-repository-url>",
+      "dockerImage": "<your-docker-image>",
       "containerPorts": [
         {
           "name": "http",
@@ -109,17 +117,17 @@ For reference this is the `Assets` object configuration for an hypothetical plug
           },
           "files": []
         }
-      ],
-      "name": "my-own-marketplace-component",
-      "description": "Example of a simple marketplace plug-in.",
-      "repositoryUrl": "<your-repository-url>",
-      "dockerImage": "<your-docker-image>"
+      ]
     }
   }
 }
 ```
 
-6. **Complete the process** – Follow the on-screen instructions, then save and submit the item to add it to the marketplace.
+:::caution
+The `componentId` and `name` fields must be equal. 
+:::
+
+1. **Complete the process** – Follow the on-screen instructions, then save and submit the item to add it to the marketplace.
 
 ![create new version](./img/software-catalog-create-version-from-this.png)
 
