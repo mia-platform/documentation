@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The CSV Connector Plugin is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 This microservice allows you to fetch data from CSV files and deliver it with validation to the Fast Data.
 
 In order to achieve this, CSV file specifications must be described in a ConfigMap in the Console by means of a JSON schema. In this way both validation of input data and custom mapping to projections are provided, ensuring the columns in the input file match the corresponding properties of associated projection.
