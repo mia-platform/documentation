@@ -38,7 +38,7 @@ The drawer shows risk related information into three tabs:
 
 **Traceability**: Shows the linked issues of the risk grouped by:
    - **[Software Items](./software_items)**
-   - **[Risk Control Measures](./requirements)**
+   - **Risk Control Measures**
    - **[Changes](./changes)**
 
 **Suggestions**: Shows related suggestions of the risk.
