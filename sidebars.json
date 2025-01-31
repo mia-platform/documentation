@@ -36,7 +36,7 @@
           "type": "doc"
         },
         {
-          "id": "p4samd/sbom",
+          "id": "p4samd/handbook/sbom",
           "label": "Software Bill Of Materials (SBOM)",
           "type": "doc"
         },
@@ -48,6 +48,16 @@
         {
           "id": "p4samd/handbook/insight_and_suggestions",
           "label": "Insight and Suggestions",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/risks",
+          "label": "Risks",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/changes",
+          "label": "Changes",
           "type": "doc"
         },
         {
