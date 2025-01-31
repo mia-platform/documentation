@@ -17,6 +17,15 @@ The deployment of Mia-Care P4SaMD involves a structured process to ensure compat
 - A detailed list of system requirements, including prerequisites for the Mia-Platform IDP, the need for an ALM tool, and the supported adoption models.
 - A description of the installation process, highlighting the infrastructure assessment, installation steps, and the validation phase conducted by Mia-Care.
 
+## Mia-Platform IDP Supported
+
+The table below shows the minimum console version supported for each Mia-Care P4SaMD version.
+
+| Mia-Care P4SaMD Version | State      | Minimum Mia-Platform IDP Version |
+|----------------|------------|----------------------------------|
+| 2.0            | Supported    | 13.5                             |
+| 1.0            | Deprecated  | 11.0                             |
+
 ## System Requirements
 
 Mia-Care P4SaMD is installed on behalf of Mia-Platform IDP, meaning the system requirement list contains both Mia-Platform IDP and Mia-Care P4SaMD components. For every component, a list of supported tool is presented. In the end, a target tech stack is presented.
