@@ -1,10 +1,10 @@
 ---
-id: documentation
-title: Documentation
-sidebar_label: Documentation
+id: reports
+title: Reports
+sidebar_label: Reports
 ---
 
-# Documentation
+# Reports
 
 **Mia-Care P4SaMD** can automatically generate documentation based on information about managed entities, like [risks][risks], requirements, [tests][tests] and [changes][changes], to ensure compliance with most common documentation requirements outlined in international regulation and standards related to SaMD development.
 

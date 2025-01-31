@@ -34,6 +34,8 @@ Directly beneath the overall progress bar, a **select dropdown menu** enables us
 
 These reports ensure compliance, traceability, and readiness for audits or external reviews.
 
+For additional information about the available reports, please take a look at the [dedicated section](reports.md).
+
 ## Suggestions
 On the right-hand side of the Overview tab, the **Suggestions box** provides tailored recommendations to enhance compliance with industry regulations governing the development of Software as a Medical Device (SaMD), such as **IEC 62304**. These suggestions are aimed at improving quality, mitigating risks, and ensuring that all development activities align with regulatory standards.
 
