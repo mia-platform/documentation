@@ -17,7 +17,7 @@ The risks displayed in the table originate from **Jira**, where they are created
 - **Probability**: A numerical value indicating the likelihood of the risk occurring.  
 - **Severity**: A numerical value representing the potential impact of the risk.  
 - **Risk Level**: A classification based on probability and severity. [Levels](#levels)
-- **Residual Risk**: The remaining level of risk after mitigation measures are applied. [Levels](Levels)
+- **Residual Risk**: The remaining level of risk after mitigation measures are applied. [Levels](#levels)
 - **RCM**: A number of risk control measures that mitigate the risk.
 - **Software Items**: The number of software items affected by the risk.  
 - **Changes**: The number of modifications applied to the risk.  
