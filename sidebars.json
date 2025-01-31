@@ -2015,6 +2015,17 @@
     {
       "id": "software-catalog/catalog-and-marketplace/overview-catalog-and-marketplace",
       "type": "doc"
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "id": "software-catalog/tutorials/software-catalog",
+          "type": "doc"
+        }
+      ]
     }
   ]
 }
