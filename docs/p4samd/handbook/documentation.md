@@ -105,13 +105,13 @@ For each risk, the following information are available:
 - **Harm**: The expected negative impact.  
 - **Severity**: A numerical value representing the potential impact of the risk.  
 - **Probability**: A numerical value indicating the likelihood of the risk occurring.  
-- **Risk**: A classification based on probability and severity. [Levels](#levels)
+- **Risk**: A classification based on probability and severity. [Levels][risks-levels]
 - **Description**: A paragraph describing the risk.
 - **Software Items**: The number of software items affected by the risk (name, version).
 - **Risk Control Measures (RCM)**: A list of risk control measures that mitigate the risk (key, title, link)
 - **Mitigated probability**: A number indicating how much the **RCM** mitigates probability.
 - **Mitigation severity**: A number indicating how much the **RCM** mitigates severity.
-- **Residual Risk**: The remaining level of risk after mitigation measures are applied. [Levels](Levels)
+- **Residual Risk**: The remaining level of risk after mitigation measures are applied. [Levels][risks-levels]
 
 ## Software Item History
 
@@ -145,7 +145,7 @@ The SBOM report contains the list of dependencies of all custom services linked 
 
 ![Download system version SBOM](img/download_sbom.png)
 
-For additional information about the Software Bill of Materials (SBOM), please take a look at the [dedicated page](../sbom.md).
+For additional information about the Software Bill of Materials (SBOM), please take a look at the [dedicated page][sbom].
 
 ## SOUP report
 
@@ -226,7 +226,10 @@ For each test case in the test suite the following information are provided:
 - **Class**: description of the test case;
 - **Time**: how much time the test case required to finish.
 
-[software-system-overview]: http://www.example.com
-[changes]: http://www.example.com
-[risks]: http://www.example.com
+
+[software-system-overview]: overview.md
+[changes]: changes.md
+[risks]: risks.md
+[risks-levels]: risks.md#levels
+[sbom]: sbom.md
 [tests]: verification.md
