@@ -258,14 +258,20 @@ Metadata Inheritance feature is applicable **exclusively on [real assets](/data_
 
 When adding a custom property to a **SoR** or a **Table**, a flag can be enabled to propagate the metadata to all its child assets:
 
-img
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '400px'}}>
+
+![Add custom property with inheritance](./../img/add_custom_property_with_inheritance.png)
+
+  </div>
+</div>
 
 - If a custom property is added to a **SoR**, enabling inheritance will apply the property to all **Tables** and **Columns** under that SoR.
 - If a custom property is added to a **Table**, enabling inheritance will apply the property to all its **Columns**.
 
 Inherited properties will be visible at both **Table** and **Column** levels (or only at **Column** level, this depends on where in the hierarchy level the inheritance has been applied), marked with an ***Inherited*** tag indicating their origin (either from a SoR or a Table).
 
-img
+![Inherited custom property](./../img/inherited_custom_property.png)
 
 #### Updating and Deleting Inherited Properties
 
