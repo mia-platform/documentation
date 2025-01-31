@@ -18,12 +18,12 @@ The changes displayed in the table originate from **Jira**, where they are creat
 Each change listed in the table contains the following information:
 
 - **Title**: A brief description of the identified change and a link to the Jira issue identified by its key.
-- **Status**: The status of the change request, actual values depend on the configuration of the corresponding Jira issue type and could include for example `Received`, `Reviewed`, `Completed` and `Refused`.
-- **Classification**: The classification of the type, scale and impact of the change, actual values depend on the configuration of the corresponding Jira issue type and could include for example `patch`, `minor` or `major`.
+- **Status**: The status of the change request, actual values depend on the configuration of the corresponding Jira issue type and could include, for example, `Received`, `Reviewed`, `Completed` and `Refused`.
+- **Classification**: The classification of the type, scale and impact of the change, actual values depend on the configuration of the corresponding Jira issue type and could include, for example, `patch`, `minor` or `major`.
 - **Assignee**: The owner of processing the change request.
 - **Due Date**: The deadline for the completion and release of the change in the affected software items.
 - **Software Items**: The number of software items affected by the change.
-- **Requirements**: The number of requirements related to the the change.
+- **Requirements**: The number of requirements related to the change.
 - **Risks**: The number of risks that may affect the change.
 
 ## Drawer
