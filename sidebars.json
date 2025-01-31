@@ -54,6 +54,11 @@
           "id": "p4samd/handbook/system_version",
           "label": "System Version",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/tab-overview",
+          "label": "Overview Tab",
+          "type": "doc"
         }
       ]
     },
