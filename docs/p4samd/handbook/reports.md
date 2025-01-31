@@ -6,9 +6,9 @@ sidebar_label: Reports
 
 # Reports
 
-**Mia-Care P4SaMD** can automatically generate documentation based on information about managed entities, like [risks][risks], requirements, [tests][tests] and [changes][changes], to ensure compliance with most common documentation requirements outlined in international regulation and standards related to SaMD development.
+**Mia-Care P4SaMD** can automatically generate documentation based on information about managed entities, like [risks][risks], requirements, [tests][tests] and [changes][changes], to ensure compliance with most common documentation requirements outlined in international regulation and standards related to SaMD development. 
 
-In the following sections we illustrate the type of documentation you can generate, how you can do it and which information you can expect to find.
+In the following sections we illustrate the type of documentation you can generate out of the box, how you can do it and which information you can expect to find, but you can also use **Mia-Care P4SaMD** to generate additional documentation based on custom templates. 
 
 :::warning
 
@@ -62,9 +62,9 @@ You can download the changelog from the drawer that appears when you select a ro
 
 ### System version
 
-| Available formats  | Available for  | Download from |
-|:-------------------|:---------------|:--------------|
-| Zip archive of PDF | System version | Overview page |
+| Available formats                | Available for  | Download from |
+|:---------------------------------|:---------------|:--------------|
+| Zip archive containing PDF files | System version | Overview page |
 
 From the [Overview page][software-system-overview] you can download a zip archive containing all the available changelogs of software items linked to the system version.
 Each changelog in the archive is named according the software item name and version.
@@ -202,9 +202,9 @@ For each test, the following information are available:
 
 ## Unit Test report
 
-| Available formats  | Available for  | Download from |
-|:-------------------|:---------------|:--------------|
-| Zip archive of PDF | System version | Overview page |
+| Available formats                | Available for  | Download from |
+|:---------------------------------|:---------------|:--------------|
+| Zip archive containing PDF files | System version | Overview page |
 
 The **Unit Test report** contains the outcome of the automated test suites linked to the software items of a software system and can be downloaded from the [Overview page][software-system-overview].
 Each report in the archive is named according the software item name and version it refers to.
