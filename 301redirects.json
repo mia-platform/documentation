@@ -1878,5 +1878,13 @@
   "/docs/runtime_suite/crud-postgresql/changelog": {
     "destination": "/docs/runtime_suite/crud-sql/changelog",
     "addedOn": "2025-01-14"
+  },
+  "/docs/runtime_suite_applications/data-analytics/overview": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2025-01-31"
+  },
+  "/docs/runtime_suite_applications/data-analytics/how_to_use": {
+    "destination": "/docs/marketplace/applications/mia_applications",
+    "addedOn": "2025-01-31"
   }
 }
