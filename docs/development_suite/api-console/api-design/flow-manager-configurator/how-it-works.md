@@ -102,17 +102,31 @@ Additionally, you can create
 - [New layout] a logic block, event, and state simultaneously by dragging and dropping from the right handle of the source state to the left handle of the target state.
 - [Old layout] both a state and an event at the same time by drag and drop from the right handle of the source state to an empty area of the canvas.
 
+### Create shapes and notes
+
+Starting from the "Add State" button, you can also add shapes and notes to the canvas.
+
+![Shapes and notes](img/add-shapes-and-notes.png)
+
+In detail:
+
+- Shapes: by clicking on the canvas, you can create a new shape and resize it according to your needs. You can also assign a name to the shape and change its color.
+
+- Notes: by clicking on the canvas, you can create a new note and resize it as needed. The content can be written directly in the sidebar, and you can change the note color.
+
 ### Control Buttons
 
 Control buttons are placed in the corners of the canvas.
 
 Button placed in the top left corner provide the following features:
-- Searchbar &rarr; searches for states and events of the flow, clicking on an item will cause it to be centered and selected
+- Searchbar &rarr; searches for states, events and shapes of the flow, clicking on an item will cause it to be centered and selected
 
 Button placed in the top right corner provide the following features:
 - Download flow &rarr; exports an image representing the whole flow or the current view
 - Highlight &rarr; enters the [highlight mode](/development_suite/api-console/api-design/flow-manager-configurator/overview.md#highlight-mode)
 - Add state &rarr; creates a new state
+    - Add shape &rarr; creates a new shape
+    - Add note &rarr; creates a new note
 
 Button placed in the bottom right corner provide the following features:
 - Zoom out
