@@ -1,13 +1,15 @@
 ---
-id: tab-overview
-title: Overview Tab
-sidebar_label: Overview Tab
+id: system_overview
+title: System Overview
+sidebar_label: Overview
 ---
 
-# Overview Tab
+# System Overview
 
 ## Introduction
-The **Overview tab** provides a centralized summary of the progress and key metrics for the selected **system version**. Once a system version is chosen, the Overview tab automatically updates to display all relevant information tied to that version. This page is designed to give users a clear, real-time snapshot of their progress across various software development areas, making it easier to monitor and manage the development lifecycle effectively.
+The **Overview** tab provides a centralized summary of the progress and key metrics for the selected **system version**. Once a system version is chosen, the Overview tab automatically updates to display all relevant information tied to that version. This page is designed to give users a clear, real-time snapshot of their progress across various software development areas, making it easier to monitor and manage the development lifecycle effectively.
+
+![System version overview](img/system_version_overview.png)
 
 ## KPIs
 At the core of the Overview tab is a **progress bar** that reflects the overall **completion percentage** of the entities associated with the selected system version. The calculation of each Key Performance Indicator (KPI) is based on the ratio of **correctly resolved issues** to the **total number of issues** for each specific entity.

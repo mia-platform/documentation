@@ -227,7 +227,7 @@ For each test case in the test suite the following information are provided:
 - **Time**: how much time the test case required to finish.
 
 
-[software-system-overview]: overview.md
+[software-system-overview]: system_overview.md
 [changes]: changes.md
 [risks]: risks.md
 [risks-levels]: risks.md#levels
