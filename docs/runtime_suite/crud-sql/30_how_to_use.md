@@ -386,17 +386,18 @@ curl --location http://url.mia-platform.eu/books/import \
 
 Check out what the [import file](#import-file-example) should look like
 
-When successful the endpoint responds `200`, with the following information in the response payload:
+Additionally, you can use the query parameter `clearTableData=true` to instruct the crud-sql to clear the collection before performing the import. The default value is `false`.
+
+When successful the endpoint responds `204`, with the following information in the response payload:
 - number of successfully imported records
 - number of records which raised an error and thus that have not been imported
 - the list of errors occurred while processing the file
 
+When it fails, the endpoint responds `500` with the list of errors occurred while processing the file in the response payload.
 For example, you receive the following response if the file contains 3 rows and one of them lead to an error:
 
 ```json
 {
-  "ok": 2,
-  "ko": 1,
   "errors": [
     {
       "record": {
