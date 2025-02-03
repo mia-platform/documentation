@@ -69,6 +69,11 @@
           "id": "p4samd/handbook/tab-overview",
           "label": "Overview Tab",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/handbook/reports",
+          "label": "Reports",
+          "type": "doc"
         }
       ]
     },
