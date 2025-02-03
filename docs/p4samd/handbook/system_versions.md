@@ -1,13 +1,15 @@
 ---
-id: system_version
-title: System Version
-sidebar_label: System Version
+id: system_versions
+title: System Versions
+sidebar_label: Versions
 ---
 
 # System Versions
 
 ## Overview
 This table provides an overview of different system versions for the P4SaMD project, displaying their statuses, planned release dates, and relevant documentation. It helps users track development progress and access relevant information quickly.
+
+![System versions table](img/system_versions.png)
 
 ## Configuration in Jira
 The P4SaMD project is configured within **Jira**, where all versions and their details are managed. Each version in the table corresponds to a **Jira project version**, which means the data displayed is directly pulled from Jira. Updates to versions, such as their release, are managed within Jira and automatically reflected in this table.

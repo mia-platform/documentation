@@ -1,7 +1,7 @@
 ---
 id: software_items
 title: Software Items
-sidebar_label: Software Items
+sidebar_label: Overview
 ---
 
 The section allows users to view, create, and edit software items. It provides an intuitive interface for managing software items, including detailed views, adding new entries, and updating existing records. Additionally, using the console, software items are also detected automatically, ensuring efficient and seamless handling of software-related data.

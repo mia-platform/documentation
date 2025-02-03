@@ -31,24 +31,46 @@
           "type": "doc"
         },
         {
-          "id": "p4samd/handbook/software_verification",
-          "label": "Software Verification",
-          "type": "doc"
+          "label": "Software System",
+          "type": "category",
+          "items": [
+            {
+              "id": "p4samd/handbook/system_versions",
+              "label": "Versions",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/system_overview",
+              "label": "Overview",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/insight_and_suggestions",
+              "label": "Insight and Suggestions",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/reports",
+              "label": "Reports",
+              "type": "doc"
+            }
+          ]
         },
         {
-          "id": "p4samd/handbook/sbom",
-          "label": "Software Bill Of Materials (SBOM)",
-          "type": "doc"
-        },
-        {
-          "id": "p4samd/handbook/software_items",
           "label": "Software Items",
-          "type": "doc"
-        },
-        {
-          "id": "p4samd/handbook/insight_and_suggestions",
-          "label": "Insight and Suggestions",
-          "type": "doc"
+          "type": "category",
+          "items": [
+            {
+              "id": "p4samd/handbook/software_items",
+              "label": "Software Items",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/sbom",
+              "label": "Software Bill Of Materials (SBOM)",
+              "type": "doc"
+            }
+          ]
         },
         {
           "id": "p4samd/handbook/risks",
@@ -56,23 +78,19 @@
           "type": "doc"
         },
         {
+          "label": "Tests",
+          "type": "category",
+          "items": [
+            {
+              "id": "p4samd/handbook/software_verification",
+              "label": "Software Verification",
+              "type": "doc"
+            }
+          ]
+        },
+        {
           "id": "p4samd/handbook/changes",
           "label": "Changes",
-          "type": "doc"
-        },
-        {
-          "id": "p4samd/handbook/system_version",
-          "label": "System Version",
-          "type": "doc"
-        },
-        {
-          "id": "p4samd/handbook/tab-overview",
-          "label": "Overview Tab",
-          "type": "doc"
-        },
-        {
-          "id": "p4samd/handbook/reports",
-          "label": "Reports",
           "type": "doc"
         }
       ]
