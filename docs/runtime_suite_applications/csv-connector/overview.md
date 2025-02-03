@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The CSV Connector is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 The CSV Fast Data Connector application enables fetching data from CSV files and delivering it with validation to the Fast Data. By describing CSV file specifications in a ConfigMap using a JSON schema, it provides validation of input data and custom mapping to projections. The application uses Files Service's multi-bucket functionality to manage CSV files and maintain a clean environment. It is essential to have the Files Service in the cluster and provide it with a multi-bucket configuration. The Files Service requires the CRUD Service to maintain metadata in Mongo collections about the CSV files being managed.
 
 ### Usage
