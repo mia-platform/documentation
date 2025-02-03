@@ -58,9 +58,9 @@ Once the searched asset is found among the search returned elements, click on it
 
 ![Details of a table page](./../img/table_details_page.png)
 
-At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table `orders-details` detail page; from the breadcrumb it is noticeable that table `orders-details` belongs to System of Records `crud-books`.
+At the top of the page a bredcrumb helps users to easily understand the background structure of Data Catalog navigation patterns. In the example, user has entered the table `AUTHORS` detail page; from the breadcrumb it is noticeable that table `AUTHORS` belongs to System of Records `ORACLE_AWS_CATALOG`.
 
-In case the user wants to easily move from table `orders-details` to SoR `crud-books` without coming back to the search page to find `crud-books` asset, with a simple click on `crud-books` user can enter its detail page.
+In case the user wants to easily move from table `AUTHORS` to SoR `ORACLE_AWS_CATALOG` without coming back to the search page to find `AUTHORS` asset, with a simple click on `ORACLE_AWS_CATALOG` user can enter its detail page.
 
 In case the user wants to go back to the page with the items returned by the search query, a click on the `Assets` button located at the beginning of the breadcrumb will take back to the Assets tab where there is the result of the last search performed.  
 
@@ -84,19 +84,19 @@ In case of a **Virtual SoR** detail page, the provider info is not available, be
 ### Table detail page
 
 The Table detail page shows the following two tabs:
-* **General**, that shows a first **Details** section with asset details about name, its SoR name, number of table columns, tags and description of the asset. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+* **General**, that shows a first **Details** section with asset details about namespace, number of table columns, tags and description of the asset. The namespace identifies the context in which the table is stored. It depends on the [provider](/data_catalog/frontend/data_catalog_connections.mdx#connection-providers). Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 * **Columns**, that shows the list of tables that belong to that SoR. By clicking on one element of the list, user enters that table detail page.
 * **Lineage**, that shows the lineage canvas displaying how a specific table is related to other tables. For more information about the Table-level lineage, visit the [related documentation](/data_catalog/frontend/data_lineage.mdx#table-level-lineage).
 
 ![Details of a table page](./../img/table_details_page.png)
 
 :::info
-In case of a **Virtual Table** detail page, the Columns tab it is not present. To know more about the concept of `Virtual Asset`, please give a look at the [related documentation](/data_catalog/frontend/data_lineage.mdx#real-and-virtual-assets)
+In case of a **Virtual Table** detail page, the Columns tab it is not present. To know more about the concept of `Virtual Asset`, please give a look at the [related documentation](/data_catalog/frontend/data_lineage.mdx#real-and-virtual-assets).
 :::
 
 ### Column detail page
 
-The Column detail page shows a first **Details** section with asset details such as name, its table name, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
+The Column detail page shows a first **Details** section with asset details such as namespace, tags, description of the asset, and many other retrieved info. Moreover, below the Details, there is the **Custom Properties** section, where user can choose among the available custom properties for performing metadata enrichment. This topic is described in details in the [metadata enrichment](#metadata-enrichment) documentation section.
 
 ![Details of a column page](./../img/column_details_page.png)
 
