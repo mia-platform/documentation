@@ -6857,19 +6857,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-json-schema-plugin@npm:^1.12.2":
-  version: 1.12.2
-  resolution: "docusaurus-json-schema-plugin@npm:1.12.2"
+"docusaurus-json-schema-plugin@npm:^1.13.0":
+  version: 1.13.0
+  resolution: "docusaurus-json-schema-plugin@npm:1.13.0"
   dependencies:
     "@stoplight/json-ref-resolver": "npm:^3.1.5"
-    monaco-editor: "npm:^0.44.0"
-    monaco-editor-webpack-plugin: "npm:^7.0.1"
-    react-monaco-editor: "npm:^0.55.0"
+    monaco-editor: "npm:^0.52.2"
+    monaco-editor-webpack-plugin: "npm:^7.1.0"
+    react-monaco-editor: "npm:^0.58.0"
   peerDependencies:
-    "@docusaurus/core": ^3.0.0
-    "@docusaurus/theme-classic": ^3.0.0
-    react: ">=17 <= 18"
-  checksum: 10/e20aaa0edf7635bdba36047f1b8dc4c986ce204d96b1538150841436193cc646852ff135fdfcb1cd39a57dc8bbc29fc6007c490e6765a12021e395ec16d2357a
+    "@docusaurus/core": ^3.7.0
+    "@docusaurus/theme-classic": ^3.7.0
+    react: ">=18 <= 19"
+  checksum: 10/51d4b9baddd49724bfecd051d87734f4b7f8f151bb8469f0d6e89b0ee96a73bb14d94dd22f5cbb6136c3d710e9e2fa17b7010970f9c45544d21ab511af92a047
   languageName: node
   linkType: hard
 
@@ -10747,7 +10747,7 @@ __metadata:
     "@swc/core": "npm:^1.10.12"
     clsx: "npm:^2.1.1"
     cspell: "npm:^8.17.3"
-    docusaurus-json-schema-plugin: "npm:^1.12.2"
+    docusaurus-json-schema-plugin: "npm:^1.13.0"
     eslint: "npm:^8.57.0"
     eslint-plugin-react: "npm:7.37.4"
     front-matter: "npm:^4.0.2"
@@ -11213,7 +11213,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monaco-editor-webpack-plugin@npm:^7.0.1":
+"monaco-editor-webpack-plugin@npm:^7.1.0":
   version: 7.1.0
   resolution: "monaco-editor-webpack-plugin@npm:7.1.0"
   dependencies:
@@ -11225,10 +11225,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monaco-editor@npm:^0.44.0":
-  version: 0.44.0
-  resolution: "monaco-editor@npm:0.44.0"
-  checksum: 10/759ea7f2af47ba3dac2f3594f20b358e4633a963ccee6f21b9a55bafb5c3404fd88113f2492af291aebd7895cdb2680ca61ce54166c6e9e106c3b3edb28ed6c2
+"monaco-editor@npm:^0.52.2":
+  version: 0.52.2
+  resolution: "monaco-editor@npm:0.52.2"
+  checksum: 10/0d4962d69ffa0a8df040faa9c582cef1893fa3fb617feca8f1425c5e670e74c2856104b9a2b01cbda0103a5e5f92f58843206bc9a0e070471c0c1270d7f52a96
   languageName: node
   linkType: hard
 
@@ -12806,16 +12806,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-monaco-editor@npm:^0.55.0":
-  version: 0.55.0
-  resolution: "react-monaco-editor@npm:0.55.0"
-  dependencies:
-    prop-types: "npm:^15.8.1"
+"react-monaco-editor@npm:^0.58.0":
+  version: 0.58.0
+  resolution: "react-monaco-editor@npm:0.58.0"
   peerDependencies:
-    "@types/react": ">=16 <= 18"
-    monaco-editor: ^0.44.0
-    react: ">=16 <= 18"
-  checksum: 10/3c4ee8cf43c5df02e24a0f8d761923b60bdd35a60946274c22024b66beb66dc3dc4ae2052ee16e83048436be7f8ca91d0aee86010095fb195e5acbb1a2aad828
+    monaco-editor: ^0.52.0
+    react: ">=16.8.0 <20.0.0"
+    react-dom: ">=16.8.0 <20.0.0"
+  checksum: 10/76fba282b7f5eee4af7e5079b9e52f24013b84a5a280169ed35599947a765e890da4454de7716b2b7a5e28abd900efa496a9fdbad606d2dc88cd5d29ec2d7bc7
   languageName: node
   linkType: hard
 
