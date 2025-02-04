@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.1.2] - 2025-02-03
+
+### Security
+
+- Fix vulnerabilities
+
 ## [2.1.1] - 2024-11-26
 
 ### Security
