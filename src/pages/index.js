@@ -23,7 +23,7 @@ const features = [
     type: "feature",
     title: "Getting Started",
     icon: "rocket",
-    toUrl: "/docs/intro/getting-started",
+    toUrl: "/docs/p4samd/overview",
     description: `Start to learn the main concepts of Mia-Care P4SaMD and how to use to develop SaMD`,
   },
   {
