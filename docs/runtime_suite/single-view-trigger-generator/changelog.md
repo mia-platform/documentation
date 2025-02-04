@@ -20,8 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `maxBatchSize` property in producer configuration to configure the number of messages that can be written in a single request
-- `forceResume` setting field to `controlPlane.settings` that can either be a boolean or an object with a numeric field `timeout.ms`, defining the amount
-  of time for control plane pipelines to be resumed after an unsuccessful connection.
+- `forceResume` setting field to `controlPlane.settings.channel` that can either be a boolean or an object with a numeric field `timeout.ms`, defining the amount of time for control plane pipelines to be resumed after an unsuccessful connection.
 
 ### Changed
 
