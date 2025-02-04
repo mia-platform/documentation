@@ -214,13 +214,11 @@ With a simple click on a play/pause button located at the top of each main Fast 
 ![Control Plane Bulk Action](img/bulk_action.gif)
 
 :::tip 
-Bulk actions are useful in case of large data pipelines and to speed up the runtime management:
-one example is in case of an [Initial Load management process](/fast_data/concepts/data_loading.mdx#initial-load). 
+Bulk actions are useful in case of large data pipelines and to speed up runtime management: for example, they can be leveraged during an [Initial Load management process](/fast_data/concepts/data_loading.mdx#initial-load).
 
-In fact, with the first deploy of Fast Data pipelines on a runtime environment, the overall pipelines are set in `paused` state as default. 
+In fact, with the first deploy of Fast Data pipelines on a runtime environment, if the system is correctly configured, the pipelines start running by default.
 
-Consequently, in order to efficiently manage the Initial load of the Fast Data system, user can leverage bulk actions on a step-by-step process 
-along the different pipeline phases.
+Consequently, thanks to bulk actions, the user can easily pause specific steps of the pipeline as needed, enabling an efficient step-by-step management of the Initial Load process.
 
 In this way, ingestion of huge datasets can be performed without saturating the underlying infrastructure, without damaging other data streams running at the same runtime. 
 :::

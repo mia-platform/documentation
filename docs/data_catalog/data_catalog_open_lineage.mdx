@@ -217,6 +217,7 @@ The following routes are exposed over the `/api/data-catalog` endpoint.
 |------------------------------------------------------------|-----------|--------|-----------------------------------------------------------------------------------------------------------|
 | `/assets/search`                                           | REST      | GET    | Search for dataset assets and their metadata                                                              |                                         
 | `/assets/search-parents`                                   | REST      | GET    | Search for name of system of record or table name                                                         |
+| `/bulk-actions`                                            | Websocket | HEAD   | Route used by Websocket for authentication.                                                               |
 | `/bulk-actions`                                            | Websocket | GET    | Route for handling async operations over multiple datasets records                                        |
 | `/tags/count`                                              | REST      | GET    | Count how many unique tags exists among all data assets                                                   |
 | `/tags/items`                                              | REST      | GET    | List existing tags associated to data assets                                                              |                                                  
@@ -279,3 +280,10 @@ The following steps needs to be followed:
   
   See [Routes paragraph](#open-lineage-routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
   to support the new permission `update:lineage`. 
+
+### From 0.2.x to 0.3.0
+
+- A migration CLI must run to update data-fabric records. To do so, you must retrieve the docker image `data-fabric/fabric_admin:0.4.0` and run the following subcommand
+```shell
+docker run --pull=always <registry-url>/data-fabric/fabric-admin:latest open-lineage update-records --url=<MONGODB_URL>
+```
