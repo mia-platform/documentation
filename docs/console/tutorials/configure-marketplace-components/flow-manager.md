@@ -109,75 +109,24 @@ Our example flow is composed of four states:
 - **reservationConfirmed**: a state representing a successful reservation. This state will be one of the final states of our flow.
 - **reservationFailed**: a state representing a failed reservation. This state will be one of the final states of our flow.
 
-You will need to modify the _saga.json_ file with the following highlighted configuration. You can do it directly in the editor in the _flow configuration_ ConfigMap.
+You will need to edit these configurations from the `Flow Manager` menu in the `Orchestrators` using the No-Code canvas.
+First of all edit the default created event by editing the `Name` field and the `Description` field.
 
-```json {3-25}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true
-      }
-    ]
-  }, 
-  "communicationProtocols": [], 
-  "persistencyManagement": {}
-}
+![Flow Manager Machine State](img/flow-manager-states-1.png)
 
-```
+Then configure the remaining three machine states making sure that the `reservationConfirmed` and the `reservationFailed` are marked ad `Final State` by flagging the `Is Final` toggle.
 
-Note that we added the following properties:
-- `initialState` valued with the id of the starting state of our saga.
-- `states` valued with the list of all states of our saga along with a description and specifying if the state is a final one.
+:::caution
+At this point you have configured all the needed machine states but the Flow Manager Configurator give you a warning error because the 3 machine states you created before are still not linked to the related events. We will create them later in this guide.
+:::
+
+![Flow Manager Machine State 2](img/flow-manager-states-2.png)
 
 You can find more details about these properties in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
 
-To view a visual diagram of the saga:
-
-1. In the _Microservices_ section click on the _flow-manager-service_ microservice.
-1. Click on _View Flow Manager_ on the top right.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
-
-![View Flow manager](img/view-flow-manager.png)
-  
-  </div>
-</div>
-
-:::tip
-You can use the _Edit Configuration_ button to rapidly move from the visualizer back to our configuration
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
-
-![Diagram with states](img/diagram-1.png)
-  
-  </div>
-</div>
-:::
-
 ### Define events
 
-In this step we continue extending the `machineDefinition` property.
+In this step we continue extending the Flow Manager configurations by adding `events`.
 
 We can define events to represent state transitions in our saga. We need events that link each states in a way that is meaningful for the saga. For example, a newly created reservation may either be moved forward in the flow or be rejected depending on validation constraints, either case is a valid change of state of the flow.
 
@@ -187,400 +136,18 @@ Our example saga will contain four events:
 - **checkOK**: an event representing that a check logic on the reservation has been confirmed successfully.
 - **checkKO**: an event representing that a check logic on the reservation resulted in its refusal or the check logic failed with an error.
 
-You will need to modify the _saga.json_ file as highlighted in the following code block, by:
-- adding, in the `reservationCreated` state object, the `outgoingTransitions` property, containing a list composed of:
-  - `inputEvent` valued with the validation event names we chose;
-  - `targetState` valued with the next state expected based on the chosen event;
-- doing the same in the `reservationValidated` state object;
-- adding a comma `,` after the `isFinal` property when needed to make the json valid.
+To create these events you have to follow the following transitions as explained from the next picture:
 
-```json {8,9-18,23-33}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "validationOK",
-            "targetState": "reservationValidated"
-          },
-          {
-            "inputEvent": "validationKO",
-            "targetState": "reservationFailed"
-          }
-        ]
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "checkOK",
-            "targetState": "reservationConfirmed"
-          },
-          {
-            "inputEvent": "checkKO",
-            "targetState": "reservationFailed"
-          }
-        ]
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true
-      }
-    ]
-  }, 
-  "communicationProtocols": [], 
-  "persistencyManagement": {}
-}
-
-```
-
-You can reopen the visual view of the Flow Manager saga by clicking _View Flow Manager_ again.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
-
-![Diagram with events](img/diagram-2.png)
-  
-  </div>
-</div>
-
-:::tip
-You can use the highlight mode to show states and events related only to selected paths 
-:::
-
-We can easily see that possible state transitions are:
 - From `reservationCreated` to `reservationValidated` with the `validationOK` event.
 - From `reservationCreated` to `reservationFailed` with the `validationKO` event.
 - From `reservationValidated` to `reservationConfirmed` with the `checkOK` event.
 - From `reservationValidated` to `reservationFailed` with the `checkKO` event.
 
-### Define business states
-
-In this step we continue extending the `machineDefinition` property.
-
-We can define business states to group states from a business point of view.
-
-In our simple saga we might decide to group the `reservationCreated` and `reservationValidated` states together and see them as reservations that are _"in progress"_.
-
-You will need to modify the _saga.json_ file with the following highlighted configuration.
-
-```json {9,25,40,41,46,47,49-63}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false,
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "validationOK",
-            "targetState": "reservationValidated"
-          },
-          {
-            "inputEvent": "validationKO",
-            "targetState": "reservationFailed"
-          }
-        ]
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false,
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "checkOK",
-            "targetState": "reservationConfirmed"
-          },
-          {
-            "inputEvent": "checkKO",
-            "targetState": "reservationFailed"
-          }
-        ]
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true,
-        "businessStateId": 1
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true,
-        "businessStateId": 2
-      }
-    ],
-    "businessStates": [
-      {
-        "id": 0,
-        "description": "The reservation is in progress"
-      },
-      {
-        "id": 1,
-        "description": "The reservation is confirmed"
-      },
-      {
-        "id": 2,
-        "description": "The reservation can not be confirmed"
-      }
-    ]
-  }, 
-  "communicationProtocols": [], 
-  "persistencyManagement": {}
-}
-
-```
-
-Note that we made the following changes:
-- added `businessStates` object containing the list of _business states_ as an id and description.
-- added `businessStateId`, in each state object, valued with the id of the related business state.
-- added a comma `,` when needed to make the json valid.
-
-You can reopen the visual view of the Flow Manager saga by clicking _View Flow Manager_ again. The business states will have distinct colors.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
-
-![Diagram with business states](img/diagram-3.png)
-  
-  </div>
-</div>
-
-### Define business events
-
-In this step we continue extending the `machineDefinition` property.
-
-We can define business events to describe transitions between business states. They are the counterpart of _events_ but on business states instead of states.
-
-You will need to modify the _saga.json_ file with the following highlighted configuration.
-
-```json {17,18,30,31,35,36,66-76}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false,
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "validationOK",
-            "targetState": "reservationValidated"
-          },
-          {
-            "inputEvent": "validationKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false,
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "checkOK",
-            "targetState": "reservationConfirmed",
-            "businessEventId": 0
-          },
-          {
-            "inputEvent": "checkKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true,
-        "businessStateId": 1
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true,
-        "businessStateId": 2
-      }
-    ],
-    "businessStates": [
-      {
-        "id": 0,
-        "description": "The reservation is in progress"
-      },
-      {
-        "id": 1,
-        "description": "The reservation is confirmed"
-      },
-      {
-        "id": 2,
-        "description": "The reservation can not be confirmed"
-      }
-    ],
-    "businessEvents": [
-      {
-        "id": 0,
-        "description": "Reservation confirmed"
-      },
-      {
-        "id": 1,
-        "description": "Reservation not confirmed"
-      }
-    ]
-  }, 
-  "communicationProtocols": [], 
-  "persistencyManagement": {}
-}
-
-```
-
-Note that we made the following changes:
-- added `businessEvents` object containing the list of _business events_ as an id and description.
-- added `businessEventId` in the event objects linking states in distinct business states; it is valued with the id of the related business event.
-- added a comma `,` when needed to make the json valid.
-
-### Define commands
-
-In this step we continue extending the `machineDefinition` property.
-
-We can define commands as representation of external service executions. Commands are responsible for **starting the communication with other actors of the saga**, which in turn will respond by firing events. In our saga a reservation must be validated to check for wrong input submitted by users and also checked if it can be confirmed or not depending on business constraints. For example, in a book reservation application we might check for the book existence and then if there are any available copies of the book.
-
-We will define two commands:
-- **validateReservation**: a command representing the execution of a validation logic on the reservation data
-- **checkReservation**: a command representing the execution of a check logic on the reservation, deciding if it can be confirmed or not
-
-You will need to modify the _saga.json_ file with the following highlighted configuration.
-
-```json {8-11,28-31}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false,
-        "outputCommand": {
-          "label": "validateReservation"
-        },
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "validationOK",
-            "targetState": "reservationValidated"
-          },
-          {
-            "inputEvent": "validationKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false,
-        "outputCommand": {
-          "label": "checkReservation"
-        },
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "checkOK",
-            "targetState": "reservationConfirmed",
-            "businessEventId": 0
-          },
-          {
-            "inputEvent": "checkKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true,
-        "businessStateId": 1
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true,
-        "businessStateId": 2
-      }
-    ],
-    "businessStates": [
-      {
-        "id": 0,
-        "description": "The reservation is in progress"
-      },
-      {
-        "id": 1,
-        "description": "The reservation is confirmed"
-      },
-      {
-        "id": 2,
-        "description": "The reservation can not be confirmed"
-      }
-    ],
-    "businessEvents": [
-      {
-        "id": 0,
-        "description": "Reservation confirmed"
-      },
-      {
-        "id": 1,
-        "description": "Reservation not confirmed"
-      }
-    ]
-  }, 
-  "communicationProtocols": [], 
-  "persistencyManagement": {}
-}
-
-```
-
-Note that we made the following changes:
-- added `outputCommand` object containing a label for the command.
-- added a comma `,` when needed to make the json valid.
-
-You can reopen the visual view of the Flow Manager saga by clicking _View Flow Manager_ again. The command labels will be shown under the related states.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
-
-![Diagram with commands](img/diagram-4.png)
-  
-  </div>
-</div>
-
-You can find a complete definition of state and initialState fields in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
+![Flow Manager Machine Events](img/flow-manager-events.png)
 
 ## Configure Communication Protocol
 
-In this section we will configure the `communicationProtocols` property and update the `machineDefinition` property.
+In this section we will configure the `Communication Protocol` for our Flow Manager.
 
 There are two types of Flow Manager communication channels supported: **Kafka** and **Rest**. In this tutorial, we will focus on how to configure a flow leveraging Kafka.
 
@@ -592,145 +159,36 @@ The Kafka message broker should have these configurations:
 
 We will configure the Flow Manager service using the information above.
 
-You will need to modify the _saga.json_ file with the following highlighted configuration.
+You will need to the `Communication` tab on the left of the page and create a new protocol as showed in the following picture.
 
-```json {10,11,31,32,86-110}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false,
-        "outputCommand": {
-          "label": "validateReservation",
-          "channel": "kafkaChannel"
-        },
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "validationOK",
-            "targetState": "reservationValidated"
-          },
-          {
-            "inputEvent": "validationKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false,
-        "outputCommand": {
-          "label": "checkReservation",
-          "channel": "kafkaChannel"
-        },
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "checkOK",
-            "targetState": "reservationConfirmed",
-            "businessEventId": 0
-          },
-          {
-            "inputEvent": "checkKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true,
-        "businessStateId": 1
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true,
-        "businessStateId": 2
-      }
-    ],
-    "businessStates": [
-      {
-        "id": 0,
-        "description": "The reservation is in progress"
-      },
-      {
-        "id": 1,
-        "description": "The reservation is confirmed"
-      },
-      {
-        "id": 2,
-        "description": "The reservation can not be confirmed"
-      }
-    ],
-    "businessEvents": [
-      {
-        "id": 0,
-        "description": "Reservation confirmed"
-      },
-      {
-        "id": 1,
-        "description": "Reservation not confirmed"
-      }
-    ]
-  }, 
-  "communicationProtocols": [
-    {
-      "id": "kafkaChannel",
-      "type": "kafka",
-      "configurations": {
-        "brokers": [
-          "KAFKA SERVER ENDPOINT URL"
-        ],
-        "inputTopics": [
-          "KAFKA EVENT TOPIC NAME"
-        ],
-        "outputTopics": [
-          "KAFKA COMMAND TOPIC NAME"
-        ],
-        "consumerGroup": "KAFKA CONSUMER GROUP NAME",
-        "authenticationProperties": {
-          "ssl": true,
-          "sasl": {
-            "mechanism": "scram-sha-256",
-            "username": "KAFKA USER NAME",
-            "password": "KAFKA USER PASSWORD"
-          }
-        }
-      }
-    }
-  ], 
-  "persistencyManagement": {}
-}
+![Flow Manager Protocol 1](img/flow-manager-protocol-1.png)
 
-```
+![Flow Manager Protocol 2](img/flow-manager-protocol-1.png)
 
-Note that we made the following changes:
-- added an object in `communicationProtocols` list. This object contains information for connecting to a Kafka message broker as well as the credentials.
-- added the `channel` property in the `outputCommand` properties in `machineDefinition` with the reference of the channel id.
-- added a comma `,` when needed to make the json valid.
-
-You can reopen the visual view of the Flow Manager saga by clicking _View Flow Manager_ again. The channel id will be shown under the related states.
-
-<div style={{display: 'flex', justifyContent: 'center'}}>
-  <div style={{display: 'flex', width: '600px'}}> 
-
-![Diagram with channels](img/diagram-5.png)
-  
-  </div>
-</div>
 
 You can find more information on Communication Protocols of the Flow Manager in the [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#communication-protocols) page.
 
+### Define commands
+
+In this step we continue extending the Flow Manager configurations by adding `commands`.
+
+We can define commands as representation of external service executions. Commands are responsible for **starting the communication with other actors of the saga**, which in turn will respond by firing events. In our saga a reservation must be validated to check for wrong input submitted by users and also checked if it can be confirmed or not depending on business constraints. For example, in a book reservation application we might check for the book existence and then if there are any available copies of the book.
+
+We will define two commands:
+- **validateReservation**: a command representing the execution of a validation logic on the reservation data
+- **checkReservation**: a command representing the execution of a check logic on the reservation, deciding if it can be confirmed or not
+
+You will need to the `Communication` tab on the left of the page and create a new `Command` as showed in the following picture. Then link the command with the right state as showed in the second picture.
+
+![Flow Manager Command 1](img/flow-manager-command-1.png)
+
+![Flow Manager Command 2](img/flow-manager-command-1.png)
+
+You can find a complete definition of state and initialState fields in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
+
 ## Configure Persistency
 
-In this section we will configure the `persistencyManagement` property and update the `machineDefinition` property.
+In this section we will configure the `Persistency Management` for our Flow Manager.
 
 We must configure a persistency manager to store permanently the modifications applied to the saga. There are three strategies that can be used for adding persistency to the Flow Manager plugin: 
   - Rest
@@ -782,139 +240,11 @@ You can find more information on CRUD Persistency Manager in the [dedicated](/ru
 
 ### Configure Persistency Management
 
-You will need to modify the _saga.json_ file with the following highlighted configuration. You can do it directly in the editor in the _flow configuration_ ConfigMap.
+You will need to modify click on the `Settings` button on the top right of the canvas and then `Persistency management`.
+Then configure the `Persistency Manager` as follow:
 
-```json {4,113-121}
-{
-  "machineDefinition": {
-    "initialState": "reservationCreated",
-    "creationEvent": "__created__",
-    "states": [
-      {
-        "id": "reservationCreated",
-        "description": "A new reservation has been created in our application",
-        "isFinal": false,
-        "outputCommand": {
-          "label": "validateReservation",
-          "channel": "kafkaChannel"
-        },
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "validationOK",
-            "targetState": "reservationValidated"
-          },
-          {
-            "inputEvent": "validationKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationValidated",
-        "description": "The reservation has been validated",
-        "isFinal": false,
-        "outputCommand": {
-          "label": "checkReservation",
-          "channel": "kafkaChannel"
-        },
-        "businessStateId": 0,
-        "outgoingTransitions": [
-          {
-            "inputEvent": "checkOK",
-            "targetState": "reservationConfirmed",
-            "businessEventId": 0
-          },
-          {
-            "inputEvent": "checkKO",
-            "targetState": "reservationFailed",
-            "businessEventId": 1
-          }
-        ]
-      },
-      {
-        "id": "reservationConfirmed",
-        "description": "The reservation is confirmed successfully",
-        "isFinal": true,
-        "businessStateId": 1
-      },
-      {
-        "id": "reservationFailed",
-        "description": "The reservation can not be made",
-        "isFinal": true,
-        "businessStateId": 2
-      }
-    ],
-    "businessStates": [
-      {
-        "id": 0,
-        "description": "The reservation is in progress"
-      },
-      {
-        "id": 1,
-        "description": "The reservation is confirmed"
-      },
-      {
-        "id": 2,
-        "description": "The reservation can not be confirmed"
-      }
-    ],
-    "businessEvents": [
-      {
-        "id": 0,
-        "description": "Reservation confirmed"
-      },
-      {
-        "id": 1,
-        "description": "Reservation not confirmed"
-      }
-    ]
-  }, 
-  "communicationProtocols": [
-    {
-      "id": "kafkaChannel",
-      "type": "kafka",
-      "configurations": {
-        "brokers": [
-          "KAFKA SERVER ENDPOINT URL"
-        ],
-        "inputTopics": [
-          "EVENT TOPIC NAME"
-        ],
-        "outputTopics": [
-          "COMMAND TOPIC NAME"
-        ],
-        "consumerGroup": "CONSUMER GROUP NAME",
-        "authenticationProperties": {
-          "ssl": true,
-          "sasl": {
-            "mechanism": "plain",
-            "username": "USER NAME",
-            "password": "USER PASSWORD"
-          }
-        }
-      }
-    }
-  ], 
-  "persistencyManagement": {
-    "type": "crud",
-    "configurations": {
-      "protocol": "http",
-      "host": "crud-service",
-      "port": 80,
-      "collectionName": "CRUD COLLECTION URL PATH"
-    }
-  }
-}
+![Flow Manager Command 1](img/flow-manager-persistency.png)
 
-```
-
-Note that we made the following changes:
-- added the property `creationEvent` in `machineDefinition` object valued with a placeholder to be passed to the Persistency Manager on the saga creation.
-- added an object in `persistencyManagement`. This object contains information for connecting to a CRUD service and the collection to be used.
-
-For more information about the Persistency Manager configuration please see the [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#persistency-manager) page.
 
 ## Expose Flow Manager
 
