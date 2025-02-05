@@ -233,7 +233,9 @@
     "mergo",
     "kpis",
     "Mesos",
-    "SWSS"
+    "SWSS",
+    "Oatpp",
+    "ANIA"
   ],
   "ignoreWords": [
     "asncdctools",
