@@ -34,7 +34,7 @@ Please ensure that your services respects the following matrix.
 | Service                                                                            | Version |
 |------------------------------------------------------------------------------------|---------|
 | [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)           | 0.3.0   |
-| [Control Plane](/fast_data/runtime_management/control_plane.mdx)                   | 0.3.0   |
+| [Control Plane](/fast_data/runtime_management/control_plane.mdx)                   | 0.3.1   |
 | [Control Plane Operator](/fast_data/runtime_management/control_plane_operator.mdx) | 0.3.0   |
 | [Control Plane Frontend](/fast_data/runtime_management/control_plane_frontend.mdx) | 0.4.3   |
 | [Fabric Admin](/fast_data/runtime_management/database_setup.mdx)                   | 0.4.0   |
@@ -43,8 +43,8 @@ Please ensure that your services respects the following matrix.
 
 | Service                                                                                      | Fabric BFF | Control Plane | Control Plane Operator | Control Plane Frontend | Fabric Admin |
 |---------------------------------------------------------------------------------------------:| :-: | :-: | :-: | :-: | :-: |
-| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)           - 0.3.0   | _N/A_ | 0.3.0 | 0.3.0 | 0.4.3 | 0.4.0 |
-| [Control Plane](/fast_data/runtime_management/control_plane.mdx)                   - 0.3.0   | 0.3.0 | _N/A_ | 0.3.0 | 0.4.3 |0.4.0|
-| [Control Plane Operator](/fast_data/runtime_management/control_plane_operator.mdx) - 0.3.0   | 0.3.0 |0.3.0| _N/A_ |0.4.3| 0.4.0|
-| [Control Plane Frontend](/fast_data/runtime_management/control_plane_frontend.mdx) - 0.4.3   | 0.3.0 |0.3.0| 0.3.0| _N/A_ |0.4.0|
-| [Fabric Admin](/fast_data/runtime_management/database_setup.mdx)                   - 0.4.0   | 0.3.0 | 0.3.0| 0.3.0|0.4.3| _N/A_ |
+| [Fabric BFF](/fast_data/runtime_management/control_plane_fabric_bff.mdx)           - 0.3.0   | _N/A_ | 0.3.1 | 0.3.0 | 0.4.3 | 0.4.0 |
+| [Control Plane](/fast_data/runtime_management/control_plane.mdx)                   - 0.3.1   | 0.3.0 | _N/A_ | 0.3.0 | 0.4.3 |0.4.0|
+| [Control Plane Operator](/fast_data/runtime_management/control_plane_operator.mdx) - 0.3.0   | 0.3.0 |0.3.1| _N/A_ |0.4.3| 0.4.0|
+| [Control Plane Frontend](/fast_data/runtime_management/control_plane_frontend.mdx) - 0.4.3   | 0.3.0 |0.3.1| 0.3.0| _N/A_ |0.4.0|
+| [Fabric Admin](/fast_data/runtime_management/database_setup.mdx)                   - 0.4.0   | 0.3.0 | 0.3.1| 0.3.0|0.4.3| _N/A_ |
