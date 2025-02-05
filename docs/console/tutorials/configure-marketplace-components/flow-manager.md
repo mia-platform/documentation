@@ -163,7 +163,7 @@ You will need to the `Communication` tab on the left of the page and create a ne
 
 ![Flow Manager Protocol 1](img/flow-manager-protocol-1.png)
 
-![Flow Manager Protocol 2](img/flow-manager-protocol-1.png)
+![Flow Manager Protocol 2](img/flow-manager-protocol-2.png)
 
 
 You can find more information on Communication Protocols of the Flow Manager in the [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#communication-protocols) page.
@@ -182,7 +182,7 @@ You will need to the `Communication` tab on the left of the page and create a ne
 
 ![Flow Manager Command 1](img/flow-manager-command-1.png)
 
-![Flow Manager Command 2](img/flow-manager-command-1.png)
+![Flow Manager Command 2](img/flow-manager-command-2.png)
 
 You can find a complete definition of state and initialState fields in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
 
