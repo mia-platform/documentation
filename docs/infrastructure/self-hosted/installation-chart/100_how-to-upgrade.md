@@ -39,17 +39,17 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v13 - version upgrades
 
-### Upgrade from last Console v12 to v13.0.0
+### Upgrade from last Console v13.5.3 to v13.6.0
 
-With v13 a new microservice has been added to the Console application, you can configure it using the `extensibilityManagerService` value to better suite your scaling needs
+With v13.6.0 a new microservice has been added to the Console application, you can configure it using the `catalogService` value to better suite your scaling needs
 
 :::tip
 Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
 :::
 
-### Upgrade from last Console v13.5.3 to v13.6.0
+### Upgrade from last Console v12 to v13.0.0
 
-With v13.6.0 a new microservice has been added to the Console application, you can configure it using the `catalogService` value to better suite your scaling needs
+With v13 a new microservice has been added to the Console application, you can configure it using the `extensibilityManagerService` value to better suite your scaling needs
 
 :::tip
 Refer to the [Service Specific configuration](./helm-values/30_service-specific-configurations.md) documentation page for further details on available values.
