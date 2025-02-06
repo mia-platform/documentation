@@ -172,7 +172,7 @@ Mia-Care P4SaMD is installed on behalf of Mia-Platform IDP, meaning the system r
          <td>Mia-Care P4SaMD</td>
          <td><strong>Application Lifecycle Manager (ALM)</strong></td>
          <td>JIRA</td>
-         <td>SaaS (Jira REST API v2)</td>
+         <td>SaaS</td>
          <td>Yes</td>
       </tr>
       <tr>
