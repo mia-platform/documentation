@@ -56,7 +56,8 @@ Available flags for the command:
 - `--environment`, to set the environment scope for the command
 
 :::warning
-If you want to use `miactl` with a _Service Account_, **remember to specify** the  `--auth-name` flag, otherwise _miactl_ will try to perform a _User Login_, opening the browser for authentication the user.
+If you want to use `miactl` with a _Service Account_, **remember to specify** the  `--auth-name` flag, otherwise
+_miactl_ will try to perform a _User Login_, opening the browser for authentication the user.
 :::
 
 ### use
@@ -607,6 +608,32 @@ Available flags for the command:
 - `--entity-id`, the entity id to change
 - `--environment`, set the flag to the environment name for deleting the role for that environment
 
+### import
+
+The `project import` subcommand allows you to import kubernetes resource yaml definition in an empty Mia-Platform Console
+project.
+
+The import function is lossy and some advanced configuration can be lost. We recomend to check the generated file
+before trying a deploy to check if anything is amiss.
+
+Usage:
+
+```sh
+miactl project import [flags]
+```
+
+Available flags for the command:
+
+- `--filename`, file or folder path containing the resource definitions to import
+- `--project-id`, to set the ID of the desired Project
+- `--revision`, to specify the revision of the commit to deploy
+- `--auth-name`, the name of the miactl auth to use
+- `--endpoint`, to set the Console endpoint
+- `--certificate-authority`, to provide the path to a custom CA certificate
+- `--insecure-skip-tls-verify`, to disallow the check the validity of the certificate of the remote endpoint
+- `--context`, to specify a different context from the currently selected one
+- `--company-id`, to set the ID of the desired Company
+
 ## deploy
 
 The `deploy` command allows you to manage the deployment of your Projects.
@@ -813,7 +840,8 @@ miactl extensions activate [flags]
 Available flags for the command:
 
 - `--company-id` to set the ID of the desired Company
-- `--project-id` to set the ID of the desired project, if specified, the extension will be activated only for this project only
+- `--project-id` to set the ID of the desired project, if specified, the extension will be activated only for this
+	project only
 - `--extension-id` **required** to set the ID of the extension
 
 ### deactivate
@@ -834,7 +862,8 @@ miactl extensions deactivate [flags]
 Available flags for the command:
 
 - `--company-id` to set the ID of the desired Company
-- `--project-id` to set the ID of the desired project, if specified, the extension will be deactivated only for this project only
+- `--project-id` to set the ID of the desired project, if specified, the extension will be deactivated only for this
+	roject only
 - `--extension-id` **required** to set the ID of the extension.
 
 ### delete
