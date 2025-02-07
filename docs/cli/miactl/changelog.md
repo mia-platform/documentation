@@ -15,6 +15,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.17.0] - 2025-02-05
+
+### Changed
+
+- update go version to 1.23.4
+- update oauth2 to v0.25.0
+- update pflag to v1.0.6
+- update sync to v0.10.0
+- update testify to v1.10.0
+- update text to v0.21.0
+- update `deploy trigger` command to handle deployment pipeline failure
+
+### Added
+
+- `project import` command
+
 ## [v0.16.0] - 2024-11-21
 
 ### Added
@@ -319,7 +335,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.16.0...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.17.0...HEAD
+[v0.17.0]: https://github.com/mia-platform/miactl/compare/v0.16.0...v0.17.0
 [v0.16.0]: https://github.com/mia-platform/miactl/compare/v0.15.0...v0.16.0
 [v0.15.0]: https://github.com/mia-platform/miactl/compare/v0.14.0...v0.15.0
 [v0.14.0]: https://github.com/mia-platform/miactl/compare/v0.13.0...v0.14.0
