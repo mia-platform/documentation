@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## Added
 
-- Added `apiPortalConfig` configurable object in the `swagger-config.json`, to specify a custom prefix or a custom logo for the API Portal.
+- Added `apiPortalConfig` configurable object in the `swagger-config.json`, to specify a custom prefix, logo or favicon for the API Portal.
 - Added GET `/api-portal/config` endpoint to retrieve the config for the API Portal, such as the prefix with which call the backend.
 
 ## [3.8.3] 2024-12-16
