@@ -18,39 +18,40 @@ Mia-Platform Console architecture is composed by several microservices, to bette
 All of the following values are root values for the `mia-console` chart values.
 :::
 
-| Name | Type | Description | Default | Optional |
-|:----:|:----:|:-----------:|:-------:|:--------:|
-| `apiGateway` | [Service Conf](#service-conf) | The configurations for the API Gateway Service |  | ✅ |
-| `rateLimitEnvoy` | [Service Conf](#service-conf) | The configurations for the API Gateway Rate Limit Service |  | ✅ |
-| `apiPortal` | [Service Conf](#service-conf) | The configurations for the API Portal Service |  | ✅ |
-| `authenticationService` | [Service Conf](#service-conf) | The configurations for the Authentication Service |  | ✅ |
-| `authorizationService` | [Service Conf](#service-conf) | The configurations for the Authorization Service |  | ✅ |
-| `backendService` | [Service Conf](#service-conf) | The configurations for the Console Backend Service |  | ✅ |
-| `crudService` | [Service Conf](#service-conf) | The configurations for the CRUD Service |  | ✅ |
-| `deployService` | [Service Conf](#service-conf) | The configurations for the Deploy Service |  | ✅ |
-| `environmentsVariables` | [Service Conf](#service-conf) | The configurations for the Environment Variables Service |  | ✅ |
-| `extensibilityManagerService` | [Service Conf](#service-conf) | The configurations for the Extensibility Manager Service |  | ✅ |
-| `filesService` | [Service Conf](#service-conf) | The configurations for the Files Service |  | ✅ |
-| `kubernetesService` | [Service Conf](#service-conf) | The configurations for the Kubernetes Service |  | ✅ |
-| `loginSite` | [Service Conf](#service-conf) | The configurations for the Login website Service |  | ✅ |
-| `notificationProvider` | [Service Conf](#service-conf) | The configurations for the Notification Provider Service |  | ✅ |
-| `swaggerAggregator` | [Service Conf](#service-conf) | The configurations for the Swagger Aggregator Service |  | ✅ |
-| `websites` | [Service Conf](#service-conf) | The configurations for the Console website Service |  | ✅ |
-| `miaCraftBff` | [Service Conf](#service-conf) | The configurations for the mia-craft backend for frontend |  | ✅ |
-| `rbacManagerBff` | [Service Conf](#service-conf) | The configurations for the rbac-manager backend for frontend to handle users and iam |  | ✅ |
-| `rbacStandalone` | [Service Conf](#service-conf) | The configurations for a rbac service standalone |  | ✅ |
-| `tenantOverviewBff` | [Service Conf](#service-conf) | The configurations for the tenant overview service |  | ✅ |
-| `bindingsCleaner` | [Service Conf](#service-conf) | The configurations for the bindings cleaner cronjob |  | ✅ |
-| `configurationsCleaner` | [Service Conf](#service-conf) | The configurations for the configurations history cleaner cronjob |  | ✅ |
-| `mailService` | [Service Conf](#service-conf) | The configurations for the mail service |  | ✅ |
-| `featureToggleService` | [Service Conf](#service-conf) | The configurations for the feature toggle service |  | ✅ |
-| `licenseManager` | [Service Conf](#service-conf) | The configurations for the license manager service |  | ✅ |
-| `backoffice` | [Service Conf](#service-conf)| The configurations for Backoffice service |  | ✅ |
-| `eventsManager` | [Service Conf](#service-conf)| The configurations for the events-manager service |  | ✅ |
-| `licenseMetricsGenerator` | [CronJob Conf](#cronjob-conf)| The configurations for the license metrics generator CronJob |  | ✅ |
-| `rbac` | [Annotation Conf](#annotations-conf)| The configurations for the RBAC resources |  | ✅ |
-| `updateScripts.marketplaceCategories` | [Job](#job)| The configurable part of the marketplace categories hook |  | ✅ |
-| `updateScripts.consoleVersionUpgrader` | [Job](#job)| The configurable part of the console-version-upgrader hook |  | ✅ |
+|                  Name                  |                 Type                 |                                     Description                                      | Default | Optional |
+|:--------------------------------------:|:------------------------------------:|:------------------------------------------------------------------------------------:|:-------:|:--------:|
+|              `apiGateway`              |    [Service Conf](#service-conf)     |                    The configurations for the API Gateway Service                    |         |    ✅     |
+|            `rateLimitEnvoy`            |    [Service Conf](#service-conf)     |              The configurations for the API Gateway Rate Limit Service               |         |    ✅     |
+|              `apiPortal`               |    [Service Conf](#service-conf)     |                    The configurations for the API Portal Service                     |         |    ✅     |
+|        `authenticationService`         |    [Service Conf](#service-conf)     |                  The configurations for the Authentication Service                   |         |    ✅     |
+|         `authorizationService`         |    [Service Conf](#service-conf)     |                   The configurations for the Authorization Service                   |         |    ✅     |
+|            `backendService`            |    [Service Conf](#service-conf)     |                  The configurations for the Console Backend Service                  |         |    ✅     |
+|             `crudService`              |    [Service Conf](#service-conf)     |                       The configurations for the CRUD Service                        |         |    ✅     |
+|            `catalogService`            |    [Service Conf](#service-conf)     |                      The configurations for the Catalog Service                      |         |    ✅     |
+|            `deployService`             |    [Service Conf](#service-conf)     |                      The configurations for the Deploy Service                       |         |    ✅     |
+|        `environmentsVariables`         |    [Service Conf](#service-conf)     |               The configurations for the Environment Variables Service               |         |    ✅     |
+|     `extensibilityManagerService`      |    [Service Conf](#service-conf)     |               The configurations for the Extensibility Manager Service               |         |    ✅     |
+|             `filesService`             |    [Service Conf](#service-conf)     |                       The configurations for the Files Service                       |         |    ✅     |
+|          `kubernetesService`           |    [Service Conf](#service-conf)     |                    The configurations for the Kubernetes Service                     |         |    ✅     |
+|              `loginSite`               |    [Service Conf](#service-conf)     |                   The configurations for the Login website Service                   |         |    ✅     |
+|         `notificationProvider`         |    [Service Conf](#service-conf)     |               The configurations for the Notification Provider Service               |         |    ✅     |
+|          `swaggerAggregator`           |    [Service Conf](#service-conf)     |                The configurations for the Swagger Aggregator Service                 |         |    ✅     |
+|               `websites`               |    [Service Conf](#service-conf)     |                  The configurations for the Console website Service                  |         |    ✅     |
+|             `miaCraftBff`              |    [Service Conf](#service-conf)     |              The configurations for the mia-craft backend for frontend               |         |    ✅     |
+|            `rbacManagerBff`            |    [Service Conf](#service-conf)     | The configurations for the rbac-manager backend for frontend to handle users and iam |         |    ✅     |
+|            `rbacStandalone`            |    [Service Conf](#service-conf)     |                   The configurations for a rbac service standalone                   |         |    ✅     |
+|          `tenantOverviewBff`           |    [Service Conf](#service-conf)     |                  The configurations for the tenant overview service                  |         |    ✅     |
+|           `bindingsCleaner`            |    [Service Conf](#service-conf)     |                 The configurations for the bindings cleaner cronjob                  |         |    ✅     |
+|        `configurationsCleaner`         |    [Service Conf](#service-conf)     |          The configurations for the configurations history cleaner cronjob           |         |    ✅     |
+|             `mailService`              |    [Service Conf](#service-conf)     |                       The configurations for the mail service                        |         |    ✅     |
+|         `featureToggleService`         |    [Service Conf](#service-conf)     |                  The configurations for the feature toggle service                   |         |    ✅     |
+|            `licenseManager`            |    [Service Conf](#service-conf)     |                  The configurations for the license manager service                  |         |    ✅     |
+|              `backoffice`              |    [Service Conf](#service-conf)     |                      The configurations for Backoffice service                       |         |    ✅     |
+|            `eventsManager`             |    [Service Conf](#service-conf)     |                  The configurations for the events-manager service                   |         |    ✅     |
+|       `licenseMetricsGenerator`        |    [CronJob Conf](#cronjob-conf)     |             The configurations for the license metrics generator CronJob             |         |    ✅     |
+|                 `rbac`                 | [Annotation Conf](#annotations-conf) |                      The configurations for the RBAC resources                       |         |    ✅     |
+| `updateScripts.marketplaceCategories`  |             [Job](#job)              |               The configurable part of the marketplace categories hook               |         |    ✅     |
+| `updateScripts.consoleVersionUpgrader` |             [Job](#job)              |              The configurable part of the console-version-upgrader hook              |         |    ✅     |
 
 ### Service Conf
 
