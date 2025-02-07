@@ -613,7 +613,7 @@ Available flags for the command:
 The `project import` subcommand allows you to import kubernetes resource yaml definition in an empty Mia-Platform Console
 project.
 
-The import function is lossy and some advanced configuration can be lost. We recomend to check the generated file
+The import function is lossy and some advanced configuration can be lost. We recommend to check the generated file
 before trying a deploy to check if anything is amiss.
 
 Usage:
@@ -863,7 +863,7 @@ Available flags for the command:
 
 - `--company-id` to set the ID of the desired Company
 - `--project-id` to set the ID of the desired project, if specified, the extension will be deactivated only for this
-	roject only
+	project only
 - `--extension-id` **required** to set the ID of the extension.
 
 ### delete
