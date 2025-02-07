@@ -21,9 +21,9 @@ async function createConfig() {
       image: "img/documentation-link-preview.png",
       algolia: {
         placeholder: "Search for terms, features and more...",
-        apiKey: "...",
-        appId: "...",
-        indexName: "mia-care-docs",
+        apiKey: "ba554a4401881ad1156c161121c19b5f",
+        appId: "GTJ6ERIPDP",
+        indexName: "mia-care",
         contextualSearch: true,
       },
       colorMode: {
