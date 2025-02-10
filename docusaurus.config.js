@@ -56,14 +56,14 @@ async function createConfig() {
           ]
         },
         {
-          href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
+          href: "https://mia-care.io/competence-center/video/mia-care-product-demo-platform-for-software-as-a-medical-device/",
           position: "left",
-          label: "Support"
+          label: "Product demo"
         },
         {
-          href: "https://github.com/mia-platform/community/discussions",
+          href: "https://mia-care.io",
           position: "left",
-          label: "Community"
+          label: "About us"
         },
         {
           type: "docsVersionDropdown",

@@ -5,15 +5,7 @@
     "targetVersion": "v12.0.0"
   },
   "categories": [
-    {
-      "title": "Introduction",
-      "prefixes": ["/intro"]
-    }
   ],
   "pages": [
-    {
-      "url": "/intro/getting-started",
-      "title": "Getting Started"
-    }
   ]
 }
