@@ -61,9 +61,9 @@ async function createConfig() {
           label: "Product demo"
         },
         {
-          href: "https://share.hsforms.com/17fAAgdtfR8m7oJ9ugj4sfw35s51",
+          href: "https://mia-care.io",
           position: "left",
-          label: "Request demo"
+          label: "About us"
         },
         {
           type: "docsVersionDropdown",
