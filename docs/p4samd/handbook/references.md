@@ -7,7 +7,7 @@ sidebar_label: References
 # References
 
 ## Overview
-This table provides an overview of different references for the project, displaying their name, URL, and category. You are able to have access to the references table on the product page by navigating to the **reference** tab.
+This table provides an overview of different references for the project, displaying their name, URL, and category. From this section, you have access to the references table on the product page by navigating to the **reference** tab.
 
 ![Reference table](img/reference.png)
 
@@ -17,7 +17,7 @@ This table provides an overview of different references for the project, display
    This will open the modal to create a new reference.
 
 2. **Fill in the Required Fields**  
-   In the modal, you need to fill out the **Reference Title** field.  
+   In the modal, you need to fill out the **Reference title** field.  
    Fill in the required fields as needed  ![Add reference](img/add_reference.png)
    Choose a category between the available ones:
     - Plan
@@ -33,9 +33,9 @@ This table provides an overview of different references for the project, display
 
 ## 2. Reference Table
 For each reference, the following informations are available:
-- **Title**(required): The name of the reference.
-- **URL**: The path to the refernce
-- **Category**(required): The category of the reference.<br/> 
+- **Title** (required): The name of the reference.
+- **URL**: The URL to the reference web page
+- **Category** (required): The category of the reference.<br/> 
 
 ## 3. Reference Actions
-You are able to edit the refernce or delete it if needed. By removing the reference it will deleted from the list of references and you are not able to retrive it!
+On the last column, you can click on the icons to edit or remove a reference, if needed. Be careful: once removed, a reference is permanently deleted and cannot be recovered.
