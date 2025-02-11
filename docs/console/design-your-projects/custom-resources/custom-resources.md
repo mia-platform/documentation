@@ -140,17 +140,19 @@ Please note that template-based Infrastructure Resources are only supported in P
 By default, Infrastructure Resources available in the Marketplace are built using templates. The custom resource item in the Marketplace defines a `generator` field that specifies the template and base folder for generated files. The `apiVersion` field is also set to the special value `custom-generator.console.mia-platform.eu/v1`, necessary to dynamically generate the resource from the Marketplace.
 
 :::tip
-Template-based Infrastructure Resources have an associated repository that is created when the resource is added to the Project. The repository is based on a tar.gz archive file whose URL is specified in the template in the field `archive` (see schema at [Infrastructure Resource definition](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md#infrastructure-resource-definition))
+For Template-based Infrastructure Resources, you can enable the automatic creation of a repository during the resource creation by specifying the `archive` field in the resource template. This field must contains the archive URL on which the repository is based.
 
+For example:
 ```yaml
 ...
 resources:
   service:
-    archive: https://path-to-resource-archive/my-resource.zip
+    archive: https://example.com/path/to/archive.zip
 ...
 ```
-
+Refer to [Infrastructure Resource definition](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md#infrastructure-resource-definition) schema
 :::
+
 
 Templates are stored as strings and interpolated at deployment time using the [mustache template system](https://mustache.github.io/). After creating the resource, the user can proceed with its deployment. The template outlines the configuration files that will be generated during deployment: during this process the template is populated with user-provided values, and the resulting files are stored in a dedicated folder in the Project repository, as defined in the Marketplace item specification.
 
