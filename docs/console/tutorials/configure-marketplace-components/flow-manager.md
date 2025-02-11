@@ -94,6 +94,7 @@ We need to update some Environment Variables of the Flow Manager microservice.
 In the _flow configuration_ ConfigMap, we can see the **saga.json** file that is provided to the service. It containts three properties (`machineDefinition`, `communicationProtocols` and `persistencyManagement`), that are, at the moment, set as empty object. We are going to modify their values using the `Flow Manager Configurator` in order to configure our flow manager.
 
 To configure these properties move to the `Flow Manager` menu in the `Orchestrators` section, then click on the `Link microservice` button in the bottom of the page.
+Alternatively it's also possible to click on `Flow Manager Configurator` directly at the top right of the microservice section.
 
 ![Link flow manager configurator to microservice](img/link-fm-configurator.png)
 
@@ -114,7 +115,7 @@ First of all edit the default created event by editing the `Name` field and the 
 
 ![Flow Manager Machine State](img/flow-manager-states-1.png)
 
-Then configure the remaining three machine states making sure that the `reservationConfirmed` and the `reservationFailed` are marked ad `Final State` by flagging the `Is Final` toggle.
+Then configure the remaining three machine states making sure that the `reservationConfirmed` and the `reservationFailed` are marked as `Final State` by flagging the `Is Final` toggle.
 
 :::caution
 At this point you have configured all the needed machine states but the Flow Manager Configurator give you a warning error because the 3 machine states you created before are still not linked to the related events. We will create them later in this guide.
@@ -182,6 +183,13 @@ You will need to the `Communication` tab on the left of the page and create a ne
 
 ![Flow Manager Command 1](img/flow-manager-command-1.png)
 
+When creating a command, you can also define an `External Executor`, which is the service responsible for executing the command and triggering the flow to the next state.
+
+By connecting two states, the default command is set to `Waiting for the Event`. To select a specific command to link, you need to click on the connection between the two states and choose the desired command.
+
+When assigning a command to a state, you can override the default external executor defined for that command by enabling the `Overwrite External Executor` toggle.
+
+
 ![Flow Manager Command 2](img/flow-manager-command-2.png)
 
 You can find a complete definition of state and initialState fields in the configuration chapter of the Flow Manager [dedicated](/runtime_suite/flow-manager-service/30_configuration.md#states-of-the-machine) page.
@@ -244,6 +252,16 @@ You will need to modify click on the `Settings` button on the top right of the c
 Then configure the `Persistency Manager` as follow:
 
 ![Flow Manager Command 1](img/flow-manager-persistency.png)
+
+## Customize the canvas adding information to the flow
+
+If you want to highlight a specific part of the flow—for example, to distinguish the happy path from error state handling—you can add `Shapes`.
+
+If instead, you need to provide additional details for a specific point in the flow, you can add `Notes`.
+
+To do this, expand the `Add State` action button, select either `Add a shape` or `Add a note`, depending on what you want to add, and then place the element on the canvas.
+
+![Flow Manager Customization](img/flow-manager-customization.png)
 
 
 ## Expose Flow Manager
