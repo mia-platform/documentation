@@ -15,8 +15,7 @@ This guide aims to assist the reader in managing the visibility of items across 
 
 :::caution
 
-The ability to modify the visibility of an item to other companies is restricted to users with the Company Owner or Project Administrator role. Additionally, users must have the `marketplace.manage.root`
- permission to perform this action.
+The ability to modify the visibility of an item to other companies is restricted to users with the Company Owner or Project Administrator role. Additionally, users must have the `marketplace.root.manage` permission to perform this action.
 
 :::
 
