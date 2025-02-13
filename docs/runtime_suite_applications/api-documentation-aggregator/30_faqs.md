@@ -136,7 +136,7 @@ For example:
 The following information are applicable to a Swagger Aggregator version greater or equal than `3.8.0` and an API Portal version greater or equal than `2.1.0`.
 :::
 
-To enable OAuth 2.0 authentication you need to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding at the first level the `oauthConfig` object containing the desired [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
+To enable OAuth 2.0 authentication you need to edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding at first level the `oauthConfig` object containing the desired [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
 
 For example:
 ```json
@@ -164,69 +164,6 @@ For example:
     "clientId": "my-client-id",
     "usePkceWithAuthorizationCodeGrant": true,
     "scopes": ["openid"]
-  }
-}
-```
-
-### How can I change the API Portal logo and favicon?
-
-:::info
-A `Swagger Aggregator v3.9.0` or above and an `API Portal v2.2.0` or above are required for this feature
-:::
-
-To customize the `API Portal` logo and favicon, you have to simply edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding at the first level the `apiPortalConfig` object, and setting the `logoUrl` and `faviconUrl`. You should write something like this:
-  ```
-  {
-    ...
-    "apiPortalConfig": {
-      "logoUrl": "/your-logo-url",
-      "faviconUrl": "/your-favicon-url"
-    },
-  }
-  ```
-
-### How can I change the prefix of API Portal endpoints?
-
-:::info
-A `Swagger Aggregator v3.9.0` or above and an `API Portal v2.2.0` or above are required for this feature
-:::
-
-By default, `API Portal` endpoints have the `/api` prefix but you can change it by:
-1. Set the custom prefix in the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md)
-```json
-{
-  ...
-  "apiPortalConfig": {
-    "apiPrefix": "/custom-prefix",
-  }
-}
-```
-2. Follow the [guide](/runtime_suite/api-portal/configuration#reroute-endpoints-on-a-custom-endpoint) on the API Portal
-
-### How can I add the global servers options in the API Portal?
-
-:::info
-A `Swagger Aggregator v3.9.0` or above and an `API Portal v2.2.0` or above are required for this feature
-:::
-
-To add the global servers options, you have to add them in the `baseSwagger` object of the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
-The `servers` list comes from [OpenApi 2.0](https://swagger.io/specification/v2/).
-
-You should write something like this:
-```json
-{
-  ...
-  "baseSwagger": {
-    "version": "2.0",
-    "servers:" [
-      {
-        "url": "http://your-first-server"
-      },
-      {
-        "url": "http://your-second-server",
-        "description": "A nice description"
-      }
-    ]
   }
 }
 ```
