@@ -16,11 +16,11 @@ In this tutorial, we will see how to import a simple workload describing an `NGN
 
 ## Prerequisites
 
-To continue with this tutorial, you first need to `install miactl locally`. To install the CLI, follow the section dedicated to your operating system in [this guide](/cli/miactl/setup).
+To continue with this tutorial, you first need to `install miactl locally`. To install the CLI, follow the section dedicated to your operating system in [this guide](/cli/miactl/20_setup.md).
 
 After installing miactl, before proceeding with the import of Kubernetes resources into our project, we need to configure miactl with the context of our target Console instance. Configuring a `context` means providing miactl with the necessary information to connect to the console instance we want to target, such as the `console URL`, the `tenant ID` of the company we want to work with, and the `authentication method`.
 
-For the authentication method, you can choose to use either your personal account or a `service account`. For instructions on creating a service account, refer to [this documentation page](/development_suite/identity-and-access-management/manage-service-accounts). To learn in detail how to configure the `context` for miactl, refer to [this documentation page](/cli/miactl/commands#context).
+For the authentication method, you can choose to use either your personal account or a `service account`. For instructions on creating a service account, refer to [this documentation page](/development_suite/identity-and-access-management/manage-service-accounts.md). To learn in detail how to configure the `context` for miactl, refer to [this documentation page](/cli/miactl/30_commands.md#context).
 
 ## Import Kubernetes resources into an empty Mia-Platform Console Project
 
@@ -52,7 +52,7 @@ The output of this command should display a list of available contexts, similar 
 
 ![Miactl available contexts](img/import-miactl-2.png)
 
-If no context is configured, or if you want to create a new one, follow the steps described on [this documentation page](/cli/miactl/commands#context).
+If no context is configured, or if you want to create a new one, follow the steps described on [this documentation page](/cli/miactl/30_commands.md#context).
 
 Once you have verified the existence of a context or created a new one, you can set it as the active context using the following command:
 
@@ -109,7 +109,7 @@ miactl import --filename <path-to-your-manifests>
   --revision <your-target-revision>
 ```
 
-To learn more about the other optional flags available for this command, refer to [this documentation page](/cli/miactl/commands#import).
+To learn more about the other optional flags available for this command, refer to [this documentation page](/cli/miactl/30_commands.md#import).
 
 If everything worked correctly, the output of the command will be similar to the image below:
 
