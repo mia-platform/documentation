@@ -171,7 +171,7 @@ For example:
 ### How can I change the API Portal logo and favicon?
 
 :::info
-A `Swagger Aggregator v3.9.0` or above and an `API Portal v2.2.0` or above are required for this feature
+This feature is available from `Swagger Aggregator v3.9.0` and `API Portal v2.2.0`.
 :::
 
 To customize the `API Portal` logo and favicon, you have to simply edit the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md) by adding at the first level the `apiPortalConfig` object, and setting the `logoUrl` and `faviconUrl`. You should write something like this:
@@ -188,7 +188,7 @@ To customize the `API Portal` logo and favicon, you have to simply edit the Swag
 ### How can I change the prefix of API Portal endpoints?
 
 :::info
-A `Swagger Aggregator v3.9.0` or above and an `API Portal v2.2.0` or above are required for this feature
+This feature is available from `Swagger Aggregator v3.9.0` and `API Portal v2.2.0`.
 :::
 
 By default, `API Portal` endpoints have the `/api` prefix but you can change it by:
@@ -206,7 +206,7 @@ By default, `API Portal` endpoints have the `/api` prefix but you can change it 
 ### How can I add the global servers options in the API Portal?
 
 :::info
-A `Swagger Aggregator v3.9.0` or above and an `API Portal v2.2.0` or above are required for this feature
+This feature is available from `Swagger Aggregator v3.9.0` and `API Portal v2.2.0`.
 :::
 
 To add the global servers options, you have to add them in the `baseSwagger` object of the Swagger Aggregator [configuration](/development_suite/api-console/advanced-section/swagger-aggregator/configuration.md).
