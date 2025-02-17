@@ -262,10 +262,10 @@ With the key `apiPortalConfig`, it is possible to:
 - change the `API Portal` endpoints prefix.
 - set `oauthConfig` object. It contains the configuration useful for the OAuth 2.0 authentication. It's the same of the [swagger-ui OAuth 2.0 configuration](https://github.com/swagger-api/swagger-ui/blob/master/docs/usage/oauth2.md).
 
-You can at the following links how:
-- [how to change the logo](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-I-change-the-api-portal-logo-and-favicon)
-- [how to change the API Portal prefix](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-I-change-the-prefix-of-api-portal-endpoints)
-- [how to authenticate endpoints with OAuth 2.0](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-i-authenticate-my-endpoints-with-oauth-20)
+You can read at the following links how to:
+- [change the logo](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-I-change-the-api-portal-logo-and-favicon)
+- [change the API Portal prefix](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-I-change-the-prefix-of-api-portal-endpoints)
+- [authenticate endpoints with OAuth 2.0](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-i-authenticate-my-endpoints-with-oauth-20)
 
 ```json
 {
