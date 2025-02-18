@@ -10,6 +10,18 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.2.0] - 2025-02-14
+
+### Added
+
+- Added global select to choose which server to send requests
+- Added configurable logo in header and favicon
+- Added configurable prefix to endpoints in order to support multiple API Portal
+
+### Fixed
+
+- Fixed loading when search input is emptied
+
 ## [2.1.2] - 2025-02-03
 
 ### Security
