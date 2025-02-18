@@ -9,33 +9,6 @@ The Flow Manager Configurator is a tool that allows to easily configure Flow Man
 ## Supported Versions
 
 The Flow Manager Configurator supports many Flow Manager versions, starting from version `2.0.0`.
-Below you can find a detailed list of supported versions.
-
-<details>
-  <summary>Supported versions</summary>
-  <ul>
-    <li>2.0.0</li>
-    <li>2.0.1</li>
-    <li>2.0.2</li>
-    <li>2.1.0</li>
-    <li>2.1.1</li>
-    <li>2.1.2</li>
-    <li>2.1.3</li>
-    <li>2.2.0</li>
-    <li>2.3.0</li>
-    <li>2.3.1</li>
-    <li>2.4.0</li>
-    <li>2.4.1</li>
-    <li>2.4.2</li>
-    <li>2.5.0</li>
-    <li>2.5.1</li>
-    <li>2.6.0</li>
-    <li>2.6.1</li>
-    <li>2.6.2</li>
-    <li>2.6.3</li>
-    <li>2.6.4</li>
-  </ul>
-</details>
 
 In case the Flow Manager version is not included in the supported version list, the Configurator will show a warning banner and the user will not be able to link the service.
 
@@ -87,14 +60,14 @@ No edits are allowed in this mode.
 
 ## Highlight Mode
 
-The highlight mode allows the user to focus on a subset of states and events of the flow. The following rules are applied:
-- Click on a turned off state &rarr; the state is highlighted
+The highlight mode allows the user to focus on a subset of states, logic blocks, and events of the flow. The following rules are applied:
+- Click on a turned off state &rarr; the state is highlighted. In the new layout, clicking on the state highlights both the state and the logic block (which consists of the command and external executor).
 - Click on a turned off event (i.e. edge)
   - Case source and target states turned off &rarr; nothing is highlighted
   - Case source and target states highlighted &rarr; the event is highlighted
-  - Case only source state is highlighted &rarr; the event and every following state and event is highlighted up to the first bifurcation encountered
-  - Case only target state is highlighted &rarr; the event and every previous state and event is highlighted up to the first bifurcation encountered
-- Click on an highlighted state &rarr; the state, its incoming events and every following state and event is turned off if they are not highlighted by another branch
-- Click on an highlighted event &rarr; the event is turned off and every following state and event is turned off if they are not highlighted by another branch
+  - Case only source state is highlighted &rarr; the event and every following state, logic block and event is highlighted up to the first bifurcation encountered
+  - Case only target state is highlighted &rarr; the event and every previous state, logic block and event is highlighted up to the first bifurcation encountered
+- Click on an highlighted state &rarr; the state, its incoming events and every following state, logic block and event is turned off if they are not highlighted by another branch
+- Click on an highlighted event &rarr; the event is turned off and every following state, logic block and event is turned off if they are not highlighted by another branch
 
 ![Highlight Mode](img/highlight-mode.png)

@@ -27,7 +27,6 @@ If you want to fine tune resources for specific services the proper documentatio
 |     `configurations.consoleUrl`     | string |                                                       The URL where the console will be exposed                                                       |         |    ❌     |
 |       `configurations.cmsUrl`       | string |                                                     The URL where the console CMS will be exposed                                                     |         |    ❌     |
 
-
 ### Docker and runtime specific configurations
 
 |            Name            |  Type   |          Description           | Default | Optional |
@@ -35,6 +34,7 @@ If you want to fine tune resources for specific services the proper documentatio
 |      `imageCredentials`     |  [pull secret credentials](#pull-secret-credentials) | An object to generate the image pull secrets |         |    ✅    |
 |      `imagePullSecrets`     |  array  | An array of `imagePullSecrets`               |  `[]`   |    ✅    |
 | `defaultPodSecurityContext` | [pod security context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod) | Override all the default pod security context per each workload with custom configuration | `{"runAsNonRoot": true, "runAsUser": 10000, "runAsGroup": 11000, "fsGroup": 12000}` |    ✅    |
+| `useCDN` | boolean | Enable the use of a CDN for the static assets |   `true`   |    ✅     |
 
 #### Pull secret credentials
 

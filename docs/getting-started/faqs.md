@@ -35,10 +35,6 @@ This should list the expected routes under each category in the API Portal.
 
 When both are used, the global rate limits set by the plugin are applied first, followed by the endpoint-specific limits.
 
-### [Rate Limiting for Sub-Routes in Envoy](https://github.com/mia-platform/community/discussions/526)
-#### Can I specify rate limits for sub-routes in Envoy using the Console?
-This is a limitation of the Console, not Envoy. Currently, the Console does not support setting rate limits for sub-routes directly. As a workaround, you can create separate endpoints (e.g., /basepath/hello-1) and apply rate limits to those. While this approach might be cumbersome for projects with many endpoints, it should work for now until more granular control is available in the Console.
-
 ### [Retrieving Name and Surname in Users CRUD with Okta Authentication Service](https://github.com/mia-platform/community/discussions/512)
 #### Why are the name and surname fields empty in the users CRUD after setting up the Authentication Service with Okta?
 The issue likely arises from not having the correct scopes set in your Okta configuration. Ensure that you include the profile scope, which is needed to retrieve basic user information, including the name.
@@ -320,7 +316,7 @@ No, it's not mandatory. However, starting from a [Mia-Platform Template](/market
 
 ### Can I create my own templates?
 #### How can I create custom templates for my microservices?
-Yes, you can. Follow this [guideline](/marketplace/add_to_marketplace/create_your_company_marketplace.md) and [open an issue with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item).
+Yes, you can. Follow this [guideline](/software-catalog/manage-items/overview.md) and [open an issue with the Marketplace contribution template](https://github.com/mia-platform/community/issues/new?labels=marketplace&template=marketplace-contribution.md&title=Add+new+marketplace+item).
 
 ### How can I change the state of a document?
 #### What is the process to change the state of a document in CRUD?

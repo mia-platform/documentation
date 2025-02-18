@@ -5,6 +5,18 @@ sidebar_label: v13 Overview
 image: "img/release-note-link-preview.png"
 ---
 
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '8px',
+      color: '#fff',
+      padding: '0.3rem',
+    }}>
+    {children}
+  </span>
+);
+
 **Welcome to Mia-Platform v13!**
 
 # Compose your Platform
@@ -22,6 +34,16 @@ The main benefits for the user can be summarized by the following:
 
 Let's go in deep with the new Features:
 
+### Extend Mia-Platform Console using... the Console! | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+
+We have strengthened our Platforge Extensibility Kit by adding the possibility to add extensions from Console UI and enriching the type of supported extensions. You can now extend your Console by embedding iFrames, adding External Links & composing your pages with Microfrontend Composer within a dedicated "Extensions" section, accessible to Company Owners within the Platforge section at Company level.
+
+Customizing your Mia-Platform Console has never been so easy: simply select the type of extension, the desired Area and where to display it from the available options, then choose what you want to show your users!
+
+To discover more about how to manage your Extensions and the types of supported extensions, head to the [Extensions documentation](/console/company-configuration/extensions.md).
+
+![Extension Manager](img/extension-manager.png)
+
 ### Extend Frontend of Mia-Platform Console with iFrames
 
 Extend the Console as you like.
@@ -34,14 +56,6 @@ This function is now only accessible via Application Programming Interface (API)
 ![iFrame Extensions](img/iframe-extensions.png)
 
 To learn more, please refer to the [documentation](/console/console-extensibility/overview.md).
-
-### Managing Custom Resources through the Console
-
-You can now manage and configure custom objects that are not part of the standard Console supported resources using the classic user interface of the Console. This feature further expands the Console domain over user's entire workloads, enabling greater operability, governance, and control over systems.
-
-![Custom Resources](img/custom-resources.png)
-
-To discover more, please refer to the [documentation](/console/design-your-projects/custom-resources.md).
 
 ### React to Console actions using Webhooks
 
@@ -62,6 +76,28 @@ You can find the brand new plugin in the [Backstage Marketplace](https://backsta
 
 ![Backstage](img/backstage-banner.jpg)
 
+## Infrastructure Management
+
+### Manage Infrastructure Resources through Console 
+
+You can now manage and configure custom objects that are not part of the standard Console supported resources using the classic user interface of the Console. This feature further expands the Console domain over user's entire workloads, enabling greater operability, governance, and control over systems.
+
+![Custom Resources](img/infrastructure-resources.png)
+
+#### Support to all Infrastructure Resources | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+
+With the Fall release updates we have officially introduced the possibility to manage the provisioning of your infrastructure, configuring - at the Design level - your Infrastructure Resources.  
+Within the Design of your Console you can then see a new "Infrastructure" section entirely dedicated to Infrastructure as Code! 
+
+To discover more, please refer to the [documentation page](/console/design-your-projects/custom-resources/custom-resources.md) and check out some useful [use cases](/console/design-your-projects/custom-resources/use-cases.md).
+
+#### Support of Custom Kubernetes Resources in Runtime area | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+
+We finalized the support for Kubernetes type Resources by introducing the possibility of monitoring such resources at Runtime once deployed.  
+For each resource you will be able to access its detail where you will see the respective Describe and Events that are generated, similarly to the other resources in the Runtime Area.
+
+To discover more, you can refer to the [documentation](/console/design-your-projects/custom-resources/custom-resources.md).
+
 ## Simplify Composability
 
 Mia-Platform Suite empowers development teams to enhance software composability by facilitating streamlined reuse and embracing scalable approaches. With Mia-Platform v13, software composability is even more NoCode!
@@ -74,30 +110,47 @@ The main benefits for the user can be summarized by the following:
 
 Let's go in deep with the new Features:
 
-### Enrich Meta Data and list all your data assets: Data Catalog
+### Data Catalog Application | <Highlight color="#1890FF">v13 - Fall Release</Highlight>  
 
-Let's welcome our first release of **Data Catalog**, designed to provide the data governance teams and data analysts with a centralized location where all metadata concerning the data assets of an organization are collected.
+Mia-Platform product suite is finally enriched with a new core component, the **Data Catalog** application, an essential tool for performing Data Discovery and Data Governance on your Company data assets.
 
-Set up our Data Catalog Agent, to connect to different external sources, such as Oracle Database, Salesforce, Postgres Database, MySQL Database, Microsoft SQL Server Database, and to extract all metadata existing on your organization's System of Records.
+![Data Catalog home](img/data_catalog_home.png)
 
-Through Mia-Platform Console, it is possible to:
+Mia-Platform Data Catalog serves as a centralized repository of metadata that provides a clear and detailed overview of the Company data assets, reducing time for Data Discovery and empowering Data Governance Teams with powerful metadata management features.
 
-- Keep metadata up to date with the external System of Records
-- Navigate data models in a centralized place
-- Enrich metadata with descriptions and GDPR regulation properties for each table field
-- Export your data models in .csv format
-- Make metadata usable via Data Catalog API from third-party systems and custom frontends
+Thanks to Data Catalog, you can reduce Data Discovery time with advanced search capabilities, maintain adherence to numerous data management regulations and laws, such as GDPR in Europe, provide a centralized space for your teams to share data information and knowledge, and improve data quality with powerful metadata enrichment features. In addition, thanks to Data Lineage capabilities, it is possible to understand how data move and transform within your data landscape.
 
-![Data Catalog Architecture](img/data-catalog-architecture.png)
+To find out how it works and all the benefits of Mia-Platform Data Catalog, please refer to the related [documentation](/data_catalog/overview.mdx).
 
-To learn more, please refer to the [documentation](/runtime_suite_templates/data-catalog-agent/10_overview.md).
+### Software Catalog | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+
+We are excited to announce the launch of the first release of the **Software Catalog**, designed to help you track, manage, and document software across your ecosystem. 
+The Software Catalog provides a centralized and reliable way to access software ownership, metadata, lifecycle status, and versions, ensuring accountability throughout the company's software landscape.
+
+![software catalog overview](img/software-catalog-overview.png)
+
+With Mia-Platform Software Catalog, you can:
+- Explore available software resources in a centralized location
+- View detailed item information, including metadata, lifecycle status, versions, release notes, and availability (Global, Public, or Private)
+- Seamlessly navigate between different versions of each item
+
+### Versioning management of Marketplace resources | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
+
+Version control for your Marketplace resources is now available in Mia-Platform Console. Users can manage and access different versions of Plugins and infrastructure Resources, selecting the one that best suits their needs and easily switching between versions. 
+If you want to discover more, head to the [dedicated section](/software-catalog/manage-items/overview.md#set-controlled-versions-for-your-marketplace-resources-and-make-them-available-to-users) inside the [Company Marketplace](/software-catalog/manage-items/overview.md) documentation page.
+
+![Versioning Management](img/versioning-management.png)
 
 ### Seamless Runtime Management with Fast Data Control Plane
 
 Mia-Platform Fast Data has been empowered with a Runtime Management solution, the **Fast Data Control Plane**.
 
-This Fast Data suite component provides a general overview of the Fast Data pipelines released on the runtime environment, and allows to monitor and govern the execution of your Fast Data system.
-From its user-friendly web interface, you can pause and resume the consumption of data streams along Fast Data pipelines with just a few clicks to strategically allocate resources consumption and efficiently utilize them during peak demand processes.
+This Fast Data suite component acts as the single central access point for governing the Fast Data Runtime of your entire Company.  
+Fast Data Control Plane application provides a general overview of the Fast Data pipelines released on the runtime environment, and allows to monitor and govern the execution of your Fast Data system.  
+From its user-friendly web interface, you can pause and resume the consumption of data streams along Fast Data pipelines with just a few clicks to strategically allocate resources consumption and efficiently utilize them during peak demand processes.  
+
+![Fast Data Control Plane](img/fd-control-plane.gif)
+
 Many are the benefits of adopting the Fast Data control plane in your Fast Data Projects, for example:
 
 - **Optimize Resource Allocation**, by strategically pausing and resuming the consumption of data streams along the Fast Data pipelines
@@ -105,9 +158,7 @@ Many are the benefits of adopting the Fast Data control plane in your Fast Data 
 - **Performance Testing and Simulation**, to simulate different scenarios for performance testing by observing your system behavior under various conditions
 - **Enhanced System Reliability**, allowing you to gracefully handle unexpected situations and/or system maintenance periods while minimizing system downtime.
 
-![Fast Data Control Plane](img/fd-control-plane.gif)
-
-To learn more, please refer to the [documentation](/fast_data/runtime_management/overview.mdx).
+To learn more, please refer to the related [documentation](/fast_data/runtime_management/overview.mdx).
 
 ### Streamline how you build your Sagas, now No-Code
 
@@ -151,9 +202,12 @@ The main benefits for the user can be summarized by the following:
 - Action Advisory
 - Simplify access to features
 
-Let's go in deep with the new Features:
+### AI RAG Chat application | <Highlight color="#1890FF">v13 - Fall Release</Highlight>
 
-### Mia-Assistant
+In this release, we have worked on an application to extend the use of AI assistance with the process of Retrieval-Augmented Generation (RAG) in a simple way. You can then configure a RAG Application chat within your project to easily set up your own chatbot. This application is featuring automatic embeddings generation from website pages.  
+For more information on how to configure your custom RAG Application, head to the [related tutorial](/marketplace/tutorials/create-a-rag-application.md).
+
+### Let's welcome Mia-Assistant in Console!
 
 With this release we introduce a first version of our **Mia-Assistant**, an AI-based virtual chat that will make it easier for you to discover our Mia-Platform Console and access its documentation!
 Mia-Assistant will answer your questions and provide you the related Mia-Platform documentation reference, to help you retrieve all the information you need and improve your experience with our product!

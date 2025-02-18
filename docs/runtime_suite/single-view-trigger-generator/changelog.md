@@ -15,6 +15,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.0] 2025-01-23
+
+### Added
+
+- `maxBatchSize` property in producer configuration to configure the number of messages that can be written in a single request
+- `forceResume` setting field to `controlPlane.settings.channel` that can either be a boolean or an object with a numeric field `timeout.ms`, defining the amount of time for control plane pipelines to be resumed after an unsuccessful connection.
+
+### Changed
+
+- `controlPlane.settings` object now has both `state` and `feedback` marked as optional
+
+### Removed
+
+- `gRPC` Control Plane Feedback client
+- `Kafka` Control Plane client
+
+## [3.3.4] 2025-01-16
+
+### Fixed
+
+- Reconnect Control Plane GRPC client when Control Plane Operator restarts
+
+## [3.3.3] 2024-12-10
+
+### Added
+
+- Added image signing and sbom generation in pipeline
+
 ## [3.3.2] 2024-07-29
 
 ### Fixed

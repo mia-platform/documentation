@@ -1,0 +1,204 @@
+1
+00:00:00,960 --> 00:00:05,920
+Hi everyone, this is Rhea from Mia-Platform and 
+today I'm going to show you how you can create  
+
+2
+00:00:05,920 --> 00:00:11,040
+a CRUD service using the Mia-Platform Console. 
+Let's go ahead and start with the Mia-Platform  
+
+3
+00:00:11,040 --> 00:00:16,360
+Console. We're in the design section. Let's go 
+ahead and scroll down to MongoDB CRUDs and here  
+
+4
+00:00:16,360 --> 00:00:21,160
+we can click on "Create a new CRUD". Let's 
+start by giving it a name: for this example,  
+
+5
+00:00:21,160 --> 00:00:26,920
+I'm going to give it the name "employee2" 
+and click on "Create". Perfect, as you can  
+
+6
+00:00:26,920 --> 00:00:32,280
+see here this is a collection of employee2 and 
+all of the fields are attached below. Let's add  
+
+7
+00:00:32,280 --> 00:00:38,040
+some of our own fields. Let's go ahead and write 
+"Name" set the field type as string and click on  
+
+8
+00:00:38,040 --> 00:00:45,640
+"Create". Let's add another one for "Last name" 
+or surname, create, set the type as string and  
+
+9
+00:00:45,640 --> 00:00:52,120
+go ahead and create, and then we can add the 
+third one as "email ID" where we also set the  
+
+10
+00:00:52,120 --> 00:00:58,760
+type as string and go ahead and click on create. 
+Perfect, as you can see collection employee2 now  
+
+11
+00:00:58,760 --> 00:01:03,320
+has three different fields that we have added: 
+name, surname and email ID, which are all type  
+
+12
+00:01:03,320 --> 00:01:10,240
+string. Once you're happy with that we need to go 
+ahead and create and expose the endpoint. Let's  
+
+13
+00:01:10,240 --> 00:01:16,760
+scroll in this menu to find "Endpoint" and create 
+a new endpoint. Let's name the base part of this  
+
+14
+00:01:16,760 --> 00:01:22,280
+endpoint "employee 2 ", let's select the endpoint 
+type as CRUD and then choose the base part. The  
+
+15
+00:01:22,280 --> 00:01:28,960
+base part is employee2, the crud we just created. 
+Let's go ahead and click on "Create". Once this is  
+
+16
+00:01:28,960 --> 00:01:33,680
+created of course you can see here you can change 
+the security and documentation settings and once  
+
+17
+00:01:33,680 --> 00:01:38,440
+this is created it's time for us to save our 
+configuration. Let's move ahead to the left hand  
+
+18
+00:01:38,440 --> 00:01:44,760
+side menu and click on "Save configuration". When 
+you're saving your configuration you will have to  
+
+19
+00:01:44,760 --> 00:01:51,080
+write a title commit - for this example let's go 
+ahead and write "commit employee2" and go ahead  
+
+20
+00:01:51,080 --> 00:01:59,320
+and save that. Perfect, your configuration is now 
+saved and everything is up to date. The next step  
+
+21
+00:01:59,320 --> 00:02:04,960
+would be moving into the deploy section. Let's go 
+ahead here into the deploy section and select our  
+
+22
+00:02:04,960 --> 00:02:13,280
+branch. Our branch is master and here we can go 
+ahead and smart deploy our CRUD function. Perfect,  
+
+23
+00:02:13,280 --> 00:02:21,960
+as you can see our CRUD function is ready and 
+we can go ahead and click on Smart Deploy.
+
+24
+00:02:21,960 --> 00:02:26,320
+Perfect, as you can see your deploy is now 
+successful and now we can move into the  
+
+25
+00:02:26,320 --> 00:02:31,200
+runtime section. Perfect, now we've entered 
+our runtime section where you can see all of  
+
+26
+00:02:31,200 --> 00:02:35,560
+the pods that are running and you can see that 
+all of them are at status "okay" - this means  
+
+27
+00:02:35,560 --> 00:02:41,200
+we can go ahead into the overview section and 
+enter environments where in which we'll be able  
+
+28
+00:02:41,200 --> 00:02:47,760
+to see the runtime environments and access the 
+API portal. We're in the development section,  
+
+29
+00:02:47,760 --> 00:02:55,520
+let's go ahead to documentation 
+which opens up your API portal.
+
+30
+00:02:55,520 --> 00:03:00,360
+Perfect, we've now entered our API portal 
+where we can see our function employee2,  
+
+31
+00:03:00,360 --> 00:03:06,120
+the CRUD service we created. Let's go ahead and 
+put in some data using the "Post" function. As you  
+
+32
+00:03:06,120 --> 00:03:12,920
+can see here we can add some parameters, so "name" 
+let's go ahead and put in Rhea, "surname" let's go  
+
+33
+00:03:12,920 --> 00:03:22,640
+ahead and put in Arora and "email ID" let's go 
+ahead and put in rheaaroraxyz@gmail.com.Perfect,  
+
+34
+00:03:22,640 --> 00:03:28,400
+once you're happy with this we can go ahead and 
+click on "Try it". Once you try it this is going  
+
+35
+00:03:28,400 --> 00:03:36,120
+to generate an ID. Let's go ahead and copy paste 
+that ID and now let's move into the get function.  
+
+36
+00:03:36,120 --> 00:03:40,320
+This is where we'll be able to return a list of 
+all of the documents we've added in employee2,  
+
+37
+00:03:41,480 --> 00:03:47,080
+so let's go ahead into get the get function 
+and put in an ID and go ahead and click on  
+
+38
+00:03:47,080 --> 00:03:52,560
+"Try it". Perfect, as you can see this has 
+worked well: you're able to see the name,  
+
+39
+00:03:52,560 --> 00:03:57,400
+the surname and the email ID. So that's 
+basically how you create a CRUD service  
+
+40
+00:03:57,400 --> 00:04:01,960
+on the Mia-Platform console - it's super easy 
+easy! Let us know if you have any questions,  
+
+41
+00:04:01,960 --> 00:04:11,880
+feel free to reach out to us via email or 
+book a demo call anytime you like. Thank you!

@@ -119,6 +119,15 @@ If you need to customize the requests sent to the external services, you should 
 
 :::
 
+## Providers
+
+| Provider   | Email | SMS | Push Notifications | Voice calls | WhatsApp messages |
+|------------|-------|-----|--------------------|-------------|-------------------|
+| Amazon SES | ✓     |     |                    |             |                   |
+| Firebase   |       |     | ✓                  |             |                   |
+| Kaleyra    |       | ✓   |                    | ✓           | ✓                 |
+| Twilio     |       | ✓   |                    |             |                   |
+
 ## Channels
 
 Each channel has external dependencies, including other Mia-Platform plugins, service providers accounts and specific fields on the message templates and users CRUD collections.

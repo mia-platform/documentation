@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.2.0 - 10-12-2024
+
+### Changed
+
+- /verify handler looks in `sid` cookie for the token if not present in `authorization` header
+
+### Security
+
+- Added SBOM and docker image sign
+
 ## 1.1.2 - 03-06-2024
 
 ### Changed

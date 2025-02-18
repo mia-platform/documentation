@@ -5,10 +5,15 @@ sidebar_label: Fabric BFF
 ---
 
 import bffSchema from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.config.schema.json"
-import bffConfigExample from "@site/static/schemas/data_fabric/data-catalog-fabric-bff.example.json"
-import SchemaViewer from "../../src/components/SchemaViewer"
+import SchemaViewer from "./../fast_data/snippets/schema_viewer.mdx"
+import FabricBFFCredentialsViewer from "./../fast_data/runtime_management/snippets/fabric_bff_credentials_viewer.mdx"
 
-Fabric BFF, as suggested by the name, works as Backend For Frontend for Data Catalog UI and it mediates requests between frontend and Data Catalog service.
+Fabric BFF, as suggested by the name, works as Backend For Frontend for Data Catalog UI and it mediates requests between frontend and the following services:
+
+- [Data Catalog Open Lineage](/data_catalog/data_catalog_open_lineage.mdx), to retrieve details about assets and their enrichment;
+- [Data Catalog Job Runner](/data_catalog/data_catalog_job_runner.mdx), to launch job executions and retrieve their status.
+
+Moreover, the BFF offers API to manage Data Catalog Connections from the [dedicated UI section](/data_catalog/frontend/data_catalog_connections.mdx).
 
 ## Configuration
 
@@ -31,17 +36,17 @@ The configuration of the service is handled by a JSON file whose location is def
 When instantiating [Data Catalog application](/runtime_suite_applications/data-catalog/10_overview.md), Fabric BFF service configuration is generated with
 a dedicated Config Map, named `fabric-bff-config`. This file contains a template configuration that should help in configuring the service.
 
-<SchemaViewer schema={bffSchema} example={bffConfigExample}/>
+<SchemaViewer schema={bffSchema}/>
 
 In the paragraphs below are explained the main properties of the Fabric BFF configuration file.
 
 #### Open Lineage Communication
 
-Communication between Fabric BFF and Open Lineage services occurs both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason it is necessary to
+Communication between Fabric BFF and Open Lineage service occurs both via [gRPC](https://grpc.io/) and HTTP REST requests. For this reason it is necessary to
 configure on the Fabric BFF the addresses where to reach Open Lineage service. This can be done by setting the properties `rest` and `grpc` of `openLineage` field in the Fabric BFF configuration.
 In both properties `target` field should be set to the address where Open Lineage service exposes the corresponding one.
 
-Here can be found an example of configuration that assumes Fabric BFF and Open Lineage services are deployed within the same K8s namespace:
+Here can be found an example of configuration that assumes Fabric BFF and Open Lineage service are deployed within the same K8s namespace:
 
 ```json
 {
@@ -57,6 +62,78 @@ Here can be found an example of configuration that assumes Fabric BFF and Open L
   // ...other fabric bff configurations
 }
 ```
+
+#### Job Runner Communication
+
+Communication between Fabric BFF and Job Runner service occurs via [gRPC](https://grpc.io/). For this reason it is necessary to
+configure on the Fabric BFF the addresses where to reach Job Runner service. This can be done by setting the property `grpc` of `jobRunner` field in the Fabric BFF configuration.
+The `target` field should be set to the address where Job Runner service exposes the corresponding one.
+
+Here can be found an example of configuration that assumes Fabric BFF and Job Runner service are deployed within the same K8s namespace:
+
+```json
+{
+  // ...other fabric bff configurations
+  "jobRunner": {
+    "grpc": {
+      "target": "http://<job-runner-service-name>:50051"
+    }
+  },
+  // ...other fabric bff configurations
+}
+```
+
+#### Console Communication
+
+In order for Data Catalog UI to know which environments can be linked to [Mia Platform CRUD connections](/data_catalog/frontend/data_catalog_connections.mdx#mia-platform-crud), 
+the service needs to contact Mia-Platform Console and retrieve the list of Projects that should be accessible from this Data Catalog instance.
+
+To achieve so, it is first necessary that your Company Owner creates a dedicated [Service Account](/development_suite/identity-and-access-management/manage-service-accounts.md)
+on your Mia-Platform Console instance and assign to it the proper permissions for listing the Console projects of interest.
+
+:::tip Good practices in permissions assignment
+Pay attention to the level of access to the resources that you assign to the Service Account. 
+For Data Catalog use case, a good practice may be to assign the role of `guest` at Company level while granting
+the `reporter` role to all the projects that should be visible by Data Catalog.  
+About permissions assignment, it is possible to go even more granular in case you want to allow visibility only to a subset of runtime environments of a specific project.
+In fact, to do that, you may opt to assign the role of `guest` even at Project level while granting
+the `reporter` role solely to those runtime environments that should be visible by Data Catalog.
+:::
+
+Once the service account has been registered, your Company Owner needs to hand over to you its credentials, which are:
+
+- `client-id` &rarr; unique identifier generated for this the service account
+- [Client Secret Basic] `client-secret` &rarr; a string representing the secret needed by the service account to authenticate
+- [Private Key JWT] `client-key-id` &rarr; unique identifier of the key employed for generating for this the service account
+- [Private Key JWT] `private-key` &rarr; private key in PEM format
+
+These details then should be inserted in your Fabric BFF service configuration under the `console` property. In particular, the fields to be set are:
+
+- `target` &rarr; specifies the base URL of your Mia-Platform Console instance
+- `auth` &rarr; defines how the Fabric BFF service should authenticate on Mia-Platform Console APIs, that is the service account credentials
+
+:::caution
+It is responsibility of your Company Owner to ensure that service account credentials are properly processed according to your company security policies.
+
+Furthermore, it is of <u>extreme importance</u> understanding that **any** Data Catalog user with enough permissions for [connections management](/data_catalog/frontend/data_catalog_connections.mdx) will be able to view the project name
+and available environments of all the projects that can be accessed by the service account configured on Fabric BFF. 
+:::
+
+This is and example of `console` property configuration:
+
+<FabricBFFCredentialsViewer />
+
+:::tip
+The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
+- `console.rest.target`
+- `console.rest.auth.credentials.clientId`
+- `console.rest.auth.credentials.clientKeyId`
+- `console.rest.auth.credentials.privateKey`
+:::
+
+A custom x509 certificate can be added to the default root keychain of certificates for any client/reversed-proxy reached by Fabric BFF.
+Custom certificate must be mounted on local file system of Fabric BFF and referenced in the configuration at 'settings.tls.certificate'
+as a [secret](/fast_data/configuration/secrets_resolution.md).
 
 #### Persistence Layer
 
@@ -124,15 +201,58 @@ Here can be found a configuration example:
 
 In the table below is provided the list of endpoints that should be [defined in Console](/development_suite/api-console/api-design/endpoints.md) and assigned to Fabric BFF service.
 
-| Endpoint            | Rewrite Base Path   | Microservice | Description                                                    |
-|---------------------|---------------------|--------------|----------------------------------------------------------------|
-| `/api/data-catalog` | `/api/data-catalog` | `fabric-bff` | Groups all the requests related to<br/>Open Lineage operations |
+| Endpoint            | Rewrite Base Path   | Microservice | Description                                                                                                                                                                                         |
+|---------------------|---------------------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/api/data-catalog` | `/api/data-catalog` | `fabric-bff` | Groups all the requests related to<br/>Data Catalog operations. For more details please refer [to the corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#data-catalog-routes) |
+| `/api/open-lineage` | `/api/open-lineage` | `fabric-bff` | Groups all the requests related to<br/>Open Lineage operations. For more details please refer [to the corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#open-lineage-routes) |
+| `/api/connections`  | `/api/connections`  | `fabric-bff` | Groups all the requests related to<br/>Connections operations                                                                                                                                       |
+| `/api/job-runner`   | `/api/job-runner`   | `fabric-bff` | Groups all the requests related to<br/>Job Runner  operations                                                                                                                                       |
 
 ### Routes
 
-Under the endpoint specified above, the following routes are served by Fabric BFF
+Here are described which routes Fabric BFF service serves.
 
-| Route                        | Type      | Method | Description                                                                                                                                                                                             |
-|------------------------------|-----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `/data-catalog/bulk-actions` | Websocket | *      | Route for handling async operations over multiple datasets records                                                                                                                                      |
-| `/data-catalog/*`            | REST      | *      | Routes prefixed with `/data-catalog/` are forwarded towards Open Lineage<br/>service. For more details please read [corresponding documentation](/data_catalog/data_catalog_open_lineage.mdx#endpoints) |
+#### Connection routes
+
+The following routes are exposed over the `/api/connections` endpoint.
+
+| Route                        | Type      | Method | Description                                                                                                                                                                                                             |
+|------------------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/connections/items`         | REST      | GET    | Route for reading the list of connections configured for the data catalog application.                                                                                                                                  |
+| `/connections/items`         | REST      | POST   | Route for creating a connection for the data catalog application.                                                                                                                                                       |
+| `/connections/items/:id`     | REST      | GET    | Route for reading a given connection configured for the data catalog application.                                                                                                                                       |
+| `/connections/items/:id`     | REST      | GET    | Route for updating a given connection configured for the data catalog application.                                                                                                                                      |
+| `/connections/items/:id`     | REST      | DELETE | Route for deleting a given connection configured for the data catalog application.                                                                                                                                      |
+
+#### Job Runner routes
+
+The following routes are exposed over the `/api/job-runner` endpoint and are forwarded towards the [corresponding gRPC method.](/data_catalog/data_catalog_job_runner.mdx#grpc-services).
+
+| Route                        | Type      | Method | Description                                                                                                                                                                                                             |
+|------------------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/feedback`                  | Websocket | HEAD   | Route used by Websocket for authentication.                                                                                                                                                                             |
+| `/feedback`                  | Websocket | GET    | Route for receiving feedback messages from the `Status` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                  |
+| `/job-runner/*`              | REST      | *      | Routes prefixed with `/job-runner` are converted into gRPC requests towards Job Runner service.<br/> For more details please read [corresponding documentation](/data_catalog/data_catalog_job_runner.mdx#grpc-services)|
+| `/agent/drivers`             | REST      | GET    | Route for invoking the `ListDrivers` method of the [ODBC Client gRPC service.](/data_catalog/data_catalog_job_runner.mdx#odbc-client)                                                                                   |
+| `/agent/dsn`                 | REST      | GET    | Route for invoking the `ListDataSources` method of the [ODBC Client gRPC service.](/data_catalog/data_catalog_job_runner.mdx#odbc-client)                                                                               |
+| `/agent/sync`                | REST      | POST   | Route for invoking the `Run` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                                             |
+| `/agent/abort`               | REST      | POST   | Route for invoking the `Abort` method of the [Job Runner gRPC service.](/data_catalog/data_catalog_job_runner.mdx#job-runner)                                                                                           |
+| `/agent/dsn`                 | REST      | GET    | Route for invoking the `ListSecretNames` method of the [Configuration gRPC service.](/data_catalog/data_catalog_job_runner.mdx#configuration-1)                                                                         |
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.x to 0.2.0
+
+The following steps needs to be followed:
+
+- Run [`fabric_admin:0.2.0` cronjob](/data_catalog/database_setup.mdx#cli-configuration) to update persistence layer collections schemas;
+- Update the configuration of the service to enable [Console Communication](#console-communication) and [Job Runner](#job-runner-communication);
+- Add the following set of routes in the endpoint section of your project, along with [their permissions](/data_catalog/secure_access.mdx#endpoints-1):
+  - `/job-runner/*` and `/job-runner/feedback`
+  - `/open-lineage/*`
+  - `/connections/*`
+  
+  See [Routes paragraph](#routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
+  to support the new permission `admin:connections`. 

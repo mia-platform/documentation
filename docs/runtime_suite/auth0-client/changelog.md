@@ -15,6 +15,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 3.8.0 - 24-01-2025
+
+### Added
+
+- Add support for `prompt` and `action` query parameters set in `/authorize` endpoint
+
+## 3.7.1 - 07-11-2024
+
+### Fixed
+
+- logout redirect when a query params set in the redirect path
+
+## 3.7.0 - 30-10-2024
+
+### Added
+
+- add TLS connection support for Redis in normal and sentinel mode
+
 ## 3.6.0 - 26-02-2024
 
 ### Added

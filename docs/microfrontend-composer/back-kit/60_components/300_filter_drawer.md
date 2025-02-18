@@ -85,6 +85,9 @@ The Filter Drawer renders the filter value field as a select or a multi-select f
 Options for such fields will be dynamically fetched from the endpoint specified in `basePath` property, using the `/lookup` route provided by the [CRUD Service][crud-service] to [writable views][writable-views] (version 6.9.0 or higher) , which returns a list of objects.
 Each option fetched like this should have at least a `label` field, which is used as display value inside the form, and a `value` field which is used as unique identifier for such option.
 
+:::caution
+If you use the `_id` field as `value` in your lookups, remember to set its type as `string`.
+:::
 
 ### Locale
 

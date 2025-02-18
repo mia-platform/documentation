@@ -15,6 +15,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.3] 2024-12-18
+
+### Fixed
+
+- Fixed reminders scheduled in the past
+
+## [2.4.2] 2024-12-03
+
+### Fixed
+
+- Fixed appointment reminders aborting
+
+## [2.4.1] 2024-11-12
+
+### Fixed
+
+- Add logs to debug reminders aborting
+- Notification settings without the `rule` field are treated as sending rules when merging
+
+## [2.4.0] 2024-10-29
+
+### Added
+
+- Add notification messages MongoDB view
+- Add `NOTIFICATIONS_MESSAGES_VIEW_NAME` environment variable to configure the notification messages MongoDB view
+
+### Changed
+
+- `GET /notification-messages/count` is a proxy to the `GET /count` endpoint of the notification messages MongoDB view
+- `GET /notification-messages/` is a proxy to the `GET /` endpoint of the notification messages MongoDB view
+
+### Fixed
+
+- Sanitize logs that could leak sensitive or personal information
+- Replace newline escape sequences (`\n`, `\n\r`, `\r` and `\r\n`) with `<br/>` tag in HTML email messages
+
 ## [2.3.0] 2024-06-11
 
 ### Fixed

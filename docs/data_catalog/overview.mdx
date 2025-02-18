@@ -49,6 +49,10 @@ Mia-Platform Data Catalog offers many powerful features for building your Data P
 
 * **Policy Management and Access Control**: Allows to establish customized data classification levels and tagging based on data sensitivity, ensuring that asset information is handled according to its classification, such as public, internal, or confidential. Moreover, it enables access control on users, which can have read-only permissions or also metadata enrichment capabilities on assets. This ensures that only authorized users can view or modify certain data.
 
+* **Data Lineage**: Allows to track the origin and flow of data through systems to help understand how data are transformed and used through various business processes, useful to identify and resolve data quality issues.
+
+* **Connections Management**: Allows to add, edit and synchronize external data sources to retrieve their assets.
+
 ### Metadata Enrichment
 
 **Metadata enrichment** is a critical aspect of managing data assets within a Data Catalog.  
@@ -99,19 +103,16 @@ Adopting Mia-Platform Data Catalog offers numerous benefits:
 ## Setup Mia-Platform Data Catalog
 
 Start to setup your Data Catalog Project in Mia-Platform Console.  
-Find in the Marketplace:
+Find in the Marketplace the [Data Catalog Application](/runtime_suite_applications/data-catalog/10_overview.md), that offers pre-configured bundle of resources that allows you to easily instantiate and deploy a working Data Catalog product. Give a look at the following [documentation page](/data_catalog/frontend/overview.mdx) to see how to navigate Mia-Platform Data Catalog. Among application resources there is a service in charge of extracting metadata regarding the several tables and data structures existing on configured
+sources (System of Records) of your company, in order to populate the information inside your Data Catalog to start the experience within Data Catalog frontend.
 
-* [Data Catalog Application](/runtime_suite_applications/data-catalog/10_overview.md), that offers pre-configured bundle of resources that allows you to easily instantiate and deploy a working Data Catalog product. Give a look at the following [documentation page](/data_catalog/data_catalog_frontend.mdx) to see how to navigate Mia-Platform Data Catalog.
-* [Data Catalog Agent](/runtime_suite_templates/data-catalog-agent/10_overview.md), that is in charge of extracting metadata regarding the several tables and data structures existing on configured
-sources (System of Records) of your company, in order to populate the information inside your Data Catalog to start the experience within Data Catalog frontend. Give a look at the following [documentation page](/data_catalog/data_catalog_agent_setup.mdx) to see how to setup the Data Catalog Agent to retrieve assets information and populate your Data Catalog.
-
-Actually, thanks to Data Catalog Agent, it is possible to acquire metadata coming from different supported System of Records:  
+Actually, it is possible to acquire metadata coming from different supported System of Records:  
 
 - Oracle Database
 - Postgres Database
 - MySQL Database
 - Microsoft SQL Server Database
-- Mia-Platform CRUD Service
+- Mia-Platform MongoDB CRUD Service
 - Salesforce SObjects API
 - SAP HANA
 
@@ -124,12 +125,17 @@ and decision-making capabilities within the organization.
 
 ## Architecture
 
-In the diagram below is shown how the services involved in the aforementioned Marketplace components are linked together. In particular, the Data Catalog FE connects with the Open Lineage service via REST APIs to retrieve
-the necessary data. Open Lineage service reads datasets assets from the database where Data Catalog Agent has written the information about all the configured external connections.
-
-In particular, in the Data Fabric Project is highlighted which components the Data Catalog applications releases.
+In the diagram below is shown how the services involved in the aforementioned Marketplace components are linked together. 
 
 ![Data Catalog Architecture](./img/data_catalog_arch.svg)
+
+In particular, the Data Catalog FE interacts with the application's microservices through the [Fabric BFF](/data_catalog/data_catalog_fabric_bff.mdx). 
+This component manages also the _Connections_ that can be configured from the frontend to retrieve data from external sources.
+
+To retrieve data from external sources, the [Job Runner](/data_catalog/data_catalog_job_runner.mdx) can schedule a job to launch an _Agent Dataset Scan_ task that will store them as _Datasets_.
+Other tasks can be scheduled, like the _Fast Data Sync_, that can retrieve pipelines from [Fast Data Control Plane](/fast_data/runtime_management/overview.mdx) and use them as _Lineage Jobs_.
+
+_Assets_ and _Lineage Jobs_ are managed by the [Open Lineage service](/data_catalog/data_catalog_open_lineage.mdx), which provides features to retrieve data.
 
 The following paragraph provides useful links to go into detail about the various components that enable the adoption of our Data Catalog solution.
 
@@ -139,9 +145,9 @@ The following paragraph provides useful links to go into detail about the variou
 
 Here are some useful links to learn more about Mia-Platform Data Catalog features and configuration steps:
 
-- visit the dedicated [documentation page](/data_catalog/data_catalog_frontend.mdx) to discover all the features available from the Data Catalog Application frontend and how to configure it properly;
+- visit the dedicated [documentation page](/data_catalog/frontend/overview.mdx) to discover all the features available from the Data Catalog Application frontend and how to configure it properly;
 - visit the dedicated [documentation page](/data_catalog/data_catalog_fabric_bff.mdx) for configuring the Data Catalog BFF, a key resource for the Data Catalog Application;
-- visit the dedicated [documentation page](/data_catalog/data_catalog_agent_setup.mdx) for configuring the Data Catalog Agent to populate your Data Catalog;
+- visit the dedicated [documentation page](/data_catalog/data_catalog_job_runner.mdx) for configuring the Data Catalog Job Runner to populate your Data Catalog and keep up to date with your data sources;
 - visit the dedicated [documentation page](/data_catalog/data_catalog_open_lineage.mdx) to discover the Open Lineage pattern adopted in our Data Catalog solution;
 - visit the dedicated [documentation page](/data_catalog/database_setup.mdx) to know how to properly prepare the database wherein all Data Catalog assets and information is stored;
 - visit the [guide about secure access](/data_catalog/secure_access.mdx) to know how to manage Data Catalog user permissions through authorization mechanisms;

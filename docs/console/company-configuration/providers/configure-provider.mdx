@@ -140,7 +140,7 @@ Example of an API Base URL with a folder called 'folder-name': `https://jenkins.
 
 In this step, you are required to insert information about the authentication method to the provider, so that the Console has the necessary permissions to perform all read/write operations on it:
 
-* **Credentials type** (*required*): the type of credentials used to authenticate requests to the provider. It can be one of "Token," "M2M," and "OAuth2".
+* **Credentials type** (*required*): The type of credentials used to authenticate requests to the provider. It can be one of "Token," "M2M," and "OAuth2".
 
 Depending on the credentials type, the other information to be entered will be:
 
@@ -149,34 +149,49 @@ Depending on the credentials type, the other information to be entered will be:
 
 For credentials of the type "Token":
 
-* **Access token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (temporary credentials).
+* **Access token** (*required*): The token that allows the Console to authenticate against the APIs of the provider (temporary credentials).
 
 </TabItem>
 <TabItem value="m2m" label="M2M">
 
 For credentials of the type "M2M":
 
-* **Token** (*required*): the token that allows the Console to authenticate against the APIs of the provider (long-lived credentials);
-* **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include the authentication token, responds by generating temporary credentials.
+* **Token** (*required*): The token that allows the Console to authenticate against the APIs of the provider (long-lived credentials);
+* **Access token URL** (*required*): The reference authorization endpoint URL that, to requests that include the authentication token, responds by generating temporary credentials.
 
 </TabItem>
 <TabItem value="client-credentials" label="Client credentials">
 
 For credentials of the type "Client credentials":
 
-- **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
-- **Client ID** (*required*): public client identifier;
-- **Client secret** (*required*): the shared secret, known only to the client and the authorization server.
-- **Scope**: an optional scope to restrict the generated token permissions
+- **Access token URL** (*required*): The reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
+- **Client ID** (*required*): Public client identifier;
+- **Client secret** (*required*): The shared secret, known only to the client and the authorization server.
+- **Scope**: An optional scope to restrict the generated token permissions
+
+You can see more documentation to this link: [Client Credentials Grant](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#first-case-access-token-request-with-a-shared-secret)
 
 </TabItem>
 <TabItem value="client-credentials-certificate" label="Client credentials certificate">
 
 For credentials of the type "Client credentials certificate":
-- **Access token URL** (*required*): the reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
-- **Client ID** (*required*): public client identifier;
-- **Private key** (*required*): the PEM-encoded private key whose certificate has been registered against the authorization service;
-- **Scope**: an optional scope to restrict the generated token permissions
+- **Access token URL** (*required*): The reference authorization endpoint URL that, to requests that include client ID and client secret, responds by generating temporary credentials;
+- **Client ID** (*required*): public client identifier. It is used to create the client assertion;
+- **Certificate Thumbprint** (*required*): The thumbprint of the client certificate. It is used to create the client assertion;
+- **Private key** (*required*): The PEM-encoded private key whose certificate has been registered against the authorization service. It is used to create the client assertion;
+- **Scope**: An optional scope to restrict the generated token permissions
+
+You can see more documentation to this link: [Client Credentials Grant](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#third-case-access-token-request-with-a-federated-credential)
+
+</TabItem>
+<TabItem value="github-app" label="GitHub App">
+
+For credentials of the type "Github App":
+- **App ID** (*required*): The unique identifier of the Github app. This information can be obtained through API calls to the provider (`GET https://api.github.com/app`) or in the provider's organization app settings from the website.
+- **Installation ID** (*required*): The unique identifier of the installation. This information can be obtained through API calls to the provider (`GET https://api.github.com/app/installations`) or in the provider organization installation settings at the end of the browser URL from the website.
+- **Private key** (*required*): The PEM-encoded private key associated with the GitHub App. This key is generated and downloaded from the GitHub website during the private key creation process.
+
+You can see more documentation to this link: [Github App](https://docs.github.com/en/developers/apps/building-github-apps/authenticating-with-github-apps)
 
 </TabItem>
 </Tabs>
@@ -195,19 +210,36 @@ Credentials entered at this stage, for security reasons, will never again be sho
 Depending on the provider selected in step 1, the types of credentials supported will change. The following table shows the credential types supported by each provider:
 
 | Credentials Type               | Providers                                                                |
-| ------------------------------ |:------------------------------------------------------------------------:|
+| ------------------------------ | ------------------------------------------------------------------------ |
 | Token                          | GitLab, GitHub, Bitbucket, Azure DevOps, Vault, Jenkins, Azure Key Vault |
 | M2M                            | Vault                                                                    |
-| Client Credentials             | Azure Key Vault,Jenkins                                                  |
-| Client Credentials Certificate | Azure Key Vault                                                          |
+| Client Credentials             | Azure Key Vault, Azure DevOps, Jenkins                                   |
+| Client Credentials Certificate | Azure Key Vault, Azure DevOps                                            |
+| Github App                     | Github                                                                   |
 
-:::caution Assign the right scope to your credentials
-Make sure, when generating credentials on the respective provider sites, to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
+#### Caution Assign the right scope to your credentials
+Make sure, when generating credentials on the respective provider sites,
+to assign them a scope so that they have the necessary permissions for all read and write operations performed through the Console.
 
-For example, for the "Token" credentials type, the access token should have scope "api" in the case of GitLab, admin scopes for GitHub, "Project admin" and "Repository admin" in the case of Bitbucket, "Full access" for Azure DevOps.
-:::
+|            Provider Credential Type            |             Permission level             |
+| ---------------------------------------------- | ---------------------------------------- |
+| Gitlab Token                                   | api                                      |
+| Bitbucket Token                                | project admin, repository admin          |
+| GitHub Token                                   | admin                                    |
+| Github App                                     | all repository read and write permission |
+| Jenkins Token                                  |                                          |
+| Jenkins Client Credentials                     |                                          |
+| Vault Token                                    |                                          |
+| Vault M2M                                      |                                          |
+| Azure DevOps Token                             | full access                              |
+| Azure DevOps Client Credentials                | full access                              |
+| Azure DevOps Credentials Certificate           | full access                              |
+| Azure Key Vault Token                          | full access                              |
+| Azure Key Vault Client Credentials             | full access                              |
+| Azure Key Vault Client Credentials Certificate | full access                              |
 
-Below, for the M2M and OAuth2 providers, some example configurations:
+
+#### Below, for the M2M and OAuth2 providers, some example configurations:
 
 <Tabs>
 <TabItem value="vault" label="Hashicorp Vault m2m">

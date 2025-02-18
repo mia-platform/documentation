@@ -15,6 +15,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] - 2025-01-31
+
+- Updated `back-kit` to version `1.5.15`
+
+## [1.3.1] - 2025-01-10
+
+- Updated `back-kit` to version `1.5.14`
+
+## [1.3.0] - 2024-12-16
+
+- Switched to Envoy API Gateway
+- Updated `back-kit` to version `1.5.6`
+- Updated `micro-lc` to version `2.4.3`
+- Updated `middleware` to version `3.4.0`
+
+## [1.2.19] - 2024-11-29
+
+- Updated `back-kit` to version `1.5.11`
+
+## [1.2.18] - 2024-11-27
+
+### Security
+
+- Added SBOM and docker image sign
+
+## [1.2.17] - 2024-11-15
+
+- Updated `back-kit` to version `1.5.10`
+
+## [1.2.16] - 2024-10-18
+
+- Updated `back-kit` to version `1.5.9`
+- Updated `middleware` to `3.3.0`
+
+## [1.2.15] - 2024-10-02
+
+- Updated `back-kit` to version `1.5.8`
+
 ## [1.2.14] - 2024-09-20
 
 - Updated `back-kit` to version `1.5.7`

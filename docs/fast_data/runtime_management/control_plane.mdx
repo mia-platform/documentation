@@ -169,9 +169,15 @@ In case Control Plane service should be configured to be reachable from outside 
 different from the one where Fast Data Runtimes are deployed, a few extra advanced configuration steps are necessary. These are listed here:
 
 - **Introduce further Envoy [`cluster`](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/cluster/v3/cluster.proto) to expose the gRPC port of Control Plane service through the API Gateway.**  
-  This can be obtained by opening your Mia-Platform Console Project and selecting the Advanced tab from the Design area's sidebar. Within this area of Console it is possible
-  to extend Envoy API Gateway default configuration, by editing the file `api-gateway-envoy/clusters.yaml` with the following content:
+  This can be obtained by opening your Mia-Platform Console Project and selecting the Advanced tab from the Design area's sidebar. 
   
+  :::info
+  This step is necessary if you are using Mia-Platform Console versions lower than v13.5.1. Otherwise, you can skip the modification to the file `api-gateway-envoy/clusters.yaml` here described.
+  :::
+  
+  Within this area of Console it is possible
+  to extend Envoy API Gateway default configuration, by editing the file `api-gateway-envoy/clusters.yaml` with the following content:
+
   ```yaml title=api-gateway-envoy/clusters.yaml
   - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
     name: control-plane
@@ -189,8 +195,6 @@ different from the one where Fast Data Runtimes are deployed, a few extra advanc
             socket_address:
               address: 'control-plane'
               port_value: 50051
-  ```
-
 - **Expose new subdomain from which Control Plane gets accessible** (assuming [`traefik`](https://traefik.io/traefik/) is employed as ingress controller)   
   In order to carry out this operation you first need to have access to the repository of the Console Project where Control Plane application has been configured.
   Within the project repository there is a folder named `overlays`, which should contains a folder for each environment available for the project.  
@@ -216,15 +220,17 @@ different from the one where Fast Data Runtimes are deployed, a few extra advanc
 When connecting internally to Control Plane service, it is not necessary to publicly expose any endpoint, since all the Control Plane routes can be reached internally
 or via Fabric BFF.
 
-In case the service must be reached from outside the cluster, the endpoints listed in the table below should be [defined in Console](/development_suite/api-console/api-design/endpoints.md) and assigned to Control Plane service.
+In case the service must be reached from outside the cluster, the endpoints listed in the table below should be _defined in Console_ and assigned to Control Plane service.
 These endpoints are necessary to allow gRPC Control Plane Operator requests to reach Control Plane from outside the K8s cluster.
 
-| Endpoint                                    | Rewrite Base Path                           | Microservice    |
-|---------------------------------------------|---------------------------------------------|-----------------|
-| `/grpc.reflection.v1.ServerReflection`      | `/grpc.reflection.v1.ServerReflection`      | `control-plane` |
-| `/grpc.reflection.v1alpha.ServerReflection` | `/grpc.reflection.v1alpha.ServerReflection` | `control-plane` |
-| `/control_plane_fabric.RuntimeManagement`   | `/control_plane_fabric.RuntimeManagement`   | `control-plane` |
-| `/control_plane_fabric.ControlPlane`        | `/control_plane_fabric.ControlPlane`        | `control-plane` |
+| Endpoint                                    | Rewrite Base Path                           | Microservice    | Container Port |
+|---------------------------------------------|---------------------------------------------|-----------------|----------------|
+| `/grpc.reflection.v1.ServerReflection`      | `/grpc.reflection.v1.ServerReflection`      | `control-plane` |     `50051`    |
+| `/grpc.reflection.v1alpha.ServerReflection` | `/grpc.reflection.v1alpha.ServerReflection` | `control-plane` |     `50051`    |
+| `/control_plane_fabric.RuntimeManagement`   | `/control_plane_fabric.RuntimeManagement`   | `control-plane` |     `50051`    |                        
+| `/control_plane_fabric.ControlPlane`        | `/control_plane_fabric.ControlPlane`        | `control-plane` |     `50051`    |
+
+Also, in the `Advanced Section` of each endpoint, be sure that the _Use DownStream Protocol option_ is set to `true`.
 
 ### Routes
 
@@ -239,8 +245,35 @@ Here are described which routes Control Plane service serves
 | `/fast-data/runtimes/items/:id`             | REST | DELETE | Delete specified runtime view                                                                                             |
 | `/fast-data/runtimes/items/:id/pipelines`   | REST | GET    | Return the list of pipelines associated to specified rumtime                                                              |
 | `/fast-data/runtimes/stats`                 | REST | GET    | Return additional details for each runtime, such as the number of pipelines registered on them                            |
+| `/fast-data/runtimes/namespaces/usage`      | REST | GET    | Returns a list of registered namespaces with their usage status within runtime views                                      |
 | `/grpc.reflection.v1.ServerReflection`      | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |
 | `/grpc.reflection.v1alpha.ServerReflection` | gRPC |        | [gRPC reflection](https://grpc.io/docs/guides/reflection/) service that describes protobuf-defined API                    |                                                              |
 | `/control_plane_fabric.RuntimeManagement`   | gRPC |        | gRPC service that allows Control Plane Operator to register itself on the Control Plane                                   |
-| `/control_plane_fabric.ControlPlane`        | gRPC |        | gRPC service for exchanging Fast Data desired state and runtime feedback between Control Plane and Control Plane Operator |
-| `/control_plane_fabric.FastDataControl`     | gRPC |        | gRPC service for exchanging change actions and runtime feedback between Control Plane and Fabric BFF                      |
+| `/control_plane_intercomm.ControlPlane`     | gRPC |        | gRPC service for exchanging Fast Data desired state and runtime feedback between Control Plane and Control Plane Operator |
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.x to 0.3.0
+
+Control Plane changes the activation default behavior of pipelines from 'pause' to 'resume'. This
+means that when a pipeline is first added it receives the command to 'resume' all its workloads.
+The behavior is not suitable to release control to Control Plane from production envirnments where
+Fast Data is currently running.
+
+If updating from version 0.1.x it is recommended to update the runtime current activation status by either:
+
+- recreting the runtime
+- use the api-portal/swagger and invoke a post on `<prefix>/fast-data/control` with body
+```json
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "resume",
+  "params": {
+    "runtime": "<ID OF THE RUNTIME>"
+  }
+}
+```
+

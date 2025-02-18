@@ -92,6 +92,11 @@ The following properties support [secret resolution](/fast_data/configuration/se
 - `upstream.headers.*`
 :::
 
+:::caution
+In order for a _runtime_ to be recognized and managed by the main Control Plane instance, it has to belong to **one and only one** _runtime view_. Consequently,
+_runtimes_ that do not belong to any _runtime view_ are <u>simply ignored</u> by the system, while it is forbidden for a _runtime_ to belong to multiple _runtime views_.
+:::
+
 ### Pipelines Configuration
 
 Control Plane Operator requires an additional configuration file to learn the topology of Fast Data Pipelines deployed within the runtime
@@ -157,3 +162,12 @@ The information that can be extracted from these messages is:
 Workloads connected to a Control Plane Operator **periodically** generate and send these messages through the established bidirectional channel.
 
 <SchemaViewer schema={FeedbackChannelSchema} />
+
+## Migration Guides
+
+Here are the migration steps to perform between each version of the service.
+
+### From 0.1.x to 0.3.0
+
+Control Plane Operator will accept workload connections only after it has been registered to the Control Plane. 
+To let the workloads resume their data stream processing if such registration process fails, you can configure their [Force Resume feature](/fast_data/runtime_management/workloads.mdx#force-the-resume-of-workload-operations).    

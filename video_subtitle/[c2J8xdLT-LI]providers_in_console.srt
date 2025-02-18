@@ -1,0 +1,134 @@
+1
+00:00:00,600 --> 00:00:05,520
+Hi everyone and welcome to the Mia-Platform
+tutorials. Today we're going to see a new
+
+2
+00:00:05,520 --> 00:00:11,240
+way of managing providers in the Mia-Platform
+Console at the platform level. Providers can
+
+3
+00:00:11,240 --> 00:00:16,520
+be generically defined as a means of storing
+information about external services.To begin
+
+4
+00:00:16,520 --> 00:00:21,640
+with we're on the main Mia-Platform homepage,
+let's go ahead and enter one of the projects.
+
+5
+00:00:21,640 --> 00:00:25,840
+As you can see here in the left hand side menu
+there is a tab and under Administration you can
+
+6
+00:00:25,840 --> 00:00:31,080
+find the provider section. You can see some
+of the providers we've already created such
+
+7
+00:00:31,080 --> 00:00:36,920
+as Mia-Platform GitLab and Azure DevOps. Each
+provider is listed with the type of capacity
+
+8
+00:00:36,920 --> 00:00:42,560
+and service that is used. Let's go ahead and
+try to add a new provider connection. Here
+
+9
+00:00:42,560 --> 00:00:48,120
+you can see a modal window is displayed with all
+of the providers existing: there's Azure DevOps,
+
+10
+00:00:48,120 --> 00:00:55,600
+BitBucket, GitHub, GitLab and more. For this
+example let's go ahead and click on GitLab. As
+
+11
+00:00:55,600 --> 00:00:59,920
+you can see here all of the capabilities that you
+want to use this provider for have been selected,
+
+12
+00:01:00,440 --> 00:01:05,360
+but you can go ahead and select whichever ones
+you like from Secret Manager, CI/CD Tool and
+
+13
+00:01:05,360 --> 00:01:11,640
+GitProvider. Once you're happy with that go ahead
+and click on next: here you can add your provider
+
+14
+00:01:11,640 --> 00:01:29,920
+name, then you need to add the API base URL, and then you need to add just the base URL.
+
+15
+00:01:31,480 --> 00:01:36,320
+You can also enter a short description if
+you'd like. Once you're happy with filling in
+
+16
+00:01:36,320 --> 00:01:41,080
+the provider details, you can go ahead to the
+credentials section. In the credential section
+
+17
+00:01:41,080 --> 00:01:48,160
+you need to add an access token. Once that is
+added we will move on to the Advance section.
+
+18
+00:01:48,160 --> 00:01:54,200
+In the advance section you can add a Certificate
+Authority and also a proxy if you'd like. Once
+
+19
+00:01:54,200 --> 00:01:59,320
+you're happy with this let's go ahead and add
+provider. Now you can see a provider connection
+
+20
+00:01:59,320 --> 00:02:05,280
+has been created. You can go ahead and close the
+model and go to your provider itself. As you can
+
+21
+00:02:05,280 --> 00:02:11,000
+see in this list you will be able to see the new
+provider that we just created; if you would like
+
+22
+00:02:11,000 --> 00:02:15,760
+to make any edits to this you can just click on
+the arrow and go ahead and edit the credentials,
+
+23
+00:02:15,760 --> 00:02:21,520
+the advanced credentials or even remove the
+connection if you like. With this we have seen
+
+24
+00:02:21,520 --> 00:02:26,920
+how we can create a provider connection and manage
+it in the Mia-Platform Console. With this feature
+
+25
+00:02:26,920 --> 00:02:32,680
+you can manage providers from one place, defining
+their capabilities, entering their credentials,
+
+26
+00:02:32,680 --> 00:02:37,480
+certificate authorities and proxies. Thank
+you for watching and as always if you have
+
+27
+00:02:37,480 --> 00:02:46,600
+any questions feel free to reach out to us
+or book a demo on the Mia-Platform website!
+

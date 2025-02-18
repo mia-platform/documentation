@@ -52,7 +52,8 @@ This section provides a security checklist to configure providers in order for a
 #### Twilio
 
 - [ ] Disable automatic recharge of the account balance under the *Billing Overview* section of the Twilio project console
-- [ ] Configure SMS Geo-Permissions in the Twilio project console, on the [Messaging Geographic Permissions][twilio-geo-permissions] page. 
+- [ ] Configure SMS Geo-Permissions in the Twilio project console, on the [Messaging Geographic Permissions][twilio-geo-permissions] page.
+- [ ] Enable [SMS Pumping Protection for Programmable Messaging][twilio-sms-pumping-protection-programmable-messaging] (this is a paid feature, check official [Twilio pricing page][twilio-pricing] for more details)
 
 #### Kaleyra
 
@@ -71,5 +72,7 @@ This section provides a security checklist to configure providers in order for a
 [twilio-sms-fraud]: https://support.twilio.com/hc/en-us/articles/8360406023067-SMS-Traffic-Pumping-Fraud "Twilio sms pumping fraud"
 [twilio-balance-api]: https://support.twilio.com/hc/en-us/articles/360025294494-Check-Your-Twilio-Account-Balance "Twilio balance api"
 [twilio-geo-permissions]: https://console.twilio.com/us1/develop/sms/settings/geo-permissions?frameUrl=%2Fconsole%2Fsms%2Fsettings%2Fgeo-permissions%3Fx-target-region%3Dus1 "Twilio Geo Permissions"
+[twilio-pricing]: https://www.twilio.com/en-us/sms/pricing/
+[twilio-sms-pumping-protection-programmable-messaging]: https://www.twilio.com/docs/messaging/features/sms-pumping-protection-programmable-messaging
 
 [environment-variables]: ./20_configuration.md#Environment-variables "Environment variables | Configuration"

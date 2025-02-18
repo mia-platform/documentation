@@ -58,7 +58,7 @@ The therapy data model add the concept of `directives`, which is an object follo
 
 The monitoring data model add the concept of `notes` and `thresholds`. The notes field contains the physician prescriptions, while a threshold is an object with the following properties:
 
-* `propertyName`: name of the property on which the threshold is evaluated;
+* `propertyName`: name of the property on which the threshold is evaluated; it should correspond to the path of the detection field containing the value to compare against the threshold, if your detection have nested or array fields you should specify the mapping between the `propertyName` and its path under the prototype `values` field (more details in the [Overview section][threshold-evaluation]);
 * `thresholdOperator`: operator to use in the threshold evaluation. Available options are: `gt`, `lt`, `gte`, `lte`, `eq`, `between`, `notBetween`;
 * `thresholdValue`: the value with which to evaluate the threshold (a single number for `gt`, `lt`, `gte`, `lte` and `eq` operators, an array of two numbers indicating a range for the `between` and `notBetween` operators).
 
@@ -361,18 +361,21 @@ These endpoints return 404 if no therapy or monitoring with given id is found.
 
 Detections represent tasks performed by the patient and are related to therapies or monitorings. The data model is the following:
 
-| Name        | Required (Yes/No)   | Description                                                                                                                                                                                                                                                                                |
-|-------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| planType    | Yes                 | Type of plan - `therapy` or `monitoring` - the detection refers to.                                                                                                                                                                                                                        |
-| planId      | Yes                 | Identifier of the therapy or monitoring plan the detection refers to.                                                                                                                                                                                                                      |
-| value       | Only for monitoring | The detection value is an arbitrary object and must match the validation schema defined by the associated prototype. Note that the association between the prototype and the detection is not available in the detection data model, but it is defined at the therapy or monitoring level. |
-| planId      | Yes                 | Identifier of the therapy or monitoring plan the detection refers to.                                                                                                                                                                                                                      |
-| observedAt  | Yes                 | Date/time at which the detection has been performed.                                                                                                                                                                                                                                       |
-| isCompliant | No                  | It indicates if the detection is compliant to what the physician has descripted in the plan. This value is submitted by the patient.                                                                                                                                                       |
-| doctorId    | No                  | Identifier of the doctor that creates the detection. Note that the doctor that creates the detection can be different from the physician that created the monitoring or therapy plan.                                                                                                      |
-| patientId   | Yes                 | Identifier of the patient that creates the detection.                                                                                                                                                                                                                                      |
+| Name               | Required (Yes/No)   | Description                                                                                                                                                                                                                                                                                |
+|--------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| planType           | Yes                 | Type of plan - `therapy` or `monitoring` - the detection refers to.                                                                                                                                                                                                                        |
+| planId             | Yes                 | Identifier of the therapy or monitoring plan the detection refers to.                                                                                                                                                                                                                      |
+| value              | Only for monitoring | The detection value is an arbitrary object and must match the validation schema defined by the associated prototype. Note that the association between the prototype and the detection is not available in the detection data model, but it is defined at the therapy or monitoring level. |
+| planId             | Yes                 | Identifier of the therapy or monitoring plan the detection refers to.                                                                                                                                                                                                                      |
+| observedAt         | Yes                 | Date/time at which the detection has been performed.                                                                                                                                                                                                                                       |
+| isCompliant        | No                  | It indicates if the detection is compliant to what the physician has descripted in the plan. This value is submitted by the patient.                                                                                                                                                       |
+| doctorId           | No                  | Identifier of the doctor that creates the detection. Note that the doctor that creates the detection can be different from the physician that created the monitoring or therapy plan.                                                                                                      |
+| patientId          | Yes                 | Identifier of the patient that creates the detection.                                                                                                                                                                                                                                      |
+| thresholds         | No                  | The list of thresholds the detection was validated against.                                                                                                                                                                                                                                |
+| thresholdsExceeded | No                  | If the detection exceeds one or more thresholds.                                                                                                                                                                                                                                           |
 
 If the **NOTIFICATION_MANAGER_URL** environment variable is correctly set, the handler will send a request to the `POST /notification-events/` endpoint of the Notification Manager, including the following information in the request body:
+
 - **key** (string): the identifier of the deleted therapy or monitoring.
 - **name** (string): the event name, which is `TMM/TherapyDeleted/v1` for therapies and `TMM/MonitoringDeleted/v1` for monitorings.
 - **payload**(*object*): the deleted therap or monitoring.
@@ -512,7 +515,7 @@ These endpoints return 200 and the number of detections matching the query.
 
 Insert a new detection in the CRUD and performs the following operations:
 
-- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds;
+- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds and store the results in the CRUD `thresholds` and `thresholdsExceeded` fields;
 - if the [`NOTIFICATION_MANAGER_URL` environment variable][environment-variables] is set, send a notification to the physician through the Notification Manager service.
 
 This endpoint is a proxy to the CRUD `POST /` endpoint.
@@ -568,7 +571,7 @@ This endpoint returns 400 and a body with the structure shown below if the detec
 
 Insert multiple detection in the CRUD and, for each detection, performs the following operations:
 
-- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds;
+- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds and store the results in the CRUD `thresholds` and `thresholdsExceeded` fields;
 - if the [`NOTIFICATION_MANAGER_URL` environment variable][environment-variables] is set, send a notification to the physician through the Notification Manager service.
 
 This endpoint is a proxy to the CRUD `POST /bulk` endpoint.
@@ -637,7 +640,7 @@ In such scenario the endpoint returns 400 and a body with the structure shown be
 
 Update an existing detection identified by the `:id` path parameter and performs the following operations:
 
-- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds;
+- if the [`VALIDATION_SERVICE` environment variable][environment-variables] is set, check if the detection exceeds any of the monitoring thresholds and update the results in the CRUD `thresholds` and `thresholdsExceeded` fields;
 - if the [`NOTIFICATION_MANAGER_URL` environment variable][environment-variables] is set, send a notification to the physician through the Notification Manager service.
 
 This endpoint is a proxy to the CRUD `PATCH /:id` endpoint.
@@ -847,7 +850,15 @@ This endpoint returns 200 and a list of the prototypes matching the query.
         "en": "maximum pressure",
         "it": "pressione massima"
       }
-    }
+    },
+    "values": {
+      "minimumBloodPressure": { 
+        "path": "observations[0].value"
+      },
+      "maximumBloodPressure": { 
+        "path": "observations[1].value"
+      }
+    },
   }]
 ```
 
@@ -935,6 +946,7 @@ The computation is performed for each plan according to the following algorithm,
 
 [overview]: ./10_overview.md "Overview page"
 [adherence-compliance]: ./10_overview.md#adherence-and-compliance "Adherence and compliance | Overview"
+[threshold-evaluation]: ./10_overview.md#threshold-evaluation
 
 [configuration]: ./20_configuration.md "Configuration page"
 [environment-variables]: ./20_configuration.md#environment-variables "Environment variables | Configuration"

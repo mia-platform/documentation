@@ -127,8 +127,6 @@ The following table describes the manageable privileges at Console root level th
 | Edit any Project                                | `console.root.project.details.update` |
 | Delete any Project                              | `console.root.project delete`         |
 | View all Console resources                      | `console.root.view`                   |
-| View all License                                | `console.root.licenses.view`          |
-| Edit any License                                | `console.root.licenses.manage`        |
 | Manage identity roles, Groups and Bindings      | `console.root.user.bind`              |
 | Create and delete any user                      | `console.root.user.manage`            |
 | View all companies, projects and  user roles information | `console.root.all.view`      |
@@ -136,6 +134,16 @@ The following table describes the manageable privileges at Console root level th
 | Manage all private and public Project Templates | `console.root.templates.manage`       |
 | Manage available features                       | `console.root.features.manage`        |
 | Manage all Marketplace resources                | `marketplace.root.manage`             |
+
+#### Permissions to be assigned manually
+
+The following permissions must be assigned manually:
+
+| Capabilities                                    | Permissions key                       |
+|-------------------------------------------------|---------------------------------------|
+| View all License                                | `console.root.licenses.view`          |
+| Edit any License                                | `console.root.licenses.manage`        |
+
 
 ### Role binding example
 

@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The Mongo2Kafka plugin is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 Using this architectural solution, the microservice, that writes on Mongo, queues the correct changes on Kafka.
 MongoStream2Kafka has several advantages:
 

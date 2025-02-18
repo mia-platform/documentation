@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The Cron Scheduler is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 Mia-Platform integrates a Cron system to schedule operations at intervals decided by the developer.
 The implementation of the Cron involves two phases: the scheduling configuration and the implementation of the function to be performed.
 

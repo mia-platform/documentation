@@ -15,6 +15,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 3.5.0 - 16-01-2025
+
+- updated node to 22
+- updated tap to 21
+- signed images and SBOM generation
+
+## 3.4.0 - 14-01-2025
+
+- added support for SES_HEADERS env variable in order to forward headers to AWS SES
+
 ## 3.3.0 - 17-01-2024
 
 - optional env variables to bypass the certificates check [rejectUnauthorized flag](https://nodejs.org/api/tls.html#tlscreateserveroptions-secureconnectionlistener) :

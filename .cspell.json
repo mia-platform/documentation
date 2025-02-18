@@ -107,6 +107,7 @@
     "OWASP",
     "paas",
     "pbcopy",
+    "pflag",
     "pino",
     "pkcs",
     "pointofsale",
@@ -233,7 +234,9 @@
     "mergo",
     "kpis",
     "Mesos",
-    "SWSS"
+    "SWSS",
+    "Oatpp",
+    "ANIA"
   ],
   "ignoreWords": [
     "asncdctools",
@@ -359,7 +362,9 @@
     "pkce",
     "sors",
     "CCPA",
-    "HANA"
+    "HANA",
+    "pgsql",
+    "saphana",
   ],
   "dictionaries": [
     "softwareTerms",

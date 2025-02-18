@@ -15,6 +15,61 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.15] - 2025-01-31
+
+### Fixed
+
+- fixed escaping of char `&` in `editor` and `html-editor` format.
+
+## [1.5.14] - 2025-01-10
+
+- added format for dates and time in `isPartialFormat` mode
+
+## [1.5.13] - 2024-12-16
+
+### Added
+
+- added `method` property in `bk-import-modal` to choose the HTTP method for the import request
+
+## [1.5.12] - 2024-12-16
+
+### Fixed
+
+- fixed `bk-expanded-filters` `+` read from url
+
+## [1.5.11] - 2024-11-29
+
+### Fixed
+
+- fixed `bk-table` visualization when inside `bk-layout-swap`
+
+## [1.5.10] - 2024-11-15
+
+### Fixed
+
+- fixed query for writable views' lookup
+- fixed typo in italian label on export/import delimiter option
+
+### Added
+
+- by specifing `format: date` or `format: time` and adding the flag `isPartialFormat` to true in `formOptions` it is possible to use dates and time as simple string and not ISO format.
+
+## [1.5.9] - 2024-10-18
+
+### Added
+
+- `group` to components properties
+
+### Fixed
+
+- added new key `$dateNow` in handlebars to retrieve current date time in ISO format
+
+## [1.5.8] - 2024-10-02
+
+### Fixed
+
+- fixed csv export option of column names as field IDs of labels 
+
 ## [1.5.7] - 2024-09-20
 
 ### Fixed

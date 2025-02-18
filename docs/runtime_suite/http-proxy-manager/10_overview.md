@@ -10,7 +10,7 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-The _Proxy Manager_ is a microservice which acts as a proxy between client and external services.
+The _Proxy Manager_ is a microservice which acts as a proxy between a client and external services.
 
 This service can either relay the request unmodified or add an access token for accessing protected resources.
 
@@ -18,25 +18,28 @@ In the latter case, the service takes care of requesting the token from the auth
 
 ## Working modes
 
-The service can be executed with 2 working modes:
-1. Static configuration
-2. Dynamic configuration
+For each external service, the _Proxy Manager_ remaps the `targetBaseUrl` of the external service with the `basePath` of the proxy, appending the additional subroutes extracted from the original request to it.
 
-The working mode is chosen at startup by the provided environment variables:
-- **CONFIGURATION_PATH** and **CONFIGURATION_FILE_NAME** &rarr; static configuration
-- **CONFIGURATION_URL** &rarr; dynamic configuration
+The service working mode is defined at startup. Depending on the chosen mode, the external services to be proxied will be stored in different ways. The following sections describe the available working modes.
+
+### Static configuration
+
+In static configuration mode, proxies are stored in a static configuration file.  
+
+:::tip
+This working mode is activated by defining the **CONFIGURATION_PATH** and **CONFIGURATION_FILE_NAME** environment variables.
+:::
+
+### Dynamic configuration
+
+In dynamic configuration, proxies are retrieved from a CRUD collection. The service exposes exposes one endpoint with wildcard (`/*`) to match all requests, and a set of special **management routes** to perform CRUD operations on the proxies collection: you can learn more about them in the [dedicated section](./30_configuration.md#proxies-collection-management).
+
+For better performances the service configuration is cached for a time duration set by the environment variable **PROXY_CACHE_TTL**.
+
+:::tip
+This working mode is activated by defining the **CONFIGURATION_URL** environment variable.
+:::
 
 :::caution
 If you provide all the environment variables listed above the service stops its execution with an error.
 :::
-
-### Static configuration
-
-In static configuration the service exposes an endpoint for each external service defined in the configuration file. Each request to a specific endpoint will be proxied to the related external service, appending to its base url the path extracted from the original request.
-
-### Dynamic configuration
-
-In dynamic configuration the service exposes one endpoint with wildcard (`/*`) to match all requests. The configuration is taken from a CRUD collection, each request will be proxied to the related external service, appending to its base url the path extracted from the original request.  
-For better performances the service configuration is cached for a time duration set by the environment variable **PROXY_CACHE_TTL**.
-
-**NB**: This service does not provide an endpoint to update the service configuration; it should be performed via *crud-service*.

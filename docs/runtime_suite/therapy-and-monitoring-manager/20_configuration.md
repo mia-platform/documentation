@@ -88,7 +88,15 @@ A prototype example can be used to validate detections related to blood pressure
       "en": "Maximum pressure",
       "it": "Pressione massima"
     }
-  }
+  },
+  "values": {
+    "minimumBloodPressure": { 
+      "path": "observations[0].value"
+    },
+    "maximumBloodPressure": { 
+      "path": "observations[1].value"
+    }
+  },
 }
 ```
 
@@ -173,6 +181,8 @@ Note that, modifying an identifier in an already running system can lead to inco
 * **Schema**: the property containing the schema used to validate the detection value or therapy directives. The schema must follow [JSON Schema 7][json-schema-draft7].
 
 * **Labels**: the labels for the schema fields, each one can be a string or translation object.
+
+* **Values**: the values for the schema fields, each one must be an object containing the path of the field in the detections containing the value to compare against the thresholds.
 
 * **Hints**: the hints for the schema fields, each one can be a string or translation object. This is only supported by therapy directives, to provide a list of admitted or suggested values for the field. 
 
@@ -319,16 +329,18 @@ If you use the integrated validation service, field names in the `value` object 
 
 :::
 
-| Name        | Type      | Required (Yes/No) | Nullable (Yes/No) |
-|-------------|-----------|-------------------|-------------------|
-| planType    | `string`  | Yes               | No                |
-| planId      | `string`  | Yes               | No                |
-| value       | `Object`  | No                | No                |
-| observedAt  | `Date`    | Yes               | No                |
-| doctorId    | `string`  | No                | No                |
-| patientId   | `string`  | Yes               | No                |
-| isCompliant | `boolean` | No                | No                |
-| deviceId    | `string`  | No                | No                |
+| Name               | Type              | Required (Yes/No) | Nullable (Yes/No) |
+|--------------------|-------------------|-------------------|-------------------|
+| planType           | `String`          | Yes               | No                |
+| planId             | `String`          | Yes               | No                |
+| value              | `Object`          | No                | No                |
+| observedAt         | `Date`            | Yes               | No                |
+| doctorId           | `String`          | No                | No                |
+| patientId          | `String`          | Yes               | No                |
+| isCompliant        | `Boolean`         | No                | No                |
+| deviceId           | `String`          | No                | No                |
+| thresholds         | `Array of object` | No                | No                |
+| thresholdsExceeded | `Boolean`         | No                | No                |
 
 ## Thresholds validation
 
@@ -336,12 +348,12 @@ By default, the TMM does not validate detections against the thresholds. If you 
 
 - set the TMM **VALIDATION_SERVICE** [environment variable][environment-variables] to `internal` or `external`;
 - if you are using an external service:
-  - deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below][external-validation-service-api];
+  - deploy a custom microservice exposing a HTTP API following the specifications provided in the [section below][external-validation];
   - set the TMM **VALIDATION_SERVICE_URL** [environment variable][environment-variables] to the HTTP(s) address of your service (both public and internal cluster URLs will work).
 
-### External Validation Service API
+### External validation
 
-The External Validation Service must expose the following endpoints:
+The External validation relies on a service exposing an HTTP interface with the the following endpoints:
 
 - `POST /validations/` to validate a detection against the monitoring thresholds.
 
@@ -393,6 +405,6 @@ The TMM currently generates the following events you can refer in the configurat
 [crud-detections]: #detections "Detections | CRUD collections | Configuration"
 [crud-monitorings]: #monitorings "Monitorings | CRUD collections | Configuration"
 [environment-variables]: #environment-variables "Environment variables | Configuration"
-[external-validation-service-api]: #external-validation-service-api "External Validation Service API | Thresholds validation | Configuration"
+[external-validation]: #external-validation "External validation | Thresholds validation | Configuration"
 
 [errors]: ./30_usage.md#errors

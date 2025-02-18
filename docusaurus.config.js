@@ -17,7 +17,7 @@ async function createConfig() {
     themes: ["docusaurus-json-schema-plugin"],
     themeConfig: {
       prism: {
-        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx'],
+        additionalLanguages: ['rego', 'java', 'csharp', 'kotlin', 'nginx', 'docker', 'ini'],
       },
       image: "img/documentation-link-preview.png",
       algolia: {
@@ -70,6 +70,12 @@ async function createConfig() {
             docId: "microfrontend-composer/what-is",
             label: "Microfrontend Composer",
             activeBaseRegex: "(docs|docs/\\d.x)/microfrontend-composer"
+          },
+          {
+            type: 'doc',
+            docId: "software-catalog/overview",
+            label: "Software Catalog",
+            activeBaseRegex: "(docs|docs/\\d.x)/software-catalog"
           },
           {
             type: 'doc',

@@ -19,7 +19,7 @@ keeping track of runtime views or updating the desired Fast Data Pipelines state
 a performant and reliable system, the database must be configured accordingly to support application execution.
 
 This means that required collections must be created, necessary indexes added and additional schema validation set,
-so that only valid data can be read and written to those collections.  
+so that only valid data can be read and written to those collections.
 
 To reach this objective in a straightforward manner we provide an administration command-line interface,
 which takes care of creating all the necessary resources on selected database. This CLI is offered
@@ -75,8 +75,8 @@ spec:
             - name: <NAME_CONTAINER_REGISTRY_SECRET>
           containers:
             - name: fabric-control-plane-admin
-              # current latest stable version of the image is 0.1.0
-              image: <URL_TO_CONTAINER_REGISTRY>/data-fabric/fabric-admin:0.1.0
+              # current latest stable version of the image is 0.1.1
+              image: <URL_TO_CONTAINER_REGISTRY>/data-fabric/fabric-admin:0.1.1
               args: [
                 "all",
                 "init",
@@ -91,7 +91,7 @@ every time a new version of `data-fabric/fabric-admin` image is available, which
 Fast Data Runtime Management application.
 
 :::tip
-In case in your Console Project it is possible to enable [Custom Resources](/console/design-your-projects/custom-resources.md), then instead of
+In case in your Console Project it is possible to enable [Custom Resources](/console/design-your-projects/custom-resources/custom-resources.md), then instead of
 creating a `cronjob` manifest it would be possible to define a `job` one, which does start as soon as released and does not need to be
 manually launched.
 

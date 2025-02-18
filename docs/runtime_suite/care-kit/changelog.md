@@ -15,8 +15,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.3]
+
+- Fix word-break `ck-patient-dashboard`
+
+## [v2.9.2]
+
+- Fix concurency issue in `ck-threshold-modal`
+- Add `ck-patient-dashboard` localization for Italian
+
+## [v2.9.1]
+
+- Upgrade Node.js to v20 and remove unused dependencies
+- Fix regression in `ck-threshold-modal` component caused by `values` field in prototypes, which are now ignored
+
+## [v2.9.0]
+
+- Added `roles-and-permissions-modal` web component
+- Fix medical records loading data
+- Fix `add-plan-modal` handling of adherence and compliance on edit
+
 ## [v2.8.5]
 
+- Fix calendar event box width
 - Fix style dashboard
 - Added timeline settings component
 - Added timeline component
@@ -38,8 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [v2.8.2]
 
-- Update add-plan-modal to edit devices
-- Update add-plan-modal to include devices on create
+- Update `add-plan-modal` to edit devices
+- Update `add-plan-modal` to include devices on create
 
 ## [v2.8.1]
 

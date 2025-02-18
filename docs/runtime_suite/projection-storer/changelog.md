@@ -15,6 +15,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2025-01-23
+
+### Added
+
+- `forceResume` setting field to `controlPlane.settings.channel` that can either be a boolean or an object with a numeric field `timeout.ms`, defining the amount of time for control plane pipelines to be resumed after an unsuccessful connection.
+
+### Changed
+
+- `controlPlane.settings` object now has both `state` and `feedback` marked as optional
+
+### Removed
+
+- `gRPC` Control Plane Feedback client
+- `Kafka` Control Plane client
+
+## [1.3.5] - 2024-12-10
+
+### Added
+
+-  Added image signing and SBOM generation in pipeline
+
+### Fixed
+
+- following the introduction of SSL custom configuration in `v1.3.2`, SSL was assumed to be disabled
+when `ssl.enabled` property was not specified. This prevents the service to connect to database instances
+where SSL is active without configuring `ssl.enabled` to `true`. This release ensure that SSL configuration
+is not enforced to `false` when not provided by the user, aligning service behavior to the one prior to version `v1.3.2`. 
+
+## [1.3.4] - 2024-11-19
+
+### Fix
+
+- the logic of provided cast function `castToDate` has been overhauled, so that dates represented as Unix timestamp
+in millisecond that ranges from `-2147483648` (`1969-12-07T03:28:36.352Z`) to `2147483647` (`1970-01-25T20:31:23.647Z`)
+are now properly converted into their expected date.
+
+## [1.3.3] - 2024-10-25
+
+### Fix
+
+- Bug introduced with version `v1.3.2`, where insufficient service permissions prevented GraalVM cache to be initialized when custom cast functions were employed. 
+
+## [1.3.2] - 2024-10-18
+
+### Fix
+
+- introduce support for TLS/SSL connection for storage component
+
 ## [1.3.1] - 2024-09-24
 
 ### Fixed
@@ -23,7 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Update
 
-- update service dependencies and Java build image to `21.0.4_7-jdk-jammy` 
+- update service dependencies and Java build image to `21.0.4_7-jdk-jammy`
 
 ## [1.3.0] - 2024-06-04
 

@@ -78,11 +78,15 @@ This is and example of `console` property configuration:
 
 :::tip
 The following properties support [secret resolution](/fast_data/configuration/secrets_resolution.md):
-- `console.target`
-- `console.auth.credentials.clientId`
-- `console.auth.credentials.clientKeyId`
-- `console.auth.credentials.privateKey`
+- `console.rest.target`
+- `console.rest.auth.credentials.clientId`
+- `console.rest.auth.credentials.clientKeyId`
+- `console.rest.auth.credentials.privateKey`
 :::
+
+A custom x509 certificate can be added to the default root keychain of certificates for any client/reversed-proxy reached by Fabric BFF.
+Custom certificate must be mounted on local file system of Fabric BFF and referenced in the configuration at 'settings.tls.certificate'
+as a [secret](/fast_data/configuration/secrets_resolution.md).
 
 #### Control Plane Communication
 
@@ -183,6 +187,7 @@ Under the endpoint specified above, the following routes are served by Fabric BF
 
 | Route                 | Type      | Method | Description                                                                                                                                                                         |
 |-----------------------|-----------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/fast-data/feedback` | Websocket | HEAD   | Verifies whether the pipeline _update_ can be carried<br/>out by current user                                                                                                       |
 | `/fast-data/feedback` | Websocket | GET    | Opens a websocket connection with the client to receive updates<br/>of runtimes and pipelines                                                                                       |
 | `/fast-data/control`  | REST      | HEAD   | Verifies whether the pipeline _change state action_ can be carried<br/>out by current user                                                                                          |
 | `/fast-data/control`  | REST      | POST   | Receives [JSON-RPC](https://www.jsonrpc.org/specification) from the frontend to change pipelines state                                                                              |

@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The MongoDB Reader plugin is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 MongoDB Reader is a service that allows to expose APIs that execute [aggregation pipelines](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/) on MongoDB returning the result in several formats such as `json`, `json-line` and `csv`.
 
 The service can be configured by creating custom profiles, these profiles can be provided as files in the microservice file system

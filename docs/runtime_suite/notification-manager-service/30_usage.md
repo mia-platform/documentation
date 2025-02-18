@@ -478,6 +478,12 @@ This endpoint is a proxy to the `GET /` endpoint of the [event settings CRUD][cr
 
 :::
 
+:::warning
+
+This endpoint updates the local routing table, but changes are not propagated to all replicas, so avoid calling this endpoint while running multiple replicas of the service to not introduce inconsistencies across copies of the routing table stored on different replicas.
+
+:::
+
 The endpoint provides a way to delete event settings without the need to restart the microservice in order to register the change.
 
 This endpoint acts as a proxy to the `DELETE /:id` endpoint of the [event settings CRUD][crud-event-settings].
@@ -489,6 +495,12 @@ After deleting successfully the event settings, the routing table is automatical
 :::info
 
 **v2.1.0**. This endpoint is available only since v2.1.0.
+
+:::
+
+:::warning
+
+This endpoint updates the local routing table, but changes are not propagated to all replicas, so avoid calling this endpoint while running multiple replicas of the service to not introduce inconsistencies across copies of the routing table stored on different replicas.
 
 :::
 
@@ -510,6 +522,12 @@ Since the event settings must be unique for a given event, identified by the `ev
 :::info
 
 **v2.1.0**. This endpoint is available only since v2.1.0.
+
+:::
+
+:::warning
+
+This endpoint updates the local routing table, but changes are not propagated to all replicas, so avoid calling this endpoint while running multiple replicas of the service to not introduce inconsistencies across copies of the routing table stored on different replicas.
 
 :::
 
@@ -618,121 +636,79 @@ Please check the CHANGELOG before upgrading.
 
 :::info
 
+**v2.4.0**. This endpoint requires the [Notification Messages MongoDB view][notification-messages-mongodb-view].
+
+:::
+
+:::info
+
 **v2.3.0**. This endpoint is available only since v2.3.0.
 
 :::
 
-This endpoint is a proxy to the `GET /notifications` endpoint of the [templates CRUD][crud-templates], and it returns the messages of the queried notifications. See [notifications CRUD][crud-notification] and [messages CRUD][crud-notification-messages].
+This endpoint is a proxy to the `GET /` of [Notification Messages MongoDB view][notification-messages-mongodb-view] and returns the messages matching the given query.
 
-If the queried notifications look like these:
+Given a notification like this:
 
 ```json
-[
-  {
-    "_id": "663ccd65dee93b2a6a6885d1",
-    "event": {
-      "_id": "663ccd63dee93b2a6a6885d0",
-      "name": "Update appointment",
-      "payload": {
-        "recipient": "663ccce5dee93b2a6a6885ty",
-        "templateName": "update-appointment"
-      },
-      "source": {
-        "channel": "http",
-        "requestId": "6e4ddc4eda4ce1f422b285a80da3128a"
-      },
-      "status": "RECEIVED"
+{
+  "_id": "663ccd65dee93b2a6a6885d1",
+  "event": "Update appointment"{
+    "_id": "663ccd63dee93b2a6a6885d0",
+    "name": ,
+    "payload": {
+      "recipient": "663ccce5dee93b2a6a6885ty",
+      "templateName": "update-appointment"
     },
-    "recipient": "663ccce5dee93b2a6a6885ty",
-    "messages": [
-      {
-        "channel": "email",
-        "templateName": "new-appointment",
-        "status": "SUCCESS"
-      },
-      {
-        "channel": "sms",
-        "templateName": "new-appointment",
-        "status": "FAILED"
-      }
-    ]
+    "source": {
+      "channel": "http",
+      "requestId": "6e4ddc4eda4ce1f422b285a80da3128a"
+    },
+    "status": "RECEIVED"
   },
-  {
-    "_id": "812rcd65dee93b2a6a9845z98",
-    "event": {
-      "_id": "758acd63dee93b2a6a68125a",
-      "name": "New appointment",
-      "payload": {
-        "recipient": "recipient-2",
-        "templateName": "new-appointment"
-      },
-      "source": {
-        "channel": "http",
-        "requestId": "6e4ddc4eda4ce1f422b285a80da3128a"
-      },
-      "status": "RECEIVED"
-    },
-    "recipient": "675cdse5dee93b2a6a64565rf",
-    "messages": [
-      {
-        "channel": "email",
-        "templateName": "new-appointment",
-        "status": "SUCCESS"
-      }
-    ]
-  }
-]
-
-```
-
-the response with the messages looks like the following:
-
-```json
-[
-  {
-    "_id": "663ccd65dee93b2a6a6885d1-m1",
-    "event": {
-      "_id": "663ccd63dee93b2a6a6885d0",
-      "name": "Update appointment",
-      "payload": {},
-      "source": {}
-    },
-    "recipient": "663ccce5dee93b2a6a6885ty",
-    "message": {
+  "recipient": "663ccce5dee93b2a6a6885ty",
+  "messages": [
+    {
       "channel": "email",
       "templateName": "new-appointment",
       "status": "SUCCESS"
-    }
-  },
-  {
-    "_id": "663ccd65dee93b2a6a6885d1-m2",
-    "event": {
-      "_id": "663ccd63dee93b2a6a6885d0",
-      "name": "Update appointment",
-      "payload": {},
-      "source": {}
     },
-    "recipient": "663ccce5dee93b2a6a6885ty",
-    "message": {
+    {
       "channel": "sms",
       "templateName": "new-appointment",
       "status": "FAILED"
     }
+  ]
+}
+```
+
+the following messages would be returned:
+
+```json
+[
+  {
+    "_id": "663ccd65dee93b2a6a6885d1-fea80f2db003d4ebc4536023814aa885",
+    "event": "Update appointment",
+    "recipient": "663ccce5dee93b2a6a6885ty",
+    "channel": "email",
+    "templateName": "new-appointment",
+    "status": "SUCCESS"
   },
   {
-    "_id": "812rcd65dee93b2a6a9845z98-m1",
-    "event": {
-      "_id": "758acd63dee93b2a6a68125a",
-      "name": "New appointment",
-      "payload": {},
-      "source": {}
-    },
+    "_id": "663ccd65dee93b2a6a6885d1-0956d2fbd5d5c29844a4d21ed2f76e0c",
+    "event": "Update appointment",
+    "recipient": "663ccce5dee93b2a6a6885ty",
+    "channel": "sms",
+    "templateName": "new-appointment",
+    "status": "FAILED"
+  },
+  {
+    "_id": "812rcd65dee93b2a6a9845z98-3a685826dee20d9afd3bc637b0615adb",
+    "event": "New appointment",
     "recipient": "675cdse5dee93b2a6a64565rf",
-    "message": {
-      "channel": "email",
-      "templateName": "new-appointment",
-      "status": "SUCCESS"
-    }
+    "channel": "email",
+    "templateName": "new-appointment",
+    "status": "SUCCESS"
   }
 ]
 ```
@@ -748,12 +724,17 @@ Please check the CHANGELOG before upgrading.
 
 :::info
 
+**v2.4.0**. This endpoint requires the [Notification Messages MongoDB view][notification-messages-mongodb-view].
+
+:::
+
+:::info
+
 **v2.3.0**. This endpoint is available only since v2.3.0.
 
 :::
 
-This endpoint is a proxy to the `GET /notifications` endpoint of the [templates CRUD][crud-templates], and it returns the number of messages of the queried notifications. See [notifications CRUD][crud-notification] and [messages CRUD][crud-notification-messages].
-
+This endpoint is a proxy to the `GET /count` endpoint of the [Notification Messages MongoDB view][notification-messages-mongodb-view] and returns the number of messages matching the given query.
 
 ## Custom handler API
 
@@ -2039,6 +2020,7 @@ When the handler receives such an event it performs the following operations:
 [crud-users]: ./20_configuration.md#users-crud
 [crud-templates]: ./20_configuration.md#templates-crud
 [service-configuration]: ./20_configuration.md#service-configuration
+[notification-messages-mongodb-view]: 20_configuration.md#notification-messages-view
 
 [build-messages]: #buildmessages
 [build-reminders]: #buildreminders

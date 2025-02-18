@@ -27,6 +27,16 @@
         }
       ]
     },
+    "jobRunner": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/JobRunnerSettings"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "openLineage": {
       "anyOf": [
         {
@@ -187,6 +197,23 @@
         }
       }
     },
+    "JobRunnerSettings": {
+      "description": "Settings describing the connections with JobRunner service",
+      "type": "object",
+      "required": [
+        "grpc"
+      ],
+      "properties": {
+        "grpc": {
+          "description": "Configuration related to the bulk actions Data Catalog service",
+          "allOf": [
+            {
+              "$ref": "#/definitions/GrpcProxy"
+            }
+          ]
+        }
+      }
+    },
     "MongodbPersistence": {
       "type": "object",
       "required": [
@@ -296,6 +323,32 @@
           "type": [
             "string",
             "null"
+          ]
+        },
+        "tls": {
+          "description": "Client TLS proxy settings",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TlsOptions"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "TlsOptions": {
+      "type": "object",
+      "properties": {
+        "certificate": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/secret"
+            },
+            {
+              "type": "null"
+            }
           ]
         }
       }

@@ -15,6 +15,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 2.1.1 2025-01-21
+
+- Form metadata can be edited after form is expired
+
+## 2.1.0 2024-11-06
+
+- Upgrade dependencies and CI/CD pipeline
+- Added custom title to the expired Modal
+
 ## 2.0.5 2024-05-23
 
 - fixed bug on expired form behavior

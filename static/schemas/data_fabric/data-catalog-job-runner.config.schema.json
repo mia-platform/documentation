@@ -1,0 +1,132 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Job Runner Configuration",
+    "type": "object",
+    "examples": [
+        {
+            "persistence": {
+                "type": "mongodb",
+                "configuration": {
+                    "url": {
+                        "type": "file",
+                        "path": "/run/secrets/data-fabric/open-lineage.ini",
+                        "key": "MONGODB_URL"
+                    },
+                    "database": "data-fabric-db"
+                }
+            }
+        }
+    ],
+    "properties": {
+        "persistence": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/Persistence"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "MongodbPersistence": {
+            "type": "object",
+            "required": [
+                "url"
+            ],
+            "properties": {
+                "database": {
+                    "description": "Optional database name. It selects which database to be employed for storing data (it overrides the one provided in the connection string when it is set)",
+                    "default": null,
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "url": {
+                    "description": "MongoDB connection string",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/secret"
+                        }
+                    ]
+                }
+            }
+        },
+        "Persistence": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "configuration",
+                        "type"
+                    ],
+                    "properties": {
+                        "configuration": {
+                            "$ref": "#/definitions/MongodbPersistence"
+                        },
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "mongodb"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "secret": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "key",
+                        "type"
+                    ],
+                    "properties": {
+                        "encoding": {
+                            "type": "string",
+                            "enum": [
+                                "base64"
+                            ]
+                        },
+                        "key": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "const": "env"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "path",
+                        "type"
+                    ],
+                    "properties": {
+                        "encoding": {
+                            "type": "string",
+                            "enum": [
+                                "base64"
+                            ]
+                        },
+                        "key": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "const": "file"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -28,11 +28,13 @@ You can configure this service to send e-mails with one of the following modes:
 The microservice will use `Amazon SES` service in order to send e-mails.
 You will need to provide the `key` and the `secret` of a previously configured SES. You can also specify the `region` you want to rely on (the default value is `us-east-1`).
 
+Moreover, you can specify a list of headers to forward to SES through a stringified JSON object. This is useful (among other use cases) if you want to specify the configuration set necessary for being notifies by SES when mails are not received by end users.
 Here is a list of the variables used to configure the service:
 
 - SES_KEY (string)
 - SES_SECRET (string)
 - SES_REGION (string | default: `us-east-1`)
+- SES_HEADERS (string) example '{"X-SES-CONFIGURATION-SET":"example-configuration-set"}'
 - TRUSTED_PROXIES: (string)
 
 ### SMTP
@@ -59,7 +61,7 @@ Here is a list of the variables used to configure the service:
 
 :::info
 
-The variable `REJECT_UNAUTHORIZED` is used to set the tls option `rejectUnauthorized`. For further information, ha a look at [this page](https://nodemailer.com/smtp/#3-allow-self-signed-certificates)
+The variable `REJECT_UNAUTHORIZED` is used to set the tls option `rejectUnauthorized`. For further information, have a look at [this page](https://nodemailer.com/smtp/#3-allow-self-signed-certificates)
 
 :::
 
