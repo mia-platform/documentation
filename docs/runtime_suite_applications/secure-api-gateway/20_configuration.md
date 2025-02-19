@@ -10,6 +10,10 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+:::danger
+The application is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
+
 In order to correctly add this application in your project you must perform the following configuration steps.
 
 ## Advanced Configuration

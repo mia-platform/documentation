@@ -10,14 +10,14 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+:::danger
+The application is deprecated, and no active development, new versions, or bug fixes are planned. It will reach end of life with the v14.0.0 of the console.
+:::
 
 ## 0.1.1 - 23-09-2022
 
 ### Add
+
 - Api Gateway Microservice
 
 ## 0.1.0 - 16-09-2022
