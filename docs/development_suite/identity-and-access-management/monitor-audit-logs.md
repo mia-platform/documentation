@@ -4,7 +4,7 @@ title: Monitor Audit Logs
 sidebar_label: Monitor Audit Logs
 ---
 
-The Console provides an Audit Logs feature that enables users with enough administrative permissions to monitor identity actions within a Company and its related resources. Audit logs represent a crucial aspect in an Internal Developer Platform, especially with respects to governance, security, and compliance with regulatory frameworks. The goal of this section is to ensure transparency and accountability in the use of Mia-Platform Console.  
+Mia-Platform Console provides an Audit Logs feature that enables users with enough administrative permissions to monitor identity actions within a Company and its related resources. Audit logs represent a crucial aspect in an Internal Developer Platform, especially with respects to governance, security, and compliance with regulatory frameworks. The goal of this section is to ensure transparency and accountability in the use of Mia-Platform Console.  
 
 For this reason, the Console offers a dedicated Audit Logs section, allowing to easily track logging activities in a central place.
 
