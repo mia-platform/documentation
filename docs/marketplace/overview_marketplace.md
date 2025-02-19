@@ -22,7 +22,7 @@ The types of Marketplace components you can use include:
 
 * **[Sidecars](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md)**: secondary utility containers running side by side with the main container in the same host.
 
-* **[Infrastructure Resources](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)**: custom objects that are not part of the standard Console supported resources.
+* **[Infrastructure Resources](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)**: custom objects that are not part of the standard Console supported resources.
 
 * **[Extensions](/console/company-configuration/extensions.md)**: custom page that enhances Console capabilities by integrating it into the sidebar navigation.
 
@@ -94,7 +94,7 @@ It's important to consider the alternatives to a deprecated item. Using updated 
 ### Set controlled versions for your Marketplace resources and make them available to users
 
 :::info
-This feature is currently available for the [Plugin](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md), [Infrastructure Resource](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md), [Templates and Examples](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) types.
+This feature is currently available for the [Plugin](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md), [Infrastructure Resource](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx), [Templates and Examples](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) types.
 :::
 
 Marketplace creators have now the possibility to manage some types of resources through a governance based on a versioning system.
