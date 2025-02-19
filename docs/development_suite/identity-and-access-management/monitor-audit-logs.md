@@ -23,11 +23,11 @@ Audit logs are displayed in a structured table format, providing the following i
 
 ### Filtering and exporting audit logs
 
-To facilitate data analysis, the Audit Logs section includes advanced filtering capabilities. Users can filter logs based on multiple criteria, such as date range, action type, and user identity, or specific text researches, allowing for precise data retrieval.
+To facilitate data analysis, the Audit Logs section includes advanced filtering capabilities. Users can filter logs based on multiple criteria, such as date range, action type, identity type, or specific text researches, allowing for precise data retrieval.
 
 [filtering audit logs image](/)
 
-Additionally, logs can be exported to facilitate compliance reporting and internal analysis. This capability supports audit trails for security investigations and operational reviews. 
+Additionally, logs can be exported to facilitate compliance reporting and internal analysis. 
 Currently, the available export format option is CSV format.
 
 [export audit logs image](/)
