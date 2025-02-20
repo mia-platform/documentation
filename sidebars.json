@@ -804,6 +804,10 @@
           "type": "doc"
         },
         {
+          "id": "development_suite/identity-and-access-management/monitor-audit-logs",
+          "type": "doc"
+        },
+        {
           "id": "development_suite/identity-and-access-management/manage-identities",
           "type": "doc"
         },
