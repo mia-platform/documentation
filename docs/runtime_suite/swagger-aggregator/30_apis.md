@@ -36,9 +36,15 @@ The service exposes three routes to get the subswaggers list:
 
 They accept the boolean query parameter `includeAll`. If `true`, the subswaggers list includes the option `ALL`. By default it's `true`.
 
+### Other endpoints
+
 It also exposes a route to get the API Portal UI config:
 
 - `/ui-config`
+
+And a route to get the API Portal config:
+
+- `/api-portal/config`
 
 ### Static route
 
