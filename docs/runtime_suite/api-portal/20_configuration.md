@@ -132,7 +132,7 @@ Once you have the `Swagger Aggregator`, you can configure the needed endpoints:
 
 ### Reroute endpoints on a custom endpoint
 
-If you need to change the endpoints, for example because you need to expose many API Portal or you have a gateway that redirects requests based on a certain prefix, you have to configure the `Swagger Aggregator` (read how to [here](/runtime_suite/swagger-aggregator/configuration#customize-api-portal)) and configure the correct endpoints:
+If you need to change the endpoints, for example because you need to expose many API Portal or you have a gateway that redirects requests based on a certain prefix, you have to configure the `Swagger Aggregator` (read how to [here](/runtime_suite/swagger-aggregator/20_configuration.md#customize-api-portal)) and configure the correct endpoints:
 
 1. Add `/documentations/api-portal/config` with the following configuration:
     - Type: `Microservice`
@@ -159,8 +159,8 @@ If you need to change the endpoints, for example because you need to expose many
 
 ## Customize logo and/or favicon
 
-[Here](/runtime_suite_applications/api-documentation-aggregator/faqs#how-can-I-change-the-api-portal-logo-and-favicon) you can read how to customize the logo and/or the favicon of the `API Portal`
+[Here](/runtime_suite_applications/api-documentation-aggregator/30_faqs.md#how-can-I-change-the-api-portal-logo-and-favicon) you can read how to customize the logo and/or the favicon of the `API Portal`
 
 ## FAQs
 
-You can find some FAQs about Swagger Aggregator and API Portal at [this](/runtime_suite_applications/api-documentation-aggregator/faqs) link.
+You can find some FAQs about Swagger Aggregator and API Portal at [this](/runtime_suite_applications/api-documentation-aggregator/30_faqs.md) link.
