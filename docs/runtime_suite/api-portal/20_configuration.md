@@ -163,4 +163,4 @@ If you need to change the endpoints, for example because you need to expose many
 
 ## FAQs
 
-You can find some FAQs about Swagger Aggregator and API Portal at [this](../../runtime_suite_applications/api-documentation-aggregator/faqs) link.
+You can find some FAQs about Swagger Aggregator and API Portal at [this](/runtime_suite_applications/api-documentation-aggregator/faqs) link.
