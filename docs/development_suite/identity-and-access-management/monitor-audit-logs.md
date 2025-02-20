@@ -38,6 +38,6 @@ Currently, the available export format option is CSV format.
 
 ## Security Concerns
 
-Access to audit log data within the Console is restricted to users with the "Company Owner" role, who can view an aggregated overview of logged events.  
+Access to audit logs data within the Console is restricted to users with the "Company Owner" role, who can view an aggregated overview of logged events.  
 The raw log data is only accessible to administrators managing the Console installation. This ensures that sensitive log information is protected from unauthorized access while still enabling Companies to maintain oversight of key activities.
 
