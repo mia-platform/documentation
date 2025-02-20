@@ -201,7 +201,7 @@ By default, `API Portal` endpoints have the `/api` prefix but you can change it 
   }
 }
 ```
-2. Follow the [guide](/runtime_suite/api-portal/configuration#reroute-endpoints-on-a-custom-endpoint) on the API Portal
+2. Follow the [guide](/runtime_suite/api-portal/20_configuration.md#reroute-endpoints-on-a-custom-endpoint) on the API Portal
 
 ### How can I add the global servers options in the API Portal?
 
