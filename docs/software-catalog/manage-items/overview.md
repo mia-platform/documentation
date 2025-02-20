@@ -27,7 +27,7 @@ The Software Catalog support the following item types.
 - **Applications**: bundles of resources that can be created and configured in the Mia-Platform Console within a few clicks. [Applications](/marketplace/applications/mia_applications.md) are composed of microservices (Plugins, Examples, and Templates), endpoints, CRUD collections, and public variables. Users can monitor if all the resources composing an application have been correctly set up inside the project, as well as access their corresponding repository or configuration.  
 - **Proxies**: specific configurations used to invoke APIs that are not part of the current project but may be exposed by an external provider or another project. You can find more information about proxies in [this section](/development_suite/api-console/api-design/proxy.md).
 - **Sidecars**: secondary utility containers running side by side with the main container in the same host. Find more [here](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md)
-- **Infrastructure Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)
+- **Infrastructure Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)
 - **Extensions**: custom page that enhances Console capabilities by integrating it into the sidebar navigation.
 
 :::note
@@ -178,4 +178,4 @@ Refer to the detailed explanations and examples for each item type:
 - [Templates and Examples](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md)
 - [Applications](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_application.md)
 - [Sidecars](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md)
-- [Infrastructure Resources](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)
+- [Infrastructure Resources](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)

@@ -42,7 +42,7 @@ To create a resource from scratch, you need to provide the following information
 - **kind**: the kind of the Infrastructure Resource, it can be any string. If you are creating a Custom Kubernetes Resource, it must be the kind of the Infrastructure Resource Definition.
 - **type**: the type of the Infrastructure Resource. 
 
-If the type of the Infrastructure Resource is set to  'kubernetes', the following extra field is available:
+If the type of the Infrastructure Resource is set to 'kubernetes', the following extra field is available:
 
 - **resourceId**: The plural name for the Kubernetes Infrastructure resource definition. If set, the resource will be visible in the [Runtime](/development_suite/monitoring/resources/custom-resources.md) section of the console.
 
@@ -53,14 +53,15 @@ In creation, you will see the preview of the generated manifest.
 #### Create an Infrastructure Resource from Marketplace
 
 :::info
-To allow users to add a Infrastructure Resource to their project from marketplace, you need to apply it using `miactl` ([see here for details](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md)).
+To allow users to add a Infrastructure Resource to their project from marketplace, you need to apply it using `miactl` ([see here for details](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)) or using [`Software Catalog`](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)
 :::
 
 To create a resource from Marketplace, you need to select the Infrastructure Resource you want to create.
 
 ![Create from Marketplace](./img/create-from-marketplace.png)
 
-The Marketplace could contain *versioned* Infrastructure Resources. In that case, when selecting the Infrastructure Resource to create, you will see the available versions and you will be able to select the one you prefer.
+The Marketplace could contain *versioned* Infrastructure Resources.
+In that case, when selecting the Infrastructure Resource to create, you will see the available versions and you will be able to select the one you prefer.
 
 ![Create from Marketplace a versioned Custom Resource](./img/create-from-marketplace-versioned.png)
 
@@ -82,6 +83,7 @@ The Infrastructure Resource has some supported fields, other fields will be igno
 - **runtime**: the runtime attributes of the Infrastructure Resource. From version _v13.3.0_, these properties are used to infer the status of the resource and show it in the _Runtime_ section of the Console.
   - **type**: The type of the Infrastructure resource. If valued, the only supported value for this field is `kubernetes`.
   - **resourceId**: The plural name for the Kubernetes Infrastructure resource definition.
+  This fields is needed if you want monitoring the resource deployed in the dedicated menu of the runtime section
 
 ![Update](./img/update-gateway-custom-resource.png)
 
@@ -97,7 +99,7 @@ Inside the modal you can also see the `apiVersion` and the `kind` of the Infrast
 
 A small tag will also inform you which is the *latest* version of the plugin, the latest stable version released.
 
-In case you need to update the `apiVersion` and the `kind` fields manually, completely changing the configuration of the Infrastructure Resource, you can do so by clicking the *Detach from Marketplace* button on the menu:this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
+In case you need to update the `apiVersion` and the `kind` fields manually, completely changing the configuration of the Infrastructure Resource, you can do so by clicking the *Detach from Marketplace* button on the menu: this will detach the Custom Resource from the original Marketplace item, causing the resource to be fully editable.
 However, you will not be able to use the Marketplace versioning feature anymore, and you will not be notified by any update made by the Marketplace creator of that item.
 
 :::info
@@ -129,7 +131,7 @@ Users with appropriate permissions can manage the lifecycle of a Infrastructure 
 
 Infrastructure Resources are published to the Marketplace using the `custom-resource` type in the marketplace item schema. Versioning is supported, allowing users to make updates without overwriting previous versions of the Infrastructure Resource.
 
-To learn more on how to add or manage a Infrastructure Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md) section.
+To learn more on how to add or manage a Infrastructure Resource in the Marketplace, see the [Add Custom Resource to the Marketplace](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx) section.
 
 ### Template-based Infrastructure Resource management
 
@@ -150,7 +152,7 @@ resources:
     archive: https://example.com/path/to/archive.zip
 ...
 ```
-Refer to [Infrastructure Resource definition](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.md#infrastructure-resource-definition) schema
+Refer to [Infrastructure Resource definition](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx#infrastructure-resource-definition) schema
 :::
 
 
@@ -178,8 +180,3 @@ sequenceDiagram
 :::info
 Deploying template-based Infrastructure Resources for different runtimes than Kubernetes will require additional configuration on the deployment pipeline, in order to handle the additional files generated from the template.
 :::
-
-## Future Improvements
-
-In the future, we plan to add more features to the Resources, such as:
-- manage infrastructure Resource with a specific dynamically generated UI.

@@ -1870,6 +1870,7 @@
         "id": "release-notes/versions"
       },
       "items": [
+        { "id": "release-notes/v13.6.1", "type": "doc" },
         { "id": "release-notes/v13.6.0", "type": "doc" },
         { "id": "release-notes/v13.5.2", "type": "doc" },
         { "id": "release-notes/v13.5.1", "type": "doc" },

@@ -10,6 +10,25 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.9.1] 2024-02-17
+
+### Versioning
+
+- Updated Node to 22
+- `ajv@^8.17.0`
+- `fs-extra@^11.2.0`,
+- Dev dependencies updated
+
+### Updated
+
+- Updated Api Portal to version `2.2.0`
+- GET `/ui-config` endpoint now returns also the custom logo for the API Portal, when configured.
+
+## Added
+
+- Added `apiPortalConfig` configurable object in the `swagger-config.json`, to specify a custom prefix, logo or favicon for the API Portal.
+- Added GET `/api-portal/config` endpoint to retrieve the config for the API Portal, such as the prefix with which call the backend.
+
 ## [3.8.3] 2024-12-16
 
 ### Fixed
