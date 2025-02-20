@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Updated dependencies to fix vulnerabilities
-- [FirebaseNotificationService] use `sendEachForMulticast` instead of `sendMulticast`, **which will be discontinued on July 20th 2024**
+- FirebaseNotificationService use `sendEachForMulticast` instead of `sendMulticast`, **which will be discontinued on July 20th 2024**
 
 ## [1.2.0] - 2023-10-03
 
@@ -37,22 +37,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Kafka authentication support. See [20_Configuration](docs/20_configuration.md) to configure the service according to the security protocol and auth mechanism.
+- Kafka authentication support. See documentation to configure the service according to the security protocol and auth mechanism.
 - Info log on notification sent correctly.
 
 ### Changed
 
-- [Kafka2Rest](https://git.tools.mia-platform.eu/platform/libraries/kafka2rest) version upgraded to 2.2.2
+- Kafka2Rest version upgraded to 2.2.2
 
 ## [1.0.2] - 2020-09-04
 
 ## [1.0.1] - 2020-05-29
 
 ## [1.0.0] - 2020-05-28
-
-[Unreleased]: https://git.tools.mia-platform.eu/platform/plugins/kafka2firebase/-/compare?from=master&to=master
-[1.2.0]: https://git.tools.mia-platform.eu/platform/plugins/kafka2firebase/-/tags/v1.2.0
-[1.1.0]: https://git.tools.mia-platform.eu/platform/plugins/kafka2firebase/-/tags/v1.1.0
-[1.0.2]: https://git.tools.mia-platform.eu/platform/plugins/kafka2firebase/-/tags/v1.0.2
-[1.0.1]: https://git.tools.mia-platform.eu/platform/plugins/kafka2firebase/-/tags/v1.0.1
-[1.0.0]: https://git.tools.mia-platform.eu/platform/plugins/kafka2firebase/-/tags/v1.0.0
