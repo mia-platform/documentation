@@ -268,33 +268,3 @@ Moving to the Design section of our project, in the revision where the import wa
 ## Conclusion
 
 The import of Kubernetes resources via miactl is a very powerful feature that saves time and manual setup operations when migrating resources generated externally into the console. This feature allows us to automate most of the work by migrating the majority of resources simply by running a command, and then we can focus on manually fine-tuning these resources to ensure they work optimally within the context of a Mia-Platform Console project.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
