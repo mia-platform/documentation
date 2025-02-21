@@ -82,6 +82,10 @@
         {
           "id": "console/tutorials/create-extension-tutorial",
           "type": "doc"
+        },
+        {
+          "id": "console/tutorials/import-brownfield-project-tutorial",
+          "type": "doc"
         }
       ]
     },
