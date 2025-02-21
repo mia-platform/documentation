@@ -28,7 +28,7 @@ For the authentication method, you can choose to use either your personal accoun
 Kubernetes resources can only be imported into an empty project. Additionally, at the time of writing this tutorial, the `import` command is lossy, meaning that some advanced configurations might be lost during the process. We recommend reviewing the generated files before attempting a deployment to ensure that nothing is missing or incorrect.
 :::
 
-### Seting up miactl
+### Setting up miactl
 
 After installing miactl, the first step is to verify that the installation was successful. To do this, run the command: 
 
@@ -68,32 +68,178 @@ The output of this command should confirm the context switch, showing a message 
 
 Now that miactl is configured, before running the import command, we need to retrieve the YML manifests describing the Kubernetes resources we want to import into the console.
 
-For this tutorial, we will import the `Deployment` of an Nginx API Gateway, which you can also find in the official Kubernetes documentation at [this link](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
+For this tutorial, we will import the manifests to build and deploy a simple (not production ready), multi-tier web application composed of a single-instance `Redis` and multiple web frontend instances.
+You can also find more information about this example in the official Kubernetes documentation at [this link](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/).
 
-The manifest we are going to import in our project looks like this:
+The manifest we are going to import in our project are:
+
+1. `redis-leader-deployment.yml`
 
 ```yaml 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: redis-leader
   labels:
-    app: nginx
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: leader
+        tier: backend
+    spec:
+      containers:
+      - name: leader
+        image: "docker.io/redis:6.0.5"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+```
+2. `redis-leader-service.yml`
+
+```yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-leader
+  labels:
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis
+    role: leader
+    tier: backend
+
+```
+
+3. `redis-follower-deployment.yml`
+
+```yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-follower
+  labels:
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: follower
+        tier: backend
+    spec:
+      containers:
+      - name: follower
+        image: us-docker.pkg.dev/google-samples/containers/gke/gb-redis-follower:v2
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+
+```
+
+4. `redis-follower-service.yml`
+
+```yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-follower
+  labels:
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 6379
+  selector:
+    app: redis
+    role: follower
+    tier: backend
+
+```
+
+4. `frontend-deployment.yml`
+
+```yaml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+        app: guestbook
+        tier: frontend
   template:
     metadata:
       labels:
-        app: nginx
+        app: guestbook
+        tier: frontend
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
+      - name: php-redis
+        image: us-docker.pkg.dev/google-samples/containers/gke/gb-frontend:v5
+        env:
+        - name: GET_HOSTS_FROM
+          value: "dns"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
         ports:
         - containerPort: 80
+
+```
+
+4. `frontend-service.yml`
+
+```yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  #type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 80
+  selector:
+    app: guestbook
+    tier: frontend
 ```
 
 ### Import the resources
@@ -114,10 +260,6 @@ To learn more about the other optional flags available for this command, refer t
 If everything worked correctly, the output of the command will be similar to the image below:
 
 ![Miactl import](img/import-miactl-4.png)
-
-:::info
-In this tutorial, to keep things simple, we imported only a Deployment, but the command works with multiple files simultaneously, including different types of resources (e.g., Deployments, Services, etc.)
-:::
 
 Moving to the Design section of our project, in the revision where the import was performed, we can see the imported workloads on the Microservices page, ready to be modified or deployed directly using the Mia-Platform Console.
 
