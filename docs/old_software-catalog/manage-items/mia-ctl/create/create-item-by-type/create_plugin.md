@@ -22,7 +22,7 @@ This means that, in the *Design* section, the `dockerImage` field is *read-only*
 
 ## Definition of a Plugin resource
 
-Plugins should follow the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
+Plugins should follow the Marketplace item schema defined in the related section of the ["Create your Company Marketplace" page](/old_software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
 The *type* field must be equal to `plugin`, and the content of the field `resources` to include only a property called `services`.
 Inside the `services` object, you should specify *only one property*, which is the plugin name as the key and the plugin configuration as the value.
 
@@ -47,7 +47,7 @@ Each property described in the following paragraphs regarding the microservices 
 Instead of `<<your-service-id>>`, you must include the identifier of your service, which **must** be in `kebab-case` format and should not exceed the length of 63 characters.
 
 :::info
-The definition of services, and the following information related to the list of fields applies also to [Templates and Examples](/software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md), with the difference that the `services` object in Templates and Examples can include more than one key, which means more than one service.
+The definition of services, and the following information related to the list of fields applies also to [Templates and Examples](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md), with the difference that the `services` object in Templates and Examples can include more than one key, which means more than one service.
 :::
 
 Here below are listed all the properties that you can provide for each microservice item:
@@ -310,7 +310,7 @@ You can update a Custom Resource Marketplace item by using the same `miactl mark
 
 While non-versioned items can be modified in place without any limitation (except for `itemId` and `tenantId` that identifies the resource to update), versioned Marketplace Custom Resource have some fields that cannot be modified.
 
-If you want to do so, you must create a new version of the resource: for more information, refer to the [dedicated section on the _Create your Company Marketplace_ page](/software-catalog/manage-items/overview.md#versioned-resources).
+If you want to do so, you must create a new version of the resource: for more information, refer to the [dedicated section on the _Create your Company Marketplace_ page](/old_software-catalog/manage-items/overview.md#versioned-resources).
 
 Also remember that versioned elements does not allow the update of the `dockerImage` field, since the value is automatically tied with the released version: if you need to change the Docker Image, you should create a new version of the resource.
 

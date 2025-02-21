@@ -6,7 +6,7 @@ sidebar_label: Create a new Marketplace Item using the Software Catalog
 
 # Create your own Marketplace Item
 
-In this tutorial, we will learn how to publish a new item on your own company's Marketplace and manage its lifecycle using the [Software Catalog](/software-catalog/overview.md).
+In this tutorial, we will learn how to publish a new item on your own company's Marketplace and manage its lifecycle using the [Software Catalog](/old_software-catalog/overview.md).
 
 We will also explore the differences between using the Software Catalog to manage marketplace items and the alternative approach of using [miactl](/cli/miactl/10_overview.md).
 
@@ -20,8 +20,8 @@ The Mia-Platform Software Catalog is a centralized solution for tracking, managi
 
 This tutorial guides you in creating a new marketplace `item`, also called a `Component`, of type `Plug-in`, with visibility restricted to your company.
 
-For creating an item with different visibility levels, refer to [this guide](/software-catalog/catalog-and-marketplace/overview.md).
-To learn more about the different item types available in the Mia-Platform Marketplace, see [this guide](/software-catalog/manage-items/overview.md#item-types).
+For creating an item with different visibility levels, refer to [this guide](/old_software-catalog/catalog-and-marketplace/overview.md).
+To learn more about the different item types available in the Mia-Platform Marketplace, see [this guide](/old_software-catalog/manage-items/overview.md#item-types).
 
 This tutorial covers all the steps from creating a new item to managing versioning using both approaches: Software Catalog and miactl. This allows you to understand the differences between the two methods.
 
@@ -43,13 +43,13 @@ To create a new item in the marketplace using the `Software Catalog`, follow the
    1. `Name` - choose the name for your plug-in
    2. `Item ID` - it is prefilled based on the choosed name but you can edit it by enable the flag `Edit Item ID manually`
    3. `Description` - describe your item
-   4. `Lifecycle Status` - for a detailed explanation of all the options, refere to [this guide](/software-catalog/overview.md#items-lifecycle)
+   4. `Lifecycle Status` - for a detailed explanation of all the options, refere to [this guide](/old_software-catalog/overview.md#items-lifecycle)
    5. `Category` - choose the category for your new item
    6. `Version Name` - choose the version for your item (for example: `1.0.0`)
    7. `Release Note Type` - choose if you want to handle the releases notes using `Markdown` or `External Link`
    8. `Repository URL` - add the link to the item's source code.
 
-For a detailed explanation of the required metadata please refere to [this guide](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
+For a detailed explanation of the required metadata please refere to [this guide](/old_software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
 
 5. **Define the item's assets** - which are the information needed by the Mia-Platform console to start-up and deploy your item on the runtime properly, like:
    1. `Container Ports` for each service included in the plug-in (typically a plug-in contains only one service)
@@ -225,7 +225,7 @@ To create a new version of a component using the Software Catalog, follow these 
 
 Once updated, save and publish the new version as needed.
 
-To know more about how to create new version for marketplace read the dedicated [documentation page](/software-catalog/manage-items/software-catalog-ui/update/overview.md).
+To know more about how to create new version for marketplace read the dedicated [documentation page](/old_software-catalog/manage-items/software-catalog-ui/update/overview.md).
 
 ### Using miactl
 
@@ -259,7 +259,7 @@ If everything works well you will see the following outcome:
   65368hf0c91d871a87afbcbf  my-awesome-service  My Awesome Service   Updated
 
 ```
-To know more about how to update a marketplace component using miactl read this [documentation page](/software-catalog/manage-items/mia-ctl/update/overview.md).
+To know more about how to update a marketplace component using miactl read this [documentation page](/old_software-catalog/manage-items/mia-ctl/update/overview.md).
 
 ## Conclusion
 
@@ -267,7 +267,7 @@ In this tutorial, we explored the differences between managing a marketplace com
 
 The Software Catalog offers a significant advantage in terms of ease of use and accessibility. Through its graphical interface, you can quickly view, modify, and create marketplace items without complexity.
 
-However, as the number of components grows, managing everything manually becomes impractical. In such cases, miactl enables a [declarative and automated approach](/software-catalog/manage-items/declarative-approach.md) to handling all marketplace components efficiently.
+However, as the number of components grows, managing everything manually becomes impractical. In such cases, miactl enables a [declarative and automated approach](/old_software-catalog/manage-items/declarative-approach.md) to handling all marketplace components efficiently.
 
 Both approaches are valuable:
 

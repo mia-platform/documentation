@@ -14,7 +14,7 @@ An infrastructure resource may be either Kubernetes type, and thus refer to a pa
 or to Non-Kubernetes ones (Lambda functions, Terraform resources, etc.).
 
 An Infrastructure Resource can be created from scratch or from an existing Marketplace item and added to your Project.
-To adding an infrastructure resource to you project you need to adding in the Markeplace using by [`miactl`](/cli/miactl/20_setup.md) o the [`Sofware Catalog`](/software-catalog/manage-items/software-catalog-ui/create/overview.md).
+To adding an infrastructure resource to you project you need to adding in the Markeplace using by [`miactl`](/cli/miactl/20_setup.md) o the [`Sofware Catalog`](/old_software-catalog/manage-items/software-catalog-ui/create/overview.md).
 
 ## Create a new Infrastructure Resource
 
@@ -299,24 +299,24 @@ that will be used by the Console to help the user to determine the best version 
 ### Publish the new Infrastructure Resource
 
 To publish or create new item into the marketplace you can use the
-[CLI](/software-catalog/manage-items/mia-ctl/update/overview.md) or the
-[Software Catalog](/software-catalog/manage-items/software-catalog-ui/create/overview.md).
+[CLI](/old_software-catalog/manage-items/mia-ctl/update/overview.md) or the
+[Software Catalog](/old_software-catalog/manage-items/software-catalog-ui/create/overview.md).
 
 ### Update the Infrastructure Resource
 
 To update new versions into the marketplace you can use the
-[CLI](/software-catalog/manage-items/mia-ctl/update/overview.md) or the
-[Software Catalog](/software-catalog/manage-items/software-catalog-ui/create/overview.md).
+[CLI](/old_software-catalog/manage-items/mia-ctl/update/overview.md) or the
+[Software Catalog](/old_software-catalog/manage-items/software-catalog-ui/create/overview.md).
 
 When updating a Infrastructure Resource, it is recommended to create a new version of the Marketplace item to avoid overwriting the existing one.
 The new version should contain the updated resource definition and a release note detailing the changes.
 
 In case you are trying to overwrite a versioned Marketplace Infrastructure Resource, remember that only few fields can be modified.
-For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/software-catalog/manage-items/overview.md#editing-a-versioned-resource).
+For more information, refer to the [dedicated section on the "Create your Company Marketplace" page](/old_software-catalog/manage-items/overview.md#editing-a-versioned-resource).
 
 #### Update non-versioned Infrastructure Resources
 
-To update non-versioned infrastructure resource into the marketplace you can use the [CLI](/software-catalog/manage-items/mia-ctl/update/overview.md).
+To update non-versioned infrastructure resource into the marketplace you can use the [CLI](/old_software-catalog/manage-items/mia-ctl/update/overview.md).
 In this case you can update it by using the `miactl marketplace apply` command, passing the company id (`tenantId` of your resource) and the resource file you created before with the modifications you need.
 
 Since this is a non-versioned element, all field values can be updated without limitations. However, please make sure to use the same `itemId` and the same `tenantId` of the resource you want to update.
