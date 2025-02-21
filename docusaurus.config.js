@@ -79,6 +79,12 @@ async function createConfig() {
           },
           {
             type: 'doc',
+            docId: "old_software-catalog/overview",
+            label: "Old Software Catalog",
+            activeBaseRegex: "(docs|docs/\\d.x)/old_software-catalog"
+          },
+          {
+            type: 'doc',
             docId: "marketplace/overview_marketplace",
             label: "Marketplace",
             activeBaseRegex: "(docs|docs/\\d.x)/(marketplace|runtime_suite/|development_suite/api-console/api-design/custom_microservice_get_started|tools|runtime_suite_tools|libraries)"

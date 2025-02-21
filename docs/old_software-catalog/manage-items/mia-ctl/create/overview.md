@@ -16,7 +16,7 @@ You have developed a new service (for example a NodeJS service)
 called "My Awesome Service". The service is a plugin, i.e. users are only required to configure it and deploy it in their project.
 You now want it to be available in the Marketplace of your Company.
 
-First of all, you need to create a JSON file as explained in [this guide](/software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
+First of all, you need to create a JSON file as explained in [this guide](/old_software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
 Save the file, for example as `myAwesomeService.json` file.
 
 The file contents will look like this:

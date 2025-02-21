@@ -20,7 +20,7 @@ The ability to modify the visibility of an item to other companies is restricted
 :::
 
 :::info
-To create an item, please follow [this](/software-catalog/manage-items/overview.md) dedicated guide.
+To create an item, please follow [this](/old_software-catalog/manage-items/overview.md) dedicated guide.
 :::
 
 ## How to manage items visibility 
@@ -55,7 +55,7 @@ In the event that you need to port an item originally available in the public Ma
 
 Once the Mia-Platform team receives the request and assesses its feasibility, they will grant authorization to proceed with the porting and monitor migration activities. After obtaining the authorization to proceed with the porting, you will need to create a repository on your Git Provider and migrate the code of the item you want to transfer. During this phase, if necessary, you will also need to configure your CI/CD pipelines.
 
-Once the repository configuration is complete, the final operational step involves creating the Item Configuration following the [guide for creating items](/software-catalog/manage-items/overview.md). At this point, it's essential to notify the Mia-Platform maintenance team of the completion of the preceding steps, either through the previously opened service request or GitHub discussion. This will allow them to proceed with the removal of the old item and its related configurations (repositories, pipelines, etc.) from the publicly accessible Marketplace.
+Once the repository configuration is complete, the final operational step involves creating the Item Configuration following the [guide for creating items](/old_software-catalog/manage-items/overview.md). At this point, it's essential to notify the Mia-Platform maintenance team of the completion of the preceding steps, either through the previously opened service request or GitHub discussion. This will allow them to proceed with the removal of the old item and its related configurations (repositories, pipelines, etc.) from the publicly accessible Marketplace.
 
 ### Porting an existing item to the Public Marketplace
 

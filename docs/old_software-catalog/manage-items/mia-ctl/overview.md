@@ -13,6 +13,6 @@ First of all, you need to setup `miactl`, as explained in the [dedicated doc](/c
 With the `miactl marketplace` subcommands, you can perform several actions, described here below.
 
 :::tip
-If you need to handle many Marketplace items, we suggest the adoption of a [Declarative Approach](/software-catalog/manage-items/declarative-approach.md).
+If you need to handle many Marketplace items, we suggest the adoption of a [Declarative Approach](/old_software-catalog/manage-items/declarative-approach.md).
 :::
 
