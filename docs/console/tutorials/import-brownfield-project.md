@@ -12,7 +12,7 @@ The `import` command takes one or more YML files describing Kubernetes resources
 
 This feature is very useful when migrating a `brownfield project` into a Mia-Platform console project, as it helps avoid long and tedious initial manual setup steps.
 
-In this tutorial, we will see how to import a simple workload describing an `NGNIX API Gateway` into the mia-platform console.
+In this tutorial, we will see how to import import the manifests to build and deploy a simple (not production ready), multi-tier web application composed of a single-instance `Redis` and multiple web frontend instances into the mia-platform console.
 
 ## Prerequisites
 
