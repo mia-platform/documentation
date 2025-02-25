@@ -113,12 +113,25 @@ At the moment, the file part must be the last one of the multipart. Any other pa
 This API supports only one file per request. If the request contains more files, then only the first one will be uploaded. Consider using `POST /bulk` to upload multiple files at once.
 :::
 
+This endpoint allows choosing a custom file name by specifying the `filename` field inside the caster file:
+```
+module.exports = function caster(doc) {
+  return {
+    filename: doc?.filename || undefined,
+  }
+}
+
+module.exports.additionalPropertiesValidator = {
+  filename: { type: 'string', description: 'custom name of the file to upload' }
+}
+```
+
 #### Response
 
 In case of success, the response is a JSON with the following fields.
 
 * _id: unique MongoDB identifier.
-* name: original file name.
+* name: original file name or custom file name.
 * file: unique name of the file that should be used to retrieve it using this service.
 * size: size in bytes of the uploaded file.
 * location: the URL that can be used to download the file using the same service that performed the upload.
