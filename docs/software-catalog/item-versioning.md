@@ -1,6 +1,6 @@
 ---
 id: item-versioning
-title: Item verisoning
+title: Item versioning
 sidebar_label: Item versioning
 ---
 

@@ -1923,25 +1923,34 @@
   ],
   "software-catalog": [
     {
-      "id": "software-catalog/overview",
-      "type": "doc"
-    },
-    {
-      "id": "software-catalog/item-types",
-      "type": "doc"
-    },
-    {
-      "id": "software-catalog/release-stage",
-      "type": "doc"
-    },
-    {
-      "id": "software-catalog/item-versioning",
-      "type": "doc"
-    },
-    {
-      "id": "software-catalog/visibility",
-      "type": "doc"
+      "type": "category",
+      "collapsed": true,
+      "label": "Overview",
+      "link": {
+        "id": "software-catalog/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "software-catalog/item-types",
+          "type": "doc"
+        },
+        {
+          "id": "software-catalog/release-stage",
+          "type": "doc"
+        },
+        {
+          "id": "software-catalog/item-versioning",
+          "type": "doc"
+        },
+        {
+          "id": "software-catalog/item-visibility",
+          "type": "doc"
+        }
+      ]
+
     }
+    
   ],
   "old_software-catalog": [
     {
