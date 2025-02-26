@@ -1,7 +1,7 @@
 ---
-id: item-versioning
-title: Item versioning
-sidebar_label: Item versioning
+id: items-versioning
+title: Items versioning
+sidebar_label: Items versioning
 ---
 
 To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).

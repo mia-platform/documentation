@@ -1,7 +1,7 @@
 ---
-id: release-stage
-title: Item lifecycle management
-sidebar_label: Item lifecycle
+id: items-lifecycle
+title: Items lifecycle
+sidebar_label: Items lifecycle
 ---
 
 When creating or updating an item, the user can add information to help users identifying the maturity of the item.

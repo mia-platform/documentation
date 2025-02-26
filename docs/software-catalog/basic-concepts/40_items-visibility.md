@@ -1,7 +1,7 @@
 ---
-id: item-visibility
-title: Visibility
-sidebar_label: Visibility
+id: items-visibility
+title: Items visibility
+sidebar_label: Items visibility
 ---
 
 As a Console user, you can access both your Company’s Software Catalog and the Mia-Platform Marketplace.

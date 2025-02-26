@@ -1,7 +1,7 @@
 ---
-id: item-types
-title: Item types
-sidebar_label: Item types
+id: items-types
+title: Items types
+sidebar_label: Items types
 ---
 
 An **Item** (also referred to as a **Component**) is the basic unit of creating a resource within the catalog and represents a software resource that can be utilized in Mia-Platform Projects.
