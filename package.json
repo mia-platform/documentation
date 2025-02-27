@@ -24,6 +24,7 @@
     "@docusaurus/core": "2.4.3",
     "@docusaurus/plugin-client-redirects": "2.4.3",
     "@docusaurus/preset-classic": "2.4.3",
+    "@mia-platform/console-types": "^0.30.1",
     "@staticdeploy/cli": "^0.15.5",
     "clsx": "^2.1.1",
     "cspell": "^8.17.3",
