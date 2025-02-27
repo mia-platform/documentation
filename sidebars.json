@@ -1957,8 +1957,33 @@
           "items": [
             {
               "type": "doc",
+              "id": "software-catalog/items-management/items-manifest/example"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/items-management/items-manifest/template"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/items-management/items-manifest/plugin"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/items-management/items-manifest/application"
+            },
+            {
+              "type": "doc",
               "id": "software-catalog/items-management/items-manifest/proxy"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/items-management/items-manifest/sidecar"
+            },
+            {
+              "type": "doc",
+              "id": "software-catalog/items-management/items-manifest/infrastructure-resource"
             }
+
           ]
         },
         {
