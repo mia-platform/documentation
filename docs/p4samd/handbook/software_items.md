@@ -25,7 +25,11 @@ The section allows users to view, create, and edit software items. It provides a
 You can create a new Software Item starting from an older one: simply select it from the dropdown, then modify the `name` and other fields.
 ::: 
 
-## 2. Software Item Table
+## 2. Software Items Visualization
+
+### Table
+
+![alt text](img/swi_table.png)
 The table shows basic info of the tree of software items:
 1. **+/-**: Expand/Collapse Software Item children
 2. **Software Item**: Name of the Software Item, clickable if the `Implementation link` is filled.
@@ -40,6 +44,32 @@ The table shows basic info of the tree of software items:
    - **Delete item**: Opens a confirmation modal to delete the item.
 
 **N.B.** Every edit of the software item is reflected in all instances.
+
+### Graph  
+
+The graph provides a visual representation of software items, displaying only the first two levels of the hierarchy. Clicking on a box open the related drawer.
+
+![Software Item Graph](img/swi_chart.png)  
+
+Each box contains key details about a software item, including:  
+1. **Name** 
+2. **Version** 
+4. **Count of Suggestions** (shown only if greater than 0)  
+3. **Approval Status**
+5. **Implementation Status**  
+6. **Software Safety Class** (shown only for medical device)
+
+##### **Minimap**  
+- The minimap (bottom-right corner) provides an overview of the entire graph, helping users navigate large structures efficiently.  
+
+##### **Caption (Legend)**  
+- Located in the top-left corner, the caption explains the different symbols and colors used in the graph, see **Status** of [Software Item States and Related Actions](#3-software-item-states-and-related-actions) for more infos.
+
+##### **Actions**  
+- **Zoom In (+):** Increases the zoom level for a closer view of details.  
+- **Zoom Out (-):** Decreases the zoom level for a broader view.  
+- **Fit View:** Adjusts the graph to fit within the visible area, ensuring all elements are displayed properly.  
+
 
 ## 3. Software Item States and Related Actions
 Depending on the status of the software items, several fast actions are available:
