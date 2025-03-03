@@ -102,12 +102,13 @@ No, **Mia-Care P4SaMD** does not share any data with external parties. Organizat
 
 ---
 
-### Does Mia-Care P4SaMD integrate with a specific ALM / eQMS / …?
+### Does Mia-Care P4SaMD integrate with a specific ALM / eQMS / … ?
 
 Currently, we can integrate with the following products:
 
 - **ALM**: [Jira][jira]
-- **Testing framework**: any solution capable of generating JUnit reports in XML format, such as [Jest][jest] or [Playwright][playwright] 
+- **Testing framework**: any solution capable of generating JUnit reports in XML format, such as [Jest][jest] or [Playwright][playwright]
+- **SBOM generator**: any solution capable of generating SBOM in [CycloneDX format][cyclone-dx], like [trivy][trivy]
 
 We have plans to integrate with the following products in the foreseeable future:
 
@@ -118,7 +119,9 @@ We have plans to integrate with the following products in the foreseeable future
 If you have further questions or need additional assistance, feel free to reach out to our team. We are here to help you succeed with P4SaMD!
 
 
+[cyclone-dx]: https://cyclonedx.org/
 [jest]: https://github.com/jest-community/jest-junit
 [jira]: https://www.atlassian.com/it/software/jira
 [playwright]: https://playwright.dev/docs/test-reporters#junit-reporter
 [polarion]: https://polarion.plm.automation.siemens.com/
+[trivy]: https://trivy.dev/latest/
