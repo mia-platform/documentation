@@ -3,11 +3,8 @@ import clsx from "clsx";
 import Layout from "@theme/Layout";
 
 import Logo from "../components/Logo";
-import Hexagons from "../components/Hexagons";
 import Feature from "../components/Feature";
-import VersionBanner from "../components/VersionBanner";
 import HowToBox from "../components/HowToBox";
-import LastPages from "../components/LastPages";
 import {desktop} from "../lib/constants";
 
 import SearchBar from "@theme/SearchBar";
@@ -32,14 +29,15 @@ const features = [
     icon: "console",
     toUrl: "https://docs.mia-platform.eu/",
     description: `Start to use only one platform to design and manage the full-cycle of your DevOps`,
+  },
+  {
+    type: "feature",
+    title: "Frequently Asked Questions",
+    icon: "learn",
+    toUrl: "/docs/p4samd/faq",
+    description: `Find answers to the most common questions about Mia-Care P4SaMD`,
   }
 ];
-
-const recentLinks = {
-  title: "Latest Documentation Updates",
-  description:
-      "Do you wish to stay updated on the latest changes and additions to our documentation? Please refer to the links below."
-}
 
 function Home() {
   const context = useDocusaurusContext();
@@ -60,7 +58,6 @@ function Home() {
     >
       <Fragment>
         <div className={styles.container}>
-          {/* {showHexagons && <Hexagons />} */}
           <header style={styles.header}>
             <div className={clsx("hero hero--primary", styles.heroBanner)}>
               <div className="container">
@@ -79,17 +76,8 @@ function Home() {
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
-              {/* {<div className="row">
-              <VersionBanner
-                link="/docs/release-notes/v12-overview"
-                majorVersion="12"
-                subTitle="Click here and learn about the new features in this new v12."
-                title="Mia-Platform v12 is now Generally Available"
-              />
-              </div>} */}
-
               <div className="row">
-                <div className="col col--8">
+                <div className="col col--12">
                   <div className="row">
                     {features.map((props, idx) => {
                       if (props.type === 'feature') {
@@ -107,17 +95,7 @@ function Home() {
                       }
                     })}
                   </div>
-
                 </div>
-                <div className="col col--4">
-                  <div className="row">
-                    <LastPages
-                        description={recentLinks.description}
-                        title={recentLinks.title}
-                    />
-                  </div>
-                </div>
-
               </div>
             </div>
           </section>

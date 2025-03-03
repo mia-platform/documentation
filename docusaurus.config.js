@@ -21,9 +21,9 @@ async function createConfig() {
       image: "img/documentation-link-preview.png",
       algolia: {
         placeholder: "Search for terms, features and more...",
-        apiKey: "...",
-        appId: "...",
-        indexName: "mia-care-docs",
+        apiKey: "ba554a4401881ad1156c161121c19b5f",
+        appId: "GTJ6ERIPDP",
+        indexName: "mia-care",
         contextualSearch: true,
       },
       colorMode: {
@@ -56,14 +56,14 @@ async function createConfig() {
           ]
         },
         {
-          href: "https://makeitapp.atlassian.net/servicedesk/customer/portal/21",
+          href: "https://mia-care.io/competence-center/video/mia-care-product-demo-platform-for-software-as-a-medical-device/",
           position: "left",
-          label: "Support"
+          label: "Product demo"
         },
         {
-          href: "https://github.com/mia-platform/community/discussions",
+          href: "https://mia-care.io",
           position: "left",
-          label: "Community"
+          label: "About us"
         },
         {
           type: "docsVersionDropdown",
@@ -200,10 +200,11 @@ async function createConfig() {
             }],
             editUrl: createEditUrl,
             sidebarPath: require.resolve("./sidebars.js"),
-            lastVersion: "current",
+            lastVersion: "2.0.x",
+            includeCurrentVersion: false,
             versions: {
-              current: {
-                label: "2.0 (Current)",
+              "2.0.x": {
+                label: "2.0.x (Current)",
                 path: "",
                 banner: "none"
               },

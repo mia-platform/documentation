@@ -1,0 +1,104 @@
+{
+  "P4SaMD": [
+    {
+      "id": "p4samd/overview",
+      "label": "What is P4SaMD?",
+      "type": "doc"
+    },
+    {
+      "label": "Installation",
+      "type": "category",
+      "items": [
+        {
+          "id": "p4samd/system_requirement",
+          "label": "System Requirements",
+          "type": "doc"
+        },
+        {
+          "id": "p4samd/configuration",
+          "label": "Configuration",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "label": "Handbook",
+      "type": "category",
+      "items": [
+        {
+          "id": "p4samd/handbook/getting_started",
+          "label": "Getting Started",
+          "type": "doc"
+        },
+        {
+          "label": "Software System",
+          "type": "category",
+          "items": [
+            {
+              "id": "p4samd/handbook/system_versions",
+              "label": "Versions",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/system_overview",
+              "label": "Overview",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/insight_and_suggestions",
+              "label": "Insight and Suggestions",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/reports",
+              "label": "Reports",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "label": "Software Items",
+          "type": "category",
+          "items": [
+            {
+              "id": "p4samd/handbook/software_items",
+              "label": "Software Items",
+              "type": "doc"
+            },
+            {
+              "id": "p4samd/handbook/sbom",
+              "label": "Software Bill Of Materials (SBOM)",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "p4samd/handbook/risks",
+          "label": "Risks",
+          "type": "doc"
+        },
+        {
+          "label": "Tests",
+          "type": "category",
+          "items": [
+            {
+              "id": "p4samd/handbook/software_verification",
+              "label": "Software Verification",
+              "type": "doc"
+            }
+          ]
+        },
+        {
+          "id": "p4samd/handbook/changes",
+          "label": "Changes",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "id": "p4samd/faq",
+      "label": "Frequently Asked Questions (FAQs)",
+      "type": "doc"
+    }
+  ]
+}
