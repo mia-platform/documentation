@@ -94,10 +94,31 @@ No, **Mia-Care P4SaMD does not provide automatic certification** for the softwar
 
 Using P4SaMD significantly reduces the effort needed to prepare for certification, but the certification itself must be conducted by an authorized body.
 
+---
+
 ### Does Mia-Care P4SaMD share data with third-party organizations?
 
 No, **Mia-Care P4SaMD** does not share any data with external parties. Organizational and technical measures based on international regulations and widely recognized standards are adopted to ensure availability, integrity and confidentiality of data collected from external tools and systems, like ALM (Application Lifecycle Management) tools, Software Development Lifecycle (SDLC) toolchains and Identity Providers (IDPs).
 
 ---
 
+### Does Mia-Care P4SaMD integrate with a specific ALM / eQMS / …?
+
+Currently, we can integrate with the following products:
+
+- **ALM**: [Jira][jira]
+- **Testing framework**: any solution capable of generating JUnit reports in XML format, such as [Jest][jest] or [Playwright][playwright] 
+
+We have plans to integrate with the following products in the foreseeable future:
+
+- **ALM**: [Polarion][polarion]
+
+---
+
 If you have further questions or need additional assistance, feel free to reach out to our team. We are here to help you succeed with P4SaMD!
+
+
+[jest]: https://github.com/jest-community/jest-junit
+[jira]: https://www.atlassian.com/it/software/jira
+[playwright]: https://playwright.dev/docs/test-reporters#junit-reporter
+[polarion]: https://polarion.plm.automation.siemens.com/
