@@ -10,6 +10,12 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [3.9.2] 2024-02-28
+
+### Changed
+
+- `example` and `examples` are removed from `parameters` object inside `paths` because API Portal shows them as default values
+
 ## [3.9.1] 2024-02-17
 
 ### Versioning
