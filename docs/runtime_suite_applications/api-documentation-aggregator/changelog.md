@@ -10,6 +10,8 @@ DO NOT MODIFY IT BY HAND.
 Instead, modify the source file and run the aggregator to regenerate this file.
 -->
 
+## [2.0.5] - 2025-02-28
+
 ## [2.0.4] - 2025-02-17
 
 ## [2.0.3] - 2025-02-14
