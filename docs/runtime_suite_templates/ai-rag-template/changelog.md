@@ -15,7 +15,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.3 - 2025-02-07
+
+### Fixed
+
+- Version `0.5.2` included an error with the `mdx` files for embedding generation from `generateFromFile` API. This has been fixed.
+- Fixed several typos related to the `aggregateMaxTokenNumber` configurable parameter.s
+
+### Changed
+
+- Updated documentation related to the Aggregate Max Token Number and custom prompts (both system and user prompts)
+
 ## 0.5.2 - 2025-01-29
+
 
 ### Fixed
 
