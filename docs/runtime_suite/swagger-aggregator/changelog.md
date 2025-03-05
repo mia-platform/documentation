@@ -25,12 +25,14 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 - `fs-extra@^11.2.0`,
 - Dev dependencies updated
 
+## [3.9.0] 2025-02-14
+
 ### Updated
 
 - Updated Api Portal to version `2.2.0`
 - GET `/ui-config` endpoint now returns also the custom logo for the API Portal, when configured.
 
-## Added
+### Added
 
 - Added `apiPortalConfig` configurable object in the `swagger-config.json`, to specify a custom prefix, logo or favicon for the API Portal.
 - Added GET `/api-portal/config` endpoint to retrieve the config for the API Portal, such as the prefix with which call the backend.
@@ -203,6 +205,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 ## 3.4.2 - 19-11-2021
 
 ### Fixed
+
 - Fixed schema.component array values duplication using combineMerge algorithm.
 
 ## 3.4.1 - 12-07-2021
@@ -255,74 +258,95 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 ### Updated
 
 **BREAKING CHANGE**
--  update lc39 v3.1.3 with the newer logging format.
+
+- update lc39 v3.1.3 with the newer logging format.
 
 ## 2.5.0 - 11-09-2020
 
 ### Added
 
- - added support for `transformationPaths` map used to implement path rewrite and tags override
+- added support for `transformationPaths` map used to implement path rewrite and tags override
 
 ## 2.4.1 - 31-08-2020
 
 ### Fixed
- - Fixed include/exclude path filter matching strategy
+
+- Fixed include/exclude path filter matching strategy
 
 ## 2.4.0 - 26-08-2020
 
 ### Added
- - Added a filter to the paths, with IncludePaths and ExcludePaths
+
+- Added a filter to the paths, with IncludePaths and ExcludePaths
 
 ## 2.3.0 - 09-07-2020
 
 ### Added
- - Generate security section only for right routes
+
+- Generate security section only for right routes
 
 ## 2.2.0 - 08-07-2020
 
 ### Added
- - GET subswaggers query parameter includeAll to filter subswagger "All"
+
+- GET subswaggers query parameter includeAll to filter subswagger "All"
 
 ## 2.1.2 - 26-05-2020
 
 ### Added
- - route /yaml download swagger and subswagger for Swagger 2 and OpenAPI 3
+
+- route /yaml download swagger and subswagger for Swagger 2 and OpenAPI 3
 
 ## 2.0.2 - 26-02-2020
 
 ### Perf
-  -  improve performance avoid stringify during oas3 conversion
+
+- improve performance avoid stringify during oas3 conversion
 
 ## 2.0.1 - 2020-02-03
+
 ### Changed
+
 - Update package-lock for zero-downtime
 
 ## 2.0.0 - 2020-01-10
+
 ### Added
+
 - api `/openapi/v3/json` to retrieve the documentation in openApi3
 - apis of type `/openapi/v3/<subswagger-path>.json` to retrieve subswaggers documentation in openApi3
 - api `/openapi/v3/subswaggers/` to retrieve the list of available subswaggers in openApi3
 
 ### Fixed
+
 - Update deps
 
 ## 1.3.1 - 2019-12-09
+
 ### Fixed
+
 - Handle prettified JSON.
 
 ## 1.3.0 - 2019-07-24
 
 ### Added
+
 - api `/swagger/subswaggers/` to retrieve the list of available subswaggers;
 
 ## 1.2.0 - 2019-06-28
+
 ### Added
+
 - the `/-/check-up` route. It checks the healthiness of the service.
 
 ## 1.1.1
+
 ### Fixed
+
 - remove prefix validation pattern
 
 ## 1.1.0
+
 ### Added
+
 - set-tag-name-to-subswagger: force tags for subswagger
