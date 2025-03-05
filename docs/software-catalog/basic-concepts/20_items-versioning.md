@@ -4,6 +4,13 @@ title: Items versioning
 sidebar_label: Items versioning
 ---
 
+- versione N/A
+- concetto di latest
+
+:::info
+This feature is currently available for the [Plugin](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md), [Infrastructure Resource](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx), [Templates and Examples](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) types.
+:::
+
 To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).
 
 Also, to provide continuity to the definition of the other versions of the same resource, the `tenantId` and the `itemId` properties must be the same for all the versions of the same resource.
