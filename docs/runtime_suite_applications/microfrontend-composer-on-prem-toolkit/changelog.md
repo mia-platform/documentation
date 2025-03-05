@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated `back-kit` to version `1.5.15`
 
-## [1.3.1] - 2025-01-10aaaa
+## [1.3.1] - 2025-01-10
 
 - Updated `back-kit` to version `1.5.14`
 
