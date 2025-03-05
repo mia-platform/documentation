@@ -29,6 +29,10 @@ Here below are listed all the properties that should be provided for each type o
 | `supportedByImageUrl` | String     | No           | The image that will be associated with the company that has produced the item|
 | `version`             | Object     | No           | The version of the item. It is an object composed by the following properties: `name`, `releaseNote`, `security`|
 
+:::info
+Setting both the `releaseStage` and the `comingSoon` fields is not permitted and would lead to inconsistencies; please set either field or none according to the item lifecycle status.
+:::
+
 The documentation of the item is an object composed by `type` and `url`:
 
 | **Name**              | **Type**   | **Required** | **Description**  |
