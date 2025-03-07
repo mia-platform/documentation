@@ -112,6 +112,13 @@ logics. In the Console you can manage all the configuration that you may need in
 - **View Repository**: this button, present only in microservices created from Examples and Templates, allows you to go directly to your git repository from the Console.
 - **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both `ssh` and `https`.
 
+:::info
+The supported IDEs are the following:
+* VS Code
+* IntelliJ
+* Cursor AI (only for on-premise installations).
+:::
+
 The following paragraphs explain each section of the Microservice detail page.
 
 ### Microservice
