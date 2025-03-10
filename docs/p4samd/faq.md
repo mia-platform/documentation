@@ -106,7 +106,7 @@ No, **Mia-Care P4SaMD** does not share any data with external parties. Organizat
 
 Currently, we can integrate with the following products:
 
-- **ALM**: [Jira][jira]
+- **ALM**: [Jira][jira] or, using [Jira][jira] as a bridge, any ALM that can be integrated with [Jira][jira] 
 - **Testing framework**: any solution capable of generating JUnit reports in XML format, such as [Jest][jest] or [Playwright][playwright]
 - **SBOM generator**: any solution capable of generating SBOM in [CycloneDX format][cyclone-dx], like [trivy][trivy]
 
