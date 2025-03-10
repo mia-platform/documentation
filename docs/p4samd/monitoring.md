@@ -8,6 +8,16 @@ sidebar_label: Monitoring
 
 Mia-Care P4SaMD is installed by the Mia-Care team, ensuring the right configuration and installation procedure. After installation, the Mia-Care team also sets up the necessary dashboards for monitoring. These dashboards can be modified based on customer needs.
 
+The recommended tool for monitoring is the Grafana suite, composed of the following tools:
+
+- **Prometheus**: Used for collecting and querying metrics.
+- **Loki**: Used for log aggregation and querying.
+- **Fluentd**: Used for log collection and forwarding.
+- **Fluentbit**: A lightweight log processor and forwarder.
+- **Mimir**: Used for scalable and long-term storage of metrics.
+
+Other monitoring and logging stacks are supported, but in that case, the setup is in charge of the customer. Mia-Care can assist in setting up dashboards and alerts for these alternative stacks.
+
 ## Default Monitoring Dashboards
 
 The default monitoring setup contains the following dashboards:
