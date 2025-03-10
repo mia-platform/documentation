@@ -18,6 +18,11 @@
           "id": "p4samd/configuration",
           "label": "Configuration",
           "type": "doc"
+        },
+        {
+          "id": "p4samd/monitoring",
+          "label": "Monitoring",
+          "type": "doc"
         }
       ]
     },
