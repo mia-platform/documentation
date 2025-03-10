@@ -116,7 +116,7 @@ logics. In the Console you can manage all the configuration that you may need in
 The supported IDEs are the following:
 * VS Code
 * IntelliJ
-* Cursor AI (only for on-premise installations).
+* Cursor AI
 :::
 
 The following paragraphs explain each section of the Microservice detail page.
