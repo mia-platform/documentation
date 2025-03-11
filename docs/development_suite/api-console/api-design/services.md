@@ -118,7 +118,7 @@ The supported IDEs to clone your repository are the following:
 * IntelliJ
 * Cursor AI
 
-Please note that in order to enable the support to Cursor AI IDE, the Feauture toggle `ENABLE_CLONE_REPO_WITH_CURSOR_AI` with Console scope should be activated from CMS.
+Please note that in order to enable the support to Cursor AI IDE, the Feature toggle `ENABLE_CLONE_REPO_WITH_CURSOR_AI` with Console scope should be activated from CMS.
 :::
 
 The following paragraphs explain each section of the Microservice detail page.
