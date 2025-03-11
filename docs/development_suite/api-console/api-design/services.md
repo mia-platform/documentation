@@ -113,10 +113,12 @@ logics. In the Console you can manage all the configuration that you may need in
 - **Clone**: this button, present only in microservices created from Examples and Templates, enables to clone code repository directly from Console. The code repository can be copied with both `ssh` and `https`.
 
 :::info
-The supported IDEs are the following:
+The supported IDEs to clone your repository are the following:
 * VS Code
 * IntelliJ
 * Cursor AI
+
+Please note that in order to enable the support to Cursor AI IDE, you have to activate the Feauture toggle `ENABLE_CLONE_REPO_WITH_CURSOR_AI` with Console scope.
 :::
 
 The following paragraphs explain each section of the Microservice detail page.
