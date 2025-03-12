@@ -24,7 +24,7 @@ For the authentication method, you can choose to use either your personal accoun
 
 ## Import Kubernetes resources into an empty Mia-Platform Console Project
 
-::: caution
+:::caution
 Kubernetes resources can only be imported into an empty project. Additionally, at the time of writing this tutorial, the `import` command is lossy, meaning that some advanced configurations might be lost during the process. We recommend reviewing the generated files before attempting a deployment to ensure that nothing is missing or incorrect.
 :::
 
@@ -185,7 +185,7 @@ spec:
 
 ```
 
-4. `frontend-deployment.yml`
+5. `frontend-deployment.yml`
 
 ```yaml 
 apiVersion: apps/v1
@@ -219,7 +219,7 @@ spec:
 
 ```
 
-4. `frontend-service.yml`
+6. `frontend-service.yml`
 
 ```yaml 
 apiVersion: v1
@@ -249,7 +249,7 @@ Now that we also have the YML file we want to import into the console, all thatâ
 To import the resources, run the following command:
 
 ```bash
-miactl import --filename <path-to-your-manifests> 
+miactl project import --filename <path-to-your-manifests> 
   --project-id <your-target-project-id> 
   --company-id <your-target-company-id> 
   --revision <your-target-revision>
