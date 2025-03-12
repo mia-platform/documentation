@@ -68,6 +68,12 @@ In this step, you can insert some general details about your provider:
 
 If in [Step 1](#step-1-provider-services) the **Git Provider** capability has been selected, an additional **Repository path template** field will appear in this step. This field controls where Project repositories, created using this provider, will be located, and can also contain a special interpolation variable `{{projectId}}` that will be replaced with the actual Project identifier during the [Project creation](/console/project-configuration/create-a-project.mdx) phase.
 
+:::info
+The **Repository path template** field identifies the path where your project configuration repository will be created. 
+It must follow the hierarchical structure of each **Git Provider** so it will be different for different providers. 
+More information about how to configure it for the specific provider in the table below.
+:::
+
 Below, some examples on the data to set for the supported provider types:
 
 <Tabs groupId="providerType" queryString>
@@ -75,12 +81,20 @@ Below, some examples on the data to set for the supported provider types:
 
 * **API Base URL**: `https://api.github.com`
 * **Base URL**: `https://github.com`
+* **Repository path template**: `<your-organization-name>/{projectId}/configurations`
+
+:::caution
+If your organization name contains spaces like *Mia-Platform Organization* you can find the right organization name to use in the **Repository path template** in the organization's url:
+
+`https://github.com/organizations/<your-organization-name>/` that in the case of **Mia-Platform Organization** will be `https://github.com/organizations/Mia-Platform-Organization/`
+:::
 
 </TabItem>
 <TabItem value="gitlab" label="GitLab">
 
 * **API Base URL**: `https://gitlab-test.com/api`
 * **Base URL**: `https://gitlab-test.com`
+* **Repository path template**: `<your-root-group>/<your-subgroup-1>/.../<your-subgroup-n>/{projectId}/configurations`
 
 </TabItem>
 <TabItem value="bitbucket-server" label="BitBucket Server">
