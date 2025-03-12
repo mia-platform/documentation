@@ -33,8 +33,7 @@ To facilitate data analysis, the Audit Logs section includes advanced filtering 
 
 ## Security Concerns
 
-Access to audit logs data within the Console is restricted to users with the "Company Owner" role, who can view an aggregated overview of logged events.  
-The raw log data is only accessible to administrators managing the Console installation. This ensures that sensitive log information is protected from unauthorized access while still enabling Companies to maintain oversight of key activities.
+The logs include information about the identity that performed the action, a time reference of when the action occurred, the type of action, and the resources involved. Access to audit logs data within the Console is restricted to users with the "Company Owner" role, who can view an aggregated overview of logged events. The raw log data is stored in a dedicated MongoDB database and is only accessible to administrators managing the Console installation. This ensures that log information is protected from unauthorized access while still enabling Companies to maintain oversight of key activities.
 
 ## Data Retention Period
 
