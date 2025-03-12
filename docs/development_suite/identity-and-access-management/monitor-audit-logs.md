@@ -11,7 +11,7 @@ For this reason, the Console offers a dedicated Audit Logs section, allowing to 
 ## Audit Logs section 
 
 The Audit Logs feature is available at the Company level within the "Administration" section of the Console.  
-This section is visible and accessible only to users with the "Company Owner" role and provides a comprehensive overview of recorded identities actions, that can be easily monitored.
+It is visible and accessible only to users with the "Company Owner" role and provides a comprehensive overview of recorded identities actions, that can be easily monitored.
 
 Audit logs are displayed in a structured table format, providing the following information for each log:
 
