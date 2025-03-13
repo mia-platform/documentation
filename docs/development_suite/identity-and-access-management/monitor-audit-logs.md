@@ -8,6 +8,9 @@ Mia-Platform Console provides an Audit Logs feature that enables users with enou
 
 For this reason, the Console offers a dedicated Audit Logs section, allowing to easily track logging activities in a central place.
 
+## How Audit Logs work
+TO DO: Rond explanation
+
 ## Audit Logs section 
 
 The Audit Logs feature is available at the Company level within the "Administration" section of the Console.  
