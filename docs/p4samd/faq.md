@@ -98,7 +98,18 @@ Using P4SaMD significantly reduces the effort needed to prepare for certificatio
 
 ### Does Mia-Care P4SaMD share data with third-party organizations?
 
-No, **Mia-Care P4SaMD** does not share any data with external parties. Organizational and technical measures based on international regulations and widely recognized standards are adopted to ensure availability, integrity and confidentiality of data collected from external tools and systems, like ALM (Application Lifecycle Management) tools, Software Development Lifecycle (SDLC) toolchains and Identity Providers (IDPs).
+**Mia-Care P4SaMD** will share data with specific external parties only when certain features are used, in particular:
+
+- [Microsoft OpenAI Azure][azure-openai-service]: to provide AI-based functionalities, **Mia-Care P4SaMD** will share data received from the integrated ALM.
+
+  - [GDPR compliance][azure-openai-gdpr]
+  - [Terms of Use][azure-openai-tos]
+  - [Data Protection Addendum][azure-openai-dpa]
+  - [Data, privacy, and security][azure-openai-data-privacy-security]
+
+You should always to check the privacy policy and terms of use of the services your are going to use, to ensure their data processing practices are compliant with applicable regulations and company policies, especially if sensitive or confidential information are involved.
+
+Organizational and technical measures based on international regulations and widely recognized standards are adopted to ensure availability, integrity and confidentiality of data collected from external tools and systems, like ALM (Application Lifecycle Management) tools, Software Development Lifecycle (SDLC) toolchains and Identity Providers (IDPs).
 
 ---
 
@@ -118,7 +129,11 @@ We have plans to integrate with the following products in the foreseeable future
 
 If you have further questions or need additional assistance, feel free to reach out to our team. We are here to help you succeed with P4SaMD!
 
-
+[azure-openai-service]: https://azure.microsoft.com/en-us/products/ai-services/openai-service
+[azure-openai-gdpr]: https://learn.microsoft.com/en-us/legal/gdpr
+[azure-openai-tos]: https://learn.microsoft.com/en-us/legal/termsofuse
+[azure-openai-dpa]: https://aka.ms/DPA
+[azure-openai-data-privacy-security]: https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy
 [cyclone-dx]: https://cyclonedx.org/
 [jest]: https://github.com/jest-community/jest-junit
 [jira]: https://www.atlassian.com/it/software/jira
