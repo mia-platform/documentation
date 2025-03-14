@@ -15,6 +15,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 7.2.3 - 2025-03-10
+
+### Changed
+
+- overhauled Mongo view update logic to avoid requesting [`dropCollection`](https://www.mongodb.com/docs/manual/reference/privilege-actions/#mongodb-authaction-dropCollection) privilege action
+- introduce abort controller to NodeJS stream pipeline to ensure the pipeline object is cleaned up when the response stream is destroyed
+
+### Fixed
+
+- prevent a memory leak the service was experiencing when it was not able to fulfill incoming requests
+- corrected a typo in option `maxIdleTimeMS` within Mongo client configuration, which prevented the environment variable `MONGODB_MAX_IDLE_TIME_MS` to take effect
+
 ## 7.2.2 - 2024-12-13
 
 ### Changed
@@ -43,6 +55,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- resolved a regression introduced starting from v7, where the pod would remain running despite index creation errors; now, the service does not start in case it encounters an error creating an index, providing a log describing the issue
 - enable bom stripping when importing CSV files
 - change CSV _escape_ character to align it with CSV field _quote_ character, as recommended by [RFC 4180](https://datatracker.ietf.org/doc/html/rfc4180)
 
