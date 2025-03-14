@@ -22,7 +22,9 @@ Here you can find all the artifacts and the starting version when they are being
 | nexus.mia-platform.eu/rond-authz/rond | v1.12.9 |
 | nexus.mia-platform.eu/rond-authz/rond | v1.12.9 |
 | nexus.mia-platform.eu/microlc/micro-lc | 2.4.3 |
-| nexus.mia-platform.eu/microlc/middleware | 3.3.3|
+| nexus.mia-platform.eu/microlc/middleware | 3.3.3 |
+| nexus.mia-platform.eu/console/scripts/software-catalog-sync | 0.2.0 |
+| nexus.mia-platform.eu/console/catalog-service | 1.0.0 |
 
 Our PEM-encoded public key can be downloaded [here] and you can see and example of verification of the signature
 using cosing:
