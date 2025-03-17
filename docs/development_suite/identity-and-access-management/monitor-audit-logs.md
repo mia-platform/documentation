@@ -4,15 +4,13 @@ title: Monitor Audit Logs
 sidebar_label: Monitor Audit Logs
 ---
 
-Mia-Platform Console provides an Audit Logs feature that enables users with enough administrative permissions to monitor identity actions within a Company and its related resources.
-Audit logs represent a crucial aspect in an Internal Developer Platform, especially with respects to governance, security, and compliance with regulatory frameworks.
-The goal of this feature is to ensure transparency and accountability in the use of Mia-Platform Console.  
+The **Mia-Platform Console** features a dedicated **Audit Log** section, enabling users with the necessary administrative permissions to track actions performed on resources within the company.  
 
-For this reason, the Console offers a dedicated Audit Logs section, allowing to easily track logging activities in a central place.
+This feature is designed to ensure **transparency** and **accountability** in the use of the Mia-Platform Console.
 
 ## How Audit Logs work
 
-The actions are tracked using **Rönd** that intercepts all the API calls, thanks to its policies extracts the useful informations and stores them in log records.
+The actions are tracked using **Rönd** that intercepts all the API calls, extracts the useful informations and stores them in log records.
 For this reason, the Audit Log system needs that Rond is enabled to work (see
 [Enable Rönd](../../console/tutorials/protect-your-endpoints-with-policies.mdx#enable-rönd) for more details)
 
@@ -24,27 +22,26 @@ It is accessible only to users with the **Company Owner** role and provides a co
 Audit logs are displayed in a structured table format, offering the following details for each entry:  
 
 - **Date and time** of the action  
-- **Author** of the action (*User* or *Service Account*)  
+- **Author** of the action (*User* or *Service Account* that initiated the action)  
 - **Operation performed** (*Creation*, *Edit*, or *Deletion*)  
 - **Target resource** and its **Scope**  
 - **Type** of the target resource  
 
-[audit logs table](/) TO DO
+![Audit logs table](./img/audit-logs/table.png)
 
 Additionally, you can view the details of a specific log by clicking the button at the end of each table row. This allows you to access more in-depth information about the logs that interest you most.
 
-[audit logs drawer detail](/) TO DO
+![Audit logs row detail](./img/audit-logs/table-row-detail.png)
 
 ### Filtering audit logs
 
-The **Audit Logs** section includes advanced filtering capabilities to facilitate data analysis. Currently, logs can be filtered based on:  
+The **Audit Logs** section offers advanced filtering capabilities to streamline data analysis. Users can filter logs by:  
 
-- **Date and time** of the action (by setting a start date, end date, or a date range)  
-- **Author identity**  
-- **Author identity type**  
-- **Type of target resource**  
+- **Date and time** – Set a start date, end date, or a custom date range.  
+- **Author** – Filter by a specific *Identity* or *Identity type*.  
+- **Target resource type** – Narrow results based on the type of resource affected.  
 
-[filtering audit logs image](/) TO DO
+![Filtering audit logs](./img/audit-logs/table-filter.png)
 
 ## Security Concerns
 
