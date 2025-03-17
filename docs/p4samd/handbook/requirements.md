@@ -22,7 +22,7 @@ In the requirements table you can see the icons indicating the evaluation status
 
 :::danger
 
-When performing an evaluation using AI, Assignee, Reporter and Approver information are not provided to AI. All the other data such as requirement title, description and all the others information are shared with AI service.
+When performing an evaluation using AI, Assignee, Reporter and Approver information are not provided to AI. Requirement title, description and other information, including related risks, tests and software items, are shared with AI service.
 
 Do not insert any personal or sensitive information in the AI-process fields.
 For more details about third-party organizations privacy and security measures, please check the [FAQ section][faq-data-sharing].
