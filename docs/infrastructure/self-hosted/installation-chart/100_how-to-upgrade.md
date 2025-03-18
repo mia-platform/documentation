@@ -39,7 +39,17 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v13 - version upgrades
 
-### Upgrade from last Console v13.5.3 to v13.6.0
+### Upgrade from v13.6.2 to v13.7.0
+
+With Console v13.7.0, the new Audit Logs feature is available. A new **required value** has been added to the configuration that lets you configure the audit storage.
+
+See the [Audit Section](./helm-values/20_general-settings.md#audit-logs-configuration) in the General settings page to find out how to configure it.
+
+:::tip
+As a best practice it is advised to store Audit logs in a different Database than application data. The `configurations.audit.mongodbUrl` allows you to configure a different connection string for this purpose.
+:::
+
+### Upgrade from v13.5.3 to v13.6.0
 
 With v13.6.0 a new microservice has been added to the Console application, you can configure it using the `catalogService` value to better suite your scaling needs
 

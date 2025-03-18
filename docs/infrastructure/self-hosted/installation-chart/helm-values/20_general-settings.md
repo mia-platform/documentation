@@ -118,6 +118,17 @@ mia-console:
         memoryLimitMax: "300Mi"
 ```
 
+## Audit Logs configuration
+
+From Console v13.7.0, you can configure where the Audit logs for the user activities performed in the application are stored.
+
+The best practices for Audit Logs management advise to store audit trails in a different database.
+For this reason, you can control a different connection string to be used to store audit trails with the `configurations.audit` key:
+
+|                      Name                      |  Type   | Description |             Default             | Optional |
+| :--------------------------------------------: | :-----: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------: | :------: |
+|                 `mongodbUrl`                 | string  |A valid MongoDB url in the form of mongodb:// or mongo+srv:// that is going to be used to store audit in a different database from the application.                                                                                                                                                               |                                 |    ✅     |
+
 ## Additional optional configurations
 
 |                      Name                      |  Type   | Description |             Default             | Optional |
