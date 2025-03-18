@@ -18,13 +18,11 @@ As mentioned in the [General Settings page](./20_general-settings.md), to connec
 
 MongoDB Cluster size can be shaped based to the number of Projects managed whithin Mia-Platform Console. However a Cluster with 10GB of storage is enough to manage up to 1000 Projects.
 
-
 ## MongoDB Encryption
 
 Mia-Platform Console can interact with MongoDB using [Client-Side Field Level Encryption (`CSFLE`)](https://www.mongodb.com/docs/manual/core/csfle/).
 
 To enable this feature you need access to a KMS and provide the configurations described below.
-
 
 :::warning
 [Client-Side Field Level Encryption (`CSFLE`)](https://www.mongodb.com/docs/manual/core/csfle/) is only available when using MongoDB Enterprise license, if you have the Community license
@@ -32,7 +30,6 @@ encryption is not enforced, therefore you'll have plain-text fields.
 
 Not enabling CSFLE in the on premise Console installation is considered a bad security practice and it should be avoided.
 :::
-
 
 To activate encryption use the [`crudEncryption`](#crud-encryption) value inside the `configurations` object.
 
