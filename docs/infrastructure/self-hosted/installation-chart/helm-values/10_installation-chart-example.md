@@ -123,6 +123,8 @@ configurations:
     keys:
       llm: "<YOUR_OPENAI_API_KEY>"
       embeddings: "<YOUR_OPENAI_API_KEY>"
+  audit:
+    mongodbUrl: "<YOUR MONGODB CONNECTION STRING TO BE USED FOR AUDIT STORAGE>"
 
 apiGateway:
   deploy:
