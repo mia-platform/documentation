@@ -11,7 +11,7 @@ This feature is designed to ensure **transparency** and **accountability** in th
 ## Audit Logs section
 
 The **Audit Logs** feature is available at the **Company level** within the **Administration** section of the Console.
-Accessible exclusively to users with the **Company Owner** role, it provides a comprehensive overview of the actions performed by the *Itentities* (*Users* and *Service Accounts*) on the Company's resources.
+Accessible exclusively to users with the **Company Owner** role, it provides a comprehensive overview of the actions performed by the *Identities* (*Users* and *Service Accounts*) on the Company's resources.
 
 Audit logs are displayed in a structured table format, offering the following details for each entry:  
 
@@ -19,7 +19,7 @@ Audit logs are displayed in a structured table format, offering the following de
 - **Author** of the action (*Identity* that initiated the action)  
 - **Operation performed** (*Creation*, *Edit*, or *Deletion*)  
 - **Target resource** and its **Scope**  
-- **Type** of the target resource  
+- **Target Resource type**
 
 ![Audit logs table](./img/audit-logs/table.png)
 
@@ -37,6 +37,6 @@ The **Audit Logs** section provides advanced filtering options for more precise 
 
 ![Filtering audit logs](./img/audit-logs/table-filter.png)
 
-:::tip
-The **retention time** of the logs is **6 months**.
+:::info
+If you are using Mia-Platform PaaS, the log retention period is set to six months.
 :::
