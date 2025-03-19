@@ -33,7 +33,7 @@ The **Audit Logs** section provides advanced filtering options for more precise 
 
 - **Date and time** – Set a start date, end date, or a custom date range.  
 - **Author** – Filter by a specific *Identity* or *Identity type*.
-- **Operation performed** - Search for logs based on *Creation*, *Edit*, or *Deletion* actions
+- **Operation performed** - Search for logs based on *Creation*, *Edit*, or *Deletion* actions.
 - **Target resource type** – Narrow results based on the type of resource affected.  
 
 ![Filtering audit logs](./img/audit-logs/table-filter.png)
