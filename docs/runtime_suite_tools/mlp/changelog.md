@@ -15,6 +15,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.1] - 2025-03-18
+
+### Changed
+
+- update to go 1.24.1
+- update jlp to v0.6.1
+- update cobra to 1.9.1
+- update pflag to 1.0.6
+- update kubernetes libraries to 0.31.7
+- update kustomize libraries to 0.19.0
+
 ## [v2.0.0] - 2025-01-30
 
 ### Changed
@@ -224,7 +235,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release 🎉🎉🎉
 
-[Unreleased]: https://github.com/mia-platform/mlp/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/mia-platform/mlp/compare/v2.0.1...HEAD
+[v2.0.1]: https://github.com/mia-platform/mlp/compare/v2.0.0...v2.0.1
 [v2.0.0]: https://github.com/mia-platform/mlp/compare/v2.0.0-rc.1...v2.0.0
 [v2.0.0-rc.1]: https://github.com/mia-platform/mlp/compare/v2.0.0-rc...v2.0.0-rc.1
 [v2.0.0-rc]: https://github.com/mia-platform/mlp/compare/v2.0.0-beta.2...v2.0.0-rc
