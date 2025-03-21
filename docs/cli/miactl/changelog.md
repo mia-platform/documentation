@@ -15,6 +15,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.17.3] - 2025-03-20
+
+### Changed
+
+- update go version to 1.24.1
+- update cobra to 1.9.1
+- update oauth2 to 0.28.0
+- update sync to 0.12.0
+- update test to 0.23.0
+
+### Added
+
+- new function to check remote console version to enable/disable functionality or feature of the cli
+- support to import service account from raw file if supported by the remote server
+
 ## [v0.17.2] - 2025-03-04
 
 ### Changed
@@ -348,7 +363,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - create cli sdk
 - create cli renderer
 
-[unreleased]: https://github.com/mia-platform/miactl/compare/v0.17.2...HEAD
+[unreleased]: https://github.com/mia-platform/miactl/compare/v0.17.3...HEAD
+[v0.17.3]: https://github.com/mia-platform/miactl/compare/v0.17.2...v0.17.3
 [v0.17.2]: https://github.com/mia-platform/miactl/compare/v0.17.1...v0.17.2
 [v0.17.1]: https://github.com/mia-platform/miactl/compare/v0.17.0...v0.17.1
 [v0.17.0]: https://github.com/mia-platform/miactl/compare/v0.16.0...v0.17.0
