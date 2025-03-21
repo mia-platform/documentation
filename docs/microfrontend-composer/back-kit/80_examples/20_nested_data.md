@@ -163,6 +163,8 @@ This would normally trigger the Table to render such data, loosing this way the 
 To avoid this behavior, the [Breadcrumbs][bk-breadcrumbs] component should be included in the page.
 It listens to the `display-data` event, and consequently emits [nested-navigation-state/push] events to restore the nested visualization with the newly updated data.
 
+It is possible to add the `keepPageCount` property to the `bk-crud-client` component, set to true. It tries to stay on the current page after a successful CRUD operation.
+
 :::caution
 The [Pagination][bk-pagination] and the [Breadcrumbs][bk-breadcrumbs] components should be included in the plugin configuration for the [Table][bk-table] component to work properly while editing nested fields.
 :::
