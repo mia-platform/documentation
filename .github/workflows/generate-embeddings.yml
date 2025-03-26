@@ -2,6 +2,15 @@ name: "Generate Embeddings"
 
 on:
   workflow_dispatch:
+    inputs:
+      console_version:
+        description: "Console version"
+        required: true
+        default: "latest"
+      embedding_model:
+        description: "Embedding model used to generate the embeddings"
+        required: true
+        default: "text-embedding-3-small"
 
 jobs:
   generate-embeddings:
