@@ -84,6 +84,8 @@ The following providers are supported, which can be grouped into the following c
 - __HTTP Connections__:
   - __Salesforce SObjects__: storage layer provided by Salesforce;
   - __MIA Platform CRUD__: data layer on __MongoDB__ provided by MIA Platform Console.
+- __Native__: databases that can reached using their native driver, such as:
+  - __MongoDB__
 
 ### Connection Details
 
@@ -267,12 +269,68 @@ There is no need to add the header `"accept": "application/x-ndjson"` since it's
 In case the CRUD Service needs a custom root CA or an insecure HTTPS connection, 
 it's possible to set the connection as `insecure` and set a custom certificate if needed.
 
+#### MongoDB
+
+Users can create a connection directly to __MongoDB__ using the dedicated provider, where the user needs to define the connection string used to connect to the database instance.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '100%'}}>
+
+![MongoDB Connection Form](./../img/connections_mongodb.png)
+
+  </div>
+</div>
+
+:::info
+Since __MongoDB__ is a NoSQL database there's no concept of schema for a collection. However when a [json schema validation](https://www.mongodb.com/docs/manual/core/schema-validation/) is available
+it may make sense to detect fields and types for a collection.
+
+Types from `MongoDB` are directly picked from the [BSON Type specification](https://www.mongodb.com/docs/manual/reference/operator/query/jsonSchema/#mongodb-query-op.-jsonSchema). 
+In particular, the following rules are followed by the agent during retrieval phase to parse the validation object:
+
+- when BSON and JSON schemas overlap (please refer to [this table](https://docs.rs/jsonutil/latest/jsonutil/index.html) for a comparison list used by the inner library), then the JSON schema is included;
+- when the form of the validation is, at first level, written as:
+
+  ```json
+  {
+    "type": "object",
+    "properties": {
+      // a list of fields
+    }
+  }
+  ```
+
+  then fields are extracted, since it's possible to determine column assets for every document of the collection;
+- if either `anyOf`, `allOf`, or `oneOf` appears at the first level of the validation schema, then the schema won't be parsed.
+
+:::
+
+Other than the connection settings, it's possible to also tune both databases and collections retrieval.
+
+##### MongoDB Databases Settings
+
+To define which databases the agent will retrieve when scanning models, the following options are provided:
+
+* __Strict Discard Default__: the default option, where the agent will try to pull the assets of any non-admin database;
+* __Strict__: the agent will try to pull only the assets of the database specified in the connection string;
+* __All__: the agent will try to pull the assets of every available database the user can access.
+* __Whitelist__: the user can specify a comma-separated list of databases that the agent will try to pull its assets from. 
+
+##### MongoDB Collections Settings
+
+Similarly, the collection retrieval can be tuned with the following options:
+
+* __Strict and Validated__: the default option and the preferred one, since the agent will retrieve only collection having a `validator.$jsonSchema` creation option;
+* __Strict__: the agent will try to pull the assets of the collections except the system's collections;
+* __All__: the agent will try to pull any collection of the databases.
+* __Whitelist__: the user can specify a comma-separated list of collections that the agent will try to pull its assets from. 
+
 ---
 
 ### Agent Settings
 
 :::info
-Thi settings can be configured for all connections __excepts__ _Mia Platform CRUD_. 
+Thi settings can be configured for all connections __excepts__ _Mia Platform CRUD_ and _MongoDB_. 
 :::
 
 Once the main details of a connection has been defined, you can also tune runtime parameters
