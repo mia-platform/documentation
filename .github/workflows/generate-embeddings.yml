@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: eic/trigger-gitlab-ci@v3
+        env:
+          CONSOLE_VERSION: 'Current version of the Mia-Platform Documentation'
+          EMBEDDING_MODEL: 'Version of the model used to generate the embeddings'
+        GITLAB_TOKEN: ${{ secrets.MIA_ASSISTANT_GITLAB_TOKEN }}
         with:
           url: https://git.tools.mia-platform.eu
           project_id: ${{ vars.MIA_ASSISTANT_GITLAB_PROJECT_ID }}
