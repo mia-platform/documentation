@@ -6,7 +6,7 @@ sidebar_label: Items visibility
 
 As a Console user, you can access both your Company’s Software Catalog and the Mia-Platform Marketplace.
 
-The Mia-Platform Marketplace is a key resource within the development platform, providing a vast library of ready-to-use components designed to support the setup of a Company's project architecture, supported by Mia-Platoform. In addition to these public items, the Marketplace also provides access to items created within your Company’s Software Catalog, which are exclusive to your company. These company-specific items are only visible and accessible to your own company.
+The Mia-Platform Marketplace is a key resource within the development platform, providing a vast library of ready-to-use components designed to support the setup of a Company's project architecture, supported by Mia-Platform. In addition to these public items, the Marketplace also provides access to items created within your Company’s Software Catalog, which are exclusive to your company. These company-specific items are only visible and accessible to your own company.
 
 This guide aims to assist the reader in managing the visibility of items across different visibility levels: from private to visible to all companies, from visible to all companies to public, or vice versa.
 
@@ -44,9 +44,9 @@ Since v12.x.x, **the `tenantId` field is mandatory**; the upgrade script will ta
 If you have any Marketplace item supported by you without a `tenantId`, **you have the responsibility to set a `tenantId`** to them. Failing to do so may result in errors in the next Console releases. Remember also to update their `visibility` according to your needs
 :::
 
-### Porting a public Marketplace item to the Private Catalog
+### Porting a public item to private
 
-In the event that you need to port an item originally available in the public Marketplace to the private Marketplace, the first step is to communicate this intention to Mia-Platform maintenance team through a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21) or via a [GitHub Discussion](https://github.com/mia-platform/community).
+In the event that you need to port an item originally available in the public Marketplace to private, the first step is to communicate this intention to Mia-Platform maintenance team through a [Service Request](https://makeitapp.atlassian.net/servicedesk/customer/portal/21) or via a [GitHub Discussion](https://github.com/mia-platform/community).
 
 Once the Mia-Platform team receives the request and assesses its feasibility, they will grant authorization to proceed with the porting and monitor migration activities. After obtaining the authorization to proceed with the porting, you will need to create a repository on your Git Provider and migrate the code of the item you want to transfer. During this phase, if necessary, you will also need to configure your CI/CD pipelines.
 
