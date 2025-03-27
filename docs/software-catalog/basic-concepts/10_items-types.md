@@ -6,7 +6,7 @@ sidebar_label: Items types
 
 An **Item** (also referred to as a **Component**) is the basic unit of creating a resource within the catalog and represents a software resource that can be utilized in Mia-Platform Projects.
 
-Directly from the Mia-Platform Marketplace, users can instantiate items into their Projects, integrating them to streamline development and configuration workflows.
+Directly from the Marketplace, users can instantiate items into their Projects, integrating them to streamline development and configuration workflows.
 
 ### Item Types
 
