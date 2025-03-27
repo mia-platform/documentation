@@ -83,7 +83,7 @@ The following providers are supported, which can be grouped into the following c
   - __SAP Hana__
 - __HTTP Connections__:
   - __Salesforce SObjects__: storage layer provided by Salesforce;
-  - __MIA Platform CRUD__: data layer on __MongoDB__ provided by MIA Platform Console.
+  - __Mia-Platform CRUD__: data layer on __MongoDB__ provided by Mia-Platform Console.
 - __Native__: databases that can reached using their native driver, such as:
   - __MongoDB__
 
@@ -224,9 +224,9 @@ For example, if you are using a testing instance, you'll need to set this field 
 
 ---
 
-#### Mia Platform CRUD
+#### Mia-Platform CRUD
 
-__Mia Platform CRUD__ connection enables to retrieve assets from Mia Platform Console projects having
+__Mia-Platform CRUD__ connection enables to retrieve assets from Mia-Platform Console projects having
 data models stored on MongoDB and managed through [Crud Service](/runtime_suite/crud-service/10_overview_and_usage.md).
 
 The required information to setup the connection are:
@@ -235,7 +235,7 @@ The required information to setup the connection are:
 - the [__Schemas Endpoint__](/runtime_suite/crud-service/10_overview_and_usage.md#get-schemas) (usually `/-/schemas`) to retrieve the collections assets;
 - the __Health Check Endpoint__ (usually `/-/healthz`) to retrieve the version of the CRUD Service.
 
-Additionally, it is possible to define the project and the environment where the CRUD Service is located in a Mia Platform Project
+Additionally, it is possible to define the project and the environment where the CRUD Service is located in a Mia-Platform Project
 by choosing a Company.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -332,7 +332,7 @@ Similarly, the collection retrieval can be tuned with the following options:
 ### Agent Settings
 
 :::info
-These settings can be configured for all connections __excepts__ _Mia Platform CRUD_ and _MongoDB_. 
+These settings can be configured for all connections __excepts__ _Mia-Platform CRUD_ and _MongoDB_. 
 :::
 
 Once the main details of a connection has been defined, you can also tune runtime parameters
