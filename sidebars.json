@@ -1683,6 +1683,11 @@
       ]
     },
     {
+      "label": "Security",
+      "id": "infrastructure/security/security-overview",
+      "type": "doc"
+    },
+    {
       "label": "Bring Your Own Infrastructure",
       "id": "infrastructure/byoi/byoi-overview",
       "type": "doc"
