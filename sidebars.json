@@ -741,6 +741,10 @@
         {
           "id": "console/console-extensibility/extension-locations",
           "type": "doc"
+        },
+        {
+          "id": "console/console-extensibility/extension-sso",
+          "type": "doc"
         }
       ],
       "label": "Console Extensibility",
