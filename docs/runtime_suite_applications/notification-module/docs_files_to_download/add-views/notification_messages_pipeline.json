@@ -1,0 +1,42 @@
+[
+  {
+    "$match": {
+      "__STATE__": "PUBLIC"
+    }
+  },
+  {
+    "$unwind": {
+      "path": "$messages"
+    }
+  },
+  {
+    "$project": {
+      "_id": {
+        "$concat": [
+          {
+            "$toString": "$_id"
+          },
+          "-",
+          "$messages.channel",
+          "-",
+          "$messages.templateName"
+        ]
+      },
+      "creatorId": "$creatorId",
+      "createdAt": "$createdAt",
+      "updaterId": "$updaterId",
+      "updatedAt": "$updatedAt",
+      "__STATE__": "$__STATE__",
+      "notificationId": {
+        "$toString": "$_id"
+      },
+      "recipient": "$recipient",
+      "event": "$event.name",
+      "date": "$createdAt",
+      "status": "$messages.status",
+      "channel": "$messages.channel",
+      "templateName": "$messages.templateName",
+      "message": "$messages.service.message"
+    }
+  }
+]
