@@ -26,7 +26,7 @@ The DICOM Service allows you to interact with PACS. The service must be configur
 * `VIEWER_AUTHORIZATION_TOKEN` (`required`): the Authorization token to be used in the Viewer authentication;
 * `DICOM_VIEWER_URL` (`required`): the URL to the DICOM Viewer, that will be used to generate the token for the visualization;
 * `VIEWER_GET_TOKEN_ENDPOINT` (`required`): the DICOM Viewer endpoint responsible for generating visualization tokens;
-* `DICOM_UID_ROOT` (`required`): the root of the UID generation;
+* `DICOM_UID_ROOT` (`required`): the root of the UID generation. You can obtain a free DICOM UID from [https://www.medicalconnections.co.uk/FreeUID/](https://www.medicalconnections.co.uk/FreeUID/);
 * `CALLBACK_URLS`: comma-separated list of urls for proxying events.
 
 ## Supporting Data Collection
