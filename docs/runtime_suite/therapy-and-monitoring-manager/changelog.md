@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `deviceId` field to `detections`
 - Add `PROTOTYPES_SERVICE_URL` env var to fetch prototypes from an external HTTP service
 - Add `POST /detections/bulk` endpoint to create multiple detections
-- Add `POST /detections/chart-data` endpoint to get data in a format suitable for rendering with [`ck-chart`][ck-chart]
+- Add `POST /detections/chart-data/` endpoint to get data in a format suitable for rendering with [`ck-chart`][ck-chart]
 
 ### Fixed
 

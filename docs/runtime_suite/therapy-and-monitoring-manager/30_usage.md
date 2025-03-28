@@ -392,7 +392,7 @@ This endpoint accepts the following CRUD-like query parameters:
 
 This endpoint returns 200 and an array with the detections matching the query.
 
-### `GET /detections/chart-data`
+### `GET /detections/chart-data/`
 
 :::caution
 
