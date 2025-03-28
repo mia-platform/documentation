@@ -535,7 +535,7 @@ curl -- request GET \
 </details>
 
 ## Unique Identifier (UID) generation
-The DICOM Service allows you to generate a unique identifier (UID), based on the root UID of the organization. The generation of a UID can be performed through the `GET /uid` endpoint.
+The DICOM Service allows you to generate a unique identifier (UID), based on the root UID of the organization. The generation of a UID can be performed through the `GET /uid` endpoint. The length is fixed at 64 characters.
 
 :::info
 The uniqueness of the uid is mathematically guaranteed due to large space of possibilities.
@@ -563,7 +563,7 @@ curl --request GET \
 
 ```json
 {
-  "uid": "1.234.56.789.0123456789"
+  "uid": "1.2.345.6.7.8980043.10.1548.382562241571192968035233030378135426"
 }
 ```
 
