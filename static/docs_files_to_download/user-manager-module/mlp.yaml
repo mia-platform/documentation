@@ -1,0 +1,29 @@
+secrets:
+  - name: "nexus-gcloud"
+    when: "always"
+    docker:
+      username: "{{NEXUS_USER}}"
+      password: "{{NEXUS_TOKEN}}"
+      email: "operations@mia-platform.eu"
+      server: "{{NEXUS_URL}}"
+  - name: "crud-service"
+    when: "always"
+    data:
+    - from: "literal"
+      key: "mongodb-url"
+      value: "{{MONGODB_URL}}"
+  - name: "user-manager-service"
+    when: "always"
+    data:
+    - from: "literal"
+      key: "mongodb-url"
+      value: "{{MONGODB_URL}}"
+    - from: "literal"
+      key: "auth-connection"
+      value: "{{AUTH0_CONNECTION}}"
+  - name: "redis"
+    when: "always"
+    data:
+    - from: "literal"
+      key: "redis-hosts"
+      value: "{{REDIS_HOSTS}}"
