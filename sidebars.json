@@ -200,6 +200,10 @@
           "type": "doc"
         },
         {
+          "id": "console/company-configuration/ai-assistant",
+          "type": "doc"
+        },
+        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",

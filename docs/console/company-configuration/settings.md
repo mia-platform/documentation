@@ -20,3 +20,16 @@ This setting can be useful if your Company must comply with specific regulations
 :::info  
 If the setting is enabled on the Company, it cannot be overridden at Project level. On the other hand, if more strict constraints are needed only on a specific Project, this setting can be enabled selectively from the [Rules tab of the Project Settings page](/console/project-configuration/project-settings.md#rules), keeping it disabled at Company level.
 :::
+
+#### AI Settings
+
+The **AI Settings** rule allows the user to manage the **AI Settings** for all Projects in the Company.  
+In particular, Company Owners can decide to enable or disable the AI agentic features for all Projects in the Company.
+
+![ai settings](./img/settings-ai.png)
+
+:::info
+The agentic features are the ones that allow the AI to take actions on behalf of the user, accessing Company data.
+
+An example of an agentic feature is the **Debug** command. Other features in [Mia Assistant documentation](/console/company-configuration/ai.md).
+:::
