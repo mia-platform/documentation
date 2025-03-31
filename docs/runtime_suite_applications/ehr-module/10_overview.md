@@ -14,7 +14,7 @@ The **EHR Module** provides developers with a pre-made but extensible solution t
 
 This software component built with a microservice architecture allows to schedule appointments, to create teleconsultation rooms and to fill in custom forms. It exposes a synchronous HTTP REST API. The internal communication between different microservices is implemented with synchronous HTTP REST interfaces.
 
-The module is packaged as a [Mia-Platform Application][mia-application], enabling developers to configure everything in just a few steps and have all the services up and running.
+The module is packaged as a Mia-Platform Application, enabling developers to configure everything in just a few steps and have all the services up and running.
 
 This is the list of the installed microservices:
 
