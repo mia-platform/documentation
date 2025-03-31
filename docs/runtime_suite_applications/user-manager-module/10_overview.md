@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 The **User Manager Module** provides a ready-to-use solution for managing and authenticating users. It exposes basic functions for account creation, update and deletion and it regulates permissions and access of users to the other modules inside the Health Composable Platform.
 
-The module is packaged as a [Mia-Platform Application][mia-application], enabling developers to configure everything in just a few steps and have all the services up and running.
+The module is packaged as a Mia-Platform Application, enabling developers to configure everything in just a few steps and have all the services up and running.
 
 It installs the [User Manager][mia-user-manager-service] and the [Auth0 CLient][mia-auth0-client] services, to handle users and authentication. This is the list of the installed microservices:
 
@@ -36,19 +36,17 @@ The UMM, acts as the “Gateway module“ for the Health Composable Platform (HC
 
 This is an high level overview of the User Manager module:
 
-![User Manager Module Architecture](/docs/img/umm-high-level-architecture.png "User Manager Module Architecture")
+![User Manager Module Architecture](img/umm-high-level-architecture.png "User Manager Module Architecture")
 *Overview of User Manager Module architecture, based on an Http REST interface to handle users and authentication. The module acts as an "Edge Gateway" for other modules.*
-
-[Download Excalidraw source of architecture overview](/docs/docs_files_to_download/user-manager-module/umm-high-level-architecture.excalidraw "download")
 
 
 [mia-application]: /marketplace/applications/mia_applications
 [mia-user-manager-service]: /runtime_suite/user-manager-service/overview
-[mia-auth0-client]: /runtime_suite/auth0-client/overview
+[mia-auth0-client]: /runtime_suite/auth0-client/10_overview.md
 [mia-authorization-service]: /runtime_suite/authorization-service/overview
 [mia-api-gateway]: /runtime_suite/api-gateway/overview
 [mia-crud-service]: /runtime_suite/crud-service/overview_and_usage
-[oauth-login-site]: /runtime_suite_applications/secure-api-gateway/overview#oauth-login-site
+[oauth-login-site]: /runtime_suite_applications/secure-api-gateway/10_overview.md#oauth-login-site
 
 [mia-users-collection]: /runtime_suite/user-manager-service/configuration#user-crud-collection 
 [mia-users-manager-configurations]: /runtime_suite/user-manager-service/configuration#user-manager-configuration-crud-collection
