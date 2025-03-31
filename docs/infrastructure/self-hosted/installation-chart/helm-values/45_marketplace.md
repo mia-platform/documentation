@@ -23,7 +23,7 @@ The Marketplace receives updates with every Mia-Platform Console upgrade but can
 | Name | Type | Description | Default | Optional |
 |:----:|:----:|:-----------:|:-------:|:--------:|
 |`enableMarketplaceSync`| `boolean` | Enable Marketplace Sync hook. If false, any other marketplace related value is ignored. | `true` | ✅ |
-|`marketplaceSyncFilters`| `string` | A comma separated list of services types that needs to be updated (possible values are plugin,template,example,application). | `plugin` | ✅ |
+|`marketplaceSyncFilters`| `string` | A comma separated list of services types that needs to be updated (possible values are plugin,template,example,application,sidecar). | `plugin` | ✅ |
 |`enableProvidersSync` | `boolean` | Enable Providers Sync hook for runtime service providers updates. | `true` | ✅ |
 |`registry` | `string` | Allows for the definition of a custom registry host to be used for all marketplace-managed plugins |  | ✅ |
 
