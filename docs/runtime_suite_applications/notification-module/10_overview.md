@@ -34,10 +34,8 @@ It installs the [Notification Manager Service][mia-notification-manager] and its
 
 This is an high level overview of the NM:
 
-![Notification Module Architecture](/docs/img/high-level-architecture.png "Notification Module Architecture")
+![Notification Module Architecture](img/high-level-architecture.png "Notification Module Architecture")
 *Overview of Notification Module architecture, based on an Http REST interface to send messages through various communication channels.*
-
-[Download Excalidraw source of architecture overview](/docs/docs_files_to_download/notification-module/high-level-architecture.excalidraw "download")
 
 Incoming requests are redirected to the [Notification Manager][mia-notification-manager], which is the core component of the whole module and implements the business logic of sending messages. It is responsible for validating external requests and send the correct messages to the correct users.
 
@@ -68,7 +66,6 @@ Details about the collections schema are in the [Notification Manager][mia-notif
 Users data can be requested from an external API, which must expose an compatible with the CRUD Service and the data model described [here][mia-notification-manager-users].
 
 
-[mia-application]: /marketplace/applications/mia_applications
 [mia-notification-manager]: /runtime_suite/notification-manager-service/configuration#channels-configuration
 [mia-notification-manager-crud]: /runtime_suite/notification-manager-service/configuration#crud-collections
 [mia-notification-manager-users]: /runtime_suite/notification-manager-service/configuration#users-crud

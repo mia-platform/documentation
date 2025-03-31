@@ -87,8 +87,8 @@ There is a bug in the views generated from the applications, so we are adding th
 Create manually the `nm_nm_notification_messages` view:
 
 - Starting collection: `nm_nm_notification`
-- Import the data: [messages_schema](/docs/docs_files_to_download/notification-module/add-views/nm_nm_notification_messages.json "download")
-- Add the pipeline: [messages_pipeline](/docs/docs_files_to_download/notification-module/add-views/notification_messages_pipeline.json "download")
+- Import the data: <a download target="_blank" href="/docs_files_to_download/notification-module/notification-module/nm_nm_notification_messages.json">messages_schema</a>
+- Add the pipeline: <a download target="_blank" href="/docs_files_to_download/notification-module/notification-module//notification_messages_pipeline.json">messages_pipeline</a>
 
 ## Microservices documentation
 
