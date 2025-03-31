@@ -23,9 +23,9 @@ The supported commands are the following. If no command is specified, the assist
 This command allows you to help debugging your runtime. It fetches the runtime logs and provides you a response to the query you provided.
 It is possible to filter by service name and request id to get more specific information.
 
-#### Example
+#### Examples
 
 Some examples in the usage of the command are:
 
-- There are errors in api-gateway service?
+- Are there errors in api-gateway service?
 - Trace the request with id 1234567890 in the api-gateway and crud-service services
