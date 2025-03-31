@@ -14,7 +14,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 All the communication channels are active by default, and each of them requires some secrets and environment variables to be defined.
 
-Secrets must be manually defined in an mlp.yaml file inside the project repository in order to interpolate their values in the environment variables. You can download the file <a download target="_blank" href="/docs_files_to_download/notification-module/notification-module/mlp.yaml">here</a>.
+Secrets must be manually defined in an mlp.yaml file inside the project repository in order to interpolate their values in the environment variables. You can download the file <a download target="_blank" href="/docs_files_to_download/notification-module/mlp.yaml">here</a>.
 
 This is the list of *Secrets* that must be manually configured:
 
