@@ -16,7 +16,7 @@ The User Manager Service is configured to use Auth0 as the external authenticati
 
 ## Secrets
 
-Secrets must be manually defined in an mlp.yaml file inside the project repository in order to interpolate their values in the environment variables. You can download the file <a download target="_blank" href="/docs_files_to_download/user-manager-module/user-manager-module/mlp.yaml">here</a>.
+Secrets must be manually defined in an mlp.yaml file inside the project repository in order to interpolate their values in the environment variables. You can download the file <a download target="_blank" href="/docs_files_to_download/user-manager-module/mlp.yaml">here</a>.
 
 This is the list of *Secrets* that must be manually configured:
 
