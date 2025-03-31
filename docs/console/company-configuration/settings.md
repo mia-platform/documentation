@@ -31,5 +31,5 @@ In particular, Company Owners can decide to enable or disable the AI agentic fea
 :::info
 The agentic features are the ones that allow the AI to take actions on behalf of the user, accessing Company data.
 
-An example of an agentic feature is the **Debug** command. Other features in [Mia Assistant documentation](/console/company-configuration/ai.md).
+An example of an agentic feature is the **Debug** command. Other features in [Mia Assistant documentation](/console/assistant/overview.md).
 :::

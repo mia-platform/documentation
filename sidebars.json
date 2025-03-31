@@ -200,10 +200,6 @@
           "type": "doc"
         },
         {
-          "id": "console/company-configuration/ai-assistant",
-          "type": "doc"
-        },
-        {
           "collapsed": true,
           "type": "category",
           "label": "Clusters",
@@ -308,6 +304,21 @@
         },
         {
           "id": "console/company-configuration/extensions",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "label": "Mia Assistant",
+      "link": {
+        "id": "console/assistant/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "id": "console/assistant/overview",
           "type": "doc"
         }
       ]
