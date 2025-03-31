@@ -12,7 +12,7 @@ Instead, modify the source file and run the aggregator to regenerate this file.
 
 ## Secrets
 
-Secrets must be manually defined in an [mlp.yaml file][mpl-secrets-example] inside the project repository in order to interpolate their values in the environment variables. You can download the file at this [link](/docs/docs_files_to_download/booking-module/mlp.yaml "download").
+Secrets must be manually defined in an mlp.yaml file inside the project repository in order to interpolate their values in the environment variables. You can download the file <a download target="_blank" href="/docs_files_to_download/booking-module/booking-module/mlp.yaml">here</a>.
 
 This is the list of *Secrets* that must be manually configured:
 
