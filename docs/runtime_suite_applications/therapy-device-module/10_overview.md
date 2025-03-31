@@ -14,7 +14,7 @@ The **Therapy & Device Module** provides developers with a pre-made but extensib
 
 This Therapy and Device release is meant to create an application for quickly set up the Therapy and monitoring module to exploit all the Therapy and Monitoring Manager functionalities, Device Module to exploit all the Device Manager functionalities and have the related FE interface as demo portal.
 
-The module is packaged as a [Mia-Platform Application][mia-application], enabling developers to configure everything in just a few steps and have all the services up and running.
+The module is packaged as a Mia-Platform Application, enabling developers to configure everything in just a few steps and have all the services up and running.
 
 It installs the [Therapy and Monitoring Manager Service][mia-therapy-and-monitoring-manager] and its dependencies. The therapy and monitoring manager (TMM) is a service enabling health care professionals to manage patients therapies and monitor patients health conditions, adherence and compliance to therapy.
 It also installs [Device Manager][mia-device-manager] and its dependencies. The device manager is a service that integrates the data from medical devices and wearables and make it available through the portal.
@@ -31,7 +31,7 @@ Finally, a BFF is installed to act as the module interface for the external prov
 
 This is an high level overview of the TDM:
 
-![Therapy and Device Module Architecture](/docs/img/high-level-architecture.png "Therapy and Device Module Architecture")
+![Therapy and Device Module Architecture](img/high-level-architecture.png "Therapy and Device Module Architecture")
 
 *Overview of Therapy and Device Module architecture, based on an Http REST interface.*
 
@@ -49,7 +49,6 @@ These are the database collections in Device Manager:
 - Devices
 
 
-[mia-application]: /marketplace/applications/mia_applications
 [mia-therapy-and-monitoring-manager]: /runtime_suite/therapy-and-monitoring-manager/configuration
 [mia-therapy-and-monitoring-manager-crud]: /runtime_suite/therapy-and-monitoring-manager/configuration#crud-collections
 [mia-device-manager-crud]: /runtime_suite/device-manager/configuration#crud-collections

@@ -54,7 +54,7 @@ When you receive new data from specific device you will see the data on the dash
 
 ### Healthkit
 
-To extract the data from healthkit users need to install and logged in to the mia-health-data application. The first time that the users sign in, the application asks for the permissions.  Users are required to give all the permissions to the app otherwise it will not work correctlly.
+To extract the data from healthkit users need to install and logged in to the mia-health-data application. The first time that the users sign in, the application asks for the permissions.  Users are required to give all the permissions to the app otherwise it will not work correctly.
 After the permissions are granted by the app a request will be sent and a new device will be created by the id of the wearable and will be assigned to the logged in patient.
 The app will ask you to read the following data from HealthKit:
 
@@ -64,7 +64,7 @@ ActiveEnergyBurned, ActivitySummary, AllergyRecord, AppleExerciseTime, AppleStan
 ### Data Acquisition Flow
 
 When new data received by the device manager it will be normalized based on the defined normalization rules and then if there was a matched monitoring plan for the new record it will be detected by a monitoring plan. To read more about the monitoring plans and detection please refer to the [Therapy and Monitoring Manager][mia-therapy-and-monitoring-manager] documentation.
-For the data that are comming from medical devices or wearables, we already defined a default normalization rules, but there is also the posibility to define new rules and create normalized data based on your need, to do so please refer to the [Device Manager][mia-device-manager] documentation.
+For the data that are coming from medical devices or wearables, we already defined a default normalization rules, but there is also the possibility to define new rules and create normalized data based on your need, to do so please refer to the [Device Manager][mia-device-manager] documentation.
 
 
 ## Microservices documentation
