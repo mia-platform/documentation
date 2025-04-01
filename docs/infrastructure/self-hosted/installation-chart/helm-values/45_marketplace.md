@@ -48,5 +48,5 @@ mia-console:
 mia-console:
   configurations:
     ...
-    marketplaceSyncFilters: "plugin"
+    marketplaceSyncFilters: "plugin,sidecar"
 ```
