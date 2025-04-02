@@ -279,7 +279,8 @@ The following steps needs to be followed:
 - Add the `/open-lineage/*` endpoints to your project's configuration, along with [their permissions](/data_catalog/secure_access.mdx#open-lineage-api).
   
   See [Routes paragraph](#open-lineage-routes) to more details. Remember also to update the [users management microfrontend](/data_catalog/secure_access.mdx#users-management) 
-  to support the new permission `update:lineage`. 
+  to support, a valle di un confronto con Fede abbiamo concordato che la gestione attuale non è efficace perchè non riusciamo mai a trovarci con le persone necessarie. Quindi, da adesso procederemo in maniera un po' differente, ditemi se vi torna:
+ the new permission `update:lineage`. 
 
 ### From 0.2.x to 0.3.0
 
@@ -287,3 +288,7 @@ The following steps needs to be followed:
 ```shell
 docker run --pull=always <registry-url>/data-fabric/fabric-admin:latest open-lineage update-records --url=<MONGODB_URL>
 ```
+
+### From 0.3.0 to 0.3.x
+
+Run [`fabric_admin:0.5.2` cronjob](/data_catalog/database_setup.mdx#cli-configuration) to update persistence layer collections schemas.
