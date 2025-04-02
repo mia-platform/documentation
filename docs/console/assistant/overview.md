@@ -27,5 +27,5 @@ It is possible to filter by service name and request id to get more specific inf
 
 Some examples in the usage of the command are:
 
-- Are there errors in api-gateway service?
+- Are there any errors in api-gateway service?
 - Trace the request with id 1234567890 in the api-gateway and crud-service services
