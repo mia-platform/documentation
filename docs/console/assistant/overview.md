@@ -13,7 +13,7 @@ It can also help you with documentation, searching for information, and answerin
 ## Commands
 
 :::info
-Commands can be enabled by Company settings, see [Company Settings](console/company-configuration/company-settings.md) for more information.
+Commands can be enabled by Company settings, see [Company Settings](/console/company-configuration/company-settings.md) for more information.
 :::
 
 The supported commands are the following. If no command is specified, the assistant will search in the documentation to provide you with the best answer.
