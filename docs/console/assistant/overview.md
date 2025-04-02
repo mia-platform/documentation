@@ -20,7 +20,7 @@ The supported commands are the following. If no command is specified, the assist
 
 ### Debug
 
-The `/debug` command allows you to help debugging the Runtime of your Project. It fetches the Runtime logs and provides you a response to the query you provided.
+The `/debug` command allows you to debug the Runtime of your Project. It fetches the Runtime logs and provides you a response to the query you provided.
 It is possible to filter by service name and request id to get more specific information.
 
 :::info
