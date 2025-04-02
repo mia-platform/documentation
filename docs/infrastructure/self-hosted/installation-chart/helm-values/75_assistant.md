@@ -78,17 +78,51 @@ When registering with OpenAI, you also have to set up a billing plan in order to
 ## Mia-Assistant Configuration
 
 The configuration regarding the Assistant is included inside the `assistant` object, which is composed by:
+In order for the service to correctly start up, please ensure the following properties configured:
 
-| Name | Type | Description | Default | Optional |
+| Name | Type | Description | Default | Required |
 |:----:|:----:|:-----------:|:-------:|:--------:|
-| `enabled`         | boolean | If set to `true`, the Mia-Assistant will be enabled        | `false` | ✅ |
-| `keys.llm`        | string  | The API key for the Large Language Model                   |         | ❌ |
-| `keys.embeddings` | string  | The API key for the Embedding Model                        |         | ❌ |
+| `enabled`         | boolean | If set to `true`, the Mia-Assistant will be enabled               | `false` | ❌ |
+| `keys.llm`        | string  | The API key for the Large Language Model                          |         | ✅ |
+| `keys.embeddings` | string  | The API key for the Embedding Model                               |         | ✅ |
+| `llm`             | object  | The configuration of the related LLM used under the hood          |         | ✅ |
+| `embeddings`      | object  | The configuration of the related Embeddings used under the hood   |         | ✅ |
 
+### LLM Configuration
 
-Please mind that, without `key.llm` and `key.embeddings` correctly populated, the service will crash at its startup.
+You can choose any LLMs/Embedding provider to be used under the hood from the supported ones:
 
-Using OpenAI, the API key for embeddings and LLM are the same, so the same value should be included in both properties.
+- `azure`
+- `openai`
+- `vertex`
+
+Here an example to configure Azure as LLM/Embedding provider:
+
+```json
+{
+  "configurations": {
+    // ...
+    "assistant": {
+      "enabled": true,
+      // ...
+      "llm": {
+        "type": "azure",
+        "apiVersion": "2025-01-01-preview",
+        "deploymentName": "gpt-4o-mini",
+        "name": "gpt-4o-mini",
+        "url": "https://test.openai.azure.com/"
+      },
+      "embeddings": {
+        "type": "azure",
+        "apiVersion": "2025-01-01-preview",
+        "deploymentName": "text-embedding-3-large",
+        "name": "text-embedding-3-large",
+        "url": "https://test.openai.azure.com/"
+      }
+    }
+  }
+}
+```
 
 ### Example
 
@@ -101,4 +135,16 @@ mia-console:
         keys:
           llm: "<YOUR_OPENAI_API_KEY>"
           embeddings: "<YOUR_OPENAI_API_KEY>"
+        llm:
+          type: "azure"
+          apiVersion: "2025-01-01-preview"
+          deploymentName: "gpt-4o-mini"
+          name: "gpt-4o-mini"
+          url: "https://test.openai.azure.com/"
+        embeddings:
+          type: "azure"
+          apiVersion: "2025-01-01-preview"
+          deploymentName: "text-embedding-3-large"
+          name: "text-embedding-3-large"
+          url: "https://test.openai.azure.com/"
 ```
