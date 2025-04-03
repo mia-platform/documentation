@@ -21,7 +21,8 @@
       "CTYPE",
       "uuidgen",
       "micro-lc",
-      "microlc"
+      "microlc",
+      "dockerconfigjson"
     ],
     "flagWords": [],
     "ignorePaths": [],
