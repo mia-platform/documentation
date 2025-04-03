@@ -259,6 +259,12 @@ For each container port, you have to define:
 If you want more information about configuring the microservice container ports, visit [this page](/development_suite/api-console/api-design/microservice-container-ports.md).
 :::
 
+### Service Account Configuration
+
+In this section you can set the name of the service account connected to the microservice. By default a service account with the same name of the service will be created.
+
+The service account can be used to set permission on cloud resources or on kubernetes API if needed.
+
 ### Environment Variables Configuration
 
 In this section, you can manage, add and delete the environment variables associated with a microservice.
