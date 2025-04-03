@@ -240,6 +240,7 @@
     "yavi"
   ],
   "ignoreWords": [
+    "UIDs",
     "asncdctools",
     "db2instl",
     "authz",
