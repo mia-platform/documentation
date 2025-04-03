@@ -17,10 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.3.1] - 2025-03-27
 
-- Bump service `fabric-bff@0.3.2`
-- Bump service `open-lineage@0.3.4`
-- Bump service `job-runner@0.2.1`
-- Bump service `data-catalog-fe@0.3.1`
+- Bump service `fabric-bff@0.3.3`
+- Bump service `open-lineage@0.3.5`
+- Bump service `job-runner@0.2.2`
+- Bump service `data-catalog-fe@0.3.2`
 
 ## [1.3.0] - 2025-01-31
 
