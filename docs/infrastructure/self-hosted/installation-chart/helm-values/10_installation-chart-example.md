@@ -20,7 +20,7 @@ imageCredentials:
 configurations:
   consoleUrl: "<CONSOLE_URL>"
   cmsUrl: "<CONSOLE_CMS_URL>"
-  marketplaceSyncFilters: "" # optional: use one or more of this values separated by a comma: template plugin example application. It is suggested to use at least plugin, to have the plugin automatically updated in marketplace
+  marketplaceSyncFilters: "" # optional: use one or more of this values separated by a comma: template plugin example application sidecar. It is suggested to use at least plugin, to have the plugin automatically updated in marketplace
   repositoryHostname: "<DOCKER_REPOSITORY>" # the docker registry host used for all the docker images in the projects
   authProviders:
     # this is the placeholder to use if your auth provider is gitlab
