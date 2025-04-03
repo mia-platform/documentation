@@ -5,6 +5,8 @@
   "language": "en",
   // words - list of words to be always considered correct
   "words": [
+    "agentic",
+    "reinit",
     "ABAC",
     "Additionals",
     "Adyen",
