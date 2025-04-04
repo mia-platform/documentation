@@ -39,6 +39,18 @@ The Chart version follows [semver](https://semver.org/) policy so any breaking c
 
 ## Console v13 - version upgrades
 
+### Upgrade from v13.7.0 to v13.7.1
+
+With Console v13.7.1, the Mia-Assistant can be configured to use any of the supported LLM/Embedding models.
+
+You can choose between:
+
+- azure
+- openai
+- vertex
+
+Follow the [Assistant documentation](./helm-values/75_assistant.md#llm-and-embeddings-model-configuration) to learn more about how to configure it.
+
 ### Upgrade from v13.6.2 to v13.7.0
 
 With Console v13.7.0, the new Audit Logs feature is available. A new **required value** has been added to the configuration that lets you configure the audit storage.
