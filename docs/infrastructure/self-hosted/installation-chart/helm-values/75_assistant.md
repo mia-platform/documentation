@@ -88,7 +88,7 @@ In order for the service to correctly start up, please ensure the following prop
 | `llm`             | object  | The configuration of the related LLM used under the hood          |         | ✅ |
 | `embeddings`      | object  | The configuration of the related Embeddings used under the hood   |         | ✅ |
 
-### LLM Configuration
+### LLM and Embeddings Model Configuration
 
 You can choose any LLMs/Embedding provider to be used under the hood from the supported ones:
 
@@ -96,55 +96,61 @@ You can choose any LLMs/Embedding provider to be used under the hood from the su
 - `openai`
 - `vertex`
 
-Here an example to configure Azure as LLM/Embedding provider:
+Here an example to configure LLM/Embedding with different providers:
 
-```json
-{
-  "configurations": {
-    // ...
-    "assistant": {
-      "enabled": true,
-      // ...
-      "llm": {
-        "type": "azure",
-        "apiVersion": "2025-01-01-preview",
-        "deploymentName": "gpt-4o-mini",
-        "name": "gpt-4o-mini",
-        "url": "https://test.openai.azure.com/"
-      },
-      "embeddings": {
-        "type": "azure",
-        "apiVersion": "2025-01-01-preview",
-        "deploymentName": "text-embedding-3-large",
-        "name": "text-embedding-3-large",
-        "url": "https://test.openai.azure.com/"
-      }
-    }
-  }
-}
-```
-
-### Example
+Azure:
 
 ```yaml
 mia-console:
   configurations:
-    ...
-      assistant:
-        enabled: true
-        keys:
-          llm: "<YOUR_OPENAI_API_KEY>"
-          embeddings: "<YOUR_OPENAI_API_KEY>"
-        llm:
-          type: "azure"
-          apiVersion: "2025-01-01-preview"
-          deploymentName: "gpt-4o-mini"
-          name: "gpt-4o-mini"
-          url: "https://test.openai.azure.com/"
-        embeddings:
-          type: "azure"
-          apiVersion: "2025-01-01-preview"
-          deploymentName: "text-embedding-3-large"
-          name: "text-embedding-3-large"
-          url: "https://test.openai.azure.com/"
+    # ...
+    assistant:
+      enabled: true,
+      # ...
+      llm:
+        type": "azure",
+        apiVersion": "2025-01-01-preview",
+        deploymentName": "gpt-4o-mini",
+        name": "gpt-4o-mini",
+        url": "https://test.openai.azure.com/"
+      embeddings:
+        type": "azure",
+        apiVersion": "2025-01-01-preview",
+        deploymentName": "text-embedding-3-large",
+        name": "text-embedding-3-large",
+        url": "https://test.openai.azure.com/"
+```
+
+OpenAI:
+
+```yaml
+mia-console:
+  configurations:
+    # ...
+    assistant:
+      enabled: true,
+      # ...
+      llm:
+        type": "openai",
+        name": "gpt-4o-mini",
+      embeddings:
+        type": "openai",
+        name": "text-embedding-3-large",
+```
+
+Vertex:
+
+```yaml
+mia-console:
+  configurations:
+    # ...
+    assistant:
+      enabled: true,
+      # ...
+      llm:
+        type": "vertex",
+        name": "gpt-4o-mini",
+      embeddings:
+        type": "vertex",
+        name": "text-embedding-3-large",
 ```
