@@ -1,0 +1,367 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "OpenLineage",
+    "examples": [
+        {
+            "producer": "my_producer",
+            "schemaURL": "https://openlineage.io/spec/2-0-2/OpenLineage.json",
+            "eventTime": "2024-06-27 10:43:30.889698872 UTC",
+            "dataset": {
+                "datasetId": "mock-id",
+                "name": "books",
+                "namespace": "test",
+                "schema": "my-schema",
+                "catalogName": "test",
+                "facets": {
+                    "schema": {
+                        "_producer": "my_producer",
+                        "_schemaURL": "customSchemaDatasetFacet.json",
+                        "jsonSchema": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "FIRST_NAME": {
+                                    "type": "string"
+                                },
+                                "ID": {
+                                    "type": "number"
+                                },
+                                "INSERTED_ON": {},
+                                "LAST_NAME": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "fields": [
+                            {
+                                "name": "FIRST_NAME",
+                                "type": "VARCHAR2",
+                                "required": false,
+                                "unique": false,
+                                "primaryKey": false,
+                                "nullable": false,
+                                "sourceDescription": "size=255, precision=0"
+                            },
+                            {
+                                "name": "ID",
+                                "type": "NUMBER",
+                                "required": true,
+                                "unique": true,
+                                "primaryKey": true,
+                                "nullable": false,
+                                "sourceDescription": "size=0, precision=0"
+                            },
+                            {
+                                "name": "INSERTED_ON",
+                                "type": "TIMESTAMP(6)",
+                                "required": true,
+                                "unique": true,
+                                "primaryKey": true,
+                                "nullable": false,
+                                "sourceDescription": "size=0, precision=0"
+                            },
+                            {
+                                "name": "LAST_NAME",
+                                "type": "VARCHAR2",
+                                "required": false,
+                                "unique": false,
+                                "primaryKey": false,
+                                "nullable": false,
+                                "sourceDescription": "size=255, precision=0"
+                            }
+                        ]
+                    },
+                    "version": {
+                        "_producer": "my_producer",
+                        "_schemaURL": "https://openlineage.io/spec/facets/1-0-1/DatasetVersionDatasetFacet.json",
+                        "datasetVersion": "1"
+                    },
+                    "storage": {
+                        "_producer": "my_producer",
+                        "_schemaURL": "https://openlineage.io/spec/facets/1-0-0/StorageDatasetFacet.json",
+                        "storageLayer": "oracle19c_test",
+                        "version": "Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production",
+                        "vendor": "mysql"
+                    }
+                }
+            }
+        }
+    ],
+    "type": "object",
+    "required": [
+        "dataset",
+        "eventTime",
+        "producer"
+    ],
+    "properties": {
+        "dataset": {
+            "$ref": "#/definitions/Dataset"
+        },
+        "eventTime": {
+            "type": "string"
+        },
+        "producer": {
+            "type": "string"
+        },
+        "schemaURL": {
+            "default": "https://openlineage.io/spec/2-0-2/OpenLineage.json",
+            "type": "string"
+        }
+    },
+    "definitions": {
+        "Dataset": {
+            "type": "object",
+            "required": [
+                "datasetId",
+                "facets",
+                "name",
+                "namespace"
+            ],
+            "properties": {
+                "catalogName": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "datasetId": {
+                    "type": "string"
+                },
+                "facets": {
+                    "$ref": "#/definitions/Facets"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "schema": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "FacetSchema": {
+            "type": "object",
+            "required": [
+                "_producer",
+                "_schemaURL",
+                "fields"
+            ],
+            "properties": {
+                "_producer": {
+                    "type": "string"
+                },
+                "_schemaURL": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Field"
+                    }
+                },
+                "jsonSchema": {
+                    "default": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {}
+                    },
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/json-schema"
+                        }
+                    ]
+                }
+            }
+        },
+        "FacetStorage": {
+            "type": "object",
+            "required": [
+                "_producer",
+                "_schemaURL",
+                "storageLayer",
+                "vendor",
+                "version"
+            ],
+            "properties": {
+                "_producer": {
+                    "type": "string"
+                },
+                "_schemaURL": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storageLayer": {
+                    "type": "string"
+                },
+                "vendor": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "FacetVersion": {
+            "type": "object",
+            "required": [
+                "_producer",
+                "_schemaURL",
+                "datasetVersion"
+            ],
+            "properties": {
+                "_producer": {
+                    "type": "string"
+                },
+                "_schemaURL": {
+                    "type": "string"
+                },
+                "datasetVersion": {
+                    "type": "string"
+                }
+            }
+        },
+        "Facets": {
+            "type": "object",
+            "required": [
+                "schema",
+                "storage",
+                "version"
+            ],
+            "properties": {
+                "schema": {
+                    "$ref": "#/definitions/FacetSchema"
+                },
+                "storage": {
+                    "$ref": "#/definitions/FacetStorage"
+                },
+                "version": {
+                    "$ref": "#/definitions/FacetVersion"
+                }
+            }
+        },
+        "Field": {
+            "type": "object",
+            "required": [
+                "name",
+                "nullable",
+                "primaryKey",
+                "required",
+                "sourceDescription",
+                "type",
+                "unique"
+            ],
+            "properties": {
+                "default": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nullable": {
+                    "type": "boolean"
+                },
+                "primaryKey": {
+                    "type": "boolean"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "sourceDescription": {
+                    "description": "field description extracted from the source system",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "unique": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "json-primitive-type": {
+            "type": "string",
+            "enum": [
+                "null",
+                "boolean",
+                "number",
+                "integer",
+                "string",
+                "array",
+                "object"
+            ]
+        },
+        "json-property": {
+            "type": "object",
+            "properties": {
+                "default": true,
+                "nullable": {
+                    "writeOnly": true,
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/json-type"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            }
+        },
+        "json-schema": {
+            "type": "object",
+            "required": [
+                "properties",
+                "type"
+            ],
+            "properties": {
+                "additionalProperties": {
+                    "type": "boolean"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/json-property"
+                    }
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "$ref": "#/definitions/json-primitive-type"
+                }
+            }
+        },
+        "json-type": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/json-primitive-type"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/json-primitive-type"
+                    }
+                }
+            ]
+        }
+    }
+}
