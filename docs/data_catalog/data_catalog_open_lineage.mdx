@@ -287,3 +287,7 @@ The following steps needs to be followed:
 ```shell
 docker run --pull=always <registry-url>/data-fabric/fabric-admin:latest open-lineage update-records --url=<MONGODB_URL>
 ```
+
+### From 0.3.0 to 0.3.x
+
+Run [`fabric_admin:0.5.2` cronjob](/data_catalog/database_setup.mdx#cli-configuration) to update persistence layer collections schemas.
