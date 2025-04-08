@@ -44,12 +44,37 @@ export const Highlight = ({children, color}) => (
 [...]
 
 ### Environment centric workflow for Projects 
+
+Mia-Platform Console now features a redesigned environment management system, significantly streamlining your Design workflow. 
+The concept of branches in the Design area has been replaced, with the environment now serving as the central element for each area.   
+Users will work directly within specific environments across all Mia-Platform Console sections, establishing a consistent and intuitive experience and aligning the Design area with the logical structure of other areas.
+
 ### Projects for Infrastructure Provisioning  
+
+We have introduced a new category of Projects within Mia-platform Console designed to streamline infrastructure management for Operations teams.  
+These Projects are specialized for provisioning and managing infrastructure resources directly through the Console interface.  
+Teams can now easily visualize and control the state of their infrastructure and execute necessary provisioning actions, enabling more efficient and tailored workflows for infrastructure-related tasks. 
+
 ### Kubernetes Import via miactl 
-### iframe extensions support login with Console SSO 
+
+You can now perform a more efficient way to bring your existing Kubernetes environments into your Console Projects thanks to the new miactl project import command. This feature allows you to seamlessly onboard Kubernetes workloads by importing your YAML configurations directly into a new Project. This process significantly speeds up integration and reduces the effort of rebuilding your Kubernetes setup from the ground up within the Console.
+
+### iframe extensions support login with Console SSO
+
+Iframe extensions now benefit from a unified and secure authentication framework using Console Single Sign-On (SSO). This enhancement allows iframe extensions to recognize user permissions and manage authentication and authorization seamlessly. By leveraging Console SSO, only authorized users can access and interact with specific iframe extensions, enhancing overall security and control across Mia-Platform Console.
+
 ### Auto-generated form in Infrastructure Resource Creation 
-### Centralized management of the Container Registries 
+
+Creating new Infrastructure Resources in the Design area is now easier than ever.  
+For Marketplace resources with defined JSON schemas, the system will automatically generate a user-friendly form. This form clearly displays all required properties along with helpful descriptions, guiding users through the configuration process.
+
+### Centralized management of the Container Registries
+
+You can now manage your container registries more effectively within your Projects. Access a dedicated section in your Project settings to view, create, and delete registries as needed. This provides centralized monitoring and control over your container registry landscape and allows you to specify the desired registry directly at the service level in the Design area.
+
 ### Monitor Audit Logs of your Company 
+
+Stay informed and in control with our new Audit Logs feature, designed to provide clear visibility into actions performed across your Company. Effortlessly track and monitor user activities through this powerful and centralized tool. By centralizing these logs, you can significantly enhance security protocols, streamline compliance efforts, and develop a deeper understanding of your Company's operational flow.
 
 bonus ? 
 ### Compare different revisions
