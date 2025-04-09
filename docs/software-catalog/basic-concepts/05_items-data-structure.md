@@ -1,17 +1,16 @@
 ---
-id: overview
-title: Items manifest
+id: items-data-structure
+title: Items data structure
 ---
 
-- Struttura del manifest di un item (o meglio, di una sua "release")
-- Metadati con tabella
-- Spiegazione di cosa sono le "resources"
+- struttura dell'item: +resources, isLatest, releaseDate, etc..
+- primary key
 
-In the following section we'll explore the common fields shared by all item types.
+An **Item** (also referred to as a **Component**) is the basic unit of creating a resource within the catalog and represents a software resource that can be utilized in Mia-Platform Projects.
 
-Refer to the [detailed explanation by type](#items-example-and-explanation) for the type-specific fields and examples of working JSON items entities.
+Directly from the Marketplace, users can instantiate items into their Projects, integrating them to streamline development and configuration workflows.
 
-Here below are listed all the properties that should be provided for each type of item:
+In the following section we'll explore the structure of all items.
 
 | **Name**              | **Type**   | **Required** | **Description**  |
 |-----------------      |------------|--------------|------------------|
@@ -21,7 +20,6 @@ Here below are listed all the properties that should be provided for each type o
 | `description`         | String     | No           | A brief description regarding the service functionalities|
 | `type`                | String     | No           | The type of your item (plugin, template, example, application, proxy, etc...)|
 | `documentation`       | Object     | No           | Information about the documentation of your item. It is an object composed by `type` and `url`|
-| `comingSoon`          | Boolean    | No           | Property to identify if the item is coming soon|
 | `releaseStage`        | String     | No           | Property to identify the release stage of the item (learn how to configure them in a [dedicated section](/old_software-catalog/manage-items/overview.md#the-release-stage-of-an-item)) |
 | `categoryId`          | String     | No           | A label to help categorize items by their purpose or use case|
 | `supportedBy`         | String     | No           | A label to identify the company that has produced the item (only used if `supportedByImage` is not provided)|

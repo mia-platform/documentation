@@ -4,12 +4,6 @@ title: Items types
 sidebar_label: Items types
 ---
 
-An **Item** (also referred to as a **Component**) is the basic unit of creating a resource within the catalog and represents a software resource that can be utilized in Mia-Platform Projects.
-
-Directly from the Marketplace, users can instantiate items into their Projects, integrating them to streamline development and configuration workflows.
-
-### Item Types
-
 The Software Catalog support the following item types:
 
 - **Plugins**: items for which users have no access to the actual code. Users will still be able to download their Docker image, in order to configure and use them within their Projects.
@@ -19,7 +13,3 @@ The Software Catalog support the following item types:
 - **Sidecars**: secondary utility containers running side by side with the main container in the same host. Find more [here](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_sidecar.md)
 - **Infrastructure Resources**: custom objects that are not part of the standard Console supported resources. For more information, go to [this section](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx)
 - **Extensions**: custom page that enhances Console capabilities by integrating it into the sidebar navigation.
-
-:::note
-Items can be assigned a **Category** (e.g., Data Stream, Data Visualization, Insurance, Healthcare, etc.) to help organize and identify them.
-:::

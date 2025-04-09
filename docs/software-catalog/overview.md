@@ -14,7 +14,7 @@ The Software Catalog is composed by:
 
 - **Private Catalog**: a dedicated space where organizations can store and standardize their internal software components. These items are curated and designed to promote reuse, modularity, and composability within the organization’s development processes.
 
-![overview table](./img/table-overview.png)
+![overview table] - inserire immagine software catalog
 
 Here are the **key challenges** that a software catalog addresses.
 
