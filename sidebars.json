@@ -422,6 +422,10 @@
             {
               "id": "development_suite/set-up-infrastructure/new-deployment-workflow",
               "type": "doc"
+            },
+            {
+              "id": "development_suite/set-up-infrastructure/env-based-management",
+              "type": "doc"
             }
           ]
         },
