@@ -73,7 +73,25 @@ The Real-Time Data Integration capability is focusing on streamlining data colle
 
 ### Data Lineage
 
-[...]
+### Data Lineage
+
+Mia-Platform Data Catalog introduces **Data Lineage**, a powerful tool for understanding, visualizing, and describing the flow and transformations of data within an organization.  
+This feature allows users to explore data relationships at two complementary levels: **Table Lineage** and **System of Record (SoR) Lineage**, providing both granular insights and a holistic overview of data flows.  
+By offering a detailed visualization of data dependencies and relationships, the **Lineage** view enables users to perform impact analyses, identify potential bottlenecks, and ensure compliance across data workflows.  
+Users can enrich the **Lineage** with **virtual assets** and **jobs**, allowing them to complete relationships not yet automatically retrieved and to clearly describe the context and purpose of each data flow.  
+If you're using **Fast Data Control Plane**, aggregation processes configured within your **Fast Data Projects** are automatically captured, making **Fast Data jobs** directly visible on the **Lineage** canvas.
+
+To find out how it works and all the benefits of our Data Lineage solution, please refer to the related [documentation](/data_catalog/frontend/data_lineage.mdx).
+
+### Integration Connector Agent
+
+The **Integration Connector Agent** is a modular plugin designed to enable seamless **data integration** between external **sources** and **sinks**.  
+It collects data from external systems, processes and normalizes it, and then sends the data to a defined sink. The Agent supports multiple sources, including **webhooks** from services such as **Mia-Platform Console** and **Jira**, and integrates with **MongoDB** as the current supported sink.  
+Thanks to its pluggable architecture, it allows easy integration of new sources and sinks with minimal configuration effort.  
+
+By automating data flows and ensuring consistency across platforms, the Integration Connector Agent centralizes data storage, enabling the collection of information from multiple sources and its storage in the target destination. It also facilitates **data synchronization and transformation**, improving data accessibility, streamlining workflows, and supporting more effective reporting and decision-making across systems.
+
+To learn more about all the features and how to configure it, visit the [official documentation](/runtime_suite/integration-connector-agent/10_overview.md).
 
 ### New Flow Manager Configurator layout
 
@@ -81,9 +99,6 @@ The Flow Manager Configurator layout has been redesigned to provide enhanced con
 
 ![FM Configurator New Layout](img/flow-manager-configurator-new-layout.png)
 
-### Feature
-
-[...]
 
 ## Platform Engineering enablement
 
