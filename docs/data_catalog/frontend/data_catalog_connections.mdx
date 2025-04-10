@@ -83,7 +83,9 @@ The following providers are supported, which can be grouped into the following c
   - __SAP Hana__
 - __HTTP Connections__:
   - __Salesforce SObjects__: storage layer provided by Salesforce;
-  - __MIA Platform CRUD__: data layer on __MongoDB__ provided by MIA Platform Console.
+  - __Mia-Platform CRUD__: data layer on __MongoDB__ provided by Mia-Platform Console.
+- __Native__: databases that can reached using their native driver, such as:
+  - __MongoDB__
 
 ### Connection Details
 
@@ -222,9 +224,9 @@ For example, if you are using a testing instance, you'll need to set this field 
 
 ---
 
-#### Mia Platform CRUD
+#### Mia-Platform CRUD
 
-__Mia Platform CRUD__ connection enables to retrieve assets from Mia Platform Console projects having
+__Mia-Platform CRUD__ connection enables to retrieve assets from Mia-Platform Console projects having
 data models stored on MongoDB and managed through [Crud Service](/runtime_suite/crud-service/10_overview_and_usage.md).
 
 The required information to setup the connection are:
@@ -233,7 +235,7 @@ The required information to setup the connection are:
 - the [__Schemas Endpoint__](/runtime_suite/crud-service/10_overview_and_usage.md#get-schemas) (usually `/-/schemas`) to retrieve the collections assets;
 - the __Health Check Endpoint__ (usually `/-/healthz`) to retrieve the version of the CRUD Service.
 
-Additionally, it is possible to define the project and the environment where the CRUD Service is located in a Mia Platform Project
+Additionally, it is possible to define the project and the environment where the CRUD Service is located in a Mia-Platform Project
 by choosing a Company.
 
 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -269,10 +271,68 @@ it's possible to set the connection as `insecure` and set a custom certificate i
 
 ---
 
+#### MongoDB
+
+Users can create a connection directly to __MongoDB__ using the dedicated provider, where the user needs to define the connection string used to connect to the database instance.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+  <div style={{display: 'flex', width: '100%'}}>
+
+![MongoDB Connection Form](./../img/connections_mongodb.png)
+
+  </div>
+</div>
+
+:::info
+Since __MongoDB__ is a NoSQL database there is no concept of schema for a collection. However when a [JSON Schema validation](https://www.mongodb.com/docs/manual/core/schema-validation/) is available
+it may make sense to detect fields and types for a collection.
+
+Types from `MongoDB` are directly picked from the [BSON Type specification](https://www.mongodb.com/docs/manual/reference/operator/query/jsonSchema/#mongodb-query-op.-jsonSchema). 
+During the retrieval phase, the agent follows these rules to parse the validation object:
+
+- when BSON and JSON schemas overlap (please refer to [this table](https://docs.rs/jsonutil/latest/jsonutil/index.html) for a comparison list used by the inner library), then the JSON schema is included;
+- when the form of the validation is, at first level, written as:
+
+  ```json
+  {
+    "type": "object",
+    "properties": {
+      // a list of fields
+    }
+  }
+  ```
+
+  then fields are extracted, since it is possible to determine column assets for each document in the collection;
+- if the validation schema contains `anyOf`, `allOf`, or `oneOf` at the first level, the schema **won't be parsed**.
+
+:::
+
+In addition to the connection settings, it is also possible to tune both databases and collections retrieval.
+
+##### MongoDB Databases Settings
+
+To define which databases the agent will retrieve when scanning models, the following options are provided:
+
+* __Strict Discard Default__ (default option): the agent will try to retrieve the assets from any non-admin database;
+* __Strict__: the agent will try to retrieve assets from the database specified in the connection string;
+* __All__: the agent will try to retrieve assets from every available database the user has access to;
+* __Whitelist__: the user can specify a comma-separated list of databases from which the agent will try to retrieve assets. 
+
+##### MongoDB Collections Settings
+
+Similarly, the collection retrieval can be tuned with the following options:
+
+* __Strict and Validated__ (default and recommended option): the agent will retrieve only collections that have a `validator.$jsonSchema` creation option;
+* __Strict__: the agent will try to retrieve the assets of the collections except the system's collections;
+* __All__: the agent will try to retrieve any collection of the databases;
+* __Whitelist__: the user can specify a comma-separated list of collections from which the agent will try to retrieve assets. 
+
+---
+
 ### Agent Settings
 
 :::info
-Thi settings can be configured for all connections __excepts__ _Mia Platform CRUD_. 
+These settings can be configured for all connections __excepts__ _Mia-Platform CRUD_ and _MongoDB_. 
 :::
 
 Once the main details of a connection has been defined, you can also tune runtime parameters
