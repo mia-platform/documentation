@@ -4,21 +4,140 @@ title: miactl
 sidebar_label: miactl
 ---
 
+:::info
+You need to have *Company Owner* or *Project Administrator* role at Company level to perform the following actions
+:::
+
 ## List item
 
 ...
 
 ## Create item
 
-...
+Imagine you are a software developer, working for the Company "Acme Corporation".
+
+You have developed a new service (for example a NodeJS service) called "My Awesome Service". The service is a plugin, i.e. users are only required to configure it and deploy it in their project.
+You now want it to be available in the Marketplace of your Company.
+
+First, create a JSON file that defines your service. The structure of this file depends on the type of item you're adding. For guidance, refer to [this guide](/old_software-catalog/manage-items/overview.md#how-to-configure-a-new-item).
+Save the file, for example, as: `myAwesomeService.json` file.
+
+To create the item on the Marketplace, open a terminal in the directory where the JSON file is saved, and run the following command:
+
+```sh
+miactl marketplace apply -f myAwesomeService.json
+```
+:::tip
+
+Further information about the `apply` command can be found in the [dedicated doc](/cli/miactl/30_commands.md#apply).
+
+:::
+
+:::caution
+Ensure that the `image` and `supportedByImage` objects are populated with local paths to images: make sure the images exist and that their path is correct.
+:::
+
+Running this command will create the Marketplace item and upload the associated images.
+
+Upon success, you'll receive a confirmation message similar to the one below:
+
+```sh
+1 of 1 items have been successfully applied:
+
+  ID                        ITEM ID             NAME                 STATUS   
+
+  65368hf0c91d871a87afbcbf  my-awesome-service   My Awesome Service   Inserted  
+```
+
+After the upload, image references in the JSON will be replaced by hosted URLs (`imageUrl` and `supportedByImageUrl`). To fetch the updated version of your item, use the `get` command:
+
+```sh
+miactl marketplace get 65368hf0c91d871a87afbcbf > myAwesomeService.json
+```
+
+:::tip
+Local file paths will not be updated automatically after item creation.
+To keep your local configuration in sync, we recommend downloading a fresh copy of the JSON file after every update.
+:::
+
+What’s Next? Once published, your service will appear as a clickable card in the Internal Company Marketplace section of the Console, making it easy for others in your organization to discover and use it.
 
 ## Edit item
 
-...
+Imagine now that you noticed that the description of "My Awesome Service" is not correct and you want to change it.
+
+Start by downloading the most recent version of the item's configuration file:
+
+```sh
+miactl marketplace get ITEM_ID > myAwesomeService.json
+```
+Replace `ITEM_ID` with the alphanumeric ID of your Marketplace item.
+If you're unsure of the item ID, you can list all Marketplace items using `miactl marketplace list` command.
+
+:::tip
+
+It is suggested to always download the Marketplace item just before updating it to make sure it works on the latest version.
+
+:::
+
+Edit your file following the steps described in the [Modifying the Marketplace Item](??).
+Once you're satisfied with your changes, save the file and apply it to the Marketplace:
+
+```sh
+miactl marketplace apply -f myAwesomeService.json
+```
+
+You should see a success message confirming the update:
+
+```sh
+1 of 1 items have been successfully applied:
+
+  ID                        ITEM ID             NAME                 STATUS   
+
+  65368hf0c91d871a87afbcbf  my-awesome-service  My Awesome Service   Updated
+```
+
+The changes will now be visible in the Console Marketplace.
+
+### Update of versioned items
+
+If the Marketplace item is versioned, updates can only be made under certain conditions.
+
+- You may directly update base fields (e.g., metadata like the description or tags) using the same [`apply`](/cli/miactl/30_commands.md#apply) command.
+- For other updates, such as changes to the resource configuration or behavior, you’ll need to create a new version of the item.
+
+To create a new version:
+
+1. Ensure the `itemId` and `tenantId` remain the same.
+2. Update the version field following [Semantic Versioning](https://semver.org/).
+3. Modify the `resource` object with your changes.
+4. Apply the new version using the same command:
+
+```sh
+miactl marketplace apply -f myAwesomeService.json
+```
+For more guidance, refer to the [Create your Company Marketplace](/old_software-catalog/manage-items/overview.md).
+
+Following [Semantic Versioning](https://semver.org/) helps track changes over time and ensures your users can select the appropriate version for their needs.
 
 ## Delete item
 
-...
+Let’s say you’ve determined that My Awesome Service is no longer needed within your company. You can remove it from the Marketplace using the `delete` command.
+
+Use the following command in your terminal:
+
+```sh
+miactl marketplace delete --object-id=<objectId>
+```
+
+> The `object-id` refers to the `ID` returned when you originally applied the item to the Marketplace. It is not the same as the `itemId`.
+
+Once executed, the item will be permanently removed from the Marketplace. 
+However, this action does not delete the local JSON file on your machine. If needed, you can easily recreate the Marketplace item by simply reapplying the original JSON file:
+
+```sh
+miactl marketplace apply -f myAwesomeService.json
+```
 
 ## Declarative approach
 
