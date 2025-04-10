@@ -1,22 +1,36 @@
 ---
-id: declarative-approach
-title: Declarative approach
-sidebar_label: Declarative approach
+id: miactl
+title: miactl
+sidebar_label: miactl
 ---
 
-Sistemare la pagina esistente
+## List item
 
------
+...
+
+## Create item
+
+...
+
+## Edit item
+
+...
+
+## Delete item
+
+...
+
+## Declarative approach
 
 In addition to the basic use of the tool through individual application commands, such as list, get, and resource deletion, a *declarative* approach is recommended. This approach is based on the use of [miactl](/cli/miactl/10_overview.md) in combination with a [Git Provider and a CI/CD system](/console/company-configuration/providers/overview.md).
 
 This usage allows for centralized management of your Marketplace, enabling supervised control of the state of your resources. It also extends the possibility of contribution to users without the necessary permissions (e.g., the use of Pull Requests/Merge Requests supervised by a maintainer).
 
-## Setup a Custom Declarative Journey
+### Setup a Custom Declarative Journey
 
 Here we explain how you can implement a Custom Declarative Journey.
 
-### Requirements
+#### Requirements
 
 1. Git Provider
 2. CI/CD Tool
@@ -28,7 +42,7 @@ For a thorough explanation on supported Providers and how to configure them in t
 
 :::
 
-### Creation of the repository
+#### Creation of the repository
 
 Imagine you already have some Marketplace items and their related file manifests, ready to be deployed to the Console.
 
@@ -135,11 +149,11 @@ Here is an example of the Inventory System plugin config file:
 
 You can similarly configure all the items you need.
 
-### CI/CD Pipeline - An example with Gitlab
+#### CI/CD Pipeline - An example with Gitlab
 
 You can use any CI/CD Tool; in this example, we provide you an example of Gitlab pipeline.
 
-#### Setup the environment
+##### Setup the environment
 
 First of all, you need to create a Service Account on the Console. In this example, we use a [Client Secret Basic authentication](/development_suite/identity-and-access-management/manage-service-accounts.md#adding-a-service-account). 
 
@@ -151,7 +165,7 @@ We suggest to mask the variable and to protect it, as suggested in [Gitlab docum
 
 :::
 
-#### Setup the pipeline file
+##### Setup the pipeline file
 
 Create a `.gitlab-ci.yml` file with the following contents:
 
@@ -201,7 +215,7 @@ Here is an explanation of the environment variables needed in the pipeline:
 - `CONSOLE_ENDPOINT`: the base url of your Console installation.
 - `COMPANY_ID`: the Company ID where you want the Marketplace Items to be created in.
 
-## An example of interaction with the repository
+### An example of interaction with the repository
 
 Acme Corporation uses the Console as its Internal Development Platform.
 
@@ -210,7 +224,7 @@ Developers of the Company can open Merge Requests to the Marketplace Git reposit
 Imagine that a developer of Acme Corporation creates the Inventory System plugin, as in the example above.
 They now want to add this plugin to their company. 
 
-### The Merge Request process
+#### The Merge Request process
 
 In order to do so, they can open a Merge Request to the Gitlab Repository created above: 
 
@@ -229,7 +243,7 @@ After a maintainer merges the changes, a new pipeline is triggered, leading to a
 
 ![Declarative-CJ-fix-Pipeline-Log](img/declarative_fix_pipeline_log.png)
 
-### Verify the item on the Marketplace
+#### Verify the item on the Marketplace
 
 From now on, the Marketplace item will be available in the Console:
 
@@ -237,7 +251,7 @@ From now on, the Marketplace item will be available in the Console:
 
 Console users can create and add this plugin to their Console projects.
 
-### Item Deletion
+#### Item Deletion
 
 Imagine now that for some reason you want to delete the item.
 

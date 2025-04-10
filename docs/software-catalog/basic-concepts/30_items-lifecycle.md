@@ -6,7 +6,7 @@ sidebar_label: Items lifecycle
 
 Each item has a predetermined **lifecycle stage**:
 
-![lifecycle-stages](./img/component-lifecycle-final.png)
+<!-- ![lifecycle-stages](./img/component-lifecycle-final.png) -->
 
 The following are the various **lifecycle stages** an item can go through.
 
@@ -29,7 +29,7 @@ The following are the various **lifecycle stages** an item can go through.
 
 Sometimes, a Marketplace item may become deprecated. This typically occurs when a newer item replaces it with enhanced features, or when a better solution is provided by a new application. 
 
-![deprecated-service](./img/deprecated-service.png)
+<!-- ![deprecated-service](./img/deprecated-service.png) -->
 
 In such cases, the maintainer may decide not to longer support the older item, meaning it will not receive any future updates.
 

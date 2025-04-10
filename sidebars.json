@@ -1947,48 +1947,51 @@
       },
       "items": [
         {
-          "type": "category",
-          "collapsed": true,
-          "label": "Items manifest",
-          "link": {
-            "id": "software-catalog/items-management/items-manifest/overview",
-            "type": "doc"
-          },
-          "items": [
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/example"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/template"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/plugin"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/application"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/proxy"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/sidecar"
-            },
-            {
-              "type": "doc",
-              "id": "software-catalog/items-management/items-manifest/infrastructure-resource"
-            }
-
-          ]
+          "id": "software-catalog/items-management/ui",
+          "type": "doc"
+        },
+        {
+          "id": "software-catalog/items-management/miactl",
+          "type": "doc"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": true,
+      "label": "Items manifest",
+      "link": {
+        "id": "software-catalog/items-manifest/overview",
+        "type": "doc"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/application"
         },
         {
           "type": "doc",
-          "id": "software-catalog/items-management/declarative-approach"
+          "id": "software-catalog/items-manifest/example"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/infrastructure-resource"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/plugin"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/proxy"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/sidecar"
+        },
+        {
+          "type": "doc",
+          "id": "software-catalog/items-manifest/template"
         }
       ]
     }
