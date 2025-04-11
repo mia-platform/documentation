@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Topics not handled by control plane are resumed and work independenctly
+- Topics not handled by the control plane are resumed and work independently
 
 ## [3.4.0] 2025-01-23
 
