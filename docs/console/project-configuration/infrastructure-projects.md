@@ -13,8 +13,8 @@ These Projects are distinct from traditional Application Projects as they are sp
 
 ## Creating an Infrastructure Project
 
-When creating a new project in Console, you can select the **Infrastructure** type.  
-This option unlocks a dedicated setup flow and enables project sections tailored to infrastructure workflows.
+When creating a new Project in your Company, you can select the **Infrastructure** type.  
+This option unlocks a dedicated setup flow and enables the creation of a Project tailored to infrastructure workflows.
 
 ![Infrastructure Projects creation](/)
 
@@ -22,13 +22,13 @@ This option unlocks a dedicated setup flow and enables project sections tailored
 
 Each Infrastructure Project includes a specific section for managing **infrastructure components**.
 
-You can currently create a component from scratch; in future releases, you’ll also be able to instantiate components from a **Marketplace**.  
+You can currently create an infrastructure component from scratch; in future releases, you’ll also be able to instantiate components from a **Marketplace**.  
 
 TO DO: components creation steps explanation
 
 ![Infrastructure component creation](/)
 
-Creating a component automatically provisions a new repository, which you can manage independently to evolve your infrastructure definitions.
+Creating a component automatically generates a new repository, which you can manage to evolve your infrastructure.
 
 
 ## Deploying your Infrastructure
