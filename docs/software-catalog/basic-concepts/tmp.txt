@@ -1,0 +1,20 @@
+| **Property**          | **Type** | **Required** | **Description**                                                                                                  |
+| --------------------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `name`                | `string` | ✓            | A human-readable name of the item                                                                                |
+| `tenantId`            | `string` | ✓            | The identifier of the Company the item belongs to                                                                |
+| `itemId`              | `string` | ✓            | The unique [RFC-1035][rfc-1035]-compliant identifier of the item                                                 |
+| `description`         | `string` |              | A brief description regarding the functionalities of the item                                                    |
+| `type`                | `string` | ✓            | The [type][items-type] of the item                                                                               |
+| `documentation`       | `object` |              | The documentation of the item. It's an object composed by `type` and `url`                                       |
+| `lifecycleStatus`     | `string` | ✓            | The [development status][items-lifecycle] of the item                                                            |
+| `category`            | `object` |              | A categorization based on the item purpose or use case.                                                          |
+| `imageUrl`            | `string` |              | The URL of an image associated with the item                                                                     |
+| `supportedBy`         | `string` |              | A label to identify the company that is providing the item                                                       |
+| `supportedByImageUrl` | `string` |              | The URL of an image associated with the company that is providing the item                                       |
+| `version`             | `object` |              | The version of the item. It is an object composed by the following properties: `name`, `releaseNote`, `security` |
+| `isLatest`            | `string` | ✓            |                                                                                                                  |
+| `providerId`          | `string` |              |                                                                                                                  |
+| `releaseDate`         | `string` | ✓            |                                                                                                                  |
+| `repositoryUrl`       | `string` |              |                                                                                                                  |
+| `resources`           | `string` |              |                                                                                                                  |
+| `visibility`          | `string` |              |                                                                                                                  |
