@@ -4,11 +4,11 @@ title: Items lifecycle
 sidebar_label: Items lifecycle
 ---
 
-Each item has a predetermined **lifecycle stage**:
+Each item has a predetermined **lifecycle status**:
 
-<!-- ![lifecycle-stages](./img/component-lifecycle-final.png) -->
+![lifecycle-stages](./img/lifecycle-stages.png)
 
-The following are the various **lifecycle stages** an item can go through.
+The following are the various **lifecycle status** an item can go through.
 
 * **Coming Soon**: this state indicates that the item is in its early stages of development. Implementation has just begun, and the component is not yet ready for use by the public. However, users can be informed about its upcoming availability. It serves as a teaser or preview, giving users an idea of new features that are being worked on, but without offering any functionality yet.
 
