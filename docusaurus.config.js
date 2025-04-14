@@ -259,18 +259,18 @@ async function createConfig() {
             lastVersion: "current",
             versions: {
               current: {
-                label: "13.x (Current)",
+                label: "14.x (Current)",
                 path: "",
                 banner: "none"
+              },
+              "13.x.x": {
+                label: "13.7.x",
+                path: "13.x",
               },
               "12.x.x": {
                 label: "12.4.x",
                 path: "12.x",
-              },
-              "11.x.x": {
-                label: "11.7.x",
-                path: "11.x",
-              },
+              }
             },
             async sidebarItemsGenerator({
               isCategoryIndex: defaultCategoryIndexMatcher,
@@ -294,7 +294,7 @@ async function createConfig() {
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
-            ignorePatterns: ['/docs/11.x/**', '/docs/12.x/**'],
+            ignorePatterns: ['/docs/12.x/**', '/docs/13.x/**'],
             filename: 'sitemap.xml',
           }
         },
