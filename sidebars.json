@@ -1975,6 +1975,10 @@
         },
         {
           "type": "doc",
+          "id": "software-catalog/items-manifest/extension"
+        },
+        {
+          "type": "doc",
           "id": "software-catalog/items-manifest/infrastructure-resource"
         },
         {

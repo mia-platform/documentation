@@ -4,25 +4,11 @@ title: Items visibility
 sidebar_label: Items visibility
 ---
 
-<!-- As a Console user, you can access both your Company’s Software Catalog and the Marketplace.
-
-The Marketplace is a key resource within the development platform, providing a vast library of ready-to-use components designed to support the setup of a Company's project architecture, supported by Mia-Platform. In addition to these public items, the Marketplace also provides access to items created within your Company’s Software Catalog, which are exclusive to your company. These company-specific items are only visible and accessible to your own company. -->
-
 This guide aims to assist the user in managing the visibility of items across different visibility levels: from private to visible to all companies, from visible to all companies to public, or vice versa.
 
 :::caution
 The ability to modify the visibility of an item to other companies is restricted to users with the Company Owner or Project Administrator role. Additionally, users must have the [`marketplace.root.manage`](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions) permission to perform this action.
 :::
-
-## How to manage items visibility 
-
-Managing the visibility of items can be done through three main methods:
-
-- Software catalog UI: the metadata section of the item in the UI to adjust visibility settings.
-- miactl CLI: use the [`miactl apply`](/cli/miactl/30_commands.md#apply-1) command to update the item's visibility through its configuration file.
-- (only for PaaS Console installation): open an issue on Mia-Platform [Github community page](https://github.com/mia-platform/community) or contact your Mia-Platform referent.
-
-- (_Deprecated_): use the [Console Backoffice](/microfrontend-composer/previous-tools/cms/guide_cms.md) to make your item accessible to other Companies.
 
 ## Public Visibility
 
