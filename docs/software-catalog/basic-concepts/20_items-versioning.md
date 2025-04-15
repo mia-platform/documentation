@@ -4,66 +4,65 @@ title: Items versioning
 sidebar_label: Items versioning
 ---
 
-- versione N/A
-- concetto di latest
+A versioned resource is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and underlying components at a given point in time.
+
+Versioning allows teams to:
+- Evolve resources over time while maintaining consistency and traceability.
+- Prevent unintended changes to resources already in use.
+- Support multiple iterations of the same resource simultaneously.
 
 :::info
-This feature is currently available for the [Plugin](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_plugin.md), [Infrastructure Resource](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_infrastructure_resource.mdx), [Templates and Examples](/old_software-catalog/manage-items/mia-ctl/create/create-item-by-type/create_template_or_example.md) types.
+Versioning is currently supported for the following [item types](./10_items-types.md):
+- **Plugin**
+- **Infrastructure Resource**
+- **Template**
+- **Example**
 :::
 
-To create a versioned resource, you need to set a specific value for the `name` property of the `version` object to the resource definition, as explained in the ["How to configure a new item" section](#how-to-configure-a-new-item).
+To define a *version of a resource*, a few key properties must be configured:
 
-Also, to provide continuity to the definition of the other versions of the same resource, the `tenantId` and the `itemId` properties must be the same for all the versions of the same resource.
+- **Version name** (the `name` property inside the `version` object): a unique name that identifies the version of the resource. This typically follows [Semantic Versioning rules](https://semver.org/) (e.g. 1.0.0, 2.1.3).
 
-You can create a new version of an item even if that resource already exists without a version. In that case the non-versioned item will still be available in the Console, where it will be shown with a *N/A* value for version.
+- **Stable properties across versions**: the following properties must remain consistent across all versions of the same resource:
+    - `itemId`
+    - `tenantId`
 
-If there are multiple version of the same item, one of these versions will be used as *latest version*.
-This is the version that will be used as a reference when you will create a new microservice or a new resource choosing the item from the Marketplace.
+These three properties together — `tenantId`, `itemId`, and `version.name` — form the unique identity of a versioned resource.
 
-The latest version is going to be the one with the highest version, according to the [Semantic Versioning rules](https://semver.org/).
-We suggest to follow these guidelines when assigning a version to your item, in order to easily determine which one is the latest.
-
- ![List of marketplace versions](./img/version_list.png)
+Refer to [this section](/software-catalog/items-management/overview.md) for implementation details.
 
 :::info
-Also you will be informed if one or more of your resources attached to an item have updates.
+Items that were created without a version will still appear in the Console. These are treated as non-versioned resources and will be shown with a version value of *N/A*.
+:::
 
-You can find a list of all the updates at the bottom of the sidebar menu with the list of all your services, as well as inside the detail page of the service that can be updated.
+When multiple versions of an item exist, one of them is automatically considered the **latest** version:
+- this version is used by default when creating new resources from the Catalog
+- it is selected based on [Semantic Versioning rules](https://semver.org/), this meaning the highest valid version number becomes the latest.
+
+:::info
+If any resource attached to a Marketplace item has an available update, the Console will notify you.
+You can find these updates:
+- In the sidebar, at the bottom of your service list
+- Within the detail page of the service that requires updating
 
  ![Design page with notifications of new Marketplace versions](./img/versions_notifications.png)
 :::
 
-#### Editing a versioned resource
+### Editing a versioned resource
 
-Versioned resources are defined to be immutable, to avoid that updates might overwrite previous configurations. However, they can still be edited if there is a need to update their metadata (e.g. the release note or the description of the  item due to typos or other reasons).
+Versioned resources are designed to be **immutable**, meaning their core configuration cannot be changed once published. This guarantees reliability and consistency across environments. However, metadata such as a description or release notes may still be updated.
 
-The following fields, however, cannot be edited:
-
+The following fields cannot be edited after publishing a version:
 - `itemId`
 - `tenantId`
-- the `name` property inside `version` object
-- the `resources` property, that includes the specific resource definition
+- `version.name`
+- `assets` (field `resources`)
 
 Since items are defined by the `itemId`, the `tenantId` and the `version` name, attempting to modify one of these three properties will cause the creation of a new item, completely separated from the previous one.
 
 Attemping to modify the `resources` property will cause an error, and the item will not be updated. In this case, you need to create a new version of the item.
 
-Additionally, the following fields can only be edited if the `marketplace.root.manage` permission has been granted to the user:
+Some examples:
 
-- `supportedBy`
-- `supportedByImage`
-- `publishOnMiaDocumentation`
-- `visibility`
-
-More information about these permissions are available in the [permissions documentation](/development_suite/identity-and-access-management/console-levels-and-permission-management.md#console-root-level-permissions).
-
-#### Version dependent properties
-
-Versioning of resources means that resources under version control consist of specific *dependent fields* that define the version. These fields cannot be modified directly by the user, they can only be updated by creating a new version of the resource.
-
-For instance:
-
-- a version of a Microservice Plugin is defined by its `dockerImage`. By following the resource versioning management, a change in this field will require the creation of a new version for such Plugin
-- for Infrastructure Resources of type K8s the governance is quite similar: since Infrastructure Resources of type K8s are defined by their `apiVersion` and `kind`, in this scenario, the only way to be able to change them will be through the creation of a new version.
-
-By defining these fields as *version dependent*, we ensure that they cannot be modified by the user when adding a marketplace item to their project. Whenever a new Microservice is created from a Marketplace plugin with a specific version, the `dockerImage` field will automatically be shown as read-only, and the user will only be able to modify it by actually checking for other versions of the plugin.
+- **Plugin**: The `dockerImage` field determines the version. Any update to this field requires creating a new version.
+- **Infrastructure Resource**: Defined by the `apiVersion` and `kind` properties. Changes to these fields must also be handled via versioning.
