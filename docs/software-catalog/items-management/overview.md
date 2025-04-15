@@ -13,7 +13,7 @@ Managing items involves three main actions:
 
 These actions apply to both **versioned** and **non-versioned** items. However, it's important to note:
 - For **non-versioned items**, edits directly modify the item
-- For **versioned items**, editing may result in the creation of a **new version**, since versioned resources are immutable in their core structure and configuration.
+- For **versioned items**, editing may result in the creation of a **new version**, since versioned items are immutable in their core structure and configuration.
 
 ### Management methods
 

@@ -4,12 +4,12 @@ title: Items versioning
 sidebar_label: Items versioning
 ---
 
-A versioned resource is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and resources at a given point in time.
+A **versioned item** is a distinct, immutable snapshot of an item that captures a specific state of its configuration, metadata, and resources at a given point in time.
 
 Versioning allows teams to:
 - Evolve resources over time while maintaining consistency and traceability.
-- Prevent unintended changes to resources already in use.
-- Support multiple iterations of the same resource simultaneously.
+- Prevent unintended changes to items already in use.
+- Support multiple iterations of the same item simultaneously.
 
 :::info
 Versioning is currently supported for the following [item types](./10_items-types.md):
@@ -19,24 +19,24 @@ Versioning is currently supported for the following [item types](./10_items-type
 - **Example**
 :::
 
-To define a *version of a resource*, a few key properties must be configured:
+To define a *version of an item*, a few key properties must be configured:
 
-- **Version name** (the `name` property inside the `version` object): a unique name that identifies the version of the resource. This typically follows [Semantic Versioning rules](https://semver.org/) (e.g. 1.0.0, 2.1.3).
+- **Version name** (the `name` property inside the `version` object): a unique name that identifies the version of the item. This typically follows [Semantic Versioning rules](https://semver.org/) (e.g. 1.0.0, 2.1.3).
 
-- **Stable properties across versions**: the following properties must remain consistent across all versions of the same resource:
+- **Stable properties across versions**: the following properties must remain consistent across all versions of the same item:
     - `itemId`
     - `tenantId`
 
-These three properties together — `tenantId`, `itemId`, and `version.name` — form the unique identity of a versioned resource.
+These three properties together — `tenantId`, `itemId`, and `version.name` — form the unique identity of a versioned item.
 
 Refer to [this section](/software-catalog/items-management/overview.md) for implementation details.
 
 :::info
-Items that were created without a version will still appear in the Console. These are treated as non-versioned resources and will be shown with a version value of *N/A*.
+Items that were created without a version will still appear in the Console. These are treated as non-versioned items and will be shown with a version value of *N/A*.
 :::
 
 When multiple versions of an item exist, one of them is automatically considered the **latest** version:
-- this version is used by default when creating new resources from the Catalog
+- this version is used by default when creating new items from the Catalog
 - it is selected based on [Semantic Versioning rules](https://semver.org/), this meaning the highest valid version number becomes the latest.
 
 :::info
@@ -48,9 +48,9 @@ You can find these updates:
  ![Design page with notifications of new Marketplace versions](./img/versions_notifications.png)
 :::
 
-### Editing a versioned resource
+### Editing a versioned item
 
-Versioned resources are designed to be **immutable**, meaning their core configuration cannot be changed once published. This guarantees reliability and consistency across environments. However, metadata such as a description or release notes may still be updated.
+Versioned items are designed to be **immutable**, meaning their core configuration cannot be changed once published. This guarantees reliability and consistency across environments. However, metadata such as a description or release notes may still be updated.
 
 The following fields cannot be edited after publishing a version:
 - `itemId`
