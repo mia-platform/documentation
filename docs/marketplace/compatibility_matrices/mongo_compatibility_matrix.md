@@ -165,7 +165,7 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="2"><a href="../../console/tutorials/configure-marketplace-components/flow-manager">Flow Manager</a></td>
-        <td>v2.6.0</td>
+        <td><= v2.6.x</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
