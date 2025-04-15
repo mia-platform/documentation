@@ -165,14 +165,14 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="2"><a href="../../console/tutorials/configure-marketplace-components/flow-manager">Flow Manager</a></td>
-        <td><= v2.6.x</td>
+        <td>≤ v2.6.x </td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
     </tr>
     <tr>
-        <td><= v2.2.0</td>
+        <td>≤ v2.2.0</td>
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
@@ -195,21 +195,21 @@ This is an indicative list. For up to date information about the latest versions
     </tr>
     <tr>
         <td rowspan="3"><a href="../../runtime_suite/files-service/configuration">Files Service</a></td>
-        <td>>= v2.10.1</td>
+        <td>≥ v2.10.1</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td></td>
     </tr>
     <tr>
-        <td>>= v2.9.0</td>
+        <td>≥ v2.9.0</td>
         <td>✅</td>
         <td>✅</td>
         <td>❌</td>
         <td></td>
     </tr>
     <tr>
-        <td>>= v2.3.x</td>
+        <td>≥ v2.3.x</td>
         <td>❌</td>
         <td>❌</td>
         <td>❌</td>
